@@ -1,0 +1,13 @@
+<div class="arn-card item-card">
+  <header class="arn-card-title"><img src="{{item.img}}" alt=""> <span>{{item.name}}</span></header>
+  {{#if (eq item.type "spell")}}
+  <div class="arn-card-meta">
+    {{lookup config.spellLevels item.system.level}}{{#if item.system.school}} · {{item.system.school}}{{/if}}
+    {{#if item.system.castingTime}} · {{item.system.castingTime}}{{/if}}{{#if item.system.range}} · {{item.system.range}}{{/if}}
+    {{#if item.system.duration}} · {{item.system.duration}}{{/if}}{{#if item.system.concentration}} · Concentration{{/if}}
+  </div>
+  {{/if}}
+  <details class="arn-card-desc" {{#if open}}open{{/if}}><summary>Description</summary>{{{description}}}</details>
+  {{{extraHtml}}}
+  {{#if page}}<a class="arn-page-link" data-book="{{book}}" data-page="{{page}}"><i class="fa-solid fa-book-open"></i> {{lookup config.books book}} p. {{page}}</a>{{/if}}
+</div>

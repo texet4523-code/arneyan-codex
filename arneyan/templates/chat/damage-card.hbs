@@ -1,0 +1,43 @@
+<div class="arn-card arn-dmg-card {{#if healing}}healing{{/if}}">
+  <header class="arn-card-title">{{#if img}}<img src="{{img}}" alt="">{{/if}} <span>{{title}}</span>
+    {{#if type}}<span class="arn-type-badge {{damageType}}">{{type}}</span>{{/if}}</header>
+  {{#if crit}}<div class="arn-crit">Critical hit: the maximum of the damage dice is added</div>{{/if}}
+  <details class="arn-dmg-details">
+    <summary class="arn-dmg-main" data-tooltip="Click for the dice and the breakdown">
+      <span class="arn-dmg-total">{{total}}</span>
+      <span class="arn-dmg-formula">{{formula}}</span>
+      <i class="fa-solid fa-chevron-down arn-dmg-more"></i>
+    </summary>
+    {{#each diceGroups}}
+    <div class="arn-dmg-group">
+      <span class="arn-dmg-group-label">{{label}}</span>
+      <span class="arn-dmg-dice">{{#each dice}}<span class="arn-die small {{#if dropped}}dropped{{/if}} {{#if max}}max{{/if}} {{#if min}}min{{/if}}" data-tooltip="d{{faces}}">{{result}}</span>{{/each}}</span>
+      <span class="arn-dmg-group-sum">= {{subtotal}}</span>
+    </div>
+    {{/each}}
+    {{#if parts.length}}<div class="arn-dmg-parts">{{#each parts}}<span>{{value}} <small>{{label}}</small></span>{{/each}}</div>{{/if}}
+  </details>
+  {{#if split.length}}<div class="arn-dmg-split">{{#each split}}<span class="arn-type-badge {{type}}">{{amount}} {{label}}</span>{{/each}}</div>{{/if}}
+  {{#if hasHits}}<div class="arn-dmg-hits">{{#if hitNames}}<i class="fa-solid fa-crosshairs"></i> Goes to the ones hit: <strong>{{hitNames}}</strong>{{else}}The attack hit nobody.{{/if}}{{#if missNames}} <span class="arn-muted">(missed: {{missNames}})</span>{{/if}}</div>{{/if}}
+  {{#if notes.length}}<ul class="arn-notes">{{#each notes}}<li>{{this}}</li>{{/each}}</ul>{{/if}}
+  {{#if offers.length}}
+  <details class="arn-offers">
+    <summary>Extra damage that may apply ({{offers.length}})</summary>
+    {{#each offers}}<button type="button" class="arn-reroll-with" data-key="{{key}}" data-tooltip="Rolls the damage again with this added; apply that card instead of this one">
+      <span class="arn-offer-main"><i class="fa-solid fa-plus"></i> {{formula}} {{typeLabel}}</span>{{#if when}}<span class="arn-offer-when">{{when}}</span>{{/if}}</button>{{/each}}
+  </details>
+  {{/if}}
+  <div class="arn-apply" data-total="{{total}}" data-type="{{damageType}}"{{#if weapon}} data-weapon="{{weapon}}"{{/if}}>
+    {{#if healing}}
+      <button type="button" class="arn-apply-dmg" data-mult="-1" data-tooltip="Heal your targets (or, with none, the tokens you have selected)"><i class="fa-solid fa-heart"></i> Apply healing</button>
+      <button type="button" class="arn-apply-dmg" data-mult="-1" data-temp="1" data-tooltip="Give temporary HP instead"><i class="fa-solid fa-shield-heart"></i> Temp HP</button>
+    {{else}}
+      <button type="button" class="arn-apply-dmg" data-mult="1" data-tooltip="Apply to your targets (or, with none, the tokens you have selected); resistances count"><i class="fa-solid fa-burst"></i> Apply</button>
+      <button type="button" class="arn-apply-dmg" data-mult="0.5" data-tooltip="Half damage (a successful save)">½</button>
+      <button type="button" class="arn-apply-dmg" data-mult="2" data-tooltip="Double damage">×2</button>
+      <button type="button" class="arn-apply-dmg" data-mult="-1" data-tooltip="Apply as healing"><i class="fa-solid fa-heart"></i></button>
+    {{/if}}
+  </div>
+  {{#if bySaves}}<button type="button" class="arn-apply-saves" data-tooltip="Each target's latest save against this spell decides: failed takes full damage, saved takes half (or none if the save negates). Roll the saves first."><i class="fa-solid fa-shield-halved"></i> Apply by saves</button>{{/if}}
+  {{#if canCrit}}<button type="button" class="arn-recrit"><i class="fa-solid fa-star"></i> Roll again as a critical</button>{{/if}}
+</div>

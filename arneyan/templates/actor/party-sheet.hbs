@@ -1,0 +1,98 @@
+<div class="arn-sheet party-sheet">
+  <header class="arn-head">
+    <div class="arn-head-top">
+      <img class="arn-party-img" src="{{actor.img}}" data-edit="img" data-action="editImage" alt="{{actor.name}}">
+      <input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Party name">
+    </div>
+    <div class="arn-subline">
+      <span class="arn-chip strong">{{members.length}} member{{#unless (eq members.length 1)}}s{{/unless}}</span>
+      <span class="arn-chip">Average level {{avgLevel}}</span>
+      <span class="arn-chip" data-tooltip="The slowest member's speed">Travel speed {{travelSpeed}}{{#unless (eq travelSpeed "-")}}ft{{/unless}}</span>
+      <span class="arn-chip">Stash {{system.stashSlots}} slots</span>
+      <span class="arn-chip" data-tooltip="What the party token sees on the map: the best-sighted member's vision{{#if sight.from}} ({{sight.from}}){{/if}}, plus every member's special senses"><i class="fa-solid fa-eye"></i> {{sight.label}}</span>
+      {{#if isGM}}
+      <span class="arn-head-tools">
+        <a class="arn-btn small" data-action="restParty" data-tooltip="Long rest for every member at once, with one summary card"><i class="fa-solid fa-campground"></i> Rest</a>
+        <a class="arn-btn small" data-action="encounter" data-tooltip="Build an encounter against this party"><i class="fa-solid fa-scale-balanced"></i> Encounter</a>
+        <a class="arn-btn small" data-action="gather" data-tooltip="Swap the members' tokens on this scene for the party token"><i class="fa-solid fa-people-arrows"></i> Gather</a>
+        <a class="arn-btn small" data-action="deploy" data-tooltip="Place every member's token around the party token and remove it"><i class="fa-solid fa-users-viewfinder"></i> Deploy</a>
+      </span>
+      {{/if}}
+    </div>
+  </header>
+
+  <nav class="arn-tabs">
+    {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
+  </nav>
+
+  <section class="arn-body">
+    <div class="arn-tab" data-tab="members">
+      <p class="arn-help">Every player character in the <strong>Player Characters</strong> folder is in the party. Drag a character into that folder (or onto this sheet) to add them; new player characters join automatically.</p>
+      <div class="arn-members">
+        {{#each members}}
+        <article class="arn-member" data-member-id="{{id}}" draggable="true">
+          <img src="{{img}}" alt="" {{#if canOpen}}data-action="openMember"{{/if}}>
+          <div class="arn-member-main">
+            <div class="arn-member-name">{{#if canOpen}}<a data-action="openMember">{{name}}</a>{{else}}{{name}}{{/if}}
+              {{#if @root.editable}}<a class="arn-ctl" data-action="removeMember" data-tooltip="Remove from the party"><i class="fa-solid fa-user-minus"></i></a>{{/if}}</div>
+            <div class="arn-muted">{{classLabel}} · Level {{level}}</div>
+            <div class="arn-hp-bar"><div style="width: {{hpPct}}%"></div></div>
+            <div class="arn-member-stats">
+              <span>HP <strong>{{hp}}/{{hpMax}}</strong></span><span>AC <strong>{{ac}}</strong></span>
+              <span>Luck <strong>{{luck}}</strong></span><span>Speed <strong>{{speed}}</strong></span>
+              {{#if exhaustion}}<span class="arn-bad">Exhaustion {{exhaustion}}</span>{{/if}}
+            </div>
+            {{#if conditions.length}}<div class="arn-cond-icons">{{#each conditions}}<span class="arn-cond on" data-tooltip="{{name}}"><img src="{{img}}" alt="{{name}}"></span>{{/each}}</div>{{/if}}
+          </div>
+        </article>
+        {{else}}
+        <p class="arn-empty">No members yet. Drag player characters here.</p>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="arn-tab" data-tab="stash">
+      <div class="arn-section-head"><h3>Party Stash</h3>
+        <span class="arn-muted">Drag items here from a sheet to move them in; drag them out to a sheet to take them.</span>
+        {{#if editable}}<a class="arn-browse" data-action="browse" data-tooltip="Browse the Catalogue"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+      <ul class="arn-list table stash">
+        {{#each stash}}
+        <li data-item-id="{{id}}" draggable="true">
+          <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+          <span>× {{qty}}</span>
+          <span class="arn-muted">{{price}}</span>
+          <span>{{slots}}</span>
+          {{#if @root.editable}}<span class="arn-controls">
+            <a class="arn-btn small ghost" data-action="giveItem" data-tooltip="Give it to a party member"><i class="fa-solid fa-hand-holding"></i> Give</a>
+            <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>
+          </span>{{/if}}
+        </li>
+        {{else}}<li class="arn-empty">The stash is empty.</li>{{/each}}
+      </ul>
+      <div class="arn-section-head"><h3>Coins</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="splitCoins"><i class="fa-solid fa-coins"></i> Split between members</a>{{/if}}</div>
+      <div class="arn-coins">
+        <label>pp <input type="number" name="system.currency.pp" value="{{source.currency.pp}}"></label>
+        <label>gp <input type="number" name="system.currency.gp" value="{{source.currency.gp}}"></label>
+        <label>sp <input type="number" name="system.currency.sp" value="{{source.currency.sp}}"></label>
+        <label>cp <input type="number" name="system.currency.cp" value="{{source.currency.cp}}"></label>
+      </div>
+      <div class="arn-section-head"><h3>Storage</h3><span class="arn-muted">Banks, chests back home, holds: gear kept away from the party.</span>
+        {{#if isGM}}<a class="arn-btn small ghost" data-action="newPlace"><i class="fa-solid fa-plus"></i> New place</a>{{/if}}</div>
+      <ul class="arn-list table arn-places">
+        {{#each places}}
+        <li data-place-id="{{id}}">
+          <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="openPlace">{{name}}</a></span>
+          <span class="arn-muted">{{location}}</span>
+          <span>{{slots}}{{#if capacity}} / {{capacity}}{{/if}} slots</span>
+          <span>{{#if here}}<span class="arn-chip strong">Here</span>{{else}}<span class="arn-chip">Away</span>{{/if}}</span>
+        </li>
+        {{else}}<li class="arn-empty">No storage places yet{{#if isGM}}: add one, or create an Actor of type Storage{{/if}}.</li>{{/each}}
+      </ul>
+    </div>
+
+    <div class="arn-tab" data-tab="notes">
+      <div class="arn-section-head"><h3>Party notes</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editNotes"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+      <div class="arn-prose">{{#if notes}}{{{notes}}}{{else}}<p class="arn-muted">Quests, debts, rumours, who owes whom.</p>{{/if}}</div>
+    </div>
+  </section>
+</div>

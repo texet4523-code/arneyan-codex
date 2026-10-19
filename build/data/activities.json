@@ -1,0 +1,2678 @@
+{
+ "Arrow Repertoire|Archer": {
+  "activities": [
+   {
+    "name": "Fire Arrow",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "fire",
+    "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Whistling Arrow",
+    "kind": "save",
+    "save": "will",
+    "text": "The arrow deals no damage but is heard up to 500ft; a creature unfamiliar with the sound saves or is Shaken for 1 round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Rope Arrow",
+    "kind": "note",
+    "text": "The arrow trails a thin line up to 60ft and anchors on a solid hit, so it can be climbed.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Broadhead Arrow",
+    "kind": "note",
+    "text": "The arrow reduces the armour bonus to the target's AC by 2.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these."
+ },
+ "Bent Path|Archer": {
+  "activities": [
+   {
+    "name": "Bent Path",
+    "kind": "note",
+    "text": "This shot ignores Disadvantage from Half Cover and reduces a shield's AC bonus by 2.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter shot modifier."
+ },
+ "Bent Path (Improved)|Archer": {
+  "activities": [
+   {
+    "name": "Bent Path (Improved)",
+    "kind": "note",
+    "text": "This shot treats Full Cover as Half Cover and ignores a shield's AC bonus, including magic; requires Running Shot's movement this turn.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter shot modifier."
+ },
+ "Called Shot (Archer)|Archer": {
+  "activities": [
+   {
+    "name": "Head",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Arm",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or drops what it is holding.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Leg",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or has its movement halved for 1 round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Three called-shot locations chosen at use; one a round."
+ },
+ "Twin Nock|Archer": {
+  "activities": [
+   {
+    "name": "Twin Nock",
+    "kind": "note",
+    "text": "Fire two arrows (three from 17th) instead of one attack, each with the per-arrow bonus; the second has Disadvantage until 10th level.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "low",
+  "why": "Per-round attack mode choice rather than a limited use."
+ },
+ "Hail of Arrows|Archer": {
+  "activities": [
+   {
+    "name": "Hail of Arrows",
+    "kind": "note",
+    "text": "As your action, make one bow attack roll against every creature in a 15ft radius within range, rolling damage separately for each.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter area attack."
+ },
+ "Perfect Loose|Archer": {
+  "activities": [
+   {
+    "name": "Perfect Loose",
+    "kind": "note",
+    "text": "Declared before rolling, your next shot deals maximum damage and gains Bent Path's improved effect if used.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day declared shot."
+ },
+ "The Arrow Finds Its Mark|Archer": {
+  "activities": [
+   {
+    "name": "The Arrow Finds Its Mark",
+    "kind": "note",
+    "text": "Make one ranged attack against any target in line of sight, ignoring range, cover and obstruction.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter shot."
+ },
+ "Spark Caster|Artificer": {
+  "activities": [
+   {
+    "name": "Spark Caster (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Spark Caster (1d8)",
+    "kind": "damage",
+    "formula": "1d8",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 5,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Spark Caster (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Spark Caster (2d8)",
+    "kind": "damage",
+    "formula": "2d8",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 13,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Spark Caster (3d6)",
+    "kind": "damage",
+    "formula": "3d6",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 17,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Spark Caster (3d8)",
+    "kind": "damage",
+    "formula": "3d8",
+    "damageType": "force",
+    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
+    "minLevel": 24,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Damage tiers stated in text; only the highest unlocked tier should be used."
+ },
+ "Tinker's Craft (Intelligence)|Artificer": {
+  "activities": [
+   {
+    "name": "Tinker's Craft",
+    "kind": "check",
+    "ability": "int",
+    "text": "Build, repair, identify or jury-rig a mechanism or minor magic item, adding the level-based Tinker's Craft bonus.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence skill check."
+ },
+ "Salvage|Artificer": {
+  "activities": [
+   {
+    "name": "Salvage",
+    "kind": "note",
+    "text": "After 10 minutes of tinkering, regain Ingenuity Points equal to your Intelligence modifier (minimum 1).",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day resource recovery."
+ },
+ "Overclock|Artificer": {
+  "activities": [
+   {
+    "name": "Overclock",
+    "kind": "note",
+    "text": "Spend 2 extra Ingenuity Points on a damaging or healing Kit effect to roll its dice twice and keep the higher.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Optional rider paid with Ingenuity Points, not item uses."
+ },
+ "Fletcher's Craft (Intelligence)|Archer": {
+  "activities": [
+   {
+    "name": "Fletcher's Craft",
+    "kind": "check",
+    "ability": "int",
+    "text": "Repair or craft bows, strings and arrows, or identify nonstandard or trapped arrows.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence skill check."
+ },
+ "Assassin's Skills|Assassin": {
+  "activities": [
+   {
+    "name": "Case Target",
+    "kind": "check",
+    "ability": "wis",
+    "text": "After 1d3x10 minutes observing a target, a success reveals its approximate Level, alignment, hidden weapons and habits.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Climb",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Scale any surface at half speed; a failure makes no progress and failing by 5 or more means a fall.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Disguise",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Disguise yourself or impersonate someone; the GM rolls secretly and adjusts for how far the disguise departs from you.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Skill list split across two items by the importer; this one holds the first three."
+ },
+ "GM rolls secretly|Assassin": {
+  "activities": [
+   {
+    "name": "Hide",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Conceal yourself from observers, even while only lightly obscured; Disadvantage above half speed and impossible while running.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Identify Poison",
+    "kind": "check",
+    "ability": "int",
+    "text": "Identify any poison or antitoxin on a success.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Listen",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Hear whispers or soft movement up to 30ft or through an adjacent door; Disadvantage through stone.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Move Silently",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Move without sound; Disadvantage above half speed and impossible while running.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Traps",
+    "kind": "check",
+    "ability": "int",
+    "text": "Find, disable or set a trap; a failed disable triggers it.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Oddly named item holding the rest of the Assassin skills."
+ },
+ "Sneak Attack|Assassin": {
+  "activities": [
+   {
+    "name": "Sneak Attack",
+    "kind": "note",
+    "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Assassin Progression Table for the dice.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Once per round; dice come from the Assassin Progression Table."
+ },
+ "Slow Kill|Assassin": {
+  "activities": [
+   {
+    "name": "Slow Kill",
+    "kind": "note",
+    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; up to four strikes per target per encounter.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Bleed",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "",
+    "text": "The target loses 1d6 HP from blood loss at the start of the round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Strike reminder plus a button for the per-round bleed."
+ },
+ "Rage|Barbarian": {
+  "activities": [
+   {
+    "name": "Rage",
+    "kind": "note",
+    "text": "Enter a rage for 3 + Constitution modifier rounds (minimum 3), gaining +2 melee damage (+4 from 10th, +6 from 20th).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "1 + Con mod per day; uses not tracked on the item."
+ },
+ "Primeval Instincts|Barbarian": {
+  "activities": [
+   {
+    "name": "Strength (+4)",
+    "kind": "check",
+    "ability": "str",
+    "text": "Add +4 to this Strength check in extreme circumstances, if not in medium or heavy armour.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Dexterity (+4)",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Add +4 to this Dexterity check in extreme circumstances, if not in medium or heavy armour.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Constitution (+4)",
+    "kind": "check",
+    "ability": "con",
+    "text": "Add +4 to this Constitution check in extreme circumstances, if not in medium or heavy armour.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "low",
+  "why": "Once-per-round +4 boost; the check roll itself will not add the +4."
+ },
+ "Whirlwind Attack|Barbarian": {
+  "activities": [
+   {
+    "name": "Whirlwind Attack",
+    "kind": "note",
+    "text": "Replace your action with one attack against each of up to 2 adjacent foes of Level up to half yours; see the Barbarian Progression Table for scaling.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter attack."
+ },
+ "Primeval Will|Barbarian": {
+  "activities": [
+   {
+    "name": "Primeval Will",
+    "kind": "temp",
+    "formula": "2*@level",
+    "text": "When reduced to twice your level in HP or less, gain bonus HP equal to twice your level until combat ends.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "\"Twice your level\" read as total level."
+ },
+ "Ancestral Calling|Barbarian": {
+  "activities": [
+   {
+    "name": "Ancestral Calling",
+    "kind": "note",
+    "text": "Nearby allies of Level up to twice yours gain temporary HP equal to the maximum roll of one extra Hit Die of their type.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Weekly ally buff; amount depends on each ally's Hit Die."
+ },
+ "Warlord|Barbarian": {
+  "activities": [
+   {
+    "name": "Warlord",
+    "kind": "note",
+    "text": "Where your deeds are known, call up an army of 10 to 100 1st-level barbarians who fight for 30 days for food and water.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "month",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Once per month narrative summon."
+ },
+ "Decipher Script (Intelligence)|Bard": {
+  "activities": [
+   {
+    "name": "Decipher Script",
+    "kind": "check",
+    "ability": "int",
+    "text": "Decipher unfamiliar, archaic or coded writing at 10 minutes per page, or identify an arcane scroll.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence skill check."
+ },
+ "Legend Lore (Charisma)|Bard": {
+  "activities": [
+   {
+    "name": "Legend Lore",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Recall information about local notables, legendary items, noteworthy places or obscure history.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Charisma skill check."
+ },
+ "Exalt (Charisma)|Bard": {
+  "activities": [
+   {
+    "name": "Exalt",
+    "kind": "note",
+    "text": "One ally within 60ft gains +2 (+3 at 6th, +4 at 12th, +5 at 18th) on attribute checks and saves for rounds equal to your Bard level.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily ally buff; text says once per day per level."
+ },
+ "Fascinate (Charisma)|Bard": {
+  "activities": [
+   {
+    "name": "Fascinate",
+    "kind": "save",
+    "save": "will",
+    "text": "Up to 2 creatures (4 at 6th, 10 at 12th) that can see and hear you save or fall into a trance for rounds equal to your Bard level.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Charm Person",
+    "kind": "save",
+    "save": "will",
+    "text": "A currently fascinated creature saves or is affected as by Charm Person.",
+    "minLevel": 5,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Suggestion",
+    "kind": "save",
+    "save": "will",
+    "text": "A currently fascinated creature saves or receives a Suggestion.",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Antipathy/Sympathy",
+    "kind": "save",
+    "save": "will",
+    "text": "A currently fascinated creature saves or is affected as by Antipathy/Sympathy.",
+    "minLevel": 12,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Mass Suggestion",
+    "kind": "save",
+    "save": "will",
+    "text": "Currently fascinated creatures save or receive a Mass Suggestion.",
+    "minLevel": 18,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Follow-up options come from the Bard 5th/8th/12th/18th-level feature items."
+ },
+ "Exhort Greatness|Bard": {
+  "activities": [
+   {
+    "name": "Exhort Greatness",
+    "kind": "note",
+    "text": "One creature within 30ft gains Advantage on its first attack each round and temporary HP equal to two rolls of its Hit Die plus its Constitution modifier on each.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily buff; temp HP depends on the target's Hit Die."
+ },
+ "Rally|Bard": {
+  "activities": [
+   {
+    "name": "Rally",
+    "kind": "note",
+    "text": "While performing, all creatures within earshot may re-save against any fear or morale effect affecting them.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily ally re-save."
+ },
+ "Turn Undead|Cleric": {
+  "activities": [
+   {
+    "name": "Turn Undead",
+    "kind": "save",
+    "save": "will",
+    "text": "Undead within 30ft save against your Turn DC or are turned (destroyed from 8th level if their Level is no more than half yours).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Control Undead",
+    "kind": "save",
+    "save": "will",
+    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Turn DC or obey you for 1 hour per Cleric level.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC."
+ },
+ "Perfect Recall|Cleric": {
+  "activities": [
+   {
+    "name": "Perfect Recall",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily Wisdom check."
+ },
+ "Holy Campaign|Cleric": {
+  "activities": [
+   {
+    "name": "Holy Campaign",
+    "kind": "note",
+    "text": "Raise 1 to 100 NPCs with d8 HD and 1 to 100 with d4 HD, who gain +1 on checks while you are present.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "low",
+  "why": "Narrative muster with no stated frequency."
+ },
+ "Banish|Cleric": {
+  "activities": [
+   {
+    "name": "Banish",
+    "kind": "note",
+    "text": "Turn extraplanar creatures as you would undead, banishing 1d12 minor or 1d6 major demons or devils, or one lord, for 21+ days.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Turn-like use; frequency not stated."
+ },
+ "Mark of the Saint|Cleric": {
+  "activities": [
+   {
+    "name": "Heal",
+    "kind": "note",
+    "text": "Use your weekly Heal.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Remove Blindness or Deafness",
+    "kind": "note",
+    "text": "Use your weekly Remove Blindness or Deafness.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Remove Disease",
+    "kind": "note",
+    "text": "Use your weekly Remove Disease.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Holy or Unholy Word",
+    "kind": "note",
+    "text": "Use your daily Holy or Unholy Word.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Resurrection",
+    "kind": "note",
+    "text": "Use your weekly Resurrection.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Granted spell-like uses, each with its own frequency."
+ },
+ "Nature Lore (Wisdom)|Druid": {
+  "activities": [
+   {
+    "name": "Nature Lore",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Identify plants and animals, judge water, or forage; automatic in your trained region, a Wisdom check elsewhere or to feed extra people.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Wisdom skill check."
+ },
+ "Wild Shape|Druid": {
+  "activities": [
+   {
+    "name": "Wild Shape",
+    "kind": "note",
+    "text": "Shapeshift into a beast of Level up to half your Druid level for up to 1 hour, taking its whole stat block.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Wild Shape (Deepened)",
+    "kind": "temp",
+    "formula": "2*@cl",
+    "text": "Shapeshift into a beast of Level up to your Druid level and gain temporary HP equal to twice your Druid level.",
+    "minLevel": 12,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1."
+ },
+ "Dismiss Woodland Creatures (Wisdom)|Druid": {
+  "activities": [
+   {
+    "name": "Dismiss Woodland Creatures",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Make a Wisdom check against DC 10 + the total Levels of native creatures to make them flee until you leave.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Wisdom check."
+ },
+ "Elemental Mastery|Druid": {
+  "activities": [
+   {
+    "name": "Reflect Spell",
+    "kind": "check",
+    "ability": "wis",
+    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Reaction check vs spell DC."
+ },
+ "Perfect Recall|Druid": {
+  "activities": [
+   {
+    "name": "Perfect Recall",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily Wisdom check."
+ },
+ "Combat Dominance|Fighter": {
+  "activities": [
+   {
+    "name": "Combat Dominance",
+    "kind": "note",
+    "text": "Against foes all of Level up to half yours, make 2 attacks (3 at 8th, 4 at 12th), all but the first with Disadvantage.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "low",
+  "why": "Per-round attack mode choice rather than a limited use."
+ },
+ "Battle Space (Improved)|Fighter": {
+  "activities": [
+   {
+    "name": "Battle Space (Improved)",
+    "kind": "note",
+    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter Dodge rider."
+ },
+ "Unbroken|Fighter": {
+  "activities": [
+   {
+    "name": "Unbroken",
+    "kind": "note",
+    "text": "When reduced to 0 HP or below, stand at 1 HP, immune to all damage for the next round, with +2 damage dice on your attacks.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter survival trigger."
+ },
+ "Called Shot|Gunslinger": {
+  "activities": [
+   {
+    "name": "Head",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Arm",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or drops what it is holding.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Leg",
+    "kind": "save",
+    "save": "fort",
+    "text": "On a hit the target saves or has its movement halved for 1 round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Three called-shot locations chosen at use; one a round."
+ },
+ "Trick Shot (Dexterity)|Gunslinger": {
+  "activities": [
+   {
+    "name": "Trick Shot",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Attempt an impossible-looking shot against a GM-set DC; a failure simply misses.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Dexterity check, once per round."
+ },
+ "Dead Aim|Gunslinger": {
+  "activities": [
+   {
+    "name": "Dead Aim",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "",
+    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +2d6 damage.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Bonus damage after aiming; no stated frequency."
+ },
+ "Perfect Shot|Gunslinger": {
+  "activities": [
+   {
+    "name": "Perfect Shot",
+    "kind": "note",
+    "text": "Declared before rolling, your next ranged attack deals maximum damage if it hits; set maximums do not explode.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day declared shot."
+ },
+ "Disguise (Charisma)|Illusionist": {
+  "activities": [
+   {
+    "name": "Disguise",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Disguise yourself or impersonate someone; the GM rolls secretly and adjusts for how far the disguise departs from you.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Named check, but the GM rolls it secretly."
+ },
+ "Minor Figment|Illusionist": {
+  "activities": [
+   {
+    "name": "Minor Figment",
+    "kind": "note",
+    "text": "Create a harmless momentary sight or sound within 30ft to feint, mask a small sound or object, or aid one Stealth check per encounter.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "At-will action."
+ },
+ "Quickened Illusion|Illusionist": {
+  "activities": [
+   {
+    "name": "Quickened Illusion",
+    "kind": "note",
+    "text": "Cast an Illusion spell of 2nd level or lower as part of the same action as another spell.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per long rest."
+ },
+ "See Invisible (Intelligence)|Illusionist": {
+  "activities": [
+   {
+    "name": "See Invisible",
+    "kind": "check",
+    "ability": "int",
+    "text": "Perceive the general location and movement of an invisible creature or object within 30ft.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence check, once per round."
+ },
+ "Detect Magic (Intelligence)|Illusionist": {
+  "activities": [
+   {
+    "name": "Detect Magic",
+    "kind": "check",
+    "ability": "int",
+    "text": "After 5 rounds of study, reveal the origin of an item's magic if you have met that kind before.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence check."
+ },
+ "Change Self|Illusionist": {
+  "activities": [
+   {
+    "name": "Change Self",
+    "kind": "note",
+    "text": "Alter your appearance, features, smell, sound and feel, lasting until you dispel it.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Perfect Recall|Illusionist": {
+  "activities": [
+   {
+    "name": "Perfect Recall",
+    "kind": "check",
+    "ability": "int",
+    "text": "Make a DC 10 Intelligence check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily Intelligence check."
+ },
+ "Magnum Opus|Illusionist": {
+  "activities": [
+   {
+    "name": "Magnum Opus",
+    "kind": "note",
+    "text": "Perform a day-long ritual to create any single object, being or area, with a 1% chance per level that it becomes permanently real.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "month",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Once per month ritual."
+ },
+ "Horsemanship (Dexterity)|Knight": {
+  "activities": [
+   {
+    "name": "Mount Manoeuvre",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Direct your mount to cover, deflect, fall softly, leap or charge.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Dexterity check for mount manoeuvres."
+ },
+ "Inspire (Charisma)|Knight": {
+  "activities": [
+   {
+    "name": "Inspire",
+    "kind": "note",
+    "text": "All friendly creatures in your presence have Advantage on their first attack roll each round for rounds equal to your Knight level.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily ally buff."
+ },
+ "Rallying Cry|Knight": {
+  "activities": [
+   {
+    "name": "Rallying Cry",
+    "kind": "note",
+    "text": "Allies within 30ft that can hear you end the Frightened or Charmed condition.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily; clears specific conditions on allies, so removeConditions left false."
+ },
+ "Expert in Arms|Knight": {
+  "activities": [
+   {
+    "name": "Expert in Arms",
+    "kind": "note",
+    "text": "For one round, allies within 40ft who follow your orders have Advantage on contested manoeuvre checks.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Command action; frequency not stated."
+ },
+ "Honour Attack|Knight": {
+  "activities": [
+   {
+    "name": "Honour Attack",
+    "kind": "note",
+    "text": "Reduce the target's AC by your Charisma modifier, attack with Advantage and double the weapon's damage dice.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter attack."
+ },
+ "Undying Reputation|Knight": {
+  "activities": [
+   {
+    "name": "Undying Reputation",
+    "kind": "temp",
+    "formula": "@cha.mod*@cl",
+    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times Knight level and Advantage on your first attack each round.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Weekly; formula stated."
+ },
+ "Spellstrike|Magus": {
+  "activities": [
+   {
+    "name": "Cantrip Spellstrike (1d4)",
+    "kind": "damage",
+    "formula": "1d4",
+    "damageType": "force",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Cantrip Spellstrike (2d4)",
+    "kind": "damage",
+    "formula": "2d4",
+    "damageType": "force",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "minLevel": 5,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Cantrip Spellstrike (3d4)",
+    "kind": "damage",
+    "formula": "3d4",
+    "damageType": "force",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "minLevel": 11,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Cantrip Spellstrike (4d4)",
+    "kind": "damage",
+    "formula": "4d4",
+    "damageType": "force",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "minLevel": 17,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Levelled Spellstrike (1st-2nd)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "",
+    "text": "Expend a 1st or 2nd-level slot to deliver the spell on a hit, plus 1d6 bonus damage of its type (force if none).",
+    "minLevel": 3,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Levelled Spellstrike (3rd-4th)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "",
+    "text": "Expend a 3rd or 4th-level slot to deliver the spell on a hit, plus 2d6 bonus damage of its type (force if none).",
+    "minLevel": 3,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Cantrip tiers plus levelled options; once per round."
+ },
+ "Everstrike|Magus": {
+  "activities": [
+   {
+    "name": "Everstrike",
+    "kind": "note",
+    "text": "Your next Levelled Spellstrike costs no slot.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Parrying Stance|Monk": {
+  "activities": [
+   {
+    "name": "Parrying Stance",
+    "kind": "note",
+    "text": "When struck in melee while unarmed and unarmoured, add your Wisdom modifier to AC against that attack.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round reactive defence."
+ },
+ "Deflect Missiles (Dexterity)|Monk": {
+  "activities": [
+   {
+    "name": "Deflect Missiles",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Dexterity check vs attack roll; attempts per round from the table."
+ },
+ "Ascetic Recovery|Monk": {
+  "activities": [
+   {
+    "name": "Fast Healing",
+    "kind": "heal",
+    "formula": "@cl",
+    "text": "After a long rest, regain 1 HP per Monk level.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Feign Death",
+    "kind": "note",
+    "text": "Slow your vital functions until you appear dead, for minutes equal to your character level.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Two named options; only Fast Healing is daily."
+ },
+ "Deflect Blow (Dexterity)|Monk": {
+  "activities": [
+   {
+    "name": "Deflect Blow",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Against the attacker's melee attack roll; on success deflect the blow entirely.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Dexterity check vs attack roll; shares Deflect Missiles attempts."
+ },
+ "Catch Weapon (Dexterity)|Monk": {
+  "activities": [
+   {
+    "name": "Catch Weapon",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Against the attacker's melee attack roll; on success you hold the weapon the opponent was wielding.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Dexterity check vs attack roll, once per round."
+ },
+ "Body of Iron Made Whole|Monk": {
+  "activities": [
+   {
+    "name": "Body of Iron Made Whole",
+    "kind": "heal",
+    "formula": "4d8",
+    "text": "At the start of your turn, remove all conditions affecting you and heal 4d8 HP, with no action needed.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": true
+   }
+  ],
+  "confidence": "high",
+  "why": "Explicit heal and condition removal."
+ },
+ "Quick Reaction (Improved)|Monk": {
+  "activities": [
+   {
+    "name": "Extra Action",
+    "kind": "note",
+    "text": "In the first round, take one extra action: one additional attack or half movement.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Untouchable",
+    "kind": "note",
+    "text": "When an attack you can perceive would hit you, negate it as a miss; usable Wisdom modifier times per day (minimum 1).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Two distinct uses with separate frequencies."
+ },
+ "Animate Dead|Necromancer": {
+  "activities": [
+   {
+    "name": "Animate Dead",
+    "kind": "note",
+    "text": "Animate one corpse as a skeleton or zombie without a slot, using one of your free daily uses.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Command Undead",
+    "kind": "save",
+    "save": "will",
+    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Two use-time actions; daily counts scale by level."
+ },
+ "Death's Grasp|Necromancer": {
+  "activities": [
+   {
+    "name": "Death's Grasp",
+    "kind": "note",
+    "text": "When reduced to 0 HP or below with undead under your control, stabilise at 1 HP; each contributing undead loses 2d6 HP.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day survival trigger."
+ },
+ "Divine Protection|Paladin": {
+  "activities": [
+   {
+    "name": "Detect Evil",
+    "kind": "note",
+    "text": "Concentrate for one round while facing a target within 60ft to detect evil.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Mostly passive; Detect Evil is the at-will active part."
+ },
+ "Lay on Hands|Paladin": {
+  "activities": [
+   {
+    "name": "Heal",
+    "kind": "heal",
+    "formula": "2*@cl",
+    "text": "Heal 2 HP per Paladin level on yourself or one other; the total cannot be split.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Cure Disease",
+    "kind": "note",
+    "text": "Cure any disease by touch, no check required; uses per week in the Paladin Progression Table.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Divine Healing",
+    "kind": "note",
+    "text": "Completely cure all diseases, blindness, deafness, HP damage, temporary ability damage, poison, feeblemind and mental disorders at once.",
+    "minLevel": 12,
+    "cost": 0,
+    "per": "week",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "As specified; three named options."
+ },
+ "Smite Evil|Paladin": {
+  "activities": [
+   {
+    "name": "Smite",
+    "kind": "damage",
+    "formula": "@cl",
+    "damageType": "",
+    "text": "Gain Advantage on one attack roll and add +1 damage per Paladin level; uses per day in the Paladin Progression Table.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Bonus damage stated; daily uses come from the table."
+ },
+ "Turn Undead|Paladin": {
+  "activities": [
+   {
+    "name": "Turn Undead",
+    "kind": "save",
+    "save": "will",
+    "text": "Undead within 30ft save against your Turn DC (as a Cleric 2 levels lower) or are turned.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "3 + Cha mod per day; Turn DC differs from class DC."
+ },
+ "Bequeath Virtue|Paladin": {
+  "activities": [
+   {
+    "name": "Bequeath Virtue",
+    "kind": "note",
+    "text": "Imbue a small item so its holder heals at double rate while resting and is stabilised if dying; costs you 1 temporary Constitution.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "One item per day."
+ },
+ "Divine Intervention|Paladin": {
+  "activities": [
+   {
+    "name": "Reroll",
+    "kind": "note",
+    "text": "Reroll any one die result: attack, damage, save, turn undead or attribute check.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Divine Might",
+    "kind": "note",
+    "text": "Gain Advantage on all your attack rolls and double weapon damage dice for 1 round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Halve Damage",
+    "kind": "note",
+    "text": "Halve all damage you suffer this round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "week",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Three listed options; uses per week from the table."
+ },
+ "Cleanse Soul|Paladin": {
+  "activities": [
+   {
+    "name": "Read Soul",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Against DC 8 + the restrained target's Level; on success read its mind, alignment, illusions and enchantments.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Exorcism",
+    "kind": "save",
+    "save": "will",
+    "text": "The target saves or succumbs: evil outsiders are destroyed, lycanthropes cured and undead laid to rest.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Two-stage use: Charisma check then Will save."
+ },
+ "Marked Prey|Ranger": {
+  "activities": [
+   {
+    "name": "Marked Prey",
+    "kind": "note",
+    "text": "As part of an attack, mark a visible creature to gain Advantage on your next attack against it, or your next Track check if it flees.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter mark."
+ },
+ "Woodcraft|Ranger": {
+  "activities": [
+   {
+    "name": "Conceal",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Camouflage yourself in the wilderness so passers-by cannot notice you.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Delay/Neutralise Poison",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Delay a familiar natural poison for 1 hour per level, or neutralise it if you beat the total by 6 or more.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Move Silently",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Move without sound in the wilderness; Disadvantage above half speed.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Scale",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Climb a dangerous natural incline; failure makes no progress and failing by 5 or more means a fall.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Traps",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Detect, set or disable simple wilderness traps.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Survival",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Forage to feed additional people beyond yourself.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Track",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Track a creature in the wilderness, with Advantage, or hide your own tracks.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Lists seven wilderness checks; Ref save already on the item is for pit traps."
+ },
+ "Advanced Tracking (Wisdom)|Ranger": {
+  "activities": [
+   {
+    "name": "Advanced Tracking",
+    "kind": "check",
+    "ability": "wis",
+    "text": "After a successful track, a further check predicts the party's direction, and a third its destination.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Wisdom check."
+ },
+ "Apex Predator|Ranger": {
+  "activities": [
+   {
+    "name": "Apex Predator",
+    "kind": "note",
+    "text": "Mark a creature as prey: Combat Marauder applies in full and you have Advantage on checks to track, corner or finish it.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day mark."
+ },
+ "1st-Level Features|Rogue": {
+  "activities": [
+   {
+    "name": "Climb",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Climb a difficult surface.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Decipher Script",
+    "kind": "check",
+    "ability": "int",
+    "text": "Decipher writing at 2d8 minutes per page; arcane script is a Hard check and divine scrolls never work.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Open Locks",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Pick a lock; one attempt per lock until you gain a level.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Pick Pocket",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Lift an item from a target against DC 10 + its Level.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Find/Disable/Set Trap",
+    "kind": "check",
+    "ability": "int",
+    "text": "Find, disable or set a trap.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Lists the Rogue skills with their attributes."
+ },
+ "Hide and Move Silently|Rogue": {
+  "activities": [
+   {
+    "name": "Hide",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Conceal yourself, even while only lightly obscured; Disadvantage above half speed.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Move Silently",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Move without sound; Disadvantage above half speed and impossible while running or charging.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Listen",
+    "kind": "check",
+    "ability": "wis",
+    "text": "Listen for sounds; Disadvantage through any solid barrier.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Listen's attribute taken from the Assassin's matching skill."
+ },
+ "Back Attack|Rogue": {
+  "activities": [
+   {
+    "name": "Back Attack",
+    "kind": "note",
+    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice; see the Rogue Progression Table.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Once per round; multiplier from the Rogue Progression Table."
+ },
+ "Sneak Attack|Rogue": {
+  "activities": [
+   {
+    "name": "Sneak Attack",
+    "kind": "note",
+    "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Rogue Progression Table for the dice.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Once per round; dice come from the Rogue Progression Table."
+ },
+ "Uncanny Dodge|Rogue": {
+  "activities": [
+   {
+    "name": "Uncanny Dodge",
+    "kind": "note",
+    "text": "When an attacker you can see hits you, halve the damage.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round reaction."
+ },
+ "Evasive Manoeuvre|Rogue": {
+  "activities": [
+   {
+    "name": "Evasive Manoeuvre",
+    "kind": "note",
+    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Per-round stance choice."
+ },
+ "Quick Reaction (Improved)|Rogue": {
+  "activities": [
+   {
+    "name": "Extra Action",
+    "kind": "note",
+    "text": "In the first round, take one extra action: one additional attack or half movement.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter extra action."
+ },
+ "Spellburn|Sorcerer": {
+  "activities": [
+   {
+    "name": "Spellburn",
+    "kind": "note",
+    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn since a long rest, doubling each time.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Use-time payment; cost tracked on attributes, not uses."
+ },
+ "Metamagic Options|Sorcerer": {
+  "activities": [
+   {
+    "name": "Twinned Spell",
+    "kind": "note",
+    "text": "A single-target spell also targets a second creature (enhanced: a third).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Careful Spell",
+    "kind": "note",
+    "text": "Up to Charisma modifier creatures automatically succeed on their save (enhanced: no effect at all).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Empowered Spell",
+    "kind": "note",
+    "text": "Reroll up to Charisma modifier damage dice (enhanced: roll all damage twice, keep the higher).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Extended Spell",
+    "kind": "note",
+    "text": "Double the duration (enhanced: triple, to a maximum of 24 hours).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Heightened Spell",
+    "kind": "note",
+    "text": "One target has Disadvantage on its first save (enhanced: all targets).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Distant Spell",
+    "kind": "note",
+    "text": "Double the range, touch becomes 30ft (enhanced: triple, touch 60ft).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Subtle Spell",
+    "kind": "note",
+    "text": "Cast with no somatic or verbal components (enhanced: cannot be identified or counterspelled).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Flexible Spell",
+    "kind": "note",
+    "text": "Change the spell's damage type (enhanced: it also ignores resistance to the new type).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Quickened Spell",
+    "kind": "note",
+    "text": "Cast the spell and one cantrip with the same action; no other spell that turn.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Nine options chosen each time via Wild Surge or Spellburn."
+ },
+ "Wild Surge|Sorcerer": {
+  "activities": [
+   {
+    "name": "Wild Surge",
+    "kind": "note",
+    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "1 to 4 uses per day by level; not tracked on the item."
+ },
+ "Sorcerer's Spark|Sorcerer": {
+  "activities": [
+   {
+    "name": "Sorcerer's Spark",
+    "kind": "note",
+    "text": "For 1 minute, Wild Surges carry no Corruption risk and you may apply two Metamagic options to one spell.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Overchannel|Sorcerer": {
+  "activities": [
+   {
+    "name": "Overchannel",
+    "kind": "note",
+    "text": "Cast a spell with no slots of its level left, taking 1d6 unavoidable damage per spell level.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day; self-damage depends on spell level."
+ },
+ "Chaos Incarnate|Sorcerer": {
+  "activities": [
+   {
+    "name": "Chaos Incarnate",
+    "kind": "note",
+    "text": "Your next three spells cost no slot, after which the GM rolls once on the Corruption Table.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Flourish Manoeuvres|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Parry",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Against the attacker's attack roll; on success negate the hit.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Riposte",
+    "kind": "note",
+    "text": "When an enemy misses you in melee, make a free attack against it.",
+    "minLevel": 3,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Acrobatic Escape",
+    "kind": "check",
+    "ability": "dex",
+    "text": "Against the attacker's attack roll; on success halve the damage and move up to 10ft without opportunity attacks.",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "As specified; Riposte and Acrobatic Escape from the 3rd/9th-level items."
+ },
+ "Opening Flourish|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Opening Flourish",
+    "kind": "damage",
+    "formula": "@cha.mod",
+    "damageType": "",
+    "text": "On the first attack of combat, add your Charisma modifier as flat bonus damage.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter; formula stated."
+ },
+ "Flèche|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Flèche",
+    "kind": "note",
+    "text": "Lunge for one additional melee attack this round, rolled with Disadvantage.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Item uses 1/day but text says Dexterity modifier per day."
+ },
+ "Eldritch Invocations|Warlock": {
+  "activities": [
+   {
+    "name": "Fiendish Vigour",
+    "kind": "temp",
+    "formula": "@cl",
+    "text": "As part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Mask of Many Faces",
+    "kind": "note",
+    "text": "Cast Change Self at will.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Only the active invocations; usable only if chosen."
+ },
+ "Pact Summons|Warlock": {
+  "activities": [
+   {
+    "name": "Combat Summons",
+    "kind": "note",
+    "text": "As your action, expend a slot of the servant's tier to summon it for 1 minute.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Ritual Summons",
+    "kind": "note",
+    "text": "Over 10 minutes, expend a slot of the servant's tier to summon it for 1 hour.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Paid with spell slots; stat blocks elsewhere."
+ },
+ "Dark Harvest|Warlock": {
+  "activities": [
+   {
+    "name": "Dark Harvest",
+    "kind": "note",
+    "text": "When you drop a hostile creature to 0 HP, recover one expended slot of level up to half its Level (rounded up).",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter."
+ },
+ "Patron Surge|Warlock": {
+  "activities": [
+   {
+    "name": "Patron Surge",
+    "kind": "damage",
+    "formula": "7d6",
+    "damageType": "",
+    "text": "Cast your chosen 7th-level Patron Surge spell without a slot, taking 7d6 unavoidable damage yourself.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "7d6 stated for 20th; general rule is 1d6 per surge level."
+ },
+ "Patron's Whisper|Warlock": {
+  "activities": [
+   {
+    "name": "Patron's Whisper",
+    "kind": "note",
+    "text": "Commune with your patron to ask one yes/no question, answered truthfully by its lights.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Eldritch Master|Warlock": {
+  "activities": [
+   {
+    "name": "Eldritch Master",
+    "kind": "note",
+    "text": "After 1 minute communing with your patron, recover all expended spell slots at a cost the GM sets.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Hex (Wisdom)|Witch": {
+  "activities": [
+   {
+    "name": "Hex: Attacks",
+    "kind": "save",
+    "save": "will",
+    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for 1 minute, repeating the save each turn.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex: Saves",
+    "kind": "save",
+    "save": "will",
+    "text": "A creature within 30ft saves or has Disadvantage on saving throws for 1 minute, repeating the save each turn.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex: Checks",
+    "kind": "save",
+    "save": "will",
+    "text": "A creature within 30ft saves or has Disadvantage on ability checks for 1 minute, repeating the save each turn.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex Damage (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "necrotic",
+    "text": "The hexed creature takes necrotic damage at the start of each of its turns.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex Damage (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "necrotic",
+    "text": "The hexed creature takes necrotic damage at the start of each of its turns.",
+    "minLevel": 5,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex Damage (3d6)",
+    "kind": "damage",
+    "formula": "3d6",
+    "damageType": "necrotic",
+    "text": "The hexed creature takes necrotic damage at the start of each of its turns.",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex Damage (4d6)",
+    "kind": "damage",
+    "formula": "4d6",
+    "damageType": "necrotic",
+    "text": "The hexed creature takes necrotic damage at the start of each of its turns.",
+    "minLevel": 13,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hex Damage (5d6)",
+    "kind": "damage",
+    "formula": "5d6",
+    "damageType": "necrotic",
+    "text": "The hexed creature takes necrotic damage at the start of each of its turns.",
+    "minLevel": 17,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day."
+ },
+ "Cauldron of the Ninth Moon|Witch": {
+  "activities": [
+   {
+    "name": "Cauldron Ritual",
+    "kind": "note",
+    "text": "Perform the night-long Cauldron ritual for a Wish-equivalent effect, always at a permanent cost.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "low",
+  "why": "Story-gated ritual with no fixed frequency."
+ },
+ "Scribe's Insight|Wizard": {
+  "activities": [
+   {
+    "name": "Scribe's Insight",
+    "kind": "note",
+    "text": "As part of casting, swap one prepared spell for another of the same level from your spellbook.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Arcane Recovery|Wizard": {
+  "activities": [
+   {
+    "name": "Arcane Recovery",
+    "kind": "note",
+    "text": "After 10 minutes of study, regain spell slots totalling up to half your Wizard level (rounded up), none above 5th.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day."
+ },
+ "Detect Magic|Wizard": {
+  "activities": [
+   {
+    "name": "Detect Magic",
+    "kind": "check",
+    "ability": "int",
+    "text": "After 5 rounds of study, reveal the origin of an item's magic if you have met that kind before.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Intelligence check stated."
+ },
+ "Counterspell|Wizard": {
+  "activities": [
+   {
+    "name": "Counterspell",
+    "kind": "check",
+    "ability": "int",
+    "text": "Against the spell's save DC as a reaction; on success a spell of up to half your Wizard level fizzles.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter Intelligence check."
+ },
+ "Signature Spells|Wizard": {
+  "activities": [
+   {
+    "name": "First Signature Spell",
+    "kind": "note",
+    "text": "Cast your first signature spell at its level without expending a slot.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Second Signature Spell",
+    "kind": "note",
+    "text": "Cast your second signature spell at its level without expending a slot.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "medium",
+  "why": "Two spells each once per day; item uses (1) would block the second."
+ },
+ "Perfect Recall|Wizard": {
+  "activities": [
+   {
+    "name": "Perfect Recall",
+    "kind": "check",
+    "ability": "int",
+    "text": "Make a DC 10 Intelligence check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Daily Intelligence check."
+ }
+}

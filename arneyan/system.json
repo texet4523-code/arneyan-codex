@@ -1,0 +1,298 @@
+{
+  "id": "arneyan",
+  "title": "The Arneyan Codex",
+  "description": "Game system for The Arneyan Codex: character, NPC and monster sheets, d20 rolls, Luck, saves, BtH, NWPs, spells and handbook page links. Includes the Player's Handbook as compendiums. Icons from game-icons.net (CC BY 3.0).",
+  "version": "0.9.1",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Kieran"
+    }
+  ],
+  "esmodules": [
+    "module/arneyan.mjs"
+  ],
+  "styles": [
+    "styles/arneyan.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": [
+          "details.biography",
+          "details.backgroundStory"
+        ]
+      },
+      "npc": {
+        "htmlFields": [
+          "details.description",
+          "details.treasure"
+        ]
+      },
+      "party": {
+        "htmlFields": [
+          "details.notes"
+        ]
+      },
+      "storage": {
+        "htmlFields": [
+          "details.notes"
+        ]
+      }
+    },
+    "Item": {
+      "class": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ancestry": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "kit": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "feat": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "skill": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ability": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "weapon": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "armour": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "equipment": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "spell": {
+        "htmlFields": [
+          "description"
+        ]
+      }
+    }
+  },
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": "attributes.hp",
+  "secondaryTokenAttribute": "luck",
+  "initiative": "1d20 + @abilities.dex.mod",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "packs": [
+    {
+      "name": "classes",
+      "label": "Classes",
+      "path": "packs/classes",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "class-features",
+      "label": "Class Features",
+      "path": "packs/class-features",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "ancestries",
+      "label": "Ancestries",
+      "path": "packs/ancestries",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "kits",
+      "label": "Kits",
+      "path": "packs/kits",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "feats",
+      "label": "Feats",
+      "path": "packs/feats",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "actions",
+      "label": "Actions & Manoeuvres",
+      "path": "packs/actions",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "skills",
+      "label": "Skills (NWP)",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Spells",
+      "path": "packs/spells",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "equipment",
+      "label": "The Shopkeeper's Catalogue",
+      "path": "packs/equipment",
+      "type": "Item",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "rules",
+      "label": "Rules of Arneyan",
+      "path": "packs/rules",
+      "type": "JournalEntry",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "monsters",
+      "label": "Monsters & Treasure",
+      "path": "packs/monsters",
+      "type": "Actor",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "pregens",
+      "label": "Pregenerated Characters",
+      "path": "packs/pregens",
+      "type": "Actor",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "The Arneyan Codex",
+      "sorting": "m",
+      "color": "#1A3320",
+      "packs": [
+        "classes",
+        "class-features",
+        "ancestries",
+        "kits",
+        "feats",
+        "actions",
+        "skills",
+        "spells",
+        "equipment",
+        "rules"
+      ]
+    },
+    {
+      "name": "Monsters & Treasure",
+      "sorting": "m",
+      "color": "#2a1414",
+      "packs": [
+        "monsters"
+      ]
+    },
+    {
+      "name": "Adventures",
+      "sorting": "m",
+      "color": "#5a2a1a",
+      "packs": [
+        "pregens"
+      ]
+    }
+  ],
+  "socket": true
+}

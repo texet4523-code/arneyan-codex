@@ -1,0 +1,25 @@
+<div class="arn-section-head"><h3>{{#if isCharacter}}Class Features &amp; Traits{{else}}Special Abilities{{/if}}</h3>
+  {{#if @root.editable}}<a class="arn-add" data-action="itemCreate" data-type="ability" data-tooltip="New ability"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+{{#each abilityGroups}}
+<h4 class="arn-group">{{name}}</h4>
+<ul class="arn-list">
+  {{#each rows}}
+  <li data-item-id="{{id}}" draggable="true">
+    <img src="{{item.img}}" alt="">
+    <a class="arn-item-name" data-action="itemExpand" data-tooltip="Show details">{{item.name}}</a>
+    <span class="arn-muted arn-meta">
+      {{#if item.system.level}}Lvl {{item.system.level}}{{/if}}
+      {{#if item.system.uses.max}} · {{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}
+      {{#if item.system.save}} · {{lookup @root.config.saveTypes item.system.save}}{{/if}}
+      {{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}
+    </span>
+    {{#if item.system.toggle}}<a class="arn-switch {{#if item.system.active}}on{{/if}}" data-action="itemUse"><span></span></a>
+    {{else if (or item.system.uses.max item.system.save item.system.damage item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
+    {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+    {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p class="arn-empty">None yet. Class and kit features appear here automatically as you level.</p>
+{{/each}}

@@ -1,0 +1,1027 @@
+[
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 9 - The Veterans",
+  "seat": 1,
+  "role": "Front line",
+  "name": "Gauthak Skyhewn",
+  "ancestry": "Goliath",
+  "ancestryNote": "Jotunas",
+  "class": "Barbarian",
+  "classNote": "",
+  "level": 9,
+  "kit": "Red Waste Marauder",
+  "alignment": "Chaotic Good",
+  "attributes": {
+   "str": 18,
+   "dex": 14,
+   "con": 18,
+   "int": 10,
+   "wis": 12,
+   "cha": 9
+  },
+  "luck": 12,
+  "hpMax": 104,
+  "ac": 19,
+  "acBreakdown": "10 + 4 (Studded Leather +1) + 1 (Dex) + 2 (Thick Hide, light armour) + 1 (Buckler) + 1 (Armour Master) = 19",
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 4
+  },
+  "bth": 6,
+  "initiative": 1,
+  "speed": 30,
+  "slotsMax": 20,
+  "skills": [
+   {
+    "name": "Survival",
+    "tier": "trained"
+   },
+   {
+    "name": "Endurance",
+    "tier": "trained"
+   },
+   {
+    "name": "Mountaineering",
+    "tier": "trained"
+   },
+   {
+    "name": "Tracking",
+    "tier": "trained"
+   },
+   {
+    "name": "Hunting",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Giant"
+  ],
+  "feats": [
+   {
+    "name": "Toughness",
+    "note": "1st, General"
+   },
+   {
+    "name": "Critical Strike",
+    "note": "2nd, Martial"
+   },
+   {
+    "name": "Armour Master",
+    "note": "6th, Martial"
+   }
+  ],
+  "classFeatures": [
+   "Rage",
+   "Extra Attack (7th)",
+   "Whirlwind Attack (4th)",
+   "Intimidate (Strength)",
+   "Primeval Will (6th)",
+   "Combat Sense",
+   "Thick Hide",
+   "Primeval Instincts",
+   "Kit: Ambush Strike",
+   "Kit: Desert Born"
+  ],
+  "weapons": [
+   {
+    "name": "Axe, Two-Handed",
+    "qty": 1,
+    "magic": 1,
+    "attack": "+10",
+    "damage": "1d12+4 slashing (1d12+6 while raging)",
+    "range": "Melee, 10ft reach (Large)",
+    "notes": "Heavy, Cleaving. Crits on a natural 19 (that hits) or 20. Cleaving: use the Cleave manoeuvre up to twice a turn (drop a foe, make one more melee attack at a different foe in reach). Extra Attack (Axe): +10 with Disadvantage, 1d12+4 (1d12+6 raging), melee; second swing when you take the attack action. Not on a Charge."
+   },
+   {
+    "name": "Javelin",
+    "qty": 3,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d6+3 piercing",
+    "range": "Thrown 30ft (60ft with Disadvantage)",
+    "notes": "Strength-based thrown weapon. Rage bonus does not apply (melee only)."
+   },
+   {
+    "name": "Alchemist's Fire",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+7",
+    "damage": "1d6 fire, target is Burning (1d6 fire each turn until doused)",
+    "range": "Thrown 20ft",
+    "notes": ""
+   }
+  ],
+  "armour": [
+   {
+    "name": "Studded Leather",
+    "magic": 1,
+    "category": "light",
+    "acBonus": 4,
+    "slots": 2,
+    "notes": "Worn"
+   },
+   {
+    "name": "Buckler",
+    "magic": 0,
+    "category": "shield",
+    "acBonus": 1,
+    "slots": 1,
+    "notes": "Compact: usable with a two-handed weapon"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Oil of Elemental Edge (Fire): action to apply, 5 rounds of +1d6 fire per hit",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 12,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, one-pint flask (Keepers' kit)",
+    "qty": 2,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes (Keepers' kit)",
+    "qty": 5,
+    "slots": 1
+   },
+   {
+    "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A towering Red Waste raider turned Keeper who hits first and hits hardest. Loud, warm and blunt; treats every fight like a contest he fully intends to win. Joined the Keepers after they pulled his raiding band out of a goblin warren; he pays his debts in blood and laughter.",
+  "inAFight": "Close fast and swing before enemies act (Ambush Strike), Rage on your first swing, Whirlwind the hobgoblin guards, and when the troll drops, oil it or torch it.",
+  "abilitiesText": "**Rage.** As part of an attack or your move, rage for up to 6 rounds, 4 times per day. While raging: +2 melee weapon damage. Ends early if a full round passes without you attacking or taking damage.\n\n**Extra Attack (7th).** When you take the attack action, make one more weapon attack, with Disadvantage.\n\n**Whirlwind Attack (4th).** Once per encounter, instead of your normal attacks: one attack roll against each of up to 3 opponents within 5ft whose Level is 4 or lower. You cannot have retreated before using it. Hobgoblin guards (Level 1) and captains (Level 3) qualify; the warlord (8) and troll (10) do not.\n\n**Intimidate (Strength).** Uses your action. One creature of Level 9 or lower within 15ft makes a Will save (DC 17) or has Disadvantage on attack rolls for 1d4 rounds. Each creature can be targeted once per encounter.\n\n**Primeval Will (6th).** Once per day, when your HP drops to 18 or less, gain 18 bonus HP (lost first, gone when combat ends). Triggers automatically if you drop to 0 or below; if that leaves you at 1+ HP you keep fighting. Cannot stop a blow that kills you outright.\n\n**Combat Sense.** +2 to surprise checks. Attackers get no Advantage on you from flanking or being Unseen, and Back Attack style bonuses do not work on you.\n\n**Thick Hide.** +2 AC in no armour or light armour (already in your AC).\n\n**Primeval Instincts.** In light or no armour, once per round, +4 to a Strength, Dexterity or Constitution check in extreme circumstances (breaking free, holding a door, leaping a hazard). Also: hold breath twice as long, climb natural slopes and swim rivers at half speed without a check.\n\n**Kit: Ambush Strike.** Advantage on your first attack roll each round against a target that has not yet acted in this combat.\n\n**Kit: Desert Born.** Advantage on Survival in arid or desert terrain, and on identifying Red Waste tribal markings or customs.\n\n**Large.** 10ft x 10ft space, +5ft melee reach, ignore the Heavy weapon Disadvantage. Disadvantage on Stealth and on squeezing through tight spaces.\n\n**Mountain Endurance.** Once per long rest, when hit, reduce the damage by 1d12+3 (spend 1 Luck for another use). Advantage on Fortitude saves against exhaustion, forced marching and thin air.\n\n**Giant-kin strength.** Advantage on Strength checks to push, drag, lift or break against a smaller creature or object.\n\n**Resistance to cold.** Resistance 5 to cold damage.\n\n**Darkvision.** 60ft.\n\n**Jotunas Goliath.** Advantage on Jotunas terrain, tribal-custom and true-giant-lineage checks, and on Charisma checks towards Dul Khagul dwarves.\n\n**Weapon training.** Two-handed axe, maul, javelin, greatclub (Barbarians already use any weapon).\n\n**Toughness (1st, General).** +1 Max HP per level (+9, included), +1 Constitution (included), Advantage on Constitution checks.\n\n**Critical Strike (2nd, Martial).** Your weapon attacks crit on a natural 20, or on a natural 19 that hits. A crit adds the maximum of the weapon dice.\n\n**Armour Master (6th, Martial).** +1 AC while wearing armour (included).\n\n**Speed, initiative and HP.** Speed: 30ft (Large: 10ft x 10ft space, 10ft melee reach) · Initiative: +1 · HP: Level 1: d12 max 12 + Con +3 = 15. Levels 2-9: 8 x (7 + 3) = 80. Toughness: +1 x 9 levels = 9. Total 104.",
+  "unsure": [
+   "Attribute scores decoded from run-together text (18/14/18/10/12/9); confirmed by Str +3 to-hit, Con +3 HP, Dex +1 AC and saves 7/5/4.",
+   "A stray range line 'Melee, 10ft reach (Large); thrown 20ft' sits by the axe row; recorded the axe as melee only (javelin 30ft and Alchemist's Fire 20ft are printed separately).",
+   "Slots used printed 19 / 20; slotsMax taken as 20."
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 9 - The Veterans",
+  "seat": 2,
+  "role": "Skirmisher",
+  "name": "Liriel Vance",
+  "ancestry": "Half-Elf",
+  "ancestryNote": "",
+  "class": "Swashbuckler",
+  "classNote": "",
+  "level": 9,
+  "kit": "The Silver Serpent",
+  "alignment": "Chaotic Good",
+  "attributes": {
+   "str": 11,
+   "dex": 18,
+   "con": 15,
+   "int": 9,
+   "wis": 12,
+   "cha": 18
+  },
+  "luck": 12,
+  "hpMax": 66,
+  "ac": 19,
+  "acBreakdown": "10 + 4 (Studded Leather +1) + 3 (Dex, light armour) + 2 (Agile Defence at 7th) = 19",
+  "saves": {
+   "fort": 5,
+   "ref": 7,
+   "will": 4
+  },
+  "bth": 6,
+  "initiative": 3,
+  "speed": 30,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "Tumbling",
+    "tier": "trained"
+   },
+   {
+    "name": "Tightrope Walking",
+    "tier": "trained"
+   },
+   {
+    "name": "Dancing",
+    "tier": "trained"
+   },
+   {
+    "name": "Etiquette",
+    "tier": "trained"
+   },
+   {
+    "name": "Gaming",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "feats": [
+   {
+    "name": "Swift Reflexes",
+    "note": "1st, General"
+   },
+   {
+    "name": "Two-Weapon Fighting",
+    "note": "2nd, Martial/Specialist"
+   },
+   {
+    "name": "Toughness",
+    "note": "6th, General"
+   }
+  ],
+  "classFeatures": [
+   "Flourish Manoeuvres",
+   "Extra Attack (7th)",
+   "Disarming Strike (7th)",
+   "Opening Flourish",
+   "Finesse",
+   "Agile Defence",
+   "Light Feet (4th)",
+   "En Garde (5th)",
+   "Kit: Serpent's Guard",
+   "Kit: Read the Blade"
+  ],
+  "weapons": [
+   {
+    "name": "Sword, Rapier",
+    "qty": 1,
+    "magic": 1,
+    "attack": "+10",
+    "damage": "1d6+4 piercing",
+    "range": "Melee",
+    "notes": "Finesse, Light. Opening Flourish: +3 damage on your first attack of the combat. Extra Attack (Rapier): +10 with Disadvantage, 1d6+4, melee; when you take the attack action. Not on a Charge."
+   },
+   {
+    "name": "Main Gauche",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d4+1 piercing (no Dex to off-hand damage)",
+    "range": "Melee",
+    "notes": "Off-hand attack, no Disadvantage thanks to Two-Weapon Fighting. Or skip it and fight defensively: +1 AC against all melee attacks that round."
+   },
+   {
+    "name": "Bow, Long Composite",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d8+4 piercing",
+    "range": "110ft (220ft with Disadvantage)",
+    "notes": "Disadvantage if an enemy is within 5ft or the target is in melee with an ally."
+   },
+   {
+    "name": "Alchemist's Fire",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d6 fire, target is Burning",
+    "range": "Thrown 20ft",
+    "notes": "Stops the troll regenerating until the end of its next turn. Dex + BtH (a thrown flask is not a Strength-based weapon)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Studded Leather",
+    "magic": 1,
+    "category": "light",
+    "acBonus": 4,
+    "slots": 2,
+    "notes": "Worn"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Arrows",
+    "qty": 20,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 12,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, one-pint flask (Keepers' kit)",
+    "qty": 2,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes (Keepers' kit)",
+    "qty": 5,
+    "slots": 1
+   },
+   {
+    "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A Jinia Isles boarding-duellist who turns every swing at her into a mistake. Teasing, theatrical and quick to apologise to the foe she has just embarrassed. Joined the Keepers for a steady fee and a good story; stayed because they are the only crew she trusts at her back.",
+  "inAFight": "Engage one hobgoblin at a time, attack with rapier and main gauche every round, and save your reaction to Parry the biggest hit (or Riposte a miss).",
+  "abilitiesText": "**Flourish Manoeuvres.** Once per round, as your reaction, use ONE of: Parry (when hit in melee, d20 + 3 Dex + 2 Serpent's Guard; meet or beat the attack roll and the hit is negated); Riposte (when a melee attack misses you, make a free attack at the attacker); Acrobatic Escape (9th; when hit, d20 + 3 Dex vs the attack roll: halve the damage and move 10ft without provoking). No Parry in medium/heavy armour or with a shield.\n\n**Extra Attack (7th).** When you take the attack action, make one more weapon attack, with Disadvantage.\n\n**Disarming Strike (7th).** On a hit, deal no damage and instead force a Fortitude save (DC 17) or the target drops what it holds. Counts as your attack for that round.\n\n**Opening Flourish.** First attack of the combat adds +3 (Cha) damage. Once per encounter.\n\n**Finesse.** Dex to attack and damage with rapier, dagger, main gauche and short sword.\n\n**Agile Defence.** +2 AC in light or no armour with no shield (included).\n\n**Light Feet (4th).** Creatures you attacked this turn cannot make Attacks of Opportunity as you move away.\n\n**En Garde (5th).** Advantage on initiative rolls.\n\n**Kit: Serpent's Guard.** +2 to Parry checks (included above).\n\n**Kit: Read the Blade.** Advantage on Acrobatics on moving surfaces (decks, rooftops, rope bridges) and on Insight to read a foe's fighting style mid-combat.\n\n**Dual Heritage.** Once per long rest, reroll one failed save or check (1 Luck for a second use).\n\n**Sleep and charm.** Immune to magical sleep; Advantage on saves against charm.\n\n**Social ease.** Advantage on social checks with humans and elves.\n\n**Chosen skill.** Advantage on Deception (Charisma) checks.\n\n**Flexible Rest.** Fully rested after a 4-hour trance or 8-hour sleep.\n\n**Low-Light Vision.** Dim light counts as bright; light sources reach twice as far for you. No sight in total darkness.\n\n**Weapon and armour training.** Longsword, short sword, longbow, plus Bow, Long Composite (chosen martial weapon); light armour.\n\n**Swift Reflexes (1st, General).** Advantage on initiative, +1 Dexterity (included: Dex 18, the creation cap).\n\n**Two-Weapon Fighting (2nd, Martial/Specialist).** Your off-hand attack has no Disadvantage.\n\n**Toughness (6th, General).** +1 Max HP per level (+9, included), +1 Constitution (included), Advantage on Constitution checks.\n\n**Speed, initiative and HP.** Speed: 30ft · Initiative: +3 with Advantage (En Garde, Swift Reflexes) · HP: Level 1: d8 max 8 + Con +1 = 9. Levels 2-9: 8 x (5 + 1) = 48. Toughness: +1 x 9 levels = 9. Total 66.",
+  "unsure": [
+   "Strength 11 read from a jumbled fragment ('+511+7+4' among the saves); consistent with the printed Str mod +0 but the exact score is the least certain value.",
+   "Other scores (Dex 18, Con 15, Int 9, Wis 12, Cha 18) decoded from run-together text; confirmed by Con +1 HP, Dex +3 AC, Opening Flourish +3 (Cha) and saves 5/7/4.",
+   "Composite longbow damage printed 1d8+4 despite Str +0; recorded as printed.",
+   "Deception listed in the skills box as an everyday check with Half-Elf Advantage, not an NWP; left out of skills."
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 9 - The Veterans",
+  "seat": 3,
+  "role": "Healer",
+  "name": "Sister Aurelle Dawnward",
+  "ancestry": "Aasimar",
+  "ancestryNote": "",
+  "class": "Cleric",
+  "classNote": "Lathander (The Dawning Light), Tarielian Pantheon",
+  "level": 9,
+  "kit": "Lathander (The Dawning Light), Tarielian Pantheon",
+  "alignment": "Neutral Good",
+  "attributes": {
+   "str": 11,
+   "dex": 14,
+   "con": 16,
+   "int": 9,
+   "wis": 18,
+   "cha": 13
+  },
+  "luck": 12,
+  "hpMax": 75,
+  "ac": 19,
+  "acBreakdown": "10 + 8 (Plate Mail +1) + 0 (heavy armour: no Dex) + 1 (Medium Steel Shield) = 19",
+  "saves": {
+   "fort": 6,
+   "ref": 5,
+   "will": 7
+  },
+  "bth": 3,
+  "initiative": 1,
+  "speed": 30,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "First Aid/Healing",
+    "tier": "trained"
+   },
+   {
+    "name": "Religion",
+    "tier": "trained"
+   },
+   {
+    "name": "Herbalism",
+    "tier": "trained"
+   },
+   {
+    "name": "Ancient History",
+    "tier": "trained"
+   },
+   {
+    "name": "Etiquette",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Celestial"
+  ],
+  "feats": [
+   {
+    "name": "War Caster",
+    "note": "1st, Arcane & Devout"
+   },
+   {
+    "name": "Healer",
+    "note": "4th, Arcane & Devout"
+   },
+   {
+    "name": "Toughness",
+    "note": "8th, General"
+   }
+  ],
+  "classFeatures": [
+   "Spell Use",
+   "Turn Undead",
+   "Granted Power: Dawning Light",
+   "Weapon Selection"
+  ],
+  "weapons": [
+   {
+    "name": "Mace, Heavy",
+    "qty": 1,
+    "magic": 1,
+    "attack": "+4",
+    "damage": "1d8+1 bludgeoning",
+    "range": "Melee",
+    "notes": "Sunder (Advantage on Disarm and breaking objects). No Extra Attack (not a Battle Priest)."
+   },
+   {
+    "name": "Sacred Flame (cantrip)",
+    "qty": 1,
+    "magic": 0,
+    "attack": "Reflex save DC 17",
+    "damage": "2d4 radiant (save negates)",
+    "range": "60ft",
+    "notes": "No attack roll; cover does not help the target."
+   },
+   {
+    "name": "Alchemist's Fire",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+4",
+    "damage": "1d6 fire, target is Burning",
+    "range": "Thrown 20ft",
+    "notes": "For the troll. Dex + BtH (a thrown flask is not a Strength-based weapon)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Plate Mail",
+    "magic": 1,
+    "category": "heavy",
+    "acBonus": 8,
+    "slots": 3,
+    "notes": "Worn; includes helm"
+   },
+   {
+    "name": "Shield, Medium Steel",
+    "magic": 0,
+    "category": "shield",
+    "acBonus": 1,
+    "slots": 1,
+    "notes": ""
+   }
+  ],
+  "gear": [
+   {
+    "name": "Holy symbol of Lathander (silver sunburst)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 12,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, one-pint flask (Keepers' kit)",
+    "qty": 2,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes (Keepers' kit)",
+    "qty": 5,
+    "slots": 1
+   },
+   {
+    "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "spells": {
+   "stat": "wis",
+   "dc": 17,
+   "slots": "",
+   "cantrips": [
+    "Sacred Flame",
+    "Toll the Dead",
+    "First Aid",
+    "Light",
+    "Detect Magic"
+   ],
+   "prepared": [
+    "Cure Light Wounds",
+    "Bless",
+    "Command",
+    "Guiding Bolt",
+    "Aid",
+    "Hold Person",
+    "Spiritual Weapon",
+    "Cure Serious Wounds",
+    "Prayer",
+    "Spirit Guardians",
+    "Healing Circle",
+    "Flame Strike"
+   ],
+   "known": [],
+   "notes": "Every spell is resolved by the target's save against your DC. Tick a slot box when you cast; slots return after a full rest. Cantrips are cast at will. Prepare 12 spells each morning from the Cleric list (9 level + 3 Wis); cantrips are extra. Slots include the Wisdom bonus slots. Healer feat: healing spells restore +1 HP per die (included); once per day, cast one healing spell of 3rd level or lower without using a slot.\n\nCantrips: Sacred Flame (60ft, one creature: 2d4 radiant, Reflex DC 17 negates; cover gives no help). Toll the Dead (60ft, one creature: 2d4 necrotic, 2d6 if it is already hurt, Will DC 17 negates). First Aid (touch: a dying creature is stabilised at its current HP, no roll; restores no HP). Light (touch an object: bright light 20ft + dim 20ft for 9 hours). Detect Magic (self, 60ft cone, 9 rounds: see which creatures/objects carry magic and the strongest school; ritual).\n\n1st: Cure Light Wounds (touch: heals 1d8+6 HP, 1d8+5 +1 from Healer). Bless (50ft, up to 6 allies, 1 minute: Advantage on the first attack roll each round and +1 to saves; reverse (Bane) on 6 enemies, Will negates). Command (30ft, one creature that understands you: Approach, Drop, Flee or Halt on its next turn; Will DC 17 negates; mindless immune). Guiding Bolt (120ft, one creature: 3d8 radiant, Reflex DC 17 halves; next attack on it before your next turn ends has Advantage, a save negates that).\n\n2nd: Aid (touch, 9 minutes: Advantage on first attack each round, +1 to saves, 1d8 temporary HP; does not stack with Bless). Hold Person (120ft, one humanoid, hobgoblins count: Paralysed for 9 rounds, repeats the save each turn; Will DC 17 negates). Spiritual Weapon (60ft, 9 rounds: a spectral weapon automatically hits one creature within 5ft of it each of your turns for 1d6+3 force; move it 30ft a round; AC 15, 10 HP).\n\n3rd: Cure Serious Wounds (touch: heals 2d8+11 HP, 2d8+9 +2 from Healer). Prayer (40ft radius on you, 9 rounds: allies get Advantage on first attack each round and +1 damage and saves; enemies get Disadvantage on first attack and -1 damage and saves; no save). Spirit Guardians (self, 15ft radius, moves with you, 9 rounds: enemies there move at half speed and take 1d6 radiant, or necrotic chosen when cast, once per round when they enter or start their turn there; Will DC 17 halves).\n\n4th: Healing Circle (range 30ft, 20ft burst: every living creature in it heals 1d8+10 HP, 1d8+9 +1 from Healer; careful: heals enemies in the burst too).\n\n5th: Flame Strike (60ft, 10ft-radius 40ft-high cylinder: 9d6, half fire and half radiant, Reflex DC 17 halves; the fire half stops the troll regenerating)."
+  },
+  "personality": "A radiant dawn-priest who keeps the Keepers standing and the dark at bay. Patient, sunny and quietly stubborn; believes every bad night ends in a morning. Joined the Keepers because Burrow's Den needed a healer who would walk into the dark with them, not wait at the gate.",
+  "inAFight": "Open with Bless or Prayer, keep allies up with Cure spells and Healing Circle, Hold Person a hobgoblin, and save Flame Strike for the troll.",
+  "abilitiesText": "**Spell Use.** Divine caster, Wisdom. Spell DC 17. Prepare 12 spells each morning from the Cleric list (9 level + 3 Wis); cantrips are extra. Slots below include the Wisdom bonus slots.\n\n**Turn Undead.** Action, 6 times per day: every undead within 30ft that can see or hear you makes a Will save (DC 17). Fail: destroyed if its Level is 4 or lower, otherwise turned (flees, cannot come within 30ft for 1 minute).\n\n**Granted Power: Dawning Light.** Advantage on your first attack roll each round against undead. Once per day: a 20ft burst of dawn light; undead in it make a Will save or flee for 1 minute.\n\n**Weapon Selection.** Cleric weapon list plus Lathander's favoured weapon, the heavy mace.\n\n**Resistance to necrotic and radiant.** Resistance 5 to necrotic and radiant damage.\n\n**Lay on Hands.** Once per long rest, heal a creature 9 HP (your level).\n\n**Inner light.** Once per long rest, shed bright light in a 10ft radius (illumination only).\n\n**Fearless.** Advantage on saves against being Frightened.\n\n**Chosen skill.** Advantage on First Aid/Healing checks (combined with your NWP).\n\n**Darkvision.** 60ft.\n\n**War Caster (1st, Arcane & Devout).** Cast somatic spells with mace and shield in hand. Advantage on Fortitude saves to keep a spell when damaged.\n\n**Healer (4th, Arcane & Devout).** Healing spells restore +1 HP per die (included in the spell lines). Once per day, cast one healing spell of 3rd level or lower without using a slot.\n\n**Toughness (8th, General).** +1 Max HP per level (+9, included), +1 Constitution (included: Con 16), Advantage on Constitution checks.\n\n**Speed, initiative and HP.** Speed: 30ft · Initiative: +1 · HP: Level 1: d8 max 8 + Con +2 = 10. Levels 2-9: 8 x (5 + 2) = 56. Toughness: +1 x 9 levels = 9. Total 75.",
+  "unsure": [
+   "No separate kit printed: the kit box holds the deity 'Lathander (The Dawning Light), Tarielian Pantheon', so it is used for both kit and classNote.",
+   "Spell slot counts per level did not come through in the text extraction; spells.slots left empty.",
+   "Prepared ticks not readable; all 12 listed 1st-5th level spells put in 'prepared' as they exactly match the 12 she prepares.",
+   "Attribute scores decoded from run-together text (11/14/16/9/18/13); confirmed by Con +2 HP, Wis +3 and saves 6/5/7.",
+   "Holy symbol and alchemist's fire slot counts taken from the equipment list; slots used 18 / 18."
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 9 - The Veterans",
+  "seat": 4,
+  "role": "Ranged",
+  "name": "Marta Holloway",
+  "ancestry": "Human",
+  "ancestryNote": "",
+  "class": "Gunslinger",
+  "classNote": "",
+  "level": 9,
+  "kit": "Holfast City Watch",
+  "alignment": "Lawful Neutral",
+  "attributes": {
+   "str": 13,
+   "dex": 18,
+   "con": 16,
+   "int": 11,
+   "wis": 14,
+   "cha": 9
+  },
+  "luck": 12,
+  "hpMax": 66,
+  "ac": 17,
+  "acBreakdown": "10 + 4 (Studded Leather +1) + 3 (Dex, light armour) = 17",
+  "saves": {
+   "fort": 6,
+   "ref": 7,
+   "will": 5
+  },
+  "bth": 6,
+  "initiative": 3,
+  "speed": 30,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "Weaponsmithing",
+    "tier": "trained"
+   },
+   {
+    "name": "Tracking",
+    "tier": "trained"
+   },
+   {
+    "name": "Riding, Land-Based",
+    "tier": "trained"
+   },
+   {
+    "name": "Gaming",
+    "tier": "trained"
+   },
+   {
+    "name": "Local History",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "feats": [
+   {
+    "name": "Swift Reflexes",
+    "note": "Human bonus, General"
+   },
+   {
+    "name": "Steady Aim",
+    "note": "1st, Specialist"
+   },
+   {
+    "name": "Point-Blank Terror",
+    "note": "2nd, Specialist"
+   },
+   {
+    "name": "Critical Strike",
+    "note": "6th, Martial"
+   }
+  ],
+  "classFeatures": [
+   "Dead Eye",
+   "Steady Shot (5th)",
+   "Extra Attack (7th)",
+   "Lightning Reload (9th)",
+   "Quick Draw",
+   "Firearm Proficiency",
+   "Called Shot (4th)",
+   "Kit: Precision Placement",
+   "Brace and Fire (9th)",
+   "Trick Shot (7th)",
+   "Grit",
+   "Kit: Badge and Barrel"
+  ],
+  "weapons": [
+   {
+    "name": "Pistol",
+    "qty": 1,
+    "magic": 1,
+    "attack": "+10",
+    "damage": "2d6+4 piercing, exploding (+1d6 Steady Shot on first hit each round while Dead Eye applies)",
+    "range": "20ft (40ft with Disadvantage)",
+    "notes": "Misfire on a natural 1-2 (jams; natural 1 is a catastrophe, roll d6). Lightning Reload: reloads as part of the attack that fired it, once per round. Crits on natural 19 (if it hits) or 20."
+   },
+   {
+    "name": "Pistol (backup, loaded)",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+9 with Disadvantage",
+    "damage": "2d6+3 piercing, exploding",
+    "range": "20ft (40ft with Disadvantage)",
+    "notes": "Listed as 'Pistol (backup, loaded)' and 'Pistol (second backup, loaded)'. Extra Attack (backup Pistol): needs a second loaded gun: Quick Draw a backup (free). Your main pistol only reloads once per round, so each backup gives one extra shot, then stays empty until you spend an action reloading it."
+   },
+   {
+    "name": "Alchemist's Fire",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d6 fire, target is Burning",
+    "range": "Thrown 20ft",
+    "notes": "For the troll. Uses your action like an attack. Dex + BtH (a thrown flask is not a Strength-based weapon)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Studded Leather",
+    "magic": 1,
+    "category": "light",
+    "acBonus": 4,
+    "slots": 2,
+    "notes": "Worn"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Powder and shot (30 shots)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 12,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, one-pint flask (Keepers' kit)",
+    "qty": 2,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes (Keepers' kit)",
+    "qty": 5,
+    "slots": 1
+   },
+   {
+    "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "An ex-watch marksman who stands still, shoots straight and pins runners in place. Dry, procedural and unflappable; reads every room like a crime scene. Left the Watch when the paperwork outgrew the policing; the Keepers let her actually stop the bad thing.",
+  "inAFight": "Stand still and shoot: your first shot each round has Advantage and +1d6, it reloads itself, and one hit a round can be a Leg shot to slow the troll.",
+  "abilitiesText": "**Dead Eye.** Advantage on your first ranged attack each round if you do not move this turn (you stay rooted after shooting). Forced movement does not count.\n\n**Steady Shot (5th).** While Dead Eye applies, your first hit each round deals +1d6.\n\n**Extra Attack (7th).** When you take the attack action, make one more weapon attack, with Disadvantage. Each shot needs a loaded firearm.\n\n**Lightning Reload (9th).** Pistols reload as part of the attack that fired them, once per round.\n\n**Quick Draw.** Drawing a loaded pistol does not use your free object use.\n\n**Firearm Proficiency.** Firearms without Disadvantage; damage dice explode (a die showing its maximum is rolled again and added).\n\n**Called Shot (4th).** Declare before rolling; the shot has Disadvantage; one per round; saves DC 17. Head: Fortitude or Stunned 1 round (then immune 1 minute). Arm: Fortitude or drops what it holds. Leg: Fortitude or speed halved 1 round.\n\n**Kit: Precision Placement.** Once per round, after any hit, make it a Leg shot with no declaration and no Disadvantage (Fortitude DC 17 or speed halved for 1 round).\n\n**Brace and Fire (9th).** Reaction when a creature charges you: shoot before it reaches you (Dead Eye not required). On a hit it takes damage and makes a Fortitude save (DC 17) or its charge stops.\n\n**Trick Shot (7th).** Dex check vs a GM-set DC for an impossible shot: around corners, ricochets, disarm within 30ft, cut a rope. One try per round; failure just misses.\n\n**Grit.** Once per day, when dropped to 0 HP or below, make a Fortitude save (DC 10 + damage taken below 0). Success: stay at 1 HP and conscious.\n\n**Kit: Badge and Barrel.** Advantage on identifying criminals by description, navigating Opal's legal system, and acting as a witness or enforcer of Opal law.\n\n**Attribute bonus.** +1 Dex and +1 Con (included).\n\n**Bonus feat.** An extra General feat at 1st level (Swift Reflexes).\n\n**Chosen skill.** Advantage on Perception (Wisdom checks to notice things).\n\n**Weapon and armour training.** Two martial weapons: Sword, Long and Bow, Long. Light and medium armour.\n\n**Swift Reflexes (Human bonus, General).** Advantage on initiative, +1 Dexterity (included: Dex 18, the creation cap).\n\n**Steady Aim (1st, Specialist).** No Disadvantage on ranged attacks against a target in melee with an ally.\n\n**Point-Blank Terror (2nd, Specialist).** No Disadvantage on ranged attacks while an enemy is within 5ft of you.\n\n**Critical Strike (6th, Martial).** Weapon attacks crit on a natural 20, or a natural 19 that hits. A crit adds the maximum of the weapon dice (12 for a pistol).\n\n**Speed, initiative and HP.** Speed: 30ft · Initiative: +3 with Advantage (Swift Reflexes) · HP: Level 1: d8 max 8 + Con +2 = 10. Levels 2-9: 8 x (5 + 2) = 56. Total 66.",
+  "unsure": [
+   "Attribute scores decoded from run-together text (13/18/16/11/14/9); confirmed by Str +1, Con +2 HP, Dex +3 AC and saves 6/7/5.",
+   "The two backup pistols are listed separately on the sheet; merged into one weapon entry with qty 2 (1 slot each).",
+   "Perception listed in the skills box as an everyday check with Human Advantage, not an NWP; left out of skills."
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 9 - The Veterans",
+  "seat": 5,
+  "role": "Spare",
+  "name": "Brakka Ironjaw",
+  "ancestry": "Half-Orc",
+  "ancestryNote": "",
+  "class": "Fighter",
+  "classNote": "",
+  "level": 9,
+  "kit": "The Heavy Hand",
+  "alignment": "Neutral Good",
+  "attributes": {
+   "str": 18,
+   "dex": 14,
+   "con": 18,
+   "int": 11,
+   "wis": 12,
+   "cha": 8
+  },
+  "luck": 12,
+  "hpMax": 94,
+  "ac": 20,
+  "acBreakdown": "10 + 8 (Plate Mail +1) + 0 (heavy armour: no Dex) + 1 (Buckler) + 1 (Armour Master) = 20",
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 4
+  },
+  "bth": 6,
+  "initiative": 1,
+  "speed": 30,
+  "slotsMax": 20,
+  "skills": [
+   {
+    "name": "Endurance",
+    "tier": "trained"
+   },
+   {
+    "name": "Blacksmithing",
+    "tier": "trained"
+   },
+   {
+    "name": "Armourer",
+    "tier": "trained"
+   },
+   {
+    "name": "Survival",
+    "tier": "trained"
+   },
+   {
+    "name": "Riding, Land-Based",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Orcish"
+  ],
+  "feats": [
+   {
+    "name": "Critical Strike",
+    "note": "1st, Martial"
+   },
+   {
+    "name": "Toughness",
+    "note": "3rd, General"
+   },
+   {
+    "name": "Armour Master",
+    "note": "6th, Martial"
+   }
+  ],
+  "classFeatures": [
+   "Weapon Specialisation (Greatsword)",
+   "Extra Attack (7th)",
+   "Combat Dominance (4th, 8th)",
+   "Manoeuvre Mastery (7th)",
+   "Intimidating Strike (Fighter manoeuvre)",
+   "Combat Reflexes (free feat)",
+   "Kit: Crushing Blow",
+   "Kit: Breaker"
+  ],
+  "weapons": [
+   {
+    "name": "Greatsword (specialised)",
+    "qty": 1,
+    "magic": 1,
+    "attack": "+10",
+    "damage": "2d6+6 slashing (reroll 1s and 2s on the 2d6)",
+    "range": "Melee",
+    "notes": "Heavy. Advantage on your first greatsword attack each round (Weapon Specialisation, +2 damage included). Crits on natural 19 (if it hits) or 20; a crit adds max dice (12) plus one extra d6 (Brutal Strikes). Extra Attack (Greatsword): +10 with Disadvantage, 2d6+6, melee; when you take the attack action, not on a Charge; use this OR Combat Dominance, not both. Combat Dominance (Greatsword): +10 first swing, then +10 with Disadvantage x2, 2d6+6 each; 3 attacks a round, split as you like, only if every creature you attack this round is Level 4 or lower (hobgoblin guards and captains, not the warlord or troll)."
+   },
+   {
+    "name": "Javelin",
+    "qty": 3,
+    "magic": 0,
+    "attack": "+9",
+    "damage": "1d6+3 piercing",
+    "range": "Thrown 30ft (60ft with Disadvantage)",
+    "notes": "Strength-based thrown weapon."
+   },
+   {
+    "name": "Alchemist's Fire",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+7",
+    "damage": "1d6 fire, target is Burning",
+    "range": "Thrown 20ft",
+    "notes": "For the troll. Dex + BtH (a thrown flask is not a Strength-based weapon)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Plate Mail",
+    "magic": 1,
+    "category": "heavy",
+    "acBonus": 8,
+    "slots": 3,
+    "notes": "Worn; includes helm"
+   },
+   {
+    "name": "Buckler",
+    "magic": 0,
+    "category": "shield",
+    "acBonus": 1,
+    "slots": 1,
+    "notes": "Compact: usable with a two-handed weapon"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Oil of Elemental Edge (Fire): action to apply, 5 rounds of +1d6 fire per hit",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 12,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, one-pint flask (Keepers' kit)",
+    "qty": 2,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes (Keepers' kit)",
+    "qty": 5,
+    "slots": 1
+   },
+   {
+    "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A plate-clad greatsword specialist who does not parry; he ends fights. Quiet, polite and immovable; speaks in short sentences and means every word. Joined the Keepers after the guild paid his debts to a fighting pit; he has been paying them back with his sword ever since.",
+  "inAFight": "Wade into the hobgoblin guards and use Combat Dominance (3 swings) on them; switch to the warlord or troll with Weapon Specialisation Advantage and Extra Attack.",
+  "abilitiesText": "**Weapon Specialisation (Greatsword).** Advantage on your first greatsword attack roll each round and +2 damage with it (included).\n\n**Extra Attack (7th).** When you take the attack action, make one more weapon attack, with Disadvantage. Does not combine with Combat Dominance.\n\n**Combat Dominance (4th, 8th).** If every creature you attack this round is Level 4 or lower, make 3 attacks split among them; all but the first have Disadvantage. Replaces Extra Attack and off-hand attacks.\n\n**Manoeuvre Mastery (7th).** Shield Blow (with your buckler) is rolled normally, not at Disadvantage: it replaces all your attacks; on a hit the target makes a Fortitude save (DC 17) or is Stunned 1d2 rounds, and a creature that saves is immune for the fight.\n\n**Intimidating Strike (Fighter manoeuvre).** Replaces one attack: on a hit, the target makes a Will save (DC 17) or is Frightened until the end of its next turn.\n\n**Combat Reflexes (free feat).** Once per round, an Attack of Opportunity against an enemy that leaves your reach or moves past or through it. Disengage prevents it.\n\n**Kit: Crushing Blow.** Reroll 1s and 2s on two-handed weapon damage dice.\n\n**Kit: Breaker.** Advantage on Strength checks to break, smash or force objects.\n\n**Relentless Endurance.** Once per day, when damage would drop you to 0 HP or below, drop to 1 HP instead.\n\n**Onslaught.** Once per long rest, spend 1 Luck to make one more weapon attack, as part of the same action, against a creature you just damaged.\n\n**Brutal Strikes.** On a critical hit, add one extra damage die of the weapon's type.\n\n**Chosen skill.** Advantage on Intimidation (Charisma) checks.\n\n**Darkvision.** 60ft.\n\n**Weapon and armour training.** Two-handed axe, battleaxe, javelin, handaxe; light and medium armour (Fighters already use any).\n\n**Critical Strike (1st, Martial).** Weapon attacks crit on a natural 20, or a natural 19 that hits.\n\n**Toughness (3rd, General).** +1 Max HP per level (+9, included), +1 Constitution (included), Advantage on Constitution checks.\n\n**Armour Master (6th, Martial).** +1 AC while wearing armour (included).\n\n**Speed, initiative and HP.** Speed: 30ft · Initiative: +1 · HP: Level 1: d10 max 10 + Con +3 = 13. Levels 2-9: 8 x (6 + 3) = 72. Toughness: +1 x 9 levels = 9. Total 94.",
+  "unsure": [
+   "Attribute scores decoded from run-together text (18/14/18/11/12/8); confirmed by Str +3 to-hit, Con +3 HP, Cha -1 and saves 7/5/4.",
+   "Intimidation listed in the skills box as an everyday check with Half-Orc Advantage, not an NWP; left out of skills."
+  ]
+ }
+]

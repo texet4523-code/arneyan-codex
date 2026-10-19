@@ -1,0 +1,544 @@
+<div class="arn-sheet {{actor.type}} {{#if editMode}}editing{{else}}playing{{/if}}">
+
+  {{!-- ================= SIDEBAR ================= --}}
+  <aside class="arn-side">
+    <div class="arn-portrait-wrap">
+      <img class="arn-portrait" src="{{actor.img}}" data-edit="img" data-action="editImage" alt="{{actor.name}}">
+      {{#if stateLabel}}<div class="arn-state-banner {{system.attributes.state}}">{{stateLabel}}
+        {{#if (eq system.attributes.state "dying")}}{{#if editable}}<span class="arn-state-actions">
+          {{#if isGM}}<a data-action="stabilise" data-tooltip="An ally stabilised them (an action and a Wisdom check, DC 10) or First Aid did"><i class="fa-solid fa-kit-medical"></i> Stabilised</a>{{/if}}
+          <a data-action="lastChance" data-tooltip="At the start of their turn: burn 1 Luck for a Fortitude save, DC 10, to stabilise"><i class="fa-solid fa-clover"></i> Last Chance</a>
+        </span>{{/if}}{{/if}}</div>{{/if}}
+    </div>
+
+    {{!-- Hit points --}}
+    <section class="arn-card-block arn-hp-block">
+      <div class="arn-block-label">Hit Points <i class="fa-solid fa-circle-info" data-tooltip="{{hpTip}}"></i></div>
+      <div class="arn-hp-bar"><div style="width: {{hpPct}}%"></div></div>
+      <div class="arn-hp-row">
+        {{#if editable}}<a class="arn-step" data-action="hpStep" data-step="-1" data-tooltip="-1 HP (Shift: -5)"><i class="fa-solid fa-minus"></i></a>{{/if}}
+        <input class="arn-hp-value" type="number" name="system.attributes.hp.value" value="{{source.attributes.hp.value}}">
+        <span class="arn-hp-max">/ {{system.attributes.hp.max}}</span>
+        {{#if editable}}<a class="arn-step" data-action="hpStep" data-step="1" data-tooltip="+1 HP (Shift: +5)"><i class="fa-solid fa-plus"></i></a>{{/if}}
+      </div>
+      <div class="arn-hp-sub">
+        <label>Temp <input class="short" type="number" name="system.attributes.hp.temp" value="{{source.attributes.hp.temp}}"></label>
+        {{#if editable}}<label data-tooltip="Your maximum HP before bonuses (Toughness and the like add to it). Change it if you rolled your HP by hand.">Max <input class="short" type="number" name="system.attributes.hp.max" value="{{source.attributes.hp.max}}" min="0"></label>{{/if}}
+      </div>
+      {{#if hitDice.length}}<div class="arn-hd-row">
+        <span class="arn-muted">Hit Dice</span>
+        {{#each hitDice}}<a class="arn-chip arn-hd" {{#if @root.editable}}data-action="rollHitDie"{{/if}} data-class-id="{{id}}" data-tooltip="{{tip}}"><i class="fa-solid fa-dice-d20"></i> {{die}} × {{levels}}{{#if ../multi}} {{name}}{{/if}}</a>{{/each}}
+      </div>{{/if}}
+      {{#if isCharacter}}<div class="arn-tiny arn-muted">Dies at {{system.attributes.deathAt}}{{#if system.attributes.hp.halved}} · Max HP halved{{/if}}</div>{{/if}}
+    </section>
+
+    {{!-- Core numbers --}}
+    <section class="arn-stat-grid">
+      {{#each sideStats}}
+      <div class="arn-stat {{key}}" data-tooltip="{{tip}}">
+        <span class="arn-stat-label">{{label}}</span>
+        {{#if action}}<a class="arn-stat-value" data-action="{{action}}">{{value}}</a>{{else}}<span class="arn-stat-value">{{value}}</span>{{/if}}
+        {{#if sub}}<span class="arn-stat-sub">{{sub}}</span>{{/if}}
+      </div>
+      {{/each}}
+    </section>
+    {{#if editMode}}
+    <section class="arn-card-block arn-edit-fields">
+      {{#if isCharacter}}
+        <label>AC bonus <input class="short" type="number" name="system.attributes.ac.bonus" value="{{source.attributes.ac.bonus}}"></label>
+        <label>BtH bonus <input class="short" type="number" name="system.attributes.bthBonus" value="{{source.attributes.bthBonus}}"></label>
+        <label>Base speed <input class="short" type="number" name="system.attributes.speed" value="{{source.attributes.speed}}"></label>
+      {{else}}
+        <label>AC <input class="short" type="number" name="system.attributes.ac" value="{{source.attributes.ac}}"></label>
+        <label>Attack <input class="short" type="number" name="system.attributes.attack" value="{{source.attributes.attack}}"></label>
+        <label>Morale <input class="short" type="number" name="system.attributes.morale" value="{{source.attributes.morale}}"></label>
+        <label>Speed <input class="mid" type="text" name="system.attributes.speed" value="{{source.attributes.speed}}"></label>
+        <label data-tooltip="0 works it out from Level and the best mental ability">Spell DC <input class="short" type="number" name="system.attributes.spellDC" value="{{source.attributes.spellDC}}"></label>
+      {{/if}}
+    </section>
+    {{/if}}
+
+    {{!-- Saves --}}
+    <section class="arn-card-block">
+      <div class="arn-block-label">Saving Throws</div>
+      <ul class="arn-save-list">
+        {{#each saves}}
+        <li>
+          <a class="arn-rollable" data-action="rollSave" data-save="{{key}}" data-tooltip="{{tip}}">{{label}}</a>
+          {{#if autoFail}}<span class="arn-flag bad" data-tooltip="Fails automatically">Fails</span>{{/if}}
+          {{#if @root.editMode}}{{#if @root.isNpc}}<input class="short" type="number" name="system.saves.{{key}}" value="{{value}}">{{else}}<input class="tiny" type="number" name="system.saves.{{key}}.bonus" value="{{bonus}}" data-tooltip="Sheet bonus to {{label}}"><span class="arn-save-val">{{valueLabel}}</span>{{/if}}{{else}}<span class="arn-save-val">{{valueLabel}}</span>{{/if}}
+        </li>
+        {{/each}}
+      </ul>
+      {{#if isCharacter}}
+        <div class="arn-dcs">
+          {{#if system.classDC}}<span class="arn-chip">Class DC {{system.classDC}}</span>{{/if}}
+          {{#each system.casters}}<span class="arn-chip">{{name}} DC {{dc}}</span>{{/each}}
+        </div>
+      {{/if}}
+    </section>
+
+    {{!-- Exhaustion and rest --}}
+    {{#if isCharacter}}
+    <section class="arn-card-block">
+      <div class="arn-block-label">Exhaustion</div>
+      <div class="arn-ex-pips">
+        {{#each exhaustion}}<a class="arn-ex-pip {{#if on}}on{{/if}}" data-action="setExhaustion" data-level="{{level}}" data-tooltip="{{level}}: {{label}}">{{level}}</a>{{/each}}
+      </div>
+      {{#if system.attributes.exhaustion}}<div class="arn-tiny arn-bad">{{system.exhaustionLabel}}</div>{{/if}}
+      <button type="button" class="arn-btn wide" data-action="rest"><i class="fa-solid fa-campground"></i> Rest</button>
+    </section>
+    {{/if}}
+
+    {{!-- Conditions --}}
+    <section class="arn-card-block">
+      <div class="arn-block-label">Conditions</div>
+      <div class="arn-cond-icons">
+        {{#each activeConditions}}<a class="arn-cond on" data-action="toggleCondition" data-condition="{{id}}" data-tooltip="{{name}}: {{text}} (click to remove)"><img src="{{img}}" alt="{{name}}"></a>{{else}}<span class="arn-muted">None</span>{{/each}}
+      </div>
+      {{#if editable}}
+      <select class="arn-add-condition"><option value="">Add a condition...</option>{{#each conditions}}{{#unless active}}<option value="{{id}}">{{name}}</option>{{/unless}}{{/each}}</select>
+      {{/if}}
+      {{#if concentrating}}<div class="arn-conc"><i class="fa-solid fa-brain"></i> {{concentrating}} {{#if editable}}<a data-action="endConcentration" data-tooltip="End concentration"><i class="fa-solid fa-xmark"></i></a>{{/if}}</div>{{/if}}
+    </section>
+  </aside>
+
+  {{!-- ================= MAIN ================= --}}
+  <div class="arn-main">
+    <header class="arn-head">
+      <div class="arn-head-top">
+        {{#if editMode}}<input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Name">{{else}}<h1 class="arn-name">{{actor.name}}</h1>{{/if}}
+        {{#if fromBestiary}}<a class="arn-shape-btn" data-action="refreshMonster" data-tooltip="Update from the Bestiary (after a system update)"><i class="fa-solid fa-rotate"></i></a>{{/if}}
+        {{#if editable}}{{#unless transformed}}<a class="arn-shape-btn" data-action="changeShape" data-tooltip="Change shape: a harmless creature or an object (or drag any creature onto this sheet)"><i class="fa-solid fa-paw"></i></a>{{/unless}}{{/if}}
+        {{#if editable}}<a class="arn-edit-toggle {{#if editMode}}on{{/if}}" data-action="toggleEdit" data-tooltip="{{#if editMode}}Back to play mode{{else}}Edit mode: change scores, max HP and details{{/if}}"><i class="fa-solid fa-{{#if editMode}}lock-open{{else}}lock{{/if}}"></i> {{#if editMode}}Editing{{else}}Edit{{/if}}</a>{{/if}}
+      </div>
+      {{#if isCharacter}}
+      <div class="arn-subline">
+        <span class="arn-chip strong">Level {{system.level}}</span>
+        {{#each classes}}
+        <span class="arn-classlevel" data-item-id="{{id}}">
+          <a data-action="itemEdit">{{name}}</a>
+          <input class="arn-class-level" type="number" min="1" max="24" value="{{system.levels}}" data-item-id="{{id}}" data-tooltip="Type a new level to level up (or down)" {{#unless @root.editable}}disabled{{/unless}}>
+          {{#if @root.editable}}<a class="arn-leveldown" data-action="levelDown" data-tooltip="Level down"><i class="fa-solid fa-circle-down"></i></a><a class="arn-levelup" data-action="levelUp" data-tooltip="Level up"><i class="fa-solid fa-circle-up"></i></a>{{/if}}
+        </span>
+        {{else}}
+        <span class="arn-hint">Drag a class onto the sheet to start {{#if editable}}<a data-action="browse" data-pack="classes"><i class="fa-solid fa-book-atlas"></i> Classes</a>{{/if}}</span>
+        {{/each}}
+        {{#each ancestry}}<span class="arn-chip" data-item-id="{{id}}"><a data-action="itemEdit">{{name}}</a></span>{{/each}}
+        {{#each kits}}<span class="arn-chip" data-item-id="{{id}}"><a data-action="itemEdit">{{name}}</a></span>{{/each}}
+      </div>
+      <div class="arn-xp">
+        <span>XP</span>
+        <input type="number" name="system.attributes.xp" value="{{source.attributes.xp}}" min="0">
+        <span class="arn-muted">/ {{system.xpRate}}</span>
+        <div class="arn-bar"><div style="width: {{xpPct}}%"></div></div>
+      </div>
+      {{else}}
+      <div class="arn-subline">
+        {{#if editMode}}
+          <label>Level <input class="short" type="number" name="system.level" value="{{source.level}}"></label>
+          <label data-tooltip="For the book's fractional Levels (costed as Level −1 and −3 in encounters)">Fraction <select name="system.details.levelText">{{selectOptions levelTexts selected=source.details.levelText}}</select></label>
+          <label>HD <input class="mid" type="text" name="system.hd" value="{{source.hd}}"></label>
+          <label>Type <input type="text" name="system.details.type" value="{{source.details.type}}" placeholder="Undead, Giant..."></label>
+          <label class="check"><input type="checkbox" name="system.details.isSolo" {{checked source.details.isSolo}}> Solo</label>
+        {{else}}
+          <span class="arn-chip strong">Level {{levelLabel}}</span><span class="arn-chip">HD {{system.hd}}</span>
+          {{#if system.details.type}}<span class="arn-chip">{{system.details.type}}</span>{{/if}}
+          <span class="arn-chip">{{lookup config.sizes system.details.size}}</span>
+          <span class="arn-chip">Speed {{system.attributes.speed}}{{#if (eq system.attributes.speedMult 0)}} (now 0){{/if}}</span>
+          {{#if system.details.isSolo}}<span class="arn-chip strong">Solo</span>{{/if}}
+          {{#if system.details.numberAppearing}}<span class="arn-chip" data-tooltip="Number appearing">No. {{system.details.numberAppearing}}</span>{{/if}}
+        {{/if}}
+      </div>
+      {{/if}}
+      {{#if transformed}}<div class="arn-shape-banner"><i class="fa-solid fa-paw"></i> <span><strong>{{transformed.originalName}}</strong> in the form of <strong>{{transformed.formName}}</strong>. At 0 HP it returns to its own form.</span>{{#if editable}}<a class="arn-btn small" data-action="revertShape"><i class="fa-solid fa-rotate-left"></i> Return to own form</a>{{/if}}</div>{{/if}}
+      {{#if noAct}}<div class="arn-warnline"><i class="fa-solid fa-ban"></i> Cannot take actions ({{noAct}})</div>{{/if}}
+    </header>
+
+    {{!-- Attributes (and Luck, DCC style) --}}
+    <section class="arn-ability-row">
+      {{#each abilities}}
+      <div class="arn-ability {{#if changed}}changed{{/if}}" data-tooltip="{{label}}{{#if tip}}: {{tip}}{{/if}}">
+        <a class="arn-ability-name" data-action="rollAbility" data-ability="{{key}}">{{abbr}}</a>
+        <a class="arn-ability-mod" data-action="rollAbility" data-ability="{{key}}">{{modLabel}}</a>
+        {{#if @root.editMode}}<input class="arn-ability-score" type="number" name="system.abilities.{{key}}.value" value="{{value}}" min="0" max="30">
+        {{else}}<span class="arn-ability-score">{{total}}</span>{{/if}}
+      </div>
+      {{/each}}
+      {{#if isCharacter}}{{#if editMode}}<a class="arn-scores-link" data-action="abilityScores" data-tooltip="Roll Method V or type in a set, then assign the six scores"><i class="fa-solid fa-dice"></i></a>{{/if}}{{/if}}
+      {{#if isCharacter}}
+      <div class="arn-ability luck" data-tooltip="Luck: roll this or under on a d20. Burn points to add +1 each to any roll. It never comes back with rest.">
+        <a class="arn-ability-name" data-action="rollLuck">Luck</a>
+        <input class="arn-luck-value" type="number" name="system.luck.value" value="{{source.luck.value}}" min="0" max="20">
+        {{#if editMode}}<label class="arn-luck-start">start <input type="number" name="system.luck.start" value="{{source.luck.start}}" min="0" max="20"></label>
+        {{else}}<span class="arn-ability-score">of {{source.luck.start}}</span>{{/if}}
+        {{#if isGM}}<a class="arn-luck-deed" data-action="luckDeed" data-tooltip="+1 Luck for a deed true to their Alignment (GM, once a session, never above 20)"><i class="fa-solid fa-plus"></i></a>{{/if}}
+      </div>
+      {{/if}}
+    </section>
+
+    <nav class="arn-tabs">
+      {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
+    </nav>
+
+    <section class="arn-body">
+
+      {{!-- ============ ACTIONS ============ --}}
+      <div class="arn-tab" data-tab="actions">
+        <div class="arn-section-head">
+          <h3>Weapons</h3>
+          {{#if editable}}{{#if isCharacter}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-tooltip="Browse the Catalogue"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}
+          <a class="arn-add" data-action="itemCreate" data-type="weapon" data-tooltip="New weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </div>
+        <ul class="arn-list arn-attacks">
+          <li class="arn-list-head"><span>Weapon</span><span>To hit</span><span>Damage</span><span>Range</span><span></span></li>
+          {{#each weapons}}
+          <li data-item-id="{{id}}" draggable="true" class="{{#unless item.system.equipped}}dim{{/unless}}">
+            <span class="arn-name-cell"><img src="{{item.img}}" alt=""><a data-action="itemExpand">{{item.name}}</a>
+              {{#if item.system.toggle}}<a class="arn-mode {{#if item.system.active}}on{{/if}}" {{#if @root.editable}}data-action="itemMode"{{/if}} data-tooltip="{{#if item.system.active}}Click to switch it off{{else}}Click to switch it on: its extra damage then counts on every hit{{/if}}"><i class="fa-solid fa-fire"></i> {{#if item.system.modeLabel}}{{item.system.modeLabel}}{{else}}Mode{{/if}}{{#unless item.system.active}}: off{{/unless}}</a>{{/if}}</span>
+            <span><button type="button" class="arn-roll-btn" data-action="itemUse" data-tooltip="{{toHitTip}} · Shift: Advantage · Ctrl: Disadvantage">{{toHit}}</button></span>
+            <span><button type="button" class="arn-roll-btn dmg" data-action="itemDamage" data-tooltip="Roll damage · Shift: critical">{{damage}}</button></span>
+            <span class="arn-muted">{{#if item.system.range}}{{item.system.range}}{{else}}Melee{{/if}}{{#if ammoNeeded}} · {{#if ammoChoices}}<select class="arn-ammo-pick" data-ammo-for="{{item.id}}" data-tooltip="Each attack spends one: pick which">{{selectOptions ammoChoices selected=item.system.ammoId}}</select>{{else}}<span class="arn-bad">no {{ammoNeeded}}s</span>{{/if}}{{/if}}</span>
+            {{> "systems/arneyan/templates/actor/item-controls.hbs" equip=true system=item.system}}
+            {{#if expanded}}<div class="arn-expand">{{#if item.system.traits}}<p><strong>Traits:</strong> {{item.system.traits}}</p>{{/if}}{{{desc}}}</div>{{/if}}
+          </li>
+          {{else}}<li class="arn-empty">No weapons yet. Drag one in from the Catalogue.</li>{{/each}}
+        </ul>
+
+        <div class="arn-section-head"><h3>Abilities &amp; Actions</h3>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="actions" data-tooltip="Browse actions and manoeuvres"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+        <ul class="arn-list">
+          {{#each combatAbilities}}
+          <li data-item-id="{{id}}" draggable="true">
+            <img src="{{item.img}}" alt="">
+            <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
+            <span class="arn-muted arn-meta">
+              {{#if item.system.uses.max}}{{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}
+              {{#if item.system.save}} · {{lookup @root.config.saveTypes item.system.save}}{{/if}}
+            </span>
+            {{#if item.system.toggle}}
+              <a class="arn-switch {{#if item.system.active}}on{{/if}}" data-action="itemUse" data-tooltip="{{#if item.system.active}}On: click to switch off{{else}}Off: click to switch on{{/if}}"><span></span></a>
+            {{else}}
+              <button type="button" class="arn-btn small" data-action="itemUse">Use</button>
+            {{/if}}
+            {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+          </li>
+          {{else}}<li class="arn-empty">Abilities with uses, saves, damage or an on/off switch show here.</li>{{/each}}
+        </ul>
+        {{#if isCharacter}}
+        <div class="arn-quick">
+          <button type="button" class="arn-btn ghost" data-action="rollUntrained"><i class="fa-solid fa-dice-d20"></i> Untrained check</button>
+          <button type="button" class="arn-btn ghost" data-action="rollLuck"><i class="fa-solid fa-clover"></i> Luck check</button>
+        </div>
+        {{/if}}
+      </div>
+
+      {{!-- ============ SPELLS ============ --}}
+      <div class="arn-tab" data-tab="spells">
+        {{#if noCast}}<div class="arn-warnline"><i class="fa-solid fa-ban"></i> Cannot cast spells ({{noCast}})</div>{{/if}}
+        {{#if editable}}<div class="arn-tabbar"><button type="button" class="arn-btn small ghost" data-action="browse" data-pack="spells"><i class="fa-solid fa-book-atlas"></i> Browse spells</button><button type="button" class="arn-btn small ghost" data-action="browse" data-pack="features"><i class="fa-solid fa-shield-halved"></i> Class abilities</button></div>{{/if}}
+        {{#each spellSections}}
+        <section class="arn-caster">
+          <header class="arn-caster-head">
+            <span class="arn-caster-name">{{name}}</span>
+            {{#if dc}}<span class="arn-chip gold" data-tooltip="{{dcTip}}">DC {{dc}}</span>{{/if}}
+            {{#unless loose}}<span class="arn-muted">{{#if npc}}caster level {{classLevel}}{{else}}{{abilityLabel}} {{modLabel}} · caster level {{classLevel}}{{/if}}</span>{{/unless}}
+            {{#if npcDay}}{{#if @root.editable}}<a class="arn-btn small ghost" data-action="npcNewDay" data-tooltip="Spell slots and innate uses back"><i class="fa-solid fa-sun"></i> New day</a>{{/if}}{{/if}}
+          </header>
+          {{#each levels}}
+          <div class="arn-spell-level">
+            <div class="arn-spell-level-head">
+              <span class="arn-spell-level-name">{{label}}</span>
+              {{#if isCantrip}}<span class="arn-muted">at will · {{cantripsKnown}}</span>{{/if}}
+              {{#if pips.length}}
+              <span class="arn-pips">
+                {{#each pips}}<a class="arn-pip {{#if used}}used{{/if}}" data-action="toggleSlot" data-class-id="{{../../id}}" data-level="{{../level}}" data-index="{{index}}" data-tooltip="Left-click: add a slot back · Right-click: spend one"></a>{{/each}}
+              </span>
+              <span class="arn-slot-count">{{#if @root.editable}}<input class="arn-slot-left" type="number" min="0" value="{{left}}" data-class-id="{{../id}}" data-level="{{level}}" data-tooltip="Slots left"> / <input class="arn-slot-total" type="number" min="0" value="{{total}}" data-class-id="{{../id}}" data-level="{{level}}" data-tooltip="Slots per day (changing it adds or removes extra slots)">{{else}}{{left}} / {{total}}{{/if}}</span>
+              {{/if}}
+              {{#if @root.editable}}<a class="arn-add" data-action="itemCreate" data-type="spell" data-level="{{level}}" {{#if ../id}}data-class="{{../name}}"{{/if}} data-tooltip="New spell"><i class="fa-solid fa-plus"></i></a>{{/if}}
+            </div>
+            <ul class="arn-list">
+              {{#each spells}}
+              <li data-item-id="{{id}}" draggable="true">
+                <img src="{{item.img}}" alt="">
+                <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
+                <span class="arn-muted arn-meta">{{#if usesLabel}}<span class="arn-chip">{{usesLabel}}</span> {{/if}}{{#if item.system.save}}{{lookup @root.config.saveTypes item.system.save}}{{/if}}{{#if item.system.concentration}} · Conc.{{/if}}{{#if item.system.ritual}} · Ritual{{/if}}{{#if item.system.applies.length}} · <i class="fa-solid fa-wand-sparkles" data-tooltip="Applies an effect"></i>{{/if}}</span>
+                {{#if item.system.damage}}<button type="button" class="arn-roll-btn dmg small" data-action="itemDamage" data-tooltip="Roll {{#if (eq item.system.damageType 'healing')}}healing{{else}}damage{{/if}}"><i class="fa-solid fa-{{#if (eq item.system.damageType 'healing')}}heart{{else}}burst{{/if}}"></i></button>{{/if}}
+                <button type="button" class="arn-btn small" data-action="castSpell">Cast</button>
+                {{#if @root.isCharacter}}{{#if @root.editable}}<a class="arn-ctl" data-action="writeScroll" data-tooltip="Write a scroll of it (1 week and 100 gp a level)"><i class="fa-solid fa-scroll"></i></a>{{/if}}{{/if}}
+                {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+                {{#if expanded}}<div class="arn-expand"><p class="arn-muted">{{item.system.school}}{{#if item.system.range}} · {{item.system.range}}{{/if}}{{#if item.system.components}} · {{item.system.components}}{{/if}}</p>{{{desc}}}</div>{{/if}}
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/each}}
+        </section>
+        {{else}}
+        {{#unless magicItems.length}}<p class="arn-empty">No spells. Casting classes get a section here with their spell slots; drag spells in from the Spells compendium.</p>{{/unless}}
+        {{/each}}
+        {{#if magicItems.length}}
+        <section class="arn-caster arn-item-casting">
+          <header class="arn-caster-head"><span class="arn-caster-name">Wands, Staffs &amp; Scrolls</span><span class="arn-muted">No spell slots: charges, or the scroll itself</span></header>
+          {{#each magicItems}}
+          <div class="arn-spell-level" data-item-id="{{id}}">
+            <div class="arn-spell-level-head">
+              <img class="arn-mini-img" src="{{img}}" alt=""><a class="arn-spell-level-name" data-action="itemExpand" data-tooltip="Click to read it">{{name}}{{#if (gt qty 1)}} × {{qty}}{{/if}}</a>
+              {{#if charges}}<span class="arn-chip">{{charges}} charges</span>{{/if}}
+              {{#if castLevel}}<span class="arn-muted">caster level {{castLevel}}</span>{{/if}}
+              {{#if @root.editable}}{{#if recharge}}<a class="arn-ctl" data-action="recharge" data-tooltip="Set charges or roll the recharge"><i class="fa-solid fa-battery-half"></i></a>{{/if}}{{/if}}
+              <a class="arn-ctl" data-action="itemEdit" data-tooltip="Open its sheet"><i class="fa-solid fa-pen"></i></a>
+            </div>
+            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+            <ul class="arn-list">
+              {{#each spells}}
+              <li data-item-id="{{../id}}">
+                <i class="fa-solid fa-wand-sparkles arn-muted"></i>
+                <a class="arn-item-name" data-action="itemExpand" data-expand-key="{{key}}" data-tooltip="Click to read the spell">{{name}}</a>
+                <span class="arn-muted arn-meta">{{cost}} charge{{#unless (eq cost 1)}}s{{/unless}}</span>
+                {{#if @root.editable}}<button type="button" class="arn-btn small" data-action="castItemSpell" data-spell="{{name}}" {{#if short}}disabled data-tooltip="Not enough charges"{{/if}}>Cast</button>{{/if}}
+                {{#if desc}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+              </li>
+              {{/each}}
+              {{#if scroll}}
+              <li data-item-id="{{id}}">
+                <i class="fa-solid fa-scroll arn-muted"></i>
+                <a class="arn-item-name" data-action="itemExpand" data-expand-key="{{scrollKey}}" data-tooltip="Click to read the spell">{{scroll.name}}</a>
+                <span class="arn-muted arn-meta">{{#if scroll.level}}{{lookup @root.config.spellLevels scroll.level}} level{{else}}Cantrip{{/if}} · the scroll crumbles</span>
+                {{#if @root.editable}}<button type="button" class="arn-btn small" data-action="itemUse">Read</button>{{/if}}
+                {{#if scrollDesc}}<div class="arn-expand">{{{scrollDesc}}}</div>{{/if}}
+              </li>
+              {{/if}}
+              {{#if blank}}
+              <li data-item-id="{{id}}">
+                <i class="fa-solid fa-feather arn-muted"></i>
+                <span class="arn-item-name arn-muted">Blank ({{blank}}): which spell is on it?</span>
+                {{#if @root.editable}}<button type="button" class="arn-btn small ghost" data-action="itemUse">Inscribe</button>{{/if}}
+              </li>
+              {{/if}}
+            </ul>
+          </div>
+          {{/each}}
+        </section>
+        {{/if}}
+      </div>
+
+      {{!-- ============ FEATURES (characters) ============ --}}
+      {{#if isCharacter}}
+      <div class="arn-tab" data-tab="features">
+        <div class="arn-section-head">
+          <h3>Class, Ancestry &amp; Kit</h3>
+          {{#if editable}}<span class="arn-head-tools">
+            <a class="arn-browse" data-action="browse" data-pack="classes" data-tooltip="Browse classes"><i class="fa-solid fa-book-atlas"></i></a>
+            <a class="arn-browse" data-action="browse" data-pack="ancestries" data-tooltip="Browse ancestries"><i class="fa-solid fa-people-group"></i></a>
+            <a class="arn-browse" data-action="browse" data-pack="kits" data-tooltip="Browse kits"><i class="fa-solid fa-flag"></i></a>
+          </span>{{/if}}
+        </div>
+        <ul class="arn-list">
+          {{#each classes}}
+          <li data-item-id="{{id}}" draggable="true">
+            <img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}} {{system.levels}}</a>
+            <span class="arn-muted arn-meta">{{system.hitDie}} · BtH +{{system.bth}}</span>
+            {{> "systems/arneyan/templates/actor/item-controls.hbs"}}
+          </li>
+          {{/each}}
+          {{#each ancestry}}
+          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}}</a><span class="arn-muted arn-meta">Ancestry</span>{{> "systems/arneyan/templates/actor/item-controls.hbs"}}</li>
+          {{/each}}
+          {{#each kits}}
+          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}}</a><span class="arn-muted arn-meta">Kit</span>{{> "systems/arneyan/templates/actor/item-controls.hbs"}}</li>
+          {{/each}}
+        </ul>
+
+        <div class="arn-section-head">
+          <h3>Feats</h3>
+          {{#if editable}}<a class="arn-browse" data-action="browse" data-pack="feats" data-tooltip="Browse feats"><i class="fa-solid fa-book-atlas"></i></a>
+          <a class="arn-add" data-action="itemCreate" data-type="feat" data-tooltip="New feat"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </div>
+        <ul class="arn-list">
+          {{#each feats}}
+          <li data-item-id="{{id}}" draggable="true">
+            <img src="{{item.img}}" alt="">
+            <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
+            <span class="arn-muted arn-meta">{{item.system.path}}{{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}</span>
+            {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+          </li>
+          {{else}}<li class="arn-empty">No feats yet.</li>{{/each}}
+        </ul>
+        {{> "systems/arneyan/templates/actor/abilities-list.hbs"}}
+      </div>
+
+      {{!-- ============ SKILLS ============ --}}
+      <div class="arn-tab" data-tab="skills">
+        <div class="arn-section-head">
+          <h3>Skills (NWP)</h3>
+          <span class="arn-muted">{{system.nwp.used}} / {{system.nwp.max}} slots{{#if nwpLeft}} · {{nwpLeft}} free{{/if}}</span>
+          {{#if editable}}<a class="arn-browse" data-action="browse" data-pack="skills" data-tooltip="Browse skills"><i class="fa-solid fa-book-atlas"></i></a>
+          <a class="arn-add" data-action="itemCreate" data-type="skill" data-tooltip="New skill"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </div>
+        <ul class="arn-list arn-skills">
+          {{#each skills}}
+          <li data-item-id="{{id}}" draggable="true">
+            <a class="arn-roll-btn" data-action="itemUse">{{bonus}}</a>
+            <a class="arn-item-name" data-action="itemUse">{{item.name}}</a>
+            <span class="arn-muted arn-meta">{{abbr}} · {{tier}}{{#if master}} · Advantage{{/if}}</span>
+            {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+          </li>
+          {{else}}<li class="arn-empty">No skills yet.</li>{{/each}}
+        </ul>
+        <div class="arn-quick"><button type="button" class="arn-btn ghost" data-action="rollUntrained"><i class="fa-solid fa-dice-d20"></i> Untrained check (plain d20)</button></div>
+      </div>
+
+      {{!-- ============ INVENTORY ============ --}}
+      <div class="arn-tab" data-tab="gear">
+        <div class="arn-gear-top">
+          <div class="arn-coins">
+            <label>pp <input type="number" name="system.currency.pp" value="{{source.currency.pp}}"></label>
+            <label>gp <input type="number" name="system.currency.gp" value="{{source.currency.gp}}"></label>
+            <label>sp <input type="number" name="system.currency.sp" value="{{source.currency.sp}}"></label>
+            <label>cp <input type="number" name="system.currency.cp" value="{{source.currency.cp}}"></label>
+          </div>
+          {{#if editable}}<a class="arn-btn small ghost" data-action="browse" data-pack="equipment" data-tooltip="The whole Catalogue"><i class="fa-solid fa-book-atlas"></i> Catalogue</a>{{/if}}
+        </div>
+        <div class="arn-section-head"><h3>Equipped</h3><span class="arn-muted">Worn and in hand: armour you wear, weapons you wield, a lit torch, a ring</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Magic Items" data-tooltip="Add from the Catalogue: Magic Items"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+        <ul class="arn-list table arn-gear-list">{{#each gear.equipped}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">Nothing worn or held. Press the shield on a row to equip it.</li>{{/each}}</ul>
+        <div class="arn-section-head"><h3>Weapons</h3><span class="arn-muted">Carried, not in hand</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Weapons" data-tooltip="Add from the Catalogue: Weapons"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+        <ul class="arn-list table arn-gear-list">{{#each gear.weapons}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">None.</li>{{/each}}</ul>
+        <div class="arn-section-head"><h3>Armour &amp; Shields</h3>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Armour &amp; Shields" data-tooltip="Add from the Catalogue: Armour &amp; Shields"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}{{#if editable}}<a class="arn-add" data-action="itemCreate" data-type="armour"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+        <ul class="arn-list table arn-gear-list">{{#each gear.armour}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">None.</li>{{/each}}</ul>
+        <div class="arn-section-head"><h3>Equipment</h3><span class="arn-muted">On your person, not packed away</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Adventuring Gear" data-tooltip="Add from the Catalogue: Adventuring Gear"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}{{#if editable}}<a class="arn-add" data-action="itemCreate" data-type="equipment"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+        <ul class="arn-list table arn-gear-list">{{#each gear.equipment}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">None.</li>{{/each}}</ul>
+        <div class="arn-section-head"><h3>Consumables</h3><span class="arn-muted">Potions, oils, scrolls, wands, ammunition, torches</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="__consumables" data-tooltip="Add from the Catalogue: consumables"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+        <ul class="arn-list table arn-gear-list">{{#each gear.consumables}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">None.</li>{{/each}}</ul>
+        <div class="arn-section-head"><h3>Packs &amp; Containers</h3><span class="arn-muted">Stowed away: drag gear onto a block</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Adventuring Gear" data-tooltip="Add from the Catalogue: backpacks and sacks are under Adventuring Gear, magic bags under Magic Items"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+        {{#unless gear.containers.length}}<p class="arn-empty">No backpack or bag yet.</p>{{/unless}}
+        {{#each gear.containers}}
+        <section class="arn-container-block {{#if overCap}}over{{/if}}" data-container-id="{{id}}">
+          <header class="arn-container-head" draggable="true" data-item-id="{{id}}">
+            <img src="{{img}}" alt=""><a class="arn-container-name" data-action="itemEdit">{{name}}</a>
+            <span class="arn-chip {{#if overCap}}bad{{/if}}">{{contents}}{{#if capacity}} / {{capacity}}{{/if}} slots stowed</span>
+            {{#if weightless}}<span class="arn-chip strong" data-tooltip="What's inside adds nothing to your slots">Weightless</span>{{/if}}
+            <span class="arn-muted">{{system.totalSlots}} slot{{#unless (eq system.totalSlots 1)}}s{{/unless}} itself</span>
+            <span class="arn-controls">
+              {{#if @root.editable}}{{#if inside}}<a data-action="takeOut" data-tooltip="Take it out of {{insideName}}"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>{{/if}}
+              {{#if @root.isCharacter}}<a data-action="giveItem" data-tooltip="Give it (and what's inside) to another party member"><i class="fa-solid fa-hand-holding"></i></a>{{/if}}
+              <a data-action="itemEdit" data-tooltip="Edit"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+            </span>
+          </header>
+          <ul class="arn-list table arn-gear-list">{{#each children}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">Empty. Drag gear here to stow it.</li>{{/each}}</ul>
+        </section>
+        {{/each}}
+        <div class="arn-slots arn-slots-sticky {{#if system.inventory.over}}over{{/if}}">
+          <span>Slots <strong>{{system.inventory.used}} / {{system.inventory.max}}</strong></span>
+          {{#if system.inventory.coins}}<span class="arn-muted">coins {{system.inventory.coins}}</span>{{/if}}
+          {{#if system.inventory.over}}<span>{{system.inventory.overBy}} over the limit: speed −{{system.inventory.speedPenalty}}ft (another −10ft for every 5 slots over), Disadvantage on Dexterity checks and attack rolls</span>{{/if}}
+        </div>
+      </div>
+      {{/if}}
+
+      {{!-- ============ EFFECTS ============ --}}
+      <div class="arn-tab" data-tab="effects">
+        <div class="arn-section-head"><h3>Conditions</h3><span class="arn-muted">Click to switch on or off</span></div>
+        <div class="arn-cond-grid">
+          {{#each conditions}}
+          <a class="arn-cond-chip {{#if active}}on{{/if}}" data-action="toggleCondition" data-condition="{{id}}" data-tooltip="{{text}}"><img src="{{img}}" alt=""> {{name}}</a>
+          {{/each}}
+        </div>
+
+        {{#if toggles.length}}
+        <div class="arn-section-head"><h3>Switches</h3></div>
+        <ul class="arn-list">
+          {{#each toggles}}
+          <li data-item-id="{{id}}"><img src="{{img}}" alt=""><span class="arn-item-name">{{name}}</span>
+            <a class="arn-switch {{#if active}}on{{/if}}" data-action="itemToggle"><span></span></a></li>
+          {{/each}}
+        </ul>
+        {{/if}}
+
+        <div class="arn-section-head"><h3>Active Effects</h3></div>
+        <ul class="arn-list">
+          {{#each effects}}
+          <li data-effect-id="{{id}}" class="{{#if disabled}}dim{{/if}}">
+            <img src="{{img}}" alt="">
+            <span class="arn-item-name">{{name}}{{#if source}} <small class="arn-muted">from {{source}}</small>{{/if}}</span>
+            <span class="arn-muted arn-meta">{{duration}}{{#if summary}} · {{summary}}{{/if}}</span>
+            {{#if @root.editable}}<span class="arn-controls">
+              <a data-action="effectToggle" data-tooltip="{{#if disabled}}Switch on{{else}}Switch off{{/if}}"><i class="fa-solid fa-{{#if disabled}}toggle-off{{else}}toggle-on{{/if}}"></i></a>
+              <a data-action="effectDelete" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>
+            </span>{{/if}}
+          </li>
+          {{else}}<li class="arn-empty">No spell or ability effects. Buffs and debuffs land here when applied from chat.</li>{{/each}}
+        </ul>
+
+        <div class="arn-section-head"><h3>What's changing the numbers</h3></div>
+        <ul class="arn-list compact">
+          {{#each activeRules}}<li><strong>{{label}}</strong><span class="arn-muted arn-meta">{{text}}</span></li>
+          {{else}}<li class="arn-empty">Nothing yet. Feats, features, gear and effects with rules show here.</li>{{/each}}
+        </ul>
+
+        {{#if situational.length}}
+        <div class="arn-section-head"><h3>Situational reminders</h3></div>
+        <ul class="arn-list compact">{{#each situational}}<li><span>{{text}}</span></li>{{/each}}</ul>
+        {{/if}}
+
+        <div class="arn-section-head"><h3>Resistances &amp; Senses</h3></div>
+        <div class="arn-traits">
+          <div><span class="arn-muted">Resist</span> {{#each traits.resist}}<span class="arn-chip">{{this}}</span>{{else}}-{{/each}}</div>
+          <div><span class="arn-muted">Immune</span> {{#each traits.immune}}<span class="arn-chip">{{this}}</span>{{else}}-{{/each}}</div>
+          <div><span class="arn-muted">Vulnerable</span> {{#each traits.vuln}}<span class="arn-chip bad">{{this}}</span>{{else}}-{{/each}}</div>
+          <div><span class="arn-muted">Senses</span> {{#each traits.senses}}<span class="arn-chip">{{this}}</span>{{else}}-{{/each}}</div>
+        </div>
+        {{#if isCharacter}}
+        <div class="arn-section-head"><h3>Roll bonuses</h3><span class="arn-muted">Numbers or dice, e.g. 2 or 1d4</span></div>
+        <div class="arn-fields two">
+          <label>Attack <input class="mid" type="text" name="system.bonuses.attack" value="{{source.bonuses.attack}}" placeholder="+0"></label>
+          <label>Weapon damage <input class="mid" type="text" name="system.bonuses.damage" value="{{source.bonuses.damage}}" placeholder="+0"></label>
+          <label>Spell damage <input class="mid" type="text" name="system.bonuses.spellDamage" value="{{source.bonuses.spellDamage}}" placeholder="+0"></label>
+          <label>Cantrip damage <input class="mid" type="text" name="system.bonuses.cantripDamage" value="{{source.bonuses.cantripDamage}}" placeholder="+0"></label>
+        </div>
+        {{/if}}
+      </div>
+
+      {{!-- ============ BIOGRAPHY / DESCRIPTION ============ --}}
+      <div class="arn-tab" data-tab="bio">
+        {{#if isCharacter}}
+          <div class="arn-fields two">
+            <label>Alignment <input type="text" name="system.details.alignment" value="{{source.details.alignment}}"></label>
+            <label>Deity <input type="text" name="system.details.deity" value="{{source.details.deity}}"></label>
+            <label>Size <select name="system.details.size">{{selectOptions sizes selected=source.details.size}}</select></label>
+            <label>Age <input type="text" name="system.details.age" value="{{source.details.age}}"></label>
+            <label>Senses <input type="text" name="system.details.senses" value="{{source.details.senses}}"></label>
+            <label>Languages <input type="text" name="system.details.languages" value="{{source.details.languages}}"></label>
+            <label>Resistances <input type="text" name="system.details.resistances" value="{{source.details.resistances}}" placeholder="fire, cold"></label>
+            <label>Immunities <input type="text" name="system.details.immunities" value="{{source.details.immunities}}"></label>
+          </div>
+          <div class="arn-section-head"><h3>Background Story Bonuses</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editText" data-field="system.details.backgroundStory" data-label="Background Story Bonuses"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+          <p class="arn-help">Each story that earned Advantage on a check stays with the character for good.</p>
+          <div class="arn-prose">{{#if story}}{{{story}}}{{else}}<p class="arn-muted">Nothing yet.</p>{{/if}}</div>
+          <div class="arn-section-head"><h3>Biography</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editText" data-field="system.details.biography" data-label="Biography"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+          <div class="arn-prose">{{#if bio}}{{{bio}}}{{else}}<p class="arn-muted">Nothing yet.</p>{{/if}}</div>
+        {{else}}
+          <div class="arn-fields two">
+            <label>Size <select name="system.details.size">{{selectOptions sizes selected=source.details.size}}</select></label>
+            <label>Alignment <input type="text" name="system.details.alignment" value="{{source.details.alignment}}"></label>
+            <label>No. appearing <input type="text" name="system.details.numberAppearing" value="{{source.details.numberAppearing}}"></label>
+            <label>XP <input type="text" name="system.details.xp" value="{{source.details.xp}}"></label>
+            <label>Senses <input type="text" name="system.details.senses" value="{{source.details.senses}}"></label>
+            <label>Resistances <input type="text" name="system.details.resistances" value="{{source.details.resistances}}"></label>
+            <label>Immunities <input type="text" name="system.details.immunities" value="{{source.details.immunities}}"></label>
+            <label>Vulnerabilities <input type="text" name="system.details.vulnerabilities" value="{{source.details.vulnerabilities}}"></label>
+            <label>M&amp;T page <input class="short" type="number" name="system.details.page" value="{{source.details.page}}"></label>
+          </div>
+          {{> "systems/arneyan/templates/actor/abilities-list.hbs"}}
+          <div class="arn-section-head"><h3>Description</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editText" data-field="system.details.description" data-label="Description"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+          <div class="arn-prose">{{#if desc}}{{{desc}}}{{else}}<p class="arn-muted">Nothing yet.</p>{{/if}}</div>
+          <div class="arn-section-head"><h3>Treasure</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editText" data-field="system.details.treasure" data-label="Treasure"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+          <div class="arn-prose">{{#if treasure}}{{{treasure}}}{{else}}<p class="arn-muted">Nothing yet.</p>{{/if}}</div>
+        {{/if}}
+      </div>
+    </section>
+  </div>
+</div>

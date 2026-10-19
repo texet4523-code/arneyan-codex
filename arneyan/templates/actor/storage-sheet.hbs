@@ -1,0 +1,78 @@
+<div class="arn-sheet storage-sheet">
+  <header class="arn-head">
+    <div class="arn-head-top">
+      <img class="arn-party-img" src="{{actor.img}}" data-edit="img" data-action="editImage" alt="{{actor.name}}">
+      <input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Name this place">
+    </div>
+    <div class="arn-subline">
+      {{#if system.here}}<span class="arn-chip strong" data-tooltip="Players can put things in and take them out"><i class="fa-solid fa-door-open"></i> Party is here</span>
+      {{else}}<span class="arn-chip bad" data-tooltip="{{#if isGM}}Players can look but not touch; you can still manage it{{else}}{{awayText}}{{/if}}"><i class="fa-solid fa-lock"></i> Party is away</span>{{/if}}
+      <span class="arn-chip">{{kindLabel}}</span>
+      {{#if system.location}}<span class="arn-chip"><i class="fa-solid fa-location-dot"></i> {{system.location}}</span>{{/if}}
+      <span class="arn-chip {{#if system.over}}bad{{/if}}">{{capLabel}}</span>
+      {{#if isGM}}
+      <span class="arn-head-tools">
+        <a class="arn-btn small" data-action="toggleHere" data-tooltip="Players can use it only while the party is here">
+          {{#if system.here}}<i class="fa-solid fa-person-walking-arrow-right"></i> Party leaves{{else}}<i class="fa-solid fa-door-open"></i> Party arrives{{/if}}</a>
+      </span>
+      {{/if}}
+    </div>
+    {{#if system.capacity}}<div class="arn-hp-bar arn-cap-bar {{#if system.full}}full{{/if}}"><div style="width: {{capPct}}%"></div></div>{{/if}}
+  </header>
+
+  <nav class="arn-tabs">
+    {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
+  </nav>
+
+  <section class="arn-body">
+    <div class="arn-tab" data-tab="contents">
+      <div class="storage-top">
+        <label>Kind <select name="system.kind" {{#unless editable}}disabled{{/unless}}>{{selectOptions kinds selected=source.kind}}</select></label>
+        <label class="wide">Where <input type="text" name="system.location" value="{{source.location}}" placeholder="Brass Bank of Mournas, the cottage in Tariel..." {{#unless editable}}disabled{{/unless}}></label>
+        <label data-tooltip="0 means no limit. The Catalogue gives chests and barrels none.">Slots <input type="number" name="system.capacity" min="0" value="{{source.capacity}}" {{#unless isGM}}disabled{{/unless}}></label>
+      </div>
+      <div class="storage-coins">
+        <span class="arn-block-label"><i class="fa-solid fa-coins"></i> Coins</span>
+        <label>pp <input type="number" name="system.currency.pp" value="{{source.currency.pp}}" {{#unless coinsEditable}}disabled{{/unless}}></label>
+        <label>gp <input type="number" name="system.currency.gp" value="{{source.currency.gp}}" {{#unless coinsEditable}}disabled{{/unless}}></label>
+        <label>sp <input type="number" name="system.currency.sp" value="{{source.currency.sp}}" {{#unless coinsEditable}}disabled{{/unless}}></label>
+        <label>cp <input type="number" name="system.currency.cp" value="{{source.currency.cp}}" {{#unless coinsEditable}}disabled{{/unless}}></label>
+        {{#if usable}}<a class="arn-btn small ghost" data-action="moveCoins"><i class="fa-solid fa-right-left"></i> Put in or take out</a>{{/if}}
+      </div>
+
+      <div class="arn-section-head"><h3>Contents</h3>
+        <span class="arn-muted">{{#if usable}}Drag gear in from a sheet; drag it out or press Take.{{else}}{{awayText}}{{/if}}</span>
+        {{#if isGM}}<a class="arn-browse" data-action="browse" data-tooltip="Add from the Catalogue"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
+      <ul class="storage-list">
+        {{#each rows}}
+        <li data-item-id="{{id}}" {{#if @root.usable}}draggable="true"{{/if}} class="{{#if holds}}arn-holder{{/if}}">
+          <span class="storage-item" style="padding-left: {{indent}}px">{{#if depth}}<i class="fa-solid fa-turn-up fa-rotate-90 storage-in"></i>{{/if}}<img src="{{img}}" alt="">
+          <a class="storage-name" data-action="itemEdit">{{name}}{{#if (gt qty 1)}} <span class="storage-qty">× {{qty}}</span>{{/if}}</a></span>
+          <span class="storage-kind">{{kind}}</span>
+          <span class="storage-slots">{{slots}} slot{{#unless (eq slots 1)}}s{{/unless}}</span>
+          <span class="storage-price">{{price}}</span>
+          <span class="arn-controls">
+            {{#if @root.usable}}<a class="arn-btn tiny ghost" data-action="takeItem" data-tooltip="Take it out to a character"><i class="fa-solid fa-hand-holding"></i> Take</a>
+            {{#if @root.editable}}<a data-action="itemDelete" data-tooltip="Throw it away"><i class="fa-solid fa-trash"></i></a>{{/if}}{{/if}}
+          </span>
+        </li>
+        {{else}}<li class="arn-empty">Nothing stored here yet.</li>{{/each}}
+      </ul>
+    </div>
+
+    <div class="arn-tab" data-tab="ledger">
+      <div class="arn-section-head"><h3>Ledger</h3><span class="arn-muted">Newest first: what went in and out, when, and who.</span>
+        {{#if isGM}}<a class="arn-btn small ghost" data-action="clearLedger"><i class="fa-solid fa-eraser"></i> Clear</a>{{/if}}</div>
+      <ul class="arn-list table arn-ledger">
+        {{#each ledger}}
+        <li><span class="arn-muted">{{when}}</span><span>{{text}}</span><span class="arn-muted">{{who}}</span></li>
+        {{else}}<li class="arn-empty">Nothing has gone in or out yet.</li>{{/each}}
+      </ul>
+    </div>
+
+    <div class="arn-tab" data-tab="notes">
+      <div class="arn-section-head"><h3>Notes</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editNotes"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+      <div class="arn-prose">{{#if notes}}{{{notes}}}{{else}}<p class="arn-muted">Who holds the key, the banker's name, the fee you agreed.</p>{{/if}}</div>
+    </div>
+  </section>
+</div>

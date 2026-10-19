@@ -1,0 +1,294 @@
+<div class="arn-sheet item {{type}}">
+  <header class="arn-header">
+    <img class="arn-portrait small" src="{{item.img}}" data-edit="img" data-action="editImage" alt="{{item.name}}">
+    <div class="arn-header-main">
+      <input class="arn-name" type="text" name="name" value="{{item.name}}" placeholder="Name" {{#if hideName}}disabled{{/if}}>
+      <div class="arn-subline">
+        <span class="arn-chip strong">{{type}}</span>
+        <label>Book <select name="system.source.book">{{selectOptions config.books selected=source.source.book}}</select></label>
+        <label>Page <input class="short" type="number" name="system.source.page" value="{{source.source.page}}" min="0"></label>
+        {{#if source.source.page}}<a class="arn-btn small" data-action="openPage"><i class="fa-solid fa-book-open"></i> Open page</a>{{/if}}
+        {{#if canForge}}<a class="arn-btn small" data-action="forge" data-tooltip="Make a magic version: +N, traits, extra damage"><i class="fa-solid fa-hammer"></i> Forge</a>{{/if}}
+      </div>
+    </div>
+  </header>
+
+  <nav class="arn-tabs">
+    {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
+  </nav>
+  <section class="arn-body">
+  <div class="arn-tab" data-tab="details">
+    <div class="arn-fields two">
+
+    {{#if (eq type "class")}}
+      <label>Levels <input type="number" name="system.levels" value="{{source.levels}}" min="0" max="24" {{#if item.parent}}disabled data-tooltip="Change the level from the character sheet header so HP and features follow"{{/if}}></label>
+      <label>Hit Die <select name="system.hitDie">{{selectOptions config.hitDice selected=source.hitDie}}</select></label>
+      <label>HP beyond 10th <input type="number" name="system.hpBeyond10" value="{{source.hpBeyond10}}"></label>
+      <label>Attack progression <select name="system.bthProgression">{{selectOptions bthChoices selected=source.bthProgression}}</select></label>
+      <label>Key attribute <select name="system.keyAbility">{{selectOptions config.abilities selected=source.keyAbility}}</select></label>
+      <label>Casting attribute <select name="system.castingAbility">{{selectOptions config.castingAbilities selected=source.castingAbility}}</select></label>
+      <label>XP per level <input type="number" name="system.xpRate" value="{{source.xpRate}}" min="1"></label>
+      <label>BtH at this level <span class="arn-big-inline">+{{system.bth}}</span></label>
+      <label class="wide">Weapons <input type="text" name="system.weapons" value="{{source.weapons}}"></label>
+      <label class="wide">Armour <input type="text" name="system.armour" value="{{source.armour}}"></label>
+    {{/if}}
+
+    {{#if (eq type "ancestry")}}
+      <label>Size <select name="system.size">{{selectOptions config.sizes selected=source.size}}</select></label>
+      <label>Speed (ft) <input type="number" name="system.speed" value="{{source.speed}}"></label>
+      <label>Vision <input type="text" name="system.vision" value="{{source.vision}}"></label>
+      <label>Attribute bonuses <input type="text" name="system.attributes" value="{{source.attributes}}" placeholder="+2 Dex, +1 Int, −1 Con"></label>
+    {{/if}}
+
+    {{#if (eq type "kit")}}
+      <label class="wide">Class <input type="text" name="system.className" value="{{source.className}}"></label>
+    {{/if}}
+
+    {{#if (eq type "feat")}}
+      <label>Path <input type="text" name="system.path" value="{{source.path}}" placeholder="Martial, Specialist, General..."></label>
+      <label>Level taken <input type="number" name="system.levelTaken" value="{{source.levelTaken}}"></label>
+    {{/if}}
+
+    {{#if (eq type "skill")}}
+      <label>Attribute <select name="system.ability">{{selectOptions config.abilities selected=source.ability}}</select></label>
+      <label>Training <select name="system.tier">{{selectOptions config.skillTiers selected=source.tier}}</select></label>
+      <p class="wide arn-help">Trained adds the attribute modifier (+1 if it is 0 or less). Master adds the same and rolls with Advantage. A Master uses two NWP slots.</p>
+    {{/if}}
+
+    {{#if (eq type "ability")}}
+      <label>Kind <select name="system.kind">{{selectOptions config.abilityKinds selected=source.kind}}</select></label>
+      <label>Uses <span><input class="short" type="number" name="system.uses.value" value="{{source.uses.value}}"> / <input class="short" type="number" name="system.uses.max" value="{{source.uses.max}}"></span></label>
+      <label>Refreshes <select name="system.uses.per">{{selectOptions config.usesPer selected=source.uses.per}}</select></label>
+      <label>Save <select name="system.save">{{selectOptions config.saveTypes selected=source.save}}</select></label>
+      <label>DC <input type="number" name="system.dc" value="{{source.dc}}" placeholder="Class Save DC"></label>
+      <label>Damage <input type="text" name="system.damage" value="{{source.damage}}" placeholder="2d6"></label>
+    {{/if}}
+    {{#if (eq type "ability")}}{{#if source.activities.length}}
+      <div class="arn-acts-list"><strong>When used</strong>{{#if (gt source.activities.length 1)}} (a prompt asks which){{/if}}:
+        <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#if formula}} · {{formula}}{{/if}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
+      </div>
+    {{/if}}{{/if}}
+
+    {{#if (eq type "weapon")}}
+      <label>Damage <input type="text" name="system.damage" value="{{source.damage}}"></label>
+      <label>Damage type <select name="system.damageType">{{selectOptions damageChoices selected=source.damageType}}</select></label>
+      <label>Attack attribute <select name="system.ability">{{selectOptions config.weaponAbilities selected=source.ability}}</select></label>
+      <label>Range <input type="text" name="system.range" value="{{source.range}}" placeholder="Melee, 80/320ft..."></label>
+      <label>Magic bonus <input type="number" name="system.magic" value="{{source.magic}}"></label>
+      <label>Other attack bonus <input type="number" name="system.attackBonus" value="{{source.attackBonus}}"></label>
+      <label class="check"><input type="checkbox" name="system.ranged" {{checked source.ranged}}> Ranged</label>
+      <label class="wide">Traits <input type="text" name="system.traits" value="{{source.traits}}" placeholder="Light, Finesse, Reach, Heavy, Two-handed..."></label>
+      <div class="wide arn-trait-chips">{{#each weaponTraits}}<a class="arn-chip {{#if on}}on{{/if}}" {{#if @root.editable}}data-action="toggleTrait"{{/if}} data-trait="{{name}}" data-tooltip="{{text}}{{#if auto}} ({{auto}}){{/if}}">{{name}}</a>{{/each}}</div>
+      <div class="wide arn-trait-chips arn-materials"><span class="arn-muted">Made of</span>{{#each materials}}<a class="arn-chip {{#if on}}on{{/if}}" {{#if @root.editable}}data-action="toggleTrait"{{/if}} data-trait="{{name}}" data-tooltip="{{text}}">{{name}}</a>{{/each}}</div>
+      <div class="wide arn-bonus-damage">
+        <div class="arn-block-label">Extra damage on a hit</div>
+        {{#each bonusDamage}}
+        <div class="arn-bd-row" data-i="{{i}}">
+          <input type="text" data-bd="formula" value="{{formula}}" placeholder="1d6">
+          <select data-bd="type">{{selectOptions @root.bonusTypeChoices selected=type}}</select>
+          <input type="text" data-bd="when" value="{{when}}" placeholder="only when... (blank: every hit)">
+          <label class="check" data-tooltip="Counts on every hit while the weapon's mode is on, and not at all while it's off"><input type="checkbox" data-bd="mode" {{checked mode}}> In mode</label>
+          {{#if @root.editable}}<a class="arn-ctl" data-action="bdDelete" data-i="{{i}}" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </div>
+        {{/each}}
+        {{#if editable}}<a class="arn-btn small ghost" data-action="bdAdd"><i class="fa-solid fa-plus"></i> Add extra damage</a>{{/if}}
+      </div>
+      <div class="wide arn-mode-fields">
+        {{#if editable}}<label>Ready-made <select class="arn-mode-preset"><option value="">Pick one to fill in…</option>{{#each config.weaponModes}}<option value="{{@key}}">{{label}} ({{mode}}: +{{formula}} {{type}}{{#if light}}, light {{light}}ft{{/if}})</option>{{/each}}</select></label>{{/if}}
+        <label class="check" data-tooltip="A weapon you switch on and off (a Flame Tongue's blade ignites): its 'In mode' damage, light and any rules on the Effects tab only count while on"><input type="checkbox" name="system.toggle" {{checked source.toggle}}> Has a mode</label>
+        {{#if source.toggle}}
+        <label>Mode name <input type="text" name="system.modeLabel" value="{{source.modeLabel}}" placeholder="Ignited"></label>
+        <label>Light while on (ft) <input class="short" type="number" name="system.modeLight" value="{{source.modeLight}}" min="0"></label>
+        <label class="check"><input type="checkbox" name="system.active" {{checked source.active}}> On now</label>
+        <p class="arn-help wide">The mode's damage is the Extra damage row ticked In mode above: change its dice or type there.</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if (eq type "armour")}}
+      <label>Category <select name="system.category">{{selectOptions config.armourCategories selected=source.category}}</select></label>
+      <label>AC bonus <input type="number" name="system.ac" value="{{source.ac}}"></label>
+      <label>Magic bonus <input type="number" name="system.magic" value="{{source.magic}}"></label>
+      <label class="wide">Traits <input type="text" name="system.traits" value="{{source.traits}}" placeholder="Noisy, Cumbersome, Sturdy..."></label>
+    {{/if}}
+
+    {{#if isGear}}
+      <label>Quantity <input type="number" name="system.quantity" value="{{source.quantity}}" min="0"></label>
+      <label>Slots <input type="number" step="0.01" name="system.slots" value="{{source.slots}}" min="0" data-tooltip="Slots for each one, or for each bundle"></label>
+      <label data-tooltip="How many share those slots: ammunition 30, small items 5 (0: each one takes the slots)">Bundle of <input type="number" name="system.bundle" value="{{source.bundle}}" min="0"></label>
+      <label>Price <input type="text" name="system.price" value="{{source.price}}" placeholder="10 gp"></label>
+      <label class="check"><input type="checkbox" name="system.equipped" {{checked source.equipped}}> Equipped / carried</label>
+      {{#if isGM}}
+      <label class="check" data-tooltip="Unticked, players see the plain name and description below"><input type="checkbox" name="system.identified" {{checked source.identified}}> Identified</label>
+      <label>Name when unidentified <input type="text" name="system.unidentifiedName" value="{{source.unidentifiedName}}" placeholder="Unidentified longsword"></label>
+      <label class="wide">Description when unidentified <input type="text" name="system.unidentifiedDescription" value="{{source.unidentifiedDescription}}" placeholder="A fine blade, faintly warm to the touch."></label>
+      {{/if}}
+    {{/if}}
+
+    {{#if (eq type "weapon")}}
+      <label data-tooltip="Each attack spends one of this kind from the character's gear">Fires <select name="system.ammoType">{{selectOptions config.ammoKinds selected=source.ammoType}}</select></label>
+      {{#if ammoStacks}}<label>Draws from <select name="system.ammoId">{{selectOptions ammoStacks selected=source.ammoId}}</select></label>{{/if}}
+    {{/if}}
+
+    {{#if (eq type "equipment")}}
+      <div class="wide arn-block-label">Ammunition, consumables and charges</div>
+      <label data-tooltip="Matches a weapon's Fires">Ammunition kind <select name="system.ammoType">{{selectOptions config.ammoKinds selected=source.ammoType}}</select></label>
+      <label class="check"><input type="checkbox" name="system.consumable.use" {{checked source.consumable.use}}> Used up when used</label>
+      <label>Heals <input type="text" name="system.consumable.heal" value="{{source.consumable.heal}}" placeholder="1d8+2"></label>
+      <label>Charges <span><input class="short" type="number" name="system.charges.value" value="{{source.charges.value}}" min="0"> / <input class="short" type="number" name="system.charges.max" value="{{source.charges.max}}" min="0"></span></label>
+      <label data-tooltip="Rolled at dawn (a long rest). Staffs: 1d4">Recharge <input type="text" name="system.charges.recharge" value="{{source.charges.recharge}}" placeholder="1d4"></label>
+      <label class="check" data-tooltip="At 0 charges roll a d20: on a 1 it crumbles to dust"><input type="checkbox" name="system.charges.crumble" {{checked source.charges.crumble}}> Can crumble at 0</label>
+      <div class="wide arn-block-label">Light</div>
+      <label>Bright light (ft) <input type="number" name="system.light.bright" value="{{source.light.bright}}" min="0"></label>
+      <label data-tooltip="The whole radius, bright included (a torch: 40)">Dim light to (ft) <input type="number" name="system.light.dim" value="{{source.light.dim}}" min="0"></label>
+      <label data-tooltip="Game time; 0 burns until put out">Burns for (hours) <input type="number" step="0.5" name="system.light.hours" value="{{source.light.hours}}" min="0"></label>
+      <label data-tooltip="360 shines all round; a bullseye lantern's beam is 60">Beam angle (°) <input type="number" name="system.light.angle" value="{{source.light.angle}}" min="1" max="360"></label>
+      <div class="wide arn-block-label">Container</div>
+      <label class="check"><input type="checkbox" name="system.container.holds" {{checked source.container.holds}}> Holds other gear</label>
+      <label>Holds up to (slots) <input type="number" name="system.container.capacity" value="{{source.container.capacity}}" min="0" placeholder="0: no limit"></label>
+      <label class="check" data-tooltip="A Bag of Holding: what's inside costs no slots"><input type="checkbox" name="system.container.weightless" {{checked source.container.weightless}}> Contents add no slots</label>
+      <label class="check"><input type="checkbox" name="system.container.extradimensional" {{checked source.container.extradimensional}}> Extradimensional</label>
+      {{#if source.scroll.spell}}{{#unless hideScroll}}<label class="wide">Scroll of <span>{{source.scroll.spell.name}} · caster level {{source.scroll.cl}}{{#if source.scroll.dc}} · DC {{source.scroll.dc}}{{/if}}</span></label>{{/unless}}{{/if}}
+      {{#unless hideScroll}}{{#unless source.scroll.spell}}{{#unless canHoldSpell}}
+      <div class="wide arn-item-spells">
+        <div class="arn-block-label">Spells it casts (a wand, staff or rod)</div>
+        {{#each source.itemSpells}}
+        <div class="arn-is-row" data-i="{{@index}}" data-name="{{name}}" data-uuid="{{uuid}}">
+          <i class="fa-solid fa-wand-sparkles arn-muted"></i> <span class="arn-is-name">{{name}}</span>
+          <label>Charges <input class="short" type="number" min="0" data-is="cost" value="{{cost}}"></label>
+          {{#if @root.editable}}<a data-action="isDelete" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </div>
+        {{else}}<p class="arn-help">Drop spells on this sheet to make it a wand or staff that casts them. Set its charges above (7 if none are set).</p>{{/each}}
+        {{#if source.itemSpells.length}}<div class="arn-is-cl">
+          <label data-tooltip="0: the wielder's own caster level and DC">Casts at caster level <input class="short" type="number" name="system.castLevel" value="{{source.castLevel}}" min="0"></label>
+          <label data-tooltip="For a non-caster when the item has no caster level of its own (0: 2 × spell level − 1)">Non-caster: caster level <input class="short" type="number" name="system.nonCasterCl" value="{{source.nonCasterCl}}" min="0"></label>
+          <label data-tooltip="0: DC 12 + spell level">and DC <input class="short" type="number" name="system.nonCasterDc" value="{{source.nonCasterDc}}" min="0"></label>
+        </div>
+        <p class="arn-help">Drop more spells to add them. They show on the owner's Spells tab under Wands, Staffs &amp; Scrolls.</p>{{/if}}
+      </div>
+      {{/unless}}{{/unless}}{{/unless}}
+      {{#if canHoldSpell}}<p class="wide arn-help">Drop a spell on this sheet to say what the scroll holds (an unknown writer: caster level 2 × spell level − 1, DC 12 + level).</p>{{/if}}
+    {{/if}}
+
+    {{#if (eq type "spell")}}
+      <label>Level <select name="system.level" data-dtype="Number">{{selectOptions spellLevelChoices selected=levelStr}}</select></label>
+      <label>Cast as <input type="text" name="system.className" value="{{source.className}}" placeholder="Wizard"></label>
+      {{#if classesLabel}}<label class="wide">Spell lists <span>{{classesLabel}}</span></label>{{/if}}
+      <label>School <input type="text" name="system.school" value="{{source.school}}"></label>
+      <label>Casting time <input type="text" name="system.castingTime" value="{{source.castingTime}}"></label>
+      <label>Range <input type="text" name="system.range" value="{{source.range}}"></label>
+      <label>Duration <input type="text" name="system.duration" value="{{source.duration}}"></label>
+      <label>Area <input type="text" name="system.area" value="{{source.area}}"></label>
+      <label>Components <input type="text" name="system.components" value="{{source.components}}"></label>
+      <label>Save <select name="system.save">{{selectOptions config.saveTypes selected=source.save}}</select></label>
+      <label>On a save <input type="text" name="system.saveEffect" value="{{source.saveEffect}}" placeholder="Half damage, negates..."></label>
+      <label>Damage <input type="text" name="system.damage" value="{{source.damage}}" placeholder="6d6"></label>
+      <label>Damage type <select name="system.damageType">{{selectOptions damageChoices selected=source.damageType}}</select></label>
+      <label class="check"><input type="checkbox" name="system.concentration" {{checked source.concentration}}> Concentration</label>
+      <label class="check"><input type="checkbox" name="system.ritual" {{checked source.ritual}}> Ritual</label>
+      <label class="check"><input type="checkbox" name="system.prepared" {{checked source.prepared}}> Prepared</label>
+    {{/if}}
+    </div>
+
+    {{#if slotRow.length}}
+    <div class="arn-section-head"><h3>Spell slots at level {{system.levels}}</h3></div>
+    <table class="arn-slot-table">
+      <tr><th></th>{{#each slotRow}}<th>{{label}}</th>{{/each}}</tr>
+      <tr><td>Table</td>{{#each slotRow}}<td>{{table}}</td>{{/each}}</tr>
+      <tr><td data-tooltip="Bonus slots from items, feats or high attributes you want to add by hand">Extra</td>{{#each slotRow}}<td><input class="arn-extra-slot" type="number" min="0" data-index="{{n}}" value="{{extra}}" {{#unless @root.editable}}disabled{{/unless}}></td>{{/each}}</tr>
+    </table>
+    <p class="arn-help">Bonus slots for a high casting attribute are added automatically on the character sheet.</p>
+    {{/if}}
+
+    {{#if classFeatures.length}}
+    <div class="arn-section-head"><h3>Class Abilities</h3><span class="arn-muted">granted automatically as you level</span></div>
+    <ul class="arn-feature-list">
+      {{#each classFeatures}}
+      <li><span class="arn-chip strong">{{level}}</span> {{#if uuid}}<a class="content-link" draggable="true" data-link data-uuid="{{uuid}}" data-tooltip="Open"><i class="fa-solid fa-suitcase"></i>{{name}}</a>{{else}}{{name}}{{/if}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#if kitFeatures.length}}
+    <div class="arn-section-head"><h3>Kit Features</h3><span class="arn-muted">granted automatically</span></div>
+    <ul class="arn-feature-list kit">
+      {{#each kitFeatures}}
+      <li><div class="arn-feature-head"><span class="arn-chip strong">{{level}}</span> <strong>{{name}}</strong>{{#if toggle}} <span class="arn-chip">switch</span>{{/if}}</div>{{#if ruleText}}<div class="arn-feature-rules"><i class="fa-solid fa-bolt"></i> {{ruleText}}</div>{{/if}}<div class="arn-feature-body">{{{html}}}</div></li>
+      {{/each}}
+    </ul>
+    {{/if}}
+
+  </div>
+
+  {{#if hasEffects}}
+  <div class="arn-tab" data-tab="effects">
+    <div class="arn-rules-editor">
+      <p class="arn-help">Rules change the character's numbers automatically. Gear only counts while equipped. Put a condition in "only when" to make it a reminder instead of always on. Keys and examples are in the README.</p>
+      {{#unless (eq type "spell")}}
+      <label class="check"><input type="checkbox" data-r="toggle" {{checked source.toggle}}> Switchable: the rules only count while it is switched on (Rage, a stance)</label>
+      <div class="arn-section-head"><h3>Rules</h3></div>
+      {{> "systems/arneyan/templates/item/rules-editor.hbs" rules=rules apply="" cls="passive"}}
+      {{else}}
+      <div class="arn-rule-list passive"></div>
+      {{/unless}}
+
+      <div class="arn-section-head"><h3>Effects it puts on someone</h3>{{#if editable}}<a class="arn-add" data-action="applyAdd" data-tooltip="Add an effect"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+      <p class="arn-help">Used from chat when the spell or ability is used. Self effects go on straight away; target effects get a button. Rounds: 10 = 1 minute, @cl = caster level, 0 = until removed. Conditions: {{conditionIds}}.</p>
+      {{#each applies}}
+      <div class="arn-apply-entry">
+        <div class="arn-apply-head">
+          <input type="text" data-r="aname" value="{{name}}" placeholder="Effect name">
+          <select data-r="atarget"><option value="target" {{#if (eq target "target")}}selected{{/if}}>Targets</option><option value="self" {{#if (eq target "self")}}selected{{/if}}>Self</option></select>
+          <input class="mid" type="text" data-r="arounds" value="{{rounds}}" placeholder="rounds">
+          {{#if @root.editable}}<a class="arn-ctl" data-action="applyDelete" data-index="{{i}}" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </div>
+        <input type="text" class="arn-wide" data-r="astatuses" value="{{statusesText}}" placeholder="Conditions it gives, e.g. prone, frightened">
+        {{> "systems/arneyan/templates/item/rules-editor.hbs" rules=rules apply=i cls=""}}
+      </div>
+      {{else}}
+      <p class="arn-empty">None.</p>
+      {{/each}}
+
+      {{#unless (eq type "spell")}}
+      <div class="arn-auras">
+      <div class="arn-section-head"><h3>Auras</h3>{{#if editable}}<a class="arn-add" data-action="auraAdd" data-tooltip="Add an aura"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+      <p class="arn-help">Radiates from whoever has this (gear only while equipped). Rules go on everyone inside while they're inside: Allies means tokens with the same disposition (friendly with friendly), and the wearer only counts if Includes itself is ticked. Use the aura's own rules here, not the Rules list above (those are for the wearer alone). A turn effect gives anyone who starts a turn inside a card with the save, damage and condition. Radius in feet: a number, steps by level ("10; 30 at 15; 50 at 20"), or a formula with @cl.</p>
+      {{#each auras}}
+      <div class="arn-aura-entry">
+        <div class="arn-apply-head">
+          <input type="text" data-r="auname" value="{{name}}" placeholder="Aura name">
+          <input class="mid" type="text" data-r="auradius" value="{{radiusText}}" placeholder="ft" data-tooltip="Radius in feet">
+          <select data-r="auwho">{{selectOptions @root.auraWho selected=who}}</select>
+          {{#if @root.editable}}<a class="arn-ctl" data-action="auraDelete" data-index="{{i}}" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </div>
+        <div class="arn-aura-opts">
+          <label class="check"><input type="checkbox" data-r="auself" {{checked includeSelf}}> Includes itself</label>
+          <label>From level <input class="short" type="number" min="0" data-r="aumin" value="{{minLevel}}"></label>
+        </div>
+        {{> "systems/arneyan/templates/item/rules-editor.hbs" rules=rules apply=ruleApply cls=""}}
+        <div class="arn-aura-turn">
+          <span class="arn-block-label">Start of a turn inside</span>
+          <select data-r="tusave" data-tooltip="Save">{{selectOptions @root.auraSaves selected=turn.save}}</select>
+          <input class="short" type="number" data-r="tudc" value="{{turn.dc}}" placeholder="DC" data-tooltip="DC (0: the caster's)">
+          <input class="mid" type="text" data-r="tuformula" value="{{turn.formula}}" placeholder="damage, e.g. 2d6">
+          <select data-r="tutype" data-tooltip="Damage type">{{selectOptions @root.auraDamageTypes selected=turn.type}}</select>
+          <label class="check"><input type="checkbox" data-r="tuhalf" {{checked turn.half}}> Half on a save</label>
+          <select data-r="tustatus" data-tooltip="Condition on a failed save">{{selectOptions @root.auraConditions selected=turn.status}}</select>
+          <input type="text" class="arn-wide" data-r="tutext" value="{{turn.text}}" placeholder="What it does, for the card">
+        </div>
+      </div>
+      {{else}}
+      <p class="arn-empty">None.</p>
+      {{/each}}
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="arn-tab" data-tab="description">
+    <div class="arn-section-head"><h3>Description</h3>{{#if editable}}{{#unless hideName}}<a class="arn-btn small ghost" data-action="editText" data-field="system.description" data-label="Description"><i class="fa-solid fa-pen"></i> Edit</a>{{/unless}}{{/if}}</div>
+    <div class="arn-prose">{{#if description}}{{{description}}}{{else}}<p class="arn-muted">No description yet.</p>{{/if}}</div>
+  </div>
+  </section>
+</div>

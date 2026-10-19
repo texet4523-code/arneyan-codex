@@ -1,0 +1,34 @@
+<div class="arn-encounter">
+  <section class="arn-enc-summary {{b.tier}}">
+    <div class="arn-enc-verdict">{{b.label}}</div>
+    <div class="arn-enc-points"><strong>{{b.total}}</strong> of <strong>{{b.budget}}</strong> points · party of {{b.partySize}}, level {{b.partyLevel}}</div>
+    <div class="arn-enc-scale">
+      <div class="arn-enc-fill" style="width: {{pct}}%"></div>
+      <span class="mark easy" style="left: 25%">Easy</span><span class="mark hard" style="left: 50%">Hard</span><span class="mark deadly" style="left: 100%">Deadly</span>
+    </div>
+    {{#each b.warnings}}<p class="arn-warnline">{{this}}</p>{{/each}}
+  </section>
+
+  <div class="arn-section-head"><h3>Party</h3><span class="arn-muted">from the Player Characters folder</span></div>
+  <div class="arn-enc-party">
+    {{#each party}}<span class="arn-chip"><img src="{{img}}" alt=""> {{name}} {{level}}</span>{{else}}<span class="arn-muted">No party members yet.</span>{{/each}}
+  </div>
+
+  <div class="arn-section-head"><h3>Foes</h3><a class="arn-btn small ghost" data-action="bestiary"><i class="fa-solid fa-dragon"></i> Bestiary</a>{{#if foes.length}}<a class="arn-btn small ghost" data-action="clear">Clear</a>{{/if}}</div>
+  <div class="arn-enc-drop">
+    <ul class="arn-list">
+      {{#each foes}}
+      <li>
+        <img src="{{img}}" alt="">
+        <span class="arn-item-name">{{name}}{{#if solo}} <span class="arn-chip strong">Solo</span>{{/if}}</span>
+        <span class="arn-muted arn-meta">Level {{levelLabel}} · cost {{cost}}</span>
+        <span class="arn-enc-count"><a data-action="less" data-i="{{i}}"><i class="fa-solid fa-minus"></i></a> {{count}} <a data-action="more" data-i="{{i}}"><i class="fa-solid fa-plus"></i></a></span>
+        <a class="arn-ctl" data-action="remove" data-i="{{i}}"><i class="fa-solid fa-trash"></i></a>
+      </li>
+      {{else}}
+      <li class="arn-empty">Drag monsters or NPCs here from the Actors sidebar, a compendium or the Bestiary.</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{#if foes.length}}<button type="button" class="arn-btn wide" data-action="place"><i class="fa-solid fa-map-location-dot"></i> Place on the current scene</button>{{/if}}
+</div>

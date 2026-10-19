@@ -1,0 +1,15 @@
+{{!-- One list of rules. Context: rules (array with i), apply (index or ""). --}}
+<div class="arn-rule-list {{cls}}">
+  {{#each rules}}
+  <div class="arn-rule-row">
+    <select data-r="key">
+      {{#unless (lookup @root.knownKeys key)}}<option value="{{key}}" selected>{{key}}</option>{{/unless}}
+      {{#each @root.ruleKeyGroups}}<optgroup label="{{label}}">{{#each keys}}<option value="{{this}}" {{#if (eq this ../../key)}}selected{{/if}}>{{this}}</option>{{/each}}</optgroup>{{/each}}
+    </select>
+    <input type="text" data-r="value" value="{{value}}" placeholder="2, -1, +1d6, floor(@level/4), fire">
+    <input type="text" data-r="when" value="{{when}}" placeholder="only when... (optional)">
+    {{#if @root.editable}}<a class="arn-ctl" data-action="ruleDelete" data-index="{{i}}" data-apply="{{../apply}}" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
+  </div>
+  {{/each}}
+</div>
+{{#if @root.editable}}<a class="arn-btn small ghost" data-action="ruleAdd" data-apply="{{apply}}"><i class="fa-solid fa-plus"></i> Add rule</a>{{/if}}

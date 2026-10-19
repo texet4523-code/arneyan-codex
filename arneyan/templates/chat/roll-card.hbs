@@ -1,0 +1,22 @@
+<div class="arn-card">
+  <header class="arn-card-title">{{title}}{{#if modeLabel}} <span class="arn-mode" {{#if whyLabel}}data-tooltip="{{whyLabel}}"{{/if}}>{{modeLabel}}</span>{{/if}}</header>
+  <div class="arn-card-dice">
+    {{#each dice}}<span class="arn-die {{#if dropped}}dropped{{/if}}">{{result}}</span>{{/each}}
+    {{#each parts}}<span class="arn-part">{{value}} <small>{{label}}</small></span>{{/each}}
+  </div>
+  <div class="arn-card-result">
+    <span class="arn-total">{{total}}</span>
+    {{#if target}}<span class="arn-target">vs {{target}}</span>{{/if}}
+  </div>
+  {{#if whyLabel}}<div class="arn-why">{{whyLabel}}</div>{{/if}}
+  <div class="arn-luck-burned" {{#unless luckBurned}}hidden{{/unless}}>+{{luckBurned}} Luck burned</div>
+  {{#if outcomeLabel}}<div class="arn-outcome {{outcome}}">{{outcomeLabel}}</div>{{/if}}
+  {{#if targets.length}}
+  <ul class="arn-targets">
+    {{#each targets}}<li data-target-ac="{{ac}}"><span>{{name}} <small>AC {{ac}}</small></span><span class="arn-target-result {{outcome}}">{{label}}</span></li>{{/each}}
+  </ul>
+  {{/if}}
+  {{#if notes.length}}<ul class="arn-notes">{{#each notes}}<li>{{this}}</li>{{/each}}</ul>{{/if}}
+  {{{footer}}}
+  {{#if canBurn}}<button type="button" class="arn-burn"><i class="fa-solid fa-clover"></i> Burn Luck</button>{{/if}}
+</div>

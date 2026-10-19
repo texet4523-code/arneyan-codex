@@ -1,0 +1,225 @@
+/**
+ * Encounter budget (Monsters & Treasure, Building Encounters), shown in the combat tracker and in an
+ * Encounter Builder window where the GM drags monsters in, sees the cost, and places them.
+ *
+ * Budget: 1 point per character. Cost by Level against the party:
+ *   4+ lower ¼, 3 lower ⅓, 2 lower ½, 1 lower ¾, equal 1, 1 higher 1½, 2 higher 2, 3 higher 3, 4 higher 4.
+ * Crowds: creatures beyond the party's number (the cheapest) cost double. Level 0 and ¼ count as Level −3, ½ as Level −1.
+ * More than 4 Levels above the party: solo rules only. A solo of the party's Level costs the whole budget.
+ * Difficulty: half the budget easy, the full budget hard, double deadly.
+ */
+import { partyMembers } from "./party.mjs";
+
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+const SYS = "arneyan";
+const LADDER = { "-4": 0.25, "-3": 1 / 3, "-2": 0.5, "-1": 0.75, "0": 1, "1": 1.5, "2": 2, "3": 3, "4": 4 };
+const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", 0.75: "¾", 1.5: "1½" }[v] ?? String(Math.round(v * 100) / 100));
+
+/** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
+export function effectiveLevel(level, levelText = "") {
+  if (levelText === "½") return -1;
+  if (levelText === "¼" || level <= 0) return -3;
+  return level;
+}
+
+/** Cost of one creature against a party Level, or null if it's too strong to use outside the solo rules. */
+export function creatureCost(level, partyLevel, levelText = "") {
+  const lvl = effectiveLevel(level, levelText);
+  const d = Math.max(-4, lvl - partyLevel);
+  return d > 4 ? null : LADDER[String(d)];
+}
+
+/**
+ * Work out an encounter.
+ * @param {number[]} partyLevels  Each character's level.
+ * @param {{name:string, level:number, levelText?:string, solo:boolean, count:number}[]} foes
+ */
+export function encounterBudget(partyLevels, foes) {
+  const n = partyLevels.length;
+  const partyLevel = n ? Math.round(partyLevels.reduce((a, b) => a + b, 0) / n) : 1;
+  const warnings = [];
+  const singles = [];
+  let soloCost = 0;
+  for (const f of foes) {
+    const c = creatureCost(f.level, partyLevel, f.levelText);
+    for (let i = 0; i < (f.count ?? 1); i++) {
+      if (f.solo) {
+        const each = (c ?? LADDER["4"]) * n;
+        soloCost += each;
+        if (c === null) warnings.push(`${f.name} is more than 4 Levels above the party: cost shown as 4 Levels higher.`);
+      } else if (c === null) {
+        warnings.push(`${f.name} is more than 4 Levels above the party: run it under the solo rules.`);
+        singles.push({ name: f.name, cost: LADDER["4"] });
+      } else singles.push({ name: f.name, cost: c });
+    }
+  }
+  // Crowds: each creature beyond the party's number, the cheapest ones, costs double.
+  const sorted = singles.slice().sort((a, b) => b.cost - a.cost);
+  const crowd = Math.max(0, sorted.length - n);
+  const doubled = crowd ? sorted.slice(sorted.length - crowd) : [];
+  const singleCost = sorted.reduce((t, s) => t + s.cost, 0) + doubled.reduce((t, s) => t + s.cost, 0);
+  const total = Math.round((singleCost + soloCost) * 100) / 100;
+  const budget = n;
+  const r = budget ? total / budget : 0;
+  if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
+  const label = !total ? "No foes" : r <= 0.5 ? "Easy" : r < 1 ? "Between easy and hard" : r === 1 ? "Hard" : r < 2 ? "Between hard and deadly" : r === 2 ? "Deadly" : "Beyond deadly";
+  const tier = !total ? "none" : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
+  if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
+  return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, costLabel: c => FRACTION(c) };
+}
+
+/* -------------------------------------------- */
+/*  Combat tracker                              */
+/* -------------------------------------------- */
+
+const FRIENDLY = () => CONST.TOKEN_DISPOSITIONS?.FRIENDLY ?? 1;
+
+function trackerBudget(combat) {
+  const pcs = combat.combatants.filter(c => c.actor?.type === "character").map(c => c.actor);
+  const party = pcs.length ? pcs : partyMembers();
+  const foes = combat.combatants.filter(c => c.actor?.type === "npc" && (c.token?.disposition ?? -1) !== FRIENDLY())
+    .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: !!c.actor.system.details?.isSolo, count: 1 }));
+  return encounterBudget(party.map(a => a.system.level ?? 1), foes);
+}
+
+function onRenderTracker(app, html) {
+  if (!game.user.isGM) return;
+  const root = html instanceof HTMLElement ? html : html?.[0];
+  const combat = app.viewed ?? game.combat;
+  if (!root || !combat) return;
+  root.querySelector(".arn-budget")?.remove();
+  const b = trackerBudget(combat);
+  const bar = document.createElement("div");
+  bar.className = `arn-budget ${b.tier}`;
+  bar.innerHTML = `<span><strong>${b.label}</strong> · ${b.total} of ${b.budget} points · party level ${b.partyLevel}</span>`;
+  if (b.warnings.length) bar.dataset.tooltip = b.warnings.join(" ");
+  const btn = document.createElement("a");
+  btn.className = "arn-budget-open";
+  btn.dataset.tooltip = "Encounter Builder";
+  btn.innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
+  btn.addEventListener("click", () => ArneyanEncounterBuilder.open());
+  bar.append(btn);
+  const anchor = root.querySelector(".combat-tracker-header");
+  if (anchor) anchor.after(bar);
+  else (root.querySelector(".window-content") ?? root).prepend(bar);
+}
+
+/* -------------------------------------------- */
+/*  Encounter Builder                           */
+/* -------------------------------------------- */
+
+export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(ApplicationV2) {
+  static #instance = null;
+
+  static open() {
+    if (!game.user.isGM) return ui.notifications.warn("The Encounter Builder is for the GM.");
+    const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
+    return app.render({ force: true });
+  }
+
+  /** Add a monster (by UUID) to the GM's encounter and open the builder. */
+  static async addFoe(uuid) {
+    if (!game.user.isGM) return;
+    const actor = await fromUuid(uuid);
+    if (actor?.type !== "npc") return ui.notifications.warn("Only monsters and NPCs go in an encounter.");
+    const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
+    const foes = app.foes;
+    const found = foes.find(f => f.uuid === actor.uuid);
+    if (found) found.count += 1;
+    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", solo: !!actor.system.details?.isSolo, count: 1 });
+    await game.user.setFlag(SYS, "encounter", foes);
+    return app.render({ force: true });
+  }
+
+  static DEFAULT_OPTIONS = {
+    id: "arneyan-encounter-builder",
+    classes: ["arneyan", "arn-encounter-app"],
+    position: { width: 520, height: 640 },
+    window: { title: "Encounter Builder", icon: "fa-solid fa-scale-balanced", resizable: true },
+    actions: {
+      more: ArneyanEncounterBuilder.#more,
+      less: ArneyanEncounterBuilder.#less,
+      remove: ArneyanEncounterBuilder.#remove,
+      clear: ArneyanEncounterBuilder.#clear,
+      place: ArneyanEncounterBuilder.#place,
+      bestiary: () => game.arneyan?.browser?.({ tab: "monsters" })
+    }
+  };
+
+  static PARTS = { main: { template: "systems/arneyan/templates/apps/encounter.hbs" } };
+
+  get foes() {
+    return foundry.utils.deepClone(game.user.getFlag(SYS, "encounter") ?? []);
+  }
+
+  async _setFoes(foes) {
+    await game.user.setFlag(SYS, "encounter", foes);
+    this.render();
+  }
+
+  async _prepareContext() {
+    const party = partyMembers();
+    const foes = this.foes;
+    const b = encounterBudget(party.map(a => a.system.level ?? 1), foes);
+    return {
+      party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
+      foes: foes.map((f, i) => {
+        const c = creatureCost(f.level, b.partyLevel, f.levelText);
+        return { ...f, i, levelLabel: f.levelText || f.level, cost: f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c) };
+      }),
+      b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100))
+    };
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    const zone = this.element.querySelector(".arn-enc-drop");
+    zone?.addEventListener("dragover", ev => ev.preventDefault());
+    zone?.addEventListener("drop", async ev => {
+      ev.preventDefault();
+      const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(ev);
+      if (data?.type !== "Actor") return;
+      return ArneyanEncounterBuilder.addFoe(data.uuid);
+    });
+  }
+
+  static #more(event, target) { const f = this.foes; f[Number(target.dataset.i)].count += 1; return this._setFoes(f); }
+  static #less(event, target) {
+    const f = this.foes;
+    const x = f[Number(target.dataset.i)];
+    x.count -= 1;
+    return this._setFoes(x.count > 0 ? f : f.filter((_, i) => i !== Number(target.dataset.i)));
+  }
+  static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
+  static #clear() { return this._setFoes([]); }
+
+  /** Put the encounter's monsters on the current scene, hostile, around the middle of the view. */
+  static async #place() {
+    const scene = canvas.scene;
+    if (!scene) return ui.notifications.warn("Open a scene first.");
+    const size = scene.grid.size;
+    const c = canvas.stage?.pivot ?? { x: scene.dimensions.width / 2, y: scene.dimensions.height / 2 };
+    const data = [];
+    let i = 0;
+    for (const f of this.foes) {
+      const actor = await fromUuid(f.uuid);
+      if (!actor) continue;
+      // Compendium monsters are imported to the world first.
+      const world = actor.pack ? (game.actors.find(a => a._stats?.compendiumSource === actor.uuid)
+        ?? await game.actors.importFromCompendium(game.packs.get(actor.pack), actor.id)) : actor;
+      for (let n = 0; n < f.count; n++, i++) {
+        const col = i % 5, row = Math.floor(i / 5);
+        const pos = { x: c.x + (col - 2) * size, y: c.y + row * size };
+        const snapped = canvas.grid?.getSnappedPoint ? canvas.grid.getSnappedPoint(pos, { mode: CONST.GRID_SNAPPING_MODES?.TOP_LEFT_CORNER ?? 256 }) : pos;
+        const doc = await world.getTokenDocument({ ...snapped, disposition: CONST.TOKEN_DISPOSITIONS?.HOSTILE ?? -1 });
+        data.push(doc.toObject());
+      }
+    }
+    if (data.length) await scene.createEmbeddedDocuments("Token", data);
+    ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
+  }
+}
+
+export function registerEncounters() {
+  Hooks.on("renderCombatTracker", onRenderTracker);
+}

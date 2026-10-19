@@ -1,0 +1,798 @@
+[
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 1 - The Apprentices",
+  "seat": 1,
+  "role": "Front line",
+  "name": "Wendel \"Big Wen\" Harrow",
+  "ancestry": "Human",
+  "ancestryNote": "",
+  "class": "Fighter",
+  "classNote": "",
+  "level": 1,
+  "kit": "The Heavy Hand",
+  "alignment": "Neutral Good",
+  "attributes": {
+   "str": 18,
+   "dex": 14,
+   "con": 16,
+   "int": 11,
+   "wis": 13,
+   "cha": 9
+  },
+  "luck": 12,
+  "hpMax": 12,
+  "ac": 16,
+  "acBreakdown": "10 + 4 (Cuir Bouille, Medium) + 1 (Dex, Medium max +2) + 1 (Buckler) = 16",
+  "saves": {
+   "fort": 3,
+   "ref": 2,
+   "will": 2
+  },
+  "bth": 0,
+  "initiative": 1,
+  "speed": 30,
+  "slotsMax": 20,
+  "skills": [
+   {
+    "name": "Endurance",
+    "tier": "trained"
+   },
+   {
+    "name": "Mountaineering",
+    "tier": "trained"
+   },
+   {
+    "name": "Swimming",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Dwarvish"
+  ],
+  "feats": [
+   {
+    "name": "Critical Strike",
+    "note": "Martial, Fighter 1st-level feat"
+   },
+   {
+    "name": "Steady Hand",
+    "note": "General, Human bonus feat"
+   }
+  ],
+  "classFeatures": [
+   "Weapon Specialisation (Greatsword)",
+   "Combat Reflexes",
+   "Combat Manoeuvres",
+   "Intimidating Strike (Fighter manoeuvre)",
+   "Charge and Guard (actions)",
+   "Crushing Blow (Heavy Hand kit)",
+   "Breaker (Heavy Hand kit)"
+  ],
+  "weapons": [
+   {
+    "name": "Greatsword",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "2d6+4",
+    "range": "Melee (5ft)",
+    "notes": "Slashing. Two-handed, Heavy. Advantage on your first attack each round (Weapon Specialisation; +1 damage already included). Reroll 1s and 2s on the damage dice (Crushing Blow). Critical hit on a natural 19 that hits or a natural 20: add 12 (the dice maximum). Slots: 2."
+   },
+   {
+    "name": "Javelin",
+    "qty": 3,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "1d6+3",
+    "range": "30ft (up to 60ft with Disadvantage)",
+    "notes": "Piercing, thrown. Thrown weapons use Strength. Disadvantage if an enemy is within 5ft of you. You carry 3. Critical on a natural 19 that hits or 20. Slots: 1 (all 3)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Cuir Bouille",
+    "magic": 0,
+    "category": "medium",
+    "acBonus": 4,
+    "slots": 2,
+    "notes": "Flexible: not Noisy"
+   },
+   {
+    "name": "Buckler",
+    "magic": 0,
+    "category": "shield",
+    "acBonus": 1,
+    "slots": 1,
+    "notes": "Compact: usable with a two-handed weapon"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's Rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Rope, Hemp (50ft)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, 2 one-pint flasks (Keepers' kit)",
+    "qty": 1,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes, 5 (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 4,
+   "sp": 5,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A huge, cheerful farm lad with a greatsword, a borrowed coat of boiled leather and absolutely no indoor voice. Loud, warm and hopelessly honest; his whisper is everyone else's shout, and he thinks most problems are doors to be shouldered. Joined the Keepers so that one day a song might be sung about a Harrow; his mam has already stitched his name inside his cloak.",
+  "inAFight": "Wade in, swing at the biggest goblin first (Advantage on your first greatsword swing each round), and Cleave into the next one when it drops.",
+  "abilitiesText": "**Weapon Specialisation (Greatsword).** Advantage on the first attack roll you make with your greatsword each round, and +1 damage with it (included above).\n\n**Combat Reflexes.** Once per round, make an Attack of Opportunity (one melee attack) against an enemy you can see that leaves your reach or moves past or through it. Disengage prevents it. This uses your one reaction for the round.\n\n**Combat Manoeuvres.** Each replaces one attack. Trip: your Str or Dex check vs its Str or Dex, win and it falls Prone. Disarm: Str contest, win and it drops its weapon. Grapple: Str contest, win and it is Restrained. Dirty Trick: your Dex check vs its Dex or Wis check (its choice), win and it is Blinded until the end of its next turn (once per foe per fight). Push: on a hit, shove a creature up to one size larger than you 10ft instead of dealing damage. Cleave: when you drop a creature to 0 HP with a melee attack, make one extra melee attack (same bonus) at a different creature in reach, once per turn. Shield Blow (with your buckler): attack with Disadvantage, replacing all your attacks this round; on a hit the target makes a Fortitude save (DC 14) or is Stunned for 1d2 rounds, and a creature that saves is immune to it for the fight. Ties go to the defender. Manoeuvre save DC 14.\n\n**Intimidating Strike (Fighter manoeuvre).** Replaces one attack. On a hit, the target makes a Will save (DC 14) or is Frightened until the end of its next turn: Disadvantage on attacks and checks while it can see you, and it cannot move closer to you.\n\n**Charge and Guard (actions).** Charge: declare before moving; move up to 60ft in a straight line (at least 10ft) and make one attack with Advantage, but attacks against you have Advantage until your next turn. Guard: replaces all your attacks; pick an adjacent ally, and attacks against it have Disadvantage until your next turn while you stay next to it.\n\n**Crushing Blow (Heavy Hand kit).** Reroll 1s and 2s on the damage dice of two-handed weapons (your greatsword).\n\n**Breaker (Heavy Hand kit).** Advantage on Strength checks to break, smash or force objects (a wooden door is DC 12, an iron or barred door DC 15).\n\n**Human.** Medium size, speed 30ft, no darkvision.\n\n**Knack: Sneaking.** Advantage on Dexterity checks to move quietly or hide (chosen skill; not an NWP slot). Surprisingly light on his feet for his size.\n\n**Extra General Feat.** Took Steady Hand at 1st level (see Feats).\n\n**Weapon and armour training.** Two martial weapons of choice, light and medium armour (all covered by the Fighter already).\n\n**Critical Strike (Martial, Fighter 1st-level feat).** Your weapon attacks score a Critical Hit on a natural 20, or on a natural 19 that hits. A critical adds the maximum of the weapon's damage dice.\n\n**Steady Hand (General, Human bonus feat).** +1 Strength, moved to Wisdom by the starting cap of 18 (included). Advantage on checks to resist being disarmed, knocked Prone or moved against your will.\n\n**Notes.** Speed: 30ft · Initiative: +1 · HP: d10 max (10) + Con mod (+2) = 12. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.",
+  "unsure": []
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 1 - The Apprentices",
+  "seat": 2,
+  "role": "Skirmisher",
+  "name": "Tansy Underbough",
+  "ancestry": "Halfling",
+  "ancestryNote": "",
+  "class": "Rogue",
+  "classNote": "",
+  "level": 1,
+  "kit": "Red Waste Skulker",
+  "alignment": "Chaotic Neutral",
+  "attributes": {
+   "str": 8,
+   "dex": 18,
+   "con": 16,
+   "int": 14,
+   "wis": 12,
+   "cha": 12
+  },
+  "luck": 12,
+  "hpMax": 8,
+  "ac": 16,
+  "acBreakdown": "10 + 3 (Studded Leather, Light) + 3 (Dex, full) = 16",
+  "saves": {
+   "fort": 3,
+   "ref": 4,
+   "will": 1
+  },
+  "bth": 0,
+  "initiative": 3,
+  "speed": 25,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "Tumbling",
+    "tier": "trained"
+   },
+   {
+    "name": "Rope Use",
+    "tier": "trained"
+   },
+   {
+    "name": "Set Snares",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Halfling",
+   "Goblin",
+   "Thieves' Cant"
+  ],
+  "feats": [
+   {
+    "name": "Predator",
+    "note": "Specialist, Rogue 1st-level feat"
+   }
+  ],
+  "classFeatures": [
+   "Sneak Attack",
+   "Back Attack",
+   "Precise Strikes",
+   "Hide and Move Silently",
+   "Rogue Skills",
+   "Waste-Born Stillness (kit)",
+   "Ghost of the Sands (kit)"
+  ],
+  "weapons": [
+   {
+    "name": "Shortbow",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "1d6+4",
+    "range": "60ft (up to 120ft with Disadvantage)",
+    "notes": "Piercing. Sneak Attack: Advantage and +2d6 once per round against an unsuspecting target within 30ft (60ft in natural terrain). Disadvantage if an enemy is within 5ft of you or the target is in melee with an ally. 20 arrows; recover half after a fight. Slots: 1."
+   },
+   {
+    "name": "Dagger",
+    "qty": 2,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "1d4+4",
+    "range": "Melee (5ft); thrown 20ft (up to 40ft with Disadvantage)",
+    "notes": "Piercing. Finesse, so Dexterity applies. Melee: Back Attack: after a successful Hide or Move Silently, attack from behind with Advantage and double the dice (2d4+4). Or Sneak Attack (+2d6). Not both. You carry 2 daggers. Slots: 1 (thrown weapons bundle 5 per slot)."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Studded Leather",
+    "magic": 0,
+    "category": "light",
+    "acBonus": 3,
+    "slots": 2,
+    "notes": "Flexible"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Arrows",
+    "qty": 20,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Caltrops (bag of 100)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, 2 one-pint flasks (Keepers' kit)",
+    "qty": 1,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes, 5 (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 3,
+   "sp": 5,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A sharp-eyed halfling scavenger from the edge of the Red Waste who can vanish behind a cactus and shoot you from behind it. Quick, suspicious and always counting: coins, exits, goblins, and how many sausages are left in the pack. Grew up picking through wrecked caravans on the Waste's edge; the Keepers pay on time, and nobody has ever paid Tansy on time.",
+  "inAFight": "Stay hidden and shoot from cover for Sneak Attack (+2d6), or creep behind a distracted goblin and Back Attack it with a dagger.",
+  "abilitiesText": "**Sneak Attack.** Once per round, against an aware but unsuspecting target within 30ft (60ft in natural terrain, see kit): Advantage on the attack and +1d6 damage (+2d6 with Predator). Unsuspecting = it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you. No stealth check needed. Cannot combine with Back Attack.\n\n**Back Attack.** Once per round. Needs a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters weapon shorter than your arm (your dagger). Advantage on the attack and double the weapon's damage dice only (dagger 2d4+4).\n\n**Precise Strikes.** +1 damage on every weapon hit (already in your attack lines).\n\n**Hide and Move Silently.** Normal roll at half speed or less, Disadvantage above half speed, impossible while running or charging. You may Hide while only lightly obscured. You cannot attempt both together until 3rd level. Hide = Dex check against each watcher's Wisdom check (or 10 + its Wis mod if it is not looking). Listening through a solid barrier has Disadvantage.\n\n**Rogue Skills.** Climb (Dex). Open Locks (Dex): one try per lock until you gain a level. Pick Pocket (Dex): DC 10 + the target's Level. Find/Disable/Set Trap (Int). Decipher Script (Int): 2d8 minutes a page; arcane script is a Hard (DC 15) check and you cannot cast it; never works on divine scrolls.\n\n**Waste-Born Stillness (kit).** Advantage on Hide checks in wilderness or natural terrain, and there your Sneak Attack range is 60ft instead of 30ft.\n\n**Ghost of the Sands (kit).** Advantage on checks to evade tracking in harsh terrain.\n\n**Small.** Speed 25ft, no darkvision. Advantage on Move Silently and stealth checks, and on checks to escape a grapple or Restrained. Disadvantage with Heavy weapons.\n\n**Lucky.** On a natural 1 on an attack, check or save, reroll and take the new result, up to 3 times per session.\n\n**Nimble.** You can move through the space of any larger creature.\n\n**Brave Heart.** Once per long rest, before you roll a save, gain Advantage on it (burn 1 Luck for an extra use).\n\n**Green Thumb.** Advantage on checks about farming, foraging or identifying plants.\n\n**Weapon training.** Sling, shortsword, dagger, handaxe.\n\n**Predator (Specialist, Rogue 1st-level feat).** Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included: 2d6 total).\n\n**Notes.** Speed: 25ft · Initiative: +3 · HP: d6 max (6) + Con mod (+2) = 8. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.",
+  "unsure": []
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 1 - The Apprentices",
+  "seat": 3,
+  "role": "Healer",
+  "name": "Hulda Ironbraid",
+  "ancestry": "Dwarf",
+  "ancestryNote": "",
+  "class": "Cleric",
+  "classNote": "Ilmater",
+  "level": 1,
+  "kit": "Ilmater (The Winter's Solace)",
+  "alignment": "Lawful Good",
+  "attributes": {
+   "str": 12,
+   "dex": 14,
+   "con": 17,
+   "int": 11,
+   "wis": 18,
+   "cha": 8
+  },
+  "luck": 12,
+  "hpMax": 10,
+  "ac": 16,
+  "acBreakdown": "10 + 4 (Cuir Bouille, Medium) + 1 (Dex, Medium max +2) + 1 (Medium Wooden Shield) = 16",
+  "saves": {
+   "fort": 3,
+   "ref": 2,
+   "will": 4
+  },
+  "bth": 0,
+  "initiative": 1,
+  "speed": 25,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "First Aid/Healing",
+    "tier": "trained"
+   },
+   {
+    "name": "Religion",
+    "tier": "trained"
+   },
+   {
+    "name": "Herbalism",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Dwarvish"
+  ],
+  "feats": [
+   {
+    "name": "Healer",
+    "note": "Arcane & Devout, Cleric 1st-level feat"
+   }
+  ],
+  "classFeatures": [
+   "Spell Use",
+   "Turn Undead",
+   "Ilmater's Mercy (granted power)",
+   "Weapon Selection"
+  ],
+  "weapons": [
+   {
+    "name": "Heavy Mace",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+0",
+    "damage": "1d8",
+    "range": "Melee (5ft)",
+    "notes": "Bludgeoning. Her clan weapon. Sunder: Advantage on Disarm attempts and on checks to break objects. Slots: 1."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Cuir Bouille",
+    "magic": 0,
+    "category": "medium",
+    "acBonus": 4,
+    "slots": 2,
+    "notes": "Flexible: not Noisy"
+   },
+   {
+    "name": "Shield, Medium Wooden",
+    "magic": 0,
+    "category": "shield",
+    "acBonus": 1,
+    "slots": 1,
+    "notes": "Disadvantage on saves vs fire while raised"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Holy symbol of Ilmater, bronze (spellcasting focus)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's Rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Potion of Cure Minor Wounds (heals 1d4; drinking is an action)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, 2 one-pint flasks (Keepers' kit)",
+    "qty": 1,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes, 5 (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 3,
+   "sp": 5,
+   "cp": 0
+  },
+  "spells": {
+   "stat": "wis",
+   "dc": 14,
+   "slots": "3 cantrips; two 1st",
+   "cantrips": [
+    "Sacred Flame",
+    "Toll the Dead",
+    "First Aid"
+   ],
+   "prepared": [
+    "Cure Light Wounds",
+    "Bless",
+    "Sanctuary",
+    "Command"
+   ],
+   "known": [],
+   "notes": "Every spell is resolved by the target's save against your DC. Tick a slot box when you cast; slots return after a full rest. Cantrips are cast at will. Tick the circle beside a spell to mark it prepared.\n\nSacred Flame (cantrip): 60ft, one creature you can see: 1d4 radiant, Reflex negates; cover gives no bonus to the save. At will.\nToll the Dead (cantrip): 60ft, one creature: 1d4 necrotic, or 1d6 if it is below its maximum HP; Will negates. At will.\nFirst Aid (cantrip): Touch: a dying creature is stabilised at its current HP, no roll. It stays unconscious until healed or for 1 hour. Restores no HP.\nCure Light Wounds (1st, prepared): Touch, one creature: heals 1d8+1, +1 for Healer = 1d8+2 HP, no save. Reversed (Cause Light Wounds): 1d8+1 necrotic, Fortitude halves. One free cast a day from Healer.\nBless (1st, prepared): 50ft, up to 6 allies, 1 minute: Advantage on their first attack roll each round and +1 to saving throws. No save.\nSanctuary (1st, prepared): Touch, one creature, 1 round: anyone trying to attack it or target it with a harmful spell must first pass a Will save or choose another target. Ends if the protected creature attacks or casts an offensive spell.\nCommand (1st, prepared): 30ft, one creature that understands your language: on its next turn it obeys one word, Approach, Drop, Flee or Halt. Will negates. Mindless creatures are immune; harmful commands are ignored."
+  },
+  "personality": "A stout, unhurried dwarf priestess of Ilmater who patches up everyone, enemies included if they'll hold still. Calm as a cellar; apologises to every wound she stitches and hums funeral hymns at entirely the wrong moments. Ilmater teaches that nobody should suffer alone, and the Keepers go wherever people get hurt.",
+  "inAFight": "Stay behind the Fighter, open with Bless, keep people standing with Cure Light Wounds, and use Sacred Flame when nobody needs patching.",
+  "abilitiesText": "**Spell Use.** Divine caster, Wisdom-based, save DC 14. Cantrips at will. 2 1st-level slots a day (1 + 1 for Wis 18), refreshed by a long rest. Each morning prepare 4 1st-level spells (level 1 + Wis +3) from the whole Cleric list. Your holy symbol covers common components. Casting uses your action; damage taken while casting forces a Fortitude save (DC 10 or half the damage) or the spell is lost.\n\n**Turn Undead.** Action, 6 times a day (3 + Wis). Present your holy symbol: every undead within 30ft that can see or hear you makes a Will save (DC 14) or flees and cannot come within 30ft of you for 1 minute.\n\n**Ilmater's Mercy (granted power).** Advantage on First Aid/Healing checks. Once a day: heal one creature for 2d8+3 HP.\n\n**Weapon Selection.** Club, crowbill hammer, dagger, light/heavy flail, light hammer, light/heavy mace, morningstar, staff, war hammer, plus Ilmater's cestus, all without Disadvantage. Dwarf training adds handaxe, battleaxe, light crossbow and firearms.\n\n**Dwarf.** Medium size, speed 25ft (not reduced by armour or encumbrance), darkvision 60ft.\n\n**Stoneworker.** Advantage on checks about stonework, underground construction and unusual stonework.\n\n**Poison-hardy.** Advantage on saves against poison; Resistance 5 to poison damage.\n\n**Craft: Brewing.** Advantage on Brewing checks (free dwarf craft skill, not an NWP slot).\n\n**The Clan Weapon.** Her heavy mace is her clan's weapon. If she loses it, she has Disadvantage on Charisma checks with other dwarves until she gets it back.\n\n**Stonebraced.** Once per long rest, treat an incoming critical hit as a normal hit, or ignore a knockdown.\n\n**Weapon and armour training.** Handaxe, battleaxe, warhammer, light crossbow, firearms; light and medium armour.\n\n**Healer (Arcane & Devout, Cleric 1st-level feat).** Healing spells and brewed potions restore +1 HP per die (Cure Light Wounds heals 1d8+2). Once a day, cast a healing spell of 3rd level or lower without spending a slot (a free Cure Light Wounds).\n\n**Notes.** Speed: 25ft (never reduced by armour or load) · Initiative: +1 · HP: d8 max (8) + Con mod (+2) = 10. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.",
+  "unsure": [
+   "Kit printed as \"Ilmater (The Winter's Solace)\"; used that as kit and \"Ilmater\" as classNote"
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 1 - The Apprentices",
+  "seat": 4,
+  "role": "Ranged",
+  "name": "Patience Ashcombe",
+  "ancestry": "Tiefling",
+  "ancestryNote": "Infernal",
+  "class": "Warlock",
+  "classNote": "Path of the Infernal",
+  "level": 1,
+  "kit": "Glasya",
+  "alignment": "Chaotic Neutral",
+  "attributes": {
+   "str": 9,
+   "dex": 14,
+   "con": 16,
+   "int": 12,
+   "wis": 11,
+   "cha": 18
+  },
+  "luck": 12,
+  "hpMax": 8,
+  "ac": 11,
+  "acBreakdown": "10 + 1 (Dex); no armour or shield (Warlocks are trained in none, and wearing any blocks casting) = 11",
+  "saves": {
+   "fort": 3,
+   "ref": 2,
+   "will": 1
+  },
+  "bth": 0,
+  "initiative": 1,
+  "speed": 30,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "Forgery",
+    "tier": "trained"
+   },
+   {
+    "name": "Disguise",
+    "tier": "trained"
+   },
+   {
+    "name": "Gaming",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Infernal"
+  ],
+  "feats": [
+   {
+    "name": "Cantrip Mastery",
+    "note": "Arcane & Devout, Warlock 1st-level feat"
+   }
+  ],
+  "classFeatures": [
+   "Eldritch Blast",
+   "Spell Use",
+   "Hellfire Affinity (Infernal Path)",
+   "Dark Gift: Glasya's Veil"
+  ],
+  "weapons": [
+   {
+    "name": "Staff",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+0",
+    "damage": "1d6",
+    "range": "Melee (10ft, Reach)",
+    "notes": "Bludgeoning (1d8 two-handed). Versatile, Reach. Free; also her spellcasting focus. Slots: 1."
+   },
+   {
+    "name": "Dagger",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+1",
+    "damage": "1d4+1",
+    "range": "Melee, or thrown 20ft",
+    "notes": "Piercing. Finesse, Light, Concealable. Slots: 1."
+   }
+  ],
+  "armour": [],
+  "gear": [
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Week's Rations",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Personal Canteen",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, 2 one-pint flasks (Keepers' kit)",
+    "qty": 1,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes, 5 (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 4,
+   "sp": 5,
+   "cp": 0
+  },
+  "spells": {
+   "stat": "cha",
+   "dc": 14,
+   "slots": "4 cantrips; two 1st",
+   "cantrips": [
+    "Eldritch Blast",
+    "Ghost Sound",
+    "Mage Hand",
+    "Message"
+   ],
+   "prepared": [],
+   "known": [
+    "Burning Hands",
+    "Sleep"
+   ],
+   "notes": "Every spell is resolved by the target's save against your DC. Tick a slot box when you cast; slots return after a full rest. Cantrips are cast at will. Tick the circle beside a spell to mark it prepared.\n\nEldritch Blast (cantrip): 60ft, one target: Reflex DC 14. Failed save 1d6+3 force; success half of 1d6. At will. The +3 is Cantrip Mastery, added only when the target fails its save.\nGhost Sound (cantrip, Infernal Cantrip): 30ft, 1 round: a sound as loud as up to 4 shouting people (footsteps, a growl, clashing arms) from a point you choose. No words. No save.\nMage Hand (cantrip, Cantrip Mastery): 30ft, 1 minute: an invisible hand moves one unattended object of up to 5 lb at 15ft a round. Cannot attack or force anything.\nMessage (cantrip, Cantrip Mastery): 120ft, one creature, 10 minutes: whisper a message only it hears; it can whisper back. Blocked by 1ft of stone, 1 inch of metal or silence.\nBurning Hands (1st, Path spell): 15ft cone from your hands: 1d3+1 fire (1s count as 2s), Reflex halves. Ignites unattended flammable objects. Noisy and bright.\nSleep (1st): 90ft, 15ft radius: creatures totalling 2d4+1 Levels fall Unconscious for 1d4 minutes, lowest Level first; Level 5+ unaffected. Will negates. Damage wakes a sleeper. Undead and constructs are immune."
+  },
+  "personality": "A theatrical tiefling who signed a clever little contract with Glasya, Princess of Hell, to wriggle out of a much worse one. Has never once been patient: sardonic, dramatic and quietly terrified of the voice that answers when she whispers. Glasya got her out of a debt-binding; the Keepers were the first people in Tariel who didn't ask about the horns.",
+  "inAFight": "Stay at the back and Eldritch Blast every turn (Reflex DC 14: 1d6+3 on a failed save, half of 1d6 on a success), save Sleep for a knot of goblins, and turn invisible when it all goes wrong.",
+  "abilitiesText": "**Eldritch Blast.** At-will cantrip, 60ft, one target: Reflex save DC 14. On a failure, 1d6 force +3 (Cantrip Mastery); on a success, half of 1d6 with no bonus. Never uses a slot.\n\n**Spell Use.** Arcane caster, Charisma-based, save DC 14. 2 1st-level slots a day (1 + 1 for Cha 18), refreshed by a long rest. You know two 1st-level spells: Burning Hands (Path spell) and Sleep. No spell attack rolls: harmful spells always call for a save. Damage taken while casting forces a Fortitude save (DC 10 or half the damage) or the spell is lost.\n\n**Hellfire Affinity (Infernal Path).** Resistance 5 to fire damage. Treat every 1 on your fire damage dice as a 2 (Burning Hands, Fiendish Retort).\n\n**Dark Gift: Glasya's Veil.** Once a day, as your action, become Invisible for 1 minute (10 rounds). It ends only if you attack or cast an offensive spell, not when you open doors or handle objects. While Invisible, attacks against you have Disadvantage and you cannot be seen without magic or special senses.\n\n**Tiefling.** Medium size, speed 30ft, darkvision 60ft.\n\n**Fire Resistance.** Resistance 5 to fire (the same 5 as Hellfire Affinity; they do not add up).\n\n**Infernal Cantrip.** One Warlock cantrip at creation: Ghost Sound.\n\n**Fiendish Retort.** Once per long rest, when a creature within 30ft damages you, hit it back as part of your action on your next turn for 1d6 fire (1s count as 2s). No save is listed.\n\n**Cantrip Mastery (Arcane & Devout, Warlock 1st-level feat).** Learn two extra cantrips (Mage Hand, Message). Once per round, when a cantrip you cast hits or its target fails its save, add your Charisma modifier (+3) to its damage. Does not stack with Agonising Blast.\n\n**Notes.** Speed: 30ft · Initiative: +1 · HP: d6 max (6) + Con mod (+2) = 8. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.",
+  "unsure": [
+   "Kit line printed as \"Path of the Infernal, Kit: Glasya\"; split into classNote \"Path of the Infernal\" and kit \"Glasya\"",
+   "Burning Hands and Sleep are known (spontaneous) spells, not marked prepared; put in \"known\" with \"prepared\" empty"
+  ]
+ },
+ {
+  "adventure": "The Broken Anvil",
+  "folder": "Level 1 - The Apprentices",
+  "seat": 5,
+  "role": "Spare",
+  "name": "Rook Halloway",
+  "ancestry": "Human",
+  "ancestryNote": "",
+  "class": "Archer",
+  "classNote": "",
+  "level": 1,
+  "kit": "Red Waste Tracker",
+  "alignment": "True Neutral",
+  "attributes": {
+   "str": 13,
+   "dex": 18,
+   "con": 14,
+   "int": 11,
+   "wis": 16,
+   "cha": 9
+  },
+  "luck": 12,
+  "hpMax": 9,
+  "ac": 15,
+  "acBreakdown": "10 + 2 (Leather Armour, Light) + 3 (Dex, full) = 15",
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 3
+  },
+  "bth": 0,
+  "initiative": 3,
+  "speed": 30,
+  "slotsMax": 18,
+  "skills": [
+   {
+    "name": "Tracking",
+    "tier": "trained"
+   },
+   {
+    "name": "Hunting",
+    "tier": "trained"
+   },
+   {
+    "name": "Survival",
+    "tier": "trained"
+   }
+  ],
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "feats": [
+   {
+    "name": "Steady Aim",
+    "note": "Specialist, Archer 1st-level feat"
+   },
+   {
+    "name": "Swift Reflexes",
+    "note": "General, Human bonus feat"
+   }
+  ],
+  "classFeatures": [
+   "Running Shot",
+   "Arrow Repertoire: Fire and Rope",
+   "Bent Path",
+   "Fletcher's Craft (Int)",
+   "Long Sight (kit)",
+   "Waste-Born Patience (kit)"
+  ],
+  "weapons": [
+   {
+    "name": "Longbow",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "1d8+3",
+    "range": "100ft (up to 200ft with Disadvantage)",
+    "notes": "Piercing. Running Shot: Advantage on your first bow attack of the turn if you moved 10ft first or the target is over 60ft away. No Disadvantage for shooting into melee (Steady Aim). Disadvantage if an enemy is within 5ft of you. Fire Arrow: +1d6 fire on a hit; can set flammable things alight; you carry 3. Slots: 1."
+   },
+   {
+    "name": "Short Sword",
+    "qty": 1,
+    "magic": 0,
+    "attack": "+3",
+    "damage": "1d6+3",
+    "range": "Melee (5ft)",
+    "notes": "Piercing. Finesse, Light. Slots: 1."
+   }
+  ],
+  "armour": [
+   {
+    "name": "Leather Armour",
+    "magic": 0,
+    "category": "light",
+    "acBonus": 2,
+    "slots": 1,
+    "notes": "Flexible, Insulated: cold Resistance"
+   }
+  ],
+  "gear": [
+   {
+    "name": "Arrows (36 plain, 4 converted to special arrows: 3 Fire, 1 Rope)",
+    "qty": 40,
+    "slots": 2
+   },
+   {
+    "name": "Backpack",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Tinderbox",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Hooded lantern (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Chalk, 12 sticks (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   },
+   {
+    "name": "Lamp oil, 2 one-pint flasks (Keepers' kit)",
+    "qty": 1,
+    "slots": 2
+   },
+   {
+    "name": "Iron spikes, 5 (Keepers' kit)",
+    "qty": 1,
+    "slots": 1
+   }
+  ],
+  "coins": {
+   "pp": 0,
+   "gp": 2,
+   "sp": 5,
+   "cp": 0
+  },
+  "spells": null,
+  "personality": "A lean, sunburnt ex-caravan outrider who can put an arrow through a goblin's ear at a hundred paces and will bet you he can. Dry, patient and fond of a wager; talks to his bow more than to people and is right about the weather more often than is fair. A goblin raid took the caravan he was guarding; he joined the Keepers for the chance to shoot back.",
+  "inAFight": "Keep your distance: shoot targets over 60ft away (or move 10ft first) for Advantage, light a Fire Arrow when it matters, and never stand next to a goblin.",
+  "abilitiesText": "**Running Shot.** If you moved at least 10ft this turn before attacking with a bow, you have Advantage on your first bow attack that turn. Standing still gives nothing (but see Long Sight).\n\n**Arrow Repertoire: Fire and Rope.** Fire Arrow: +1d6 fire on a hit, can ignite flammable material. Rope Arrow: trails a thin line up to 60ft and anchors on a solid hit; it can be climbed. You can craft 4 special arrows a day (Dex +3 + level 1) if you have materials, and carry no more than 4. You start with 3 Fire and 1 Rope.\n\n**Bent Path.** Once per encounter, one shot ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2. Full Cover still blocks it.\n\n**Fletcher's Craft (Int).** Repair or craft bows, strings and arrows from available materials, and identify odd or trapped arrows.\n\n**Long Sight (kit).** Running Shot's trigger is also met when the target is more than 60ft away, even if you have not moved.\n\n**Waste-Born Patience (kit).** Advantage on Survival checks to track a wounded target you have shot.\n\n**Human.** Medium size, speed 30ft, no darkvision.\n\n**Knack: Spotting.** Advantage on Wisdom checks to notice things (chosen skill; not an NWP slot).\n\n**Extra General Feat.** Took Swift Reflexes at 1st level (see Feats).\n\n**Weapon and armour training.** Two martial weapons of choice (longsword and spear, not carried); light and medium armour.\n\n**Steady Aim (Specialist, Archer 1st-level feat).** No Disadvantage on ranged attacks against a target engaged in melee with an ally.\n\n**Swift Reflexes (General, Human bonus feat).** +1 Dexterity, moved to Strength by the starting cap of 18 (included). Advantage on Initiative rolls.\n\n**Notes.** Speed: 30ft · Initiative: +3 (roll with Advantage) · HP: d8 max (8) + Con mod (+1) = 9. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.",
+  "unsure": [
+   "The sheet's separate \"Longbow, Fire Arrow\" attack line (+3, 1d8+3 piercing +1d6 fire, 100ft) is folded into the Longbow notes rather than listed as a second weapon"
+  ]
+ }
+]

@@ -1,0 +1,31 @@
+{{!-- One piece of gear; a container lists what's inside it underneath. --}}
+<li data-item-id="{{id}}" draggable="true" class="arn-gear-row {{#if holds}}arn-container{{/if}} {{#if dim}}dim{{/if}}" {{#if holds}}data-container-id="{{id}}"{{/if}}>
+  <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="{{useAction}}" data-tooltip="{{useTip}}">{{name}}</a>
+    {{#if unidentified}}<span class="arn-chip warn" data-tooltip="Players see a plain name and description">Unidentified</span>{{/if}}
+    {{#if charges}}<span class="arn-chip">{{charges}} charges</span>{{/if}}
+    {{#if ammoLabel}}<span class="arn-chip">{{ammoLabel}}</span>{{/if}}
+    {{#if system.toggle}}{{#if system.active}}<span class="arn-chip lit"><i class="fa-solid fa-fire"></i> {{#if system.modeLabel}}{{system.modeLabel}}{{else}}On{{/if}}</span>{{/if}}{{/if}}
+    {{#if lit}}<span class="arn-chip lit" data-tooltip="{{litTip}}"><i class="fa-solid fa-fire"></i> Lit</span>{{/if}}
+    {{#if holds}}<span class="arn-chip {{#if overCap}}bad{{/if}}" data-tooltip="Drag gear onto this row to put it inside{{#if weightless}}; what's inside adds nothing to your slots{{/if}}">{{contents}}{{#if capacity}} / {{capacity}}{{/if}} slots inside{{#if weightless}} · weightless{{/if}}</span>{{/if}}
+  </span>
+  <span>× {{system.quantity}}</span>
+  <span class="arn-muted">{{system.price}}</span>
+  <span>{{#if freeSlots}}<span class="arn-muted" data-tooltip="Inside a weightless container">0</span>{{else}}{{system.totalSlots}}{{/if}}</span>
+  <span class="arn-controls">
+    {{#if @root.editable}}
+    {{#if usable}}<a class="arn-btn tiny" data-action="itemUse" data-tooltip="{{useTip}}">{{useLabel}}</a>{{/if}}
+    {{#if recharge}}<a data-action="recharge" data-tooltip="Set charges or roll the recharge"><i class="fa-solid fa-battery-half"></i></a>{{/if}}
+    {{#if hasLight}}<a data-action="toggleLight" class="{{#if lit}}on{{/if}}" data-tooltip="{{#if lit}}Put it out{{else}}Light it{{/if}}"><i class="fa-solid fa-fire"></i></a>{{/if}}
+    {{#if inside}}<a data-action="takeOut" data-tooltip="Take it out of {{insideName}}"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>{{/if}}
+    {{#if @root.isCharacter}}<a data-action="giveItem" data-tooltip="Give it to another party member"><i class="fa-solid fa-hand-holding"></i></a>{{/if}}
+    {{#if equip}}<a data-action="itemEquip" class="{{#if system.equipped}}on{{/if}}" data-tooltip="{{#if system.equipped}}Equipped{{else}}Not equipped{{/if}}"><i class="fa-solid fa-shield-halved"></i></a>{{/if}}
+    {{/if}}
+    {{#if @root.isGM}}<a data-action="toggleIdentified" class="{{#if unidentified}}on{{/if}}" data-tooltip="{{#if unidentified}}Unidentified: click to reveal it to the players{{else}}Identified: click to hide what it is from the players{{/if}}"><i class="fa-solid fa-{{#if unidentified}}eye-slash{{else}}eye{{/if}}"></i></a>{{/if}}
+    {{#if system.source.page}}<a data-action="openPage" data-tooltip="Open handbook page {{system.source.page}}"><i class="fa-solid fa-book-open"></i></a>{{/if}}
+    {{#if @root.editable}}
+    <a data-action="itemEdit" data-tooltip="Edit"><i class="fa-solid fa-pen"></i></a>
+    <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>
+    {{/if}}
+  </span>
+  {{#if children.length}}<ul class="arn-list table arn-contents">{{#each children}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{/each}}</ul>{{/if}}
+</li>

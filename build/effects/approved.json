@@ -1,0 +1,665 @@
+{
+ "spells/hKa4zuGE3Wqlu9jX": {
+  "name": "Shield",
+  "from": "Spell L1",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Shield",
+    "target": "self",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": 2
+     },
+     {
+      "key": "ac",
+      "value": 2,
+      "when": "vs ranged attacks (+4 total)"
+     },
+     {
+      "key": "immune",
+      "value": "spell:Magic Missile",
+      "label": "Shield"
+     }
+    ]
+   }
+  ],
+  "summary": "+2 AC (+4 against ranged attacks, as a reminder) and immune to Magic Missile, for 1 round per level. Approved by Kieran in chat, 19 Oct 2026.",
+  "manual": "The +4 vs ranged is a reminder only.",
+  "confidence": "medium"
+ },
+ "ancestries/8fDt6G3CKfEi2FFE": {
+  "name": "Aasimar",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "resist",
+    "value": "necrotic 5"
+   },
+   {
+    "key": "resist",
+    "value": "radiant 5"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs frightened"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen at creation (Wis or Cha)"
+   }
+  ],
+  "summary": "Resistance 5 to necrotic and radiant; Advantage reminders vs frightened and on the chosen skill.",
+  "manual": "Light and Lay on Hands.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/QHcNshKXNlrHuPdc": {
+  "name": "Automaton",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "immune",
+    "value": "poison"
+   },
+   {
+    "key": "immune",
+    "value": "condition:poisoned"
+   },
+   {
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "to force, break or overpower"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Craft or Engineering skill chosen at creation"
+   }
+  ],
+  "summary": "Immune to poison damage and the poisoned condition; Advantage reminders on forcing and the chosen skill.",
+  "manual": "Disease immunity; subtype benefits (1st Gen +1 AC and save Advantage, 2nd Gen extra skill and Modular Repair) by hand.",
+  "confidence": "medium",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/jQFIAd0PYqAtCkwN": {
+  "name": "Bugbear",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Stealth"
+   },
+   {
+    "key": "damage",
+    "value": "+@level",
+    "when": "once per encounter, vs a creature that has not acted yet"
+   }
+  ],
+  "summary": "Advantage reminder on Stealth; +level damage reminder vs creatures yet to act.",
+  "manual": "+5ft reach; Luck for a second trigger.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/O4k3ieeKKu0n1cSg": {
+  "name": "Changeling",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to imitate a voice or mannerism you have observed"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs charmed"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Insight to detect deception aimed at you"
+   }
+  ],
+  "summary": "Advantage reminders: imitation, saves vs charmed, Insight vs deception.",
+  "manual": "Shapechanging and Perfect Mask.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/agzKBkfci3I3olPw": {
+  "name": "Deep Gnomes (Svirfneblin)",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Stealth in stone or rocky terrain"
+   },
+   {
+    "key": "adv.save.will",
+    "value": 1,
+    "when": "vs magic"
+   }
+  ],
+  "summary": "Advantage reminders: Stealth in rocky terrain, Will saves vs magic.",
+  "manual": "Innate spells.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/iPA3up5l6ictxIjK": {
+  "name": "Dragonborn",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check.cha",
+    "value": 1,
+    "when": "towards dragon-kin and true dragons"
+   }
+  ],
+  "summary": "Advantage reminder on Cha checks with dragons.",
+  "manual": "Resistance 5 to the chosen type: add a resist rule in the \"fire 5\" form once chosen; breath weapon.",
+  "confidence": "medium",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/h0F3GCS8PATdW4UR": {
+  "name": "Duergar",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": -1,
+    "when": "in direct sunlight"
+   },
+   {
+    "key": "adv.skill",
+    "value": -1,
+    "when": "sight-based Perception in direct sunlight"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs illusion, charm and paralysis"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "stonework, underground construction or unusual stonework"
+   }
+  ],
+  "summary": "Sunlight Disadvantage reminders; Advantage reminders on saves vs illusion/charm/paralysis and stonework.",
+  "manual": "Innate Invisibility; speed not reduced by armour.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/ChXzUEV5uEj1Q3th": {
+  "name": "Dwarf",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "resist",
+    "value": "poison 5"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs poison"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "stonework, underground construction or unusual stonework"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Craft skill chosen at creation"
+   }
+  ],
+  "summary": "Resistance 5 to poison; Advantage reminders on saves vs poison, stonework and the chosen Craft.",
+  "manual": "Clan Weapon; Stonebraced; subtype benefits.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/0V3PZxgPYRhoZKrK": {
+  "name": "Elf",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep."
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs charm"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Perception (sight or hearing)"
+   },
+   {
+    "key": "adv.concentration",
+    "value": 1
+   }
+  ],
+  "summary": "Advantage on concentration saves; reminders: sleep immunity, saves vs charm, Perception.",
+  "manual": "Subtype benefits (Wood Elf +5ft speed, terrain Advantages) by hand.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/8qbjLEguWipsGDW8": {
+  "name": "Firbolg",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save.fort",
+    "value": 1,
+    "when": "vs disease and harsh weather"
+   },
+   {
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "to push, drag or lift"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Survival to live off the land or avoid detection while travelling"
+   }
+  ],
+  "summary": "Advantage reminders: Fortitude vs disease/weather, Str to push/lift, Survival.",
+  "manual": "Invisibility trick; beast speech.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/6EcXJH1hl7Chebhv": {
+  "name": "Gnome",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save.will",
+    "value": 1,
+    "when": "vs magic"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen for Chosen Expertise"
+   },
+   {
+    "key": "adv.check.int",
+    "value": 1,
+    "when": "to solve a puzzle, riddle or mechanism under time pressure"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to hide or squeeze through tight spaces"
+   }
+  ],
+  "summary": "Advantage reminders: Will vs magic, chosen skill, puzzles, squeezing.",
+  "manual": "Clever Fallback; subtype benefits.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/wrhhMod3pcQQeeQA": {
+  "name": "Goblin",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": 1,
+    "when": "vs a creature with two or more of your allies adjacent"
+   },
+   {
+    "key": "damage",
+    "value": "+@level",
+    "when": "once per long rest, damaging a larger creature"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen at creation"
+   }
+  ],
+  "summary": "Mob Tactics Advantage reminder; +level damage reminder vs larger creatures; chosen skill.",
+  "manual": "Luck for extra use.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/vzNzVYJRsNgCtMGN": {
+  "name": "Goliath",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "resist",
+    "value": "cold 5"
+   },
+   {
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "to push, drag, lift or break vs a smaller creature or object"
+   },
+   {
+    "key": "adv.save.fort",
+    "value": 1,
+    "when": "vs exhaustion, forced marching and thin mountain air"
+   }
+  ],
+  "summary": "Resistance 5 to cold; Advantage reminders on Str feats and Fortitude vs exhaustion.",
+  "manual": "Damage-reduction reaction; subtype benefits.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/1u8tHJf03sojPQAl": {
+  "name": "Half-Elf",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep."
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs charm"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen at creation"
+   },
+   {
+    "key": "adv.check.cha",
+    "value": 1,
+    "when": "social checks with humans and elves"
+   }
+  ],
+  "summary": "Reminders: sleep immunity, saves vs charm, chosen skill, social checks.",
+  "manual": "Dual Heritage reroll.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/5fIRaLesUzrS5qrF": {
+  "name": "Half-Orc",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen at creation"
+   },
+   {
+    "key": "note.damage",
+    "value": "Brutal Strikes: on a critical hit add one extra weapon damage die."
+   }
+  ],
+  "summary": "Chosen-skill Advantage reminder; crit damage reminder.",
+  "manual": "Relentless Endurance; Onslaught; extra crit die is not rolled automatically.",
+  "confidence": "medium",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/gTkzrpfa1UMSNtWe": {
+  "name": "Halfling",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "farming, foraging or identifying plants"
+   }
+  ],
+  "summary": "Advantage reminder on farming and foraging checks.",
+  "manual": "Lucky rerolls; Brave Heart; Nimble.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/hmLro81fkNsv3NaX": {
+  "name": "Hobgoblin",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to resist being frightened"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs frightened"
+   },
+   {
+    "key": "adv.check.int",
+    "value": 1,
+    "when": "strategy, formation tactics or reading a battlefield"
+   }
+  ],
+  "summary": "Advantage reminders vs frightened and on tactics checks.",
+  "manual": "Fortune's Favour.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/qtFpPzacRGlVohYi": {
+  "name": "Human",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "skill chosen at creation"
+   }
+  ],
+  "summary": "Chosen-skill Advantage reminder.",
+  "manual": "+1/+1 attributes of choice; bonus feat.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/yUzVuriqqBmeInCn": {
+  "name": "Kobold",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": 1,
+    "when": "melee attack, vs a creature an ally has damaged since your last turn"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to hide, squeeze or use your small size tactically"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "building, identifying, disarming or avoiding mechanical traps"
+   },
+   {
+    "key": "adv.attack",
+    "value": -1,
+    "when": "in direct sunlight"
+   },
+   {
+    "key": "adv.skill",
+    "value": -1,
+    "when": "sight-based Perception in direct sunlight"
+   },
+   {
+    "key": "adv.check.cha",
+    "value": 1,
+    "when": "towards true dragons and dragon-kin; identifying dragon lineage"
+   }
+  ],
+  "summary": "Pack Loyalty, Trapwise, small-size and dragon Advantage reminders; sunlight Disadvantage reminders.",
+  "manual": "Subtype benefits by hand.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/zNisi9VgUGbBth7H": {
+  "name": "Lizardfolk",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ac",
+    "value": 1
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Survival to track or forage in swamp, marsh or jungle"
+   },
+   {
+    "key": "adv.check.cha",
+    "value": 1,
+    "when": "towards dragon-kin and true dragons"
+   }
+  ],
+  "summary": "+1 AC (natural armour); Survival and dragon Advantage reminders.",
+  "manual": "Bite attack; Swamp's Grip restrain; subtype benefits.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/PtJo8m3MpGc3d8vQ": {
+  "name": "Mindryath",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs charmed"
+   },
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep."
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "nature, plant growth, or communicating with fey or forest creatures"
+   }
+  ],
+  "summary": "Advantage reminders vs charmed and on nature/fey checks; sleep immunity reminder.",
+  "manual": "Roving Grace; cantrip.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/EgSikDGm7KbLndot": {
+  "name": "Minotaur",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "to push, drag or lift"
+   },
+   {
+    "key": "damage",
+    "value": "+1d6",
+    "when": "Horns hit after moving 10ft+ in a straight line"
+   }
+  ],
+  "summary": "Powerful Build reminder; Goring Charge +1d6 reminder.",
+  "manual": "Horns attack; subtype benefits.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/mHBMnpKV78NL7K2s": {
+  "name": "Nu'Dravi (Drow)",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep."
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs charm"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Perception (sight or hearing) in low light or darkness"
+   },
+   {
+    "key": "adv.attack",
+    "value": -1,
+    "when": "in direct sunlight (Lolth: always; no or neutral faith: first hour each day; Eilistraee: never)"
+   }
+  ],
+  "summary": "Reminders: sleep immunity, saves vs charm, Perception in darkness, sunlight Disadvantage by faith.",
+  "manual": "Sight-based Perception penalty in sunlight; innate spells.",
+  "confidence": "medium",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/JJjvnYFZ270EHrCL": {
+  "name": "Orc",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Intimidation"
+   },
+   {
+    "key": "note.damage",
+    "value": "Orc: wielding two-handed, reroll 1s on the damage dice once."
+   }
+  ],
+  "summary": "Intimidation Advantage reminder; two-handed reroll reminder.",
+  "manual": "Relentless Endurance; 1/long rest Advantage.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ },
+ "ancestries/Imh0DxEjjV6mb2qY": {
+  "name": "Ysoki",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Perception involving smell or hearing"
+   },
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "navigating tunnels, sewers and confined underground spaces"
+   }
+  ],
+  "summary": "Advantage reminders on Perception by smell/hearing and tunnel navigation.",
+  "manual": "Bite; Nimble Escape; Cheek Pouch.",
+  "confidence": "high",
+  "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
+ }
+}
