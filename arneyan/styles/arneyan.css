@@ -61,6 +61,10 @@
 .arneyan .arn-chip.strong { background: var(--arn-accent); border-color: var(--arn-accent); color: var(--arn-accent-ink); }
 .arneyan .arn-chip.gold { background: var(--arn-gold); border-color: var(--arn-gold); color: #fff; }
 .arneyan .arn-chip.bad { background: var(--arn-red-soft); color: var(--arn-red); border-color: var(--arn-red); }
+/* A light with 10 minutes or less to burn; the item sheet's time-left box. */
+.arneyan .arn-chip.lit.low { background: var(--arn-red-soft); color: var(--arn-red); border-color: var(--arn-red); }
+.arneyan .arn-light-timer input.short { width: 4.5em; }
+.arneyan .arn-light-reset { margin-left: 6px; cursor: pointer; }
 .arneyan .arn-flag { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; padding: 0 6px; border-radius: 3px; }
 .arneyan .arn-flag.bad { background: var(--arn-red-soft); color: var(--arn-red); }
 .arneyan .arn-btn, .arn-card button {

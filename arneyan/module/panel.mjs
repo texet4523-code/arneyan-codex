@@ -6,6 +6,7 @@
 import { ARNEYAN } from "./config.mjs";
 import { appliedEffects } from "./effects.mjs";
 import { adjustCondition, badgeOf, counterKind, removeCondition } from "./counters.mjs";
+import { lightInfo } from "./gear.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -48,7 +49,7 @@ function entries(actor) {
   for (const i of actor.items) {
     if (i.type === "equipment" && i.system.light?.lit) {
       out.push({ kind: "light", id: i.id, img: i.img, name: `${i.name} (lit)`, badge: "", cond: false,
-        tip: `<strong>${esc(i.name)}</strong><br>Lit${i.system.light.hours ? `, burns ${i.system.light.hours} h` : ""}<br><small>Right-click to put it out</small>` });
+        tip: `<strong>${esc(i.name)}</strong><br>Lit${i.system.light.hours ? `, ${esc(lightInfo(i.system.light).label)}` : ""}<br><small>Right-click to put it out</small>` });
     }
     if (!i.system.toggle || !i.system.active) continue;
     out.push({ kind: "toggle", id: i.id, img: i.img, name: i.name, badge: "", cond: false,

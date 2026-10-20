@@ -5,6 +5,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { statusesOf } from "./effects.mjs";
+import { putOutData } from "./gear.mjs";
 import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
@@ -54,7 +55,7 @@ export async function moveDroppedItem(sheet, item, created) {
 export async function settleMoved(item, made, target) {
   if (!made) return;
   // A lit torch handed over goes out (the new owner lights it).
-  if (made.system?.light?.lit) await made.update({ "system.light.lit": false, "system.light.litAt": 0 }, { arneyanForce: true });
+  if (made.system?.light?.lit) await made.update(putOutData(made.system.light), { arneyanForce: true });
   if (made.system?.inside && !target.items.has(made.system.inside)) await made.update({ "system.inside": "" }, { arneyanForce: true });
   if (item.system?.container?.holds) await moveContents(item.parent, item.id, target, made.id);
 }

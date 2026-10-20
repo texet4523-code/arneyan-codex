@@ -681,3 +681,5 @@ await C.adjustCondition(b, "prone", 1); await C.adjustCondition(b, "prone", 1);
 assert.equal(C.conditionValue(b, "prone"), 0, "Prone has no number");
 }
 console.log("All checks passed.");
+// Light sources: burn timers (test/lights.mjs runs on its own too).
+await import("./lights.mjs");

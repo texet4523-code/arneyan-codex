@@ -141,8 +141,9 @@
       <div class="wide arn-block-label">Light</div>
       <label>Bright light (ft) <input type="number" name="system.light.bright" value="{{source.light.bright}}" min="0"></label>
       <label data-tooltip="The whole radius, bright included (a torch: 40)">Dim light to (ft) <input type="number" name="system.light.dim" value="{{source.light.dim}}" min="0"></label>
-      <label data-tooltip="Game time; 0 burns until put out">Burns for (hours) <input type="number" step="0.5" name="system.light.hours" value="{{source.light.hours}}" min="0"></label>
+      <label data-tooltip="Its full burn time, in game or real time (the Light sources burn in setting); 0 burns until put out">Burns for (hours) <input type="number" step="0.5" name="system.light.hours" value="{{source.light.hours}}" min="0"></label>
       <label data-tooltip="360 shines all round; a bullseye lantern's beam is 60">Beam angle (°) <input type="number" name="system.light.angle" value="{{source.light.angle}}" min="1" max="360"></label>
+      {{#if lightTimer}}<label class="arn-light-timer" data-tooltip="{{lightTimer.tip}}">Time left {{#if isGM}}{{#if editable}}<span><input class="short arn-light-left" type="number" step="0.25" min="0" value="{{lightTimer.hours}}"> h <a class="arn-light-reset" data-tooltip="Back to the full burn time (fresh fuel)"><i class="fa-solid fa-rotate-left"></i></a></span>{{else}}<span>{{lightTimer.label}}</span>{{/if}}{{else}}<span>{{lightTimer.label}}{{#if lightTimer.lit}} (lit){{/if}}</span>{{/if}}</label>{{/if}}
       <div class="wide arn-block-label">Container</div>
       <label class="check"><input type="checkbox" name="system.container.holds" {{checked source.container.holds}}> Holds other gear</label>
       <label>Holds up to (slots) <input type="number" name="system.container.capacity" value="{{source.container.capacity}}" min="0" placeholder="0: no limit"></label>
