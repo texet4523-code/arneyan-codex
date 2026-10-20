@@ -1,0 +1,42 @@
+{
+ "_id": "vcBhJLUgua28MVqR",
+ "_key": "!items!vcBhJLUgua28MVqR",
+ "name": "Running Shot",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>If you moved at least 10ft this turn before attacking with a bow, gain advantage on your first bow attack roll that turn. The opposite trigger to stillness-based marksmanship — standing still grants nothing here.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Archer",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "bow attack, after moving at least 10ft",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

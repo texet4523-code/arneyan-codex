@@ -1,0 +1,45 @@
+{
+ "_id": "thU8s3OOLqLzyreE",
+ "_key": "!items!thU8s3OOLqLzyreE",
+ "name": "Deity: Chauntea (The Earth's Bloom) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sickle</p><p><strong>Granted power:</strong> Advantage on Nature checks. Once/day: cause plants within 20ft to entangle all enemies (Fortitude save or restrained 1 min).</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Chauntea)",
+    "level": 1,
+    "description": "<p>Advantage on Nature checks. Once/day: cause plants within 20ft to entangle all enemies (Fortitude save or restrained 1 min).</p><p><strong>Favoured weapon:</strong> Sickle</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Nature",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

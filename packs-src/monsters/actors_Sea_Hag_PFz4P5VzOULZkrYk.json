@@ -1,0 +1,283 @@
+{
+ "_id": "PFz4P5VzOULZkrYk",
+ "_key": "!actors!PFz4P5VzOULZkrYk",
+ "name": "Sea Hag",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, swim 40ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fey",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fey</em></p><p><strong>GM:</strong> A rotten sea witch who fights from the surf. She prefers lures and tricks to open combat.</p>",
+   "treasure": "<p>Treasure type <strong>C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GrODerIwW4YQipmb",
+   "_key": "!actors.items!PFz4P5VzOULZkrYk.GrODerIwW4YQipmb",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Evil Eye",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>Once per round, as an action, a creature within 30ft makes a @Check[will|dc:14]{Will save DC 14} or is Shaken for 1 round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LT7BrTsgTNGMpjr3",
+   "_key": "!actors.items!PFz4P5VzOULZkrYk.LT7BrTsgTNGMpjr3",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Death Glare",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, a Shaken creature within 30ft makes a @Check[will|dc:14]{Will save DC 14}. If it has under 10 HP, it drops to 0 HP on a failure.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3Z2sJvdmDyjpGLuD",
+   "_key": "!actors.items!PFz4P5VzOULZkrYk.3Z2sJvdmDyjpGLuD",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Horrific Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>A creature that sees her true form makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[frightened]{Frightened} for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tcuFmIMzMEXkkIF7",
+   "_key": "!actors.items!PFz4P5VzOULZkrYk.tcuFmIMzMEXkkIF7",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Coven",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>Three hags within 30ft of each other share spellcasting.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FO525FszpyCsvlJK",
+   "_key": "!actors.items!PFz4P5VzOULZkrYk.FO525FszpyCsvlJK",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Sea Hag",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-witch-face.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

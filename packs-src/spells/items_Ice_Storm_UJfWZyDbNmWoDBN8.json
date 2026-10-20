@@ -1,0 +1,54 @@
+{
+ "_id": "UJfWZyDbNmWoDBN8",
+ "_key": "!items!UJfWZyDbNmWoDBN8",
+ "name": "Ice Storm",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 300ft; 20ft-radius, 40ft-high cylinder. Hail deals 5d6 damage (half bludgeoning, half cold); Reflex halves. The area becomes difficult terrain for 1 round and is covered in ice.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 300ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "5d6",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 214,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

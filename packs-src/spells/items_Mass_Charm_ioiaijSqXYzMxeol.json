@@ -1,0 +1,64 @@
+{
+ "_id": "ioiaijSqXYzMxeol",
+ "_key": "!items!ioiaijSqXYzMxeol",
+ "name": "Mass Charm",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 120ft; 30ft-radius. Creatures whose Levels total up to twice your level (lowest Level first) in the area must make a Will save or be Charmed for 1 hour per level. A Charmed creature regards you as a trusted friend and will not attack you; an order that harms it or its allies gives it a new save. Not undead or constructs. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Witch"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Charmed",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [
+     "charmed"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 358,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

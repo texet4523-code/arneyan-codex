@@ -1,0 +1,63 @@
+{
+ "_id": "xMVHhH53Y6L66Q1t",
+ "_key": "!items!xMVHhH53Y6L66Q1t",
+ "name": "Aura of Devotion",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Allies within your Aura of Courage range have Advantage on saves against charm.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 18,
+  "className": "Paladin",
+  "auras": [
+   {
+    "key": "devotion",
+    "name": "Aura of Devotion",
+    "minLevel": 18,
+    "radius": [
+     [
+      1,
+      10
+     ],
+     [
+      15,
+      30
+     ],
+     [
+      20,
+      50
+     ]
+    ],
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": "Aura of Devotion"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

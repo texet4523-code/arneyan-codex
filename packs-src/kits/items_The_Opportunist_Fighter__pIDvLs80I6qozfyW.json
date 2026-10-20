@@ -1,0 +1,72 @@
+{
+ "_id": "pIDvLs80I6qozfyW",
+ "_key": "!items!pIDvLs80I6qozfyW",
+ "name": "The Opportunist (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A cunning, smart fighter who wins by outthinking rather than outmuscling.</p><ul><li><strong>Exploit Opening: </strong>Advantage vs a creature currently distracted, deceived, or at disadvantage due to something set up this combat.</li><li><strong>Read the Room: </strong>Advantage on Insight when reading opponents. Advantage when casing a location or situation before acting.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Exploit Opening",
+    "level": 1,
+    "description": "<p>Advantage vs a creature currently distracted, deceived, or at disadvantage due to something set up this combat.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "vs a creature distracted, deceived or at Disadvantage from something set up this combat",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Read the Room",
+    "level": 1,
+    "description": "<p>Advantage on Insight when reading opponents. Advantage when casing a location or situation before acting.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Insight when reading opponents",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "casing a location or situation before acting",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

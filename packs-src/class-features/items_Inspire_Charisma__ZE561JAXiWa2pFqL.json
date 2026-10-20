@@ -1,0 +1,75 @@
+{
+ "_id": "ZE561JAXiWa2pFqL",
+ "_key": "!items!ZE561JAXiWa2pFqL",
+ "name": "Inspire (Charisma)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per day, inspire nearby allies — all friendly creatures within the knight's presence have Advantage on the first attack roll each round. Lasts rounds equal to knight's level.</li><li>Affects up to 12 creatures at 1st level, 25 at 3rd, 50 at 5th, 250 at 7th, 1,000 at 9th, 5,000 at 12th, 20,000 at 16th</li><li>Cannot combine with Embolden or Demoralise</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Inspire",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "All friendly creatures in your presence have Advantage on their first attack roll each round for rounds equal to your Knight level.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Inspired",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

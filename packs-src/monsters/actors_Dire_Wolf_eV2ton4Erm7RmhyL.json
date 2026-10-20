@@ -1,0 +1,252 @@
+{
+ "_id": "eV2ton4Erm7RmhyL",
+ "_key": "!actors!eV2ton4Erm7RmhyL",
+ "name": "Dire Wolf",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "50ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> Horse-sized predators of the cold north. Warlords sometimes ride them.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AQxe638DmOCdjx53",
+   "_key": "!actors.items!eV2ton4Erm7RmhyL.AQxe638DmOCdjx53",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Keen Hearing and Smell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>Advantage on Perception checks that rely on hearing or smell.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Hb4ozjJFqr7VAbjI",
+   "_key": "!actors.items!eV2ton4Erm7RmhyL.Hb4ozjJFqr7VAbjI",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pack Tactics",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>Advantage on attack rolls against a creature that has another dire wolf within 5ft of it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "an ally is within 5ft of the target"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QPYNQnDkQx0qUlg2",
+   "_key": "!actors.items!eV2ton4Erm7RmhyL.QPYNQnDkQx0qUlg2",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pull Down",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>A creature hit by the bite must make a @Check[fort|dc:14]{Fortitude save DC 14} or be knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kZK1YvdObrgmNMTq",
+   "_key": "!actors.items!eV2ton4Erm7RmhyL.kZK1YvdObrgmNMTq",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Dire Wolf",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-wolf-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

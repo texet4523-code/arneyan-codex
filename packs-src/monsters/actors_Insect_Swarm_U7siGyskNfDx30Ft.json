@@ -1,0 +1,209 @@
+{
+ "_id": "U7siGyskNfDx30Ft",
+ "_key": "!actors!U7siGyskNfDx30Ft",
+ "name": "Insect Swarm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "20ft, climb 20ft, fly 30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (swarm)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "weapons 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast (swarm)</em></p><p><strong>GM:</strong> The catch-all for biting flies, midges and ants. For a particular kind, use the beetle, centipede, spider or wasp swarm instead. Smoke, torches and fire drive them away, and a swarm rarely pursues far from its nest.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bites",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5BiZlusInvLANUYg",
+   "_key": "!actors.items!U7siGyskNfDx30Ft.5BiZlusInvLANUYg",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swarm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>Resistance 5 to weapon damage. Can occupy another creature's space and can pass through any gap an insect can. Cannot regain HP or gain temporary HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Pu8YanHQsRNdV245",
+   "_key": "!actors.items!U7siGyskNfDx30Ft.Pu8YanHQsRNdV245",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blinding Cloud",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn in its space makes a @Check[fort|dc:12]{Fortitude save DC 12} or has Disadvantage on attack rolls until the start of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "t9MHezQfmiJE9sf8",
+   "_key": "!actors.items!U7siGyskNfDx30Ft.t9MHezQfmiJE9sf8",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Insect Swarm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

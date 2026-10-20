@@ -1,0 +1,42 @@
+{
+ "_id": "VqRSC5j8eG2wcPpU",
+ "_key": "!items!VqRSC5j8eG2wcPpU",
+ "name": "Sharp Senses",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>+1 bonus to all saves vs illusion spells and effects. The innate ability to distinguish the real from the unreal sharpens over time.</li><li>Improves to +2 at 4th, +3 at 7th, +4 at 10th, +5 at 13th, +6 at 16th</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist",
+  "rules": [
+   {
+    "key": "save",
+    "value": "min(6,1+floor((@cl-1)/3))",
+    "when": "vs illusion spells and effects",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

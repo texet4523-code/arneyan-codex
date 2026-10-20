@@ -1,0 +1,657 @@
+{
+ "_id": "7JSmxxIgQLtNK544",
+ "_key": "!actors!7JSmxxIgQLtNK544",
+ "name": "Githzerai Zerth",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-person.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "4d8+4",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "40ft",
+   "attack": 6,
+   "spellDC": 12,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (gith)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (gith)</em></p><p><strong>GM:</strong> A master of the inner way who walks between worlds. It is hunting a mind flayer, and might let you help.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Unarmed strike ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [
+     {
+      "formula": "1d8",
+      "type": "psychic",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RibjZqnEffCGLJit",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.RibjZqnEffCGLJit",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Psychic Defence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>Adds its Wisdom modifier (+3) to its AC (included).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vC0pfTeL0tHMUEEj",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.vC0pfTeL0tHMUEEj",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>1/day each: @UUID[Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h]{feather fall}, @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.aei0vspl2yEekiUI]{see invisibility}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.Fo0Yg6UPKXSfVbOc]{phantasmal killer} (@Check[will|dc:12]{Will DC 12}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iOKXP5Zt4knLg6SC",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.iOKXP5Zt4knLg6SC",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Feather Fall (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft; up to 1 creature or object per level (each Medium or smaller). Cast as you fall; targets drop 60ft per round and take no fall damage. Ends on landing or after 1 round per level.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h"
+   },
+   "_id": "AYz0VoaLoSmGaRKR",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.AYz0VoaLoSmGaRKR",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Jump (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature; 1 minute per level. The target can jump 30ft horizontally or 15ft vertically without a check, with or without a running start. Does not lessen fall damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC"
+   },
+   "_id": "YyyjYck5fRxXNjhR",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.YyyjYck5fRxXNjhR",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "See Invisibility (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 10 minutes per level. You see Invisible creatures and objects, and ethereal beings, as faint outlines. Does not reveal illusions or creatures in total darkness; Invisible creatures are still hard to see and you cannot read their gear.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Bard, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Bard",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "See Invisibility",
+      "target": "self",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "sense",
+        "value": "See Invisibility",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.aei0vspl2yEekiUI"
+   },
+   "_id": "m9gdQbrXYDisdZub",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.m9gdQbrXYDisdZub",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shield (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Shield",
+      "target": "self",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs ranged attacks (+4 total)",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "spell:Magic Missile",
+        "when": "",
+        "label": "Shield"
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
+   },
+   "_id": "g3vVTBMLnleak4MG",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.g3vVTBMLnleak4MG",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Phantasmal Killer (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature sees its worst fear. Will negates. On a failed save it must make a Fortitude save: failure reduces it to 0 HP from fright (a player character is unconscious but stable; a monster dies, as at 0 HP); success deals 3d6 psychic damage. Mindless creatures and creatures immune to fear are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Illusionist",
+     "Necromancer"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (on a failure it makes a Fortitude save: failure drops it to 0 HP, success takes 3d6 psychic damage)",
+    "damage": "3d6",
+    "damageType": "psychic",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Fo0Yg6UPKXSfVbOc"
+   },
+   "_id": "bqLmHQLJkCHS25wZ",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.bqLmHQLJkCHS25wZ",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "VFVGsOd8NKjMPCZk",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.VFVGsOd8NKjMPCZk",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Astral Discipline",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>Advantage on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sWMqMNOiOxcaxJRh",
+   "_key": "!actors.items!7JSmxxIgQLtNK544.sWMqMNOiOxcaxJRh",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Githzerai Zerth",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-person.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

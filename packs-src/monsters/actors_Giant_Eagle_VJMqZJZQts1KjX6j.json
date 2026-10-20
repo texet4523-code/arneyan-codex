@@ -1,0 +1,284 @@
+{
+ "_id": "VJMqZJZQts1KjX6j",
+ "_key": "!actors!VJMqZJZQts1KjX6j",
+ "name": "Giant Eagle",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "4d10",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "10ft, fly 80ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> Proud and sometimes sentient. A friend to the mountain folk and a terror to everything else.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Beak",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5MPr2UFhRaHqITAO",
+   "_key": "!actors.items!VJMqZJZQts1KjX6j.5MPr2UFhRaHqITAO",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Talons",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JB1GFXRn8KMtxVi3",
+   "_key": "!actors.items!VJMqZJZQts1KjX6j.JB1GFXRn8KMtxVi3",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Keen Sight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Advantage on Perception checks that rely on sight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zAJp3m8xk04atHuu",
+   "_key": "!actors.items!VJMqZJZQts1KjX6j.zAJp3m8xk04atHuu",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Carry",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Can carry a Medium creature in its talons while flying at half speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NsHCkDLTYGxJxNDf",
+   "_key": "!actors.items!VJMqZJZQts1KjX6j.NsHCkDLTYGxJxNDf",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>If it moves 30ft or more straight towards a target before hitting, the talons deal +1d8 damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d8",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2LafyzeKHQ696zQY",
+   "_key": "!actors.items!VJMqZJZQts1KjX6j.2LafyzeKHQ696zQY",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Giant Eagle",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

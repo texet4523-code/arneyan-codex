@@ -1,0 +1,78 @@
+{
+ "_id": "YPVOgl3M1F2dlH7t",
+ "_key": "!items!YPVOgl3M1F2dlH7t",
+ "name": "Deity: Lolth (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p><p><strong>Granted power:</strong> Advantage on Stealth underground. Once/day: webs fill a 20ft radius within 60ft; each creature there makes a Reflex save or is Restrained for 1 minute, repeating the save at the end of each of its turns. Your Smite against a Restrained creature deals +1d6 poison damage.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Lolth)",
+    "level": 1,
+    "description": "<p>Advantage on Stealth underground. Once/day: webs fill a 20ft radius within 60ft; each creature there makes a Reflex save or is Restrained for 1 minute, repeating the save at the end of each of its turns. Your Smite against a Restrained creature deals +1d6 poison damage.</p><p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "activities": [
+     {
+      "name": "Smite on the Restrained (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "poison",
+      "ability": "",
+      "save": "",
+      "text": "Your Smite against a Restrained creature: +1d6 poison.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth underground",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "+1d6",
+      "when": "Smite vs a Restrained creature (poison)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 20,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

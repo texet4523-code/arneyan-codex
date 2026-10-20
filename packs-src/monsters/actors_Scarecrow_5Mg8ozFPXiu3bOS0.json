@@ -1,0 +1,246 @@
+{
+ "_id": "5Mg8ozFPXiu3bOS0",
+ "_key": "!actors!5Mg8ozFPXiu3bOS0",
+ "name": "Scarecrow",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "fire",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium construct</em></p><p><strong>GM:</strong> Stands in a field all through harvest and walks after dark. A lit torch is its only real fear.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5yZrC1ZFw0EYnjVj",
+   "_key": "!actors.items!5Mg8ozFPXiu3bOS0.5yZrC1ZFw0EYnjVj",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Terrifying Glare",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>As an action, one creature within 30ft that can see its eyes makes a @Check[will|dc:12]{Will save DC 12} or is @Condition[paralysed]{Paralysed} with fear until the end of its next turn. A creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ttGqvk3bRekD7WSc",
+   "_key": "!actors.items!5Mg8ozFPXiu3bOS0.ttGqvk3bRekD7WSc",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vulnerable to Fire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xZFABpQGeQjhERIE",
+   "_key": "!actors.items!5Mg8ozFPXiu3bOS0.xZFABpQGeQjhERIE",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>While motionless, indistinguishable from an ordinary scarecrow.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PUDv7eMRrTGypDY8",
+   "_key": "!actors.items!5Mg8ozFPXiu3bOS0.PUDv7eMRrTGypDY8",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Scarecrow",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

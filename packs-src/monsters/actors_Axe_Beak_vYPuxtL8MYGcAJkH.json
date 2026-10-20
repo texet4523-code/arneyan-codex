@@ -1,0 +1,135 @@
+{
+ "_id": "vYPuxtL8MYGcAJkH",
+ "_key": "!actors!vYPuxtL8MYGcAJkH",
+ "name": "Axe Beak",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "3d10",
+  "attributes": {
+   "hp": {
+    "value": 16,
+    "max": 16,
+    "temp": 0
+   },
+   "ac": 11,
+   "speed": "50ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> A flightless bird with a beak like a hatchet, used as a mount and plough-beast in the plains.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Beak",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qL8Sfcw6293sSs6p",
+   "_key": "!actors.items!vYPuxtL8MYGcAJkH.qL8Sfcw6293sSs6p",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Axe Beak",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

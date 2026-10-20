@@ -1,0 +1,66 @@
+{
+ "_id": "pGxznlNS2jkU7pAN",
+ "_key": "!items!pGxznlNS2jkU7pAN",
+ "name": "Mournas Rebel (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>Forged in Mournas's underground resistance and street brawls — a scrapper who fights dirty and fights smart.</p><ul><li><strong>Street Grappler: </strong>Advantage on grapple and overbearing checks.</li><li><strong>Underground Network: </strong>Advantage on checks navigating Mournas's underworld, recognising gang or faction markings, or finding allies in the criminal underground.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Street Grappler",
+    "level": 1,
+    "description": "<p>Advantage on grapple and overbearing checks.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "grapple and overbearing checks",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Underground Network",
+    "level": 1,
+    "description": "<p>Advantage on checks navigating Mournas's underworld, recognising gang or faction markings, or finding allies in the criminal underground.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "navigating Mournas's underworld, recognising gang or faction markings, finding criminal allies",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

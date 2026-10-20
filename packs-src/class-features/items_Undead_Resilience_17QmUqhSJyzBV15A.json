@@ -1,0 +1,59 @@
+{
+ "_id": "17QmUqhSJyzBV15A",
+ "_key": "!items!17QmUqhSJyzBV15A",
+ "name": "Undead Resilience",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li><strong>Undead Resilience: </strong>At the start of each encounter, gain temporary HP equal to the total HD of all undead under your control, up to your Necromancer level.</li><li><strong>Example: </strong>zombie (2 HD) + skeleton (1 HD) + wight (4 HD) = 7 temporary HP</li><li>Temporary HP last until the end of the encounter</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 9,
+  "className": "Necromancer",
+  "activities": [
+   {
+    "name": "Undead Resilience",
+    "kind": "note",
+    "formula": "@cl",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "At the start of each encounter: temporary HP equal to the total HD of all undead you control, up to the number below (your Necromancer level). They last until the encounter ends; add them with the Temp HP button.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

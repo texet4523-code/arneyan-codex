@@ -1,0 +1,74 @@
+{
+ "_id": "fsoVqCbFKdehr9PJ",
+ "_key": "!items!fsoVqCbFKdehr9PJ",
+ "name": "Temporal Stasis",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Touch; one creature; Fortitude negates. On a failure it freezes in time: it cannot move, be moved, be harmed or be targeted, and does not age or need anything. Lasts until you end it by touch, or Freedom (reverse of Imprisonment) or Disjunction frees it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Temporal Stasis",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "no.act",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "speed.mult",
+      "value": "0",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 390,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

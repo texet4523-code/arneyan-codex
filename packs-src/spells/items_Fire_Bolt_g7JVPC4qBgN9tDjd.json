@@ -1,0 +1,53 @@
+{
+ "_id": "g7JVPC4qBgN9tDjd",
+ "_key": "!items!g7JVPC4qBgN9tDjd",
+ "name": "Fire Bolt",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 120ft; one creature or object. Deals 1d4 fire damage (+1 die at 5th, 11th and 17th level); Reflex negates (objects get no save). Unattended flammable objects ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

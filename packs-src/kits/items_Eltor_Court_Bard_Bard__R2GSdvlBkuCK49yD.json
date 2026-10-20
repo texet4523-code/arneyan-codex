@@ -1,0 +1,56 @@
+{
+ "_id": "R2GSdvlBkuCK49yD",
+ "_key": "!items!R2GSdvlBkuCK49yD",
+ "name": "Eltor Court Bard (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<p>A polished performer trained in Eltor's noble courts — music, rhetoric, and the careful art of saying everything without saying anything.</p><ul><li><strong>Courtly Fascination: </strong>increase the DC of Fascinate's Will save by 2 against humanoids in a social environment — feast, court, or tavern. Your Discord can target two creatures within 30ft instead of one (each saves separately).</li><li><strong>Silver Tongue: </strong>Advantage on Deception, Persuasion, and Etiquette checks in formal or courtly settings.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "Courtly Fascination",
+    "level": 1,
+    "description": "<p>increase the DC of Fascinate's Will save by 2 against humanoids in a social environment — feast, court, or tavern. Your Discord can target two creatures within 30ft instead of one (each saves separately).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will"
+   },
+   {
+    "name": "Silver Tongue",
+    "level": 1,
+    "description": "<p>Advantage on Deception, Persuasion, and Etiquette checks in formal or courtly settings.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception, Persuasion and Etiquette in formal or courtly settings",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

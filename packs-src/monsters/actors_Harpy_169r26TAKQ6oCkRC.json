@@ -1,0 +1,210 @@
+{
+ "_id": "169r26TAKQ6oCkRC",
+ "_key": "!actors!169r26TAKQ6oCkRC",
+ "name": "Harpy",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-harpy.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "20ft, fly 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium monstrosity</em></p><p><strong>GM:</strong> Sings from a clifftop or a wreck, and strips the dead of everything shiny.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-harpy.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Nixo21I54cWeIpHq",
+   "_key": "!actors.items!169r26TAKQ6oCkRC.Nixo21I54cWeIpHq",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Club",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-harpy.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ohct94tHWQz40uI8",
+   "_key": "!actors.items!169r26TAKQ6oCkRC.Ohct94tHWQz40uI8",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Luring Song",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-harpy.svg",
+   "system": {
+    "description": "<p>A creature that hears the song within 300ft makes a @Check[will|dc:12]{Will save DC 12} or walks toward the harpy by the safest route, @Condition[incapacitated]{Incapacitated} until it is harmed or reaches her. A creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GcKGYtDcR8g2ZKr1",
+   "_key": "!actors.items!169r26TAKQ6oCkRC.GcKGYtDcR8g2ZKr1",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Harpy",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-harpy.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

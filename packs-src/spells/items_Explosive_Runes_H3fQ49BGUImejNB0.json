@@ -1,0 +1,53 @@
+{
+ "_id": "H3fQ49BGUImejNB0",
+ "_key": "!items!H3fQ49BGUImejNB0",
+ "name": "Explosive Runes",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch a book or scroll. When anyone but you or someone you name reads it, the runes explode in a 10ft-radius burst centred on the reader for 6d6 force damage; Reflex halves. The writing is destroyed. You can disarm the runes by touch.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "6d6",
+  "damageType": "force",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 151,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

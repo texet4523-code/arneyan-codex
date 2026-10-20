@@ -1,0 +1,71 @@
+{
+ "_id": "aei0vspl2yEekiUI",
+ "_key": "!items!aei0vspl2yEekiUI",
+ "name": "See Invisibility",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+ "system": {
+  "description": "<p>Self; 10 minutes per level. You see Invisible creatures and objects, and ethereal beings, as faint outlines. Does not reveal illusions or creatures in total darkness; Invisible creatures are still hard to see and you cannot read their gear.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Bard, Magus, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Bard",
+   "Magus",
+   "Witch"
+  ],
+  "school": "Divination",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "See Invisibility",
+    "target": "self",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "sense",
+      "value": "See Invisibility",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 128,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

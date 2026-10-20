@@ -1,0 +1,866 @@
+{
+ "_id": "K0frNOuZ0lBruVw7",
+ "_key": "!actors!K0frNOuZ0lBruVw7",
+ "name": "Sphinx, Elder",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 17,
+  "hd": "19d10",
+  "attributes": {
+   "hp": {
+    "value": 190,
+    "max": 190,
+    "temp": 0
+   },
+   "ac": 22,
+   "speed": "40ft, fly 60ft",
+   "attack": 23,
+   "spellDC": 23,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 11,
+   "ref": 9,
+   "will": 11
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 12,
+   "slots": [
+    6,
+    5,
+    4,
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "psychic, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p>",
+   "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d10+6",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xsO5CDMjHce7pfGx",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.xsO5CDMjHce7pfGx",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Inscrutable",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Magic cannot read its thoughts or detect its lies. Insight checks against it have Disadvantage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hHTsqCj2dGFmaPWe",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.hHTsqCj2dGFmaPWe",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Casts as a 12th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:23]{Will DC 23}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:23]{Reflex DC 23}), @UUID[Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj]{restoration}, @UUID[Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2]{heal}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Tj4TyohV7xkqzB4T",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.Tj4TyohV7xkqzB4T",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "VLV35ebYASKl34wn",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.VLV35ebYASKl34wn",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature that understands your language. It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). Will negates. Mindless creatures are immune. Harmful commands are ignored.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs"
+   },
+   "_id": "dFOgzFoic5KPk3lK",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.dFOgzFoic5KPk3lK",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Magic",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "A worn or carried magic item is not suppressed",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
+   },
+   "_id": "mxH5WxRBe1XUn2gU",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.mxH5WxRBe1XUn2gU",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tongues",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It speaks and understands any language for 10 minutes per level. Cast reversed (Babble): Range 30ft; one creature cannot speak or understand any language (and cannot cast verbal spells) for 1 minute per level; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Babble only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs"
+   },
+   "_id": "xFCSwsQJlqwJJxYN",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.xFCSwsQJlqwJJxYN",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Banishment",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 60ft; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a 30ft radius (lowest Level first). Each creature that fails a Will save is sent to its home plane and cannot return by its own power for 24 hours; Will negates. If you hold an item the creature hates or fears, its save has Disadvantage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Warlock",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "30ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 30,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW"
+   },
+   "_id": "iUIbrLEAkPxXoaPb",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.iUIbrLEAkPxXoaPb",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Freedom of Movement",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature for 10 minutes per level. It cannot be Restrained or Paralysed by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Freedom of Movement",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "immune",
+        "value": "condition:restrained",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "condition:paralysed",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG"
+   },
+   "_id": "CCN3OwdgEdc2fhKf",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.CCN3OwdgEdc2fhKf",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Flame Strike",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 60ft; 10ft-radius, 40ft-high cylinder. Deals 1d6 damage per level (max 12d6), half fire and half radiant; Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 12))d6",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS"
+   },
+   "_id": "EQb7QzqjA9wBLEYY",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.EQb7QzqjA9wBLEYY",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Restoration",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Restores up to 2d4 points of reduced or drained ability scores (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of Blinded, Deafened, Paralysed, Charmed, Frightened or the Incapacitated state from Contact Other Plane. Cast reversed (Withering Touch): an unwilling creature takes 1d4 points of damage to one ability score of your choice; Fortitude negates. Material: diamond dust worth 100 gp, consumed.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Negates (Withering Touch only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj"
+   },
+   "_id": "uTExIYHfrxcLOgM2",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.uTExIYHfrxcLOgM2",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heal",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch. Restores all of the target's HP except 1d4, and ends Blinded, Deafened, Stunned, Paralysed, poison and disease. Cast reversed (Harm): touching a creature reduces it to 1d4 HP (no effect if it already has fewer); Fortitude negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Negates (Harm only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2"
+   },
+   "_id": "OBNEh0Xo7bIOL0uo",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.OBNEh0Xo7bIOL0uo",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Roar",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>3/day, as an action. Each roar is worse than the last: first, creatures within 500ft make a @Check[will|dc:23]{Will save DC 23} or are @Condition[frightened]{Frightened} for 1 minute; second, a @Check[will|dc:23]{Will save DC 23} or @Condition[deafened]{Deafened} and @Condition[frightened]{Frightened}, and @Condition[paralysed]{Paralysed} for 1 minute (repeating the save each turn); third, a @Check[fort|dc:23]{Fortitude save DC 23} or take @Damage[10d10 thunder]{10d10 thunder damage} and are knocked prone, half and not prone on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 23,
+    "damage": "10d10",
+    "damageType": "thunder",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TRg6S3amHPuo6phm",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.TRg6S3amHPuo6phm",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UUzJmFnIMnHzm9lt",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.UUzJmFnIMnHzm9lt",
+   "effects": [],
+   "flags": {},
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Sphinx, Elder",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

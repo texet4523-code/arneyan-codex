@@ -1,0 +1,209 @@
+{
+ "_id": "InzTEBmi3aCOcqLY",
+ "_key": "!actors!InzTEBmi3aCOcqLY",
+ "name": "Modron, Duodrone",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "2d8+2",
+  "attributes": {
+   "hp": {
+    "value": 11,
+    "max": 11,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct (modron)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium construct (modron)</em></p><p><strong>GM:</strong> A two-armed block that supervises monodrones. It counts everything twice.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "laMR1drNxdd4UKVl",
+   "_key": "!actors.items!InzTEBmi3aCOcqLY.laMR1drNxdd4UKVl",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Axiomatic Mind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Cannot be compelled to act against its orders; it always tells the truth as it understands it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CpgaEHP60MH3x2Mh",
+   "_key": "!actors.items!InzTEBmi3aCOcqLY.CpgaEHP60MH3x2Mh",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Disintegration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>When it dies, it falls apart into dust and gears.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mddfHuCh2payLub6",
+   "_key": "!actors.items!InzTEBmi3aCOcqLY.mddfHuCh2payLub6",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Modron, Duodrone",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

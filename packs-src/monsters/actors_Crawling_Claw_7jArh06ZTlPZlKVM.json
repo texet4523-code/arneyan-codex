@@ -1,0 +1,246 @@
+{
+ "_id": "7jArh06ZTlPZlKVM",
+ "_key": "!actors!7jArh06ZTlPZlKVM",
+ "name": "Crawling Claw",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 2,
+    "max": 2,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "20ft, climb 20ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened, condition:blinded",
+   "vulnerabilities": "",
+   "senses": "Blindsight 30ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Tiny undead</em></p><p><strong>GM:</strong> The severed hand of a murderer, animated to finish the job. They swarm out of drawers and drains.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "V55byREJpqIcRKHq",
+   "_key": "!actors.items!7jArh06ZTlPZlKVM.V55byREJpqIcRKHq",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dNyAiZ24y163E8g7",
+   "_key": "!actors.items!7jArh06ZTlPZlKVM.dNyAiZ24y163E8g7",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blind Senses",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Perceives everything within 30ft by touch and vibration, and cannot be @Condition[blinded]{Blinded}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "t2cBO6JuM6CewcKM",
+   "_key": "!actors.items!7jArh06ZTlPZlKVM.t2cBO6JuM6CewcKM",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Turn Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Cannot be turned.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ag71z1sDJOkgoOL8",
+   "_key": "!actors.items!7jArh06ZTlPZlKVM.ag71z1sDJOkgoOL8",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Crawling Claw",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-skeleton.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

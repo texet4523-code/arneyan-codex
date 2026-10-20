@@ -1,0 +1,38 @@
+{
+ "_id": "CvA3CJOH1jZsKG1W",
+ "_key": "!items!CvA3CJOH1jZsKG1W",
+ "name": "Sure Footing",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+ "system": {
+  "description": "<p>Uneven ground, loose rubble, a grip trying to drag you down — none of it slows you. You move like the terrain isn't a factor, and when something tries to pin you in place, you're already halfway out of its grip before it sets. Ignore difficult terrain penalties to movement, and gain Advantage on checks to avoid or escape being restrained, grappled, or knocked prone.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Specialist Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to avoid or escape being restrained, grappled or knocked prone",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Hg8ljiYllm5al9gp",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

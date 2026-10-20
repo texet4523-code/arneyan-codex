@@ -1,0 +1,209 @@
+{
+ "_id": "Enhbvanr6M5htiSS",
+ "_key": "!actors!Enhbvanr6M5htiSS",
+ "name": "Warhorse, Heavy",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-horse-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 25,
+    "max": 25,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "50ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> The knight's charger: expensive, fearless and fiercely loyal to one rider.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Hooves",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-horse-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gF5oEXfu8ursEZ8l",
+   "_key": "!actors.items!Enhbvanr6M5htiSS.gF5oEXfu8ursEZ8l",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Battle-Trained",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-horse-head.svg",
+   "system": {
+    "description": "<p>Ignores fright from noise and fire. Does not bolt when its rider is hurt.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "w85P44PVGq9QnyG9",
+   "_key": "!actors.items!Enhbvanr6M5htiSS.w85P44PVGq9QnyG9",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Trample",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-horse-head.svg",
+   "system": {
+    "description": "<p>If it moves 20ft straight at a target, the target makes a @Check[fort|dc:13]{Fortitude save DC 13} or is knocked prone and takes @Damage[1d6+3 bludgeoning]{1d6+3 bludgeoning damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "1d6+3",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GhsSodooev4QtmUf",
+   "_key": "!actors.items!Enhbvanr6M5htiSS.GhsSodooev4QtmUf",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Warhorse, Heavy",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-horse-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

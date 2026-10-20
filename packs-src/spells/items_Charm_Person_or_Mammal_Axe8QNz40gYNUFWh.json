@@ -1,0 +1,62 @@
+{
+ "_id": "Axe8QNz40gYNUFWh",
+ "_key": "!items!Axe8QNz40gYNUFWh",
+ "name": "Charm Person or Mammal",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft; one humanoid or mammal. The target is Charmed for 1 hour per level and regards you as a trusted friend; it will not obey orders that endanger it. Ends if you or your allies harm it. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Charmed",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [
+     "charmed"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 94,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

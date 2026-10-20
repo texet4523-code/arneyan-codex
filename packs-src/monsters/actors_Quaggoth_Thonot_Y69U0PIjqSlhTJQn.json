@@ -1,0 +1,450 @@
+{
+ "_id": "Y69U0PIjqSlhTJQn",
+ "_key": "!actors!Y69U0PIjqSlhTJQn",
+ "name": "Quaggoth Thonot",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-person.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "3d8+6",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, climb 30ft",
+   "attack": 4,
+   "spellDC": 11,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A quaggoth born with the gift of the mind. The tribe treats it as a holy thing and fights to the death around it.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "K1UMJPYUjqdmaWff",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.K1UMJPYUjqdmaWff",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wounded Fury",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>While it has 10 HP or fewer, it has Advantage on attack rolls and deals +2d6 damage on a hit.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bHmrnsYXs9mA6RkU",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.bHmrnsYXs9mA6RkU",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h]{feather fall}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}. 1/day each: @UUID[Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2]{heat metal} (@Check[fort|dc:11]{Fortitude DC 11}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jNK7lCHCDSQ5loar",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.jNK7lCHCDSQ5loar",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Feather Fall (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft; up to 1 creature or object per level (each Medium or smaller). Cast as you fall; targets drop 60ft per round and take no fall damage. Ends on landing or after 1 round per level.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h"
+   },
+   "_id": "fjJop7lrSmKPOILd",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.fjJop7lrSmKPOILd",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mage Hand (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg"
+   },
+   "_id": "mqVfXA6fG9GVuyO1",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.mqVfXA6fG9GVuyO1",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heat Metal (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 30ft; metal worn or carried by 1 creature per four levels (min 1), 7 rounds. Metal deals fire damage each round: 1d4, 2d4, 4d4, 4d4, 4d4, 2d4, 1d4; Fortitude halves each round. Cast reversed (Chill Metal) for cold damage with the same numbers.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Half",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2"
+   },
+   "_id": "WawgmXasMzL4edVf",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.WawgmXasMzL4edVf",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mirror Image (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9"
+   },
+   "_id": "DxHyiJy2U780sHUb",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.DxHyiJy2U780sHUb",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Quaggoth Thonot",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-person.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

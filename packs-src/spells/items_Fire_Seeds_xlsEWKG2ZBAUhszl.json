@@ -1,0 +1,51 @@
+{
+ "_id": "xlsEWKG2ZBAUhszl",
+ "_key": "!items!xlsEWKG2ZBAUhszl",
+ "name": "Fire Seeds",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Create either 4 acorns or 8 berries, usable for 1 hour per level. Thrown up to 40ft, each bursts in a 10ft-radius explosion: acorns deal 4d8 fire damage, berries 1d8; Reflex halves. Seeds are fire-hot but safe to carry; they ignite flammable objects.</p><p class=\"arn-note\">The damage button rolls an acorn (4d8). A berry deals 1d8.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "4d8",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 291,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

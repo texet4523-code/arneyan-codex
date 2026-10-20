@@ -1,0 +1,72 @@
+{
+ "_id": "pxBMLAoiGMfgxUMg",
+ "_key": "!items!pxBMLAoiGMfgxUMg",
+ "name": "Deity: Ilmater (The Winter's Solace) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Cestus</p><p><strong>Granted power:</strong> Advantage on First Aid/Healing checks. Once/day: heal a creature for 2d8 + Wisdom modifier HP.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Ilmater)",
+    "level": 1,
+    "description": "<p>Advantage on First Aid/Healing checks. Once/day: heal a creature for 2d8 + Wisdom modifier HP.</p><p><strong>Favoured weapon:</strong> Cestus</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Healing",
+      "kind": "heal",
+      "formula": "2d8 + @wis.mod",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Heal a creature.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "First Aid/Healing",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

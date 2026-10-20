@@ -1,0 +1,71 @@
+{
+ "_id": "jQFIAd0PYqAtCkwN",
+ "_key": "!items!jQFIAd0PYqAtCkwN",
+ "name": "Bugbear",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Str / +1 Dex, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>+5ft</strong> reach on melee attacks.</li><li><strong>Once</strong> per encounter, bonus damage = character level vs a creature that hasn't acted yet (1 Luck for a second trigger per encounter).</li><li><strong>Advantage</strong> on Stealth checks despite size.</li><li><strong>Weapon training:</strong> morningstar, javelin, light crossbow, greatclub.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Dex, −1 Int",
+  "bonuses": {
+   "str": 2,
+   "dex": 1,
+   "int": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "+5ft reach on melee attacks",
+    "text": "+5ft reach on melee attacks."
+   },
+   {
+    "name": "Once per encounter",
+    "text": "Once per encounter, bonus damage = character level vs a creature that hasn't acted yet (1 Luck for a second trigger per encounter)."
+   },
+   {
+    "name": "Advantage on Stealth checks despite size",
+    "text": "Advantage on Stealth checks despite size."
+   },
+   {
+    "name": "Weapon training",
+    "text": "morningstar, javelin, light crossbow, greatclub."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Stealth",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+@level",
+    "when": "once per encounter, vs a creature that has not acted yet",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

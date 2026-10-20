@@ -1,0 +1,209 @@
+{
+ "_id": "yQBjaYMrlpO23rZv",
+ "_key": "!actors!yQBjaYMrlpO23rZv",
+ "name": "Zombie",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "2d8",
+  "attributes": {
+   "hp": {
+    "value": 9,
+    "max": 9,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "20ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d10",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> Slow and relentless. A shuffling crowd of them is more dangerous than any one.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8AQowbOSoaSNFoYg",
+   "_key": "!actors.items!yQBjaYMrlpO23rZv.8AQowbOSoaSNFoYg",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VxjXBXk4lAdZXqgT",
+   "_key": "!actors.items!yQBjaYMrlpO23rZv.VxjXBXk4lAdZXqgT",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undying",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>When reduced to 0 HP by anything other than fire or a critical hit, it makes a Fortitude save (DC 5 + damage taken). On a success it drops to 1 HP instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 5,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ekrU13UuDR9bOpxh",
+   "_key": "!actors.items!yQBjaYMrlpO23rZv.ekrU13UuDR9bOpxh",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Zombie",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-shambling-zombie.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

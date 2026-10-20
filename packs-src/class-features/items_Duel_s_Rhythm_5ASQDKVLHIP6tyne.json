@@ -1,0 +1,48 @@
+{
+ "_id": "5ASQDKVLHIP6tyne",
+ "_key": "!items!5ASQDKVLHIP6tyne",
+ "name": "Duel's Rhythm",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>While engaged with a single opponent in melee (no other creatures in melee reach), gain advantage on your first attack roll each round and on saves.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 12,
+  "className": "Swashbuckler",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "while in melee with a single opponent",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "while in melee with a single opponent",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "izulQ2PeBRinttAY",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

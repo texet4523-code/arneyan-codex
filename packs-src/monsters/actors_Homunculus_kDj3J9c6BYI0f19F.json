@@ -1,0 +1,246 @@
+{
+ "_id": "kDj3J9c6BYI0f19F",
+ "_key": "!actors!kDj3J9c6BYI0f19F",
+ "name": "Homunculus",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "2d10",
+  "attributes": {
+   "hp": {
+    "value": 11,
+    "max": 11,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "20ft, fly 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny construct</em></p><p><strong>GM:</strong> A spy and a messenger. If it dies, its creator takes 2d10 damage.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OhzF2GAExSdfHQS9",
+   "_key": "!actors.items!kDj3J9c6BYI0f19F.OhzF2GAExSdfHQS9",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sleep Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:11]{Fortitude save DC 11} or is @Condition[poisoned]{Poisoned} for 1 minute. If it fails by 5 or more, it falls asleep for the same time or until it takes damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nCvLDA8gpTPx0HaT",
+   "_key": "!actors.items!kDj3J9c6BYI0f19F.nCvLDA8gpTPx0HaT",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bound Servant",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Linked to its creator. The creator knows what it senses at any range on the same plane, and can speak through it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RcUsQQqb247KfwLa",
+   "_key": "!actors.items!kDj3J9c6BYI0f19F.RcUsQQqb247KfwLa",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "C6J7H2WQQA4IinWQ",
+   "_key": "!actors.items!kDj3J9c6BYI0f19F.C6J7H2WQQA4IinWQ",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Homunculus",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

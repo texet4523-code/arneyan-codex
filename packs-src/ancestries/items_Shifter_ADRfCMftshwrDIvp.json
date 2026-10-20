@@ -1,0 +1,149 @@
+{
+ "_id": "ADRfCMftshwrDIvp",
+ "_key": "!items!ADRfCMftshwrDIvp",
+ "name": "Shifter",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Low-Light Vision (not true darkvision) • Constitution + lineage attribute (see below)</strong></p><ul><li><strong>Canidae-Longtooth:</strong> +2 Con / +1 Str, −1 Int</li><li><strong>Canidae-Wildhunt:</strong> +2 Con / +1 Wis, −1 Str</li><li><strong>Felidae-Swiftstride:</strong> +2 Con / +1 Dex, −1 Wis</li><li><strong>Ursidae-Beasthide:</strong> +2 Con / +1 Str, −1 Dex</li><li><strong>Suidae-Gorebrute:</strong> +2 Con / +1 Str, −1 Cha</li><li><strong>Ophidian-Sslyth:</strong> +2 Con / +1 Cha, −1 Int</li></ul><p><strong><em>Traits</em></strong></p><ul><li><strong>The Beast Within</strong> (Shifting): number of uses/day = half level rounded up (min 1), each lasting a number of rounds = Constitution modifier (min 1).</li><li><strong>Lineage</strong> benefits apply only while shifted.</li><li><strong>Lineages:</strong> Canidae-Longtooth (Pack Attacker) — Strength-themed; shifted: Advantage on your first melee attack roll each round against a creature an ally also threatens.</li><li><strong>Canidae-Wildhunt</strong> (Tracker) — Wisdom-themed; shifted: Advantage on Perception/Survival involving scent or tracking.</li><li><strong>Felidae-Swiftstride</strong> (Skirmisher, covers Catfolk) — Dexterity-themed; shifted: +15ft speed.</li><li><strong>Ursidae-Beasthide</strong> (Stoic Tank) — Constitution-themed; shifted: Resistance 3 to nonmagical bludgeoning, piercing and slashing, plus temporary HP equal to Constitution modifier each time you shift.</li><li><strong>Suidae-Gorebrute</strong> (Juggernaut/Disruptor) — Strength-themed; shifted: may move through an enemy's space, forcing it to make a Fortitude save (Ancestry Save DC, Strength) or be knocked prone; once per creature per turn, and only creatures no more than one size larger.</li><li><strong>Ophidian-Sslyth</strong> (Ambusher/Controller) — Charisma-themed; shifted: bite manifests venom (a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Low-Light",
+  "attributes": "Constitution + lineage attribute (see below)",
+  "bonuses": {},
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "The Beast Within",
+    "text": "The Beast Within (Shifting): number of uses/day = half level rounded up (min 1), each lasting a number of rounds = Constitution modifier (min 1)."
+   },
+   {
+    "name": "Lineage benefits apply only while shifted",
+    "text": "Lineage benefits apply only while shifted."
+   }
+  ],
+  "choice": {
+   "label": "Lineage",
+   "options": [
+    {
+     "name": "Canidae-Longtooth",
+     "text": "+2 Con / +1 Str, −1 Int. Canidae-Longtooth (Pack Attacker) — Strength-themed; shifted: Advantage on your first melee attack roll each round against a creature an ally also threatens.",
+     "bonuses": {
+      "con": 2,
+      "str": 1,
+      "int": -1
+     },
+     "rules": []
+    },
+    {
+     "name": "Canidae-Wildhunt",
+     "text": "+2 Con / +1 Wis, −1 Str. Canidae-Wildhunt (Tracker) — Wisdom-themed; shifted: Advantage on Perception/Survival involving scent or tracking.",
+     "bonuses": {
+      "con": 2,
+      "wis": 1,
+      "str": -1
+     },
+     "rules": []
+    },
+    {
+     "name": "Felidae-Swiftstride",
+     "text": "+2 Con / +1 Dex, −1 Wis. Felidae-Swiftstride (Skirmisher, covers Catfolk) — Dexterity-themed; shifted: +15ft speed.",
+     "bonuses": {
+      "con": 2,
+      "dex": 1,
+      "wis": -1
+     },
+     "rules": []
+    },
+    {
+     "name": "Ursidae-Beasthide",
+     "text": "+2 Con / +1 Str, −1 Dex. Ursidae-Beasthide (Stoic Tank) — Constitution-themed; shifted: Resistance 3 to nonmagical bludgeoning, piercing and slashing, plus temporary HP equal to Constitution modifier each time you shift.",
+     "bonuses": {
+      "con": 2,
+      "str": 1,
+      "dex": -1
+     },
+     "rules": []
+    },
+    {
+     "name": "Suidae-Gorebrute",
+     "text": "+2 Con / +1 Str, −1 Cha. Suidae-Gorebrute (Juggernaut/Disruptor) — Strength-themed; shifted: may move through an enemy's space, forcing it to make a Fortitude save (Ancestry Save DC, Strength) or be knocked prone; once per creature per turn, and only creatures no more than one size larger.",
+     "bonuses": {
+      "con": 2,
+      "str": 1,
+      "cha": -1
+     },
+     "rules": []
+    },
+    {
+     "name": "Ophidian-Sslyth",
+     "text": "+2 Con / +1 Cha, −1 Int. Ophidian-Sslyth (Ambusher/Controller) — Charisma-themed; shifted: bite manifests venom (a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration).",
+     "bonuses": {
+      "con": 2,
+      "cha": 1,
+      "int": -1
+     },
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "adv.attack.melee",
+    "value": "1",
+    "when": "Longtooth: first melee attack each round vs a creature an ally also threatens",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Wildhunt: Perception or Survival using scent or tracking",
+    "label": ""
+   },
+   {
+    "key": "speed",
+    "value": "15",
+    "when": "Swiftstride only",
+    "label": ""
+   },
+   {
+    "key": "note.attack",
+    "value": "Gorebrute: move through enemy space, Fortitude save or prone. Sslyth: bite poisons on a failed Fortitude save.",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "resist",
+    "value": "bludgeoning 3",
+    "when": "Beasthide only, nonmagical",
+    "label": ""
+   },
+   {
+    "key": "resist",
+    "value": "piercing 3",
+    "when": "Beasthide only, nonmagical",
+    "label": ""
+   },
+   {
+    "key": "resist",
+    "value": "slashing 3",
+    "when": "Beasthide only, nonmagical",
+    "label": ""
+   }
+  ],
+  "toggle": true,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 25,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,59 @@
+{
+ "_id": "KmUuGj3VT408VPmk",
+ "_key": "!items!KmUuGj3VT408VPmk",
+ "name": "Deflect Missiles (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Up to the attempts per round shown in the Monk Progression Table (these are not reactions and leave your reaction free, but you cannot deflect while you cannot take reactions, such as when surprised or Incapacitated), when hit by a nonmagical ranged weapon (arrows, axes, bolas, bolts, clubs, daggers, darts, hammers, javelins, nets, rocks, spears), make a Dexterity check (d20 + Dexterity modifier) against the attack roll to deflect it entirely (no damage). Must have at least one free hand.</li><li><strong>Scales: </strong>once per round at 2nd level, up to five times per round at 20th — see the Monk Progression Table</li><li>Cannot use against siege weapons</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Deflect Missiles",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

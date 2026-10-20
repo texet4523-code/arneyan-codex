@@ -1,0 +1,304 @@
+{
+ "_id": "qOinxrex9V7aCGdA",
+ "_key": "!actors!qOinxrex9V7aCGdA",
+ "name": "Sprite",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "1d4",
+  "attributes": {
+   "hp": {
+    "value": 2,
+    "max": 2,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "10ft, fly 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fey",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny fey</em></p><p><strong>GM:</strong> A hunter-guardian of woodland glades. It would sooner nap a trespasser than slay it.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Shortbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "40ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WEmGbi6dTu66jsK4",
+   "_key": "!actors.items!qOinxrex9V7aCGdA.WEmGbi6dTu66jsK4",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sleep Poison",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>A creature hit makes a @Check[fort|dc:13]{Fortitude save DC 13} or falls @Condition[unconscious]{Unconscious} for 1d6 hours. It wakes if damaged.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XlzOD7qdAQRnVm3i",
+   "_key": "!actors.items!qOinxrex9V7aCGdA.XlzOD7qdAQRnVm3i",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>At will, as part of its action. It becomes visible when it attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "rlhx5pUxklM3Oe94",
+   "_key": "!actors.items!qOinxrex9V7aCGdA.rlhx5pUxklM3Oe94",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vk3iwnFKE0vlD8hu",
+   "_key": "!actors.items!qOinxrex9V7aCGdA.vk3iwnFKE0vlD8hu",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "Ccpfx3pcG8HKTfxI",
+   "_key": "!actors.items!qOinxrex9V7aCGdA.Ccpfx3pcG8HKTfxI",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Sprite",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fairy.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

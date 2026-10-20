@@ -1,0 +1,42 @@
+{
+ "_id": "zEXHGiACkTeX73yo",
+ "_key": "!items!zEXHGiACkTeX73yo",
+ "name": "Combat Sense",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Heightened battlefield awareness that makes the Barbarian difficult to catch off guard.</li><li>+2 to surprise checks against anyone attempting to surprise the Barbarian</li><li>Attackers gain no Advantage from flanking or from being Unseen against you</li><li>Back Attack and similar rear-attack bonuses (such as the Rogue's) do not work against you</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Barbarian",
+  "rules": [
+   {
+    "key": "check",
+    "value": "2",
+    "when": "surprise checks against anyone trying to surprise you",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

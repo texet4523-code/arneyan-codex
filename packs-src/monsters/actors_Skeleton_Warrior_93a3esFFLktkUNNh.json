@@ -1,0 +1,321 @@
+{
+ "_id": "93a3esFFLktkUNNh",
+ "_key": "!actors!93a3esFFLktkUNNh",
+ "name": "Skeleton Warrior",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "7d8",
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 31,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "30ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> Armoured and well-drilled, a rank above common skeletons. A line of them can pin a party in a corridor.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Longsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JbAfQta1rD7e8hdO",
+   "_key": "!actors.items!93a3esFFLktkUNNh.JbAfQta1rD7e8hdO",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shortbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80ft",
+    "magic": 0,
+    "attackBonus": -1,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UtolfMt0c9WEGd3z",
+   "_key": "!actors.items!93a3esFFLktkUNNh.UtolfMt0c9WEGd3z",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MdxOjZycgiMDifTK",
+   "_key": "!actors.items!93a3esFFLktkUNNh.MdxOjZycgiMDifTK",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shield Wall",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Allies adjacent to it gain +1 AC against ranged attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7ny8akvQaWpRyUXc",
+   "_key": "!actors.items!93a3esFFLktkUNNh.7ny8akvQaWpRyUXc",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reknit",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Once per day, when reduced to 0 HP, it makes a @Check[fort|dc:15]{Fortitude save DC 15} and, on a success, drops to 1 HP instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oaMuTFSDTdZzKcVy",
+   "_key": "!actors.items!93a3esFFLktkUNNh.oaMuTFSDTdZzKcVy",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Drilled Dead",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Never makes Morale checks, and keeps formation even when its allies fall.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dRbOAzCXU1BAdtO8",
+   "_key": "!actors.items!93a3esFFLktkUNNh.dRbOAzCXU1BAdtO8",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Skeleton Warrior",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-skeleton.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

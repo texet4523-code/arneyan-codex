@@ -1,0 +1,209 @@
+{
+ "_id": "bWXJOUsoyd4whDfo",
+ "_key": "!actors!bWXJOUsoyd4whDfo",
+ "name": "Giant Sea Horse",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "3d10",
+  "attributes": {
+   "hp": {
+    "value": 16,
+    "max": 16,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "swim 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> The mount of merfolk knights and sea elves.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Ram",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1g7ktDPDZRGly3Fx",
+   "_key": "!actors.items!bWXJOUsoyd4whDfo.1g7ktDPDZRGly3Fx",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>If it swims at least 20ft straight towards a target and hits, it deals +2d6 damage and the target makes a @Check[fort|dc:11]{Fortitude save DC 11} or is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uWz33AvxBgY8yQLE",
+   "_key": "!actors.items!bWXJOUsoyd4whDfo.uWz33AvxBgY8yQLE",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Water Breathing",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Can breathe only water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "czYGE0U0OnJjjw1q",
+   "_key": "!actors.items!bWXJOUsoyd4whDfo.czYGE0U0OnJjjw1q",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Giant Sea Horse",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

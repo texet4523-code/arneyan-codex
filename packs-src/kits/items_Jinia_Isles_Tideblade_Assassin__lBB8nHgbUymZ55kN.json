@@ -1,0 +1,66 @@
+{
+ "_id": "lBB8nHgbUymZ55kN",
+ "_key": "!items!lBB8nHgbUymZ55kN",
+ "name": "Jinia Isles Tideblade (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li>A seafaring assassination tradition from the Jinia Isles — patient, water-adapted, built around ships and ports. Tideblades specialise in maritime contracts: a merchant found face-down in the harbour, a captain who never made it back to his cabin. The ocean is their weapon as much as any blade.</li><li><strong>Maritime Strike: </strong>Advantage on Climb checks involving ships, rigging, or dock structures. Death Attack study can be conducted from underwater or while treading water without penalty. A creature that is swimming, standing in water above its knees, or on a pitching deck counts as unsuspecting for your Sneak Attack.</li><li><strong>Sea Cover: </strong>Advantage on Disguise checks when impersonating sailors, dock workers, or maritime merchants. Advantage on checks to dispose of evidence or conceal a body at sea.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Maritime Strike",
+    "level": 1,
+    "description": "<p>Advantage on Climb checks involving ships, rigging, or dock structures. Death Attack study can be conducted from underwater or while treading water without penalty. A creature that is swimming, standing in water above its knees, or on a pitching deck counts as unsuspecting for your Sneak Attack.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Climb on ships, rigging or dock structures",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sea Cover",
+    "level": 1,
+    "description": "<p>Advantage on Disguise checks when impersonating sailors, dock workers, or maritime merchants. Advantage on checks to dispose of evidence or conceal a body at sea.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Disguise as sailors, dock workers or maritime merchants; disposing of evidence or a body at sea",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

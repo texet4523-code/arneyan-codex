@@ -1,0 +1,72 @@
+{
+ "_id": "SLDqiAKhFitH6gOf",
+ "_key": "!items!SLDqiAKhFitH6gOf",
+ "name": "Resistance",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature; 1 minute. The target gains +1 to all saving throws. Does not stack with itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Warlock",
+   "Bard",
+   "Witch",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Resistance",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "save",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 26,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

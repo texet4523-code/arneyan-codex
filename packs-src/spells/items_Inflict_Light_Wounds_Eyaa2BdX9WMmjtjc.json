@@ -1,0 +1,51 @@
+{
+ "_id": "Eyaa2BdX9WMmjtjc",
+ "_key": "!items!Eyaa2BdX9WMmjtjc",
+ "name": "Inflict Light Wounds",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch; 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Necromancer",
+  "classes": [
+   "Necromancer"
+  ],
+  "school": "",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half",
+  "damage": "1d8 + min(@cl, 5)",
+  "damageType": "necrotic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "bOqH8dr0GIRGNGw4",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

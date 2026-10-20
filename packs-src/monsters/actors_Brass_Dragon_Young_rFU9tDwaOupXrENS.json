@@ -1,0 +1,284 @@
+{
+ "_id": "rFU9tDwaOupXrENS",
+ "_key": "!actors!rFU9tDwaOupXrENS",
+ "name": "Brass Dragon, Young",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "6d12",
+  "attributes": {
+   "hp": {
+    "value": 39,
+    "max": 39,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "40ft, fly 80ft, burrow 20ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 5,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon (metallic)",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "fire",
+   "vulnerabilities": "",
+   "senses": "Blindsight 30ft, Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large dragon (metallic)</em></p><p><strong>GM:</strong> Talkative and bored; it will talk for hours rather than fight, and sulks when ignored. A young dragon is bold and eager to prove itself.</p>",
+   "treasure": "<p>Treasure type <strong>lair E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gyXBRTqLaD4e272u",
+   "_key": "!actors.items!rFU9tDwaOupXrENS.gyXBRTqLaD4e272u",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dNcsHaYrha8XbLfJ",
+   "_key": "!actors.items!rFU9tDwaOupXrENS.dNcsHaYrha8XbLfJ",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Breath Weapon",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, exhales a 60ft line, 5ft wide of fire; @Check[ref|dc:15]{Reflex DC 15} for half of @Damage[6d6 fire]{6d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 15,
+    "damage": "6d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cGJ8Ai90z9cj6HGC",
+   "_key": "!actors.items!rFU9tDwaOupXrENS.cGJ8Ai90z9cj6HGC",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Frightful Presence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>A creature within 60ft that sees the dragon makes a @Check[will|dc:15]{Will save DC 15} or is @Condition[frightened]{Frightened} for 1 minute; a creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5YmJotYWGpnIL4YU",
+   "_key": "!actors.items!rFU9tDwaOupXrENS.5YmJotYWGpnIL4YU",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sleep Sand",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, throws sand in a 15ft cone; creatures in it make a @Check[will|dc:15]{Will save DC 15} or fall asleep for 1 minute, waking if damaged or shaken.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TrdhRHtJqyMpeuhB",
+   "_key": "!actors.items!rFU9tDwaOupXrENS.TrdhRHtJqyMpeuhB",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Brass Dragon, Young",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

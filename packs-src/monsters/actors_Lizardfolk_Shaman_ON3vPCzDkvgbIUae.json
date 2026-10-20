@@ -1,0 +1,539 @@
+{
+ "_id": "ON3vPCzDkvgbIUae",
+ "_key": "!actors!ON3vPCzDkvgbIUae",
+ "name": "Lizardfolk Shaman",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, swim 30ft",
+   "attack": 5,
+   "spellDC": 13,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "Druid",
+   "level": 4,
+   "slots": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (reptilian)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (reptilian)</em></p><p><strong>GM:</strong> The tribe's memory and its butcher. It reads the swamp's moods and passes judgment on outsiders.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OB7BuQSu9FTI3ukD",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.OB7BuQSu9FTI3ukD",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "65PvxOuOUeqs5tHe",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.65PvxOuOUeqs5tHe",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hold Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Can hold its breath for 15 minutes.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UFocLWj78m7tumYj",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.UFocLWj78m7tumYj",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Casts as a 4th-level druid. Typical spells: @UUID[Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F]{entangle} (@Check[ref|dc:13]{Reflex DC 13}), @UUID[Compendium.arneyan.spells.Item.n5gAbS5LJdUZdfBP]{produce flame}, @UUID[Compendium.arneyan.spells.Item.sCwqRfBFAPfBGAWP]{thorn whip}, @UUID[Compendium.arneyan.spells.Item.A9rDPNYZVtxehqme]{spike growth}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5rKN8iyj8THrg6Eb",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.5rKN8iyj8THrg6Eb",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangle",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 120ft; 25ft-radius area of plants; 1 minute. Plants grasp every creature in the area: Restrained; Reflex negates (success means half speed while in the area). A Restrained creature breaks free with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "25ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 25,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Entangled",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F"
+   },
+   "_id": "TDzdWMZRUrBkO7LY",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.TDzdWMZRUrBkO7LY",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Produce Flame",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Self; a flame in your hand for 1 minute per level, shedding light in 10ft radius. As an action, hurl it at a creature within 30ft: 1d4 + 1 per two levels fire damage (max 1d4+5); Reflex halves. The flame then goes out. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "1d4 + min(floor(@cl/2), 5)",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.n5gAbS5LJdUZdfBP"
+   },
+   "_id": "nYsngnFNYHKeP3ii",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.nYsngnFNYHKeP3ii",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Thorn Whip",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature. Deals 1d4 piercing damage (+1 die at 5th, 11th and 17th level) and pulls a Large or smaller target up to 10ft in a straight line towards you; Reflex negates both.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d4",
+    "damageType": "piercing",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.sCwqRfBFAPfBGAWP"
+   },
+   "_id": "c0ZsmGnmoSLRuMVB",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.c0ZsmGnmoSLRuMVB",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spike Growth",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 120ft; 20ft square. Hidden spikes deal 1d4 piercing damage per 5ft moved through and halve movement speed. They are found by a Search check vs spell DC. Lasts 1 hour per level.</p><p class=\"arn-note\">The damage button rolls one 5ft of movement: 1d4 for each 5ft moved through the area.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "1d4",
+    "damageType": "piercing",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "600*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.A9rDPNYZVtxehqme"
+   },
+   "_id": "oIa8V9W0olGdiFgH",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.oIa8V9W0olGdiFgH",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Crocodile Shape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it becomes a crocodile for up to 1 hour, keeping its HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Q05MqurBpSQGrQPX",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.Q05MqurBpSQGrQPX",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Lizardfolk Shaman",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-lizard-tongue.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

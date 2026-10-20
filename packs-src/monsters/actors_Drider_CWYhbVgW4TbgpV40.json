@@ -1,0 +1,533 @@
+{
+ "_id": "CWYhbVgW4TbgpV40",
+ "_key": "!actors!CWYhbVgW4TbgpV40",
+ "name": "Drider",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "4d10+8",
+  "attributes": {
+   "hp": {
+    "value": 30,
+    "max": 30,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "30ft, climb 30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> A dark elf who failed the spider goddess's test and was remade, half spider, as a warning to the rest. It hates everyone, itself most of all.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Longsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "96OFaTJrlccZouoi",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.96OFaTJrlccZouoi",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Longbow ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "150ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [
+     {
+      "formula": "1d8",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "o90aU7qawBdFEqB9",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.o90aU7qawBdFEqB9",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb; Web Walker",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Spider Climb; Web Walker.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "la3L7BjUmgA1KkMa",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.la3L7BjUmgA1KkMa",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison Bite",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Once per turn, as part of its action, it bites a creature it is grappling or that is @Condition[restrained]{Restrained}, for @Damage[2d8 poison]{2d8 poison damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d8",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PC6gPsXewwytRS3B",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.PC6gPsXewwytRS3B",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}. 1/day each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.dC9uQ8JSEjw0WByI]{faerie fire}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "srYr6TyLZkVyLVEW",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.srYr6TyLZkVyLVEW",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dancing Lights (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 120ft; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to 60ft per round as you direct; 1 minute. Lights must stay within 20ft of each other; the spell ends if one passes beyond 120ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a"
+   },
+   "_id": "uuFCogquDdFuSvMq",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.uuFCogquDdFuSvMq",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Darkness (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Wizard",
+     "Illusionist",
+     "Bard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP"
+   },
+   "_id": "jYH92xq1U9uoKm7k",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.jYH92xq1U9uoKm7k",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Faerie Fire (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft radius; 1 minute. Creatures and objects in the area are outlined in light, losing Invisible and concealment, and attack rolls against them have Advantage. Reflex negates (creatures only). The light sheds dim light in 10ft.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Faerie Fire",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dC9uQ8JSEjw0WByI"
+   },
+   "_id": "bvV5bDm4xBBV6cNC",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.bvV5bDm4xBBV6cNC",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LLUJUVa7qhIlV1jA",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.LLUJUVa7qhIlV1jA",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Drider",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

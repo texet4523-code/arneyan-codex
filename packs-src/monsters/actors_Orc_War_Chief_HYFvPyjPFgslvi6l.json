@@ -1,0 +1,209 @@
+{
+ "_id": "HYFvPyjPFgslvi6l",
+ "_key": "!actors!HYFvPyjPFgslvi6l",
+ "name": "Orc War Chief",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Wins loyalty by leading from the front. It never fights alone.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Two-handed axe ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d12+5",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X1Rv6i1951qHWDfs",
+   "_key": "!actors.items!HYFvPyjPFgslvi6l.X1Rv6i1951qHWDfs",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Battle Cry",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, allies within 60ft that can hear it have Advantage on their next attack roll.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "r67jB5C48igmqfzA",
+   "_key": "!actors.items!HYFvPyjPFgslvi6l.r67jB5C48igmqfzA",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Aggressive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "<p>As part of its attack, it may first move up to its speed toward a hostile creature it can see.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "D0kP21ZjN495OdqO",
+   "_key": "!actors.items!HYFvPyjPFgslvi6l.D0kP21ZjN495OdqO",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Orc War Chief",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-orc-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

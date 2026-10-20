@@ -1,0 +1,617 @@
+{
+ "_id": "Qngx9RbrOAtJtaq0",
+ "_key": "!actors!Qngx9RbrOAtJtaq0",
+ "name": "Nycaloth",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "8d10+32",
+  "attributes": {
+   "hp": {
+    "value": 76,
+    "max": 76,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "40ft, fly 60ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (yugoloth)",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "cold 5, fire 5, lightning 5, non-magical 10",
+   "immunities": "acid, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large fiend (yugoloth)</em></p><p><strong>GM:</strong> A green-winged elite of the yugoloth companies. It takes pride in the work and none in the cause.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Two-handed axe ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d12+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Y7UrPUWyEAgZFGvd",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.Y7UrPUWyEAgZFGvd",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Yugoloth Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Immune to acid and poison. Resistance 5 to cold, fire and lightning. Magic weapons harm it fully; it has Resistance 10 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KXzE8N9sn6U1iO2i",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.KXzE8N9sn6U1iO2i",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wounding Axe",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>A creature hit by the two-handed axe bleeds for 2d6 damage at the start of each of its turns until a creature spends an action to bind the wound (DC 9 Wisdom check, First Aid/Healing) or it is magically healed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ERAoge6i6kY8HSQY",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.ERAoge6i6kY8HSQY",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}. Teleport: as part of its move, it can teleport up to 60ft to a space it can see.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Cm6AZL76uwizdDlE",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.Cm6AZL76uwizdDlE",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Darkness (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Wizard",
+     "Illusionist",
+     "Bard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP"
+   },
+   "_id": "3GzogvEvzb4aRXtm",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.3GzogvEvzb4aRXtm",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
+   },
+   "_id": "vAACE4oJfVMY4RZo",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.vAACE4oJfVMY4RZo",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "A worn or carried magic item is not suppressed",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
+   },
+   "_id": "akauVLyHSjC7ywFY",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.akauVLyHSjC7ywFY",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "nIArFw0xiXrsOSmF",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.nIArFw0xiXrsOSmF",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mirror Image (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9"
+   },
+   "_id": "I2oP9b81evQDWFVs",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.I2oP9b81evQDWFVs",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Contract-Bound",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>A yugoloth summoned and paid serves exactly as its contract says, no more. Kill it away from its home plane and it simply re-forms there.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QXf4Pm3DX2hYNT29",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.QXf4Pm3DX2hYNT29",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Nycaloth",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

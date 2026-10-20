@@ -1,0 +1,1131 @@
+{
+ "_id": "HlD1iZPpkYWLbeyg",
+ "_key": "!actors!HlD1iZPpkYWLbeyg",
+ "name": "Ultroloth",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 13,
+  "hd": "18d8+72",
+  "attributes": {
+   "hp": {
+    "value": 153,
+    "max": 153,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "30ft, fly 60ft",
+   "attack": 21,
+   "spellDC": 20,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 11,
+   "ref": 9,
+   "will": 11
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (yugoloth)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "cold 5, fire 5, lightning 5, non-magical 10",
+   "immunities": "acid, poison",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fiend (yugoloth)</em></p><p><strong>GM:</strong> A faceless general of the mercenary hosts, eyes swirling with colour. It commands armies for the lords of every hell at once, and despises them all equally.</p>",
+   "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Longsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [
+     {
+      "formula": "1d8",
+      "type": "fire",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "rHDEMUDkTDHBingM",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.rHDEMUDkTDHBingM",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Yugoloth Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Immune to acid and poison. Resistance 5 to cold, fire and lightning. Magic weapons harm it fully; it has Resistance 10 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "U36uPaznz6HYVNc2",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.U36uPaznz6HYVNc2",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hypnotic Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>As part of its action, one creature within 30ft that can see its eyes makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[charmed]{Charmed} until the end of the ultroloth's next turn; a @Condition[charmed]{Charmed} target is also @Condition[stunned]{Stunned}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2xqpl4MRmtE2H1r5",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.2xqpl4MRmtE2H1r5",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.suPeAK50yuKj2lug]{clairaudience/clairvoyance}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). 3/day each: @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.5bsYjyZvp6V579Li]{wall of fire}. 1/day each: @UUID[Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH]{fire storm} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.3wMd0vWJejMk1VWh]{mass suggestion} (@Check[will|dc:20]{Will DC 20}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3NhT1Nl9SdlbbZA1",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.3NhT1Nl9SdlbbZA1",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Change Self (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 10 minutes per level. Your appearance, clothes and gear look like a humanoid of the same body shape and within 1ft of your height. Touch reveals nothing, but your voice, weight and abilities are unchanged. You cannot copy a specific person.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Necromancer",
+     "Bard"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq"
+   },
+   "_id": "BWadWS8iL6jrL17f",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.BWadWS8iL6jrL17f",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Clairaudience/Clairvoyance (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range 1 mile. Choose a place you have seen or an obvious one; an invisible sensor appears there for 1 minute per level and you see or hear through it (pick one sense, switch as an action). The sensor does not move, is blocked by 1ft of lead or any magical ward, and Detect Magic reveals it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 1 mile",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.suPeAK50yuKj2lug"
+   },
+   "_id": "mwVcFfHXYPdZDxfA",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.mwVcFfHXYPdZDxfA",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Darkness (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Wizard",
+     "Illusionist",
+     "Bard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP"
+   },
+   "_id": "erpoK3IHENiN9Trp",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.erpoK3IHENiN9Trp",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
+   },
+   "_id": "dV7GuzPVzLSici94",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.dV7GuzPVzLSici94",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Thoughts (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range 60ft cone, 1 minute per level (concentration). Each round you focus on one creature in the cone and read its surface thoughts; Will negates for that creature (it knows nothing has been read). Stone 3ft thick, lead or metal sheets block it. Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone, 1 minute per level (concentration)",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "10*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF"
+   },
+   "_id": "2oZU3HwgxewRWMwG",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.2oZU3HwgxewRWMwG",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "A worn or carried magic item is not suppressed",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
+   },
+   "_id": "R6ThA1ZKDPSW2fRZ",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.R6ThA1ZKDPSW2fRZ",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "iPnZBxib9VrAIZCZ",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.iPnZBxib9VrAIZCZ",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Suggestion (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature that understands you. It follows a reasonable-sounding command of up to 25 words for 1 hour per level or until completed. Will negates. A command that is obviously harmful to the target fails automatically. Mindless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1"
+   },
+   "_id": "i3PyWNcNaGQC0EKi",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.i3PyWNcNaGQC0EKi",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dimension Door (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 450ft. You teleport to any spot you can see or can describe by direction and distance (e.g. 'up 200ft'), bringing up to 400 lb of creatures and gear, including one willing creature you touch. You can cast no further spells this round. If the spot is occupied by a creature or solid object, the spell fails and is wasted.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 450ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3"
+   },
+   "_id": "UUu7N6XoFuK4ToFw",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.UUu7N6XoFuK4ToFw",
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fear (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 60ft cone. Creatures in the cone that fail a Will save are Frightened and must flee from you at full speed for 1 round per level, dropping anything held; Will negates. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Fear",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc"
+   },
+   "_id": "UD6ftwf95FkRyKC1",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.UD6ftwf95FkRyKC1",
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wall of Fire (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 120ft; opaque wall up to 20ft high and 10ft long per level (max 60ft), or a ring up to 10ft radius, for 1 round per level. A creature that passes through or is within the wall takes 2d6 + 1 per level fire damage (max 2d6+15); Reflex halves. Creatures within 10ft of the hot side take 2d4 fire damage per round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Warlock, Magus, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Warlock",
+     "Magus",
+     "Sorcerer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "2d6 + min(@cl, 15)",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.5bsYjyZvp6V579Li"
+   },
+   "_id": "qowsH2o6PhzEtIv0",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.qowsH2o6PhzEtIv0",
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Storm (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+   "system": {
+    "description": "<p>Range 150ft; 30ft-radius area. Pillars of fire deal 1d8 fire damage per level (max 15d8); Reflex halves. Plants and flammable objects in the area ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 7,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid"
+    ],
+    "school": "Divine / Nature",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "30ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 15))d8",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 30,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH"
+   },
+   "_id": "wUxm3QlYgNrHk71m",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.wUxm3QlYgNrHk71m",
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mass Suggestion (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 90ft; up to 1 creature per level that can hear and understand you. Give one command of up to 25 words that sounds reasonable (not harmful to the target); targets follow it for 1 hour per level or until it is done. Will negates; damage from you or your allies ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 90ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.3wMd0vWJejMk1VWh"
+   },
+   "_id": "H7JjfVGS0LK5dB3s",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.H7JjfVGS0LK5dB3s",
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "E3OdCOF0nLIeHan4",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.E3OdCOF0nLIeHan4",
+   "effects": [],
+   "flags": {},
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Ultroloth",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

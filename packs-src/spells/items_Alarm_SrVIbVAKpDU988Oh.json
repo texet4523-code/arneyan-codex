@@ -1,0 +1,53 @@
+{
+ "_id": "SrVIbVAKpDU988Oh",
+ "_key": "!items!SrVIbVAKpDU988Oh",
+ "name": "Alarm",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Range 30ft; 20ft-radius area; 8 hours. Wards the area; if a Small or larger creature enters it, you hear a mental ping (even asleep, waking you) or a bell audible to 60ft (your choice when cast). Creatures you name when casting are ignored.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": true,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "4800",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 31,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

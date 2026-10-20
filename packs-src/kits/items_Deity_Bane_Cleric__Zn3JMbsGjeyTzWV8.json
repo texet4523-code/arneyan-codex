@@ -1,0 +1,45 @@
+{
+ "_id": "Zn3JMbsGjeyTzWV8",
+ "_key": "!items!Zn3JMbsGjeyTzWV8",
+ "name": "Deity: Bane (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Morningstar</p><p><strong>Granted power:</strong> Once/day: frighten all enemies within 15ft (Will save negates). Advantage on Intimidation.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Bane)",
+    "level": 1,
+    "description": "<p>Once/day: frighten all enemies within 15ft (Will save negates). Advantage on Intimidation.</p><p><strong>Favoured weapon:</strong> Morningstar</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 34,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

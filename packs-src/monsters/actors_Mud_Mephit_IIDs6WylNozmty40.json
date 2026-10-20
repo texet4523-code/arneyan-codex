@@ -1,0 +1,246 @@
+{
+ "_id": "IIDs6WylNozmty40",
+ "_key": "!actors!IIDs6WylNozmty40",
+ "name": "Mud Mephit",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "5d6",
+  "attributes": {
+   "hp": {
+    "value": 17,
+    "max": 17,
+    "temp": 0
+   },
+   "ac": 11,
+   "speed": "20ft, fly 20ft, swim 20ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small elemental</em></p><p><strong>GM:</strong> A sad, needy blob that wants a friend to complain to.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fists",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sOPnU6U7UV0THfCJ",
+   "_key": "!actors.items!IIDs6WylNozmty40.sOPnU6U7UV0THfCJ",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mud Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, it belches mud at a creature within 5ft; @Check[ref|dc:10]{Reflex save DC 10} or @Condition[restrained]{Restrained} for 1 minute, repeating the save each turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tABMZOOP4aRFMBD3",
+   "_key": "!actors.items!IIDs6WylNozmty40.tABMZOOP4aRFMBD3",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Death Burst",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>When it dies, it bursts into sticky mud; creatures within 5ft make a @Check[ref|dc:10]{Reflex save DC 10} or are @Condition[restrained]{Restrained} until the end of their next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jvpCgOpZS2XokW9r",
+   "_key": "!actors.items!IIDs6WylNozmty40.jvpCgOpZS2XokW9r",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "fEmkW8stErLS2TN7",
+   "_key": "!actors.items!IIDs6WylNozmty40.fEmkW8stErLS2TN7",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Mud Mephit",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

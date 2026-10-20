@@ -1,0 +1,78 @@
+{
+ "_id": "fsjbYfpXw285smCv",
+ "_key": "!items!fsjbYfpXw285smCv",
+ "name": "Deity: Bahamut (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Glaive</p><p><strong>Granted power:</strong> Choose acid, cold, fire or lightning at 1st level: you have Resistance 5 to it, and your Smite deals +1d6 damage of that type. Advantage on saves against fear.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Bahamut)",
+    "level": 1,
+    "description": "<p>Choose acid, cold, fire or lightning at 1st level: you have Resistance 5 to it, and your Smite deals +1d6 damage of that type. Advantage on saves against fear.</p><p><strong>Favoured weapon:</strong> Glaive</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Smite: your type (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "With your Smite: +1d6 of the type you chose at 1st level (acid, cold, fire or lightning).",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fear",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Bahamut: your Smite deals +1d6 damage of your chosen type.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 25,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

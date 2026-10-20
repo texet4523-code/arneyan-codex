@@ -1,0 +1,209 @@
+{
+ "_id": "Q1OVg5BI3hj6IKQI",
+ "_key": "!actors!Q1OVg5BI3hj6IKQI",
+ "name": "Giant Wolf Spider",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "2d8",
+  "attributes": {
+   "hp": {
+    "value": 9,
+    "max": 9,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "40ft, climb 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft, Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Medium beast</em></p><p><strong>GM:</strong> A hunting spider the size of a dog. It runs its prey down rather than wait.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "V6R1W3Wr0s0HQH34",
+   "_key": "!actors.items!Q1OVg5BI3hj6IKQI.V6R1W3Wr0s0HQH34",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:11]{Fortitude save DC 11} or takes @Damage[2d6 poison]{2d6 poison damage}, half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "2d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PCwryYK76pBL0yov",
+   "_key": "!actors.items!Q1OVg5BI3hj6IKQI.PCwryYK76pBL0yov",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb and Web Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>Climbs any surface and knows the location of anything touching a web.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ni9M5VrA2z5WCKZW",
+   "_key": "!actors.items!Q1OVg5BI3hj6IKQI.Ni9M5VrA2z5WCKZW",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Giant Wolf Spider",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-wolf-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

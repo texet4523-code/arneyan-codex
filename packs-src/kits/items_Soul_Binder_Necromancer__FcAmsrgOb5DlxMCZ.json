@@ -1,0 +1,56 @@
+{
+ "_id": "FcAmsrgOb5DlxMCZ",
+ "_key": "!items!FcAmsrgOb5DlxMCZ",
+ "name": "Soul Binder (Necromancer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<p>You trap and bargain with souls — the dead are a resource, their knowledge a currency. Information flows from the other side to those who know how to ask.</p><ul><li>Soul Snare</li><li>Once per encounter, when you reduce a creature to 0 HP or below, you may bind its soul briefly</li><li>The bound soul must answer one question truthfully before passing on — the answer comes as a whisper only you can hear — after answering, the bound soul may impose disadvantage on one enemy's next attack roll or save.</li><li>Whisper of the Dead</li><li>Advantage on Speak with Dead checks and all checks involving souls, spirits, or planar entities</li><li>Once per day, ask a recently dead creature (dead no longer than 1 day per Necromancer level) one yes/no question — no spell slot required</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Necromancer",
+  "features": [
+   {
+    "name": "Soul Snare",
+    "level": 1,
+    "description": "<p>Once per encounter, when you reduce a creature to 0 HP or below, you may bind its soul briefly</p><p>The bound soul must answer one question truthfully before passing on — the answer comes as a whisper only you can hear — after answering, the bound soul may impose disadvantage on one enemy's next attack roll or save.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   },
+   {
+    "name": "Whisper of the Dead",
+    "level": 1,
+    "description": "<p>Advantage on Speak with Dead checks and all checks involving souls, spirits, or planar entities</p><p>Once per day, ask a recently dead creature (dead no longer than 1 day per Necromancer level) one yes/no question — no spell slot required</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Speak with Dead; checks involving souls, spirits or planar entities",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "1dhpQWn5kZl8ql6c",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "pEuTwbNHPW98sSqe",
+ "_key": "!items!pEuTwbNHPW98sSqe",
+ "name": "Boldock Wall Guard (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Hardened on the Wall against the Red Waste, or walked away from it. You know what it costs to hold a line.</p><ul><li><strong>Waste-Hardened: Advantage on your first attack roll each round against creatures with the Orc ancestry tag.</strong></li><li><strong>Wall Authority: </strong>Advantage on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Waste-Hardened",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round against creatures with the Orc ancestry tag.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs creatures with the Orc ancestry tag",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Wall Authority",
+    "level": 1,
+    "description": "<p>Advantage on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or guard duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,56 @@
+{
+ "_id": "gCvz9fRgu84Qy71E",
+ "_key": "!items!gCvz9fRgu84Qy71E",
+ "name": "Swordmaster — The Eltor Duelist (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Eltor's refined fencing and duelling tradition. Precision over power.</p><ul><li><strong>Master's Blade: </strong>Choose one weapon type — once per round, reroll one missed attack made with it.</li><li><strong>Connoisseur: </strong>Advantage on checks to identify, appraise, or recall lore about the chosen weapon type.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Master's Blade",
+    "level": 1,
+    "description": "<p>Choose one weapon type — once per round, reroll one missed attack made with it.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Connoisseur",
+    "level": 1,
+    "description": "<p>Advantage on checks to identify, appraise, or recall lore about the chosen weapon type.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, appraise or recall lore about your chosen weapon type",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

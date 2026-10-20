@@ -1,0 +1,76 @@
+{
+ "_id": "aT6raQpidW7Zt9cG",
+ "_key": "!items!aT6raQpidW7Zt9cG",
+ "name": "Freedom of Movement",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature for 10 minutes per level. It cannot be Restrained or Paralysed by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Freedom of Movement",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "condition:restrained",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:paralysed",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 210,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

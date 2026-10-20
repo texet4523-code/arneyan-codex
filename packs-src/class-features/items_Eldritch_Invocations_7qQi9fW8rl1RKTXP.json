@@ -1,0 +1,87 @@
+{
+ "_id": "7qQi9fW8rl1RKTXP",
+ "_key": "!items!7qQi9fW8rl1RKTXP",
+ "name": "Eldritch Invocations",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 5th, 9th, 13th and 17th level. You cannot take the same invocation twice.</li><li><strong>Agonising Blast: </strong>add your Charisma modifier to Eldritch Blast damage.</li><li><strong>Repelling Blast: </strong>a creature of Large size or smaller hit by Eldritch Blast is pushed 10ft.</li><li><strong>Armour of Shadows: </strong>+2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with other unarmoured bonuses of the same kind.</li><li><strong>Fiendish Vigour: </strong>once per day, as part of your action, gain temporary hit points equal to your Warlock level. They last until your next long rest.</li><li><strong>Mask of Many Faces: </strong>cast Change Self at will.</li><li><strong>Devil's Sight: </strong>see normally in darkness, magical or otherwise, to 60ft.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Warlock",
+  "activities": [
+   {
+    "name": "Fiendish Vigour",
+    "kind": "temp",
+    "formula": "@cl",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "As part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Mask of Many Faces",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Cast Change Self at will.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "T3ndcZaUyzMXclDX",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

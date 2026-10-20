@@ -1,0 +1,52 @@
+{
+ "_id": "PtEhFai3SqpNZp90",
+ "_key": "!items!PtEhFai3SqpNZp90",
+ "name": "Otiluke's Freezing Sphere",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 150ft; 20ft-radius burst. 1d6 cold damage per level (max 15d6); Reflex halves. Alternatively freezes still water in a 40ft-radius area to 6 inches thick for 1 hour.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 150ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 15))d6",
+  "damageType": "cold",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 301,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

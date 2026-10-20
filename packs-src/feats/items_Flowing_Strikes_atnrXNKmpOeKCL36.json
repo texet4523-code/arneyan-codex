@@ -1,0 +1,80 @@
+{
+ "_id": "atnrXNKmpOeKCL36",
+ "_key": "!items!atnrXNKmpOeKCL36",
+ "name": "Flowing Strikes",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>Once per round, when you hit a creature with a melee attack, let the momentum carry through — make one extra melee attack. Against the creature you just hit it is rolled with Disadvantage; against a different creature within your reach it is a normal roll. The extra attack cannot trigger Flowing Strikes again.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "activities": [
+   {
+    "name": "Against the same creature",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Once per round, after hitting a creature with a melee attack. The extra attack cannot trigger Flowing Strikes again.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "1",
+    "weapons": "melee",
+    "disadvantage": "all",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Against a different creature",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Once per round, after hitting a creature with a melee attack. The extra attack cannot trigger Flowing Strikes again. A different creature within your reach.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "1",
+    "weapons": "melee",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

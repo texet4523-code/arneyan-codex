@@ -1,0 +1,54 @@
+{
+ "_id": "AQrHYMRn6oDA17KZ",
+ "_key": "!items!AQrHYMRn6oDA17KZ",
+ "name": "Magic Missile",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 150ft; missiles strike automatically, each dealing 1d4+1 force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals 1d4+1.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus",
+   "Necromancer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 150ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "(max(1, min(floor(@cl/2), 5)))d4 + max(1, min(floor(@cl/2), 5))",
+  "damageType": "force",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 68,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

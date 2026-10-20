@@ -1,0 +1,107 @@
+{
+ "_id": "ChXzUEV5uEj1Q3th",
+ "_key": "!items!ChXzUEV5uEj1Q3th",
+ "name": "Dwarf",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 25ft (not reduced by armour or encumbrance) • Darkvision 60ft • +2 Con / +1 Wis, −1 Cha</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on stonework/underground construction/unusual-stonework checks.</li><li><strong>Advantage</strong> on saves vs poison; Resistance 5 to poison damage.</li><li><strong>Choose one Craft skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>The Clan Weapon</strong> (Disadvantage on Charisma checks with other dwarves if lost, until recovered).</li><li><strong>Stonebraced:</strong> 1/long rest, treat an incoming critical hit as a normal hit, or ignore a knockdown.</li><li><strong>Weapon training:</strong> handaxe, battleaxe, warhammer, light crossbow, firearms.</li><li><strong>Armour training:</strong> light, medium.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>Dul Khagul:</strong> Advantage identifying clan lineage/weapon origin/traditions; Advantage on saves vs being charmed or persuaded against clan loyalty.</li><li><strong>Tenor Hold:</strong> Advantage on craft/repair/identify firearms &amp; mechanical devices; Advantage on checks involving human cultures and languages.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 25,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Con / +1 Wis, −1 Cha",
+  "bonuses": {
+   "con": 2,
+   "wis": 1,
+   "cha": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Advantage on stonework/underground…",
+    "text": "Advantage on stonework/underground construction/unusual-stonework checks."
+   },
+   {
+    "name": "Advantage on saves vs poison",
+    "text": "Advantage on saves vs poison; Resistance 5 to poison damage."
+   },
+   {
+    "name": "Choose one Craft skill at creation",
+    "text": "Choose one Craft skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   },
+   {
+    "name": "The Clan Weapon",
+    "text": "The Clan Weapon (Disadvantage on Charisma checks with other dwarves if lost, until recovered)."
+   },
+   {
+    "name": "Stonebraced",
+    "text": "1/long rest, treat an incoming critical hit as a normal hit, or ignore a knockdown."
+   },
+   {
+    "name": "Weapon training",
+    "text": "handaxe, battleaxe, warhammer, light crossbow, firearms."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "Dul Khagul",
+     "text": "Advantage identifying clan lineage/weapon origin/traditions; Advantage on saves vs being charmed or persuaded against clan loyalty.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Tenor Hold",
+     "text": "Advantage on craft/repair/identify firearms & mechanical devices; Advantage on checks involving human cultures and languages.",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "resist",
+    "value": "poison 5",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs poison",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "stonework, underground construction or unusual stonework",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Craft skill chosen at creation",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

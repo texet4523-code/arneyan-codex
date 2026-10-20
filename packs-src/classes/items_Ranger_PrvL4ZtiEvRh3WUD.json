@@ -1,0 +1,106 @@
+{
+ "_id": "PrvL4ZtiEvRh3WUD",
+ "_key": "!items!PrvL4ZtiEvRh3WUD",
+ "name": "Ranger",
+ "type": "class",
+ "img": "systems/arneyan/assets/classes/Ranger.webp",
+ "system": {
+  "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Wisdom</td></tr><tr><td>Hit Die</td><td>d10</td></tr><tr><td>HP beyond 10th</td><td>+3 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Any</td></tr><tr><td>Armour</td><td>Light and medium armour and medium shields.</td></tr><tr><td>BtH</td><td>One behind the Fighter (+7 at 12th, +15 at 24th)</td></tr><tr><td>Identity</td><td>A hunter and tracker of the wild places who knows its chosen enemies, reads the land and fights with blade or bow at the edge of civilisation.</td></tr></tbody></table><h2>Ranger Progression Table</h2><p><em>These values apply from the listed level until the next row. Trap search bonus applies when actively searching.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Trap search bonus</th><th>Trap damage</th><th>Survival Instincts (surprise)</th></tr></thead><tbody><tr><td>1</td><td>+2</td><td>1d4</td><td>—</td></tr><tr><td>13</td><td>+3</td><td>2d4</td><td>—</td></tr><tr><td>15</td><td>+3</td><td>2d4</td><td>+2</td></tr><tr><td>17</td><td>+3</td><td>2d4</td><td>+3</td></tr><tr><td>18</td><td>+4</td><td>3d4</td><td>+3</td></tr><tr><td>19</td><td>+4</td><td>3d4</td><td>+4</td></tr><tr><td>21</td><td>+4</td><td>3d4</td><td>+5</td></tr><tr><td>23</td><td>+4</td><td>3d4</td><td>+6</td></tr><tr><td>24</td><td>+6</td><td>4d4</td><td>+6</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Combat Marauder, Marked Prey, Woodcraft</td></tr><tr><td>2</td><td>Light Step</td></tr><tr><td>3</td><td>Track: distinguishing characteristics</td></tr><tr><td>5</td><td>Track: creature type; Conceal and Move Silently together</td></tr><tr><td>6</td><td>Favoured Enemy</td></tr><tr><td>7</td><td>Extra Attack</td></tr><tr><td>8</td><td>Hunter's Quarry</td></tr><tr><td>13</td><td>Find Passage, Advanced Favoured Enemy, Expert Trapper</td></tr><tr><td>15</td><td>Survival Instincts, +1 Dexterity</td></tr><tr><td>17</td><td>Advanced Tracking</td></tr><tr><td>20</td><td>Advanced Favoured Enemy improves</td></tr><tr><td>24</td><td>Apex Predator</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Combat Marauder</h4><ul><li><strong>Effect: </strong>+1 flat bonus damage per two Ranger levels against humanoids (bugbears, gnolls, goblins, hobgoblins, kobolds, orcs, and similar), giants (giants, ogres, and similar), and — once marked, or once a kit extends the list — other qualifying creature types. Against any other creature, the bonus is +1 per four Ranger levels.</li></ul><h4>Marked Prey</h4><ul><li><strong>Effect: </strong>Once per encounter, as part of an attack, mark a creature you can see — gain advantage on your next attack roll against it, or on your next Track check if it flees, before the mark fades.</li></ul><h4>Woodcraft</h4><ul><li><strong>Effect: </strong>Wilderness skills. Each use below is a Wisdom check (Dexterity where stated), made in the wilderness.</li><li><strong>Conceal (Dexterity): </strong>Camouflage in wilderness areas — on a successful check, passers-by cannot notice the ranger. Cannot conceal if being observed (unless the observer is momentarily distracted, in which case you have Disadvantage).<ul><li><strong>Half speed or slower: </strong>no penalty. Above half speed up to full speed: Disadvantage. Running: impossible</li><li>From 5th level: may now attempt Conceal and Move Silently simultaneously at disadvantage on both checks, quarter speed only</li></ul></li><li><strong>Delay/Neutralise Poison (Wisdom): </strong>For natural poisons familiar to the ranger (those of their home region and their favoured enemy). On a successful check: delay the poison's effects for 1 hour per level (no action, 1 attempt only).<ul><li>If the roll exceeds the needed total by 6 or more: neutralise the poison entirely (effects already suffered are not reversed)</li></ul></li><li><strong>Move Silently (Dexterity): </strong>In wilderness only. Half speed or slower: no penalty. Above half speed: disadvantage. Running or charging: impossible.</li><li><strong>Scale (Dexterity): </strong>Climb natural slopes and inclines at half speed without a check. Dangerous or impossible natural inclines require a check; failure = no progress, failure by 5+ = fall.<ul><li>Cannot carry anything in hand while climbing</li></ul></li><li><strong>Traps (Wisdom): </strong>Detect simple wilderness traps when passing within 25ft (+2 bonus when actively searching), set snares and pit traps (snares hold medium creatures; pits deal 1d4 damage, halved on Reflex save), disable any trap the ranger can build.<ul><li>One round to check a specific area, 1 minute for 25ft×25ft</li><li>Cannot detect magical traps</li><li>Expert Trapper (13th level): the search bonus and trap damage improve — see the Ranger Progression Table. You can also create traps that ensnare large animals.</li></ul></li><li><strong>Survival (Wisdom): </strong>Find shelter, food, and water in wilderness for self automatically; start a fire in 1d10 minutes; determine true north.<ul><li>Feed 2d4 additional people per 8 hours of hunting — Moderate Wisdom check for the second group of 2d4, Hard for the third group of 1d4. Maximum 5d4 creatures total</li><li>Cannot forage more than twice per day</li></ul></li><li><strong>Track (Wisdom): </strong>Track any creature in wilderness that leaves a trace (Wisdom check; GM may require multiple checks over time). Determine general number and type of creatures.<ul><li>+2 bonus when tracking humanoids or giants</li><li>Hide your own tracks with a similar check</li><li>Anyone may track with the Tracking skill; the Ranger tracks with Advantage</li><li>From 3rd level: determine distinguishing characteristics of tracked creatures — wounded, exhausted, carrying heavy loads, wearing armour, spellcasters in the group</li><li>From 5th level: identify the specific type of tracked creature from these categories (if the ranger has had interaction with them): beast, fey, giant, humanoid, plant, or vermin</li></ul></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Light Step</h4><ul><li><strong>Effect:</strong> You may Move Silently or Conceal at up to full speed in natural terrain without Disadvantage.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Favoured Enemy</h4><ul><li><strong>Effect: </strong>Choose one specific creature type as favoured enemy (GM should require a creature encountered repeatedly in the character's history). Against this enemy: Advantage on your first attack roll each round, +2 AC, +2 to tracking checks, and the ranger can neutralise their manufactured poisons as well as natural ones.</li></ul><h3 class=\"arn-level\">7th Level — Extra Attack</h3><ul><li><strong>Extra Attack: </strong>When you use your action to attack, make one additional weapon attack as part of it, with Disadvantage (see Extra attacks in The Arneyan Codex).</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Hunter's Quarry</h4><ul><li><strong>Effect:</strong> Marked Prey may be used twice per encounter, on different creatures.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Find Passage</h4><ul><li><strong>Effect: </strong>Examine terrain and find the least obstructed path — halves any movement penalties for terrestrial terrain. Anyone travelling with the ranger has their penalties reduced by one-quarter.</li><li>Must have some experience in the terrain</li><li><strong>Advanced Favoured Enemy: </strong>the Favoured Enemy bonuses increase: Advantage on your first attack roll each round against them, +3 AC, +3 tracking</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Survival Instincts (Wisdom)</h4><ul><li><strong>Effect: </strong>Bonus to surprise checks: +2 at 15th level, rising to +6 at 23rd (see the Ranger Progression Table) — the ranger senses something is wrong before being able to pinpoint it exactly.</li><li><strong>Dexterity Bonus: permanent +1 Dexterity</strong></li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Advanced Tracking (Wisdom)</h4><ul><li><strong>Effect: </strong>After a successful track check, determine accurately the number in the tracked party, their make-up (war band, hunting party, etc.), whether well or lightly armed, their speed, and their habits.</li><li><strong>A second successful Wisdom check</strong> (+1 only) can predict their intended direction of travel; a third can identify their specific destination</li></ul><h3 class=\"arn-level\">20th Level</h3><ul><li><strong>Advanced Favoured Enemy improves: </strong>once per encounter, intimidate up to 15 of the favoured enemy simultaneously (Will save against your Class Save DC). Intimidated enemies suffer disadvantage on all attack rolls and attribute checks while engaged with the ranger, for up to 1 minute</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Apex Predator</h4><ul><li><strong>Effect: </strong>Once per day, mark a creature as prey as part of your action — for the rest of the encounter, the Ranger's Combat Marauder bonus applies against it in full, regardless of creature type, and the Ranger gains advantage on all checks made to track, corner, or finish it.</li></ul><h2>Kits — Ranger Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Ranger folder. Drag one onto your character.</p><p>Ranger Kits represent the region, calling, or tradition that shaped the character's wilderness training.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "levels": 1,
+  "hitDie": "d10",
+  "hpBeyond10": 3,
+  "bthProgression": "knight",
+  "keyAbility": "dex",
+  "castingAbility": "",
+  "xpRate": 10,
+  "weapons": "Any",
+  "armour": "Light and medium armour and medium shields.",
+  "slotTable": [],
+  "featLevels": [
+   1,
+   2,
+   6,
+   11,
+   16,
+   21
+  ],
+  "featPaths": [
+   "General Path",
+   "Martial Path",
+   "Specialist Path"
+  ],
+  "features": [
+   {
+    "level": 1,
+    "name": "Combat Marauder",
+    "uuid": "Compendium.arneyan.class-features.Item.BmWnLgQbDj3vwatI"
+   },
+   {
+    "level": 1,
+    "name": "Marked Prey",
+    "uuid": "Compendium.arneyan.class-features.Item.4WQMpHN5adDKtK5M"
+   },
+   {
+    "level": 1,
+    "name": "Woodcraft",
+    "uuid": "Compendium.arneyan.class-features.Item.GPq6uYBoodYL9K6W"
+   },
+   {
+    "level": 2,
+    "name": "Light Step",
+    "uuid": "Compendium.arneyan.class-features.Item.JauRuWRLPPADXGuw"
+   },
+   {
+    "level": 6,
+    "name": "Favoured Enemy",
+    "uuid": "Compendium.arneyan.class-features.Item.pCluFTtTvLIjjq8F"
+   },
+   {
+    "level": 7,
+    "name": "Extra Attack",
+    "uuid": "Compendium.arneyan.class-features.Item.TeHdw0YChFdEa0Md"
+   },
+   {
+    "level": 8,
+    "name": "Hunter's Quarry",
+    "uuid": "Compendium.arneyan.class-features.Item.pvvQciAicNmRUPdF"
+   },
+   {
+    "level": 13,
+    "name": "Find Passage",
+    "uuid": "Compendium.arneyan.class-features.Item.AMuyxBqZSO4IN6Qx"
+   },
+   {
+    "level": 15,
+    "name": "Survival Instincts (Wisdom)",
+    "uuid": "Compendium.arneyan.class-features.Item.5py4wbBwsuYInq2k"
+   },
+   {
+    "level": 17,
+    "name": "Advanced Tracking (Wisdom)",
+    "uuid": "Compendium.arneyan.class-features.Item.pMT7ev3RlGggFRUD"
+   },
+   {
+    "level": 20,
+    "name": "Advanced Favoured Enemy improves",
+    "uuid": "Compendium.arneyan.class-features.Item.oOW5jdY7w7TBOs9C"
+   },
+   {
+    "level": 24,
+    "name": "Apex Predator",
+    "uuid": "Compendium.arneyan.class-features.Item.RKqRZG9xUcYhX9kH"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

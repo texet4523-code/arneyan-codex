@@ -1,0 +1,173 @@
+{
+ "_id": "Mjjan1XTyWAe30iU",
+ "_key": "!actors!Mjjan1XTyWAe30iU",
+ "name": "Ape",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-gorilla.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "2d8+4",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft, climb 30ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast</em></p><p><strong>GM:</strong> A powerful forest ape that defends its troop with stones and fists.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-gorilla.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "alYRHeRMQ7lrYiDE",
+   "_key": "!actors.items!Mjjan1XTyWAe30iU.alYRHeRMQ7lrYiDE",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rock",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-gorilla.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": true,
+    "range": "25ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7bNCMvlsCzScPsQ9",
+   "_key": "!actors.items!Mjjan1XTyWAe30iU.7bNCMvlsCzScPsQ9",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Ape",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-gorilla.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,482 @@
+{
+ "_id": "nrCUDPrqBgHNETM7",
+ "_key": "!actors!nrCUDPrqBgHNETM7",
+ "name": "Druid",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-person.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 11,
+   "speed": "30ft",
+   "attack": 5,
+   "spellDC": 12,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "Druid",
+   "level": 4,
+   "slots": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Keeper of a grove or a hill. It treats the party as weather: tolerated, watched and moved along.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ULwsmcKIGz691Lvb",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.ULwsmcKIGz691Lvb",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>Casts as a 4th-level druid. Typical spells: @UUID[Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F]{entangle} (@Check[ref|dc:12]{Reflex DC 12}), @UUID[Compendium.arneyan.spells.Item.hkgEfGE5fouhOv8v]{speak with animals}, @UUID[Compendium.arneyan.spells.Item.sCwqRfBFAPfBGAWP]{thorn whip}, @UUID[Compendium.arneyan.spells.Item.tMSNMPC5cczK63K1]{barkskin}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IpFWP3u3K9HcYAvd",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.IpFWP3u3K9HcYAvd",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangle",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 120ft; 25ft-radius area of plants; 1 minute. Plants grasp every creature in the area: Restrained; Reflex negates (success means half speed while in the area). A Restrained creature breaks free with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "25ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 25,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Entangled",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F"
+   },
+   "_id": "p0BJPvzIq6FNZ23i",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.p0BJPvzIq6FNZ23i",
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Speak with Animals",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 2 minutes per level. You speak with and understand animals within 30ft. Friendly animals answer honestly; none are compelled to obey. Magical beasts and monsters are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hkgEfGE5fouhOv8v"
+   },
+   "_id": "7PdBGZ3fIJpud5Ky",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.7PdBGZ3fIJpud5Ky",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Thorn Whip",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature. Deals 1d4 piercing damage (+1 die at 5th, 11th and 17th level) and pulls a Large or smaller target up to 10ft in a straight line towards you; Reflex negates both.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d4",
+    "damageType": "piercing",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.sCwqRfBFAPfBGAWP"
+   },
+   "_id": "JK2A11OSA6dJSYlB",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.JK2A11OSA6dJSYlB",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Barkskin",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Target gains +3 AC (natural armour bonus, does not stack with other natural armour) for 10 minutes per level. Its skin takes on a woody texture; no effect on speed.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Barkskin",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "3",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.tMSNMPC5cczK63K1"
+   },
+   "_id": "n8cntBP9BlCg0UnB",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.n8cntBP9BlCg0UnB",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wild Ally",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>Animals of the druid's home woods will not attack it, and may come at its call.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ewNEahCJXT81rIiY",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.ewNEahCJXT81rIiY",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Druid",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-person.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

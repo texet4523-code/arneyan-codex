@@ -1,0 +1,284 @@
+{
+ "_id": "2jHZ6zXBzb2lLkRQ",
+ "_key": "!actors!2jHZ6zXBzb2lLkRQ",
+ "name": "Rust Monster",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "40ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium monstrosity</em></p><p><strong>GM:</strong> Harmless to flesh and ruinous to gear. Parties tend to shed their armour and drop their swords.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Antennae touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "0",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ehi7wvhY38RuQjV6",
+   "_key": "!actors.items!2jHZ6zXBzb2lLkRQ.ehi7wvhY38RuQjV6",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WFJx1goeCm2Z3A4y",
+   "_key": "!actors.items!2jHZ6zXBzb2lLkRQ.WFJx1goeCm2Z3A4y",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Iron Scent",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Can sense ferrous metal within 30ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JTDJcqw3KVHXvR0J",
+   "_key": "!actors.items!2jHZ6zXBzb2lLkRQ.JTDJcqw3KVHXvR0J",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rust",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>A non-magical metal weapon that hits it, and any metal armour or weapon touched by its antennae, corrodes. Armour takes a permanent -1 AC penalty each time; a weapon takes -1 to damage and is destroyed at -5.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Pvh93mSNnrfH10WH",
+   "_key": "!actors.items!2jHZ6zXBzb2lLkRQ.Pvh93mSNnrfH10WH",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Eat Metal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>May devour a metal object of up to 5 lb as a bite attack.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zDovfpsfoGgKE1IJ",
+   "_key": "!actors.items!2jHZ6zXBzb2lLkRQ.zDovfpsfoGgKE1IJ",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Rust Monster",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

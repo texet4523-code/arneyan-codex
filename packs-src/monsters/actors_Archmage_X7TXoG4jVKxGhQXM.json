@@ -1,0 +1,1049 @@
+{
+ "_id": "X7TXoG4jVKxGhQXM",
+ "_key": "!actors!X7TXoG4jVKxGhQXM",
+ "name": "Archmage",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 12,
+  "hd": "18d8",
+  "attributes": {
+   "hp": {
+    "value": 135,
+    "max": 135,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 20,
+   "spellDC": 20,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 9,
+   "ref": 11,
+   "will": 11
+  },
+  "spellcasting": {
+   "className": "Wizard",
+   "level": 18,
+   "slots": [
+    7,
+    6,
+    6,
+    5,
+    5,
+    4,
+    4,
+    3,
+    3,
+    2
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A master of the art who answers to no one. If it is fighting you fairly, something has gone badly wrong for it.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8HZ67bLHWbAQSAts",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.8HZ67bLHWbAQSAts",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Arcane Ward",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Resistance 10 to damage from spells, and Advantage on saves against spells.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OCuIPhWzStaIlhjx",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.OCuIPhWzStaIlhjx",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Casts as an 18th-level wizard. Typical spells: @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.QrlDx0PCOE7axE63]{counterspell}, @UUID[Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl]{fly}, @UUID[Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO]{lightning bolt} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.5hER9G7OSUDbnEfc]{wall of force}, @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.kU2XAL9NNqNtyJ7S]{globe of invulnerability}, @UUID[Compendium.arneyan.spells.Item.7NxaQ6iROU5pq418]{teleport}, @UUID[Compendium.arneyan.spells.Item.vP1i9qkDLWC0Pnub]{mind blank}, @UUID[Compendium.arneyan.spells.Item.iUWzlYMevPeoGOU9]{time stop}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SIJHa0E0Sqc6MzIZ",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.SIJHa0E0Sqc6MzIZ",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shield",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Shield",
+      "target": "self",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs ranged attacks (+4 total)",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "spell:Magic Missile",
+        "when": "",
+        "label": "Shield"
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
+   },
+   "_id": "KJisPCnYlmNgcg7y",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.KJisPCnYlmNgcg7y",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Misty Step",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Self; teleport up to 30ft to an unoccupied space you can see, carrying only what you wear or carry. Cast as part of your movement.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Warlock",
+    "classes": [
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl"
+   },
+   "_id": "ttQtBESIs8YhpvzG",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.ttQtBESIs8YhpvzG",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Counterspell",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 60ft; you must see the caster. Ready this spell; when the target casts, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Warlock",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.QrlDx0PCOE7axE63"
+   },
+   "_id": "ZubnvyP6sD5ITq43",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.ZubnvyP6sD5ITq43",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fly",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It gains a fly speed of 90ft for 1 minute per level. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Fly",
+      "target": "target",
+      "rounds": "10*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.fly",
+        "value": "90",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl"
+   },
+   "_id": "G0iByxRku7CAK4OE",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.G0iByxRku7CAK4OE",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Bolt",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Self; 100ft line, 5ft wide. 1d6 lightning damage per level (max 10d6); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "100ft line, 5ft wide",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 10))d6",
+    "damageType": "lightning",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "line",
+     "size": 100,
+     "width": 5,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO"
+   },
+   "_id": "EVkn6oni4epleZSg",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.EVkn6oni4epleZSg",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Banishment",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 60ft; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a 30ft radius (lowest Level first). Each creature that fails a Will save is sent to its home plane and cannot return by its own power for 24 hours; Will negates. If you hold an item the creature hates or fears, its save has Disadvantage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Warlock",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "30ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 30,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW"
+   },
+   "_id": "BFuDIAy2djsOAXAY",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.BFuDIAy2djsOAXAY",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wall of Force",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft. An invisible wall of 10ft square per level, or a sphere or hemisphere of radius 1ft per two levels, lasts 1 round per level. Nothing passes through, including breath weapons and spells; it is immune to damage and Dispel Magic. Only Disintegrate or Wish destroys it. It blocks Ethereal creatures; anyone caught as it forms may save (Reflex) to pick a side.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Picks which side of the wall it is on",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.5hER9G7OSUDbnEfc"
+   },
+   "_id": "OuhQevrptrs4psfg",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.OuhQevrptrs4psfg",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cone of Cold",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>60ft cone. Deals 1d6 cold damage per level (max 15d6); Reflex halves. Creatures reduced to 0 HP or below are frozen solid. Unattended water in the area freezes.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 15))d6",
+    "damageType": "cold",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj"
+   },
+   "_id": "ZMWImi5WoF4pCMDy",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.ZMWImi5WoF4pCMDy",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Globe of Invulnerability",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 10ft-radius globe, 1 round per level. Spells of 4th level or lower cannot enter or affect anything inside; spells cast from inside work normally and leave the globe. Higher-level spells work normally.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.kU2XAL9NNqNtyJ7S"
+   },
+   "_id": "54w4GTpNTUhJBi6P",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.54w4GTpNTUhJBi6P",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Teleport",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Self plus up to 7 willing creatures touching you (max 800 lb total). Destination on the same plane: you arrive on target 95% of the time if you know it very well, 85% if you studied it, 65% if you saw it once, 40% if only described or seen by scrying. Otherwise you arrive 10% of the distance off target; if inside a solid object you take 3d10 damage and are shunted.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.7NxaQ6iROU5pq418"
+   },
+   "_id": "AHscb546LxipIPNk",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.AHscb546LxipIPNk",
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mind Blank",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature; 24 hours. It is immune to Charmed, Frightened, Dominated and all other mind-affecting effects, to telepathy and mind reading, and to divination spells (scrying, location, detection). Can be dispelled. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 8,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Illusionist"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Mind Blank",
+      "target": "target",
+      "rounds": "14400",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "immune",
+        "value": "condition:charmed",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "condition:frightened",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "condition:dominated",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.vP1i9qkDLWC0Pnub"
+   },
+   "_id": "P0Ldy73Udvy1DvdB",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.P0Ldy73Udvy1DvdB",
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Time Stop",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Self; 1d4+1 rounds of your own time pass while the world stands still. You act freely but cannot attack, damage or target any creature or carried object; any effect of yours that harms or affects another creature ends the spell at once. It also ends if you enter an area with a lingering harmful effect. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 9,
+    "className": "Wizard",
+    "classes": [
+     "Wizard"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.iUWzlYMevPeoGOU9"
+   },
+   "_id": "vF8jyizQzvp9UoIF",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.vF8jyizQzvp9UoIF",
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EYXyvgEzcNxNfk8D",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.EYXyvgEzcNxNfk8D",
+   "effects": [],
+   "flags": {},
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Archmage",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,285 @@
+{
+ "_id": "eiHzPLNUugHX70ej",
+ "_key": "!actors!eiHzPLNUugHX70ej",
+ "name": "Wyvern",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "7d12",
+  "attributes": {
+   "hp": {
+    "value": 45,
+    "max": 45,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "20ft, fly 80ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large dragon</em></p><p><strong>GM:</strong> A cousin of dragons, dumber and meaner. Lairs on high crags and nests above trade roads.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pgyc4CQPrtwZcDek",
+   "_key": "!actors.items!eiHzPLNUugHX70ej.pgyc4CQPrtwZcDek",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XdvvdyvRb3aKjnSy",
+   "_key": "!actors.items!eiHzPLNUugHX70ej.XdvvdyvRb3aKjnSy",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stinger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dc2xe0rktg50KgDx",
+   "_key": "!actors.items!eiHzPLNUugHX70ej.dc2xe0rktg50KgDx",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+   "system": {
+    "description": "<p>A creature stung makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[7d6 poison]{7d6 poison damage} and is @Condition[poisoned]{Poisoned}; on a save it takes half and is not @Condition[poisoned]{Poisoned}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "7d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tKhwdv61ZZMGZc98",
+   "_key": "!actors.items!eiHzPLNUugHX70ej.tKhwdv61ZZMGZc98",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hover Dive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
+   "system": {
+    "description": "<p>May swoop from above for a free claw attack against a creature it did not previously target.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mqC3h7h8g9L9iBUl",
+   "_key": "!actors.items!eiHzPLNUugHX70ej.mqC3h7h8g9L9iBUl",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Wyvern",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-wyvern.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,52 @@
+{
+ "_id": "47ZKaCZN8xjN84Ax",
+ "_key": "!items!47ZKaCZN8xjN84Ax",
+ "name": "Meteor Swarm",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 400ft. Four meteors strike points you choose, each exploding in a 20ft radius. Creatures in a burst take 10d6 bludgeoning plus 10d6 fire damage (only once if bursts overlap); Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\">10d6 bludgeoning plus 10d6 fire. Place one area for each of the four meteors; a creature in two bursts takes the damage once.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 400ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "10d6 + 10d6",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 382,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

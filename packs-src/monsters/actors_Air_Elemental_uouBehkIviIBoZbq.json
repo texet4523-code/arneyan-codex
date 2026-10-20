@@ -1,0 +1,246 @@
+{
+ "_id": "uouBehkIviIBoZbq",
+ "_key": "!actors!uouBehkIviIBoZbq",
+ "name": "Air Elemental",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "8d8",
+  "attributes": {
+   "hp": {
+    "value": 36,
+    "max": 36,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "0ft, fly 90ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 6,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "lightning 5, thunder 5, non-magical 5",
+   "immunities": "poison, condition:charmed, condition:paralysed",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large elemental</em></p><p><strong>GM:</strong> A raging gale with a mind. Fight it from behind cover, or fight it in a cellar.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9CuVdZl9sPU13TyD",
+   "_key": "!actors.items!uouBehkIviIBoZbq.9CuVdZl9sPU13TyD",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Whirlwind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, it moves through creatures' spaces. Each Medium or smaller creature it passes makes a @Check[fort|dc:15]{Fortitude save DC 15} or is knocked @Condition[prone]{Prone} and takes @Damage[2d8 bludgeoning]{2d8 bludgeoning damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "2d8",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "haaYCCPKzoY41Hai",
+   "_key": "!actors.items!uouBehkIviIBoZbq.haaYCCPKzoY41Hai",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Air Form",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Passes through spaces as narrow as 1 inch.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gRsbNR5Tp7QYoO0q",
+   "_key": "!actors.items!uouBehkIviIBoZbq.gRsbNR5Tp7QYoO0q",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to poison and effects that charm, paralyse or exhaust it. Resistance 5 to lightning and thunder, and against non-magical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QcBBkDuaFUR9AnX4",
+   "_key": "!actors.items!uouBehkIviIBoZbq.QcBBkDuaFUR9AnX4",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Air Elemental",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

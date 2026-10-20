@@ -1,0 +1,172 @@
+{
+ "_id": "5CYe9p36IzxPz0Hc",
+ "_key": "!actors!5CYe9p36IzxPz0Hc",
+ "name": "Giant Wasp",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "10ft, fly 50ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (vermin)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d20",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast (vermin)</em></p><p><strong>GM:</strong> Nests hide in barns and ruins. The paralysed victims are carried back for the larvae.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Sting",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Y8A6UNMbEdIcoQMx",
+   "_key": "!actors.items!5CYe9p36IzxPz0Hc.Y8A6UNMbEdIcoQMx",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Paralysing Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>A creature hit by the sting must make a @Check[fort|dc:12]{Fortitude save DC 12} or be paralysed for 1 round; on a second consecutive failed save it is paralysed for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hjL39q6rprtAMN8x",
+   "_key": "!actors.items!5CYe9p36IzxPz0Hc.hjL39q6rprtAMN8x",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Giant Wasp",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

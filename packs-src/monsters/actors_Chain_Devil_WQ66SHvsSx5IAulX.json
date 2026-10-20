@@ -1,0 +1,246 @@
+{
+ "_id": "WQ66SHvsSx5IAulX",
+ "_key": "!actors!WQ66SHvsSx5IAulX",
+ "name": "Chain Devil",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "8d8",
+  "attributes": {
+   "hp": {
+    "value": 36,
+    "max": 36,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (devil)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d2",
+   "resistances": "cold 5",
+   "immunities": "fire, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fiend (devil)</em></p><p><strong>GM:</strong> A jailer. It would rather drag you away in chains to be sentenced.</p>",
+   "treasure": "<p>Treasure type <strong>C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Chain ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lyb0sffEJfsCLNPh",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.lyb0sffEJfsCLNPh",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animate Chains",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>As part of its action, up to four more chains in 60ft attack as separate creatures (AC 16, 20 HP each). They are destroyed at 0 HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GTu7TV3jdm2SrWxc",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.GTu7TV3jdm2SrWxc",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Unnerving Mask",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, a creature within 30ft that can see it makes a @Check[will|dc:16]{Will save DC 16} or is @Condition[frightened]{Frightened} for 1 round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wXsIs6akoorQ8Mte",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.wXsIs6akoorQ8Mte",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Devil's Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Immune to fire and poison. Resistance 5 to cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IL4lr6ziUrxuaDqO",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.IL4lr6ziUrxuaDqO",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Chain Devil",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

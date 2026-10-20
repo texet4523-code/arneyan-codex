@@ -1,0 +1,550 @@
+{
+ "_id": "VAGsAM5igD0EyZqw",
+ "_key": "!actors!VAGsAM5igD0EyZqw",
+ "name": "Sphinx",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 12,
+  "hd": "12d10",
+  "attributes": {
+   "hp": {
+    "value": 135,
+    "max": 135,
+    "temp": 0
+   },
+   "ac": 22,
+   "speed": "40ft, fly 60ft",
+   "attack": 15,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 6,
+   "will": 8
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 9,
+   "slots": [
+    5,
+    4,
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> Bound by honour and guarding knowledge. It is generous to the wise, and fatal to the arrogant.</p>",
+   "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d10+7",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tr2MJ2EKoY2bVke0",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.tr2MJ2EKoY2bVke0",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Casts as a 9th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.ioLVklpAS43XVX5x]{locate object}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zzNZ1Rfg35C9BotR",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.zzNZ1Rfg35C9BotR",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Magic",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
+   },
+   "_id": "5e4kmqSKTM9KItu9",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.5e4kmqSKTM9KItu9",
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Locate Object",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range 100ft + 10ft per level. You sense the direction to the nearest specific object you know or to the nearest object of one named type, for 1 minute per level. Lead sheets block it. Cast reversed (Obscure Object), one touched object cannot be located by any spell for 8 hours.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Witch, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Witch",
+     "Bard"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 100ft + 10ft per level",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ioLVklpAS43XVX5x"
+   },
+   "_id": "Ldg291Gc2j5D11RX",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.Ldg291Gc2j5D11RX",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Magic",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "A worn or carried magic item is not suppressed",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
+   },
+   "_id": "G0SRMPhKuRNoxLPx",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.G0SRMPhKuRNoxLPx",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Flame Strike",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 60ft; 10ft-radius, 40ft-high cylinder. Deals 1d6 damage per level (max 12d6), half fire and half radiant; Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 12))d6",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS"
+   },
+   "_id": "ZkKIsG3lJaioHOHn",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.ZkKIsG3lJaioHOHn",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Roar",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>3/day. Creatures within 120ft make a @Check[will|dc:18]{Will save DC 18} or are @Condition[frightened]{Frightened} for 1d4 rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 18,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "K4bc4D3EogM02Epn",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.K4bc4D3EogM02Epn",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Riddle",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>A creature that answers a sphinx's riddle correctly may ask one question of the sphinx and be answered truthfully.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uiiN6vWfKPdDWcHi",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.uiiN6vWfKPdDWcHi",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0NKAuZvDYRXn95YY",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.0NKAuZvDYRXn95YY",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Sphinx",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

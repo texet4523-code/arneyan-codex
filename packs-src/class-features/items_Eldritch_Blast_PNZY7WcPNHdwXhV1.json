@@ -1,0 +1,33 @@
+{
+ "_id": "PNZY7WcPNHdwXhV1",
+ "_key": "!items!PNZY7WcPNHdwXhV1",
+ "name": "Eldritch Blast",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>At-will ranged cantrip (60ft range). The target makes a Reflex save (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales: </strong>1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "ref",
+  "dc": null,
+  "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+  "damageType": "force",
+  "level": 1,
+  "className": "Warlock"
+ },
+ "effects": [],
+ "folder": "T3ndcZaUyzMXclDX",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

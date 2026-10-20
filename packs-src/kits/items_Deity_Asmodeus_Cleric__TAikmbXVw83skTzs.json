@@ -1,0 +1,45 @@
+{
+ "_id": "TAikmbXVw83skTzs",
+ "_key": "!items!TAikmbXVw83skTzs",
+ "name": "Deity: Asmodeus (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Rapier</p><p><strong>Granted power:</strong> Advantage on Deception. Once/day: force a bargain to be honoured (Will save negates). Once per encounter, as part of your action, offer terms to a creature within 30ft: it makes a Will save or cannot attack you until your next turn.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Asmodeus)",
+    "level": 1,
+    "description": "<p>Advantage on Deception. Once/day: force a bargain to be honoured (Will save negates). Once per encounter, as part of your action, offer terms to a creature within 30ft: it makes a Will save or cannot attack you until your next turn.</p><p><strong>Favoured weapon:</strong> Sword, Rapier</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 33,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

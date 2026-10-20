@@ -1,0 +1,52 @@
+{
+ "_id": "2lPwSfpMsWLtDu1D",
+ "_key": "!items!2lPwSfpMsWLtDu1D",
+ "name": "Melf's Acid Arrow",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 120ft; one creature. Deals 2d4 acid damage immediately and 2d4 at the end of each of its turns for 1 round per three levels (max 4 rounds). Reflex halves the initial damage and ends the effect. Damage cannot be removed by washing off.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Magus"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half the first damage, and the acid stops",
+  "damage": "2d4",
+  "damageType": "acid",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 117,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

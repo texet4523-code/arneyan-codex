@@ -1,0 +1,326 @@
+{
+ "_id": "8jhPGWm4Al0x3tmv",
+ "_key": "!actors!8jhPGWm4Al0x3tmv",
+ "name": "Red Dragon, Adult",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 17,
+  "hd": "16d12",
+  "attributes": {
+   "hp": {
+    "value": 190,
+    "max": 190,
+    "temp": 0
+   },
+   "ac": 22,
+   "speed": "40ft, fly 80ft, climb 40ft",
+   "attack": 18,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 10,
+   "ref": 10,
+   "will": 10
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon (chromatic)",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "fire",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft, Darkvision 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge dragon (chromatic)</em></p><p><strong>GM:</strong> Vain, greedy and quick to rage; it knows the worth of every coin in its hoard. An adult is a lair-master whose hoard is its life.</p>",
+   "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d10+6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "whvpWtZV0K0ATE5U",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.whvpWtZV0K0ATE5U",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+6",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nP5TWoStnkp5uhTX",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.nP5TWoStnkp5uhTX",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Breath Weapon",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, exhales a 60ft cone of fire; @Check[ref|dc:21]{Reflex DC 21} for half of @Damage[10d6 fire]{10d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 21,
+    "damage": "10d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dTPqlmPBsAGANwd2",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.dTPqlmPBsAGANwd2",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Frightful Presence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>A creature within 90ft that sees the dragon makes a @Check[will|dc:21]{Will save DC 21} or is @Condition[frightened]{Frightened} for 1 minute; a creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 21,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wgBNodLQVUVuPWYs",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.wgBNodLQVUVuPWYs",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Searing Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn adjacent to the dragon takes @Damage[2d6 fire]{2d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xj1R5S1q35r8L9Ab",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.xj1R5S1q35r8L9Ab",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jxbpxdCExfHIfcSG",
+   "_key": "!actors.items!8jhPGWm4Al0x3tmv.jxbpxdCExfHIfcSG",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Red Dragon, Adult",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

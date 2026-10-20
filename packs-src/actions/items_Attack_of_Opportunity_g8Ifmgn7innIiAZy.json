@@ -1,0 +1,63 @@
+{
+ "_id": "g8Ifmgn7innIiAZy",
+ "_key": "!items!g8Ifmgn7innIiAZy",
+ "name": "Attack of Opportunity",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/action-sword-wound.svg",
+ "system": {
+  "description": "<p>A creature that leaves an enemy's melee reach without Disengaging provokes one melee attack from that enemy. Being moved by someone else (a shove, a push, a throw) or teleporting never provokes one, unless the ability causing it says so.</p><p>Each creature can answer one trigger per round (an Attack of Opportunity or another feature that responds to a trigger), regained at the start of its turn. A feature that gives extra reactions says so, and those extras can only be used for that feature (the Swashbuckler's Second Flourish). Combat Reflexes also lets its holder attack a creature that moves past it.</p><p class=\"arn-note\">Press Use to spend your reaction for the round, then attack with your weapon.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "action",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 0,
+  "className": "",
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": [],
+  "activities": [
+   {
+    "name": "Attack of Opportunity",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "1",
+    "weapons": "melee",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": true,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "FTuVeKBMSYNYDsFD",
+ "sort": 30,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

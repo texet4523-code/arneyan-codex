@@ -1,0 +1,247 @@
+{
+ "_id": "oA5b5zfQymBfAEwF",
+ "_key": "!actors!oA5b5zfQymBfAEwF",
+ "name": "Hobgoblin Captain",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "2d10",
+  "attributes": {
+   "hp": {
+    "value": 11,
+    "max": 11,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "30ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (goblinoid)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (goblinoid)</em></p><p><strong>GM:</strong> Runs its company like a forge: hot, loud and on time.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greatsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "o96kUaKW4Nza6Ygf",
+   "_key": "!actors.items!oA5b5zfQymBfAEwF.o96kUaKW4Nza6Ygf",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Javelin",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "30ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MsJG9XjoXesBHNUR",
+   "_key": "!actors.items!oA5b5zfQymBfAEwF.MsJG9XjoXesBHNUR",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Martial Discipline",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>Once per round, when an ally within 30ft hits a target, it deals +1d6 damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JcixMap8Y4P1t7Y3",
+   "_key": "!actors.items!oA5b5zfQymBfAEwF.JcixMap8Y4P1t7Y3",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, it calls an order; hobgoblins within 30ft that can hear it may each move up to half their speed at once without provoking Attacks of Opportunity.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HHps9reekjO26I02",
+   "_key": "!actors.items!oA5b5zfQymBfAEwF.HHps9reekjO26I02",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Hobgoblin Captain",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-goblin-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,346 @@
+{
+ "_id": "JAND4vSsvhY6kBNZ",
+ "_key": "!actors!JAND4vSsvhY6kBNZ",
+ "name": "Smoke Mephit",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "5d6",
+  "attributes": {
+   "hp": {
+    "value": 17,
+    "max": 17,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft, fly 30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "fire, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small elemental</em></p><p><strong>GM:</strong> A lazy, sarcastic layabout that never tells the whole truth.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "x1ZZZSXlhLyAjBW1",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.x1ZZZSXlhLyAjBW1",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cinder Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, a 15ft cone of ash; @Check[ref|dc:10]{Reflex save DC 10} or @Condition[blinded]{Blinded} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oRvgaFBacCSrwh6O",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.oRvgaFBacCSrwh6O",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Death Burst",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>When it dies, it leaves a 5ft-radius cloud of smoke that heavily obscures the area for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xqIQzNzeSEsS3QJ9",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.xqIQzNzeSEsS3QJ9",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to fire and poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jjtjWxcmBUr11g5r",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.jjtjWxcmBUr11g5r",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>1/day: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZLBy9IFFH5bIGPF8",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.ZLBy9IFFH5bIGPF8",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dancing Lights (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 120ft; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to 60ft per round as you direct; 1 minute. Lights must stay within 20ft of each other; the spell ends if one passes beyond 120ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a"
+   },
+   "_id": "2lzeCeeKyLAapIlx",
+   "_key": "!actors.items!JAND4vSsvhY6kBNZ.2lzeCeeKyLAapIlx",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Smoke Mephit",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

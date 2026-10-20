@@ -1,0 +1,57 @@
+{
+ "_id": "qtFpPzacRGlVohYi",
+ "_key": "!items!qtFpPzacRGlVohYi",
+ "name": "Human",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision None • +1 / +1 to any two attributes of choice, no penalty</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>Gains an additional Feat from the General Path</strong> (The Survivors) at 1st level, on top of their normal 1st-level Feat choice.</li><li><strong>Weapon training:</strong> any two martial weapons of choice.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "",
+  "attributes": "+1 / +1 to any two attributes of choice, no penalty",
+  "bonuses": {},
+  "pickTwo": true,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Choose one skill at creation",
+    "text": "Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   },
+   {
+    "name": "Gains an additional Feat from the General Path",
+    "text": "Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice."
+   },
+   {
+    "name": "Weapon training",
+    "text": "any two martial weapons of choice."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen at creation",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 18,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

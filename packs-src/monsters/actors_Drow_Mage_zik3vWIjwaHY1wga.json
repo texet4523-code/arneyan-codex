@@ -1,0 +1,869 @@
+{
+ "_id": "zik3vWIjwaHY1wga",
+ "_key": "!actors!zik3vWIjwaHY1wga",
+ "name": "Drow Mage",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "8d8",
+  "attributes": {
+   "hp": {
+    "value": 36,
+    "max": 36,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 16,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 6,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "Wizard",
+   "level": 10,
+   "slots": [
+    6,
+    5,
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (elf)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (elf)</em></p><p><strong>GM:</strong> Ambitious, paranoid and always one betrayal from greatness. It has a spare escape plan for its spare escape plan.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "3d6",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pwprfjYrb4e3gWlT",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.pwprfjYrb4e3gWlT",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Resilient",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Advantage on saves against being @Condition[charmed]{Charmed}; magic cannot put it to sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iDn4352muC4ieHmS",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.iDn4352muC4ieHmS",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Casts as a 10th-level wizard. Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:16]{Reflex DC 16}), @UUID[Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO]{lightning bolt} (@Check[ref|dc:16]{Reflex DC 16}), @UUID[Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl]{fly}, @UUID[Compendium.arneyan.spells.Item.WYEqhPNiYURpK2iR]{improved invisibility}, @UUID[Compendium.arneyan.spells.Item.n8TMmevXLiQJvt74]{cloudkill} (@Check[fort|dc:16]{Fortitude DC 16}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KKq16uqpjdpesXmJ",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.KKq16uqpjdpesXmJ",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Missile",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 150ft; missiles strike automatically, each dealing 1d4+1 force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals 1d4+1.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus",
+     "Necromancer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "(max(1, min(floor(@cl/2), 5)))d4 + max(1, min(floor(@cl/2), 5))",
+    "damageType": "force",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ"
+   },
+   "_id": "5NKofiR3NXO73yED",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.5NKofiR3NXO73yED",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shield",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Shield",
+      "target": "self",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs ranged attacks (+4 total)",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "spell:Magic Missile",
+        "when": "",
+        "label": "Shield"
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
+   },
+   "_id": "i1MqFWTk5vGjrmWL",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.i1MqFWTk5vGjrmWL",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "BMSCRLp1xGaFxLCZ",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.BMSCRLp1xGaFxLCZ",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Web",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft cube, 10 minutes per level. Creatures inside are Restrained; Reflex negates on first contact. A Restrained creature escapes with a Strength check vs spell DC (1 action). Fire burns the web in 1 round, dealing 2d4 fire damage to creatures inside (Reflex halves).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Not Restrained; half damage if the web burns",
+    "damage": "2d4",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Webbed",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1"
+   },
+   "_id": "rzXkLqNoUEmeyPWR",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.rzXkLqNoUEmeyPWR",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Bolt",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Self; 100ft line, 5ft wide. 1d6 lightning damage per level (max 10d6); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "100ft line, 5ft wide",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 10))d6",
+    "damageType": "lightning",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "line",
+     "size": 100,
+     "width": 5,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO"
+   },
+   "_id": "TGOZOYbr87tweuQu",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.TGOZOYbr87tweuQu",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fly",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It gains a fly speed of 90ft for 1 minute per level. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Fly",
+      "target": "target",
+      "rounds": "10*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.fly",
+        "value": "90",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl"
+   },
+   "_id": "ySt8cd2BWRYhgh50",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.ySt8cd2BWRYhgh50",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Improved Invisibility",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature for 1 minute per level. The target is Invisible and remains Invisible when it attacks or casts spells. Creatures that cannot see invisible have Disadvantage on attack rolls against it even if they guess its square.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Illusionist",
+     "Bard"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Improved Invisibility",
+      "target": "target",
+      "rounds": "10*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.WYEqhPNiYURpK2iR"
+   },
+   "_id": "eG2LHbpcNlXHQfm3",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.eG2LHbpcNlXHQfm3",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cloudkill",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 120ft; 20ft-radius, 20ft-high fog that moves 10ft per round away from you for 1 round per level. A creature that enters or starts its turn inside makes a Fortitude save: creatures of Level 4 or lower that fail die; others that fail take 2d6 poison damage; Fortitude negates. Heavier than air; sinks into pits.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Necromancer"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Negates",
+    "damage": "2d6",
+    "damageType": "poison",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.n8TMmevXLiQJvt74"
+   },
+   "_id": "H9ecSfZSINSyYO0w",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.H9ecSfZSINSyYO0w",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Summon Demon",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it calls a quasit (or, with a 50% chance, a shadow demon), which serves for 10 minutes.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cRe2UnZ5Bl0oMldI",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.cRe2UnZ5Bl0oMldI",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3PKG4a5uSAaj2wrr",
+   "_key": "!actors.items!zik3vWIjwaHY1wga.3PKG4a5uSAaj2wrr",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Drow Mage",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

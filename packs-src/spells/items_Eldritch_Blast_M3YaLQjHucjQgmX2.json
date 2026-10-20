@@ -1,0 +1,51 @@
+{
+ "_id": "M3YaLQjHucjQgmX2",
+ "_key": "!items!M3YaLQjHucjQgmX2",
+ "name": "Eldritch Blast",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature. At-will ranged cantrip. The target makes a Reflex save, taking force damage on a failure or half on a success. No slot required. Damage scales: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock (class-only spell, from the class entry)</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "Warlock",
+  "classes": [
+   "Warlock"
+  ],
+  "school": "",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+  "damageType": "force",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "60J3ksMp1JoLy4Yg",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

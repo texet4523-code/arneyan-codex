@@ -1,0 +1,347 @@
+{
+ "_id": "HOPHzjHJxp9Nv6Jm",
+ "_key": "!actors!HOPHzjHJxp9Nv6Jm",
+ "name": "Fire Mephit",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "2d10",
+  "attributes": {
+   "hp": {
+    "value": 11,
+    "max": 11,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft, fly 30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "",
+   "immunities": "fire, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small elemental</em></p><p><strong>GM:</strong> A mean, spiteful little cinder that thinks it is a lot bigger than it is.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d4",
+      "type": "fire",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NcG7MP9inAWEybQV",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.NcG7MP9inAWEybQV",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, a 15ft cone. @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[2d6 fire]{2d6 fire damage}, half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 11,
+    "damage": "2d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "niFHZagG11X9g4cu",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.niFHZagG11X9g4cu",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Death Burst",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>When it dies, it explodes in flame. Creatures within 5ft make a @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[1d6 fire]{1d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 11,
+    "damage": "1d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XbuVvmFDknWnx4Yr",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.XbuVvmFDknWnx4Yr",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>1/day: @UUID[Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2]{heat metal}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EjscP8aPk3pIQLHE",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.EjscP8aPk3pIQLHE",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heat Metal (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 30ft; metal worn or carried by 1 creature per four levels (min 1), 7 rounds. Metal deals fire damage each round: 1d4, 2d4, 4d4, 4d4, 4d4, 2d4, 1d4; Fortitude halves each round. Cast reversed (Chill Metal) for cold damage with the same numbers.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Half",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2"
+   },
+   "_id": "JWDumFYIh81Ilq0o",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.JWDumFYIh81Ilq0o",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to fire and poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "x03lQvjSuavYBveE",
+   "_key": "!actors.items!HOPHzjHJxp9Nv6Jm.x03lQvjSuavYBveE",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Fire Mephit",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

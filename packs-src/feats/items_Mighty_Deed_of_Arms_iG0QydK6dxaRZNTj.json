@@ -1,0 +1,164 @@
+{
+ "_id": "iG0QydK6dxaRZNTj",
+ "_key": "!items!iG0QydK6dxaRZNTj",
+ "name": "Mighty Deed of Arms",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>Once per round, call your shot before you swing. Roll a d4 alongside your attack; if the hit lands and the d4 comes up 3 or better, choose one: knock the target Prone, disarm it, push it 10ft, blind it until the end of its next turn, or give it Disadvantage on its next attack. The target resists with a save against 10 + half your level (minimum 1) + your Strength modifier: Fortitude against Prone, a push or a disarm, Reflex against blinding, Will against the attack penalty. A creature that saves is immune to your Deeds for the rest of the fight. A creature more than one size larger than you ignores the deed.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "activities": [
+   {
+    "name": "Deed die (1d4)",
+    "kind": "roll",
+    "formula": "1d4",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Roll alongside your attack: on a hit with 3 or better, choose a deed.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Prone, push or disarm",
+    "kind": "save",
+    "formula": "10 + @half + @str.mod",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "Knock it Prone, push it 10ft or disarm it, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Blind",
+    "kind": "save",
+    "formula": "10 + @half + @str.mod",
+    "damageType": "",
+    "ability": "",
+    "save": "ref",
+    "text": "Blind it until the end of its next turn, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Attack penalty",
+    "kind": "save",
+    "formula": "10 + @half + @str.mod",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Disadvantage on its next attack, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Deed: Prone",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Deed: Blinded",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Deed: Off-balance",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

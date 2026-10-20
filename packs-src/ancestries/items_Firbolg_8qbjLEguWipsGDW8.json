@@ -1,0 +1,77 @@
+{
+ "_id": "8qbjLEguWipsGDW8",
+ "_key": "!items!8qbjLEguWipsGDW8",
+ "name": "Firbolg",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Large • Speed 30ft • Darkvision 60ft • +2 Str / +1 Wis, −1 Cha</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Hardy</strong> (Advantage on Fortitude saves against disease and harsh weather).</li><li><strong>Powerful Build</strong> (Advantage on Strength checks to push, drag or lift).</li><li><strong>Speech of Beast and Leaf</strong> (simple communication with beasts/plants). 1/long rest: invisible as part of your movement until you attack or cast, or until the end of your next turn (1 Luck for extra use).</li><li><strong>Advantage on Wisdom (Survival) checks</strong> to live off the land or avoid detection travelling.</li><li><strong>Weapon training:</strong> club, staff, spear, sling.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "large",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Wis, −1 Cha",
+  "bonuses": {
+   "str": 2,
+   "wis": 1,
+   "cha": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Hardy",
+    "text": "Hardy (Advantage on Fortitude saves against disease and harsh weather)."
+   },
+   {
+    "name": "Powerful Build",
+    "text": "Powerful Build (Advantage on Strength checks to push, drag or lift)."
+   },
+   {
+    "name": "Speech of Beast and Leaf",
+    "text": "Speech of Beast and Leaf (simple communication with beasts/plants). 1/long rest: invisible as part of your movement until you attack or cast, or until the end of your next turn (1 Luck for extra use)."
+   },
+   {
+    "name": "Advantage on Wisdom",
+    "text": "Advantage on Wisdom (Survival) checks to live off the land or avoid detection travelling."
+   },
+   {
+    "name": "Weapon training",
+    "text": "club, staff, spear, sling."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.save.fort",
+    "value": "1",
+    "when": "vs disease and harsh weather",
+    "label": ""
+   },
+   {
+    "key": "adv.check.str",
+    "value": "1",
+    "when": "to push, drag or lift",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Survival to live off the land or avoid detection while travelling",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

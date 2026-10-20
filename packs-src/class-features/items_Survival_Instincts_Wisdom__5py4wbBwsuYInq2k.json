@@ -1,0 +1,48 @@
+{
+ "_id": "5py4wbBwsuYInq2k",
+ "_key": "!items!5py4wbBwsuYInq2k",
+ "name": "Survival Instincts (Wisdom)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Bonus to surprise checks: +2 at 15th level, rising to +6 at 23rd (see the Ranger Progression Table) — the ranger senses something is wrong before being able to pinpoint it exactly.</li><li><strong>Dexterity Bonus: permanent +1 Dexterity</strong></li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 15,
+  "className": "Ranger",
+  "rules": [
+   {
+    "key": "ability.dex",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "check",
+    "value": "2",
+    "when": "surprise checks",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mTYolNxClYl3gPJt",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

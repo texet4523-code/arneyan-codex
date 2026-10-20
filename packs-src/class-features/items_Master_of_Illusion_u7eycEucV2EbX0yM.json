@@ -1,0 +1,42 @@
+{
+ "_id": "u7eycEucV2EbX0yM",
+ "_key": "!items!u7eycEucV2EbX0yM",
+ "name": "Master of Illusion",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> The save DC of your Illusion spells is increased by 1, rising to +2 at 12th level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist",
+  "rules": [
+   {
+    "key": "spell.dc",
+    "value": "min(2,1+floor(@cl/12))",
+    "when": "Illusion spells",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

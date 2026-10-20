@@ -1,0 +1,65 @@
+{
+ "_id": "tBnRcggMBTUWyqna",
+ "_key": "!items!tBnRcggMBTUWyqna",
+ "name": "Antipathy",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Touch; one object or a 10ft cube per level. Choose a kind of creature (a species, or an alignment); that kind within 30ft must make a Will save each round or be Frightened and move away; the effect lasts 1 hour per level. A creature that succeeds is immune for 24 hours. Cast reversed (Sympathy): the chosen kind within 60ft must make a Will save or be drawn to the spot and stay within 10ft of it (no attacks on the object); Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Cleric",
+   "Druid",
+   "Witch"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Antipathy",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 345,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

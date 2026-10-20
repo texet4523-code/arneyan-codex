@@ -1,0 +1,99 @@
+{
+ "_id": "pgZJVTJP9Y0acBj4",
+ "_key": "!items!pgZJVTJP9Y0acBj4",
+ "name": "The Crimson Tide (Swashbuckler)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<p>Opal's most aggressive duelling school — attack as defence, momentum as armour.</p><ul><li><strong>Committed Blade: </strong>Relentless Assault starts from the second hit as normal, but the bonus is +2d4 instead of +1d4 — committing to a target pays off more, but you still have to earn it.</li><li><strong>Noble Rivalry: </strong>Advantage on Intimidation checks and on checks related to Opal's duelling culture or noble rivalry.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Swashbuckler",
+  "features": [
+   {
+    "name": "Committed Blade",
+    "level": 1,
+    "description": "<p>Relentless Assault starts from the second hit as normal, but the bonus is +2d4 instead of +1d4 — committing to a target pays off more, but you still have to earn it.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Relentless Assault (2d4)",
+      "kind": "damage",
+      "formula": "2d4",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Relentless Assault's bonus is +2d4 instead of +1d4, from the second hit against the same target as normal.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "damage",
+      "value": "+1d4",
+      "when": "each hit after the first on the same target this round (with Relentless Assault, total +2d4)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Noble Rivalry",
+    "level": 1,
+    "description": "<p>Advantage on Intimidation checks and on checks related to Opal's duelling culture or noble rivalry.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Opal's duelling culture or noble rivalry",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "IkYCqysRRuv3HKfH",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

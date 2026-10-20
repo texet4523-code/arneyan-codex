@@ -1,0 +1,283 @@
+{
+ "_id": "5aitAHM5loSKAhhZ",
+ "_key": "!actors!5aitAHM5loSKAhhZ",
+ "name": "Flesh Golem",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "7d10",
+  "attributes": {
+   "hp": {
+    "value": 38,
+    "max": 38,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "lightning, non-magical, poison, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A crude patchwork of stolen limbs. It obeys its maker until it does not, and everyone fights worse while it rampages.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nKze8KZ0F0uRKpaf",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.nKze8KZ0F0uRKpaf",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Berserk",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>When it starts its turn with half its HP or fewer, there is a 1-in-3 chance it goes berserk. It then attacks the nearest creature, friend or foe, until destroyed or calmed by its creator.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IRNvkBnqtcugeSQu",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.IRNvkBnqtcugeSQu",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Absorption",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to lightning damage. Any lightning heals it by the damage it would have dealt.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dQpfPLoJEoEQGWzI",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.dQpfPLoJEoEQGWzI",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Weapons Only",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to damage from nonmagical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "47vIoYehtHlCw4B9",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.47vIoYehtHlCw4B9",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3NKqWllvvDFvUEOo",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.3NKqWllvvDFvUEOo",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Flesh Golem",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

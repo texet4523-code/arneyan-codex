@@ -1,0 +1,84 @@
+{
+ "_id": "wqjbPzcUykb6Su6v",
+ "_key": "!items!wqjbPzcUykb6Su6v",
+ "name": "Slow Kill",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>On a successful hit, the target takes normal weapon damage. Each subsequent round they lose 1d6 HP from blood loss unless healed or bandaged.</li><li>Bleeding is cumulative</li><li>Only usable before the target has acted this encounter</li><li>Maximum four Slow Kill strikes on a single target per encounter — after four hits all vulnerable areas have been struck</li><li>Works with Sneak Attack simultaneously</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Assassin",
+  "activities": [
+   {
+    "name": "Slow Kill",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; up to four strikes per target per encounter.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Bleed",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "The target loses 1d6 HP from blood loss at the start of the round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 23,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

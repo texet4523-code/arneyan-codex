@@ -1,0 +1,59 @@
+{
+ "_id": "iG2fFKdcciI8ytpv",
+ "_key": "!items!iG2fFKdcciI8ytpv",
+ "name": "Spellburn",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Pay for Metamagic (see below) by sacrificing temporary points from Strength, Dexterity, or Constitution. Spellburn never changes your HP or your death threshold, and burned points return at 1 per attribute per full rest. Guaranteed, no roll, no Corruption risk. The cost doubles with each Spellburn since your last long rest: your first burn costs 1 point for the base effect, your second 2, your third 4, your fourth 8, and so on. The enhanced effect costs double the base for that burn (2, then 4, then 8, then 16). Unlike Wild Surge it has no daily limit, only what your body can afford.</li><li>Burned points return at 1 per attribute per long rest</li><li>Spellburn cannot reduce an attribute below 1. One Metamagic option per spell (two during Sorcerer's Spark)</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Sorcerer",
+  "activities": [
+   {
+    "name": "Spellburn",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn since a long rest, doubling each time.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "MF2Pc4Xye7PGm0jJ",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

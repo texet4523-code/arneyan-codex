@@ -1,0 +1,66 @@
+{
+ "_id": "8jOVJRRQs0XGFMr4",
+ "_key": "!items!8jOVJRRQs0XGFMr4",
+ "name": "Myllnoris Phantomsmith (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<p>The High Elven school of Myllnoris, where illusion is the purest art: creation through perception.</p><ul><li><strong>Sharpened Perception: </strong>Advantage on saves vs illusions, on top of Sharp Senses.</li><li><strong>Art of Illusion: </strong>Advantage on performance checks that use illusion as the medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Sharpened Perception",
+    "level": 1,
+    "description": "<p>Advantage on saves vs illusions, on top of Sharp Senses.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs illusions",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Art of Illusion",
+    "level": 1,
+    "description": "<p>Advantage on performance checks that use illusion as the medium.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Performance using illusion as the medium",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

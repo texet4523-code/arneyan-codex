@@ -1,0 +1,295 @@
+{
+ "_id": "h5IGmM425QfdycGp",
+ "_key": "!actors!h5IGmM425QfdycGp",
+ "name": "Winged Kobold",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "2d4",
+  "attributes": {
+   "hp": {
+    "value": 5,
+    "max": 5,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, fly 30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (reptilian)",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Small humanoid (reptilian)</em></p><p><strong>GM:</strong> The tribe's scouts and messengers. Its kin treat it with envy and a little worship.</p>",
+   "treasure": "<p>Treasure type <strong>P</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Vqq7Gw1uxscgC6FZ",
+   "_key": "!actors.items!h5IGmM425QfdycGp.Vqq7Gw1uxscgC6FZ",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dropped rock",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dwcgsHGurfVaWIxQ",
+   "_key": "!actors.items!h5IGmM425QfdycGp.dwcgsHGurfVaWIxQ",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pack Tactics",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>Advantage on attack rolls against a creature that has another kobold within 5ft of it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "an ally is within 5ft of the target"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8057CvgVBj6eZ0zD",
+   "_key": "!actors.items!h5IGmM425QfdycGp.8057CvgVBj6eZ0zD",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UTgW668uX4JDwCpY",
+   "_key": "!actors.items!h5IGmM425QfdycGp.UTgW668uX4JDwCpY",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dropped Rock",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>Only against a creature directly below it, while it flies at least 10ft overhead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tufR5QA3NHYuHrSW",
+   "_key": "!actors.items!h5IGmM425QfdycGp.tufR5QA3NHYuHrSW",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Winged Kobold",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-lizardman.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

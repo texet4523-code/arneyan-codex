@@ -1,0 +1,59 @@
+{
+ "_id": "gVuTPk2exlMMJDzM",
+ "_key": "!items!gVuTPk2exlMMJDzM",
+ "name": "Hedge Knights (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li>Untitled, unaffiliated, and unsponsored knights — some trained by true knights and left without a lord, others self-made through pure combat experience. No keep, no banner, no backing. Just the code they chose for themselves.</li><li><strong>Steadfast Courage: </strong>Embolden range increases to 60ft and lasts twice as many rounds, and the save bonuses improve to +2 Fortitude/Reflex and +3 Will.</li><li><strong>Common Ground: </strong>Advantage on Charisma checks when dealing with common folk, mercenaries, or anyone who distrusts titled nobility.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Steadfast Courage",
+    "level": 1,
+    "description": "<p>Embolden range increases to 60ft and lasts twice as many rounds, and the save bonuses improve to +2 Fortitude/Reflex and +3 Will.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Common Ground",
+    "level": 1,
+    "description": "<p>Advantage on Charisma checks when dealing with common folk, mercenaries, or anyone who distrusts titled nobility.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with common folk, mercenaries, or anyone who distrusts titled nobility",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

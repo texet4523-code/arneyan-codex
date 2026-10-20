@@ -1,0 +1,45 @@
+{
+ "_id": "NbV7xjt00OHbk2wn",
+ "_key": "!items!NbV7xjt00OHbk2wn",
+ "name": "Deity: Myrkul (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Advantage on death-threat Intimidation. Once/day: briefly speak with a corpse. When a creature dies within 30ft of you, gain temporary HP equal to its HD.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Myrkul)",
+    "level": 1,
+    "description": "<p>Advantage on death-threat Intimidation. Once/day: briefly speak with a corpse. When a creature dies within 30ft of you, gain temporary HP equal to its HD.</p><p><strong>Favoured weapon:</strong> Scythe</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation using death threats",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 37,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,78 @@
+{
+ "_id": "xdgvA63CWzARNM5E",
+ "_key": "!items!xdgvA63CWzARNM5E",
+ "name": "Storm of Vengeance",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 400ft; 100ft-radius storm; 5 rounds. Each round all creatures beneath make a Fortitude save (halves damage): R1 4d6 thunder and Deafened 1 hour; R2 8d6 acid; R3 12d6 lightning (6 bolts on creatures you choose); R4 8d6 cold hail; R5 gale winds, Prone and speed halved.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 400ft",
+  "duration": "",
+  "area": "100ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 100,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "5",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Storm: Deafened",
+    "target": "target",
+    "rounds": "600",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Storm: Gale",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "prone"
+    ],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 388,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

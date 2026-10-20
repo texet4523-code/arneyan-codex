@@ -1,0 +1,78 @@
+{
+ "_id": "A91JjCEXBT93e1Bu",
+ "_key": "!items!A91JjCEXBT93e1Bu",
+ "name": "Protection from Alignment",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature; 1 minute per level. Choose Good, Evil, Law or Chaos: the target gains +2 AC and +2 to saving throws against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Magus, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Cleric",
+   "Bard",
+   "Paladin",
+   "Magus",
+   "Witch"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Protection from Alignment",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": "2",
+      "when": "vs creatures of the chosen alignment",
+      "label": ""
+     },
+     {
+      "key": "save",
+      "value": "2",
+      "when": "vs creatures of the chosen alignment",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 73,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

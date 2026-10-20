@@ -1,0 +1,75 @@
+{
+ "_id": "ksFXEzB68ifNtFcY",
+ "_key": "!items!ksFXEzB68ifNtFcY",
+ "name": "Sneak Attack",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Advantage on the attack roll plus a scaling damage die (1d6 at 1st level, rising to 4d6 at 23rd — see the Rogue Progression Table) against an aware-but-unsuspecting target, once per round. Usable at range within 30ft, doesn't require a prior stealth check, can't combine with Back Attack. A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Rogue",
+  "activities": [
+   {
+    "name": "Sneak Attack",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Rogue Progression Table for the dice.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "1",
+    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, or in melee with an ally and not you)",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Sneak Attack: add 1d6 to 4d6 by level (Rogue Progression Table), once per round.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mpjthAeSZRrS7A4C",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

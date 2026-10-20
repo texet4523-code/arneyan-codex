@@ -1,0 +1,45 @@
+{
+ "_id": "LZe32GWDTz2YJcy5",
+ "_key": "!items!LZe32GWDTz2YJcy5",
+ "name": "Deity: Lolth (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p><p><strong>Granted power:</strong> Advantage on Stealth underground. Once/day: webs fill a 20ft radius within 60ft; each creature there makes a Reflex save or is Restrained for 1 minute, repeating the save at the end of each of its turns.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Lolth)",
+    "level": 1,
+    "description": "<p>Advantage on Stealth underground. Once/day: webs fill a 20ft radius within 60ft; each creature there makes a Reflex save or is Restrained for 1 minute, repeating the save at the end of each of its turns.</p><p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth underground",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 20,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

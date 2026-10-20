@@ -1,0 +1,73 @@
+{
+ "_id": "Go7M27du9EvxdX8L",
+ "_key": "!items!Go7M27du9EvxdX8L",
+ "name": "Shillelagh",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Touch; one club or staff; 1 minute per level. The weapon becomes +1 to attack and damage rolls, counts as magical, and deals 2d4 damage instead of its normal die. Ends if it leaves your hand for 1 round.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Shillelagh",
+    "target": "self",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "attack",
+      "value": "1",
+      "when": "with the club or staff",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "1",
+      "when": "with the club or staff",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 78,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,320 @@
+{
+ "_id": "upzujdjYb5x6nibU",
+ "_key": "!actors!upzujdjYb5x6nibU",
+ "name": "Will-o'-Wisp",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "9d8",
+  "attributes": {
+   "hp": {
+    "value": 40,
+    "max": 40,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "0ft, fly 50ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 6,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "acid 5, fire 5, cold 5",
+   "immunities": "lightning, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny undead</em></p><p><strong>GM:</strong> A wandering light that lures travellers into bogs and ravines. Don't chase it.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Shock",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8",
+    "damageType": "lightning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GZyqcwOIcULkctVY",
+   "_key": "!actors.items!upzujdjYb5x6nibU.GZyqcwOIcULkctVY",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal Movement",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Can move through creatures and objects as if difficult terrain.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UwIHMuf3n0QSzUsj",
+   "_key": "!actors.items!upzujdjYb5x6nibU.UwIHMuf3n0QSzUsj",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>As part of its action, until it attacks or ends the effect.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RASclg83KGl6s6TY",
+   "_key": "!actors.items!upzujdjYb5x6nibU.RASclg83KGl6s6TY",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Consume Life",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as part of its action. It touches a creature within 5ft that is at 0 HP and heals itself for 3d6.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uA7iztYZzxEoUKs7",
+   "_key": "!actors.items!upzujdjYb5x6nibU.uA7iztYZzxEoUKs7",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Variable Illumination",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Sheds bright light 5-20ft and dim light the same distance beyond. It can dim to total darkness.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kpkrthpEKLycdKvz",
+   "_key": "!actors.items!upzujdjYb5x6nibU.kpkrthpEKLycdKvz",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Immune to lightning and poison. Resistance 5 to acid, fire and cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "89tZZgYSKwu0DJWN",
+   "_key": "!actors.items!upzujdjYb5x6nibU.89tZZgYSKwu0DJWN",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Will-o'-Wisp",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-skeleton.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

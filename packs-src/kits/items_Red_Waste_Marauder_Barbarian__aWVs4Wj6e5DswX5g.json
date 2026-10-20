@@ -1,0 +1,72 @@
+{
+ "_id": "aWVs4Wj6e5DswX5g",
+ "_key": "!items!aWVs4Wj6e5DswX5g",
+ "name": "Red Waste Marauder (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>Hardened in the brutal tribal warfare of Tariel's desert wastelands — raids, ambushes, endurance.</p><ul><li><strong>Ambush Strike: Advantage on your first attack roll each round against a target that hasn't yet acted in combat.</strong></li><li><strong>Desert Born: </strong>Advantage on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Ambush Strike",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round against a target that hasn't yet acted in combat.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs a target that hasn't acted yet",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Desert Born",
+    "level": 1,
+    "description": "<p>Advantage on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Survival in arid or desert terrain",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying Red Waste tribal markings or customs",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

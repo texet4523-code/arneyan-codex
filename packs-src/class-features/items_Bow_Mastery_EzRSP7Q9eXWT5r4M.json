@@ -1,0 +1,42 @@
+{
+ "_id": "EzRSP7Q9eXWT5r4M",
+ "_key": "!items!EzRSP7Q9eXWT5r4M",
+ "name": "Bow Mastery",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You deal +1 damage with bows, rising to +2 at 6th level, +3 at 12th and +4 at 18th.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Archer",
+  "rules": [
+   {
+    "key": "damage.ranged",
+    "value": "+min(4,floor((@cl+6)/6))",
+    "when": "with bows",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

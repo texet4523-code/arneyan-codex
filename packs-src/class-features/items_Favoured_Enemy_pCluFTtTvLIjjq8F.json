@@ -1,0 +1,54 @@
+{
+ "_id": "pCluFTtTvLIjjq8F",
+ "_key": "!items!pCluFTtTvLIjjq8F",
+ "name": "Favoured Enemy",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Choose one specific creature type as favoured enemy (GM should require a creature encountered repeatedly in the character's history). Against this enemy: Advantage on your first attack roll each round, +2 AC, +2 to tracking checks, and the ranger can neutralise their manufactured poisons as well as natural ones.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 6,
+  "className": "Ranger",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "vs your favoured enemy",
+    "label": ""
+   },
+   {
+    "key": "ac",
+    "value": "2",
+    "when": "vs your favoured enemy",
+    "label": ""
+   },
+   {
+    "key": "skill",
+    "value": "2",
+    "when": "tracking your favoured enemy",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mTYolNxClYl3gPJt",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

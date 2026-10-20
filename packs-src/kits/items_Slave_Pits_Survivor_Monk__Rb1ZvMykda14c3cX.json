@@ -1,0 +1,62 @@
+{
+ "_id": "Rb1ZvMykda14c3cX",
+ "_key": "!items!Rb1ZvMykda14c3cX",
+ "name": "Slave Pits Survivor (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li>The fighting tradition that emerged from the slave pits of the Red Waste — not taught, not codified, discovered through survival. The body adapts when the alternative is death. What comes out of the pits is not elegant, but it is devastating.</li><li><strong>Pit-Forged Fury: </strong>Whirlwind-style: once per encounter, make a primary unarmed attack against up to 3 creatures within 5ft (one roll vs each). Replaces normal attack action.</li><li><strong>Survivor's Instinct: </strong>Advantage on Constitution checks to resist exhaustion, extreme temperatures, and starvation. Advantage on checks to recognise the signs of someone else who survived the pits.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Pit-Forged Fury",
+    "level": 1,
+    "description": "<p>Whirlwind-style: once per encounter, make a primary unarmed attack against up to 3 creatures within 5ft (one roll vs each). Replaces normal attack action.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   },
+   {
+    "name": "Survivor's Instinct",
+    "level": 1,
+    "description": "<p>Advantage on Constitution checks to resist exhaustion, extreme temperatures, and starvation. Advantage on checks to recognise the signs of someone else who survived the pits.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "to resist exhaustion, extreme temperatures and starvation",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to recognise signs of another pit survivor",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

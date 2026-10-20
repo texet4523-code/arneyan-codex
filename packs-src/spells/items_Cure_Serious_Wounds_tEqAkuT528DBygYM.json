@@ -1,0 +1,54 @@
+{
+ "_id": "tEqAkuT528DBygYM",
+ "_key": "!items!tEqAkuT528DBygYM",
+ "name": "Cure Serious Wounds",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch; one creature. Heals 2d8 HP plus 1 per level (max +10), up to its maximum HP. Cast reversed (Cause Serious Wounds): deals 2d8 necrotic damage plus 1 per level (max +10); Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage (Cause Serious Wounds only)",
+  "damage": "2d8 + min(@cl, 10)",
+  "damageType": "healing",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 146,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

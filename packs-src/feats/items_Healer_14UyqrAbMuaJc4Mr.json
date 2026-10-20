@@ -1,0 +1,38 @@
+{
+ "_id": "14UyqrAbMuaJc4Mr",
+ "_key": "!items!14UyqrAbMuaJc4Mr",
+ "name": "Healer",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+ "system": {
+  "description": "<p>Your hands know exactly where to press, what to whisper, what the wound actually needs — every restorative working you cast or brew does that much more. Healing spells and brewed potions restore an additional +1 HP per die, and once per day you may cast a healing spell of 3rd level or lower without expending a slot.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Arcane & Devout Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "rules": [
+   {
+    "key": "heal.perdie",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Fx1EHbXnNGRc5QVF",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

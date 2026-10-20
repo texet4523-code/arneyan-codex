@@ -1,0 +1,98 @@
+{
+ "_id": "QHcNshKXNlrHuPdc",
+ "_key": "!items!QHcNshKXNlrHuPdc",
+ "name": "Automaton",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Small / Medium / Large (chosen at creation) • Speed 30ft • Darkvision 60ft • +2 Con / +1 Int, −1 Cha</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to effects targeting biological creatures, including poison and disease (still healed by magic, still affected mentally); doesn't need to breathe or sleep, though a long rest is still required (low-power idle).</li><li><strong>Advantage</strong> on Strength checks to force/break/overpower.</li><li><strong>Choose one Craft or Engineering skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>1st Generation:</strong> +1 natural armour AC, Advantage on saves vs forced shutdown/disable/override.</li><li><strong>2nd Generation and later:</strong> Choose one additional Craft, Engineering or precision skill; you have Advantage on checks with it (two chosen skills in total), plus Modular Repair (field maintenance, 1/long rest; restore 1d8 + Constitution modifier HP; 1 Luck for a second use).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Con / +1 Int, −1 Cha",
+  "bonuses": {
+   "con": 2,
+   "int": 1,
+   "cha": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Immune to effects targeting biological creatures",
+    "text": "Immune to effects targeting biological creatures, including poison and disease (still healed by magic, still affected mentally); doesn't need to breathe or sleep, though a long rest is still required (low-power idle)."
+   },
+   {
+    "name": "Advantage on Strength checks to…",
+    "text": "Advantage on Strength checks to force/break/overpower."
+   },
+   {
+    "name": "Choose one Craft or Engineering skill at…",
+    "text": "Choose one Craft or Engineering skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "1st Generation",
+     "text": "+1 natural armour AC, Advantage on saves vs forced shutdown/disable/override.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "ac",
+       "value": "1",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "2nd Generation and later",
+     "text": "Choose one additional Craft, Engineering or precision skill; you have Advantage on checks with it (two chosen skills in total), plus Modular Repair (field maintenance, 1/long rest; restore 1d8 + Constitution modifier HP; 1 Luck for a second use).",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "immune",
+    "value": "poison",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "immune",
+    "value": "condition:poisoned",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check.str",
+    "value": "1",
+    "when": "to force, break or overpower",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Craft or Engineering skill chosen at creation",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

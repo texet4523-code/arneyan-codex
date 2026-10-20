@@ -1,0 +1,90 @@
+{
+ "_id": "kh4kUMXjibpefrl1",
+ "_key": "!items!kh4kUMXjibpefrl1",
+ "name": "Alchemist (Artificer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<p>Less about the one perfect tool, more about the shelf of forty imperfect ones. Something in the bag always does the job.</p><ul><li><strong>Brew Formula</strong> (1st): During downtime, brew potions, bombs, and elixirs from your known formula list, each formula costs 1 Ingenuity Point to brew (2 for a damaging one) and persists until used. You can hold brewed formulas equal to your Intelligence modifier + your Artificer level; extras go inert.</li><li><strong>Efficient Brewing</strong> (3rd): Formulas cost 1 less Ingenuity Point to brew (minimum 1).</li><li><strong>Combat Alchemy</strong> (7th): Once per encounter, brew a single formula on the spot as an action at double the normal Ingenuity cost.</li><li><strong>Volatile Mastery</strong> (11th): Your bombs and harmful formulas deal an additional die of damage, and increase the DC of the triggered save by 1.</li><li><strong>Lasting Work: Perfected Formula</strong> (15th): Once per week, spend a full day and appropriate materials to perfect one formula into a permanent-effect item (a ring that continuously radiates Draught of Clarity's protection, a self-refilling flask of Elixir of Vigour, or a blade permanently coated with Caustic Flask's acid) rather than a consumable.</li><li><strong>Magnum Opus: The Panacea</strong> (24th): Brew a single legendary elixir capable of curing any one affliction, condition, or injury when drunk — including things no ordinary Restoration-tier magic touches. One dose only, ever, per Artificer. Requires a month of uninterrupted work and rare materials the GM determines.</li></ul><h3>Known Formulas</h3><ul><li>Fire Bomb — Thrown — 2d6 fire damage, plus 1d6 per five Artificer levels, in a 10ft radius, Reflex save for half</li><li>Elixir of Vigour — Drink to gain temporary HP equal to 1d8 + Intelligence modifier</li><li>Caustic Flask — Thrown — target saves or takes 1d6 acid damage per round for 3 rounds</li><li>Draught of Clarity — Drink for Advantage on your next saving throw vs a mind-affecting effect within 1 hour</li><li>Smoke Powder Bomb — Thrown — creates a 15ft radius obscuring cloud</li><li>Sovereign Glue — Bonds two objects together permanently, or until dissolved by a specific solvent</li><li>Universal Solvent — A few drops dissolve any adhesive on contact, including your own Sovereign Glue</li><li>Draught of Steady Hands — Drink for Advantage on your next Dexterity-based check within 1 hour</li><li>Numbing Salve — Applied to a wound — the recipient ignores the effects of 1 point of exhaustion for 1 hour</li><li>Choking Gas Vial — Thrown — 10ft radius, creatures save or are unable to speak or cast verbal spells for 1 round</li><li>Quickfoam — Thrown at a fire or flammable area — extinguishes flames in a 10ft radius instantly</li><li>Reagent of Revealing — A few drops on a surface reveal invisible writing, residue, or a recently-handled object's last handler (GM discretion)</li></ul><h4>Designing a Custom Formula</h4><ul><li><strong>Benchmark: </strong>A thrown or drunk formula should land at roughly a 1st-level spell's potency — 2d6 damage in a small area, a single round of a save-or-suffer condition, or a flat, narrow buff (Advantage on one specific roll type, or temporary HP equal to a small die plus Intelligence modifier). Formulas that grant information or utility (detection, identification, minor restoration) should require a genuine cost — a rare ingredient, a full round to apply, or a limited number of uses — rather than being free and repeatable.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Artificer",
+  "features": [
+   {
+    "name": "Brew Formula",
+    "level": 1,
+    "description": "<p>During downtime, brew potions, bombs, and elixirs from your known formula list, each formula costs 1 Ingenuity Point to brew (2 for a damaging one) and persists until used. You can hold brewed formulas equal to your Intelligence modifier + your Artificer level; extras go inert.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Efficient Brewing",
+    "level": 3,
+    "description": "<p>Formulas cost 1 less Ingenuity Point to brew (minimum 1).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Combat Alchemy",
+    "level": 7,
+    "description": "<p>Once per encounter, brew a single formula on the spot as an action at double the normal Ingenuity cost.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   },
+   {
+    "name": "Volatile Mastery",
+    "level": 11,
+    "description": "<p>Your bombs and harmful formulas deal an additional die of damage, and increase the DC of the triggered save by 1.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Lasting Work: Perfected Formula",
+    "level": 15,
+    "description": "<p>Once per week, spend a full day and appropriate materials to perfect one formula into a permanent-effect item (a ring that continuously radiates Draught of Clarity's protection, a self-refilling flask of Elixir of Vigour, or a blade permanently coated with Caustic Flask's acid) rather than a consumable.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "week"
+    },
+    "save": ""
+   },
+   {
+    "name": "Magnum Opus: The Panacea",
+    "level": 24,
+    "description": "<p>Brew a single legendary elixir capable of curing any one affliction, condition, or injury when drunk — including things no ordinary Restoration-tier magic touches. One dose only, ever, per Artificer. Requires a month of uninterrupted work and rare materials the GM determines.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "j9IQPLxU2OazZJKI",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

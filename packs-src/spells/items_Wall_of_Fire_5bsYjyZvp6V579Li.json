@@ -1,0 +1,55 @@
+{
+ "_id": "5bsYjyZvp6V579Li",
+ "_key": "!items!5bsYjyZvp6V579Li",
+ "name": "Wall of Fire",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 120ft; opaque wall up to 20ft high and 10ft long per level (max 60ft), or a ring up to 10ft radius, for 1 round per level. A creature that passes through or is within the wall takes 2d6 + 1 per level fire damage (max 2d6+15); Reflex halves. Creatures within 10ft of the hot side take 2d4 fire damage per round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Warlock, Magus, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Warlock",
+   "Magus",
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "2d6 + min(@cl, 15)",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 235,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

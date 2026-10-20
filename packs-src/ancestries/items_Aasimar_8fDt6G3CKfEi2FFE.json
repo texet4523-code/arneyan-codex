@@ -1,0 +1,75 @@
+{
+ "_id": "8fDt6G3CKfEi2FFE",
+ "_key": "!items!8fDt6G3CKfEi2FFE",
+ "name": "Aasimar",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Wis / +1 Cha, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Resistance 5 to necrotic &amp; radiant</strong>. 1/long rest: bright light 10ft radius (illumination only). 1/long rest: Lay on Hands heal = character level.</li><li><strong>Advantage</strong> on saves vs frightened.</li><li><strong>Choose one Wisdom or Charisma skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Wis / +1 Cha, −1 Str",
+  "bonuses": {
+   "wis": 2,
+   "cha": 1,
+   "str": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Resistance 5 to necrotic & radiant",
+    "text": "Resistance 5 to necrotic & radiant. 1/long rest: bright light 10ft radius (illumination only). 1/long rest: Lay on Hands heal = character level."
+   },
+   {
+    "name": "Advantage on saves vs frightened",
+    "text": "Advantage on saves vs frightened."
+   },
+   {
+    "name": "Choose one Wisdom or Charisma skill at creation",
+    "text": "Choose one Wisdom or Charisma skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "resist",
+    "value": "necrotic 5",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "resist",
+    "value": "radiant 5",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs frightened",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen at creation (Wis or Cha)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

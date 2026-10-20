@@ -1,0 +1,144 @@
+{
+ "_id": "ipGsmIrKI3zd2kwU",
+ "_key": "!items!ipGsmIrKI3zd2kwU",
+ "name": "Pale Master (Necromancer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li>You have turned the death arts inward, transforming your own body towards undeath. You are neither fully living nor fully dead — something in between, and growing less alive with each level.</li><li>Necrotic Touch</li><li>Make an unarmed attack roll: on a hit, your touch deals 1d6 necrotic damage</li><li>At 10th level this increases to 2d6</li><li>Creatures you touch must make a Fortitude save against your Class Save DC or have their maximum HP reduced by the damage dealt until a full rest</li><li>Undying Constitution</li><li>You do not need to eat, drink, or sleep — 4 hours of trance suffices for full rest benefits</li><li>Advantage on saves vs poison, disease, and paralysis</li><li>Detect Undead and Speak with Dead are always prepared and cost no slots</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Necromancer",
+  "features": [
+   {
+    "name": "Necrotic Touch",
+    "level": 1,
+    "description": "<p>Make an unarmed attack roll: on a hit, your touch deals 1d6 necrotic damage</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Necrotic Touch (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "necrotic",
+      "ability": "",
+      "save": "",
+      "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Necrotic Touch (2d6)",
+      "kind": "damage",
+      "formula": "2d6",
+      "damageType": "necrotic",
+      "ability": "",
+      "save": "",
+      "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this.",
+      "minLevel": 10,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Wither",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "A creature you touch: Fortitude save against your Class Save DC or its maximum HP is reduced by the damage dealt until a full rest.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   {
+    "name": "At 10th level this increases to 2d6",
+    "level": 1,
+    "description": "<p>Creatures you touch must make a Fortitude save against your Class Save DC or have their maximum HP reduced by the damage dealt until a full rest</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort"
+   },
+   {
+    "name": "Undying Constitution",
+    "level": 1,
+    "description": "<p>You do not need to eat, drink, or sleep — 4 hours of trance suffices for full rest benefits</p><p>Advantage on saves vs poison, disease, and paralysis</p><p>Detect Undead and Speak with Dead are always prepared and cost no slots</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs poison, disease and paralysis",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "1dhpQWn5kZl8ql6c",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

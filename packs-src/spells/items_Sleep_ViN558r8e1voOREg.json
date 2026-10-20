@@ -1,0 +1,67 @@
+{
+ "_id": "ViN558r8e1voOREg",
+ "_key": "!items!ViN558r8e1voOREg",
+ "name": "Sleep",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 90ft; 15ft radius. Creatures with a total of 2d4 Levels + CL fall Unconscious for 1d4 minutes (lowest Level first; creatures of Level 5 or higher unaffected); damage wakes a sleeper. Will negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Bard, Necromancer, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Sorcerer",
+   "Bard",
+   "Necromancer",
+   "Witch"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 90ft",
+  "duration": "",
+  "area": "15ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 15,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Asleep",
+    "target": "target",
+    "rounds": "10*1d4",
+    "statuses": [
+     "unconscious"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 81,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

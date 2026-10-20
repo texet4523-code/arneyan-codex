@@ -1,0 +1,72 @@
+{
+ "_id": "ihmjokGtIE5hAHR6",
+ "_key": "!items!ihmjokGtIE5hAHR6",
+ "name": "O.M.G.A. Initiate (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li>Trained within the Opal Mages Guild Association — founded by Jorhim Shadowstitch, training the magically gifted in exchange for their loyalty, now led by Archmage Elnora Myrill since the War of Tariel finally legitimised it in Myllnoris's eyes.</li><li><strong>Coordinated Casting: </strong>Once per encounter, if an ally is already engaged with your target in melee, a harmful spell you cast against that target imposes Disadvantage on their saving throw.</li><li><strong>Guild Standing: </strong>Recognised Guild standing — advantage on Persuasion invoking O.M.G.A.'s name with Opal's government or military, and advantage recalling the Guild's rank structure or current leadership.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Coordinated Casting",
+    "level": 1,
+    "description": "<p>Once per encounter, if an ally is already engaged with your target in melee, a harmful spell you cast against that target imposes Disadvantage on their saving throw.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Coordinated Casting: once per encounter, if an ally is in melee with your target, it saves against your harmful spell at Disadvantage.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Guild Standing",
+    "level": 1,
+    "description": "<p>Recognised Guild standing — advantage on Persuasion invoking O.M.G.A.'s name with Opal's government or military, and advantage recalling the Guild's rank structure or current leadership.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion invoking O.M.G.A.'s name with Opal's government or military",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "recalling the Guild's ranks or leadership",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

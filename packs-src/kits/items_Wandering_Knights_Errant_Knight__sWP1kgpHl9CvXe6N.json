@@ -1,0 +1,56 @@
+{
+ "_id": "sWP1kgpHl9CvXe6N",
+ "_key": "!items!sWP1kgpHl9CvXe6N",
+ "name": "Wandering Knights Errant (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>No order, no lord, no stronghold — just the code and the road.</p><ul><li><strong>Universal Bearing: </strong>Inspire bonus applies even to creatures who cannot understand the knight's language, and affects double the normal number of creatures at each threshold.</li><li><strong>Roads Well Travelled: </strong>Advantage on Legend Lore-equivalent checks about distant lands, the history of knighthood, or famous deeds of arms.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Universal Bearing",
+    "level": 1,
+    "description": "<p>Inspire bonus applies even to creatures who cannot understand the knight's language, and affects double the normal number of creatures at each threshold.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Roads Well Travelled",
+    "level": 1,
+    "description": "<p>Advantage on Legend Lore-equivalent checks about distant lands, the history of knighthood, or famous deeds of arms.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "lore about distant lands, the history of knighthood, or famous deeds of arms",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

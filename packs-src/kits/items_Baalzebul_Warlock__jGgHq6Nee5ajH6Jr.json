@@ -1,0 +1,67 @@
+{
+ "_id": "jGgHq6Nee5ajH6Jr",
+ "_key": "!items!jGgHq6Nee5ajH6Jr",
+ "name": "Baalzebul (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>He doesn't kill. He ruins.</p><ul><li><strong>Dark Gift</strong> (1st): Advantage on Deception checks. When a creature fails a save against your spell, they take -1 to their next save (stacks to -3).</li><li><strong>Patron's Mark</strong> (6th): Once per day, plant a damaging rumour about a creature in the mind of one person within 60ft (Will save against your Class Save DC, to resist). On a failed save they believe they heard it from a trusted source and will repeat it.</li><li><strong>Patron Feature</strong> (12th): Once per day, corrupt one creature's strongest loyalty (Will save against your Class Save DC) — on a failed save they act against their deepest allegiance once before realising what happened.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Advantage on Deception checks. When a creature fails a save against your spell, they take -1 to their next save (stacks to -3).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, plant a damaging rumour about a creature in the mind of one person within 60ft (Will save against your Class Save DC, to resist). On a failed save they believe they heard it from a trusted source and will repeat it.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will"
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, corrupt one creature's strongest loyalty (Will save against your Class Save DC) — on a failed save they act against their deepest allegiance once before realising what happened.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

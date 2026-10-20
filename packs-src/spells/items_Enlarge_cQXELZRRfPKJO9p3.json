@@ -1,0 +1,94 @@
+{
+ "_id": "cQXELZRRfPKJO9p3",
+ "_key": "!items!cQXELZRRfPKJO9p3",
+ "name": "Enlarge",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Range 30ft; one creature; 1 round per level. The target doubles in height and gains +2 Strength and -2 Dexterity; Fortitude negates (a willing target may forgo the save). Cast reversed (Reduce): the target halves in height, gaining -2 Strength and +2 Dexterity; Fortitude negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Enlarged",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ability.str",
+      "value": "2",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ability.dex",
+      "value": "-2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Reduced (reversed)",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ability.str",
+      "value": "-2",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ability.dex",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 49,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

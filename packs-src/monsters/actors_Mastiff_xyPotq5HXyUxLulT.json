@@ -1,0 +1,209 @@
+{
+ "_id": "xyPotq5HXyUxLulT",
+ "_key": "!actors!xyPotq5HXyUxLulT",
+ "name": "Mastiff",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "1d8",
+  "attributes": {
+   "hp": {
+    "value": 4,
+    "max": 4,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "40ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d20",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "¼",
+   "page": 0,
+   "description": "<p><em>Medium beast</em></p><p><strong>GM:</strong> Guard dog or war hound. It is loyal to one handler and will fight to the death for them.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Z81hmemDWGxD5sNV",
+   "_key": "!actors.items!xyPotq5HXyUxLulT.Z81hmemDWGxD5sNV",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Keen Smell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>Advantage on Perception checks that rely on smell.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "yxWZH71lgf6fz99n",
+   "_key": "!actors.items!xyPotq5HXyUxLulT.yxWZH71lgf6fz99n",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pull Down",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>A creature hit by the bite must make a @Check[fort|dc:11]{Fortitude save DC 11} or be knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "p66tu5aTWd4sCYdX",
+   "_key": "!actors.items!xyPotq5HXyUxLulT.p66tu5aTWd4sCYdX",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Mastiff",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

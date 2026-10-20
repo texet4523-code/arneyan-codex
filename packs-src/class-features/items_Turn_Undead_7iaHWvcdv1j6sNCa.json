@@ -1,0 +1,96 @@
+{
+ "_id": "7iaHWvcdv1j6sNCa",
+ "_key": "!items!7iaHWvcdv1j6sNCa",
+ "name": "Turn Undead",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>As an action, up to 3 + your Wisdom modifier times per day, present your holy symbol — every undead within 30ft that can see or hear you rolls a Will save.</li><li>Turn DC = 10 + half your Cleric level (rounded down, minimum 1) + Wisdom modifier</li><li><strong>Below 8th level: </strong>failed save = turned — undead flees and cannot approach within 30ft for 1 minute</li><li>8th level and above: failed save = destroyed outright if its Level is no more than half your Cleric level, otherwise turned</li><li>Evil Clerics may turn OR control undead under the same DC — controlling requires your Cleric level to be 5 or more above the undead's Level. Controlled undead obey for 1 hour per Cleric level, and you can control at most your Cleric level in total Levels of undead at once</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 3,
+   "max": 3,
+   "per": "day",
+   "formula": "3 + @wis.mod"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Cleric",
+  "activities": [
+   {
+    "name": "Turn Undead",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Undead within 30ft save against your Turn DC or are turned (destroyed from 8th level if their Level is no more than half yours).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Control Undead",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Turn DC or obey you for 1 hour per Cleric level.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Turned",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DB2nn2x2D5HVxzrP",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

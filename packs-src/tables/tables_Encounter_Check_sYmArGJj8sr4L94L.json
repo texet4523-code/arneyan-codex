@@ -1,0 +1,63 @@
+{
+ "_id": "sYmArGJj8sr4L94L",
+ "_key": "!tables!sYmArGJj8sr4L94L",
+ "name": "Encounter Check",
+ "img": "systems/arneyan/assets/icons/treasure-compass.svg",
+ "description": "<p>At the start of each new segment of dangerous travel (daily travel or a dungeon phase), roll a d12 for each day travelled. Resting in hostile territory: an 11 or 12 is a Standard Encounter, never Dangerous.</p>",
+ "results": [
+  {
+   "_id": "ZrtMbu0Z19uNExdB",
+   "_key": "!tables.results!sYmArGJj8sr4L94L.ZrtMbu0Z19uNExdB",
+   "type": "text",
+   "name": "Nothing immediately happens. Travel continues.",
+   "description": "Nothing immediately happens. Travel continues.",
+   "img": "systems/arneyan/assets/icons/treasure-compass.svg",
+   "weight": 10,
+   "range": [
+    1,
+    10
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "2Fa5A3uusxoGyIzq",
+   "_key": "!tables.results!sYmArGJj8sr4L94L.2Fa5A3uusxoGyIzq",
+   "type": "text",
+   "name": "A Standard Encounter occurs.",
+   "description": "A Standard Encounter occurs.",
+   "img": "systems/arneyan/assets/icons/treasure-compass.svg",
+   "weight": 1,
+   "range": [
+    11,
+    11
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "4ctJYcKt57TaFKLZ",
+   "_key": "!tables.results!sYmArGJj8sr4L94L.4ctJYcKt57TaFKLZ",
+   "type": "text",
+   "name": "A Dangerous Encounter occurs.",
+   "description": "A Dangerous Encounter occurs.",
+   "img": "systems/arneyan/assets/icons/treasure-compass.svg",
+   "weight": 1,
+   "range": [
+    12,
+    12
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "1d12",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "R2uwRl2x6WKO3nrE",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,118 @@
+{
+ "_id": "UxQOelmP1D8oW5wz",
+ "_key": "!items!UxQOelmP1D8oW5wz",
+ "name": "Divine Protection",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Permanent passive aura — +2 AC and +2 on all saves against evil creatures. Summoned and conjured evil creatures cannot make physical contact with the Paladin; their natural weapon attacks fail and they recoil.</li><li>Good elementals and outsiders are immune to this effect</li><li>Immune to all diseases of any origin.</li><li>Detect Evil: concentrate for one round while facing a target within 60ft — innate ability, no spellcasting involved. Usable as often as desired.</li><li>Aura of Courage (6th level): immune to fear (magical or otherwise). Allies within the aura's range gain +4 on saves vs fear — see the Paladin Progression Table (10ft at 6th, 30ft at 15th, 50ft at 20th).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Paladin",
+  "activities": [
+   {
+    "name": "Detect Evil",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Concentrate for one round while facing a target within 60ft to detect evil.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "ac",
+    "value": "2",
+    "when": "vs evil creatures",
+    "label": ""
+   },
+   {
+    "key": "save",
+    "value": "2",
+    "when": "vs evil creatures",
+    "label": ""
+   },
+   {
+    "key": "note.save",
+    "value": "Divine Protection: immune to all diseases.",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "immune",
+    "value": "condition:frightened",
+    "when": "from 6th level (Aura of Courage)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "auras": [
+   {
+    "key": "courage",
+    "name": "Aura of Courage",
+    "minLevel": 6,
+    "radius": [
+     [
+      1,
+      10
+     ],
+     [
+      15,
+      30
+     ],
+     [
+      20,
+      50
+     ]
+    ],
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "save",
+      "value": "4",
+      "when": "vs fear",
+      "label": "Aura of Courage"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

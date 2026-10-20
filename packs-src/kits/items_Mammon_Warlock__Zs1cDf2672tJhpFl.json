@@ -1,0 +1,57 @@
+{
+ "_id": "Zs1cDf2672tJhpFl",
+ "_key": "!items!Zs1cDf2672tJhpFl",
+ "name": "Mammon (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Everything has a price. He knows it. He always collects.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, appraise the exact value of any object or learn the price a creature would pay for any secret, service, or soul. A creature whose wealth or worth you appraise this way suffers disadvantage on its next save or Charisma-based check against you. You may use it as part of your action in combat.</li><li><strong>Patron's Mark</strong> (6th): Passive: you always know the exact monetary value of anything you look at, and can sense whether a creature is carrying more wealth than they appear to have.</li><li><strong>Patron Feature</strong> (12th): Once per day, offer a Mammon's Bargain (Will save against your Class Save DC, to refuse). A creature that accepts and breaks it loses 2d6 HP per day until honoured or dead.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Once per day, appraise the exact value of any object or learn the price a creature would pay for any secret, service, or soul. A creature whose wealth or worth you appraise this way suffers disadvantage on its next save or Charisma-based check against you. You may use it as part of your action in combat.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Passive: you always know the exact monetary value of anything you look at, and can sense whether a creature is carrying more wealth than they appear to have.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, offer a Mammon's Bargain (Will save against your Class Save DC, to refuse). A creature that accepts and breaks it loses 2d6 HP per day until honoured or dead.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

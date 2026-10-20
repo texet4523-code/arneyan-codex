@@ -1,0 +1,58 @@
+{
+ "_id": "1Cb6U9s3sOq0u5Mp",
+ "_key": "!items!1Cb6U9s3sOq0u5Mp",
+ "name": "Dispel Magic",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Cleric",
+   "Warlock",
+   "Bard",
+   "Paladin",
+   "Magus",
+   "Witch"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "A worn or carried magic item is not suppressed",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 149,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

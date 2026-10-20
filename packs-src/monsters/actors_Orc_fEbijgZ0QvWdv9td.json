@@ -1,0 +1,210 @@
+{
+ "_id": "fEbijgZ0QvWdv9td",
+ "_key": "!actors!fEbijgZ0QvWdv9td",
+ "name": "Orc",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "1d8",
+  "attributes": {
+   "hp": {
+    "value": 4,
+    "max": 4,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6 (lair 40-400)",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Raiders who respect strength. A fallen war chief often sends the whole band running.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Two-handed axe",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d12+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xE7nzTTx33MyCH9u",
+   "_key": "!actors.items!fEbijgZ0QvWdv9td.xE7nzTTx33MyCH9u",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Javelin",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "30ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "H26TGTZh5k0GrGkp",
+   "_key": "!actors.items!fEbijgZ0QvWdv9td.H26TGTZh5k0GrGkp",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Aggressive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "<p>As part of its attack, it may first move up to its speed toward a hostile creature it can see.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LWMZkXDShqmNyljm",
+   "_key": "!actors.items!fEbijgZ0QvWdv9td.LWMZkXDShqmNyljm",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Orc",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-orc-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,77 @@
+{
+ "_id": "ROWlMeLXE4hAJkpa",
+ "_key": "!items!ROWlMeLXE4hAJkpa",
+ "name": "Yeenoghu (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>The kill that feeds the next kill. The more you destroy, the stronger you become.</p><ul><li><strong>Dark Gift</strong> (1st): When you reduce a creature to 0 HP or below, your next damaging cantrip or spell gains +1 damage die. Stacks up to 3 times per encounter.</li><li><strong>Patron's Mark</strong> (6th): Once per day, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</li><li><strong>Patron Feature</strong> (12th): Once per day, declare a Hunt on one creature within 120ft — you always know its location, your spells deal +2d6 against it, and if it drops you to 0 HP or below first, make a Will save against your Class Save DC to stay at 1 HP instead.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>When you reduce a creature to 0 HP or below, your next damaging cantrip or spell gains +1 damage die. Stacks up to 3 times per encounter.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Yeenoghu: after reducing a creature to 0 HP, your next damaging cantrip or spell gains +1 damage die (stacks to 3 per encounter).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, declare a Hunt on one creature within 120ft — you always know its location, your spells deal +2d6 against it, and if it drops you to 0 HP or below first, make a Will save against your Class Save DC to stay at 1 HP instead.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "spell.damage",
+      "value": "+2d6",
+      "when": "vs the creature you declared a Hunt on",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

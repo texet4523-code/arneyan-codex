@@ -1,0 +1,63 @@
+{
+ "_id": "WsMikPRgWSinY4bn",
+ "_key": "!tables!WsMikPRgWSinY4bn",
+ "name": "Efreeti Bottle",
+ "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+ "description": "<p>What comes out when the bottle is unstopped (@UUID[Compendium.arneyan.equipment.Item.MMGferEDtP0EY8fB]{Efreeti Bottle}).</p>",
+ "results": [
+  {
+   "_id": "xk4imYRjk9OD5lRz",
+   "_key": "!tables.results!WsMikPRgWSinY4bn.xk4imYRjk9OD5lRz",
+   "type": "text",
+   "name": "A hostile efreeti attacks you",
+   "description": "A hostile efreeti attacks you",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 2,
+   "range": [
+    1,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "sUQQXina7kUFu5tZ",
+   "_key": "!tables.results!WsMikPRgWSinY4bn.sUQQXina7kUFu5tZ",
+   "type": "text",
+   "name": "It grants up to 3 wishes, each copying a spell of 8th level or lower",
+   "description": "It grants up to 3 wishes, each copying a spell of 8th level or lower",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    3,
+    3
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "ICKGXF6t4BAFSd2W",
+   "_key": "!tables.results!WsMikPRgWSinY4bn.ICKGXF6t4BAFSd2W",
+   "type": "text",
+   "name": "It serves you for 1 hour",
+   "description": "It serves you for 1 hour",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 17,
+   "range": [
+    4,
+    20
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "1d20",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "2WVC1DsAZsMr6tZO",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

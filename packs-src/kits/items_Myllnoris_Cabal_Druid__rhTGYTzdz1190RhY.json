@@ -1,0 +1,66 @@
+{
+ "_id": "rhTGYTzdz1190RhY",
+ "_key": "!items!rhTGYTzdz1190RhY",
+ "name": "Myllnoris Cabal (Druid)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li>Trained under Myrah Arianel, Protector of the Myllnoris Woods and Hierophant of the Cabal. This circle stewards the ancient forests bordering the elven city of Myllnoris and has deep ties to its High Elven Council.</li><li><strong>Fey Warding: </strong>Advantage on saves vs charm, enchantment, or fey magic while in natural terrain.</li><li><strong>Warden's Kin: </strong>Advantage communicating with or identifying creatures of the deep forest, and recognised as an ally on sight by Myllnoris's woodland wardens.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Druid",
+  "features": [
+   {
+    "name": "Fey Warding",
+    "level": 1,
+    "description": "<p>Advantage on saves vs charm, enchantment, or fey magic while in natural terrain.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm, enchantment or fey magic in natural terrain",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Warden's Kin",
+    "level": 1,
+    "description": "<p>Advantage communicating with or identifying creatures of the deep forest, and recognised as an ally on sight by Myllnoris's woodland wardens.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "communicating with or identifying deep forest creatures",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "eLpVXIYAkUFHTT3m",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

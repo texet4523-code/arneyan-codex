@@ -1,0 +1,404 @@
+{
+ "_id": "C3DYit4VJDNXrvBX",
+ "_key": "!actors!C3DYit4VJDNXrvBX",
+ "name": "Acolyte",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "2d8",
+  "attributes": {
+   "hp": {
+    "value": 9,
+    "max": 9,
+    "temp": 0
+   },
+   "ac": 11,
+   "speed": "30ft",
+   "attack": 1,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 2,
+   "slots": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A junior priest sent where it should not be.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Mace",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xX7HsrJcwIcVlhPa",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.xX7HsrJcwIcVlhPa",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Casts as a 2nd-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.UQlLkustRg8BIKev]{cure light wounds}, @UUID[Compendium.arneyan.spells.Item.R2Q25jYvhiG6IstW]{sanctuary}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xnDOG7lXgwSUeS8v",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.xnDOG7lXgwSUeS8v",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bless",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 50ft; up to 6 allies; 1 minute. Targets have Advantage on their first attack roll each round and gain +1 to saving throws. Cast reversed (Bane): up to 6 enemies within range have Disadvantage on their first attack roll each round and suffer -1 to saving throws for 1 minute; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 50ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Bane only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Blessed",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Bane (reversed)",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy"
+   },
+   "_id": "NnflQcbyzosjHFaM",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.NnflQcbyzosjHFaM",
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cure Light Wounds",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Heals 1d8 HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Half damage (Cause Light Wounds only)",
+    "damage": "1d8 + min(@cl, 5)",
+    "damageType": "healing",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.UQlLkustRg8BIKev"
+   },
+   "_id": "IP2dp0zSYDQEFMaG",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.IP2dp0zSYDQEFMaG",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sanctuary",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Touch; one creature; 1 round per level. Any creature that tries to attack the target or target it with a harmful spell must first succeed on a Will save, or choose another target; Will negates. Ends if the target attacks or casts an offensive spell.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.R2Q25jYvhiG6IstW"
+   },
+   "_id": "7qyZTqBuEc2kUtGC",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.7qyZTqBuEc2kUtGC",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Acolyte",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

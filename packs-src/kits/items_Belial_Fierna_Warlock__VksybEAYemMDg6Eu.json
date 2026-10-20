@@ -1,0 +1,69 @@
+{
+ "_id": "VksybEAYemMDg6Eu",
+ "_key": "!items!VksybEAYemMDg6Eu",
+ "name": "Belial & Fierna (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>The strategist and the seducer. Ruthless calculation wearing a beautiful face.</p><ul><li><strong>Dark Gift</strong> (1st): Fire damage ignores resistance (not immunity). Creatures you deal fire damage to make a Will save against your Class Save DC or have disadvantage on their next attack roll.</li><li><strong>Patron's Mark</strong> (6th): Once per day, make one creature within 30ft forget that you said something offensive, threatening, or incriminating in the last minute. They retain the emotional impression of the conversation but not the specific words.</li><li><strong>Patron Feature</strong> (12th): Once per day, create a 20ft radius hellfire zone within 60ft — 4d8 fire on entry or start of turn (Reflex save against your Class Save DC, for half). Lasts 1 minute.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Fire damage ignores resistance (not immunity). Creatures you deal fire damage to make a Will save against your Class Save DC or have disadvantage on their next attack roll.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Belial & Fierna: your fire damage ignores resistance; targets make a Will save or have Disadvantage on their next attack.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, make one creature within 30ft forget that you said something offensive, threatening, or incriminating in the last minute. They retain the emotional impression of the conversation but not the specific words.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, create a 20ft radius hellfire zone within 60ft — 4d8 fire on entry or start of turn (Reflex save against your Class Save DC, for half). Lasts 1 minute.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "damage": "4d8",
+    "damageType": "fire"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

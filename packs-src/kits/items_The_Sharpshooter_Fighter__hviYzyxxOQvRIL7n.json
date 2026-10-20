@@ -1,0 +1,72 @@
+{
+ "_id": "hviYzyxxOQvRIL7n",
+ "_key": "!items!hviYzyxxOQvRIL7n",
+ "name": "The Sharpshooter (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A dedicated ranged specialist who has sacrificed melee training for precision at distance.</p><ul><li><strong>Dead Reckoning: </strong>No disadvantage on ranged attacks within 5ft. Advantage on your first bow attack roll each round against a stationary or unaware target.</li><li><strong>Trained Eye: </strong>Advantage on checks estimating range, wind, elevation, or trajectory. Can identify the make and origin of any arrow or bolt examined.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Dead Reckoning",
+    "level": 1,
+    "description": "<p>No disadvantage on ranged attacks within 5ft. Advantage on your first bow attack roll each round against a stationary or unaware target.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Dead Reckoning: no Disadvantage on ranged attacks within 5ft.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "bow attack, vs a stationary or unaware target",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Trained Eye",
+    "level": 1,
+    "description": "<p>Advantage on checks estimating range, wind, elevation, or trajectory. Can identify the make and origin of any arrow or bolt examined.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "estimating range, wind, elevation or trajectory",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

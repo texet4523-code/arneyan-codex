@@ -1,0 +1,56 @@
+{
+ "_id": "j7eZxpvFKIZmwacA",
+ "_key": "!items!j7eZxpvFKIZmwacA",
+ "name": "Holfast City Watch (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>A trained law enforcement marksman — crowd control, warning shots, precision at urban ranges.</p><ul><li><strong>Precision Placement: </strong>Called Shot (Leg) no longer requires declaring before rolling — can be applied to any hit once per round.</li><li><strong>Badge and Barrel: </strong>Advantage on checks identifying criminals by description, navigating Holfast's legal system, and as a witness or enforcer of Holfast law.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Precision Placement",
+    "level": 1,
+    "description": "<p>Called Shot (Leg) no longer requires declaring before rolling — can be applied to any hit once per round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Badge and Barrel",
+    "level": 1,
+    "description": "<p>Advantage on checks identifying criminals by description, navigating Holfast's legal system, and as a witness or enforcer of Holfast law.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying criminals by description, navigating Holfast's legal system, as a witness or enforcer of Holfast law",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

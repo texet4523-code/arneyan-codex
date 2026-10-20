@@ -1,0 +1,63 @@
+{
+ "_id": "qR2OySKeXODRhwLp",
+ "_key": "!items!qR2OySKeXODRhwLp",
+ "name": "Sunburst",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 120ft; 30ft-radius burst of sunlight. All creatures take 1d6 radiant damage per level (max 12d6); Reflex halves. Creatures within 10ft of the centre are also Blinded for 2d4 rounds; Reflex negates. Undead of Level 8 or lower are destroyed outright (Reflex negates); larger undead take 10d6 radiant damage; Reflex halves.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Druid",
+   "Illusionist"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 12))d6",
+  "damageType": "radiant",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Sunburst",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 369,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

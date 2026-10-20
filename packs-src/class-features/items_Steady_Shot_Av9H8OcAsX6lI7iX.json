@@ -1,0 +1,119 @@
+{
+ "_id": "Av9H8OcAsX6lI7iX",
+ "_key": "!items!Av9H8OcAsX6lI7iX",
+ "name": "Steady Shot",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>While Dead Eye applies, the first attack that hits each round deals +1d6 bonus damage (+2d6 at 10th level, +3d6 at 15th level).</li><li><strong>Stacks with Dead Aim; both bonuses are added on the same shot</strong></li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Gunslinger",
+  "activities": [
+   {
+    "name": "Steady Shot (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Steady Shot (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+    "minLevel": 10,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Steady Shot (3d6)",
+    "kind": "damage",
+    "formula": "3d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+    "minLevel": 15,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "damage.ranged",
+    "value": "+(min(3,floor(@cl/5)))d6",
+    "when": "first hit each round while Dead Eye applies",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "CQq9CSkBWcsx4eIg",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

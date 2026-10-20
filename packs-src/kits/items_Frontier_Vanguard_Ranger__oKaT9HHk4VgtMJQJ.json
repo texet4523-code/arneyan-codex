@@ -1,0 +1,66 @@
+{
+ "_id": "oKaT9HHk4VgtMJQJ",
+ "_key": "!items!oKaT9HHk4VgtMJQJ",
+ "name": "Frontier Vanguard (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li>Rangers who walk at the front of the march with axe, spear and shield, trading stealth for strength.</li><li><strong>Vanguard's Build: </strong>Strength replaces Dexterity as a key attribute, and your 15th-level bonus is +1 Strength instead. Advantage on Strength checks to climb, swim and force obstacles in the wild.</li><li><strong>Axe and Shield: Advantage on your first attack roll each round with a hand axe, battle axe or spear while you carry a shield.</strong></li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Vanguard's Build",
+    "level": 1,
+    "description": "<p>Strength replaces Dexterity as a key attribute, and your 15th-level bonus is +1 Strength instead. Advantage on Strength checks to climb, swim and force obstacles in the wild.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "to climb, swim or force obstacles in the wild",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Axe and Shield",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round with a hand axe, battle axe or spear while you carry a shield.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "with a hand axe, battle axe or spear while carrying a shield",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

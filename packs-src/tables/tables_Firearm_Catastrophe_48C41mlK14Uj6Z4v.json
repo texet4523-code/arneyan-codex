@@ -1,0 +1,78 @@
+{
+ "_id": "48C41mlK14Uj6Z4v",
+ "_key": "!tables!48C41mlK14Uj6Z4v",
+ "name": "Firearm Catastrophe",
+ "img": "systems/arneyan/assets/icons/treasure-pistol-gun.svg",
+ "description": "<p>A natural 1 on a firearm attack (except Silent Mechanism weapons): roll a d6.</p>",
+ "results": [
+  {
+   "_id": "Hib42YInpGpe7iaW",
+   "_key": "!tables.results!48C41mlK14Uj6Z4v.Hib42YInpGpe7iaW",
+   "type": "text",
+   "name": "The weapon is damaged and unusable until repaired.",
+   "description": "The weapon is damaged and unusable until repaired.",
+   "img": "systems/arneyan/assets/icons/treasure-pistol-gun.svg",
+   "weight": 2,
+   "range": [
+    1,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "rJ0QmgHfJnBwCXdG",
+   "_key": "!tables.results!48C41mlK14Uj6Z4v.rJ0QmgHfJnBwCXdG",
+   "type": "text",
+   "name": "It backfires, dealing half its listed damage (non-exploding) to the wielder.",
+   "description": "It backfires, dealing half its listed damage (non-exploding) to the wielder.",
+   "img": "systems/arneyan/assets/icons/treasure-pistol-gun.svg",
+   "weight": 2,
+   "range": [
+    3,
+    4
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "IYqaRMMmFGOdXnCQ",
+   "_key": "!tables.results!48C41mlK14Uj6Z4v.IYqaRMMmFGOdXnCQ",
+   "type": "text",
+   "name": "It's destroyed outright.",
+   "description": "It's destroyed outright.",
+   "img": "systems/arneyan/assets/icons/treasure-pistol-gun.svg",
+   "weight": 1,
+   "range": [
+    5,
+    5
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "VboJN0cS4zyqElWS",
+   "_key": "!tables.results!48C41mlK14Uj6Z4v.VboJN0cS4zyqElWS",
+   "type": "text",
+   "name": "It explodes: full listed damage (exploding dice apply) to the wielder and any creature within 5ft.",
+   "description": "It explodes: full listed damage (exploding dice apply) to the wielder and any creature within 5ft.",
+   "img": "systems/arneyan/assets/icons/treasure-pistol-gun.svg",
+   "weight": 1,
+   "range": [
+    6,
+    6
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "1d6",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "dhQzkZwCu7NE7CAg",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

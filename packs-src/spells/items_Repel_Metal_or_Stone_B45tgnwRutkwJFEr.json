@@ -1,0 +1,51 @@
+{
+ "_id": "B45tgnwRutkwJFEr",
+ "_key": "!items!B45tgnwRutkwJFEr",
+ "name": "Repel Metal or Stone",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Self; cone 60ft long, 1 round per level. Each round, unattended metal or stone objects of 100 lb or less in the cone are hurled 30ft away; metal or stone items held by creatures are flung 30ft unless the holder succeeds on a Strength check vs spell DC; creatures in heavy metal armour are pushed 20ft and fall Prone. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "60ft cone",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 60,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 366,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

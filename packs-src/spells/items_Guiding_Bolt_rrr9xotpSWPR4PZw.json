@@ -1,0 +1,67 @@
+{
+ "_id": "rrr9xotpSWPR4PZw",
+ "_key": "!items!rrr9xotpSWPR4PZw",
+ "name": "Guiding Bolt",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 120ft; one creature. Deals 1d8 radiant damage plus 1d8 per four levels (max 5d8); Reflex halves. The next attack roll against the target before the end of your next turn has Advantage; Reflex negates the Advantage.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half damage, and no Advantage against it",
+  "damage": "(min(1 + floor(@cl/4), 5))d8",
+  "damageType": "radiant",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Guiding Bolt",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 58,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,51 @@
+{
+ "_id": "S1GBBFkunNIzBTEP",
+ "_key": "!items!S1GBBFkunNIzBTEP",
+ "name": "Screen",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 30ft; one 30ft cube; 1 hour per level. Creatures and objects inside appear (to any viewing from outside) as an ordinary scene of your choice (empty room, forest) and cannot be scried or detected. Dispel Magic ends it. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "30ft cube",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "600*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 367,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

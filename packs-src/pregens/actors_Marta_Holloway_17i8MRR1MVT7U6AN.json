@@ -1,0 +1,2046 @@
+{
+ "_id": "17i8MRR1MVT7U6AN",
+ "_key": "!actors!17i8MRR1MVT7U6AN",
+ "name": "Marta Holloway",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Gunslinger.webp",
+ "folder": "f4if1gtDcP6fBdap",
+ "sort": 400,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 13
+   },
+   "dex": {
+    "value": 17
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 11
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 9
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 66,
+    "max": 66,
+    "temp": 0
+   },
+   "speed": 30
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 50,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Lawful Neutral",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Goblin",
+   "biography": "<p><em>The Broken Anvil · Level 9 - The Veterans · Seat 4, Ranged</em></p><p>An ex-watch marksman who stands still, shoots straight and pins runners in place. Dry, procedural and unflappable; reads every room like a crime scene. Left the Watch when the paperwork outgrew the policing; the Keepers let her actually stop the bad thing.</p><h3>In a fight</h3><p>Stand still and shoot: your first shot each round has Advantage and +1d6, it reloads itself, and one hit a round can be a Leg shot to slow the troll.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Dead Eye.</strong> Advantage on your first ranged attack each round if you do not move this turn (you stay rooted after shooting). Forced movement does not count.</p><p><strong>Steady Shot (5th).</strong> While Dead Eye applies, your first hit each round deals +1d6.</p><p><strong>Extra Attack (7th).</strong> When you take the attack action, make one more weapon attack, with Disadvantage. Each shot needs a loaded firearm.</p><p><strong>Lightning Reload (9th).</strong> Pistols reload as part of the attack that fired them, once per round.</p><p><strong>Quick Draw.</strong> Drawing a loaded pistol does not use your free object use.</p><p><strong>Firearm Proficiency.</strong> Firearms without Disadvantage; damage dice explode (a die showing its maximum is rolled again and added).</p><p><strong>Called Shot (4th).</strong> Declare before rolling; the shot has Disadvantage; one per round; saves DC 17. Head: Fortitude or Stunned 1 round (then immune 1 minute). Arm: Fortitude or drops what it holds. Leg: Fortitude or speed halved 1 round.</p><p><strong>Kit: Precision Placement.</strong> Once per round, after any hit, make it a Leg shot with no declaration and no Disadvantage (Fortitude DC 17 or speed halved for 1 round).</p><p><strong>Brace and Fire (9th).</strong> Reaction when a creature charges you: shoot before it reaches you (Dead Eye not required). On a hit it takes damage and makes a Fortitude save (DC 17) or its charge stops.</p><p><strong>Trick Shot (7th).</strong> Dex check vs a GM-set DC for an impossible shot: around corners, ricochets, disarm within 30ft, cut a rope. One try per round; failure just misses.</p><p><strong>Grit.</strong> Once per day, when dropped to 0 HP or below, make a Fortitude save (DC 10 + damage taken below 0). Success: stay at 1 HP and conscious.</p><p><strong>Kit: Badge and Barrel.</strong> Advantage on identifying criminals by description, navigating Opal&#x27;s legal system, and acting as a witness or enforcer of Opal law.</p><p><strong>Attribute bonus.</strong> +1 Dex and +1 Con (included).</p><p><strong>Bonus feat.</strong> An extra General feat at 1st level (Swift Reflexes).</p><p><strong>Chosen skill.</strong> Advantage on Perception (Wisdom checks to notice things).</p><p><strong>Weapon and armour training.</strong> Two martial weapons: Sword, Long and Bow, Long. Light and medium armour.</p><p><strong>Swift Reflexes (Human bonus, General).</strong> Advantage on initiative, +1 Dexterity (included: Dex 18, the creation cap).</p><p><strong>Steady Aim (1st, Specialist).</strong> No Disadvantage on ranged attacks against a target in melee with an ally.</p><p><strong>Point-Blank Terror (2nd, Specialist).</strong> No Disadvantage on ranged attacks while an enemy is within 5ft of you.</p><p><strong>Critical Strike (6th, Martial).</strong> Weapon attacks crit on a natural 20, or a natural 19 that hits. A crit adds the maximum of the weapon dice (12 for a pistol).</p><p><strong>Speed, initiative and HP.</strong> Speed: 30ft · Initiative: +3 with Advantage (Swift Reflexes) · HP: Level 1: d8 max 8 + Con +2 = 10. Levels 2-9: 8 x (5 + 2) = 56. Total 66.</p><p><strong>Armour Class on the sheet:</strong> 10 + 4 (Studded Leather +1) + 3 (Dex, light armour) = 17</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "Dvlw8MtduAPpP0pH",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.Dvlw8MtduAPpP0pH",
+   "name": "Gunslinger",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Gunslinger.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Wisdom</td></tr><tr><td>Hit Die</td><td>d8</td></tr><tr><td>HP beyond 10th</td><td>+2 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Firearms</td><td>Blackpowder pistol, paired pistols, derringer, dragon, musket, rifle, blunderbuss</td></tr><tr><td>Crossbows</td><td>Hand crossbow, heavy crossbow, repeating hand crossbow, repeating heavy crossbow, arbalest</td></tr><tr><td>Other Weapons</td><td>Dagger, knife, short sword, club, sap</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Firearm Proficiency, Quick Draw, Dead Eye, Grit</td></tr><tr><td>4</td><td>Called Shot</td></tr><tr><td>5</td><td>Steady Shot</td></tr><tr><td>7</td><td>Trick Shot, Extra Attack</td></tr><tr><td>9</td><td>Brace and Fire, Lightning Reload</td></tr><tr><td>10</td><td>Point Blank, Called Shot without Disadvantage</td></tr><tr><td>13</td><td>Dead Aim</td></tr><tr><td>15</td><td>+1 Dexterity</td></tr><tr><td>20</td><td>Perfect Shot</td></tr><tr><td>24</td><td>Legendary Shot</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Firearm Proficiency</h4><ul><li><strong>Effect: </strong>Use blackpowder weapons without disadvantage.</li><li>Firearm damage is exploding: when a damage die shows its highest number, roll it again and add the result (see Exploding Dice in the Codex).</li><li>Non-Gunslingers follow the Firearms training rules in the Codex</li></ul><h4>Quick Draw</h4><ul><li><strong>Effect: Drawing a loaded sidearm (pistol) doesn't use your one free object use this turn.</strong></li><li>The weapon must already be loaded</li><li>Drawing an unloaded weapon and loading it still costs a full action</li></ul><h4>Dead Eye</h4><ul><li><strong>Effect: </strong>Gain advantage on your first ranged attack roll each round, on a turn in which you do not move.</li><li>You cannot move before or after attacking: once you attack with Dead Eye you are rooted until the end of your turn, and if you have already moved this turn you gain no benefit. Forced movement (being shoved, knocked prone and so on) does not count</li></ul><h4>Grit</h4><ul><li><strong>Effect: </strong>Once per day, when reduced to 0 HP or below, make a Fortitude save, DC = 10 + damage taken above 0 HP. On a success, remain at 1 HP and stay conscious.</li><li>Gains a second use per day at 10th level</li><li>Gains a third use per day at 20th level</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Called Shot</h4><ul><li><strong>Effect: Declare before rolling, and take Disadvantage on the attack roll to aim for a specific location. Only one shot a round can be a called shot, and its save is against your Class Save DC.</strong></li><li><strong>Head: </strong>on hit, target makes a Fortitude save against your Class Save DC, or is stunned 1 round. A creature that saves against, or recovers from, your Head shot is immune to your Head shots for 1 minute</li><li><strong>Arm: </strong>on hit, target makes Fortitude save or drops what they're holding</li><li><strong>Leg: </strong>on hit, target's movement is halved for 1 round (Fortitude save to avoid)</li><li><strong>At 10th level: </strong>Called Shot no longer requires disadvantage — the Gunslinger places shots precisely without compromising accuracy</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Steady Shot</h4><ul><li><strong>Effect: </strong>While Dead Eye applies, the first attack that hits each round deals +1d6 bonus damage (+2d6 at 10th level, +3d6 at 15th level).</li><li><strong>Stacks with Dead Aim; both bonuses are added on the same shot</strong></li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Trick Shot (Dexterity)</h4><ul><li><strong>Effect: </strong>Perform an impossible-looking shot — DC determined by the GM based on difficulty, using the General Difficulty Tiers table.</li><li>Shoot around corners, ricochet off surfaces, disarm a target at range within 30ft</li><li>Pin clothing or hair to a surface, cut a rope, thread a needle</li><li>One attempt per round — a failed check simply misses</li></ul><h4>Extra Attack</h4><ul><li><strong>Effect: </strong>When you use your action to attack, make one additional weapon attack as part of it, with Disadvantage (see Extra attacks in The Arneyan Codex). A firearm still has to be loaded for each shot.</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Brace and Fire</h4><ul><li><strong>Effect: </strong>Stand firm as a reaction to a charging creature — fire before they reach you without needing Dead Eye's no-movement requirement.</li><li>If the attack hits, the charging creature takes damage and must make a Fortitude save or stop the charge</li></ul><h4>Lightning Reload</h4><ul><li><strong>Effect: </strong>All blackpowder weapons reload one round faster (minimum: reload as part of an attack, once per round).</li><li>Combined with Quick Draw, a Gunslinger can draw, fire, and reload in a single round, ready to fire again next round</li></ul><h3 class=\"arn-level\">10th Level</h3><ul><li><strong>Point Blank: </strong>no disadvantage on ranged attacks made within 5ft of an enemy</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Dead Aim</h4><ul><li><strong>Effect: </strong>Spend 2 rounds aiming without moving — full concentration, no other actions. The next shot this combat gains advantage AND deals +2d6 bonus damage.</li><li>If interrupted while aiming, the bonus is lost but the rounds are not wasted</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Dexterity Bonus: </strong>permanent +1 Dexterity</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Perfect Shot</h4><ul><li><strong>Effect: </strong>Once per day, declare before rolling. The next ranged attack deals maximum damage regardless of the dice result.</li><li>The attack still requires a hit. A die set to its maximum by this ability does not explode; only a rolled maximum explodes.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Legendary Shot</h4><ul><li><strong>Effect: </strong>Once per encounter, make a single ranged attack against any target in line of sight regardless of range — no distance penalties apply.</li><li>Any creature that witnesses the shot and survives must make a Will save against your Class Save DC, or suffer disadvantage on their first attack against the Gunslinger for the remainder of the encounter</li></ul><h2>Kits — Gunslinger Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Gunslinger folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Your kit defines the tradition, culture, and context that shaped your relationship with blackpowder.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 9,
+    "hitDie": "d8",
+    "hpBeyond10": 2,
+    "bthProgression": "martial",
+    "keyAbility": "dex",
+    "castingAbility": "",
+    "xpRate": 10,
+    "weapons": "Firearms: Blackpowder pistol, paired pistols, derringer, dragon, musket, rifle, blunderbuss; Crossbows: Hand crossbow, heavy crossbow, repeating hand crossbow, repeating heavy crossbow, arbalest; Other Weapons: Dagger, knife, short sword, club, sap",
+    "armour": "Light armour. Shields and heavier armour only through training, like any class.",
+    "slotTable": [],
+    "featLevels": [
+     1,
+     2,
+     6,
+     11,
+     16,
+     21
+    ],
+    "featPaths": [
+     "General Path",
+     "Martial Path",
+     "Specialist Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Firearm Proficiency",
+      "uuid": "Compendium.arneyan.class-features.Item.bcsf9P87se4ddg4J"
+     },
+     {
+      "level": 1,
+      "name": "Quick Draw",
+      "uuid": "Compendium.arneyan.class-features.Item.mqerOhxI9iBNeSyn"
+     },
+     {
+      "level": 1,
+      "name": "Dead Eye",
+      "uuid": "Compendium.arneyan.class-features.Item.HwgpWOY3VGn3xcC5"
+     },
+     {
+      "level": 1,
+      "name": "Grit",
+      "uuid": "Compendium.arneyan.class-features.Item.KTVhnJQyeQy2RUcz"
+     },
+     {
+      "level": 4,
+      "name": "Called Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.Q8emeWd2tFKeF4gE"
+     },
+     {
+      "level": 5,
+      "name": "Steady Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.Av9H8OcAsX6lI7iX"
+     },
+     {
+      "level": 7,
+      "name": "Trick Shot (Dexterity)",
+      "uuid": "Compendium.arneyan.class-features.Item.tSsGI3cjiew7d6Qe"
+     },
+     {
+      "level": 7,
+      "name": "Extra Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.Rgsqt53SjH8tIspx"
+     },
+     {
+      "level": 9,
+      "name": "Brace and Fire",
+      "uuid": "Compendium.arneyan.class-features.Item.6ERrEcxGIFNL5AKd"
+     },
+     {
+      "level": 9,
+      "name": "Lightning Reload",
+      "uuid": "Compendium.arneyan.class-features.Item.oCCn3gwUoCwkFmbD"
+     },
+     {
+      "level": 10,
+      "name": "Point Blank",
+      "uuid": "Compendium.arneyan.class-features.Item.AbFHSxyH6yNJ4SQ5"
+     },
+     {
+      "level": 13,
+      "name": "Dead Aim",
+      "uuid": "Compendium.arneyan.class-features.Item.E5hidwqb7u1tLFqp"
+     },
+     {
+      "level": 15,
+      "name": "Dexterity Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.ZBEBf3FfGNlNyL9v"
+     },
+     {
+      "level": 20,
+      "name": "Perfect Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.zO0pxjwa3iBQJ1bL"
+     },
+     {
+      "level": 24,
+      "name": "Legendary Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.cvS2ky0YdXPkTGD2"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.WCBELFYLAR3DqRFL"
+   }
+  },
+  {
+   "_id": "k81TY7dVBRTJKC0g",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.k81TY7dVBRTJKC0g",
+   "name": "Firearm Proficiency",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Use blackpowder weapons without disadvantage.</li><li>Firearm damage is exploding: when a damage die shows its highest number, roll it again and add the result (see Exploding Dice in the Codex).</li><li>Non-Gunslingers follow the Firearms training rules in the Codex</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Gunslinger"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.bcsf9P87se4ddg4J"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.bcsf9P87se4ddg4J"
+   }
+  },
+  {
+   "_id": "eMnRXGcEFEImO7U6",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.eMnRXGcEFEImO7U6",
+   "name": "Quick Draw",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: Drawing a loaded sidearm (pistol) doesn't use your one free object use this turn.</strong></li><li>The weapon must already be loaded</li><li>Drawing an unloaded weapon and loading it still costs a full action</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Gunslinger"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.mqerOhxI9iBNeSyn"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.mqerOhxI9iBNeSyn"
+   }
+  },
+  {
+   "_id": "U6PhNvpC5xFvJJjG",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.U6PhNvpC5xFvJJjG",
+   "name": "Dead Eye",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Gain advantage on your first ranged attack roll each round, on a turn in which you do not move.</li><li>You cannot move before or after attacking: once you attack with Dead Eye you are rooted until the end of your turn, and if you have already moved this turn you gain no benefit. Forced movement (being shoved, knocked prone and so on) does not count</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Gunslinger",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "ranged attack, on a turn you have not moved",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.HwgpWOY3VGn3xcC5"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.HwgpWOY3VGn3xcC5"
+   }
+  },
+  {
+   "_id": "F2UXtVdn7EJYyrJL",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.F2UXtVdn7EJYyrJL",
+   "name": "Grit",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Once per day, when reduced to 0 HP or below, make a Fortitude save, DC = 10 + damage taken above 0 HP. On a success, remain at 1 HP and stay conscious.</li><li>Gains a second use per day at 10th level</li><li>Gains a third use per day at 20th level</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Gunslinger"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.KTVhnJQyeQy2RUcz"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.KTVhnJQyeQy2RUcz"
+   }
+  },
+  {
+   "_id": "S7hD7KOxgOZXBxA7",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.S7hD7KOxgOZXBxA7",
+   "name": "Called Shot",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: Declare before rolling, and take Disadvantage on the attack roll to aim for a specific location. Only one shot a round can be a called shot, and its save is against your Class Save DC.</strong></li><li><strong>Head: </strong>on hit, target makes a Fortitude save against your Class Save DC, or is stunned 1 round. A creature that saves against, or recovers from, your Head shot is immune to your Head shots for 1 minute</li><li><strong>Arm: </strong>on hit, target makes Fortitude save or drops what they're holding</li><li><strong>Leg: </strong>on hit, target's movement is halved for 1 round (Fortitude save to avoid)</li><li><strong>At 10th level: </strong>Called Shot no longer requires disadvantage — the Gunslinger places shots precisely without compromising accuracy</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 4,
+    "className": "Gunslinger",
+    "activities": [
+     {
+      "name": "Head",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Arm",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "On a hit the target saves or drops what it is holding.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Leg",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "On a hit the target saves or has its movement halved for 1 round.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "applies": [
+     {
+      "name": "Called Shot: Head",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "stunned"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Called Shot: Leg",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.mult",
+        "value": "0.5",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.Q8emeWd2tFKeF4gE"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Q8emeWd2tFKeF4gE"
+   }
+  },
+  {
+   "_id": "PVhGvguRwy9Q3oEo",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.PVhGvguRwy9Q3oEo",
+   "name": "Steady Shot",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>While Dead Eye applies, the first attack that hits each round deals +1d6 bonus damage (+2d6 at 10th level, +3d6 at 15th level).</li><li><strong>Stacks with Dead Aim; both bonuses are added on the same shot</strong></li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 5,
+    "className": "Gunslinger",
+    "activities": [
+     {
+      "name": "Steady Shot (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Steady Shot (2d6)",
+      "kind": "damage",
+      "formula": "2d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+      "minLevel": 10,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Steady Shot (3d6)",
+      "kind": "damage",
+      "formula": "3d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
+      "minLevel": 15,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "damage.ranged",
+      "value": "+(min(3,floor(@cl/5)))d6",
+      "when": "first hit each round while Dead Eye applies",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.Av9H8OcAsX6lI7iX"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Av9H8OcAsX6lI7iX"
+   }
+  },
+  {
+   "_id": "WAHRR9ANOQuImwWx",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.WAHRR9ANOQuImwWx",
+   "name": "Trick Shot (Dexterity)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Perform an impossible-looking shot — DC determined by the GM based on difficulty, using the General Difficulty Tiers table.</li><li>Shoot around corners, ricochet off surfaces, disarm a target at range within 30ft</li><li>Pin clothing or hair to a surface, cut a rope, thread a needle</li><li>One attempt per round — a failed check simply misses</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 7,
+    "className": "Gunslinger",
+    "activities": [
+     {
+      "name": "Trick Shot",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Attempt an impossible-looking shot against a GM-set DC; a failure simply misses.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.tSsGI3cjiew7d6Qe"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.tSsGI3cjiew7d6Qe"
+   }
+  },
+  {
+   "_id": "iUPt6otyGOZVtDm6",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.iUPt6otyGOZVtDm6",
+   "name": "Extra Attack",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>When you use your action to attack, make one additional weapon attack as part of it, with Disadvantage (see Extra attacks in The Arneyan Codex). A firearm still has to be loaded for each shot.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 7,
+    "className": "Gunslinger",
+    "activities": [
+     {
+      "name": "Extra Attack",
+      "kind": "attacks",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "One additional weapon attack as part of your attack action, with Disadvantage. A firearm still has to be loaded for each shot.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "2",
+      "weapons": "",
+      "disadvantage": "rest",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.Rgsqt53SjH8tIspx"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Rgsqt53SjH8tIspx"
+   }
+  },
+  {
+   "_id": "ftHt1tlVctxImEad",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.ftHt1tlVctxImEad",
+   "name": "Brace and Fire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Stand firm as a reaction to a charging creature — fire before they reach you without needing Dead Eye's no-movement requirement.</li><li>If the attack hits, the charging creature takes damage and must make a Fortitude save or stop the charge</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 9,
+    "className": "Gunslinger"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.6ERrEcxGIFNL5AKd"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.6ERrEcxGIFNL5AKd"
+   }
+  },
+  {
+   "_id": "hslF9g3YODcTWDYU",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.hslF9g3YODcTWDYU",
+   "name": "Lightning Reload",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>All blackpowder weapons reload one round faster (minimum: reload as part of an attack, once per round).</li><li>Combined with Quick Draw, a Gunslinger can draw, fire, and reload in a single round, ready to fire again next round</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 9,
+    "className": "Gunslinger"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Dvlw8MtduAPpP0pH",
+     "source": "Compendium.arneyan.class-features.Item.oCCn3gwUoCwkFmbD"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.oCCn3gwUoCwkFmbD"
+   }
+  },
+  {
+   "_id": "uZO9zTddUdEdsrMQ",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.uZO9zTddUdEdsrMQ",
+   "name": "Human",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><strong>Size Medium • Speed 30ft • Darkvision None • +1 / +1 to any two attributes of choice, no penalty</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>Gains an additional Feat from the General Path</strong> (The Survivors) at 1st level, on top of their normal 1st-level Feat choice.</li><li><strong>Weapon training:</strong> any two martial weapons of choice.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "",
+    "attributes": "+1 / +1 to any two attributes of choice, no penalty",
+    "bonuses": {},
+    "pickTwo": true,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Choose one skill at creation",
+      "text": "Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+     },
+     {
+      "name": "Gains an additional Feat from the General Path",
+      "text": "Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice."
+     },
+     {
+      "name": "Weapon training",
+      "text": "any two martial weapons of choice."
+     },
+     {
+      "name": "Armour training",
+      "text": "light, medium."
+     }
+    ],
+    "choice": null,
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "skill chosen at creation",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.qtFpPzacRGlVohYi"
+   }
+  },
+  {
+   "_id": "renOvuhFGHgfSqYy",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.renOvuhFGHgfSqYy",
+   "name": "Choose one skill at creation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "uZO9zTddUdEdsrMQ",
+     "source": "uZO9zTddUdEdsrMQ.Choose one skill at creation"
+    }
+   }
+  },
+  {
+   "_id": "7FdY4H8ClxPewuL7",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.7FdY4H8ClxPewuL7",
+   "name": "Gains an additional Feat from the General Path",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "uZO9zTddUdEdsrMQ",
+     "source": "uZO9zTddUdEdsrMQ.Gains an additional Feat from the General Path"
+    }
+   }
+  },
+  {
+   "_id": "bjIgs6ATYVKnDm47",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.bjIgs6ATYVKnDm47",
+   "name": "Weapon training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>any two martial weapons of choice.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "uZO9zTddUdEdsrMQ",
+     "source": "uZO9zTddUdEdsrMQ.Weapon training"
+    }
+   }
+  },
+  {
+   "_id": "mL2MyQq33uiCXFBj",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.mL2MyQq33uiCXFBj",
+   "name": "Armour training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>light, medium.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "uZO9zTddUdEdsrMQ",
+     "source": "uZO9zTddUdEdsrMQ.Armour training"
+    }
+   }
+  },
+  {
+   "_id": "Z4YEOA7TWR4tFInW",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.Z4YEOA7TWR4tFInW",
+   "name": "Holfast City Watch (Gunslinger)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "system": {
+    "description": "<p>A trained law enforcement marksman — crowd control, warning shots, precision at urban ranges.</p><ul><li><strong>Precision Placement: </strong>Called Shot (Leg) no longer requires declaring before rolling — can be applied to any hit once per round.</li><li><strong>Badge and Barrel: </strong>Advantage on checks identifying criminals by description, navigating Holfast's legal system, and as a witness or enforcer of Holfast law.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Gunslinger",
+    "features": [
+     {
+      "name": "Precision Placement",
+      "level": 1,
+      "description": "<p>Called Shot (Leg) no longer requires declaring before rolling — can be applied to any hit once per round.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": ""
+     },
+     {
+      "name": "Badge and Barrel",
+      "level": 1,
+      "description": "<p>Advantage on checks identifying criminals by description, navigating Holfast's legal system, and as a witness or enforcer of Holfast law.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.check",
+        "value": "1",
+        "when": "identifying criminals by description, navigating Holfast's legal system, as a witness or enforcer of Holfast law",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.j7eZxpvFKIZmwacA"
+   }
+  },
+  {
+   "_id": "rkI9EQXFJMqSLqth",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.rkI9EQXFJMqSLqth",
+   "name": "Precision Placement",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Called Shot (Leg) no longer requires declaring before rolling — can be applied to any hit once per round.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Holfast City Watch (Gunslinger)",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Z4YEOA7TWR4tFInW",
+     "source": "Z4YEOA7TWR4tFInW.0"
+    }
+   }
+  },
+  {
+   "_id": "o2dRMozrEiK8fOow",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.o2dRMozrEiK8fOow",
+   "name": "Badge and Barrel",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on checks identifying criminals by description, navigating Holfast's legal system, and as a witness or enforcer of Holfast law.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Holfast City Watch (Gunslinger)",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying criminals by description, navigating Holfast's legal system, as a witness or enforcer of Holfast law",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Z4YEOA7TWR4tFInW",
+     "source": "Z4YEOA7TWR4tFInW.1"
+    }
+   }
+  },
+  {
+   "_id": "GEnT1O5wWIkBjrC6",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.GEnT1O5wWIkBjrC6",
+   "name": "Swift Reflexes",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+   "system": {
+    "description": "<p><em>(Dexterity)</em>  Advantage on Initiative rolls. Gain +1 to Dexterity (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "General Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "ability.dex",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.init",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.X6wcwRDe8NhbcNhb"
+   }
+  },
+  {
+   "_id": "ZztynBMIJumk5WnX",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.ZztynBMIJumk5WnX",
+   "name": "Steady Aim",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+   "system": {
+    "description": "<p>No Disadvantage on ranged attacks against a target engaged in melee with an ally.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Specialist Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Steady Aim: no Disadvantage on ranged attacks against a target in melee with an ally.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.G8CxMGRm91vwyMVN"
+   }
+  },
+  {
+   "_id": "23qoGExZGN5vYVVD",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.23qoGExZGN5vYVVD",
+   "name": "Point-Blank Terror",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+   "system": {
+    "description": "<p>Most people flinch putting a bow to full draw with an enemy already inside their reach. You don't — you put the shot exactly where you meant to, close enough to feel their breath. No Disadvantage for using ranged weapons within 5ft reach of an enemy.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Specialist Path",
+    "levelTaken": 2,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Point-Blank Terror: no Disadvantage for ranged attacks within 5ft of an enemy.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.haGhp1pKRchF3fjE"
+   }
+  },
+  {
+   "_id": "u0NyJVQiMWoYhu2m",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.u0NyJVQiMWoYhu2m",
+   "name": "Critical Strike",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+   "system": {
+    "description": "<p>You are a master of precision. Your weapon attacks score a Critical Hit on a natural 20, or on a natural 19 that hits.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Martial Path",
+    "levelTaken": 6,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "crit.range",
+      "value": "19",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.be3UP5Ftq9WSrUre"
+   }
+  },
+  {
+   "_id": "4gQKUuyInOoM8izi",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.4gQKUuyInOoM8izi",
+   "name": "Weaponsmithing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Forging blades and other weapons</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.sVbsVgZY8nbnNVzA"
+   }
+  },
+  {
+   "_id": "EF1kid1r2165Mu00",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.EF1kid1r2165Mu00",
+   "name": "Tracking",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Following a trail left by creatures or people</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.3y9fbmBhuaxB1F9Y"
+   }
+  },
+  {
+   "_id": "CVgrikqVxpHALO31",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.CVgrikqVxpHALO31",
+   "name": "Riding, Land-Based",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Controlling a horse or other land mount</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.FCmw339UdgbVRXEs"
+   }
+  },
+  {
+   "_id": "Cqj3CQ2X3fISisWk",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.Cqj3CQ2X3fISisWk",
+   "name": "Gaming",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>Cards, dice, and other games of chance</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.CAJ2zS6vM2w9wQlS"
+   }
+  },
+  {
+   "_id": "I5olgLmPlfztSVLs",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.I5olgLmPlfztSVLs",
+   "name": "Local History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>Knowing a town's recent events and rumours</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.Lw1FnJD6fU2oUz1s"
+   }
+  },
+  {
+   "_id": "aWz4plQc3GfzNpO6",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.aWz4plQc3GfzNpO6",
+   "name": "Pistol",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-pistol-gun.svg",
+   "system": {
+    "description": "<p>Light</p><p>Reload 1 rd, misfire on 1-2.</p><p>Rarity: Uncommon</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "250 gp",
+    "equipped": true,
+    "damage": "2d6x",
+    "damageType": "piercing",
+    "ability": "dex",
+    "ranged": true,
+    "range": "20 ft",
+    "magic": 1,
+    "attackBonus": 0,
+    "traits": "Light",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.788Dzqzy3zm3PGHT"
+   }
+  },
+  {
+   "_id": "hEy55iVJaz13Jw6I",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.hEy55iVJaz13Jw6I",
+   "name": "Pistol",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-pistol-gun.svg",
+   "system": {
+    "description": "<p>Light</p><p>Reload 1 rd, misfire on 1-2.</p><p>Rarity: Uncommon</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "250 gp",
+    "equipped": true,
+    "damage": "2d6x",
+    "damageType": "piercing",
+    "ability": "dex",
+    "ranged": true,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Light",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.788Dzqzy3zm3PGHT"
+   }
+  },
+  {
+   "_id": "Ku9fqWAh7elYVWAJ",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.Ku9fqWAh7elYVWAJ",
+   "name": "Alchemist's Fire (flask)",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/magic-toolbox.svg",
+   "system": {
+    "description": "<p>Thrown, range 20 ft; ranged attack against AC. Hit: 1d6 fire damage, and the target is Burning (see Conditions in the Codex).</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "20 gp",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": true,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.DdPrIkDvDczDRBYL"
+   }
+  },
+  {
+   "_id": "uRoe5xlWDJf4NQYn",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.uRoe5xlWDJf4NQYn",
+   "name": "Studded Leather",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-leather-armor.svg",
+   "system": {
+    "description": "<p><strong>Light armour.</strong> Flexible</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "25 gp",
+    "equipped": true,
+    "category": "light",
+    "ac": 3,
+    "magic": 1,
+    "traits": "Flexible",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.6NgjBwMgUuI7HHR4"
+   }
+  },
+  {
+   "_id": "qLUmfrSDbeJQrAtE",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.qLUmfrSDbeJQrAtE",
+   "name": "Powder and shot (30 shots)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "Ab5RcF3S0PYoXBWt",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.Ab5RcF3S0PYoXBWt",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "HHl41Qe3OZ3ESZ0j",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.HHl41Qe3OZ3ESZ0j",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "WtfElxg4MDdx8MbL",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.WtfElxg4MDdx8MbL",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "wpR1kXm33dDu52BF",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.wpR1kXm33dDu52BF",
+   "name": "Tinderbox",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Flint block, steel bars, tinder, charred cloth (15 sp); flint and steel alone (5 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.5k1Jk2O2RmCETeya"
+   }
+  },
+  {
+   "_id": "TYmO9BeX5vYmGbZj",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.TYmO9BeX5vYmGbZj",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "whBLBionrG6VX0CP",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.whBLBionrG6VX0CP",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 12,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "R1oqXZCSizaq1f74",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.R1oqXZCSizaq1f74",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "JSS6rhWB5LNz7p0J",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.JSS6rhWB5LNz7p0J",
+   "name": "Iron spikes (Keepers' kit)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 5,
+    "slots": 0.2
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "igmbhLlRQVvM3xNM",
+   "_key": "!actors.items!17i8MRR1MVT7U6AN.igmbhLlRQVvM3xNM",
+   "name": "Healing Potion (Regular): drink as an action, heals 1d8+2 HP",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Marta Holloway",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Gunslinger.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "The Broken Anvil",
+    "seat": 4,
+    "role": "Ranged",
+    "sheet": {
+     "ac": 17,
+     "saves": {
+      "fort": 6,
+      "ref": 7,
+      "will": 5
+     },
+     "bth": 6,
+     "hp": 66
+    }
+   }
+  }
+ }
+}

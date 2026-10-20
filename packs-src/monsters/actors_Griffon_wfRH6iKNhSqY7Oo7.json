@@ -1,0 +1,247 @@
+{
+ "_id": "wfRH6iKNhSqY7Oo7",
+ "_key": "!actors!wfRH6iKNhSqY7Oo7",
+ "name": "Griffon",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-griffin-symbol.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "7d10",
+  "attributes": {
+   "hp": {
+    "value": 38,
+    "max": 38,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "30ft, fly 80ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 5,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d12",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> Magnificent and brutally territorial. A hand-raised griffon is the proudest mount a knight can own.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Beak",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-griffin-symbol.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ydW7rCKGk26AoxyG",
+   "_key": "!actors.items!wfRH6iKNhSqY7Oo7.ydW7rCKGk26AoxyG",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-griffin-symbol.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "L2XT7JAM0hhMfLFY",
+   "_key": "!actors.items!wfRH6iKNhSqY7Oo7.L2XT7JAM0hhMfLFY",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Keen Sight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-griffin-symbol.svg",
+   "system": {
+    "description": "<p>Advantage on Perception checks that rely on sight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tKcFTLg12daypfdC",
+   "_key": "!actors.items!wfRH6iKNhSqY7Oo7.tKcFTLg12daypfdC",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-griffin-symbol.svg",
+   "system": {
+    "description": "<p>If it dives at least 30ft toward a target, its first attack deals +1d10 damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d10",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "BH9JkcMg1t1ezJgS",
+   "_key": "!actors.items!wfRH6iKNhSqY7Oo7.BH9JkcMg1t1ezJgS",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Griffon",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-griffin-symbol.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

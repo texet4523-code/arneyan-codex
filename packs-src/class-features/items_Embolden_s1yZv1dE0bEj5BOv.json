@@ -1,0 +1,60 @@
+{
+ "_id": "s1yZv1dE0bEj5BOv",
+ "_key": "!items!s1yZv1dE0bEj5BOv",
+ "name": "Embolden",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per day, grant courage to companions and followers within 30ft — they gain +1 to Fortitude and Reflex saves, and +2 to Will saves. Lasts rounds equal to knight's level.</li><li>Cannot combine with Inspire or Demoralise</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 3,
+  "className": "Knight",
+  "applies": [
+   {
+    "name": "Emboldened",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "save.fort",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "save.ref",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "save.will",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

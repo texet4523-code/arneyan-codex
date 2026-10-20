@@ -1,0 +1,188 @@
+{
+ "_id": "ik1KqwnCA9SxjaBb",
+ "_key": "!items!ik1KqwnCA9SxjaBb",
+ "name": "Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
+ "system": {
+  "description": "<p>A hill-den brute with a grip that's cracked stone and a temper to match. Grigsdotter doesn't bargain in riddles like the others — she bargains in favours owed and debts collected, and she always collects.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) advantage on Strength checks and +1d6 damage on their next successful melee hit within 1 minute.</li><li><strong>Patron Curse</strong> (6th): Once per day, mark a creature within 30ft — your next successful Hex against them deals an additional 2d6 damage (Fortitude save halves).</li><li><strong>Physical Change</strong> (12th): Your nails thicken into short, blackened claws. You may make an unarmed claw attack dealing 1d6 damage, and gain advantage on Strength checks to break or force objects. If you strike the same target with both a claw attack and a successful Hex in the same round, the claw deals an additional 1d6 damage.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Witch",
+  "features": [
+   {
+    "name": "Patron Buff",
+    "level": 1,
+    "description": "<p>Once per day, grant a touched creature (or yourself) advantage on Strength checks and +1d6 damage on their next successful melee hit within 1 minute.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Iron strength",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per day: a touched creature (or you) has Advantage on Strength checks for 1 minute.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Next hit (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Their next successful melee hit within the minute deals this extra.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   {
+    "name": "Patron Curse",
+    "level": 6,
+    "description": "<p>Once per day, mark a creature within 30ft — your next successful Hex against them deals an additional 2d6 damage (Fortitude save halves).</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "activities": [
+     {
+      "name": "Marked Hex (2d6)",
+      "kind": "damage",
+      "formula": "2d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per day, mark a creature within 30ft: your next successful Hex against it deals this extra (Fortitude save halves).",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   {
+    "name": "Physical Change",
+    "level": 12,
+    "description": "<p>Your nails thicken into short, blackened claws. You may make an unarmed claw attack dealing 1d6 damage, and gain advantage on Strength checks to break or force objects. If you strike the same target with both a claw attack and a successful Hex in the same round, the claw deals an additional 1d6 damage.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Claw (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Claw and Hex (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "When you strike the same target with a claw attack and a successful Hex in the same round: the claw deals an additional 1d6.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "7eTJrVatQU9t4GUY",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

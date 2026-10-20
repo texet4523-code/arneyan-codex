@@ -1,0 +1,51 @@
+{
+ "_id": "0m8G2lXdQqAIaaoR",
+ "_key": "!items!0m8G2lXdQqAIaaoR",
+ "name": "Repel Wood",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Self; 20ft-radius barrier for 1 minute per level. No wooden object, including held weapons, shields and missiles, can enter it; objects already inside are pushed out.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "10*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 305,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

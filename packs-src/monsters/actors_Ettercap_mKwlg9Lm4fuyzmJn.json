@@ -1,0 +1,284 @@
+{
+ "_id": "mKwlg9Lm4fuyzmJn",
+ "_key": "!actors!mKwlg9Lm4fuyzmJn",
+ "name": "Ettercap",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "4d8+4",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, climb 30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium monstrosity</em></p><p><strong>GM:</strong> A spider-shepherd that tends giant spiders and traps forest paths. It hates woodsmen most of all.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "eisvVitKm3q5mtpM",
+   "_key": "!actors.items!mKwlg9Lm4fuyzmJn.eisvVitKm3q5mtpM",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2swLPJ152Bhw5Jot",
+   "_key": "!actors.items!mKwlg9Lm4fuyzmJn.2swLPJ152Bhw5Jot",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb and Web Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Climbs walls and ceilings and knows the location of any creature touching its webs.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TQtE20II9qanbwL4",
+   "_key": "!actors.items!mKwlg9Lm4fuyzmJn.TQtE20II9qanbwL4",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison Bite",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:10]{Fortitude save DC 10} or is @Condition[poisoned]{Poisoned} for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wvZon4uecJLAzhap",
+   "_key": "!actors.items!mKwlg9Lm4fuyzmJn.wvZon4uecJLAzhap",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Web",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, it throws a web at a Large or smaller creature within 30ft; on a @Check[ref|dc:10]{Reflex save DC 10} failure the target is @Condition[restrained]{Restrained} until it breaks free (DC 10).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cf0qGyYqIK6p0hG7",
+   "_key": "!actors.items!mKwlg9Lm4fuyzmJn.cf0qGyYqIK6p0hG7",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Ettercap",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

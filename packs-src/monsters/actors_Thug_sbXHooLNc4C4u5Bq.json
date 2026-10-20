@@ -1,0 +1,216 @@
+{
+ "_id": "sbXHooLNc4C4u5Bq",
+ "_key": "!actors!sbXHooLNc4C4u5Bq",
+ "name": "Thug",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "2d8+2",
+  "attributes": {
+   "hp": {
+    "value": 11,
+    "max": 11,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d8",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Hired muscle. Pay them more and they stop caring who they are hitting.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Club ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9cTAmQxbDmhThjT5",
+   "_key": "!actors.items!sbXHooLNc4C4u5Bq.9cTAmQxbDmhThjT5",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Light crossbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80ft",
+    "magic": 0,
+    "attackBonus": -2,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ilGTroGnJgmUGbmS",
+   "_key": "!actors.items!sbXHooLNc4C4u5Bq.ilGTroGnJgmUGbmS",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pack Tactics",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>Advantage on attack rolls against a creature that has another thug within 5ft of it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "an ally is within 5ft of the target"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "axfRaUXqiHZa6Cya",
+   "_key": "!actors.items!sbXHooLNc4C4u5Bq.axfRaUXqiHZa6Cya",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Thug",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-bandit.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

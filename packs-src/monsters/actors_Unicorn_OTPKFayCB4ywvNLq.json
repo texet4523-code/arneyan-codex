@@ -1,0 +1,447 @@
+{
+ "_id": "OTPKFayCB4ywvNLq",
+ "_key": "!actors!OTPKFayCB4ywvNLq",
+ "name": "Unicorn",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "4d10",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "50ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "celestial",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d8",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large celestial</em></p><p><strong>GM:</strong> A silver beast of the deep wood. It aids good and flees from cruelty. Its horn is worth a king's ransom, and a curse to the thief.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Hooves",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QZmUBjWulRoGedue",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.QZmUBjWulRoGedue",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Horn",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sNO3NaeMte7LRshy",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.sNO3NaeMte7LRshy",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>If it moves at least 20ft in a straight line before a horn attack, the attack deals +2d8 damage. A creature hit makes a @Check[fort|dc:17]{Fortitude save DC 17} or is knocked @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 17,
+    "damage": "2d8",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "artByodK1KYz2egi",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.artByodK1KYz2egi",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Healing Touch",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>3/day, as an action, it touches a creature and restores 2d8+2 HP, or cures one disease or poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "BKcwsSTDcjxGhWVu",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.BKcwsSTDcjxGhWVu",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>Advantage on saves against spells and magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "z4tuwBOGB2ppKt9g",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.z4tuwBOGB2ppKt9g",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "teFkxoNaxvpa6V5Z",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.teFkxoNaxvpa6V5Z",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "yLwmvJJ6dCPaCmz3",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.yLwmvJJ6dCPaCmz3",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Nondetection (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature or object for 1 hour per level. Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (d20 + casting-stat modifier + half its level) vs DC 10 + the spell's level, failing means the spell fails. Material: diamond dust worth 50 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS"
+   },
+   "_id": "Km7kar4hb3EjM6YM",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.Km7kar4hb3EjM6YM",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Unicorn",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-unicorn.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

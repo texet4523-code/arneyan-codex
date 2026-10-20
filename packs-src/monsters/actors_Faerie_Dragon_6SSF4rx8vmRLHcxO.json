@@ -1,0 +1,794 @@
+{
+ "_id": "6SSF4rx8vmRLHcxO",
+ "_key": "!actors!6SSF4rx8vmRLHcxO",
+ "name": "Faerie Dragon",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "8d4",
+  "attributes": {
+   "hp": {
+    "value": 20,
+    "max": 20,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "10ft, fly 60ft",
+   "attack": 8,
+   "spellDC": 13,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 6,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny dragon</em></p><p><strong>GM:</strong> A butterfly-winged prankster no bigger than a cat. Its jokes are harmless, mostly, and it loves sweets and gossip.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "G8HvO8oUt49osUIy",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.G8HvO8oUt49osUIy",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Superior Invisibility",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>As an action, it turns @Condition[invisible]{Invisible} until it attacks or loses concentration.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2VdIBhIvpIGhPc3t",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.2VdIBhIvpIGhPc3t",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Euphoria Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, it exhales a puff of gas at one creature within 5ft; @Check[will|dc:13]{Will save DC 13} or for 1 minute it can do nothing but wander aimlessly, repeating the save each turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CWuHA6PijJK56cqm",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.CWuHA6PijJK56cqm",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Its colour shows its age and its magic. Red: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. Orange to blue add @UUID[Compendium.arneyan.spells.Item.mkPuEoZ3iLHnMOCR]{colour spray}, @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:13]{Will DC 13}). Indigo and violet add @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force} and @UUID[Compendium.arneyan.spells.Item.Hu5Nkr2VmWzyG2Uj]{polymorph} (@Check[will|dc:13]{Will DC 13}). Each 1/day except the first three.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3Dt2BCzDiOG9LdMU",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.3Dt2BCzDiOG9LdMU",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dancing Lights",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 120ft; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to 60ft per round as you direct; 1 minute. Lights must stay within 20ft of each other; the spell ends if one passes beyond 120ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a"
+   },
+   "_id": "2BUFKg9u404kTVdI",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.2BUFKg9u404kTVdI",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mage Hand",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg"
+   },
+   "_id": "MjVpG96Mfmw4RTrD",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.MjVpG96Mfmw4RTrD",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Silent Image",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 60ft; 15ft cube; 1 minute. Create a visual illusion of an object or creature that makes no sound, smell or heat and cannot harm. A creature that touches it or studies it for 1 round gets a Will save; success sees through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Illusionist",
+    "classes": [
+     "Illusionist"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "15ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Sees through it",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM"
+   },
+   "_id": "0Ws3NHZ0v0ldKe37",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.0Ws3NHZ0v0ldKe37",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Colour Spray",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>15ft cone. Creatures in the cone lose sight by Level: Level 2 or lower fall Unconscious for 2d4 rounds; Level 3–4 are Blinded for 1d4 rounds; Level 5 or higher are Stunned for 1 round. Will negates. Sightless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Illusionist",
+    "classes": [
+     "Illusionist"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "15ft cone",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Colour Spray: Unconscious",
+      "target": "target",
+      "rounds": "2d4",
+      "statuses": [
+       "unconscious"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Colour Spray: Blinded",
+      "target": "target",
+      "rounds": "1d4",
+      "statuses": [
+       "blinded"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Colour Spray: Stunned",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "stunned"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.mkPuEoZ3iLHnMOCR"
+   },
+   "_id": "5WHCaQDVZzyg1n6u",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.5WHCaQDVZzyg1n6u",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mirror Image",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9"
+   },
+   "_id": "Kq8vZR0DPxvF84TW",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.Kq8vZR0DPxvF84TW",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Suggestion",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature that understands you. It follows a reasonable-sounding command of up to 25 words for 1 hour per level or until completed. Will negates. A command that is obviously harmful to the target fails automatically. Mindless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1"
+   },
+   "_id": "QOsUAS2EVfbvHcSC",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.QOsUAS2EVfbvHcSC",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spectral Force",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 400ft. Create an illusion filling a 20ft cube plus 10ft per level on each side, with sight, sound, smell, temperature and ground tremors, for 1 minute per level (concentration). Directing its movement needs no action. It deals no real damage. Creatures that touch or study it make a Will save to see through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Illusionist",
+     "Bard"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 400ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Sees through it",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ"
+   },
+   "_id": "xQbpTZ5ReMqFwJtQ",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.xQbpTZ5ReMqFwJtQ",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Polymorph",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; you or one creature (an unwilling creature: Will negates) takes the form of a beast or monster of Level no higher than your level (Level 10 at most) for 1 hour per level or until dismissed. It takes the form's whole stat block, keeps its mind and cannot cast spells. When the form drops to 0 HP it returns to its own form (see Changing Shape). Used on an enemy, a harmless form keeps it out of the fight until the spell ends or the form is beaten.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Witch"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (an unwilling creature only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Hu5Nkr2VmWzyG2Uj"
+   },
+   "_id": "5K5IIKywczR7ylBn",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.5K5IIKywczR7ylBn",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Limited Telepathy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Speaks by thought to any creature within 60ft that knows a language.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dWJrlwB3H85aHEa3",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.dWJrlwB3H85aHEa3",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Faerie Dragon",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

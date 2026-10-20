@@ -1,0 +1,67 @@
+{
+ "_id": "fO0tkrelJMpMCTAh",
+ "_key": "!items!fO0tkrelJMpMCTAh",
+ "name": "Armour of Agathys",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Self; 1 hour. You gain 5 temporary HP plus 1 per level (max 15). While any remain, each creature that hits you with a melee attack takes 5 cold damage (no save). Ends when the temporary HP are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Warlock",
+  "classes": [
+   "Warlock"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Armour of Agathys",
+    "target": "self",
+    "rounds": "600",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "hp.temp",
+      "value": "min(15,5+@cl)",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 33,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

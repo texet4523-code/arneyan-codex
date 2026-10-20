@@ -1,0 +1,66 @@
+{
+ "_id": "zDMRX1wfcZ7EVA2X",
+ "_key": "!items!zDMRX1wfcZ7EVA2X",
+ "name": "Fort Dunwell Wall-Archer (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>Wall-defence tradition, volleys and coordinated fire.</p><ul><li><strong>Volley Timing: Once per encounter, when an ally hits a creature with a ranged attack, your next bow attack against it this round has Advantage.</strong></li><li><strong>Sentry's Patience: </strong>Advantage on Perception checks made during watch or sentry duty.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Volley Timing",
+    "level": 1,
+    "description": "<p>Once per encounter, when an ally hits a creature with a ranged attack, your next bow attack against it this round has Advantage.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.ranged",
+      "value": "1",
+      "when": "once per encounter: bow attack this round vs a creature an ally just hit with a ranged attack",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sentry's Patience",
+    "level": 1,
+    "description": "<p>Advantage on Perception checks made during watch or sentry duty.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or sentry duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

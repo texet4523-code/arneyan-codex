@@ -1,0 +1,59 @@
+{
+ "_id": "tSsGI3cjiew7d6Qe",
+ "_key": "!items!tSsGI3cjiew7d6Qe",
+ "name": "Trick Shot (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Perform an impossible-looking shot — DC determined by the GM based on difficulty, using the General Difficulty Tiers table.</li><li>Shoot around corners, ricochet off surfaces, disarm a target at range within 30ft</li><li>Pin clothing or hair to a surface, cut a rope, thread a needle</li><li>One attempt per round — a failed check simply misses</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 7,
+  "className": "Gunslinger",
+  "activities": [
+   {
+    "name": "Trick Shot",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Attempt an impossible-looking shot against a GM-set DC; a failure simply misses.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CQq9CSkBWcsx4eIg",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

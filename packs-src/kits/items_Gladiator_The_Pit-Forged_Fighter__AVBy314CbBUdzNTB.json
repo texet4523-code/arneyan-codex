@@ -1,0 +1,66 @@
+{
+ "_id": "AVBy314CbBUdzNTB",
+ "_key": "!items!AVBy314CbBUdzNTB",
+ "name": "Gladiator — The Pit-Forged (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Flexible origin — the Red Waste pits, the Depsopteron slave pits, the Fight Club of Mournas, or the lighter tournament circuit. You learned to fight in front of a crowd.</p><ul><li><strong>Crowd's Favourite: Advantage on your first attack roll each round against a creature you have already struck this combat.</strong></li><li><strong>Arena Presence: </strong>Advantage on Performance and Persuasion checks when addressing a crowd.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Crowd's Favourite",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round against a creature you have already struck this combat.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs a creature you already struck this combat",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Arena Presence",
+    "level": 1,
+    "description": "<p>Advantage on Performance and Persuasion checks when addressing a crowd.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Performance and Persuasion when addressing a crowd",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

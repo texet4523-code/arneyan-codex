@@ -1,0 +1,78 @@
+{
+ "_id": "2tNVPc4wTXEALqOM",
+ "_key": "!items!2tNVPc4wTXEALqOM",
+ "name": "Verenestra (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Mother of all Dryads, bound to a great tree, reaching through every Dryad she has ever made. She seeks revenge and a throne.</p><ul><li><strong>Dark Gift</strong> (1st): Speak and understand all plant life. Plants within 30ft warn you of approaching creatures — cannot be surprised outdoors in natural terrain.</li><li><strong>Patron's Mark</strong> (6th): Once per day, commune with the root network of any natural terrain — learn what creatures have passed through the area in the last 24 hours, their approximate number, size, and direction of travel.</li><li><strong>Patron Feature</strong> (12th): Once per day, all plant matter within 60ft animates for 1 minute. All creatures in the area make a Fortitude save against your Class Save DC or are restrained. Repeat save each turn.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Speak and understand all plant life. Plants within 30ft warn you of approaching creatures — cannot be surprised outdoors in natural terrain.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.init",
+      "value": "Verenestra: cannot be surprised outdoors in natural terrain.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, commune with the root network of any natural terrain — learn what creatures have passed through the area in the last 24 hours, their approximate number, size, and direction of travel.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, all plant matter within 60ft animates for 1 minute. All creatures in the area make a Fortitude save against your Class Save DC or are restrained. Repeat save each turn.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "applies": [
+     {
+      "name": "Animated Plants",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 15,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

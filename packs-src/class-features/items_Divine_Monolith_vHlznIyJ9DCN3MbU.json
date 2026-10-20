@@ -1,0 +1,80 @@
+{
+ "_id": "vHlznIyJ9DCN3MbU",
+ "_key": "!items!vHlznIyJ9DCN3MbU",
+ "name": "Divine Monolith",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Permanent 20ft aura that radiates divine power. Cannot be dispelled.</li><li>All creatures within the aura are immune to death attacks</li><li>+3 to the Turn Undead DC</li><li>+2 to all attribute checks and saves within the aura</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 22,
+  "className": "Cleric",
+  "rules": [
+   {
+    "key": "check",
+    "value": "2",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "save",
+    "value": "2",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "note.save",
+    "value": "Divine Monolith: creatures in the 20ft aura are immune to death attacks.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "auras": [
+   {
+    "key": "monolith",
+    "name": "Divine Monolith",
+    "radius": 20,
+    "who": "all",
+    "includeSelf": true,
+    "rules": [
+     {
+      "key": "check",
+      "value": "2",
+      "label": "Divine Monolith"
+     },
+     {
+      "key": "save",
+      "value": "2",
+      "label": "Divine Monolith"
+     },
+     {
+      "key": "note.save",
+      "value": "Divine Monolith: immune to death attacks.",
+      "label": "Divine Monolith"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DB2nn2x2D5HVxzrP",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,69 @@
+{
+ "_id": "pKqgl0RgApjf1WsV",
+ "_key": "!items!pKqgl0RgApjf1WsV",
+ "name": "Awakened (Sorcerer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<p>Your magic didn't come from a bloodline — it tore through you in a moment of extremity. You survived. The magic stayed.</p><ul><li><strong>Bloodline Ability</strong> (1st): Once per day when you use Wild Surge, you may ask the GM to reroll a Corruption result and take the new one. You have advantage on saves vs mind-altering effects — the trauma made you resilient in ways others are not.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, the force of your awakening erupts outward in a 30ft radius. All creatures make a Will save or are stunned for 1 round and take 5d8 psychic damage (half on success). Creatures that fail by 5 or more attack their nearest ally for 1 round after the stun ends. Additionally once per day you may ignore the effects of one failed save entirely.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Sorcerer",
+  "features": [
+   {
+    "name": "Bloodline Ability",
+    "level": 1,
+    "description": "<p>Once per day when you use Wild Surge, you may ask the GM to reroll a Corruption result and take the new one. You have advantage on saves vs mind-altering effects — the trauma made you resilient in ways others are not.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs mind-altering effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Bloodline Awakening",
+    "level": 15,
+    "description": "<p>Once per day, the force of your awakening erupts outward in a 30ft radius. All creatures make a Will save or are stunned for 1 round and take 5d8 psychic damage (half on success). Creatures that fail by 5 or more attack their nearest ally for 1 round after the stun ends. Additionally once per day you may ignore the effects of one failed save entirely.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "damage": "5d8",
+    "damageType": "psychic",
+    "applies": [
+     {
+      "name": "Awakening: Stunned",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "stunned"
+      ],
+      "rules": []
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mASZyW0N1oNgHgCR",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

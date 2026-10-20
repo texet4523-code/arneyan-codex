@@ -1,0 +1,53 @@
+{
+ "_id": "ZsPT0n007pjvoye2",
+ "_key": "!items!ZsPT0n007pjvoye2",
+ "name": "Heal",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch. Restores all of the target's HP except 1d4, and ends Blinded, Deafened, Stunned, Paralysed, poison and disease. Cast reversed (Harm): touching a creature reduces it to 1d4 HP (no effect if it already has fewer); Fortitude negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates (Harm only)",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 296,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

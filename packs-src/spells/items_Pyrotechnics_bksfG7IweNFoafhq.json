@@ -1,0 +1,79 @@
+{
+ "_id": "bksfG7IweNFoafhq",
+ "_key": "!items!bksfG7IweNFoafhq",
+ "name": "Pyrotechnics",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Range 120ft; one fire no larger than a 20ft cube, which is extinguished. Choose: fireworks, which Blind creatures within 120ft that see them for 1d4+1 rounds (Fortitude negates); or smoke, which fills a 20ft radius for 1 round per level; creatures inside cannot see beyond 5ft and have Disadvantage on attack rolls (Fortitude negates).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Illusionist, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Illusionist",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Fireworks",
+    "target": "target",
+    "rounds": "1d4+1",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Smoke",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 122,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

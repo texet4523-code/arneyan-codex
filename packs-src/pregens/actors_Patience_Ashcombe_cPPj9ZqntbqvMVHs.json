@@ -1,0 +1,1943 @@
+{
+ "_id": "cPPj9ZqntbqvMVHs",
+ "_key": "!actors!cPPj9ZqntbqvMVHs",
+ "name": "Patience Ashcombe",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Warlock.webp",
+ "folder": "tBwZ4C5ODaLOPlTg",
+ "sort": 400,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 9
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 12
+   },
+   "wis": {
+    "value": 11
+   },
+   "cha": {
+    "value": 18
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 8,
+    "max": 8,
+    "temp": 0
+   },
+   "speed": 30
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 4,
+   "sp": 5,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Chaotic Neutral",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Infernal",
+   "biography": "<p><em>The Broken Anvil · Level 1 - The Apprentices · Seat 4, Ranged</em></p><p>A theatrical tiefling who signed a clever little contract with Glasya, Princess of Hell, to wriggle out of a much worse one. Has never once been patient: sardonic, dramatic and quietly terrified of the voice that answers when she whispers. Glasya got her out of a debt-binding; the Keepers were the first people in Tariel who didn&#x27;t ask about the horns.</p><h3>In a fight</h3><p>Stay at the back and Eldritch Blast every turn (Reflex DC 14: 1d6+3 on a failed save, half of 1d6 on a success), save Sleep for a knot of goblins, and turn invisible when it all goes wrong.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Eldritch Blast.</strong> At-will cantrip, 60ft, one target: Reflex save DC 14. On a failure, 1d6 force +3 (Cantrip Mastery); on a success, half of 1d6 with no bonus. Never uses a slot.</p><p><strong>Spell Use.</strong> Arcane caster, Charisma-based, save DC 14. 2 1st-level slots a day (1 + 1 for Cha 18), refreshed by a long rest. You know two 1st-level spells: Burning Hands (Path spell) and Sleep. No spell attack rolls: harmful spells always call for a save. Damage taken while casting forces a Fortitude save (DC 10 or half the damage) or the spell is lost.</p><p><strong>Hellfire Affinity (Infernal Path).</strong> Resistance 5 to fire damage. Treat every 1 on your fire damage dice as a 2 (Burning Hands, Fiendish Retort).</p><p><strong>Dark Gift: Glasya&#x27;s Veil.</strong> Once a day, as your action, become Invisible for 1 minute (10 rounds). It ends only if you attack or cast an offensive spell, not when you open doors or handle objects. While Invisible, attacks against you have Disadvantage and you cannot be seen without magic or special senses.</p><p><strong>Tiefling.</strong> Medium size, speed 30ft, darkvision 60ft.</p><p><strong>Fire Resistance.</strong> Resistance 5 to fire (the same 5 as Hellfire Affinity; they do not add up).</p><p><strong>Infernal Cantrip.</strong> One Warlock cantrip at creation: Ghost Sound.</p><p><strong>Fiendish Retort.</strong> Once per long rest, when a creature within 30ft damages you, hit it back as part of your action on your next turn for 1d6 fire (1s count as 2s). No save is listed.</p><p><strong>Cantrip Mastery (Arcane &amp; Devout, Warlock 1st-level feat).</strong> Learn two extra cantrips (Mage Hand, Message). Once per round, when a cantrip you cast hits or its target fails its save, add your Charisma modifier (+3) to its damage. Does not stack with Agonising Blast.</p><p><strong>Notes.</strong> Speed: 30ft · Initiative: +1 · HP: d6 max (6) + Con mod (+2) = 8. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.</p><h3>Casting</h3><p>Every spell is resolved by the target&#x27;s save against your DC. Tick a slot box when you cast; slots return after a full rest. Cantrips are cast at will. Tick the circle beside a spell to mark it prepared.</p><p>Eldritch Blast (cantrip): 60ft, one target: Reflex DC 14. Failed save 1d6+3 force; success half of 1d6. At will. The +3 is Cantrip Mastery, added only when the target fails its save.</p><p>Ghost Sound (cantrip, Infernal Cantrip): 30ft, 1 round: a sound as loud as up to 4 shouting people (footsteps, a growl, clashing arms) from a point you choose. No words. No save.</p><p>Mage Hand (cantrip, Cantrip Mastery): 30ft, 1 minute: an invisible hand moves one unattended object of up to 5 lb at 15ft a round. Cannot attack or force anything.</p><p>Message (cantrip, Cantrip Mastery): 120ft, one creature, 10 minutes: whisper a message only it hears; it can whisper back. Blocked by 1ft of stone, 1 inch of metal or silence.</p><p>Burning Hands (1st, Path spell): 15ft cone from your hands: 1d3+1 fire (1s count as 2s), Reflex halves. Ignites unattended flammable objects. Noisy and bright.</p><p>Sleep (1st): 90ft, 15ft radius: creatures totalling 2d4+1 Levels fall Unconscious for 1d4 minutes, lowest Level first; Level 5+ unaffected. Will negates. Damage wakes a sleeper. Undead and constructs are immune.</p><p><strong>Armour Class on the sheet:</strong> 10 + 1 (Dex); no armour or shield (Warlocks are trained in none, and wearing any blocks casting) = 11</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "F2W2fHzp3oHGJUpi",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.F2W2fHzp3oHGJUpi",
+   "name": "Warlock",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Warlock.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Charisma</td></tr><tr><td>Hit Die</td><td>d6</td></tr><tr><td>HP beyond 10th</td><td>+2 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Club, dagger, dart, hand crossbow, staff</td></tr><tr><td>Armour</td><td>None</td></tr><tr><td>BtH</td><td>+1 per 6 levels (+2 at 12th, +4 at 24th)</td></tr><tr><td>Spellcasting</td><td>Arcane. Charisma is the casting stat. DC = 10 + half your Warlock level (minimum 1) + Charisma modifier — see Spellcasting in Arneyan for the full formula. No spell attack rolls — all harmful or debuffing spells require a save.</td></tr><tr><td>Path &amp; Kit</td><td>At character creation choose a Path (Infernal, Abyssal, Fey, or Great Old One) and a Kit within it. These define your spell list, summon pool, patron powers, and Dark Gift.</td></tr></tbody></table><h2>Spell Slot Progression</h2><ul><li>Slots are shared between casting path spells and summoning. Spending a slot to summon means it cannot be used to cast that day, and vice versa. Cantrips including Eldritch Blast are at-will and never consume slots. All slots recover on a full rest.</li></ul><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>0</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>Notes</th></tr></thead><tbody><tr><td>1</td><td>At will</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Dark Gift, Eldritch Blast (1d6)</td></tr><tr><td>2</td><td>At will</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Invocation</td></tr><tr><td>3</td><td>At will</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pact Summons (Tier 1)</td></tr><tr><td>4</td><td>At will</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>5</td><td>At will</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Eldritch Blast (1d8), Invocation</td></tr><tr><td>6</td><td>At will</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Patron's Mark</td></tr><tr><td>7</td><td>At will</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>Pact Summons (Tier 2)</td></tr><tr><td>8</td><td>At will</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>9</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>Eldritch Blast (2d6), Invocation</td></tr><tr><td>10</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>11</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>Pact Summons (Tier 3)</td></tr><tr><td>12</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>Patron Feature</td></tr><tr><td>13</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>Eldritch Blast (2d8), Invocation</td></tr><tr><td>14</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td></td></tr><tr><td>15</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>Pact Summons (Tier 4), Dark Harvest, +1 Cha</td></tr><tr><td>16</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td></td></tr><tr><td>17</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>Eldritch Blast (3d6), Invocation</td></tr><tr><td>18</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td></td></tr><tr><td>19</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>20</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>Patron Surge, Patron's Whisper</td></tr><tr><td>21</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>22</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>23</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>24</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>Eldritch Master, Eldritch Blast (3d8)</td></tr></tbody></table><ul><li><strong>Bonus Slots: Charisma 13-15 grants one extra 1st level slot. 16-17 grants one extra 2nd level slot. 18+ grants one extra 3rd level slot. Each arrives only once your table gives you slots of that level (see Spellcasting in Arneyan, II).</strong></li></ul><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Eldritch Blast, Spell Use, Dark Gift</td></tr><tr><td>2</td><td>Eldritch Invocations</td></tr><tr><td>3</td><td>Pact Summons</td></tr><tr><td>6</td><td>Patron's Mark</td></tr><tr><td>12</td><td>Patron Feature</td></tr><tr><td>15</td><td>Pact Summons (Tier 4), Dark Harvest, +1 Charisma</td></tr><tr><td>20</td><td>Patron Surge, Patron's Whisper</td></tr><tr><td>24</td><td>Eldritch Master</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Eldritch Blast</h4><ul><li><strong>Effect: </strong>At-will ranged cantrip (60ft range). The target makes a Reflex save (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales: </strong>1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th</li></ul><h4>Spell Use</h4><ul><li><strong>Effect: </strong>Cast arcane spells using your slots. Each time you unlock a slot level you gain two spells of that level: your Path spell (see Patron Paths) and one spell of your choice from the Warlock list in Spellcasting in Arneyan. You may cast any spell you know with any slot of its level or higher. Slots are shared with Pact Summons — see Spell Slot Progression above.</li></ul><h4>Dark Gift</h4><ul><li><strong>Effect: A passive benefit granted by your specific patron Kit. See the Patron Paths section for details. A Dark Gift that adds damage or defence works only while your Warlock level is at least half your character level.</strong></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Eldritch Invocations</h4><ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 5th, 9th, 13th and 17th level. You cannot take the same invocation twice.</li><li><strong>Agonising Blast: </strong>add your Charisma modifier to Eldritch Blast damage.</li><li><strong>Repelling Blast: </strong>a creature of Large size or smaller hit by Eldritch Blast is pushed 10ft.</li><li><strong>Armour of Shadows: </strong>+2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with other unarmoured bonuses of the same kind.</li><li><strong>Fiendish Vigour: </strong>once per day, as part of your action, gain temporary hit points equal to your Warlock level. They last until your next long rest.</li><li><strong>Mask of Many Faces: </strong>cast Change Self at will.</li><li><strong>Devil's Sight: </strong>see normally in darkness, magical or otherwise, to 60ft.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Pact Summons</h4><ul><li><strong>Effect: </strong>Your patron sends a servant. Every summons expends a slot of the creature's tier (Tier 1 = 1st level, Tier 2 = 2nd, Tier 3 = 3rd). A ritual summons takes 10 minutes and lasts 1 hour; a combat summons uses your action and lasts 1 minute. Full stat blocks are in Monsters &amp; Treasure. Tier 1 servants have double the HP and damage dice of their stat blocks, and the table below already shows them doubled.</li><li>The creature does not roll initiative: it acts immediately after you each round, moving and taking one action (all its listed attacks together count as that action). It obeys your spoken commands; with none, it attacks the nearest visible enemy</li><li>One summon active at a time. It departs when its duration ends, when you dismiss it with a word or when slain; a slain summon cannot be called again until you finish a long rest</li><li>If you fall unconscious, your summon only defends itself until you wake or it departs</li></ul><h3 class=\"arn-level\">6th Level</h3><ul><li><strong>Patron's Mark: a minor ability from your patron.</strong> Defined by your Kit</li></ul><h3 class=\"arn-level\">12th Level</h3><ul><li><strong>Patron Feature: </strong>a stronger active ability from your patron. Defined by your Kit</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Pact Summons (Tier 4)</h4><ul><li><strong>Effect: </strong>Your patron's most powerful servant becomes available. Tier 4 summons expend a 5th level slot, whether ritual or combat.</li></ul><h4>Dark Harvest</h4><ul><li><strong>Effect: </strong>Once per encounter, when you reduce a creature to 0 HP or below, recover one expended spell slot of a level up to half that creature's Level (rounded up, minimum 1st level). It must be a hostile creature that attacked you or an ally this encounter and was not Restrained, Paralysed, Unconscious or otherwise helpless, and never one summoned, created or controlled by you or your allies.</li><li><strong>Example: kill a Level 6 creature, recover up to a 3rd level slot</strong></li><li><strong>Charisma Bonus: </strong>gain a permanent +1 to Charisma. This increases the DC of your spells and abilities, and all Charisma-based checks</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Patron Surge</h4><ul><li><strong>Effect: </strong>Once per day, cast a spell one level above your current maximum. You take 1d6 unavoidable damage per level of the surge — this cannot be reduced by any means.</li><li>At 20th level your maximum is 6th level. Choose one 7th-level Wizard spell as your Patron Surge: once per day you can cast it without a slot, taking 7d6 damage yourself. The patron's power always has a price</li></ul><h4>Patron's Whisper</h4><ul><li><strong>Effect: </strong>Once per day, commune directly with your patron to ask one yes/no question. The answer is always truthful — though the patron's understanding of truth may not align with yours.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Eldritch Master</h4><ul><li><strong>Effect: </strong>Once per day, spend 1 minute communing with your patron to immediately recover all expended spell slots. The patron always wants something in return — the GM determines the cost narratively.</li></ul><h2>Patron Paths</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Warlock folder. Drag one onto your character.</p><ul><li>Choose a Path at character creation. Each Path grants a passive, its own base spell list, and a shared summon pool. Kits within each Path define your Dark Gift, Patron's Mark, and Patron Feature.</li></ul><h2>Path of the Infernal</h2><p>The Nine Hells run on hierarchy, contracts, and hellfire. Every devil serves the chain above them. Every Infernal Warlock serves that chain whether they know it or not.</p><ul><li>Path Passive — Hellfire Affinity: Resistance 5 to fire damage. Treat all 1s on fire damage dice as 2s.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Burning Hands — 1d3+1/level fire damage in cone</td></tr><tr><td>Level 3</td><td>2nd</td><td>Scorching Ray — 2d6 fire per ray; 2 rays, +1 at 5th level and +1 at 9th (max 4)</td></tr><tr><td>Level 7</td><td>3rd</td><td>Fireball — 1d6 fire damage per level (max 10d6) in a 20ft-radius burst; Reflex halves</td></tr><tr><td>Level 11</td><td>4th</td><td>Wall of Fire — fiery curtain deals 2d6+1/level to those passing through</td></tr><tr><td>Level 15</td><td>5th</td><td>Enslave — range 30ft; one humanoid obeys your spoken commands for 1 day/level; Will negates, and it repeats the save each day and whenever ordered to harm itself</td></tr><tr><td>Level 19</td><td>6th</td><td>Bind Elemental — as the spell (one elemental in a prepared circle)</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Imp</td><td>3rd</td><td>HD 4d8; AC 15; Move 20ft, fly 60ft; Bite +3 (2d4) and Sting +3 (2d4 + poison: Fortitude DC 12 or 2 damage a round for 4 rounds); regenerates 1 HP a round; shapechanges at will</td></tr><tr><td>2</td><td>Hell Hound</td><td>7th</td><td>HD 4d8; AC 15; Move 40ft; Bite +5 (1d6+2 plus 1d6 fire); Breathe Fire once per 3 rounds: 10ft cone, 2d6 fire (Reflex DC 13 for half); immune to fire</td></tr><tr><td>3</td><td>Cambion</td><td>11th</td><td>HD 6d8; AC 16; Move 30ft, fly 30ft; Longsword +7 (1d8+4) x2, or fire bolt +7 (3d6 fire, 60ft); 3/day charm person (Will DC 15)</td></tr><tr><td>4</td><td>Erinyes</td><td>15th</td><td>HD 8d8; AC 17; Move 30ft, fly 60ft; Longsword +11 (1d8+3) x2, or longbow +12 (1d8+3 plus poison, 150ft); Rope of Entanglement (Reflex DC 16 or Restrained)</td></tr></tbody></table><h2>Path of the Abyss</h2><p>Pure chaos, destruction, and primal evil. Demons don't negotiate — they unmake.</p><ul><li>Path Passive — Abyssal Resilience: Immunity to poison damage and the poisoned condition. Advantage on saves vs disease.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Cause Fear (the reverse of Remove Fear) — one creature within 30ft is Frightened for 1d4 rounds; Will negates</td></tr><tr><td>Level 3</td><td>2nd</td><td>Darkness — 20ft radius supernatural shadow, extinguishes nonmagical light</td></tr><tr><td>Level 7</td><td>3rd</td><td>Bestow Curse — target suffers -4 to one ability score or has Disadvantage on one of attack rolls, saves or checks</td></tr><tr><td>Level 11</td><td>4th</td><td>Confusion — creatures in 15ft radius act randomly for 1 round/level</td></tr><tr><td>Level 15</td><td>5th</td><td>Cloudkill — 20ft radius cloud kills creatures of Level 4 or lower; poisons others</td></tr><tr><td>Level 19</td><td>6th</td><td>Slay Living — 1d6/level necrotic damage in 30ft radius; creatures of Level 4 or lower die instantly (save negates)</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Quasit</td><td>3rd</td><td>HD 4d8; AC 14; Move 40ft, fly 60ft; Claw +3 (2d2) x2 and bite +3 (2d2 plus poison: Fortitude DC 13 or −1d4 Strength until a full rest); 1/day darkness</td></tr><tr><td>2</td><td>Dretch pair</td><td>7th</td><td>Two dretches sharing one turn. Each: HD 2d8; AC 11; Move 20ft; Bite +2 (1d6) and claw +2 (1d4) x2. Once per summoning, a 20ft Fetid Cloud (Fortitude DC 12 or Poisoned)</td></tr><tr><td>3</td><td>Succubus</td><td>11th</td><td>HD 6d8; AC 14; Move 30ft, fly 60ft; Claw +7 (1d6+3) x2; Charm: one humanoid within 30ft, Will DC 16, lasts while the succubus remains</td></tr><tr><td>4</td><td>Vrock</td><td>15th</td><td>HD 10d8; AC 15; Move 40ft, fly 60ft; Beak +12 (2d6+4) and talons +12 (2d10+4); once per 3 rounds Spores (15ft, Fortitude DC 18 or 1d10 poison a round and Poisoned); 1/day Stunning Screech (20ft, Fortitude DC 18 or Stunned until the end of its next turn)</td></tr></tbody></table><h2>Path of the Fey</h2><p>The Feywild runs on heightened emotion, ancient bargains, and beauty that kills if you stare too long.</p><ul><li>Path Passive — Fey Step: Once per encounter, teleport up to 30ft to any visible unoccupied space as part of your movement.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Faerie Fire — outlining light cancels concealment and gives attackers Advantage against them</td></tr><tr><td>Level 3</td><td>2nd</td><td>Entangle — plants entangle everyone in 50ft circle</td></tr><tr><td>Level 7</td><td>3rd</td><td>Hypnotism — fascinate 2d4+1 Levels of creatures; fascinated targets are susceptible to suggestion</td></tr><tr><td>Level 11</td><td>4th</td><td>Charm Monster — as Charm Person but works on any creature</td></tr><tr><td>Level 15</td><td>5th</td><td>Dream — send a message or nightmare to a sleeping creature anywhere</td></tr><tr><td>Level 19</td><td>6th</td><td>Mass Suggestion — up to 1 creature per level follows one reasonable command of up to 25 words for 1 hour per level; Will negates</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Pixie</td><td>3rd</td><td>HD 4d8; AC 12; Move 20ft, fly 40ft; Shortbow +3 (2d4, 40ft); invisible at will until it attacks; once per 3 rounds Dust of Mischief (Will DC 12 or Charmed, Confused or Unconscious (asleep) for 1d4 rounds)</td></tr><tr><td>2</td><td>Redcap</td><td>7th</td><td>HD 3d8; AC 14; Move 30ft; Iron scythe +6 (2d4+3); Iron Boots kick 1d6+2 (Fortitude DC 12 or Prone); once per 3 rounds Vicious Charge (+1d6)</td></tr><tr><td>3</td><td>Unicorn</td><td>11th</td><td>HD 4d10; AC 18; Move 50ft; Hooves +9 (1d8+4) and horn +9 (1d8+4); Charge: +2d8 and Fortitude DC 17 or Prone; once per summoning Healing Touch (2d8+2)</td></tr><tr><td>4</td><td>Treant</td><td>15th</td><td>HD 7d8; AC 18; Move 30ft; Slam +9 (3d6+6) x2 or rock +7 (4d10+6, 60ft); double damage against objects; vulnerable to fire</td></tr></tbody></table><h2>Path of the Great Old One</h2><p>Something that was never meant to be touched. The pact wasn't negotiated — it was noticed.</p><ul><li>Path Passive — Telepathic Awareness: Communicate mind-to-mind with any creature within 30ft that has a language, without speaking. Creatures you initiate contact with make a Will save against your Class Save DC or are Shaken until the end of their next turn.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Detect Thoughts — read surface thoughts of creatures within 60ft</td></tr><tr><td>Level 3</td><td>2nd</td><td>Blindness/Deafness — blind or deafen one creature for 1 minute per level (save negates)</td></tr><tr><td>Level 7</td><td>3rd</td><td>Clairaudience/Clairvoyance — see or hear a place within 1 mile through an invisible sensor</td></tr><tr><td>Level 11</td><td>4th</td><td>Confusion — creatures in 15ft radius act randomly for 1 round/level</td></tr><tr><td>Level 15</td><td>5th</td><td>Contact Other Plane — ask up to 5 yes/no questions of a planar entity (Will save, DC 15, or Incapacitated 1d6 weeks)</td></tr><tr><td>Level 19</td><td>6th</td><td>Eyebite — afflict one creature/round with coma, sickness, or panic</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Star Spawn Grue</td><td>3rd</td><td>HD 4d8; AC 11; Move 35ft; Claw +2 (2d6 psychic); creatures within 10ft take −1 to saves</td></tr><tr><td>2</td><td>Intellect Devourer</td><td>7th</td><td>HD 4d8; AC 12; Move 40ft; Claw +4 (1d4) x2; Devour Intellect (Will DC 12 or −1d4 Intelligence; Stunned at 0). It cannot use Body Theft while summoned</td></tr><tr><td>3</td><td>Chuul</td><td>11th</td><td>HD 9d8; AC 16; Move 30ft, swim 30ft; Pincer +9 (2d6+4) x2; a held target is grappled, takes 1d8 a turn and makes Fortitude DC 16 or is Paralysed for 1d4 rounds</td></tr><tr><td>4</td><td>Star Spawn Hulk</td><td>15th</td><td>HD 10d8; AC 16; Move 30ft; Slam +14 (2d10+5) x2; once per 3 rounds Psychic Discharge (2d10 psychic to all within 10ft, Will DC 15 for half)</td></tr></tbody></table>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 1,
+    "hitDie": "d6",
+    "hpBeyond10": 2,
+    "bthProgression": "arcane",
+    "keyAbility": "cha",
+    "castingAbility": "cha",
+    "xpRate": 10,
+    "weapons": "Club, dagger, dart, hand crossbow, staff",
+    "armour": "None",
+    "slotTable": [
+     [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+     ]
+    ],
+    "featLevels": [
+     1,
+     4,
+     8,
+     12,
+     16,
+     20
+    ],
+    "featPaths": [
+     "General Path",
+     "Arcane & Devout Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Eldritch Blast",
+      "uuid": "Compendium.arneyan.class-features.Item.PNZY7WcPNHdwXhV1"
+     },
+     {
+      "level": 1,
+      "name": "Spell Use",
+      "uuid": "Compendium.arneyan.class-features.Item.YmJes4XcgQs6Eoa0"
+     },
+     {
+      "level": 1,
+      "name": "Dark Gift",
+      "uuid": "Compendium.arneyan.class-features.Item.KGUdCUGs7JdT7FUT"
+     },
+     {
+      "level": 2,
+      "name": "Eldritch Invocations",
+      "uuid": "Compendium.arneyan.class-features.Item.7qQi9fW8rl1RKTXP"
+     },
+     {
+      "level": 3,
+      "name": "Pact Summons",
+      "uuid": "Compendium.arneyan.class-features.Item.q5wxEbMeDaGmsD4D"
+     },
+     {
+      "level": 6,
+      "name": "Patron's Mark",
+      "uuid": "Compendium.arneyan.class-features.Item.uaw41MlXMGlocIE4"
+     },
+     {
+      "level": 12,
+      "name": "Patron Feature",
+      "uuid": "Compendium.arneyan.class-features.Item.ExQfX6J8B6CA1vbj"
+     },
+     {
+      "level": 15,
+      "name": "Pact Summons (Tier 4)",
+      "uuid": "Compendium.arneyan.class-features.Item.E6rC9IhzJmIjl5UD"
+     },
+     {
+      "level": 15,
+      "name": "Dark Harvest",
+      "uuid": "Compendium.arneyan.class-features.Item.QO3chTFHQJWEqYux"
+     },
+     {
+      "level": 20,
+      "name": "Patron Surge",
+      "uuid": "Compendium.arneyan.class-features.Item.iM5qHSjVTNy5uYOs"
+     },
+     {
+      "level": 20,
+      "name": "Patron's Whisper",
+      "uuid": "Compendium.arneyan.class-features.Item.Yp4dkTLGhPOWIhrf"
+     },
+     {
+      "level": 24,
+      "name": "Eldritch Master",
+      "uuid": "Compendium.arneyan.class-features.Item.DImccG53ytrggdnw"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.5rO6YnUGnrvFYv22"
+   }
+  },
+  {
+   "_id": "tD65XF8u4VTa8IFt",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.tD65XF8u4VTa8IFt",
+   "name": "Eldritch Blast",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>At-will ranged cantrip (60ft range). The target makes a Reflex save (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales: </strong>1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": null,
+    "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+    "damageType": "force",
+    "level": 1,
+    "className": "Warlock"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "F2W2fHzp3oHGJUpi",
+     "source": "Compendium.arneyan.class-features.Item.PNZY7WcPNHdwXhV1"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.PNZY7WcPNHdwXhV1"
+   }
+  },
+  {
+   "_id": "EBFA3TtbM8r1ZgH6",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.EBFA3TtbM8r1ZgH6",
+   "name": "Spell Use",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Cast arcane spells using your slots. Each time you unlock a slot level you gain two spells of that level: your Path spell (see Patron Paths) and one spell of your choice from the Warlock list in Spellcasting in Arneyan. You may cast any spell you know with any slot of its level or higher. Slots are shared with Pact Summons — see Spell Slot Progression above.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Warlock"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "F2W2fHzp3oHGJUpi",
+     "source": "Compendium.arneyan.class-features.Item.YmJes4XcgQs6Eoa0"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.YmJes4XcgQs6Eoa0"
+   }
+  },
+  {
+   "_id": "DV8mhKqyBWffP4Wy",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.DV8mhKqyBWffP4Wy",
+   "name": "Dark Gift",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: A passive benefit granted by your specific patron Kit. See the Patron Paths section for details. A Dark Gift that adds damage or defence works only while your Warlock level is at least half your character level.</strong></li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Warlock"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "F2W2fHzp3oHGJUpi",
+     "source": "Compendium.arneyan.class-features.Item.KGUdCUGs7JdT7FUT"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.KGUdCUGs7JdT7FUT"
+   }
+  },
+  {
+   "_id": "yNHq4E8pOkKyMt3n",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.yNHq4E8pOkKyMt3n",
+   "name": "Tiefling (Infernal)",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><em>\"Tiefling\" is what others call them. A tiefling is born into a family of another ancestry, human, orc, elf or any other, whose bloodline carries a fiendish curse. The mark can skip generations and appear in a child of ordinary-looking parents. There is no tiefling people, homeland or culture.</em></p><p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Cha / +1 Int, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Family:</strong> choose the ancestry of the family you were born into. You speak its language, and others treat you as one of its people once they look past the marks. Your size, speed, vision and traits are the Tiefling's, whatever your family.</li><li><strong>Resistance 5</strong> to a damage type set by your bloodline.</li><li><strong>One Warlock cantrip</strong> at creation.</li><li><strong>Fiendish Retort:</strong> 1/long rest, when damaged by a creature within 30ft, unleash it back at them as part of your action on your next turn. The damage type is set by your bloodline: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.</li><li><strong>From 11th level, Fiendish Retort can be used twice per long rest.</strong></li></ul><p><strong><em>Bloodlines</em></strong></p><ul><li><strong>Infernal (devils):</strong> horns, a tail, embers in the eyes. Resist fire; Retort deals fire. Advantage on checks to read, recall or find loopholes in contracts, oaths and bargains. You know Infernal.</li><li><strong>Abyssal (demons):</strong> wild, twisted features that rarely look the same twice in a family. Resist poison; Retort deals acid. Advantage on Charisma checks to intimidate. You know Abyssal.</li><li><strong>Outer (daemons, rakshasa and stranger fiends):</strong> subtle, unsettling marks that are hard to place. Resist necrotic; Retort deals necrotic. Advantage on checks to see through disguises and illusions. You know Infernal or Abyssal.</li><li><strong>Shadowfell (fiends of shadow):</strong> ashen skin, a shadow that moves a moment late. Resist cold; Retort deals cold. Advantage on checks to hide in dim light or darkness. You know Infernal or Abyssal.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "Darkvision 60ft",
+    "attributes": "+2 Cha / +1 Int, −1 Wis",
+    "bonuses": {
+     "cha": 2,
+     "int": 1,
+     "wis": -1
+    },
+    "pickTwo": false,
+    "family": true,
+    "traitList": [
+     {
+      "name": "Family",
+      "text": "choose the ancestry of the family you were born into. You speak its language, and others treat you as one of its people once they look past the marks. Your size, speed, vision and traits are the Tiefling's, whatever your family."
+     },
+     {
+      "name": "Resistance 5 to a damage type set by your…",
+      "text": "Resistance 5 to a damage type set by your bloodline."
+     },
+     {
+      "name": "One Warlock cantrip at creation",
+      "text": "One Warlock cantrip at creation."
+     },
+     {
+      "name": "Fiendish Retort",
+      "text": "1/long rest, when damaged by a creature within 30ft, unleash it back at them as part of your action on your next turn. The damage type is set by your bloodline: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th."
+     },
+     {
+      "name": "From 11th level",
+      "text": "From 11th level, Fiendish Retort can be used twice per long rest."
+     }
+    ],
+    "choice": {
+     "label": "Bloodline",
+     "options": [
+      {
+       "name": "Infernal (devils)",
+       "text": "horns, a tail, embers in the eyes. Resist fire; Retort deals fire. Advantage on checks to read, recall or find loopholes in contracts, oaths and bargains. You know Infernal.",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "resist",
+         "value": "fire 5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Abyssal (demons)",
+       "text": "wild, twisted features that rarely look the same twice in a family. Resist poison; Retort deals acid. Advantage on Charisma checks to intimidate. You know Abyssal.",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "resist",
+         "value": "poison 5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Outer (daemons, rakshasa and stranger fiends)",
+       "text": "subtle, unsettling marks that are hard to place. Resist necrotic; Retort deals necrotic. Advantage on checks to see through disguises and illusions. You know Infernal or Abyssal.",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "resist",
+         "value": "necrotic 5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Shadowfell (fiends of shadow)",
+       "text": "ashen skin, a shadow that moves a moment late. Resist cold; Retort deals cold. Advantage on checks to hide in dim light or darkness. You know Infernal or Abyssal.",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "resist",
+         "value": "cold 5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      }
+     ]
+    },
+    "rules": [],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "Infernal (devils)",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.llnGaa0xA8flx67x"
+   }
+  },
+  {
+   "_id": "jzWJmbITHu2lhjZ6",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.jzWJmbITHu2lhjZ6",
+   "name": "Bloodline: Infernal (devils)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>horns, a tail, embers in the eyes. Resist fire; Retort deals fire. Advantage on checks to read, recall or find loopholes in contracts, oaths and bargains. You know Infernal.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": [
+     {
+      "key": "resist",
+      "value": "fire 5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.Bloodline: Infernal (devils)"
+    }
+   }
+  },
+  {
+   "_id": "CCpzktc2SogLqeIh",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.CCpzktc2SogLqeIh",
+   "name": "Family",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>choose the ancestry of the family you were born into. You speak its language, and others treat you as one of its people once they look past the marks. Your size, speed, vision and traits are the Tiefling&#x27;s, whatever your family.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.Family"
+    }
+   }
+  },
+  {
+   "_id": "VwQBwhvy1I3SObLk",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.VwQBwhvy1I3SObLk",
+   "name": "Resistance 5 to a damage type set by your…",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Resistance 5 to a damage type set by your bloodline.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.Resistance 5 to a damage type set by your…"
+    }
+   }
+  },
+  {
+   "_id": "Oot7AZ8o0VWyq3Gx",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.Oot7AZ8o0VWyq3Gx",
+   "name": "One Warlock cantrip at creation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>One Warlock cantrip at creation.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.One Warlock cantrip at creation"
+    }
+   }
+  },
+  {
+   "_id": "jrPdZnfdKNUPDZz7",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.jrPdZnfdKNUPDZz7",
+   "name": "Fiendish Retort",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>1/long rest, when damaged by a creature within 30ft, unleash it back at them as part of your action on your next turn. The damage type is set by your bloodline: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.Fiendish Retort"
+    }
+   }
+  },
+  {
+   "_id": "7gzLLyVQWr0FS7hy",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.7gzLLyVQWr0FS7hy",
+   "name": "From 11th level",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>From 11th level, Fiendish Retort can be used twice per long rest.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Tiefling (Infernal)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "yNHq4E8pOkKyMt3n",
+     "source": "yNHq4E8pOkKyMt3n.From 11th level"
+    }
+   }
+  },
+  {
+   "_id": "MYZwEJi9nI0GtEX7",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.MYZwEJi9nI0GtEX7",
+   "name": "Glasya (Warlock)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+   "system": {
+    "description": "<p>She escaped her father through cleverness. The best move is always the one nobody sees coming.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, become invisible for 1 minute. Ends only if you attack or cast offensively — not when interacting with objects.</li><li><strong>Patron's Mark</strong> (6th): Once per day, perfectly forge any document, signature, or official seal you have examined for at least 1 minute. The forgery is undetectable without magical means.</li><li><strong>Patron Feature</strong> (12th): Once per day, perfectly impersonate anyone studied for 1 minute — face, voice, mannerisms. Indistinguishable without magic. Lasts 8 hours.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Warlock",
+    "features": [
+     {
+      "name": "Dark Gift",
+      "level": 1,
+      "description": "<p>Once per day, become invisible for 1 minute. Ends only if you attack or cast offensively — not when interacting with objects.</p>",
+      "uses": {
+       "value": 1,
+       "max": 1,
+       "per": "day"
+      },
+      "save": "",
+      "applies": [
+       {
+        "name": "Glasya's Veil",
+        "target": "self",
+        "rounds": "10",
+        "statuses": [
+         "invisible"
+        ],
+        "rules": []
+       }
+      ]
+     },
+     {
+      "name": "Patron's Mark",
+      "level": 6,
+      "description": "<p>Once per day, perfectly forge any document, signature, or official seal you have examined for at least 1 minute. The forgery is undetectable without magical means.</p>",
+      "uses": {
+       "value": 1,
+       "max": 1,
+       "per": "day"
+      },
+      "save": ""
+     },
+     {
+      "name": "Patron Feature",
+      "level": 12,
+      "description": "<p>Once per day, perfectly impersonate anyone studied for 1 minute — face, voice, mannerisms. Indistinguishable without magic. Lasts 8 hours.</p>",
+      "uses": {
+       "value": 1,
+       "max": 1,
+       "per": "day"
+      },
+      "save": ""
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.sAHtivaRJjh74wSe"
+   }
+  },
+  {
+   "_id": "xTdne1oo0Xbmf6nY",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.xTdne1oo0Xbmf6nY",
+   "name": "Dark Gift",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Once per day, become invisible for 1 minute. Ends only if you attack or cast offensively — not when interacting with objects.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Glasya (Warlock)",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [
+     {
+      "name": "Glasya's Veil",
+      "target": "self",
+      "rounds": "10",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ],
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "MYZwEJi9nI0GtEX7",
+     "source": "MYZwEJi9nI0GtEX7.0"
+    }
+   }
+  },
+  {
+   "_id": "aKESUcyVexjsLZAW",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.aKESUcyVexjsLZAW",
+   "name": "Cantrip Mastery",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+   "system": {
+    "description": "<p>Learn two additional cantrips from your class spell list. Once per round, when you cast a cantrip, add your casting-stat modifier (minimum +1) to its damage or healing when it hits or the target fails its save. It does not stack with Agonising Blast.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Arcane & Devout Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Cantrip Mastery: once per round add your casting-stat modifier (min +1) to a cantrip's damage or healing; not with Agonising Blast.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.xg5M38M6go04a0kv"
+   }
+  },
+  {
+   "_id": "7AhQs91kefYIAfKY",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.7AhQs91kefYIAfKY",
+   "name": "Forgery",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>Counterfeiting documents, seals, or signatures</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.pvLeEPO7wfqPFjcl"
+   }
+  },
+  {
+   "_id": "Nh6u8zE1WVU5j6x0",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.Nh6u8zE1WVU5j6x0",
+   "name": "Disguise",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>Altering your appearance to pass as someone else</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.o5PwyS6PtH99ZZjw"
+   }
+  },
+  {
+   "_id": "yYGLmSpLvUeFgawu",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.yYGLmSpLvUeFgawu",
+   "name": "Gaming",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>Cards, dice, and other games of chance</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.CAJ2zS6vM2w9wQlS"
+   }
+  },
+  {
+   "_id": "0uvBtgol5EeB4L9N",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.0uvBtgol5EeB4L9N",
+   "name": "Staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-wizard-staff.svg",
+   "system": {
+    "description": "<p>Versatile, Reach</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "—",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Versatile, Reach",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.tFKFmIJDLlgx3NSK"
+   }
+  },
+  {
+   "_id": "Bv9xNboxux3QEYCA",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.Bv9xNboxux3QEYCA",
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-plain-dagger.svg",
+   "system": {
+    "description": "<p>Finesse, Light, Concealable, Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Finesse, Light, Concealable, Thrown",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.TMnikZBI4akkSNb2"
+   }
+  },
+  {
+   "_id": "HLzfjXS0T4mRWEVq",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.HLzfjXS0T4mRWEVq",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "8nVkTdtRbM8qyip8",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.8nVkTdtRbM8qyip8",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "afVxqJ8i47IIwGwF",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.afVxqJ8i47IIwGwF",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "SgvYlgGb5lsjzwCK",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.SgvYlgGb5lsjzwCK",
+   "name": "Tinderbox",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Flint block, steel bars, tinder, charred cloth (15 sp); flint and steel alone (5 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.5k1Jk2O2RmCETeya"
+   }
+  },
+  {
+   "_id": "q76TcqjCiFpLop36",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.q76TcqjCiFpLop36",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "hccEy4pxXREYUGIz",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.hccEy4pxXREYUGIz",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "i6vEIu6fg4i0Qt5L",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.i6vEIu6fg4i0Qt5L",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "heM9GN9Af2aitpfW",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.heM9GN9Af2aitpfW",
+   "name": "Iron spikes, 5 (Keepers' kit)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "eKpUKgI3dLxERDqS",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.eKpUKgI3dLxERDqS",
+   "name": "Eldritch Blast",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature. At-will ranged cantrip. The target makes a Reflex save, taking force damage on a failure or half on a success. No slot required. Damage scales: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock (class-only spell, from the class entry)</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Warlock",
+    "classes": [
+     "Warlock"
+    ],
+    "school": "",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+    "damageType": "force",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.M3YaLQjHucjQgmX2"
+   }
+  },
+  {
+   "_id": "QQS0vGSgMGNmTIZR",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.QQS0vGSgMGNmTIZR",
+   "name": "Ghost Sound",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 round per level. Creates a sound up to the volume of 4 shouting humans (a growl, clash of arms, footsteps). Cannot create intelligible speech.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Warlock",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.gs6ZQuUn4llIXIiz"
+   }
+  },
+  {
+   "_id": "cMn7yyKzImvxYxh0",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.cMn7yyKzImvxYxh0",
+   "name": "Mage Hand",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Warlock",
+    "classes": [
+     "Wizard",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg"
+   }
+  },
+  {
+   "_id": "L41AlUugas87MG8D",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.L41AlUugas87MG8D",
+   "name": "Message",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature; 10 minutes. You whisper a message that only the target hears, and it can whisper a reply you alone hear. Blocked by 1ft of stone, 1 inch of metal, or a silence effect.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Warlock",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.e2tXKgpw33LPs82T"
+   }
+  },
+  {
+   "_id": "mwef63d6IyqjeBoT",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.mwef63d6IyqjeBoT",
+   "name": "Burning Hands",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>15ft cone from your hands. Deals 1d3 fire damage plus 1 per level (max +10); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Warlock",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "15ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "1d3 + min(@cl, 10)",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ogmrN3QIRvKIpbla"
+   }
+  },
+  {
+   "_id": "RxBycew4XSBDXPzh",
+   "_key": "!actors.items!cPPj9ZqntbqvMVHs.RxBycew4XSBDXPzh",
+   "name": "Sleep",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 90ft; 15ft radius. Creatures with a total of 2d4 Levels + CL fall Unconscious for 1d4 minutes (lowest Level first; creatures of Level 5 or higher unaffected); damage wakes a sleeper. Will negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Warlock",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 90ft",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Asleep",
+      "target": "target",
+      "rounds": "10*1d4",
+      "statuses": [
+       "unconscious"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ViN558r8e1voOREg"
+   }
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Patience Ashcombe",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Warlock.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "The Broken Anvil",
+    "seat": 4,
+    "role": "Ranged",
+    "sheet": {
+     "ac": 11,
+     "saves": {
+      "fort": 3,
+      "ref": 2,
+      "will": 1
+     },
+     "bth": 0,
+     "hp": 8
+    }
+   }
+  }
+ }
+}

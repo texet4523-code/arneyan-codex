@@ -1,0 +1,363 @@
+{
+ "_id": "iTEREHBvj4i3I3SW",
+ "_key": "!actors!iTEREHBvj4i3I3SW",
+ "name": "Red Dragon, Ancient",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 24,
+  "hd": "24d12",
+  "attributes": {
+   "hp": {
+    "value": 200,
+    "max": 200,
+    "temp": 0
+   },
+   "ac": 25,
+   "speed": "40ft, fly 80ft, climb 40ft",
+   "attack": 26,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 14,
+   "ref": 14,
+   "will": 14
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon (chromatic)",
+   "size": "gargantuan",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "fire",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft, Darkvision 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Gargantuan dragon (chromatic)</em></p><p><strong>GM:</strong> Vain, greedy and quick to rage; it knows the worth of every coin in its hoard. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p>",
+   "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d10+9",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tFdHMOlTffADM3To",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.tFdHMOlTffADM3To",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+9",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nlbcUb2LaMAgBldM",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.nlbcUb2LaMAgBldM",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Breath Weapon",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, exhales a 90ft cone of fire; @Check[ref|dc:25]{Reflex DC 25} for half of @Damage[15d6 fire]{15d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 25,
+    "damage": "15d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WOifwlKoKN41SCw6",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.WOifwlKoKN41SCw6",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Frightful Presence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>A creature within 120ft that sees the dragon makes a @Check[will|dc:25]{Will save DC 25} or is @Condition[frightened]{Frightened} for 1 minute; a creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 25,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dmBCBnffdFa6WjWl",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.dmBCBnffdFa6WjWl",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Searing Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn adjacent to the dragon takes @Damage[3d6 fire]{3d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "3d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nvSdKXQMNw4tcfYA",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.nvSdKXQMNw4tcfYA",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wing Buffet",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, every creature within 15ft makes a @Check[ref|dc:25]{Reflex save DC 25} or takes 2d8 damage and is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 25,
+    "damage": "2d8",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "x24YZC9maGzyOakx",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.x24YZC9maGzyOakx",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MT6IWVBPRjblHQdh",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.MT6IWVBPRjblHQdh",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Red Dragon, Ancient",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 4,
+  "height": 4,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

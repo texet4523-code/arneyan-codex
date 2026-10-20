@@ -1,0 +1,586 @@
+{
+ "_id": "WHneZogtcrNkZwfo",
+ "_key": "!actors!WHneZogtcrNkZwfo",
+ "name": "Barlgura",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "3d10+6",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "40ft, climb 40ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (demon)",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "fire 5, cold 5, lightning 5",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large fiend (demon)</em></p><p><strong>GM:</strong> An orange ape-demon that hunts in pairs. Its disguises are terrible and it is very proud of them.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "v71Ul0kNKOj020L3",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.v71Ul0kNKOj020L3",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fist ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SDM0yWy6CvuB8zAF",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.SDM0yWy6CvuB8zAF",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Abyssal Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GrAh3HH5O4oHMRHw",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.GrAh3HH5O4oHMRHw",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reckless",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>It may attack with Advantage; if it does, attacks against it have Advantage until the start of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1IVRdXaPoCSpuCZT",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.1IVRdXaPoCSpuCZT",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Running Leap",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Jumps 40ft long or 20ft high with a 10ft run-up.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gVVGKt04a4n4BsUJ",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.gVVGKt04a4n4BsUJ",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>1/day each: @UUID[Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F]{entangle}, @UUID[Compendium.arneyan.spells.Item.GrdJ5CiCdD1yHwzN]{phantasmal force}. 2/day: @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JMT5mQdne75OVCUG",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.JMT5mQdne75OVCUG",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangle (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 120ft; 25ft-radius area of plants; 1 minute. Plants grasp every creature in the area: Restrained; Reflex negates (success means half speed while in the area). A Restrained creature breaks free with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "25ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 25,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Entangled",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F"
+   },
+   "_id": "QypGrqsvfx6nDpNd",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.QypGrqsvfx6nDpNd",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Phantasmal Force (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 120ft; 20ft cube; 1 minute. Create a visual and audible illusion of an object, creature or force. A creature that touches it or is harmed by it gets a Will save; a creature that fails treats it as real, and illusory damage is nonlethal (max 2d6 per round; cannot reduce to 0 HP). Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Illusionist",
+    "classes": [
+     "Illusionist"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.GrdJ5CiCdD1yHwzN"
+   },
+   "_id": "ttJiQN5MVH6ep8vB",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.ttJiQN5MVH6ep8vB",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Change Self (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 10 minutes per level. Your appearance, clothes and gear look like a humanoid of the same body shape and within 1ft of your height. Touch reveals nothing, but your voice, weight and abilities are unchanged. You cannot copy a specific person.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Necromancer",
+     "Bard"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq"
+   },
+   "_id": "ZnjP3VhS39iGg6On",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.ZnjP3VhS39iGg6On",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "FiqTOOG3inNi2wLq",
+   "_key": "!actors.items!WHneZogtcrNkZwfo.FiqTOOG3inNi2wLq",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Barlgura",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

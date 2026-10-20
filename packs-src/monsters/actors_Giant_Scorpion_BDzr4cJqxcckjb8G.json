@@ -1,0 +1,247 @@
+{
+ "_id": "BDzr4cJqxcckjb8G",
+ "_key": "!actors!BDzr4cJqxcckjb8G",
+ "name": "Giant Scorpion",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "5d10",
+  "attributes": {
+   "hp": {
+    "value": 27,
+    "max": 27,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "40ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast</em></p><p><strong>GM:</strong> A desert ambusher that erupts beneath travellers. Its claws pin prey while the tail does the killing.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "f5wj7GmqCAuKD3wo",
+   "_key": "!actors.items!BDzr4cJqxcckjb8G.f5wj7GmqCAuKD3wo",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sting",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ltybZgXVkyAxT6Nn",
+   "_key": "!actors.items!BDzr4cJqxcckjb8G.ltybZgXVkyAxT6Nn",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>A creature hit by the sting must make a @Check[fort|dc:14]{Fortitude save DC 14} or take @Damage[4d6 poison]{4d6 poison damage}; on a successful save it takes half.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 14,
+    "damage": "4d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8zjEthDMv4JWxr1R",
+   "_key": "!actors.items!BDzr4cJqxcckjb8G.8zjEthDMv4JWxr1R",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Burrow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Can burrow through sand and loose earth at 20ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "csbkZ6FEeAJeVS8o",
+   "_key": "!actors.items!BDzr4cJqxcckjb8G.csbkZ6FEeAJeVS8o",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Giant Scorpion",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

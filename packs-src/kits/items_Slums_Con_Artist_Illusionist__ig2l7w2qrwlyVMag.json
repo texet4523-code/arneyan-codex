@@ -1,0 +1,72 @@
+{
+ "_id": "ig2l7w2qrwlyVMag",
+ "_key": "!items!ig2l7w2qrwlyVMag",
+ "name": "Slums Con Artist (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li>Self-taught in the slums, where illusion is survival and misdirection is currency.</li><li><strong>Distraction Work: </strong>Advantage on Pick Pocket and sleight of hand while an illusion distracts the target. Minor Figment also lets you move 10ft without provoking Attacks of Opportunity.</li><li><strong>Street Smarts: </strong>Advantage on all Deception checks and on identifying confidence schemes, forgeries, or misdirection aimed at you.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Distraction Work",
+    "level": 1,
+    "description": "<p>Advantage on Pick Pocket and sleight of hand while an illusion distracts the target. Minor Figment also lets you move 10ft without provoking Attacks of Opportunity.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Pick Pocket and Sleight of Hand while an illusion distracts the target",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Street Smarts",
+    "level": 1,
+    "description": "<p>Advantage on all Deception checks and on identifying confidence schemes, forgeries, or misdirection aimed at you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying confidence schemes, forgeries or misdirection aimed at you",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

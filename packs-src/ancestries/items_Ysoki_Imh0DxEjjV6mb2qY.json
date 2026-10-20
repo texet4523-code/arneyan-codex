@@ -1,0 +1,75 @@
+{
+ "_id": "Imh0DxEjjV6mb2qY",
+ "_key": "!items!Imh0DxEjjV6mb2qY",
+ "name": "Ysoki",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Small • Speed 25ft • Darkvision 60ft • +2 Dex / +1 Int, −1 Con</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on Perception checks involving smell or hearing.</li><li><strong>Cheek Pouch:</strong> stash small non-weapon items, retrieve without using an action.</li><li><strong>Bite unarmed strike: 1d4 + Strength modifier.</strong></li><li><strong>Nimble Escape: after you attack, you may Disengage or Hide as part of the same action.</strong></li><li><strong>Advantage</strong> on checks to navigate tunnels, sewers, and other confined underground spaces.</li><li><strong>Weapon training:</strong> dagger, hand crossbow, sling, shortsword.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "small",
+  "speed": 25,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Dex / +1 Int, −1 Con",
+  "bonuses": {
+   "dex": 2,
+   "int": 1,
+   "con": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Advantage on Perception checks involving…",
+    "text": "Advantage on Perception checks involving smell or hearing."
+   },
+   {
+    "name": "Cheek Pouch",
+    "text": "stash small non-weapon items, retrieve without using an action."
+   },
+   {
+    "name": "Bite unarmed strike",
+    "text": "Bite unarmed strike: 1d4 + Strength modifier."
+   },
+   {
+    "name": "Nimble Escape",
+    "text": "Nimble Escape: after you attack, you may Disengage or Hide as part of the same action."
+   },
+   {
+    "name": "Advantage on checks to navigate tunnels",
+    "text": "Advantage on checks to navigate tunnels, sewers, and other confined underground spaces."
+   },
+   {
+    "name": "Weapon training",
+    "text": "dagger, hand crossbow, sling, shortsword."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Perception involving smell or hearing",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "navigating tunnels, sewers and confined underground spaces",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 27,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

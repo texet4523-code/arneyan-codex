@@ -1,0 +1,56 @@
+{
+ "_id": "jfRP63QVBHFycIT4",
+ "_key": "!items!jfRP63QVBHFycIT4",
+ "name": "Skalds of the Red Waste (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li>The war-song tradition of the Red Waste's orc tribes and their human and half-orc allies at Treaty Hold — epic verse, battle cries, histories of the dead carried in memory because paper doesn't survive the desert. These skalds record wars, debts, and bloodlines in the only medium that travels everywhere: the voice.</li><li><strong>War Poem: </strong>Exalt also grants Advantage on the first attack roll each round, as well as its bonus to attribute checks, when the Bard recites a war-poem during combat. Maintaining the war-poem requires the Bard's action each round — if interrupted, Exalt reverts to attribute checks only.</li><li><strong>Oral Historian: </strong>Advantage on Legend Lore checks involving the Red Waste tribes, Treaty Hold politics, orc lineage and history, or the oral traditions of the desert peoples.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "War Poem",
+    "level": 1,
+    "description": "<p>Exalt also grants Advantage on the first attack roll each round, as well as its bonus to attribute checks, when the Bard recites a war-poem during combat. Maintaining the war-poem requires the Bard's action each round — if interrupted, Exalt reverts to attribute checks only.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Oral Historian",
+    "level": 1,
+    "description": "<p>Advantage on Legend Lore checks involving the Red Waste tribes, Treaty Hold politics, orc lineage and history, or the oral traditions of the desert peoples.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Legend Lore on Red Waste tribes, Treaty Hold politics, orc lineage and desert oral traditions",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

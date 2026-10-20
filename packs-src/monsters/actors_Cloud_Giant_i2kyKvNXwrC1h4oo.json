@@ -1,0 +1,559 @@
+{
+ "_id": "i2kyKvNXwrC1h4oo",
+ "_key": "!actors!i2kyKvNXwrC1h4oo",
+ "name": "Cloud Giant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 16,
+  "hd": "14d8",
+  "attributes": {
+   "hp": {
+    "value": 63,
+    "max": 63,
+    "temp": 0
+   },
+   "ac": 24,
+   "speed": "50ft",
+   "attack": 21,
+   "spellDC": 20,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 9,
+   "ref": 7,
+   "will": 9
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "giant",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d10",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> Lofty aristocrats of the high castle-clouds. They are generous with their friends and merciless to the rest.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Morningstar",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d6+6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "f6fbvLf7E3vyaDZz",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.f6fbvLf7E3vyaDZz",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Boulder",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": true,
+    "range": "100ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AE4fEJ5d5iL09Xkp",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.AE4fEJ5d5iL09Xkp",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Keen Smell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Advantage on Perception checks that rely on smell.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oWxKOD425jCFOFtA",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.oWxKOD425jCFOFtA",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>3/day each: @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}, @UUID[Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h]{feather fall}, @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.9M0PzndLL9z6PCOX]{gust of wind} (@Check[ref|dc:20]{Reflex DC 20} to avoid being pushed 15ft).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Avhf6qnvsq6KGQFq",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.Avhf6qnvsq6KGQFq",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fog Cloud (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere, 10 minutes per level. Creatures inside can see no further than 5ft, and attacks into or out of the fog have Disadvantage. A moderate wind (10 mph) halves the duration; a strong wind (20 mph) disperses it in 1 round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Sorcerer",
+     "Bard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "In Fog Cloud",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "adv.against",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn"
+   },
+   "_id": "JcsECyQ5pfFpQrl1",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.JcsECyQ5pfFpQrl1",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Feather Fall (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft; up to 1 creature or object per level (each Medium or smaller). Cast as you fall; targets drop 60ft per round and take no fall damage. Ends on landing or after 1 round per level.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.z8jVytPv9ZP2bi3h"
+   },
+   "_id": "hRPkTNu29Inc9lC2",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.hRPkTNu29Inc9lC2",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Levitate (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature or object up to 100 lb per level, 1 minute per level. It rises or sinks 20ft per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Magus",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP"
+   },
+   "_id": "x7cyJldggrEpYa2J",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.x7cyJldggrEpYa2J",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Gust of Wind (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Self; 60ft line, 10ft wide, instantaneous. Large or smaller creatures in it make a Fortitude save or are knocked Prone and pushed 10ft (Small or smaller: pushed 30ft). Unprotected small flames are extinguished and gases or fog dispersed.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft line, 10ft wide",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "line",
+     "size": 60,
+     "width": 10,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Knocked Prone",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.9M0PzndLL9z6PCOX"
+   },
+   "_id": "aK8XUJY1MvtygvtD",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.aK8XUJY1MvtygvtD",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reach",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Reach 10ft with its morningstar.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CYIrwQiypS87Hbde",
+   "_key": "!actors.items!i2kyKvNXwrC1h4oo.CYIrwQiypS87Hbde",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Cloud Giant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,246 @@
+{
+ "_id": "bkk2aZoDEPqIpVoY",
+ "_key": "!actors!bkk2aZoDEPqIpVoY",
+ "name": "Vine Blight",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d8+6",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "10ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium plant</em></p><p><strong>GM:</strong> A mass of creepers that whispers in the voice of its parent tree. It drags prey back to feed the roots.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Constrict",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bzp0ZK2FKyyHB4XV",
+   "_key": "!actors.items!bkk2aZoDEPqIpVoY.bzp0ZK2FKyyHB4XV",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Constrict",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>A Large or smaller creature hit is grappled (escape DC 11) and @Condition[restrained]{Restrained}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "U1Rsp338d9WR4vo8",
+   "_key": "!actors.items!bkk2aZoDEPqIpVoY.U1Rsp338d9WR4vo8",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangling Plants",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, grasping roots fill a 15ft radius within 30ft for 1 minute; creatures there make a @Check[ref|dc:11]{Reflex save DC 11} or are @Condition[restrained]{Restrained}, and the area is difficult terrain.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "dc": 11,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MR4XIhAVJL1UJ8zo",
+   "_key": "!actors.items!bkk2aZoDEPqIpVoY.MR4XIhAVJL1UJ8zo",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>While motionless, indistinguishable from a tangle of vines.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WKEBnLjiIhOAiQOs",
+   "_key": "!actors.items!bkk2aZoDEPqIpVoY.WKEBnLjiIhOAiQOs",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Vine Blight",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vine-whip.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

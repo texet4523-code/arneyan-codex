@@ -1,0 +1,67 @@
+{
+ "_id": "8gJYT4r45yjoydqp",
+ "_key": "!items!8gJYT4r45yjoydqp",
+ "name": "Compelled Duel",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 30ft; one creature; 1 round per level. The target has Disadvantage on attacks against anyone but you, and each time it tries to move more than 30ft from you it must succeed on a Will save or stop. Ends if you attack another creature, are Incapacitated, or end your turn more than 30ft from it.</p><p class=\"arn-note\"><strong>Classes:</strong> Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Paladin",
+  "classes": [
+   "Paladin"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Keeps moving (it saves each time it tries to move more than 30ft from you)",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Compelled Duel",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "attacks against anyone but the caster",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 43,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

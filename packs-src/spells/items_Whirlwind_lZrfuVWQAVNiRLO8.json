@@ -1,0 +1,62 @@
+{
+ "_id": "lZrfuVWQAVNiRLO8",
+ "_key": "!items!lZrfuVWQAVNiRLO8",
+ "name": "Whirlwind",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 120ft; 10ft-radius, 30ft-high whirlwind, 1 round per level (concentration). You move it 60ft each round. Creatures it touches: Reflex or take 2d8 bludgeoning damage and be swept up (Restrained, 20ft off the ground). Trapped creatures take 2d8 again at the start of each turn and may repeat the Reflex save to escape; flung to the ground when freed or at spell end.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": true,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "2d8",
+  "damageType": "bludgeoning",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Swept Up",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 373,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,285 @@
+{
+ "_id": "Et8WyBJMixY2JazB",
+ "_key": "!actors!Et8WyBJMixY2JazB",
+ "name": "Chimera",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 12,
+  "hd": "9d10",
+  "attributes": {
+   "hp": {
+    "value": 49,
+    "max": 49,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "30ft, fly 60ft",
+   "attack": 11,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> Lion, goat and dragon in a single furious body. Territorial and hungry, with no loyalty to anyone.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3sBBLFe0wmiHP7Yd",
+   "_key": "!actors.items!Et8WyBJMixY2JazB.3sBBLFe0wmiHP7Yd",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Horns",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d12+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DmqTxXBT5UOmcLTC",
+   "_key": "!actors.items!Et8WyBJMixY2JazB.DmqTxXBT5UOmcLTC",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kJtQdtWbgo1nF8dJ",
+   "_key": "!actors.items!Et8WyBJMixY2JazB.kJtQdtWbgo1nF8dJ",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, the dragon head breathes a 15ft cone for @Damage[7d8 fire]{7d8 fire damage} (@Check[ref|dc:15]{Reflex DC 15} for half).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 15,
+    "damage": "7d8",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wDtN6FZVwA1G9YBZ",
+   "_key": "!actors.items!Et8WyBJMixY2JazB.wDtN6FZVwA1G9YBZ",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Three Heads",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Cannot be surprised, and has Advantage on Perception checks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DGp3Hc5VfVzbE14L",
+   "_key": "!actors.items!Et8WyBJMixY2JazB.DGp3Hc5VfVzbE14L",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Chimera",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

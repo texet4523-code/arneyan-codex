@@ -1,0 +1,246 @@
+{
+ "_id": "qlQCVxzIlY67pXqN",
+ "_key": "!actors!qlQCVxzIlY67pXqN",
+ "name": "Ochre Jelly",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-slime.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "6d10",
+  "attributes": {
+   "hp": {
+    "value": 33,
+    "max": 33,
+    "temp": 0
+   },
+   "ac": 4,
+   "speed": "10ft, climb 10ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "ooze",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d2",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large ooze</em></p><p><strong>GM:</strong> Lives in dungeons and sewers, creeping towards warmth. Use fire and heavy blunt weapons; never use a sword.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Pseudopod",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9CFJhOS4RwqU5JsO",
+   "_key": "!actors.items!qlQCVxzIlY67pXqN.9CFJhOS4RwqU5JsO",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Split",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>When it takes lightning or slashing damage and survives, it divides into two jellies, each with half the HP (rounded down; minimum 10 HP).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sFlnvHc1y11DYoit",
+   "_key": "!actors.items!qlQCVxzIlY67pXqN.sFlnvHc1y11DYoit",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Amorphous",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Squeezes through gaps as narrow as 1 inch.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "C4xZlAxmlrdE5lvi",
+   "_key": "!actors.items!qlQCVxzIlY67pXqN.C4xZlAxmlrdE5lvi",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Acid Burn",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Wood and flesh dissolve; a nonmagical weapon that hits it takes a -1 penalty to damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TDWNOAnWFPLl0qOI",
+   "_key": "!actors.items!qlQCVxzIlY67pXqN.TDWNOAnWFPLl0qOI",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Ochre Jelly",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-slime.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

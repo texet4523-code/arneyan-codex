@@ -1,0 +1,210 @@
+{
+ "_id": "lElM1qxgu2sHVcKC",
+ "_key": "!actors!lElM1qxgu2sHVcKC",
+ "name": "Town Guard",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "1d8+1",
+  "attributes": {
+   "hp": {
+    "value": 5,
+    "max": 5,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "4d4 (lair 40-400)",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Stays in formation and holds a shield wall at a doorway. Will fight to protect a district, not a stranger.</p>",
+   "treasure": "<p>Treasure type <strong>P</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Spear",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "r5EgVDcx057y4qFq",
+   "_key": "!actors.items!lElM1qxgu2sHVcKC.r5EgVDcx057y4qFq",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Light crossbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3WQV4zoe8Qs4boz0",
+   "_key": "!actors.items!lElM1qxgu2sHVcKC.3WQV4zoe8Qs4boz0",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Whistle",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>As an action, summons 1d4 more guards within 1d4+2 rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "c96OyafDPUH0wYKy",
+   "_key": "!actors.items!lElM1qxgu2sHVcKC.c96OyafDPUH0wYKy",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Town Guard",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-knight-banner.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

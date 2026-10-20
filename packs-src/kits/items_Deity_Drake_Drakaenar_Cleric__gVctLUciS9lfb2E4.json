@@ -1,0 +1,45 @@
+{
+ "_id": "gVctLUciS9lfb2E4",
+ "_key": "!items!gVctLUciS9lfb2E4",
+ "name": "Deity: Drake (Drakaenar) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Two-Handed</p><p><strong>Granted power:</strong> Advantage on saves vs death effects. Once/day: when reduced to 0 HP or below, instead remain at 1 HP.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Drake)",
+    "level": 1,
+    "description": "<p>Advantage on saves vs death effects. Once/day: when reduced to 0 HP or below, instead remain at 1 HP.</p><p><strong>Favoured weapon:</strong> Axe, Two-Handed</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs death effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 17,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

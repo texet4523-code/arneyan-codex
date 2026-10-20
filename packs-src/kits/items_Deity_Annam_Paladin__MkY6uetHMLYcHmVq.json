@@ -1,0 +1,51 @@
+{
+ "_id": "MkY6uetHMLYcHmVq",
+ "_key": "!items!MkY6uetHMLYcHmVq",
+ "name": "Deity: Annam (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Mace, Large</p><p><strong>Granted power:</strong> Once/day: perfectly recall any event witnessed, including specific words spoken. Advantage on checks to research or recall historical information. Advantage on your first attack roll each round against a creature you fought in an earlier encounter.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Annam)",
+    "level": 1,
+    "description": "<p>Once/day: perfectly recall any event witnessed, including specific words spoken. Advantage on checks to research or recall historical information. Advantage on your first attack roll each round against a creature you fought in an earlier encounter.</p><p><strong>Favoured weapon:</strong> Mace, Large</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to research or recall historical information",
+      "label": ""
+     },
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs a creature you fought in an earlier encounter",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 24,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

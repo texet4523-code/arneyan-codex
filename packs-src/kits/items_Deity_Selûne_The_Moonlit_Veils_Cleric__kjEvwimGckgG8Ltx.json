@@ -1,0 +1,45 @@
+{
+ "_id": "kjEvwimGckgG8Ltx",
+ "_key": "!items!kjEvwimGckgG8Ltx",
+ "name": "Deity: Selûne (The Moonlit Veils) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Morningstar</p><p><strong>Granted power:</strong> Advantage on Insight checks. Once/day: enter a willing creature's dream during a long rest and communicate freely within it. Once per encounter, a creature you hit with your morningstar makes a Will save or cannot take reactions until the end of its next turn.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Selûne)",
+    "level": 1,
+    "description": "<p>Advantage on Insight checks. Once/day: enter a willing creature's dream during a long rest and communicate freely within it. Once per encounter, a creature you hit with your morningstar makes a Will save or cannot take reactions until the end of its next turn.</p><p><strong>Favoured weapon:</strong> Morningstar</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Insight",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

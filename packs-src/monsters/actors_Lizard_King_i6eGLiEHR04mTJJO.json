@@ -1,0 +1,284 @@
+{
+ "_id": "i6eGLiEHR04mTJJO",
+ "_key": "!actors!i6eGLiEHR04mTJJO",
+ "name": "Lizard King",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "3d8+6",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft, swim 30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (reptilian)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "condition:frightened",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (reptilian)</em></p><p><strong>GM:</strong> A ruler (king or queen) who believes it was hatched to conquer. It wants to be warm-blooded, and will bargain with anyone who claims they can make it so.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Trident ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pxNXzpcFTi0berGq",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.pxNXzpcFTi0berGq",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WCiUGPcxEnS5y2zi",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.WCiUGPcxEnS5y2zi",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hold Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Can hold its breath for 15 minutes.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "t64ky9WJRS1VilU8",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.t64ky9WJRS1VilU8",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Skewer",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Once per turn, when its trident hits, the target takes +2d6 damage and the lizard king gains the same amount as temporary HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JOTPrwMjdCezj3Mx",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.JOTPrwMjdCezj3Mx",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizard-tongue.svg",
+   "system": {
+    "description": "<p>Cannot be @Condition[frightened]{Frightened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "udoyst4i8pUQ1De0",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.udoyst4i8pUQ1De0",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Lizard King",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-lizard-tongue.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

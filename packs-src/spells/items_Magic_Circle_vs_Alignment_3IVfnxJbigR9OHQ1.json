@@ -1,0 +1,54 @@
+{
+ "_id": "3IVfnxJbigR9OHQ1",
+ "_key": "!items!3IVfnxJbigR9OHQ1",
+ "name": "Magic Circle vs Alignment",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; 10ft-radius, 20ft-tall circle fixed at that point for 10 minutes per level. Choose Good, Evil, Lawful or Chaotic: creatures of that alignment cannot enter it or make melee attacks into it, summoned ones cannot enter, and creatures inside are immune to their charm and possession. Ends for a creature if it attacks out.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Paladin, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Cleric",
+   "Paladin",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "100*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 164,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

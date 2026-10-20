@@ -1,0 +1,400 @@
+{
+ "_id": "k1WDDT7q333fqtOv",
+ "_key": "!actors!k1WDDT7q333fqtOv",
+ "name": "Kraken",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 20,
+  "hd": "20d12",
+  "attributes": {
+   "hp": {
+    "value": 200,
+    "max": 200,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "20ft, swim 60ft",
+   "attack": 24,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 12,
+   "ref": 10,
+   "will": 12
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "gargantuan",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> Wrecks fleets. A sea voyage becomes a fight for the stern.</p>",
+   "treasure": "<p>Treasure type <strong>H</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+8",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WHwO3G1pcUV7ggto",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.WHwO3G1pcUV7ggto",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tentacle ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+8",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IzmJkajTr6JKZm8r",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.IzmJkajTr6JKZm8r",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning bolt",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>lightning bolt (@Check[ref|dc:22]{Reflex DC 22} for half of 6d8, 120ft line)</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "6d8",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "woEvk1LbksFjm3li",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.woEvk1LbksFjm3li",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Amphibious",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>Can breathe air and water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5BvltvrfaO9TqeVt",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.5BvltvrfaO9TqeVt",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>3/day, a 120ft line of lightning deals 10d8 damage (@Check[ref|dc:22]{Reflex DC 22} for half).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "10d8",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LtbVuMr9NZ0gEENB",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.LtbVuMr9NZ0gEENB",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fling",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>Can hurl a grappled creature up to 60ft, dealing 6d6 falling damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "yeCdcIqqevLAdhcn",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.yeCdcIqqevLAdhcn",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Storm Caller",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>Can conjure a storm in a mile around its lair at will.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Bve6pLWnaaUrNnAP",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.Bve6pLWnaaUrNnAP",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XgfsAmjLzlk7ixUY",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.XgfsAmjLzlk7ixUY",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Kraken",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-octopus.svg"
+  },
+  "actorLink": false,
+  "width": 4,
+  "height": 4,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

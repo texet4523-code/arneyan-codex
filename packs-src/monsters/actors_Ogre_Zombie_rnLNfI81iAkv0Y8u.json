@@ -1,0 +1,209 @@
+{
+ "_id": "rnLNfI81iAkv0Y8u",
+ "_key": "!actors!rnLNfI81iAkv0Y8u",
+ "name": "Ogre Zombie",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "5d8+10",
+  "attributes": {
+   "hp": {
+    "value": 32,
+    "max": 32,
+    "temp": 0
+   },
+   "ac": 8,
+   "speed": "30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> A walking wall of grey meat. A necromancer's favourite door-stop.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Morningstar",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pZO3WXttCk6n0CEl",
+   "_key": "!actors.items!rnLNfI81iAkv0Y8u.pZO3WXttCk6n0CEl",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AJvGUb8ykbfacTbW",
+   "_key": "!actors.items!rnLNfI81iAkv0Y8u.AJvGUb8ykbfacTbW",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undying",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>When reduced to 0 HP by anything other than fire or a critical hit, it makes a Fortitude save (DC 5 + damage taken). On a success it drops to 1 HP instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 5,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ppwy5hnPaXwOmkxj",
+   "_key": "!actors.items!rnLNfI81iAkv0Y8u.ppwy5hnPaXwOmkxj",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Ogre Zombie",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-shambling-zombie.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

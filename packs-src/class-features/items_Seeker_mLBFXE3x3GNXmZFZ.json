@@ -1,0 +1,48 @@
+{
+ "_id": "mLBFXE3x3GNXmZFZ",
+ "_key": "!items!mLBFXE3x3GNXmZFZ",
+ "name": "Seeker",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your arrows ignore the Disadvantage from Half Cover and 1 point of a shield's AC bonus, and you add your Wisdom modifier (minimum 0) to bow damage.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 16,
+  "className": "Archer",
+  "rules": [
+   {
+    "key": "damage.ranged",
+    "value": "+max(0,@abilities.wis.mod)",
+    "when": "with bows",
+    "label": ""
+   },
+   {
+    "key": "note.attack",
+    "value": "Seeker: arrows ignore Disadvantage from Half Cover and 1 point of a shield's AC bonus.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 14,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

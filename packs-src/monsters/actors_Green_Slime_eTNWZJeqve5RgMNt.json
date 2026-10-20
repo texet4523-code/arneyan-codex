@@ -1,0 +1,246 @@
+{
+ "_id": "eTNWZJeqve5RgMNt",
+ "_key": "!actors!eTNWZJeqve5RgMNt",
+ "name": "Green Slime",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-slime.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 20,
+    "max": 20,
+    "temp": 0
+   },
+   "ac": 10,
+   "speed": "0ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "ooze",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "fire, cold",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny ooze</em></p><p><strong>GM:</strong> A hazard more than a monster. Burn it, freeze it, or find another route.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Drip",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6fPDIn4rgCmUp9fl",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.6fPDIn4rgCmUp9fl",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ceiling Drop",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>A creature that passes beneath it makes a @Check[ref|dc:12]{Reflex save DC 12} or is hit by the drip and covered in slime. Slime deals @Damage[1d6 acid]{1d6 acid damage} each round and eats through armour and weapons; it turns flesh to slime in 1d4 rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 12,
+    "damage": "1d6",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wHyvEjYzXgYNOnka",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.wHyvEjYzXgYNOnka",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Weakness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire, cold and sunlight. Cure disease kills a patch. Scrape it off by taking 1d6 damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "u6TIhcUuUMc0VZr5",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.u6TIhcUuUMc0VZr5",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sensory Hunger",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Senses living creatures by their warmth within 30ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AktXGB4KRSesiyA2",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.AktXGB4KRSesiyA2",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Green Slime",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-slime.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

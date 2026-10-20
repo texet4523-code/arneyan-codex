@@ -1,0 +1,66 @@
+{
+ "_id": "a9c6Lt8lNOCQtAZq",
+ "_key": "!items!a9c6Lt8lNOCQtAZq",
+ "name": "Dul Khagul Shieldbearer (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Trained in the Dul Khagul shield-wall tradition, with ties to the Jotunas giant-kin allies.</p><ul><li><strong>Shield Wall: </strong>Ranged attacks against you and an adjacent ally have Disadvantage.</li><li><strong>Dwarf-Friend: </strong>Advantage on dwarven clan etiquette and weapon identification checks. Trusted on sight by Dul Khagul dwarves.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Shield Wall",
+    "level": 1,
+    "description": "<p>Ranged attacks against you and an adjacent ally have Disadvantage.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.against.ranged",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Dwarf-Friend",
+    "level": 1,
+    "description": "<p>Advantage on dwarven clan etiquette and weapon identification checks. Trusted on sight by Dul Khagul dwarves.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "dwarven clan etiquette and weapon identification",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

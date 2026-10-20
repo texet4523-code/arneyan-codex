@@ -1,0 +1,62 @@
+{
+ "_id": "4sWm57LGm7BhimnN",
+ "_key": "!items!4sWm57LGm7BhimnN",
+ "name": "Mournas Fight Club (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li>Underground fighting rings in Mournas — illegal, brutal, and well-attended. No forms, no philosophy, just what works when a crowd is watching and money is on the line. Fighters here learn fast or they don't get up.</li><li><strong>Opening Blow: </strong>Once per round, on the initial grab of a grapple or overbearing attempt, deal primary unarmed damage on success in addition to gaining control. Holding a grapple does not continue to deal damage automatically.</li><li><strong>Ring Reader: </strong>Advantage on Intimidation checks before or during combat, and on checks to read an opponent's fighting style in the first round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Opening Blow",
+    "level": 1,
+    "description": "<p>Once per round, on the initial grab of a grapple or overbearing attempt, deal primary unarmed damage on success in addition to gaining control. Holding a grapple does not continue to deal damage automatically.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Ring Reader",
+    "level": 1,
+    "description": "<p>Advantage on Intimidation checks before or during combat, and on checks to read an opponent's fighting style in the first round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation before or during combat",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to read an opponent's fighting style in the first round",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

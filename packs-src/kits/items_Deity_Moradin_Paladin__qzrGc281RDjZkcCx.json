@@ -1,0 +1,51 @@
+{
+ "_id": "qzrGc281RDjZkcCx",
+ "_key": "!items!qzrGc281RDjZkcCx",
+ "name": "Deity: Moradin (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, War</p><p><strong>Granted power:</strong> Once/day: shape stone within 10ft into any simple form. Advantage on Perception checks underground or in stone structures. +1 AC while standing on natural stone or underground.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Moradin)",
+    "level": 1,
+    "description": "<p>Once/day: shape stone within 10ft into any simple form. Advantage on Perception checks underground or in stone structures. +1 AC while standing on natural stone or underground.</p><p><strong>Favoured weapon:</strong> Hammer, War</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception underground or in stone structures",
+      "label": ""
+     },
+     {
+      "key": "ac",
+      "value": "1",
+      "when": "while standing on natural stone or underground",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 21,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

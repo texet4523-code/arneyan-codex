@@ -1,0 +1,54 @@
+{
+ "_id": "FtOb5tA9Nm3DS9PW",
+ "_key": "!items!FtOb5tA9Nm3DS9PW",
+ "name": "Banishment",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Range 60ft; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a 30ft radius (lowest Level first). Each creature that fails a Will save is sent to its home plane and cannot return by its own power for 24 hours; Will negates. If you hold an item the creature hates or fears, its save has Disadvantage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Cleric",
+   "Warlock",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 194,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

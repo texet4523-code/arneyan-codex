@@ -1,0 +1,48 @@
+{
+ "_id": "lks3nolNNh8o534F",
+ "_key": "!items!lks3nolNNh8o534F",
+ "name": "Deepened Shape",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Your Wild Shape Level cap rises to your full Druid level instead of half (so a 12th-level Druid can become any beast or monster of Level 12 or lower).</strong> Shifting also now grants temporary HP equal to twice your Druid level, lasting until the shift ends or the temp HP is depleted.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 12,
+  "className": "Druid",
+  "applies": [
+   {
+    "name": "Deepened Shape",
+    "target": "self",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "hp.temp",
+      "value": "2*@cl",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

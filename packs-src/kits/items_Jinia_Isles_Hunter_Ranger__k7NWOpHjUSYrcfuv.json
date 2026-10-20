@@ -1,0 +1,78 @@
+{
+ "_id": "k7NWOpHjUSYrcfuv",
+ "_key": "!items!k7NWOpHjUSYrcfuv",
+ "name": "Jinia Isles Hunter (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>A sea and coastal ranger — tracking prey along coastlines, through mangrove, across tidal flats.</p><ul><li><strong>Sea Legs: </strong>Advantage on Scale checks involving coastal cliffs, ship rigging, or any wet surface. Combat Marauder's damage bonus also applies to creatures with a swim speed.</li><li><strong>Tidewalker: </strong>Advantage on Track and Survival checks in coastal or island environments, and on checks identifying Jinia marine wildlife.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Sea Legs",
+    "level": 1,
+    "description": "<p>Advantage on Scale checks involving coastal cliffs, ship rigging, or any wet surface. Combat Marauder's damage bonus also applies to creatures with a swim speed.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Scale on coastal cliffs, ship rigging or wet surfaces",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Sea Legs: Combat Marauder's full bonus also applies vs creatures with a swim speed.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Tidewalker",
+    "level": 1,
+    "description": "<p>Advantage on Track and Survival checks in coastal or island environments, and on checks identifying Jinia marine wildlife.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Track and Survival in coastal or island environments",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying Jinia marine wildlife",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

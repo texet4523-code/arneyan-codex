@@ -1,0 +1,73 @@
+{
+ "_id": "R09IYIsqfJ613bmw",
+ "_key": "!items!R09IYIsqfJ613bmw",
+ "name": "Draconic (Sorcerer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<p>Ancient draconic blood runs through your line — distant, potent, and hungry for power.</p><ul><li><strong>Bloodline Ability</strong> (1st): Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison). Gain Resistance 5 to that type. Your AC increases by 1 permanently as scales occasionally emerge under your skin. You speak and understand Draconic and have advantage on Charisma checks against dragons and dragon-blooded creatures.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, unleash your ancestor's aura for 1 minute — creatures within 30ft make a Will save or are frightened. Your chosen damage type ignores resistance while active.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Sorcerer",
+  "features": [
+   {
+    "name": "Bloodline Ability",
+    "level": 1,
+    "description": "<p>Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison). Gain Resistance 5 to that type. Your AC increases by 1 permanently as scales occasionally emerge under your skin. You speak and understand Draconic and have advantage on Charisma checks against dragons and dragon-blooded creatures.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "vs dragons and dragon-blooded creatures",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Bloodline Awakening",
+    "level": 15,
+    "description": "<p>Once per day, unleash your ancestor's aura for 1 minute — creatures within 30ft make a Will save or are frightened. Your chosen damage type ignores resistance while active.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "applies": [
+     {
+      "name": "Ancestral Dread",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mASZyW0N1oNgHgCR",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

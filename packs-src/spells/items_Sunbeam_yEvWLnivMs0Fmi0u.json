@@ -1,0 +1,62 @@
+{
+ "_id": "yEvWLnivMs0Fmi0u",
+ "_key": "!items!yEvWLnivMs0Fmi0u",
+ "name": "Sunbeam",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft; a 5ft-wide, 60ft-long line of sunlight. Creatures in it take 4d6 radiant damage and are Blinded for 1d4 rounds; Reflex halves the damage and avoids Blinded. Undead of Level 8 or lower are destroyed (Reflex negates); stronger undead take 4d6.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "60ft line, 5ft wide",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half damage and not Blinded",
+  "damage": "4d6",
+  "damageType": "radiant",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "line",
+   "size": 60,
+   "width": 5,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Sunbeam",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 309,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

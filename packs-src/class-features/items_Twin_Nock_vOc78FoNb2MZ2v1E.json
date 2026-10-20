@@ -1,0 +1,59 @@
+{
+ "_id": "vOc78FoNb2MZ2v1E",
+ "_key": "!items!vOc78FoNb2MZ2v1E",
+ "name": "Twin Nock",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Fire two arrows in place of the one attack your action gives you. Extra Attack, an off-hand weapon and Flowing Strikes add nothing to it: a Twin Nock is two arrows (three from 17th) and no more. The second arrow is rolled with Disadvantage until 10th level, and from 10th level there is no penalty.</strong> Can split between two targets within range, or fire both at the same target. Each arrow deals +1 bonus damage.</li><li>Cannot combine with Running Shot's advantage on the same turn until 13th level (see Loosed in Passing) — until then, choose one or the other each turn: move-and-shoot for advantage, or plant your feet for two arrows.</li><li>Per-arrow bonus by level: +1 at 4th, +2 at 9th, +3 at 13th, +4 at 21st. It does not stack with Bow Mastery; use the higher.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 4,
+  "className": "Archer",
+  "activities": [
+   {
+    "name": "Twin Nock",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Arrows in place of the one attack your action gives you, at one target or split. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "4:2, 17:3",
+    "weapons": "arrow",
+    "disadvantage": "rest",
+    "disUntil": 10,
+    "damageBonus": "4:1, 9:2, 13:3, 21:4",
+    "noStack": "Bow Mastery",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

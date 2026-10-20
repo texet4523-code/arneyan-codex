@@ -1,0 +1,66 @@
+{
+ "_id": "VYtbwoz2nWOT89rN",
+ "_key": "!items!VYtbwoz2nWOT89rN",
+ "name": "Eltor Cavalry Guard (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The mounted elite of the Eltor court — lance and horse, elegance and violence.</p><ul><li><strong>Lancer's Charge: </strong>A charge triples the lance's damage dice (not doubles them) while mounted. Flat modifiers are not multiplied.</li><li><strong>Eltor Horsemastery: </strong>Advantage on Horsemanship checks to perform advanced manoeuvres, and on checks evaluating horse quality.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Lancer's Charge",
+    "level": 1,
+    "description": "<p>A charge triples the lance's damage dice (not doubles them) while mounted. Flat modifiers are not multiplied.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Lancer's Charge: a mounted charge triples the lance's damage dice (flat modifiers not multiplied).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Eltor Horsemastery",
+    "level": 1,
+    "description": "<p>Advantage on Horsemanship checks to perform advanced manoeuvres, and on checks evaluating horse quality.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Horsemanship advanced manoeuvres; evaluating horse quality",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

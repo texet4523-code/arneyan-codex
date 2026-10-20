@@ -1,0 +1,44 @@
+{
+ "_id": "QqABueppU8fOgnbc",
+ "_key": "!items!QqABueppU8fOgnbc",
+ "name": "Brute Force",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Strength)</em>  Advantage on Strength checks made to break, force open, or physically overpower an obstacle. Gain +1 to Strength (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ability.str",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check.str",
+    "value": "1",
+    "when": "to break, force open or overpower an obstacle",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,52 @@
+{
+ "_id": "99zNvGk5QbCtsk3H",
+ "_key": "!items!99zNvGk5QbCtsk3H",
+ "name": "Search",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/action-magnifying-glass.svg",
+ "system": {
+  "description": "<p>Action: Wisdom check against a hidden creature's Hide result; on a success you find it (see Disengage &amp; Hide).</p><p class=\"arn-note\"><strong>Combat Manoeuvres, Action:</strong> uses your action.</p><ul><li>Search (action): make a Wisdom check against a hidden creature's Hide result. On a success you find it, and it is no longer hidden from you. A hidden creature also stops being hidden when it attacks, casts a spell or makes a loud noise.</li></ul><p class=\"arn-note\">Press Use to roll the Wisdom check.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "action",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 0,
+  "className": "",
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": [],
+  "activities": [
+   {
+    "name": "Search",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "wis",
+    "save": "",
+    "text": "Wisdom check against the hidden creature's Hide result.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ZwYaT2SZrAmIDw8K",
+ "sort": 40,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

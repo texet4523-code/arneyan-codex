@@ -1,0 +1,210 @@
+{
+ "_id": "0xL9Z0nh7Mj0hCkJ",
+ "_key": "!actors!0xL9Z0nh7Mj0hCkJ",
+ "name": "Tyrannosaurus",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 12,
+  "hd": "8d12+32",
+  "attributes": {
+   "hp": {
+    "value": 84,
+    "max": 84,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "50ft",
+   "attack": 12,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge beast</em></p><p><strong>GM:</strong> The king of the lost plains. It hears footsteps a mile away and is never full.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d12+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "e7EsyNylDAQK2Ke3",
+   "_key": "!actors.items!0xL9Z0nh7Mj0hCkJ.e7EsyNylDAQK2Ke3",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tail",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nyx4x7eiFHDnR0Ds",
+   "_key": "!actors.items!0xL9Z0nh7Mj0hCkJ.nyx4x7eiFHDnR0Ds",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Grapple",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>A Medium or smaller creature bitten is grappled (escape DC 15) and @Condition[restrained]{Restrained}; while it holds one, it cannot bite another.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X4dvJKpRYDJnszW2",
+   "_key": "!actors.items!0xL9Z0nh7Mj0hCkJ.X4dvJKpRYDJnszW2",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Tyrannosaurus",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

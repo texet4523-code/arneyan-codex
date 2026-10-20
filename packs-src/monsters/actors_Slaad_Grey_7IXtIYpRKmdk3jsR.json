@@ -1,0 +1,984 @@
+{
+ "_id": "7IXtIYpRKmdk3jsR",
+ "_key": "!actors!7IXtIYpRKmdk3jsR",
+ "name": "Slaad, Grey",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 13,
+  "hd": "11d8+33",
+  "attributes": {
+   "hp": {
+    "value": 82,
+    "max": 82,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "30ft, fly 30ft (in slaad form)",
+   "attack": 13,
+   "spellDC": 15,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 7
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration (shapechanger)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium aberration (shapechanger)</em></p><p><strong>GM:</strong> The executioner of the death slaadi. It walks among mortals for work, and finds the work funny.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greatsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vZKKw2XG8rKQEviR",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.vZKKw2XG8rKQEviR",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vsCTCf3RXaZxJQZ5",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.vsCTCf3RXaZxJQZ5",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regeneration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>regains 10 HP at the start of its turn while it has at least 1 HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kzFzFbXk9bVuXdg4",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.kzFzFbXk9bVuXdg4",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechanger",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Becomes a Small or Medium humanoid, or returns to its own form, as an action.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IOJk9W3VMMBFtO2X",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.IOJk9W3VMMBFtO2X",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}. 2/day: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:15]{Will DC 15}), @UUID[Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl]{fly}, @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:15]{Reflex DC 15}), @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. 1/day: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "B2AC2DPlek1rnQt8",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.B2AC2DPlek1rnQt8",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
+   },
+   "_id": "ukZdOyyGRwBdKEir",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.ukZdOyyGRwBdKEir",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Thoughts (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range 60ft cone, 1 minute per level (concentration). Each round you focus on one creature in the cone and read its surface thoughts; Will negates for that creature (it knows nothing has been read). Stone 3ft thick, lead or metal sheets block it. Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone, 1 minute per level (concentration)",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "10*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF"
+   },
+   "_id": "p9bHmbKPf9X56Kep",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.p9bHmbKPf9X56Kep",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "WbybAgah1ACy6ryP",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.WbybAgah1ACy6ryP",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mage Hand (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg"
+   },
+   "_id": "nzFGNfrqP9oJfO4C",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.nzFGNfrqP9oJfO4C",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spectral Force (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 400ft. Create an illusion filling a 20ft cube plus 10ft per level on each side, with sight, sound, smell, temperature and ground tremors, for 1 minute per level (concentration). Directing its movement needs no action. It deals no real damage. Creatures that touch or study it make a Will save to see through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Illusionist",
+     "Bard"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 400ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Sees through it",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ"
+   },
+   "_id": "tJlfPNQCOYIILTsC",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.tJlfPNQCOYIILTsC",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fear (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 60ft cone. Creatures in the cone that fail a Will save are Frightened and must flee from you at full speed for 1 round per level, dropping anything held; Will negates. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Fear",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc"
+   },
+   "_id": "Yi8YOlUtRqzvpUfU",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.Yi8YOlUtRqzvpUfU",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fly (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It gains a fly speed of 90ft for 1 minute per level. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Fly",
+      "target": "target",
+      "rounds": "10*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.fly",
+        "value": "90",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl"
+   },
+   "_id": "DKqrH2KkUGh9OvfH",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.DKqrH2KkUGh9OvfH",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fireball (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 150ft; 20ft-radius burst. 1d6 fire damage per level (max 10d6); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 10))d6",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv"
+   },
+   "_id": "Axsb7E5Rgh6qr1hw",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.Axsb7E5Rgh6qr1hw",
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tongues (2/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It speaks and understands any language for 10 minutes per level. Cast reversed (Babble): Range 30ft; one creature cannot speak or understand any language (and cannot cast verbal spells) for 1 minute per level; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Babble only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "2/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs"
+   },
+   "_id": "hiEeILqanNfyJwOa",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.hiEeILqanNfyJwOa",
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "4feWJBzi77Y3pukq",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.4feWJBzi77Y3pukq",
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Advantage on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DRnevtxu2B3BG4mC",
+   "_key": "!actors.items!7IXtIYpRKmdk3jsR.DRnevtxu2B3BG4mC",
+   "effects": [],
+   "flags": {},
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Slaad, Grey",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,103 @@
+{
+ "_id": "yXlwof1VeX4jCRW9",
+ "_key": "!items!yXlwof1VeX4jCRW9",
+ "name": "Deity: Kossuth (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Flail, Light</p><p><strong>Granted power:</strong> Smite deals additional +1d6 fire damage. Once/day: create a 15ft cone of fire (2d6, Reflex save for half). Advantage on saves vs cold.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Kossuth)",
+    "level": 1,
+    "description": "<p>Smite deals additional +1d6 fire damage. Once/day: create a 15ft cone of fire (2d6, Reflex save for half). Advantage on saves vs cold.</p><p><strong>Favoured weapon:</strong> Flail, Light</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "activities": [
+     {
+      "name": "Smite: fire (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "fire",
+      "ability": "",
+      "save": "",
+      "text": "With your Smite: +1d6 fire.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Cone of fire (2d6)",
+      "kind": "damage",
+      "formula": "2d6",
+      "damageType": "fire",
+      "ability": "",
+      "save": "",
+      "text": "Once a day: a 15ft cone of fire, Reflex save for half.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "damage",
+      "value": "+1d6",
+      "when": "Smite (fire)",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs cold",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 32,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

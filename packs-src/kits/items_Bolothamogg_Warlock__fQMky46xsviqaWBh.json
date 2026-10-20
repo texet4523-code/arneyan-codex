@@ -1,0 +1,69 @@
+{
+ "_id": "fQMky46xsviqaWBh",
+ "_key": "!items!fQMky46xsviqaWBh",
+ "name": "Bolothamogg (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Him Who Watches From Below. Associated with eyes, deep places, and truths that destroy the mind that holds them.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, gain true-sight for 1 minute — see through illusions, polymorph, invisibility, and the true forms of all things.</li><li><strong>Patron's Mark</strong> (6th): Once per day, place an invisible eye anywhere within 60ft — it lasts 10 minutes and relays everything it sees and hears directly to your mind. One active at a time.</li><li><strong>Patron Feature</strong> (12th): Once per day, place an immobile Eye of Bolothamogg within 60ft (AC 15, 30 HP) for 3 rounds. On each of your turns it fires one ray: 6d6 force, Reflex save against your Class Save DC for half; a creature reduced to 0 HP or below by it is disintegrated.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Once per day, gain true-sight for 1 minute — see through illusions, polymorph, invisibility, and the true forms of all things.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "sense",
+      "value": "Truesight",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": true,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, place an invisible eye anywhere within 60ft — it lasts 10 minutes and relays everything it sees and hears directly to your mind. One active at a time.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, place an immobile Eye of Bolothamogg within 60ft (AC 15, 30 HP) for 3 rounds. On each of your turns it fires one ray: 6d6 force, Reflex save against your Class Save DC for half; a creature reduced to 0 HP or below by it is disintegrated.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "damage": "6d6",
+    "damageType": "force"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 18,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

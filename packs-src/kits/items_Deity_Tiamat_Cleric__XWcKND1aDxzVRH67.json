@@ -1,0 +1,46 @@
+{
+ "_id": "XWcKND1aDxzVRH67",
+ "_key": "!items!XWcKND1aDxzVRH67",
+ "name": "Deity: Tiamat (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> Advantage on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it. Once/day: exhale a 15ft cone of that type (2d6, Reflex save for half).</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Tiamat)",
+    "level": 1,
+    "description": "<p>Advantage on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it. Once/day: exhale a 15ft cone of that type (2d6, Reflex save for half).</p><p><strong>Favoured weapon:</strong> Pick, Heavy</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "damage": "2d6",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 26,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

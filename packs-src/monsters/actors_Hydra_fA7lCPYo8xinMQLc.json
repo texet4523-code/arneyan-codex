@@ -1,0 +1,246 @@
+{
+ "_id": "fA7lCPYo8xinMQLc",
+ "_key": "!actors!fA7lCPYo8xinMQLc",
+ "name": "Hydra",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hydra.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "11d8",
+  "attributes": {
+   "hp": {
+    "value": 49,
+    "max": 49,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft, swim 30ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge monstrosity</em></p><p><strong>GM:</strong> Count the heads. Burn the stumps.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite ×5",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hydra.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10+5",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "5 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "n6q4qHltQjkTVK7X",
+   "_key": "!actors.items!fA7lCPYo8xinMQLc.n6q4qHltQjkTVK7X",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Multiple Heads",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hydra.svg",
+   "system": {
+    "description": "<p>Has five heads. Each head has 10 HP of its own (counting toward the hydra's total). When a head is reduced to 0 HP it is severed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "06Ew1QRqVSwdftMz",
+   "_key": "!actors.items!fA7lCPYo8xinMQLc.06Ew1QRqVSwdftMz",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regrowth",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hydra.svg",
+   "system": {
+    "description": "<p>When a head is severed, two more grow at the end of the hydra's next turn unless the stump is burnt or struck with fire or acid. Maximum 10 heads.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gW5HntqDNNiT6TGp",
+   "_key": "!actors.items!fA7lCPYo8xinMQLc.gW5HntqDNNiT6TGp",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reactive Heads",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hydra.svg",
+   "system": {
+    "description": "<p>Cannot be surprised or flanked.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FGXSXEZBYU55P3hN",
+   "_key": "!actors.items!fA7lCPYo8xinMQLc.FGXSXEZBYU55P3hN",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Hydra",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hydra.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

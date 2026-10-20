@@ -1,0 +1,59 @@
+{
+ "_id": "FUij9aQcV4itlZxV",
+ "_key": "!items!FUij9aQcV4itlZxV",
+ "name": "Dismiss Woodland Creatures (Wisdom)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Dismiss any animal, beast, plant, or vermin native to one of the Druid's Nature Lore regions.</li><li>Wisdom check, DC = 10 + total Levels of the creatures being dismissed</li><li>Each day the Druid can dismiss Levels worth of creatures equal to 10 + Wisdom modifier without penalty</li><li>Dismissed creatures flee and don't return until the Druid departs</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 18,
+  "className": "Druid",
+  "activities": [
+   {
+    "name": "Dismiss Woodland Creatures",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "wis",
+    "save": "",
+    "text": "Make a Wisdom check against DC 10 + the total Levels of native creatures to make them flee until you leave.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

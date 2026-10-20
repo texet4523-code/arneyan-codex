@@ -1,0 +1,70 @@
+{
+ "_id": "lvK2mtCar5IA65xT",
+ "_key": "!items!lvK2mtCar5IA65xT",
+ "name": "Friends",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Self; 1 round per level. You gain 2d4 Charisma (roll once). When it ends, each creature within 30ft that you spoke with becomes Hostile for 1 hour; Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Witch, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Witch",
+   "Bard"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Friends",
+    "target": "self",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ability.cha",
+      "value": "2d4",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 55,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

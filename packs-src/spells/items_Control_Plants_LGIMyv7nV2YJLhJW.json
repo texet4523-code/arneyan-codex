@@ -1,0 +1,51 @@
+{
+ "_id": "LGIMyv7nV2YJLhJW",
+ "_key": "!items!LGIMyv7nV2YJLhJW",
+ "name": "Control Plants",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 90ft; 30ft-radius. Plant creatures whose Levels total up to twice your level (lowest first) obey your commands for 1 minute per level; Will negates. Normal plants in the area also move as you direct for the duration (no save), but this deals no damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 90ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 143,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

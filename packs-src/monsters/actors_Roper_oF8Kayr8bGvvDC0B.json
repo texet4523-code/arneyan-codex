@@ -1,0 +1,284 @@
+{
+ "_id": "oF8Kayr8bGvvDC0B",
+ "_key": "!actors!oF8Kayr8bGvvDC0B",
+ "name": "Roper",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "7d10",
+  "attributes": {
+   "hp": {
+    "value": 38,
+    "max": 38,
+    "temp": 0
+   },
+   "ac": 21,
+   "speed": "10ft, climb 10ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> A cave that bites. Beware of things that look stone-grey and sit exactly where a path ought to be.</p>",
+   "treasure": "<p>Treasure type <strong>E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zgjaE1CfXaOyLrB0",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.zgjaE1CfXaOyLrB0",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tendril ×6",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>On a hit: grapple (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "0",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": -1,
+    "traits": "grapple, 6 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XcsUvi0blu0CDamH",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.XcsUvi0blu0CDamH",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>While motionless, it is indistinguishable from a normal stalagmite.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "eOh5TpY18qPi3tSX",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.eOh5TpY18qPi3tSX",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tendrils",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Six strands up to 50ft long. A tendril hit grapples the target (escape DC 15) and @Check[fort|dc:15]{Fortitude DC 15} or Weakness: loses 1d6 Strength. Severing a tendril (AC 20, 10 HP) frees the creature.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZQJGR94FYKwvZEHC",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.ZQJGR94FYKwvZEHC",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reel",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>As part of its action, it draws one grappled creature 25ft toward itself.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "twxS24ryznwm4tds",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.twxS24ryznwm4tds",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Roper",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

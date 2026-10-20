@@ -1,0 +1,209 @@
+{
+ "_id": "aTrFloa6LdZLrr6p",
+ "_key": "!actors!aTrFloa6LdZLrr6p",
+ "name": "Pegasus",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-pegasus.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "4d10",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "60ft, fly 90ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "celestial",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d10",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large celestial</em></p><p><strong>GM:</strong> Fiercely free. It will bear only a rider it judges worthy, and no chain can hold it.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Hooves",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-pegasus.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "n7jCHd54AcxxnpZ5",
+   "_key": "!actors.items!aTrFloa6LdZLrr6p.n7jCHd54AcxxnpZ5",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Winged Escape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-pegasus.svg",
+   "system": {
+    "description": "<p>Can carry a rider at half speed and may take no penalty for the weight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "psrkiHVJ3V33qOvG",
+   "_key": "!actors.items!aTrFloa6LdZLrr6p.psrkiHVJ3V33qOvG",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spirit Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-pegasus.svg",
+   "system": {
+    "description": "<p>Cannot be surprised by evil creatures within 60ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "y4qTwQmB6gXD6YbI",
+   "_key": "!actors.items!aTrFloa6LdZLrr6p.y4qTwQmB6gXD6YbI",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Pegasus",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-pegasus.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

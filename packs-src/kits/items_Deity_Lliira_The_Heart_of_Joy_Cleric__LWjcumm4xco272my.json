@@ -1,0 +1,45 @@
+{
+ "_id": "LWjcumm4xco272my",
+ "_key": "!items!LWjcumm4xco272my",
+ "name": "Deity: Lliira (The Heart of Joy) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Dart</p><p><strong>Granted power:</strong> Advantage on Performance. Once/day, as an action: you and every ally within 30ft end the Frightened condition and gain Advantage on saves against fear and charm for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Lliira)",
+    "level": 1,
+    "description": "<p>Advantage on Performance. Once/day, as an action: you and every ally within 30ft end the Frightened condition and gain Advantage on saves against fear and charm for 1 minute.</p><p><strong>Favoured weapon:</strong> Dart</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Performance",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

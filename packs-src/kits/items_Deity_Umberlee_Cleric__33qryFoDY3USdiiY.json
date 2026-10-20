@@ -1,0 +1,45 @@
+{
+ "_id": "33qryFoDY3USdiiY",
+ "_key": "!items!33qryFoDY3USdiiY",
+ "name": "Deity: Umberlee (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Trident</p><p><strong>Granted power:</strong> Advantage on Swim and water-based checks. Once/day: create a 30ft wave: creatures in a line must save or be pushed 15ft and knocked prone.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Umberlee)",
+    "level": 1,
+    "description": "<p>Advantage on Swim and water-based checks. Once/day: create a 30ft wave: creatures in a line must save or be pushed 15ft and knocked prone.</p><p><strong>Favoured weapon:</strong> Trident</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Swim and water-based checks",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

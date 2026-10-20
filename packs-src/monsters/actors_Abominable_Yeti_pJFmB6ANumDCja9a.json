@@ -1,0 +1,246 @@
+{
+ "_id": "pJFmB6ANumDCja9a",
+ "_key": "!actors!pJFmB6ANumDCja9a",
+ "name": "Abominable Yeti",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 11,
+  "hd": "7d12+28",
+  "attributes": {
+   "hp": {
+    "value": 73,
+    "max": 73,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "40ft, climb 40ft",
+   "attack": 11,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "cold",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge monstrosity</em></p><p><strong>GM:</strong> The yeti that the others are afraid of. Its howl brings down avalanches.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ljmX6RRyee6fewKU",
+   "_key": "!actors.items!pJFmB6ANumDCja9a.ljmX6RRyee6fewKU",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Chilling Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, one creature within 30ft that can see it makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[6d6 cold]{6d6 cold damage} and is @Condition[paralysed]{Paralysed} for 1 minute (repeating the save at the end of each of its turns). A creature that saves is immune for 1 hour.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "6d6",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4W7OtOD6Lrv5p3AO",
+   "_key": "!actors.items!pJFmB6ANumDCja9a.4W7OtOD6Lrv5p3AO",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cold Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, a 30ft cone of freezing air; @Check[ref|dc:15]{Reflex DC 15} for half of @Damage[10d8 cold]{10d8 cold damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 15,
+    "damage": "10d8",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "fujt7rjUjcjsvlcv",
+   "_key": "!actors.items!pJFmB6ANumDCja9a.fujt7rjUjcjsvlcv",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fear of Fire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in the round after it takes fire damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ccp6tyJYQ6BkBUdY",
+   "_key": "!actors.items!pJFmB6ANumDCja9a.Ccp6tyJYQ6BkBUdY",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Abominable Yeti",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

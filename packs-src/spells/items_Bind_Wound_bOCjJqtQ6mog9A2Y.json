@@ -1,0 +1,51 @@
+{
+ "_id": "bOCjJqtQ6mog9A2Y",
+ "_key": "!items!bOCjJqtQ6mog9A2Y",
+ "name": "Bind Wound",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Touch; heals 2d8 HP plus 1 per level (max +10).</p><p class=\"arn-note\"><strong>Classes:</strong> Witch (class-only spell, from the class entry)</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "Witch",
+  "classes": [
+   "Witch"
+  ],
+  "school": "",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "2d8 + min(@cl, 10)",
+  "damageType": "healing",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "tOvWvre80VRvNL8V",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

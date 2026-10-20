@@ -1,0 +1,209 @@
+{
+ "_id": "uxo1pX7fIPtRnhN1",
+ "_key": "!actors!uxo1pX7fIPtRnhN1",
+ "name": "Spore Servant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "3d8+6",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, climb 30ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "poison, condition:blinded, condition:charmed, condition:frightened, condition:paralysed",
+   "vulnerabilities": "",
+   "senses": "Blindsight 30ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium plant</em></p><p><strong>GM:</strong> A body puppeted by fungus. It serves the sovereign silently until it falls apart.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mwsnoo14r2llfG2o",
+   "_key": "!actors.items!uxo1pX7fIPtRnhN1.mwsnoo14r2llfG2o",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Template",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Any corpse a sovereign animates keeps its body and senses but loses its mind, voice and spells. Use its old stats, set its Intelligence to 2, give it the traits below, and drop its Level by 1. This block is a quaggoth spore servant.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZrJ40rOcUYsIVRdU",
+   "_key": "!actors.items!uxo1pX7fIPtRnhN1.ZrJ40rOcUYsIVRdU",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spore Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Immune to poison; cannot be @Condition[blinded]{Blinded}, @Condition[charmed]{Charmed}, @Condition[frightened]{Frightened} or @Condition[paralysed]{Paralysed}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OkHntFUp5HQx42Y1",
+   "_key": "!actors.items!uxo1pX7fIPtRnhN1.OkHntFUp5HQx42Y1",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Spore Servant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ant.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,48 @@
+{
+ "_id": "LiDVh9PAIbGeug36",
+ "_key": "!items!LiDVh9PAIbGeug36",
+ "name": "Path of Greatness",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Choose to become legendary. The knight may never back down from a fight or challenge. When fighting stronger opponents, have Advantage on your first attack roll each round and gain the Level difference as a bonus to damage.</li><li>Creatures of animal intelligence or lower, or anyone up to half the knight's level, must make a Will save or shun the knight entirely</li><li>Once per month, alter weather as the Control Weather spell (cast as a 10th level caster)</li><li>Friends and allies who can see the knight never suffer poor morale so long as the knight remains on the field</li><li>Cowardice, retreating, or fleeing certain death voids the Path permanently — the knight loses Path of Greatness and all Knight abilities from 20th level up, keeping their HP and BtH</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "month"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 24,
+  "className": "Knight",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "vs a stronger opponent",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Path of Greatness: vs stronger opponents add the Level difference to damage.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 19,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

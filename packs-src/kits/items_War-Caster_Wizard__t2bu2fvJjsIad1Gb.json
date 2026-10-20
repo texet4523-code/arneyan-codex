@@ -1,0 +1,56 @@
+{
+ "_id": "t2bu2fvJjsIad1Gb",
+ "_key": "!items!t2bu2fvJjsIad1Gb",
+ "name": "War-Caster (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<p>Trained for the battlefield rather than the tower, a product of Arneyan's wartime economy.</p><ul><li><strong>Battlefield Composure: </strong>If you take the War Caster feat, you choose two types of armour for its armour training instead of one. Your area spells can exclude one ally of your choice inside the area.</li><li><strong>Tactical Eye: </strong>Advantage on checks estimating troop movements or battlefield tactics.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Battlefield Composure",
+    "level": 1,
+    "description": "<p>If you take the War Caster feat, you choose two types of armour for its armour training instead of one. Your area spells can exclude one ally of your choice inside the area.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Tactical Eye",
+    "level": 1,
+    "description": "<p>Advantage on checks estimating troop movements or battlefield tactics.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "estimating troop movements or battlefield tactics",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

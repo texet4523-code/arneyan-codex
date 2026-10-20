@@ -1,0 +1,56 @@
+{
+ "_id": "6I1hdJYStjf9OLbD",
+ "_key": "!items!6I1hdJYStjf9OLbD",
+ "name": "Court Mage (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li>Trained to serve a noble house, embassy, or merchant prince rather than a guild or tower — equal parts spellcaster and diplomat, expected to be useful in a council chamber as much as a crisis.</li><li><strong>Practised at Court: </strong>Advantage on checks involving etiquette, protocol, or reading the political temperature of a room.</li><li><strong>Warded Table: </strong>Once per day, as a 1-minute ritual, ward a meal, drink, or small area against poison and scrying for 8 hours — anyone partaking is immediately alerted (not harmed) if either is attempted. Once per encounter, as your reaction when an ally within 30ft is hit, grant them +2 AC against that attack, which may turn it into a miss.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Practised at Court",
+    "level": 1,
+    "description": "<p>Advantage on checks involving etiquette, protocol, or reading the political temperature of a room.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "etiquette, protocol, or reading the political temperature of a room",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Warded Table",
+    "level": 1,
+    "description": "<p>Once per day, as a 1-minute ritual, ward a meal, drink, or small area against poison and scrying for 8 hours — anyone partaking is immediately alerted (not harmed) if either is attempted. Once per encounter, as your reaction when an ally within 30ft is hit, grant them +2 AC against that attack, which may turn it into a miss.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

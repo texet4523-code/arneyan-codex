@@ -1,0 +1,54 @@
+{
+ "_id": "UQlLkustRg8BIKev",
+ "_key": "!items!UQlLkustRg8BIKev",
+ "name": "Cure Light Wounds",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch; one creature. Heals 1d8 HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage (Cause Light Wounds only)",
+  "damage": "1d8 + min(@cl, 5)",
+  "damageType": "healing",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 45,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

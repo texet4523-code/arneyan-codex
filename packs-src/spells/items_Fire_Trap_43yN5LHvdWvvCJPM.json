@@ -1,0 +1,53 @@
+{
+ "_id": "43yN5LHvdWvvCJPM",
+ "_key": "!items!43yN5LHvdWvvCJPM",
+ "name": "Fire Trap",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one closable object (door, chest, book). When anyone other than you opens it, it explodes in a 5ft radius for 1d4 + 1 per level fire damage (max 1d4+15); Reflex halves. It lasts until triggered and is found and disarmed by a Search check vs spell DC. Cannot be triggered by nonliving creatures. Material: gold dust worth 25 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "5ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "1d4 + min(@cl, 15)",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "circle",
+   "size": 5,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 209,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

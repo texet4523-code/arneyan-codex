@@ -1,0 +1,134 @@
+{
+ "_id": "pUTQBrSdxqlmqF0s",
+ "_key": "!items!pUTQBrSdxqlmqF0s",
+ "name": "Called Shot (Archer)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Declare before rolling, and take Disadvantage on the attack roll to aim for a specific location. Only one arrow a round can be a called shot, and its save is against your Class Save DC.</strong></li><li><strong>Head: </strong>Fortitude save or stunned 1 round. A creature that saves against, or recovers from, your Head shot is immune to your Head shots for 1 minute</li><li><strong>Arm: </strong>Fortitude save or drops what's held</li><li><strong>Leg: </strong>Fortitude save or movement halved 1 round</li><li>From 10th level: no longer requires disadvantage.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "fort",
+  "dc": null,
+  "damage": "",
+  "level": 7,
+  "className": "Archer",
+  "activities": [
+   {
+    "name": "Head",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Arm",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "On a hit the target saves or drops what it is holding.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Leg",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "On a hit the target saves or has its movement halved for 1 round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Called Shot: Head",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "stunned"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Called Shot: Leg",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

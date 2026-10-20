@@ -1,0 +1,80 @@
+{
+ "_id": "mkPuEoZ3iLHnMOCR",
+ "_key": "!items!mkPuEoZ3iLHnMOCR",
+ "name": "Colour Spray",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>15ft cone. Creatures in the cone lose sight by Level: Level 2 or lower fall Unconscious for 2d4 rounds; Level 3–4 are Blinded for 1d4 rounds; Level 5 or higher are Stunned for 1 round. Will negates. Sightless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "15ft cone",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 15,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Colour Spray: Unconscious",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "unconscious"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Colour Spray: Blinded",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Colour Spray: Stunned",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "stunned"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 41,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

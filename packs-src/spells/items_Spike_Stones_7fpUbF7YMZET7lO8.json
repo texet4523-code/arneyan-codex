@@ -1,0 +1,51 @@
+{
+ "_id": "7fpUbF7YMZET7lO8",
+ "_key": "!items!7fpUbF7YMZET7lO8",
+ "name": "Spike Stones",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 120ft; 20ft-radius. Rocky ground sprouts spikes for 1 hour per level; it is difficult terrain. A creature that moves through or starts its turn in the area takes 1d8 piercing damage per 10ft moved (minimum 1d8); Reflex halves. Hidden spikes are found with a check vs spell DC.</p><p class=\"arn-note\">The damage button rolls one 10ft of movement: 1d8 for each 10ft moved (at least 1d8).</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "1d8",
+  "damageType": "piercing",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "600*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 232,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

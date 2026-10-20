@@ -1,0 +1,65 @@
+{
+ "_id": "gTkzrpfa1UMSNtWe",
+ "_key": "!items!gTkzrpfa1UMSNtWe",
+ "name": "Halfling",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Small • Speed 25ft • Darkvision None • +2 Dex / +1 Cha, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Lucky:</strong> on a natural 1 (attack, ability check, or save), reroll and must take the new result, up to 3 times per session. A Halfling who takes the Lucky feat has 4 in all.</li><li><strong>Nimble:</strong> can move through the space of any larger creature.</li><li><strong>Advantage</strong> on checks related to farming, foraging, or identifying plants.</li><li><strong>Brave Heart:</strong> 1/long rest, before you roll a save, gain Advantage on it (1 Luck for an extra use).</li><li><strong>Weapon training:</strong> sling, shortsword, dagger, handaxe.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "small",
+  "speed": 25,
+  "vision": "",
+  "attributes": "+2 Dex / +1 Cha, −1 Str",
+  "bonuses": {
+   "dex": 2,
+   "cha": 1,
+   "str": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Lucky",
+    "text": "on a natural 1 (attack, ability check, or save), reroll and must take the new result, up to 3 times per session. A Halfling who takes the Lucky feat has 4 in all."
+   },
+   {
+    "name": "Nimble",
+    "text": "can move through the space of any larger creature."
+   },
+   {
+    "name": "Advantage on checks related to farming",
+    "text": "Advantage on checks related to farming, foraging, or identifying plants."
+   },
+   {
+    "name": "Brave Heart",
+    "text": "1/long rest, before you roll a save, gain Advantage on it (1 Luck for an extra use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "sling, shortsword, dagger, handaxe."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "farming, foraging or identifying plants",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,75 @@
+{
+ "_id": "uSTUZxOJHdvFNgWR",
+ "_key": "!items!uSTUZxOJHdvFNgWR",
+ "name": "Exhort Greatness",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Once per day (twice from 15th), inspire one creature with greatness</strong> — they have Advantage on their first attack roll each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die.</li><li>Add their Constitution modifier to each roll</li><li>The creature must hear the Bard and stay within 30ft</li><li>Lasts 1 minute plus 1 round per level beyond 9th</li><li>For every 2 levels beyond 9th, one additional creature can be inspired simultaneously</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 9,
+  "className": "Bard",
+  "activities": [
+   {
+    "name": "Exhort Greatness",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "One creature within 30ft gains Advantage on its first attack each round and temporary HP equal to two rolls of its Hit Die plus its Constitution modifier on each.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Exhorted",
+    "target": "target",
+    "rounds": "@cl+1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

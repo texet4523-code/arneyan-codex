@@ -1,0 +1,45 @@
+{
+ "_id": "fM70V2VFSPq4VMdR",
+ "_key": "!items!fM70V2VFSPq4VMdR",
+ "name": "Deity: The Raven Queen (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to 1 hour.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (The Raven Queen)",
+    "level": 1,
+    "description": "<p>Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to 1 hour.</p><p><strong>Favoured weapon:</strong> Scythe</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "The Raven Queen: immune to death effects.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 15,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

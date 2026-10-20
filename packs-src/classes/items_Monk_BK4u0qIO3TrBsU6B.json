@@ -1,0 +1,131 @@
+{
+ "_id": "BK4u0qIO3TrBsU6B",
+ "_key": "!items!BK4u0qIO3TrBsU6B",
+ "name": "Monk",
+ "type": "class",
+ "img": "systems/arneyan/assets/classes/Monk.webp",
+ "system": {
+  "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Wisdom / Dexterity</td></tr><tr><td>Hit Die</td><td>d10</td></tr><tr><td>HP beyond 10th</td><td>+3 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★★☆ Complex</td></tr><tr><td>Weapons</td><td>Aclis, blowpipe, bolas, bows, brass knuckles, cat-o-nine-tails, cestus, cleaver, club, dagger, dart, dirk, falchion, hafted hook, hand axe, hatchet, hook sword, javelin, katar, knife, light flail, light mace, broadsword, polearms, sap, sickle, scimitar, scythe, sling, spear, spiked gauntlet, staff, whip</td></tr><tr><td>Armour</td><td>None — the monk relies entirely on speed, training, and body control for defence. Armour or a shield replaces the monk's table AC and switches off Parrying Stance and the Deflect abilities</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr><tr><td>Note</td><td>A monk over the carrying limit loses Fast Movement and moves at 30ft, reduced as normal for being over the limit.</td></tr></tbody></table><h2>Monk Special Abilities Table</h2><p>This table tracks the five values that scale continuously with level — Armour Class, primary/secondary/tertiary unarmed attack damage, and movement speed. Your AC is the table value; Dexterity does not add.</p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>AC</th><th>Primary</th><th>Secondary</th><th>Tertiary</th><th>Move</th></tr></thead><tbody><tr><td>1</td><td>13</td><td>1d4</td><td>—</td><td>—</td><td>35ft</td></tr><tr><td>2</td><td>14</td><td>1d6</td><td>—</td><td>—</td><td>35ft</td></tr><tr><td>3</td><td>14</td><td>1d6</td><td>—</td><td>—</td><td>40ft</td></tr><tr><td>4</td><td>15</td><td>1d8</td><td>—</td><td>—</td><td>40ft</td></tr><tr><td>5</td><td>15</td><td>1d8</td><td>—</td><td>—</td><td>40ft</td></tr><tr><td>6</td><td>15</td><td>1d8</td><td>1d4</td><td>—</td><td>50ft</td></tr><tr><td>7</td><td>16</td><td>1d10</td><td>1d4</td><td>—</td><td>50ft</td></tr><tr><td>8</td><td>16</td><td>1d10</td><td>1d4</td><td>—</td><td>50ft</td></tr><tr><td>9</td><td>16</td><td>1d10</td><td>1d6</td><td>—</td><td>50ft</td></tr><tr><td>10</td><td>16</td><td>1d10</td><td>1d6</td><td>—</td><td>60ft</td></tr><tr><td>11</td><td>17</td><td>1d10</td><td>1d6</td><td>—</td><td>60ft</td></tr><tr><td>12</td><td>17</td><td>1d10</td><td>1d6</td><td>—</td><td>60ft</td></tr><tr><td>13</td><td>17</td><td>1d10</td><td>1d8</td><td>—</td><td>60ft</td></tr><tr><td>14</td><td>17</td><td>1d10</td><td>1d8</td><td>—</td><td>60ft</td></tr><tr><td>15</td><td>18</td><td>1d10</td><td>1d8</td><td>—</td><td>60ft</td></tr><tr><td>16</td><td>18</td><td>1d10</td><td>1d8</td><td>1d4</td><td>60ft</td></tr><tr><td>17</td><td>18</td><td>1d10</td><td>1d8</td><td>1d4</td><td>60ft</td></tr><tr><td>18</td><td>18</td><td>1d10</td><td>1d10</td><td>1d4</td><td>60ft</td></tr><tr><td>19</td><td>18</td><td>1d10</td><td>1d10</td><td>1d6</td><td>60ft</td></tr><tr><td>20</td><td>18</td><td>1d10</td><td>1d10</td><td>1d6</td><td>60ft</td></tr><tr><td>21</td><td>19</td><td>1d10</td><td>1d10</td><td>1d6</td><td>60ft</td></tr><tr><td>22</td><td>19</td><td>1d10</td><td>1d10</td><td>1d8</td><td>60ft</td></tr><tr><td>23</td><td>19</td><td>1d10</td><td>1d10</td><td>1d8</td><td>60ft</td></tr><tr><td>24</td><td>19</td><td>1d10</td><td>1d10</td><td>1d8</td><td>60ft</td></tr></tbody></table><h2>Monk Progression Table</h2><p><em>These values apply from the listed level until the next row. Iron Body and Iron Mind are save bonuses; Iron Fists shows when your unarmed attacks count as magic; Slow Fall is the fall distance ignored; Deflect Missiles is the number of attempts per round.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Iron Body</th><th>Iron Mind</th><th>Iron Fists</th><th>Slow Fall</th><th>Deflect Missiles</th></tr></thead><tbody><tr><td>1</td><td>+1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2</td><td>+1</td><td>—</td><td>—</td><td>—</td><td>1 per round</td></tr><tr><td>3</td><td>+2</td><td>—</td><td>Magic</td><td>—</td><td>1</td></tr><tr><td>4</td><td>+2</td><td>—</td><td>Magic</td><td>20ft</td><td>1</td></tr><tr><td>5</td><td>+2</td><td>—</td><td>Magic</td><td>20ft</td><td>1</td></tr><tr><td>6</td><td>+3</td><td>—</td><td>Magic</td><td>25ft</td><td>2</td></tr><tr><td>8</td><td>+3</td><td>—</td><td>Magic</td><td>25ft</td><td>2</td></tr><tr><td>9</td><td>+3</td><td>+3</td><td>Magic</td><td>30ft</td><td>2</td></tr><tr><td>10</td><td>+4</td><td>+3</td><td>Magic</td><td>30ft</td><td>2</td></tr><tr><td>11</td><td>+4</td><td>+4</td><td>Magic</td><td>30ft</td><td>3</td></tr><tr><td>12</td><td>+4</td><td>+4</td><td>Magic</td><td>30ft</td><td>3</td></tr><tr><td>13</td><td>+4</td><td>+4</td><td>Magic</td><td>35ft</td><td>3</td></tr><tr><td>14</td><td>+4</td><td>+5</td><td>Magic</td><td>35ft</td><td>3</td></tr><tr><td>15</td><td>+5</td><td>+5</td><td>Magic</td><td>35ft</td><td>3</td></tr><tr><td>16</td><td>+5</td><td>+5</td><td>Magic</td><td>35ft</td><td>4</td></tr><tr><td>17</td><td>+5</td><td>+5</td><td>Magic</td><td>35ft</td><td>4</td></tr><tr><td>18</td><td>+5</td><td>+5</td><td>Magic</td><td>40ft</td><td>4</td></tr><tr><td>20</td><td>+5</td><td>+5</td><td>Magic</td><td>40ft</td><td>5</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Fast Movement, Iron Discipline, Stun Attack, Parrying Stance, Hand-to-Hand Combat</td></tr><tr><td>2</td><td>Deflect Missiles</td></tr><tr><td>3</td><td>Iron Fists</td></tr><tr><td>4</td><td>Slow Fall</td></tr><tr><td>6</td><td>Ascetic Recovery, Second unarmed attack</td></tr><tr><td>9</td><td>Iron Mind</td></tr><tr><td>10</td><td>Death Strike</td></tr><tr><td>13</td><td>Deflect Blow</td></tr><tr><td>15</td><td>+1 Wisdom</td></tr><tr><td>16</td><td>Third unarmed attack</td></tr><tr><td>17</td><td>Catch Weapon</td></tr><tr><td>18</td><td>Quick Reaction (+1 initiative)</td></tr><tr><td>20</td><td>Weapon Mastery, Body of Iron Made Whole</td></tr><tr><td>24</td><td>Quick Reaction (Improved), Untouchable</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Fast Movement</h4><ul><li><strong>Effect: </strong>Monk moves at the rate shown in the table above. Being over the carrying limit removes Fast Movement and reduces this to 30ft.</li></ul><h4>Iron Discipline</h4><ul><li><strong>Effect: </strong>Bonus to saving throws, shown in the Monk Progression Table. Iron Body applies from 1st level against disease, poison, paralysis, polymorph, petrification, and death attacks. Iron Mind applies from 9th level against confusion, charm, fear, and mind-affecting spells.</li></ul><h4>Stun Attack</h4><ul><li><strong>Effect: </strong>Declare before making the attack roll. On a hit, the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). A creature that saves cannot be stunned by your Stun Attack again until the end of the encounter. Deals normal unarmed damage.</li><li>Usable once per round, limited to once per level per day — a missed attack counts against the daily limit</li><li>First stun attempt must be a primary attack</li></ul><h4>Parrying Stance</h4><ul><li><strong>Effect: </strong>While unarmed and unarmoured, once per round when struck in melee, add your Wisdom modifier to your AC against that single attack, applied after the attacker rolls.</li></ul><h4>Hand-to-Hand Combat</h4><ul><li><strong>Effect: </strong>See the table above for unarmed damage by level. Your unarmed attacks use Strength or Dexterity (your choice). At 6th level you gain a second unarmed attack, and at 16th a third, whenever you use your action to attack (the Secondary and Tertiary columns). They are rolled normally, are not off-hand attacks, and stack with Flowing Strikes and Haste. A Monk never gains Extra Attack.</li><li>The monk has Advantage on all overbearing and grappling attacks</li><li>The monk may choose whether a successful strike deals normal damage or subdual damage</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Deflect Missiles (Dexterity)</h4><ul><li><strong>Effect: </strong>Up to the attempts per round shown in the Monk Progression Table (these are not reactions and leave your reaction free, but you cannot deflect while you cannot take reactions, such as when surprised or Incapacitated), when hit by a nonmagical ranged weapon (arrows, axes, bolas, bolts, clubs, daggers, darts, hammers, javelins, nets, rocks, spears), make a Dexterity check (d20 + Dexterity modifier) against the attack roll to deflect it entirely (no damage). Must have at least one free hand.</li><li><strong>Scales: </strong>once per round at 2nd level, up to five times per round at 20th — see the Monk Progression Table</li><li>Cannot use against siege weapons</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Iron Fists</h4><ul><li><strong>Effect: </strong>Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. They gain no bonus to hit or damage.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Slow Fall</h4><ul><li><strong>Effect: </strong>If within 10ft of a vertical surface while falling, use it to slow descent — treat the fall as if it were 20ft shorter.</li><li>Reduction improves with level — see the Monk Progression Table (20ft at 4th, up to 40ft at 18th)</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Ascetic Recovery</h4><ul><li><strong>Effect: </strong>Feign Death: slow vital functions until appearing dead. Maintain the state for minutes equal to character level.</li><li>Fast Healing: Once per day, after a long rest, regain 1 HP per Monk level.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Death Strike</h4><ul><li><strong>Effect: </strong>Once per week, declare before the attack roll. The monk's level must be higher than the target's Level. On a hit that deals damage, the target must make a Fortitude save against your Class Save DC or die instantly.</li><li>A 12th level monk may delay the death — the target dies at any point the monk chooses within rounds equal to monk's level, or the monk can release the sentence with a successful touch attack instead</li><li>The death strike has no effect on undead, oozes, elementals, or creatures that magic weapons cannot harm</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Deflect Blow (Dexterity)</h4><ul><li><strong>Effect: </strong>When struck in melee, make a Dexterity check (d20 + Dexterity modifier) against the attacker's attack roll. On success, deflect the blow entirely. You have the same number of attempts per round as Deflect Missiles (see the Monk Progression Table); each use spends one of those attempts.</li><li>Does not work against ranged attacks, spells, or breath weapons</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Wisdom Bonus: permanent +1 Wisdom</strong></li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Catch Weapon (Dexterity)</h4><ul><li><strong>Effect: Once per round, when struck in melee, attempt to catch the weapon (not a reaction, but unusable while you cannot take reactions).</strong> Make a Dexterity check (d20 + Dexterity modifier) against the attacker's attack roll. On success, the monk holds whatever the opponent is wielding (or catches it mid-air).</li><li>The opponent may attempt to wrest it back with a Strength check; the monk uses Dexterity</li><li>The wielder may release the weapon at any time</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Quick Reaction: </strong>+1 to initiative rolls</li></ul><h3 class=\"arn-level\">20th Level</h3><ul><li><strong>Body of Iron Made Whole: </strong>Once per day, at the start of your turn, remove all conditions currently affecting the Monk (stunned, paralysed, poisoned, feared, charmed, etc.) and heal 4d8 HP. Using this ability does not cost an action and can be used even while incapacitated.</li></ul><h4>Weapon Mastery</h4><ul><li><strong>Effect: </strong>Choose one weapon to master — gain +1 damage and +1 to attack rolls while wielding it, and once per round you may reroll one missed attack roll with it. The weapon becomes an extension of the body: Stun Attack, Deflect Missiles and Death Strike can all be performed with the mastered weapon, extending those abilities' reach and style.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Quick Reaction (Improved)</h4><ul><li><strong>Effect: </strong>+2 to initiative. Once per encounter, take one extra action in the first round — one additional attack or half movement.</li><li><strong>Untouchable: </strong>Once per round, when an attack would hit the Monk, negate it entirely as if the attack had missed — no roll required. Usable a number of times per day equal to your Wisdom modifier (minimum 1). Does not work against attacks the Monk cannot perceive (invisible, surprise, etc.).</li></ul><h2>Feats of Arneyan</h2><p>The Monk may choose from the Martial Path at any Feat level without needing to multiclass.</p><h2>Kits — Monastic Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Monk folder. Drag one onto your character.</p><p>Monk Kits represent the tradition, school, or circumstance that shaped the character's training.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "levels": 1,
+  "hitDie": "d10",
+  "hpBeyond10": 3,
+  "bthProgression": "martial",
+  "keyAbility": "wis",
+  "castingAbility": "",
+  "xpRate": 10,
+  "weapons": "Aclis, blowpipe, bolas, bows, brass knuckles, cat-o-nine-tails, cestus, cleaver, club, dagger, dart, dirk, falchion, hafted hook, hand axe, hatchet, hook sword, javelin, katar, knife, light flail, light mace, broadsword, polearms, sap, sickle, scimitar, scythe, sling, spear, spiked gauntlet, staff, whip",
+  "armour": "None — the monk relies entirely on speed, training, and body control for defence. Armour or a shield replaces the monk's table AC and switches off Parrying Stance and the Deflect abilities",
+  "slotTable": [],
+  "featLevels": [
+   1,
+   2,
+   6,
+   12,
+   16,
+   21
+  ],
+  "featPaths": [
+   "General Path",
+   "Martial Path",
+   "Specialist Path"
+  ],
+  "features": [
+   {
+    "level": 1,
+    "name": "Fast Movement",
+    "uuid": "Compendium.arneyan.class-features.Item.6uf0iFxdTfpRNUBQ"
+   },
+   {
+    "level": 1,
+    "name": "Iron Discipline",
+    "uuid": "Compendium.arneyan.class-features.Item.GOKLoYXjDzcYgpad"
+   },
+   {
+    "level": 1,
+    "name": "Stun Attack",
+    "uuid": "Compendium.arneyan.class-features.Item.EEd86TSRn8QJQNK3"
+   },
+   {
+    "level": 1,
+    "name": "Parrying Stance",
+    "uuid": "Compendium.arneyan.class-features.Item.aYIbwLQ1PRplV0iz"
+   },
+   {
+    "level": 1,
+    "name": "Hand-to-Hand Combat",
+    "uuid": "Compendium.arneyan.class-features.Item.c8cIjNbSP58apy0Z"
+   },
+   {
+    "level": 2,
+    "name": "Deflect Missiles (Dexterity)",
+    "uuid": "Compendium.arneyan.class-features.Item.KmUuGj3VT408VPmk"
+   },
+   {
+    "level": 3,
+    "name": "Iron Fists",
+    "uuid": "Compendium.arneyan.class-features.Item.f1kxBRYRFg1tQ5WI"
+   },
+   {
+    "level": 4,
+    "name": "Slow Fall",
+    "uuid": "Compendium.arneyan.class-features.Item.adu2ZfGJpMj6LTg9"
+   },
+   {
+    "level": 6,
+    "name": "Ascetic Recovery",
+    "uuid": "Compendium.arneyan.class-features.Item.CLPxYJacpBOiXkr8"
+   },
+   {
+    "level": 10,
+    "name": "Death Strike",
+    "uuid": "Compendium.arneyan.class-features.Item.gH5YblxxKBxOtKQK"
+   },
+   {
+    "level": 13,
+    "name": "Deflect Blow (Dexterity)",
+    "uuid": "Compendium.arneyan.class-features.Item.lg2m2jTRaAPPs8ii"
+   },
+   {
+    "level": 15,
+    "name": "Wisdom Bonus",
+    "uuid": "Compendium.arneyan.class-features.Item.nBePPFAKRD3DlY3k"
+   },
+   {
+    "level": 17,
+    "name": "Catch Weapon (Dexterity)",
+    "uuid": "Compendium.arneyan.class-features.Item.XiWikB5r2tsfKW4W"
+   },
+   {
+    "level": 18,
+    "name": "Quick Reaction",
+    "uuid": "Compendium.arneyan.class-features.Item.rvBtNNIjxzyJA17V"
+   },
+   {
+    "level": 20,
+    "name": "Body of Iron Made Whole",
+    "uuid": "Compendium.arneyan.class-features.Item.1UMuzwvgTUdIc8oO"
+   },
+   {
+    "level": 20,
+    "name": "Weapon Mastery",
+    "uuid": "Compendium.arneyan.class-features.Item.g4TX9rfHWpwW1xQm"
+   },
+   {
+    "level": 24,
+    "name": "Quick Reaction (Improved)",
+    "uuid": "Compendium.arneyan.class-features.Item.FNO70JvfLoZanKqm"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

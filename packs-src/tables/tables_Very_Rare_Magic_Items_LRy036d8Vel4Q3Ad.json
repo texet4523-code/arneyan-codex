@@ -1,0 +1,79 @@
+{
+ "_id": "LRy036d8Vel4Q3Ad",
+ "_key": "!tables!LRy036d8Vel4Q3Ad",
+ "name": "Very Rare Magic Items",
+ "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+ "description": "<p>Where a hoard gives an Very Rare item, roll here or choose one. A hoard's items should not all be useless to the party.</p>",
+ "results": [
+  {
+   "_id": "qDO2XjNY1b16P7nC",
+   "_key": "!tables.results!LRy036d8Vel4Q3Ad.qDO2XjNY1b16P7nC",
+   "type": "text",
+   "name": "A weapon +3",
+   "description": "A weapon +3",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 2,
+   "range": [
+    1,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "slAoaUcwtaDwDn7c",
+   "_key": "!tables.results!LRy036d8Vel4Q3Ad.slAoaUcwtaDwDn7c",
+   "type": "text",
+   "name": "Armour +3, or a shield +3",
+   "description": "Armour +3, or a shield +3",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    3,
+    3
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "HHe89l8ycrwwgSVA",
+   "_key": "!tables.results!LRy036d8Vel4Q3Ad.HHe89l8ycrwwgSVA",
+   "type": "text",
+   "name": "A Spell Scroll, one spell of 5th or 6th level",
+   "description": "A Spell Scroll, one spell of 5th or 6th level",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    4,
+    4
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "Qc6rSrrw2K5tuJLI",
+   "_key": "!tables.results!LRy036d8Vel4Q3Ad.Qc6rSrrw2K5tuJLI",
+   "type": "document",
+   "name": "An Iconic Very Rare item",
+   "description": "",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 6,
+   "range": [
+    5,
+    10
+   ],
+   "drawn": false,
+   "flags": {},
+   "documentUuid": "Compendium.arneyan.tables.RollTable.EueVKeF2Sx1O4ojU"
+  }
+ ],
+ "formula": "1d10",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "czgc81NnPVhoPFiz",
+ "sort": 102000,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

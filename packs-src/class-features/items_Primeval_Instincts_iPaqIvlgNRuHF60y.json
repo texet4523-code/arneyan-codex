@@ -1,0 +1,137 @@
+{
+ "_id": "iPaqIvlgNRuHF60y",
+ "_key": "!items!iPaqIvlgNRuHF60y",
+ "name": "Primeval Instincts",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>When not wearing medium or heavy armour and having not fled the challenge, gain +4 to any physical attribute check (Strength, Dexterity, or Constitution) in extreme circumstances once per round.</li><li>Hold your breath twice as long as normal</li><li>Survive extreme temperatures and weather 1 day longer than normal</li><li>Advantage on Fortitude saves made to force march</li><li>Find shelter, food, and water for themselves automatically in any wilderness environment (1d6+2 hours)</li><li>Start a fire in 1d10 minutes by natural means</li><li>Determine true north at will</li><li>Climb typical natural slopes and swim typical rivers without a check — half speed, in light armour or none</li><li>Cannot use the shelter, fire, navigation and climbing abilities above while wearing medium or heavy armour</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Barbarian",
+  "activities": [
+   {
+    "name": "Strength (+4)",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "str",
+    "save": "",
+    "text": "+4 to this Strength check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "4",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Dexterity (+4)",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "+4 to this Dexterity check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "4",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Constitution (+4)",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "con",
+    "save": "",
+    "text": "+4 to this Constitution check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "4",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "check.str",
+    "value": "4",
+    "when": "extreme circumstances, no medium/heavy armour, once per round",
+    "label": ""
+   },
+   {
+    "key": "check.dex",
+    "value": "4",
+    "when": "extreme circumstances, no medium/heavy armour, once per round",
+    "label": ""
+   },
+   {
+    "key": "check.con",
+    "value": "4",
+    "when": "extreme circumstances, no medium/heavy armour, once per round",
+    "label": ""
+   },
+   {
+    "key": "adv.save.fort",
+    "value": "1",
+    "when": "to force march",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

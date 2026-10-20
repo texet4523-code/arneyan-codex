@@ -1,0 +1,409 @@
+{
+ "_id": "0v6iNju9dRdI6EHI",
+ "_key": "!actors!0v6iNju9dRdI6EHI",
+ "name": "Ice Mephit",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d6",
+  "attributes": {
+   "hp": {
+    "value": 10,
+    "max": 10,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, fly 30ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "cold, poison",
+   "vulnerabilities": "fire",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small elemental</em></p><p><strong>GM:</strong> A cruel sprite of frost that loves to lurk in cold caves and snipe from behind icicles.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d4",
+      "type": "cold",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Avqcj6EXnKLdHbE5",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.Avqcj6EXnKLdHbE5",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Frost Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, a 15ft cone. @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[2d6 cold]{2d6 cold damage}, half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 11,
+    "damage": "2d6",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JIq0ZlKQmoWzGV0B",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.JIq0ZlKQmoWzGV0B",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Death Burst",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>When it dies, it shatters into ice. Creatures within 5ft make a @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[1d6 cold]{1d6 cold damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 11,
+    "damage": "1d6",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1PsRZMSvs6xuOKiN",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.1PsRZMSvs6xuOKiN",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>While motionless, it is indistinguishable from a shard of ice.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kRxgYtZHzbVf4y5x",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.kRxgYtZHzbVf4y5x",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>1/day: @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FbNciNlUBTkHsytb",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.FbNciNlUBTkHsytb",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fog Cloud (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere, 10 minutes per level. Creatures inside can see no further than 5ft, and attacks into or out of the fog have Disadvantage. A moderate wind (10 mph) halves the duration; a strong wind (20 mph) disperses it in 1 round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Sorcerer",
+     "Bard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "In Fog Cloud",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "adv.against",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn"
+   },
+   "_id": "Bp5JYqTLvj5Axwkq",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.Bp5JYqTLvj5Axwkq",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to cold and poison. Takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EccKcBm053w8lO6j",
+   "_key": "!actors.items!0v6iNju9dRdI6EHI.EccKcBm053w8lO6j",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Ice Mephit",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

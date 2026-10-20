@@ -1,0 +1,51 @@
+{
+ "_id": "BswNgju0BBPJ5rJn",
+ "_key": "!items!BswNgju0BBPJ5rJn",
+ "name": "Summon Swarm",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 30ft; a swarm of bats, rats or spiders fills a 10ft cube for 1 round per level (concentration). It moves 30ft per round (bats fly) as you direct it. A creature entering or starting its turn in the swarm takes 1d6 damage; Reflex halves. Area fire effects or fire destroy it.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "10ft cube",
+  "components": "V, S, M",
+  "concentration": true,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "1d6",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 134,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

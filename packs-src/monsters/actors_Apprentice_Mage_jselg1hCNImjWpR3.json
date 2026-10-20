@@ -1,0 +1,578 @@
+{
+ "_id": "jselg1hCNImjWpR3",
+ "_key": "!actors!jselg1hCNImjWpR3",
+ "name": "Apprentice Mage",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "2d6",
+  "attributes": {
+   "hp": {
+    "value": 7,
+    "max": 7,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft",
+   "attack": 1,
+   "spellDC": 13,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "Wizard",
+   "level": 3,
+   "slots": [
+    4,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Clever, brittle and quick to bargain.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "w5dyYxI5QHZ2VwGi",
+   "_key": "!actors.items!jselg1hCNImjWpR3.w5dyYxI5QHZ2VwGi",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cantrip bolt",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8",
+    "damageType": "force",
+    "ability": "str",
+    "ranged": true,
+    "range": "60ft",
+    "magic": 0,
+    "attackBonus": 1,
+    "traits": "no save",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RczSXV3Hafstihi7",
+   "_key": "!actors.items!jselg1hCNImjWpR3.RczSXV3Hafstihi7",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Casts as a 3rd-level wizard. Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:13]{Reflex DC 13}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kDYpYQIsxNMwoN6A",
+   "_key": "!actors.items!jselg1hCNImjWpR3.kDYpYQIsxNMwoN6A",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Missile",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 150ft; missiles strike automatically, each dealing 1d4+1 force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals 1d4+1.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus",
+     "Necromancer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "(max(1, min(floor(@cl/2), 5)))d4 + max(1, min(floor(@cl/2), 5))",
+    "damageType": "force",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ"
+   },
+   "_id": "EH0KJQcolcLiDwpY",
+   "_key": "!actors.items!jselg1hCNImjWpR3.EH0KJQcolcLiDwpY",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shield",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Shield",
+      "target": "self",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs ranged attacks (+4 total)",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "spell:Magic Missile",
+        "when": "",
+        "label": "Shield"
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
+   },
+   "_id": "xVuSIkgSule7D2IJ",
+   "_key": "!actors.items!jselg1hCNImjWpR3.xVuSIkgSule7D2IJ",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sleep",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 90ft; 15ft radius. Creatures with a total of 2d4 Levels + CL fall Unconscious for 1d4 minutes (lowest Level first; creatures of Level 5 or higher unaffected); damage wakes a sleeper. Will negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 90ft",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Asleep",
+      "target": "target",
+      "rounds": "10*1d4",
+      "statuses": [
+       "unconscious"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ViN558r8e1voOREg"
+   },
+   "_id": "sI4jEUIvOCx7C0yi",
+   "_key": "!actors.items!jselg1hCNImjWpR3.sI4jEUIvOCx7C0yi",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mirror Image",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9"
+   },
+   "_id": "0rFkIchJMtxgfHJL",
+   "_key": "!actors.items!jselg1hCNImjWpR3.0rFkIchJMtxgfHJL",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Web",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft cube, 10 minutes per level. Creatures inside are Restrained; Reflex negates on first contact. A Restrained creature escapes with a Strength check vs spell DC (1 action). Fire burns the web in 1 round, dealing 2d4 fire damage to creatures inside (Reflex halves).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Not Restrained; half damage if the web burns",
+    "damage": "2d4",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Webbed",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1"
+   },
+   "_id": "3h0zuToPJU7DjHU2",
+   "_key": "!actors.items!jselg1hCNImjWpR3.3h0zuToPJU7DjHU2",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Apprentice Mage",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

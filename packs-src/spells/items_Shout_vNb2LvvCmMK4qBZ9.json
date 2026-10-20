@@ -1,0 +1,64 @@
+{
+ "_id": "vNb2LvvCmMK4qBZ9",
+ "_key": "!items!vNb2LvvCmMK4qBZ9",
+ "name": "Shout",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>30ft cone. Creatures take 1d6 thunder damage per two levels (minimum 2d6, max 8d6) and are Deafened for 2d6 rounds; Fortitude halves the damage and negates the Deafened condition. Unworn, uncarried glass and crystal in the area shatter.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "30ft cone",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage and not Deafened",
+  "damage": "(max(2, min(floor(@cl/2), 8)))d6",
+  "damageType": "thunder",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Deafened",
+    "target": "target",
+    "rounds": "2d6",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 230,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

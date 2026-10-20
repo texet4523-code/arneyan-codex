@@ -1,0 +1,895 @@
+{
+ "_id": "nNhWfF7oaf9QX6EE",
+ "_key": "!actors!nNhWfF7oaf9QX6EE",
+ "name": "Drow Priestess",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "10d8+10",
+  "attributes": {
+   "hp": {
+    "value": 55,
+    "max": 55,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft",
+   "attack": 12,
+   "spellDC": 17,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 7
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 10,
+   "slots": [
+    5,
+    4,
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (elf)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (elf)</em></p><p><strong>GM:</strong> Voice of the spider goddess in her house. Every drow in the room watches her before they watch you.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Scourge",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "4d6",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EZCCnOdpxf7dZPOA",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.EZCCnOdpxf7dZPOA",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Resilient",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Advantage on saves against being @Condition[charmed]{Charmed}; magic cannot put it to sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vECISGHEvLhJpaj6",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.vECISGHEvLhJpaj6",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Casts as a 10th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:17]{Will DC 17}), @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:17]{Will DC 17}), @UUID[Compendium.arneyan.spells.Item.Lxnd4a4buGysnMhG]{silence}, @UUID[Compendium.arneyan.spells.Item.o5jhxf3olkbjT4xA]{spirit guardians}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.YxI3J8Wuol9yozTk]{insect plague}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:17]{Reflex DC 17}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nQPf3eIAgzZluoYa",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.nQPf3eIAgzZluoYa",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature that understands your language. It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). Will negates. Mindless creatures are immune. Harmful commands are ignored.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs"
+   },
+   "_id": "ozYLMZ8HsegV1EWE",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.ozYLMZ8HsegV1EWE",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hold Person",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 120ft. One humanoid is Paralysed for 1 round per level; it repeats the Will save at the end of each of its turns, ending the spell on a success. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Magus, Witch, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Paladin",
+     "Magus",
+     "Witch",
+     "Bard"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Held",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "paralysed"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW"
+   },
+   "_id": "vAzGzXcER65GyyKg",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.vAzGzXcER65GyyKg",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Silence",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 120ft; 15ft-radius sphere centred on a point or object, 2 rounds per level. No sound is made or passes in: verbal spells cannot be cast inside and creatures inside are Deafened. Centred on an unwilling creature, Will negates, otherwise the sphere stays in place.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Illusionist, Bard, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Illusionist",
+     "Bard",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "2*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Silenced",
+      "target": "target",
+      "rounds": "2*@cl",
+      "statuses": [
+       "deafened"
+      ],
+      "rules": [
+       {
+        "key": "note.spell",
+        "value": "Silence: verbal spells cannot be cast inside.",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Lxnd4a4buGysnMhG"
+   },
+   "_id": "pfUqpvSEUASkQTLQ",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.pfUqpvSEUASkQTLQ",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spirit Guardians",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Self; 15ft radius, moves with you, for 1 round per level. Enemies entering or starting their turn there move at half speed and take 1d6 radiant or necrotic damage (you choose when casting); Will halves. Damage is dealt once per round to each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Half",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": true,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Spirit Guardians",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.mult",
+        "value": "0.5",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ],
+    "auras": [
+     {
+      "key": "guardians",
+      "name": "Spirit Guardians",
+      "radius": 15,
+      "who": "enemies",
+      "includeSelf": false,
+      "rounds": "@cl",
+      "rules": [
+       {
+        "key": "speed.mult",
+        "value": "0.5",
+        "label": "Spirit Guardians"
+       }
+      ],
+      "turn": {
+       "save": "will",
+       "dc": 0,
+       "formula": "1d6",
+       "type": "radiant",
+       "half": true,
+       "text": "1d6 radiant or necrotic damage (the caster's choice when casting); Will halves. Once per round."
+      }
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.o5jhxf3olkbjT4xA"
+   },
+   "_id": "8ct2HLmkuaZEs751",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.8ct2HLmkuaZEs751",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Magic",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "A worn or carried magic item is not suppressed",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
+   },
+   "_id": "s1Cca1PKjeoBulfF",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.s1Cca1PKjeoBulfF",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Freedom of Movement",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature for 10 minutes per level. It cannot be Restrained or Paralysed by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Freedom of Movement",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "immune",
+        "value": "condition:restrained",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "condition:paralysed",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG"
+   },
+   "_id": "0KJ06MozmgDVcHsy",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.0KJ06MozmgDVcHsy",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insect Plague",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+   "system": {
+    "description": "<p>Range 360ft; 20ft-radius cloud of biting locusts for 1 round per level. The area is difficult terrain and heavily obscured beyond 5ft. A creature that enters or starts its turn inside takes 2d6 piercing damage; Fortitude halves. Creatures of Level 2 or lower are Frightened while inside (no save).</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid"
+    ],
+    "school": "Divine / Nature",
+    "castingTime": "1 action",
+    "range": "Range 360ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Half",
+    "damage": "2d6",
+    "damageType": "piercing",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Insect Plague",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.YxI3J8Wuol9yozTk"
+   },
+   "_id": "1BFGiMPmS0c056OV",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.1BFGiMPmS0c056OV",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Flame Strike",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 60ft; 10ft-radius, 40ft-high cylinder. Deals 1d6 damage per level (max 12d6), half fire and half radiant; Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 12))d6",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS"
+   },
+   "_id": "R9QEYS6Vy5sITm7v",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.R9QEYS6Vy5sITm7v",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Shape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it becomes a giant spider for up to 1 hour, keeping its HP and mind.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "unsBMlOUt8PnG8PS",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.unsBMlOUt8PnG8PS",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZAdq5yXyHpcmIpeW",
+   "_key": "!actors.items!nNhWfF7oaf9QX6EE.ZAdq5yXyHpcmIpeW",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Drow Priestess",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

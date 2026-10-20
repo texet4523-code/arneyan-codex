@@ -1,0 +1,62 @@
+{
+ "_id": "P63SK4E6c1F8LWqR",
+ "_key": "!items!P63SK4E6c1F8LWqR",
+ "name": "Command Plants",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 120ft; 40ft-radius; 1 minute per level. Normal plants in the area animate: each creature there must make a Reflex save or be Restrained by vines (Strength check vs spell DC frees it; repeat each round). You can order plants to part and open a clear path. Also animates 1 tree per four levels (use the Treant stat block at half HP, speed 10ft, slam 3d6) that fights for you. Reflex negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "40ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 40,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "10*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Vines",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 348,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,52 @@
+{
+ "_id": "gqR6v2J68NH35tsQ",
+ "_key": "!items!gqR6v2J68NH35tsQ",
+ "name": "Melf's Minute Meteors",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 120ft. 1 meteor per level (max 10), divided among creatures you choose. Each target takes 1d4 fire damage per meteor assigned; Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\">The damage button rolls every meteor at one target. Split between targets, each meteor deals 1d4.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 10))d4",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 166,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

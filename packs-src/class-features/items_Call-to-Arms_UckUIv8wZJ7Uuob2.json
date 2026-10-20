@@ -1,0 +1,59 @@
+{
+ "_id": "UckUIv8wZJ7Uuob2",
+ "_key": "!items!UckUIv8wZJ7Uuob2",
+ "name": "Call-to-Arms",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>By establishing a stronghold, attract 2d10 followers of 0-level every month.</li><li>For every 40 followers, a 1st level knight also heeds the call. When 80 followers are gathered, a 5th level knight arrives</li><li><strong>Followers must be paid or they leave</strong> (0-level: 6 gp/month; a knight follower: 40 gp/month per Level)</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 10,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Followers this month",
+    "kind": "roll",
+    "formula": "2d10",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "With a stronghold: 0-level followers who arrive this month. A 1st-level knight per 40 followers; a 5th-level knight at 80. Followers must be paid (0-level 6 gp a month; a knight follower 40 gp a month per Level).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "month",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

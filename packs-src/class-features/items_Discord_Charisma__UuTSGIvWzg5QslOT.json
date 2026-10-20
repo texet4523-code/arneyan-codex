@@ -1,0 +1,49 @@
+{
+ "_id": "UuTSGIvWzg5QslOT",
+ "_key": "!items!UuTSGIvWzg5QslOT",
+ "name": "Discord (Charisma)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>As your action, a sharp verbal jeer or discordant note, usable a number of times per day equal to your Charisma modifier (minimum 1). Target within 30ft makes a Will save or has Disadvantage on its next attack roll.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @cha.mod)"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Bard",
+  "applies": [
+   {
+    "name": "Discord",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

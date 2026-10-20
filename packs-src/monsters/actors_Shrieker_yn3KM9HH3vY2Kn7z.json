@@ -1,0 +1,171 @@
+{
+ "_id": "yn3KM9HH3vY2Kn7z",
+ "_key": "!actors!yn3KM9HH3vY2Kn7z",
+ "name": "Shrieker",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 5,
+   "speed": "0ft",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 30ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Medium plant</em></p><p><strong>GM:</strong> A cave alarm bell. Whatever lives nearby has learned to come running when it screams.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Shriek",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>When bright light or a creature comes within 30ft of it, it shrieks for 1 minute, audible 300ft away.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oWbggaopEBwTiMM6",
+   "_key": "!actors.items!yn3KM9HH3vY2Kn7z.oWbggaopEBwTiMM6",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>While motionless, indistinguishable from an ordinary fungus.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8ggfP67e7WyMmTPk",
+   "_key": "!actors.items!yn3KM9HH3vY2Kn7z.8ggfP67e7WyMmTPk",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Shrieker",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mushroom-gills.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

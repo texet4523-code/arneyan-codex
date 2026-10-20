@@ -1,0 +1,1718 @@
+{
+ "_id": "aj8SGu2MbRvFJveX",
+ "_key": "!actors!aj8SGu2MbRvFJveX",
+ "name": "Tansy Underbough",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Rogue.webp",
+ "folder": "tBwZ4C5ODaLOPlTg",
+ "sort": 200,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 8
+   },
+   "dex": {
+    "value": 18
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 14
+   },
+   "wis": {
+    "value": 12
+   },
+   "cha": {
+    "value": 12
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 8,
+    "max": 8,
+    "temp": 0
+   },
+   "speed": 25
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 3,
+   "sp": 5,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Chaotic Neutral",
+   "deity": "",
+   "size": "small",
+   "languages": "Common, Halfling, Goblin, Thieves' Cant",
+   "biography": "<p><em>The Broken Anvil · Level 1 - The Apprentices · Seat 2, Skirmisher</em></p><p>A sharp-eyed halfling scavenger from the edge of the Red Waste who can vanish behind a cactus and shoot you from behind it. Quick, suspicious and always counting: coins, exits, goblins, and how many sausages are left in the pack. Grew up picking through wrecked caravans on the Waste&#x27;s edge; the Keepers pay on time, and nobody has ever paid Tansy on time.</p><h3>In a fight</h3><p>Stay hidden and shoot from cover for Sneak Attack (+2d6), or creep behind a distracted goblin and Back Attack it with a dagger.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Sneak Attack.</strong> Once per round, against an aware but unsuspecting target within 30ft (60ft in natural terrain, see kit): Advantage on the attack and +1d6 damage (+2d6 with Predator). Unsuspecting = it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you. No stealth check needed. Cannot combine with Back Attack.</p><p><strong>Back Attack.</strong> Once per round. Needs a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters weapon shorter than your arm (your dagger). Advantage on the attack and double the weapon&#x27;s damage dice only (dagger 2d4+4).</p><p><strong>Precise Strikes.</strong> +1 damage on every weapon hit (already in your attack lines).</p><p><strong>Hide and Move Silently.</strong> Normal roll at half speed or less, Disadvantage above half speed, impossible while running or charging. You may Hide while only lightly obscured. You cannot attempt both together until 3rd level. Hide = Dex check against each watcher&#x27;s Wisdom check (or 10 + its Wis mod if it is not looking). Listening through a solid barrier has Disadvantage.</p><p><strong>Rogue Skills.</strong> Climb (Dex). Open Locks (Dex): one try per lock until you gain a level. Pick Pocket (Dex): DC 10 + the target&#x27;s Level. Find/Disable/Set Trap (Int). Decipher Script (Int): 2d8 minutes a page; arcane script is a Hard (DC 15) check and you cannot cast it; never works on divine scrolls.</p><p><strong>Waste-Born Stillness (kit).</strong> Advantage on Hide checks in wilderness or natural terrain, and there your Sneak Attack range is 60ft instead of 30ft.</p><p><strong>Ghost of the Sands (kit).</strong> Advantage on checks to evade tracking in harsh terrain.</p><p><strong>Small.</strong> Speed 25ft, no darkvision. Advantage on Move Silently and stealth checks, and on checks to escape a grapple or Restrained. Disadvantage with Heavy weapons.</p><p><strong>Lucky.</strong> On a natural 1 on an attack, check or save, reroll and take the new result, up to 3 times per session.</p><p><strong>Nimble.</strong> You can move through the space of any larger creature.</p><p><strong>Brave Heart.</strong> Once per long rest, before you roll a save, gain Advantage on it (burn 1 Luck for an extra use).</p><p><strong>Green Thumb.</strong> Advantage on checks about farming, foraging or identifying plants.</p><p><strong>Weapon training.</strong> Sling, shortsword, dagger, handaxe.</p><p><strong>Predator (Specialist, Rogue 1st-level feat).</strong> Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included: 2d6 total).</p><p><strong>Notes.</strong> Speed: 25ft · Initiative: +3 · HP: d6 max (6) + Con mod (+2) = 8. Untrained NWPs are rolled with Disadvantage; everyday checks (notice, climb, intimidate) are plain attribute checks.</p><p><strong>Armour Class on the sheet:</strong> 10 + 3 (Studded Leather, Light) + 3 (Dex, full) = 16</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "aqfBhZg35ArMkbcg",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.aqfBhZg35ArMkbcg",
+   "name": "Rogue",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Rogue.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Intelligence</td></tr><tr><td>Hit Die</td><td>d6</td></tr><tr><td>HP beyond 10th</td><td>+2 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★☆☆☆☆ Simple</td></tr><tr><td>Weapons</td><td>Blowpipe, broadsword, cat-o-nine-tails, cestus, club, dagger, dart, light hammer, hand axe, hand crossbow, javelin, knife, light crossbow, longsword, mace, main gauche, staff, rapier, sap, shortbow, short sword, sickle, sleeve tangler, spiked gauntlet, sling, whip</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>About +1 per 4 levels (+2 at 12th, +5 at 24th)</td></tr><tr><td>Identity</td><td>A skill expert and opportunist: locks, traps, scouting and talk, then a vicious strike from behind when the moment comes.</td></tr></tbody></table><h2>Rogue Progression Table</h2><p><em>These values apply from the listed level until the next row.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Back Attack multiplier</th><th>Sneak Attack damage</th><th>Sixth Sense (surprise)</th></tr></thead><tbody><tr><td>1</td><td>x2</td><td>1d6</td><td>—</td></tr><tr><td>5</td><td>x3</td><td>1d6</td><td>—</td></tr><tr><td>9</td><td>x4</td><td>1d6</td><td>—</td></tr><tr><td>13</td><td>x4</td><td>2d6</td><td>—</td></tr><tr><td>14</td><td>x5</td><td>2d6</td><td>+1</td></tr><tr><td>18</td><td>x5</td><td>3d6</td><td>+2</td></tr><tr><td>20</td><td>x6</td><td>3d6</td><td>+2</td></tr><tr><td>22</td><td>x6</td><td>3d6</td><td>+3</td></tr><tr><td>23</td><td>x6</td><td>4d6</td><td>+3</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Rogue Skills, Back Attack, Sneak Attack, Precise Strikes, Hide and Move Silently</td></tr><tr><td>2</td><td>Cunning Step</td></tr><tr><td>3</td><td>Hide and Move Silently together</td></tr><tr><td>5</td><td>Uncanny Dodge</td></tr><tr><td>7</td><td>Evasion, Extra Attack</td></tr><tr><td>11</td><td>Skill Mastery</td></tr><tr><td>14</td><td>Sixth Sense</td></tr><tr><td>15</td><td>Detect Secret/Concealed Doors, +1 Dexterity</td></tr><tr><td>17</td><td>No fast-movement penalty to Hide or Move Silently</td></tr><tr><td>18</td><td>Quick Reaction (+1 initiative)</td></tr><tr><td>20</td><td>Evasive Manoeuvre</td></tr><tr><td>24</td><td>Quick Reaction (Improved), Unpenalised Hide and Move Silently, Quick Reaction (Improved)</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><ul><li>Cant — a coded thieves' language</li><li><strong>Climb</strong> (Dexterity)</li><li><strong>Decipher Script</strong> (Intelligence): 2d8 minutes per page; arcane script is a Hard check to read (you cannot cast it); never works on divine scrolls</li><li><strong>Open Locks</strong> (Dexterity): one attempt per lock until you gain a level</li><li><strong>Pick Pocket</strong> (Dexterity): DC 10 + the target's Level</li><li><strong>Find/Disable/Set Trap</strong> (Intelligence)</li></ul><h4>Back Attack</h4><ul><li><strong>Effect: </strong>Advantage on the attack roll plus a damage multiplier (double at 1st level, rising to sextuple at 20th — see the Rogue Progression Table). Usable once per round. Requires a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters melee weapon shorter than your arm. Multiply the weapon's damage dice only.</li></ul><h4>Sneak Attack</h4><ul><li><strong>Effect: </strong>Advantage on the attack roll plus a scaling damage die (1d6 at 1st level, rising to 4d6 at 23rd — see the Rogue Progression Table) against an aware-but-unsuspecting target, once per round. Usable at range within 30ft, doesn't require a prior stealth check, can't combine with Back Attack. A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you.</li></ul><h4>Precise Strikes</h4><ul><li><strong>Effect: </strong>Your weapon attacks deal +1 damage per three Rogue levels (minimum +1). This applies to every hit, not only Sneak Attacks.</li></ul><h4>Hide and Move Silently</h4><ul><li><strong>Effect: </strong>Normal roll at half speed or under, disadvantage above half speed, impossible to attempt while running or charging. You may Hide while only lightly obscured.</li><li><strong>Listen: </strong>disadvantage when listening through any solid barrier</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Cunning Step</h4><ul><li><strong>Effect:</strong> Once per round, you may move away from a creature in melee reach without provoking opportunity attacks.</li></ul><h3 class=\"arn-level\">3rd Level</h3><ul><li>Attempting Hide and Move Silently together imposes Disadvantage on both checks, at quarter speed</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Uncanny Dodge</h4><ul><li><strong>Effect:</strong> Once per round, when an attacker you can see hits you, halve the damage.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Evasion</h4><ul><li><strong>Effect:</strong> When you succeed on a Reflex save against an effect that deals half damage on a success, you take none. If you fail, you take half.</li></ul><h4>Extra Attack</h4><ul><li><strong>Effect: </strong>When you use your action to attack, make one additional weapon attack as part of it, with Disadvantage (see Extra attacks in The Arneyan Codex). Sneak Attack still applies to only one attack per round.</li></ul><h3 class=\"arn-level\">11th Level</h3><h4>Skill Mastery</h4><ul><li><strong>Effect:</strong> Treat any d20 roll of 9 or lower as a 10 when using your Rogue Skills.</li></ul><h3 class=\"arn-level\">14th Level</h3><ul><li><strong>Sixth Sense: </strong>+1 to surprise checks (scales to +2 at 18th, +3 at 22nd)</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Detect Secret/Concealed Doors</h4><ul><li><strong>Effect:</strong> Advantage on checks to find secret or concealed doors, plus a free check whenever you pass within 10ft of one.</li><li><strong>Dexterity Bonus: </strong>permanent +1 Dexterity</li></ul><h3 class=\"arn-level\">17th Level</h3><ul><li>The disadvantage from moving fast while hiding or moving silently is removed entirely</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Quick Reaction: </strong>+1 to initiative</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Evasive Manoeuvre</h4><ul><li><strong>Effect: </strong>+4 AC in melee. Cannot combine with ranged attacks or other rogue abilities that round, and cannot be used if surprised.</li></ul><h3 class=\"arn-level\">24th Level</h3><ul><li>Hide and Move Silently are fully unpenalised even while running or charging</li></ul><h4>Quick Reaction (Improved)</h4><ul><li><strong>Effect: </strong>+2 to initiative. Once per encounter, take one extra action in the first round — one additional attack or half movement.</li></ul><h2>Kits — Arneyan Thief Cultures</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Rogue folder. Drag one onto your character.</p><p>Rogue Kits represent the network, upbringing, or tradition that shaped the character's criminal trade.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 1,
+    "hitDie": "d6",
+    "hpBeyond10": 2,
+    "bthProgression": "rogue",
+    "keyAbility": "dex",
+    "castingAbility": "",
+    "xpRate": 8,
+    "weapons": "Blowpipe, broadsword, cat-o-nine-tails, cestus, club, dagger, dart, light hammer, hand axe, hand crossbow, javelin, knife, light crossbow, longsword, mace, main gauche, staff, rapier, sap, shortbow, short sword, sickle, sleeve tangler, spiked gauntlet, sling, whip",
+    "armour": "Light armour. Shields and heavier armour only through training, like any class.",
+    "slotTable": [],
+    "featLevels": [
+     1,
+     2,
+     6,
+     11,
+     16,
+     21
+    ],
+    "featPaths": [
+     "General Path",
+     "Martial Path",
+     "Specialist Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "1st-Level Features",
+      "uuid": "Compendium.arneyan.class-features.Item.YGCVjC9mUfm0216U"
+     },
+     {
+      "level": 1,
+      "name": "Back Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.8qIgZFStG8JBG61j"
+     },
+     {
+      "level": 1,
+      "name": "Sneak Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.ksFXEzB68ifNtFcY"
+     },
+     {
+      "level": 1,
+      "name": "Precise Strikes",
+      "uuid": "Compendium.arneyan.class-features.Item.rYGfw4Teqi4GyXr5"
+     },
+     {
+      "level": 1,
+      "name": "Hide and Move Silently",
+      "uuid": "Compendium.arneyan.class-features.Item.MhqaSk5FKMBNxEHj"
+     },
+     {
+      "level": 2,
+      "name": "Cunning Step",
+      "uuid": "Compendium.arneyan.class-features.Item.MHmKNyPlRcfqIiMR"
+     },
+     {
+      "level": 3,
+      "name": "3rd-Level Features",
+      "uuid": "Compendium.arneyan.class-features.Item.zwfxpS7JHuXSOVmN"
+     },
+     {
+      "level": 5,
+      "name": "Uncanny Dodge",
+      "uuid": "Compendium.arneyan.class-features.Item.vka3ovKtrcrLBBJQ"
+     },
+     {
+      "level": 7,
+      "name": "Evasion",
+      "uuid": "Compendium.arneyan.class-features.Item.nOp0AU9bIH8n7Zb8"
+     },
+     {
+      "level": 7,
+      "name": "Extra Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.wMRvnl9bZQO0tb4l"
+     },
+     {
+      "level": 11,
+      "name": "Skill Mastery",
+      "uuid": "Compendium.arneyan.class-features.Item.mvhTxYNCGTrOcZc1"
+     },
+     {
+      "level": 14,
+      "name": "Sixth Sense",
+      "uuid": "Compendium.arneyan.class-features.Item.7XIiXrDzlNKX9E9m"
+     },
+     {
+      "level": 15,
+      "name": "Detect Secret/Concealed Doors",
+      "uuid": "Compendium.arneyan.class-features.Item.dZzFTzBtz2HPwZYr"
+     },
+     {
+      "level": 17,
+      "name": "17th-Level Features",
+      "uuid": "Compendium.arneyan.class-features.Item.NWBykczmWaN2vdDu"
+     },
+     {
+      "level": 18,
+      "name": "Quick Reaction",
+      "uuid": "Compendium.arneyan.class-features.Item.gKVwolNGBNNiLG6q"
+     },
+     {
+      "level": 20,
+      "name": "Evasive Manoeuvre",
+      "uuid": "Compendium.arneyan.class-features.Item.bThOBmOv1Dz4qCYE"
+     },
+     {
+      "level": 24,
+      "name": "24th-Level Features",
+      "uuid": "Compendium.arneyan.class-features.Item.F1NLweBWzm8qXgeP"
+     },
+     {
+      "level": 24,
+      "name": "Quick Reaction (Improved)",
+      "uuid": "Compendium.arneyan.class-features.Item.H3neu8yzLSGCe5yL"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.dbKDFjMxWQAb4iPL"
+   }
+  },
+  {
+   "_id": "4psz5GUa2TMZPxTS",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.4psz5GUa2TMZPxTS",
+   "name": "1st-Level Features",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li>Cant — a coded thieves' language</li><li><strong>Climb</strong> (Dexterity)</li><li><strong>Decipher Script</strong> (Intelligence): 2d8 minutes per page; arcane script is a Hard check to read (you cannot cast it); never works on divine scrolls</li><li><strong>Open Locks</strong> (Dexterity): one attempt per lock until you gain a level</li><li><strong>Pick Pocket</strong> (Dexterity): DC 10 + the target's Level</li><li><strong>Find/Disable/Set Trap</strong> (Intelligence)</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue",
+    "activities": [
+     {
+      "name": "Climb",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Climb a difficult surface.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Decipher Script",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "int",
+      "save": "",
+      "text": "Decipher writing at 2d8 minutes per page; arcane script is a Hard check and divine scrolls never work.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Open Locks",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Pick a lock; one attempt per lock until you gain a level.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Pick Pocket",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Lift an item from a target against DC 10 + its Level.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Find/Disable/Set Trap",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "int",
+      "save": "",
+      "text": "Find, disable or set a trap.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "aqfBhZg35ArMkbcg",
+     "source": "Compendium.arneyan.class-features.Item.YGCVjC9mUfm0216U"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.YGCVjC9mUfm0216U"
+   }
+  },
+  {
+   "_id": "K8lD4EBpGy1iPTLr",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.K8lD4EBpGy1iPTLr",
+   "name": "Back Attack",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Advantage on the attack roll plus a damage multiplier (double at 1st level, rising to sextuple at 20th — see the Rogue Progression Table). Usable once per round. Requires a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters melee weapon shorter than your arm. Multiply the weapon's damage dice only.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue",
+    "activities": [
+     {
+      "name": "Back Attack",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice; see the Rogue Progression Table.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "Back Attack",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Back Attack: multiply the weapon's damage dice (x2 at 1st, up to x6 at 20th, see Rogue Progression Table).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "aqfBhZg35ArMkbcg",
+     "source": "Compendium.arneyan.class-features.Item.8qIgZFStG8JBG61j"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.8qIgZFStG8JBG61j"
+   }
+  },
+  {
+   "_id": "zSdoEjfWrtX6fLky",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.zSdoEjfWrtX6fLky",
+   "name": "Sneak Attack",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Advantage on the attack roll plus a scaling damage die (1d6 at 1st level, rising to 4d6 at 23rd — see the Rogue Progression Table) against an aware-but-unsuspecting target, once per round. Usable at range within 30ft, doesn't require a prior stealth check, can't combine with Back Attack. A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue",
+    "activities": [
+     {
+      "name": "Sneak Attack",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Rogue Progression Table for the dice.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, or in melee with an ally and not you)",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Sneak Attack: add 1d6 to 4d6 by level (Rogue Progression Table), once per round.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "aqfBhZg35ArMkbcg",
+     "source": "Compendium.arneyan.class-features.Item.ksFXEzB68ifNtFcY"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.ksFXEzB68ifNtFcY"
+   }
+  },
+  {
+   "_id": "931WQEhSbYmMXPhN",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.931WQEhSbYmMXPhN",
+   "name": "Precise Strikes",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Your weapon attacks deal +1 damage per three Rogue levels (minimum +1). This applies to every hit, not only Sneak Attacks.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue",
+    "rules": [
+     {
+      "key": "damage",
+      "value": "+max(1,floor(@cl/3))",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "aqfBhZg35ArMkbcg",
+     "source": "Compendium.arneyan.class-features.Item.rYGfw4Teqi4GyXr5"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.rYGfw4Teqi4GyXr5"
+   }
+  },
+  {
+   "_id": "6E7R6BiwbLRyiJ0B",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.6E7R6BiwbLRyiJ0B",
+   "name": "Hide and Move Silently",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Normal roll at half speed or under, disadvantage above half speed, impossible to attempt while running or charging. You may Hide while only lightly obscured.</li><li><strong>Listen: </strong>disadvantage when listening through any solid barrier</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue",
+    "activities": [
+     {
+      "name": "Hide",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Conceal yourself, even while only lightly obscured; Disadvantage above half speed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Move Silently",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "dex",
+      "save": "",
+      "text": "Move without sound; Disadvantage above half speed and impossible while running or charging.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Listen",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "wis",
+      "save": "",
+      "text": "Listen for sounds; Disadvantage through any solid barrier.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "aqfBhZg35ArMkbcg",
+     "source": "Compendium.arneyan.class-features.Item.MhqaSk5FKMBNxEHj"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.MhqaSk5FKMBNxEHj"
+   }
+  },
+  {
+   "_id": "weXq4TJF96m7CuYu",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.weXq4TJF96m7CuYu",
+   "name": "Halfling",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><strong>Size Small • Speed 25ft • Darkvision None • +2 Dex / +1 Cha, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Lucky:</strong> on a natural 1 (attack, ability check, or save), reroll and must take the new result, up to 3 times per session. A Halfling who takes the Lucky feat has 4 in all.</li><li><strong>Nimble:</strong> can move through the space of any larger creature.</li><li><strong>Advantage</strong> on checks related to farming, foraging, or identifying plants.</li><li><strong>Brave Heart:</strong> 1/long rest, before you roll a save, gain Advantage on it (1 Luck for an extra use).</li><li><strong>Weapon training:</strong> sling, shortsword, dagger, handaxe.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "small",
+    "speed": 25,
+    "vision": "",
+    "attributes": "+2 Dex / +1 Cha, −1 Str",
+    "bonuses": {
+     "dex": 2,
+     "cha": 1,
+     "str": -1
+    },
+    "pickTwo": false,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Lucky",
+      "text": "on a natural 1 (attack, ability check, or save), reroll and must take the new result, up to 3 times per session. A Halfling who takes the Lucky feat has 4 in all."
+     },
+     {
+      "name": "Nimble",
+      "text": "can move through the space of any larger creature."
+     },
+     {
+      "name": "Advantage on checks related to farming",
+      "text": "Advantage on checks related to farming, foraging, or identifying plants."
+     },
+     {
+      "name": "Brave Heart",
+      "text": "1/long rest, before you roll a save, gain Advantage on it (1 Luck for an extra use)."
+     },
+     {
+      "name": "Weapon training",
+      "text": "sling, shortsword, dagger, handaxe."
+     }
+    ],
+    "choice": null,
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "farming, foraging or identifying plants",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.gTkzrpfa1UMSNtWe"
+   }
+  },
+  {
+   "_id": "QBeCwdymmaEAD7v6",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.QBeCwdymmaEAD7v6",
+   "name": "Lucky",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>on a natural 1 (attack, ability check, or save), reroll and must take the new result, up to 3 times per session. A Halfling who takes the Lucky feat has 4 in all.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Halfling",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "weXq4TJF96m7CuYu",
+     "source": "weXq4TJF96m7CuYu.Lucky"
+    }
+   }
+  },
+  {
+   "_id": "IH0haKvaIDplUqm4",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.IH0haKvaIDplUqm4",
+   "name": "Nimble",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>can move through the space of any larger creature.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Halfling",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "weXq4TJF96m7CuYu",
+     "source": "weXq4TJF96m7CuYu.Nimble"
+    }
+   }
+  },
+  {
+   "_id": "hwlhPlCcljUcYDyq",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.hwlhPlCcljUcYDyq",
+   "name": "Advantage on checks related to farming",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on checks related to farming, foraging, or identifying plants.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Halfling",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "weXq4TJF96m7CuYu",
+     "source": "weXq4TJF96m7CuYu.Advantage on checks related to farming"
+    }
+   }
+  },
+  {
+   "_id": "ASGuOTfw9DvymMsb",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.ASGuOTfw9DvymMsb",
+   "name": "Brave Heart",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>1/long rest, before you roll a save, gain Advantage on it (1 Luck for an extra use).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Halfling",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "weXq4TJF96m7CuYu",
+     "source": "weXq4TJF96m7CuYu.Brave Heart"
+    }
+   }
+  },
+  {
+   "_id": "Vwma4AJOG78bujDp",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.Vwma4AJOG78bujDp",
+   "name": "Weapon training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>sling, shortsword, dagger, handaxe.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Halfling",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "weXq4TJF96m7CuYu",
+     "source": "weXq4TJF96m7CuYu.Weapon training"
+    }
+   }
+  },
+  {
+   "_id": "HV421zspYYoejt1o",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.HV421zspYYoejt1o",
+   "name": "Red Waste Skulker (Rogue)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<p>Survival-honed stealth from Tariel's harshest tribal terrain.</p><ul><li><strong>Waste-Born Stillness: </strong>Advantage on Hide checks in wilderness or natural terrain. In natural terrain, your Sneak Attack range is 60ft instead of 30ft.</li><li><strong>Ghost of the Sands: </strong>Advantage on checks evading tracking in harsh terrain.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Rogue",
+    "features": [
+     {
+      "name": "Waste-Born Stillness",
+      "level": 1,
+      "description": "<p>Advantage on Hide checks in wilderness or natural terrain. In natural terrain, your Sneak Attack range is 60ft instead of 30ft.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.skill",
+        "value": "1",
+        "when": "Hide in wilderness or natural terrain",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     },
+     {
+      "name": "Ghost of the Sands",
+      "level": 1,
+      "description": "<p>Advantage on checks evading tracking in harsh terrain.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.check",
+        "value": "1",
+        "when": "evading tracking in harsh terrain",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.xdIZvKbLrMXwMaWW"
+   }
+  },
+  {
+   "_id": "9LnQFwBHfXQk1mhS",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.9LnQFwBHfXQk1mhS",
+   "name": "Waste-Born Stillness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on Hide checks in wilderness or natural terrain. In natural terrain, your Sneak Attack range is 60ft instead of 30ft.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Skulker (Rogue)",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Hide in wilderness or natural terrain",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "HV421zspYYoejt1o",
+     "source": "HV421zspYYoejt1o.0"
+    }
+   }
+  },
+  {
+   "_id": "g4XyJfzGQ6dRx9N3",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.g4XyJfzGQ6dRx9N3",
+   "name": "Ghost of the Sands",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on checks evading tracking in harsh terrain.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Skulker (Rogue)",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "evading tracking in harsh terrain",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "HV421zspYYoejt1o",
+     "source": "HV421zspYYoejt1o.1"
+    }
+   }
+  },
+  {
+   "_id": "L3GEYfZ3RTOdrDoR",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.L3GEYfZ3RTOdrDoR",
+   "name": "Predator",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+   "system": {
+    "description": "<p>You move like something that's done this before — silent, low, patient. And if the strike lands from where they never saw you coming, it lands harder for it. Gain Advantage on Stealth checks. If you have the Sneak Attack ability, your Sneak Attack deals +1d6.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Specialist Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "+1d6",
+      "when": "Sneak Attack",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.m3WsthD1o620CKXN"
+   }
+  },
+  {
+   "_id": "qhFHAsqP4734JuuE",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.qhFHAsqP4734JuuE",
+   "name": "Tumbling",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>Acrobatic falls and rolls</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.hrKjoAlrY54Vpjc0"
+   }
+  },
+  {
+   "_id": "BFJghjEplevJv7L1",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.BFJghjEplevJv7L1",
+   "name": "Rope Use",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>Knots, rigging, and climbing lines</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.XXmXrZ6ncaiH7qNh"
+   }
+  },
+  {
+   "_id": "J9XHvU97QudTtCyf",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.J9XHvU97QudTtCyf",
+   "name": "Set Snares",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>Trapping small game or rigging a tripwire</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.CHSWDsGbgTRbaaT7"
+   }
+  },
+  {
+   "_id": "asaJChXIff6oGwq5",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.asaJChXIff6oGwq5",
+   "name": "Bow, Short",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-high-shot.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "30 gp",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "dex",
+    "ranged": true,
+    "range": "60 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bundle": 0,
+    "ammoType": "arrow",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.qOpIRH4CBWkFDKIa"
+   }
+  },
+  {
+   "_id": "N9wc9gil8TdvvZ3W",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.N9wc9gil8TdvvZ3W",
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-plain-dagger.svg",
+   "system": {
+    "description": "<p>Finesse, Light, Concealable, Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Finesse, Light, Concealable, Thrown",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.TMnikZBI4akkSNb2"
+   }
+  },
+  {
+   "_id": "eAtr4wsks8M5C5Dm",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.eAtr4wsks8M5C5Dm",
+   "name": "Studded Leather",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-leather-armor.svg",
+   "system": {
+    "description": "<p><strong>Light armour.</strong> Flexible</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "25 gp",
+    "equipped": true,
+    "category": "light",
+    "ac": 3,
+    "magic": 0,
+    "traits": "Flexible",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.6NgjBwMgUuI7HHR4"
+   }
+  },
+  {
+   "_id": "zEln90COQcYTZuux",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.zEln90COQcYTZuux",
+   "name": "Arrows",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/ammo-arrow-cluster.svg",
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "effects": [],
+   "system": {
+    "description": "<p>Ammunition, 30 to a slot. 2 gp for 20.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 20,
+    "slots": 1,
+    "bundle": 30,
+    "price": "2 gp for 20",
+    "equipped": false,
+    "inside": "",
+    "identified": true,
+    "unidentifiedName": "",
+    "unidentifiedDescription": "",
+    "ammoType": "arrow",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0,
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.SAnvuBOohQk32a7O"
+   }
+  },
+  {
+   "_id": "L06diNlkacsNwPtZ",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.L06diNlkacsNwPtZ",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "kt3vI21ZKYYmcMw0",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.kt3vI21ZKYYmcMw0",
+   "name": "Caltrops (Bag of 100)",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lockpicks.svg",
+   "system": {
+    "description": "<p>2 gp</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.1oupelHFm3xyDsQH"
+   }
+  },
+  {
+   "_id": "AXN6P7rTiyOMAowR",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.AXN6P7rTiyOMAowR",
+   "name": "Tinderbox",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Flint block, steel bars, tinder, charred cloth (15 sp); flint and steel alone (5 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.5k1Jk2O2RmCETeya"
+   }
+  },
+  {
+   "_id": "MLmETb3q3kUt40rT",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.MLmETb3q3kUt40rT",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "dMPfFEbJNTbDhx9C",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.dMPfFEbJNTbDhx9C",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "GWRTvpMaSQm48ugC",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.GWRTvpMaSQm48ugC",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "MXhDsAda2ScpEUXJ",
+   "_key": "!actors.items!aj8SGu2MbRvFJveX.MXhDsAda2ScpEUXJ",
+   "name": "Iron spikes, 5 (Keepers' kit)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Tansy Underbough",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Rogue.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "The Broken Anvil",
+    "seat": 2,
+    "role": "Skirmisher",
+    "sheet": {
+     "ac": 16,
+     "saves": {
+      "fort": 3,
+      "ref": 4,
+      "will": 1
+     },
+     "bth": 0,
+     "hp": 8
+    }
+   }
+  }
+ }
+}

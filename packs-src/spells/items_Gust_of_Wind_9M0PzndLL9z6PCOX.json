@@ -1,0 +1,64 @@
+{
+ "_id": "9M0PzndLL9z6PCOX",
+ "_key": "!items!9M0PzndLL9z6PCOX",
+ "name": "Gust of Wind",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Self; 60ft line, 10ft wide, instantaneous. Large or smaller creatures in it make a Fortitude save or are knocked Prone and pushed 10ft (Small or smaller: pushed 30ft). Unprotected small flames are extinguished and gases or fog dispersed.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "60ft line, 10ft wide",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "line",
+   "size": 60,
+   "width": 10,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Knocked Prone",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 157,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

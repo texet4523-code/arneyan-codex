@@ -1,0 +1,72 @@
+{
+ "_id": "4JgUpVLSKmAflyjU",
+ "_key": "!items!4JgUpVLSKmAflyjU",
+ "name": "Nalwood Warden (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>A guardian of the Nalwood Forest, answerable to Arikh Evergreen's Cabal.</p><ul><li><strong>Old-Growth Instinct: </strong>Advantage on Conceal checks in dense woodland or old-growth forest. Your first attack from Conceal each encounter in woodland adds your full Combat Marauder bonus, whatever the target's type.</li><li><strong>Cabal Kinship: </strong>Advantage on checks identifying forest creatures, finding paths through the Nalwood, and communicating with Cabal druids.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Old-Growth Instinct",
+    "level": 1,
+    "description": "<p>Advantage on Conceal checks in dense woodland or old-growth forest. Your first attack from Conceal each encounter in woodland adds your full Combat Marauder bonus, whatever the target's type.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Conceal in dense woodland or old-growth forest",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Old-Growth Instinct: first attack from Conceal each encounter in woodland adds the full Combat Marauder bonus.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Cabal Kinship",
+    "level": 1,
+    "description": "<p>Advantage on checks identifying forest creatures, finding paths through the Nalwood, and communicating with Cabal druids.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying forest creatures, finding paths through the Nalwood, communicating with Cabal druids",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

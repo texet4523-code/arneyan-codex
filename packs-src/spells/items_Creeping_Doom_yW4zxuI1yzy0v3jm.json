@@ -1,0 +1,51 @@
+{
+ "_id": "yW4zxuI1yzy0v3jm",
+ "_key": "!items!yW4zxuI1yzy0v3jm",
+ "name": "Creeping Doom",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft. A 20ft-radius swarm of insects appears and moves 30ft per round as you direct (no roll). Creatures in its space at the start of each round take 3d6 piercing damage; Reflex halves. Lasts 1 round per level (max 10) (concentration).</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": true,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "3d6",
+  "damageType": "piercing",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "min(1*@cl, 10)",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 315,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

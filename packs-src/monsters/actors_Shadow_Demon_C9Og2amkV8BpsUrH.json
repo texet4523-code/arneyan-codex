@@ -1,0 +1,246 @@
+{
+ "_id": "C9Og2amkV8BpsUrH",
+ "_key": "!actors!C9Og2amkV8BpsUrH",
+ "name": "Shadow Demon",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "7d8",
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 31,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft, fly 30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 5,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (demon)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "non-magical 10, acid 5, fire 5, lightning 5, thunder 5, cold 5",
+   "immunities": "necrotic, poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fiend (demon)</em></p><p><strong>GM:</strong> A demon that has lost its body and kept its malice. It whispers to the lonely, then eats them.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claws",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "psychic",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7dgfr7LTrOchzW4R",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.7dgfr7LTrOchzW4R",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Can move through creatures and objects as difficult terrain; takes @Damage[1d10 force]{1d10 force damage} if it ends its turn inside an object. Resistance 10 to non-magical weapons, and 5 to acid, fire, lightning, thunder and cold. Immune to necrotic and poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d10",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "fqG3R3EG1gI1You1",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.fqG3R3EG1gI1You1",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Light Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>In bright light it has Disadvantage on attack rolls and its Incorporeal resistances do not apply to radiant damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "phVeNwT9Yeozqs55",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.phVeNwT9Yeozqs55",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shadow Stealth",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>While in dim light or darkness, it can Hide as part of its move.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LxGC1rN5IzdicxjZ",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.LxGC1rN5IzdicxjZ",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Shadow Demon",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ghost.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

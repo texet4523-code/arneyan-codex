@@ -1,0 +1,42 @@
+{
+ "_id": "FJCreAGaRhdM5L3X",
+ "_key": "!items!FJCreAGaRhdM5L3X",
+ "name": "Force of Nature",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Gain a +2 bonus to saving throws against spells and magical effects. Magic from the primeval world bends around the Barbarian's raw will.</li><li>Improves to +3 at 19th level</li><li>Improves to +4 at 22nd level</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 16,
+  "className": "Barbarian",
+  "rules": [
+   {
+    "key": "save",
+    "value": "min(4,2+floor((@cl-16)/3))",
+    "when": "vs spells and magical effects",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

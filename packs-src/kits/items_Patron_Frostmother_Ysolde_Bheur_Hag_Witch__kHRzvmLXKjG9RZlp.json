@@ -1,0 +1,213 @@
+{
+ "_id": "kHRzvmLXKjG9RZlp",
+ "_key": "!items!kHRzvmLXKjG9RZlp",
+ "name": "Patron: Frostmother Ysolde (Bheur Hag) (Witch)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
+ "system": {
+  "description": "<p>She comes down from the high passes when the first real cold sets in, and the old villages of the Boldock Wall still leave out food so she passes them by. Some winters she doesn't take the offering. Those are the bad years.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) immunity to natural cold and exhaustion from harsh weather for 24 hours. For the first minute, any creature that hits them in melee takes 1d6 cold damage.</li><li><strong>Patron Curse</strong> (6th): Once per day, force a creature within 30ft to make a Fortitude save or their speed is halved by bone-deep cold for 1 minute, taking 1d6 cold damage at the start of each of their turns while affected.</li><li><strong>Physical Change</strong> (12th): Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air. Resistance 5 to cold damage. You may make an unarmed claw attack dealing 1d6 damage. Once per round when you hit with a Hex, a damaging spell, or this claw attack, you may add 1d6 cold damage to the effect, no additional cost.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Witch",
+  "features": [
+   {
+    "name": "Patron Buff",
+    "level": 1,
+    "description": "<p>Once per day, grant a touched creature (or yourself) immunity to natural cold and exhaustion from harsh weather for 24 hours. For the first minute, any creature that hits them in melee takes 1d6 cold damage.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Frost ward",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per day: a touched creature (or you) is immune to natural cold and harsh-weather exhaustion for 24 hours.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Frost bite (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "cold",
+      "ability": "",
+      "save": "",
+      "text": "For the first minute, a creature that hits the warded one in melee takes this.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   {
+    "name": "Patron Curse",
+    "level": 6,
+    "description": "<p>Once per day, force a creature within 30ft to make a Fortitude save or their speed is halved by bone-deep cold for 1 minute, taking 1d6 cold damage at the start of each of their turns while affected.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "activities": [
+     {
+      "name": "Bone-deep cold",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "Once per day, a creature within 30ft: Fortitude save or its speed is halved for 1 minute, taking 1d6 cold at the start of each of its turns.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Cold each turn (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "cold",
+      "ability": "",
+      "save": "",
+      "text": "At the start of each of the cursed creature's turns.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   {
+    "name": "Physical Change",
+    "level": 12,
+    "description": "<p>Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air. Resistance 5 to cold damage. You may make an unarmed claw attack dealing 1d6 damage. Once per round when you hit with a Hex, a damaging spell, or this claw attack, you may add 1d6 cold damage to the effect, no additional cost.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Claw (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Frost (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "cold",
+      "ability": "",
+      "save": "",
+      "text": "Once per round, when you hit with a Hex, a damaging spell or the claw: +1d6 cold.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "7eTJrVatQU9t4GUY",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

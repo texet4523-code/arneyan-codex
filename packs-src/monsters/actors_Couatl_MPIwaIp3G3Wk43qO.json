@@ -1,0 +1,834 @@
+{
+ "_id": "MPIwaIp3G3Wk43qO",
+ "_key": "!actors!MPIwaIp3G3Wk43qO",
+ "name": "Couatl",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "9d8",
+  "attributes": {
+   "hp": {
+    "value": 40,
+    "max": 40,
+    "temp": 0
+   },
+   "ac": 21,
+   "speed": "30ft, fly 90ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 7,
+   "slots": [
+    5,
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "celestial",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "radiant 5, non-magical 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium celestial</em></p><p><strong>GM:</strong> A feathered serpent that guards ancient places of good. It speaks gently and strikes only with reason.</p>",
+   "treasure": "<p>Treasure type <strong>D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SHYjZNTSSTLNf9KJ",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.SHYjZNTSSTLNf9KJ",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Constrict",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ixv6lvkey3vPNMy6",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.ixv6lvkey3vPNMy6",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shielded Mind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Immune to scrying and to all effects that sense emotions, read thoughts, or detect location.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ati5pEWhpJNrmvMK",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.Ati5pEWhpJNrmvMK",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison Bite",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:15]{Fortitude save DC 15} or is @Condition[poisoned]{Poisoned} for 24 hours and @Condition[unconscious]{Unconscious} while it is @Condition[poisoned]{Poisoned}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "21R8oMKiaReWXtWd",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.21R8oMKiaReWXtWd",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Constrict",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>A Medium or smaller creature hit by the constrict attack is @Condition[restrained]{Restrained} (escape DC 14).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VXSjipUKFvU0lnBJ",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.VXSjipUKFvU0lnBJ",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Casts as a 7th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.UQlLkustRg8BIKev]{cure light wounds}, @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.LK1mn7d62Vbakmqc]{lesser restoration}, @UUID[Compendium.arneyan.spells.Item.A91JjCEXBT93e1Bu]{protection from alignment}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "fPMtoF4COfCUngSl",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.fPMtoF4COfCUngSl",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bless",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 50ft; up to 6 allies; 1 minute. Targets have Advantage on their first attack roll each round and gain +1 to saving throws. Cast reversed (Bane): up to 6 enemies within range have Disadvantage on their first attack roll each round and suffer -1 to saving throws for 1 minute; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 50ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Bane only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Blessed",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Bane (reversed)",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy"
+   },
+   "_id": "Fn58aWx6TzFdRp3b",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.Fn58aWx6TzFdRp3b",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cure Light Wounds",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Heals 1d8 HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Half damage (Cause Light Wounds only)",
+    "damage": "1d8 + min(@cl, 5)",
+    "damageType": "healing",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.UQlLkustRg8BIKev"
+   },
+   "_id": "brOcosXRuRtPybZ0",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.brOcosXRuRtPybZ0",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "LYJ3yfuT7gBt8ZH7",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.LYJ3yfuT7gBt8ZH7",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lesser Restoration",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Restores 1d4 points of one ability score reduced by a spell, poison or disease. Does not restore HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.LK1mn7d62Vbakmqc"
+   },
+   "_id": "8mt27slkbctvuHed",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.8mt27slkbctvuHed",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Protection from Alignment",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature; 1 minute per level. Choose Good, Evil, Law or Chaos: the target gains +2 AC and +2 to saving throws against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Protection from Alignment",
+      "target": "target",
+      "rounds": "10*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs creatures of the chosen alignment",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "2",
+        "when": "vs creatures of the chosen alignment",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.A91JjCEXBT93e1Bu"
+   },
+   "_id": "ufXlHd5qRRzq8Via",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.ufXlHd5qRRzq8Via",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Scrying",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range: any distance on the same plane; 1 minute per level (concentration). Choose a creature or a place you have visited. You see and hear within 10ft of the target; a creature target makes a Will save, with Advantage if you know it only second-hand and Disadvantage if you hold a piece of its body. Will negates. Material: a polished silver mirror worth 250 gp (not consumed).</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Druid",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw"
+   },
+   "_id": "aYUvzgEfx66sKB6w",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.aYUvzgEfx66sKB6w",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Change Shape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>At will, as an action, it assumes any Small or Medium humanoid form, or returns to its true form.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NYuY3Ztfa5cDnN8D",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.NYuY3Ztfa5cDnN8D",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Celestial Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Resistance 5 to radiant damage and against non-magical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PFnIThSGth9urVQK",
+   "_key": "!actors.items!MPIwaIp3G3Wk43qO.PFnIThSGth9urVQK",
+   "effects": [],
+   "flags": {},
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Couatl",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-angel-wings.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

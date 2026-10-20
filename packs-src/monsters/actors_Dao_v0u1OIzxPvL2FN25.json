@@ -1,0 +1,1114 @@
+{
+ "_id": "v0u1OIzxPvL2FN25",
+ "_key": "!actors!v0u1OIzxPvL2FN25",
+ "name": "Dao",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "7d10+35",
+  "attributes": {
+   "hp": {
+    "value": 73,
+    "max": 73,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "30ft, burrow 30ft, fly 30ft",
+   "attack": 9,
+   "spellDC": 14,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison, condition:petrified",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large elemental</em></p><p><strong>GM:</strong> A greedy, bullying genie of earth and stone. It deals in slaves and gems, and believes the two are much the same.</p>",
+   "treasure": "<p>Treasure type <strong>F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0rTH9eOisjXjN3Jc",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.0rTH9eOisjXjN3Jc",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Earth Glide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Burrows through earth and stone without leaving a trace.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oPWqcLsw1H7WY7rR",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.oPWqcLsw1H7WY7rR",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sure-Footed",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Advantage on saves against being knocked prone or pushed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3gRjFLxfKhpoTwPM",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.3gRjFLxfKhpoTwPM",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.pp02a4ZXvnuA0OpC]{shape stone or wood}. 3/day each: @UUID[Compendium.arneyan.spells.Item.p3jcvjiR3rjqCCA4]{passwall}, @UUID[Compendium.arneyan.spells.Item.iasZBhcGLkWkRNbP]{move earth}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. 1/day each: @UUID[Compendium.arneyan.spells.Item.gRmo8TYPVyUPlT6B]{summon elemental} (earth only), @UUID[Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN]{gaseous form}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.Fo0Yg6UPKXSfVbOc]{phantasmal killer} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.GTNocygSoiFCD4zq]{wall of stone}. Once a century: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} (for others only).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zVeviH5IOP2SJ6TL",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.zVeviH5IOP2SJ6TL",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "kw9GZiEIsX87hAHC",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.kw9GZiEIsX87hAHC",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Magic (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
+   },
+   "_id": "Jlt6fIb2cglrlwP3",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.Jlt6fIb2cglrlwP3",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shape Stone or Wood (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Touch; one stone or wooden object of up to 10 cubic ft + 1 cubic ft per level. Reshape it into any crude form (doors, handles, passages, idols); permanent. It cannot create items with moving parts or fine detail.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.pp02a4ZXvnuA0OpC"
+   },
+   "_id": "i3NEPwuYZWLRiDlM",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.i3NEPwuYZWLRiDlM",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Passwall (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft. Opens a passage 5ft wide and 8ft high through wood, plaster or stone, 3ft deep plus 1ft per level (max 15ft), for 1 hour. The passage closes if dispelled; creatures inside when it closes are expelled to the nearest open side.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.p3jcvjiR3rjqCCA4"
+   },
+   "_id": "S5b4JxCEDHkNjZOY",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.S5b4JxCEDHkNjZOY",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Move Earth (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 120ft; casting takes 10 minutes. Rearranges loose earth, sand or clay in an area up to 750 sq ft (e.g. 30ft by 25ft) to a depth of 10ft, digging trenches or raising hills. Solid rock is unaffected; creatures in the area are moved harmlessly to the new surface.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.iasZBhcGLkWkRNbP"
+   },
+   "_id": "R3BmbDv2hawB1Kza",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.R3BmbDv2hawB1Kza",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tongues (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It speaks and understands any language for 10 minutes per level. Cast reversed (Babble): Range 30ft; one creature cannot speak or understand any language (and cannot cast verbal spells) for 1 minute per level; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Babble only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs"
+   },
+   "_id": "Ym9vsapQOsIdXSNx",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.Ym9vsapQOsIdXSNx",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Summon Elemental (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range 60ft; summons one elemental (air, earth, fire or water) of Level 10 or lower, with its stat block from Monsters &amp; Treasure. It obeys you for 1 minute per level, then departs; if you are Incapacitated it attacks the nearest creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.gRmo8TYPVyUPlT6B"
+   },
+   "_id": "c42iKTztOZmi6oR2",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.c42iKTztOZmi6oR2",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Gaseous Form (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one willing creature. For 2 minutes per level it becomes insubstantial vapour: immune to nonmagical weapons, flies at half its normal speed, and can pass through cracks. It cannot attack, cast or use items; a strong wind can push it 30ft.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Gaseous Form",
+      "target": "target",
+      "rounds": "20*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "no.cast",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "speed.mult",
+        "value": "0.5",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN"
+   },
+   "_id": "MpbzjjzGZjb1Dm6g",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.MpbzjjzGZjb1Dm6g",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisibility (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Magus",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Invisible",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
+   },
+   "_id": "dhVClfglCPRUFfCq",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.dhVClfglCPRUFfCq",
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Phantasmal Killer (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature sees its worst fear. Will negates. On a failed save it must make a Fortitude save: failure reduces it to 0 HP from fright (a player character is unconscious but stable; a monster dies, as at 0 HP); success deals 3d6 psychic damage. Mindless creatures and creatures immune to fear are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Illusionist",
+     "Necromancer"
+    ],
+    "school": "Illusion",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (on a failure it makes a Fortitude save: failure drops it to 0 HP, success takes 3d6 psychic damage)",
+    "damage": "3d6",
+    "damageType": "psychic",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Fo0Yg6UPKXSfVbOc"
+   },
+   "_id": "YgxHXHImnMDqxccA",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.YgxHXHImnMDqxccA",
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "PditAcaE8kdCmHtn",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.PditAcaE8kdCmHtn",
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wall of Stone (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; up to one 10ft by 10ft panel per two levels, 6 inches thick, shaped as you choose, permanent. Each panel has AC 15 and 90 HP. Creatures in the wall's space are pushed to the nearer side.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.GTNocygSoiFCD4zq"
+   },
+   "_id": "KH88zflqFohvtkeA",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.KH88zflqFohvtkeA",
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wish (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Cast as a spell: duplicates any spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies. Cast as a Ritual (no slot; takes 1 hour; consumes 25,000 gp of components; you gain 2 levels of Exhaustion): shape reality by choosing one effect: raise one attribute of one creature by 1 permanently (once per creature); return a dead creature to life as True Resurrection, with no body or time limit needed; end any curse, disease, affliction, ability loss or Exhaustion; free a creature from Imprisonment, Temporal Stasis, Maze or Trap the Soul; create one nonmagical object worth up to 25,000 gp; or transport up to 8 creatures anywhere on any plane. Any other effect must be approved by the GM before the ritual begins; it cannot kill a creature outright or grant levels, and the GM names its cost up front.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 9,
+    "className": "Wizard",
+    "classes": [
+     "Wizard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Wish (ritual cost)",
+      "target": "self",
+      "rounds": "0",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "exhaustion",
+        "value": "2",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv"
+   },
+   "_id": "oFGw8UxxvBqayzR9",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.oFGw8UxxvBqayzR9",
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Immune to poison. Cannot be @Condition[petrified]{Petrified}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DorXkd4QTMOkuK2a",
+   "_key": "!actors.items!v0u1OIzxPvL2FN25.DorXkd4QTMOkuK2a",
+   "effects": [],
+   "flags": {},
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Dao",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fire-silhouette.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

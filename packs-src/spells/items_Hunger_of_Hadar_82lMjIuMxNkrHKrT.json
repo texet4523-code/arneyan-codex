@@ -1,0 +1,69 @@
+{
+ "_id": "82lMjIuMxNkrHKrT",
+ "_key": "!items!82lMjIuMxNkrHKrT",
+ "name": "Hunger of Hadar",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 150ft; 20ft-radius sphere of cold darkness for 1 round per level. Creatures inside are Blinded and move at half speed; those starting their turn inside take 1d6 cold damage; those ending it inside take 1d6 acid damage, Reflex negates the acid.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Warlock",
+  "classes": [
+   "Warlock"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 150ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Full damage from the cold; no acid damage at the end of its turn",
+  "damage": "1d6",
+  "damageType": "cold",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Hunger of Hadar",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 159,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

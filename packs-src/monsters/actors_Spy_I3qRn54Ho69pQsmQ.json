@@ -1,0 +1,247 @@
+{
+ "_id": "I3qRn54Ho69pQsmQ",
+ "_key": "!actors!I3qRn54Ho69pQsmQ",
+ "name": "Spy",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Would rather steal the secret than a purse. It will sell you out for a better offer.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Shortsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ss8k79WdhAwVQ5SH",
+   "_key": "!actors.items!I3qRn54Ho69pQsmQ.ss8k79WdhAwVQ5SH",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hand crossbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "30ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5Vm6nQlJVGT8gHdF",
+   "_key": "!actors.items!I3qRn54Ho69pQsmQ.5Vm6nQlJVGT8gHdF",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sneak Attack",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>Once per round, +2d6 damage on a hit if the target is unaware or an ally of the spy is within 5ft of it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "O4uHPR0pfJrlGmiW",
+   "_key": "!actors.items!I3qRn54Ho69pQsmQ.O4uHPR0pfJrlGmiW",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cunning Action",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>As part of its movement, it may hide or disengage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MCGQzf2vxht6GZnd",
+   "_key": "!actors.items!I3qRn54Ho69pQsmQ.MCGQzf2vxht6GZnd",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Spy",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-bandit.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

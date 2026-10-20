@@ -1,0 +1,66 @@
+{
+ "_id": "X6VhKo8j6GufXbbe",
+ "_key": "!items!X6VhKo8j6GufXbbe",
+ "name": "The Gifted Ward (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li>Personally tutored by a single master wizard rather than enrolled in any institution — the deep one-to-one relationship produces a different kind of precision. No lecture hall, no cohort, just a master's direct attention and very high expectations.</li><li><strong>Steady Hand: </strong>Advantage on saves against your own spells' backlash or unintended effects. Once per encounter, you may reroll a failed Fortitude save to keep a spell when damaged while casting.</li><li><strong>Myllnoris Standing: </strong>Advantage on checks navigating Myllnoris's arcane bureaucracy or identifying Myllnoris-made magic items.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Steady Hand",
+    "level": 1,
+    "description": "<p>Advantage on saves against your own spells' backlash or unintended effects. Once per encounter, you may reroll a failed Fortitude save to keep a spell when damaged while casting.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs your own spells' backlash or unintended effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Myllnoris Standing",
+    "level": 1,
+    "description": "<p>Advantage on checks navigating Myllnoris's arcane bureaucracy or identifying Myllnoris-made magic items.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "navigating Myllnoris's arcane bureaucracy or identifying Myllnoris-made magic items",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

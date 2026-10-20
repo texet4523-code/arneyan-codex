@@ -1,0 +1,56 @@
+{
+ "_id": "BMaBYqyABILDjiNj",
+ "_key": "!items!BMaBYqyABILDjiNj",
+ "name": "Beast Master (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li>Not every ranger works alone. Some build a partnership with the wild itself — starting with whatever creature will have them, and eventually earning the trust of things that shouldn't trust anyone.</li><li><strong>Bonded Companion: </strong>Tame and bond with a beast companion that fights and travels alongside you. At 1st level this is a mundane animal appropriate to the terrain (wolf, hawk, boar, etc.), bonded automatically over a few days of feeding and handling — HD equal to half your Ranger level (rounded up). Your companion acts on its own initiative and will attack independently and automatically to defend itself or you whenever either of you is threatened — this costs you nothing. Directing it to attack a specific target or carry out a specific action instead costs your own action. This is the only Ranger kit that can bond with and permanently tame a beast companion this way.</li><li>At 6th level you may attempt to tame a beast-type monster of low power (giant spider, dire wolf, or similar, GM-approved) — this requires a sustained taming attempt (days of exposure and a Wisdom check set by the GM against the creature's HD and temperament) and can fail or provoke the creature into attacking.</li><li>At 10th level you may attempt the same against a genuinely dangerous beast-type monster (a young wyvern, a manticore, or similar apex predator, GM-approved) — the taming attempt is harder still, riskier to attempt, and failure is likely to mean a fight rather than a shrug. If a bonded companion is slain, a replacement of the appropriate tier can be found and a new taming attempt made after a season of searching.</li><li><strong>Beastspeaker: </strong>Advantage on all checks to calm, communicate with, or avoid provoking wild animals and beast-type monsters, including ones far above what you could safely fight. This does not grant control over an unbonded creature — it only means the conversation has a chance.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Bonded Companion",
+    "level": 1,
+    "description": "<p>Tame and bond with a beast companion that fights and travels alongside you. At 1st level this is a mundane animal appropriate to the terrain (wolf, hawk, boar, etc.), bonded automatically over a few days of feeding and handling — HD equal to half your Ranger level (rounded up). Your companion acts on its own initiative and will attack independently and automatically to defend itself or you whenever either of you is threatened — this costs you nothing. Directing it to attack a specific target or carry out a specific action instead costs your own action. This is the only Ranger kit that can bond with and permanently tame a beast companion this way.</p><p>At 6th level you may attempt to tame a beast-type monster of low power (giant spider, dire wolf, or similar, GM-approved) — this requires a sustained taming attempt (days of exposure and a Wisdom check set by the GM against the creature's HD and temperament) and can fail or provoke the creature into attacking.</p><p>At 10th level you may attempt the same against a genuinely dangerous beast-type monster (a young wyvern, a manticore, or similar apex predator, GM-approved) — the taming attempt is harder still, riskier to attempt, and failure is likely to mean a fight rather than a shrug. If a bonded companion is slain, a replacement of the appropriate tier can be found and a new taming attempt made after a season of searching.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Beastspeaker",
+    "level": 1,
+    "description": "<p>Advantage on all checks to calm, communicate with, or avoid provoking wild animals and beast-type monsters, including ones far above what you could safely fight. This does not grant control over an unbonded creature — it only means the conversation has a chance.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to calm, communicate with or avoid provoking wild animals and beast-type monsters",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

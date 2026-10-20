@@ -1,0 +1,42 @@
+{
+ "_id": "OveV0NnyNyjJrScz",
+ "_key": "!items!OveV0NnyNyjJrScz",
+ "name": "School Focus",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Choose one school of magic (see Spellcasting in Arneyan). The save DC of your spells of that school is increased by 1.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Wizard",
+  "rules": [
+   {
+    "key": "spell.dc",
+    "value": "1",
+    "when": "spells of your chosen school",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ZIH0gIdHjvUp1Jp5",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,51 @@
+{
+ "_id": "agMJvaiGamnxmx1i",
+ "_key": "!items!agMJvaiGamnxmx1i",
+ "name": "Sacred Flame",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature you can see. Deals 1d4 radiant damage (+1 die at 5th, 11th and 17th level); Reflex negates. Cover gives no bonus to the save.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damageType": "radiant",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 27,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

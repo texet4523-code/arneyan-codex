@@ -1,0 +1,246 @@
+{
+ "_id": "6rSWSD8EYbeYfSPf",
+ "_key": "!actors!6rSWSD8EYbeYfSPf",
+ "name": "Gelatinous Cube",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-slime.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "4d10",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 3,
+   "speed": "15ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "ooze",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "acid, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large ooze</em></p><p><strong>GM:</strong> Cleans a dungeon corridor floor to wall. Items it has not dissolved lie inside its body.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Pseudopod",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qoFMLuFj5xiuGMg9",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.qoFMLuFj5xiuGMg9",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Engulf",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>As an action, it moves into the space of one Medium or smaller creature. That creature makes a @Check[ref|dc:16]{Reflex save DC 16} or is engulfed and takes @Damage[3d6 acid]{3d6 acid damage} at the start of each of its turns. The creature can be seen inside it, and may escape with a Strength check against DC 16.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 16,
+    "damage": "3d6",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "I8CORuAXOr6fYPyi",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.I8CORuAXOr6fYPyi",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Transparent",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>A creature must pass a Perception check (DC 15) to notice it before it attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Rwg2ra0IQet2gH5S",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.Rwg2ra0IQet2gH5S",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ooze Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Immune to acid, fear and sleep. Not harmed by lightning.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9ToRgPUTj9l5TXg9",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.9ToRgPUTj9l5TXg9",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Gelatinous Cube",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-slime.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

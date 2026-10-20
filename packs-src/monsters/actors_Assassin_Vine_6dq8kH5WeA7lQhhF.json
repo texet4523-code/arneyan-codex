@@ -1,0 +1,246 @@
+{
+ "_id": "6dq8kH5WeA7lQhhF",
+ "_key": "!actors!6dq8kH5WeA7lQhhF",
+ "name": "Assassin Vine",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 4,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "5ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "fire",
+   "senses": "Blindsight 30ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large plant</em></p><p><strong>GM:</strong> Lies in the grass beside a path. It only moves to grab the nearest warm body.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Constrict",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OBgegvR9nRKMb1N0",
+   "_key": "!actors.items!6dq8kH5WeA7lQhhF.OBgegvR9nRKMb1N0",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangling Vines",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>Vines cover a 30ft radius. A creature that starts its turn in the area makes a @Check[ref|dc:13]{Reflex save DC 13} or is @Condition[restrained]{Restrained} until it escapes.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LHJvrfMQ66WFtRY0",
+   "_key": "!actors.items!6dq8kH5WeA7lQhhF.LHJvrfMQ66WFtRY0",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Constrict",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>On a hit, the target is grappled (escape DC 14), and takes 2d6+4 damage at the start of each of its turns while grappled.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XPebixsc94hb5Rip",
+   "_key": "!actors.items!6dq8kH5WeA7lQhhF.XPebixsc94hb5Rip",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Vulnerability",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bandit.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "x1SNPtWfXnloaD1q",
+   "_key": "!actors.items!6dq8kH5WeA7lQhhF.x1SNPtWfXnloaD1q",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Assassin Vine",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-bandit.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

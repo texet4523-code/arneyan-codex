@@ -1,0 +1,44 @@
+{
+ "_id": "pBzXivuU5U1ZhOsT",
+ "_key": "!items!pBzXivuU5U1ZhOsT",
+ "name": "Shield Expert",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>+1 AC while wielding a shield, and add your shield's AC bonus to Reflex saves.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ac",
+    "value": "1",
+    "when": "while wielding a shield",
+    "label": ""
+   },
+   {
+    "key": "note.save",
+    "value": "Shield Expert: add your shield's AC bonus to Reflex saves while wielding it.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,63 @@
+{
+ "_id": "fMGUN32mdJNL0v5F",
+ "_key": "!items!fMGUN32mdJNL0v5F",
+ "name": "Entangle",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 120ft; 25ft-radius area of plants; 1 minute. Plants grasp every creature in the area: Restrained; Reflex negates (success means half speed while in the area). A Restrained creature breaks free with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Druid",
+   "Witch"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "25ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 25,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "10",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Entangled",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 50,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

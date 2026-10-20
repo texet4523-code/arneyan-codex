@@ -1,0 +1,52 @@
+{
+ "_id": "yMVl1ntfx9EL3d52",
+ "_key": "!items!yMVl1ntfx9EL3d52",
+ "name": "Glyph of Warding",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Touch; one surface or object, 5ft across. Inscribe a glyph (powdered diamond and incense, 200 gp, consumed) that triggers when a creature you did not name crosses or opens it, dealing 1d8 per two levels thunder damage (max 5d8) in a 5ft radius; Reflex halves. Lasts until triggered or 1 day per level; found with a Search check vs spell DC.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Paladin"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "5ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(max(1, min(floor(@cl/2), 5)))d8",
+  "damageType": "thunder",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "circle",
+   "size": 5,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 156,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

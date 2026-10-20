@@ -1,0 +1,54 @@
+{
+ "_id": "v704NB8QQqiey8ip",
+ "_key": "!items!v704NB8QQqiey8ip",
+ "name": "Thunderwave",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>15ft cone from you. Creatures take 1d6 thunder damage plus 1 per two levels (max +5) and are pushed 10ft away; Fortitude halves the damage and negates the push. The blast is audible for 300ft.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Druid, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Druid",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "15ft cone",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage and no push",
+  "damage": "1d6 + min(floor(@cl/2), 5)",
+  "damageType": "thunder",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 15,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 86,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

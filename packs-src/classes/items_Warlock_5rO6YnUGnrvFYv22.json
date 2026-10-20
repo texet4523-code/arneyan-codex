@@ -1,0 +1,394 @@
+{
+ "_id": "5rO6YnUGnrvFYv22",
+ "_key": "!items!5rO6YnUGnrvFYv22",
+ "name": "Warlock",
+ "type": "class",
+ "img": "systems/arneyan/assets/classes/Warlock.webp",
+ "system": {
+  "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Charisma</td></tr><tr><td>Hit Die</td><td>d6</td></tr><tr><td>HP beyond 10th</td><td>+2 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Club, dagger, dart, hand crossbow, staff</td></tr><tr><td>Armour</td><td>None</td></tr><tr><td>BtH</td><td>+1 per 6 levels (+2 at 12th, +4 at 24th)</td></tr><tr><td>Spellcasting</td><td>Arcane. Charisma is the casting stat. DC = 10 + half your Warlock level (minimum 1) + Charisma modifier — see Spellcasting in Arneyan for the full formula. No spell attack rolls — all harmful or debuffing spells require a save.</td></tr><tr><td>Path &amp; Kit</td><td>At character creation choose a Path (Infernal, Abyssal, Fey, or Great Old One) and a Kit within it. These define your spell list, summon pool, patron powers, and Dark Gift.</td></tr></tbody></table><h2>Spell Slot Progression</h2><ul><li>Slots are shared between casting path spells and summoning. Spending a slot to summon means it cannot be used to cast that day, and vice versa. Cantrips including Eldritch Blast are at-will and never consume slots. All slots recover on a full rest.</li></ul><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>0</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>Notes</th></tr></thead><tbody><tr><td>1</td><td>At will</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Dark Gift, Eldritch Blast (1d6)</td></tr><tr><td>2</td><td>At will</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Invocation</td></tr><tr><td>3</td><td>At will</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pact Summons (Tier 1)</td></tr><tr><td>4</td><td>At will</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>5</td><td>At will</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Eldritch Blast (1d8), Invocation</td></tr><tr><td>6</td><td>At will</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Patron's Mark</td></tr><tr><td>7</td><td>At will</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>Pact Summons (Tier 2)</td></tr><tr><td>8</td><td>At will</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>9</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>Eldritch Blast (2d6), Invocation</td></tr><tr><td>10</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td></td></tr><tr><td>11</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>Pact Summons (Tier 3)</td></tr><tr><td>12</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>Patron Feature</td></tr><tr><td>13</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td>Eldritch Blast (2d8), Invocation</td></tr><tr><td>14</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>—</td><td></td></tr><tr><td>15</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td>Pact Summons (Tier 4), Dark Harvest, +1 Cha</td></tr><tr><td>16</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>—</td><td></td></tr><tr><td>17</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td>Eldritch Blast (3d6), Invocation</td></tr><tr><td>18</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>—</td><td></td></tr><tr><td>19</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>20</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>Patron Surge, Patron's Whisper</td></tr><tr><td>21</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>22</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>23</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td></td></tr><tr><td>24</td><td>At will</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>Eldritch Master, Eldritch Blast (3d8)</td></tr></tbody></table><ul><li><strong>Bonus Slots: Charisma 13-15 grants one extra 1st level slot. 16-17 grants one extra 2nd level slot. 18+ grants one extra 3rd level slot. Each arrives only once your table gives you slots of that level (see Spellcasting in Arneyan, II).</strong></li></ul><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Eldritch Blast, Spell Use, Dark Gift</td></tr><tr><td>2</td><td>Eldritch Invocations</td></tr><tr><td>3</td><td>Pact Summons</td></tr><tr><td>6</td><td>Patron's Mark</td></tr><tr><td>12</td><td>Patron Feature</td></tr><tr><td>15</td><td>Pact Summons (Tier 4), Dark Harvest, +1 Charisma</td></tr><tr><td>20</td><td>Patron Surge, Patron's Whisper</td></tr><tr><td>24</td><td>Eldritch Master</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Eldritch Blast</h4><ul><li><strong>Effect: </strong>At-will ranged cantrip (60ft range). The target makes a Reflex save (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales: </strong>1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th</li></ul><h4>Spell Use</h4><ul><li><strong>Effect: </strong>Cast arcane spells using your slots. Each time you unlock a slot level you gain two spells of that level: your Path spell (see Patron Paths) and one spell of your choice from the Warlock list in Spellcasting in Arneyan. You may cast any spell you know with any slot of its level or higher. Slots are shared with Pact Summons — see Spell Slot Progression above.</li></ul><h4>Dark Gift</h4><ul><li><strong>Effect: A passive benefit granted by your specific patron Kit. See the Patron Paths section for details. A Dark Gift that adds damage or defence works only while your Warlock level is at least half your character level.</strong></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Eldritch Invocations</h4><ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 5th, 9th, 13th and 17th level. You cannot take the same invocation twice.</li><li><strong>Agonising Blast: </strong>add your Charisma modifier to Eldritch Blast damage.</li><li><strong>Repelling Blast: </strong>a creature of Large size or smaller hit by Eldritch Blast is pushed 10ft.</li><li><strong>Armour of Shadows: </strong>+2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with other unarmoured bonuses of the same kind.</li><li><strong>Fiendish Vigour: </strong>once per day, as part of your action, gain temporary hit points equal to your Warlock level. They last until your next long rest.</li><li><strong>Mask of Many Faces: </strong>cast Change Self at will.</li><li><strong>Devil's Sight: </strong>see normally in darkness, magical or otherwise, to 60ft.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Pact Summons</h4><ul><li><strong>Effect: </strong>Your patron sends a servant. Every summons expends a slot of the creature's tier (Tier 1 = 1st level, Tier 2 = 2nd, Tier 3 = 3rd). A ritual summons takes 10 minutes and lasts 1 hour; a combat summons uses your action and lasts 1 minute. Full stat blocks are in Monsters &amp; Treasure. Tier 1 servants have double the HP and damage dice of their stat blocks, and the table below already shows them doubled.</li><li>The creature does not roll initiative: it acts immediately after you each round, moving and taking one action (all its listed attacks together count as that action). It obeys your spoken commands; with none, it attacks the nearest visible enemy</li><li>One summon active at a time. It departs when its duration ends, when you dismiss it with a word or when slain; a slain summon cannot be called again until you finish a long rest</li><li>If you fall unconscious, your summon only defends itself until you wake or it departs</li></ul><h3 class=\"arn-level\">6th Level</h3><ul><li><strong>Patron's Mark: a minor ability from your patron.</strong> Defined by your Kit</li></ul><h3 class=\"arn-level\">12th Level</h3><ul><li><strong>Patron Feature: </strong>a stronger active ability from your patron. Defined by your Kit</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Pact Summons (Tier 4)</h4><ul><li><strong>Effect: </strong>Your patron's most powerful servant becomes available. Tier 4 summons expend a 5th level slot, whether ritual or combat.</li></ul><h4>Dark Harvest</h4><ul><li><strong>Effect: </strong>Once per encounter, when you reduce a creature to 0 HP or below, recover one expended spell slot of a level up to half that creature's Level (rounded up, minimum 1st level). It must be a hostile creature that attacked you or an ally this encounter and was not Restrained, Paralysed, Unconscious or otherwise helpless, and never one summoned, created or controlled by you or your allies.</li><li><strong>Example: kill a Level 6 creature, recover up to a 3rd level slot</strong></li><li><strong>Charisma Bonus: </strong>gain a permanent +1 to Charisma. This increases the DC of your spells and abilities, and all Charisma-based checks</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Patron Surge</h4><ul><li><strong>Effect: </strong>Once per day, cast a spell one level above your current maximum. You take 1d6 unavoidable damage per level of the surge — this cannot be reduced by any means.</li><li>At 20th level your maximum is 6th level. Choose one 7th-level Wizard spell as your Patron Surge: once per day you can cast it without a slot, taking 7d6 damage yourself. The patron's power always has a price</li></ul><h4>Patron's Whisper</h4><ul><li><strong>Effect: </strong>Once per day, commune directly with your patron to ask one yes/no question. The answer is always truthful — though the patron's understanding of truth may not align with yours.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Eldritch Master</h4><ul><li><strong>Effect: </strong>Once per day, spend 1 minute communing with your patron to immediately recover all expended spell slots. The patron always wants something in return — the GM determines the cost narratively.</li></ul><h2>Patron Paths</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Warlock folder. Drag one onto your character.</p><ul><li>Choose a Path at character creation. Each Path grants a passive, its own base spell list, and a shared summon pool. Kits within each Path define your Dark Gift, Patron's Mark, and Patron Feature.</li></ul><h2>Path of the Infernal</h2><p>The Nine Hells run on hierarchy, contracts, and hellfire. Every devil serves the chain above them. Every Infernal Warlock serves that chain whether they know it or not.</p><ul><li>Path Passive — Hellfire Affinity: Resistance 5 to fire damage. Treat all 1s on fire damage dice as 2s.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Burning Hands — 1d3+1/level fire damage in cone</td></tr><tr><td>Level 3</td><td>2nd</td><td>Scorching Ray — 2d6 fire per ray; 2 rays, +1 at 5th level and +1 at 9th (max 4)</td></tr><tr><td>Level 7</td><td>3rd</td><td>Fireball — 1d6 fire damage per level (max 10d6) in a 20ft-radius burst; Reflex halves</td></tr><tr><td>Level 11</td><td>4th</td><td>Wall of Fire — fiery curtain deals 2d6+1/level to those passing through</td></tr><tr><td>Level 15</td><td>5th</td><td>Enslave — range 30ft; one humanoid obeys your spoken commands for 1 day/level; Will negates, and it repeats the save each day and whenever ordered to harm itself</td></tr><tr><td>Level 19</td><td>6th</td><td>Bind Elemental — as the spell (one elemental in a prepared circle)</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Imp</td><td>3rd</td><td>HD 4d8; AC 15; Move 20ft, fly 60ft; Bite +3 (2d4) and Sting +3 (2d4 + poison: Fortitude DC 12 or 2 damage a round for 4 rounds); regenerates 1 HP a round; shapechanges at will</td></tr><tr><td>2</td><td>Hell Hound</td><td>7th</td><td>HD 4d8; AC 15; Move 40ft; Bite +5 (1d6+2 plus 1d6 fire); Breathe Fire once per 3 rounds: 10ft cone, 2d6 fire (Reflex DC 13 for half); immune to fire</td></tr><tr><td>3</td><td>Cambion</td><td>11th</td><td>HD 6d8; AC 16; Move 30ft, fly 30ft; Longsword +7 (1d8+4) x2, or fire bolt +7 (3d6 fire, 60ft); 3/day charm person (Will DC 15)</td></tr><tr><td>4</td><td>Erinyes</td><td>15th</td><td>HD 8d8; AC 17; Move 30ft, fly 60ft; Longsword +11 (1d8+3) x2, or longbow +12 (1d8+3 plus poison, 150ft); Rope of Entanglement (Reflex DC 16 or Restrained)</td></tr></tbody></table><h2>Path of the Abyss</h2><p>Pure chaos, destruction, and primal evil. Demons don't negotiate — they unmake.</p><ul><li>Path Passive — Abyssal Resilience: Immunity to poison damage and the poisoned condition. Advantage on saves vs disease.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Cause Fear (the reverse of Remove Fear) — one creature within 30ft is Frightened for 1d4 rounds; Will negates</td></tr><tr><td>Level 3</td><td>2nd</td><td>Darkness — 20ft radius supernatural shadow, extinguishes nonmagical light</td></tr><tr><td>Level 7</td><td>3rd</td><td>Bestow Curse — target suffers -4 to one ability score or has Disadvantage on one of attack rolls, saves or checks</td></tr><tr><td>Level 11</td><td>4th</td><td>Confusion — creatures in 15ft radius act randomly for 1 round/level</td></tr><tr><td>Level 15</td><td>5th</td><td>Cloudkill — 20ft radius cloud kills creatures of Level 4 or lower; poisons others</td></tr><tr><td>Level 19</td><td>6th</td><td>Slay Living — 1d6/level necrotic damage in 30ft radius; creatures of Level 4 or lower die instantly (save negates)</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Quasit</td><td>3rd</td><td>HD 4d8; AC 14; Move 40ft, fly 60ft; Claw +3 (2d2) x2 and bite +3 (2d2 plus poison: Fortitude DC 13 or −1d4 Strength until a full rest); 1/day darkness</td></tr><tr><td>2</td><td>Dretch pair</td><td>7th</td><td>Two dretches sharing one turn. Each: HD 2d8; AC 11; Move 20ft; Bite +2 (1d6) and claw +2 (1d4) x2. Once per summoning, a 20ft Fetid Cloud (Fortitude DC 12 or Poisoned)</td></tr><tr><td>3</td><td>Succubus</td><td>11th</td><td>HD 6d8; AC 14; Move 30ft, fly 60ft; Claw +7 (1d6+3) x2; Charm: one humanoid within 30ft, Will DC 16, lasts while the succubus remains</td></tr><tr><td>4</td><td>Vrock</td><td>15th</td><td>HD 10d8; AC 15; Move 40ft, fly 60ft; Beak +12 (2d6+4) and talons +12 (2d10+4); once per 3 rounds Spores (15ft, Fortitude DC 18 or 1d10 poison a round and Poisoned); 1/day Stunning Screech (20ft, Fortitude DC 18 or Stunned until the end of its next turn)</td></tr></tbody></table><h2>Path of the Fey</h2><p>The Feywild runs on heightened emotion, ancient bargains, and beauty that kills if you stare too long.</p><ul><li>Path Passive — Fey Step: Once per encounter, teleport up to 30ft to any visible unoccupied space as part of your movement.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Faerie Fire — outlining light cancels concealment and gives attackers Advantage against them</td></tr><tr><td>Level 3</td><td>2nd</td><td>Entangle — plants entangle everyone in 50ft circle</td></tr><tr><td>Level 7</td><td>3rd</td><td>Hypnotism — fascinate 2d4+1 Levels of creatures; fascinated targets are susceptible to suggestion</td></tr><tr><td>Level 11</td><td>4th</td><td>Charm Monster — as Charm Person but works on any creature</td></tr><tr><td>Level 15</td><td>5th</td><td>Dream — send a message or nightmare to a sleeping creature anywhere</td></tr><tr><td>Level 19</td><td>6th</td><td>Mass Suggestion — up to 1 creature per level follows one reasonable command of up to 25 words for 1 hour per level; Will negates</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Pixie</td><td>3rd</td><td>HD 4d8; AC 12; Move 20ft, fly 40ft; Shortbow +3 (2d4, 40ft); invisible at will until it attacks; once per 3 rounds Dust of Mischief (Will DC 12 or Charmed, Confused or Unconscious (asleep) for 1d4 rounds)</td></tr><tr><td>2</td><td>Redcap</td><td>7th</td><td>HD 3d8; AC 14; Move 30ft; Iron scythe +6 (2d4+3); Iron Boots kick 1d6+2 (Fortitude DC 12 or Prone); once per 3 rounds Vicious Charge (+1d6)</td></tr><tr><td>3</td><td>Unicorn</td><td>11th</td><td>HD 4d10; AC 18; Move 50ft; Hooves +9 (1d8+4) and horn +9 (1d8+4); Charge: +2d8 and Fortitude DC 17 or Prone; once per summoning Healing Touch (2d8+2)</td></tr><tr><td>4</td><td>Treant</td><td>15th</td><td>HD 7d8; AC 18; Move 30ft; Slam +9 (3d6+6) x2 or rock +7 (4d10+6, 60ft); double damage against objects; vulnerable to fire</td></tr></tbody></table><h2>Path of the Great Old One</h2><p>Something that was never meant to be touched. The pact wasn't negotiated — it was noticed.</p><ul><li>Path Passive — Telepathic Awareness: Communicate mind-to-mind with any creature within 30ft that has a language, without speaking. Creatures you initiate contact with make a Will save against your Class Save DC or are Shaken until the end of their next turn.</li></ul><h3>Path Spells</h3><ul><li>One Path spell per slot level, gained when that slot level is unlocked (alongside your chosen Warlock-list spell of the same level). Cast it with any slot of that level or higher; a Path spell is always treated as the slot level shown in the table, even where the Master list gives it a different level. Slots are shared with summoning — a slot spent on a summon cannot also be used to cast.</li></ul><table class=\"arn-table\"><thead><tr><th>Unlocks</th><th>Slot Level</th><th>Spell</th></tr></thead><tbody><tr><td>Level 1</td><td>1st</td><td>Detect Thoughts — read surface thoughts of creatures within 60ft</td></tr><tr><td>Level 3</td><td>2nd</td><td>Blindness/Deafness — blind or deafen one creature for 1 minute per level (save negates)</td></tr><tr><td>Level 7</td><td>3rd</td><td>Clairaudience/Clairvoyance — see or hear a place within 1 mile through an invisible sensor</td></tr><tr><td>Level 11</td><td>4th</td><td>Confusion — creatures in 15ft radius act randomly for 1 round/level</td></tr><tr><td>Level 15</td><td>5th</td><td>Contact Other Plane — ask up to 5 yes/no questions of a planar entity (Will save, DC 15, or Incapacitated 1d6 weeks)</td></tr><tr><td>Level 19</td><td>6th</td><td>Eyebite — afflict one creature/round with coma, sickness, or panic</td></tr></tbody></table><h3>Shared Summons</h3><table class=\"arn-table\"><thead><tr><th>Tier</th><th>Creature</th><th>Unlocks</th><th>Base Stats</th></tr></thead><tbody><tr><td>1</td><td>Star Spawn Grue</td><td>3rd</td><td>HD 4d8; AC 11; Move 35ft; Claw +2 (2d6 psychic); creatures within 10ft take −1 to saves</td></tr><tr><td>2</td><td>Intellect Devourer</td><td>7th</td><td>HD 4d8; AC 12; Move 40ft; Claw +4 (1d4) x2; Devour Intellect (Will DC 12 or −1d4 Intelligence; Stunned at 0). It cannot use Body Theft while summoned</td></tr><tr><td>3</td><td>Chuul</td><td>11th</td><td>HD 9d8; AC 16; Move 30ft, swim 30ft; Pincer +9 (2d6+4) x2; a held target is grappled, takes 1d8 a turn and makes Fortitude DC 16 or is Paralysed for 1d4 rounds</td></tr><tr><td>4</td><td>Star Spawn Hulk</td><td>15th</td><td>HD 10d8; AC 16; Move 30ft; Slam +14 (2d10+5) x2; once per 3 rounds Psychic Discharge (2d10 psychic to all within 10ft, Will DC 15 for half)</td></tr></tbody></table>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "levels": 1,
+  "hitDie": "d6",
+  "hpBeyond10": 2,
+  "bthProgression": "arcane",
+  "keyAbility": "cha",
+  "castingAbility": "cha",
+  "xpRate": 10,
+  "weapons": "Club, dagger, dart, hand crossbow, staff",
+  "armour": "None",
+  "slotTable": [
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ]
+  ],
+  "featLevels": [
+   1,
+   4,
+   8,
+   12,
+   16,
+   20
+  ],
+  "featPaths": [
+   "General Path",
+   "Arcane & Devout Path"
+  ],
+  "features": [
+   {
+    "level": 1,
+    "name": "Eldritch Blast",
+    "uuid": "Compendium.arneyan.class-features.Item.PNZY7WcPNHdwXhV1"
+   },
+   {
+    "level": 1,
+    "name": "Spell Use",
+    "uuid": "Compendium.arneyan.class-features.Item.YmJes4XcgQs6Eoa0"
+   },
+   {
+    "level": 1,
+    "name": "Dark Gift",
+    "uuid": "Compendium.arneyan.class-features.Item.KGUdCUGs7JdT7FUT"
+   },
+   {
+    "level": 2,
+    "name": "Eldritch Invocations",
+    "uuid": "Compendium.arneyan.class-features.Item.7qQi9fW8rl1RKTXP"
+   },
+   {
+    "level": 3,
+    "name": "Pact Summons",
+    "uuid": "Compendium.arneyan.class-features.Item.q5wxEbMeDaGmsD4D"
+   },
+   {
+    "level": 6,
+    "name": "Patron's Mark",
+    "uuid": "Compendium.arneyan.class-features.Item.uaw41MlXMGlocIE4"
+   },
+   {
+    "level": 12,
+    "name": "Patron Feature",
+    "uuid": "Compendium.arneyan.class-features.Item.ExQfX6J8B6CA1vbj"
+   },
+   {
+    "level": 15,
+    "name": "Pact Summons (Tier 4)",
+    "uuid": "Compendium.arneyan.class-features.Item.E6rC9IhzJmIjl5UD"
+   },
+   {
+    "level": 15,
+    "name": "Dark Harvest",
+    "uuid": "Compendium.arneyan.class-features.Item.QO3chTFHQJWEqYux"
+   },
+   {
+    "level": 20,
+    "name": "Patron Surge",
+    "uuid": "Compendium.arneyan.class-features.Item.iM5qHSjVTNy5uYOs"
+   },
+   {
+    "level": 20,
+    "name": "Patron's Whisper",
+    "uuid": "Compendium.arneyan.class-features.Item.Yp4dkTLGhPOWIhrf"
+   },
+   {
+    "level": 24,
+    "name": "Eldritch Master",
+    "uuid": "Compendium.arneyan.class-features.Item.DImccG53ytrggdnw"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

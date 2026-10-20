@@ -1,0 +1,56 @@
+{
+ "_id": "by2i0r0U9tTKFIV9",
+ "_key": "!items!by2i0r0U9tTKFIV9",
+ "name": "The Wandering Blades (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<p>A mercenary assassin tradition — no fixed guild, travelling contracts, reputation-based. You answer to no owl, no council, no creed. Just the next mark and the next coin.</p><ul><li><strong>Mounted Strike: A creature your mount moved past this turn counts as unsuspecting for your Sneak Attack.</strong></li><li><strong>Open Contract: </strong>Advantage on checks establishing credentials and negotiating contract terms with new clients.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Mounted Strike",
+    "level": 1,
+    "description": "<p>A creature your mount moved past this turn counts as unsuspecting for your Sneak Attack.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Open Contract",
+    "level": 1,
+    "description": "<p>Advantage on checks establishing credentials and negotiating contract terms with new clients.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "establishing credentials and negotiating contract terms with new clients",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

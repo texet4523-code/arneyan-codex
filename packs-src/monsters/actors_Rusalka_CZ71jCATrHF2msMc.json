@@ -1,0 +1,440 @@
+{
+ "_id": "CZ71jCATrHF2msMc",
+ "_key": "!actors!CZ71jCATrHF2msMc",
+ "name": "Rusalka",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "3d6",
+  "attributes": {
+   "hp": {
+    "value": 10,
+    "max": 10,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft, swim 40ft",
+   "attack": 6,
+   "spellDC": 14,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> The drowned bride of a lonely lake or river. She lures people in with song and wants company, not blood.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bU0zLj33kVJN9P9P",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.bU0zLj33kVJN9P9P",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Immune to poison and sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "G1BGv1LPddGPoNtc",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.G1BGv1LPddGPoNtc",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>3/day each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "A0UoGU94jvqKamdf",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.A0UoGU94jvqKamdf",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Charm Person (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 120ft; one humanoid. It is Charmed and regards you as a trusted friend for 1 hour per level; Will negates (the save has Advantage if you or your allies are fighting it). Ends if you or your allies attack it. It will not obey orders that harm itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Charmed",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [
+       "charmed"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK"
+   },
+   "_id": "bzo3XRkCXGDCJVjY",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.bzo3XRkCXGDCJVjY",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fog Cloud (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere, 10 minutes per level. Creatures inside can see no further than 5ft, and attacks into or out of the fog have Disadvantage. A moderate wind (10 mph) halves the duration; a strong wind (20 mph) disperses it in 1 round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Sorcerer",
+     "Bard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "In Fog Cloud",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "adv.against",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn"
+   },
+   "_id": "xQcv3Q557ymtiDZB",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.xQcv3Q557ymtiDZB",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Drowning Embrace",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>A creature it has grappled in water makes a @Check[fort|dc:14]{Fortitude save DC 14} at the start of each of its turns or begins to drown, taking 1d8 damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 14,
+    "damage": "1d8",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HgKedMa4ze2whxHq",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.HgKedMa4ze2whxHq",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Water Bound",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>Must return to its home water each dawn or take 1d6 damage per hour until it does.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dMSiRmSgfnB1ZcxV",
+   "_key": "!actors.items!CZ71jCATrHF2msMc.dMSiRmSgfnB1ZcxV",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Rusalka",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-skeleton.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

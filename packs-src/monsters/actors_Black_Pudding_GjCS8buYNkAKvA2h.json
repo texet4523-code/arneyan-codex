@@ -1,0 +1,321 @@
+{
+ "_id": "GjCS8buYNkAKvA2h",
+ "_key": "!actors!GjCS8buYNkAKvA2h",
+ "name": "Black Pudding",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-slime.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "10d10",
+  "attributes": {
+   "hp": {
+    "value": 55,
+    "max": 55,
+    "temp": 0
+   },
+   "ac": 3,
+   "speed": "20ft, climb 20ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 7,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "ooze",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d2",
+   "resistances": "cold 5",
+   "immunities": "acid",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large ooze</em></p><p><strong>GM:</strong> A drain-dwelling horror. It forces a party to fight with spells, fire and blunt weapons.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Pseudopod",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OM97JoPI84C3uwEL",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.OM97JoPI84C3uwEL",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Acid touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EtmF1JxpzbOxI3Lw",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.EtmF1JxpzbOxI3Lw",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Corrosive Form",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>A creature that hits it with a nonmagical metal weapon corrodes that weapon (-1 damage, cumulative). Metal armour it hits is corroded by 1 AC.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Zm3YnQ0jUx9TjEMA",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.Zm3YnQ0jUx9TjEMA",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Split",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>When it takes lightning or slashing damage and survives, it divides into two puddings, each with half the HP (rounded down; minimum 10 HP).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4jGqa3yBgEL8lXRG",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.4jGqa3yBgEL8lXRG",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Acid Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Immune to acid. Resistance 5 to cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aOSRhRxwr3j45w0W",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.aOSRhRxwr3j45w0W",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Eat Metal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>It can dissolve 1 inch of metal in a round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vaRgpthqWmjef1AI",
+   "_key": "!actors.items!GjCS8buYNkAKvA2h.vaRgpthqWmjef1AI",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Black Pudding",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-slime.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

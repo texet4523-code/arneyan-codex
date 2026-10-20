@@ -1,0 +1,251 @@
+{
+ "_id": "wMCqM4NMWxuAPmzk",
+ "_key": "!actors!wMCqM4NMWxuAPmzk",
+ "name": "Myconid",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 11,
+   "speed": "20ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d12",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium plant</em></p><p><strong>GM:</strong> Gentle, secretive fungus-folk who prefer to talk rather than fight. They defend their caves with spores before blows.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nqLfTPSYODbLp3Dz",
+   "_key": "!actors.items!wMCqM4NMWxuAPmzk.nqLfTPSYODbLp3Dz",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spores",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>As an action, once per 3 rounds, releases pacifying spores in a 15ft radius. Creatures that breathe make a @Check[will|dc:12]{Will save DC 12} or are @Condition[charmed]{Charmed} for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VZnVdNPU6gorSmnS",
+   "_key": "!actors.items!wMCqM4NMWxuAPmzk.VZnVdNPU6gorSmnS",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rapport Spores",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>Can speak with any creature that is within 30ft by touching its spore to the creature. This sharing lasts 1 hour.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hL4X4v3pFNn8PRWw",
+   "_key": "!actors.items!wMCqM4NMWxuAPmzk.hL4X4v3pFNn8PRWw",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "evXipNo1C3EGm9WB",
+   "_key": "!actors.items!wMCqM4NMWxuAPmzk.evXipNo1C3EGm9WB",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Myconid",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mushroom-gills.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

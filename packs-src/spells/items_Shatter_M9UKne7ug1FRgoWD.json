@@ -1,0 +1,55 @@
+{
+ "_id": "M9UKne7ug1FRgoWD",
+ "_key": "!items!M9UKne7ug1FRgoWD",
+ "name": "Shatter",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 60ft; 5ft radius. Nonmagical brittle objects (glass, crystal, ceramic; up to 10 lb per level in total) shatter; attended objects get Fortitude negates. Crystalline creatures take 1d6 thunder damage per level (max 6d6); Fortitude halves.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Bard, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Sorcerer",
+   "Bard",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "5ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage (attended objects are not shattered)",
+  "damage": "(min(@cl, 6))d6",
+  "damageType": "thunder",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 5,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 129,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,75 @@
+{
+ "_id": "xG5wRGsRMzXivujQ",
+ "_key": "!items!xG5wRGsRMzXivujQ",
+ "name": "Expert in Arms",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>During any combat alongside allies, exert command for one round — all allies within 40ft have Advantage on contested manoeuvre checks.</li><li>Allies who do not follow the knight's orders do not receive the Advantage</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Expert in Arms",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "For one round, allies within 40ft who follow your orders have Advantage on contested manoeuvre checks.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Expert in Arms",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "contested manoeuvre checks",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

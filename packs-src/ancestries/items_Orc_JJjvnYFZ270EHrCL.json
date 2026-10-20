@@ -1,0 +1,71 @@
+{
+ "_id": "JJjvnYFZ270EHrCL",
+ "_key": "!items!JJjvnYFZ270EHrCL",
+ "name": "Orc",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Str / +1 Con, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Relentless Endurance:</strong> 1/day, when damage of any kind would drop you to 0 HP or below, drop to 1 HP instead.</li><li><strong>When wielding a weapon two-handed, reroll any 1s on its damage dice once (keep the new result).</strong></li><li><strong>Advantage</strong> on Intimidation checks. 1/long rest, before you roll: Advantage on an attack roll or Strength check (1 Luck for extra use).</li><li><strong>Weapon training:</strong> two-handed axe, battleaxe, javelin, handaxe.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Con, −1 Int",
+  "bonuses": {
+   "str": 2,
+   "con": 1,
+   "int": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Relentless Endurance",
+    "text": "1/day, when damage of any kind would drop you to 0 HP or below, drop to 1 HP instead."
+   },
+   {
+    "name": "When wielding a weapon two-handed",
+    "text": "When wielding a weapon two-handed, reroll any 1s on its damage dice once (keep the new result)."
+   },
+   {
+    "name": "Advantage on Intimidation checks",
+    "text": "Advantage on Intimidation checks. 1/long rest, before you roll: Advantage on an attack roll or Strength check (1 Luck for extra use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "two-handed axe, battleaxe, javelin, handaxe."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Intimidation",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Orc: wielding two-handed, reroll 1s on the damage dice once.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 24,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

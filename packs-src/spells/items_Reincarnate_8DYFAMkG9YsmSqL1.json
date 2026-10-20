@@ -1,0 +1,68 @@
+{
+ "_id": "8DYFAMkG9YsmSqL1",
+ "_key": "!items!8DYFAMkG9YsmSqL1",
+ "name": "Reincarnate",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Touch; casting takes 10 minutes. One willing dead creature, dead no longer than 1 week, of which you hold a body part. It returns in a new adult body of a random ancestry (roll randomly among the available ancestries), keeping its class, level and memories; its ability scores change to match the new ancestry's bonuses and penalties. It returns with 1 HP, 3 levels of Exhaustion and no spells prepared. No save. Material: rare oils worth 1,000 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Druid",
+   "Witch"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Reincarnated",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "exhaustion",
+      "value": "3",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 224,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,59 @@
+{
+ "_id": "fnmz4UWH2Y51Z1Ox",
+ "_key": "!items!fnmz4UWH2Y51Z1Ox",
+ "name": "Whirlwind Attack",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per encounter, replaces the normal combat action. Make one attack roll against each of up to 2 opponents within 5ft whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 4,
+  "className": "Barbarian",
+  "activities": [
+   {
+    "name": "Whirlwind Attack",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Replace your action with one attack against each of up to 2 adjacent foes of Level up to half yours; see the Barbarian Progression Table for scaling.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

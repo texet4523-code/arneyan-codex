@@ -1,0 +1,88 @@
+{
+ "_id": "eOABzyjbO8mb8XYl",
+ "_key": "!items!eOABzyjbO8mb8XYl",
+ "name": "Tharizdun, the Chained God (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Imprisoned before memory, worshipped by those who want everything to end. He does not speak to his Warlocks — he leaks into them.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, touch a creature or object and unravel it — deals 1d10 necrotic damage per 4 Warlock levels (minimum 1d10), Fortitude halves, and reduces the target's AC by 1 until the target's next long rest.</li><li><strong>Patron's Mark</strong> (6th): Once per day, touch a nonmagical object no larger than a door — it begins to slowly deteriorate, crumbling to dust over the next hour. Creatures cannot detect this until the deterioration is visible.</li><li><strong>Patron Feature</strong> (12th): Once per day, open a rift to the Far Realm in a 20ft radius centred on a point within 60ft. All creatures inside make a Will save against your Class Save DC or are stunned for 1 round and take 4d8 psychic damage. The rift lingers 1 round — creatures that end their turn inside repeat the save.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Once per day, touch a creature or object and unravel it — deals 1d10 necrotic damage per 4 Warlock levels (minimum 1d10), Fortitude halves, and reduces the target's AC by 1 until the target's next long rest.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "damage": "(max(1, floor(@cl / 4)))d10",
+    "damageType": "necrotic",
+    "applies": [
+     {
+      "name": "Unravelled",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, touch a nonmagical object no larger than a door — it begins to slowly deteriorate, crumbling to dust over the next hour. Creatures cannot detect this until the deterioration is visible.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, open a rift to the Far Realm in a 20ft radius centred on a point within 60ft. All creatures inside make a Will save against your Class Save DC or are stunned for 1 round and take 4d8 psychic damage. The rift lingers 1 round — creatures that end their turn inside repeat the save.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "damage": "4d8",
+    "damageType": "psychic",
+    "applies": [
+     {
+      "name": "Far Realm Rift",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "stunned"
+      ],
+      "rules": []
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 17,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,45 @@
+{
+ "_id": "DuKSlAfl28Q9JeCZ",
+ "_key": "!items!DuKSlAfl28Q9JeCZ",
+ "name": "Deity: Daeric Khyrmin (The Phoenix Prince) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Long</p><p><strong>Granted power:</strong> Advantage on saves against charm. Once/day: for 1 minute, while you wear light or no armour and wield a one-handed blade, add your Wisdom modifier to your AC.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Daeric Khyrmin)",
+    "level": 1,
+    "description": "<p>Advantage on saves against charm. Once/day: for 1 minute, while you wear light or no armour and wield a one-handed blade, add your Wisdom modifier to your AC.</p><p><strong>Favoured weapon:</strong> Sword, Long</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 28,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

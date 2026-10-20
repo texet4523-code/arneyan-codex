@@ -1,0 +1,77 @@
+{
+ "_id": "7kTLNcT5XIevR2FB",
+ "_key": "!items!7kTLNcT5XIevR2FB",
+ "name": "Remove Fear",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Touch; up to 1 creature per four levels (min 1); 10 minutes per level. Ends Frightened and makes the targets immune to it. Cast reversed (Cause Fear): one creature within 30ft is Frightened for 1d4 rounds; Will negates. Creatures of Level 5 or higher are unaffected.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Paladin"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates (Cause Fear only)",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Remove Fear",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "condition:frightened",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Cause Fear (reversed)",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 74,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,358 @@
+{
+ "_id": "6cy8fqjg24L2YDBX",
+ "_key": "!actors!6cy8fqjg24L2YDBX",
+ "name": "Vampire Spawn",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "5d8+10",
+  "attributes": {
+   "hp": {
+    "value": 32,
+    "max": 32,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "necrotic 5, non-magical 5",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A mortal servant of a true vampire, hungry and cunning. It tests the party for its master.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EPXZr8yPIizTezrV",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.EPXZr8yPIizTezrV",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PU0CWVmXYBdSETyT",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.PU0CWVmXYBdSETyT",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Immune to poison and sleep. Resistance 5 to necrotic and against non-magical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HhdgjM7hMwaFALvn",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.HhdgjM7hMwaFALvn",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blood Drain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>A bite on a grappled, restrained or incapacitated creature also deals @Damage[2d6 necrotic]{2d6 necrotic damage}, and the spawn regains the same number of HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XMqaZA4YoiQpTj4K",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.XMqaZA4YoiQpTj4K",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regeneration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Regains 5 HP at the start of its turn. This stops for 1 round if it takes radiant damage or damage from running water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "eSyGpsU72xoFglpv",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.eSyGpsU72xoFglpv",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Climbs sheer surfaces without a check.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nLjGEaTn6Ygqk4el",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.nLjGEaTn6Ygqk4el",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vampiric Weakness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Takes @Damage[2d6 radiant]{2d6 radiant damage} at the start of each turn in sunlight. A wooden stake through the heart destroys it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OX66xQrLmsROKo4K",
+   "_key": "!actors.items!6cy8fqjg24L2YDBX.OX66xQrLmsROKo4K",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Vampire Spawn",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vampire-dracula.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

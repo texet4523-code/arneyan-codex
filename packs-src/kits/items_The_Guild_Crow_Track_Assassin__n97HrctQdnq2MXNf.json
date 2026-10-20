@@ -1,0 +1,56 @@
+{
+ "_id": "n97HrctQdnq2MXNf",
+ "_key": "!items!n97HrctQdnq2MXNf",
+ "name": "The Guild — Crow Track (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li>The continent-wide network originating from Opal, working closely with Opal's government. Many members worship Mask. The Owl runs everything through Ravens; Crows carry out the high-value work. The Guild deals in assassination but is equally an information empire — knowing who to kill and why is half the job.</li><li><strong>Sanctioned Strike: </strong>increase the DC of the target's Death Attack save by 1 when the contract was formally issued through Guild channels — the preparation time and intelligence support raises the quality of the strike.</li><li><strong>Dossier: </strong>Advantage on Case Target checks when the target's dossier has been provided by a Raven or Crow superior. Recognised on sight by other Guild members as a Crow.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Sanctioned Strike",
+    "level": 1,
+    "description": "<p>increase the DC of the target's Death Attack save by 1 when the contract was formally issued through Guild channels — the preparation time and intelligence support raises the quality of the strike.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Dossier",
+    "level": 1,
+    "description": "<p>Advantage on Case Target checks when the target's dossier has been provided by a Raven or Crow superior. Recognised on sight by other Guild members as a Crow.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Case Target when the dossier came from a Raven or Crow superior",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

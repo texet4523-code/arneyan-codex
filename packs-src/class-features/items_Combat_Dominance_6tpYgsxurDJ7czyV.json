@@ -1,0 +1,59 @@
+{
+ "_id": "6tpYgsxurDJ7czyV",
+ "_key": "!items!6tpYgsxurDJ7czyV",
+ "name": "Combat Dominance",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<ul><li><strong>Combat Dominance: When every creature you attack this round is of Level up to half yours, you can make extra attacks, split among them as you like.</strong></li><li>4th level: 2 attacks per round against creatures of Level up to half your level</li><li>8th level: 3 attacks per round against creatures of Level up to half your level</li><li>12th level: 4 attacks per round against creatures of Level up to half your level</li><li>All but the first attack are rolled with Disadvantage. Combat Dominance replaces the Extra Attack and the off-hand attack; Flowing Strikes can still add one.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 4,
+  "className": "Fighter",
+  "activities": [
+   {
+    "name": "Combat Dominance",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Only when every creature you attack this round is of Level up to half yours; split the attacks among them as you like. Replaces Extra Attack and the off-hand attack; Flowing Strikes can still add one.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "4:2, 8:3, 12:4",
+    "weapons": "",
+    "disadvantage": "rest",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "half",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

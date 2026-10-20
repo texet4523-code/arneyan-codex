@@ -1,0 +1,42 @@
+{
+ "_id": "593xRkBDjDx6BUq7",
+ "_key": "!items!593xRkBDjDx6BUq7",
+ "name": "Lethal Dose",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> The first hit each fight with a poisoned weapon also deals +1d6 poison damage. The target makes a Fortitude save against your Class Save DC to negate the extra damage.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "fort",
+  "dc": null,
+  "damage": "",
+  "level": 7,
+  "className": "Assassin",
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+1d6",
+    "when": "first hit each fight with a poisoned weapon (poison; Fortitude save negates)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,59 @@
+{
+ "_id": "WtB20YgHDIiDxb5Q",
+ "_key": "!items!WtB20YgHDIiDxb5Q",
+ "name": "Boldock Wall-Knights (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>Veterans of the Wall facing the Red Waste — disciplined, grim, no pageantry.</p><ul><li><strong>Wall-Forged Dread: </strong>Demoralise penalty increases to -6 to Charisma checks, and affected enemies have Disadvantage on all their attack rolls (instead of only their first each round).</li><li><strong>Siege Discipline: </strong>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Wall-Forged Dread",
+    "level": 1,
+    "description": "<p>Demoralise penalty increases to -6 to Charisma checks, and affected enemies have Disadvantage on all their attack rolls (instead of only their first each round).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Siege Discipline",
+    "level": 1,
+    "description": "<p>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "fortification, siege assessment, or coordinating soldiers in a defence",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,52 @@
+{
+ "_id": "qvneLJDOUkT8ql1U",
+ "_key": "!items!qvneLJDOUkT8ql1U",
+ "name": "Mass Heal",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Range 30ft; up to 1 creature per two levels (max 10). Each is restored to its maximum HP minus 1d4, and its Blinded, Deafened and Stunned conditions and diseases end. Cast reversed (Mass Harm): each target makes a Fortitude save or is reduced to 1d4 HP; on a success it loses half its current HP. Undead are healed by Mass Harm, harmed by Mass Heal.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Loses half its current HP instead (Mass Harm only)",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 359,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

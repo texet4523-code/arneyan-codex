@@ -1,0 +1,51 @@
+{
+ "_id": "I2VJn58jOvbMgnWl",
+ "_key": "!items!I2VJn58jOvbMgnWl",
+ "name": "Repel Vermin",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Self; 10ft radius around you for 10 minutes per level. Insects, spiders, rats, other vermin of Level 4 or lower and all swarms cannot enter the area. Giant vermin of higher than Level 4 can enter but take 2d6 damage each round they remain inside; no save.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "2d6",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": true,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "100*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 225,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

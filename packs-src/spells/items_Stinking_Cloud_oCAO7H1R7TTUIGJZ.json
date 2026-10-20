@@ -1,0 +1,63 @@
+{
+ "_id": "oCAO7H1R7TTUIGJZ",
+ "_key": "!items!oCAO7H1R7TTUIGJZ",
+ "name": "Stinking Cloud",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 120ft; 20ft-radius cloud for 1 round per level. Creatures entering or starting their turn in it must make a Fortitude save or be Incapacitated (retching) until the start of their next turn. The cloud blocks sight; wind disperses it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Retching",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "incapacitated"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 183,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

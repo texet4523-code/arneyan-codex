@@ -1,0 +1,68 @@
+{
+ "_id": "c5ubQLfT5KvXM2u3",
+ "_key": "!items!c5ubQLfT5KvXM2u3",
+ "name": "Blur",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Self; 1 minute per level. Your outline shifts and shimmers: attack rolls against you have Disadvantage. Creatures that do not rely on sight, or that see invisible creatures, ignore the penalty.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Bard"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Blur",
+    "target": "self",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 93,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

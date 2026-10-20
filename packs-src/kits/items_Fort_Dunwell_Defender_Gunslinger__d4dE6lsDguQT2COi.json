@@ -1,0 +1,62 @@
+{
+ "_id": "d4dE6lsDguQT2COi",
+ "_key": "!items!d4dE6lsDguQT2COi",
+ "name": "Fort Dunwell Defender (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>A Wall marksman who learned precision over years watching the Red Waste for movement.</p><ul><li><strong>Patient Aim: </strong>Dead Aim requires only 1 round of aiming instead of 2. The damage bonus remains +2d6 — the advantage is in speed, not raw power.</li><li><strong>Sentry's Eye: </strong>Advantage on checks estimating range, identifying targets at distance, and on all Perception checks during watch duty or a sentry role.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Patient Aim",
+    "level": 1,
+    "description": "<p>Dead Aim requires only 1 round of aiming instead of 2. The damage bonus remains +2d6 — the advantage is in speed, not raw power.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Sentry's Eye",
+    "level": 1,
+    "description": "<p>Advantage on checks estimating range, identifying targets at distance, and on all Perception checks during watch duty or a sentry role.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "estimating range or identifying targets at distance",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or sentry duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

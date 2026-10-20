@@ -1,0 +1,42 @@
+{
+ "_id": "JuIQSx1fp9et1XBb",
+ "_key": "!items!JuIQSx1fp9et1XBb",
+ "name": "Hag's Vigour",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Hag-blood runs truer in you than it does in most folk magic practitioners — you're hardier than your spindly d6 Hit Die suggests. Gain a permanent +1 bonus to maximum HP per Witch level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Witch",
+  "rules": [
+   {
+    "key": "hp.max",
+    "value": "@cl",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "1dlV9nfuiRwL22Wo",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

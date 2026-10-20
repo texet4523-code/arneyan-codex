@@ -1,0 +1,45 @@
+{
+ "_id": "mNoEXxIRTePrBDir",
+ "_key": "!items!mNoEXxIRTePrBDir",
+ "name": "Deity: Helm (The Vigilant End) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Bastard</p><p><strong>Granted power:</strong> +1 AC while using a shield. Once/day: grant a touched creature +4 AC for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Helm)",
+    "level": 1,
+    "description": "<p>+1 AC while using a shield. Once/day: grant a touched creature +4 AC for 1 minute.</p><p><strong>Favoured weapon:</strong> Sword, Bastard</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "1",
+      "when": "while using a shield",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,62 @@
+{
+ "_id": "Zw3JGfuBBL7dwLzG",
+ "_key": "!items!Zw3JGfuBBL7dwLzG",
+ "name": "Hypnotism",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 30ft; 15ft radius. Creatures with a total of 2d4 Levels + CL (lowest Level first) become Charmed and entranced for 1 minute, and follow one simple, nonharmful request you give; Will negates. Damage ends the effect on that creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "15ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 15,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Hypnotised",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "charmed"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 62,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

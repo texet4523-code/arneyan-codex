@@ -1,0 +1,172 @@
+{
+ "_id": "r6b8rdng2cJa3baT",
+ "_key": "!actors!r6b8rdng2cJa3baT",
+ "name": "Elephant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "7d12+21",
+  "attributes": {
+   "hp": {
+    "value": 66,
+    "max": 66,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "40ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d12",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge beast</em></p><p><strong>GM:</strong> Wise, long-memoried and terrifying when angry. War elephants carry towers of archers.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Gore",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XhdCWXMB0qUKkkq6",
+   "_key": "!actors.items!r6b8rdng2cJa3baT.XhdCWXMB0qUKkkq6",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Trampling Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>If it moves at least 20ft straight towards a target and hits, the target makes a @Check[fort|dc:13]{Fortitude save DC 13} or is knocked prone, and the elephant may stomp it as part of the same action (3d10+6).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IKu4RK5PNRsD962H",
+   "_key": "!actors.items!r6b8rdng2cJa3baT.IKu4RK5PNRsD962H",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Elephant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ant.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

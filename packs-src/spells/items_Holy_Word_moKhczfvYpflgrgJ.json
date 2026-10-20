@@ -1,0 +1,80 @@
+{
+ "_id": "moKhczfvYpflgrgJ",
+ "_key": "!items!moKhczfvYpflgrgJ",
+ "name": "Holy Word",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 30ft; creatures you choose in hearing that are Evil: Level 4 or lower die; Level 5-8 Paralysed 1d4 rounds; Level 9-12 Blinded 2d4 rounds; Level 13 or higher Deafened 1d4 rounds. Will negates. Cast reversed (Unholy Word): the same effects on Good creatures.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Holy Word: Paralysed",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Holy Word: Blinded",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Holy Word: Deafened",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 324,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

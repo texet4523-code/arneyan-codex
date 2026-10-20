@@ -1,0 +1,45 @@
+{
+ "_id": "sYzLPMll25M005YK",
+ "_key": "!items!sYzLPMll25M005YK",
+ "name": "Deity: Bhaal (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Dagger</p><p><strong>Granted power:</strong> Once/day: Smite deals maximum damage automatically (no roll) if the target is below half HP. Advantage on Perception checks against wounded or fleeing creatures.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Bhaal)",
+    "level": 1,
+    "description": "<p>Once/day: Smite deals maximum damage automatically (no roll) if the target is below half HP. Advantage on Perception checks against wounded or fleeing creatures.</p><p><strong>Favoured weapon:</strong> Dagger</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception vs wounded or fleeing creatures",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 35,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

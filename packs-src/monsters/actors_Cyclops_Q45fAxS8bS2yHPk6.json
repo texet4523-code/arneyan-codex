@@ -1,0 +1,247 @@
+{
+ "_id": "Q45fAxS8bS2yHPk6",
+ "_key": "!actors!Q45fAxS8bS2yHPk6",
+ "name": "Cyclops",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "13d12",
+  "attributes": {
+   "hp": {
+    "value": 84,
+    "max": 84,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "40ft",
+   "attack": 13,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 8,
+   "ref": 6,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "giant",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A one-eyed shepherd or smith who lives alone and hates company. Its greatest weakness is its depth of sight.</p>",
+   "treasure": "<p>Treasure type <strong>R, lair C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greatclub",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IIxAnasjlN3NhDir",
+   "_key": "!actors.items!Q45fAxS8bS2yHPk6.IIxAnasjlN3NhDir",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Boulder",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": true,
+    "range": "80ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "M9bYiyrNQZ3HPWrc",
+   "_key": "!actors.items!Q45fAxS8bS2yHPk6.M9bYiyrNQZ3HPWrc",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poor Depth Perception",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+   "system": {
+    "description": "<p>Disadvantage on ranged attack rolls against targets more than 30ft away.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zRQ88wgj0cJk2LqM",
+   "_key": "!actors.items!Q45fAxS8bS2yHPk6.zRQ88wgj0cJk2LqM",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Doomsayer",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, curses a creature within 60ft; @Check[will|dc:19]{Will DC 19} or Disadvantage on its attack rolls for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lRJJds7rtVIXx3iO",
+   "_key": "!actors.items!Q45fAxS8bS2yHPk6.lRJJds7rtVIXx3iO",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Cyclops",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-cyclops.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

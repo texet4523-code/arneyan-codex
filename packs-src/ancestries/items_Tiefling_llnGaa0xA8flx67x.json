@@ -1,0 +1,114 @@
+{
+ "_id": "llnGaa0xA8flx67x",
+ "_key": "!items!llnGaa0xA8flx67x",
+ "name": "Tiefling",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><em>\"Tiefling\" is what others call them. A tiefling is born into a family of another ancestry, human, orc, elf or any other, whose bloodline carries a fiendish curse. The mark can skip generations and appear in a child of ordinary-looking parents. There is no tiefling people, homeland or culture.</em></p><p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Cha / +1 Int, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Family:</strong> choose the ancestry of the family you were born into. You speak its language, and others treat you as one of its people once they look past the marks. Your size, speed, vision and traits are the Tiefling's, whatever your family.</li><li><strong>Resistance 5</strong> to a damage type set by your bloodline.</li><li><strong>One Warlock cantrip</strong> at creation.</li><li><strong>Fiendish Retort:</strong> 1/long rest, when damaged by a creature within 30ft, unleash it back at them as part of your action on your next turn. The damage type is set by your bloodline: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.</li><li><strong>From 11th level, Fiendish Retort can be used twice per long rest.</strong></li></ul><p><strong><em>Bloodlines</em></strong></p><ul><li><strong>Infernal (devils):</strong> horns, a tail, embers in the eyes. Resist fire; Retort deals fire. Advantage on checks to read, recall or find loopholes in contracts, oaths and bargains. You know Infernal.</li><li><strong>Abyssal (demons):</strong> wild, twisted features that rarely look the same twice in a family. Resist poison; Retort deals acid. Advantage on Charisma checks to intimidate. You know Abyssal.</li><li><strong>Outer (daemons, rakshasa and stranger fiends):</strong> subtle, unsettling marks that are hard to place. Resist necrotic; Retort deals necrotic. Advantage on checks to see through disguises and illusions. You know Infernal or Abyssal.</li><li><strong>Shadowfell (fiends of shadow):</strong> ashen skin, a shadow that moves a moment late. Resist cold; Retort deals cold. Advantage on checks to hide in dim light or darkness. You know Infernal or Abyssal.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Cha / +1 Int, −1 Wis",
+  "bonuses": {
+   "cha": 2,
+   "int": 1,
+   "wis": -1
+  },
+  "pickTwo": false,
+  "family": true,
+  "traitList": [
+   {
+    "name": "Family",
+    "text": "choose the ancestry of the family you were born into. You speak its language, and others treat you as one of its people once they look past the marks. Your size, speed, vision and traits are the Tiefling's, whatever your family."
+   },
+   {
+    "name": "Resistance 5 to a damage type set by your…",
+    "text": "Resistance 5 to a damage type set by your bloodline."
+   },
+   {
+    "name": "One Warlock cantrip at creation",
+    "text": "One Warlock cantrip at creation."
+   },
+   {
+    "name": "Fiendish Retort",
+    "text": "1/long rest, when damaged by a creature within 30ft, unleash it back at them as part of your action on your next turn. The damage type is set by your bloodline: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th."
+   },
+   {
+    "name": "From 11th level",
+    "text": "From 11th level, Fiendish Retort can be used twice per long rest."
+   }
+  ],
+  "choice": {
+   "label": "Bloodline",
+   "options": [
+    {
+     "name": "Infernal (devils)",
+     "text": "horns, a tail, embers in the eyes. Resist fire; Retort deals fire. Advantage on checks to read, recall or find loopholes in contracts, oaths and bargains. You know Infernal.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "fire 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Abyssal (demons)",
+     "text": "wild, twisted features that rarely look the same twice in a family. Resist poison; Retort deals acid. Advantage on Charisma checks to intimidate. You know Abyssal.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "poison 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Outer (daemons, rakshasa and stranger fiends)",
+     "text": "subtle, unsettling marks that are hard to place. Resist necrotic; Retort deals necrotic. Advantage on checks to see through disguises and illusions. You know Infernal or Abyssal.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "necrotic 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Shadowfell (fiends of shadow)",
+     "text": "ashen skin, a shadow that moves a moment late. Resist cold; Retort deals cold. Advantage on checks to hide in dim light or darkness. You know Infernal or Abyssal.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "cold 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    }
+   ]
+  },
+  "rules": [],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 26,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

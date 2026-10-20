@@ -1,0 +1,64 @@
+{
+ "_id": "n17K6r1Xujw7G8LG",
+ "_key": "!items!n17K6r1Xujw7G8LG",
+ "name": "Infernal (Sorcerer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<p>Something made a deal somewhere in your bloodline. You didn't ask for this power — but you have it.</p><ul><li><strong>Bloodline Ability</strong> (1st): Fire resistance. Once per day when a creature damages you, they take fire damage equal to your Charisma modifier as a reaction — no save. You have advantage on Persuasion and Deception checks involving contracts, deals, or negotiations, and always know when a written agreement contains a hidden clause.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, offer a creature a binding deal (Will save to refuse). If they accept and break it they lose 3d6 HP per day until honoured — no magical cure works until the debt is paid. A creature that refuses outright takes no harm; one that accepts and then breaks the deal is also marked, and other fiends will pursue it. You always know the location of a marked creature.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Sorcerer",
+  "features": [
+   {
+    "name": "Bloodline Ability",
+    "level": 1,
+    "description": "<p>Fire resistance. Once per day when a creature damages you, they take fire damage equal to your Charisma modifier as a reaction — no save. You have advantage on Persuasion and Deception checks involving contracts, deals, or negotiations, and always know when a written agreement contains a hidden clause.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "damage": "@cha.mod",
+    "damageType": "fire",
+    "rules": [
+     {
+      "key": "resist",
+      "value": "fire",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion and Deception involving contracts, deals or negotiations",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Bloodline Awakening",
+    "level": 15,
+    "description": "<p>Once per day, offer a creature a binding deal (Will save to refuse). If they accept and break it they lose 3d6 HP per day until honoured — no magical cure works until the debt is paid. A creature that refuses outright takes no harm; one that accepts and then breaks the deal is also marked, and other fiends will pursue it. You always know the location of a marked creature.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mASZyW0N1oNgHgCR",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

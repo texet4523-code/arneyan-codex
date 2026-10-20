@@ -1,0 +1,63 @@
+{
+ "_id": "dskce5RsFnSPXooa",
+ "_key": "!items!dskce5RsFnSPXooa",
+ "name": "Grease",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 30ft; 10ft square, or one object; 1 minute. Creatures in the area when cast, or entering or ending their turn in it, fall Prone; Reflex negates. Cast on an object, the holder drops it; Reflex negates. Creatures move at half speed in the area.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Bard"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "10ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "10",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Greased",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 57,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

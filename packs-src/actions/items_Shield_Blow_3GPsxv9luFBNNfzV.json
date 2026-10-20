@@ -1,0 +1,50 @@
+{
+ "_id": "3GPsxv9luFBNNfzV",
+ "_key": "!items!3GPsxv9luFBNNfzV",
+ "name": "Shield Blow",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/action-shield-bash.svg",
+ "system": {
+  "description": "<p>Attack with Disadvantage; it replaces all your attacks this round. On a hit, the target makes a Fortitude save or is Stunned for 1d2 rounds.</p><p class=\"arn-note\"><strong>Combat Manoeuvres, Manoeuvre:</strong> replaces one attack.</p><p>The save DC is 10 + half your level (minimum 1) + your Strength modifier. A creature that saves against your Shield Blow is immune to it for the rest of the fight.</p><p class=\"arn-note\">Switch it on from the Actions tab while it applies; the sheet adds the Advantage or Disadvantage.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "action",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "fort",
+  "dc": null,
+  "damage": "",
+  "level": 0,
+  "className": "",
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "-1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "note.attack",
+    "value": "Shield Blow: on a hit the target makes a Fortitude save or is Stunned for 1d2 rounds",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": true,
+  "active": false,
+  "applies": [],
+  "activities": []
+ },
+ "effects": [],
+ "folder": "ZwYaT2SZrAmIDw8K",
+ "sort": 110,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

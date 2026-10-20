@@ -1,0 +1,369 @@
+{
+ "_id": "tC62gCJQupQ4nV9D",
+ "_key": "!items!tC62gCJQupQ4nV9D",
+ "name": "Necromancer",
+ "type": "class",
+ "img": "systems/arneyan/assets/classes/Necromancer.webp",
+ "system": {
+  "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Intelligence</td></tr><tr><td>Hit Die</td><td>d4</td></tr><tr><td>HP beyond 10th</td><td>+1 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★★★ Very Complex</td></tr><tr><td>Weapons</td><td>Club, dagger, dart, staff, hand crossbow</td></tr><tr><td>Armour</td><td>None — you cannot cast in armour or with a shield you are not trained in</td></tr><tr><td>BtH</td><td>+1 per 6 levels (+2 at 12th, +4 at 24th)</td></tr><tr><td>Spellcasting</td><td>Intelligence is the casting stat. DC = 10 + half your Necromancer level (minimum 1) + Intelligence modifier — see Spellcasting in Arneyan for the full formula. All harmful or debuffing spells require a save — no spell attack rolls.</td></tr><tr><td>Undead Mastery</td><td>Controls a number of undead simultaneously — capped at 10 (doubles to 20 at 24th via Undying Legion). Every undead you control counts towards this cap, however it came under your control. For a Necromancer, Undead Mastery and Soul Tax replace the duration and control limits of Animate Dead, Create Undead and Create Greater Undead. Add bonuses after doubling. Bound undead pay Soul Tax.</td></tr><tr><td>Kit</td><td>At character creation choose a Kit — Grave Warden, Soul Binder, Pale Master, or Wight Lord.</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Animate Dead, Soul Tax, Command Undead, Spell Use, Death Magic, Kit ability</td></tr><tr><td>5</td><td>Deathsense</td></tr><tr><td>9</td><td>Undead Resilience</td></tr><tr><td>12</td><td>Necrotic Aura</td></tr><tr><td>15</td><td>Death's Embrace, Lich's Will</td></tr><tr><td>20</td><td>Death's Grasp</td></tr><tr><td>24</td><td>Undying Legion</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><ul><li><strong>Animate Dead: Animate one corpse as a skeleton or zombie without expending a spell slot. Each free use is one corpse, uses the spell's action and range, and needs no onyx; Undead Mastery and Soul Tax replace the spell's duration and control limits.</strong></li><li><strong>Free daily uses scale with level: </strong>1 use (levels 1-4), 2 uses (levels 5-9), 3 uses (levels 10-14), 4 uses (levels 15-19), 5 uses (levels 20+)</li><li>Additional uses beyond the daily free limit require a 3rd level slot each (from 5th level)</li><li>Animated undead count towards your Undead Mastery cap (at most 10 undead under your control at once; 20 from 24th level) and persist until destroyed or dismissed</li><li>At the table: your undead act together on your initiative and move as a group. Identical undead attacking the same target roll their attacks together.</li><li><strong>Soul Tax: </strong>Each dawn, you maintain undead whose combined HD total up to your Necromancer level for free (from 5th level, add your Intelligence modifier). Beyond that allowance, spend spell slots to maintain controlled undead, or lose control of them. Upkeep may use no more than half your total spell slots (rounded up) each dawn.</li><li>1 HD (skeleton, poltergeist) — 1st level slot each</li><li>2-3 HD (zombie, ghoul, shadow, rusalka) — 2nd level slot each</li><li>4-5 HD (ghast, wight, wraith, allip, draug, haunt) — 3rd level slot each</li><li>6-8 HD (spectre, banshee, apparition, revenant, skeleton warrior, crypt thing) — 4th level slot each</li><li>9+ HD (bodak, death knight, skull lord, bone golem) — 5th level slot each</li><li>Undead whose slot cannot be paid immediately break free — GM determines their behaviour</li><li><strong>Command Undead: As an action, attempt to bring an uncontrolled undead within 30ft under your command, 1 + half your Necromancer level times per day. Its Level cannot exceed your Necromancer level, and mindless undead save as normal. Control lasts 1 hour per Necromancer level unless you pay Soul Tax for it at dawn.</strong></li><li><strong>The undead makes a Will save</strong> against your Class Save DC</li><li><strong>Failed save: </strong>obeys your commands and counts towards your Undead Mastery cap</li><li><strong>Successful save: </strong>immune to this ability for 24 hours</li><li><strong>Spell Use: </strong>Cast spells from the Necromancer spell list using standard slot progression.</li><li><strong>Death Magic: </strong>The save DC of your Necromancy spells is increased by 1.</li><li><strong>Kit Ability: </strong>Gain the named abilities from your chosen Kit.</li></ul><h3 class=\"arn-level\">5th Level — Deathsense</h3><ul><li><strong>Deathsense: </strong>Always aware of undead and dying creatures within 60ft, even through walls.</li><li>Know the presence, number, and approximate Level of all undead within range</li><li>Know when any creature within range drops to 0 HP or below</li><li>Cannot be surprised by undead</li></ul><h3 class=\"arn-level\">9th Level — Undead Resilience</h3><ul><li><strong>Undead Resilience: </strong>At the start of each encounter, gain temporary HP equal to the total HD of all undead under your control, up to your Necromancer level.</li><li><strong>Example: </strong>zombie (2 HD) + skeleton (1 HD) + wight (4 HD) = 7 temporary HP</li><li>Temporary HP last until the end of the encounter</li></ul><h3 class=\"arn-level\">12th Level — Necrotic Aura</h3><ul><li><strong>Necrotic Aura: </strong>Always active while you have undead under your control within 30ft.</li><li>Controlled undead gain +1 damage per hit and +2 HP per Necromancer level</li><li>Death-effect spells you cast increase the DC of the triggered save by an additional 1</li></ul><h3 class=\"arn-level\">15th Level — Death's Embrace &amp; Lich's Will</h3><ul><li><strong>Death's Embrace: </strong>The line between you and death has blurred permanently.</li><li>Gain a permanent +1 to Intelligence</li><li>Immune to death effects and exhaustion drain</li><li>Negative energy heals you rather than harms you — Inflict Wounds restores HP to you</li><li>You no longer age and cannot die of old age</li><li><strong>Lich's Will: </strong>Your research into death magic takes a dark turn. Through decades of study, forbidden experimentation, and communion with the forces of undeath, you have begun to glimpse the outline of true lichdom — though the secret itself remains incomplete until 20th level.</li><li>The process, requirements, and full consequences of lichdom are detailed later in this chapter</li><li>You do not become a lich automatically — this is a narrative milestone, not a mechanical transformation</li></ul><h3 class=\"arn-level\">20th Level — Death's Grasp</h3><ul><li><strong>Death's Grasp: Once per day, if reduced to 0 HP or below while</strong> you have at least one undead under your control, immediately stabilise at 1 HP — your army sustains you at the threshold.</li><li>Each undead that contributes to this loses 2d6 HP</li><li>If no undead survive the drain, the ability fails</li></ul><h3 class=\"arn-level\">24th Level — Undying Legion</h3><ul><li><strong>Undying Legion: </strong>Your Undead Mastery cap doubles from 10 to 20.</li><li>Undead you control gain immunity to turning</li><li>Undead you control cannot be commanded by Necromancers or Clerics of lower level than you</li></ul><h2>Kits</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Necromancer folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Kits define your approach to the death arts — not what power you have, but how you use it and what it says about you.</p><h2>Spell Progression</h2><p>The Necromancer's spell list focuses on necromancy, divination, and illusion. Fewer slots than the Wizard — the free Animate Dead and Soul Tax mechanic are the trade-off.</p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>0</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th>9th</th></tr></thead><tbody><tr><td>1</td><td>3</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>3</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>4</td><td>4</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>6</td><td>4</td><td>3</td><td>2</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>7</td><td>4</td><td>3</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>8</td><td>4</td><td>3</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>9</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>10</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>11</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td></tr><tr><td>12</td><td>5</td><td>4</td><td>3</td><td>3</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td></tr><tr><td>13</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td></tr><tr><td>14</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td><td>—</td></tr><tr><td>15</td><td>6</td><td>4</td><td>4</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td></tr><tr><td>16</td><td>6</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td><td>—</td></tr><tr><td>17</td><td>6</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td></tr><tr><td>18</td><td>6</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1</td></tr><tr><td>19</td><td>6</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td></tr><tr><td>20</td><td>6</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>2</td></tr><tr><td>21</td><td>6</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>3</td><td>2</td></tr><tr><td>22</td><td>7</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td></tr><tr><td>23</td><td>7</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td><td>3</td></tr><tr><td>24</td><td>7</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>3</td><td>3</td></tr></tbody></table><ul><li><strong>Bonus Spells: </strong>High Intelligence grants bonus spell slots:</li><li>Intelligence 13-15 — one extra 1st level slot</li><li>Intelligence 16-17 — one extra 2nd level slot</li></ul><p><strong>Intelligence 18+ — one extra 3rd level slot (the bonuses are cumulative, and each arrives only once your table gives you slots of that level)</strong></p><ul><li><strong>Preparation: </strong>Each morning prepare spells equal to your level plus Intelligence modifier. Spend a slot of the appropriate level to cast any prepared spell.</li></ul><h2>Necromancer Spell List</h2><p>Spells available to the Necromancer, by level. * = reversible spell. ‡ = needs a costed material component (see Rare Spell Components in the Shopkeeper's Catalogue). Full descriptions, saves and components are in Spellcasting in Arneyan. Spells marked in the Class-Only list below exist for this class alone.</p><h3>0 Level (Cantrips)</h3><p>Arcane Mark · Detect Magic · Detect Poison · Ghost Sound · Mending · Read Magic · Toll the Dead</p><h3>1st Level</h3><p>Change Self · Chill Touch · Detect Undead · Mage Armour · Magic Missile · Sleep</p><h3>2nd Level</h3><p>Blindness/Deafness · Death Knell · Detect Thoughts* · Invisibility · Ray of Enfeeblement · Speak with Dead</p><h3>3rd Level</h3><p>Animate Dead*‡ · Bestow Curse · Clairaudience/Clairvoyance · Vampiric Touch</p><h3>4th Level</h3><p>Blight · Phantasmal Killer · Scrying‡ · Shadow Monsters</p><h3>5th Level</h3><p>Cloudkill · Magic Jar‡ · Nightmare · Raise Dead‡ · True Seeing</p><h3>6th Level</h3><p>Circle of Death · Create Undead‡ · Eyebite · Flesh to Stone* · Geas · Legend Lore‡</p><h3>7th Level</h3><p>Etherealness · Finger of Death · Greater Restoration‡</p><h3>8th Level</h3><p>Clone‡ · Trap the Soul‡</p><h3>9th Level</h3><p>Astral Projection‡ · Energy Drain · Soul Bind‡ · Wail of the Banshee · Weird</p><h3>Class-Only Spells</h3><p>Disrupt Undead (Cantrip) — Range 30ft; one undead takes 1d6 damage; Will negates.</p><p>Touch of Fatigue (Cantrip) — Touch; one creature has Disadvantage on its next attack roll or attribute check before the end of its next turn; Fortitude negates.</p><p>Cause Fear (1st) — Range 30ft; one creature of Level 4 or lower is Frightened for 1d4 rounds; Will negates.</p><p>Inflict Light Wounds (1st) — Touch; 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p>Bind Undead (2nd) — Range 30ft; one undead of Level up to your Necromancer level obeys you for 1 day per level; Will negates. It counts towards your Undead Mastery cap.</p><p>False Life (2nd) — Self; gain 1d10 + your level temporary HP for 1 hour per level.</p><p>Ghoul Touch (2nd) — Touch; one living creature is Paralysed for 1d6+2 rounds; Fortitude negates. While Paralysed it gives off a stench: any other living creature that starts its turn within 10ft makes a Fortitude save or is Sickened until it starts a turn outside the stench.</p><p>Gentle Repose (3rd) — Touch; one corpse does not decay and cannot be raised as undead for 1 day per level.</p><p>Halt Undead (3rd) — Range 60ft; up to 3 undead within 30ft of each other are Paralysed for 1 round per level; Will negates (mindless undead get no save). The effect on a creature ends if it is attacked.</p><p>Ray of Exhaustion (3rd) — Range 60ft; one creature gains two levels of Exhaustion; Fortitude negates. This spell cannot take a creature above Exhaustion level 3. The levels recover as ordinary Exhaustion.</p><p>Contagion (3rd) — Touch; one creature catches a disease of your choice (see Disease &amp; Poison in The Arneyan Codex), with effects starting at once; Fortitude negates.</p><p>Feign Death (3rd) — Touch; a willing creature appears dead to all senses and spells for 1 hour/level and takes half damage from physical attacks</p><p>Animate Dead (Greater) (4th) — As Animate Dead, but each undead can have up to 10 HD and you may raise ghouls and shadows. The same control limits apply.</p><p>Bestow Curse (Greater) (4th) — As Bestow Curse, but it lasts until Remove Curse cast by a higher-level caster, or Wish, ends it.</p><p>Enervation (4th) — Range 60ft; one creature gains 1d4 levels of Exhaustion (a successful Fortitude save halves, rounded down), to a maximum of level 5.</p><p>Bone Armour (4th) — Fuse a shell of bone over yourself for 1 hour/level: +4 AC, and an attacker who hits you in melee takes 1d4 damage</p><p>Fear (Mass) (5th) — 30ft cone; each creature is Frightened and must flee for 1 round per level; Will negates. Creatures of higher Level than yours are unaffected.</p><p>Symbol of Pain (5th) — Touch a surface to inscribe a rune that lasts until triggered or for 10 minutes per level. When a creature you did not name reads or passes it, creatures within 60ft that can see it have Disadvantage on attack rolls and checks for 1 hour; Fortitude negates.</p><p>Harm (6th) — Touch; reduces the target to 1d4 HP (no effect if it already has fewer); Fortitude negates</p><p>Control Undead (7th) — Range 30ft; up to one undead per two levels, each of Level up to your level, obey you for 1 minute per level whoever made them; Will negates (mindless undead get no save). They count towards your Undead Mastery cap while controlled, then return to their old master or turn hostile.</p><p>Symbol of Death (7th) — Touch a surface to inscribe a rune, triggered as Symbol of Pain. Living creatures within 60ft with up to 150 HP in total die, lowest HP first; each makes a Fortitude save to resist. One use.</p><p>Create Greater Undead (8th) — Range 10ft; one corpse; cast at night only. Raises one undead, its type set by your caster level: 15–16 a mummy, 17–18 a spectre, 19–20 a vampire, 21+ a ghost. It uses that creature's stat block in Monsters &amp; Treasure. It obeys you permanently and counts towards your Undead Mastery cap. Material: a black onyx worth 100 gp per HD, consumed.</p><p>Horrid Wilting (8th) — Range 60ft; 30ft radius. Living creatures take 1d6 necrotic damage per level (max 20d6); Fortitude halves. Plants and water creatures take maximum damage.</p><p>Vile Blight (8th) — 40ft cone; 10d6 necrotic damage (Fortitude save for half); plants in the area die</p><h2>Lichdom</h2><ul><li>At 20th level the Necromancer has uncovered the secret of lichdom. This is not a class feature — it is a door. Whether you walk through it is entirely your choice, and the GM's to adjudicate.</li></ul><h3>The Requirements</h3><ul><li><strong>The Phylactery: </strong>A phylactery must be crafted — a specially prepared object that will house the Necromancer's soul. It must be of exceptional quality (worth no less than 5,000 gp) and personally inscribed with the Necromancer's true name in an ancient necromantic script. The crafting requires 1 month of uninterrupted work and a successful Intelligence check (DC 20, Severe tier). Failure means the object is destroyed and the process must begin again.</li><li><strong>The Poison: </strong>A unique magical poison must be brewed — one that kills the body without destroying the soul. The ingredients are rare and specific, typically including: the blood of a willing sacrifice (or the Necromancer's own blood at cost of 2d6 permanent Constitution loss), powdered bones of a creature that died of old age, and a soul fragment harvested via the Soul Bind spell. Brewing requires 1 week and a successful Intelligence check (DC 20, Severe tier).</li><li><strong>The Ritual: </strong>The Necromancer must perform a 24-hour ritual at a site of significant necromantic power — a place of mass death, an ancient burial ground, or a location where the veil between life and death is thin. At the ritual's climax, they consume the poison. The soul binds to the phylactery. The body dies and rises as a lich.</li></ul><h3>Mechanical Benefits</h3><ul><li>Undead type — immune to death effects, poison, disease, exhaustion drain, paralysis, and mind-affecting spells</li><li>No longer needs to eat, drink, sleep, or breathe</li><li>Immunity to cold and lightning damage</li><li><strong>Fear Aura: </strong>creatures within 30ft must make a Will save against your Class Save DC or be frightened for 1 round on first sight each encounter</li><li><strong>Touch Attack: </strong>the lich's touch deals 1d10+5 cold damage and paralyses (Fortitude save against your Class Save DC, duration 1d4 rounds)</li><li><strong>Phylactery: </strong>if the lich's body is destroyed, the soul retreats to the phylactery. A new body forms in 1d10 days within 10ft of the phylactery. True death is only possible if the phylactery is destroyed first</li><li>Undead Mastery cap increases by 5 permanently</li><li>All Soul Tax costs are reduced by one slot level — 1 HD undead are now free to maintain</li></ul><h3>Mechanical Drawbacks</h3><ul><li>The lich radiates an aura of undeath — Detect Undead and Detect Evil reveal the lich automatically, even under magical disguise</li><li>Clerics and Paladins can attempt to turn the lich as if it were a Level 15 undead</li><li>The lich cannot enter consecrated ground without a successful Will save (DC 20, Severe tier) each round</li><li>Healing spells no longer restore HP — only negative energy heals the lich (Inflict spells, necromantic effects)</li><li>The lich no longer recovers HP from rest — damage can only be healed magically</li><li>Has no Constitution score; treat its modifier as +0 from now on. Its maximum HP does not change when it becomes a lich.</li><li>The phylactery is a vulnerability — if destroyed while the lich's body is alive, the lich immediately takes 10d10 damage (no save) as the soul bond fractures</li></ul><h3>Narrative Consequences</h3><ul><li>Lichdom is irreversible by any means short of a Wish spell and divine intervention — and even then only with the lich's willing cooperation</li><li>The lich's patron relationship changes fundamentally: powers of life may withdraw, powers of death may draw closer</li><li>Alignment drifts — the lich retains their personality and memories but emotional responses dull over decades. The GM may call for Will saves against increasingly callous decisions as time passes</li><li>The lich becomes a figure of dread in Arneyan — recognised by name, hunted by orders of Clerics and Paladins</li></ul><h3>The Phylactery</h3><ul><li>The phylactery is the lich's true self. The GM and player decide together what it looks like, where it is kept and how it is guarded. An enemy who learns the phylactery's location has leverage over one of the most powerful beings in Arneyan.</li><li>Destroying the phylactery takes 40 damage (AC 20, resistance to all damage except radiant, immune to the lich's own spells)</li><li>If the phylactery is destroyed while the lich lives, it has days equal to its Intelligence score to make a new one (1 week of work, same cost and check) before its soul unravels, losing 1d6 Intelligence a day</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "levels": 1,
+  "hitDie": "d4",
+  "hpBeyond10": 1,
+  "bthProgression": "arcane",
+  "keyAbility": "int",
+  "castingAbility": "int",
+  "xpRate": 12,
+  "weapons": "Club, dagger, dart, staff, hand crossbow",
+  "armour": "None — you cannot cast in armour or with a shield you are not trained in",
+  "slotTable": [
+   [
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    4,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    4,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    4,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0,
+    0
+   ],
+   [
+    5,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0,
+    0
+   ],
+   [
+    6,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    1,
+    0
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    1
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2
+   ],
+   [
+    6,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2
+   ],
+   [
+    7,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2
+   ],
+   [
+    7,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3
+   ],
+   [
+    7,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3
+   ]
+  ],
+  "featLevels": [
+   1,
+   4,
+   8,
+   12,
+   16,
+   20
+  ],
+  "featPaths": [
+   "General Path",
+   "Arcane & Devout Path"
+  ],
+  "features": [
+   {
+    "level": 1,
+    "name": "Animate Dead",
+    "uuid": "Compendium.arneyan.class-features.Item.wUDfID3GbQaDq2OG"
+   },
+   {
+    "level": 5,
+    "name": "Deathsense",
+    "uuid": "Compendium.arneyan.class-features.Item.NQTQk1nEq1Mj4WYz"
+   },
+   {
+    "level": 9,
+    "name": "Undead Resilience",
+    "uuid": "Compendium.arneyan.class-features.Item.17QmUqhSJyzBV15A"
+   },
+   {
+    "level": 12,
+    "name": "Necrotic Aura",
+    "uuid": "Compendium.arneyan.class-features.Item.AdUhU5bJLgx9Tx8p"
+   },
+   {
+    "level": 15,
+    "name": "Death's Embrace & Lich's Will",
+    "uuid": "Compendium.arneyan.class-features.Item.ygZKe7rX7DTQIjI1"
+   },
+   {
+    "level": 20,
+    "name": "Death's Grasp",
+    "uuid": "Compendium.arneyan.class-features.Item.4Feup5afifOX03dA"
+   },
+   {
+    "level": 24,
+    "name": "Undying Legion",
+    "uuid": "Compendium.arneyan.class-features.Item.sKdMaYtcI3xvSRjU"
+   }
+  ]
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

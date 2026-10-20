@@ -1,0 +1,51 @@
+{
+ "_id": "rkP9ykLFCn1jprAT",
+ "_key": "!items!rkP9ykLFCn1jprAT",
+ "name": "Call Lightning",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 360ft; outdoors only, in open sky. For 1 round per level you may call one bolt per round as an action, striking a 10ft-radius burst for 3d8 lightning damage; Reflex halves. Ignites flammable objects. Double damage (6d8) during a storm.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 360ft",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "3d8",
+  "damageType": "lightning",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 141,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

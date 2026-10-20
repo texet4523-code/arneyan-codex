@@ -1,0 +1,44 @@
+{
+ "_id": "m3WsthD1o620CKXN",
+ "_key": "!items!m3WsthD1o620CKXN",
+ "name": "Predator",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+ "system": {
+  "description": "<p>You move like something that's done this before — silent, low, patient. And if the strike lands from where they never saw you coming, it lands harder for it. Gain Advantage on Stealth checks. If you have the Sneak Attack ability, your Sneak Attack deals +1d6.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Specialist Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Stealth",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+1d6",
+    "when": "Sneak Attack",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Hg8ljiYllm5al9gp",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,48 @@
+{
+ "_id": "BmWnLgQbDj3vwatI",
+ "_key": "!items!BmWnLgQbDj3vwatI",
+ "name": "Combat Marauder",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>+1 flat bonus damage per two Ranger levels against humanoids (bugbears, gnolls, goblins, hobgoblins, kobolds, orcs, and similar), giants (giants, ogres, and similar), and — once marked, or once a kit extends the list — other qualifying creature types. Against any other creature, the bonus is +1 per four Ranger levels.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Ranger",
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+floor(@cl/2)",
+    "when": "vs humanoids, giants and marked or kit-listed creatures",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+floor(@cl/4)",
+    "when": "vs any other creature",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mTYolNxClYl3gPJt",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

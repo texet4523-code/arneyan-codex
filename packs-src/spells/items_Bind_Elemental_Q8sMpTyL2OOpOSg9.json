@@ -1,0 +1,62 @@
+{
+ "_id": "Q8sMpTyL2OOpOSg9",
+ "_key": "!items!Q8sMpTyL2OOpOSg9",
+ "name": "Bind Elemental",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 30ft; one elemental within a prepared circle. It is Charmed and bound to your orders for 1 hour per level if it fails a Will save; Will negates. A bound elemental performs tasks you assign. An order that would clearly kill it or contradicts its nature gives it a new save. A creature that saves may attack you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 5,
+  "className": "Wizard",
+  "classes": [
+   "Wizard"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Bound Elemental",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [
+     "charmed"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ou2DIMq26iUx90nk",
+ "sort": 241,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

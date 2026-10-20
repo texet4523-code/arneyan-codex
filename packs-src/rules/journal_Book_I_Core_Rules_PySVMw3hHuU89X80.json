@@ -1,0 +1,1362 @@
+{
+ "_id": "PySVMw3hHuU89X80",
+ "_key": "!journal!PySVMw3hHuU89X80",
+ "name": "Book I: Core Rules",
+ "pages": [
+  {
+   "_id": "BxPwovkYjbdHhVR0",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.BxPwovkYjbdHhVR0",
+   "name": "Introduction",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p><em>The Arneyan Codex  |  Arneyan Campaign Setting</em></p><p>This book holds everything a player needs to build a character and take part in play. For the world, its history and its peoples, including how long each ancestry lives and how it ages, see the Arneyan wiki.</p>"
+   },
+   "sort": 100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "DWlPkRL3ZjXs9NPE",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.DWlPkRL3ZjXs9NPE",
+   "name": "Advancement",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Characters advance by levels, from 1 to a maximum of 24. You earn Experience Points (XP), and when your XP reaches the cost of a level you spend it to gain that level and start again from 0 (see How Levels Are Awarded). There is no training requirement and no cost.</li><li>Each new level grants:</li><li>Your class's new features for that level</li><li>More hit points</li><li>+1 Luck</li><li>A Non-Weapon Proficiency slot at levels 4, 8, 12, 16, 20 and 24</li><li>Henchmen who travel with the party earn the same XP as the party, at 10 XP per level. Hirelings do not advance.</li></ul>"
+   },
+   "sort": 200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "awMU4dAt3dug6mHk",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.awMU4dAt3dug6mHk",
+   "name": "Tiers of Play",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>As characters rise, the scale of their stories rises with them.</li></ul><table class=\"arn-table\"><thead><tr><th>Tier</th><th>What it feels like</th></tr></thead><tbody><tr><td>Local Heroes (levels 1–4)</td><td>You are still learning your trade. Your concerns are a village, a road or a cellar full of something nasty. A bad fight can kill you.</td></tr><tr><td>Heroes of the Realm (levels 5–10)</td><td>You are capable adventurers with a growing name. Your deeds matter to whole regions, and rulers have started to notice you.</td></tr><tr><td>Masters of the Realm (levels 11–16)</td><td>You are famous and powerful. You command respect, armies and fortresses, and your choices swing the fate of kingdoms.</td></tr><tr><td>Masters of the World (levels 17–20)</td><td>You are among the most powerful beings alive. Your battles and schemes shape continents.</td></tr><tr><td>Mythic (levels 21–24)</td><td>You are the stuff of myth. Gods, dragons and elder powers know your name, and your deeds rewrite the world itself.</td></tr></tbody></table>"
+   },
+   "sort": 300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "gj25nLuR3cxjpRfN",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.gj25nLuR3cxjpRfN",
+   "name": "How Levels Are Awarded",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>The GM awards Experience Points (XP) when the party completes a quest or reaches a goal.</li><li><strong>Minimum Reward: </strong>completing any quest grants at least 1 XP.</li><li><strong>Variable Rewards: </strong>the GM may award more for difficulty, length, complexity or a significant achievement. Slaying a powerful adult dragon could award 2 or more XP.</li><li><strong>Levelling Up: </strong>each level costs XP equal to your class's rate (see the Experience by Class table in Book II), the same for every level. Your XP stops at that rate until you spend it, and each level you gain resets it to 0. A multiclass character pays the highest rate among their classes, +2 XP per level for each class beyond the first (see Multiclassing in Book II); a Rogue 8 / Wizard 12 pays 14. Example: a Rogue (8) needs 8 XP for each level, so 5th level takes four fills, 32 XP in all. A Wizard (12) needs 48.</li><li><strong>GM Discretion: </strong>the GM has the final say on all XP, and decides what counts as a quest. Personal goals, rumour-driven leads and structured adventures all count.</li><li>How you get there is up to you. Beating a boss can earn a milestone, but so can sneaking past it, talking your way around it or completing the quest some other clever way. Success counts, not the body count. Rogues and Assassins tend to level early, while Paladins and Wizards take longer to reach their strongest. The rates reflect that.</li></ul>"
+   },
+   "sort": 400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "QDbydAQvTJXsjYbD",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.QDbydAQvTJXsjYbD",
+   "name": "Quick Reference",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<table class=\"arn-table\"><thead><tr><th>Rule</th><th>In brief</th></tr></thead><tbody><tr><td>Any roll</td><td>d20 + modifiers. You succeed if the total meets or beats the target (a DC, or the target's AC). Luck is the one roll-under test.</td></tr><tr><td>Attack roll</td><td>d20 + modifier + BtH versus the target's AC. Add the same modifier to damage.</td></tr><tr><td>Difficulty (DC)</td><td>Easy 10, Moderate 12, Hard 15, Severe 20. Interpolate between them.</td></tr><tr><td>Armour Class</td><td>10 + armour + shield + Dexterity modifier. Higher is better.</td></tr><tr><td>Saving throws</td><td>d20 + attribute modifier + the greater of 1 and half your level (rounded down). Fortitude uses Constitution, Reflex uses Dexterity, Will uses Wisdom.</td></tr><tr><td>Spell save DC</td><td>10 + the greater of 1 and half the caster's level (rounded down) + casting-stat modifier.</td></tr><tr><td>Natural 20 / 1</td><td>On every d20 roll except initiative and Luck Checks, a 20 always succeeds and a 1 always fails. A 20 on an attack adds the maximum of the damage dice. Spells that call for a save never crit.</td></tr><tr><td>Advantage / Disadvantage</td><td>Roll two d20 and take the higher or lower. They never stack. Situational modifiers become Advantage or Disadvantage; numerical bonuses (BtH, attributes, Luck, magic weapons, stated class and feat numbers) stay numbers.</td></tr><tr><td>Resistance</td><td>A flat reduction to each instance of damage. Resistance 5 takes 5 off.</td></tr><tr><td>Round and turn</td><td>A round is 6 seconds. On your turn you get one action plus your movement. Free actions: a few words, dropping an item, and one simple object use.</td></tr><tr><td>Initiative</td><td>Each combatant rolls d20 + Dexterity once and keeps that place for the whole fight.</td></tr><tr><td>Charge</td><td>Uses your action; declare it before you move. Move up to double speed in a straight line (at least 10ft) and make one melee attack with Advantage. Attacks against you have Advantage until your next turn.</td></tr><tr><td>Death &amp; Dying</td><td>At 0 HP you are unconscious but stable. Below 0 you are dying and bleed 1 HP per turn until an ally spends an action and succeeds on a DC 10 Wisdom check (you cannot stabilise yourself, except through Last Chance). You die at −10 HP minus your Constitution modifier (−20 from 11th level). Last Chance: burn 1 Luck for a DC 10 Fortitude save to stabilise.</td></tr><tr><td>Exhaustion</td><td>Levels 1 to 6, and level 6 is death. Each uninterrupted full rest removes one level.</td></tr><tr><td>Carrying</td><td>18 slots, 20 with Strength 16+, 16 with Strength 6 or less. Ammunition is 30 per slot and coins 100 per slot. Worn armour and carried weapons count. Over the limit, speed is reduced by 10ft and you have Disadvantage on Dexterity checks and attack rolls.</td></tr></tbody></table>"
+   },
+   "sort": 500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "PmHXjtkl5fWm32Wl",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.PmHXjtkl5fWm32Wl",
+   "name": "Related Sections",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>These systems are covered in full in Book III (Classes) and Book IV (Spellcasting) rather than repeated here.</li><li><strong>Character Creation: </strong>Attributes and Method V, Languages, The Luck Stat, The Feats of Arneyan, Skills, Alignment in Arneyan, Starting Equipment &amp; Gear, and Multiclassing — everything needed to actually build a character.</li><li><strong>Spellcasting in Arneyan: </strong>How magic is resolved — saves vs. automatic effects, spell preparation and slots, cantrips, Legendary Resistance, and the rule on casting arcane spells in armour.</li><li><strong>The Shopkeeper's Catalogue:</strong> Full pricing for every weapon, armour, and piece of gear in the setting, including inventory slot values for everything on offer.</li></ul>"
+   },
+   "sort": 600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "4MHH6WjBAEIXXOie",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.4MHH6WjBAEIXXOie",
+   "name": "Core Resolution",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>The universal math underneath every roll in the game.</li></ul>"
+   },
+   "sort": 700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "vZ6NthRJ3u5Y2ebO",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.vZ6NthRJ3u5Y2ebO",
+   "name": "Core Resolution",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Arneyan uses full roll-over</strong> (roll-high) resolution for every roll in the game except Luck, which stays its own standalone roll-under subsystem (see The Luck Stat)</li><li><strong>Core resolution: roll a d20, add the relevant bonus, and succeed if the total meets or beats the target DC/AC. What you add depends on the roll:</strong></li><li><strong>Attribute Check: d20 + attribute modifier (see the Arneyan Modifier Table).</strong></li><li><strong>Skill Check: d20, plus your attribute modifier if you are Trained, and with Advantage as well if you are a Master (see Skills (NWP)).</strong></li><li><strong>Attack: d20 + attribute modifier + Base to Hit (BtH), against AC.</strong></li><li><strong>Saving Throw: d20 + saving throw bonus, against the DC (see Saving Throws below).</strong></li><li><strong>Level never adds to a plain check.</strong></li><li><strong>Natural 20 and Natural 1: </strong>on every d20 roll except initiative and Luck Checks, a natural 20 always succeeds and a natural 1 always fails, whatever the modifiers or the DC. On a skill or attribute check, the GM decides what a natural 1 costs the character beyond the failure. A condition that states an automatic failure overrides a natural 20.</li><li>See Character Creation for ancestry attribute bonuses, multiclassing requirements, and how Advantage is granted.</li><li><strong>A situational difficulty</strong> (poison, disease, crafting, a GM-set obstacle, and similar) is set as a flat DC using the General Difficulty Tiers table below, compared against the roll total as normal — not a penalty to anything.</li><li><strong>Advantage</strong> and Disadvantage never stack — any number of sources of the same kind gives only one extra die, so you never roll more than two dice. Advantage means rolling two d20 and taking the higher result; Disadvantage means taking the lower. If you have at least one source of each, they cancel and you roll a single d20, however many sources of each there are.</li><li><strong>Outside combat manoeuvres and conditions, Advantage on checks comes from GM discretion (situational, including the Background Story Bonus), from Master training in a Non-Weapon Proficiency (NWP) (see Skills (NWP)). An untrained NWP check is a plain d20 with no modifier, a Trained one adds the attribute modifier (or +1 if that modifier is 0 or less), and a Master adds the same and rolls with Advantage.</strong> Ancestry, class, and Feat features that state Advantage also apply.</li><li><strong>Combat manoeuvres and conditions (Charge, Dodge, Dirty Trick, etc.)</strong> continue to grant Advantage/Disadvantage exactly as written in Section III.</li><li><strong>Advantage and Disadvantage can apply to attack rolls from classes, ancestries, Feats, manoeuvres, and positioning (charging, flanking), exactly as detailed throughout Section III.</strong></li><li><strong>Contested Checks: </strong>when two creatures oppose each other (grappling, shoving, disarming), both roll and the higher total wins. A tie goes to the defender, or to the one resisting the change. A monster has no attribute scores: it uses its Fortitude save minus half its HD for a Strength contest, its Reflex save minus half its HD for Dexterity, and its Will save minus half its HD for Wisdom.</li><li><strong>Aid: </strong>when a character can reasonably help another with a check and the GM approves, the helper gives that check Advantage. The GM decides what counts as reasonable help and may allow only one helper.</li><li><strong>Rounding: </strong>round fractions down unless a rule says otherwise.</li></ul>"
+   },
+   "sort": 800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "nb3HhNm6eVnE6Pn8",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.nb3HhNm6eVnE6Pn8",
+   "name": "General Difficulty Tiers",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Whenever a check or save has a flat difficulty rather than a bespoke formula (disease, poison, crafting, a GM-set obstacle), use this table as the DC directly:</li></ul><table class=\"arn-table\"><thead><tr><th>Tier</th><th>DC</th></tr></thead><tbody><tr><td>Easy</td><td>DC 10</td></tr><tr><td>Moderate</td><td>DC 12</td></tr><tr><td>Hard</td><td>DC 15</td></tr><tr><td>Severe</td><td>DC 20</td></tr></tbody></table><ul><li>For anything between listed tiers, interpolate the DC directly.</li><li><strong>Non-Spell Monster Abilities</strong> (breath weapons, gazes, poison, roars — anything that isn't literally a spell): target rolls the relevant save (Fortitude/Reflex/Will) against the DC printed in the creature's stat block.</li><li><strong>Ancestry and item effects that call for a save but state no DC use DC = 10 + half your character level (minimum 1) + the modifier of the stated attribute.</strong> If no attribute is stated, use Constitution for breath, poison, bite, and endurance effects; Strength for grapple, knockdown, and disarm effects; Wisdom for fear and mind effects; and Charisma for social and presence effects. Monsters and items state their own DC.</li><li><strong>Spell saves use their own formula instead</strong> (see Spellcasting in Arneyan).</li></ul>"
+   },
+   "sort": 900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "eBgKmZwgRYr8hgKx",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.eBgKmZwgRYr8hgKx",
+   "name": "Saving Throws",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Saving Throws are one of three named types: Fortitude, Reflex, or Will.</p><ul><li><strong>Roll: d20 + your saving throw bonus. You succeed if the total meets or beats the DC.</strong></li><li><strong>Saving throw bonus: your attribute modifier + half your level (minimum 1). The attribute depends on the type:</strong></li><li><strong>Fortitude = Constitution (body, poison, disease, death).</strong></li><li>Reflex = Dexterity (dodging blasts and areas).</li><li>Will = Wisdom (mind, charm, fear).</li><li>Strength, Intelligence and Charisma do not feed a save directly.</li><li>A natural 20 always succeeds a save, a natural 1 always fails — the same convention as attacks and checks, so a natural 20 still takes half damage from an effect that halves and negates an effect that negates. A creature may choose to fail a save against an effect it wants.</li><li><strong>Spell saves use this exact same formula</strong> (both the caster's DC and the target's roll scale with their own level — see Spellcasting in Arneyan for the DC side)</li><li><strong>Class Save DC: </strong>where a class feature forces a save without stating a DC, the DC is 10 + half your Class Level (minimum 1) + the modifier of the class's key attribute (the first one listed if it has two). Spells use the caster's spell DC (see Spellcasting in Arneyan).</li><li><strong>Non-spell saves</strong> (poison, disease, a GM-set obstacle) use the General Difficulty Tiers DC above instead of a bespoke formula.</li><li>Each save is normally tied to a specific attribute based on the nature of the effect.</li><li>This categorisation is a template, not a strict rulebook — the GM has final say on which attribute best fits an effect not listed here:</li></ul><table class=\"arn-table\"><thead><tr><th>Save</th><th>Typical Categories</th></tr></thead><tbody><tr><td>Fortitude</td><td>Disease, Energy Drain, Poison, Paralysis, Constriction, Petrification, Death Attack</td></tr><tr><td>Reflex</td><td>Breath Weapon, Traps</td></tr><tr><td>Will</td><td>Arcane Magic, Illusion, Divine Magic, Confusion, Gaze Attack, Polymorph, Charm, Fear</td></tr></tbody></table><ul><li>Spells and similar effects often specify their own save attribute directly rather than falling into one of these general categories — follow the spell's own description first.</li><li>Monsters use the saves printed in their stat blocks in Monsters &amp; Treasure, whichever of Fortitude, Reflex or Will the effect calls for. An NPC built as a character saves as a PC does.</li></ul>"
+   },
+   "sort": 1000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "rKU3nYBcwf90uOcN",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.rKU3nYBcwf90uOcN",
+   "name": "Armour Class",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Armour Class (AC) represents how hard a creature is to hit — the number an attacker's roll must meet or beat for a blow to land.</p><ul><li><strong>Arneyan uses ascending AC: </strong>higher is better, and a base unarmoured character starts at AC 10.</li><li><strong>Wearing armour replaces your unarmoured AC (10 plus Dexterity) rather than adding to it. AC is built from: Base 10, plus</strong> your armour's listed bonus, plus your Dexterity modifier (limited by armour category: see Armour Categories), plus a shield bonus if carried, plus any Feats or class features that add to AC directly (Armour Master, Shield Expert, Agile Defence, and similar). A natural armour bonus from an ancestry adds to AC whether or not armour is worn. AC and save bonuses from spells do not stack with each other: only the highest applies (the Shield spell's bonus against missiles excepted). Example: a Chain Mail Hauberk (+5, heavy, so no Dexterity) and a medium shield (+1) give AC 16; fighting defensively with the shield (see Dual Wielding &amp; Shields) makes it 17 for that round.</li><li>Situational adjustments (Dodge, or being Prone against ranged attacks) give the attacker Advantage or Disadvantage rather than shifting AC.</li><li>Where a class feature, or Feat explicitly states a flat AC bonus (rather than Advantage/Disadvantage), apply it as written — these coexist with the Advantage/Disadvantage rule rather than being replaced by it.</li></ul>"
+   },
+   "sort": 1100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "drMBwKLlT1VVur5W",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.drMBwKLlT1VVur5W",
+   "name": "Advantage & Disadvantage",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Advantage and Disadvantage (GM's call) replace most numeric combat and situational modifiers, simplifying manoeuvres and conditions that would otherwise require tracking a pile of small bonuses and penalties.</li><li>Situational modifiers (circumstances, manoeuvres, conditions, cover, positioning) become Advantage if favourable and Disadvantage if not. Numerical bonuses stay numerical: BtH, attribute modifiers, Luck, magic weapon bonuses, and any bonus a class feature or feat states as a number.</li><li>AC adjustments follow the same principle.</li><li>Advantage never applies to damage rolls. Where a feature would grant Advantage on damage, reroll any 1s on the weapon's damage dice once instead and keep the new result.</li></ul>"
+   },
+   "sort": 1200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "RIBzkBmQlikSWb69",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.RIBzkBmQlikSWb69",
+   "name": "Critical Hits & Critical Fails",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Critical Hits.</p><ul><li>A natural 20 always hits in combat on an attack roll — roll damage normally and add the maximum of the weapon's own damage dice (or the unarmed or natural attack's) to the result. Extra dice from features and spells, such as Sneak Attack or Spellstrike, are rolled once and never maximised (spells that require a save, such as Fireball, never score critical hits, to keep things less swingy for both players and monsters)</li><li><strong>For Luck Checks specifically</strong> (the one roll-under test left in the game), a natural 1 is an automatic success, disregarding anything else — even against a Luck score too low to beat normally.</li><li>This doesn't apply to ordinary Saving Throws, which use the roll-over convention instead (see Saving Throws, above).</li><li>Critical Fails.</li><li>A natural 1 is always a miss on an attack roll, disregarding any attack bonuses — the GM may add a minor mishap (a dropped weapon, a stumble) at no mechanical cost. A natural 1 never ends a creature's turn.</li><li>Mishaps are designed to highlight the environment or the enemy (e.g. \"they parry you in the heat of combat\") rather than make a character feel incompetent.</li><li>For Luck Checks specifically, a natural 20 is an automatic failure, disregarding any bonuses — the opposite of how it works on attack rolls and ordinary Saving Throws, because low is good on a roll-under Luck Check.</li></ul>"
+   },
+   "sort": 1300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "ycu9IOIVoP8nPsMB",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.ycu9IOIVoP8nPsMB",
+   "name": "Resistance",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Arneyan uses a flat damage reduction system rather than a half-damage resistance model — for example, Resistance 5 to fire means 5 points of fire damage are negated from any single instance of fire damage taken, not a 50% reduction. Where a feature, item or spell grants Resistance without giving a number, it is Resistance 5.</li><li><strong>Immunity.</strong> A creature immune to a damage type takes none of it. Resistance, Immunity and Vulnerability all apply to a single instance of damage.</li><li><strong>Vulnerability.</strong> A creature vulnerable to a damage type takes double damage of that type. Vulnerability is applied after Resistance is subtracted.</li><li><strong>Damage types.</strong> Slashing, piercing, bludgeoning, fire, cold, lightning, thunder, acid, poison, necrotic, radiant, psychic and force.</li></ul>"
+   },
+   "sort": 1400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "uVBvFIqNKoNx7K5S",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.uVBvFIqNKoNx7K5S",
+   "name": "Character Basics",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Rules that apply at character creation and in the ordinary course of play, outside of combat specifically.</li></ul>"
+   },
+   "sort": 1500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "uQEBRK6xsp7iDWLz",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.uQEBRK6xsp7iDWLz",
+   "name": "Starting Hit Points",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>At 1st level, Max HP (maximum Hit Points) equals the maximum of your class Hit Die plus your Constitution modifier (minimum 1).</p><ul><li>From 2nd level, each level you roll your class Hit Die and add your Constitution modifier (minimum 1 HP), or take the average instead (half the die's maximum + 1: d4 3, d6 4, d8 5, d10 6, d12 7). From 11th level you stop rolling: each level gives a flat amount equal to a third of your Hit Die, rounded down (d4 +1, d6 +2, d8 +2, d10 +3, d12 +4), plus your Constitution modifier (minimum 1 HP a level). Each class lists its amount under HP beyond 10th.</li><li>Reroll any result of 1 once and keep the new result, even if it is another 1.</li></ul>"
+   },
+   "sort": 1600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "XS7OWlepO1x3aSOx",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.XS7OWlepO1x3aSOx",
+   "name": "No Training Required to Level Up",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Many editions require a character to train before gaining a level.</p><ul><li>Arneyan ignores that rule. It is implied a character trains off-screen while also gaining experience in the field. See Advancement at the front of this book for how levels are awarded.</li></ul>"
+   },
+   "sort": 1700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "6adYq6NNOzTgdi32",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.6adYq6NNOzTgdi32",
+   "name": "Background Story Bonus",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Before a check, if a player relates some story or experience from their character's past that applies to the current situation, the GM may grant Advantage on that roll.</li><li>The player writes this down on their character sheet — it becomes a permanent part of the character's story.</li><li><strong>Example: </strong>a player explains that long ago their father took them out picking wild blueberries — they permanently have Advantage on foraging checks specifically for blueberries.</li></ul>"
+   },
+   "sort": 1800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "YWRL8EvQCU54fasJ",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.YWRL8EvQCU54fasJ",
+   "name": "Spellcasting Focus & Components",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Any common component that's easy to find is free, provided the spellcaster has a spellcasting focus (a wand, holy symbol, etc.).</p><ul><li>A component deemed rare must be physically acquired (e.g. the blood of a greater demon) and is consumed once the spell is cast — gone even if the casting fails.</li></ul>"
+   },
+   "sort": 1900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "0PUb7ybFiw4emsfX",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.0PUb7ybFiw4emsfX",
+   "name": "Concentration",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Some spells are marked (concentration). They last only while you keep your focus on them. You can take other actions, move and cast spells that do not need concentration without breaking it. Concentration ends if:</li><li>You cast another concentration spell or use another concentration effect (the first ends).</li><li>You take damage or are otherwise violently distracted (such as by a storm or a rough ride) and fail a Fortitude save. The DC is 10 or half the damage taken, whichever is higher. If you take damage from several sources at once, make a separate save for each. Features such as the Elf's Keen Senses grant Advantage on this save.</li><li>You are Stunned, Paralysed or Unconscious, or you die.</li><li>You choose to end it (no action needed).</li></ul>"
+   },
+   "sort": 2000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "1e11dpp6Jz46adi3",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.1e11dpp6Jz46adi3",
+   "name": "Inventory & Carrying Capacity",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Inventory is tracked with a slot grid rather than weight — check what you can actually carry before you buy.</p><ul><li><strong>Base capacity: </strong>18 slots, adjusted by Strength:</li><li>Strength 16+: 20 slots total.</li><li><strong>Strength 7-15: </strong>18 slots total (the baseline, no change)</li><li><strong>Strength 6 or less: </strong>16 slots total.</li><li><strong>Standard gear: </strong>1 slot.</li><li><strong>Heavy or two-handed items: </strong>2-3 slots.</li><li><strong>Ammunition: </strong>30 per slot.</li><li><strong>Coins: </strong>100 per slot.</li><li><strong>Minor/light items</strong> (ink, quills, wax, gems of the same tier): bundle up to 5 per slot.</li><li>A Backpack provides the grid itself and is usually the first thing anyone buys.</li><li><strong>Worn and Wielded: </strong>armour you wear, shields and weapons you carry all count against your slots.</li><li><strong>Over the Limit: </strong>while you carry more than your capacity, your speed is reduced by 10ft and you have Disadvantage on Dexterity checks and attack rolls.</li><li><strong>If Strength changes permanently</strong> (a milestone bonus, a curse, magical enhancement), recalculate capacity against the breakpoints above — this isn't a running formula, just a one-time check whenever Strength itself changes.</li></ul>"
+   },
+   "sort": 2100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "2GLJbvAlxJV4ve7d",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.2GLJbvAlxJV4ve7d",
+   "name": "Size Categories",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Three categories cover every ancestry in Veradyna — Small, Medium, and Large.</li><li>Which ancestries fall into which category is defined in Character Creation; this section covers what Size actually does mechanically.</li><li>Size never affects inventory capacity — that's Strength's job alone (see Inventory &amp; Carrying Capacity above).</li></ul>"
+   },
+   "sort": 2200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "3snMaBqnnyEUmxfX",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.3snMaBqnnyEUmxfX",
+   "name": "Small",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Benefits: </strong>Advantage on Move Silently and Stealth-related checks — a smaller frame is genuinely easier to hide.</li><li><strong>Advantage</strong> on checks to escape a Grapple or Restrained condition, for the same reason.</li><li><strong>Drawbacks: </strong>Disadvantage on attack rolls with weapons carrying the Heavy trait — a weapon built for a bigger frame is harder to swing effectively.</li></ul>"
+   },
+   "sort": 2300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "5iZXMePWRbgwwwJg",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.5iZXMePWRbgwwwJg",
+   "name": "Medium",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Benefits: </strong>No adjustment in either direction — the baseline.</li><li>No weapon Disadvantage, no Stealth bonus or penalty, nothing to account for.</li></ul>"
+   },
+   "sort": 2400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "2MLQi7ciY6IufV3J",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.2MLQi7ciY6IufV3J",
+   "name": "Large",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Benefits: </strong>Gains 5ft of innate reach in melee, on top of anything the Reach weapon trait would add.</li><li>Ignores the Disadvantage a Heavy weapon would normally impose.</li><li><strong>Drawbacks: </strong>Disadvantage on Move Silently and Stealth-related checks — a bigger frame is harder to hide.</li><li><strong>Disadvantage</strong> on checks to fit through tight spaces or confined areas without deliberately squeezing through.</li><li><strong>Space: </strong>occupies a 10ft by 10ft space on the grid.</li></ul>"
+   },
+   "sort": 2500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "72ANUm9VgaHkPfhP",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.72ANUm9VgaHkPfhP",
+   "name": "Combat",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Situational rules that come up specifically during a fight.</li><li>An encounter is a fight or tense scene run in rounds; \"once per encounter\" abilities refresh once it ends and you take a short breather of about 10 minutes. This section covers the round structure, initiative, movement, manoeuvres, firearms, and the other combat rules that come up during a fight.</li><li>A round is 6 seconds, and 10 rounds make 1 minute. Every creature takes one turn per round.</li></ul>"
+   },
+   "sort": 2600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "HowUBs3abehAPk8A",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.HowUBs3abehAPk8A",
+   "name": "Initiative",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Individual: </strong>each combatant rolls their own d20 + Dexterity modifier at the start of a fight, highest acts first, held for the whole encounter (not rerolled each round)</li><li>This is the default. Ties go to the higher Dexterity, then to the PCs.</li><li><strong>Side-based</strong> (special case only, GM's call): for mass battles or large groups where rolling individually would bog down the table, one d20 is rolled per side instead — the side with the higher result takes their entire collective turn first, rerolled every round.</li></ul>"
+   },
+   "sort": 2700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "y9Lk0BwBIKOXVCiO",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.y9Lk0BwBIKOXVCiO",
+   "name": "Actions & Turns",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Turn structure.</strong> On your turn you take one action and your movement. An action is anything that takes real effort: attack, cast a spell, use an ability or item, or some other non-combat task like talking at length.</li><li><strong>Extra attacks. </strong>Extra Attack, an off-hand weapon, Flowing Strikes and Haste each add one weapon attack, and only when you use your action to attack: casting a spell or taking any other action gives none of them, and the Magus's War Magic and Battle Caster give exactly one attack with no extras. The Swashbuckler's Flèche is also an extra attack. Different sources add together, each as its own text says, but the same source never counts twice, so Extra Attack from two classes still gives one extra attack. Example: a 7th-level Fighter with two weapons and Flowing Strikes attacks with the main hand, makes the Extra Attack and the off-hand attack (both with Disadvantage), and once per round may add one Flowing Strikes attack after a hit.</li><li><strong>Free actions.</strong> Costing no action: speaking a few words, dropping an item, and using an object (drawing or sheathing a weapon, opening a door, picking something up, pulling a lever). Up to one simple object use per turn is free; anything fiddly or slow costs your action. Nothing else is free: a class, ancestry, feat, spell or item ability uses your action, forms part of it, or answers a trigger as its text says.</li><li><strong>Ready.</strong> Spend your action to name a trigger and a response (an attack, a move, a spell). When the trigger happens, you take the response immediately, before the triggering creature carries on. If the trigger never happens before your next turn, the action is lost.</li><li><strong>Delay.</strong> Instead of taking your turn, you may Delay. You act later: once any other creature has finished its turn you can step in, and that becomes your place in the initiative order for the rest of the encounter. Effects that trigger at the start of your turn (ongoing damage, for example) still resolve at your original place.</li><li><strong>Melee reach.</strong> Melee reach is 5ft unless a weapon, size or trait says otherwise.</li><li><strong>Attack of Opportunity. </strong>A creature that leaves an enemy's melee reach without Disengaging provokes one melee attack from that enemy. Being moved by someone else (a shove, a push, a throw) or teleporting never provokes one, unless the ability causing it says so.</li><li><strong>Reactions. </strong>Each creature can answer one trigger per round (an Attack of Opportunity or another feature that responds to a trigger), regained at the start of its turn. A feature that gives extra reactions says so, and those extras can only be used for that feature (the Swashbuckler's Second Flourish). Combat Reflexes also lets its holder attack a creature that moves past it.</li></ul>"
+   },
+   "sort": 2800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "8CetOWptZBCCO3ro",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.8CetOWptZBCCO3ro",
+   "name": "Movement & Charging",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Movement uses the standard rules, including the Dash action — move up to your full speed and still take your action, or spend your action to Dash and double your movement instead.</li><li>Spellcasters can move freely before or after casting a spell, without it costing anything extra.</li><li><strong>Difficult terrain.</strong> Rubble, undergrowth, deep snow, thick mud and similar ground cost double movement: every foot moved counts as two.</li><li><strong>Climbing, crawling and swimming.</strong> Each costs double movement, as difficult terrain. You climb at normal speed with the Mountaineering skill (NWP), and swim at normal speed with the Swimming skill (NWP) or an ancestry trait that grants a swim speed.</li><li><strong>Other creatures.</strong> You can move through an ally's space, but not an enemy's.</li><li><strong>Charging (action): declare it at the start of your turn, before you've moved.</strong></li><li>You move up to double your normal speed in a straight line (at least 10ft) and make one melee attack. A charge is always a single attack: no Extra Attack, off-hand attack, Haste or Flowing Strikes.</li><li>Gain Advantage on that attack roll.</li><li>Until the start of your next turn, attacks made against you have Advantage — this applies even if the charge attack misses, and even if someone else gets to attack you first due to reach or ranged weapons.</li><li>If you're hit before your charge attack lands, the charge is negated — you still get your movement and attack, just without the Advantage on your own roll.</li></ul>"
+   },
+   "sort": 2900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "rMhdA9ARyPecxZSr",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.rMhdA9ARyPecxZSr",
+   "name": "Disengage & Hide",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Disengage (action): forgo your action; you provoke no Attacks of Opportunity for the rest of your turn.</strong></li><li><strong>Hide (action): make a Dexterity (Stealth) check. An observer who is actively looking makes a Wisdom check against it; one who is not uses its passive awareness (10 + Wisdom modifier). You are hidden from each observer your check beats. You may attempt it only while unobserved or in cover or concealment. Surprise always uses the Wisdom check.</strong></li><li><strong>Search (action): </strong>make a Wisdom check against a hidden creature's Hide result. On a success you find it, and it is no longer hidden from you. A hidden creature also stops being hidden when it attacks, casts a spell or makes a loud noise.</li><li><strong>Unseen: </strong>an attack against a creature that cannot see you has Advantage, and your attack against a creature you cannot see has Disadvantage.</li></ul>"
+   },
+   "sort": 3000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "zfpW1tat8ez3LbCh",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.zfpW1tat8ez3LbCh",
+   "name": "Surprise Rounds",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Surprise happens only when one side has a real chance to catch the other unaware: an ambush, a quiet approach, an attack from hiding. The GM decides whether that chance exists. Everyone then rolls initiative as normal.</p><ul><li>Noticing it: each creature on the unaware side makes a Wisdom check against the lowest Hide (Stealth) result among the ambushers (the noisiest one gives the group away), or against a DC from the Difficulty Tiers if they were not hiding (Moderate for a quiet approach, Hard for a prepared ambush). A creature that succeeds is not surprised. Features that adjust surprise checks apply to this roll.</li><li>The surprise round: before the first normal round, the ambushers and anyone who noticed them act in initiative order. Surprised creatures cannot move, take actions or take reactions. Then normal rounds begin and everyone acts.</li></ul>"
+   },
+   "sort": 3100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "JHOIVIbKhoh2wG2a",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.JHOIVIbKhoh2wG2a",
+   "name": "Morale Checks",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>A Morale Check determines whether an NPC group or monster continues fighting or breaks — flees, surrenders, or routs.</p><ul><li>The GM calls for one whenever a fight turns decisively against a non-player side.</li><li><strong>When to Check: </strong>The GM calls for a Morale Check when a group suffers roughly half or greater casualties, when their leader or an especially fearsome member is slain or incapacitated, when facing clearly overwhelming odds, or after any other notable fear-inducing event (a Knight's Demoralise, a dramatic show of force, etc.).</li><li><strong>Morale Score: </strong>Every NPC group or monster type has a Morale Score from 2 to 12, set by the GM (or listed in its stat block) — cowardly or disorganised creatures sit low (2-5), disciplined troops in the middle (6-9), and fanatics, mindless undead, or the truly unshakeable sit high (10-12, sometimes immune to breaking at all).</li><li><strong>The Roll: </strong>Roll 2d6.</li><li>If the result is higher than the Morale Score, the group breaks.</li><li>If it's equal to or lower, they hold — at least until the next trigger comes up.</li><li><strong>Modifiers: </strong>Bonuses or penalties \"to morale\" adjust the Morale Score itself rather than the 2d6 roll — a bonus raises the Morale Score (harder to break), a penalty lowers it (easier to break)</li><li>Class features that grant a flat bonus or penalty to morale checks (such as Knight's Battle Lord or Demoralise) apply this way.</li><li><strong>Failure: </strong>The group breaks — routs, flees, surrenders, or otherwise stops being a fighting threat, at the GM's discretion based on the situation and the creature's nature (mindless undead, for instance, may not rout in the conventional sense, and the GM can rule accordingly).</li></ul>"
+   },
+   "sort": 3200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "1xGqzRBNI5XCfRnf",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.1xGqzRBNI5XCfRnf",
+   "name": "Reaction Checks",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>A Reaction Check determines the starting attitude of an NPC or creature encountered without a predetermined disposition — used the first time the party meets someone whose response to them genuinely isn't decided yet.</li><li><strong>The Roll: </strong>Roll 2d6 and add the Charisma modifier of whichever character is taking the lead in the interaction.</li></ul><table class=\"arn-table\"><thead><tr><th>Result</th><th>Reaction</th></tr></thead><tbody><tr><td>2 or less</td><td>Hostile — attacks immediately or calls for help</td></tr><tr><td>3-5</td><td>Unfriendly — suspicious, uncooperative, looking for a reason to refuse</td></tr><tr><td>6-8</td><td>Neutral — willing to listen, no particular inclination either way</td></tr><tr><td>9-11</td><td>Friendly — favourably disposed, willing to help within reason</td></tr><tr><td>12+</td><td>Helpful — actively goes out of their way to assist</td></tr></tbody></table><ul><li><strong>The Background Story Bonus applies to a Reaction Check if a backstory gives a genuine link to the NPC.</strong></li></ul>"
+   },
+   "sort": 3300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "iguWPlDGYX8lM3bz",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.iguWPlDGYX8lM3bz",
+   "name": "Ranged Attacks",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Attack and damage: Melee weapons add your Strength modifier to both the attack roll and the damage roll (Dexterity instead for Finesse weapons). Ranged weapons add Dexterity to both, except Strength-based ranged weapons such as thrown spears and heavy crossbows, which add Strength. An off-hand weapon adds no modifier to damage unless a feature says so. BtH is the progression in your class table.</p><ul><li><strong>Minimum damage.</strong> A hit always deals at least 1 damage after modifiers, applied before Resistance. Resistance can reduce damage to 0; Immunity always does.</li><li><strong>Range.</strong> The Range listed for a weapon is how far it shoots normally. Up to twice that distance you attack with Disadvantage; beyond that you cannot attack.</li><li><strong>Close quarters.</strong> Making a ranged attack while an enemy is within 5ft of you is made with Disadvantage.</li><li><strong>Shooting into melee.</strong> A ranged attack against a target engaged in melee with an ally has Disadvantage.</li><li><strong>Ammunition.</strong> Each attack uses one piece of ammunition. After a fight you recover half of the arrows, bolts and similar pieces you fired, rounded down. Bullets and shot are not recovered.</li></ul>"
+   },
+   "sort": 3400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "wBXb6qZ8mLBOBgNz",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.wBXb6qZ8mLBOBgNz",
+   "name": "Flanking",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>A player or enemy positioned directly opposite an ally, both engaging the same target in melee, gains Advantage to hit that target.</p>"
+   },
+   "sort": 3500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "RRtNXZjrz32yHTYh",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.RRtNXZjrz32yHTYh",
+   "name": "Prone",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>A prone creature grants Advantage to melee attacks made against it, and imposes Disadvantage on ranged attacks made against it.</p><ul><li>Standing up from prone costs half your movement for the round.</li></ul>"
+   },
+   "sort": 3600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "F7FlDgZlpsRR6hNY",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.F7FlDgZlpsRR6hNY",
+   "name": "Conditions",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>A condition is a named state that applies a fixed bundle of effects. Use this list whenever a spell, item, trap or monster names one, instead of improvising the effects each time.</p><table class=\"arn-table\"><thead><tr><th>Condition</th><th>Effect</th><th>Lasts / Ends early by</th></tr></thead><tbody><tr><td>Blinded</td><td>Cannot see. Automatically fails checks that rely on sight. Attacks against it have Advantage; its own attacks have Disadvantage, and it must guess the target's square (see Cover &amp; Concealment).</td><td>Per source. Remove Blindness or Deafness, Restoration, Heal, Potion of Health.</td></tr><tr><td>Burning</td><td>On fire. Takes 1d6 fire damage at the start of each of its turns. Sources that set a creature alight (Alchemist's Fire, or anything the GM rules ignites it) apply it.</td><td>Until doused. An action to stop, drop and roll, full immersion in water, or an ally spending an action to smother the flames.</td></tr><tr><td>Charmed</td><td>Regards the charmer as a trusted friend. Cannot attack the charmer or target them with harmful abilities or spells. The charmer has Advantage on Charisma checks against it. It still acts for itself and will not obey orders that endanger it.</td><td>Per source. Ends if the charmer or its allies harm it. Dispel Magic, Greater Restoration.</td></tr><tr><td>Confused</td><td>Acts at random. At the start of each of its turns roll 1d10: 1-3 it attacks the nearest creature, friend or foe; 4-6 it does nothing; 7-8 it moves in a random direction at full speed; 9-10 it acts normally.</td><td>The effect's duration.</td></tr><tr><td>Deafened</td><td>Cannot hear. Automatically fails checks that rely on hearing. Immune to effects that work only through sound, such as the stun from Sound Burst.</td><td>Per source. Remove Blindness or Deafness, Restoration, Heal, Potion of Health.</td></tr><tr><td>Dominated</td><td>As Charmed, but the controller can command it (an action to issue orders). It gets a fresh save whenever ordered to act against its nature or to harm itself.</td><td>Per source. Fresh save when ordered to act against its nature. Dispel Magic, Greater Restoration.</td></tr><tr><td>Exhausted</td><td>Levels 1 to 6; level 6 is death. See Fatigue &amp; Exhaustion in Section IV.</td><td>Rest (see Fatigue &amp; Exhaustion).</td></tr><tr><td>Frightened</td><td>Disadvantage on attack rolls and attribute checks while it can see the source of its fear, and it cannot willingly move closer to it. If the effect says the creature must flee, it spends its turns moving away at full speed and drops anything it holds if it is told to.</td><td>Per source. Remove Fear, Restoration, Quick Recovery.</td></tr><tr><td>Incapacitated</td><td>Cannot take actions or reactions. It can still move unless another condition says otherwise, and it cannot cast spells or maintain concentration.</td><td>Per source. Dispel Magic.</td></tr><tr><td>Invisible</td><td>Cannot be seen without magic or special senses. Attacks against it have Disadvantage (and the attacker must guess its square if they cannot locate it); its own attacks have Advantage.</td><td>Per source. Ends the moment the creature attacks or casts a spell. Dispel Magic.</td></tr><tr><td>Paralysed</td><td>Incapacitated, Speed 0 and unable to speak. Automatically fails Strength and Dexterity checks and Reflex saves. Attacks against it have Advantage, and any melee hit from within 5ft is a critical hit.</td><td>Per source. Repeat saves where the source allows. Remove Paralysis, Heal, Greater Restoration.</td></tr><tr><td>Petrified</td><td>Turned to stone. Treated as Paralysed, unaware of its surroundings, and its weight is multiplied by ten. It does not age or need food, and is immune to poison and disease.</td><td>Permanent. Stone to Flesh.</td></tr><tr><td>Poisoned / Sickened</td><td>Disadvantage on attack rolls and attribute checks. 'Poisoned' is the usual word for venom and toxins, 'Sickened' for nausea, foul vapours and curses (they are the same condition). If the source is a poison whose entry deals damage (a venom or toxin), the creature also takes poison damage at the start of each of its turns: 1d4 the first turn, then 1d6, 1d8 and 1d10, where it stays. At the end of each of its turns it repeats the Fortitude save (the source's DC); on a success the condition ends and the damage resets.</td><td>Until the save succeeds (see Effect). A successful save, Neutralise Poison, Antitoxin, Potion of Health, Heal. Delay Poison pauses the damage.</td></tr><tr><td>Prone</td><td>See Prone, above.</td><td>Until it stands. Standing costs half its movement.</td></tr><tr><td>Restrained</td><td>Speed 0. Disadvantage on its attacks and on Reflex saves; attacks against it have Advantage. Being grappled, webbed, netted or bound all count as Restrained (see Unarmed Combat &amp; Grappling).</td><td>Until it breaks free (Strength or Dexterity check against the source's DC, as an action). Cutting the bonds, Dispel Magic.</td></tr><tr><td>Shaken</td><td>Disadvantage on its next attack roll.</td><td>After that attack, or the effect's duration.</td></tr><tr><td>Slowed</td><td>Half Speed, and only one attack per round.</td><td>The effect's duration.</td></tr><tr><td>Stunned</td><td>Incapacitated, Speed 0 and able to speak only falteringly. Automatically fails Strength and Dexterity checks and Reflex saves. Attacks against it have Advantage.</td><td>Per source, usually 1 round. Smelling Salts, Heal, Greater Restoration.</td></tr><tr><td>Unconscious</td><td>Incapacitated, Speed 0 and unaware. Drops anything it holds and falls Prone. Automatically fails Strength and Dexterity checks and Reflex saves. Attacks against it have Advantage, and any melee hit from within 5ft is a critical hit. Damage or an ally's action (shaking it awake) rouses a creature put to sleep or knocked out by subdual damage; a creature below 0 HP is dying instead (see Death &amp; Dying).</td><td>Per source. Below 0 HP it is dying instead. Damage or an ally's action rouses sleep and subdual unconsciousness; Smelling Salts; see Death &amp; Dying.</td></tr><tr><td>Weakened</td><td>Disadvantage on attack rolls.</td><td>The effect's duration.</td></tr></tbody></table><ul><li><strong>Default duration.</strong> Where an effect applies a condition and states no duration, it lasts 1 round. A spell, item or monster's own duration always takes priority, and so does the GM's call. A stated duration is the longest a condition can last; it never takes away a repeat save the condition grants. A Poisoned effect from a source that deals no damage gives only the Disadvantage, for its stated duration.</li><li><strong>No stacking by name.</strong> The same condition from two sources does not double up. The longer duration applies, and ending one source ends nothing else. Two castings of the same spell on a target do not stack (the stronger or longer applies), nor do AC bonuses from magic items of the same kind, such as two rings of protection.</li><li><strong>Ending conditions.</strong> A condition ends when its duration runs out, on a successful repeat save where the effect allows one, or when something removes it: spells such as Remove Fear, Restoration, Neutralise Poison and Dispel Magic, Smelling Salts for Stunned, and the Quick Recovery feat (see Character Creation).</li><li><strong>Immunity.</strong> A creature immune to a condition cannot be given it by any source, and ignores the condition-specific parts of an effect that would apply it.</li></ul>"
+   },
+   "sort": 3700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "YLOQJGesmspFAonR",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.YLOQJGesmspFAonR",
+   "name": "Cover & Concealment",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Half Cover: </strong>Disadvantage on attacks made against the target.</li><li><strong>Full Cover: </strong>The target cannot be targeted directly at all.</li><li><strong>Concealment: </strong>Fog, smoke, dense foliage, or similar — Disadvantage on attacks made against the concealed target.</li><li>If the target is heavily obscured, the attacker must guess their square or general direction entirely.</li></ul>"
+   },
+   "sort": 3800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "p1W5I2UJz2ZxT5s3",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.p1W5I2UJz2ZxT5s3",
+   "name": "Casting Under Threat",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Every spell takes effect on your turn. Casting is still a moment of exposure: if an attack or effect damages you while you are casting (a Readied attack, an Attack of Opportunity, or any other response to your casting), make a Fortitude save (DC 10 or half the damage taken, whichever is higher) or the spell is lost, along with its slot. If you are killed, knocked unconscious, Paralysed or Stunned while casting, the spell is lost with no save. Damage never costs you a cantrip.</p>"
+   },
+   "sort": 3900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "MTUoAG7lZlf65R40",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.MTUoAG7lZlf65R40",
+   "name": "Weapon Proficiency",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Allowed weapons are determined by your 1st-level class and your ancestry. Levels in other classes add none.</p><ul><li>Attacking with a weapon not on your class's list is rolled with Disadvantage and adds no attribute modifier to damage, rather than being forbidden outright.</li><li>To gain proficiency in another weapon, train in it during downtime (see Downtime: Training &amp; Instruction).</li><li><strong>Improvised weapons.</strong> An improvised weapon deals 1d4 as a base. The GM can adjust the damage die and decides whether Strength or Dexterity applies to the attack and damage.</li></ul>"
+   },
+   "sort": 4000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "H5pcw2xwBNWKN0q9",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.H5pcw2xwBNWKN0q9",
+   "name": "Weapon Traits",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>A small set of tags layered onto a weapon's normal stat block (damage, cost, slots) to make different weapon categories feel mechanically distinct from each other, without changing how attacks are resolved.</li><li>See the Shopkeeper's Catalogue for which traits each specific weapon carries.</li><li>Offensive Traits.</li></ul><table class=\"arn-table\"><thead><tr><th>Trait</th><th>Effect</th></tr></thead><tbody><tr><td>Versatile</td><td>The damage die steps up one size when wielded two-handed (d6 to d8, d8 to d10, d10 to d12)</td></tr><tr><td>Heavy</td><td>Disadvantage on the attack roll unless your Strength score is 13 or higher</td></tr><tr><td>Armour Piercing</td><td>Ignores 2 points of the target's AC from armour specifically (not Dexterity or Feats)</td></tr><tr><td>Cleaving</td><td>You may use the Cleave manoeuvre with this weapon up to twice per turn instead of once</td></tr><tr><td>Brace</td><td>Advantage on the attack roll against a charging enemy (stacks with Receiving Charge)</td></tr><tr><td>Sunder</td><td>Advantage on Disarm attempts and on checks to break objects</td></tr></tbody></table><ul><li>Utility &amp; Handling Traits.</li></ul><table class=\"arn-table\"><thead><tr><th>Trait</th><th>Effect</th></tr></thead><tbody><tr><td>Finesse</td><td>Use Dexterity instead of Strength for attack and damage</td></tr><tr><td>Reach</td><td>Extends melee range by 5ft</td></tr><tr><td>Light</td><td>Can be used in the off-hand under the Dual Wielding rules</td></tr><tr><td>Thrown</td><td>Can be thrown for the same damage as a melee strike</td></tr><tr><td>Concealable</td><td>Can be hidden on your person without a check; Advantage to keep it hidden during a search</td></tr><tr><td>Entangling</td><td>Advantage on Trip and Grapple attempts made with this weapon</td></tr></tbody></table>"
+   },
+   "sort": 4100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "1QomCuM2yZNmnSsZ",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.1QomCuM2yZNmnSsZ",
+   "name": "Firearm-Specific Traits",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>These only ever appear on firearms — a separate small set of tags for mechanical quirks that don't apply to melee or simple ranged weapons at all.</li><li>See the Shopkeeper's Catalogue for which firearm carries which.</li></ul><table class=\"arn-table\"><thead><tr><th>Trait</th><th>Effect</th></tr></thead><tbody><tr><td>Multi-Shot</td><td>A single attack targets every creature in its stated spread, one attack roll per target</td></tr><tr><td>Reliable</td><td>Misfires only on a natural 1, regardless of the weapon's normal Misfire Threshold</td></tr><tr><td>Tethering</td><td>On a hit, the target is Restrained by a line connecting them to the weapon until they break free with a Strength check or the line is cut</td></tr><tr><td>Signal</td><td>Deals no damage — used for signalling or utility rather than combat</td></tr><tr><td>Quick Reload</td><td>Reload as part of the attack that fired the shot, whatever the weapon's reload time</td></tr><tr><td>Silent Mechanism</td><td>No gunpowder — never triggers a Misfire Threshold check at all, and makes no telltale noise or muzzle flash when fired</td></tr></tbody></table><ul><li>A weapon can carry more than one trait from either table — a spear typically has Reach, Brace, and Thrown together, for example, while a Harpoon Gun combines Tethering with its normal firearm stats.</li></ul>"
+   },
+   "sort": 4200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "HYvMXKTz7HSe2LkX",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.HYvMXKTz7HSe2LkX",
+   "name": "Armour Traits",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>The same tagging approach applied to armour — a small set of traits layered onto the normal AC/cost/slot stat block so light, medium, and heavy armour each feel like a genuine choice rather than just a bigger AC number.</li><li>See the Shopkeeper's Catalogue for which traits each specific armour carries.</li></ul>"
+   },
+   "sort": 4300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "tdSCaGmV6tR2HW5l",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.tdSCaGmV6tR2HW5l",
+   "name": "Armour Categories",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Every armour in the Shopkeeper's Catalogue is Light, Medium or Heavy. Class and kit permissions refer to these categories.</li><li><strong>Light: </strong>your full Dexterity modifier adds to AC.</li><li><strong>Medium: </strong>your Dexterity modifier adds to AC, to a maximum of +2.</li><li><strong>Heavy: </strong>your Dexterity modifier does not add to AC.</li><li><strong>Armour you are not allowed.</strong> Wearing armour or carrying a shield your class does not allow gives Disadvantage on attack rolls and on Strength and Dexterity checks, and you cannot cast spells (see Spellcasting in Arneyan, VI). Your armour training comes from your 1st-level class and your ancestry; levels in other classes add none. Training in more removes the penalty (see Downtime: Training &amp; Instruction).</li><li><strong>Donning and doffing.</strong> Putting on armour takes 1 minute for Light, 5 for Medium and 10 for Heavy. Taking it off takes half as long.</li></ul><table class=\"arn-table\"><thead><tr><th>Trait</th><th>Effect</th></tr></thead><tbody><tr><td>Flexible</td><td>No Disadvantage on checks to tumble or balance while worn</td></tr><tr><td>Noisy</td><td>Disadvantage on checks to move quietly or stay hidden while worn</td></tr><tr><td>Insulated</td><td>Resistance to cold damage while worn</td></tr><tr><td>Cumbersome</td><td>Disadvantage on Swim, Climb, and Jump checks while worn</td></tr><tr><td>Reinforced</td><td>Once per encounter, turn a critical hit against you into a normal hit</td></tr></tbody></table>"
+   },
+   "sort": 4400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "AHHdUGTpsvFVjnn5",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.AHHdUGTpsvFVjnn5",
+   "name": "Shield Traits",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>The same approach for shields — Wooden, Steel, and the Pavis each get a genuine reason to pick one over another beyond price.</p><table class=\"arn-table\"><thead><tr><th>Trait</th><th>Effect</th></tr></thead><tbody><tr><td>Buoyant</td><td>Floats — Advantage on checks to stay afloat or swim while holding it (Wooden shields)</td></tr><tr><td>Fire-Vulnerable</td><td>Takes and transmits fire damage poorly — Disadvantage on saves against fire-based attacks while raised (Wooden shields)</td></tr><tr><td>Sturdy</td><td>Advantage on checks to resist a Sunder attempt targeting the shield itself (Steel shields)</td></tr><tr><td>Conductive</td><td>Disadvantage on saves against lightning-based attacks while worn or raised (Steel shields)</td></tr><tr><td>Bulky</td><td>Disadvantage on checks to tumble or squeeze through tight spaces while equipped (Large shields)</td></tr><tr><td>Ground-Set</td><td>Requires 1 round to set up or pack away. While set, grants its full AC bonus but you cannot move; if not set, grants no bonus at all (Pavis only)</td></tr><tr><td>Compact</td><td>Small enough to strap to the forearm and use even while wielding a two-handed weapon — no other shield can do this (Buckler only)</td></tr></tbody></table>"
+   },
+   "sort": 4500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "rPSQl9EasK8DWSYR",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.rPSQl9EasK8DWSYR",
+   "name": "Dual Wielding & Shields",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Requirements.</p><ul><li>The off-hand weapon must be Light.</li><li>Two-handed weapons cannot be dual wielded under any circumstance.</li><li>A free hand is required for each weapon — you cannot dual wield while also holding a shield.</li><li>Drawing two weapons at the start of combat takes no longer than drawing one.</li><li>Resolution.</li><li>Your primary hand attacks normally, using your full Base to Hit (BtH) and any relevant bonuses.</li><li>Your off-hand makes an additional attack as part of the same action, but this attack is made with Disadvantage by default.</li><li><strong>The Two-Weapon Fighting Feat</strong> (Specialist Path) removes this Disadvantage entirely once selected.</li><li>An off-hand weapon adds no modifier to damage unless a feature says so.</li><li>Alternative — Fighting Defensively.</li><li>Instead of attacking with your off-hand weapon, you may use it defensively for an AC bonus. A shield can be used the same way:</li></ul><table class=\"arn-table\"><thead><tr><th>Option</th><th>Bonus</th></tr></thead><tbody><tr><td>Light Weapon (off-hand, defensive)</td><td>+1 AC, but only for one attack per round (the first, unless otherwise specified) — no bonus vs ranged attacks</td></tr><tr><td>Light Finesse Weapon (off-hand, defensive)</td><td>+1 AC for all attacks that round — no bonus vs ranged attacks</td></tr><tr><td>Shield</td><td>+1 to the shield's AC bonus until your next turn, against melee and ranged attacks. Declare it at the start of your turn. It costs your extra attacks that turn; if you have none, your attack has Disadvantage</td></tr></tbody></table>"
+   },
+   "sort": 4600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "zGiAHml878B80fNP",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.zGiAHml878B80fNP",
+   "name": "Combat Manoeuvres",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Core, resource-free options for any character, in three groups. Actions use your action. Manoeuvres replace one attack. Positioning gives a benefit for where you stand. For every Contest below (Disarm, Dirty Trick, Grapple and Trip), both sides roll d20 + the stated attribute modifier; the higher total wins and ties go to the defender. Only one option that gives your own attack Disadvantage (Shield Blow, Power Attack) can be used on a single attack.</p><p>Actions.</p><table class=\"arn-table\"><thead><tr><th>Action</th><th>Effect</th></tr></thead><tbody><tr><td>Charge</td><td>Uses your action. Move up to double your speed in a straight line (at least 10ft), then make one melee attack with Advantage; attacks against you have Advantage until your next turn (see Movement &amp; Charging)</td></tr><tr><td>Disengage</td><td>Forgo your action; you provoke no Attacks of Opportunity for the rest of your turn</td></tr><tr><td>Dodge</td><td>Forgo your action; attacks against you have Disadvantage until the start of your next turn</td></tr><tr><td>Hide</td><td>Action: Dexterity (Stealth) check against each observer's Wisdom check, or its passive awareness if it is not looking (see Disengage &amp; Hide)</td></tr><tr><td>Search</td><td>Action: Wisdom check against a hidden creature's Hide result; on a success you find it (see Disengage &amp; Hide)</td></tr></tbody></table><p>Manoeuvres.</p><table class=\"arn-table\"><thead><tr><th>Manoeuvre</th><th>Effect</th></tr></thead><tbody><tr><td>Cleave</td><td>When you reduce a creature to 0 HP or below with a melee attack, make one extra melee attack against a different creature within reach (once per turn; same attack bonus)</td></tr><tr><td>Dirty Trick</td><td>Contest: your Dexterity check vs. the target's Dexterity or Wisdom check (its choice). You win, it is Blinded until the end of its next turn. A creature only falls for your Dirty Trick once per fight</td></tr><tr><td>Disarm</td><td>Contest: your Strength check vs. target's Strength or Dexterity check (their choice). You win, they drop their weapon</td></tr><tr><td>Grapple</td><td>Contest: your Strength check vs. target's Strength or Dexterity check (their choice). You win, it is Restrained (see Unarmed Combat &amp; Grappling)</td></tr><tr><td>Guard</td><td>Replaces all your attacks this round. Choose an ally within your reach. Until the start of your next turn, attacks against that ally have Disadvantage while you stay next to it</td></tr><tr><td>Push</td><td>On a hit, push a creature up to one size larger than you 10ft instead of dealing damage</td></tr><tr><td>Shield Blow</td><td>Attack with Disadvantage; it replaces all your attacks this round. On a hit, the target makes a Fortitude save or is Stunned for 1d2 rounds</td></tr><tr><td>Trip</td><td>Contest: your Strength or Dexterity check (your choice) vs. target's Strength or Dexterity check (their choice). You win, they're knocked prone, no damage</td></tr></tbody></table><p>Positioning.</p><table class=\"arn-table\"><thead><tr><th>Option</th><th>Effect</th></tr></thead><tbody><tr><td>Flank Attack</td><td>Attack with Advantage when an ally is positioned opposite you against the same target</td></tr><tr><td>Receiving Charge</td><td>If you have a reach weapon readied against a charging enemy, deal double damage on a hit</td></tr><tr><td>Shield Wall</td><td>4+ allies locking shields: attacks against the formation have Disadvantage, formation has Advantage on Strength checks to hold the line</td></tr></tbody></table><ul><li><strong>Saving throws triggered by a manoeuvre</strong> (such as Shield Blow's Fortitude save) use the standard Fortitude/Reflex/Will formula above.</li><li>The DC is 10 + half your level (minimum 1) + your Strength modifier. A creature that saves against your Shield Blow is immune to it for the rest of the fight.</li><li><strong>Fighter Manoeuvre Mastery: Level 7</strong> — manoeuvres that would normally impose Disadvantage on your own attack roll (Shield Blow) are instead rolled normally.</li><li>Level 13 — contest-based manoeuvres (Trip, Disarm, Dirty Trick) are rolled with Advantage.</li><li>Level 19 — manoeuvres that would normally impose Disadvantage on your own attack roll are now rolled with Advantage instead.</li></ul>"
+   },
+   "sort": 4700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "Y60M3VsQZQa6REyS",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.Y60M3VsQZQa6REyS",
+   "name": "Firearms",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Exploding Dice.</p><ul><li>Firearm damage dice marked (exploding) work like this: whenever a die shows its highest number, roll it again and add the new result to the total. Keep rolling for as long as it keeps showing the highest number.</li><li>Exploding dice apply to every die of a firearm's listed damage, including the damage a catastrophic Misfire deals to the wielder (but not the half damage of a backfire).</li></ul><p>Misfire Mechanic.</p><ul><li>Whenever a firearm attack roll is made, check the natural die result against the weapon's Misfire Threshold before applying damage. When you roll two dice, only the die you keep is checked.</li><li><strong>Natural roll within Misfire Threshold: </strong>the weapon jams.</li><li>No damage is dealt.</li><li>The weapon cannot be fired again until cleared, which takes a number of rounds equal to its Reload time, in addition to a normal reload.</li><li>Natural 1 specifically, regardless of weapon (except Silent Mechanism weapons): catastrophic failure — roll a d6: 1-2 the weapon is damaged and unusable until repaired; 3-4 it backfires, dealing half its listed damage (non-exploding) to the wielder; 5 it's destroyed outright; 6 it explodes — full listed damage (exploding dice apply) to the wielder and any creature within 5ft.</li><li>Training.</li><li>Any class can train in firearms — no hard class restriction.</li><li><strong>Training comes from backstory</strong> (agreed with the GM at creation, no mechanical cost) or downtime training (days equal to the firearm's reload time × 10, requires a trained instructor).</li><li><strong>Fully trained by default: </strong>Gunslinger, Fighter, Ranger, and Tenor Hold dwarves of any class.</li><li><strong>Untrained: </strong>Disadvantage on the attack roll, and any roll that would normally be a critical hit instead jams, as a misfire.</li><li><strong>Untrained arcane casters</strong> additionally cannot maintain concentration the same round they fire a firearm — this penalty disappears once trained.</li><li>Every firearm, with its price and traits, is listed in the Shopkeeper's Catalogue; guns use the same Weapon Traits as other weapons.</li><li><strong>Reloading.</strong> Reloading uses your action for the listed number of rounds; you can still move. Quick Reload and Lightning Reload let you reload as part of the attack that fired the shot. Crossbows: a crossbow fires once a round and cannot be used for Extra Attack, an off-hand attack or Flowing Strikes; a heavy crossbow takes a round to reload after each shot.</li></ul>"
+   },
+   "sort": 4800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "EJ5Nwv1rnRLsvWBt",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.EJ5Nwv1rnRLsvWBt",
+   "name": "Non-Lethal (Subdual) Damage",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Any character can choose to deal subdual damage with a weapon that would normally deal lethal damage — describe how the blow is being pulled (the flat of the blade, a chokehold, the pommel instead of the edge), and if the GM accepts the description, it simply works with no roll penalty.</li><li>Subdual damage is tracked separately from normal HP loss — when accumulated subdual damage equals or exceeds a target's current HP, they fall unconscious rather than dying.</li><li><strong>Natural unarmed strikes</strong> (see Unarmed Combat &amp; Grappling below) deal subdual damage by default.</li><li><strong>Breaking objects.</strong> Breaking, forcing or smashing an object is a Strength check against a General Difficulty Tier: a wooden door is Moderate, an iron or barred door Hard, and a vault door Severe. Anything larger or sturdier is the GM’s call.</li></ul>"
+   },
+   "sort": 4900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "R43FI13lVCzuYSAZ",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.R43FI13lVCzuYSAZ",
+   "name": "Unarmed Combat & Grappling",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Unarmed Strike: </strong>Any character can make an unarmed strike for 1d2 + Strength modifier, always subdual damage unless a class or ancestry feature says otherwise; natural weapons such as bites, claws and horns deal lethal damage (Monk's Hand-to-Hand Combat table replaces this entirely).</li><li><strong>Grappling: </strong>Uses the same Contest format as Trip and Disarm — a Strength check (d20 + Strength modifier) contested against the target's Strength or Dexterity check (their choice).</li><li><strong>Size: </strong>you can grapple, shove or trip only a creature up to one size larger than yourself.</li><li>Win the contest, and the target is Restrained: Disadvantage on their attacks, and attackers gain Advantage against them, until they break free (see Restrained; for a grapple the check is contested by the grappler's Strength).</li><li>Grappling a target does not knock them prone by itself.</li><li>To knock a grappled target down as well, spend a further attack to Overbear them (a second contested check) once they're already Restrained — trying to knock someone down without grappling first uses the Trip Combat Manoeuvre instead, which stands on its own and doesn't require a prior grapple.</li><li>A single character standing over a prone target does not prevent that target from standing back up on their own turn — being surrounded by multiple creatures might, at the GM's discretion, but one grappler alone never does.</li></ul>"
+   },
+   "sort": 5000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "Vq27S20Hsise2lFe",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.Vq27S20Hsise2lFe",
+   "name": "Mounted Combat",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Mounting.</strong> Getting on or off costs half your movement.</li><li><strong>Mount size. </strong>you ride a mount of your own size or one size larger (Small on Medium, Medium on Large). Large creatures cannot ride most mounts, at the GM's discretion.</li><li><strong>A controlled mount.</strong> Any domestic animal acts on your turn. It moves with your movement and can Dash or Disengage. It does not attack unless it is war-trained.</li><li><strong>A war-trained mount.</strong> A war-trained mount can make its own attack each turn, as part of your turn.</li><li><strong>An independent mount.</strong> An intelligent mount, such as a griffon, acts on its own initiative and chooses its own actions.</li><li><strong>Charging.</strong> A mounted charge uses the normal Charge rules with the mount's movement. A Lance doubles its damage dice on a charge hit (flat modifiers are not doubled).</li><li><strong>Falling.</strong> You land Prone in an adjacent space if your mount falls Prone or is killed or knocked out. Make a Reflex save (DC 12) to land on your feet instead.</li><li><strong>Targeting.</strong> Attackers choose whether to attack you or your mount. Area effects hit both.</li><li><strong>Fear.</strong> An untrained mount makes a Will save (DC 12) against fear effects or bolts. A war-trained mount has Advantage.</li><li><strong>Barding.</strong> Barding adds its AC bonus to the mount's AC.</li></ul>"
+   },
+   "sort": 5100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "UuPMcLTe8O2k0BU7",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.UuPMcLTe8O2k0BU7",
+   "name": "Falling Damage",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Falling deals 1d6 damage per 10ft fallen, to a maximum of 20d6. A creature that falls lands Prone.</p><ul><li>If the faller had any real chance to react (as opposed to being caught totally off guard), a Reflex save (DC 10, the Easy tier — increased by 1 for every additional 10ft fallen beyond the first) halves the total damage taken.</li></ul>"
+   },
+   "sort": 5200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "qSREZ2u2hlochRIh",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.qSREZ2u2hlochRIh",
+   "name": "Swimming",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Swimming costs double movement (see Movement &amp; Charging), unless you have the Swimming Skill (NWP) or an ancestry trait that grants a swim speed, in which case you swim at your full normal speed.</li></ul>"
+   },
+   "sort": 5300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "kb9sdRnKw5jxEvWF",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.kb9sdRnKw5jxEvWF",
+   "name": "Jumping",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Long Jump</strong> (Strength): Distance in feet equals your Strength score ÷ 2 (rounded down), provided you have at least 10ft of running start beforehand.</li><li>Without a run-up, halve the distance.</li><li>A running long jump can never carry you further than your remaining movement for the round.</li><li><strong>High Jump</strong> (Strength or Dexterity, your choice): Height in feet equals 3 + your chosen attribute's modifier, with a running start.</li><li>Without a run-up, halve the height.</li></ul>"
+   },
+   "sort": 5400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "a16LogulToWVZxg4",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.a16LogulToWVZxg4",
+   "name": "Disease & Poison — Common Examples",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Not an exhaustive table — a handful of common afflictions to drop in without inventing one from scratch every time.</p><ul><li>Anything more exotic is a GM ruling using the same Fortitude save framework.</li></ul><table class=\"arn-table\"><thead><tr><th>Affliction</th><th>Save &amp; Effect</th></tr></thead><tbody><tr><td>Cave Rot</td><td>Fortitude save (DC 12, the Moderate tier) or lose 1d4 points of Constitution (recalculate anything that uses it); lost points return at 1 per full rest, but a second failed save within a week means the loss lasts until the disease is cured</td></tr><tr><td>Wound Fever</td><td>Fortitude save (DC 13) 24 hours after taking damage from a dirty wound, or gain one level of Exhaustion per day until treated</td></tr><tr><td>Red Waste Fever</td><td>Fortitude save (DC 14) or Disadvantage on all checks and half movement speed for 1 week</td></tr><tr><td>Weak Venom (common vermin, minor traps)</td><td>Fortitude save (DC 10, the Easy tier) or 1d4 damage and one level of Exhaustion</td></tr><tr><td>Paralytic Venom (larger spiders, certain snakes)</td><td>Fortitude save (DC 13) or Paralysed for 1 minute; repeat the save each round to end it early</td></tr><tr><td>Sleep Venom</td><td>Fortitude save (DC 12, the Moderate tier) or unconscious for 1d4 hours, waking early if damaged</td></tr><tr><td>Necrotic Venom (undead-adjacent creatures)</td><td>Fortitude save (DC 15, the Hard tier) or 2d6 damage and the wound will not naturally heal until magically treated</td></tr></tbody></table>"
+   },
+   "sort": 5500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "xhaX15wyki4YKzOl",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.xhaX15wyki4YKzOl",
+   "name": "Drain Effects",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Ability drain.</strong> An effect that drains an ability score lowers it by the amount stated, and every modifier that uses the score changes with it. If your Constitution modifier changes, for any reason, recalculate your Max HP for every level you have. Restoration and Lesser Restoration bring it back. Where a drain effect reaches 0, the GM decides the result.</li><li><strong>Energy drain.</strong> Energy drain never costs levels. It inflicts levels of Exhaustion instead (see Fatigue &amp; Exhaustion), as the Energy Drain spell does; they recover as ordinary Exhaustion, and energy drain never takes a creature above Exhaustion level 5.</li></ul>"
+   },
+   "sort": 5600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "bPvnSBAB1rH954qj",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.bPvnSBAB1rH954qj",
+   "name": "Temporary Hit Points",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Temporary hit points.</strong> Temporary HP are lost before normal HP. They do not stack: if you gain more while you have some, keep whichever total is higher. They cannot be healed, and they last until you finish a long rest unless the source says otherwise.</li></ul>"
+   },
+   "sort": 5700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "EZr7cZ0XSMDWKP8c",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.EZr7cZ0XSMDWKP8c",
+   "name": "Death & Dying",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>0 HP: Unconscious and incapacitated, but stable. You do not bleed.</li><li><strong>Negative HP: </strong>Dying — you lose 1 HP at the start of your turn until an ally spends an action and succeeds on a Wisdom check (DC 10, the Easy tier) to stabilise you. This is an everyday check anyone can make; the First Aid/Healing NWP gives Advantage on it. You cannot stabilise yourself, except through Last Chance below.</li><li><strong>Death: </strong>You die at −10 HP minus your Constitution modifier, or at −20 HP minus it from 11th level, when your HP have grown. A negative modifier counts as 0. There is no stop at 0 HP: a big enough blow can take you from standing straight past this point, so a monster's heaviest hits can kill outright.</li><li><strong>Healing: </strong>Healing a creature below 0 HP first sets it to 0 HP, then adds the rest of the healing. Healing never raises HP above Max HP.</li><li><strong>Stabilised: </strong>A stabilised creature stops bleeding and stays unconscious at its current HP. After 1 hour it rises to 1 HP and wakes; if healed to 1 HP or more it wakes at once. A creature at exactly 0 HP is stable and wakes the same way.</li><li><strong>Monsters and NPCs: </strong>monsters and unimportant NPCs die at 0 HP, unless the GM rules otherwise.</li><li>Last Chance (Luck exception): Once per turn, at the start of its turn, a dying character may burn 1 point of Luck to make a stabilisation roll rather than waiting on an ally: a Fortitude save, DC 10. On a success the character stops dying and is Stabilised as above — still unconscious, at their current HP. On a failure they keep dying as normal.</li><li>See The Luck Stat in Character Creation for the full Luck mechanic. The First Aid cantrip (touch) stabilises a dying creature at its current HP, with no roll.</li></ul>"
+   },
+   "sort": 5800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "Qxdil2JtFQkIL5p7",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.Qxdil2JtFQkIL5p7",
+   "name": "Exploration, Resting & Downtime",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Everything that happens between fights — travel, light and vision, recovery, and what the party does with the time they've earned.</li></ul>"
+   },
+   "sort": 5900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "h4Lyiu7JYwL0isOy",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.h4Lyiu7JYwL0isOy",
+   "name": "Vision & Light",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Normal Light: </strong>No penalty.</li><li><strong>Dim Light: </strong>Disadvantage on Perception-type checks.</li><li><strong>Darkness</strong> (no light source, no darkvision): Effectively blind — Disadvantage on your own attacks, Advantage to attacks made against you, and automatic failure on any check that depends on sight.</li><li><strong>Darkvision: </strong>Granted by certain ancestries or spells — see in darkness up to its range (60ft unless the ancestry says otherwise) as if it were normal light.</li><li>No colour, but no penalty either within that range.</li><li><strong>Low-Light Vision: </strong>Dim light counts as bright light for you, and every light source illuminates twice as far for you. It gives no sight in total darkness.</li><li><strong>Magical Darkness: </strong>Spells such as Darkness block all sight inside them, darkvision included. Only Daylight, a higher-level light spell or True Seeing lets a creature see within.</li><li><strong>Light sources (bright / dim): </strong>candle 5ft / +5ft; torch 20ft / +20ft; lantern 30ft / +30ft; bullseye lantern 60ft cone / +60ft; Sunrod 30ft / +30ft. Light sources are priced in The Shopkeeper's Catalogue, Illuminations. A torch or plain candle burns for 1 hour, and a lantern for 6 hours per pint of oil.</li></ul>"
+   },
+   "sort": 6000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "G9W25bIlClIp01vP",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.G9W25bIlClIp01vP",
+   "name": "Travelling Rules",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Travel Speed.</p><ul><li>Measured in Hexes per Day, modified for Arneyan's larger landmass.</li></ul><table class=\"arn-table\"><thead><tr><th>Method</th><th>Slow Pace</th><th>Normal Pace</th><th>Fast Pace</th></tr></thead><tbody><tr><td>Foot (with rests)</td><td>1 hex/day</td><td>2 hexes/day</td><td>3 hexes/day</td></tr><tr><td>Mounts / Vehicles / Ships</td><td>2 hexes/day</td><td>3 hexes/day</td><td>4 hexes/day</td></tr><tr><td>Umbral Journey</td><td>—</td><td>24 hexes/day</td><td>—</td></tr></tbody></table><ul><li><strong>Pace.</strong> At Slow Pace the party can travel stealthily and forage. At Fast Pace, everyone has Disadvantage on Wisdom checks to notice danger.</li><li><strong>Terrain.</strong> Difficult terrain (mountains, swamp, deep forest, deep snow) drops the party one pace step, so Normal becomes Slow. The GM decides what counts.</li><li><strong>Group speed.</strong> A group travels at the pace of its slowest member.</li><li><strong>Forced march.</strong> Each hour of travel beyond 8 in a day needs a Fortitude save (DC 10, +1 for each extra hour) or the character gains a level of Exhaustion.</li><li><strong>Foraging.</strong> At Slow Pace, a Wisdom (Survival) check at the Moderate tier finds enough food and water for one person for the day.</li><li><strong>Getting lost.</strong> In the wilderness without a road, guide or landmark, the GM may call a Wisdom (Survival) check at the Moderate tier each day. On a failure the party loses half a day’s progress in the wrong direction.</li><li>Random Encounter Rules.</li><li><strong>The Encounter Check: At the start</strong> of each new segment of dangerous travel (daily travel or a dungeon phase), one designated player makes the Encounter Check — roll a single d12 per day travelled.</li></ul><table class=\"arn-table\"><thead><tr><th>Roll</th><th>Result</th></tr></thead><tbody><tr><td>1-10</td><td>Nothing immediately happens. Travel continues</td></tr><tr><td>11</td><td>A Standard Encounter occurs</td></tr><tr><td>12</td><td>A Dangerous Encounter occurs</td></tr></tbody></table><ul><li>An 11 or 12 guarantees the world reacts, not that a fight happens — 11 is a Standard Encounter and 12 a Dangerous one, both built by the GM.</li><li>Resting in Hostile Territory.</li><li>Brief halts do not call for an Encounter Check unless the GM judges the location dangerous; if so, make one check and treat a result of 11 or 12 as a Standard Encounter (never Dangerous).</li><li>A long rest in an unsecured area is riskier — the GM makes a separate, secret Encounter Check during the night to see if the camp is found or disturbed.</li><li>Posting watches is vital.</li><li>Your Agency Matters.</li><li><strong>Combat is Optional: </strong>a high roll guarantees a situation, not a fight.</li><li><strong>Talk your way out</strong> (Social Encounter), hide or flee (Skill Challenge), or interact with the situation (Puzzle or Roleplaying) instead.</li><li><strong>Surprise: </strong>the GM may rule on Surprise directly, instead of calling for the Wisdom checks above, based on the party's own precautions — marching order, scouts, watch rotation, and similar.</li><li>Ration Consumption.</li><li><strong>Regular Consumption: </strong>each character consumes one Day's Rations (a Week's Rations pack holds seven) and a day's water per day of travel.</li><li><strong>Insufficient Rations: </strong>running short may force a slower pace. A character can go without food for 3 days plus their Constitution modifier (minimum 1 day), then gains 1 level of Exhaustion for each further day without food. Without water, a character gains 1 level of Exhaustion after one day and another for each further day.</li></ul>"
+   },
+   "sort": 6100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "rpFBEeV3TcZXPEBK",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.rpFBEeV3TcZXPEBK",
+   "name": "Environmental Hazards",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Falling, hunger, thirst and sleep are covered elsewhere (see Falling Damage, Ration Consumption and Fatigue &amp; Exhaustion). These are the rest.</li><li>Holding Your Breath &amp; Suffocation.</li><li><strong>Holding your breath:</strong> 1 + Constitution modifier minutes (minimum 30 seconds).</li><li><strong>Running out:</strong> you then survive a number of rounds equal to your Constitution modifier (minimum 1) before dropping to 0 HP and falling unconscious, then dying if the suffocation continues (see Death &amp; Dying).</li><li>Smoke, gas and a vacuum work the same way. Water does not change the clock, but you cannot draw breath at all.</li><li>Swimming &amp; Drowning.</li><li>Swim speed follows the Swimming rules in Section III.</li><li><strong>Rough water:</strong> make a Strength check (DC 12) or make no headway that round. Heavy armour gives Disadvantage on the check, and failing it by 5 or more means you sink.</li><li>Light weapons work normally in water. Heavy weapons, and ranged attacks beyond half their listed range, have Disadvantage.</li><li>Extreme Heat.</li><li><strong>Exertion in heat:</strong> desert, forge or volcano. Each hour, make a Fortitude save (DC 10, +2 for each further hour) or gain 1 level of Exhaustion.</li><li>Medium and heavy armour give Disadvantage on the save.</li><li>You need double water each day. Without it, the water rules apply at once.</li><li>Resistance to fire, shade or a cooling spell removes the save.</li><li>Extreme Cold.</li><li><strong>Exposure:</strong> blizzard, glacier or deep winter. The same save and DC progression as heat, once per hour.</li><li>Warm clothing, a fire or shelter gives Advantage. An Insulated garment, Resistance to cold or a warming spell removes the save.</li><li>Wet clothing counts as no protection.</li><li>Fire &amp; Smoke.</li><li><strong>Standing in flames:</strong> 1d6 fire damage per round. Make a Reflex save (DC 12) or catch fire (see Burning).</li><li><strong>Smoke:</strong> after 1 minute in thick smoke, make a Fortitude save (DC 12) each round or become Poisoned until you breathe clean air. Smoke also counts as concealment.</li><li><strong>Spreading:</strong> dry material burns easily. The GM decides how fast a fire spreads, usually 10ft a round.</li><li>Acid.</li><li><strong>Splash:</strong> 1d6 acid damage.</li><li><strong>Immersion:</strong> 2d6 acid damage per round.</li><li><strong>Gear:</strong> nonmagical metal gear exposed for a full round is ruined, and the GM decides how badly. Acid does not harm stone or glass.</li><li>Lava &amp; Magma.</li><li><strong>Touching it:</strong> 4d6 fire damage per round.</li><li><strong>Immersion:</strong> 10d6 fire damage per round, and you catch fire.</li></ul>"
+   },
+   "sort": 6200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "ha0LYgtQb5RIycEY",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.ha0LYgtQb5RIycEY",
+   "name": "Resting & Recovery",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Rest Requirements.</p><ul><li>Characters need 8 hours of rest (a long rest, also called a full rest) per 24-hour period to gain any benefits, which can occur during the day or night.</li><li>Benefits are gained only once per 24 hours. Wherever it is taken, a long rest restores spent spell slots and 1/long rest abilities, and ends temporary HP. Luck does not recover with rest.</li><li>Rest attempts during adventuring can be interrupted, but the 8 hours need not be consecutive, provided at least one unbroken block of 4 hours is included.</li><li>Healing During Rest — Safe Havens &amp; Active Town Rest.</li><li>After 8 hours of rest in a safe, civilised environment (towns, inns, secure hubs), a character rolls their largest Hit Die exactly once upon checking into safety, adding their Constitution modifier (a negative modifier counts as 0).</li><li>That combined total is the exact amount of HP they regain each night, for that night and any consecutive nights of active daily rest during that stay.</li><li>Healing During Rest — Outdoors &amp; Wilderness.</li><li>Resting outdoors focuses on surviving the elements rather than robust recovery. Any rest outside a safe haven counts as outdoors.</li><li>No Hit Die is rolled — instead, regain 1 HP.</li><li><strong>With shelter</strong> (a tent, bedroll or similar comfort), regain HP equal to your Constitution modifier (minimum 1) instead.</li><li>Fatigue &amp; Exhaustion.</li><li><strong>Sleep Deprivation: </strong>a creature that goes 24 hours without a full rest makes a DC 10 Fortitude save, gaining 1 level of Exhaustion on a failure. It repeats the save every further 8 hours without rest, with the DC increasing by 2 each time.</li><li><strong>Armour Penalty: </strong>you cannot take a long rest in Medium or Heavy armour. Sleeping in it staves off sleep-deprivation Exhaustion, but gives none of a long rest’s benefits, including recovery from existing Exhaustion. Light armour is fine to sleep in.</li><li>Exhaustion Penalty Table.</li></ul><table class=\"arn-table\"><thead><tr><th>Level</th><th>Effect</th><th>Narrative Description</th></tr></thead><tbody><tr><td>1</td><td>Sluggishness: Disadvantage on Initiative rolls</td><td>Your reactions slow down; you are slow to react to immediate danger</td></tr><tr><td>2</td><td>Weariness: all movement speeds are halved</td><td>Your limbs feel like lead. Travel slows to a crawl, and tactical positioning becomes incredibly difficult</td></tr><tr><td>3</td><td>Heavy Fatigue: Disadvantage on all Attribute Checks and Attack Rolls</td><td>The mental and physical fog sets in. Striking a target or performing complex physical tasks requires immense effort</td></tr><tr><td>4</td><td>Debilitated: Max HP is cut flatly in half</td><td>Your body is structurally compromised. Lingering stress makes you incredibly fragile to incoming damage</td></tr><tr><td>5</td><td>Delirious: Speed drops to 0. Cannot cast spells</td><td>You collapse into semi-consciousness. You cannot walk without being carried and lose the focus required to channel magic</td></tr><tr><td>6</td><td>Death: the character dies</td><td>Your heart or mind gives out from pure physical shock and deprivation</td></tr></tbody></table><ul><li><strong>Cumulative: </strong>a creature suffers the effect of every level up to its current one. At level 4, current HP above the new Max HP is lost, and Max HP returns when the level is cleared.</li><li><strong>Recovery: any uninterrupted full rest, wherever it is taken, removes one level of Exhaustion. Only a safe haven also gives the Hit Die healing (see Healing During Rest). A rest that is interrupted removes nothing, but takes away no progress either.</strong></li><li><strong>Downtime</strong> (Long-Term Ailments)</li><li><strong>When the party enters a safe haven</strong> (town, inn, stronghold), the narrative can safely fast-forward days or weeks.</li><li>Only downtime fully cures long-term ailments: serious injuries, diseases and lingering curses. The GM rules the time and care needed.</li></ul>"
+   },
+   "sort": 6300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "BUcbaxM1XpT2VFg6",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.BUcbaxM1XpT2VFg6",
+   "name": "Downtime Rules",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Downtime occurs between quests and adventures, spent in a safe haven (a town, city, stronghold or similar).</p><ul><li><strong>Duration: </strong>A minimum of 1 week, but may run longer based on the length and difficulty of the previous quest — determined by players and the GM together.</li><li>Available Downtime Activities.</li><li>Choose as time allows.</li><li><strong>Earn Income: </strong>Engage in a side hustle for one week of work (six working days). Roll d20 + a relevant skill modifier: DC 10 earns 3 sp per day, DC 15 earns 6 sp per day, DC 20 earns 1 gp per day; on a failure you earn 1 sp per day.</li><li><strong>Craft: </strong>Attempt to craft weapons, armour, gear or potions — see Downtime: Crafting.</li><li><strong>Research: </strong>Investigate history, different topics of interest, or quest-related matters.</li><li><strong>Learn New Skills: </strong>Study an unfamiliar Skill (NWP) or improve a current one. Needs a free NWP slot or GM approval; each tier takes 1 week with a teacher at 25 gp per week.</li><li><strong>Train: </strong>Be taught a weapon, shield, armour or feat by a teacher — see Downtime: Training &amp; Instruction.</li><li><strong>Scribe &amp; Brew: </strong>Copy a spell, write a scroll, brew a potion or research a new spell — see Downtime: Scribing, Scrolls &amp; Potions.</li><li><strong>Treat Diseases: </strong>Spend 8 hours a day treating a disease, self-treated or aided: make a Wisdom check (First Aid/Healing) against the disease's DC once per day. A success cures the disease.</li><li><strong>Create Forgery: </strong>Produce forged documents or merchandise for use or sale.</li><li><strong>Farm: </strong>Tend to a garden and collect crops.</li><li><strong>Learn Spells: </strong>Study a spell or receive tutelage from an NPC; see Downtime: Scribing, Scrolls &amp; Potions.</li><li><strong>Socialise/Build a Network: </strong>Build relationships with NPCs and gain contacts to aid your goals.</li><li><strong>Gather Information: </strong>Collect specific or low-key intelligence on ongoing topics.</li><li>Side Quests.</li><li><strong>Time and Focus Limit: </strong>To maintain a realistic timeline and character focus, you're limited to two (2) active Side Quests at any given time.</li><li>This also provides an opportunity to earn more gold.</li><li><strong>Mechanic: </strong>done off-screen over 2 weeks of downtime and resolved with one 2d6 roll at the end of each week; the better of the two rolls decides the result.</li><li><strong>Team Size: </strong>can be done solo, with party members, or with NPCs.</li><li><strong>Results: </strong>leads to rewards or consequences (minor or major, excluding death): a result of 2-5 is a consequence, 6-8 a minor reward, and 9 or higher a major reward</li></ul>"
+   },
+   "sort": 6400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "g6moZ3d168PnWFef",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.g6moZ3d168PnWFef",
+   "name": "Downtime: Training & Instruction",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>Downtime is also when a character is taught: how to use a weapon or armour, or a technique that no level hands out. Training needs three things — a teacher, gold and time. Skills (NWPs) and spells already have their own downtime activities above, so they are not repeated here.</p><table class=\"arn-table\"><thead><tr><th>Training</th><th>Time</th><th>Cost</th><th>Teacher</th></tr></thead><tbody><tr><td>Weapon proficiency (one weapon)</td><td>2 weeks</td><td>50 gp</td><td>Anyone proficient with it</td></tr><tr><td>Shield training</td><td>2 weeks</td><td>50 gp</td><td>Anyone trained with shields</td></tr><tr><td>Armour training: Light or Medium (one type)</td><td>4 weeks</td><td>150 gp</td><td>Anyone trained in it</td></tr><tr><td>Armour training: Heavy (one type)</td><td>8 weeks</td><td>500 gp</td><td>A master of arms</td></tr><tr><td>Trained Feat (see below)</td><td>12 weeks</td><td>750 gp</td><td>A master</td></tr></tbody></table><ul><li><strong>Teachers: </strong>An ordinary teacher is any NPC who already has the training, and is easy to find in a city. A master is a named specialist — a retired champion, a guild's weapons-master — who may ask for a favour, a quest or a reputation first. The GM decides who is available and what a master wants.</li><li><strong>Time and Cost: </strong>The gold is paid up front. The weeks do not have to be consecutive and can be spread over several downtime phases, and progress is kept between them, but you can only be in one course of training at a time. Abandoning a course loses the gold.</li><li><strong>Finishing: </strong>Complete the full time with a willing teacher and the training is yours. No check is needed. A character who is interrupted, injured or called away simply resumes later.</li><li><strong>Class Limits: </strong>Training cannot override what a class explicitly forbids or breaks. An arcane class that lists \"None\" for armour cannot buy its way into armour this way; its only route is the War Caster feat. A class feature that is lost by wearing armour is still lost.</li><li><strong>Trained Feats: </strong>A character may spend a long downtime learning one feat instead of waiting for a feat level. It must come from a Path open to you and be a learned technique (a fighting style, mastery, craft or field skill), never a gift of magic, a god, a bloodline or a pact. The GM has the final word on which feats count.</li><li><strong>Feat Limit: </strong>One Trained Feat per Tier of Play. It does not use up a feat level, and it counts as a feat you have for any prerequisite.</li></ul>"
+   },
+   "sort": 6500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "f16LfLb1XXm3ymEE",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.f16LfLb1XXm3ymEE",
+   "name": "Downtime: Crafting",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>One simple system for making anything with a crafting Skill (NWP): Blacksmithing, Weaponsmithing, Armourer, Alchemy, Carpentry, Leatherworking, Cooking, Brewing and the rest. You need the right tools and enough gold. The gold covers everything else. Scrolls, spell copying, potion brewing and spell research have their own rules in Downtime: Scribing, Scrolls &amp; Potions, and permanent magic items follow Downtime: Making Magic Items.</p><ul><li>Artificers don't use this system at all; their Kits already have a purpose-built crafting mechanic that's a better fit for what they do (see the Artificer class).</li><li><strong>Tools: </strong>You must have the matching Artisan's Toolkit (see Starting Equipment &amp; Gear) for the Skill in question. No usable tools, no crafting; improvised tools impose Disadvantage.</li><li><strong>Cost: </strong>Pay half the item's normal market price (per the Shopkeeper's Catalogue, or the GM's ruling for anything not listed). That one payment covers all the ordinary materials, fuel, small parts and wear on your tools. You do not track ingredients. A Master of the crafting Skill (see Skills (NWP)) pays only one third of the market price instead of half. Goods you craft sell to a merchant for half their list price, or for full price to a buyer who commissioned them (the GM decides whether one exists). Gems set in a piece are a material you must already own, and jewellery or art you make sells as a crafted good, never at the gem and art rate.</li><li><strong>Special Materials: </strong>Only an item that needs something unusual lists it, such as dragon scale, a rare reagent or blessed silver. The gold does not cover a Special Material. You must have it in hand, which is usually an adventure of its own, before you start.</li><li><strong>Time: </strong>1 day per 25 gp of the item's value, rounded up, and never less than 1 day. A 100 gp item takes 4 days of dedicated work.</li><li><strong>The Check: </strong>Make a Skill check against a DC the GM sets from the General Difficulty Tiers table: Easy for everyday goods, Hard for well-made or specialised pieces, Severe or worse for masterwork items. An untrained crafter rolls a plain d20 with no modifier, a trained one adds the attribute modifier (or +1 if that modifier is 0 or less), and a Master adds the same and rolls with Advantage (see Skills (NWP)).</li><li><strong>Success: </strong>the item is completed in the estimated time.</li><li><strong>Failure: </strong>the time is spent and the item is not finished. Half the gold is lost, and you may try again by paying again, or the GM may rule the half-finished work counts towards a second attempt.</li><li><strong>Location Matters: </strong>Where you work changes the price and the pace:</li><li>Large Towns &amp; Cities: normal cost and time. Any Special Material is a purchase or a quest away.</li><li>Remote Villages &amp; Small Settlements: the gold is 25% higher, because everything has to be fetched in, and Special Materials must be sought out.</li><li>Wilderness &amp; Frontier: no market, so the gold is spent on the scraps you can gather. The work takes twice as long, and the GM may call for a Survival check first.</li><li><strong>Pricing the Work: </strong>Use the Shopkeeper's Catalogue price. For an item that is not listed, the GM compares it to the nearest listed item, or sets its rarity and value from the table below. The crafting cost is half that value. Rarity also decides how skilled the crafter must be and how hard the check is.</li></ul><table class=\"arn-table\"><thead><tr><th>Rarity</th><th>Typical value</th><th>Skill needed</th><th>Check</th></tr></thead><tbody><tr><td>Common</td><td>Up to 150 gp</td><td>Trained</td><td>Easy to Hard</td></tr><tr><td>Uncommon</td><td>Up to 500 gp</td><td>Trained</td><td>Hard</td></tr><tr><td>Rare</td><td>Up to 5,000 gp</td><td>Master</td><td>Severe</td></tr><tr><td>Very Rare</td><td>Over 5,000 gp</td><td>Master, and the GM must approve it</td><td>Severe or worse</td></tr></tbody></table>"
+   },
+   "sort": 6600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "EXUTI0QrzS515cbt",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.EXUTI0QrzS515cbt",
+   "name": "Downtime: Making Magic Items",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Not Ordinary Crafting: </strong>Enchanting is its own downtime job. It costs far more than forging an ordinary sword, but less than buying a rare item, which is never on a shelf. It is the dependable way for a caster to get one.</li><li><strong>Who Can Do It: </strong>A spellcaster whose highest castable spell level is 3rd or more for an Uncommon item, 5th or more for a Rare one, and 7th or more for a Very Rare one. Artificers use their own rules instead.</li><li><strong>The Base: </strong>Start with the plain item: a sword, a ring, a rod, a cloak. Buy it or craft it as normal.</li><li><strong>Cost: </strong>Half the magic item's listed value in gold, on top of the base. That covers all the reagents, ink and ritual materials. A Rare or Very Rare item also needs a Special Material, which the gold does not cover.</li><li><strong>Time: </strong>1 week per 500 gp of the item's value, never less than 1 week. The weeks can be spread over several downtime phases.</li><li><strong>The Check: </strong>One casting-stat check at the end. The DC is Hard for an Uncommon item, Severe for a Rare one, and set by the GM for a Very Rare one. On a failure, half the gold is lost and you may try again.</li><li><strong>Limits: </strong>The GM must approve the item. Unique items cannot be made. Iconic items can, as these examples show. For example, a Wand of Magic Missiles [Uncommon, 450 gp] costs a wand, 225 gp and 1 week. A Flame Tongue [Rare, 3,000 gp] costs a sword, 1,500 gp, a Special Material and 6 weeks.</li></ul>"
+   },
+   "sort": 6700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "7BoWXppnct43XmWH",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.7BoWXppnct43XmWH",
+   "name": "Downtime: Scribing, Scrolls & Potions",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<p>The spell side of downtime. Costs and limits for books and scrolls come from Spellbooks &amp; Scrolls in Spellcasting in Arneyan; this section says how the work is done between adventures.</p><ul><li><strong>Copy a Spell: </strong>A spellbook caster copies a spell from another book or a scroll onto their own pages. It takes 1 day and 50 gp per spell level, with no roll, and the spell must be on your class list.</li><li><strong>Scribe a Scroll: </strong>Any caster who knows a spell can write it onto a scroll, up to the highest spell level they can cast. It takes 1 week and 100 gp per spell level, plus any costly components, and no more scrolls a month than the caster's casting-stat modifier (minimum 1). A cantrip scroll costs at least 1 day and 10 gp of ink and vellum. The scroll keeps your caster level and save DC (see Spellbooks &amp; Scrolls in Spellcasting in Arneyan), and anyone can use it. Scrolls of 8th level and above can be written but are never sold.</li><li><strong>Brew a Potion: </strong>Needs the Alchemy Skill (NWP) and an Alchemist's Toolkit, and follows Downtime: Crafting: you pay half the potion's market price, and the work takes 1 day per 25 gp of its value. The GM sets the DC from the General Difficulty Tiers. Only potions on the Shopkeeper's Catalogue or approved by the GM can be brewed.</li><li><strong>Research a Spell: </strong>A caster who wants a spell that does not exist yet works it out with the GM. The GM must approve the idea and set its level. Research takes 1 week and 100 gp per spell level, followed by one casting-stat check against a Hard DC. On a failure, half the gold is lost and you may try again. A researched spell is then copied or learned as normal.</li><li><strong>Magic Items: </strong>Permanent magic items are made under Downtime: Making Magic Items, not as ordinary potions or scrolls. Artificers use their own crafting rules.</li></ul>"
+   },
+   "sort": 6800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "e758n7YAOA7G0fV2",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.e758n7YAOA7G0fV2",
+   "name": "The Wider World",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>Rules for interacting with the world beyond the party itself — treasure, hired help, and one spellcasting restriction that keeps the wider world's inner life intact.</li></ul>"
+   },
+   "sort": 6900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "QyAhxNLptXT5Alp3",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.QyAhxNLptXT5Alp3",
+   "name": "Loot",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Share Equitably: </strong>aim for equal value of loot among party members, prioritising immediate needs and character use.</li><li><strong>Collaborative Decisions: </strong>discuss unique or valuable items as a group and maintain transparency in distribution.</li></ul>"
+   },
+   "sort": 7000000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "iHGeBxSseMd1vTH7",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.iHGeBxSseMd1vTH7",
+   "name": "Hiring — Hirelings, Henchmen & Mercenaries",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Hirelings: </strong>NPCs hired for specific, non-adventuring tasks — labourers, artisans, messengers, scholars.</li><li>Paid a negotiated fee based on service duration and complexity.</li><li>They generally do not share in treasure or advance in level, and their loyalty is purely transactional — bribes or a Charisma check can push them into a risk they weren't contracted for, but don't expect much beyond that.</li><li><strong>Henchmen</strong> (Retainers): Loyal followers who accompany adventurers and participate in the risks.</li><li>Recruitment is influenced by the hiring character's Charisma and reputation, requiring a Neutral or better Reaction Check (a Neutral hire costs double pay).</li><li>Loyalty is called for in danger or after major events. The Loyalty score starts at the hiring character's Charisma modifier, +2 if the Reaction Check was Friendly or +4 if Helpful, and rises or falls by 1 for good or poor treatment and rewards. A Loyalty check is a d20 plus the Loyalty score against a DC the GM sets from the General Difficulty Tiers table.</li><li>They receive half a share of treasure by default (a full share if they take the same risks as the party, at the GM's discretion) and start at least one level below the hiring PC (minimum Level 1) and gain levels from the party's XP at 10 XP per level, never exceeding the hiring PC's level. No wage, only their share and upkeep at the party's lifestyle.</li><li>Treat them as simplified characters with their own stats. The hiring player controls a henchman in combat; the GM does outside it.</li><li><strong>Mercenaries: </strong>Soldiers for guarding, patrols or battle, not dungeons. Paid monthly by type and skill, hired in groups, with morale checked as normal.</li></ul>"
+   },
+   "sort": 7100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  }
+ ],
+ "folder": null,
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

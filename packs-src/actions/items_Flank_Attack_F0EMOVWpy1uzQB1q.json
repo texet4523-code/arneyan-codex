@@ -1,0 +1,44 @@
+{
+ "_id": "F0EMOVWpy1uzQB1q",
+ "_key": "!items!F0EMOVWpy1uzQB1q",
+ "name": "Flank Attack",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/action-sword-clash.svg",
+ "system": {
+  "description": "<p>Attack with Advantage when an ally is positioned opposite you against the same target.</p><p class=\"arn-note\"><strong>Combat Manoeuvres, Positioning:</strong> a benefit for where you stand.</p><p class=\"arn-note\">Switch it on from the Actions tab while it applies; the sheet adds the Advantage or Disadvantage.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "action",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 0,
+  "className": "",
+  "rules": [
+   {
+    "key": "adv.attack.melee",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": true,
+  "active": false,
+  "applies": [],
+  "activities": []
+ },
+ "effects": [],
+ "folder": "ZwYaT2SZrAmIDw8K",
+ "sort": 130,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

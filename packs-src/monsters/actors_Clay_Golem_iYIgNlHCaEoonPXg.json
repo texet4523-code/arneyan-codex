@@ -1,0 +1,283 @@
+{
+ "_id": "iYIgNlHCaEoonPXg",
+ "_key": "!actors!iYIgNlHCaEoonPXg",
+ "name": "Clay Golem",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 13,
+  "hd": "9d10",
+  "attributes": {
+   "hp": {
+    "value": 49,
+    "max": 49,
+    "temp": 0
+   },
+   "ac": 22,
+   "speed": "20ft",
+   "attack": 12,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "acid, non-magical",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A slow, relentless guardian of temples and tombs. Its curse is worse than its fists.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KxoBws4m9TvShQL4",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.KxoBws4m9TvShQL4",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Acid Absorption",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to acid damage. Any acid heals it by the damage it would have dealt.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VI5K1jJmxady1tPF",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.VI5K1jJmxady1tPF",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cursed Wounds",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Damage from its attacks cannot be healed naturally or by healing magic until @UUID[Compendium.arneyan.spells.Item.DBMmlO0kdlEPOc4T]{remove curse} is cast on the creature.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tPBtZ5SZOF2s4ZUI",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.tPBtZ5SZOF2s4ZUI",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Berserk",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>When it starts its turn with half its HP or fewer, there is a 1-in-3 chance it goes berserk and attacks the nearest creature.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GkMDwf0S9Q0fCjR4",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.GkMDwf0S9Q0fCjR4",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Weapons Only",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to damage from nonmagical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4yDMVNA7PmQyvdzD",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.4yDMVNA7PmQyvdzD",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Clay Golem",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,53 @@
+{
+ "_id": "XX0rK4uyNuaFjlAy",
+ "_key": "!items!XX0rK4uyNuaFjlAy",
+ "name": "Wail of the Banshee",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Range 40ft radius around you; every creature except you must make a Fortitude save or die; on a success it takes 3d6 + 1 per level thunder damage instead. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Necromancer, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Necromancer",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Range 40ft radius around you",
+  "duration": "",
+  "area": "40ft radius",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Full damage instead of death",
+  "damage": "3d6 + @cl",
+  "damageType": "thunder",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 40,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 393,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

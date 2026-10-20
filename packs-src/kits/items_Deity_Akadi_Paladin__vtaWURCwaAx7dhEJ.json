@@ -1,0 +1,47 @@
+{
+ "_id": "vtaWURCwaAx7dhEJ",
+ "_key": "!items!vtaWURCwaAx7dhEJ",
+ "name": "Deity: Akadi (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Flail, Heavy</p><p><strong>Granted power:</strong> Once/day: call a lightning strike on a target within 60ft (3d6, Reflex save for half). Advantage on saves vs weather and elemental effects.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Akadi)",
+    "level": 1,
+    "description": "<p>Once/day: call a lightning strike on a target within 60ft (3d6, Reflex save for half). Advantage on saves vs weather and elemental effects.</p><p><strong>Favoured weapon:</strong> Flail, Heavy</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "damage": "3d6",
+    "damageType": "lightning",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs weather and elemental effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 29,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

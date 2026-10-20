@@ -1,0 +1,48 @@
+{
+ "_id": "IzQH2uRnpjINWuGg",
+ "_key": "!items!IzQH2uRnpjINWuGg",
+ "name": "Arcane Cascade",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>After a Spellstrike (cantrip or levelled) that hits, gain +1 AC for 1 round — the backwash of channelling a spell through a weapon rather than letting it go cleanly keeps your guard up.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Magus",
+  "applies": [
+   {
+    "name": "Arcane Cascade",
+    "target": "self",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "5a47SUsgDETopEzg",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

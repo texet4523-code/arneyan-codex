@@ -1,0 +1,70 @@
+{
+ "_id": "zsMpDQJQdsDZP4nV",
+ "_key": "!items!zsMpDQJQdsDZP4nV",
+ "name": "Rage",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>As part of an attack or your movement, enter a rage for up to 3 + Constitution modifier rounds (minimum 3 rounds), usable 1 + Constitution modifier times per day (minimum 2/day).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li><li>Stacks normally with Primeval Will and Whirlwind Attack.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 2,
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, 1 + @con.mod)"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Barbarian",
+  "activities": [
+   {
+    "name": "Rage",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Enter a rage for 3 + Constitution modifier rounds (minimum 3), gaining +2 melee damage (+4 from 10th, +6 from 20th).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "damage.melee",
+    "value": "+2*(1+floor(@cl/10))",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": true,
+  "active": false
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

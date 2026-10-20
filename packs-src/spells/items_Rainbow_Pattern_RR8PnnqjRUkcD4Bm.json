@@ -1,0 +1,70 @@
+{
+ "_id": "RR8PnnqjRUkcD4Bm",
+ "_key": "!items!RR8PnnqjRUkcD4Bm",
+ "name": "Rainbow Pattern",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 120ft; 20ft-radius. Creatures with a total of 24 Levels + CL are Incapacitated and do not move for up to 1 round per level (concentration); lowest Level first; Will negates. A creature that takes damage is freed. Blinded creatures are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Bard"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": true,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Rainbow Pattern",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "incapacitated"
+    ],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 223,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

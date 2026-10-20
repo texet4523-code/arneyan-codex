@@ -1,0 +1,66 @@
+{
+ "_id": "Qc8GsQhcP4KgH0F8",
+ "_key": "!items!Qc8GsQhcP4KgH0F8",
+ "name": "The Veiled Ones — Shadow Operative (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li>An assassin embedded in the outer ring of the Veiled Ones' intelligence network — not a full member, but trusted with contracts that require discretion over dramatics. Your marks aren't always meant to die; sometimes they're meant to disappear, recant, or simply never know you were there. Identity compartmentalisation is doctrine.</li><li><strong>Surveillance: </strong>Advantage on checks when surveilling or tailing a target without being noticed — following at distance, mapping routine, identifying vulnerabilities before acting.</li><li><strong>Clean Hands: </strong>Advantage on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement. Once per encounter, after a Sneak Attack, you may Hide as part of the same action if cover or a crowd is within 10ft.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Surveillance",
+    "level": 1,
+    "description": "<p>Advantage on checks when surveilling or tailing a target without being noticed — following at distance, mapping routine, identifying vulnerabilities before acting.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "surveilling or tailing a target without being noticed",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Clean Hands",
+    "level": 1,
+    "description": "<p>Advantage on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement. Once per encounter, after a Sneak Attack, you may Hide as part of the same action if cover or a crowd is within 10ft.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to pass as someone with a legitimate reason to be somewhere, or to extract, verify or pass intelligence untraced",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,93 @@
+{
+ "_id": "aLBNeiZAKzv8pGhC",
+ "_key": "!items!aLBNeiZAKzv8pGhC",
+ "name": "Shaman (Druid)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<p>You walk between worlds — the living and the spirit, the present and the ancestral. Where Druids tend the natural world, Shamans negotiate with what lies beneath and beyond it.</p><ul><li><strong>Spirit Sight: </strong>Advantage on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. Once per day, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</li><li><strong>Ancestor's Fury: </strong>Once per encounter, call on ancestral power — your next spell or attack made while in Wild Shape deals an additional 1d8 damage of any type you choose.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Druid",
+  "features": [
+   {
+    "name": "Spirit Sight",
+    "level": 1,
+    "description": "<p>Advantage on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. Once per day, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to perceive, communicate with or identify spirits, ancestors and natural extraplanar entities",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Ancestor's Fury",
+    "level": 1,
+    "description": "<p>Once per encounter, call on ancestral power — your next spell or attack made while in Wild Shape deals an additional 1d8 damage of any type you choose.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Ancestor's Fury (1d8)",
+      "kind": "damage",
+      "formula": "1d8",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Your next spell or attack made while in Wild Shape deals this extra, of any type you choose.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "damage",
+      "value": "+1d8",
+      "when": "once per encounter: next spell or attack while in Wild Shape (any type)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "eLpVXIYAkUFHTT3m",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

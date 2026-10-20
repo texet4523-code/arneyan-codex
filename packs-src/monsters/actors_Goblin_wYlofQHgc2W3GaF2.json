@@ -1,0 +1,252 @@
+{
+ "_id": "wYlofQHgc2W3GaF2",
+ "_key": "!actors!wYlofQHgc2W3GaF2",
+ "name": "Goblin",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "1d6",
+  "attributes": {
+   "hp": {
+    "value": 3,
+    "max": 3,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 1,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (goblinoid)",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6 (lair 40-400)",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "¼",
+   "page": 0,
+   "description": "<p><em>Small humanoid (goblinoid)</em></p><p><strong>GM:</strong> Cowardly in the open; they flee the moment their boss falls.</p>",
+   "treasure": "<p>Treasure type <strong>P</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Short sword",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zuxBsWoLP4V0ArdZ",
+   "_key": "!actors.items!wYlofQHgc2W3GaF2.zuxBsWoLP4V0ArdZ",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shortbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80ft",
+    "magic": 0,
+    "attackBonus": 1,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JLWfGqgaDLqEkfbD",
+   "_key": "!actors.items!wYlofQHgc2W3GaF2.JLWfGqgaDLqEkfbD",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nNo2G8BNnZ67cRYO",
+   "_key": "!actors.items!wYlofQHgc2W3GaF2.nNo2G8BNnZ67cRYO",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Nimble Escape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>Once per turn, move up to half its speed without provoking opportunity attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "URof9qVRBSu5FqTr",
+   "_key": "!actors.items!wYlofQHgc2W3GaF2.URof9qVRBSu5FqTr",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Goblin",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-goblin-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

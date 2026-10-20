@@ -1,0 +1,471 @@
+{
+ "_id": "4UX6EutbxLcVCDB7",
+ "_key": "!actors!4UX6EutbxLcVCDB7",
+ "name": "Storm Giant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-giant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 18,
+  "hd": "17d8",
+  "attributes": {
+   "hp": {
+    "value": 190,
+    "max": 190,
+    "temp": 0
+   },
+   "ac": 24,
+   "speed": "50ft, swim 50ft",
+   "attack": 24,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 10,
+   "ref": 10,
+   "will": 10
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "giant",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "lightning, thunder",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A lonely sage whose moods set the weather. It rarely fights, and a fight with one is a disaster.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greatsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d6+7",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0wB9CTQauVSlHn22",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.0wB9CTQauVSlHn22",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Strike",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, calls a bolt from the sky on a creature it can see outdoors within 500ft; @Check[ref|dc:25]{Reflex DC 25} for half of @Damage[12d8 lightning]{12d8 lightning damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 25,
+    "damage": "12d8",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "r3yOgU3hqH73ldMD",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.r3yOgU3hqH73ldMD",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>3/day each: @UUID[Compendium.arneyan.spells.Item.SC9XbAERdQ6hWMjC]{control weather}, @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XdflFJfRRqcIK3Cg",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.XdflFJfRRqcIK3Cg",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Control Weather (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Casting takes 10 minutes; outdoors only. Changes the weather in a 1-mile radius around you to one of: clear, rain, snow, thick fog (visibility 30ft), gale-force wind (45 mph), heat wave or cold snap. The change takes 10 minutes to arrive and lasts 4d12 hours; you do not control it afterwards.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Witch, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Druid",
+     "Witch",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.SC9XbAERdQ6hWMjC"
+   },
+   "_id": "aI3IOrPIEMJCxMFU",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.aI3IOrPIEMJCxMFU",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Levitate (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature or object up to 100 lb per level, 1 minute per level. It rises or sinks 20ft per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Magus",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP"
+   },
+   "_id": "5L9l29ZTqlRNKb07",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.5L9l29ZTqlRNKb07",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Water Breathing (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft; up to 1 creature per level. Targets can breathe water for 2 hours (and still breathe air).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Cleric, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Cleric",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.woHMry5rcF4klVSn"
+   },
+   "_id": "kvJMaCtSx9zHEwUr",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.kvJMaCtSx9zHEwUr",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Reach",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>Reach 10ft with its greatsword.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NsYo3TjkegAoDcmd",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.NsYo3TjkegAoDcmd",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5rRSkkRBibnjat67",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.5rRSkkRBibnjat67",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Storm Giant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-giant.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

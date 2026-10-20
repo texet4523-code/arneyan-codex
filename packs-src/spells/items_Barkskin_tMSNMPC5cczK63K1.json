@@ -1,0 +1,68 @@
+{
+ "_id": "tMSNMPC5cczK63K1",
+ "_key": "!items!tMSNMPC5cczK63K1",
+ "name": "Barkskin",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Touch; one creature. Target gains +3 AC (natural armour bonus, does not stack with other natural armour) for 10 minutes per level. Its skin takes on a woody texture; no effect on speed.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Druid",
+   "Witch"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Barkskin",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": "3",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 91,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

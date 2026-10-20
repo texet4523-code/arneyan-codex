@@ -1,0 +1,62 @@
+{
+ "_id": "PUlvnt8jn5KgGXEq",
+ "_key": "!items!PUlvnt8jn5KgGXEq",
+ "name": "Imprisonment",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature; Will negates. On a failure it is sealed in a tiny sphere deep underground, in suspended animation (Unconscious, not ageing, no needs) until freed. It cannot be found by divination or Scrying. Cast reversed (Freedom): range 30ft; the caster frees a creature held by Imprisonment, Temporal Stasis or Maze, if cast on the spot where it lies.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "Wizard",
+  "classes": [
+   "Wizard"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Imprisoned",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "unconscious"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 381,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

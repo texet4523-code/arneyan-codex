@@ -1,0 +1,56 @@
+{
+ "_id": "IRmJxYnSYm9v1vl0",
+ "_key": "!items!IRmJxYnSYm9v1vl0",
+ "name": "Saevren Pathfinder (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>Wood-elf hunting tradition, built around forest terrain and patience.</p><ul><li><strong>Canopy Step: </strong>Running Shot's movement requirement is met by climbing or moving through trees/elevated terrain, not just ground movement.</li><li><strong>Silent Nock: </strong>Advantage on Stealth checks made the same round you fire a bow.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Canopy Step",
+    "level": 1,
+    "description": "<p>Running Shot's movement requirement is met by climbing or moving through trees/elevated terrain, not just ground movement.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Silent Nock",
+    "level": 1,
+    "description": "<p>Advantage on Stealth checks made the same round you fire a bow.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth in a round you fire a bow",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

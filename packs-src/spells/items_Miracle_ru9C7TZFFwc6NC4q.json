@@ -1,0 +1,67 @@
+{
+ "_id": "ru9C7TZFFwc6NC4q",
+ "_key": "!items!ru9C7TZFFwc6NC4q",
+ "name": "Miracle",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Cast as a spell: duplicates any Cleric spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies. Cast as a Ritual (no slot; 1 hour of prayer; 10,000 gp of offerings consumed; you gain 2 levels of Exhaustion): choose one: return a dead creature to life as True Resurrection, with no body or time limit needed; end any curse, disease, affliction, ability loss or Exhaustion; or transport up to 8 creatures anywhere on any plane.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": true,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Miracle (ritual cost)",
+    "target": "self",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "exhaustion",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 383,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

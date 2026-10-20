@@ -1,0 +1,51 @@
+{
+ "_id": "5aNain0gSDVHlnRe",
+ "_key": "!items!5aNain0gSDVHlnRe",
+ "name": "Wandering Mountebank (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<p>A travelling entertainer with no school or patron.</p><ul><li><strong>Showmanship: </strong>Advantage on Charisma checks to hold an audience while maintaining an illusion. Once per encounter, as your reaction when an attack you can see hits you, it struck a stage-trick double instead: it misses.</li><li>New Face, New Town: Advantage on all checks to establish a false identity in a new town, and on Legend Lore about travelling performers and carnivals.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Showmanship",
+    "level": 1,
+    "description": "<p>Advantage on Charisma checks to hold an audience while maintaining an illusion. Once per encounter, as your reaction when an attack you can see hits you, it struck a stage-trick double instead: it misses.</p><p>New Face, New Town: Advantage on all checks to establish a false identity in a new town, and on Legend Lore about travelling performers and carnivals.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "to hold an audience while maintaining an illusion",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to establish a false identity in a new town; Legend Lore on travelling performers and carnivals",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,283 @@
+{
+ "_id": "yTLJdRReZ2CxBfPf",
+ "_key": "!actors!yTLJdRReZ2CxBfPf",
+ "name": "Galeb Duhr",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "7d8+14",
+  "attributes": {
+   "hp": {
+    "value": 45,
+    "max": 45,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "15ft (30ft rolling)",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "non-magical 5",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Tremorsense 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium elemental</em></p><p><strong>GM:</strong> A boulder that thinks in centuries and guards a hill or a sacred stone. It sings in a voice like rockfall.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ttUV38hlSC8oYD2o",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.ttUV38hlSC8oYD2o",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>Immune to poison. Resistance 5 to non-magical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RIn7EZhcWymt7YmH",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.RIn7EZhcWymt7YmH",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>While motionless, indistinguishable from a boulder.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X8U3VkiTDaJzXVWe",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.X8U3VkiTDaJzXVWe",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rolling Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>If it rolls at least 20ft straight towards a target and hits, the target takes +2d6 damage and makes a @Check[fort|dc:13]{Fortitude save DC 13} or is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uuqazRvMNlQTeUkP",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.uuqazRvMNlQTeUkP",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animate Boulders",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it animates up to two boulders within 60ft, which fight as galeb duhr with 11 HP for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7bsm5aVpT4stLB85",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.7bsm5aVpT4stLB85",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Galeb Duhr",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-rock-golem.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

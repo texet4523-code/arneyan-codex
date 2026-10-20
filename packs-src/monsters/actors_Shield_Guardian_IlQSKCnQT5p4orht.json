@@ -1,0 +1,283 @@
+{
+ "_id": "IlQSKCnQT5p4orht",
+ "_key": "!actors!IlQSKCnQT5p4orht",
+ "name": "Shield Guardian",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "7d10",
+  "attributes": {
+   "hp": {
+    "value": 38,
+    "max": 38,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "30ft",
+   "attack": 11,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft, Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A faithful bodyguard that will never leave its master's side. Take the amulet and you take the guardian.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NZcM4VC39GS42QDR",
+   "_key": "!actors.items!IlQSKCnQT5p4orht.NZcM4VC39GS42QDR",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bound",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Controlled by a worn amulet. While within 60ft of the amulet wearer, it takes half of any damage the wearer would take (the rest goes to the wearer), and follows spoken orders. If the amulet is destroyed, it goes berserk until destroyed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "O9i9kOadCQJchP1v",
+   "_key": "!actors.items!IlQSKCnQT5p4orht.O9i9kOadCQJchP1v",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spell Storing",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>A spellcaster who wears the amulet may store one spell of up to 4th level in it. When commanded or when the wearer is hit, it casts that spell.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2jiu21QuPiRUxjXv",
+   "_key": "!actors.items!IlQSKCnQT5p4orht.2jiu21QuPiRUxjXv",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regeneration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Regains 5 HP at the start of its turn if it has at least 1 HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lFhIgJPXO5vRmhvc",
+   "_key": "!actors.items!IlQSKCnQT5p4orht.lFhIgJPXO5vRmhvc",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ndGQ8Xs995Yr1V2x",
+   "_key": "!actors.items!IlQSKCnQT5p4orht.ndGQ8Xs995Yr1V2x",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Shield Guardian",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-knight-banner.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

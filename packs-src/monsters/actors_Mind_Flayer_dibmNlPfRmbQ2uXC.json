@@ -1,0 +1,482 @@
+{
+ "_id": "dibmNlPfRmbQ2uXC",
+ "_key": "!actors!dibmNlPfRmbQ2uXC",
+ "name": "Mind Flayer",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "8d8+8",
+  "attributes": {
+   "hp": {
+    "value": 44,
+    "max": 44,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 8,
+   "spellDC": 16,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium aberration</em></p><p><strong>GM:</strong> A tyrant with a squid for a face and a city of slaves. It escapes the moment it is cornered.</p>",
+   "treasure": "<p>Treasure type <strong>F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tentacles",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jUoX2gqWakk9iDS7",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.jUoX2gqWakk9iDS7",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mind Blast",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, a 60ft cone. Creatures make a @Check[will|dc:16]{Will save DC 16} or are @Condition[stunned]{Stunned} for 1 round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "66XV78rL9lqiyyj9",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.66XV78rL9lqiyyj9",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Extract Brain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>A creature grappled by tentacles and @Condition[stunned]{Stunned} or @Condition[incapacitated]{Incapacitated} is killed if the mind flayer deals 10+ damage with its tentacles in a single round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7nx8qKUQuv9vecuB",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.7nx8qKUQuv9vecuB",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. 3/day: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:16]{Will DC 16}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mKN0D2POiSJTtNyM",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.mKN0D2POiSJTtNyM",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Levitate (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature or object up to 100 lb per level, 1 minute per level. It rises or sinks 20ft per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Magus",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP"
+   },
+   "_id": "Y63KeU4wvqbU4P3L",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.Y63KeU4wvqbU4P3L",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Thoughts (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range 60ft cone, 1 minute per level (concentration). Each round you focus on one creature in the cone and read its surface thoughts; Will negates for that creature (it knows nothing has been read). Stone 3ft thick, lead or metal sheets block it. Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone, 1 minute per level (concentration)",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "10*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF"
+   },
+   "_id": "Tn878MEJQocx3wDi",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.Tn878MEJQocx3wDi",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dominate Monster (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature of any type. It must make a Will save or fall under your complete mental control for 1 day per level; it gets a new save every 24 hours. You send orders by thought (same plane); it will not follow self-destructive orders. Will negates. Not undead or constructs.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 8,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Dominated",
+      "target": "target",
+      "rounds": "14400*@cl",
+      "statuses": [
+       "dominated"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4"
+   },
+   "_id": "j1Nw9ZaXcsF7Bojw",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.j1Nw9ZaXcsF7Bojw",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>Advantage on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "C5UXgnAmihC0tDUm",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.C5UXgnAmihC0tDUm",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Mind Flayer",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-brain-tentacle.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

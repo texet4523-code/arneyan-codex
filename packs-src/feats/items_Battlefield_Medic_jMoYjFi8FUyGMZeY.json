@@ -1,0 +1,81 @@
+{
+ "_id": "jMoYjFi8FUyGMZeY",
+ "_key": "!items!jMoYjFi8FUyGMZeY",
+ "name": "Battlefield Medic",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p>Treat wounds (Wisdom check, DC 15, Hard tier) to heal a target for HP equal to your Level + your Wisdom modifier (minimum +1). A healer can treat each target only once per day.</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": ""
+  },
+  "activities": [
+   {
+    "name": "Treat wounds (Wisdom)",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "wis",
+    "save": "",
+    "text": "DC 15 (the Hard tier). On a success, heal the target.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Healing",
+    "kind": "heal",
+    "formula": "@level + max(1, @wis.mod)",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Your Level + your Wisdom modifier (minimum +1). Each target can be treated by a healer only once per day.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

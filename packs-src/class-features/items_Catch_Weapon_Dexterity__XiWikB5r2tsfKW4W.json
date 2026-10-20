@@ -1,0 +1,59 @@
+{
+ "_id": "XiWikB5r2tsfKW4W",
+ "_key": "!items!XiWikB5r2tsfKW4W",
+ "name": "Catch Weapon (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Once per round, when struck in melee, attempt to catch the weapon (not a reaction, but unusable while you cannot take reactions).</strong> Make a Dexterity check (d20 + Dexterity modifier) against the attacker's attack roll. On success, the monk holds whatever the opponent is wielding (or catches it mid-air).</li><li>The opponent may attempt to wrest it back with a Strength check; the monk uses Dexterity</li><li>The wielder may release the weapon at any time</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 17,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Catch Weapon",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Against the attacker's melee attack roll; on success you hold the weapon the opponent was wielding.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

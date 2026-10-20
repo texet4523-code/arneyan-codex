@@ -1,0 +1,45 @@
+{
+ "_id": "ww473RWPcUdEG6ky",
+ "_key": "!items!ww473RWPcUdEG6ky",
+ "name": "Deity: Tymora (The Fortunate Harvest) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Short</p><p><strong>Granted power:</strong> Advantage on checks in games of chance. Once/day: you or an ally within 30ft rerolls one d20 roll just made and keeps the new result.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Tymora)",
+    "level": 1,
+    "description": "<p>Advantage on checks in games of chance. Once/day: you or an ally within 30ft rerolls one d20 roll just made and keeps the new result.</p><p><strong>Favoured weapon:</strong> Sword, Short</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "games of chance",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

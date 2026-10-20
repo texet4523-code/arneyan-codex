@@ -1,0 +1,571 @@
+{
+ "_id": "ji1XjZdJj63x2bC0",
+ "_key": "!actors!ji1XjZdJj63x2bC0",
+ "name": "Deva",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "12d8",
+  "attributes": {
+   "hp": {
+    "value": 125,
+    "max": 125,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "30ft, fly 90ft",
+   "attack": 14,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 8,
+   "ref": 8,
+   "will": 8
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "celestial",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "radiant 5, non-silvered 10",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium celestial</em></p><p><strong>GM:</strong> A messenger of the gods. It intervenes with grave purpose and has very little time for mortal squabbles.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Mace ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [
+     {
+      "formula": "2d8",
+      "type": "radiant",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "K1BMXidYPLG3tmew",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.K1BMXidYPLG3tmew",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Divine Awareness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Knows if it hears a lie.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aIe3tQqijV0xGqd1",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.aIe3tQqijV0xGqd1",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Healing Touch",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>3/day, as an action, it heals a creature it touches for 20 HP and cures all disease and poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "luyDzS4de9kNjdmo",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.luyDzS4de9kNjdmo",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Advantage on saves against spells and magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zfyGfRmsnC2ASj3K",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.zfyGfRmsnC2ASj3K",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}. 1/day each: @UUID[Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI]{commune}, @UUID[Compendium.arneyan.spells.Item.mYYG52RjgCthvwnM]{raise dead}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iggc00qpTGel3TDb",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.iggc00qpTGel3TDb",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Alignment (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
+   },
+   "_id": "UXww3raOo5eX8INi",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.UXww3raOo5eX8INi",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Commune (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Self; ritual, 10 minutes. Ask your deity up to 1 yes/no question per level (max 10), one per round; it answers 'yes', 'no' or 'unclear'. Answers are truthful but limited by the deity's knowledge. Usable once per 7 days.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI"
+   },
+   "_id": "n0xd65z5fpqLmMIN",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.n0xd65z5fpqLmMIN",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Raise Dead (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; casting takes 1 minute. One willing dead creature, dead no longer than 1 day per level, whose body is intact (head and torso present). It returns with 1 HP, 4 levels of Exhaustion, no spells prepared, and permanently loses 1 Constitution (minimum 3). This loss is not drain: only Wish or Miracle can restore it. Fails if the creature died of old age, is undead, or was destroyed by Disintegrate. No save. Material: diamond dust worth 500 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Necromancer"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Raised",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "exhaustion",
+        "value": "4",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ability.con",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.mYYG52RjgCthvwnM"
+   },
+   "_id": "f3Yyb3dmcrt8Dxfs",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.f3Yyb3dmcrt8Dxfs",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Angelic Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Resistance 5 to radiant damage. Magic weapons or silver harm it fully; it has Resistance 10 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "POTXvLN06MTpbkou",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.POTXvLN06MTpbkou",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Fu7rMAEdrkdGeFWo",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.Fu7rMAEdrkdGeFWo",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Deva",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-angel-wings.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

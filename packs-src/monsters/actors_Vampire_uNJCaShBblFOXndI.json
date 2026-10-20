@@ -1,0 +1,437 @@
+{
+ "_id": "uNJCaShBblFOXndI",
+ "_key": "!actors!uNJCaShBblFOXndI",
+ "name": "Vampire",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "8d12",
+  "attributes": {
+   "hp": {
+    "value": 100,
+    "max": 100,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "30ft",
+   "attack": 14,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 6,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "necrotic 5, non-magical 10",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A cold and patient predator. The fight begins long before the dinner invitation.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Unarmed strike",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jXSov2gg5VGIuIsX",
+   "_key": "!actors.items!uNJCaShBblFOXndI.jXSov2gg5VGIuIsX",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XJGzMtBEmpmwOcgN",
+   "_key": "!actors.items!uNJCaShBblFOXndI.XJGzMtBEmpmwOcgN",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Immune to poison and sleep. Resistance 5 to necrotic. Magic weapons harm it fully; it has Resistance 10 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ISaYEFVaLbmufG0f",
+   "_key": "!actors.items!uNJCaShBblFOXndI.ISaYEFVaLbmufG0f",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Charm Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>One creature within 30ft that can see the vampire makes a @Check[will|dc:19]{Will save DC 19} or is charmed for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OENl5EGHK7RnGe2w",
+   "_key": "!actors.items!uNJCaShBblFOXndI.OENl5EGHK7RnGe2w",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blood Drain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>A bite on a grappled or charmed creature also deals @Damage[3d6 necrotic]{3d6 necrotic damage}, and the vampire regains the same number of HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "3d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TETRjksjOEA2Yj8y",
+   "_key": "!actors.items!uNJCaShBblFOXndI.TETRjksjOEA2Yj8y",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechange",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>3/day, as part of its action, it becomes a bat, a wolf or a cloud of mist, keeping its HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "q5RWqxtjSHZivrxh",
+   "_key": "!actors.items!uNJCaShBblFOXndI.q5RWqxtjSHZivrxh",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regeneration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Regains 10 HP at the start of its turn. When reduced to 0 HP it becomes mist and flees to its coffin, unless it was in sunlight or running water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "V48zmy5iXrh4Xwcf",
+   "_key": "!actors.items!uNJCaShBblFOXndI.V48zmy5iXrh4Xwcf",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vampiric Weakness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Takes @Damage[2d6 radiant]{2d6 radiant damage} at the start of each turn in sunlight. Running water deals 2d6 per turn. A stake through the heart destroys it in its coffin.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AJX0LFUuwhQGn3Jm",
+   "_key": "!actors.items!uNJCaShBblFOXndI.AJX0LFUuwhQGn3Jm",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QHgAkRIREYncmtff",
+   "_key": "!actors.items!uNJCaShBblFOXndI.QHgAkRIREYncmtff",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Vampire",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vampire-dracula.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

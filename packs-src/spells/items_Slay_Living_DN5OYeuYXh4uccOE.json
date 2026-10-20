@@ -1,0 +1,51 @@
+{
+ "_id": "DN5OYeuYXh4uccOE",
+ "_key": "!items!DN5OYeuYXh4uccOE",
+ "name": "Slay Living",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>1d6/level necrotic damage in 30ft radius; creatures of Level 4 or lower die instantly (save negates)</p><p class=\"arn-note\">Warlock Path of the Abyss Path spell (6th-level slot).</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock (class-only spell, from the class entry)</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Warlock",
+  "classes": [
+   "Warlock"
+  ],
+  "school": "",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "(@cl)d6",
+  "damageType": "necrotic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "60J3ksMp1JoLy4Yg",
+ "sort": 27,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

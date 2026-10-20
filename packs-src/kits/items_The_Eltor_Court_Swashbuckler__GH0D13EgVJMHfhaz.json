@@ -1,0 +1,72 @@
+{
+ "_id": "GH0D13EgVJMHfhaz",
+ "_key": "!items!GH0D13EgVJMHfhaz",
+ "name": "The Eltor Court (Swashbuckler)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<p>The refined court-fencing tradition of Eltor — every fight a performance, every wound a statement.</p><ul><li><strong>Every Move a Statement: </strong>Opening Flourish applies to your first two attacks in the first round of combat, not just the first attack.</li><li><strong>Court Bearing: </strong>Advantage on Persuasion and Performance checks in formal social settings, and on checks impressing nobles or attending court functions.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Swashbuckler",
+  "features": [
+   {
+    "name": "Every Move a Statement",
+    "level": 1,
+    "description": "<p>Opening Flourish applies to your first two attacks in the first round of combat, not just the first attack.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "damage",
+      "value": "+@abilities.cha.mod",
+      "when": "second attack in the first round of combat (Opening Flourish)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Court Bearing",
+    "level": 1,
+    "description": "<p>Advantage on Persuasion and Performance checks in formal social settings, and on checks impressing nobles or attending court functions.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion and Performance in formal social settings",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "impressing nobles or attending court functions",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "IkYCqysRRuv3HKfH",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

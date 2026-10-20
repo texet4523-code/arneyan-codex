@@ -1,0 +1,44 @@
+{
+ "_id": "Hif3oWQJsbIeorn2",
+ "_key": "!items!Hif3oWQJsbIeorn2",
+ "name": "Keen Mind",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Intelligence)</em>  Advantage on Intelligence checks made to recall lore, history, or identify unfamiliar creatures and phenomena. Gain +1 to Intelligence (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ability.int",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check.int",
+    "value": "1",
+    "when": "to recall lore or history, or identify unfamiliar creatures and phenomena",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

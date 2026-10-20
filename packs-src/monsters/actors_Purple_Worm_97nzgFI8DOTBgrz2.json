@@ -1,0 +1,326 @@
+{
+ "_id": "97nzgFI8DOTBgrz2",
+ "_key": "!actors!97nzgFI8DOTBgrz2",
+ "name": "Purple Worm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 12,
+  "hd": "15d10",
+  "attributes": {
+   "hp": {
+    "value": 135,
+    "max": 135,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "40ft, burrow 30ft",
+   "attack": 17,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 9,
+   "ref": 7,
+   "will": 7
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "gargantuan",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 30ft, Tremorsense 60ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> A subterranean cataclysm. Surface cities have lost entire districts to one.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+9",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cST1Pkw6I9Xazbsh",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.cST1Pkw6I9Xazbsh",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stinger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6+9",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lUahKQHlHmYnJb7A",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.lUahKQHlHmYnJb7A",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tunneller",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>Can burrow through solid rock, leaving a tunnel 15ft across.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "m5sx8dWKanCsrxL9",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.m5sx8dWKanCsrxL9",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swallow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>A bitten Large or smaller creature is grappled (escape DC 19) and swallowed on a following hit, taking @Damage[4d6 acid]{4d6 acid damage} per round while inside.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "4d6",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Gzu5Uxl93oJWolLG",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.Gzu5Uxl93oJWolLG",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>A creature stung makes a @Check[fort|dc:19]{Fortitude save DC 19} or takes @Damage[12d6 poison]{12d6 poison damage}, or half on a save.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 19,
+    "damage": "12d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jCApY1pDCzCIw5Zi",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.jCApY1pDCzCIw5Zi",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ov9uIT4f8o77brcM",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.Ov9uIT4f8o77brcM",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Purple Worm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-worm-mouth.svg"
+  },
+  "actorLink": false,
+  "width": 4,
+  "height": 4,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

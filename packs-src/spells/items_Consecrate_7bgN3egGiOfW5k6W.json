@@ -1,0 +1,106 @@
+{
+ "_id": "7bgN3egGiOfW5k6W",
+ "_key": "!items!7bgN3egGiOfW5k6W",
+ "name": "Consecrate",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 30ft; 30ft-radius area, 1 hour per level; needs holy water. Undead inside have Disadvantage on their first attack roll each round and take -1 to damage and saves. Cast reversed (Desecrate), undead inside instead have Advantage on their first attack roll each round and gain +1 to damage and saves, and Turn Undead against them takes -1. Material: silver dust worth 25 gp, consumed.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Paladin"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": true,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "600*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Consecrated (undead)",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "save",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Desecrated (undead)",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "save",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 95,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

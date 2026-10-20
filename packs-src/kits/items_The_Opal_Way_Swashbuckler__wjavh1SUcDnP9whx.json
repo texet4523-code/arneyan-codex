@@ -1,0 +1,62 @@
+{
+ "_id": "wjavh1SUcDnP9whx",
+ "_key": "!items!wjavh1SUcDnP9whx",
+ "name": "The Opal Way (Swashbuckler)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li>The seafaring duelling tradition of Opal's docks and merchant fleets — fast, pragmatic, and built for the chaos of a boarding action. Less ceremonial than the inland schools, more concerned with winning than with style.</li><li><strong>Deckhand's Escape: </strong>Acrobatic Escape movement increases to 20ft and can be used on any terrain without penalty.</li><li><strong>Dockside Rapport: </strong>Advantage on Seamanship checks and on Charisma checks with sailors, dock workers, or maritime merchants.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Swashbuckler",
+  "features": [
+   {
+    "name": "Deckhand's Escape",
+    "level": 1,
+    "description": "<p>Acrobatic Escape movement increases to 20ft and can be used on any terrain without penalty.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Dockside Rapport",
+    "level": 1,
+    "description": "<p>Advantage on Seamanship checks and on Charisma checks with sailors, dock workers, or maritime merchants.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Seamanship",
+      "label": ""
+     },
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with sailors, dock workers or maritime merchants",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "IkYCqysRRuv3HKfH",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

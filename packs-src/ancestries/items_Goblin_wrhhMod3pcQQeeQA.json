@@ -1,0 +1,73 @@
+{
+ "_id": "wrhhMod3pcQQeeQA",
+ "_key": "!items!wrhhMod3pcQQeeQA",
+ "name": "Goblin",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Small • Speed 30ft • Darkvision 60ft • +2 Dex / +1 Con, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Mob Tactics:</strong> Advantage on your first attack roll each round against a creature that has two or more of your allies adjacent to it. 1/long rest, bonus damage = character level when damaging a larger creature (1 Luck for extra use).</li><li><strong>Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>Weapon training:</strong> shortsword, shortbow, sling, dagger.</li><li><strong>Armour training:</strong> light.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "small",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Dex / +1 Con, −1 Wis",
+  "bonuses": {
+   "dex": 2,
+   "con": 1,
+   "wis": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Mob Tactics",
+    "text": "Advantage on your first attack roll each round against a creature that has two or more of your allies adjacent to it. 1/long rest, bonus damage = character level when damaging a larger creature (1 Luck for extra use)."
+   },
+   {
+    "name": "Choose one skill at creation",
+    "text": "Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   },
+   {
+    "name": "Weapon training",
+    "text": "shortsword, shortbow, sling, dagger."
+   },
+   {
+    "name": "Armour training",
+    "text": "light."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "vs a creature with two or more of your allies adjacent",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+@level",
+    "when": "once per long rest, damaging a larger creature",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen at creation",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

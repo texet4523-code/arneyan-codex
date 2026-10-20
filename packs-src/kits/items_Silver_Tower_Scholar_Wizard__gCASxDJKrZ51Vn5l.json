@@ -1,0 +1,66 @@
+{
+ "_id": "gCASxDJKrZ51Vn5l",
+ "_key": "!items!gCASxDJKrZ51Vn5l",
+ "name": "Silver Tower Scholar (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<p>Trained in the Aldorethi tradition out of the Silver Tower, with its branch in Kyla'naes since the War of Tariel.</p><ul><li><strong>Elemental Precision: </strong>Once per encounter, a spell you cast that deals elemental damage imposes Disadvantage on the target's saving throw against it.</li><li><strong>Aldorethi Theory: </strong>Advantage on Intelligence checks recalling Aldorethi magical theory or history.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Elemental Precision",
+    "level": 1,
+    "description": "<p>Once per encounter, a spell you cast that deals elemental damage imposes Disadvantage on the target's saving throw against it.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Elemental Precision: once per encounter, an elemental-damage spell imposes Disadvantage on the target's save.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Aldorethi Theory",
+    "level": 1,
+    "description": "<p>Advantage on Intelligence checks recalling Aldorethi magical theory or history.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.int",
+      "value": "1",
+      "when": "recalling Aldorethi magical theory or history",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

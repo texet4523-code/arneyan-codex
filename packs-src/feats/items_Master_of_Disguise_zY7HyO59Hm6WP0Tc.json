@@ -1,0 +1,44 @@
+{
+ "_id": "zY7HyO59Hm6WP0Tc",
+ "_key": "!items!zY7HyO59Hm6WP0Tc",
+ "name": "Master of Disguise",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+ "system": {
+  "description": "<p>Advantage on checks to forge, impersonate, or maintain a disguise under scrutiny, and Advantage on the first Deception check made in any encounter. You can put together a convincing disguise in 1 minute, and once per day you may reroll a failed check to maintain a disguise or deception.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Specialist Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to forge, impersonate or maintain a disguise under scrutiny",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "first Deception check in an encounter",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Hg8ljiYllm5al9gp",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,72 @@
+{
+ "_id": "bALqpS4MeCkdNeVU",
+ "_key": "!items!bALqpS4MeCkdNeVU",
+ "name": "Mournas Liberator (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Forged in or inspired by the Rebellion. You fight to protect, not to avenge.</p><ul><li><strong>Guardian's Reach: Advantage on your first attack roll each round and on interposition checks when</strong> an ally within reach drops below half HP — you move to cover them.</li><li><strong>Rebellion's Name: </strong>Advantage on checks involving civic structures, the Wayfinders, or anyone who answers to the Rebellion's memory — including invoking Zindel's name to open doors, call in debts, or establish standing.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Guardian's Reach",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round and on interposition checks when an ally within reach drops below half HP — you move to cover them.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "when an ally within reach is below half HP",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "interposition checks when an ally within reach is below half HP",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Rebellion's Name",
+    "level": 1,
+    "description": "<p>Advantage on checks involving civic structures, the Wayfinders, or anyone who answers to the Rebellion's memory — including invoking Zindel's name to open doors, call in debts, or establish standing.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "civic structures, the Wayfinders, or anyone loyal to the Rebellion's memory",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

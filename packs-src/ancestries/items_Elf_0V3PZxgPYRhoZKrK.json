@@ -1,0 +1,112 @@
+{
+ "_id": "0V3PZxgPYRhoZKrK",
+ "_key": "!items!0V3PZxgPYRhoZKrK",
+ "name": "Elf",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Low-Light Vision (not true darkvision) • +2 Dex / +1 Int, −1 Con</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Trance</strong> (4hr rest instead of 8hr sleep).</li><li><strong>Keen Senses:</strong> Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells.</li><li><strong>Armour training:</strong> light.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>High Elf:</strong> weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).</li><li><strong>Saevren (Wood Elf):</strong> weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</li><li><strong>Iiria Elf (Jinia coastal):</strong> weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Low-Light",
+  "attributes": "+2 Dex / +1 Int, −1 Con",
+  "bonuses": {
+   "dex": 2,
+   "int": 1,
+   "con": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Immune to magical sleep",
+    "text": "Immune to magical sleep."
+   },
+   {
+    "name": "Advantage on saves vs charm",
+    "text": "Advantage on saves vs charm."
+   },
+   {
+    "name": "Trance",
+    "text": "Trance (4hr rest instead of 8hr sleep)."
+   },
+   {
+    "name": "Keen Senses",
+    "text": "Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells."
+   },
+   {
+    "name": "Armour training",
+    "text": "light."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "High Elf",
+     "text": "weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Saevren (Wood Elf)",
+     "text": "weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "speed",
+       "value": "5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Iiria Elf (Jinia coastal)",
+     "text": "weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep.",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs charm",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Perception (sight or hearing)",
+    "label": ""
+   },
+   {
+    "key": "adv.concentration",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

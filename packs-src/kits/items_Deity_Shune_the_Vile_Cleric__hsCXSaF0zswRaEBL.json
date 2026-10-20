@@ -1,0 +1,51 @@
+{
+ "_id": "hsCXSaF0zswRaEBL",
+ "_key": "!items!hsCXSaF0zswRaEBL",
+ "name": "Deity: Shune the Vile (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Dagger</p><p><strong>Granted power:</strong> Advantage on concealing true intent. Once/day: plant a false memory (Will save negates). Advantage on initiative.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Shune the Vile)",
+    "level": 1,
+    "description": "<p>Advantage on concealing true intent. Once/day: plant a false memory (Will save negates). Advantage on initiative.</p><p><strong>Favoured weapon:</strong> Dagger</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "concealing your true intent",
+      "label": ""
+     },
+     {
+      "key": "adv.init",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 41,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

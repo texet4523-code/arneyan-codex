@@ -1,0 +1,77 @@
+{
+ "_id": "PtJo8m3MpGc3d8vQ",
+ "_key": "!items!PtJo8m3MpGc3d8vQ",
+ "name": "Mindryath",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Wis / +1 Cha, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on saves vs charmed; immune to magical sleep.</li><li><strong>Advantage</strong> on checks involving nature, plant growth, or communicating with fey/forest-dwelling creatures.</li><li><strong>Roving Grace:</strong> 1/long rest, cross between the Feywild and the material plane without a portal or ritual, arriving at a place you have seen; you cannot bring passengers.</li><li><strong>One Druid cantrip</strong> at creation.</li><li><strong>Weapon training:</strong> staff, sickle, shortbow, dagger.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Wis / +1 Cha, −1 Str",
+  "bonuses": {
+   "wis": 2,
+   "cha": 1,
+   "str": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Advantage on saves vs charmed",
+    "text": "Advantage on saves vs charmed; immune to magical sleep."
+   },
+   {
+    "name": "Advantage on checks involving nature",
+    "text": "Advantage on checks involving nature, plant growth, or communicating with fey/forest-dwelling creatures."
+   },
+   {
+    "name": "Roving Grace",
+    "text": "1/long rest, cross between the Feywild and the material plane without a portal or ritual, arriving at a place you have seen; you cannot bring passengers."
+   },
+   {
+    "name": "One Druid cantrip at creation",
+    "text": "One Druid cantrip at creation."
+   },
+   {
+    "name": "Weapon training",
+    "text": "staff, sickle, shortbow, dagger."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs charmed",
+    "label": ""
+   },
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep.",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "nature, plant growth, or communicating with fey or forest creatures",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 21,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

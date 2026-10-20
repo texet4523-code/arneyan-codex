@@ -1,0 +1,90 @@
+{
+ "_id": "KZnTCfeLuVUFgLSx",
+ "_key": "!items!KZnTCfeLuVUFgLSx",
+ "name": "Construct Engineer (Artificer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<p>Your companion isn't summoned — it's built, bolted, and wound by hand, and it remembers every repair you've ever made to it.</p><ul><li><strong>Construct Companion</strong> (1st): Build a Small construct companion (d8 Hit Dice equal to your level; AC 14, +1 per four levels; attack bonus equal to the Martial Base to Hit for a level equal to its HD, to a maximum of 24th; saves of half your level, minimum +1; immune to poison, disease and sleep). Its attacks deal +1 damage per four Artificer levels. It acts on your initiative and follows spoken commands. Commanding it is part of your turn and costs nothing; without a command it takes no action. Example chassis — Guardian: Move 30ft, slam (1d8), +1 AC while adjacent to you; Scout: Move 40ft, climb 20ft, bite (1d6), Advantage on Perception; Striker: Move 30ft, blade arm (1d10). If destroyed, it can be rebuilt over a full rest with materials.</li><li><strong>Modular Chassis</strong> (3rd): Swap the construct's weapon mount (Blade Arm, Cannon Arm) or utility mount (Grasping Claw, Lantern Core, Climbing Legs, Alarm Core) during any rest, no cost.</li><li><strong>Reinforced Plating</strong> (7th): The construct's AC increases by 2 and it gains Resistance 5 to one damage type of your choice, set at creation.</li><li><strong>Independent Action</strong> (11th): The construct can act on its own initiative count and no longer requires your command each round to take a basic action (attack nearest enemy, defend, retrieve).</li><li><strong>Lasting Work: True Construct</strong> (15th): Spend a full day and appropriate materials to permanently upgrade your companion's chassis — each upgrade gives it 2 more Hit Dice and one permanent magical enhancement (flight, invisibility on command, a breath weapon dealing elemental damage, or similar), GM-approved. It can take one upgrade at 15th level and a second at 20th; replacing an enhancement later adds no Hit Dice.</li><li><strong>Magnum Opus: The Masterwork Automaton</strong> (24th): Your companion undergoes a final transformation — +4 HD, it gains a second attack, and it becomes capable of independently casting, once per day, one Wizard spell of 3rd level or lower chosen when the Opus is finished. Requires a month of uninterrupted work and rare materials the GM determines.</li></ul><h3>Known Chassis Mods</h3><ul><li><strong>Blade Arm</strong> (weapon mount) — 1d8 slashing melee attack</li><li><strong>Cannon Arm</strong> (weapon mount) — 1d6 force damage, 30ft range</li><li><strong>Piercer Arm</strong> (weapon mount) — 1d6 piercing melee attack, ignores 2 points of the target's armour</li><li><strong>Grasping Claw</strong> (utility mount) — Advantage on grapple attempts; can retrieve small objects at your command</li><li><strong>Lantern Core</strong> (utility mount) — Sheds light in a 30ft radius, shutterable on command</li><li><strong>Climbing Legs</strong> (utility mount) — Climb speed equal to normal move speed</li><li><strong>Alarm Core</strong> (utility mount) — The construct cannot be surprised while active and alerts you the instant it's triggered or attacked</li><li><strong>Vocal Mimic</strong> (utility mount) — The construct can repeat up to one sentence of speech it has heard, in the speaker's own voice</li><li><strong>Reinforced Chassis</strong> (passive) — +2 to the construct's current HD total</li><li><strong>Balanced Frame</strong> (passive) — The construct gains +1 to its AC</li><li><strong>Recall Ward</strong> (passive) — You can call the construct to your side from anywhere within 1 mile with a spoken word</li><li><strong>Storage Cavity</strong> (utility mount) — The construct has a hidden compartment holding up to 4 slots' worth of items</li><li><strong>Mounts and passives: </strong>a construct carries one weapon mount and one utility mount, swapped during a rest (see Modular Chassis). Passives are installed during a rest and count as known options. A construct holds one passive, plus one more at 5th, 10th, 15th and 20th level. Each passive can be installed only once, and removing and reinstalling Reinforced Chassis adds no further Hit Dice.</li></ul><h4>Designing a Custom Mount</h4><ul><li><strong>Benchmark: </strong>A weapon mount should deal damage in line with a simple one-handed weapon (1d6-1d8), scaled by attack type rather than by size. A utility mount should grant one clear non-combat capability (movement, detection, storage, communication) rather than a combat bonus — if it starts granting damage or AC, it's a weapon mount or passive instead. A passive mod should be a small, permanent numeric bump (+1 to +2) to one stat, never a whole new capability.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Artificer",
+  "features": [
+   {
+    "name": "Construct Companion",
+    "level": 1,
+    "description": "<p>Build a Small construct companion (d8 Hit Dice equal to your level; AC 14, +1 per four levels; attack bonus equal to the Martial Base to Hit for a level equal to its HD, to a maximum of 24th; saves of half your level, minimum +1; immune to poison, disease and sleep). Its attacks deal +1 damage per four Artificer levels. It acts on your initiative and follows spoken commands. Commanding it is part of your turn and costs nothing; without a command it takes no action. Example chassis — Guardian: Move 30ft, slam (1d8), +1 AC while adjacent to you; Scout: Move 40ft, climb 20ft, bite (1d6), Advantage on Perception; Striker: Move 30ft, blade arm (1d10). If destroyed, it can be rebuilt over a full rest with materials.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Modular Chassis",
+    "level": 3,
+    "description": "<p>Swap the construct's weapon mount (Blade Arm, Cannon Arm) or utility mount (Grasping Claw, Lantern Core, Climbing Legs, Alarm Core) during any rest, no cost.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Reinforced Plating",
+    "level": 7,
+    "description": "<p>The construct's AC increases by 2 and it gains Resistance 5 to one damage type of your choice, set at creation.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Independent Action",
+    "level": 11,
+    "description": "<p>The construct can act on its own initiative count and no longer requires your command each round to take a basic action (attack nearest enemy, defend, retrieve).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Lasting Work: True Construct",
+    "level": 15,
+    "description": "<p>Spend a full day and appropriate materials to permanently upgrade your companion's chassis — each upgrade gives it 2 more Hit Dice and one permanent magical enhancement (flight, invisibility on command, a breath weapon dealing elemental damage, or similar), GM-approved. It can take one upgrade at 15th level and a second at 20th; replacing an enhancement later adds no Hit Dice.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Magnum Opus: The Masterwork Automaton",
+    "level": 24,
+    "description": "<p>Your companion undergoes a final transformation — +4 HD, it gains a second attack, and it becomes capable of independently casting, once per day, one Wizard spell of 3rd level or lower chosen when the Opus is finished. Requires a month of uninterrupted work and rare materials the GM determines.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "j9IQPLxU2OazZJKI",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

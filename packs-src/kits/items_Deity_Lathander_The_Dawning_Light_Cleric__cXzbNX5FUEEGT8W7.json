@@ -1,0 +1,45 @@
+{
+ "_id": "cXzbNX5FUEEGT8W7",
+ "_key": "!items!cXzbNX5FUEEGT8W7",
+ "name": "Deity: Lathander (The Dawning Light) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Mace, Heavy</p><p><strong>Granted power:</strong> Advantage on your first attack roll each round against undead. Once/day: emit a 20ft burst of dawn light, and undead in it make a Will save or flee for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Lathander)",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round against undead. Once/day: emit a 20ft burst of dawn light, and undead in it make a Will save or flee for 1 minute.</p><p><strong>Favoured weapon:</strong> Mace, Heavy</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs undead",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

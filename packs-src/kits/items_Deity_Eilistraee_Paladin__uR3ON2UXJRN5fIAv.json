@@ -1,0 +1,45 @@
+{
+ "_id": "uR3ON2UXJRN5fIAv",
+ "_key": "!items!uR3ON2UXJRN5fIAv",
+ "name": "Deity: Eilistraee (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Broad</p><p><strong>Granted power:</strong> Once/day: remove the blinded condition or dispel magical darkness in a 30ft radius. Advantage on Perception in low-light conditions.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Eilistraee)",
+    "level": 1,
+    "description": "<p>Once/day: remove the blinded condition or dispel magical darkness in a 30ft radius. Advantage on Perception in low-light conditions.</p><p><strong>Favoured weapon:</strong> Sword, Broad</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception in low light",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 19,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

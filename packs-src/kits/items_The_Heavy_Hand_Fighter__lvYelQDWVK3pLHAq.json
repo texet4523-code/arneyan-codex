@@ -1,0 +1,67 @@
+{
+ "_id": "lvYelQDWVK3pLHAq",
+ "_key": "!items!lvYelQDWVK3pLHAq",
+ "name": "The Heavy Hand (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A disciplined heavy two-handed weapon specialist. You don't parry — you end fights.</p><ul><li><strong>Crushing Blow: </strong>Reroll 1s and 2s on the damage dice of two-handed weapons.</li><li><strong>Breaker: </strong>Advantage on Strength checks to break, smash, or force objects.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Crushing Blow",
+    "level": 1,
+    "description": "<p>Reroll 1s and 2s on the damage dice of two-handed weapons.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "damage.reroll",
+      "value": "2",
+      "when": "",
+      "label": "",
+      "weapon": "two-handed"
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Breaker",
+    "level": 1,
+    "description": "<p>Advantage on Strength checks to break, smash, or force objects.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "to break, smash or force objects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

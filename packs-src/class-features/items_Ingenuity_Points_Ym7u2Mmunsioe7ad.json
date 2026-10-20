@@ -1,0 +1,33 @@
+{
+ "_id": "Ym7u2Mmunsioe7ad",
+ "_key": "!items!Ym7u2Mmunsioe7ad",
+ "name": "Ingenuity Points",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>A daily pool equal to Intelligence modifier + Artificer level (minimum 1) that fuels your Kit's abilities. Recovers fully on a full rest.</li><li><strong>Kit Feature</strong> (1st): gain the 1st-tier ability from your chosen Kit</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @int.mod + @cl)"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Artificer"
+ },
+ "effects": [],
+ "folder": "ofiaDfJduV79XS9O",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

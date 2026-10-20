@@ -1,0 +1,283 @@
+{
+ "_id": "npbGvTPGThbCteKi",
+ "_key": "!actors!npbGvTPGThbCteKi",
+ "name": "Nymph",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d6",
+  "attributes": {
+   "hp": {
+    "value": 10,
+    "max": 10,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "30ft, swim 30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fey",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fey</em></p><p><strong>GM:</strong> A shy keeper of lakes and groves. Her death or defilement withers the place she guards.</p>",
+   "treasure": "<p>Treasure type <strong>D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tGiqMdExSrhhcT0n",
+   "_key": "!actors.items!npbGvTPGThbCteKi.tGiqMdExSrhhcT0n",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blinding Beauty",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>A creature that sees the nymph unveiled makes a @Check[fort|dc:17]{Fortitude save DC 17} or is @Condition[blinded]{Blinded} for 1d4 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pkQYgmrN9xXnitU7",
+   "_key": "!actors.items!npbGvTPGThbCteKi.pkQYgmrN9xXnitU7",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stunning Glance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>One target per round, as part of its action. @Check[fort|dc:17]{Fortitude save DC 17} or @Condition[stunned]{Stunned} for 1 round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "741OrbyPecpYFHJG",
+   "_key": "!actors.items!npbGvTPGThbCteKi.741OrbyPecpYFHJG",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Unearthly Grace",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Adds her Charisma modifier (+4) to her AC.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XhsPTvF0BQ5fEXyw",
+   "_key": "!actors.items!npbGvTPGThbCteKi.XhsPTvF0BQ5fEXyw",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Inspire Fear",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, creatures within 30ft make a @Check[will|dc:17]{Will save DC 17} or are @Condition[frightened]{Frightened} for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "U4Ah2Nu3wOlFRVoB",
+   "_key": "!actors.items!npbGvTPGThbCteKi.U4Ah2Nu3wOlFRVoB",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Nymph",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fairy.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

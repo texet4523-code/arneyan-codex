@@ -1,0 +1,887 @@
+{
+ "_id": "2SnVB0Hl2FIUGosQ",
+ "_key": "!actors!2SnVB0Hl2FIUGosQ",
+ "name": "Empyrean",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 19,
+  "hd": "19d12",
+  "attributes": {
+   "hp": {
+    "value": 200,
+    "max": 200,
+    "temp": 0
+   },
+   "ac": 22,
+   "speed": "50ft, fly 50ft, swim 50ft",
+   "attack": 27,
+   "spellDC": 26,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 11,
+   "ref": 11,
+   "will": 11
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "celestial (titan)",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "non-magical",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge celestial (titan)</em></p><p><strong>GM:</strong> The child of a god, as moody as weather and twice as large. A kind one heals a kingdom; a sullen one drowns it.</p>",
+   "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Maul",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "6d6+10",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "St1QS7dW3iV6YDY1",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.St1QS7dW3iV6YDY1",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Divine Blood",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>Any spell or effect that would change its shape fails.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9BDtPG6ZCsfEeiOs",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.9BDtPG6ZCsfEeiOs",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Divine Wrath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>As an action, it bolts lightning, fire, cold or radiance at a creature within 600ft; @Check[ref|dc:26]{Reflex save DC 26} or 7d6 damage of that type, half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 26,
+    "damage": "7d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DcVA9vv4tsjKS9zx",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.DcVA9vv4tsjKS9zx",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mighty Blow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>A creature hit by the maul makes a @Check[fort|dc:26]{Fortitude save DC 26} or is @Condition[stunned]{Stunned} until the end of the empyrean's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 26,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vndB9md7WNuKFuWd",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.vndB9md7WNuKFuWd",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.gqmBg31ZDAX78zYs]{greater restoration}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}, @UUID[Compendium.arneyan.spells.Item.fuUDWKXtaA2wCbNy]{air/water walk}. 1/day each: @UUID[Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI]{commune}, @UUID[Compendium.arneyan.spells.Item.U2sZQNhnPvLauDZm]{dispel alignment}, @UUID[Compendium.arneyan.spells.Item.FsQf7DH8yk26yt39]{earthquake}, @UUID[Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH]{fire storm} (@Check[ref|dc:26]{Reflex DC 26}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "t0uChgmGG31iNj4I",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.t0uChgmGG31iNj4I",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Greater Restoration (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; ends Blinded, Deafened, Charmed, Stunned, Paralysed and all Exhausted levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency). It does not restore HP. Material: diamond dust worth 5,000 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 7,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Necromancer"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.gqmBg31ZDAX78zYs"
+   },
+   "_id": "QhUAWWnvxw7jnu6C",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.QhUAWWnvxw7jnu6C",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Nondetection (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one creature or object for 1 hour per level. Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (d20 + casting-stat modifier + half its level) vs DC 10 + the spell's level, failing means the spell fails. Material: diamond dust worth 50 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS"
+   },
+   "_id": "wB2iv5is4mrh3Fbq",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.wB2iv5is4mrh3Fbq",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Water Breathing (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range 30ft; up to 1 creature per level. Targets can breathe water for 2 hours (and still breathe air).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Cleric, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Cleric",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.woHMry5rcF4klVSn"
+   },
+   "_id": "NGcEoqrw4RaBD79D",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.NGcEoqrw4RaBD79D",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Air/Water Walk (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Touch; up to 1 creature per three levels (minimum 1). For 10 minutes per level, each target walks on water or other liquid as on solid ground, or climbs through the air as on a stair (ascending or descending at up to 45 degrees, at half speed). A target that is not touching the ground when the spell ends falls.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.fuUDWKXtaA2wCbNy"
+   },
+   "_id": "JPgayZmvNs4vm8hB",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.JPgayZmvNs4vm8hB",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Commune (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Self; ritual, 10 minutes. Ask your deity up to 1 yes/no question per level (max 10), one per round; it answers 'yes', 'no' or 'unclear'. Answers are truthful but limited by the deity's knowledge. Usable once per 7 days.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI"
+   },
+   "_id": "2xWtsfBnpyqld2Km",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.2xWtsfBnpyqld2Km",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dispel Alignment (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature of opposing alignment (evil vs good, lawful vs chaotic). It makes a Will save; on a failure an extraplanar creature is sent to its home plane for 24 hours, and others are Frightened for 1 minute; Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Frightened",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.U2sZQNhnPvLauDZm"
+   },
+   "_id": "uovmybHjKWLuyWs1",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.uovmybHjKWLuyWs1",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Earthquake (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+   "system": {
+    "description": "<p>Range 120ft; 5ft radius per level (max 100ft); 1 round. Creatures standing on the ground fall Prone and cannot cast spells that round; Reflex negates. Each structure takes 20d6 damage and collapses at 0 HP or below, dealing 8d6 bludgeoning to occupants (Reflex halves). One fissure per five levels opens (10ft wide, 30ft deep); creatures on it fall in and take 3d6 damage; Reflex negates. Flying creatures are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 8,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid"
+    ],
+    "school": "Divine / Nature",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "5ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 5,
+     "width": 0,
+     "sizeFormula": "min(5*@cl, 100)",
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1"
+    },
+    "applies": [
+     {
+      "name": "Earthquake",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "prone"
+      ],
+      "rules": [
+       {
+        "key": "no.cast",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FsQf7DH8yk26yt39"
+   },
+   "_id": "ozeBAewrKz2Cxwo4",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.ozeBAewrKz2Cxwo4",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Storm (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+   "system": {
+    "description": "<p>Range 150ft; 30ft-radius area. Pillars of fire deal 1d8 fire damage per level (max 15d8); Reflex halves. Plants and flammable objects in the area ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 7,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid"
+    ],
+    "school": "Divine / Nature",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "30ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "(min(@cl, 15))d8",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 30,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH"
+   },
+   "_id": "7ICKCwVhpgLE5KUE",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.7ICKCwVhpgLE5KUE",
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "NgPFlJDaG1VMYrmE",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.NgPFlJDaG1VMYrmE",
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zRqTf8EiIDAOOR4J",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.zRqTf8EiIDAOOR4J",
+   "effects": [],
+   "flags": {},
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Empyrean",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-angel-wings.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,38 @@
+{
+ "_id": "wUh1zxoygdJnZVmy",
+ "_key": "!items!wUh1zxoygdJnZVmy",
+ "name": "Arcane Insight",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+ "system": {
+  "description": "<p>Sometimes the answer isn't a spell thrown in anger — it's ten minutes of quiet and the right working turned towards a question instead of a target. Once per day, cast any divination-type spell you know as a ritual investigation over 10 minutes without expending a slot, usable outside combat. You also have Advantage on Intelligence checks to identify spells, magic items and magical effects.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Arcane & Devout Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "rules": [
+   {
+    "key": "adv.check.int",
+    "value": "1",
+    "when": "to identify spells, magic items and magical effects",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Fx1EHbXnNGRc5QVF",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

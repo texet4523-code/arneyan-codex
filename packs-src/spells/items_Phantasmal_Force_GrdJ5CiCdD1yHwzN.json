@@ -1,0 +1,51 @@
+{
+ "_id": "GrdJ5CiCdD1yHwzN",
+ "_key": "!items!GrdJ5CiCdD1yHwzN",
+ "name": "Phantasmal Force",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 120ft; 20ft cube; 1 minute. Create a visual and audible illusion of an object, creature or force. A creature that touches it or is harmed by it gets a Will save; a creature that fails treats it as real, and illusory damage is nonlethal (max 2d6 per round; cannot reduce to 0 HP). Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "10",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 72,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

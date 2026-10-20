@@ -1,0 +1,291 @@
+{
+ "_id": "YbfsmCk2NvdjS0Uu",
+ "_key": "!actors!YbfsmCk2NvdjS0Uu",
+ "name": "Medusa",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "6d8",
+  "attributes": {
+   "hp": {
+    "value": 27,
+    "max": 27,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium monstrosity</em></p><p><strong>GM:</strong> Lurks among statues of her old foes. Mirrors, blindfolds and darkness are the sensible answer.</p>",
+   "treasure": "<p>Treasure type <strong>E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Snake hair",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "2d6",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "g8AUMXTtsWU6zcPo",
+   "_key": "!actors.items!YbfsmCk2NvdjS0Uu.g8AUMXTtsWU6zcPo",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shortsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "79JFQ5ZvMMbBYIwH",
+   "_key": "!actors.items!YbfsmCk2NvdjS0Uu.79JFQ5ZvMMbBYIwH",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Longbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "150ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6csOrJ4y9jsZfqdf",
+   "_key": "!actors.items!YbfsmCk2NvdjS0Uu.6csOrJ4y9jsZfqdf",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Petrifying Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn within 30ft and can see her makes a @Check[fort|dc:15]{Fortitude save DC 15} or begins to turn to stone and is @Condition[restrained]{Restrained}. Another failed save next round turns it to stone. Averting the eyes grants Advantage on the save but leaves the creature unable to see her.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YfeUZiNvhjSDv5R9",
+   "_key": "!actors.items!YbfsmCk2NvdjS0Uu.YfeUZiNvhjSDv5R9",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-medusa-head.svg",
+   "system": {
+    "description": "<p>Snake-hair venom requires a @Check[fort|dc:14]{Fortitude save DC 14} to halve.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XSdo2QYmcmAzC5Ww",
+   "_key": "!actors.items!YbfsmCk2NvdjS0Uu.XSdo2QYmcmAzC5Ww",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Medusa",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-medusa-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

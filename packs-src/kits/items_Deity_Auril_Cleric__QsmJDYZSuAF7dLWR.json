@@ -1,0 +1,72 @@
+{
+ "_id": "QsmJDYZSuAF7dLWR",
+ "_key": "!items!QsmJDYZSuAF7dLWR",
+ "name": "Deity: Auril (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Resistance 5 to cold damage. Once/day: weapon attack deals +1d6 cold and halves target's speed.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Auril)",
+    "level": 1,
+    "description": "<p>Resistance 5 to cold damage. Once/day: weapon attack deals +1d6 cold and halves target's speed.</p><p><strong>Favoured weapon:</strong> Axe, Battle</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Cold strike",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "cold",
+      "ability": "",
+      "save": "",
+      "text": "On a weapon attack: +1d6 cold, and the target's speed is halved.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "resist",
+      "value": "cold 5",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 42,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

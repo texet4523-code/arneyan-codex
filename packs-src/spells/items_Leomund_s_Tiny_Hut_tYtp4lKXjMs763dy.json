@@ -1,0 +1,53 @@
+{
+ "_id": "tYtp4lKXjMs763dy",
+ "_key": "!items!tYtp4lKXjMs763dy",
+ "name": "Leomund's Tiny Hut",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 10ft; a 10ft-radius dome centred on you, stationary, for 8 hours. Weather cannot pass; creatures and attacks pass normally. The interior stays comfortable and dimly lit; the dome is opaque from outside.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 10ft",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": true,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "4800",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 162,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

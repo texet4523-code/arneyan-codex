@@ -1,0 +1,51 @@
+{
+ "_id": "A9rDPNYZVtxehqme",
+ "_key": "!items!A9rDPNYZVtxehqme",
+ "name": "Spike Growth",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 120ft; 20ft square. Hidden spikes deal 1d4 piercing damage per 5ft moved through and halve movement speed. They are found by a Search check vs spell DC. Lasts 1 hour per level.</p><p class=\"arn-note\">The damage button rolls one 5ft of movement: 1d4 for each 5ft moved through the area.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "20ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "1d4",
+  "damageType": "piercing",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "600*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 181,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

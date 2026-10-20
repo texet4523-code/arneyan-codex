@@ -1,0 +1,51 @@
+{
+ "_id": "w41GnapEYyHpDcCk",
+ "_key": "!items!w41GnapEYyHpDcCk",
+ "name": "Steady Hand",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Strength / Dexterity — choose one for the stat bump)</em>  Advantage on checks made to resist being disarmed, knocked prone, or moved against your will. Gain +1 to Strength or Dexterity of your choice (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ability.str",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to resist being disarmed, knocked prone or moved against your will",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "abilityChoice": {
+   "options": [
+    "str",
+    "dex"
+   ],
+   "value": ""
+  }
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

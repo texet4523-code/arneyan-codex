@@ -1,0 +1,209 @@
+{
+ "_id": "DCgxo48ZlTnjpcLk",
+ "_key": "!actors!DCgxo48ZlTnjpcLk",
+ "name": "Spider",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 1,
+    "max": 1,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "20ft, climb 20ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 3
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 30ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny beast</em></p><p><strong>GM:</strong> A familiar of witches and spies.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kDQaAYK5RvCWwHez",
+   "_key": "!actors.items!DCgxo48ZlTnjpcLk.kDQaAYK5RvCWwHez",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:9]{Fortitude save DC 9} or takes @Damage[1d4 poison]{1d4 poison damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 9,
+    "damage": "1d4",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6WpOtJDBYwkHvgrt",
+   "_key": "!actors.items!DCgxo48ZlTnjpcLk.6WpOtJDBYwkHvgrt",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb and Web Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
+   "system": {
+    "description": "<p>Climbs any surface and knows the location of anything touching its web.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dv4pnKVgNZxAdKUD",
+   "_key": "!actors.items!DCgxo48ZlTnjpcLk.dv4pnKVgNZxAdKUD",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Spider",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-spider-face.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 30,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

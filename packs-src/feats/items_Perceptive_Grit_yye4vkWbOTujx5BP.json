@@ -1,0 +1,44 @@
+{
+ "_id": "yye4vkWbOTujx5BP",
+ "_key": "!items!yye4vkWbOTujx5BP",
+ "name": "Perceptive Grit",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Wisdom)</em>  Advantage on Perception checks made to avoid being surprised or ambushed. Gain +1 to Wisdom (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ability.wis",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Perception to avoid being surprised or ambushed",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

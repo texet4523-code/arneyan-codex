@@ -1,0 +1,296 @@
+{
+ "_id": "gUQyWOtyp9nU0wLw",
+ "_key": "!actors!gUQyWOtyp9nU0wLw",
+ "name": "Salamander",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "9d8",
+  "attributes": {
+   "hp": {
+    "value": 40,
+    "max": 40,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "30ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 6,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "elemental",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2-5",
+   "resistances": "",
+   "immunities": "fire, poison",
+   "vulnerabilities": "cold",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large elemental</em></p><p><strong>GM:</strong> Half-serpent, half-warrior, all cruelty. It serves efreeti masters and delights in burning prisoners.</p>",
+   "treasure": "<p>Treasure type <strong>C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Spear",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d6",
+      "type": "fire",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ekwi08bqpdf6E1LY",
+   "_key": "!actors.items!gUQyWOtyp9nU0wLw.ekwi08bqpdf6E1LY",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tail",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "2d6",
+      "type": "fire",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "y9kXR0iFUQfkxYFw",
+   "_key": "!actors.items!gUQyWOtyp9nU0wLw.y9kXR0iFUQfkxYFw",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heated Body",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+   "system": {
+    "description": "<p>A creature that touches it or hits it with a melee attack takes @Damage[1d6 fire]{1d6 fire damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NFSt7V6c5Yvdh1Id",
+   "_key": "!actors.items!gUQyWOtyp9nU0wLw.NFSt7V6c5Yvdh1Id",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Squeeze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+   "system": {
+    "description": "<p>A creature hit by the tail makes a @Check[fort|dc:16]{Fortitude save DC 16} or is Grappled. It takes @Damage[2d6 fire]{2d6 fire damage} at the start of each of its turns while held.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 16,
+    "damage": "2d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Bp2UPN8cAEA003N8",
+   "_key": "!actors.items!gUQyWOtyp9nU0wLw.Bp2UPN8cAEA003N8",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Elemental Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-salamander.svg",
+   "system": {
+    "description": "<p>Immune to fire and poison. Takes double damage from cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X9dllQGfPS0xQazQ",
+   "_key": "!actors.items!gUQyWOtyp9nU0wLw.X9dllQGfPS0xQazQ",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Salamander",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-salamander.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

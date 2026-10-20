@@ -1,0 +1,252 @@
+{
+ "_id": "XZrTj55GcgjwA0Kg",
+ "_key": "!actors!XZrTj55GcgjwA0Kg",
+ "name": "Grey Ooze, Psychic",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-slime.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "3d10+6",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 8,
+   "speed": "10ft, climb 10ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "ooze",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium ooze</em></p><p><strong>GM:</strong> A grey ooze that has lived long enough to dream. Its dreams hurt.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Pseudopod",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d6",
+      "type": "psychic",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RTfz7wLxAjsiftuM",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.RTfz7wLxAjsiftuM",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Corrode Metal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>As a grey ooze.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dh1iuSSVhZ0mdxat",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.dh1iuSSVhZ0mdxat",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Psychic Crush",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, one creature within 60ft makes a @Check[will|dc:11]{Will save DC 11} or takes @Damage[3d6 psychic]{3d6 psychic damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 11,
+    "damage": "3d6",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qJaHfCivVzA6qbI1",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.qJaHfCivVzA6qbI1",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Telepathy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Senses the presence of thinking creatures within 60ft and can project jumbled thoughts into their minds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "U7v1AF8yTyhAAuzr",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.U7v1AF8yTyhAAuzr",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Grey Ooze, Psychic",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-slime.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,68 @@
+{
+ "_id": "sAHtivaRJjh74wSe",
+ "_key": "!items!sAHtivaRJjh74wSe",
+ "name": "Glasya (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>She escaped her father through cleverness. The best move is always the one nobody sees coming.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, become invisible for 1 minute. Ends only if you attack or cast offensively — not when interacting with objects.</li><li><strong>Patron's Mark</strong> (6th): Once per day, perfectly forge any document, signature, or official seal you have examined for at least 1 minute. The forgery is undetectable without magical means.</li><li><strong>Patron Feature</strong> (12th): Once per day, perfectly impersonate anyone studied for 1 minute — face, voice, mannerisms. Indistinguishable without magic. Lasts 8 hours.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Once per day, become invisible for 1 minute. Ends only if you attack or cast offensively — not when interacting with objects.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "applies": [
+     {
+      "name": "Glasya's Veil",
+      "target": "self",
+      "rounds": "10",
+      "statuses": [
+       "invisible"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, perfectly forge any document, signature, or official seal you have examined for at least 1 minute. The forgery is undetectable without magical means.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, perfectly impersonate anyone studied for 1 minute — face, voice, mannerisms. Indistinguishable without magic. Lasts 8 hours.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

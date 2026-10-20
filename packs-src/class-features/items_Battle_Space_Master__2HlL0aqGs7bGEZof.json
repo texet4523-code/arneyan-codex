@@ -1,0 +1,48 @@
+{
+ "_id": "2HlL0aqGs7bGEZof",
+ "_key": "!items!2HlL0aqGs7bGEZof",
+ "name": "Battle Space (Master)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<ul><li><strong>Battle Space</strong> (Master): You move through combat like water — nothing holds you and nothing catches you.</li><li>When you attack, you may also Disengage from any number of enemies as part of the same action</li><li>Dodge lasts until the start of your next turn, and while it lasts you also have Advantage on Reflex saves</li><li>A Flank Attack deals +2 damage dice instead, and the target cannot make Attacks of Opportunity against you until the start of your next turn</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 22,
+  "className": "Fighter",
+  "rules": [
+   {
+    "key": "adv.save.ref",
+    "value": "1",
+    "when": "while your Dodge lasts",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Battle Space (Master): a Flank Attack deals +2 damage dice instead of +1.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

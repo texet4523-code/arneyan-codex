@@ -1,0 +1,118 @@
+{
+ "_id": "GncQZ7IeG92sBKW9",
+ "_key": "!items!GncQZ7IeG92sBKW9",
+ "name": "Genasi",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • Constitution + caste attribute (see below)</strong></p><ul><li><strong>Fire:</strong> +2 Con / +1 Cha, −1 Wis</li><li><strong>Earth:</strong> +2 Con / +1 Str, −1 Cha</li><li><strong>Water:</strong> +2 Con / +1 Wis, −1 Dex</li><li><strong>Air:</strong> +2 Con / +1 Dex, −1 Str</li></ul><p><strong><em>Traits</em></strong></p><ul><li><strong>Resistance 5 to a damage type by caste</strong>.</li><li><strong>Doesn't</strong> need to breathe; can hold breath indefinitely.</li><li><strong>One</strong> Sorcerer cantrip themed to caste at creation.</li><li><strong>Castes:</strong> Fire — Charisma-themed, resist fire, Advantage on illusion/storytelling checks.</li><li><strong>Earth</strong> — Strength-themed, resist poison, Advantage on stonework/mountainous-terrain checks.</li><li><strong>Water</strong> — Wisdom-themed, resist cold, Advantage on swimming/sailing/open-water checks.</li><li><strong>Air</strong> — Dexterity-themed, resist lightning, Advantage on balance/falling/sudden-movement checks.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "Constitution + caste attribute (see below)",
+  "bonuses": {},
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Resistance 5 to a damage type by caste",
+    "text": "Resistance 5 to a damage type by caste."
+   },
+   {
+    "name": "Doesn't need to breathe",
+    "text": "Doesn't need to breathe; can hold breath indefinitely."
+   },
+   {
+    "name": "One Sorcerer cantrip themed to caste at creation",
+    "text": "One Sorcerer cantrip themed to caste at creation."
+   }
+  ],
+  "choice": {
+   "label": "Caste",
+   "options": [
+    {
+     "name": "Fire",
+     "text": "+2 Con / +1 Cha, −1 Wis. Fire — Charisma-themed, resist fire, Advantage on illusion/storytelling checks.",
+     "bonuses": {
+      "con": 2,
+      "cha": 1,
+      "wis": -1
+     },
+     "rules": [
+      {
+       "key": "resist",
+       "value": "fire 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Earth",
+     "text": "+2 Con / +1 Str, −1 Cha. Earth — Strength-themed, resist poison, Advantage on stonework/mountainous-terrain checks.",
+     "bonuses": {
+      "con": 2,
+      "str": 1,
+      "cha": -1
+     },
+     "rules": [
+      {
+       "key": "resist",
+       "value": "poison 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Water",
+     "text": "+2 Con / +1 Wis, −1 Dex. Water — Wisdom-themed, resist cold, Advantage on swimming/sailing/open-water checks.",
+     "bonuses": {
+      "con": 2,
+      "wis": 1,
+      "dex": -1
+     },
+     "rules": [
+      {
+       "key": "resist",
+       "value": "cold 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Air",
+     "text": "+2 Con / +1 Dex, −1 Str. Air — Dexterity-themed, resist lightning, Advantage on balance/falling/sudden-movement checks.",
+     "bonuses": {
+      "con": 2,
+      "dex": 1,
+      "str": -1
+     },
+     "rules": [
+      {
+       "key": "resist",
+       "value": "lightning 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    }
+   ]
+  },
+  "rules": [],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

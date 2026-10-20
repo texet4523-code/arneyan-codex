@@ -1,0 +1,42 @@
+{
+ "_id": "MSQ7Ghp68sabbjxq",
+ "_key": "!items!MSQ7Ghp68sabbjxq",
+ "name": "Battle Space",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<ul><li><strong>Battle Space: </strong>You control the space around you in ways most fighters never learn.</li><li>+1 AC at 13th unless wielding a two-handed weapon</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Fighter",
+  "rules": [
+   {
+    "key": "ac",
+    "value": "1",
+    "when": "unless wielding a two-handed weapon",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

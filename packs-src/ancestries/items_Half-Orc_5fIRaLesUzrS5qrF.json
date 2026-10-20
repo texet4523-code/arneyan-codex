@@ -1,0 +1,75 @@
+{
+ "_id": "5fIRaLesUzrS5qrF",
+ "_key": "!items!5fIRaLesUzrS5qrF",
+ "name": "Half-Orc",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Str / +1 Con, −1 Cha</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Relentless Endurance:</strong> 1/day, when damage of any kind would drop you to 0 HP or below, drop to 1 HP instead.</li><li><strong>Choose one additional skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>Brutal Strikes:</strong> on a critical hit, add one extra damage die of the weapon's type (passive, always on).</li><li><strong>Onslaught:</strong> 1/long rest, spend 1 Luck to make one additional weapon attack, as part of the same action, against a creature you've just damaged (always costs 1 Luck; there is no free use).</li><li><strong>Weapon training:</strong> two-handed axe, battleaxe, javelin, handaxe.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Con, −1 Cha",
+  "bonuses": {
+   "str": 2,
+   "con": 1,
+   "cha": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Relentless Endurance",
+    "text": "1/day, when damage of any kind would drop you to 0 HP or below, drop to 1 HP instead."
+   },
+   {
+    "name": "Choose one additional skill at creation",
+    "text": "Choose one additional skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   },
+   {
+    "name": "Brutal Strikes",
+    "text": "on a critical hit, add one extra damage die of the weapon's type (passive, always on)."
+   },
+   {
+    "name": "Onslaught",
+    "text": "1/long rest, spend 1 Luck to make one additional weapon attack, as part of the same action, against a creature you've just damaged (always costs 1 Luck; there is no free use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "two-handed axe, battleaxe, javelin, handaxe."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen at creation",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Brutal Strikes: on a critical hit add one extra weapon damage die.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 15,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

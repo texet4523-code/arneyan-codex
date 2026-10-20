@@ -1,0 +1,63 @@
+{
+ "_id": "Cmj74cHCLZMh8sB7",
+ "_key": "!items!Cmj74cHCLZMh8sB7",
+ "name": "Power Word Stun",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 60ft. One creature with 60 current HP or fewer is Stunned for 2d4 rounds. No save; a creature with more HP is unaffected. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Stunned",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "stunned"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 329,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

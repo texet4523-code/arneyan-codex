@@ -1,0 +1,75 @@
+{
+ "_id": "8qIgZFStG8JBG61j",
+ "_key": "!items!8qIgZFStG8JBG61j",
+ "name": "Back Attack",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Advantage on the attack roll plus a damage multiplier (double at 1st level, rising to sextuple at 20th — see the Rogue Progression Table). Usable once per round. Requires a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters melee weapon shorter than your arm. Multiply the weapon's damage dice only.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Rogue",
+  "activities": [
+   {
+    "name": "Back Attack",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice; see the Rogue Progression Table.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "1",
+    "when": "Back Attack",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Back Attack: multiply the weapon's damage dice (x2 at 1st, up to x6 at 20th, see Rogue Progression Table).",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mpjthAeSZRrS7A4C",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

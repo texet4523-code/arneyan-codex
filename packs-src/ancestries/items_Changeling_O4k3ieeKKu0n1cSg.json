@@ -1,0 +1,77 @@
+{
+ "_id": "O4k3ieeKKu0n1cSg",
+ "_key": "!items!O4k3ieeKKu0n1cSg",
+ "name": "Changeling",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Cha / +1 Dex, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Shapechanger:</strong> alter appearance to any similar-size humanoid as an action (clothing/gear unaffected).</li><li><strong>Advantage</strong> on checks to imitate a specific voice/mannerism once observed.</li><li><strong>Advantage</strong> on saves vs charmed.</li><li><strong>Advantage</strong> on Insight checks to detect deception aimed at them.</li><li><strong>Perfect Mask:</strong> 1/long rest, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Cha / +1 Dex, −1 Wis",
+  "bonuses": {
+   "cha": 2,
+   "dex": 1,
+   "wis": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Shapechanger",
+    "text": "alter appearance to any similar-size humanoid as an action (clothing/gear unaffected)."
+   },
+   {
+    "name": "Advantage on checks to imitate a specific…",
+    "text": "Advantage on checks to imitate a specific voice/mannerism once observed."
+   },
+   {
+    "name": "Advantage on saves vs charmed",
+    "text": "Advantage on saves vs charmed."
+   },
+   {
+    "name": "Advantage on Insight checks to detect…",
+    "text": "Advantage on Insight checks to detect deception aimed at them."
+   },
+   {
+    "name": "Perfect Mask",
+    "text": "1/long rest, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use)."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to imitate a voice or mannerism you have observed",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs charmed",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Insight to detect deception aimed at you",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

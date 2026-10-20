@@ -1,0 +1,62 @@
+{
+ "_id": "vKXJ6QCQlujQ8vNz",
+ "_key": "!items!vKXJ6QCQlujQ8vNz",
+ "name": "Hold Animal",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft; up to 1d4 animals. Each is Paralysed for 1 round per level; each repeats the Will save at the end of its turn, ending the spell for it on a success. Will negates. Animals only: no magical beasts, monsters or giants.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Held",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 108,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

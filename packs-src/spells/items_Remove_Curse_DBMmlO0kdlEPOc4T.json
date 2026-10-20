@@ -1,0 +1,111 @@
+{
+ "_id": "DBMmlO0kdlEPOc4T",
+ "_key": "!items!DBMmlO0kdlEPOc4T",
+ "name": "Remove Curse",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature or object. Ends one curse automatically if it came from a spell of 3rd level or lower; otherwise make a casting check (d20 + casting-stat modifier + half your level) vs DC 10 + the curse's source level. A cursed item stays cursed but can then be removed. Cast reversed (Curse): Will negates; -4 to one ability score or Disadvantage on one of attack rolls, saving throws or attribute checks (your choice) for 1 hour per level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates (Curse only)",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Curse: attacks",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Curse: saves",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Curse: checks",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Curse: -4 attribute",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ability.str",
+      "value": "-4",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 173,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

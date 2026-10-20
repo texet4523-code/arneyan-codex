@@ -1,0 +1,62 @@
+{
+ "_id": "XOMIs44ygIqBvpWJ",
+ "_key": "!items!XOMIs44ygIqBvpWJ",
+ "name": "Snare",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Touch; a 5ft-square spot on the ground. The first Large or smaller creature to enter it is Restrained and may attempt a Strength or Dexterity check vs spell DC each round to escape. Hidden (found by a Search check vs spell DC); lasts 1 day per level or until triggered.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "5ft cube",
+  "components": "S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 5,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Snared",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 178,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,283 @@
+{
+ "_id": "s5BF2E7sBhOh2zyC",
+ "_key": "!actors!s5BF2E7sBhOh2zyC",
+ "name": "Aboleth",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 11,
+  "hd": "9d8",
+  "attributes": {
+   "hp": {
+    "value": 40,
+    "max": 40,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "10ft, swim 40ft",
+   "attack": 12,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge aberration</em></p><p><strong>GM:</strong> Older than the gods, serenely certain of its coming return. It sees minds as scrolls that it has simply not yet read.</p>",
+   "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tentacle ×3",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "3 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4IBDakbIQt26KT2R",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.4IBDakbIQt26KT2R",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Enslave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>3/day, a creature within 30ft makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[charmed]{Charmed} and obeys the aboleth's telepathic commands until it dies.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KK3DGvy9dH1iWRFf",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.KK3DGvy9dH1iWRFf",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mucus Cloud",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>A creature that touches it or hits it in melee while underwater makes a @Check[fort|dc:17]{Fortitude save DC 17} or can breathe only water for 1d4 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XHeIi2PClLjz67u1",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.XHeIi2PClLjz67u1",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Telepathy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>Speaks to any creature within 120ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5A69nGimR6T1Z7SA",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.5A69nGimR6T1Z7SA",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient Memory",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>Remembers events from the earliest ages and can recall answers to long-forgotten questions.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ThTNctX0F4qeJGZg",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.ThTNctX0F4qeJGZg",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Aboleth",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-brain-tentacle.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

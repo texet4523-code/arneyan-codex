@@ -1,0 +1,321 @@
+{
+ "_id": "mcUrYDGiijDvEo7F",
+ "_key": "!actors!mcUrYDGiijDvEo7F",
+ "name": "Wereboar",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-boar.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "5d8+10",
+  "attributes": {
+   "hp": {
+    "value": 32,
+    "max": 32,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft (40ft as a boar)",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (shapechanger)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "non-silvered 10",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (shapechanger)</em></p><p><strong>GM:</strong> Short-tempered and proud. It guards its own patch of forest like a feudal lord and expects tribute.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tusks",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZSgKn9QgebBWHMoY",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.ZSgKn9QgebBWHMoY",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Maul",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PmrHy9Moqf1q2Gfd",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.PmrHy9Moqf1q2Gfd",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechanger",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "<p>Human, Medium boar-human hybrid or boar. Tusks only in boar or hybrid form.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uygGARv2k125wlIL",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.uygGARv2k125wlIL",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lycanthropy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "<p>Resistance 10 to non-magical, non-silvered weapons. Its tusks spread the curse (@Check[fort|dc:12]{Fortitude DC 12}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LM5xadN0vNCbaeta",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.LM5xadN0vNCbaeta",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "<p>If it moves at least 15ft straight towards a target before hitting with its tusks, the target takes +2d6 damage and makes a @Check[fort|dc:12]{Fortitude save DC 12} or is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NllGxDPzHJh1T7NY",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.NllGxDPzHJh1T7NY",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Relentless",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-boar.svg",
+   "system": {
+    "description": "<p>Once per day, when damage would drop it to 0 HP or below, it drops to 1 HP instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VhW5lvzNGEWLo3QV",
+   "_key": "!actors.items!mcUrYDGiijDvEo7F.VhW5lvzNGEWLo3QV",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Wereboar",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-boar.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

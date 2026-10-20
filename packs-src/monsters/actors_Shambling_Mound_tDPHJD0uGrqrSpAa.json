@@ -1,0 +1,246 @@
+{
+ "_id": "tDPHJD0uGrqrSpAa",
+ "_key": "!actors!tDPHJD0uGrqrSpAa",
+ "name": "Shambling Mound",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 10,
+  "hd": "8d8",
+  "attributes": {
+   "hp": {
+    "value": 36,
+    "max": 36,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "20ft, swim 20ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "fire 5, cold 5",
+   "immunities": "lightning",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large plant</em></p><p><strong>GM:</strong> Rises from a swamp like a heap of weeds. Pull the victim free before it can drown.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mAjbWxqnd5zrNOkG",
+   "_key": "!actors.items!tDPHJD0uGrqrSpAa.mAjbWxqnd5zrNOkG",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Engulf",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>If both slams hit the same target, it grapples and engulfs that creature. The engulfed creature is @Condition[restrained]{Restrained}, cannot breathe, and takes 2d8+4 damage at the start of each of the mound's turns. The mound cannot attack while this lasts.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d8+4",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dpGTx5oEdw1MAclz",
+   "_key": "!actors.items!tDPHJD0uGrqrSpAa.dpGTx5oEdw1MAclz",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lightning Absorption",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Immune to lightning damage. Any lightning heals it by the damage it would have dealt.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9FJRz74kl873P5a8",
+   "_key": "!actors.items!tDPHJD0uGrqrSpAa.9FJRz74kl873P5a8",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire and Cold Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Resistance 5 to fire and cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "USHPcVlUQGmZ2opB",
+   "_key": "!actors.items!tDPHJD0uGrqrSpAa.USHPcVlUQGmZ2opB",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Shambling Mound",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vine-whip.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,172 @@
+{
+ "_id": "7Fb2VYFKVgy0SXy5",
+ "_key": "!actors!7Fb2VYFKVgy0SXy5",
+ "name": "Bat",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-bat.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 1,
+    "max": 1,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "5ft, fly 30ft",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 3
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d100",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny beast</em></p><p><strong>GM:</strong> Roosts by the thousand. A cave that falls silent at dusk has something worse living in it.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-bat.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "v53aNZQcI9HqkddA",
+   "_key": "!actors.items!7Fb2VYFKVgy0SXy5.v53aNZQcI9HqkddA",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Echolocation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-bat.svg",
+   "system": {
+    "description": "<p>Perceives everything within 60ft without sight, unless @Condition[deafened]{Deafened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hwfALGUQQzAc3xTq",
+   "_key": "!actors.items!7Fb2VYFKVgy0SXy5.hwfALGUQQzAc3xTq",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Bat",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-bat.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

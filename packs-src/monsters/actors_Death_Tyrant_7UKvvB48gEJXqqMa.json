@@ -1,0 +1,288 @@
+{
+ "_id": "7UKvvB48gEJXqqMa",
+ "_key": "!actors!7UKvvB48gEJXqqMa",
+ "name": "Death Tyrant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 15,
+  "hd": "20d10",
+  "attributes": {
+   "hp": {
+    "value": 190,
+    "max": 190,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "0ft, fly 20ft (hover)",
+   "attack": 17,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 12,
+   "ref": 10,
+   "will": 12
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened, condition:prone",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> An eye-tyrant that refused to stop existing. Its dead lair is still guarded by the zombies of everyone who came for its hoard.</p>",
+   "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gPI2SEfUvwhoAgtm",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.gPI2SEfUvwhoAgtm",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear. Cannot be knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zLm7m058T6W3DvsF",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.zLm7m058T6W3DvsF",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Negative Energy Cone",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Its central eye shines a 150ft cone. Creatures in it cannot regain HP, and any humanoid that dies in it rises as a zombie under its control at the start of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qKBtodfWowXzN1S3",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.qKBtodfWowXzN1S3",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Eye Rays",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Once per round, as part of its action, three different random rays (roll 1d10 each) at creatures within 120ft: 1 charm (@Check[will|dc:20]{Will DC 20} or @Condition[charmed]{Charmed} for 1 hour); 2 paralysing (@Check[fort|dc:20]{Fortitude DC 20} or @Condition[paralysed]{Paralysed} 1 minute, repeating the save); 3 fear (@Check[will|dc:20]{Will DC 20} or @Condition[frightened]{Frightened} 1 minute); 4 slowing (@Check[ref|dc:20]{Reflex DC 20} or half speed and only one attack for 1 minute); 5 enervation (@Check[fort|dc:20]{Fortitude DC 20} for half of @Damage[8d8 necrotic]{8d8 necrotic damage}); 6 telekinesis (@Check[fort|dc:20]{Fortitude DC 20} or moved 30ft and @Condition[restrained]{Restrained} until its next turn); 7 sleep (@Check[will|dc:20]{Will DC 20} or @Condition[unconscious]{Unconscious} 1 minute); 8 petrification (@Check[fort|dc:20]{Fortitude DC 20} or @Condition[petrified]{Petrified}, after a second failed save on its next turn); 9 disintegration (@Check[ref|dc:20]{Reflex DC 20} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to 0 HP is turned to dust); 10 death (@Check[fort|dc:20]{Fortitude DC 20} for half of @Damage[10d10 necrotic]{10d10 necrotic damage}; a creature reduced to 0 HP dies).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "8d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WF6sD6tDcuS28wiL",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.WF6sD6tDcuS28wiL",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VuXOP1hK76fNGfgU",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.VuXOP1hK76fNGfgU",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Death Tyrant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ant.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,85 @@
+{
+ "_id": "QEuEHUX08wFMCfTZ",
+ "_key": "!items!QEuEHUX08wFMCfTZ",
+ "name": "Foresight",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+ "system": {
+  "description": "<p>Touch; one willing creature; 10 minutes per level. It cannot be surprised, attackers gain no Advantage from hiding or flanking against it, it gains +2 AC, +2 on all saves and Advantage on initiative rolls, and it is warned of danger as a mental flash. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "Witch",
+  "classes": [
+   "Witch"
+  ],
+  "school": "Divination",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Foresight",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": "2",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "save",
+      "value": "2",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.init",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "note.init",
+      "value": "Foresight: cannot be surprised.",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 379,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

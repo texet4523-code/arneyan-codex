@@ -1,0 +1,59 @@
+{
+ "_id": "lg2m2jTRaAPPs8ii",
+ "_key": "!items!lg2m2jTRaAPPs8ii",
+ "name": "Deflect Blow (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>When struck in melee, make a Dexterity check (d20 + Dexterity modifier) against the attacker's attack roll. On success, deflect the blow entirely. You have the same number of attempts per round as Deflect Missiles (see the Monk Progression Table); each use spends one of those attempts.</li><li>Does not work against ranged attacks, spells, or breath weapons</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Deflect Blow",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Against the attacker's melee attack roll; on success deflect the blow entirely.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

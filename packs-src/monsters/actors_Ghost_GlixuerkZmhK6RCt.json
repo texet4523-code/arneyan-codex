@@ -1,0 +1,320 @@
+{
+ "_id": "GlixuerkZmhK6RCt",
+ "_key": "!actors!GlixuerkZmhK6RCt",
+ "name": "Ghost",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "10d8",
+  "attributes": {
+   "hp": {
+    "value": 45,
+    "max": 45,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "fly 40ft",
+   "attack": 12,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 5,
+   "will": 7
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead (incorporeal)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "non-magical 10, acid 5, cold 5, fire 5, lightning 5, thunder 5",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead (incorporeal)</em></p><p><strong>GM:</strong> Binds itself to a place or a purpose. Ending its unfinished business is the real way to lay it to rest.</p>",
+   "treasure": "<p>Treasure type <strong>lair D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Withering touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d6",
+    "damageType": "necrotic",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NZV3w5bMtIG7TGmg",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.NZV3w5bMtIG7TGmg",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8NG3fvFgHSIGSgLs",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.8NG3fvFgHSIGSgLs",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Moves through walls and objects; has Resistance 10 against non-magical weapons, and Resistance 5 to acid, cold, fire, lightning and thunder.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iSKb5BXLHcoW3Oxa",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.iSKb5BXLHcoW3Oxa",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Horrifying Visage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Each creature within 60ft that can see the ghost makes a @Check[will|dc:18]{Will save DC 18} or is frightened for 1 minute and ages 1d4×10 years. A creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 18,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aFwtIcHqanVOHNH8",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.aFwtIcHqanVOHNH8",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Possession",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, one creature within 5ft makes a @Check[will|dc:18]{Will save DC 18} or the ghost takes control of its body until the ghost is forced out or the creature is reduced to 0 HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 18,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uUjWw0LNg0mXCBJR",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.uUjWw0LNg0mXCBJR",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Etherealness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>As part of its movement it can move between the Material and Ethereal Planes.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8Qk3GmcGcaAQX3Xf",
+   "_key": "!actors.items!GlixuerkZmhK6RCt.8Qk3GmcGcaAQX3Xf",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Ghost",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ghost.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

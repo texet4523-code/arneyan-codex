@@ -1,0 +1,55 @@
+{
+ "_id": "5ZTZi9gOusBDiIL2",
+ "_key": "!items!5ZTZi9gOusBDiIL2",
+ "name": "Toll the Dead",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature. Deals 1d4 necrotic damage, or 1d6 if it is below its maximum HP (+1 die at 5th, 11th and 17th level); Will negates.</p><p class=\"arn-note\">The damage button rolls d4s. Against a creature below its maximum HP, roll the same number of d6s instead.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock, Wizard, Witch, Necromancer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Warlock",
+   "Wizard",
+   "Witch",
+   "Necromancer"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damageType": "necrotic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 29,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

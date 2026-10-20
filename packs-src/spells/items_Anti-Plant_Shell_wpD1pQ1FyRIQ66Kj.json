@@ -1,0 +1,51 @@
+{
+ "_id": "wpD1pQ1FyRIQ66Kj",
+ "_key": "!items!wpD1pQ1FyRIQ66Kj",
+ "name": "Anti-Plant Shell",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Self; 10ft-radius aura that moves with you for 1 minute per level. Plants and plant creatures cannot enter the aura or touch you, and entangling or thorny plant effects do not function inside it. Plants already inside when cast are pushed out to the edge. Creatures inside can still attack outward.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": true,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "10*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 192,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

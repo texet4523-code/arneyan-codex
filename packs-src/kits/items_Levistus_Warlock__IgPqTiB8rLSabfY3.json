@@ -1,0 +1,112 @@
+{
+ "_id": "IgPqTiB8rLSabfY3",
+ "_key": "!items!IgPqTiB8rLSabfY3",
+ "name": "Levistus (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Imprisoned in a glacier and still ruling. He understands patience better than anyone alive.</p><ul><li><strong>Dark Gift</strong> (1st): Immunity to cold damage. Once per round, when you take damage, gain temporary HP equal to your Charisma modifier (minimum 1).</li><li><strong>Patron's Mark</strong> (6th): Once per day, enter a state of suspended alertness for up to 1 hour — you appear dead to mundane examination, need no food, water, or air, and wake instantly at a trigger you set before entering. Magical detection still functions normally.</li><li><strong>Patron Feature</strong> (12th): Once per day, encase one creature within 60ft in magical ice (Fortitude save against your Class Save DC) — paralysed and resistant to all non-fire damage for 1 minute. Repeat save each turn.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Immunity to cold damage. Once per round, when you take damage, gain temporary HP equal to your Charisma modifier (minimum 1).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Icy temporary HP",
+      "kind": "temp",
+      "formula": "max(1, @cha.mod)",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per round, when you take damage: temporary HP equal to your Charisma modifier (minimum 1).",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "cold",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Once per day, enter a state of suspended alertness for up to 1 hour — you appear dead to mundane examination, need no food, water, or air, and wake instantly at a trigger you set before entering. Magical detection still functions normally.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, encase one creature within 60ft in magical ice (Fortitude save against your Class Save DC) — paralysed and resistant to all non-fire damage for 1 minute. Repeat save each turn.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "applies": [
+     {
+      "name": "Encased in Ice",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "paralysed"
+      ],
+      "rules": [
+       {
+        "key": "resist",
+        "value": "all",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,45 @@
+{
+ "_id": "O8daK30vKLCtDu9F",
+ "_key": "!items!O8daK30vKLCtDu9F",
+ "name": "Deity: Cyric (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Short</p><p><strong>Granted power:</strong> Once/day: force belief in a lie for an hour (Will save negates). Advantage on Deception, and you can Feint as the Feint feat describes.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Cyric)",
+    "level": 1,
+    "description": "<p>Once/day: force belief in a lie for an hour (Will save negates). Advantage on Deception, and you can Feint as the Feint feat describes.</p><p><strong>Favoured weapon:</strong> Sword, Short</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 36,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,42 @@
+{
+ "_id": "N25afn6yXRGW2l6x",
+ "_key": "!items!N25afn6yXRGW2l6x",
+ "name": "Marked Prey",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>After a successful Case Target check, you have Advantage on checks to track or tail that target for 24 hours, and Death Attack study against it takes only 2 rounds.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 6,
+  "className": "Assassin",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to track or tail a target you have Cased in the last 24 hours",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

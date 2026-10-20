@@ -1,0 +1,59 @@
+{
+ "_id": "4ttPYYMgzrO97TDU",
+ "_key": "!items!4ttPYYMgzrO97TDU",
+ "name": "Ancestral Calling",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per week, inspire nearby allies — each affected creature gains temporary HP equal to the maximum roll of one extra HD appropriate to their type (a Fighter gains +10 HP, etc.).</li><li>Affects creatures of Level up to twice the Barbarian's level</li><li>Lasts until the end of the day or completion of the current task</li><li>Cannot combine with another Barbarian's use of the same ability</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "week"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 10,
+  "className": "Barbarian",
+  "activities": [
+   {
+    "name": "Ancestral Calling",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Nearby allies of Level up to twice yours gain temporary HP equal to the maximum roll of one extra Hit Die of their type.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

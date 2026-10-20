@@ -1,0 +1,209 @@
+{
+ "_id": "D9SM8RtKJk8iAo9y",
+ "_key": "!actors!D9SM8RtKJk8iAo9y",
+ "name": "Nothic",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "3d8+6",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "30ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium aberration</em></p><p><strong>GM:</strong> A one-eyed wretch that was once a wizard who reached for forbidden lore. It hungers for magic, and for gossip almost as much.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VVZLofvMpSSFQAtH",
+   "_key": "!actors.items!D9SM8RtKJk8iAo9y.VVZLofvMpSSFQAtH",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rotting Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, one creature within 30ft that it can see makes a @Check[fort|dc:12]{Fortitude save DC 12} or takes @Damage[3d6 necrotic]{3d6 necrotic damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "3d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CAijiA5AdNTrn3bZ",
+   "_key": "!actors.items!D9SM8RtKJk8iAo9y.CAijiA5AdNTrn3bZ",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Weird Insight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>As an action, it stares at a creature within 30ft and learns one secret about it unless the creature beats it with a Charisma check; nothics love to bargain with what they learn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7Fz90FKUJE2zkbBg",
+   "_key": "!actors.items!D9SM8RtKJk8iAo9y.7Fz90FKUJE2zkbBg",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Nothic",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

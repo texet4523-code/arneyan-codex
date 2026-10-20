@@ -1,0 +1,94 @@
+{
+ "_id": "1u8tHJf03sojPQAl",
+ "_key": "!items!1u8tHJf03sojPQAl",
+ "name": "Half-Elf",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Low-Light Vision (not true darkvision) • +2 Cha / +1 Dex, no penalty</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Flexible Rest:</strong> fully rested from either a 4hr trance or 8hr sleep.</li><li><strong>Choose one additional skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot.</strong></li><li><strong>Advantage on social checks with both humans and elves</strong>.</li><li><strong>Dual Heritage:</strong> 1/long rest, reroll any one failed save or check (1 Luck for a second use).</li><li><strong>Weapon training:</strong> longsword, shortsword, longbow, plus one martial weapon of choice.</li><li><strong>Armour training:</strong> light.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Low-Light",
+  "attributes": "+2 Cha / +1 Dex, no penalty",
+  "bonuses": {
+   "cha": 2,
+   "dex": 1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Immune to magical sleep",
+    "text": "Immune to magical sleep."
+   },
+   {
+    "name": "Advantage on saves vs charm",
+    "text": "Advantage on saves vs charm."
+   },
+   {
+    "name": "Flexible Rest",
+    "text": "fully rested from either a 4hr trance or 8hr sleep."
+   },
+   {
+    "name": "Choose one additional skill at creation",
+    "text": "Choose one additional skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+   },
+   {
+    "name": "Advantage on social checks with both humans…",
+    "text": "Advantage on social checks with both humans and elves."
+   },
+   {
+    "name": "Dual Heritage",
+    "text": "1/long rest, reroll any one failed save or check (1 Luck for a second use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "longsword, shortsword, longbow, plus one martial weapon of choice."
+   },
+   {
+    "name": "Armour training",
+    "text": "light."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Immune to magical sleep.",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs charm",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen at creation",
+    "label": ""
+   },
+   {
+    "key": "adv.check.cha",
+    "value": "1",
+    "when": "social checks with humans and elves",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 14,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

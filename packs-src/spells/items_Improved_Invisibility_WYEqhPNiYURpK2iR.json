@@ -1,0 +1,63 @@
+{
+ "_id": "WYEqhPNiYURpK2iR",
+ "_key": "!items!WYEqhPNiYURpK2iR",
+ "name": "Improved Invisibility",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Touch; one creature for 1 minute per level. The target is Invisible and remains Invisible when it attacks or casts spells. Creatures that cannot see invisible have Disadvantage on attack rolls against it even if they guess its square.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Bard"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Improved Invisibility",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [
+     "invisible"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 215,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

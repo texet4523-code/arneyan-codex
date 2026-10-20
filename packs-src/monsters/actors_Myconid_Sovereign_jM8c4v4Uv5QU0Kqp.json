@@ -1,0 +1,288 @@
+{
+ "_id": "jM8c4v4Uv5QU0Kqp",
+ "_key": "!actors!jM8c4v4Uv5QU0Kqp",
+ "name": "Myconid Sovereign",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d10+6",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft",
+   "attack": 4,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large plant</em></p><p><strong>GM:</strong> The oldest and largest of a circle, which dreams with it each day. It decides who may pass, and who becomes a spore servant.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Fist",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d4+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XToNzQf5S6AKUgDY",
+   "_key": "!actors.items!jM8c4v4Uv5QU0Kqp.XToNzQf5S6AKUgDY",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hallucination Spores",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, one creature within 5ft makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[poisoned]{Poisoned} and @Condition[incapacitated]{Incapacitated} for 1 minute, repeating the save each turn, while it sees visions.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VYeRFfGK7mPZwy4a",
+   "_key": "!actors.items!jM8c4v4Uv5QU0Kqp.VYeRFfGK7mPZwy4a",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animating Spores",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it targets a Large or smaller humanoid corpse within 5ft; in 24 hours it rises as a spore servant.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HcC3tFvig8PyCcMn",
+   "_key": "!actors.items!jM8c4v4Uv5QU0Kqp.HcC3tFvig8PyCcMn",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rapport Spores and Melding",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>It leads the circle's shared trance, the melding, in which myconids share thoughts and dreams.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wYM94uwX0FH3zyKc",
+   "_key": "!actors.items!jM8c4v4Uv5QU0Kqp.wYM94uwX0FH3zyKc",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X4jxCPFyIyzXI2vz",
+   "_key": "!actors.items!jM8c4v4Uv5QU0Kqp.X4jxCPFyIyzXI2vz",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Myconid Sovereign",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mushroom-gills.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

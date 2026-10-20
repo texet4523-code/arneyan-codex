@@ -1,0 +1,72 @@
+{
+ "_id": "OPZ41afbze95Ivu3",
+ "_key": "!items!OPZ41afbze95Ivu3",
+ "name": "Opal Isles Pirate (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>A ship-board fighter who learned to shoot in the chaos of boarding actions — close quarters, multiple targets, no space to reload.</p><ul><li><strong>Close Quarters: </strong>No disadvantage on ranged attacks made in a confined space — ship deck, corridor, or room under 30ft wide.</li><li><strong>Sea Dog: </strong>Advantage on Seamanship checks and on Intimidation checks when visibly armed with firearms.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Close Quarters",
+    "level": 1,
+    "description": "<p>No disadvantage on ranged attacks made in a confined space — ship deck, corridor, or room under 30ft wide.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Close Quarters: no Disadvantage on ranged attacks in a confined space (deck, corridor, room under 30ft wide).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sea Dog",
+    "level": 1,
+    "description": "<p>Advantage on Seamanship checks and on Intimidation checks when visibly armed with firearms.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Seamanship",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation when visibly armed with firearms",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

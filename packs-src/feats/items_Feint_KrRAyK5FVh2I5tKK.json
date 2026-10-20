@@ -1,0 +1,80 @@
+{
+ "_id": "KrRAyK5FVh2I5tKK",
+ "_key": "!items!KrRAyK5FVh2I5tKK",
+ "name": "Feint",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+ "system": {
+  "description": "<p>Fake a step, a stumble, an opening that isn't there. Once per round, in place of one attack, make a Charisma (Deception) or Dexterity check against the target's Wisdom check. Sell it, and they overcommit to defending against a strike that was never coming. On a success, choose one: the target has Disadvantage on its next attack against you, or you have Advantage on your next attack against it.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Specialist Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "activities": [
+   {
+    "name": "Charisma (Deception)",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "cha",
+    "save": "",
+    "text": "In place of one attack, against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Dexterity",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "In place of one attack, against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Hg8ljiYllm5al9gp",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

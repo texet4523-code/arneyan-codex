@@ -1,0 +1,290 @@
+{
+ "_id": "qa8eZnHd4RBhjzP1",
+ "_key": "!actors!qa8eZnHd4RBhjzP1",
+ "name": "Mimic",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "7d8",
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 31,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "15ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium monstrosity</em></p><p><strong>GM:</strong> Patient as furniture. Treasure is usually within reach, as bait.</p>",
+   "treasure": "<p>Treasure type <strong>C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Pseudopod",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mi3HUR1Hz48RYl65",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.mi3HUR1Hz48RYl65",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d8",
+      "type": "acid",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "a5DrBznFpPDRj1KH",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.a5DrBznFpPDRj1KH",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+   "system": {
+    "description": "<p>While motionless, it is indistinguishable from a chest, door or other object.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iuGcVrXIGbmRUrT3",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.iuGcVrXIGbmRUrT3",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Adhesive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+   "system": {
+    "description": "<p>A creature that touches it or hits it with a weapon sticks (escape DC 15).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HtfA3LbbUQml6FCU",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.HtfA3LbbUQml6FCU",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Grappler",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
+   "system": {
+    "description": "<p>Has Advantage on attack rolls against a creature stuck to it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vhoqM2T5bq7nVqgM",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.vhoqM2T5bq7nVqgM",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Mimic",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mimic-chest.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

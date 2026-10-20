@@ -1,0 +1,42 @@
+{
+ "_id": "HwgpWOY3VGn3xcC5",
+ "_key": "!items!HwgpWOY3VGn3xcC5",
+ "name": "Dead Eye",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Gain advantage on your first ranged attack roll each round, on a turn in which you do not move.</li><li>You cannot move before or after attacking: once you attack with Dead Eye you are rooted until the end of your turn, and if you have already moved this turn you gain no benefit. Forced movement (being shoved, knocked prone and so on) does not count</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Gunslinger",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "ranged attack, on a turn you have not moved",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "CQq9CSkBWcsx4eIg",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,63 @@
+{
+ "_id": "pmCSOOcPGz3VQOwn",
+ "_key": "!tables!pmCSOOcPGz3VQOwn",
+ "name": "Contact Other Plane",
+ "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+ "description": "<p>Roll for each question (@UUID[Compendium.arneyan.spells.Item.Ce9CoeIEmfUWAnKT]{Contact Other Plane}).</p>",
+ "results": [
+  {
+   "_id": "cH4JxnTOKCyvxNQt",
+   "_key": "!tables.results!pmCSOOcPGz3VQOwn.cH4JxnTOKCyvxNQt",
+   "type": "text",
+   "name": "False answer",
+   "description": "False answer",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 2,
+   "range": [
+    1,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "YwXPIFdZKswIjLDD",
+   "_key": "!tables.results!pmCSOOcPGz3VQOwn.YwXPIFdZKswIjLDD",
+   "type": "text",
+   "name": "Don't know",
+   "description": "Don't know",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 3,
+   "range": [
+    3,
+    5
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "IYCJ4aLGsMckk4PQ",
+   "_key": "!tables.results!pmCSOOcPGz3VQOwn.IYCJ4aLGsMckk4PQ",
+   "type": "text",
+   "name": "True",
+   "description": "True",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 15,
+   "range": [
+    6,
+    20
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "1d20",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "2WVC1DsAZsMr6tZO",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

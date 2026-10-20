@@ -1,0 +1,209 @@
+{
+ "_id": "tVCMF9K4GvnWrRT0",
+ "_key": "!actors!tVCMF9K4GvnWrRT0",
+ "name": "Poisonous Snake Swarm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-snake.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "7d8",
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 31,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft, swim 30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (swarm)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "weapons 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast (swarm)</em></p><p><strong>GM:</strong> A pit of snakes, guarding a temple floor or a thieves' trap.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bites",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-snake.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "64hhf8ddPHNV6olY",
+   "_key": "!actors.items!tVCMF9K4GvnWrRT0.64hhf8ddPHNV6olY",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swarm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-snake.svg",
+   "system": {
+    "description": "<p>Resistance 5 to weapon damage. Can occupy another creature's space and can pass through any gap a snake can. Cannot regain HP or gain temporary HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GjYuHKjjZ5Ma9YBL",
+   "_key": "!actors.items!tVCMF9K4GvnWrRT0.GjYuHKjjZ5Ma9YBL",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Venom",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-snake.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:9]{Fortitude save DC 9} or takes @Damage[4d6 poison]{4d6 poison damage}, half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 9,
+    "damage": "4d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JHxtIN0EaxvUBjm5",
+   "_key": "!actors.items!tVCMF9K4GvnWrRT0.JHxtIN0EaxvUBjm5",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Poisonous Snake Swarm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-snake.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

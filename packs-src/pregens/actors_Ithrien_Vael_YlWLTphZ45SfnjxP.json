@@ -1,0 +1,2827 @@
+{
+ "_id": "YlWLTphZ45SfnjxP",
+ "_key": "!actors!YlWLTphZ45SfnjxP",
+ "name": "Ithrien Vael",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Wizard.webp",
+ "folder": "5T1RaoM82zwRzREb",
+ "sort": 400,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 9
+   },
+   "dex": {
+    "value": 17
+   },
+   "con": {
+    "value": 13
+   },
+   "int": {
+    "value": 18
+   },
+   "wis": {
+    "value": 12
+   },
+   "cha": {
+    "value": 11
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "speed": 30
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 19,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Elvish, Orcish",
+   "biography": "<p><em>Jacob&#x27;s Well · Seat 4, Ranged</em></p><p>The Silver Tower sent you to Veradyna to catalogue the old magic of the frontier, and the Keepers were the only escort going north. You find the cold, the food and the company equally trying. You are very good, and you know it.</p><p><strong>Tonight:</strong> Somewhere in this fort there is magic you can feel but not see.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Spellcasting.</strong> Intelligence. Spell save DC 14, <b>15 for Conjuration</b> (School Focus). Slots: 5 cantrips, four 1st, two 2nd. Prepare 6 spells from your spellbook each morning. You cannot cast in armour or with a shield. See the spell page.</p><p><strong>Arcane Recovery.</strong> Once a day, after 10 minutes of study, regain spent slots totalling up to 2 spell levels.</p><p><strong>Scribe's Insight.</strong> Once a day, as part of casting a spell, swap one prepared spell for another of the same level from your spellbook.</p><p><strong>School Focus: Conjuration.</strong> +1 to the save DC of your Conjuration spells (Grease, Web, Glitterdust).</p><p><strong>Steady Focus (feat, 1st).</strong> Advantage on saves to keep a spell you are casting, or concentration, when damaged, shoved or forced to react. Once per encounter, turn one such failed save into a success.</p><p><strong>Kit: Silver Tower Scholar.</strong> <b>Elemental Precision:</b> once per encounter, a spell you cast that deals elemental damage gives the target Disadvantage on its save. <b>Aldorethi Theory:</b> Advantage recalling Aldorethi magical theory or history.</p><p><strong>High Elf.</strong> Trance (4 hours rests you). Keen Senses: Advantage on sight and hearing Perception. Arcane Sense: you feel significant magical auras within 60ft and their rough direction, no check. Extra cantrip (Read Magic). Weapon training: longsword, shortsword, longbow, rapier.</p><h3>Casting</h3><p>Also in your spellbook: Sleep, Grease, Burning Hands, Comprehend Languages (1st).</p><p><strong>Armour Class on the sheet:</strong> Dex +2. 15 with Mage Armour (8 hours)</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "BcCTqDG7N5EHsaDf",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.BcCTqDG7N5EHsaDf",
+   "name": "Wizard",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Wizard.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Intelligence</td></tr><tr><td>Hit Die</td><td>d4</td></tr><tr><td>HP beyond 10th</td><td>+1 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★★☆ Complex</td></tr><tr><td>Armour</td><td>None</td></tr><tr><td>BtH</td><td>+1 per 6 levels (+2 at 12th, +4 at 24th)</td></tr><tr><td>Weapons</td><td>Club, dagger, dart, staff</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Spell Use, Scribe's Insight, School Focus</td></tr><tr><td>2</td><td>Arcane Recovery</td></tr><tr><td>6</td><td>Cantrip Expertise</td></tr><tr><td>13</td><td>Detect Magic</td></tr><tr><td>15</td><td>+1 Intelligence</td></tr><tr><td>17</td><td>Counterspell</td></tr><tr><td>18</td><td>Signature Spells</td></tr><tr><td>20</td><td>Perfect Recall</td></tr><tr><td>24</td><td>Perfect Recall extends to 2nd-level spells</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Spell Use</h4><ul><li><strong>Effect: </strong>Cast arcane spells per the Spells Per Day table, plus Bonus Spells from high Intelligence.</li></ul><h4>Scribe's Insight</h4><ul><li><strong>Effect: </strong>Once per day, as part of casting a spell, swap one prepared spell for a different spell of the same level from your spellbook — the methodical, bookish caster rewriting their working memory on the fly.</li></ul><h4>School Focus</h4><ul><li><strong>Effect: </strong>Choose one school of magic (see Spellcasting in Arneyan). The save DC of your spells of that school is increased by 1.</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Arcane Recovery</h4><ul><li><strong>Effect:</strong> Once per day, after 10 minutes of study, regain expended spell slots with a combined level up to half your Wizard level (rounded up). None may be above 5th level.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Cantrip Expertise</h4><ul><li><strong>Effect: </strong>Add your Intelligence modifier (minimum 0) to the damage of your damaging cantrips. Does not stack with the Cantrip Mastery feat.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Detect Magic</h4><ul><li><strong>Effect: </strong>After 5 rounds of study, an Intelligence check reveals the magical origin of an item whose kind of magic you have met before.</li><li>From 18th level it also reveals the item's power and history</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Intelligence Bonus: </strong>permanent +1 Intelligence</li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Counterspell</h4><ul><li><strong>Effect: </strong>Once per encounter, when a creature within 60ft casts a spell no higher in level than half your Wizard level, you may try to counter it as your reaction, using no slot: an Intelligence check against its save DC makes it fizzle, and a failure spends the attempt.</li></ul><h3 class=\"arn-level\">18th Level</h3><h4>Signature Spells</h4><ul><li><strong>Effect:</strong> Choose two spells of 3rd level or lower from your spellbook. You can cast each once per day at its level without expending a slot.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Perfect Recall</h4><ul><li><strong>Effect: Recall a previously-cast 1st-level spell once per day via an Intelligence check (DC 10, the Easy tier), casting it again without expending a slot.</strong></li><li>From 24th level: works for previously-cast 2nd-level spells</li></ul><h2>Kits — Arneyan Arcane Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Wizard folder. Drag one onto your character.</p><p>Wizard Kits represent the institution, tradition, or circumstance that trained the character in the arcane arts.</p><h2>Wizard Spells Per Day</h2><ul><li><strong>Bonus Spells: </strong>Intelligence 13–15 grants an extra 1st level spell, 16–17 an extra 2nd level spell, 18+ an extra 3rd level spell. Cumulative, and only acquired once the wizard is high enough level to cast that spell tier at all.</li></ul><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>0</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th>9th</th></tr></thead><tbody><tr><td>1</td><td>4</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2</td><td>4</td><td>3</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>3</td><td>4</td><td>3</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>4</td><td>4</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>5</td><td>5</td><td>4</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>8</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>9</td><td>5</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>10</td><td>6</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>11</td><td>6</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td></tr><tr><td>12</td><td>6</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td></tr><tr><td>13</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td></tr><tr><td>14</td><td>6</td><td>6</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td></tr><tr><td>15</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td></tr><tr><td>16</td><td>7</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td></tr><tr><td>17</td><td>7</td><td>6</td><td>5</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td></tr><tr><td>18</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td></tr><tr><td>19</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td></tr><tr><td>20</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td></tr><tr><td>21</td><td>7</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td></tr><tr><td>22</td><td>7</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td></tr><tr><td>23</td><td>8</td><td>8</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td></tr><tr><td>24</td><td>8</td><td>8</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td></tr></tbody></table><h2>Wizard Spell List</h2><p>Spells available to the Wizard, by level. * = reversible spell. ‡ = needs a costed material component (see Rare Spell Components in the Shopkeeper's Catalogue). Full descriptions, saves and components are in Spellcasting in Arneyan.</p><h3>0 Level (Cantrips)</h3><p>Acid Splash · Arcane Mark · Dancing Lights · Detect Magic · Detect Poison · Endure Elements · Fire Bolt · Ghost Sound · Light · Mage Hand · Mending · Message · Minor Illusion · Open/Close · Poison Spray · Prestidigitation · Ray of Frost · Read Magic · Resistance · Toll the Dead</p><h3>1st Level</h3><p>Alarm · Burning Hands · Change Self · Charm Person · Chill Touch · Comprehend Languages · Enlarge* · Erase · Expeditious Retreat · Feather Fall · Friends · Grease · Hold Portal · Identify‡ · Jump · Mage Armour · Magic Missile · Magic Weapon · Nystul's Magic Aura · Protection from Alignment · Shield · Shocking Grasp · Sleep · Spider Climb · Summon Familiar · Tenser's Floating Disc · Thunderwave · Unseen Servant</p><h3>2nd Level</h3><p>Blindness/Deafness · Continual Flame‡ · Darkness* · Darkvision · Deeppockets · Detect Thoughts* · Enhance Attribute* · Fog Cloud · Glitterdust · Hold Person · Invisibility · Knock* · Levitate · Locate Object* · Magic Mouth‡ · Melf's Acid Arrow · Mirror Image · Pyrotechnics · Ray of Enfeeblement · Rope Trick · Scare · Scorching Ray · See Invisibility · Shatter · Tasha's Hideous Laughter · Web</p><h3>3rd Level</h3><p>Animate Dead*‡ · Blink · Clairaudience/Clairvoyance · Counterspell · Dispel Magic · Explosive Runes · Fireball · Flame Arrow · Fly · Gaseous Form · Gust of Wind · Haste · Invisibility Sphere · Leomund's Tiny Hut · Lightning Bolt · Magic Circle vs Alignment · Melf's Minute Meteors · Nondetection‡ · Protection from Normal Missiles · Secret Page · Slow · Stinking Cloud · Suggestion · Summon Lesser Monster · Tongues* · Vampiric Touch · Water Breathing · Wraithform</p><h3>4th Level</h3><p>Arcane Eye · Banishment · Blight · Charm Monster · Confusion · Detect Scrying · Dimension Door · Evard's Black Tentacles · Fear · Fire Shield* · Fire Trap‡ · Hallucinatory Terrain · Ice Storm · Locate Creature · Minor Globe of Invulnerability · Mnemonic Enhancer · Otiluke's Resilient Sphere · Polymorph · Scrying‡ · Shadow Monsters · Shout · Stoneskin‡ · Wall of Fire · Wall of Ice</p><h3>5th Level</h3><p>Bigby's Interposing Hand · Bind Elemental · Cloudkill · Cone of Cold · Contact Other Plane · Dominate Person · Feeblemind · Hold Monster · Leomund's Secret Chest · Magic Jar‡ · Mislead · Mordenkainen's Faithful Hound · Passwall · Permanency · Seeming · Shadow Magic · Summon Monster · Telekinesis · Telepathic Bond · Teleport · Transmute Mud and Rock · Wall of Force · Wall of Iron · Wall of Stone</p><h3>6th Level</h3><p>Anti-Magic Shell · Chain Lightning · Control Weather · Disintegrate · Eyebite · Flesh to Stone* · Geas · Globe of Invulnerability · Guards and Wards · Legend Lore‡ · Mass Suggestion · Move Earth · Otiluke's Freezing Sphere · Project Image · Shadow Walk · Veil</p><h3>7th Level</h3><p>Delayed Blast Fireball · Drawmij's Instant Summons‡ · Etherealness · Finger of Death · Forcecage‡ · Greater Scrying‡ · Limited Wish · Mass Invisibility · Mordenkainen's Sword‡ · Phase Door · Power Word Stun · Refuge · Reverse Gravity · Sequester · Spell Turning · Summon Greater Monster · Teleport Without Error · Vanish</p><h3>8th Level</h3><p>Antipathy* · Bigby's Clenched Fist · Clone‡ · Demand · Dominate Monster · Greater Shadow Magic · Incendiary Cloud · Mass Charm · Maze · Mind Blank · Otto's Irresistible Dance · Polymorph Any Object · Power Word Blind · Teleportation Circle‡ · Trap the Soul‡</p><h3>9th Level</h3><p>Astral Projection‡ · Bigby's Crushing Hand · Disjunction · Gate · Imprisonment* · Meteor Swarm · Power Word Kill · Prismatic Sphere · Shapechange‡ · Temporal Stasis · Time Stop · Wail of the Banshee · Wish‡</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 3,
+    "hitDie": "d4",
+    "hpBeyond10": 1,
+    "bthProgression": "arcane",
+    "keyAbility": "int",
+    "castingAbility": "int",
+    "xpRate": 12,
+    "weapons": "Club, dagger, dart, staff",
+    "armour": "None",
+    "slotTable": [
+     [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      6,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0
+     ],
+     [
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0
+     ],
+     [
+      7,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0
+     ],
+     [
+      7,
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1
+     ],
+     [
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2
+     ],
+     [
+      7,
+      6,
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2
+     ],
+     [
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3
+     ],
+     [
+      7,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3
+     ],
+     [
+      7,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3
+     ],
+     [
+      8,
+      8,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4
+     ],
+     [
+      8,
+      8,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4
+     ]
+    ],
+    "featLevels": [
+     1,
+     4,
+     8,
+     12,
+     16,
+     20
+    ],
+    "featPaths": [
+     "General Path",
+     "Arcane & Devout Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Spell Use",
+      "uuid": "Compendium.arneyan.class-features.Item.gvKd75HauIn6SJPW"
+     },
+     {
+      "level": 1,
+      "name": "Scribe's Insight",
+      "uuid": "Compendium.arneyan.class-features.Item.hU9kcAPORzWXsrOh"
+     },
+     {
+      "level": 1,
+      "name": "School Focus",
+      "uuid": "Compendium.arneyan.class-features.Item.OveV0NnyNyjJrScz"
+     },
+     {
+      "level": 2,
+      "name": "Arcane Recovery",
+      "uuid": "Compendium.arneyan.class-features.Item.gjs0MRBsP7nn1Kyu"
+     },
+     {
+      "level": 6,
+      "name": "Cantrip Expertise",
+      "uuid": "Compendium.arneyan.class-features.Item.wSp3drjfzXCu5kzX"
+     },
+     {
+      "level": 13,
+      "name": "Detect Magic",
+      "uuid": "Compendium.arneyan.class-features.Item.G0I66J8JwKVyGyGR"
+     },
+     {
+      "level": 15,
+      "name": "Intelligence Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.246pyapHNS7L8JaA"
+     },
+     {
+      "level": 17,
+      "name": "Counterspell",
+      "uuid": "Compendium.arneyan.class-features.Item.v5Af6iwBOG6WQMBU"
+     },
+     {
+      "level": 18,
+      "name": "Signature Spells",
+      "uuid": "Compendium.arneyan.class-features.Item.UrSW25YSYzhk2JKs"
+     },
+     {
+      "level": 20,
+      "name": "Perfect Recall",
+      "uuid": "Compendium.arneyan.class-features.Item.TuG1EEi0FYQBtn7p"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.aybbZ1YTK5kL9LDw"
+   }
+  },
+  {
+   "_id": "UO1jwxxhyvyZsGIE",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.UO1jwxxhyvyZsGIE",
+   "name": "Spell Use",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Cast arcane spells per the Spells Per Day table, plus Bonus Spells from high Intelligence.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Wizard"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BcCTqDG7N5EHsaDf",
+     "source": "Compendium.arneyan.class-features.Item.gvKd75HauIn6SJPW"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.gvKd75HauIn6SJPW"
+   }
+  },
+  {
+   "_id": "xbQaw0zZeLKOGARd",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.xbQaw0zZeLKOGARd",
+   "name": "Scribe's Insight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Once per day, as part of casting a spell, swap one prepared spell for a different spell of the same level from your spellbook — the methodical, bookish caster rewriting their working memory on the fly.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Wizard",
+    "activities": [
+     {
+      "name": "Scribe's Insight",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "As part of casting, swap one prepared spell for another of the same level from your spellbook.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BcCTqDG7N5EHsaDf",
+     "source": "Compendium.arneyan.class-features.Item.hU9kcAPORzWXsrOh"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.hU9kcAPORzWXsrOh"
+   }
+  },
+  {
+   "_id": "YuDwfsu4klhguIWo",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.YuDwfsu4klhguIWo",
+   "name": "School Focus",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Choose one school of magic (see Spellcasting in Arneyan). The save DC of your spells of that school is increased by 1.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Wizard",
+    "rules": [
+     {
+      "key": "spell.dc",
+      "value": "1",
+      "when": "spells of your chosen school",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BcCTqDG7N5EHsaDf",
+     "source": "Compendium.arneyan.class-features.Item.OveV0NnyNyjJrScz"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.OveV0NnyNyjJrScz"
+   }
+  },
+  {
+   "_id": "bJOkxrm3p4f2WawK",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.bJOkxrm3p4f2WawK",
+   "name": "Arcane Recovery",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Once per day, after 10 minutes of study, regain expended spell slots with a combined level up to half your Wizard level (rounded up). None may be above 5th level.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 2,
+    "className": "Wizard",
+    "activities": [
+     {
+      "name": "Arcane Recovery",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "After 10 minutes of study, regain spell slots totalling up to half your Wizard level (rounded up), none above 5th.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BcCTqDG7N5EHsaDf",
+     "source": "Compendium.arneyan.class-features.Item.gjs0MRBsP7nn1Kyu"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.gjs0MRBsP7nn1Kyu"
+   }
+  },
+  {
+   "_id": "BbAOm2MYpPQ3pQnu",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.BbAOm2MYpPQ3pQnu",
+   "name": "Elf (High Elf)",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><strong>Size Medium • Speed 30ft • Low-Light Vision (not true darkvision) • +2 Dex / +1 Int, −1 Con</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Trance</strong> (4hr rest instead of 8hr sleep).</li><li><strong>Keen Senses:</strong> Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells.</li><li><strong>Armour training:</strong> light.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>High Elf:</strong> weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).</li><li><strong>Saevren (Wood Elf):</strong> weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</li><li><strong>Iiria Elf (Jinia coastal):</strong> weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "Low-Light",
+    "attributes": "+2 Dex / +1 Int, −1 Con",
+    "bonuses": {
+     "dex": 2,
+     "int": 1,
+     "con": -1
+    },
+    "pickTwo": false,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Immune to magical sleep",
+      "text": "Immune to magical sleep."
+     },
+     {
+      "name": "Advantage on saves vs charm",
+      "text": "Advantage on saves vs charm."
+     },
+     {
+      "name": "Trance",
+      "text": "Trance (4hr rest instead of 8hr sleep)."
+     },
+     {
+      "name": "Keen Senses",
+      "text": "Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells."
+     },
+     {
+      "name": "Armour training",
+      "text": "light."
+     }
+    ],
+    "choice": {
+     "label": "Subtype",
+     "options": [
+      {
+       "name": "High Elf",
+       "text": "weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).",
+       "bonuses": {},
+       "rules": []
+      },
+      {
+       "name": "Saevren (Wood Elf)",
+       "text": "weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "speed",
+         "value": "5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Iiria Elf (Jinia coastal)",
+       "text": "weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).",
+       "bonuses": {},
+       "rules": []
+      }
+     ]
+    },
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Immune to magical sleep.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception (sight or hearing)",
+      "label": ""
+     },
+     {
+      "key": "adv.concentration",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "High Elf",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.0V3PZxgPYRhoZKrK"
+   }
+  },
+  {
+   "_id": "BomhRlgR02XyxYhX",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.BomhRlgR02XyxYhX",
+   "name": "Subtype: High Elf",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Subtype: High Elf"
+    }
+   }
+  },
+  {
+   "_id": "6Vn4F1zpkvWICqhE",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.6Vn4F1zpkvWICqhE",
+   "name": "Immune to magical sleep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Immune to magical sleep.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Immune to magical sleep"
+    }
+   }
+  },
+  {
+   "_id": "YkcMGwXXybiz2B1i",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.YkcMGwXXybiz2B1i",
+   "name": "Advantage on saves vs charm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on saves vs charm.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Advantage on saves vs charm"
+    }
+   }
+  },
+  {
+   "_id": "krJcD2Q07sw7iVmn",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.krJcD2Q07sw7iVmn",
+   "name": "Trance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Trance (4hr rest instead of 8hr sleep).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Trance"
+    }
+   }
+  },
+  {
+   "_id": "pYcYQooSZi7K1E0S",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.pYcYQooSZi7K1E0S",
+   "name": "Keen Senses",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Keen Senses"
+    }
+   }
+  },
+  {
+   "_id": "NAIks8BU8Q9LM8Vr",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.NAIks8BU8Q9LM8Vr",
+   "name": "Armour training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>light.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (High Elf)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "BbAOm2MYpPQ3pQnu",
+     "source": "BbAOm2MYpPQ3pQnu.Armour training"
+    }
+   }
+  },
+  {
+   "_id": "i2Hks51QRGc4e8ob",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.i2Hks51QRGc4e8ob",
+   "name": "Silver Tower Scholar (Wizard)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "system": {
+    "description": "<p>Trained in the Aldorethi tradition out of the Silver Tower, with its branch in Kyla'naes since the War of Tariel.</p><ul><li><strong>Elemental Precision: </strong>Once per encounter, a spell you cast that deals elemental damage imposes Disadvantage on the target's saving throw against it.</li><li><strong>Aldorethi Theory: </strong>Advantage on Intelligence checks recalling Aldorethi magical theory or history.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Wizard",
+    "features": [
+     {
+      "name": "Elemental Precision",
+      "level": 1,
+      "description": "<p>Once per encounter, a spell you cast that deals elemental damage imposes Disadvantage on the target's saving throw against it.</p>",
+      "uses": {
+       "value": 1,
+       "max": 1,
+       "per": "encounter"
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "note.spell",
+        "value": "Elemental Precision: once per encounter, an elemental-damage spell imposes Disadvantage on the target's save.",
+        "when": "",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     },
+     {
+      "name": "Aldorethi Theory",
+      "level": 1,
+      "description": "<p>Advantage on Intelligence checks recalling Aldorethi magical theory or history.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.check.int",
+        "value": "1",
+        "when": "recalling Aldorethi magical theory or history",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.gCASxDJKrZ51Vn5l"
+   }
+  },
+  {
+   "_id": "xoeOzXNFI3dVzWf3",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.xoeOzXNFI3dVzWf3",
+   "name": "Elemental Precision",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Once per encounter, a spell you cast that deals elemental damage imposes Disadvantage on the target's saving throw against it.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Silver Tower Scholar (Wizard)",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Elemental Precision: once per encounter, an elemental-damage spell imposes Disadvantage on the target's save.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "i2Hks51QRGc4e8ob",
+     "source": "i2Hks51QRGc4e8ob.0"
+    }
+   }
+  },
+  {
+   "_id": "p0BrYoL72AyFlWV4",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.p0BrYoL72AyFlWV4",
+   "name": "Aldorethi Theory",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on Intelligence checks recalling Aldorethi magical theory or history.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Silver Tower Scholar (Wizard)",
+    "rules": [
+     {
+      "key": "adv.check.int",
+      "value": "1",
+      "when": "recalling Aldorethi magical theory or history",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "i2Hks51QRGc4e8ob",
+     "source": "i2Hks51QRGc4e8ob.1"
+    }
+   }
+  },
+  {
+   "_id": "7n1FDAHgZyHlOjzQ",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.7n1FDAHgZyHlOjzQ",
+   "name": "Steady Focus",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+   "system": {
+    "description": "<p>A blow lands, the ground shifts, someone grabs at you mid-casting — and the working holds anyway. You have Advantage on saves made to keep a spell you are casting, or to maintain concentration on one, when you take damage, are shoved or are otherwise forced to react mid-cast. Once per encounter, you may turn one such failed save into a success.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Arcane & Devout Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "rules": [
+     {
+      "key": "adv.concentration",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.OcBAl6szan4sG9hm"
+   }
+  },
+  {
+   "_id": "APzpQQRP46EERjzl",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.APzpQQRP46EERjzl",
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   }
+  },
+  {
+   "_id": "5fzyHA11oVUGWmAt",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.5fzyHA11oVUGWmAt",
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   }
+  },
+  {
+   "_id": "FxjDM2MNIllOrd8n",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.FxjDM2MNIllOrd8n",
+   "name": "Languages, Modern",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Reading and speaking a living language</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.ujNCKn7pMCtrhAEu"
+   }
+  },
+  {
+   "_id": "tQNrEj2OOPF646vi",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.tQNrEj2OOPF646vi",
+   "name": "Staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-wizard-staff.svg",
+   "system": {
+    "description": "<p>Versatile, Reach</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "—",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Versatile, Reach",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.tFKFmIJDLlgx3NSK"
+   }
+  },
+  {
+   "_id": "89IAH2e7yCOTaeuP",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.89IAH2e7yCOTaeuP",
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-plain-dagger.svg",
+   "system": {
+    "description": "<p>Finesse, Light, Concealable, Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Finesse, Light, Concealable, Thrown",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.TMnikZBI4akkSNb2"
+   }
+  },
+  {
+   "_id": "OjBa8VVOclIGMA1s",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.OjBa8VVOclIGMA1s",
+   "name": "Spellbook, blank",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/magic-scroll-unfurled.svg",
+   "system": {
+    "description": "<p>100 pages. A spell takes pages equal to its level, and a cantrip takes 1.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "25 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.sciP7H4fUgxcCiR9"
+   }
+  },
+  {
+   "_id": "MIFXsaqYKbtEG3yk",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.MIFXsaqYKbtEG3yk",
+   "name": "Ink (1 oz)",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-book-cover.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "8 gp",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.Kk5zu5EjFnaCttm5"
+   }
+  },
+  {
+   "_id": "hy6ANXXYQvpiqlQ7",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.hy6ANXXYQvpiqlQ7",
+   "name": "Potion of Cure Minor Wounds",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/magic-potion-ball.svg",
+   "system": {
+    "description": "<p>Heals 1d4 HP. Half the price of a regular Healing Potion.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "25 gp",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": "1d4"
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.iSa8ry4MaXO0cQLL"
+   }
+  },
+  {
+   "_id": "sGHj1BXG24F9eGgH",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.sGHj1BXG24F9eGgH",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "CxFvTTggkxBeR2cj",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.CxFvTTggkxBeR2cj",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "ASplCZbtbxzdZD6o",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.ASplCZbtbxzdZD6o",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "Yo2u83ITWfBLUKhb",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.Yo2u83ITWfBLUKhb",
+   "name": "Cloak",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-cape.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 sp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.E5BqQlLHJGtQ5FG1"
+   }
+  },
+  {
+   "_id": "m0k6Ry4wVhkfR5M9",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.m0k6Ry4wVhkfR5M9",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "MDXLpVNKMzPnKT4I",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.MDXLpVNKMzPnKT4I",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "SB71t1tD6mfxizBN",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.SB71t1tD6mfxizBN",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "bPojaPYWb3sa9u9n",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.bPojaPYWb3sa9u9n",
+   "name": "Iron Spikes",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 5,
+    "slots": 0.2
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "VMag88TDajlUEeXN",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.VMag88TDajlUEeXN",
+   "name": "Fire Bolt",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 120ft; one creature or object. Deals 1d4 fire damage (+1 die at 5th, 11th and 17th level); Reflex negates (objects get no save). Unattended flammable objects ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d4",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.g7JVPC4qBgN9tDjd"
+   }
+  },
+  {
+   "_id": "IK65zjuseLx9txmO",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.IK65zjuseLx9txmO",
+   "name": "Ray of Frost",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature. Deals 1d4 cold damage (+1 die at 5th, 11th and 17th level) and reduces its speed by 10ft until the start of your next turn; Reflex negates both.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d4",
+    "damageType": "cold",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Ray of Frost",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed",
+        "value": "-10",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FN5mOou1WPLc6N88"
+   }
+  },
+  {
+   "_id": "UHwwV41dUBk4d0yX",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.UHwwV41dUBk4d0yX",
+   "name": "Light",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Touch; one object; 1 hour per level. The object sheds bright light in a 20ft radius and dim light for another 20ft.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Druid, Warlock, Sorcerer, Bard, Paladin, Magus, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Druid",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Paladin",
+     "Magus",
+     "Witch"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.7tbOQ7PalxLYPrKt"
+   }
+  },
+  {
+   "_id": "gJCHonjxhM8MQSD2",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.gJCHonjxhM8MQSD2",
+   "name": "Mage Hand",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg"
+   }
+  },
+  {
+   "_id": "N03RtT5qEYUtENGX",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.N03RtT5qEYUtENGX",
+   "name": "Read Magic",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 1 hour. You can read magical writing, scrolls and spellbooks that would otherwise be unreadable. You do not learn the writing's effect by reading it. Reading does not trigger it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": true,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.HxP4J4uFNPGostLB"
+   }
+  },
+  {
+   "_id": "OaoAXjMadbukyWga",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.OaoAXjMadbukyWga",
+   "name": "Mage Armour",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Touch; one willing creature wearing no armour; 8 hours. An unseen field of force surrounds the target, giving AC 13 + Dexterity modifier. It counts as armour only for features and items that require wearing no armour; it never affects casting. The spell ends if the target puts on armour or if you cast it again.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Sorcerer, Magus, Witch, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Necromancer",
+     "Sorcerer",
+     "Magus",
+     "Witch",
+     "Bard"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Mage Armour",
+      "target": "target",
+      "rounds": "4800",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac.base",
+        "value": "13",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.eS0RrsbTlMvncfjX"
+   }
+  },
+  {
+   "_id": "DpZfUEn1PmgIrKc3",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.DpZfUEn1PmgIrKc3",
+   "name": "Magic Missile",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 150ft; missiles strike automatically, each dealing 1d4+1 force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals 1d4+1.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus",
+     "Necromancer"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "(max(1, min(floor(@cl/2), 5)))d4 + max(1, min(floor(@cl/2), 5))",
+    "damageType": "force",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ"
+   }
+  },
+  {
+   "_id": "JxmZE0iij8pN4LUS",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.JxmZE0iij8pN4LUS",
+   "name": "Shield",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Shield",
+      "target": "self",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ac",
+        "value": "2",
+        "when": "vs ranged attacks (+4 total)",
+        "label": ""
+       },
+       {
+        "key": "immune",
+        "value": "spell:Magic Missile",
+        "when": "",
+        "label": "Shield"
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
+   }
+  },
+  {
+   "_id": "vdzM360cb9f07aNL",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.vdzM360cb9f07aNL",
+   "name": "Alarm",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+   "system": {
+    "description": "<p>Range 30ft; 20ft-radius area; 8 hours. Wards the area; if a Small or larger creature enters it, you hear a mental ping (even asleep, waking you) or a bell audible to 60ft (your choice when cast). Creatures you name when casting are ignored.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Magus"
+    ],
+    "school": "Abjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "4800",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.SrVIbVAKpDU988Oh"
+   }
+  },
+  {
+   "_id": "suFb7FW9CxBGZ3Bh",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.suFb7FW9CxBGZ3Bh",
+   "name": "Web",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft cube, 10 minutes per level. Creatures inside are Restrained; Reflex negates on first contact. A Restrained creature escapes with a Strength check vs spell DC (1 action). Fire burns the web in 1 round, dealing 2d4 fire damage to creatures inside (Reflex halves).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Druid",
+     "Witch"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Not Restrained; half damage if the web burns",
+    "damage": "2d4",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "100*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Webbed",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1"
+   }
+  },
+  {
+   "_id": "VElkTa2pn09ZiW8w",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.VElkTa2pn09ZiW8w",
+   "name": "Glitterdust",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 60ft; 10ft-radius burst. Golden motes outline all Invisible creatures and objects in the area for 1 round per level. Creatures inside are Blinded for 1d4+1 rounds; Fortitude negates the blindness.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "Wizard",
+    "classes": [
+     "Wizard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "fort",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Glitterdust",
+      "target": "target",
+      "rounds": "1d4+1",
+      "statuses": [
+       "blinded"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.DTvi3oy9WnIP9McV"
+   }
+  },
+  {
+   "_id": "XbzDFeAzg2Vxba29",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.XbzDFeAzg2Vxba29",
+   "name": "Grease",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range 30ft; 10ft square, or one object; 1 minute. Creatures in the area when cast, or entering or ending their turn in it, fall Prone; Reflex negates. Cast on an object, the holder drops it; Reflex negates. Creatures move at half speed in the area.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Bard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "10ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Greased",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dskce5RsFnSPXooa"
+   }
+  },
+  {
+   "_id": "HEv9E6O6ZUaK1kng",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.HEv9E6O6ZUaK1kng",
+   "name": "Sleep",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 90ft; 15ft radius. Creatures with a total of 2d4 Levels + CL fall Unconscious for 1d4 minutes (lowest Level first; creatures of Level 5 or higher unaffected); damage wakes a sleeper. Will negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 90ft",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Asleep",
+      "target": "target",
+      "rounds": "10*1d4",
+      "statuses": [
+       "unconscious"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ViN558r8e1voOREg"
+   }
+  },
+  {
+   "_id": "8ChC1aXgCLq2vHk9",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.8ChC1aXgCLq2vHk9",
+   "name": "Burning Hands",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>15ft cone from your hands. Deals 1d3 fire damage plus 1 per level (max +10); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "15ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "1d3 + min(@cl, 10)",
+    "damageType": "fire",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ogmrN3QIRvKIpbla"
+   }
+  },
+  {
+   "_id": "j6lOi5ab5DYG3ma0",
+   "_key": "!actors.items!YlWLTphZ45SfnjxP.j6lOi5ab5DYG3ma0",
+   "name": "Comprehend Languages",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Self; 1 hour. You understand all spoken languages and read all written languages you see. Does not decode secret codes or magical writing. Reading one page takes 1 minute.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Wizard",
+    "classes": [
+     "Wizard",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Self",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": true,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.2VcWZEcUoycuR0Ix"
+   }
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Ithrien Vael",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Wizard.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "Jacob's Well",
+    "seat": 4,
+    "role": "Ranged",
+    "sheet": {
+     "ac": 12,
+     "saves": {
+      "fort": 2,
+      "ref": 3,
+      "will": 1
+     },
+     "bth": 0,
+     "hp": 13
+    }
+   }
+  }
+ }
+}

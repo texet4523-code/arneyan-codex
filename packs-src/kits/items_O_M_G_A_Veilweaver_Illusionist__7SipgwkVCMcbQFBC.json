@@ -1,0 +1,66 @@
+{
+ "_id": "7SipgwkVCMcbQFBC",
+ "_key": "!items!7SipgwkVCMcbQFBC",
+ "name": "O.M.G.A. Veilweaver (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<p>The O.M.G.A. trains illusionists to serve Opal as spies, interrogators and propagandists.</p><ul><li><strong>Perfect Impersonation: </strong>Advantage on Disguise checks to impersonate a specific person. A creature that fails a Will save against your spell takes −2 on its next Will save against you this encounter.</li><li><strong>State Authority: </strong>Advantage on Persuasion invoking O.M.G.A. authority, and on long-term social infiltration.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Perfect Impersonation",
+    "level": 1,
+    "description": "<p>Advantage on Disguise checks to impersonate a specific person. A creature that fails a Will save against your spell takes −2 on its next Will save against you this encounter.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Disguise to impersonate a specific person",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "State Authority",
+    "level": 1,
+    "description": "<p>Advantage on Persuasion invoking O.M.G.A. authority, and on long-term social infiltration.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion invoking O.M.G.A. authority; long-term social infiltration",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

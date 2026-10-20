@@ -1,0 +1,69 @@
+{
+ "_id": "ZFhwUhijKSXifKDv",
+ "_key": "!items!ZFhwUhijKSXifKDv",
+ "name": "Obscuring Mist",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Self; 20ft-radius cloud centred on you, 1 minute per level. Creatures inside have concealment: attackers have Disadvantage on attack rolls and cannot target them beyond 5ft. Wind of 10 mph halves the duration; 20 mph disperses it in 1 round. It does not move with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Druid",
+   "Witch"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": true,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "10*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "In Obscuring Mist",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 120,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

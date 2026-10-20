@@ -1,0 +1,74 @@
+{
+ "_id": "QXj9BCqiSy38dLbf",
+ "_key": "!items!QXj9BCqiSy38dLbf",
+ "name": "Wind Walk",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+ "system": {
+  "description": "<p>Touch; you and up to 1 other willing creature per three levels within 30ft become vapour for 1 hour per level. Fly 300ft per round, take half damage from nonmagical sources, cannot cast spells or attack, cannot pass airtight barriers. You may revert at will.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid"
+  ],
+  "school": "Divine / Nature",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Wind Walk",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "no.cast",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "speed.fly",
+      "value": "300",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 312,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

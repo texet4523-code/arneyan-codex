@@ -1,0 +1,72 @@
+{
+ "_id": "1vXNZ0etyXglY5JB",
+ "_key": "!items!1vXNZ0etyXglY5JB",
+ "name": "Prismatic Spray",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>60ft cone; roll d8 per creature (Reflex halves damage): 1 red 10d6 fire; 2 orange 10d6 acid; 3 yellow 10d6 lightning; 4 green Fortitude or die (success 10d6 poison); 5 blue Fortitude or turned to stone; 6 indigo Will or Blinded and Frightened for 1 minute; 7 violet Will or banished to another plane; 8 two rays (roll twice, reroll 8s).</p><p class=\"arn-note\">Roll d8 for each creature first: red is fire, orange acid, yellow lightning, and green poison on a successful save.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "",
+  "duration": "",
+  "area": "60ft cone",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half damage (red, orange, yellow); the other colours as listed",
+  "damage": "10d6",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 60,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Prismatic: Petrified",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "petrified"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Prismatic: Blinded and Frightened",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "blinded",
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 330,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

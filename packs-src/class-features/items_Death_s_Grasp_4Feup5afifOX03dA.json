@@ -1,0 +1,59 @@
+{
+ "_id": "4Feup5afifOX03dA",
+ "_key": "!items!4Feup5afifOX03dA",
+ "name": "Death's Grasp",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li><strong>Death's Grasp: Once per day, if reduced to 0 HP or below while</strong> you have at least one undead under your control, immediately stabilise at 1 HP — your army sustains you at the threshold.</li><li>Each undead that contributes to this loses 2d6 HP</li><li>If no undead survive the drain, the ability fails</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Necromancer",
+  "activities": [
+   {
+    "name": "Death's Grasp",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "When reduced to 0 HP or below with undead under your control, stabilise at 1 HP; each contributing undead loses 2d6 HP.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

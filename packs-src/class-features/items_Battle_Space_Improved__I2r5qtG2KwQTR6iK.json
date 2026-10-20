@@ -1,0 +1,81 @@
+{
+ "_id": "I2r5qtG2KwQTR6iK",
+ "_key": "!items!I2r5qtG2KwQTR6iK",
+ "name": "Battle Space (Improved)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<ul><li><strong>Battle Space</strong> (Improved): Your mastery of positioning deepens.</li><li>Once per encounter, when you attack, you also gain the benefit of Dodge until your next turn</li><li>Flank Attack grants advantage on the attack roll and +2 damage</li><li>A Flank Attack also deals +1 damage die</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 17,
+  "className": "Fighter",
+  "activities": [
+   {
+    "name": "Battle Space (Improved)",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "1",
+    "when": "Flank Attack",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "2",
+    "when": "Flank Attack",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Battle Space (Improved): a Flank Attack also deals +1 damage die.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

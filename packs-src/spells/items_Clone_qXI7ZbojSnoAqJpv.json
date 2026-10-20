@@ -1,0 +1,69 @@
+{
+ "_id": "qXI7ZbojSnoAqJpv",
+ "_key": "!items!qXI7ZbojSnoAqJpv",
+ "name": "Clone",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch; one living creature (willing or unconscious); casting takes 8 hours and needs a flesh sample from the creature. A duplicate body grows over 2d4 months, then lies dormant and mindless for 1 year per level before it rots. If the original dies while a finished clone exists, its soul enters the clone at once (any distance, same plane): full HP, 2 levels of Exhaustion, no Constitution loss. A creature can have only one clone. If the soul is trapped or unwilling, the clone stays empty. Material: a sealed vat and reagents worth 5,000 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Necromancer, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Necromancer",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Clone Awakened",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "exhaustion",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 347,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

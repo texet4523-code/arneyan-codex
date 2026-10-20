@@ -1,0 +1,51 @@
+{
+ "_id": "Q2hq0BcRPv8xTRWk",
+ "_key": "!items!Q2hq0BcRPv8xTRWk",
+ "name": "Repulsion",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Self; 30ft radius for 1 round per level. Each creature that tries to approach within 30ft of you, or is inside when cast, must make a Will save or be unable to move closer; those inside are pushed out. Success means it ignores the effect.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 333,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

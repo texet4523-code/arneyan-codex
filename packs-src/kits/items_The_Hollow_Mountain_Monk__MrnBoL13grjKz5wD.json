@@ -1,0 +1,56 @@
+{
+ "_id": "MrnBoL13grjKz5wD",
+ "_key": "!items!MrnBoL13grjKz5wD",
+ "name": "The Hollow Mountain (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>A remote ascetic tradition — hermits who practise in isolation, with no students and no lineage.</p><ul><li><strong>Mountain Communion: </strong>Fast Healing doubles when meditating in a natural outdoor environment for 12 hours. On a turn in which you do not move, your Stun Attack's save DC is 2 higher.</li><li><strong>Unshaken Mind: </strong>Advantage on saves vs mind-affecting effects (stacks with Iron Mind bonus rather than replacing it).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Mountain Communion",
+    "level": 1,
+    "description": "<p>Fast Healing doubles when meditating in a natural outdoor environment for 12 hours. On a turn in which you do not move, your Stun Attack's save DC is 2 higher.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Unshaken Mind",
+    "level": 1,
+    "description": "<p>Advantage on saves vs mind-affecting effects (stacks with Iron Mind bonus rather than replacing it).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs mind-affecting effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

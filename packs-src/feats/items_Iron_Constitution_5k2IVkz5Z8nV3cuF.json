@@ -1,0 +1,44 @@
+{
+ "_id": "5k2IVkz5Z8nV3cuF",
+ "_key": "!items!5k2IVkz5Z8nV3cuF",
+ "name": "Iron Constitution",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Constitution)</em>  Advantage on saving throws against poison and disease. Gain +1 to Constitution (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "ability.con",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs poison and disease",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

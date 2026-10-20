@@ -1,0 +1,73 @@
+{
+ "_id": "Lxnd4a4buGysnMhG",
+ "_key": "!items!Lxnd4a4buGysnMhG",
+ "name": "Silence",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 120ft; 15ft-radius sphere centred on a point or object, 2 rounds per level. No sound is made or passes in: verbal spells cannot be cast inside and creatures inside are Deafened. Centred on an unwilling creature, Will negates, otherwise the sphere stays in place.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Illusionist, Bard, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Illusionist",
+   "Bard",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "15ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": true,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 15,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "2*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Silenced",
+    "target": "target",
+    "rounds": "2*@cl",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Silence: verbal spells cannot be cast inside.",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 130,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

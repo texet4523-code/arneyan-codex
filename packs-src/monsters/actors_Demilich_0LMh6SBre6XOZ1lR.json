@@ -1,0 +1,361 @@
+{
+ "_id": "0LMh6SBre6XOZ1lR",
+ "_key": "!actors!0LMh6SBre6XOZ1lR",
+ "name": "Demilich",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 18,
+  "hd": "20d4",
+  "attributes": {
+   "hp": {
+    "value": 190,
+    "max": 190,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "0ft, fly 30ft (hover)",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 12,
+   "ref": 12,
+   "will": 12
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "slashing 10, piercing 10, bludgeoning 10, fire 10, cold 10, lightning 10, thunder 10, acid 10, necrotic 10",
+   "immunities": "poison, condition:charmed, condition:frightened, psychic, non-magical, condition:paralysed, condition:petrified, condition:poisoned, condition:stunned, condition:prone",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny undead</em></p><p><strong>GM:</strong> What is left of a lich that kept its phylactery too long: a skull, a handful of dust and a hunger for souls. It is the deadliest trap in the dungeon, and it looks like treasure.</p>",
+   "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm, fear and psychic damage, and to damage from non-magical weapons. Resistance 10 to all other damage except force and radiant. Cannot be @Condition[paralysed]{Paralysed}, @Condition[petrified]{Petrified}, @Condition[poisoned]{Poisoned}, @Condition[stunned]{Stunned} or knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "82lr4W8BHROqtZjE",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.82lr4W8BHROqtZjE",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Avoidance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>On a successful save against an effect that deals half damage on a success, it takes none.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XlvQMfdruG0l3Sxq",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.XlvQMfdruG0l3Sxq",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Howl",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, every creature within 30ft that can hear it makes a @Check[fort|dc:22]{Fortitude save DC 22} or drops to 0 HP. A creature that saves is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "yaFpedrQnQWNwLfR",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.yaFpedrQnQWNwLfR",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Life Drain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>As an action, up to three creatures within 10ft make a @Check[fort|dc:22]{Fortitude save DC 22} or take @Damage[6d6 necrotic]{6d6 necrotic damage}, and the demilich regains the total. This is also its second action each round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 22,
+    "damage": "6d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bsF7TUxGWWSKLzbY",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.bsF7TUxGWWSKLzbY",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Trap Soul",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it targets one creature within 30ft: @Check[will|dc:22]{Will save DC 22} or its soul is pulled into one of the gems in the demilich's skull, and its body crumbles. A soul trapped for 24 hours is devoured; breaking the gem before then frees it, and @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} or @UUID[Compendium.arneyan.spells.Item.8XhTI839UkXWg4Sr]{true resurrection} can return it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "otEZPx1lJsRBKOco",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.otEZPx1lJsRBKOco",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rouse",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>The skull rests, apparently harmless, until a creature disturbs its treasure or lair; then it rises.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Vdg2660bcQLa2TUG",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.Vdg2660bcQLa2TUG",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YftwJEl7nW0FpIH3",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.YftwJEl7nW0FpIH3",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Demilich",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-hooded-figure.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

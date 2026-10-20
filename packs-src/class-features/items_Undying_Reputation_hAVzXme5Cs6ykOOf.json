@@ -1,0 +1,75 @@
+{
+ "_id": "hAVzXme5Cs6ykOOf",
+ "_key": "!items!hAVzXme5Cs6ykOOf",
+ "name": "Undying Reputation",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>The Knight's name alone precedes them. Once per week, when reduced below half HP in combat witnessed by at least one ally or enemy, immediately gain temporary HP equal to Charisma modifier × Knight level and Advantage on your first attack roll each round until the end of the encounter — legend refuses to let the Knight fall quietly.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "week"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 24,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Undying Reputation",
+    "kind": "temp",
+    "formula": "@cha.mod*@cl",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times Knight level and Advantage on your first attack each round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Undying Reputation",
+    "target": "self",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 18,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

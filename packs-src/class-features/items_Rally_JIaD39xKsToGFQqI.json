@@ -1,0 +1,59 @@
+{
+ "_id": "JIaD39xKsToGFQqI",
+ "_key": "!items!JIaD39xKsToGFQqI",
+ "name": "Rally",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per day, while performing, allow all creatures within earshot to re-save against any fear or morale effect currently affecting them — even if they previously failed.</li><li>Those who succeed do not suffer from that fear source for rounds equal to Bard's level</li><li>Extreme circumstances — Bard's death, army collapse, deity manifestation — may allow the GM to call for a new save to maintain the rally</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 18,
+  "className": "Bard",
+  "activities": [
+   {
+    "name": "Rally",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "While performing, all creatures within earshot may re-save against any fear or morale effect affecting them.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

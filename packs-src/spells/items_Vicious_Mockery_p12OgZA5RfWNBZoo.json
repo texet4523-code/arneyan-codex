@@ -1,0 +1,67 @@
+{
+ "_id": "p12OgZA5RfWNBZoo",
+ "_key": "!items!p12OgZA5RfWNBZoo",
+ "name": "Vicious Mockery",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature that can hear you. Deals 1d4 psychic damage (+1 die at 5th, 11th and 17th level) and gives it Disadvantage on its next attack roll before the end of its next turn; Will negates both.</p><p class=\"arn-note\"><strong>Classes:</strong> Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "Bard",
+  "classes": [
+   "Bard"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damageType": "psychic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Mocked",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 30,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

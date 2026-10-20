@@ -1,0 +1,83 @@
+{
+ "_id": "uzTVKFGxLfvrgxXz",
+ "_key": "!items!uzTVKFGxLfvrgxXz",
+ "name": "Otto's Irresistible Dance",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature. Will negates. On a failure it dances for 1d4+2 rounds with no repeat save: it is Incapacitated apart from dancing, moves only as the dance compels, automatically fails Reflex saves, has -6 AC, and attacks against it have Advantage. Damage does not end the spell.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Witch"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Irresistible Dance",
+    "target": "target",
+    "rounds": "1d4+2",
+    "statuses": [
+     "incapacitated"
+    ],
+    "rules": [
+     {
+      "key": "fail.save.ref",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ac",
+      "value": "-6",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.against",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 362,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

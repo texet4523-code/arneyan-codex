@@ -1,0 +1,59 @@
+{
+ "_id": "Hn7B5bjkQcablalR",
+ "_key": "!items!Hn7B5bjkQcablalR",
+ "name": "Corruption",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Whenever you choose the free route to Metamagic through Wild Surge (below) rather than paying with Spellburn, the GM rolls d20 in secret on the Corruption Table — a GM-only resource players never see. A result of 1 triggers a Major Corruption event. A result of 2-20 triggers a Minor Corruption effect — these can be cosmetic, beneficial, or detrimental.</li><li>The player knows something has shifted but not what the table said</li><li>Minor Corruption (GM only): a d20 result of 2–20.</li><li>Major Corruption (GM only): on a result of 1, roll a d6.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Sorcerer",
+  "activities": [
+   {
+    "name": "Corruption roll",
+    "kind": "roll",
+    "formula": "1d20",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll. 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "gm",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "MF2Pc4Xye7PGm0jJ",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

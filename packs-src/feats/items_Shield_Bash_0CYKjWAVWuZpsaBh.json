@@ -1,0 +1,66 @@
+{
+ "_id": "0CYKjWAVWuZpsaBh",
+ "_key": "!items!0CYKjWAVWuZpsaBh",
+ "name": "Shield Bash",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>Snap your shield forward, a solid crack to the ribs or jaw. Once per round, when you hit a creature no more than one size larger than you with a melee attack while holding a shield, slam the shield in as part of the same attack. The target makes a Fortitude save (DC = 10 + half your level (minimum 1) + your Strength modifier) or is knocked Prone.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "activities": [
+   {
+    "name": "Shield Bash",
+    "kind": "save",
+    "formula": "10 + @half + @str.mod",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save or knocked Prone.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Shield Bash",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

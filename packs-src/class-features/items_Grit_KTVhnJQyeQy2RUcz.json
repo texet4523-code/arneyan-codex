@@ -1,0 +1,32 @@
+{
+ "_id": "KTVhnJQyeQy2RUcz",
+ "_key": "!items!KTVhnJQyeQy2RUcz",
+ "name": "Grit",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per day, when reduced to 0 HP or below, make a Fortitude save, DC = 10 + damage taken above 0 HP. On a success, remain at 1 HP and stay conscious.</li><li>Gains a second use per day at 10th level</li><li>Gains a third use per day at 20th level</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "fort",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Gunslinger"
+ },
+ "effects": [],
+ "folder": "CQq9CSkBWcsx4eIg",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

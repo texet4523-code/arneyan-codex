@@ -1,0 +1,62 @@
+{
+ "_id": "VzoYyTKhNgBr58NG",
+ "_key": "!items!VzoYyTKhNgBr58NG",
+ "name": "The Black Street (Swashbuckler)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<p>Street-fighting swashbuckling — broken bottles, stolen coins, fighting dirty with style.</p><ul><li><strong>Anything Goes: </strong>Disarming Strike can target any held item (flask, key, document, pouch) not just weapons. No save if the Swashbuckler's attack roll exceeds the target's AC by 5 or more.</li><li><strong>Underclass Instinct: </strong>Advantage on checks blending into underclass environments, on checks selling stolen goods, and on Deception against guards.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Swashbuckler",
+  "features": [
+   {
+    "name": "Anything Goes",
+    "level": 1,
+    "description": "<p>Disarming Strike can target any held item (flask, key, document, pouch) not just weapons. No save if the Swashbuckler's attack roll exceeds the target's AC by 5 or more.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Underclass Instinct",
+    "level": 1,
+    "description": "<p>Advantage on checks blending into underclass environments, on checks selling stolen goods, and on Deception against guards.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "blending into underclass environments; selling stolen goods",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Deception against guards",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "IkYCqysRRuv3HKfH",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

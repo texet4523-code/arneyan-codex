@@ -1,0 +1,45 @@
+{
+ "_id": "Nex4UELjP2glRKa4",
+ "_key": "!items!Nex4UELjP2glRKa4",
+ "name": "Deity: Brigh (The Crafted Turn) (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> Advantage on Craft and Smith checks. Once/day: repair a broken weapon or armour to full functionality instantly. Once per encounter, as part of your action, temper an ally's weapon or armour by touch: +1 to hit or +1 AC for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Brigh)",
+    "level": 1,
+    "description": "<p>Advantage on Craft and Smith checks. Once/day: repair a broken weapon or armour to full functionality instantly. Once per encounter, as part of your action, temper an ally's weapon or armour by touch: +1 to hit or +1 AC for 1 minute.</p><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Craft and Smith",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

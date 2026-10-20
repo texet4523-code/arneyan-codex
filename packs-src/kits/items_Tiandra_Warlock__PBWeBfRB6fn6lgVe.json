@@ -1,0 +1,79 @@
+{
+ "_id": "PBWeBfRB6fn6lgVe",
+ "_key": "!items!PBWeBfRB6fn6lgVe",
+ "name": "Tiandra (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Queen of the Summer Court. Warmth that can become burning in an instant.</p><ul><li><strong>Dark Gift</strong> (1st): Warm light emanates from you when you cast — no shadows form within 10ft. Once per day, choose the worst possible outcome when a creature within 30ft fails a save rather than rolling.</li><li><strong>Patron's Mark</strong> (6th): Passive: fey creatures, animals, and plants react positively to your presence — animals never attack you first, and fey creatures treat you as a known and respected figure until you give them reason not to.</li><li><strong>Patron Feature</strong> (12th): Once per day, impose Summer's Blessing or Summer's Wrath on one creature within 60ft. Blessing: the target regains HP up to its maximum (no save). Wrath: Str and Dex reduced by 2 for 1 minute (target makes the relevant save against your Class Save DC).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Warm light emanates from you when you cast — no shadows form within 10ft. Once per day, choose the worst possible outcome when a creature within 30ft fails a save rather than rolling.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Passive: fey creatures, animals, and plants react positively to your presence — animals never attack you first, and fey creatures treat you as a known and respected figure until you give them reason not to.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, impose Summer's Blessing or Summer's Wrath on one creature within 60ft. Blessing: the target regains HP up to its maximum (no save). Wrath: Str and Dex reduced by 2 for 1 minute (target makes the relevant save against your Class Save DC).</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "applies": [
+     {
+      "name": "Summer's Wrath",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ability.str",
+        "value": "-2",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "ability.dex",
+        "value": "-2",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

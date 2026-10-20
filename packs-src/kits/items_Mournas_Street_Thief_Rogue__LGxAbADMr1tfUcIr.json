@@ -1,0 +1,66 @@
+{
+ "_id": "LGxAbADMr1tfUcIr",
+ "_key": "!items!LGxAbADMr1tfUcIr",
+ "name": "Mournas Street Thief (Rogue)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li>Grew up stealing to survive in Mournas's crowded lower districts — not a guild member, not a hitman, just someone who learned the city's pockets before they learned to read. The streets of Mournas are a better education than most.</li><li><strong>Crowd Work: </strong>Advantage on Pick Pocket and sleight-of-hand checks in crowds, markets, or any busy urban environment. In combat, you may attempt Pick Pocket on an adjacent creature as part of an attack, taking one unsecured item (pouch, potion, scroll or wand) on a success.</li><li><strong>Back Alley Economics: </strong>Advantage on checks fencing stolen goods in Mournas, identifying what something is worth on the black market, and navigating the city's back streets and shortcuts.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Rogue",
+  "features": [
+   {
+    "name": "Crowd Work",
+    "level": 1,
+    "description": "<p>Advantage on Pick Pocket and sleight-of-hand checks in crowds, markets, or any busy urban environment. In combat, you may attempt Pick Pocket on an adjacent creature as part of an attack, taking one unsecured item (pouch, potion, scroll or wand) on a success.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Pick Pocket and Sleight of Hand in crowds, markets or busy streets",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Back Alley Economics",
+    "level": 1,
+    "description": "<p>Advantage on checks fencing stolen goods in Mournas, identifying what something is worth on the black market, and navigating the city's back streets and shortcuts.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "fencing stolen goods in Mournas, black-market valuation, navigating its back streets",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "UwZ81OhImTwueZ4z",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

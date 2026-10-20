@@ -1,0 +1,42 @@
+{
+ "_id": "fAbmGByYrE4Mwp6V",
+ "_key": "!items!fAbmGByYrE4Mwp6V",
+ "name": "Blessed Weapon",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your weapon counts as magical for overcoming resistance, and deals an extra 1d6 radiant damage against evil creatures.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 8,
+  "className": "Paladin",
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+1d6",
+    "when": "vs evil creatures (radiant)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

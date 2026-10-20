@@ -1,0 +1,69 @@
+{
+ "_id": "Md9uTtThyg8fwLWT",
+ "_key": "!items!Md9uTtThyg8fwLWT",
+ "name": "Expeditious Retreat",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Self; 1 minute per level. Your speed doubles. You can still take an action each round.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Expeditious Retreat",
+    "target": "self",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 52,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

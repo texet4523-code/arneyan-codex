@@ -1,0 +1,284 @@
+{
+ "_id": "IzL7D89bZu3IP3qd",
+ "_key": "!actors!IzL7D89bZu3IP3qd",
+ "name": "Redcap",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fey",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d20",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small fey</em></p><p><strong>GM:</strong> A murderous creature of border ruins. A redcap lives by killing someone each month.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Iron scythe",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d4+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GYbakofkiBTkaVkI",
+   "_key": "!actors.items!IzL7D89bZu3IP3qd.GYbakofkiBTkaVkI",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Thrown dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "30ft",
+    "magic": 0,
+    "attackBonus": -1,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DdKShELKdrSyNcVy",
+   "_key": "!actors.items!IzL7D89bZu3IP3qd.DdKShELKdrSyNcVy",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blood-soaked Cap",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Its cap must stay wet with fresh blood. If it dries, the redcap becomes Weakened (Disadvantage on attack rolls) until it is soaked again.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "A3MDZvpsZ6BIex2C",
+   "_key": "!actors.items!IzL7D89bZu3IP3qd.A3MDZvpsZ6BIex2C",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Iron Boots",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Its kick deals 1d6+2 damage and the target makes a @Check[fort|dc:12]{Fortitude save DC 12} or falls @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "1d6+2",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LDYfB9vQhCvBJoBE",
+   "_key": "!actors.items!IzL7D89bZu3IP3qd.LDYfB9vQhCvBJoBE",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vicious Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, it moves 20ft and slashes for +1d6 damage on a hit.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JutkyWUTtQ5T03Nv",
+   "_key": "!actors.items!IzL7D89bZu3IP3qd.JutkyWUTtQ5T03Nv",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Redcap",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-fairy.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

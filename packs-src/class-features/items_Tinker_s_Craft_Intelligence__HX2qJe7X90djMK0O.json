@@ -1,0 +1,69 @@
+{
+ "_id": "HX2qJe7X90djMK0O",
+ "_key": "!items!HX2qJe7X90djMK0O",
+ "name": "Tinker's Craft (Intelligence)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>The shared skill of building, repairing, identifying, and jury-rigging mechanisms and minor magic items. Bonus to the check scales with level: +1 at 1st, +2 at 5th, +3 at 9th, +4 at 13th, +5 at 17th, +6 at 21st.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Artificer",
+  "activities": [
+   {
+    "name": "Tinker's Craft",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "int",
+    "save": "",
+    "text": "Build, repair, identify or jury-rig a mechanism or minor magic item, adding the level-based Tinker's Craft bonus.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "skill",
+    "value": "floor((@cl+3)/4)",
+    "when": "Tinker's Craft",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ofiaDfJduV79XS9O",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,283 @@
+{
+ "_id": "CO0DTDkwqcI2lGHK",
+ "_key": "!actors!CO0DTDkwqcI2lGHK",
+ "name": "Mummy",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "7d12",
+  "attributes": {
+   "hp": {
+    "value": 45,
+    "max": 45,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "20ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "non-magical 5",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "fire",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A tomb guardian wrapped in funerary linen. Torches are the standard answer to it.</p>",
+   "treasure": "<p>Treasure type <strong>lair B</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Rotting fist",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PiB0NvXfL6IW4zLh",
+   "_key": "!actors.items!CO0DTDkwqcI2lGHK.PiB0NvXfL6IW4zLh",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GH6IjknbxsaJvRYu",
+   "_key": "!actors.items!CO0DTDkwqcI2lGHK.GH6IjknbxsaJvRYu",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dreadful Glare",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "<p>Once per round, one creature within 60ft that can see the mummy makes a @Check[will|dc:14]{Will save DC 14} or is frightened and paralysed for 1 round. A creature that saves is immune for 24 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7etatMHRQmhOzD7z",
+   "_key": "!actors.items!CO0DTDkwqcI2lGHK.7etatMHRQmhOzD7z",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mummy Rot",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "<p>A creature hit by its fist makes a @Check[fort|dc:16]{Fortitude save DC 16} or cannot regain HP, and gains 1 level of Exhaustion each day until the curse is lifted.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "yW9IdodrI8nZ6ocL",
+   "_key": "!actors.items!CO0DTDkwqcI2lGHK.yW9IdodrI8nZ6ocL",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Vulnerability",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire. Resistance 5 against non-magical weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "q6s8BdWvA4HKuRBD",
+   "_key": "!actors.items!CO0DTDkwqcI2lGHK.q6s8BdWvA4HKuRBD",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Mummy",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mummy-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

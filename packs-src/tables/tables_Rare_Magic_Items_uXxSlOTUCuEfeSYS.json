@@ -1,0 +1,79 @@
+{
+ "_id": "uXxSlOTUCuEfeSYS",
+ "_key": "!tables!uXxSlOTUCuEfeSYS",
+ "name": "Rare Magic Items",
+ "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+ "description": "<p>Where a hoard gives an Rare item, roll here or choose one. A hoard's items should not all be useless to the party.</p>",
+ "results": [
+  {
+   "_id": "SwY5ENjWatFsgG3Z",
+   "_key": "!tables.results!uXxSlOTUCuEfeSYS.SwY5ENjWatFsgG3Z",
+   "type": "text",
+   "name": "A weapon +2",
+   "description": "A weapon +2",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 2,
+   "range": [
+    1,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "R8FcqNSd0uIIlcu6",
+   "_key": "!tables.results!uXxSlOTUCuEfeSYS.R8FcqNSd0uIIlcu6",
+   "type": "text",
+   "name": "Armour +2, or a shield +2",
+   "description": "Armour +2, or a shield +2",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    3,
+    3
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "qICe7mSjRU7P78uU",
+   "_key": "!tables.results!uXxSlOTUCuEfeSYS.qICe7mSjRU7P78uU",
+   "type": "text",
+   "name": "1d2 Spell Scrolls, each of 3rd or 4th level",
+   "description": "1d2 Spell Scrolls, each of 3rd or 4th level",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    4,
+    4
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "exLxyMsEvQcap9RG",
+   "_key": "!tables.results!uXxSlOTUCuEfeSYS.exLxyMsEvQcap9RG",
+   "type": "document",
+   "name": "An Iconic Rare item",
+   "description": "",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 6,
+   "range": [
+    5,
+    10
+   ],
+   "drawn": false,
+   "flags": {},
+   "documentUuid": "Compendium.arneyan.tables.RollTable.gKcQh28JeBpUkojm"
+  }
+ ],
+ "formula": "1d10",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "czgc81NnPVhoPFiz",
+ "sort": 101000,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

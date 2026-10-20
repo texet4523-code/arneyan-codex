@@ -1,0 +1,73 @@
+{
+ "_id": "pDMhbaFF12j7hazg",
+ "_key": "!items!pDMhbaFF12j7hazg",
+ "name": "Staff of Healing",
+ "type": "equipment",
+ "img": "systems/arneyan/assets/icons/magic-fairy-wand.svg",
+ "system": {
+  "description": "<p>10 charges. 1 charge casts Cure Light Wounds, 2 charges casts Neutralise Poison, 3 charges casts Remove Disease. Cast as a 5th-level caster.</p><p>Rarity: Rare</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 2.0,
+  "price": "4,000 gp",
+  "equipped": false,
+  "bundle": 0,
+  "ammoType": "",
+  "container": {
+   "holds": false,
+   "capacity": 0,
+   "weightless": false,
+   "extradimensional": false
+  },
+  "consumable": {
+   "use": false,
+   "heal": ""
+  },
+  "charges": {
+   "value": 10,
+   "max": 10,
+   "recharge": "1d4",
+   "crumble": true
+  },
+  "light": {
+   "bright": 0,
+   "dim": 0,
+   "hours": 0,
+   "lit": false,
+   "litAt": 0,
+   "angle": 360
+  },
+  "scroll": {
+   "spell": null,
+   "cl": 0,
+   "dc": 0
+  },
+  "itemSpells": [
+   {
+    "name": "Cure Light Wounds",
+    "cost": 1
+   },
+   {
+    "name": "Neutralise Poison",
+    "cost": 2
+   },
+   {
+    "name": "Remove Disease",
+    "cost": 3
+   }
+  ],
+  "castLevel": 5,
+  "nonCasterCl": 0,
+  "nonCasterDc": 0
+ },
+ "effects": [],
+ "folder": "IOKtvGsk7HnKBVRb",
+ "sort": 509,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

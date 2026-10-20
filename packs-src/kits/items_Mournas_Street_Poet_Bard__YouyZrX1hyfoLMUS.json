@@ -1,0 +1,56 @@
+{
+ "_id": "YouyZrX1hyfoLMUS",
+ "_key": "!items!YouyZrX1hyfoLMUS",
+ "name": "Mournas Street Poet (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<p>A voice of the underclass — satirists, protest singers, broadsheet writers. Art as disruption.</p><ul><li><strong>Hostile Crowd: </strong>Sway Crowd works even against actively hostile crowds if the Bard can perform for at least 1 round uninterrupted. When a creature fails its save against your Discord, one ally who can hear you has Advantage on their next attack roll against it.</li><li><strong>Underground Voice: </strong>Advantage on Legend Lore checks involving Mournas's criminal history, underground movements, or the Rebellion.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "Hostile Crowd",
+    "level": 1,
+    "description": "<p>Sway Crowd works even against actively hostile crowds if the Bard can perform for at least 1 round uninterrupted. When a creature fails its save against your Discord, one ally who can hear you has Advantage on their next attack roll against it.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Underground Voice",
+    "level": 1,
+    "description": "<p>Advantage on Legend Lore checks involving Mournas's criminal history, underground movements, or the Rebellion.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Legend Lore on Mournas's criminal history, underground movements or the Rebellion",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

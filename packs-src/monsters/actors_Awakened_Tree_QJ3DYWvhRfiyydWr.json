@@ -1,0 +1,283 @@
+{
+ "_id": "QJ3DYWvhRfiyydWr",
+ "_key": "!actors!QJ3DYWvhRfiyydWr",
+ "name": "Awakened Tree",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 6,
+  "hd": "4d12",
+  "attributes": {
+   "hp": {
+    "value": 26,
+    "max": 26,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "20ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d20",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "fire",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge plant</em></p><p><strong>GM:</strong> A guardian of a druid's grove or a faerie circle. Fire is the surest way to bring it down.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6+5",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gqcGtfEo8Qrcc2Cc",
+   "_key": "!actors.items!QJ3DYWvhRfiyydWr.gqcGtfEo8Qrcc2Cc",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>While motionless, indistinguishable from an ordinary tree.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jWsRnXSuYcOYeDkU",
+   "_key": "!actors.items!QJ3DYWvhRfiyydWr.jWsRnXSuYcOYeDkU",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Siege Monster",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Deals double damage to objects and structures.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "za8avDg5baQ7nXpN",
+   "_key": "!actors.items!QJ3DYWvhRfiyydWr.za8avDg5baQ7nXpN",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fire Vulnerability",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sFmSFEWEou3eNZ4Y",
+   "_key": "!actors.items!QJ3DYWvhRfiyydWr.sFmSFEWEou3eNZ4Y",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rooted Fury",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as part of its action, it slams the ground. Each creature within 10ft makes a @Check[ref|dc:16]{Reflex save DC 16} or is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "JuH76Y64YxRUg0Il",
+   "_key": "!actors.items!QJ3DYWvhRfiyydWr.JuH76Y64YxRUg0Il",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Awakened Tree",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vine-whip.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

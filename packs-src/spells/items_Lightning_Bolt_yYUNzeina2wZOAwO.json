@@ -1,0 +1,53 @@
+{
+ "_id": "yYUNzeina2wZOAwO",
+ "_key": "!items!yYUNzeina2wZOAwO",
+ "name": "Lightning Bolt",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Self; 100ft line, 5ft wide. 1d6 lightning damage per level (max 10d6); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "100ft line, 5ft wide",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 10))d6",
+  "damageType": "lightning",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "line",
+   "size": 100,
+   "width": 5,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 163,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

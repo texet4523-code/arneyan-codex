@@ -1,0 +1,78 @@
+{
+ "_id": "XUiByAKIE5aXn0aM",
+ "_key": "!items!XUiByAKIE5aXn0aM",
+ "name": "Deity: Tiamat (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> Advantage on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +1d6 damage of that type.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Tiamat)",
+    "level": 1,
+    "description": "<p>Advantage on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +1d6 damage of that type.</p><p><strong>Favoured weapon:</strong> Pick, Heavy</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Smite: your type (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "With your Smite: +1d6 of the type you chose at 1st level (acid, cold, fire, lightning or poison).",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Tiamat: your Smite deals +1d6 damage of your chosen type.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 26,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

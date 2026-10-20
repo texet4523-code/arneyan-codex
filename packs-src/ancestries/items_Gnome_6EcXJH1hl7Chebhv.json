@@ -1,0 +1,109 @@
+{
+ "_id": "6EcXJH1hl7Chebhv",
+ "_key": "!items!6EcXJH1hl7Chebhv",
+ "name": "Gnome",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Small • Speed 25ft • Darkvision 60ft • +2 Int / +1 Dex, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on Will saves vs magic.</li><li><strong>Chosen Expertise:</strong> Advantage on all checks with one chosen skill/craft, including building, repairing, or identifying small mechanical devices even outside that skill.</li><li><strong>Advantage</strong> on Intelligence checks to solve a puzzle/riddle/mechanism under time pressure.</li><li><strong>Advantage</strong> on checks to hide or squeeze through tight spaces despite encumbrance.</li><li><strong>Clever Fallback:</strong> 1/long rest, reroll any one failed Intelligence check (1 Luck for a second use).</li><li><strong>Weapon training:</strong> dagger, light hammer, hand crossbow, sling.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>Tariel Gnome:</strong> Charisma-themed, Advantage on Charisma checks towards human communities, Advantage on trade/craft-commission/small-business checks.</li><li><strong>Mournas Gnome:</strong> Constitution-themed, Advantage on saves vs frightened, Advantage on checks involving Mournas civic structure/remembrance/community organising.</li><li><strong>Veradyna Gnome:</strong> Wisdom-themed, Advantage on Survival/Stealth within Veradyna's wilderness, Advantage on checks navigating/understanding Veradyna's native political landscape.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "small",
+  "speed": 25,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Int / +1 Dex, −1 Str",
+  "bonuses": {
+   "int": 2,
+   "dex": 1,
+   "str": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Advantage on Will saves vs magic",
+    "text": "Advantage on Will saves vs magic."
+   },
+   {
+    "name": "Chosen Expertise",
+    "text": "Advantage on all checks with one chosen skill/craft, including building, repairing, or identifying small mechanical devices even outside that skill."
+   },
+   {
+    "name": "Advantage on Intelligence checks to solve a…",
+    "text": "Advantage on Intelligence checks to solve a puzzle/riddle/mechanism under time pressure."
+   },
+   {
+    "name": "Advantage on checks to hide or squeeze…",
+    "text": "Advantage on checks to hide or squeeze through tight spaces despite encumbrance."
+   },
+   {
+    "name": "Clever Fallback",
+    "text": "1/long rest, reroll any one failed Intelligence check (1 Luck for a second use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "dagger, light hammer, hand crossbow, sling."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "Tariel Gnome",
+     "text": "Charisma-themed, Advantage on Charisma checks towards human communities, Advantage on trade/craft-commission/small-business checks.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Mournas Gnome",
+     "text": "Constitution-themed, Advantage on saves vs frightened, Advantage on checks involving Mournas civic structure/remembrance/community organising.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Veradyna Gnome",
+     "text": "Wisdom-themed, Advantage on Survival/Stealth within Veradyna's wilderness, Advantage on checks navigating/understanding Veradyna's native political landscape.",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "adv.save.will",
+    "value": "1",
+    "when": "vs magic",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "skill chosen for Chosen Expertise",
+    "label": ""
+   },
+   {
+    "key": "adv.check.int",
+    "value": "1",
+    "when": "to solve a puzzle, riddle or mechanism under time pressure",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to hide or squeeze through tight spaces",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

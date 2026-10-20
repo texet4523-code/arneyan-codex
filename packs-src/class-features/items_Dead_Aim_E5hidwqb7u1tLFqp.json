@@ -1,0 +1,75 @@
+{
+ "_id": "E5hidwqb7u1tLFqp",
+ "_key": "!items!E5hidwqb7u1tLFqp",
+ "name": "Dead Aim",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Spend 2 rounds aiming without moving — full concentration, no other actions. The next shot this combat gains advantage AND deals +2d6 bonus damage.</li><li>If interrupted while aiming, the bonus is lost but the rounds are not wasted</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Gunslinger",
+  "activities": [
+   {
+    "name": "Dead Aim",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +2d6 damage.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "adv.attack.ranged",
+    "value": "1",
+    "when": "next shot after 2 rounds of Dead Aim",
+    "label": ""
+   },
+   {
+    "key": "damage.ranged",
+    "value": "+2d6",
+    "when": "next shot after 2 rounds of Dead Aim",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "CQq9CSkBWcsx4eIg",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

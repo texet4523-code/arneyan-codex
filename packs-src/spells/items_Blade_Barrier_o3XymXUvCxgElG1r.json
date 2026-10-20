@@ -1,0 +1,51 @@
+{
+ "_id": "o3XymXUvCxgElG1r",
+ "_key": "!items!o3XymXUvCxgElG1r",
+ "name": "Blade Barrier",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 90ft. Creates a wall of whirling blades, 60ft long, 20ft high and 5ft thick (or a ring of 20ft radius), for 1 round per level. A creature that enters it or starts its turn in it takes 1d6 slashing damage per level (max 15d6); Reflex halves. The wall blocks line of sight.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 90ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 15))d6",
+  "damageType": "slashing",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 283,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

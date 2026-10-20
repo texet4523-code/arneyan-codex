@@ -1,0 +1,81 @@
+{
+ "_id": "hKa4zuGE3Wqlu9jX",
+ "_key": "!items!hKa4zuGE3Wqlu9jX",
+ "name": "Shield",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Self; 1 round per level. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer",
+   "Magus"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Shield",
+    "target": "self",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac",
+      "value": "2",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ac",
+      "value": "2",
+      "when": "vs ranged attacks (+4 total)",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "spell:Magic Missile",
+      "when": "",
+      "label": "Shield"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 76,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

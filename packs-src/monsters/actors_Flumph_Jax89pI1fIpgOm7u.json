@@ -1,0 +1,252 @@
+{
+ "_id": "Jax89pI1fIpgOm7u",
+ "_key": "!actors!Jax89pI1fIpgOm7u",
+ "name": "Flumph",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 0,
+  "hd": "2d6",
+  "attributes": {
+   "hp": {
+    "value": 7,
+    "max": 7,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "5ft, fly 30ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 5
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "½",
+   "page": 0,
+   "description": "<p><em>Small aberration</em></p><p><strong>GM:</strong> A floating jellyfish-sage that feeds on psychic leftovers and gossips about the minds it tastes. It will warn kind travellers of what lurks deeper.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tendrils",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d4",
+      "type": "acid",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kLIkxfLlCATiwozM",
+   "_key": "!actors.items!Jax89pI1fIpgOm7u.kLIkxfLlCATiwozM",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Telepathic Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Reads the surface thoughts and moods of creatures within 60ft, and can share them by thought.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VOhPM0ArRoBUecac",
+   "_key": "!actors.items!Jax89pI1fIpgOm7u.VOhPM0ArRoBUecac",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stench Spray",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, it sprays a 15ft cone of reeking fluid. Creatures in it make a @Check[ref|dc:10]{Reflex save DC 10} or stink for 1 hour; any creature within 5ft of a stinking creature is @Condition[poisoned]{Poisoned} while it stays there.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 10,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aD8XA8ugTtbUmwjy",
+   "_key": "!actors.items!Jax89pI1fIpgOm7u.aD8XA8ugTtbUmwjy",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Prone Deficiency",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>If knocked prone it lands on its back and is @Condition[incapacitated]{Incapacitated} until a creature rights it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RedA8qv2FfhEza9E",
+   "_key": "!actors.items!Jax89pI1fIpgOm7u.RedA8qv2FfhEza9E",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Flumph",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

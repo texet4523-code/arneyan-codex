@@ -1,0 +1,56 @@
+{
+ "_id": "C40ePAoIJ813ZscO",
+ "_key": "!items!C40ePAoIJ813ZscO",
+ "name": "Knights of Holfast (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The military knighthood of Holfast — disciplined, loyal to their kingdom, steeped in the traditions of mounted warfare and formal combat doctrine.</p><ul><li><strong>Triple Strike: </strong>Honour Attack damage bonus increases — triples the weapon's damage dice instead of doubling them (flat modifiers are not tripled).</li><li><strong>The Order's Name: </strong>Advantage on Persuasion and Intimidation checks when invoking the Order's name in Holfast or dealing with other formally recognised knightly orders.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Triple Strike",
+    "level": 1,
+    "description": "<p>Honour Attack damage bonus increases — triples the weapon's damage dice instead of doubling them (flat modifiers are not tripled).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "The Order's Name",
+    "level": 1,
+    "description": "<p>Advantage on Persuasion and Intimidation checks when invoking the Order's name in Holfast or dealing with other formally recognised knightly orders.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion and Intimidation when invoking the Order's name in Holfast or with recognised knightly orders",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

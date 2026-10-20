@@ -1,0 +1,49 @@
+{
+ "_id": "jUGmQcUzb7bbfz48",
+ "_key": "!items!jUGmQcUzb7bbfz48",
+ "name": "Attribute Bonus",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<ul><li><strong>Attribute Bonus: </strong>Gain a permanent +1 to either Strength or Dexterity.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 19,
+  "className": "Fighter",
+  "rules": [
+   {
+    "key": "ability.str",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "abilityChoice": {
+   "options": [
+    "str",
+    "dex"
+   ],
+   "value": ""
+  }
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

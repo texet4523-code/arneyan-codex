@@ -1,0 +1,209 @@
+{
+ "_id": "9zbOXYwnkyzL33ib",
+ "_key": "!actors!9zbOXYwnkyzL33ib",
+ "name": "Beholder Zombie",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "8d10",
+  "attributes": {
+   "hp": {
+    "value": 44,
+    "max": 44,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "0ft, fly 20ft (hover)",
+   "attack": 11,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "poison, condition:charmed, condition:frightened, condition:prone",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> A dead eye-tyrant raised as a servant, its central eye dark. Its remaining rays go off at random, which makes it worse, not better.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Wdabr8OWsPX70DRG",
+   "_key": "!actors.items!9zbOXYwnkyzL33ib.Wdabr8OWsPX70DRG",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear. Cannot be knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bDGQjS0xsleGLMaI",
+   "_key": "!actors.items!9zbOXYwnkyzL33ib.bDGQjS0xsleGLMaI",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Eye Ray",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
+   "system": {
+    "description": "<p>Once per round, as part of its action, it fires one random ray at a creature within 60ft (roll 1d4): 1 paralysing (@Check[fort|dc:13]{Fortitude DC 13} or @Condition[paralysed]{Paralysed} for 1 minute, repeating the save each turn); 2 fear (@Check[will|dc:13]{Will DC 13} or @Condition[frightened]{Frightened} for 1 minute); 3 enervation (@Check[fort|dc:13]{Fortitude DC 13} for half of @Damage[4d8 necrotic]{4d8 necrotic damage}); 4 disintegration (@Check[ref|dc:13]{Reflex DC 13} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to 0 HP is turned to dust).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "4d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "u82w9EOD8NtMzVDY",
+   "_key": "!actors.items!9zbOXYwnkyzL33ib.u82w9EOD8NtMzVDY",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Beholder Zombie",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-shambling-zombie.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

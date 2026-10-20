@@ -1,0 +1,94 @@
+{
+ "_id": "wUDfID3GbQaDq2OG",
+ "_key": "!items!wUDfID3GbQaDq2OG",
+ "name": "Animate Dead",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<p>Animate one corpse as a skeleton or zombie without expending a spell slot. Each free use is one corpse, uses the spell's action and range, and needs no onyx; Undead Mastery and Soul Tax replace the spell's duration and control limits.</p><ul><li><strong>Free daily uses scale with level: </strong>1 use (levels 1-4), 2 uses (levels 5-9), 3 uses (levels 10-14), 4 uses (levels 15-19), 5 uses (levels 20+)</li><li>Additional uses beyond the daily free limit require a 3rd level slot each (from 5th level)</li><li>Animated undead count towards your Undead Mastery cap (at most 10 undead under your control at once; 20 from 24th level) and persist until destroyed or dismissed</li><li>At the table: your undead act together on your initiative and move as a group. Identical undead attacking the same target roll their attacks together.</li><li><strong>Soul Tax: </strong>Each dawn, you maintain undead whose combined HD total up to your Necromancer level for free (from 5th level, add your Intelligence modifier). Beyond that allowance, spend spell slots to maintain controlled undead, or lose control of them. Upkeep may use no more than half your total spell slots (rounded up) each dawn.</li><li>1 HD (skeleton, poltergeist) — 1st level slot each</li><li>2-3 HD (zombie, ghoul, shadow, rusalka) — 2nd level slot each</li><li>4-5 HD (ghast, wight, wraith, allip, draug, haunt) — 3rd level slot each</li><li>6-8 HD (spectre, banshee, apparition, revenant, skeleton warrior, crypt thing) — 4th level slot each</li><li>9+ HD (bodak, death knight, skull lord, bone golem) — 5th level slot each</li><li>Undead whose slot cannot be paid immediately break free — GM determines their behaviour</li><li><strong>Command Undead: As an action, attempt to bring an uncontrolled undead within 30ft under your command, 1 + half your Necromancer level times per day. Its Level cannot exceed your Necromancer level, and mindless undead save as normal. Control lasts 1 hour per Necromancer level unless you pay Soul Tax for it at dawn.</strong></li><li><strong>The undead makes a Will save</strong> against your Class Save DC</li><li><strong>Failed save: </strong>obeys your commands and counts towards your Undead Mastery cap</li><li><strong>Successful save: </strong>immune to this ability for 24 hours</li><li><strong>Spell Use: </strong>Cast spells from the Necromancer spell list using standard slot progression.</li><li><strong>Death Magic: </strong>The save DC of your Necromancy spells is increased by 1.</li><li><strong>Kit Ability: </strong>Gain the named abilities from your chosen Kit.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Necromancer",
+  "activities": [
+   {
+    "name": "Animate Dead",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Animate one corpse as a skeleton or zombie without a slot, using one of your free daily uses.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Command Undead",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "spell.dc",
+    "value": "1",
+    "when": "Necromancy spells",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

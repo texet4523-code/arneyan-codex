@@ -1,0 +1,42 @@
+{
+ "_id": "wSp3drjfzXCu5kzX",
+ "_key": "!items!wSp3drjfzXCu5kzX",
+ "name": "Cantrip Expertise",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Add your Intelligence modifier (minimum 0) to the damage of your damaging cantrips. Does not stack with the Cantrip Mastery feat.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 6,
+  "className": "Wizard",
+  "rules": [
+   {
+    "key": "cantrip.damage",
+    "value": "+max(0,@abilities.int.mod)",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ZIH0gIdHjvUp1Jp5",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

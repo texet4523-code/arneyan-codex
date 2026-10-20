@@ -1,0 +1,48 @@
+{
+ "_id": "sBA3qJpckkKsn6C5",
+ "_key": "!items!sBA3qJpckkKsn6C5",
+ "name": "Pinning Shot",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> On a hit, the target makes a Reflex save against your Class Save DC or has its movement halved for 1 round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "ref",
+  "dc": null,
+  "damage": "",
+  "level": 9,
+  "className": "Archer",
+  "applies": [
+   {
+    "name": "Pinned",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "94jD7AK3Cd6vcPUH",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

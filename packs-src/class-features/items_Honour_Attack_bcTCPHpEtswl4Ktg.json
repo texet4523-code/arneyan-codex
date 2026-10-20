@@ -1,0 +1,59 @@
+{
+ "_id": "bcTCPHpEtswl4Ktg",
+ "_key": "!items!bcTCPHpEtswl4Ktg",
+ "name": "Honour Attack",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Once per encounter, in any combat, call upon noble spirit — target's AC is reduced by the knight's Charisma modifier, the knight has Advantage on the attack, and doubles the weapon's damage dice (flat modifiers are not doubled).</li><li>Usable once per encounter, against a single target</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 17,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Honour Attack",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Reduce the target's AC by your Charisma modifier, attack with Advantage and double the weapon's damage dice.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

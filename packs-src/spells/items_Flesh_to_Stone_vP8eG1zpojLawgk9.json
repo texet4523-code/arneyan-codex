@@ -1,0 +1,74 @@
+{
+ "_id": "vP8eG1zpojLawgk9",
+ "_key": "!items!vP8eG1zpojLawgk9",
+ "name": "Flesh to Stone",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Range 60ft. One creature; Fortitude negates. On a failure it is Restrained and saves again each turn: one success ends it, three failures Petrify it permanently. Gear petrifies with it. Cast reversed (Stone to Flesh): touch restores a petrified creature and its gear to flesh, with no save.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Necromancer",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Turning to Stone",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Petrified",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [
+     "petrified"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 292,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

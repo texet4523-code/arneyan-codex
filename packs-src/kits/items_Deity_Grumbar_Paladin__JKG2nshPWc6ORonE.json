@@ -1,0 +1,45 @@
+{
+ "_id": "JKG2nshPWc6ORonE",
+ "_key": "!items!JKG2nshPWc6ORonE",
+ "name": "Deity: Grumbar (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Club</p><p><strong>Granted power:</strong> +1 AC while standing on natural stone or earth. Once per encounter, as part of your action, the ground within 20ft becomes difficult terrain for your enemies until your next turn.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Grumbar)",
+    "level": 1,
+    "description": "<p>+1 AC while standing on natural stone or earth. Once per encounter, as part of your action, the ground within 20ft becomes difficult terrain for your enemies until your next turn.</p><p><strong>Favoured weapon:</strong> Club</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "1",
+      "when": "while standing on natural stone or earth",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 30,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

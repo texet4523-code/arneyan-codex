@@ -1,0 +1,45 @@
+{
+ "_id": "wUrWbAYaFKf4SPRZ",
+ "_key": "!items!wUrWbAYaFKf4SPRZ",
+ "name": "Deity: Helm (The Vigilant End) (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Bastard</p><p><strong>Granted power:</strong> Divine Protection's AC bonus against evil increases to +4. Once/day: grant a touched creature +4 AC for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Helm)",
+    "level": 1,
+    "description": "<p>Divine Protection's AC bonus against evil increases to +4. Once/day: grant a touched creature +4 AC for 1 minute.</p><p><strong>Favoured weapon:</strong> Sword, Bastard</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "2",
+      "when": "vs evil creatures (Divine Protection becomes +4)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

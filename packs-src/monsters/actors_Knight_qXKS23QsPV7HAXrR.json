@@ -1,0 +1,284 @@
+{
+ "_id": "qXKS23QsPV7HAXrR",
+ "_key": "!actors!qXKS23QsPV7HAXrR",
+ "name": "Knight",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "3d8+3",
+  "attributes": {
+   "hp": {
+    "value": 16,
+    "max": 16,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "25ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 1,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A sworn sword with a liege, a code and a horse it loves more than people. Its word means something.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greatsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zRRxPnYMuH2fbXuL",
+   "_key": "!actors.items!qXKS23QsPV7HAXrR.zRRxPnYMuH2fbXuL",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heavy crossbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "100ft",
+    "magic": 0,
+    "attackBonus": -2,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YSj30e87m0EnhJC5",
+   "_key": "!actors.items!qXKS23QsPV7HAXrR.YSj30e87m0EnhJC5",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Brave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Advantage on saves against being @Condition[frightened]{Frightened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3rLRsSQcc9YHtsit",
+   "_key": "!actors.items!qXKS23QsPV7HAXrR.3rLRsSQcc9YHtsit",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Parry",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>As its reaction, adds 2 to its AC against one melee attack it can see.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bz6wvxvrltTsfrEC",
+   "_key": "!actors.items!qXKS23QsPV7HAXrR.bz6wvxvrltTsfrEC",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Leadership",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, for 1 minute its allies within 30ft add 1d4 to attack rolls and saves.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Bj6yzcmxDvQluiek",
+   "_key": "!actors.items!qXKS23QsPV7HAXrR.Bj6yzcmxDvQluiek",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Knight",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-knight-banner.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

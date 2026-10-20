@@ -1,0 +1,81 @@
+{
+ "_id": "vP1i9qkDLWC0Pnub",
+ "_key": "!items!vP1i9qkDLWC0Pnub",
+ "name": "Mind Blank",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one creature; 24 hours. It is immune to Charmed, Frightened, Dominated and all other mind-affecting effects, to telepathy and mind reading, and to divination spells (scrying, location, detection). Can be dispelled. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Cleric",
+   "Illusionist"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Mind Blank",
+    "target": "target",
+    "rounds": "14400",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "condition:charmed",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:frightened",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:dominated",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 361,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

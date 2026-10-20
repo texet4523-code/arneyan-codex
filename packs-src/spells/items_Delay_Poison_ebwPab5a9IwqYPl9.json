@@ -1,0 +1,69 @@
+{
+ "_id": "ebwPab5a9IwqYPl9",
+ "_key": "!items!ebwPab5a9IwqYPl9",
+ "name": "Delay Poison",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+ "system": {
+  "description": "<p>Touch; one creature, 1 hour per level. All poison in the target's body stops working for the duration: no damage, no ongoing effects; death from poison is deferred. When it ends, poison resumes. Does not cure poison or restore lost HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Paladin"
+  ],
+  "school": "Divine / Nature",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Delay Poison",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "condition:poisoned",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 101,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

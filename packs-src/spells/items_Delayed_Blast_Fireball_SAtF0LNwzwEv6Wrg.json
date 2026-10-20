@@ -1,0 +1,52 @@
+{
+ "_id": "SAtF0LNwzwEv6Wrg",
+ "_key": "!items!SAtF0LNwzwEv6Wrg",
+ "name": "Delayed Blast Fireball",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 150ft; 20ft-radius burst. A glowing bead explodes after a delay of 0 to 5 rounds you set (or earlier on your command) for (1d6+1) fire damage per level (max 12 levels); Reflex halves. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 150ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half",
+  "damage": "(min(@cl, 12))d6 + 1 * min(@cl, 12)",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 316,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

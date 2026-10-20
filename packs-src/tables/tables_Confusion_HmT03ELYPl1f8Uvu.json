@@ -1,0 +1,78 @@
+{
+ "_id": "HmT03ELYPl1f8Uvu",
+ "_key": "!tables!HmT03ELYPl1f8Uvu",
+ "name": "Confusion",
+ "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+ "description": "<p>At the start of each affected creature's turn (@UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{Confusion}).</p>",
+ "results": [
+  {
+   "_id": "r15U0DErr5b1h6aS",
+   "_key": "!tables.results!HmT03ELYPl1f8Uvu.r15U0DErr5b1h6aS",
+   "type": "text",
+   "name": "It attacks the nearest creature (friend or foe)",
+   "description": "It attacks the nearest creature (friend or foe)",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 3,
+   "range": [
+    1,
+    3
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "ZJaSGRL7wTcEsjNY",
+   "_key": "!tables.results!HmT03ELYPl1f8Uvu.ZJaSGRL7wTcEsjNY",
+   "type": "text",
+   "name": "It does nothing",
+   "description": "It does nothing",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 3,
+   "range": [
+    4,
+    6
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "6FADs8B0JCj89nCD",
+   "_key": "!tables.results!HmT03ELYPl1f8Uvu.6FADs8B0JCj89nCD",
+   "type": "text",
+   "name": "It moves in a random direction at full speed",
+   "description": "It moves in a random direction at full speed",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 2,
+   "range": [
+    7,
+    8
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "kfQHzeTItXm16l8Y",
+   "_key": "!tables.results!HmT03ELYPl1f8Uvu.kfQHzeTItXm16l8Y",
+   "type": "text",
+   "name": "It acts normally",
+   "description": "It acts normally",
+   "img": "systems/arneyan/assets/icons/treasure-dice-twenty-faces-twenty.svg",
+   "weight": 2,
+   "range": [
+    9,
+    10
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "1d10",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "2WVC1DsAZsMr6tZO",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

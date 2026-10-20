@@ -1,0 +1,71 @@
+{
+ "_id": "oUf51A1TIhwgIV8R",
+ "_key": "!items!oUf51A1TIhwgIV8R",
+ "name": "Intimidating Presence",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>Once per encounter, plant yourself and let a single enemy within 10ft feel exactly what they're up against — unless they pass a Will save (DC = 10 + half your level (minimum 1) + your Charisma modifier), they fight the rest of the round flinching, at Disadvantage.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
+  },
+  "activities": [
+   {
+    "name": "Intimidating Presence",
+    "kind": "save",
+    "formula": "10 + @half + @cha.mod",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "One enemy within 10ft: unless it passes, it fights the rest of the round at Disadvantage.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Intimidated",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

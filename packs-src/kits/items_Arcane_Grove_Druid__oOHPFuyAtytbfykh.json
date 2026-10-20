@@ -1,0 +1,66 @@
+{
+ "_id": "oOHPFuyAtytbfykh",
+ "_key": "!items!oOHPFuyAtytbfykh",
+ "name": "Arcane Grove (Druid)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<p>Some Druids have walked close enough to the boundary between divine and arcane magic to understand both. They don't cross it — but they stand near the edge and look over.</p><ul><li><strong>Verdant Power: </strong>When you cast a damage-dealing spell, add your Wisdom modifier as bonus damage to one target.</li><li><strong>Deep Roots: </strong>Advantage on all checks to identify, counter, or dispel magical effects in natural environments. Spells you cast in natural terrain cannot be counterspelled by casters of lower level than you.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Druid",
+  "features": [
+   {
+    "name": "Verdant Power",
+    "level": 1,
+    "description": "<p>When you cast a damage-dealing spell, add your Wisdom modifier as bonus damage to one target.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "spell.damage",
+      "value": "+@abilities.wis.mod",
+      "when": "to one target of a damage-dealing spell",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Deep Roots",
+    "level": 1,
+    "description": "<p>Advantage on all checks to identify, counter, or dispel magical effects in natural environments. Spells you cast in natural terrain cannot be counterspelled by casters of lower level than you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, counter or dispel magical effects in natural environments",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "eLpVXIYAkUFHTT3m",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

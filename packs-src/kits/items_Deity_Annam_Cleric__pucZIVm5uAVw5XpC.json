@@ -1,0 +1,51 @@
+{
+ "_id": "pucZIVm5uAVw5XpC",
+ "_key": "!items!pucZIVm5uAVw5XpC",
+ "name": "Deity: Annam (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Mace, Large</p><p><strong>Granted power:</strong> Advantage on checks to recall or find historical information. Once/day: perfectly recall any event you witnessed. Advantage on your first attack roll each round against a creature you fought in an earlier encounter.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Annam)",
+    "level": 1,
+    "description": "<p>Advantage on checks to recall or find historical information. Once/day: perfectly recall any event you witnessed. Advantage on your first attack roll each round against a creature you fought in an earlier encounter.</p><p><strong>Favoured weapon:</strong> Mace, Large</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to recall or find historical information",
+      "label": ""
+     },
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs a creature you fought in an earlier encounter",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 24,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

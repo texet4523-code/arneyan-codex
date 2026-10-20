@@ -1,0 +1,42 @@
+{
+ "_id": "7XIiXrDzlNKX9E9m",
+ "_key": "!items!7XIiXrDzlNKX9E9m",
+ "name": "Sixth Sense",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<p>+1 to surprise checks (scales to +2 at 18th, +3 at 22nd)</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 14,
+  "className": "Rogue",
+  "rules": [
+   {
+    "key": "check",
+    "value": "1+floor((@cl-14)/4)",
+    "when": "surprise checks",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mpjthAeSZRrS7A4C",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

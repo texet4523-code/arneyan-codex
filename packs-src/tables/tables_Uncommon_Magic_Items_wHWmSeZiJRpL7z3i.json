@@ -1,0 +1,141 @@
+{
+ "_id": "wHWmSeZiJRpL7z3i",
+ "_key": "!tables!wHWmSeZiJRpL7z3i",
+ "name": "Uncommon Magic Items",
+ "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+ "description": "<p>Where a hoard gives an Uncommon item, roll here or choose one. A hoard's items should not all be useless to the party.</p>",
+ "results": [
+  {
+   "_id": "h3Ttz8hZXMevNL6u",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.h3Ttz8hZXMevNL6u",
+   "type": "text",
+   "name": "A weapon +1 (the GM picks the weapon)",
+   "description": "A weapon +1 (the GM picks the weapon)",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 3,
+   "range": [
+    1,
+    3
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "yOL3GOqZmAG8rVEO",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.yOL3GOqZmAG8rVEO",
+   "type": "text",
+   "name": "Armour +1",
+   "description": "Armour +1",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    4,
+    4
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "MQAuifBf71STgydk",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.MQAuifBf71STgydk",
+   "type": "text",
+   "name": "A shield +1",
+   "description": "A shield +1",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    5,
+    5
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "XSIsg5ayaIwFk3mB",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.XSIsg5ayaIwFk3mB",
+   "type": "document",
+   "name": "Ring of Protection",
+   "description": "",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    6,
+    6
+   ],
+   "drawn": false,
+   "flags": {},
+   "documentUuid": "Compendium.arneyan.equipment.Item.FWCTDLe4h3tgoxoC"
+  },
+  {
+   "_id": "skrsgEil3MPyMNkV",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.skrsgEil3MPyMNkV",
+   "type": "document",
+   "name": "Wand of Magic Missiles",
+   "description": "",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    7,
+    7
+   ],
+   "drawn": false,
+   "flags": {},
+   "documentUuid": "Compendium.arneyan.equipment.Item.w34j1BsHjtqVSsRL"
+  },
+  {
+   "_id": "CLi8rlqcWnlQUPKV",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.CLi8rlqcWnlQUPKV",
+   "type": "text",
+   "name": "Potion of Superior Healing, or a Potion from the Catalogue's Uncommon tier",
+   "description": "@UUID[Compendium.arneyan.equipment.Item.DH8MFjtPiCefstwR]{Potion of Superior Healing}, or a Potion from the Catalogue's Uncommon tier",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    8,
+    8
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "4JCx6HwFLwfpGqHk",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.4JCx6HwFLwfpGqHk",
+   "type": "text",
+   "name": "1d3 Spell Scrolls, each of 1st or 2nd level",
+   "description": "1d3 Spell Scrolls, each of 1st or 2nd level",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    9,
+    9
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "SfLneKhmPra54h0D",
+   "_key": "!tables.results!wHWmSeZiJRpL7z3i.SfLneKhmPra54h0D",
+   "type": "document",
+   "name": "An Iconic Uncommon item",
+   "description": "",
+   "img": "systems/arneyan/assets/icons/treasure-magic-swirl.svg",
+   "weight": 1,
+   "range": [
+    10,
+    10
+   ],
+   "drawn": false,
+   "flags": {},
+   "documentUuid": "Compendium.arneyan.tables.RollTable.9voyk8uVhBSuVWJT"
+  }
+ ],
+ "formula": "1d10",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "czgc81NnPVhoPFiz",
+ "sort": 100000,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

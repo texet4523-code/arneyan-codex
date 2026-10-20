@@ -1,0 +1,69 @@
+{
+ "_id": "hTrjKXNgTHm4y1WZ",
+ "_key": "!items!hTrjKXNgTHm4y1WZ",
+ "name": "Relentless Assault",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Each successful hit after the first against the same target in a single round adds flat +1d4 damage (not cumulative). Resets at the start of the next round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Swashbuckler",
+  "activities": [
+   {
+    "name": "Relentless Assault",
+    "kind": "damage",
+    "formula": "1d4",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Each hit after the first against the same target this round: +1d4 (not cumulative).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+1d4",
+    "when": "each hit after the first on the same target this round",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "izulQ2PeBRinttAY",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

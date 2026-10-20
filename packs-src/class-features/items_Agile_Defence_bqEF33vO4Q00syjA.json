@@ -1,0 +1,42 @@
+{
+ "_id": "bqEF33vO4Q00syjA",
+ "_key": "!items!bqEF33vO4Q00syjA",
+ "name": "Agile Defence",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>+1 AC while wearing light armour or no armour and carrying no shield. Does not stack with other unarmoured bonuses of the same kind.</li><li>An additional +1 at 7th, 13th, and 19th levels</li><li>AC bonus by level: +2 total at 7th, +3 at 13th, +4 at 19th.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Swashbuckler",
+  "rules": [
+   {
+    "key": "ac",
+    "value": "min(4,1+floor((@cl-1)/6))",
+    "when": "light or no armour and no shield",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "izulQ2PeBRinttAY",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

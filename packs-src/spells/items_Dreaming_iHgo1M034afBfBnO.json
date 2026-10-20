@@ -1,0 +1,67 @@
+{
+ "_id": "iHgo1M034afBfBnO",
+ "_key": "!items!iHgo1M034afBfBnO",
+ "name": "Dreaming",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range unlimited, even across planes; one creature you know, which must be asleep or fall asleep within 24 hours (the spell waits). Choose one: Converse, entering its dream for up to 8 hours and showing scenes you choose; Implant, planting one command of up to 25 words, as Suggestion (Will negates; lasts until fulfilled, up to 1 week); or Nightmare: Will negates; on a failure it takes 6d10 psychic damage, gains 2 levels of Exhaustion (maximum 5, fading as normal) and regains no HP or spells from that rest; on a success it takes half damage and no Exhaustion.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range unlimited, even across planes",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Half damage and no Exhaustion (Nightmare)",
+  "damage": "6d10",
+  "damageType": "psychic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Dreaming: Nightmare",
+    "target": "target",
+    "rounds": "0",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "exhaustion",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 377,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

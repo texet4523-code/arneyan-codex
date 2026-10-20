@@ -8,7 +8,7 @@ Nothing here has been created yet: no repository, no release. These are the step
 ## One-off setup
 
 1. **Make a GitHub repository** for the system (public, so Foundry can download from it). Replace
-   `<owner>/<repo>` below with yours, for example `kieran/arneyan-codex`.
+   `texet4523-code/arneyan-codex` below with yours, for example `kieran/arneyan-codex`.
 2. **Push this project to it.** The workflow is already in `.github/workflows/release.yml`.
 3. **Commit the compendium sources.** The release compiles `packs-src/` into the compendiums, but the book
    sources the build reads from are only on your computer, so `packs-src/` has to be in the repository.
@@ -18,9 +18,9 @@ Nothing here has been created yet: no repository, no release. These are the step
    copy in the repository matches):
 
    ```json
-   "url": "https://github.com/<owner>/<repo>",
-   "manifest": "https://github.com/<owner>/<repo>/releases/latest/download/system.json",
-   "download": "https://github.com/<owner>/<repo>/releases/download/v0.10.0/arneyan.zip"
+   "url": "https://github.com/texet4523-code/arneyan-codex",
+   "manifest": "https://github.com/texet4523-code/arneyan-codex/releases/latest/download/system.json",
+   "download": "https://github.com/texet4523-code/arneyan-codex/releases/download/v0.10.0/arneyan.zip"
    ```
 
 5. **Check Actions are allowed** for the repository (Settings > Actions > General > "Allow all actions",
@@ -41,7 +41,7 @@ Nothing here has been created yet: no repository, no release. These are the step
 Give players and other GMs this manifest link:
 
 ```
-https://github.com/<owner>/<repo>/releases/latest/download/system.json
+https://github.com/texet4523-code/arneyan-codex/releases/latest/download/system.json
 ```
 
 In Foundry: **Game Systems > Install System**, paste it into **Manifest URL**, then **Install**. Worlds that

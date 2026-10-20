@@ -1,0 +1,64 @@
+{
+ "_id": "rDpdzZoIy4ena8a1",
+ "_key": "!items!rDpdzZoIy4ena8a1",
+ "name": "Web",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 60ft; 20ft cube, 10 minutes per level. Creatures inside are Restrained; Reflex negates on first contact. A Restrained creature escapes with a Strength check vs spell DC (1 action). Fire burns the web in 1 round, dealing 2d4 fire damage to creatures inside (Reflex halves).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Druid",
+   "Witch"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "20ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Not Restrained; half damage if the web burns",
+  "damage": "2d4",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "100*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Webbed",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 137,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

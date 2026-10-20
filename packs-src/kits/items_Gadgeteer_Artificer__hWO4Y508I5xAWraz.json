@@ -1,0 +1,90 @@
+{
+ "_id": "hWO4Y508I5xAWraz",
+ "_key": "!items!hWO4Y508I5xAWraz",
+ "name": "Gadgeteer (Artificer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<p>Pockets full of things that shouldn't work as well as they do. You're never quite out of options, just out of Ingenuity Points.</p><ul><li><strong>Quickbuild Gadget</strong> (1st): As an action, spend 1 Ingenuity Point to produce a single-use gadget from your known list (smoke bomb, grapnel line, shock glove, flash powder, etc.) — effect equivalent to a 1st-level spell or utility effect, GM-adjudicated case by case. You can hold built gadgets equal to your Intelligence modifier + half your Artificer level; extras go inert.</li><li><strong>Reusable Chassis</strong> (3rd): One gadget of your choice (a Grapnel Line or Shock Glove are popular picks) becomes reusable rather than single-use, recharging on a full rest instead of costing Ingenuity each use.</li><li><strong>Rapid Deployment</strong> (7th): Quickbuilding a gadget no longer requires an action if done in response to being surprised or ambushed — once per encounter, free.</li><li><strong>Expanded Toolkit</strong> (11th): You know two more gadgets than your known options allow, and you can hold one more built gadget at a time.</li><li><strong>Lasting Work: Signature Device</strong> (15th): Once per week, spend a full day and appropriate materials to build one permanent, unique gadget with a lasting magical effect (not single-use) tailored to your specifications with the GM — a boot that deploys Rapid Ascent for free once per day, a ring that emits Smoke Bomb's cloud on command, or a glove with an always-on Shock Glove charge are all typical examples.</li><li><strong>Magnum Opus: The Impossible Case</strong> (24th): A portable kit containing a permanent version of every gadget you've ever built, foldable into a case the size of a book. Requires a month of uninterrupted work and rare materials the GM determines.</li></ul><h3>Known Gadgets</h3><ul><li>Smoke Bomb — Creates a 15ft radius heavily obscured area for 1 minute</li><li>Shock Glove — Melee touch attack — 1d6 lightning damage, target saves or is stunned 1 round</li><li>Grapnel Line — Instantly close a 30ft gap to a solid anchor point, or pull a Medium or smaller target 15ft towards you</li><li>Flash Powder — 10ft radius burst — creatures save or are blinded for 1 round</li><li>Adhesive Charge — Thrown — target is Restrained until they break free with a Strength check</li><li>Distraction Decoy — A small mechanical decoy moves and makes noise on your command for 1 minute</li><li>Rapid Ascent Boots — One use — gain a 20ft vertical or horizontal jump-assisted burst of movement</li><li>Noisemaker Dart — Thrown to a point within 30ft — creates a loud, distinct noise there, no damage</li><li>Caltrop Scatter — Covers a 10ft square with caltrops — creatures entering without care take 1d4 damage and have their speed halved for the round</li><li>Pocket Ram — One use — a spring-loaded ram deals 1d8 damage to a door, lock, or barricade</li><li>Glass-Cutter Ring — Silently cuts a hole in glass or thin material large enough to reach through</li><li>Signal Flare — Fired into the air — visible for 1 mile in clear conditions, in a colour of your choosing</li></ul><h4>Designing a Custom Gadget</h4><ul><li><strong>Benchmark: </strong>A combat gadget should land somewhere around a 1st-level spell's worth of effect — a single damage instance (1d6-2d6), a single save-or-suffer condition lasting 1 round, or an area effect no larger than 15ft radius. A utility gadget should solve one specific problem (noise, light, a locked door, a gap to cross) rather than several at once, and should almost always be single-use unless upgraded by Reusable Chassis.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Artificer",
+  "features": [
+   {
+    "name": "Quickbuild Gadget",
+    "level": 1,
+    "description": "<p>As an action, spend 1 Ingenuity Point to produce a single-use gadget from your known list (smoke bomb, grapnel line, shock glove, flash powder, etc.) — effect equivalent to a 1st-level spell or utility effect, GM-adjudicated case by case. You can hold built gadgets equal to your Intelligence modifier + half your Artificer level; extras go inert.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Reusable Chassis",
+    "level": 3,
+    "description": "<p>One gadget of your choice (a Grapnel Line or Shock Glove are popular picks) becomes reusable rather than single-use, recharging on a full rest instead of costing Ingenuity each use.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Rapid Deployment",
+    "level": 7,
+    "description": "<p>Quickbuilding a gadget no longer requires an action if done in response to being surprised or ambushed — once per encounter, free.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   },
+   {
+    "name": "Expanded Toolkit",
+    "level": 11,
+    "description": "<p>You know two more gadgets than your known options allow, and you can hold one more built gadget at a time.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Lasting Work: Signature Device",
+    "level": 15,
+    "description": "<p>Once per week, spend a full day and appropriate materials to build one permanent, unique gadget with a lasting magical effect (not single-use) tailored to your specifications with the GM — a boot that deploys Rapid Ascent for free once per day, a ring that emits Smoke Bomb's cloud on command, or a glove with an always-on Shock Glove charge are all typical examples.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   },
+   {
+    "name": "Magnum Opus: The Impossible Case",
+    "level": 24,
+    "description": "<p>A portable kit containing a permanent version of every gadget you've ever built, foldable into a case the size of a book. Requires a month of uninterrupted work and rare materials the GM determines.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "j9IQPLxU2OazZJKI",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,320 @@
+{
+ "_id": "G0he9kwosT6cTSuZ",
+ "_key": "!actors!G0he9kwosT6cTSuZ",
+ "name": "Haunt",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 18,
+   "speed": "fly 30ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead (incorporeal)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "non-magical 10, acid 5, cold 5, fire 5, lightning 5, thunder 5",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead (incorporeal)</em></p><p><strong>GM:</strong> A place that remembers its dead. Find out what it wants and it may leave without a fight.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Cold touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "cold",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hhD1i6v5ptCGWelU",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.hhD1i6v5ptCGWelU",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "EfWYJRNAt76Pn9nx",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.EfWYJRNAt76Pn9nx",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Moves through walls and objects; has Resistance 10 against non-magical weapons, and Resistance 5 to acid, cold, fire, lightning and thunder.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HAPLt1dc70z6NUU6",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.HAPLt1dc70z6NUU6",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bound to Place",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Cannot move more than 100ft from the place where it died. It is only destroyed for good if its unfinished business is settled.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "d9HSnCtUqLXaHp8h",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.d9HSnCtUqLXaHp8h",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Malevolent Presence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn within 20ft makes a @Check[will|dc:15]{Will save DC 15} or is frightened until the start of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "fFKGzmbl7TyNWV4V",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.fFKGzmbl7TyNWV4V",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Possession",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Once per day, one creature within 30ft makes a @Check[will|dc:15]{Will save DC 15} or is controlled by the haunt for 1d4 rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LLay2B8NJznVhiEF",
+   "_key": "!actors.items!G0he9kwosT6cTSuZ.LLay2B8NJznVhiEF",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Haunt",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ghost.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

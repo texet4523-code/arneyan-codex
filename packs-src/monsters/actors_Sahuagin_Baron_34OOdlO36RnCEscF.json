@@ -1,0 +1,246 @@
+{
+ "_id": "34OOdlO36RnCEscF",
+ "_key": "!actors!34OOdlO36RnCEscF",
+ "name": "Sahuagin Baron",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "5d10+10",
+  "attributes": {
+   "hp": {
+    "value": 37,
+    "max": 37,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft, swim 50ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large humanoid</em></p><p><strong>GM:</strong> A four-armed mutant raised to rule a reef. It takes the strongest of every raid as its share.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Trident ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MK12eBJaicvyTZY3",
+   "_key": "!actors.items!34OOdlO36RnCEscF.MK12eBJaicvyTZY3",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blood Frenzy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>Advantage on attack rolls against a creature that has lost HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tuExrxwxOsvQA0DW",
+   "_key": "!actors.items!34OOdlO36RnCEscF.tuExrxwxOsvQA0DW",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Limited Amphibiousness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>Breathes air and water, but must be submerged at least once every 4 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "tLZOhpI6wkZmT6Si",
+   "_key": "!actors.items!34OOdlO36RnCEscF.tLZOhpI6wkZmT6Si",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Four-Armed",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>A sahuagin born with four arms; it fights with a trident in each pair.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DkNuR2zSBnnTcVP8",
+   "_key": "!actors.items!34OOdlO36RnCEscF.DkNuR2zSBnnTcVP8",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Sahuagin Baron",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mermaid.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

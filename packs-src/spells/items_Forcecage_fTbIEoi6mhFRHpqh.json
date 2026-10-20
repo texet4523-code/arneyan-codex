@@ -1,0 +1,51 @@
+{
+ "_id": "fTbIEoi6mhFRHpqh",
+ "_key": "!items!fTbIEoi6mhFRHpqh",
+ "name": "Forcecage",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range 90ft; a 20ft-cube cage of force bars (gaps 1/2 inch) or a solid 10ft cube. Each creature in the area makes a Reflex save, slipping out on a success. A creature that fails is caged and repeats the save at the end of each of its turns: one success frees it, and after three failures the cage holds it for 10 minutes per level. Nothing passes through; teleportation out fails. Only Disintegrate destroys it. Material: ruby dust worth 1,500 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 7,
+  "className": "Wizard",
+  "classes": [
+   "Wizard"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 90ft",
+  "duration": "",
+  "area": "20ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Slips out of the cage",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "rect",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "Omw1ZY3EWjgKvwBc",
+ "sort": 321,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

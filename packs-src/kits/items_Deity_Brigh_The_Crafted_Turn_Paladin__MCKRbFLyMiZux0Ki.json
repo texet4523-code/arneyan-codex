@@ -1,0 +1,45 @@
+{
+ "_id": "MCKRbFLyMiZux0Ki",
+ "_key": "!items!MCKRbFLyMiZux0Ki",
+ "name": "Deity: Brigh (The Crafted Turn) (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> Once/day: repair a broken weapon or armour to full functionality instantly. Advantage on Craft/Smith checks. Once per encounter, as part of your action, temper an ally's weapon or armour by touch: +1 to hit or +1 AC for 1 minute.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Brigh)",
+    "level": 1,
+    "description": "<p>Once/day: repair a broken weapon or armour to full functionality instantly. Advantage on Craft/Smith checks. Once per encounter, as part of your action, temper an ally's weapon or armour by touch: +1 to hit or +1 AC for 1 minute.</p><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Craft and Smith",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,42 @@
+{
+ "_id": "l1z0ltlq8BBhCAFg",
+ "_key": "!items!l1z0ltlq8BBhCAFg",
+ "name": "Thick Hide",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> While wearing no armour or light armour, gain +2 AC (+3 from 10th level). It does not stack with other bonuses of the same kind.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Barbarian",
+  "rules": [
+   {
+    "key": "ac",
+    "value": "min(3,2+floor(@cl/10))",
+    "when": "wearing no armour or light armour",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

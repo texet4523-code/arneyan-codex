@@ -1,0 +1,63 @@
+{
+ "_id": "u55uX8MxKS4OZyqo",
+ "_key": "!items!u55uX8MxKS4OZyqo",
+ "name": "Weird",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 60ft; 30ft-radius burst; all creatures see their worst fear. Will negates. On a failure a creature takes 3d6 psychic damage and must make a Fortitude save or die of fear (a success leaves it Frightened for 1 minute).</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 9,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Necromancer"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "3d6",
+  "damageType": "psychic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Frightened",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DZhLUyqqvQ2IZkrt",
+ "sort": 394,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

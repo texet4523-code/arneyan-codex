@@ -1,0 +1,67 @@
+{
+ "_id": "hVxOJRgloBfCFcXc",
+ "_key": "!items!hVxOJRgloBfCFcXc",
+ "name": "Fear",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 60ft cone. Creatures in the cone that fail a Will save are Frightened and must flee from you at full speed for 1 round per level, dropping anything held; Will negates. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Sorcerer",
+   "Bard",
+   "Magus",
+   "Witch"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 60ft cone",
+  "duration": "",
+  "area": "60ft cone",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "cone",
+   "size": 60,
+   "width": 0,
+   "attached": false,
+   "fromSelf": true,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Fear",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 207,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

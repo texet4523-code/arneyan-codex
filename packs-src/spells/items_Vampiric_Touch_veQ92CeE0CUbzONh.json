@@ -1,0 +1,54 @@
+{
+ "_id": "veQ92CeE0CUbzONh",
+ "_key": "!items!veQ92CeE0CUbzONh",
+ "name": "Vampiric Touch",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch. Deals 1d6 necrotic damage per two levels (max 5d6); Fortitude halves. You gain temporary HP equal to the damage dealt for 1 hour; temporary HP do not stack.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Necromancer",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half",
+  "damage": "(max(1, min(floor(@cl/2), 5)))d6",
+  "damageType": "necrotic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 187,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

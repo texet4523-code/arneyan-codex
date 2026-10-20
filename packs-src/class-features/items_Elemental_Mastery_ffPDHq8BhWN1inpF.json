@@ -1,0 +1,62 @@
+{
+ "_id": "ffPDHq8BhWN1inpF",
+ "_key": "!items!ffPDHq8BhWN1inpF",
+ "name": "Elemental Mastery",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Choose one element — fire, cold, lightning, earth, water, or air. The Druid is immune to its damage entirely.</li><li>When struck by a spell of that element, make a Wisdom check against the spell's save DC</li><li><strong>Succeed on the check: </strong>the spell is reflected back at a target of the Druid's choice for its original damage</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Druid",
+  "activities": [
+   {
+    "name": "Reflect Spell",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "wis",
+    "save": "",
+    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

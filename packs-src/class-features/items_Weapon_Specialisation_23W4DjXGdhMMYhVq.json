@@ -1,0 +1,54 @@
+{
+ "_id": "23W4DjXGdhMMYhVq",
+ "_key": "!items!23W4DjXGdhMMYhVq",
+ "name": "Weapon Specialisation",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Choose one weapon — you have Advantage on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level</li><li>Improves to +3 damage at 19th level</li><li>At 13th level, choose a second weapon to specialise in, or add a further +1 damage to your first</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Fighter",
+  "rules": [
+   {
+    "key": "adv.attack.first",
+    "value": "1",
+    "when": "with your specialised weapon",
+    "label": "",
+    "weapon": "chosen"
+   },
+   {
+    "key": "damage",
+    "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/19))",
+    "when": "with your specialised weapon",
+    "label": "",
+    "weapon": "chosen"
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "weaponChoice": {
+   "max": "1:1, 13:2",
+   "value": []
+  }
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

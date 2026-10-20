@@ -1,0 +1,84 @@
+{
+ "_id": "wr56AFhjZo09d4iV",
+ "_key": "!items!wr56AFhjZo09d4iV",
+ "name": "Wild Shape",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: Shapeshift into any beast or beast-like monster of Level no greater than half your Druid level, rounded down (minimum Level 1), once per day, choosing the form fresh each time (GM's call on what qualifies; a wolf, giant spider or dire badger are all fair game, but intelligent or magical creatures are not). Lasts up to 1 hour or until you choose to revert. You take the form's whole stat block from Monsters &amp; Treasure: its HP, AC, attacks, saves and movement. You keep your own mind, personality and Wisdom-based abilities, and you cannot cast spells in a form that cannot speak. When the form drops to 0 HP you return to your own form with the HP you had when you changed (see Changing Shape in Spellcasting in Arneyan).</strong></li><li>3rd level: usable twice per day</li><li>6th level: usable three times per day</li><li>9th level: usable four times per day</li><li>15th level: usable five times per day</li><li>24th level: usable six times per day</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Druid",
+  "activities": [
+   {
+    "name": "Wild Shape",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Shapeshift into a beast of Level up to half your Druid level for up to 1 hour, taking its whole stat block.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Wild Shape (Deepened)",
+    "kind": "temp",
+    "formula": "2*@cl",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Shapeshift into a beast of Level up to your Druid level and gain temporary HP equal to twice your Druid level.",
+    "minLevel": 12,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

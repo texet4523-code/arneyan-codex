@@ -1,0 +1,72 @@
+{
+ "_id": "OUCDwGu19f12gAMP",
+ "_key": "!items!OUCDwGu19f12gAMP",
+ "name": "The Silver Serpent (Swashbuckler)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li>A defensive school rooted in the Jinia Isles' boarding-action tradition — built for fights on moving ships where a misstep means the sea. Counter-attack, misdirection, making your opponent's aggression work against them.</li><li><strong>Serpent's Guard: +2 to your Parry checks (meeting the attack roll already succeeds).</strong></li><li><strong>Read the Blade: </strong>Advantage on Acrobatics checks involving moving surfaces (ship decks, rooftops, rope bridges) and on Insight checks reading an opponent's fighting style mid-combat.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Swashbuckler",
+  "features": [
+   {
+    "name": "Serpent's Guard",
+    "level": 1,
+    "description": "<p>+2 to your Parry checks (meeting the attack roll already succeeds).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "check.dex",
+      "value": "2",
+      "when": "Parry checks",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Read the Blade",
+    "level": 1,
+    "description": "<p>Advantage on Acrobatics checks involving moving surfaces (ship decks, rooftops, rope bridges) and on Insight checks reading an opponent's fighting style mid-combat.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Acrobatics on moving surfaces",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Insight reading an opponent's fighting style mid-combat",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "IkYCqysRRuv3HKfH",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

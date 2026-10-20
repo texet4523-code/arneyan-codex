@@ -1,0 +1,92 @@
+{
+ "_id": "o5jhxf3olkbjT4xA",
+ "_key": "!items!o5jhxf3olkbjT4xA",
+ "name": "Spirit Guardians",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Self; 15ft radius, moves with you, for 1 round per level. Enemies entering or starting their turn there move at half speed and take 1d6 radiant or necrotic damage (you choose when casting); Will halves. Damage is dealt once per round to each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "15ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Half",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 15,
+   "width": 0,
+   "attached": true,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Spirit Guardians",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ],
+  "auras": [
+   {
+    "key": "guardians",
+    "name": "Spirit Guardians",
+    "radius": 15,
+    "who": "enemies",
+    "includeSelf": false,
+    "rounds": "@cl",
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": "0.5",
+      "label": "Spirit Guardians"
+     }
+    ],
+    "turn": {
+     "save": "will",
+     "dc": 0,
+     "formula": "1d6",
+     "type": "radiant",
+     "half": true,
+     "text": "1d6 radiant or necrotic damage (the caster's choice when casting); Will halves. Once per round."
+    }
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 182,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

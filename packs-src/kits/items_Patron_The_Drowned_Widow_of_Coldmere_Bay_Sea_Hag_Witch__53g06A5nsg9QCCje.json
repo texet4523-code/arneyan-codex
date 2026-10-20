@@ -1,0 +1,109 @@
+{
+ "_id": "53g06A5nsg9QCCje",
+ "_key": "!items!53g06A5nsg9QCCje",
+ "name": "Patron: The Drowned Widow of Coldmere Bay (Sea Hag) (Witch)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
+ "system": {
+  "description": "<p>Fishermen along the Jinia coast leave offerings at low tide so she doesn't come looking herself. She was beautiful once, or so the stories insist, right before the sea decided otherwise.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) a swim speed equal to their normal move speed and the ability to hold their breath for 1 hour. Their first melee hit within that hour also forces a Fortitude save or the target is knocked prone, coughing seawater.</li><li><strong>Patron Curse</strong> (6th): Once per day, force a creature within 30ft to make a Will save or be wracked by the Drowned Widow's Gaze — disadvantage on all rolls for 1 minute as the ocean's weight presses on their mind.</li><li><strong>Physical Change</strong> (12th): Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat. You can breathe underwater and gain a swim speed of 20ft. You may make an unarmed claw attack dealing 1d6 damage. Once per day, make a melee touch attack instead — the target makes a Fortitude save or their lungs seize with phantom water, staggered (half speed, disadvantage on attack rolls) for 1 minute.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Witch",
+  "features": [
+   {
+    "name": "Patron Buff",
+    "level": 1,
+    "description": "<p>Once per day, grant a touched creature (or yourself) a swim speed equal to their normal move speed and the ability to hold their breath for 1 hour. Their first melee hit within that hour also forces a Fortitude save or the target is knocked prone, coughing seawater.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort"
+   },
+   {
+    "name": "Patron Curse",
+    "level": 6,
+    "description": "<p>Once per day, force a creature within 30ft to make a Will save or be wracked by the Drowned Widow's Gaze — disadvantage on all rolls for 1 minute as the ocean's weight presses on their mind.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "will"
+   },
+   {
+    "name": "Physical Change",
+    "level": 12,
+    "description": "<p>Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat. You can breathe underwater and gain a swim speed of 20ft. You may make an unarmed claw attack dealing 1d6 damage. Once per day, make a melee touch attack instead — the target makes a Fortitude save or their lungs seize with phantom water, staggered (half speed, disadvantage on attack rolls) for 1 minute.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "fort",
+    "activities": [
+     {
+      "name": "Claw (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Phantom water",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or is staggered (half speed, Disadvantage on attack rolls) for 1 minute.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "7eTJrVatQU9t4GUY",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,283 @@
+{
+ "_id": "lXmsy4K4FiMBjcNz",
+ "_key": "!actors!lXmsy4K4FiMBjcNz",
+ "name": "Spectre",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "7d12",
+  "attributes": {
+   "hp": {
+    "value": 45,
+    "max": 45,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "fly 50ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead (incorporeal)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "non-magical 10, acid 5, cold 5, fire 5, lightning 5, thunder 5",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead (incorporeal)</em></p><p><strong>GM:</strong> The restless shade of a murdered person. It can be laid to rest only by fulfilling its last wish or by destroying its remains.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Life drain touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+2",
+    "damageType": "necrotic",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kMrI8R3D52pdJgXv",
+   "_key": "!actors.items!lXmsy4K4FiMBjcNz.kMrI8R3D52pdJgXv",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "51tAXNmq8AEnwnSo",
+   "_key": "!actors.items!lXmsy4K4FiMBjcNz.51tAXNmq8AEnwnSo",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Moves through walls and objects; has Resistance 10 against non-magical weapons, and Resistance 5 to acid, cold, fire, lightning and thunder.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DQXZXxTmcPq0mSNR",
+   "_key": "!actors.items!lXmsy4K4FiMBjcNz.DQXZXxTmcPq0mSNR",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Life Drain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>A creature hit makes a @Check[fort|dc:15]{Fortitude save DC 15} or gains 1 level of Exhaustion (energy drain).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 15,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vUqOn8czLQ2hN1ux",
+   "_key": "!actors.items!lXmsy4K4FiMBjcNz.vUqOn8czLQ2hN1ux",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sunlight Powerlessness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Disadvantage on attack rolls and saves in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DeTS6LUWrm7zQdo0",
+   "_key": "!actors.items!lXmsy4K4FiMBjcNz.DeTS6LUWrm7zQdo0",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Spectre",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ghost.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

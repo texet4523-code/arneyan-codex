@@ -1,0 +1,85 @@
+{
+ "_id": "mgn3Gi9zw59Pjr49",
+ "_key": "!items!mgn3Gi9zw59Pjr49",
+ "name": "Staff of the Magi",
+ "type": "equipment",
+ "img": "systems/arneyan/assets/icons/magic-fairy-wand.svg",
+ "system": {
+  "description": "<p>25 charges. Magic Missile (1 charge), Invisibility (2), Lightning Bolt (3), Fireball (3), Dispel Magic (3), Teleport (5). Spells are cast at the wielder's caster level and DC, or at caster level 12 and DC 18 in the hands of a non-caster. The wielder has Advantage on saves against spells; each spell it saves against restores charges equal to the spell's level (up to 25). As an action, break it: every creature within 30ft takes 1d6 force damage per remaining charge (max 12d6), Reflex DC 15 half; the wielder makes the save with Disadvantage.</p><p>Rarity: Very Rare</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 2.0,
+  "price": "25,000 gp",
+  "equipped": false,
+  "bundle": 0,
+  "ammoType": "",
+  "container": {
+   "holds": false,
+   "capacity": 0,
+   "weightless": false,
+   "extradimensional": false
+  },
+  "consumable": {
+   "use": false,
+   "heal": ""
+  },
+  "charges": {
+   "value": 25,
+   "max": 25,
+   "recharge": "1d4",
+   "crumble": true
+  },
+  "light": {
+   "bright": 0,
+   "dim": 0,
+   "hours": 0,
+   "lit": false,
+   "litAt": 0,
+   "angle": 360
+  },
+  "scroll": {
+   "spell": null,
+   "cl": 0,
+   "dc": 0
+  },
+  "itemSpells": [
+   {
+    "name": "Magic Missile",
+    "cost": 1
+   },
+   {
+    "name": "Invisibility",
+    "cost": 2
+   },
+   {
+    "name": "Lightning Bolt",
+    "cost": 3
+   },
+   {
+    "name": "Fireball",
+    "cost": 3
+   },
+   {
+    "name": "Dispel Magic",
+    "cost": 3
+   },
+   {
+    "name": "Teleport",
+    "cost": 5
+   }
+  ],
+  "castLevel": 0,
+  "nonCasterCl": 12,
+  "nonCasterDc": 18
+ },
+ "effects": [],
+ "folder": "IOKtvGsk7HnKBVRb",
+ "sort": 511,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

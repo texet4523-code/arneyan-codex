@@ -1,0 +1,99 @@
+{
+ "_id": "QuBKSmSPZxKrjBOP",
+ "_key": "!items!QuBKSmSPZxKrjBOP",
+ "name": "Grave Warden (Necromancer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li>You protect the dead from those who would misuse them, and oppose unlawful undead wherever they appear. The morally lightest path — you use death magic to ensure the dead rest as they should.</li><li>Warden's Strike</li><li>Advantage on your first attack roll each round against undead you did not create, and the DC of your death magic's save against them is increased by 2</li><li>When you destroy an undead creature, all undead you control within 30ft regain 1d6 HP</li><li>Deathwatch</li><li>Advantage on checks to identify, research, or communicate with undead</li><li>You always know whether a corpse has been subjected to necromantic magic and approximately when it was raised</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Necromancer",
+  "features": [
+   {
+    "name": "Warden's Strike",
+    "level": 1,
+    "description": "<p>Advantage on your first attack roll each round against undead you did not create, and the DC of your death magic's save against them is increased by 2</p><p>When you destroy an undead creature, all undead you control within 30ft regain 1d6 HP</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Undead regain HP",
+      "kind": "heal",
+      "formula": "1d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "When you destroy an undead creature: each undead you control within 30ft regains this many HP.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "vs undead you did not create",
+      "label": ""
+     },
+     {
+      "key": "spell.dc",
+      "value": "2",
+      "when": "death magic vs undead you did not create",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Deathwatch",
+    "level": 1,
+    "description": "<p>Advantage on checks to identify, research, or communicate with undead</p><p>You always know whether a corpse has been subjected to necromantic magic and approximately when it was raised</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, research or communicate with undead",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "1dhpQWn5kZl8ql6c",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

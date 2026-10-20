@@ -1,0 +1,68 @@
+{
+ "_id": "KpltA0NrjCWDXuAy",
+ "_key": "!items!KpltA0NrjCWDXuAy",
+ "name": "Flame Arrow",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Touch. Up to 1 arrow, bolt or sling bullet per level is wreathed in flame for 1 minute per level; each deals an extra 1d6 fire damage on a hit and ignites flammable objects. Ammunition is consumed when fired.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 3,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "1d6",
+  "damageType": "fire",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Flame Arrows",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "damage.ranged",
+      "value": "+1d6",
+      "when": "with the enchanted ammunition (fire)",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "TosiXyO7gR9by0QD",
+ "sort": 153,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

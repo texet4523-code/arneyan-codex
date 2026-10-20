@@ -1,0 +1,110 @@
+{
+ "_id": "Ii47jWJIcOlhtcjk",
+ "_key": "!items!Ii47jWJIcOlhtcjk",
+ "name": "Symbol",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; inscribe a rune on a surface or object (the rune is visible, 3ft across); choose one type. It triggers when read, touched or passed over (your choice); everything within a 30ft radius is affected; Will negates. Fear: Frightened 1 minute. Hopelessness: Incapacitated 1 minute. Insanity: attacks the nearest creature for 1 minute. Pain: Disadvantage on attacks and checks 1 hour. Sleep: Unconscious 3 minutes (Level 8 or lower). Stunning: Stunned 1d6 rounds. Lasts until triggered or dispelled. Material: powdered diamond and opal worth 5,000 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Illusionist"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "30ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": true,
+  "template": {
+   "type": "circle",
+   "size": 30,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Symbol of Fear",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Symbol of Hopelessness",
+    "target": "target",
+    "rounds": "10",
+    "statuses": [
+     "incapacitated"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Symbol of Pain",
+    "target": "target",
+    "rounds": "600",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Symbol of Sleep",
+    "target": "target",
+    "rounds": "30",
+    "statuses": [
+     "unconscious"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Symbol of Stunning",
+    "target": "target",
+    "rounds": "1d6",
+    "statuses": [
+     "stunned"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 370,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

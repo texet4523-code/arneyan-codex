@@ -1,0 +1,358 @@
+{
+ "_id": "8a7lh6P4tde441IY",
+ "_key": "!actors!8a7lh6P4tde441IY",
+ "name": "Treant",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ant.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 9,
+  "hd": "7d8",
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 31,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "30ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 5,
+   "ref": 3,
+   "will": 3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d20",
+   "resistances": "bludgeoning 5, piercing 5",
+   "immunities": "",
+   "vulnerabilities": "fire",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge plant</em></p><p><strong>GM:</strong> Slow to anger and slower to forget. It guards its forest with the patience of centuries.</p>",
+   "treasure": "<p>Treasure type <strong>D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6+6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xzEnl8zfJc4abVJK",
+   "_key": "!actors.items!8a7lh6P4tde441IY.xzEnl8zfJc4abVJK",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rock",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d10+6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": true,
+    "range": "60ft",
+    "magic": 0,
+    "attackBonus": -2,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pwkHzfQyDmJqK9Uj",
+   "_key": "!actors.items!8a7lh6P4tde441IY.pwkHzfQyDmJqK9Uj",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Siege Monster",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Double damage against objects and structures.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "O1ZIDIMjpiGVe1Cm",
+   "_key": "!actors.items!8a7lh6P4tde441IY.O1ZIDIMjpiGVe1Cm",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animate Trees",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it animates up to two trees within 60ft. They fight as treants (HD 4d12, slam +9 (2d6+4)) for 1 minute.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5jDRmCXPcuRbDMuA",
+   "_key": "!actors.items!8a7lh6P4tde441IY.5jDRmCXPcuRbDMuA",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "False Appearance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>While motionless, it is indistinguishable from a normal tree.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MEmvQreo0lLyM1pS",
+   "_key": "!actors.items!8a7lh6P4tde441IY.MEmvQreo0lLyM1pS",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vulnerable to Fire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hVgMH2uFNb2vRlJH",
+   "_key": "!actors.items!8a7lh6P4tde441IY.hVgMH2uFNb2vRlJH",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bark Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Resistance 5 to bludgeoning and piercing damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ptVKhlhVmBMvjmZ8",
+   "_key": "!actors.items!8a7lh6P4tde441IY.ptVKhlhVmBMvjmZ8",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Treant",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ant.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

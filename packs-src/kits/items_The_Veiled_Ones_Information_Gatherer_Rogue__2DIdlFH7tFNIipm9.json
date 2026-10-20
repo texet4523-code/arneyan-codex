@@ -1,0 +1,72 @@
+{
+ "_id": "2DIdlFH7tFNIipm9",
+ "_key": "!items!2DIdlFH7tFNIipm9",
+ "name": "The Veiled Ones — Information Gatherer (Rogue)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li>An operative working the outer ring of the Veiled Ones' growing intelligence network — not a full member, but trained and trusted enough to collect, verify, and pass on information. The Veiled Ones work for The Violet Conclave and are building this network deliberately, using ysoki gatherers and trained agents like you. Your identity is protected; most of what you know about the organisation above you is limited by design.</li><li><strong>Silent Tail: </strong>Advantage on checks to observe, tail, or surveil a target without being noticed. A creature you observed for at least 10 minutes before the fight has Disadvantage on its attacks against you in the first round.</li><li><strong>Discreet Channels: </strong>Advantage on checks to collect, verify, or pass on intelligence discreetly, and on checks establishing a plausible reason for being somewhere you shouldn't be.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Rogue",
+  "features": [
+   {
+    "name": "Silent Tail",
+    "level": 1,
+    "description": "<p>Advantage on checks to observe, tail, or surveil a target without being noticed. A creature you observed for at least 10 minutes before the fight has Disadvantage on its attacks against you in the first round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to observe, tail or surveil a target unnoticed",
+      "label": ""
+     },
+     {
+      "key": "adv.against",
+      "value": "-1",
+      "when": "first round, from a creature you observed for 10+ minutes before the fight",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Discreet Channels",
+    "level": 1,
+    "description": "<p>Advantage on checks to collect, verify, or pass on intelligence discreetly, and on checks establishing a plausible reason for being somewhere you shouldn't be.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to collect, verify or pass on intelligence discreetly; establishing a plausible reason to be where you shouldn't",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "UwZ81OhImTwueZ4z",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,101 @@
+{
+ "_id": "zNisi9VgUGbBth7H",
+ "_key": "!items!zNisi9VgUGbBth7H",
+ "name": "Lizardfolk",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Con / +1 Wis, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Hold</strong> Breath up to 15 minutes. +1 natural armour AC. Advantage on Survival checks to track or forage in swamp/marsh/jungle terrain.</li><li><strong>Bite unarmed strike:</strong> 1d4 + Strength modifier.</li><li><strong>Swamp's Grip:</strong> 1/long rest, a successful bite also grapples the target, which must make a Fortitude save (Ancestry Save DC, Strength) or be restrained until the end of your next turn, no extra action required.</li><li><strong>Advantage</strong> on Charisma checks towards other dragon-kin and true dragons.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>East Depsopteron:</strong> Charisma-themed, Advantage on Aurethys customs/metallic-dragon-hierarchy checks, Advantage on saves vs fear.</li><li><strong>West Depsopteron:</strong> Strength-themed, Advantage on saves vs charmed/dominated, Advantage on checks enduring/surviving harsh labour.</li><li><strong>Komodo Isle:</strong> Dexterity-themed, Advantage on Survival/navigation in jungle/island terrain, Advantage on saves vs charmed/dominated/compelled.</li><li><strong>Veradyna Marsh:</strong> Wisdom-themed, Advantage on Stealth/Survival specifically in marsh/wetland terrain, Advantage on checks involving Veradyna's native political landscape and tribal customs.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Con / +1 Wis, −1 Int",
+  "bonuses": {
+   "con": 2,
+   "wis": 1,
+   "int": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Hold Breath up to 15 minutes",
+    "text": "Hold Breath up to 15 minutes. +1 natural armour AC. Advantage on Survival checks to track or forage in swamp/marsh/jungle terrain."
+   },
+   {
+    "name": "Bite unarmed strike",
+    "text": "1d4 + Strength modifier."
+   },
+   {
+    "name": "Swamp's Grip",
+    "text": "1/long rest, a successful bite also grapples the target, which must make a Fortitude save (Ancestry Save DC, Strength) or be restrained until the end of your next turn, no extra action required."
+   },
+   {
+    "name": "Advantage on Charisma checks towards other…",
+    "text": "Advantage on Charisma checks towards other dragon-kin and true dragons."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "East Depsopteron",
+     "text": "Charisma-themed, Advantage on Aurethys customs/metallic-dragon-hierarchy checks, Advantage on saves vs fear.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "West Depsopteron",
+     "text": "Strength-themed, Advantage on saves vs charmed/dominated, Advantage on checks enduring/surviving harsh labour.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Komodo Isle",
+     "text": "Dexterity-themed, Advantage on Survival/navigation in jungle/island terrain, Advantage on saves vs charmed/dominated/compelled.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Veradyna Marsh",
+     "text": "Wisdom-themed, Advantage on Stealth/Survival specifically in marsh/wetland terrain, Advantage on checks involving Veradyna's native political landscape and tribal customs.",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "ac",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Survival to track or forage in swamp, marsh or jungle",
+    "label": ""
+   },
+   {
+    "key": "adv.check.cha",
+    "value": "1",
+    "when": "towards dragon-kin and true dragons",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 20,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,84 @@
+{
+ "_id": "CLPxYJacpBOiXkr8",
+ "_key": "!items!CLPxYJacpBOiXkr8",
+ "name": "Ascetic Recovery",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Feign Death: slow vital functions until appearing dead. Maintain the state for minutes equal to character level.</li><li>Fast Healing: Once per day, after a long rest, regain 1 HP per Monk level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 6,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Fast Healing",
+    "kind": "heal",
+    "formula": "@cl",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "After a long rest, regain 1 HP per Monk level.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Feign Death",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Slow your vital functions until you appear dead, for minutes equal to your character level.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

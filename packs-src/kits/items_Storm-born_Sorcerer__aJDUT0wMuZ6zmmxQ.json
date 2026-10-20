@@ -1,0 +1,169 @@
+{
+ "_id": "aJDUT0wMuZ6zmmxQ",
+ "_key": "!items!aJDUT0wMuZ6zmmxQ",
+ "name": "Storm-born (Sorcerer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
+ "system": {
+  "description": "<p>Your bloodline carries the charge of a storm that never fully passed. You crackle when you are angry.</p><ul><li><strong>Bloodline Ability</strong> (1st): Resistance 5 to lightning and thunder damage. When you cast a damaging spell, you may add 1d6 lightning damage to one target — no save, no slot cost. You are never harmed by natural weather and have advantage on navigation checks and checks to predict or read environmental conditions.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, call a storm for 1 minute centred on yourself — 30ft radius. All creatures in range take 2d8 lightning damage per turn (Reflex save for half). You gain a fly speed of 60ft for the duration. Once per turn, as part of your action, hurl a lightning bolt — one target within 90ft takes 4d6 lightning (Reflex save for half).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Sorcerer",
+  "features": [
+   {
+    "name": "Bloodline Ability",
+    "level": 1,
+    "description": "<p>Resistance 5 to lightning and thunder damage. When you cast a damaging spell, you may add 1d6 lightning damage to one target — no save, no slot cost. You are never harmed by natural weather and have advantage on navigation checks and checks to predict or read environmental conditions.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Storm-touched (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "lightning",
+      "ability": "",
+      "save": "",
+      "text": "When you cast a damaging spell: +1d6 lightning to one target, no save, no slot cost.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "resist",
+      "value": "lightning 5",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "resist",
+      "value": "thunder 5",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "note.spell",
+      "value": "Storm-born: when you cast a damaging spell, add 1d6 lightning to one target (no save).",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "navigation and predicting or reading environmental conditions",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Bloodline Awakening",
+    "level": 15,
+    "description": "<p>Once per day, call a storm for 1 minute centred on yourself — 30ft radius. All creatures in range take 2d8 lightning damage per turn (Reflex save for half). You gain a fly speed of 60ft for the duration. Once per turn, as part of your action, hurl a lightning bolt — one target within 90ft takes 4d6 lightning (Reflex save for half).</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "ref",
+    "activities": [
+     {
+      "name": "Storm (2d8)",
+      "kind": "damage",
+      "formula": "2d8",
+      "damageType": "lightning",
+      "ability": "",
+      "save": "",
+      "text": "Once per day you call the storm (1 minute, 30ft radius): each creature in range takes this each turn, Reflex save for half.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Lightning bolt (4d6)",
+      "kind": "damage",
+      "formula": "4d6",
+      "damageType": "lightning",
+      "ability": "",
+      "save": "",
+      "text": "Once per turn while the storm lasts, as part of your action: one target within 90ft, Reflex save for half.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "applies": [
+     {
+      "name": "Storm Form",
+      "target": "self",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "speed.fly",
+        "value": "60",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mASZyW0N1oNgHgCR",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,70 @@
+{
+ "_id": "FsQf7DH8yk26yt39",
+ "_key": "!items!FsQf7DH8yk26yt39",
+ "name": "Earthquake",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+ "system": {
+  "description": "<p>Range 120ft; 5ft radius per level (max 100ft); 1 round. Creatures standing on the ground fall Prone and cannot cast spells that round; Reflex negates. Each structure takes 20d6 damage and collapses at 0 HP or below, dealing 8d6 bludgeoning to occupants (Reflex halves). One fissure per five levels opens (10ft wide, 30ft deep); creatures on it fall in and take 3d6 damage; Reflex negates. Flying creatures are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid"
+  ],
+  "school": "Divine / Nature",
+  "castingTime": "1 action",
+  "range": "Range 120ft",
+  "duration": "",
+  "area": "5ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 5,
+   "width": 0,
+   "sizeFormula": "min(5*@cl, 100)",
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1"
+  },
+  "applies": [
+   {
+    "name": "Earthquake",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "prone"
+    ],
+    "rules": [
+     {
+      "key": "no.cast",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 354,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

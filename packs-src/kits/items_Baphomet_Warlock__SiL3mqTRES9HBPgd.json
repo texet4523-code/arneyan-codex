@@ -1,0 +1,113 @@
+{
+ "_id": "SiL3mqTRES9HBPgd",
+ "_key": "!items!SiL3mqTRES9HBPgd",
+ "name": "Baphomet (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>Minotaur-headed lord of beasts and the endless maze. More dangerous when cornered.</p><ul><li><strong>Dark Gift</strong> (1st): Advantage on all Strength checks and Fortitude saves. When below half HP, your damaging cantrips and spells increase by one damage die.</li><li><strong>Patron's Mark</strong> (6th): Passive: you cannot become lost by any means, magical or mundane. You always know the layout of any structure you have entered and can retrace any path you have walked.</li><li><strong>Patron Feature</strong> (12th): Once per day, enter Bestial Fury for 1 minute — +4 AC, Advantage on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>Advantage on all Strength checks and Fortitude saves. When below half HP, your damaging cantrips and spells increase by one damage die.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save.fort",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "note.spell",
+      "value": "Baphomet: below half HP your damaging cantrips and spells gain one damage die.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Passive: you cannot become lost by any means, magical or mundane. You always know the layout of any structure you have entered and can retrace any path you have walked.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, enter Bestial Fury for 1 minute — +4 AC, Advantage on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "4",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:charmed",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:frightened",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "no.cast",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": true,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,45 @@
+{
+ "_id": "Zi5kBGoBwuDPRGWq",
+ "_key": "!items!Zi5kBGoBwuDPRGWq",
+ "name": "Deity: Shar (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Dagger</p><p><strong>Granted power:</strong> Advantage on Stealth in darkness. Once/day: snuff all nonmagical light within 30ft.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (Shar)",
+    "level": 1,
+    "description": "<p>Advantage on Stealth in darkness. Once/day: snuff all nonmagical light within 30ft.</p><p><strong>Favoured weapon:</strong> Dagger</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth in darkness",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 38,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,87 @@
+{
+ "_id": "h0F3GCS8PATdW4UR",
+ "_key": "!items!h0F3GCS8PATdW4UR",
+ "name": "Duergar",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 25ft (not reduced by armour or encumbrance) • Darkvision 120ft • +2 Con / +1 Wis, −1 Cha</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Disadvantage</strong> on attack rolls and sight-based Perception checks in direct sunlight.</li><li><strong>Advantage</strong> on saves vs illusion, charm, and paralysis.</li><li><strong>Advantage</strong> on stonework/underground construction/unusual-stonework checks.</li><li><strong>Innate</strong> Invisibility, 1/day, until you attack or cast, or up to 1 minute (1 Luck for a second use, or to cast Enlarge instead).</li><li><strong>Weapon training:</strong> warhammer, handaxe, light crossbow, heavy pick.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 25,
+  "vision": "Darkvision 120ft",
+  "attributes": "+2 Con / +1 Wis, −1 Cha",
+  "bonuses": {
+   "con": 2,
+   "wis": 1,
+   "cha": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Disadvantage on attack rolls and sight-based…",
+    "text": "Disadvantage on attack rolls and sight-based Perception checks in direct sunlight."
+   },
+   {
+    "name": "Advantage on saves vs illusion",
+    "text": "Advantage on saves vs illusion, charm, and paralysis."
+   },
+   {
+    "name": "Advantage on stonework/underground…",
+    "text": "Advantage on stonework/underground construction/unusual-stonework checks."
+   },
+   {
+    "name": "Innate Invisibility",
+    "text": "Innate Invisibility, 1/day, until you attack or cast, or up to 1 minute (1 Luck for a second use, or to cast Enlarge instead)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "warhammer, handaxe, light crossbow, heavy pick."
+   },
+   {
+    "name": "Armour training",
+    "text": "light, medium."
+   }
+  ],
+  "choice": null,
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "-1",
+    "when": "in direct sunlight",
+    "label": ""
+   },
+   {
+    "key": "adv.skill",
+    "value": "-1",
+    "when": "sight-based Perception in direct sunlight",
+    "label": ""
+   },
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs illusion, charm and paralysis",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "stonework, underground construction or unusual stonework",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

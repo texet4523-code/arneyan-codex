@@ -1,0 +1,52 @@
+{
+ "_id": "OJP5xQmv1Y2juxrs",
+ "_key": "!items!OJP5xQmv1Y2juxrs",
+ "name": "Will of Iron",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Wisdom / Intelligence / Charisma — choose one for the stat bump)</em></p><p>Permanent +2 bonus to Will saving throws. Gain +1 to one of Wisdom, Intelligence, or Charisma of your choice (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "save.will",
+    "value": "2",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "ability.wis",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "abilityChoice": {
+   "options": [
+    "wis",
+    "int",
+    "cha"
+   ],
+   "value": ""
+  }
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

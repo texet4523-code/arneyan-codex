@@ -1,0 +1,72 @@
+{
+ "_id": "JAy2MYioJqawi03K",
+ "_key": "!items!JAy2MYioJqawi03K",
+ "name": "Ordenvael Demon Hunter (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li>Trained within Ordenvael, the walled monastic order built for one purpose — hunting down fiends that slip through from the Hells and the Abyss before they can root themselves in Arneyan. Ordenvael doesn't care whose Warlock summoned the thing loose; they just want it gone.</li><li><strong>Fiend-Marked: </strong>Combat Marauder's damage bonus applies to devils, demons, and other fiends in addition to humanoids and giants, and the ranger's weapons count as magical for the purpose of overcoming a fiend's damage resistance.</li><li><strong>Wardsight: </strong>Advantage on checks to detect fiendish corruption, cursed ground, or the residue of a summoning ritual, and advantage on saves vs fear effects created by fiends specifically.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Fiend-Marked",
+    "level": 1,
+    "description": "<p>Combat Marauder's damage bonus applies to devils, demons, and other fiends in addition to humanoids and giants, and the ranger's weapons count as magical for the purpose of overcoming a fiend's damage resistance.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Fiend-Marked: Combat Marauder's full bonus also applies vs fiends; your weapons count as magical vs fiend resistance.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Wardsight",
+    "level": 1,
+    "description": "<p>Advantage on checks to detect fiendish corruption, cursed ground, or the residue of a summoning ritual, and advantage on saves vs fear effects created by fiends specifically.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to detect fiendish corruption, cursed ground or summoning residue",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fear effects created by fiends",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,52 @@
+{
+ "_id": "4cH37sbUYkEaBzQS",
+ "_key": "!items!4cH37sbUYkEaBzQS",
+ "name": "Healing Circle",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 30ft; 20ft-radius burst. Heals 1d8 + 1 per level (max +10) hit points to each living creature in the area; does not affect undead or constructs. Cast reversed (Harm Circle): each living creature takes the same amount as necrotic damage; Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Paladin"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Half damage (Harm Circle only)",
+  "damage": "1d8 + min(@cl, 10)",
+  "damageType": "healing",
+  "reversible": true,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 213,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

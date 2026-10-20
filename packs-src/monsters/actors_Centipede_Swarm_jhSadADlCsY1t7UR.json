@@ -1,0 +1,209 @@
+{
+ "_id": "jhSadADlCsY1t7UR",
+ "_key": "!actors!jhSadADlCsY1t7UR",
+ "name": "Centipede Swarm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-centipede.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "20ft, climb 20ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (swarm)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "weapons 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast (swarm)</em></p><p><strong>GM:</strong> Pours out of the wall like a dropped rope.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bites",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-centipede.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1khO8meP8HC6JkHu",
+   "_key": "!actors.items!jhSadADlCsY1t7UR.1khO8meP8HC6JkHu",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swarm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-centipede.svg",
+   "system": {
+    "description": "<p>Resistance 5 to weapon damage. Can occupy another creature's space and can pass through any gap a centipede can. Cannot regain HP or gain temporary HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "z2VL5n9vE15o2cvS",
+   "_key": "!actors.items!jhSadADlCsY1t7UR.z2VL5n9vE15o2cvS",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poison",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-centipede.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:9]{Fortitude save DC 9} or is @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 9,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LpSL496GnJ2tyy4C",
+   "_key": "!actors.items!jhSadADlCsY1t7UR.LpSL496GnJ2tyy4C",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Centipede Swarm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-centipede.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

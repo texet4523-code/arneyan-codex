@@ -1,0 +1,52 @@
+{
+ "_id": "bU4YqFIL1S9J5Vf1",
+ "_key": "!items!bU4YqFIL1S9J5Vf1",
+ "name": "Circle of Death",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Range 150ft; 60ft-radius sphere. Creatures whose Levels total up to 1d4 per caster level die instantly (lowest Level first; creatures of Level 9 or higher are unaffected); Fortitude negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "",
+  "classes": [
+   "Warlock",
+   "Necromancer"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Range 150ft",
+  "duration": "",
+  "area": "60ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 60,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 285,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

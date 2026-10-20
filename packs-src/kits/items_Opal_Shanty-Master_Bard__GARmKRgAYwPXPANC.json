@@ -1,0 +1,62 @@
+{
+ "_id": "GARmKRgAYwPXPANC",
+ "_key": "!items!GARmKRgAYwPXPANC",
+ "name": "Opal Shanty-Master (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li>The seafaring musical tradition of Opal's docks and merchant fleets — work songs, storm calls, the music that keeps a crew rowing when the wind dies. Opal's position as a maritime hub means this tradition draws from every culture that passes through its harbours.</li><li><strong>Sea Shanty: </strong>Exalt's bonus applies to all allies' saves vs fear and exhaustion while aboard a ship or boat, or in any harsh environment (storms, desert marches, extended exposure) — not just at sea.</li><li><strong>Maritime Voice: </strong>Advantage on Seamanship checks and on Charisma-based checks with sailors, pirates, dock workers, and maritime merchants.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "Sea Shanty",
+    "level": 1,
+    "description": "<p>Exalt's bonus applies to all allies' saves vs fear and exhaustion while aboard a ship or boat, or in any harsh environment (storms, desert marches, extended exposure) — not just at sea.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Maritime Voice",
+    "level": 1,
+    "description": "<p>Advantage on Seamanship checks and on Charisma-based checks with sailors, pirates, dock workers, and maritime merchants.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Seamanship",
+      "label": ""
+     },
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with sailors, pirates, dock workers and maritime merchants",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

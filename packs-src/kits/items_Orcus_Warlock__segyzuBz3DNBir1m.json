@@ -1,0 +1,57 @@
+{
+ "_id": "segyzuBz3DNBir1m",
+ "_key": "!items!segyzuBz3DNBir1m",
+ "name": "Orcus (Warlock)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<p>He wants a world of silence. No life — only undead servitude.</p><ul><li><strong>Dark Gift</strong> (1st): When you kill a creature with a damaging cantrip or spell, it rises as a zombie under your control at the start of your next turn. One at a time; it lasts 1 hour per Warlock level and counts as your summon.</li><li><strong>Patron's Mark</strong> (6th): Passive: you always know the location of corpses, undead, and dying creatures within 60ft, even through walls. You can sense the approximate time of death of any corpse you touch.</li><li><strong>Patron Feature</strong> (12th): Once per day, touch a corpse dead no longer than 1 day per Warlock level — it rises as a wight under your control for 1 hour per Warlock level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Warlock",
+  "features": [
+   {
+    "name": "Dark Gift",
+    "level": 1,
+    "description": "<p>When you kill a creature with a damaging cantrip or spell, it rises as a zombie under your control at the start of your next turn. One at a time; it lasts 1 hour per Warlock level and counts as your summon.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron's Mark",
+    "level": 6,
+    "description": "<p>Passive: you always know the location of corpses, undead, and dying creatures within 60ft, even through walls. You can sense the approximate time of death of any corpse you touch.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Feature",
+    "level": 12,
+    "description": "<p>Once per day, touch a corpse dead no longer than 1 day per Warlock level — it rises as a wight under your control for 1 hour per Warlock level.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "rAyJCFFTFsAcPyvj",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

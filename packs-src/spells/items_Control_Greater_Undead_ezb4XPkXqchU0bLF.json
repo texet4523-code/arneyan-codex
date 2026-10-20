@@ -1,0 +1,62 @@
+{
+ "_id": "ezb4XPkXqchU0bLF",
+ "_key": "!items!ezb4XPkXqchU0bLF",
+ "name": "Control Greater Undead",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+ "system": {
+  "description": "<p>Range 60ft; up to 1 undead per three levels, each of Level 9 or higher. Each must make a Will save or obey your commands for 1 minute per level; it gets a new save each time it is ordered to harm itself. Undead of lower than Level 9 are unaffected. Ends for a creature if you attack it. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "Cleric",
+  "classes": [
+   "Cleric"
+  ],
+  "school": "Divine",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Controlled",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [
+     "dominated"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 349,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

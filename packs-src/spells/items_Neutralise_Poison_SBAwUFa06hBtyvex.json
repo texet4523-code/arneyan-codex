@@ -1,0 +1,76 @@
+{
+ "_id": "SBAwUFa06hBtyvex",
+ "_key": "!items!SBAwUFa06hBtyvex",
+ "name": "Neutralise Poison",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Touch; one creature or object. All poison in it is neutralised: ongoing poison effects end and a poisoned object, container or weapon becomes harmless. Hit points and ability scores already lost are not restored. A treated creature is immune to poison for 10 minutes.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "",
+  "classes": [
+   "Cleric",
+   "Druid",
+   "Paladin",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Neutralised Poison",
+    "target": "target",
+    "rounds": "100",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "poison",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "immune",
+      "value": "condition:poisoned",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 219,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

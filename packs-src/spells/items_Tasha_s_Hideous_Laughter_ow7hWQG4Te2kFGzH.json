@@ -1,0 +1,67 @@
+{
+ "_id": "ow7hWQG4Te2kFGzH",
+ "_key": "!items!ow7hWQG4Te2kFGzH",
+ "name": "Tasha's Hideous Laughter",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-charm.svg",
+ "system": {
+  "description": "<p>Range 30ft; one creature. It falls Prone with uncontrollable laughter, Incapacitated for 1 round per level; it repeats the Will save at the end of each of its turns, ending the spell on a success. Creatures with Int 3 or less are immune. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Witch, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Warlock",
+   "Witch",
+   "Bard"
+  ],
+  "school": "Enchantment",
+  "castingTime": "1 action",
+  "range": "Range 30ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Hideous Laughter",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "prone",
+     "incapacitated"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 135,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

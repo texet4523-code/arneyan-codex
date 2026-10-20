@@ -1,0 +1,89 @@
+{
+ "_id": "vzNzVYJRsNgCtMGN",
+ "_key": "!items!vzNzVYJRsNgCtMGN",
+ "name": "Goliath",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Large • Speed 30ft • Darkvision 60ft • +2 Str / +1 Con, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on Strength checks to push, drag, lift or break against a smaller creature or object.</li><li><strong>Resistance 5 to cold.</strong></li><li><strong>Mountain Endurance</strong> (Advantage on Fortitude saves against exhaustion, forced marching and thin mountain air). 1/long rest, when hit: reduce the damage by 1d12 + Constitution modifier (1 Luck for extra use).</li><li><strong>Weapon training:</strong> two-handed axe, maul, javelin, greatclub.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>Jotunas Goliath:</strong> Wisdom-themed, Advantage on Jotunas terrain/tribal-custom/true-giant-lineage checks, Advantage on Charisma checks towards Dul Khagul dwarves.</li><li><strong>Tribe Greater Goliath (Strongroar Lands):</strong> Charisma-themed, Advantage on Strongroar Lands terrain/custom checks, Advantage on Charisma checks towards Tenor Hold dwarves.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "large",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Con, −1 Int",
+  "bonuses": {
+   "str": 2,
+   "con": 1,
+   "int": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Advantage on Strength checks to push",
+    "text": "Advantage on Strength checks to push, drag, lift or break against a smaller creature or object."
+   },
+   {
+    "name": "Resistance 5 to cold",
+    "text": "Resistance 5 to cold."
+   },
+   {
+    "name": "Mountain Endurance",
+    "text": "Mountain Endurance (Advantage on Fortitude saves against exhaustion, forced marching and thin mountain air). 1/long rest, when hit: reduce the damage by 1d12 + Constitution modifier (1 Luck for extra use)."
+   },
+   {
+    "name": "Weapon training",
+    "text": "two-handed axe, maul, javelin, greatclub."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "Jotunas Goliath",
+     "text": "Wisdom-themed, Advantage on Jotunas terrain/tribal-custom/true-giant-lineage checks, Advantage on Charisma checks towards Dul Khagul dwarves.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Tribe Greater Goliath (Strongroar Lands)",
+     "text": "Charisma-themed, Advantage on Strongroar Lands terrain/custom checks, Advantage on Charisma checks towards Tenor Hold dwarves.",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "resist",
+    "value": "cold 5",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check.str",
+    "value": "1",
+    "when": "to push, drag, lift or break vs a smaller creature or object",
+    "label": ""
+   },
+   {
+    "key": "adv.save.fort",
+    "value": "1",
+    "when": "vs exhaustion, forced marching and thin mountain air",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

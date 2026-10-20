@@ -1,0 +1,1944 @@
+{
+ "_id": "7vfWe1I6OCx62kjc",
+ "_key": "!actors!7vfWe1I6OCx62kjc",
+ "name": "Ilyra Fennwhisper",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Archer.webp",
+ "folder": "LTtV5tbd3hY50w1T",
+ "sort": 200,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 13
+   },
+   "dex": {
+    "value": 18
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 12
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 9
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 33,
+    "max": 33,
+    "temp": 0
+   },
+   "speed": 35
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 27,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Chaotic Good",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Elvish",
+   "biography": "<p><em>The Broken Anvil · Level 5 - The Journeymen · Seat 2, Skirmisher</em></p><p>A restless wood-elf skirmisher who never stands still and always has the right arrow for the job. Light-hearted, impatient and competitive; keeps a running tally of her best shots and will tell you about them. Spent years tracking raiders on the edge of the Red Waste; joined the Keepers because they actually go after the people who go missing.</p><h3>In a fight</h3><p>Stay 30ft or more behind the front line; move 10ft and shoot for Advantage, or plant your feet and Twin Nock; Fire Arrows for the troll.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Running Shot.</strong> If you moved at least 10ft this turn before attacking with a bow, your first bow attack that turn has Advantage. Long Sight (kit): the trigger is also met, without moving, when the target is more than 60ft away.</p><p><strong>Twin Nock.</strong> In place of your one attack, fire two arrows (one or two targets in range). The second arrow has Disadvantage. Each arrow deals +1 (does not stack with Bow Mastery). Cannot combine with Running Shot&#x27;s Advantage on the same turn.</p><p><strong>Bow Mastery.</strong> +1 damage with bows (included above).</p><p><strong>Bent Path (1/encounter).</strong> One shot ignores the Disadvantage from Half Cover and reduces a shield&#x27;s AC bonus by 2. Full Cover still blocks it.</p><p><strong>Arrow Repertoire.</strong> Known: Fire Arrow (+1d6 fire, ignites), Broadhead Arrow (-2 to the target&#x27;s armour AC), Rope Arrow (trails a 60ft line that anchors on a solid hit and can be climbed). You craft and carry up to 8 special arrows a day (Dex 3 + level 5), given materials.</p><p><strong>Skirmisher&#x27;s Grace.</strong> Difficult terrain costs no extra movement on a turn in which you end having made a ranged attack.</p><p><strong>Fletcher&#x27;s Craft (Int).</strong> Repair or craft bows, strings and arrows from available materials; identify odd or trapped arrows.</p><p><strong>Waste-Born Patience (kit).</strong> Advantage on Survival checks to track a wounded target you have shot.</p><p><strong>Low-Light Vision.</strong> Not darkvision: dim light counts as bright for you, and every light source reaches twice as far, but you see nothing in total darkness. Stay near the lantern.</p><p><strong>Keen Senses.</strong> Advantage on Perception (sight or hearing) checks and on concentration saves.</p><p><strong>Fey mind.</strong> Immune to magical sleep; Advantage on saves against charm.</p><p><strong>Trance.</strong> A 4-hour trance replaces 8 hours of sleep.</p><p><strong>Saevren.</strong> +5ft speed (included). Advantage on Stealth and Perception in natural environments. Camouflage (1/long rest): while moving through natural terrain, become undetectable to passive notice until you move or act.</p><p><strong>Training.</strong> Weapons: longbow, shortbow, shortsword, handaxe. Armour: light.</p><p><strong>Steady Aim (Specialist).</strong> No Disadvantage on ranged attacks against a target engaged in melee with an ally. Shoot past the dwarf freely.</p><p><strong>Point-Blank Terror (Specialist).</strong> No Disadvantage for making a ranged attack while an enemy is within 5ft of you.</p><p><strong>Speed, Initiative and HP.</strong> Speed: 35ft (Saevren +5ft) · Initiative: +3 · HP: d8: 1st level 8 + Con 1 = 9; levels 2-5: 4 x (5 + 1) = 24. Total 33.</p><p><strong>Armour Class on the sheet:</strong> 10 + 3 (Studded Leather) + 1 (magic) + 3 (Dex; Light armour, full) = 17</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "0KKCr7ancrFZKzxZ",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.0KKCr7ancrFZKzxZ",
+   "name": "Archer",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Archer.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Wisdom</td></tr><tr><td>Hit Die</td><td>d8</td></tr><tr><td>HP beyond 10th</td><td>+2 HP a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★☆☆☆ Easy</td></tr><tr><td>Weapons</td><td>All bows, dagger, hand axe, short sword, sap. No crossbows or firearms.</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr><tr><td>Identity</td><td>A skirmisher who never stops moving: shooting on the run, arcing shots over cover and picking the right arrow for the job, where the Gunslinger plants their feet.</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Running Shot, Fletcher's Craft, Arrow Repertoire, Bent Path</td></tr><tr><td>2</td><td>Bow Mastery</td></tr><tr><td>4</td><td>Twin Nock</td></tr><tr><td>5</td><td>Skirmisher's Grace</td></tr><tr><td>6</td><td>Longshot</td></tr><tr><td>7</td><td>Called Shot</td></tr><tr><td>9</td><td>Pinning Shot</td></tr><tr><td>10</td><td>Bent Path (Improved)</td></tr><tr><td>12</td><td>Hail of Arrows</td></tr><tr><td>13</td><td>Loosed in Passing</td></tr><tr><td>15</td><td>+1 Dexterity</td></tr><tr><td>16</td><td>Seeker</td></tr><tr><td>17</td><td>Never Still</td></tr><tr><td>20</td><td>Perfect Loose</td></tr><tr><td>24</td><td>The Arrow Finds Its Mark</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Running Shot</h4><ul><li><strong>Effect: </strong>If you moved at least 10ft this turn before attacking with a bow, gain advantage on your first bow attack roll that turn. The opposite trigger to stillness-based marksmanship — standing still grants nothing here.</li></ul><h4>Fletcher's Craft (Intelligence)</h4><ul><li><strong>Effect: </strong>Repair or craft bows, strings, and arrows from available materials. Also governs identifying nonstandard or trapped arrows found in the field.</li></ul><h4>Arrow Repertoire</h4><ul><li><strong>Effect: </strong>You know how to nock two special arrow types from the list below, chosen at character creation. You can craft a number of special arrows per day equal to your Dexterity modifier + Archer level (minimum 1), assuming materials are available; unused arrows persist, but you can carry at most your daily pool of crafted arrows.</li><li><strong>Fire Arrow: </strong>+1d6 fire damage on hit; can ignite flammable material</li><li><strong>Whistling Arrow: </strong>deals no damage, but is audible up to 500ft and can be used as a signal; a creature unfamiliar with the sound makes a Will save against your Class Save DC or is Shaken for 1 round</li><li><strong>Rope Arrow: </strong>trails a thin line up to 60ft, anchors on a solid hit; can be climbed</li><li><strong>Broadhead Arrow: </strong>reduces the armour bonus to the target's AC by 2, no other bonus</li><li>From 3rd level: learn one additional arrow type from the list.</li><li>From 15th level: learn a fourth arrow type. Daily crafted arrow pool doubles.</li></ul><h4>Bent Path</h4><ul><li><strong>Effect: </strong>Once per encounter, a shot you make ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks the shot — that comes later).</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Bow Mastery</h4><ul><li><strong>Effect:</strong> You deal +1 damage with bows, rising to +2 at 6th level, +3 at 12th and +4 at 18th.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Twin Nock</h4><ul><li><strong>Effect: Fire two arrows in place of the one attack your action gives you. Extra Attack, an off-hand weapon and Flowing Strikes add nothing to it: a Twin Nock is two arrows (three from 17th) and no more. The second arrow is rolled with Disadvantage until 10th level, and from 10th level there is no penalty.</strong> Can split between two targets within range, or fire both at the same target. Each arrow deals +1 bonus damage.</li><li>Cannot combine with Running Shot's advantage on the same turn until 13th level (see Loosed in Passing) — until then, choose one or the other each turn: move-and-shoot for advantage, or plant your feet for two arrows.</li><li>Per-arrow bonus by level: +1 at 4th, +2 at 9th, +3 at 13th, +4 at 21st. It does not stack with Bow Mastery; use the higher.</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Skirmisher's Grace</h4><ul><li><strong>Effect: </strong>Moving through difficult terrain no longer costs extra movement when you end your turn having made a ranged attack that same turn.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Longshot</h4><ul><li><strong>Effect:</strong> Double the range of your bows, and you take no penalty at long range.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Called Shot (Archer)</h4><ul><li><strong>Effect: Declare before rolling, and take Disadvantage on the attack roll to aim for a specific location. Only one arrow a round can be a called shot, and its save is against your Class Save DC.</strong></li><li><strong>Head: </strong>Fortitude save or stunned 1 round. A creature that saves against, or recovers from, your Head shot is immune to your Head shots for 1 minute</li><li><strong>Arm: </strong>Fortitude save or drops what's held</li><li><strong>Leg: </strong>Fortitude save or movement halved 1 round</li><li>From 10th level: no longer requires disadvantage.</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Pinning Shot</h4><ul><li><strong>Effect:</strong> On a hit, the target makes a Reflex save against your Class Save DC or has its movement halved for 1 round.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Bent Path (Improved)</h4><ul><li><strong>Effect: </strong>Once per encounter, a shot treats Full Cover as Half Cover (you can target it, with Disadvantage) and ignores a shield's AC bonus, including magical bonuses. Requires Running Shot's movement trigger to have been met this turn.</li></ul><h3 class=\"arn-level\">12th Level</h3><h4>Hail of Arrows</h4><ul><li><strong>Effect:</strong> Once per encounter, as your action, make one bow attack roll against every creature in a 15ft radius within range, rolling damage separately for each.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Loosed in Passing</h4><ul><li><strong>Effect: </strong>Twin Nock and Running Shot no longer conflict — fire both arrows while moving and still gain Running Shot's advantage. Additionally, this attack does not end your movement; you may continue moving afterward as normal.</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Dexterity Bonus</h4><ul><li><strong>Effect: </strong>Permanent +1 Dexterity.</li></ul><h3 class=\"arn-level\">16th Level</h3><h4>Seeker</h4><ul><li><strong>Effect:</strong> Your arrows ignore the Disadvantage from Half Cover and 1 point of a shield's AC bonus, and you add your Wisdom modifier (minimum 0) to bow damage.</li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Never Still</h4><ul><li><strong>Effect: </strong>Running Shot's advantage now applies even if you moved less than 10ft, as long as you moved at all this turn. Additionally, Twin Nock becomes three arrows instead of two, splittable among up to three targets, each still carrying the current per-arrow bonus.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Perfect Loose</h4><ul><li><strong>Effect: </strong>Once per day, declare before rolling. The next shot deals maximum damage regardless of dice result, and automatically applies Bent Path's improved effect if used. If part of a Twin Nock attack, applies to one arrow of the volley.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>The Arrow Finds Its Mark</h4><ul><li><strong>Effect: </strong>Once per encounter, make a single ranged attack against any target you have line of sight to, regardless of range, cover, or obstruction — the shot arcs and curves as needed to arrive. No distance penalty, Half and Full Cover do not hinder it, and this attack cannot be a called shot (the trick is in the path, not the placement).</li></ul><h2>Kits — Archer Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Archer folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Your kit defines the terrain, tradition, and context that shaped your relationship with the bow.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 5,
+    "hitDie": "d8",
+    "hpBeyond10": 2,
+    "bthProgression": "martial",
+    "keyAbility": "dex",
+    "castingAbility": "",
+    "xpRate": 10,
+    "weapons": "All bows, dagger, hand axe, short sword, sap. No crossbows or firearms.",
+    "armour": "Light armour. Shields and heavier armour only through training, like any class.",
+    "slotTable": [],
+    "featLevels": [
+     1,
+     2,
+     6,
+     11,
+     16,
+     21
+    ],
+    "featPaths": [
+     "General Path",
+     "Martial Path",
+     "Specialist Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Running Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.vcBhJLUgua28MVqR"
+     },
+     {
+      "level": 1,
+      "name": "Fletcher's Craft (Intelligence)",
+      "uuid": "Compendium.arneyan.class-features.Item.NMhxYrkDcQpV5PA1"
+     },
+     {
+      "level": 1,
+      "name": "Arrow Repertoire",
+      "uuid": "Compendium.arneyan.class-features.Item.lQNEaP0grCdzoqMs"
+     },
+     {
+      "level": 1,
+      "name": "Bent Path",
+      "uuid": "Compendium.arneyan.class-features.Item.aCkIJ1icpAoYLVXf"
+     },
+     {
+      "level": 2,
+      "name": "Bow Mastery",
+      "uuid": "Compendium.arneyan.class-features.Item.EzRSP7Q9eXWT5r4M"
+     },
+     {
+      "level": 4,
+      "name": "Twin Nock",
+      "uuid": "Compendium.arneyan.class-features.Item.vOc78FoNb2MZ2v1E"
+     },
+     {
+      "level": 5,
+      "name": "Skirmisher's Grace",
+      "uuid": "Compendium.arneyan.class-features.Item.62OC4bUQYm1cFCmV"
+     },
+     {
+      "level": 6,
+      "name": "Longshot",
+      "uuid": "Compendium.arneyan.class-features.Item.QVXPyvF7StB6qpJ5"
+     },
+     {
+      "level": 7,
+      "name": "Called Shot (Archer)",
+      "uuid": "Compendium.arneyan.class-features.Item.pUTQBrSdxqlmqF0s"
+     },
+     {
+      "level": 9,
+      "name": "Pinning Shot",
+      "uuid": "Compendium.arneyan.class-features.Item.sBA3qJpckkKsn6C5"
+     },
+     {
+      "level": 10,
+      "name": "Bent Path (Improved)",
+      "uuid": "Compendium.arneyan.class-features.Item.wMiux84hUnuI9iMG"
+     },
+     {
+      "level": 12,
+      "name": "Hail of Arrows",
+      "uuid": "Compendium.arneyan.class-features.Item.tCt0RvVxIyzZZlxl"
+     },
+     {
+      "level": 13,
+      "name": "Loosed in Passing",
+      "uuid": "Compendium.arneyan.class-features.Item.N7PD4mDKIBqqhbbY"
+     },
+     {
+      "level": 15,
+      "name": "Dexterity Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.QHgvZxzGO9rtGdIo"
+     },
+     {
+      "level": 16,
+      "name": "Seeker",
+      "uuid": "Compendium.arneyan.class-features.Item.mLBFXE3x3GNXmZFZ"
+     },
+     {
+      "level": 17,
+      "name": "Never Still",
+      "uuid": "Compendium.arneyan.class-features.Item.lY2xlXvvwRzH34Ud"
+     },
+     {
+      "level": 20,
+      "name": "Perfect Loose",
+      "uuid": "Compendium.arneyan.class-features.Item.gEyi4At7jW8OpLS8"
+     },
+     {
+      "level": 24,
+      "name": "The Arrow Finds Its Mark",
+      "uuid": "Compendium.arneyan.class-features.Item.wOnrscsmtAFfntzo"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.PzK3V9Xw0ha2o9St"
+   }
+  },
+  {
+   "_id": "EUdzWMMnPSsvc7sC",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.EUdzWMMnPSsvc7sC",
+   "name": "Running Shot",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>If you moved at least 10ft this turn before attacking with a bow, gain advantage on your first bow attack roll that turn. The opposite trigger to stillness-based marksmanship — standing still grants nothing here.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Archer",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "bow attack, after moving at least 10ft",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.vcBhJLUgua28MVqR"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.vcBhJLUgua28MVqR"
+   }
+  },
+  {
+   "_id": "pv6jNiH0OeMZmCrT",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.pv6jNiH0OeMZmCrT",
+   "name": "Fletcher's Craft (Intelligence)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Repair or craft bows, strings, and arrows from available materials. Also governs identifying nonstandard or trapped arrows found in the field.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Archer",
+    "activities": [
+     {
+      "name": "Fletcher's Craft",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "int",
+      "save": "",
+      "text": "Repair or craft bows, strings and arrows, or identify nonstandard or trapped arrows.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.NMhxYrkDcQpV5PA1"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.NMhxYrkDcQpV5PA1"
+   }
+  },
+  {
+   "_id": "XUNXyerACFKDfLdi",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.XUNXyerACFKDfLdi",
+   "name": "Arrow Repertoire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>You know how to nock two special arrow types from the list below, chosen at character creation. You can craft a number of special arrows per day equal to your Dexterity modifier + Archer level (minimum 1), assuming materials are available; unused arrows persist, but you can carry at most your daily pool of crafted arrows.</li><li><strong>Fire Arrow: </strong>+1d6 fire damage on hit; can ignite flammable material</li><li><strong>Whistling Arrow: </strong>deals no damage, but is audible up to 500ft and can be used as a signal; a creature unfamiliar with the sound makes a Will save against your Class Save DC or is Shaken for 1 round</li><li><strong>Rope Arrow: </strong>trails a thin line up to 60ft, anchors on a solid hit; can be climbed</li><li><strong>Broadhead Arrow: </strong>reduces the armour bonus to the target's AC by 2, no other bonus</li><li>From 3rd level: learn one additional arrow type from the list.</li><li>From 15th level: learn a fourth arrow type. Daily crafted arrow pool doubles.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Archer",
+    "activities": [
+     {
+      "name": "Fire Arrow",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "fire",
+      "ability": "",
+      "save": "",
+      "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Whistling Arrow",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "will",
+      "text": "The arrow deals no damage but is heard up to 500ft; a creature unfamiliar with the sound saves or is Shaken for 1 round.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Rope Arrow",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "The arrow trails a thin line up to 60ft and anchors on a solid hit, so it can be climbed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     },
+     {
+      "name": "Broadhead Arrow",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "The arrow reduces the armour bonus to the target's AC by 2.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.lQNEaP0grCdzoqMs"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.lQNEaP0grCdzoqMs"
+   }
+  },
+  {
+   "_id": "RWllE8nR3wJyLg2D",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.RWllE8nR3wJyLg2D",
+   "name": "Bent Path",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Once per encounter, a shot you make ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks the shot — that comes later).</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Archer",
+    "activities": [
+     {
+      "name": "Bent Path",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "This shot ignores Disadvantage from Half Cover and reduces a shield's AC bonus by 2.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.aCkIJ1icpAoYLVXf"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.aCkIJ1icpAoYLVXf"
+   }
+  },
+  {
+   "_id": "NTMhhV38jQnas7Ds",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.NTMhhV38jQnas7Ds",
+   "name": "Bow Mastery",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> You deal +1 damage with bows, rising to +2 at 6th level, +3 at 12th and +4 at 18th.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 2,
+    "className": "Archer",
+    "rules": [
+     {
+      "key": "damage.ranged",
+      "value": "+min(4,floor((@cl+6)/6))",
+      "when": "with bows",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.EzRSP7Q9eXWT5r4M"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.EzRSP7Q9eXWT5r4M"
+   }
+  },
+  {
+   "_id": "vXXIoJdXcSsabeVx",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.vXXIoJdXcSsabeVx",
+   "name": "Twin Nock",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: Fire two arrows in place of the one attack your action gives you. Extra Attack, an off-hand weapon and Flowing Strikes add nothing to it: a Twin Nock is two arrows (three from 17th) and no more. The second arrow is rolled with Disadvantage until 10th level, and from 10th level there is no penalty.</strong> Can split between two targets within range, or fire both at the same target. Each arrow deals +1 bonus damage.</li><li>Cannot combine with Running Shot's advantage on the same turn until 13th level (see Loosed in Passing) — until then, choose one or the other each turn: move-and-shoot for advantage, or plant your feet for two arrows.</li><li>Per-arrow bonus by level: +1 at 4th, +2 at 9th, +3 at 13th, +4 at 21st. It does not stack with Bow Mastery; use the higher.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 4,
+    "className": "Archer",
+    "activities": [
+     {
+      "name": "Twin Nock",
+      "kind": "attacks",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Arrows in place of the one attack your action gives you, at one target or split. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "4:2, 17:3",
+      "weapons": "arrow",
+      "disadvantage": "rest",
+      "disUntil": 10,
+      "damageBonus": "4:1, 9:2, 13:3, 21:4",
+      "noStack": "Bow Mastery",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.vOc78FoNb2MZ2v1E"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.vOc78FoNb2MZ2v1E"
+   }
+  },
+  {
+   "_id": "8hlXkxtRV6Sp194c",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.8hlXkxtRV6Sp194c",
+   "name": "Skirmisher's Grace",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect: </strong>Moving through difficult terrain no longer costs extra movement when you end your turn having made a ranged attack that same turn.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 5,
+    "className": "Archer"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "0KKCr7ancrFZKzxZ",
+     "source": "Compendium.arneyan.class-features.Item.62OC4bUQYm1cFCmV"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.62OC4bUQYm1cFCmV"
+   }
+  },
+  {
+   "_id": "zhn9wakXAUFbAKIc",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.zhn9wakXAUFbAKIc",
+   "name": "Elf (Saevren)",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><strong>Size Medium • Speed 30ft • Low-Light Vision (not true darkvision) • +2 Dex / +1 Int, −1 Con</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Trance</strong> (4hr rest instead of 8hr sleep).</li><li><strong>Keen Senses:</strong> Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells.</li><li><strong>Armour training:</strong> light.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>High Elf:</strong> weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).</li><li><strong>Saevren (Wood Elf):</strong> weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</li><li><strong>Iiria Elf (Jinia coastal):</strong> weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "Low-Light",
+    "attributes": "+2 Dex / +1 Int, −1 Con",
+    "bonuses": {
+     "dex": 2,
+     "int": 1,
+     "con": -1
+    },
+    "pickTwo": false,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Immune to magical sleep",
+      "text": "Immune to magical sleep."
+     },
+     {
+      "name": "Advantage on saves vs charm",
+      "text": "Advantage on saves vs charm."
+     },
+     {
+      "name": "Trance",
+      "text": "Trance (4hr rest instead of 8hr sleep)."
+     },
+     {
+      "name": "Keen Senses",
+      "text": "Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells."
+     },
+     {
+      "name": "Armour training",
+      "text": "light."
+     }
+    ],
+    "choice": {
+     "label": "Subtype",
+     "options": [
+      {
+       "name": "High Elf",
+       "text": "weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).",
+       "bonuses": {},
+       "rules": []
+      },
+      {
+       "name": "Saevren (Wood Elf)",
+       "text": "weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "speed",
+         "value": "5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Iiria Elf (Jinia coastal)",
+       "text": "weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (1/long rest: reroll a failed Reflex save while aboard a vessel or in open water).",
+       "bonuses": {},
+       "rules": []
+      }
+     ]
+    },
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Immune to magical sleep.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception (sight or hearing)",
+      "label": ""
+     },
+     {
+      "key": "adv.concentration",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "Saevren (Wood Elf)",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.0V3PZxgPYRhoZKrK"
+   }
+  },
+  {
+   "_id": "Gvx75xTdIN9Lspn5",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.Gvx75xTdIN9Lspn5",
+   "name": "Subtype: Saevren (Wood Elf)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (1/long rest, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Subtype: Saevren (Wood Elf)"
+    }
+   }
+  },
+  {
+   "_id": "JFw5q4Vqzt4u4H4M",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.JFw5q4Vqzt4u4H4M",
+   "name": "Immune to magical sleep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Immune to magical sleep.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Immune to magical sleep"
+    }
+   }
+  },
+  {
+   "_id": "MzRM8hxVXwxiAm2U",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.MzRM8hxVXwxiAm2U",
+   "name": "Advantage on saves vs charm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on saves vs charm.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Advantage on saves vs charm"
+    }
+   }
+  },
+  {
+   "_id": "nkig6YAecnLLjKQs",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.nkig6YAecnLLjKQs",
+   "name": "Trance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Trance (4hr rest instead of 8hr sleep).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Trance"
+    }
+   }
+  },
+  {
+   "_id": "32Ut5TRNM3socYUV",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.32Ut5TRNM3socYUV",
+   "name": "Keen Senses",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Keen Senses"
+    }
+   }
+  },
+  {
+   "_id": "Q7UpsnI7N62FjTj1",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.Q7UpsnI7N62FjTj1",
+   "name": "Armour training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>light.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "zhn9wakXAUFbAKIc",
+     "source": "zhn9wakXAUFbAKIc.Armour training"
+    }
+   }
+  },
+  {
+   "_id": "Fsd7YjxwdaVbmK9u",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.Fsd7YjxwdaVbmK9u",
+   "name": "Red Waste Tracker (Archer)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "system": {
+    "description": "<p>Desert and open-terrain marksmanship, built around long sightlines.</p><ul><li><strong>Long Sight: Running Shot's trigger is also met when the target is more than 60ft away, even if you have not moved.</strong></li><li><strong>Waste-Born Patience: </strong>Advantage on Survival checks tracking a wounded target you've shot.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Archer",
+    "features": [
+     {
+      "name": "Long Sight",
+      "level": 1,
+      "description": "<p>Running Shot's trigger is also met when the target is more than 60ft away, even if you have not moved.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "1",
+        "when": "bow attack, vs a target more than 60ft away, even without moving (Running Shot)",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     },
+     {
+      "name": "Waste-Born Patience",
+      "level": 1,
+      "description": "<p>Advantage on Survival checks tracking a wounded target you've shot.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.skill",
+        "value": "1",
+        "when": "Survival tracking a wounded target you've shot",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.hxKu3MfhoHTQ9l30"
+   }
+  },
+  {
+   "_id": "qwLTgXuHyhiVd7SG",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.qwLTgXuHyhiVd7SG",
+   "name": "Long Sight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Running Shot's trigger is also met when the target is more than 60ft away, even if you have not moved.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Tracker (Archer)",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "bow attack, vs a target more than 60ft away, even without moving (Running Shot)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Fsd7YjxwdaVbmK9u",
+     "source": "Fsd7YjxwdaVbmK9u.0"
+    }
+   }
+  },
+  {
+   "_id": "8Qf1CmvMmkm7lIIV",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.8Qf1CmvMmkm7lIIV",
+   "name": "Waste-Born Patience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Advantage on Survival checks tracking a wounded target you've shot.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Tracker (Archer)",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Survival tracking a wounded target you've shot",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Fsd7YjxwdaVbmK9u",
+     "source": "Fsd7YjxwdaVbmK9u.1"
+    }
+   }
+  },
+  {
+   "_id": "bY7KJmIwCGB1er6t",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.bY7KJmIwCGB1er6t",
+   "name": "Steady Aim",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+   "system": {
+    "description": "<p>No Disadvantage on ranged attacks against a target engaged in melee with an ally.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Specialist Path",
+    "levelTaken": 0,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Steady Aim: no Disadvantage on ranged attacks against a target in melee with an ally.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.G8CxMGRm91vwyMVN"
+   }
+  },
+  {
+   "_id": "WfvlspfTv6ZRywm1",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.WfvlspfTv6ZRywm1",
+   "name": "Point-Blank Terror",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
+   "system": {
+    "description": "<p>Most people flinch putting a bow to full draw with an enemy already inside their reach. You don't — you put the shot exactly where you meant to, close enough to feel their breath. No Disadvantage for using ranged weapons within 5ft reach of an enemy.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Specialist Path",
+    "levelTaken": 0,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Point-Blank Terror: no Disadvantage for ranged attacks within 5ft of an enemy.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.haGhp1pKRchF3fjE"
+   }
+  },
+  {
+   "_id": "USzPpgvphVLbnBma",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.USzPpgvphVLbnBma",
+   "name": "Bowyer/Fletcher",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>Crafting bows and arrows</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.W25sqy9DOe581yxd"
+   }
+  },
+  {
+   "_id": "tqUck2KbXZr0QP7C",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.tqUck2KbXZr0QP7C",
+   "name": "Tracking",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Following a trail left by creatures or people</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.3y9fbmBhuaxB1F9Y"
+   }
+  },
+  {
+   "_id": "rzV8HkucN4CEhk5p",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.rzV8HkucN4CEhk5p",
+   "name": "Survival",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Finding food, water, and shelter in the wild</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
+   }
+  },
+  {
+   "_id": "Ci45YI9OwgWmL7Pt",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.Ci45YI9OwgWmL7Pt",
+   "name": "Hunting",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Tracking and bringing down game</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.O3gcbmvbX5pbb413"
+   }
+  },
+  {
+   "_id": "y8FXCJvuugP0CAsk",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.y8FXCJvuugP0CAsk",
+   "name": "Bow, Long Composite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-high-shot.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "100 gp",
+    "equipped": true,
+    "damage": "1d8+1",
+    "damageType": "piercing",
+    "ability": "dex",
+    "ranged": true,
+    "range": "110 ft",
+    "magic": 1,
+    "attackBonus": 0,
+    "traits": "",
+    "bundle": 0,
+    "ammoType": "arrow",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.6mMPfYQbXJ3ZclM9"
+   }
+  },
+  {
+   "_id": "Xo7QKAUe5h9YTu8G",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.Xo7QKAUe5h9YTu8G",
+   "name": "Sword, Short",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-broadsword.svg",
+   "system": {
+    "description": "<p>Finesse, Light</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "slashing",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Finesse, Light",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.UbKmPTLTNzkBQdP6"
+   }
+  },
+  {
+   "_id": "ddJhs1mot0bM7lFt",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.ddJhs1mot0bM7lFt",
+   "name": "Studded Leather",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-leather-armor.svg",
+   "system": {
+    "description": "<p><strong>Light armour.</strong> Flexible</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "25 gp",
+    "equipped": true,
+    "category": "light",
+    "ac": 3,
+    "magic": 1,
+    "traits": "Flexible",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.6NgjBwMgUuI7HHR4"
+   }
+  },
+  {
+   "_id": "knIqoPjqEhZL1UEZ",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.knIqoPjqEhZL1UEZ",
+   "name": "Quiver",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "3 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.65dwzO1kkKrsbegb"
+   }
+  },
+  {
+   "_id": "MrbrYopuUdHVec4h",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.MrbrYopuUdHVec4h",
+   "name": "Arrows",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/ammo-arrow-cluster.svg",
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "effects": [],
+   "system": {
+    "description": "<p>Ammunition, 30 to a slot. 2 gp for 20.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 60,
+    "slots": 1,
+    "bundle": 30,
+    "price": "2 gp for 20",
+    "equipped": false,
+    "inside": "",
+    "identified": true,
+    "unidentifiedName": "",
+    "unidentifiedDescription": "",
+    "ammoType": "arrow",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0,
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.SAnvuBOohQk32a7O"
+   }
+  },
+  {
+   "_id": "HdfSGyLtQ8QILrs4",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.HdfSGyLtQ8QILrs4",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "KNZ7rbCSg6Yg7LS3",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.KNZ7rbCSg6Yg7LS3",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "3D3B784VYotRtuPp",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.3D3B784VYotRtuPp",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 12,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "ta92vmyagIN73aRt",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.ta92vmyagIN73aRt",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "So9pLKgKwXyfJSF5",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.So9pLKgKwXyfJSF5",
+   "name": "Iron spikes (Keepers' kit)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 5,
+    "slots": 0.2
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "RcRx486oNQOLk4vU",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.RcRx486oNQOLk4vU",
+   "name": "Bedroll",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-camping-tent.svg",
+   "system": {
+    "description": "<p>Waterproof leather, wool padding, cotton lining, eyehooks (20 gp); thinner warm-climate variant (17 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.lHiXZDAPe8E3q8Yk"
+   }
+  },
+  {
+   "_id": "DY0tV3Fxfbq1PfMv",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.DY0tV3Fxfbq1PfMv",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "JSXyd1fs6OLyi025",
+   "_key": "!actors.items!7vfWe1I6OCx62kjc.JSXyd1fs6OLyi025",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Ilyra Fennwhisper",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Archer.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "The Broken Anvil",
+    "seat": 2,
+    "role": "Skirmisher",
+    "sheet": {
+     "ac": 17,
+     "saves": {
+      "fort": 3,
+      "ref": 5,
+      "will": 3
+     },
+     "bth": 3,
+     "hp": 33
+    }
+   }
+  }
+ }
+}

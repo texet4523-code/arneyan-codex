@@ -1,0 +1,69 @@
+{
+ "_id": "r2ivAEBSUSCcl9Ip",
+ "_key": "!items!r2ivAEBSUSCcl9Ip",
+ "name": "Darkvision",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-transform.svg",
+ "system": {
+  "description": "<p>Touch; one creature. Target sees in total darkness up to 60ft in black and white for 1 hour per level. Bright light does not blind it; sudden magical flashes still can.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Sorcerer"
+  ],
+  "school": "Transmutation",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Darkvision",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "sense",
+      "value": "Darkvision 60ft",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 98,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

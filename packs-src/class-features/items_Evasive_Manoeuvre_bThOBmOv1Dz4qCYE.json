@@ -1,0 +1,69 @@
+{
+ "_id": "bThOBmOv1Dz4qCYE",
+ "_key": "!items!bThOBmOv1Dz4qCYE",
+ "name": "Evasive Manoeuvre",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>+4 AC in melee. Cannot combine with ranged attacks or other rogue abilities that round, and cannot be used if surprised.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Rogue",
+  "activities": [
+   {
+    "name": "Evasive Manoeuvre",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "ac",
+    "value": "4",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": true,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mpjthAeSZRrS7A4C",
+ "sort": 15,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

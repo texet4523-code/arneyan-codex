@@ -1,0 +1,29 @@
+{
+ "_id": "jhJ7Tl00cgGly3kl",
+ "_key": "!items!jhJ7Tl00cgGly3kl",
+ "name": "Blood Magic",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+ "system": {
+  "description": "<p>Cast a spell when you are out of slots by taking 1d6 damage per spell level. You can only do this while your current HP is higher than the most it could cost (6 per spell level). You can do this a number of times per day equal to your casting-stat modifier (minimum 1). It cannot be used to cast healing spells, and the damage cannot be healed by magic until you complete a long rest. The cost cannot be reduced, resisted or soaked by temporary HP — it comes straight off your HP.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Arcane & Devout Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @casting.mod)"
+  }
+ },
+ "effects": [],
+ "folder": "Fx1EHbXnNGRc5QVF",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

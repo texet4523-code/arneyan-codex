@@ -1,0 +1,63 @@
+{
+ "_id": "VMC963NO1k180xwT",
+ "_key": "!items!VMC963NO1k180xwT",
+ "name": "Prismatic Wall",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range 60ft; wall 20ft wide, 10ft high, 10 minutes. Creatures of Level 7 or lower within 20ft are Blinded 2d4 rounds on seeing it (no save). A creature passing through meets each layer in order: Red 10d6 fire, Reflex halves; Orange 10d6 acid, Reflex halves; Yellow 10d6 lightning, Reflex halves; Green Fortitude or die (success 10d6 poison); Blue Fortitude or petrified; Indigo Will or Incapacitated 1 hour; Violet Will or banished to another plane. A layer is removed only by Cone of Cold, Lightning Bolt, Magic Missile, Passwall, Disintegrate, Daylight or Dispel Magic respectively, in that order.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 8,
+  "className": "",
+  "classes": [
+   "Illusionist",
+   "Druid"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Half damage (red, orange, yellow layers); the other layers as listed",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Prismatic Glare",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "8Ed5D8Wy08SRs3fv",
+ "sort": 365,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

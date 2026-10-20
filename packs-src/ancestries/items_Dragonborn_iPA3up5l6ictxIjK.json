@@ -1,0 +1,130 @@
+{
+ "_id": "iPA3up5l6ictxIjK",
+ "_key": "!items!iPA3up5l6ictxIjK",
+ "name": "Dragonborn",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Str / +1 Cha, −1 Dex</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Choose a damage type</strong> (fire/cold/lightning/poison/acid) at creation. 1/long rest breath weapon: line or cone, damage = character level, Reflex save for half (Ancestry Save DC, Constitution; 1 Luck for an extra use).</li><li><strong>Resistance 5 to a chosen damage type</strong>.</li><li><strong>Advantage</strong> on Charisma checks towards other dragon-kin and true dragons.</li><li><strong>Weapon training:</strong> longsword, spear, greatclub, javelin.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "medium",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Cha, −1 Dex",
+  "bonuses": {
+   "str": 2,
+   "cha": 1,
+   "dex": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Choose a damage type",
+    "text": "Choose a damage type (fire/cold/lightning/poison/acid) at creation. 1/long rest breath weapon: line or cone, damage = character level, Reflex save for half (Ancestry Save DC, Constitution; 1 Luck for an extra use)."
+   },
+   {
+    "name": "Resistance 5 to a chosen damage type",
+    "text": "Resistance 5 to a chosen damage type."
+   },
+   {
+    "name": "Advantage on Charisma checks towards other…",
+    "text": "Advantage on Charisma checks towards other dragon-kin and true dragons."
+   },
+   {
+    "name": "Weapon training",
+    "text": "longsword, spear, greatclub, javelin."
+   }
+  ],
+  "choice": {
+   "label": "Draconic type",
+   "options": [
+    {
+     "name": "Fire",
+     "text": "Resistance 5 to fire; your breath weapon deals fire damage.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "fire 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Cold",
+     "text": "Resistance 5 to cold; your breath weapon deals cold damage.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "cold 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Lightning",
+     "text": "Resistance 5 to lightning; your breath weapon deals lightning damage.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "lightning 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Poison",
+     "text": "Resistance 5 to poison; your breath weapon deals poison damage.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "poison 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Acid",
+     "text": "Resistance 5 to acid; your breath weapon deals acid damage.",
+     "bonuses": {},
+     "rules": [
+      {
+       "key": "resist",
+       "value": "acid 5",
+       "when": "",
+       "label": ""
+      }
+     ]
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "adv.check.cha",
+    "value": "1",
+    "when": "towards dragon-kin and true dragons",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

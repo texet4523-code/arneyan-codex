@@ -1,0 +1,283 @@
+{
+ "_id": "NOauw7lo1fxl2sv0",
+ "_key": "!actors!NOauw7lo1fxl2sv0",
+ "name": "Shadow",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 2,
+  "hd": "3d12",
+  "attributes": {
+   "hp": {
+    "value": 19,
+    "max": 19,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "fly 40ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 3,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead (incorporeal)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "non-magical 10, acid 5, cold 5, fire 5, lightning 5, thunder 5",
+   "immunities": "poison, condition:charmed, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead (incorporeal)</em></p><p><strong>GM:</strong> Lurks in the dark corners of any room and strikes the last member of the party. Bright light is its weakness.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Chilling touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "cold",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "59XzICz7bEUw08hE",
+   "_key": "!actors.items!NOauw7lo1fxl2sv0.59XzICz7bEUw08hE",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Undead Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "BzuMvhTpoF3xB2xq",
+   "_key": "!actors.items!NOauw7lo1fxl2sv0.BzuMvhTpoF3xB2xq",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Incorporeal",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Moves through walls and objects; has Resistance 10 against non-magical weapons, and Resistance 5 to acid, cold, fire, lightning and thunder.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zb1oRa3mNsWFAaU0",
+   "_key": "!actors.items!NOauw7lo1fxl2sv0.zb1oRa3mNsWFAaU0",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Strength Drain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>A creature hit makes a @Check[fort|dc:13]{Fortitude save DC 13} or loses 1d4 Strength for 24 hours. A creature reduced to 0 Strength dies and rises as a shadow in 1d4 rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TzKAxINvqznTZbIo",
+   "_key": "!actors.items!NOauw7lo1fxl2sv0.TzKAxINvqznTZbIo",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shadow Stealth",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p>Advantage on Stealth checks in dim light or darkness. It has Disadvantage on attacks in bright light.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KFHDeOREjcieJ6we",
+   "_key": "!actors.items!NOauw7lo1fxl2sv0.KFHDeOREjcieJ6we",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SzDUijp2Iu2Uisd1",
+ "prototypeToken": {
+  "name": "Shadow",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-ghost.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

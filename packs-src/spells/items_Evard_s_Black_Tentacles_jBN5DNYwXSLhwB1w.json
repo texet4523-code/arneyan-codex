@@ -1,0 +1,62 @@
+{
+ "_id": "jBN5DNYwXSLhwB1w",
+ "_key": "!items!jBN5DNYwXSLhwB1w",
+ "name": "Evard's Black Tentacles",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+ "system": {
+  "description": "<p>Range 90ft; 20ft-square. Tentacles fill the area for 1 round per level. Each creature that enters or starts its turn inside takes 2d6 bludgeoning damage and is Restrained; Reflex negates the Restrained condition (damage still applies). A Restrained creature escapes with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 4,
+  "className": "Wizard",
+  "classes": [
+   "Wizard"
+  ],
+  "school": "Conjuration",
+  "castingTime": "1 action",
+  "range": "Range 90ft",
+  "duration": "",
+  "area": "20ft cube",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Full damage, but not Restrained",
+  "damage": "2d6",
+  "damageType": "bludgeoning",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "rect",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": true,
+   "rounds": "1*@cl",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Grasped",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "gmeeLA9Ry0Rv4bd0",
+ "sort": 206,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

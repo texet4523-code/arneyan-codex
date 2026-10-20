@@ -1,0 +1,51 @@
+{
+ "_id": "5dmy5MBWIGjglbd1",
+ "_key": "!items!5dmy5MBWIGjglbd1",
+ "name": "Anti-Magic Shell",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Self; 10ft-radius sphere that moves with you for 10 minutes per level. No spell or magic item effect functions inside it or passes through its edge (including your own); summoned and conjured creatures cannot enter and vanish if inside. Natural and supernatural creature abilities still work; Dispel Magic does not affect it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 6,
+  "className": "Wizard",
+  "classes": [
+   "Wizard"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Self",
+  "duration": "",
+  "area": "10ft radius",
+  "components": "V, S, M",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 10,
+   "width": 0,
+   "attached": true,
+   "fromSelf": true,
+   "lingering": true,
+   "rounds": "100*@cl",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "QXlHSuL0zo9FjlxT",
+ "sort": 282,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "8ZeeQnQKk3CQaxNl",
+ "_key": "!items!8ZeeQnQKk3CQaxNl",
+ "name": "Treaty Hold Scout (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>The desert trackers of Tariel — experts in arid terrain, ambush, and reading the land.</p><ul><li><strong>Desert-Marked: </strong>Combat Marauder damage bonus applies to desert beasts and Tariel tribal enemies in addition to humanoids and giants.</li><li><strong>Sand Reader: </strong>Advantage on all Survival and Track checks in arid or desert terrain.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Desert-Marked",
+    "level": 1,
+    "description": "<p>Combat Marauder damage bonus applies to desert beasts and Tariel tribal enemies in addition to humanoids and giants.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Desert-Marked: Combat Marauder's full bonus also applies vs desert beasts and Tariel tribal enemies.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sand Reader",
+    "level": 1,
+    "description": "<p>Advantage on all Survival and Track checks in arid or desert terrain.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Survival and Track in arid or desert terrain",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

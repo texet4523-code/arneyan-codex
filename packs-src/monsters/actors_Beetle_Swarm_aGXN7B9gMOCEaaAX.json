@@ -1,0 +1,172 @@
+{
+ "_id": "aGXN7B9gMOCEaaAX",
+ "_key": "!actors!aGXN7B9gMOCEaaAX",
+ "name": "Beetle Swarm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-beetle-shell.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "3d8",
+  "attributes": {
+   "hp": {
+    "value": 13,
+    "max": 13,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "20ft, burrow 5ft, climb 20ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (swarm)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "weapons 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium beast (swarm)</em></p><p><strong>GM:</strong> A clicking carpet of beetles that strips a corpse in an hour.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bites",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-beetle-shell.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NUgnL0lEP272odbD",
+   "_key": "!actors.items!aGXN7B9gMOCEaaAX.NUgnL0lEP272odbD",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swarm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-beetle-shell.svg",
+   "system": {
+    "description": "<p>Resistance 5 to weapon damage. Can occupy another creature's space and can pass through any gap a beetle can. Cannot regain HP or gain temporary HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gCMShsDyI7zCRnhw",
+   "_key": "!actors.items!aGXN7B9gMOCEaaAX.gCMShsDyI7zCRnhw",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Beetle Swarm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-beetle-shell.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

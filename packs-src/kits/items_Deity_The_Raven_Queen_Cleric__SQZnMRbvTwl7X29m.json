@@ -1,0 +1,45 @@
+{
+ "_id": "SQZnMRbvTwl7X29m",
+ "_key": "!items!SQZnMRbvTwl7X29m",
+ "name": "Deity: The Raven Queen (Cleric)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Advantage on saves vs death. Once/day: touch a creature and place them in suspended animation for up to 1 hour (willing only). Allies within 30ft who fall below 0 HP do not bleed while you are conscious.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Cleric",
+  "features": [
+   {
+    "name": "Granted Power (The Raven Queen)",
+    "level": 1,
+    "description": "<p>Advantage on saves vs death. Once/day: touch a creature and place them in suspended animation for up to 1 hour (willing only). Allies within 30ft who fall below 0 HP do not bleed while you are conscious.</p><p><strong>Favoured weapon:</strong> Scythe</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs death",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "BvV6hkqX5gKg1kym",
+ "sort": 15,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

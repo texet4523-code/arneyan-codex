@@ -1,0 +1,59 @@
+{
+ "_id": "sDecZS5bO9LNbsJv",
+ "_key": "!items!sDecZS5bO9LNbsJv",
+ "name": "Horsemanship (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Trained in all aspects of mounted combat with no check required: saddle, mount, ride, dismount; control the mount in combat; guide with the knees; stay in the saddle when the mount rears or bolts; assess horse quality.</li><li>Direct the mount to perform cover, deflect, fall softly, leap, and charge manoeuvres on a successful Dexterity check</li><li>When mounted on a war-trained horse, your mount's attacks have Advantage</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Mount Manoeuvre",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Direct your mount to cover, deflect, fall softly, leap or charge.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "S9ukVEZRfWR68UCh",
+ "_key": "!items!S9ukVEZRfWR68UCh",
+ "name": "Ashes of the Phoenix — Zaun (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li>Elves only. An elven assassin order organised by the Supreme Aldorethi Council, protectors of the Phoenix Prince Daeric Khyrmin. Recruits are taken young (20–60), identities erased, former families instructed to forget them. Most player characters who take this kit are runaways — elves who were taken, trained, and then fled before or after fully committing to the order. They carry the training but not the loyalty, and the Ashes will want them back.</li><li><strong>Ghost Step: </strong>While indoors or in urban/settled terrain, when Hide and Move Silently are used simultaneously, the Disadvantage applies to only one of the two checks instead of both. Your first Sneak Attack each encounter against a creature that has not yet seen you deals one extra Sneak Attack die.</li><li><strong>Reconstructed Identity: </strong>Advantage on Disguise checks when impersonating any elf — the training in erasing and reconstructing identity runs deep. However, any Aldorethi noble or Ashes operative who recognises the character as a former member is automatically hostile.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Ghost Step",
+    "level": 1,
+    "description": "<p>While indoors or in urban/settled terrain, when Hide and Move Silently are used simultaneously, the Disadvantage applies to only one of the two checks instead of both. Your first Sneak Attack each encounter against a creature that has not yet seen you deals one extra Sneak Attack die.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Ghost Step: first Sneak Attack each encounter vs a creature that has not seen you deals one extra Sneak Attack die.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Reconstructed Identity",
+    "level": 1,
+    "description": "<p>Advantage on Disguise checks when impersonating any elf — the training in erasing and reconstructing identity runs deep. However, any Aldorethi noble or Ashes operative who recognises the character as a former member is automatically hostile.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Disguise when impersonating any elf",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

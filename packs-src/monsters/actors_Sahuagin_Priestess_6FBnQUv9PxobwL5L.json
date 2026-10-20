@@ -1,0 +1,670 @@
+{
+ "_id": "6FBnQUv9PxobwL5L",
+ "_key": "!actors!6FBnQUv9PxobwL5L",
+ "name": "Sahuagin Priestess",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "30ft, swim 40ft",
+   "attack": 5,
+   "spellDC": 13,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 6,
+   "slots": [
+    5,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Speaks for the shark god and decides who is sacrificed to it.</p>",
+   "treasure": "<p>Treasure type <strong>S</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claws ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "i7IVix1qjdECUzEB",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.i7IVix1qjdECUzEB",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dQhI2AD7OWFJgI90",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.dQhI2AD7OWFJgI90",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blood Frenzy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>Advantage on attack rolls against a creature that has lost HP.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YPHbcuU5ebaGX821",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.YPHbcuU5ebaGX821",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Limited Amphibiousness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>Breathes air and water, but must be submerged at least once every 4 hours.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ervxclG6Al6OuKxZ",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.ervxclG6Al6OuKxZ",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mermaid.svg",
+   "system": {
+    "description": "<p>Casts as a 6th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}, @UUID[Compendium.arneyan.spells.Item.LFBQ2JnUcllqqI6s]{bestow curse}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PRsgtqfzjdTi5MaF",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.PRsgtqfzjdTi5MaF",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 30ft; one creature that understands your language. It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). Will negates. Mindless creatures are immune. Harmful commands are ignored.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs"
+   },
+   "_id": "2Eaw1yTziyrb1GPw",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.2Eaw1yTziyrb1GPw",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hold Person",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range 120ft. One humanoid is Paralysed for 1 round per level; it repeats the Will save at the end of each of its turns, ending the spell on a success. Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Magus, Witch, Bard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Cleric",
+     "Warlock",
+     "Paladin",
+     "Magus",
+     "Witch",
+     "Bard"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Held",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "paralysed"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW"
+   },
+   "_id": "6L8VUKlTILSxiQhg",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.6L8VUKlTILSxiQhg",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spiritual Weapon",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range 60ft; a spectral weapon for 1 round per level. Each round on your turn it strikes one creature within 5ft of it automatically, no roll: 1d6 + 1 per three levels force damage (max 1d6+4). You move it up to 30ft per round. AC 15, 10 HP; destroyed by dispel.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "1d6 + min(floor(@cl/3), 4)",
+    "damageType": "force",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR"
+   },
+   "_id": "68Zc1rg1OQadnLLN",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.68Zc1rg1OQadnLLN",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bestow Curse",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Choose at casting: -4 to one ability score (minimum 1), or Disadvantage on one of attack rolls, saving throws or attribute checks. Lasts 1 hour per level. Will negates. Remove Curse ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Warlock",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Curse: attacks",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Curse: saves",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.save",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Curse: checks",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.check",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Curse: -4 attribute",
+      "target": "target",
+      "rounds": "600*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ability.str",
+        "value": "-4",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.LFBQ2JnUcllqqI6s"
+   },
+   "_id": "iYD92FmDnrqLUHoU",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.iYD92FmDnrqLUHoU",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tongues",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Touch; one creature. It speaks and understands any language for 10 minutes per level. Cast reversed (Babble): Range 30ft; one creature cannot speak or understand any language (and cannot cast verbal spells) for 1 minute per level; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Babble only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs"
+   },
+   "_id": "OTinSVQJCppzlzbd",
+   "_key": "!actors.items!6FBnQUv9PxobwL5L.OTinSVQJCppzlzbd",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Sahuagin Priestess",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-mermaid.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

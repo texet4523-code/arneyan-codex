@@ -1,0 +1,50 @@
+{
+ "_id": "RrinZrhSZNSVZ5Ql",
+ "_key": "!items!RrinZrhSZNSVZ5Ql",
+ "name": "Toughness",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+ "system": {
+  "description": "<p><em>(Constitution)</em>  Gain +1 Max HP per level (retroactive). Gain +1 to Constitution (once, on taking this feat). Advantage on Constitution-based checks.</p><p class=\"arn-note\">Open to all classes by default.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "General Path",
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "hp.level",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "ability.con",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check.con",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "0rOB2lqMUXwvbdxY",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

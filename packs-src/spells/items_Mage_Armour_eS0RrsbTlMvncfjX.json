@@ -1,0 +1,73 @@
+{
+ "_id": "eS0RrsbTlMvncfjX",
+ "_key": "!items!eS0RrsbTlMvncfjX",
+ "name": "Mage Armour",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
+ "system": {
+  "description": "<p>Touch; one willing creature wearing no armour; 8 hours. An unseen field of force surrounds the target, giving AC 13 + Dexterity modifier. It counts as armour only for features and items that require wearing no armour; it never affects casting. The spell ends if the target puts on armour or if you cast it again.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Sorcerer, Magus, Witch, Bard</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Illusionist",
+   "Necromancer",
+   "Sorcerer",
+   "Magus",
+   "Witch",
+   "Bard"
+  ],
+  "school": "Abjuration",
+  "castingTime": "1 action",
+  "range": "Touch",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Mage Armour",
+    "target": "target",
+    "rounds": "4800",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "ac.base",
+      "value": "13",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 67,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

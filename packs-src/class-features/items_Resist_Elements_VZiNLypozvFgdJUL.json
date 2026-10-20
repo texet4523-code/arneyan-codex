@@ -1,0 +1,42 @@
+{
+ "_id": "VZiNLypozvFgdJUL",
+ "_key": "!items!VZiNLypozvFgdJUL",
+ "name": "Resist Elements",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Advantage on saves vs fire, water, earth, air, cold, and lightning attacks.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Druid",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs fire, water, earth, air, cold and lightning attacks",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

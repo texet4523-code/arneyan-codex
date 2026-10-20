@@ -1,0 +1,72 @@
+{
+ "_id": "t32f3e2VTWabhteJ",
+ "_key": "!items!t32f3e2VTWabhteJ",
+ "name": "Monster Hunter (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li>A ranger who specialises in tracking and killing dangerous creatures rather than humanoid enemies — beasts, magical creatures, undead, anything that preys on settlements or travellers. Contract work, bounties, or pure calling.</li><li><strong>Beast-Marked: </strong>Combat Marauder's damage bonus applies to beasts, magical beasts, and undead in addition to humanoids and giants.</li><li><strong>Hunter's Eye: </strong>Advantage on Track checks when following a non-humanoid creature. Advantage on checks to identify a creature's type, weaknesses, or habitat from tracks, kills, or signs of its passage.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Beast-Marked",
+    "level": 1,
+    "description": "<p>Combat Marauder's damage bonus applies to beasts, magical beasts, and undead in addition to humanoids and giants.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Beast-Marked: Combat Marauder's full bonus also applies vs beasts, magical beasts and undead.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Hunter's Eye",
+    "level": 1,
+    "description": "<p>Advantage on Track checks when following a non-humanoid creature. Advantage on checks to identify a creature's type, weaknesses, or habitat from tracks, kills, or signs of its passage.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Track when following a non-humanoid creature",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying a creature's type, weaknesses or habitat from signs",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

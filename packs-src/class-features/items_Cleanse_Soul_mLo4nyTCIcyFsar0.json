@@ -1,0 +1,84 @@
+{
+ "_id": "mLo4nyTCIcyFsar0",
+ "_key": "!items!mLo4nyTCIcyFsar0",
+ "name": "Cleanse Soul",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Constrain a target (it is Restrained and unable to act) for rounds equal to its Level, and succeed on a Charisma check (d20 + Charisma modifier) against DC = 8 + the target's Level. If successful: read their full state of mind; detect alignment; pierce illusions and disguises; read surface thoughts and deep memories; detect charm and enchantment effects.</li><li>May then attempt an exorcism — target makes a Will save against your Class Save DC, or succumbs</li><li><strong>Inherently evil creatures</strong> (demons, vampires, devils) are destroyed; lycanthropes are cured; undead gain eternal rest or are destroyed if they were evil in life</li><li>Any creature that resists expels the Paladin from its mind and can never be targeted again</li><li>The Paladin must rest immediately after for 1 hour per Level of the creature — bedridden and helpless during this time</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 24,
+  "className": "Paladin",
+  "activities": [
+   {
+    "name": "Read Soul",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "cha",
+    "save": "",
+    "text": "Against DC 8 + the restrained target's Level; on success read its mind, alignment, illusions and enchantments.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Exorcism",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "The target saves or succumbs: evil outsiders are destroyed, lycanthropes cured and undead laid to rest.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

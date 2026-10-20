@@ -1,0 +1,77 @@
+{
+ "_id": "ZGrEcw08IZOcnsgj",
+ "_key": "!items!ZGrEcw08IZOcnsgj",
+ "name": "Ray of Enfeeblement",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+ "system": {
+  "description": "<p>Range 60ft; one creature. For 1 round per level it has Disadvantage on attack rolls with Str-based attacks and takes -1 per four levels (min -1, max -4) to damage with them; Fortitude negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Magus, Necromancer, Witch</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 2,
+  "className": "",
+  "classes": [
+   "Wizard",
+   "Warlock",
+   "Magus",
+   "Necromancer",
+   "Witch"
+  ],
+  "school": "Necromancy",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "fort",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Enfeebled",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "Str-based attacks",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "-min(4,max(1,floor(@cl/4)))",
+      "when": "Str-based attacks",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "r3QkMiGjdblPLlGw",
+ "sort": 123,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

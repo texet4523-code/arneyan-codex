@@ -1,0 +1,99 @@
+{
+ "_id": "EgSikDGm7KbLndot",
+ "_key": "!items!EgSikDGm7KbLndot",
+ "name": "Minotaur",
+ "type": "ancestry",
+ "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+ "system": {
+  "description": "<p><strong>Size Large • Speed 30ft • Darkvision 60ft • +2 Str / +1 Con, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Horns unarmed strike:</strong> 1d8 + Strength modifier.</li><li><strong>Powerful Build</strong> (Advantage on Strength checks to push, drag or lift).</li><li><strong>Labyrinthine Recall:</strong> never lost, always recalls a maze-like layout travelled once.</li><li><strong>Goring Charge:</strong> +1d6 damage on a Horns hit if moved 10ft+ in a straight line first.</li><li><strong>Weapon training:</strong> battleaxe, two-handed axe, javelin, spear.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>Red Waste/Veradyna:</strong> Wisdom-themed, Advantage on Survival in harsh/arid/wild terrain, Advantage on Intimidation checks.</li><li><strong>Tenor Hold:</strong> Intelligence-themed, Advantage on Tenor Hold customs/craft/civic-life checks, Advantage on saves vs charmed/dominated specifically by fiendish/demonic influence.</li><li><strong>Opal:</strong> Charisma-themed, Advantage on trade/negotiation/Opal-port-culture checks, Advantage on Charisma checks towards other integrating/non-native peoples in Opal.</li><li><strong>Mournas: Advantage on saves vs frightened, Advantage</strong> on checks related to Mournas's civic structure/culture of remembrance, Advantage on Charisma checks towards Mournas's other freed populations.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "size": "large",
+  "speed": 30,
+  "vision": "Darkvision 60ft",
+  "attributes": "+2 Str / +1 Con, −1 Int",
+  "bonuses": {
+   "str": 2,
+   "con": 1,
+   "int": -1
+  },
+  "pickTwo": false,
+  "family": false,
+  "traitList": [
+   {
+    "name": "Horns unarmed strike",
+    "text": "1d8 + Strength modifier."
+   },
+   {
+    "name": "Powerful Build",
+    "text": "Powerful Build (Advantage on Strength checks to push, drag or lift)."
+   },
+   {
+    "name": "Labyrinthine Recall",
+    "text": "never lost, always recalls a maze-like layout travelled once."
+   },
+   {
+    "name": "Goring Charge",
+    "text": "+1d6 damage on a Horns hit if moved 10ft+ in a straight line first."
+   },
+   {
+    "name": "Weapon training",
+    "text": "battleaxe, two-handed axe, javelin, spear."
+   }
+  ],
+  "choice": {
+   "label": "Subtype",
+   "options": [
+    {
+     "name": "Red Waste/Veradyna",
+     "text": "Wisdom-themed, Advantage on Survival in harsh/arid/wild terrain, Advantage on Intimidation checks.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Tenor Hold",
+     "text": "Intelligence-themed, Advantage on Tenor Hold customs/craft/civic-life checks, Advantage on saves vs charmed/dominated specifically by fiendish/demonic influence.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Opal",
+     "text": "Charisma-themed, Advantage on trade/negotiation/Opal-port-culture checks, Advantage on Charisma checks towards other integrating/non-native peoples in Opal.",
+     "bonuses": {},
+     "rules": []
+    },
+    {
+     "name": "Mournas",
+     "text": "Mournas: Advantage on saves vs frightened, Advantage on checks related to Mournas's civic structure/culture of remembrance, Advantage on Charisma checks towards Mournas's other freed populations.",
+     "bonuses": {},
+     "rules": []
+    }
+   ]
+  },
+  "rules": [
+   {
+    "key": "adv.check.str",
+    "value": "1",
+    "when": "to push, drag or lift",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+1d6",
+    "when": "Horns hit after moving 10ft+ in a straight line",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": null,
+ "sort": 22,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

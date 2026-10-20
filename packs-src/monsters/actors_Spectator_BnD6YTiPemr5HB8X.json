@@ -1,0 +1,209 @@
+{
+ "_id": "BnD6YTiPemr5HB8X",
+ "_key": "!actors!BnD6YTiPemr5HB8X",
+ "name": "Spectator",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "6d8+6",
+  "attributes": {
+   "hp": {
+    "value": 33,
+    "max": 33,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "0ft, fly 30ft (hover)",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 3,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium aberration</em></p><p><strong>GM:</strong> A lesser eye-tyrant summoned to guard one treasure for a hundred years. It is bored, lonely and will talk, but will not move.</p>",
+   "treasure": "<p>Treasure type <strong>N, lair D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "W5weTX1qh6j5BULz",
+   "_key": "!actors.items!BnD6YTiPemr5HB8X.W5weTX1qh6j5BULz",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Eye Rays",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Once per round, as part of its action, one ray at a creature within 90ft (roll 1d4): 1 confusion (@Check[will|dc:13]{Will DC 13} or it acts at random for 1 round); 2 paralysis (@Check[fort|dc:13]{Fortitude DC 13} or @Condition[paralysed]{Paralysed} for 1 minute, repeating the save each turn); 3 fear (@Check[will|dc:13]{Will DC 13} or @Condition[frightened]{Frightened} for 1 minute); 4 wounding (@Check[fort|dc:13]{Fortitude DC 13} for half of @Damage[3d10 necrotic]{3d10 necrotic damage}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 13,
+    "damage": "3d10",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PSEJiD1mPE9Q24O0",
+   "_key": "!actors.items!BnD6YTiPemr5HB8X.PSEJiD1mPE9Q24O0",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spell Reflection",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>When a spell targeting it fails its save or misses, it may turn the spell back on the caster as its reaction.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "w32zPJoL6PJYKgYO",
+   "_key": "!actors.items!BnD6YTiPemr5HB8X.w32zPJoL6PJYKgYO",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Spectator",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

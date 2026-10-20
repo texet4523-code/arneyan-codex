@@ -1,0 +1,51 @@
+{
+ "_id": "Fji4uS9tUj5BJAnl",
+ "_key": "!items!Fji4uS9tUj5BJAnl",
+ "name": "Calm Animals",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft; animals within 20ft radius of the target point, with a total of 2d4 Levels + CL (lowest Level first). Affected animals stop attacking and stay calm for 1 minute per level; Will negates. Ends for any animal that is attacked. Magical beasts are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 1,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "VsAUk70wD0mZrvI4",
+ "sort": 37,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

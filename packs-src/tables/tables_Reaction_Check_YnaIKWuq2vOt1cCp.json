@@ -1,0 +1,93 @@
+{
+ "_id": "YnaIKWuq2vOt1cCp",
+ "_key": "!tables!YnaIKWuq2vOt1cCp",
+ "name": "Reaction Check",
+ "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+ "description": "<p>2d6 plus the Charisma modifier of whoever leads the talk (the Background Story Bonus can apply). This table rolls plain 2d6: add the modifier yourself and read the row.</p>",
+ "results": [
+  {
+   "_id": "ZfLEg2AyxGQ396cy",
+   "_key": "!tables.results!YnaIKWuq2vOt1cCp.ZfLEg2AyxGQ396cy",
+   "type": "text",
+   "name": "Hostile",
+   "description": "Hostile: attacks immediately or calls for help",
+   "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+   "weight": 1,
+   "range": [
+    2,
+    2
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "ZERHfG72Vmnn9GA0",
+   "_key": "!tables.results!YnaIKWuq2vOt1cCp.ZERHfG72Vmnn9GA0",
+   "type": "text",
+   "name": "Unfriendly",
+   "description": "Unfriendly: suspicious, uncooperative, looking for a reason to refuse",
+   "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+   "weight": 3,
+   "range": [
+    3,
+    5
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "zWlHAtk4HKWsRxVf",
+   "_key": "!tables.results!YnaIKWuq2vOt1cCp.zWlHAtk4HKWsRxVf",
+   "type": "text",
+   "name": "Neutral",
+   "description": "Neutral: willing to listen, no particular inclination either way",
+   "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+   "weight": 3,
+   "range": [
+    6,
+    8
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "JWX78lYV0E3Nx1SJ",
+   "_key": "!tables.results!YnaIKWuq2vOt1cCp.JWX78lYV0E3Nx1SJ",
+   "type": "text",
+   "name": "Friendly",
+   "description": "Friendly: favourably disposed, willing to help within reason",
+   "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+   "weight": 3,
+   "range": [
+    9,
+    11
+   ],
+   "drawn": false,
+   "flags": {}
+  },
+  {
+   "_id": "SvkQknMKbmCocI36",
+   "_key": "!tables.results!YnaIKWuq2vOt1cCp.SvkQknMKbmCocI36",
+   "type": "text",
+   "name": "Helpful",
+   "description": "Helpful: actively goes out of their way to assist",
+   "img": "systems/arneyan/assets/icons/treasure-conversation.svg",
+   "weight": 1,
+   "range": [
+    12,
+    12
+   ],
+   "drawn": false,
+   "flags": {}
+  }
+ ],
+ "formula": "2d6",
+ "replacement": true,
+ "displayRoll": true,
+ "folder": "R2uwRl2x6WKO3nrE",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

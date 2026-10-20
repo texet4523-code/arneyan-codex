@@ -1,0 +1,42 @@
+{
+ "_id": "g2VIagHD4agUcanm",
+ "_key": "!items!g2VIagHD4agUcanm",
+ "name": "Killer's Precision",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect: </strong>Your weapon attacks deal +1 damage per three Assassin levels (minimum +1). This applies to every hit, not only Sneak Attacks.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Assassin",
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+max(1,floor(@cl/3))",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

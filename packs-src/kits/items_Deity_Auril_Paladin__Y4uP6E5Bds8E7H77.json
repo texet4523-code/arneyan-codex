@@ -1,0 +1,78 @@
+{
+ "_id": "Y4uP6E5Bds8E7H77",
+ "_key": "!items!Y4uP6E5Bds8E7H77",
+ "name": "Deity: Auril (Paladin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Smite deals additional +1d6 cold damage and halves target's movement speed for 1 round. Resistance 5 to cold damage.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Paladin",
+  "features": [
+   {
+    "name": "Granted Power (Auril)",
+    "level": 1,
+    "description": "<p>Smite deals additional +1d6 cold damage and halves target's movement speed for 1 round. Resistance 5 to cold damage.</p><p><strong>Favoured weapon:</strong> Axe, Battle</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Smite: cold (1d6)",
+      "kind": "damage",
+      "formula": "1d6",
+      "damageType": "cold",
+      "ability": "",
+      "save": "",
+      "text": "With your Smite: +1d6 cold, and the target's movement speed is halved for 1 round.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "resist",
+      "value": "cold 5",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "damage",
+      "value": "+1d6",
+      "when": "Smite (cold; also halves target speed for 1 round)",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mIhASUBfo5Vwdimb",
+ "sort": 42,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

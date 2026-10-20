@@ -1,0 +1,246 @@
+{
+ "_id": "OB82LjjcUK7Q6I0t",
+ "_key": "!actors!OB82LjjcUK7Q6I0t",
+ "name": "Winter Wolf",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "5d10+10",
+  "attributes": {
+   "hp": {
+    "value": 37,
+    "max": 37,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "50ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 4,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "cold",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> A white wolf that thinks and speaks, cruel as the weather. Frost giants keep them as hounds.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "m4JXeF2asz3aiRPC",
+   "_key": "!actors.items!OB82LjjcUK7Q6I0t.m4JXeF2asz3aiRPC",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Cold Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>Once per 3 rounds, as an action, a 15ft cone of freezing air; @Check[ref|dc:13]{Reflex DC 13} for half of @Damage[4d8 cold]{4d8 cold damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 13,
+    "damage": "4d8",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GSeeCZXXlDl73lGx",
+   "_key": "!actors.items!OB82LjjcUK7Q6I0t.GSeeCZXXlDl73lGx",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Knockdown",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:13]{Fortitude save DC 13} or is knocked prone.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lF6x2xZulmnSA4iX",
+   "_key": "!actors.items!OB82LjjcUK7Q6I0t.lF6x2xZulmnSA4iX",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Snow Camouflage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-wolf-head.svg",
+   "system": {
+    "description": "<p>Advantage on Stealth checks in snowy terrain.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "i49WzrtPXhAMtQ8x",
+   "_key": "!actors.items!OB82LjjcUK7Q6I0t.i49WzrtPXhAMtQ8x",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Winter Wolf",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-wolf-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

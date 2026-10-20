@@ -1,0 +1,56 @@
+{
+ "_id": "vXB0bc6uo7HxIZY7",
+ "_key": "!items!vXB0bc6uo7HxIZY7",
+ "name": "Komodo Isle Skirmisher (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>Jungle/island guerrilla tradition, hit and vanish.</p><ul><li><strong>Vanishing Shot: </strong>Once per encounter, after making a ranged attack while moving, become hidden (see Disengage &amp; Hide in The Arneyan Codex) until the start of your next turn, if any cover or foliage is within reach.</li><li><strong>Island Craft: </strong>Advantage on Fletcher's Craft checks using improvised/natural materials rather than proper tools.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Vanishing Shot",
+    "level": 1,
+    "description": "<p>Once per encounter, after making a ranged attack while moving, become hidden (see Disengage &amp; Hide in The Arneyan Codex) until the start of your next turn, if any cover or foliage is within reach.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   },
+   {
+    "name": "Island Craft",
+    "level": 1,
+    "description": "<p>Advantage on Fletcher's Craft checks using improvised/natural materials rather than proper tools.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Fletcher's Craft with improvised or natural materials",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

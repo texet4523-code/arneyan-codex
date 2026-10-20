@@ -1,0 +1,67 @@
+{
+ "_id": "DGKig8J6opdNTcsF",
+ "_key": "!items!DGKig8J6opdNTcsF",
+ "name": "Animal Growth",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+ "system": {
+  "description": "<p>Range 60ft; up to 8 willing or friendly animals within a 20ft radius. Each doubles in size and maximum hit points and rolls its damage dice twice (take the higher total) for 1 minute per level. Creatures of Intelligence 3 or more are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 5,
+  "className": "Druid",
+  "classes": [
+   "Druid"
+  ],
+  "school": "Nature",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "20ft radius",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "",
+  "saveEffect": "",
+  "damage": "",
+  "damageType": "",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "circle",
+   "size": 20,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  },
+  "applies": [
+   {
+    "name": "Animal Growth",
+    "target": "target",
+    "rounds": "10*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "hp.mult",
+      "value": "2",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "ou2DIMq26iUx90nk",
+ "sort": 237,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "iFgtDPihXQ8YCTAV",
+ "_key": "!items!iFgtDPihXQ8YCTAV",
+ "name": "Hedge Wizard (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<p>Self-taught, with no institution's name behind them — closer kin to Fort Dunwell's \"outlaw wizard\" than to any tower.</p><ul><li><strong>Unexpected Caster: </strong>The first harmful spell you cast in a combat where the enemy doesn't expect you to be a caster imposes Disadvantage on their saving throw against it.</li><li><strong>Make It Work: </strong>Advantage on checks scrounging, improvising, or substituting spell components on the fly.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Unexpected Caster",
+    "level": 1,
+    "description": "<p>The first harmful spell you cast in a combat where the enemy doesn't expect you to be a caster imposes Disadvantage on their saving throw against it.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Unexpected Caster: the first harmful spell in a combat where the enemy does not expect a caster imposes Disadvantage on its save.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Make It Work",
+    "level": 1,
+    "description": "<p>Advantage on checks scrounging, improvising, or substituting spell components on the fly.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "scrounging, improvising or substituting spell components",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}
