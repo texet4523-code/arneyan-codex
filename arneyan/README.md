@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.20 · Foundry v13 and v14
+Version 0.10.21 · Foundry v13 and v14
+
+## What's new in 0.10.21
+
+- **Class details show the Handbook's key attribute** ("Dexterity / Wisdom" for the Archer, whose Seeker adds Wisdom to bow damage at 16th). The class's own key attribute, which sets its class DC, is unchanged.
 
 ## What's new in 0.10.20
 

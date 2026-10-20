@@ -46,4 +46,11 @@ const C = await import("../arneyan/module/classinfo.mjs");
   const brTpl = fs.readFileSync(root + "templates/apps/browser.hbs", "utf8");
   assert.ok(brTpl.includes('data-action="brTab"') && !brTpl.includes('data-action="tab"'), "the Browser's tabs too");
 }
+// The Handbook's key attribute line, for every class (the Archer's Wisdom comes from Seeker at 16th).
+{
+  assert.equal(C.bookKeyAttribute(cls("Archer").system.description), "Dexterity / Wisdom");
+  assert.equal(C.bookKeyAttribute(cls("Wizard").system.description), "Intelligence");
+  for (const f of fs.readdirSync(dir)) assert.ok(C.bookKeyAttribute(JSON.parse(fs.readFileSync(dir + f)).system.description), `${f}: has a Key Attribute line`);
+  assert.equal(C.bookKeyAttribute("<p>No table</p>"), "", "none: the field is used");
+}
 console.log("OK class details");

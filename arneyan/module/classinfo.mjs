@@ -41,6 +41,15 @@ export function levelRows(sys, featureNames = {}) {
   };
 }
 
+/**
+ * The Handbook's own "Key Attribute" line from a class's text ("Dexterity / Wisdom" for the Archer, whose Seeker adds
+ * Wisdom to bow damage at 16th). The class's single key attribute field drives the rules (class DC) and stays as is.
+ */
+export function bookKeyAttribute(html) {
+  const m = String(html ?? "").match(/Key Attribute\s*<\/t[dh]>\s*<td[^>]*>([\s\S]*?)<\/td>/i);
+  return m ? m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim() : "";
+}
+
 export class ArneyanClassInfo extends HandlebarsApplicationMixin(ApplicationV2) {
   /** Open the details of a class (an Item of type class, from a compendium or a sheet). `actor`: offer "Add to". */
   static async open(cls, { actor = null } = {}) {
@@ -125,7 +134,7 @@ export class ArneyanClassInfo extends HandlebarsApplicationMixin(ApplicationV2) 
     const facts = [
       ["Hit Die", sys.hitDie],
       ["HP beyond 10th", `+${sys.hpBeyond10} a level, plus Constitution`],
-      ["Key attribute", ARNEYAN.abilities[sys.keyAbility] ?? sys.keyAbility],
+      ["Key attribute", bookKeyAttribute(sys.description) || (ARNEYAN.abilities[sys.keyAbility] ?? sys.keyAbility)],
       ["Spellcasting", sys.castingAbility ? `Casts with ${ARNEYAN.abilities[sys.castingAbility] ?? sys.castingAbility}` : "None"],
       ["Base to Hit", ARNEYAN.bthProgressions[sys.bthProgression]?.label ?? sys.bthProgression],
       ["Weapons", sys.weapons || "None listed"],
