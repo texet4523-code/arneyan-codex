@@ -7,7 +7,7 @@ import { effectDataFor, applyEffectTo, startConcentration, endConcentration, sta
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
-import { combatFor, combatantsOf } from "./fight.mjs";
+import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -621,6 +621,7 @@ export class ArneyanActor extends Actor {
    */
   async rest() {
     if (this.type !== "character") return;
+    if (!(await confirmRestInFight(this))) return;
     const armour = this.items.find(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category));
     const haven = this.system.rest.haven;
     const where = await DialogV2.wait({

@@ -49,3 +49,26 @@ export function combatById(id) {
   if (!id) return null;
   return game.combats?.get?.(id) ?? allCombats().find(c => c.id === id) ?? null;
 }
+
+/** "Ash", "Ash and Brin", "Ash, Brin and Cael". */
+const nameList = names => (names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : names[0] ?? "");
+
+/**
+ * Before a rest (the sheet's Rest, the party's Rest): a creature still in a running encounter gets a warning first,
+ * since resting mid-fight is almost always a misclick. Returns true to go on with the rest, false on Cancel.
+ */
+export async function confirmRestInFight(actors) {
+  const fighting = [actors].flat().filter(a => a && combatFor(a));
+  if (!fighting.length) return true;
+  const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
+  const go = await foundry.applications.api.DialogV2.wait({
+    window: { title: "Rest during a fight?", icon: "fa-solid fa-triangle-exclamation" }, classes: ["arneyan"],
+    content: `<p>${esc(nameList(fighting.map(a => a.name)))} ${fighting.length > 1 ? "are" : "is"} in a fight. Rest anyway?</p>`,
+    buttons: [
+      { action: "rest", label: "Rest anyway", icon: "fa-solid fa-bed" },
+      { action: "cancel", label: "Cancel", icon: "fa-solid fa-xmark", default: true }
+    ],
+    rejectClose: false
+  });
+  return go === "rest";
+}
