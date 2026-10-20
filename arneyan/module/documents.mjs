@@ -207,14 +207,9 @@ export class ArneyanActor extends Actor {
     // A pregen or monster from the system's compendiums: its items are as shipped, so they start fingerprinted
     // (migrate.mjs). A duplicated or imported character keeps whatever its items had.
     // The world update's backups don't travel with a duplicated or imported character.
-    if ((this._source.items ?? []).some(i => i.flags?.arneyan?.before)) {
-      this.updateSource({ items: this._source.items.map(i => {
-        if (!i.flags?.arneyan?.before) return i;
-        const c = foundry.utils.deepClone(i);
-        delete c.flags.arneyan.before;
-        return c;
-      }) });
-    }
+    // (Embedded items merge by id, so the key has to be deleted, not just left out.)
+    const backed = (this._source.items ?? []).filter(i => i.flags?.arneyan?.before);
+    if (backed.length) this.updateSource({ items: backed.map(i => ({ _id: i._id, flags: { arneyan: { "-=before": null } } })) });
     const from = this._source?._stats?.compendiumSource ?? "";
     if (typeof from !== "string" || !from.startsWith("Compendium.arneyan.") || this._source?._stats?.duplicateSource) return;
     let changed = false;

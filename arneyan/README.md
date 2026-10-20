@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.25 · Foundry v13 and v14
+Version 0.10.26 · Foundry v13 and v14
+
+## What's new in 0.10.26
+
+- **A duplicated character doesn't carry the world update's backups.** In 0.10.25 a duplicate kept each item's copy of what the update replaced (harmless, but clutter); now only the original has them.
 
 ## What's new in 0.10.25
 
