@@ -170,6 +170,26 @@ def plain_item(actor_id, salt, name, itype="equipment", description="", **system
             "img": "icons/svg/item-bag.svg" if itype == "equipment" else "icons/svg/book.svg", "system": sys_, "effects": [], "flags": {}}
 
 
+def feat_level(f, char_level):
+    """The level a pregen took a feat at, from its note ("Martial, 2nd", "1st-level feat", "Human bonus feat"), else 0."""
+    try:
+        char_level = int(char_level or 0)
+    except (TypeError, ValueError):
+        char_level = 0
+    if char_level == 1:
+        return 1
+    if isinstance(f.get("level"), int):
+        return f["level"]
+    note = str(f.get("note") or "")
+    # "2nd", "1st-level feat", "1st level." but not "One extra 2nd-level slot".
+    m = re.search(r"\b(\d+)(?:st|nd|rd|th)(?=(?:[- ]level)?(?:\s+feat)?\s*(?:[,.;)]|$))", note)
+    if m:
+        return int(m.group(1))
+    if re.search(r"\bbonus\b", note, re.I) and re.search(r"\bhuman\b", note, re.I):
+        return 1  # a Human's bonus feat comes at 1st level
+    return 0
+
+
 def para(text):
     text = str(text or "").strip()
     if not text:
@@ -298,7 +318,7 @@ def build():
             for i, f in enumerate(c.get("feats", [])):
                 d = feats.find(f["name"])
                 if d:
-                    items.append(copy("feats", d, actor_id, f"feat-{i}"))
+                    items.append(copy("feats", d, actor_id, f"feat-{i}", levelTaken=feat_level(f, c.get("level", 0))))
                 else:
                     items.append(plain_item(actor_id, f"feat-{i}", f["name"], "ability", para(f.get("note", "")), kind="other"))
 

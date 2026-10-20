@@ -12,6 +12,7 @@
  * Foundry 14 places Regions; Foundry 13 falls back to a measured template at the caster, to drag into place.
  */
 import { auraCard, evalRadius } from "./auras.mjs";
+import { combatFor, combatOnScene } from "./fight.mjs";
 
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
@@ -176,7 +177,9 @@ export function roundsFor(formula, cl = 1) {
 }
 
 function areaFlags(d, token) {
-  const combat = game.combat?.started ? game.combat : null;
+  // The caster's encounter, else one running on the scene the area is placed on (not just the tracker's).
+  const own = combatFor(token?.actor);
+  const combat = (own?.started ? own : null) ?? combatOnScene(token?.parent?.id ?? globalThis.canvas?.scene?.id);
   const rounds = d.lingering ? roundsFor(d.rounds, d.cl) : 0;
   return {
     rounds, expires: rounds && combat ? { round: combat.round + rounds, turn: combat.turn ?? 0 } : null,
@@ -208,7 +211,8 @@ async function startAura(d, actor) {
   for (const a of auras) if (a.turn && !a.turn.dc) a.turn.dc = d.dc || 0;
   const old = actor.effects.filter(e => e.flags?.[SYS]?.aura && e.name === d.spell).map(e => e.id);
   if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old);
-  const combat = game.combat?.started ? game.combat : null;
+  const own = combatFor(actor);
+  const combat = own?.started ? own : null;
   const [effect] = await actor.createEmbeddedDocuments("ActiveEffect", [{
     name: d.spell, img: spell?.img ?? "icons/svg/aura.svg", transfer: false,
     ...(rounds ? { duration: { rounds } } : {}),

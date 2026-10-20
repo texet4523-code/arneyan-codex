@@ -60,7 +60,7 @@ async function catalogueByName() {
   return new Map(index.map(e => [e.name, e.uuid]));
 }
 
-/** Copy Catalogue items onto the actor (quantities added to the item's own). */
+/** Copy Catalogue items onto the actor (quantities added to the item's own), linked back to the Catalogue. */
 export async function giveItems(actor, list, byName = null) {
   byName ??= await catalogueByName();
   const data = [], missing = [];
@@ -71,6 +71,7 @@ export async function giveItems(actor, list, byName = null) {
     const d = doc.toObject();
     delete d._id;
     d.folder = null;
+    foundry.utils.setProperty(d, "_stats.compendiumSource", doc.uuid);
     if (qty > 1) d.system.quantity = (d.system.quantity || 1) * qty;
     data.push(d);
   }
@@ -83,20 +84,82 @@ function firstClass(actor) {
   return actor.items.find(i => i.type === "class");
 }
 
+/* -------------------------------------------- */
+/*  Paying                                      */
+/* -------------------------------------------- */
+
+const CP = { pp: 1000, gp: 100, sp: 10 };
+
+/** Platinum, gold and silver as gold pieces (copper doesn't buy a pack). */
+export function purseGp(cur) {
+  return Object.entries(CP).reduce((t, [k, v]) => t + (Number(cur?.[k]) || 0) * v, 0) / 100;
+}
+
 /**
- * The Starting Equipment & Gear window: roll gold, then a pack or shopping. Safe to call again from the sheet; it says
- * so if the gold was already rolled.
+ * Pay a price in gold from gold first, then platinum, then silver (1 pp = 10 gp, 1 gp = 10 sp), with change in gold
+ * and silver. Returns the new pp, gp and sp, or null if it's short.
+ */
+export function payGp(cur, gp) {
+  const out = { pp: Number(cur?.pp) || 0, gp: Number(cur?.gp) || 0, sp: Number(cur?.sp) || 0 };
+  let owed = Math.max(0, Math.round(Number(gp) * 100));
+  if (purseGp(out) * 100 < owed) return null;
+  for (const k of ["gp", "pp", "sp"]) {
+    if (owed <= 0) break;
+    const n = Math.min(out[k], Math.ceil(owed / CP[k]));
+    out[k] -= n;
+    owed -= n * CP[k];
+  }
+  const change = -owed;
+  out.gp += Math.floor(change / 100);
+  out.sp += Math.floor((change % 100) / 10);
+  return out;
+}
+
+/** "36 gp, 4 pp, 20 sp": what's in the purse that can pay. */
+const purseText = cur => ["pp", "gp", "sp"].filter(k => cur?.[k]).map(k => `${cur[k]} ${k}`).join(", ") || "0 gp";
+
+/* -------------------------------------------- */
+/*  The window                                  */
+/* -------------------------------------------- */
+
+/** Players roll starting gold once; the GM can run it again (freebies aren't given twice). */
+export function canRunStartingWealth(actor, user = game.user) {
+  if (actor?.type !== "character") return false;
+  return !!user?.isGM || actor.getFlag?.(SYS, "startingGold") == null;
+}
+
+/** Free items not taken yet: a Gunslinger's firearm, an Artificer's toolkit. */
+export function freebiesFor(actor, cls) {
+  const base = baseName(cls?.name);
+  const taken = actor.getFlag?.(SYS, "startingGear")?.free ?? [];
+  const kit = actor.items.find(i => i.type === "kit" && baseName(i.system.className) === "Artificer");
+  const toolkit = base === "Artificer" ? KIT_TOOLKITS[baseName(kit?.name)] ?? null : null;
+  return {
+    gun: base === "Gunslinger" && !taken.some(n => FREE_FIREARMS.includes(n)),
+    toolkit: toolkit && !taken.includes(toolkit) ? toolkit : null,
+    kitName: kit ? baseName(kit.name) : "",
+    taken
+  };
+}
+
+/**
+ * The Starting Equipment & Gear window: roll gold, then a pack or shopping. A player runs it once; the GM can run it
+ * again, adding to the gold already rolled (the total is kept in flags.arneyan.startingGold).
  */
 export async function startingWealth(actor, cls = null) {
   if (!actor?.isOwner || actor.type !== "character") return;
+  if (!canRunStartingWealth(actor, game.user)) {
+    return ui.notifications.warn(`${actor.name} has already rolled starting gold. Ask the GM to run it again.`);
+  }
   cls ??= firstClass(actor);
   const formula = goldFormulaFor(cls?.name);
   if (!formula) return ui.notifications.warn(`No starting gold is listed for ${cls?.name ?? "a character with no class"}. Add gold by hand.`);
   const rolled = actor.getFlag(SYS, "startingGold");
+  const taken = actor.getFlag(SYS, "startingGear")?.free ?? [];
   const go = await DialogV2.wait({
     window: { title: `${actor.name}: starting gold`, icon: "fa-solid fa-coins" }, classes: ["arneyan"], position: { width: 420 },
     content: `<p>Roll your starting gold for a ${esc(baseName(cls.name))}: <strong>${formulaLabel(formula)} gp</strong>. Then buy a starting pack with it, or keep it and shop in the Catalogue.</p>
-      ${rolled ? `<p class="hint">Already rolled once: ${rolled} gp. Rolling again adds more gold.</p>` : ""}`,
+      ${rolled != null ? `<p class="hint">Already rolled: ${rolled} gp in all. Rolling again adds more gold.${taken.length ? ` Free items already taken (${esc(taken.join(", "))}) aren't given again.` : ""}</p>` : ""}`,
     buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} gp`, icon: "fa-solid fa-dice", default: true }, { action: "skip", label: "Not now" }],
     rejectClose: false
   });
@@ -104,28 +167,30 @@ export async function startingWealth(actor, cls = null) {
   const roll = await new Roll(formula).evaluate();
   await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `Starting gold (${esc(baseName(cls.name))}: ${formulaLabel(formula)} gp)` });
   const gold = roll.total;
-  await actor.update({ "system.currency.gp": (actor.system.currency?.gp ?? 0) + gold, [`flags.${SYS}.startingGold`]: gold });
+  await actor.update({ "system.currency.gp": (actor.system.currency?.gp ?? 0) + gold, [`flags.${SYS}.startingGold`]: (Number(rolled) || 0) + gold });
   return spendStartingGold(actor, cls);
 }
 
-/** Second step: a pack, or the gold kept; plus the class freebies. */
+/** Second step: a pack, or the gold kept; plus the class freebies not taken yet. */
 export async function spendStartingGold(actor, cls) {
-  const gp = actor.system.currency?.gp ?? 0;
+  const cur = actor.system.currency ?? {};
+  const wealth = purseGp(cur);
   const base = baseName(cls?.name);
-  const kit = actor.items.find(i => i.type === "kit" && baseName(i.system.className) === "Artificer");
-  const toolkit = base === "Artificer" ? KIT_TOOLKITS[baseName(kit?.name)] : null;
+  const free = freebiesFor(actor, cls);
   const packRows = STARTING_PACKS.map((p, i) => {
-    const can = p.gp <= gp;
+    const can = p.gp <= wealth;
     return `<label class="arn-act"><input type="radio" name="pick" value="${i}" ${can ? "" : "disabled"}>
-      <strong>${esc(p.name)}</strong> · ${p.gp} gp${can ? "" : " <em>(not enough gold)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
+      <strong>${esc(p.name)}</strong> · ${p.gp} gp${can ? "" : " <em>(not enough money)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
   }).join("");
-  const content = `<p>${esc(actor.name)} has <strong>${gp} gp</strong>.</p>
+  const already = free.taken.length ? `<p class="hint">Free items already taken: ${esc(free.taken.join(", "))}. They aren't given again.</p>` : "";
+  const content = `<p>${esc(actor.name)} has <strong>${esc(purseText(cur))}</strong>. A pack is paid from gold first, then platinum, then silver.</p>
     <div class="arn-acts">
-      <label class="arn-act"><input type="radio" name="pick" value="shop" checked> <strong>Keep the gold and shop</strong><br><small>Opens the Shopkeeper's Catalogue. Take what you buy off your gold yourself.</small></label>
+      <label class="arn-act"><input type="radio" name="pick" value="shop" checked> <strong>Keep the money and shop</strong><br><small>Opens the Shopkeeper's Catalogue. Take what you buy off your coins yourself.</small></label>
       ${packRows}
     </div>
-    ${base === "Gunslinger" ? `<div class="form-group"><label>Free firearm (300 gp or less)</label><select name="gun">${FREE_FIREARMS.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join("")}<option value="">Choose later</option></select></div>` : ""}
-    ${base === "Artificer" ? `<p class="hint">${toolkit ? `Your ${esc(baseName(kit.name))} Kit's ${esc(toolkit)} is free and goes in your inventory.` : "Pick your Artificer Kit first and its toolkit is free (add it from Tools &amp; Trades)."}</p>` : ""}`;
+    ${free.gun ? `<div class="form-group"><label>Free firearm (300 gp or less)</label><select name="gun">${FREE_FIREARMS.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join("")}<option value="">Choose later</option></select></div>` : ""}
+    ${base === "Artificer" && !free.taken.some(n => Object.values(KIT_TOOLKITS).includes(n)) ? `<p class="hint">${free.toolkit ? `Your ${esc(free.kitName)} Kit's ${esc(free.toolkit)} is free and goes in your inventory.` : "Pick your Artificer Kit first and its toolkit is free (add it from Tools &amp; Trades)."}</p>` : ""}
+    ${already}`;
   const res = await DialogV2.wait({
     window: { title: `${actor.name}: starting gear`, icon: "fa-solid fa-sack-dollar" }, classes: ["arneyan"], position: { width: 520 },
     content,
@@ -133,23 +198,39 @@ export async function spendStartingGold(actor, cls) {
     rejectClose: false
   });
   if (!res) return;
+  return applyStartingGear(actor, res, free);
+}
+
+/** Pay for and hand over the pack, give the freebies, record what was taken and say so in chat. */
+export async function applyStartingGear(actor, res, free) {
   const byName = await catalogueByName();
-  const free = [];
-  if (res.gun) free.push([res.gun, 1]);
-  if (toolkit) free.push([toolkit, 1]);
+  const freeList = [];
+  if (res.gun && free.gun && FREE_FIREARMS.includes(res.gun)) freeList.push([res.gun, 1]);
+  if (free.toolkit) freeList.push([free.toolkit, 1]);
   const lines = [];
+  let packName = "";
   if (res.pick !== "shop") {
     const pack = STARTING_PACKS[Number(res.pick)];
-    if (pack && pack.gp <= (actor.system.currency?.gp ?? 0)) {
-      await actor.update({ "system.currency.gp": actor.system.currency.gp - pack.gp });
+    const paid = pack ? payGp(actor.system.currency, pack.gp) : null;
+    if (paid) {
+      await actor.update({ "system.currency.pp": paid.pp, "system.currency.gp": paid.gp, "system.currency.sp": paid.sp });
       const missing = await giveItems(actor, pack.items, byName);
+      packName = pack.name;
       lines.push(`bought the ${esc(pack.name)} for ${pack.gp} gp${missing.length ? ` (not in the Catalogue, add by hand: ${esc(missing.join(", "))})` : ""}`);
-    }
+    } else if (pack) lines.push(`couldn't pay ${pack.gp} gp for the ${esc(pack.name)}`);
   }
-  if (free.length) {
-    const missing = await giveItems(actor, free, byName);
-    lines.push(`took ${esc(free.filter(([n]) => !missing.includes(n)).map(([n]) => n).join(" and "))} free`);
+  let given = [];
+  if (freeList.length) {
+    const missing = await giveItems(actor, freeList, byName);
+    given = freeList.map(([n]) => n).filter(n => !missing.includes(n));
+    if (given.length) lines.push(`took ${esc(given.join(" and "))} free`);
+    if (missing.length) lines.push(`couldn't find ${esc(missing.join(" or "))} in the Catalogue (the GM adds ${missing.length > 1 ? "them" : "it"} by hand)`);
   }
-  if (lines.length) await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} ${lines.join(", and ")}. ${actor.system.currency.gp} gp left.</p>` });
+  if (packName || given.length) {
+    const prev = actor.getFlag(SYS, "startingGear") ?? {};
+    await actor.setFlag(SYS, "startingGear", { packs: [...(prev.packs ?? []), ...(packName ? [packName] : [])], free: [...(prev.free ?? []), ...given] });
+  }
+  if (lines.length) await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} ${lines.join(", and ")}. ${esc(purseText(actor.system.currency))} left.</p>` });
   if (res.pick === "shop") ArneyanBrowser.open({ tab: "equipment", actor, filters: {} });
+  return lines;
 }

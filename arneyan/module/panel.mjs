@@ -20,7 +20,6 @@ function currentActor() {
 
 function entries(actor) {
   const out = [];
-  const combat = game.combat;
   for (const e of appliedEffects(actor)) {
     if (e.disabled || e.isSuppressed) continue;
     const f = e.flags?.[SYS] ?? {};

@@ -6,6 +6,7 @@ import { effectDataFor, applyEffectTo, startConcentration, endConcentration, sta
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionItem, spendReaction, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
+import { combatFor, combatantsOf } from "./fight.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -101,14 +102,43 @@ export async function promptAbilityChoice(item) {
   return value;
 }
 
-/** Skills (NWP): a new skill costs one slot, a Master one more. Over the limit a player is stopped; the GM is asked. */
-async function skillSlotOk(actor, cost, what, user) {
+/** Slots a skill takes: one, or two for a Master. */
+const skillCost = tier => (tier === "master" ? 2 : 1);
+
+/**
+ * Skills (NWP): a new skill costs one slot, a Master one more. Over the limit a player is stopped; the GM is asked, and
+ * an extra slot the GM allows is kept (system.nwpBonus) so later level-ups count it.
+ */
+export async function skillSlotOk(actor, cost, what, user) {
   const nwp = actor?.system?.nwp;
   if (!nwp || actor.type !== "character" || user?.id !== game.user.id) return true;
   if (nwp.used + cost <= nwp.max) return true;
-  const msg = `${actor.name} has ${nwp.used} of ${nwp.max} Skill (NWP) slots used: ${what} needs ${cost} more.`;
+  const short = nwp.used + cost - nwp.max;
+  const msg = `${actor.name} has ${nwp.used} of ${nwp.max} Skill (NWP) slots used. ${what}: ${cost} more needed.`;
   if (!game.user.isGM) { ui.notifications.warn(`${msg} Ask the GM for an extra slot.`); return false; }
-  return foundry.applications.api.DialogV2.confirm({ window: { title: "Skill slots" }, content: `<p>${esc(msg)}</p><p>Add it anyway?</p>`, rejectClose: false });
+  const ok = await DialogV2.confirm({ window: { title: "Skill slots" }, content: `<p>${esc(msg)}</p><p>Add it anyway? ${esc(actor.name)} keeps ${short === 1 ? "an extra slot" : `${short} extra slots`} for it, which later level-ups count.</p>`, rejectClose: false });
+  if (!ok) return false;
+  await actor.update({ "system.nwpBonus": (actor._source?.system?.nwpBonus ?? actor.system.nwpBonus ?? 0) + short });
+  return true;
+}
+
+/**
+ * New skills arriving on a character together (one createEmbeddedDocuments call): which are already known (on the
+ * character or earlier in the batch), and which fit in the free slots in order. Pure, for the operation and tests.
+ */
+export function planSkills(actor, skills) {
+  const known = new Set((actor.items ?? []).filter(i => i.type === "skill").map(i => i.name));
+  const nwp = actor.system?.nwp ?? { used: 0, max: Infinity };
+  const dupes = [], fit = [], over = [];
+  let used = nwp.used;
+  for (const d of skills) {
+    if (known.has(d.name)) { dupes.push(d); continue; }
+    known.add(d.name);
+    const c = skillCost(d.system?.tier);
+    if (used + c <= nwp.max) { fit.push(d); used += c; }
+    else over.push(d);
+  }
+  return { dupes, fit, over, cost: [...fit, ...over].reduce((t, d) => t + skillCost(d.system?.tier), 0) };
 }
 
 export class ArneyanActor extends Actor {
@@ -302,7 +332,7 @@ export class ArneyanActor extends Actor {
     let first = NONE;
     const firstSrc = m?.adv("adv.attack.first", ...(ranged ? [] : ["adv.attack.first.melee"])) ?? NONE;
     if (firstSrc.values.length) {
-      const combat = game.combat;
+      const combat = combatFor(this);
       const stamp = combat?.started ? `${combat.id}.${combat.round}` : null;
       const last = this.getFlag?.(SYS, "lastAttack");
       if (!stamp || last !== stamp) first = { values: firstSrc.values, adv: firstSrc.adv.map(l => `${l} (first attack)`), dis: firstSrc.dis.map(l => `${l} (first attack)`) };
@@ -503,7 +533,8 @@ export class ArneyanActor extends Actor {
       // Only when HP crosses 0, so a GM's manual "defeated" (or undefeated) mark isn't undone by every scratch.
       const defeated = hp <= 0;
       const crossed = prev === undefined || prev === null ? true : (Number(prev) > 0) !== (hp > 0);
-      if (crossed) for (const c of game.combat?.combatants?.filter(c => c.actor === this || (c.actorId === this.id && !c.token?.actorLink && c.token?.actor === this)) ?? []) {
+      // Every encounter it's in, not only the one this client's tracker shows.
+      if (crossed) for (const c of combatantsOf(this, { all: true }).filter(c => c.actor === this || !c.token?.actorLink)) {
         if (c.defeated !== defeated && c.isOwner) await c.update({ defeated }).catch(() => null);
       }
       if (defeated) return on("dead");
@@ -662,10 +693,13 @@ export class ArneyanItem extends Item {
   get levelLabel() {
     const sys = this.system ?? {};
     if (this.type === "ability") {
+      if (sys.kind === "ancestry") return "Ancestry trait";
+      // A custom ability with no class or kit says nothing (no "Level 1" for something made by hand).
       const from = sys.className || "";
-      return [from, sys.level ? `Level ${sys.level}` : ""].filter(Boolean).join(" · ");
+      if (!from) return "";
+      return [from, sys.level > 0 ? `Level ${sys.level}` : ""].filter(Boolean).join(" · ");
     }
-    if (this.type === "feat") return ["Feat", sys.path, sys.levelTaken ? `taken at level ${sys.levelTaken}` : ""].filter(Boolean).join(" · ");
+    if (this.type === "feat") return ["Feat", sys.path, sys.levelTaken > 0 ? `taken at level ${sys.levelTaken}` : ""].filter(Boolean).join(" · ");
     if (this.type === "kit") return [sys.className, "Kit"].filter(Boolean).join(" · ");
     return "";
   }
@@ -685,8 +719,35 @@ export class ArneyanItem extends Item {
     if ((await super._preUpdate(changes, options, user)) === false) return false;
     const tier = foundry.utils.getProperty(changes, "system.tier");
     if (this.type === "skill" && this.parent instanceof Actor && tier && tier !== this.system.tier) {
-      if (tier === "master" && !(await skillSlotOk(this.parent, 1, `making ${this.name} Master`, user))) return false;
+      if (tier === "master" && !(await skillSlotOk(this.parent, 1, `Making ${this.name} Master`, user))) {
+        // Refused: redraw the open sheet so its Training select goes back to what it was.
+        for (const app of new Set([this._sheet, ...Object.values(this.apps ?? {})])) if (app?.rendered) app.render();
+        return false;
+      }
     }
+  }
+
+  /**
+   * Skills added to a character, checked as one batch (several dropped or created at once): one of each, and only as
+   * many as the slots allow (a Master takes two). The GM is asked once for the lot; a player keeps those that fit.
+   */
+  static async _preCreateOperation(documents, operation, user) {
+    if ((await super._preCreateOperation?.(documents, operation, user)) === false) return false;
+    const actor = operation?.parent;
+    if (!(actor instanceof Actor) || actor.type !== "character" || operation.arneyanGrant) return;
+    const skills = documents.filter(d => d.type === "skill" && !actor.items.has(d.id));
+    if (!skills.length) return;
+    const plan = planSkills(actor, skills);
+    const drop = new Set(plan.dupes);
+    if (plan.dupes.length && user?.id === game.user.id) {
+      ui.notifications.warn(`${actor.name} already has ${[...new Set(plan.dupes.map(d => d.name))].join(", ")}. To improve a skill, set it to Master.`);
+    }
+    if (plan.over.length) {
+      const what = [...plan.fit, ...plan.over].map(d => d.name).join(", ");
+      if (!(await skillSlotOk(actor, plan.cost, what, user))) for (const d of plan.over) drop.add(d);
+    }
+    for (let i = documents.length - 1; i >= 0; i--) if (drop.has(documents[i])) documents.splice(i, 1);
+    if (!documents.length) return false;
   }
 
   async _preCreate(data, options, user) {
@@ -695,16 +756,9 @@ export class ArneyanItem extends Item {
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
     if (!(actor instanceof Actor) || actor.type !== "character") return;
-    // A feat records the character level it was taken at.
-    if (this.type === "feat" && !actor.items.has(this.id) && !this.system.levelTaken) this.updateSource({ "system.levelTaken": actor.system.level || 1 });
-    // Skills: one of each, and only as many as the slots allow (a Master takes two).
-    if (this.type === "skill" && !actor.items.has(this.id) && !options.arneyanGrant) {
-      if (actor.items.some(i => i.type === "skill" && i.name === this.name)) {
-        if (user.id === game.user.id) ui.notifications.warn(`${actor.name} already has ${this.name}. To improve it, set it to Master.`);
-        return false;
-      }
-      if (!(await skillSlotOk(actor, this.system.tier === "master" ? 2 : 1, this.name, user))) return false;
-    }
+    // A feat new to the character records the level it was taken at (options.arneyanKeepLevel keeps the one it has).
+    if (this.type === "feat" && !actor.items.has(this.id) && !options.arneyanKeepLevel) this.updateSource({ "system.levelTaken": actor.system.level || 0 });
+    // Skills: one of each, and only as many as the slots allow; checked for the whole batch in _preCreateOperation.
     // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
     if (this.system?.uses?.formula && !actor.items.has(this.id)) {
       const n = formulaUsesFor(actor, this);

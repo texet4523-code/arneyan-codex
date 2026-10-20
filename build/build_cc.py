@@ -54,7 +54,7 @@ def build(icon):
                 desc += f'<p class="arn-note">{md_inline(avail.group(1))}</p>'
             item("feats", fname_clean, "feat", {
                 "description": desc, "source": {"book": "phb", "page": 0},
-                "path": pname, "levelTaken": 1
+                "path": pname, "levelTaken": 0
             }, icon("feat", pname), folder=fol, sort=n)
             n += 1
 

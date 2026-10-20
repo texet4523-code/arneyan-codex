@@ -346,6 +346,12 @@ assert.equal(M.compendiumSourceOf({ _stats: { compendiumSource: "Compendium.worl
 const readme = fs.readFileSync(new URL("../arneyan/README.md", import.meta.url), "utf8");
 assert.ok(readme.includes("keepCustom") && readme.includes("What's new in 0.10.1") && /week/i.test(readme));
 assert.ok(!readme.includes("—"), "no em dashes in the README");
-assert.equal(JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url), "utf8")).version, "0.10.1");
+{
+  // The README's version line follows system.json (read, not hard-coded, so a later release doesn't break this test).
+  const version = JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url), "utf8")).version;
+  assert.match(version, /^\d+\.\d+\.\d+$/);
+  assert.ok(readme.includes(`Version ${version} `), "README names the system.json version");
+  assert.ok(!foundry.utils.isNewerVersion("0.10.1", version), "0.10.1 or later");
+}
 
 console.log("OK review 0.10.1");

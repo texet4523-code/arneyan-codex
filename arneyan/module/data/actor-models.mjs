@@ -102,6 +102,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
         Array.from({ length: 10 }, (_, i) => [`l${i}`, new SchemaField({ value: int(0, { min: 0 }), max: int(0, { min: 0 }) })])
       )),
       currency: new SchemaField({ pp: int(0, { min: 0 }), gp: int(0, { min: 0 }), sp: int(0, { min: 0 }), cp: int(0, { min: 0 }) }),
+      /** Extra Skill (NWP) slots the GM allowed ("Add it anyway"), on top of the level's. */
+      nwpBonus: int(0, { min: 0 }),
       details: new SchemaField({
         alignment: str(),
         deity: str(),
@@ -250,7 +252,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
 
     // NWP slots.
     s.nwp = {
-      max: ARNEYAN.nwpSlots(s.level) + mods.sum("nwp"),
+      max: ARNEYAN.nwpSlots(s.level) + mods.sum("nwp") + (Number(s.nwpBonus) || 0),
+      extra: Number(s.nwpBonus) || 0,
       used: actor.items.filter(i => i.type === "skill").reduce((t, i) => t + (i.system.tier === "master" ? 2 : 1), 0)
     };
 

@@ -328,14 +328,19 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   const { item, actor } = feature({ ...aoo, name: "Attack of Opportunity" }, { level: 3, items: [sword, makeItem(IM.WeaponData, "weapon", "Axe", { damage: "1d6" })], type: "ability" });
   const flags = [];
   const combatant = { actor, isOwner: true, getFlag: () => false, setFlag: async (s, k, v) => flags.push([k, v]) };
-  game.combat = { combatants: [combatant] };
+  // Two encounters: the tracker (game.combat) shows one on another scene that hasn't started; the fight is the other.
+  const other = { id: "other", started: false, active: true, scene: { id: "s2" }, combatants: [] };
+  const fight = { id: "fight", started: true, active: false, scene: { id: "s1" }, combatants: [combatant] };
+  game.combat = other;
+  game.combats = [other, fight];
   foundry.applications.api.DialogV2.wait = async () => null; // cancelled
   await item._useActivity(item.availableActivities[0], {});
   assert.equal(flags.length, 0, "cancelled: the reaction is still there");
   foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callback(null, { form: { querySelector: () => null } });
   await item._useActivity(item.availableActivities[0], {});
-  assert.deepEqual(flags, [["reacted", true]], "attacked: the reaction is spent");
+  assert.deepEqual(flags, [["reacted", true]], "attacked: the reaction is spent (in the running encounter, not the tracker's)");
   game.combat = null;
+  game.combats = [];
 }
 /* Push: its attack carries no damage. */
 {

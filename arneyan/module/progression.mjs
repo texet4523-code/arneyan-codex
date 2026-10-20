@@ -344,13 +344,15 @@ function optionsHtml(list, groupBy) {
   return Object.entries(groups).map(([g, es]) => `<optgroup label="${esc(g)}">${es.map(e => `<option value="${e.uuid}">${esc(e.name)}</option>`).join("")}</optgroup>`).join("");
 }
 
-async function addFromUuid(actor, uuid) {
+/** Copy a compendium item onto the actor, linked back to it (as the browser does), so updates from the compendium reach it. */
+export async function addFromUuid(actor, uuid) {
   if (!uuid) return;
   const doc = await fromUuid(uuid);
   if (!doc) return;
   const data = doc.toObject();
   delete data._id;
   data.folder = null;
+  foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
   return actor.createEmbeddedDocuments("Item", [data]);
 }
 
@@ -400,8 +402,13 @@ export async function promptSkill(actor, charLevel) {
     rejectClose: false
   });
   if (!res || res === "later") return;
+  // Confirm with nothing picked: don't lose the slot quietly; ask again (Choose later keeps it for later).
+  if (!res.master && !res.skill) {
+    ui.notifications.warn("Pick a skill (or one to make Master) for the new slot, or press Choose later.");
+    return promptSkill(actor, charLevel);
+  }
   if (res.master) await actor.items.get(res.master)?.update({ "system.tier": "master" });
-  else if (res.skill) await addFromUuid(actor, res.skill);
+  else await addFromUuid(actor, res.skill);
 }
 
 /* -------------------------------------------- */
@@ -412,8 +419,12 @@ export async function promptSkill(actor, charLevel) {
  * When a character takes its first class: set HP, grant 1st-level features, and offer the
  * kit, 1st-level Feat, three starting skills and a Starting Luck roll in one window.
  */
-export function firstLevelSetup(actor, cls) {
-  return locked(actor, () => setUpFirstLevel(actor, cls));
+export async function firstLevelSetup(actor, cls) {
+  const next = await locked(actor, () => setUpFirstLevel(actor, cls));
+  // Starting gold runs after the level-change lock is released, so leaving the gear window open blocks nothing.
+  // Only Apply or Skip go on to it; closing the window (X) doesn't.
+  if (next === "gold") await startingWealth(actor, cls);
+  return next;
 }
 
 async function setUpFirstLevel(actor, cls) {
@@ -450,7 +461,8 @@ async function setUpFirstLevel(actor, cls) {
     ],
     rejectClose: false
   });
-  if (!res || res === "skip") return startingWealth(actor, cls);
+  if (!res) return null;
+  if (res === "skip") return "gold";
   if (res.kit) await addFromUuid(actor, res.kit);
   if (res.feat) await addFromUuid(actor, res.feat);
   for (const s of [...new Set(res.skills.filter(Boolean))]) await addFromUuid(actor, s);
@@ -459,8 +471,8 @@ async function setUpFirstLevel(actor, cls) {
     await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
     await actor.update({ "system.luck.start": r.total, "system.luck.value": r.total });
   }
-  // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it).
-  await startingWealth(actor, cls);
+  // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it), once the lock is released.
+  return "gold";
 }
 
 /* -------------------------------------------- */
@@ -488,6 +500,7 @@ export async function pickAncestry(actor) {
   const data = doc.toObject();
   delete data._id;
   data.folder = null;
+  foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
   const [anc] = await actor.createEmbeddedDocuments("Item", [data], { arneyanSkipSetup: true });
   if (anc) await ancestrySetup(actor, anc);
   return anc;

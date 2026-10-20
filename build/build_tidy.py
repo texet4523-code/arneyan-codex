@@ -120,6 +120,12 @@ def build():
                 if d["name"] == child:
                     d["folder"] = top_id
                     placed.add(d["_id"])
+    # The Handbook's toolkits (build_gear, which runs before this folder exists) go in Tools & Trades.
+    from build_gear import TOOLKITS
+    toolkit_names = {n for n, _, _ in TOOLKITS}
+    for d in files.values():
+        if not d["_key"].startswith("!folders!") and d.get("name") in toolkit_names and not d.get("folder"):
+            d["folder"] = tops["Tools & Trades"]
     # Folders with nothing left in them (the old shop-level groups, "How Magic Items Work") go.
     while True:
         items_in = {x.get("folder") for x in files.values() if not x["_key"].startswith("!folders!")}

@@ -378,7 +378,8 @@
       <div class="arn-tab" data-tab="skills">
         <div class="arn-section-head">
           <h3>Skills (NWP)</h3>
-          <span class="arn-muted">{{system.nwp.used}} / {{system.nwp.max}} slots{{#if nwpLeft}} · {{nwpLeft}} free{{/if}}</span>
+          <span class="arn-muted">{{system.nwp.used}} / {{system.nwp.max}} slots{{#if system.nwp.extra}} <span data-tooltip="Extra slots the GM allowed">(+{{system.nwp.extra}} from the GM)</span>{{/if}}{{#if nwpLeft}} · {{nwpLeft}} free{{/if}}</span>
+          {{#if isGM}}{{#if editMode}}<label class="arn-muted" data-tooltip="Extra Skill (NWP) slots the GM allows">GM extra <input class="short" type="number" name="system.nwpBonus" value="{{source.nwpBonus}}" min="0"></label>{{/if}}{{/if}}
           {{#if editable}}<a class="arn-browse" data-action="browse" data-pack="skills" data-tooltip="Browse skills"><i class="fa-solid fa-book-atlas"></i></a>
           <a class="arn-add" data-action="itemCreate" data-type="skill" data-tooltip="New skill"><i class="fa-solid fa-plus"></i></a>{{/if}}
         </div>
@@ -403,7 +404,7 @@
             <label>gp <input type="number" name="system.currency.gp" value="{{source.currency.gp}}"></label>
             <label>sp <input type="number" name="system.currency.sp" value="{{source.currency.sp}}"></label>
             <label>cp <input type="number" name="system.currency.cp" value="{{source.currency.cp}}"></label>
-            {{#if isCharacter}}{{#if editable}}<a class="arn-btn small ghost" data-action="startingGold" data-tooltip="Roll starting gold for your class, then buy a starting pack or shop"><i class="fa-solid fa-coins"></i> Starting gold</a>{{/if}}{{/if}}
+            {{#if isCharacter}}{{#if canStartingGold}}<a class="arn-btn small ghost" data-action="startingGold" data-tooltip="Roll starting gold for your class, then buy a starting pack or shop"><i class="fa-solid fa-coins"></i> Starting gold</a>{{/if}}{{/if}}
           </div>
           {{#if editable}}<a class="arn-btn small ghost" data-action="browse" data-pack="equipment" data-tooltip="The whole Catalogue"><i class="fa-solid fa-book-atlas"></i> Catalogue</a>{{/if}}
         </div>

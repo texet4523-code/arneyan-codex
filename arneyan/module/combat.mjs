@@ -15,6 +15,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, damageRoll, modeFromEvent } from "./rolls.mjs";
 import { statusesOf, toggleCondition } from "./effects.mjs";
 import { feetBetween, rangeOf } from "./qol.mjs";
+import { combatFor, combatantsOf } from "./fight.mjs";
 
 const SYS = "arneyan";
 const SOCKET = `system.${SYS}`;
@@ -233,9 +234,10 @@ async function gunReady(item, fire) {
   return true;
 }
 
-/** Rolls already made this round: is this the first melee attack against that creature? */
-function firstMeleeAgainst(uuid) {
-  const combat = game.combat;
+/** Rolls already made this round: is this the first melee attack against that creature (in the encounter it's in)? */
+function firstMeleeAgainst(actor) {
+  const uuid = actor?.uuid;
+  const combat = combatFor(actor);
   if (!combat?.started) return true;
   const stamp = `${combat.id}.${combat.round}`;
   return !game.messages.contents.slice(-80).some(m => {
@@ -252,7 +254,7 @@ export function targetAC(actor, { ranged = false } = {}) {
   if (!bonus) return ac;
   // A plain Light weapon guards against the first melee attack each round only.
   const firstOnly = actor.effects?.some?.(e => !e.disabled && e.flags?.[SYS]?.defensive === "light");
-  return ac + (firstOnly && !firstMeleeAgainst(actor.uuid) ? 0 : bonus);
+  return ac + (firstOnly && !firstMeleeAgainst(actor) ? 0 : bonus);
 }
 
 /**
@@ -262,7 +264,7 @@ export function targetAC(actor, { ranged = false } = {}) {
 export async function attackSituation(actor, item, targets, { offhand = false } = {}) {
   const ranged = !!item.system.ranged;
   const out = { block: false, adv: [], notes: [], extra: { melee: !ranged, offhand: !!offhand }, fire: null, trained: true };
-  const combat = game.combat;
+  const combat = combatFor(actor);
   if (combat?.started) out.extra.stamp = `${combat.id}.${combat.round}`;
 
   // Full Cover: can't be targeted directly.
@@ -403,8 +405,8 @@ export async function fightDefensively(actor, mode) {
   const old = actor.effects.filter(e => e.flags?.[SYS]?.defensive);
   if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old.map(e => e.id));
   if (!d || old.some(e => e.flags[SYS].defensive === mode)) return; // clicking the same one again switches it off
-  // The off-hand weapon guards "that round"; the shield until your next turn.
-  const c = game.combat;
+  // The off-hand weapon guards "that round"; the shield until your next turn (in the encounter this creature is in).
+  const c = combatFor(actor);
   const expires = mode === "shield" ? startOfNextTurn(c, actor) : (c?.started ? { combat: c.id, round: c.round + 1, turn: 0 } : null);
   await actor.createEmbeddedDocuments("ActiveEffect", [{
     name: `Fighting defensively (${d.label})`, img: "icons/svg/shield.svg", description: `<p>${d.text}</p>`,
@@ -516,7 +518,8 @@ export async function startContest(actor, kind, event = null) {
   const tst = statusesOf(target), mst = statusesOf(actor);
   if (kind === "overbear" && !tst.has("restrained")) return ui.notifications.warn(`Overbear: grapple ${target.name} first (it must already be Restrained). Use Trip to knock it down without a grapple.`);
   if (kind === "escape" && !mst.has("restrained")) return ui.notifications.warn(`${actor.name} isn't Restrained.`);
-  if (kind === "dirty" && game.combat?.started && (target.flags?.[SYS]?.dirtyTricked ?? []).includes(`${game.combat.id}:${actor.uuid}`)) {
+  const fight = combatFor(actor);
+  if (kind === "dirty" && fight?.started && (target.flags?.[SYS]?.dirtyTricked ?? []).includes(`${fight.id}:${actor.uuid}`)) {
     return ui.notifications.warn(`${target.name} has already fallen for ${actor.name}'s Dirty Trick this fight.`);
   }
   // Weapon traits: Entangling (Trip and Grapple) and Sunder (Disarm) give Advantage when the attempt is made with it.
@@ -531,7 +534,7 @@ export async function startContest(actor, kind, event = null) {
   if (kind === "dirty") notes.push("A creature only falls for your Dirty Trick once per fight.");
   const ab = bestChoice(actor, cfg.att, kind);
   const msg = await contestRoll(actor, ab, { kind, role: "attacker", vs: target.name, extraAdv, event, notes,
-    extra: { contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: game.combat?.started ? game.combat.id : "" } } });
+    extra: { contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: fight?.started ? fight.id : "" } } });
   if (!msg) return;
   if (target.isOwner) return resolveContest(msg, target, actor);
   if (!game.users.activeGM) return ui.notifications.warn("No GM is connected to roll for the other side.");
@@ -611,7 +614,7 @@ export async function rollMorale(actor, { group = [] } = {}) {
 /*  Reactions                                   */
 /* -------------------------------------------- */
 
-const combatantsOf = actor => (game.combat?.combatants ?? []).filter(c => c.actor === actor || (c.actorId === actor?.id && c.token?.actor === actor));
+// combatantsOf (fight.mjs): every running encounter, not only the one this client's tracker shows.
 
 /**
  * Items that answer a trigger with the creature's reaction. With an activity (`act`): that option is one (its data

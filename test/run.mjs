@@ -685,3 +685,5 @@ console.log("All checks passed.");
 await import("./lights.mjs");
 // 0.10.1 review fixes (test/review-0101.mjs runs on its own too).
 await import("./review-0101.mjs");
+// 0.10.2 review fixes (test/review-0102.mjs runs on its own too).
+await import("./review-0102.mjs");

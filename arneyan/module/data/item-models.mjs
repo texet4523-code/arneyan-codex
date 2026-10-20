@@ -210,7 +210,9 @@ export class KitData extends BaseItemData {
 export class FeatData extends BaseItemData {
   static defineSchema() {
     return {
-      ...base(), path: str(), levelTaken: int(1, { min: 0 }),
+      ...base(), path: str(),
+      /** The character level it was taken at (stamped when it arrives on a character); 0: not known, not shown. */
+      levelTaken: int(0, { min: 0 }),
       /** A feat with an active use: so many a day or session, and what using it does (as an ability's). */
       uses: usesField(), activities: activityField(),
       ...effectFields()

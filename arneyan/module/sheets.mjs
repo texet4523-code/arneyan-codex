@@ -2,7 +2,7 @@ import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
 import { breakdown, toggleCondition, statusesOf, endConcentration } from "./effects.mjs";
 import { ArneyanBrowser } from "./browser.mjs";
-import { startingWealth } from "./starting.mjs";
+import { startingWealth, canRunStartingWealth } from "./starting.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
@@ -10,6 +10,7 @@ import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromIte
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
+import { combatById } from "./fight.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
@@ -337,7 +338,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const hasStatuses = e => (e.statuses?.size ?? e.statuses?.length ?? 0) > 0;
     const effects = actor.effects.contents.filter(e => !hasStatuses(e) || e.flags?.[SYS]?.rules?.length || e.flags?.[SYS]?.concentration).map(e => {
       const f = e.flags?.[SYS] ?? {};
-      const rounds = f.expires && game.combat?.id === f.expires.combat ? Math.max(0, f.expires.round - game.combat.round) : null;
+      const fx = f.expires ? combatById(f.expires.combat) : null;
+      const rounds = fx ? Math.max(0, f.expires.round - fx.round) : null;
       return {
         id: e.id, name: e.name, img: e.img, disabled: e.disabled, concentration: !!f.concentration,
         source: f.sourceName ?? "", summary: (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", "),
@@ -429,6 +431,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       context.story = await enrich(system.details.backgroundStory);
       context.xpPct = Math.min(100, Math.round((system.attributes.xp / system.xpRate) * 100));
       context.nwpLeft = system.nwp.max - system.nwp.used;
+      // Starting gold: once rolled, only the GM sees the button (players can't farm it).
+      context.canStartingGold = this.isEditable && canRunStartingWealth(actor, game.user);
     } else {
       context.desc = await enrich(system.details.description);
       context.treasure = await enrich(system.details.treasure);

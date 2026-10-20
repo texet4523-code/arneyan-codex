@@ -231,7 +231,7 @@ def build():
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
 
-    # Toolkits, in Tools & Trades.
+    # Toolkits. Tools & Trades doesn't exist yet on a clean build: build_tidy puts them in it.
     tools = next((i for i, n in folder_names.items() if n == "Tools & Trades"), None)
     have = {d["name"] for d in docs.values()}
     for tk_name, tk_price, tk_text in TOOLKITS:

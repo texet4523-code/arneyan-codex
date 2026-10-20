@@ -13,6 +13,7 @@
  * Left-click a condition on the token HUD or the effects panel: +1. Right-click: −1, and it goes at 0.
  */
 import { ARNEYAN } from "./config.mjs";
+import { combatById } from "./fight.mjs";
 
 const SYS = "arneyan";
 const POISON_DICE = ["1d4", "1d6", "1d8", "1d10"];
@@ -46,8 +47,9 @@ export function conditionValue(actor, id) {
 /** Rounds left from a spell's own duration, for the badge when the condition has no number. */
 function roundsLeft(effect) {
   const x = effect.flags?.[SYS]?.expires;
-  const combat = game.combat;
-  if (!x || combat?.id !== x.combat) return 0;
+  // The encounter the duration was stamped in, whichever one this client's tracker shows.
+  const combat = combatById(x?.combat);
+  if (!x || !combat) return 0;
   return Math.max(0, x.round - combat.round);
 }
 
@@ -95,7 +97,7 @@ export async function adjustCondition(actor, id, delta) {
   const cur = valueOf(e);
   // A spell's effect that runs on its own clock: the click moves that clock instead.
   const x = e.flags?.[SYS]?.expires;
-  if (!cur && x && kind === "rounds" && game.combat?.id === x.combat) {
+  if (!cur && x && kind === "rounds" && combatById(x.combat)) {
     const left = roundsLeft(e) + delta;
     if (left <= 0) return e.delete();
     return e.update({ [`flags.${SYS}.expires.round`]: x.round + delta });
