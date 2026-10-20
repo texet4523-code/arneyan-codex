@@ -233,3 +233,112 @@ console.log("OK combat");
   assert.equal(typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.levelUpReady, "function");
   console.log("OK level up button");
 }
+
+// 0.10.18: Crushing Blow and Weapon Specialisation, automated (Kieran, 20 Oct 2026).
+{
+  const E = await import("../arneyan/module/effects.mjs");
+  const D = await import("../arneyan/module/documents.mjs");
+  const kits = packItems("kits");
+  const cbRules = kits.find(k => k.name === "The Heavy Hand (Fighter)").system.features.find(f => f.name === "Crushing Blow").rules;
+  assert.deepEqual(cbRules.map(r => [r.key, r.value, r.weapon]), [["damage.reroll", "2", "two-handed"]], "Crushing Blow is a scoped reroll now");
+  assert.ok(ARNEYAN.allRuleKeys.has("damage.reroll"));
+  const specSrc = packItems("class-features").find(i => i.name === "Weapon Specialisation");
+  assert.equal(specSrc.system.weaponChoice.max, "1:1, 13:2");
+  assert.ok(specSrc.system.rules.every(r => r.weapon === "chosen"));
+  assert.ok(packItems("equipment").find(i => i.name === "Greatsword").system.traits.includes("Two-handed"), "the Catalogue's two-handed weapons say so");
+  assert.ok(!packItems("equipment").find(i => i.name === "Sword, Long").system.traits.includes("Two-handed"), "a Versatile one doesn't");
+
+  // The dice: once each (r, not rr), before an explosion, never twice.
+  assert.equal(E.rerollDice("2d6", 2), "2d6r<=2");
+  assert.equal(E.rerollDice("1d6+1", 2), "1d6r<=2+1");
+  assert.equal(E.rerollDice("2d6x", 2), "2d6r<=2x");
+  assert.equal(E.rerollDice("1d8r<=1", 2), "1d8r<=1", "a die that already rerolls stays as it is");
+  assert.equal(E.rerollDice("1d8", 0), "1d8");
+
+  const W = (name, sys) => makeItem(IM.WeaponData, "weapon", name, { equipped: true, ...sys });
+  const great = W("Greatsword", { damage: "2d6", traits: "Heavy, Two-handed", slots: 2 });
+  const magicGreat = W("+1 Greatsword", { damage: "2d6", traits: "Heavy, Two-handed", slots: 2, magic: 1 });
+  const longsword = W("Sword, Long", { damage: "1d8", traits: "Versatile", slots: 1 });
+  const oldHalberd = W("Halberd", { damage: "1d10", traits: "Reach", slots: 2 });
+  const spear = W("Spear", { damage: "1d6", traits: "Reach, Brace, Thrown", slots: 1 });
+  assert.equal(E.isTwoHanded(great), true);
+  assert.equal(E.isTwoHanded(spear), false);
+  assert.equal(E.isTwoHanded(longsword), false, "Versatile in one hand");
+  assert.equal(E.isTwoHanded(longsword, { include: ["versatile"] }), true, "Versatile with its two-handed die");
+  assert.equal(E.isTwoHanded(oldHalberd), true, "a copy from before the trait: two slots, melee");
+  assert.equal(E.weaponKey("Sword, Long"), E.weaponKey("+1 Long Sword"));
+  assert.equal(E.weaponKey("Greatsword (specialised)"), "greatsword");
+
+  // Wraps a harness actor in the real Actor methods (weaponDice, damageTerms, attackParts).
+  const asActor = a => { const x = Object.create(ArneyanActor.prototype); Object.defineProperty(x, "system", { value: a.system }); x.items = a.items; x.type = a.type; return x; };
+  const withFeatures = (level, ...features) => asActor(makeActor(CharacterData, "character", { abilities: { str: { value: 16 } } },
+    [makeItem(IM.ClassData, "class", "Fighter", { levels: level }), ...features, great, magicGreat, longsword, oldHalberd, spear]));
+
+  // Crushing Blow: two-handed weapons' own dice reroll 1s and 2s, and the card says so; one-handed weapons don't.
+  const crushing = makeItem(IM.AbilityData, "ability", "Crushing Blow", { rules: cbRules, className: "The Heavy Hand (Fighter)" });
+  const heavy = withFeatures(3, crushing);
+  const gd = heavy.weaponDice(great);
+  assert.equal(gd.formula, "2d6r<=2");
+  assert.ok(gd.notes[0].startsWith("Crushing Blow: 1s and 2s"), gd.notes[0]);
+  assert.equal(heavy.weaponDice(oldHalberd).formula, "1d10r<=2");
+  const sd = heavy.weaponDice(spear);
+  assert.equal(sd.formula, "1d6", "a one-handed weapon rolls as it is");
+  assert.ok(!sd.notes.some(n => n.includes("Crushing Blow")), "and its card says nothing of it");
+  assert.equal(heavy.weaponDice(longsword).formula, "1d8", "Versatile in one hand: no reroll");
+  assert.equal(heavy.weaponDice(longsword, { include: ["versatile"] }).formula, "1d8r<=2", "Versatile two-handed: rerolled (its extra die is not)");
+  assert.equal(withFeatures(3).weaponDice(great).formula, "2d6", "no Crushing Blow, no reroll");
+
+  // Weapon Specialisation: with the picked weapon, +damage and first-attack Advantage for real; otherwise reminders.
+  const specWith = value => makeItem(IM.AbilityData, "ability", "Weapon Specialisation", { ...specSrc.system, className: "Fighter", weaponChoice: { max: "1:1, 13:2", value } });
+  const f7 = withFeatures(7, specWith(["Greatsword"]));
+  const bonus = x => x.filter(t => t.label === "Weapon Specialisation").map(t => t.value);
+  assert.deepEqual(bonus(f7.damageTerms(great)), ["+2"], "+2 damage at 7th with the picked weapon");
+  assert.deepEqual(bonus(f7.damageTerms(magicGreat)), ["+2"], "a +1 Greatsword is still a Greatsword");
+  assert.deepEqual(bonus(f7.damageTerms(spear)), [], "nothing with another weapon");
+  assert.deepEqual(f7.system.mods.forWeapon(great).mods.adv("adv.attack.first").values, [1], "first-attack Advantage with it");
+  assert.deepEqual(f7.system.mods.forWeapon(spear).mods.adv("adv.attack.first").values, [], "not with the spear");
+  assert.equal(f7.system.mods.adv("adv.attack.first").values.length, 0, "never on every weapon");
+  assert.ok(f7.weaponDice(spear).notes.some(n => n.includes("with your specialised weapon (Greatsword)")), "the spear's card reminds");
+  assert.ok(!f7.weaponDice(great).notes.some(n => n.includes("specialised weapon")), "the greatsword's card doesn't: it applied");
+  assert.equal(f7.system.mods.parts("attack").length, 0);
+  // No pick yet: reminders only, and the sheet asks.
+  const unpicked = specWith([]);
+  const f1 = withFeatures(1, unpicked);
+  assert.deepEqual(bonus(f1.damageTerms(great)), []);
+  assert.ok(f1.weaponDice(great).notes.some(n => n.includes("with your specialised weapon")));
+  assert.equal(unpicked.system.needsWeapon, true);
+  assert.equal(D.needsWeaponChoice(unpicked), true);
+  assert.equal(D.needsWeaponChoice(specWith(["Greatsword"])), false);
+  assert.equal(D.needsWeaponChoice(crushing), false, "nothing to pick on other features");
+  // A second weapon counts from 13th level only.
+  const two = ["Greatsword", "Sword, Long"];
+  assert.deepEqual(bonus(withFeatures(12, specWith(two)).damageTerms(longsword)), [], "12th: the first pick only");
+  assert.deepEqual(bonus(withFeatures(13, specWith(two)).damageTerms(longsword)), ["+2"], "13th: the second counts");
+  assert.deepEqual(bonus(withFeatures(19, specWith(two)).damageTerms(great)), ["+3"], "+3 at 19th");
+  assert.deepEqual(E.weaponPicks({ weaponChoice: { max: "1:1, 13:2", value: two } }, 5), ["Greatsword"]);
+
+  // The prompt: a Later stores nothing; a pick is stored.
+  const saved = foundry.applications.api.DialogV2.wait;
+  const upd = [];
+  const it = { name: "Weapon Specialisation", isOwner: true, actor: null, system: { className: "Fighter", weaponChoice: { max: "1:1, 13:2", value: [] }, rules: [] }, update: async d => upd.push(d) };
+  foundry.applications.api.DialogV2.wait = async () => ["Maul"];
+  assert.deepEqual(await D.promptWeaponChoice(it), ["Maul"]);
+  assert.deepEqual(upd, [{ "system.weaponChoice.value": ["Maul"] }]);
+  foundry.applications.api.DialogV2.wait = async () => "later";
+  assert.equal(await D.promptWeaponChoice(it), null, "Later: nothing stored");
+  foundry.applications.api.DialogV2.wait = saved;
+  // The sheet row's button.
+  const row = render("templates/actor/item-controls.hbs", { system: unpicked.system, editable: true });
+  assert.ok(row.includes('data-action="itemChooseWeapon"') && row.includes("Choose weapon"), "Choose weapon on the row until picked");
+  assert.ok(!render("templates/actor/item-controls.hbs", { system: specWith(["Greatsword"]).system, editable: true }).includes("Choose weapon"));
+  assert.equal(typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.itemChooseWeapon, "function");
+  // The item sheet: one select (two from 13th), the character's weapons offered, the pick selected.
+  const { ArneyanItemSheet } = await import("../arneyan/module/sheets.mjs");
+  const owned = specWith(["Greatsword"]);
+  makeActor(CharacterData, "character", {}, [makeItem(IM.ClassData, "class", "Fighter", { levels: 13 }), owned, W("Greatsword", { damage: "2d6" }), W("Dagger", { damage: "1d4" })]);
+  const ictx = await sheetContext(ArneyanItemSheet, owned, { _activeTab: "details" });
+  assert.equal(ictx.weaponPick.slots.length, 2, "two picks at 13th");
+  const ihtml = render("templates/item/item-sheet.hbs", { ...ictx, editable: true });
+  assert.ok(ihtml.includes('class="arn-weapon-pick"') && ihtml.includes('<option value="Greatsword" selected>') && ihtml.includes('<option value="Dagger">') && ihtml.includes("Second weapon"), "the weapon selects");
+  console.log("OK Crushing Blow and Weapon Specialisation");
+}

@@ -1,6 +1,6 @@
 # Arneyan rule vocabulary (effects layer)
 
-A **rule** is `{ "key": string, "value": string|number, "label": string (optional), "when": string (optional) }`.
+A **rule** is `{ "key": string, "value": string|number, "label": string (optional), "when": string (optional), "weapon": string (optional) }`.
 
 - Dice in `applies` values and rounds ("1d4" rounds, "2d4" to a score) are rolled once when the effect lands.
 - `value` is a number, or a formula string using `@level` (character level), `@half` (half level, min 1),
@@ -9,6 +9,12 @@ A **rule** is `{ "key": string, "value": string|number, "label": string (optiona
 - `when`: a short condition ("vs undead", "while raging", "against traps"). A rule with `when` is NOT applied
   automatically; it is shown as a reminder note on the matching roll. Use it whenever the bonus is situational.
 - `label`: optional override of the source name shown in breakdowns.
+- `weapon`: the rule counts only on attack and damage rolls with weapons that fit; on any other roll it does nothing,
+  or shows its `when` as a reminder. Values: `two-handed` (the Two-handed trait, or a Versatile weapon when its
+  two-handed die is rolled) and `chosen` (the weapons picked on the item: see `weaponChoice` below). A scoped rule's
+  `when` is the reminder shown with other weapons; it is dropped from the card when the weapon fits.
+- An entry may carry `"weaponChoice": "1:1, 13:2"` (how many weapons may be picked, by class level): the player picks
+  them when the item is added, and its `chosen` rules count with those weapons (Weapon Specialisation).
 
 ## Keys
 
@@ -17,6 +23,8 @@ Numbers (added):
 - `ac`
 - `attack` (all attack rolls), `attack.melee`, `attack.ranged`
 - `damage`, `damage.melee`, `damage.ranged` (weapon damage; dice allowed: "+1d6")
+- `damage.reroll` (the weapon's own damage dice showing this or less are rerolled once: 2 rerolls 1s and 2s; bonus
+  dice are not; usually with `weapon`, as Crushing Blow's `two-handed`)
 - `spell.damage`, `cantrip.damage` (dice allowed)
 - `spell.dc`, `class.dc`
 - `save` (all three), `save.fort`, `save.ref`, `save.will`

@@ -166,6 +166,36 @@ def copy(pack, d, actor_id, salt, **system):
     return item
 
 
+def picked_weapons(feature, c, gear):
+    """A weapon pick from the printed sheet: "Weapon Specialisation (Greatsword)" in its class features or its
+    abilities text names it.
+
+    Each name in the brackets must be a Catalogue weapon (stored by its Catalogue name) or one of the pregen's own
+    weapons; anything unclear leaves the pick empty, and the sheet asks the player instead.
+    """
+    text = re.sub(r"<[^>]+>", " ", f"{c.get('abilitiesText', '')} {c.get('abilitiesHtml', '')}")
+    found = [re.match(rf"^{re.escape(feature)}\s*\(([^)]+)\)", str(line), re.I) for line in c.get("classFeatures", [])]
+    found += [re.search(rf"{re.escape(feature)}\s*\(([^)]+)\)", text, re.I)]
+    for m in found:
+        if not m:
+            continue
+        out = []
+        for part in re.split(r",|/|\band\b", m.group(1)):
+            part = part.strip()
+            if not part:
+                continue
+            d = gear.find(part)
+            own = next((w["name"] for w in c.get("weapons", []) if norm(w["name"]) == norm(part)), None)
+            if d and d["type"] == "weapon":
+                out.append(d["name"])
+            elif own:
+                out.append(own)
+            else:
+                return []
+        return out
+    return []
+
+
 def plain_item(actor_id, salt, name, itype="equipment", description="", **system):
     sys_ = {"description": description, "quantity": 1, "slots": 1}
     sys_.update(system)
@@ -261,6 +291,10 @@ def build():
                     continue
                 it = copy("class-features", fdoc, actor_id, f"cf-{fdoc['_id']}", level=f["level"])
                 it["flags"][SYS] = {"grantedBy": cls["_id"], "source": f["uuid"]}
+                # A weapon of the player's choice (Weapon Specialisation): the one the printed sheet names.
+                wc = it["system"].get("weaponChoice")
+                if isinstance(wc, dict) and wc.get("max") and not wc.get("value"):
+                    wc["value"] = picked_weapons(fdoc["name"], c, gear)
                 items.append(it)
 
             # Ancestry

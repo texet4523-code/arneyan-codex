@@ -1921,17 +1921,20 @@
    {
     "key": "adv.attack.first",
     "value": 1,
-    "when": "with your specialised weapon"
+    "when": "with your specialised weapon",
+    "weapon": "chosen"
    },
    {
     "key": "damage",
     "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/19))",
-    "when": "with your specialised weapon"
+    "when": "with your specialised weapon",
+    "weapon": "chosen"
    }
   ],
-  "summary": "First-attack Advantage and +1/+2/+3 (1st/7th/19th) damage reminders with the specialised weapon.",
-  "manual": "13th-level choice (second weapon or +1 more); could live on the weapon item instead.",
-  "confidence": "medium"
+  "summary": "Pick the weapon (asked when the feature is added; a second from 13th level). With it: Advantage on the first attack with it each round and +1/+2/+3 (1st/7th/19th) damage, applied automatically; with any other weapon, or none picked, they stay reminders. Approved by Kieran in chat, 20 Oct 2026.",
+  "manual": "13th level: instead of a second weapon, +1 more damage with the first (the GM adds a damage rule).",
+  "confidence": "high",
+  "weaponChoice": "1:1, 13:2"
  },
  "class-features/MSQ7Ghp68sabbjxq": {
   "name": "Battle Space",
@@ -4613,13 +4616,14 @@
   "container": "passive",
   "rules": [
    {
-    "key": "note.damage",
-    "value": "Crushing Blow: reroll 1s and 2s on two-handed weapon damage dice."
+    "key": "damage.reroll",
+    "value": 2,
+    "weapon": "two-handed"
    }
   ],
-  "summary": "A reminder note on the matching card.",
-  "manual": "The rerolls.",
-  "confidence": "medium"
+  "summary": "Damage dice of two-handed weapons (a Versatile one when its two-handed die is rolled) showing 1 or 2 are rerolled once; the damage card says so. Approved by Kieran in chat, 20 Oct 2026.",
+  "manual": "",
+  "confidence": "high"
  },
  "kits/hviYzyxxOQvRIL7n#0": {
   "name": "Dead Reckoning",

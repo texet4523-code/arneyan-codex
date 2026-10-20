@@ -8,6 +8,7 @@
     </select>
     <input type="text" data-r="value" value="{{value}}" placeholder="2, -1, +1d6, floor(@level/4), fire">
     <input type="text" data-r="when" value="{{when}}" placeholder="only when... (optional)">
+    <input type="hidden" data-r="weapon" value="{{weapon}}">{{#if weapon}}<span class="arn-muted" data-tooltip="Counts only on attack and damage rolls with these weapons">{{#if (eq weapon "chosen")}}picked weapon{{else}}{{weapon}}{{/if}} only</span>{{/if}}
     {{#if @root.editable}}<a class="arn-ctl" data-action="ruleDelete" data-index="{{i}}" data-apply="{{../apply}}" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>{{/if}}
   </div>
   {{/each}}

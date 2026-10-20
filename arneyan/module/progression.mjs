@@ -72,7 +72,9 @@ export async function syncKitFeatures(actor, kit) {
         damage: f.damage ?? "", ...(f.damageType ? { damageType: f.damageType } : {}),
         activities: foundry.utils.deepClone(f.activities ?? []),
         rules: foundry.utils.deepClone(f.rules ?? []), toggle: !!f.toggle, active: false, applies: foundry.utils.deepClone(f.applies ?? []),
-        ...(f.abilityChoice?.options?.length ? { abilityChoice: foundry.utils.deepClone(f.abilityChoice) } : {}) },
+        ...(f.abilityChoice?.options?.length ? { abilityChoice: foundry.utils.deepClone(f.abilityChoice) } : {}),
+        // A weapon pick (as Weapon Specialisation's) goes with it, so the new feature asks which weapon.
+        ...(String(f.weaponChoice?.max ?? "").trim() ? { weaponChoice: foundry.utils.deepClone(f.weaponChoice) } : {}) },
       flags: { [FLAG]: { grantedBy: kit.id, source } }
     });
   });

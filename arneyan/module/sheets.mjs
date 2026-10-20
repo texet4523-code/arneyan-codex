@@ -1,6 +1,6 @@
 import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
-import { breakdown, toggleCondition, statusesOf, endConcentration } from "./effects.mjs";
+import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, weaponPickMax, featureLevel } from "./effects.mjs";
 import { ArneyanBrowser } from "./browser.mjs";
 import { startingWealth, canRunStartingWealth } from "./starting.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
@@ -123,6 +123,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemDamage: ArneyanActorSheet.#itemDamage,
       itemEdit: ArneyanActorSheet.#itemEdit,
       itemChoose: ArneyanActorSheet.#itemChoose,
+      itemChooseWeapon: ArneyanActorSheet.#itemChooseWeapon,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
       itemEquip: ArneyanActorSheet.#itemEquip,
@@ -353,7 +354,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     for (const r of mods?.rules ?? []) {
       if (r.label === "Sheet" || r.label === "Stat block") continue;
       if (!bySource.has(r.label)) bySource.set(r.label, []);
-      bySource.get(r.label).push(r.when ? `${r.key} ${r.value} when ${r.when}` : `${r.key} ${r.value}`);
+      // A rule for some weapons only says which ("damage.reroll 2 with two-handed weapons"); a reminder's "when" does.
+      bySource.get(r.label).push(r.when ? `${r.key} ${r.value} when ${r.when}` : `${r.key} ${r.value}${r.weapon ? ` ${scopeText(r)}` : ""}`);
     }
     const activeRules = [...bySource].map(([label, list]) => ({ label, text: list.join(" · ") }));
 
@@ -622,6 +624,12 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const { promptAbilityChoice } = await import("./documents.mjs");
     return promptAbilityChoice(item);
   }
+  static async #itemChooseWeapon(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return null;
+    const { promptWeaponChoice } = await import("./documents.mjs");
+    return promptWeaponChoice(item);
+  }
   static #itemExpand(event, target) {
     const item = this._itemFrom(target);
     if (!item) return;
@@ -817,6 +825,24 @@ export function parseRadius(text) {
   return t || 0;
 }
 
+/**
+ * The item sheet's weapon pick (Weapon Specialisation): one select per weapon allowed at the owner's class level (a
+ * second from 13th), each offering the character's weapons and the Catalogue's.
+ */
+async function weaponPickContext(item) {
+  const { weaponOptions, weaponOptionsHtml } = await import("./documents.mjs");
+  const sys = item.system;
+  const max = Math.max(1, weaponPickMax(sys, item.actor ? featureLevel(item.actor, item) : 1));
+  const picks = (item._source?.system?.weaponChoice?.value ?? sys.weaponChoice?.value ?? []).filter(Boolean);
+  const options = await weaponOptions(item.actor);
+  // A pick beyond what the level allows (after losing levels) still shows, marked, so it isn't lost unseen.
+  return {
+    max, slots: Array.from({ length: Math.max(max, picks.length) }, (_, i) => ({
+      i, over: i >= max, blank: i ? "None" : "Choose (reminders only until you do)", options: weaponOptionsHtml(options, picks[i] ?? "")
+    }))
+  };
+}
+
 export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["arneyan", "sheet", "item"],
@@ -878,6 +904,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       usesFromFormula: !!(item._source.system.uses?.formula && item.actor),
       abilityChoices: (sys.abilityChoice?.options?.length ?? 0) > 1 ? Object.fromEntries(sys.abilityChoice.options.map(o => [o, ARNEYAN.abilities[o] ?? o])) : null,
       abilityChoiceValue: sys.abilityChoice?.options?.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : "",
+      weaponPick: String(sys.weaponChoice?.max ?? "").trim() ? await weaponPickContext(item) : null,
       fromCompendium: !!compendiumSourceOf(item),
       keepCustom: !!item.flags?.arneyan?.keepCustom,
       classesLabel: (sys.classes ?? []).join(", "),
@@ -932,6 +959,14 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       input.addEventListener("change", ev => {
         ev.stopPropagation();
         this.document.update({ "system.itemSpells": this.#readItemSpells() });
+      });
+    }
+    // The weapon pick (an array, so saved by hand): every select, in order, without blanks or repeats.
+    for (const sel of this.element.querySelectorAll("select.arn-weapon-pick")) {
+      sel.addEventListener("change", ev => {
+        ev.stopPropagation();
+        const value = [...new Set([...this.element.querySelectorAll("select.arn-weapon-pick")].map(s => s.value.trim()).filter(Boolean))];
+        this.document.update({ "system.weaponChoice.value": value });
       });
     }
     // Extra damage rows (an array, so saved by hand).
@@ -1025,7 +1060,9 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       key: row.querySelector("[data-r=key]").value.trim(),
       value: row.querySelector("[data-r=value]").value.trim(),
       when: row.querySelector("[data-r=when]").value.trim(),
-      label: ""
+      label: "",
+      // Not edited here, but kept: a rule for some weapons only stays so when another rule changes.
+      weapon: row.querySelector("[data-r=weapon]")?.value.trim() ?? ""
     }));
   }
 

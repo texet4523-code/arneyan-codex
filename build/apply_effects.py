@@ -9,7 +9,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def rule(r):
-    return {"key": str(r["key"]), "value": str(r.get("value", "")), "when": str(r.get("when", "") or ""), "label": str(r.get("label", "") or "")}
+    out = {"key": str(r["key"]), "value": str(r.get("value", "")), "when": str(r.get("when", "") or ""), "label": str(r.get("label", "") or "")}
+    # For some weapons only ("two-handed", or "chosen": the weapons picked on the item); left out when it's for any.
+    if r.get("weapon"):
+        out["weapon"] = str(r["weapon"])
+    return out
 
 
 def applies(a):
@@ -33,6 +37,10 @@ def patch(system, entry):
     # An attribute bonus of the player's choice (Will of Iron: Wis, Int or Cha): the options; the first is the default.
     if entry.get("abilityChoice"):
         system["abilityChoice"] = {"options": [str(o) for o in entry["abilityChoice"]], "value": ""}
+    # Weapons of the player's choice (Weapon Specialisation): how many may be picked (a number or a level table on
+    # the class level, "1:1, 13:2"); its rules scoped to "chosen" count with them. None picked in the compendium.
+    if entry.get("weaponChoice"):
+        system["weaponChoice"] = {"max": str(entry["weaponChoice"]), "value": []}
     if entry.get("applies"):
         # Keep applies the spell or feature already had; add the approved ones not there yet (by name).
         have = {a.get("name") for a in system.get("applies", []) or []}
