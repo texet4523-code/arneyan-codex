@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.18 · Foundry v13 and v14
+Version 0.10.19 · Foundry v13 and v14
+
+## What's new in 0.10.19
+
+- **Class details.** Clicking a class (in the Browser, or its name on a character sheet) opens a window made for reading it, not the editing sheet:
+  - **Overview:** Hit Die, HP after 10th, key attribute, spellcasting, Base to Hit, weapons, armour, Feat Paths and levels, and a level 1 to 24 table: Base to Hit, abilities gained, Feats, and spell slots for casters.
+  - **Abilities:** every class ability by level, each opening to its full text.
+  - **Kits:** the class's Kits and what each gives.
+  - **Handbook:** the class's full text.
+  - From the Browser adding to a character it has an **Add to** button for that character. The GM's pencil still opens the editing sheet.
 
 ## What's new in 0.10.18
 

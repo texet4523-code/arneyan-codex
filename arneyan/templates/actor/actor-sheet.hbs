@@ -119,7 +119,7 @@
         <span class="arn-chip strong">Level {{system.level}}</span>
         {{#each classes}}
         <span class="arn-classlevel" data-item-id="{{id}}">
-          <a data-action="itemEdit">{{name}}</a>
+          <a data-action="classInfo" data-tooltip="What {{name}} is and does, level by level">{{name}}</a>
           <input class="arn-class-level" type="number" min="1" max="24" value="{{system.levels}}" data-item-id="{{id}}" data-tooltip="Type a new level to level up (or down)" {{#unless @root.editable}}disabled{{/unless}}>
           {{#if @root.editable}}<a class="arn-leveldown" data-action="levelDown" data-tooltip="Level down"><i class="fa-solid fa-circle-down"></i></a><a class="arn-levelup" data-action="levelUp" data-tooltip="Level up"><i class="fa-solid fa-circle-up"></i></a>{{/if}}
         </span>
@@ -342,7 +342,7 @@
         <ul class="arn-list">
           {{#each classes}}
           <li data-item-id="{{id}}" draggable="true">
-            <img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}} {{system.levels}}</a>
+            <img src="{{img}}" alt=""><a class="arn-item-name" data-action="classInfo" data-tooltip="What {{name}} is and does, level by level">{{name}} {{system.levels}}</a>
             <span class="arn-muted arn-meta">{{system.hitDie}} · BtH +{{system.bth}}</span>
             {{> "systems/arneyan/templates/actor/item-controls.hbs"}}
           </li>

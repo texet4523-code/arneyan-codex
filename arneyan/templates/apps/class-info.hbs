@@ -1,0 +1,55 @@
+<div class="arn-classinfo">
+  <header class="arn-ci-head">
+    <img src="{{img}}" alt="">
+    <div class="arn-ci-title">
+      <h2>{{name}}</h2>
+      <p class="arn-ci-sub">{{sub}}</p>
+    </div>
+    <div class="arn-ci-actions">
+      {{#if canAdd}}{{#if already}}<span class="arn-chip">{{actorName}} has this class</span>{{else}}<button type="button" class="arn-btn" data-action="add"><i class="fa-solid fa-plus"></i> Add to {{actorName}}</button>{{/if}}{{/if}}
+      {{#if isGM}}<a class="arn-btn ghost small" data-action="sheet" data-tooltip="Open the editing sheet"><i class="fa-solid fa-pen"></i></a>{{/if}}
+    </div>
+  </header>
+  <nav class="arn-ci-tabs">{{#each tabs}}<a data-action="tab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}</nav>
+  <div class="arn-ci-body">
+    {{#if (eq tab "overview")}}
+      <dl class="arn-ci-facts">{{#each facts}}<dt>{{label}}</dt><dd>{{value}}</dd>{{/each}}</dl>
+      <h3>Level by level</h3>
+      <table class="arn-ci-levels">
+        <thead><tr><th>Level</th><th>BtH</th><th>You gain</th><th>Feat</th>{{#each table.slotCols}}<th class="arn-ci-slot">{{this}}</th>{{/each}}</tr></thead>
+        <tbody>
+          {{#each table.rows}}
+          <tr><td>{{level}}</td><td>{{bth}}</td><td>{{gains}}</td><td>{{#if feat}}<i class="fa-solid fa-star" data-tooltip="A Feat at this level"></i>{{/if}}</td>{{#each slots}}<td class="arn-ci-slot">{{this}}</td>{{/each}}</tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{#if table.slotCols.length}}<p class="arn-muted">Spell slots per day at each level.</p>{{/if}}
+    {{/if}}
+    {{#if (eq tab "abilities")}}
+      {{#each levels}}
+        <h3>{{label}}</h3>
+        {{#each items}}
+        <details class="arn-ci-ability">
+          <summary><strong>{{name}}</strong>{{#if uses}} <span class="arn-muted">· {{uses}}</span>{{/if}}</summary>
+          <div class="arn-ci-text">{{{text}}}</div>
+        </details>
+        {{/each}}
+      {{else}}<p class="arn-muted">No class abilities listed.</p>{{/each}}
+    {{/if}}
+    {{#if (eq tab "kits")}}
+      <p class="arn-muted">At character creation you choose one Kit: your tradition and where you learned it.</p>
+      {{#each kits}}
+        <details class="arn-ci-ability">
+          <summary><strong>{{name}}</strong>{{#if group}} <span class="arn-muted">· {{group}}</span>{{/if}}</summary>
+          <div class="arn-ci-text">{{{text}}}
+            {{#if features.length}}<p class="arn-muted">Features: {{#each features}}{{#if @index}}, {{/if}}{{name}}{{#if level}} ({{level}}){{/if}}{{/each}}</p>{{/if}}
+            <a class="arn-btn ghost small" data-action="openKit" data-uuid="{{uuid}}"><i class="fa-solid fa-flag"></i> Open the Kit</a>
+          </div>
+        </details>
+      {{else}}<p class="arn-muted">This class has no Kits.</p>{{/each}}
+    {{/if}}
+    {{#if (eq tab "handbook")}}
+      <div class="arn-ci-text arn-ci-handbook">{{{handbook}}}</div>
+    {{/if}}
+  </div>
+</div>

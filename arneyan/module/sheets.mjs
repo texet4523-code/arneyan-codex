@@ -123,6 +123,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemDamage: ArneyanActorSheet.#itemDamage,
       itemEdit: ArneyanActorSheet.#itemEdit,
       itemChoose: ArneyanActorSheet.#itemChoose,
+      classInfo: ArneyanActorSheet.#classInfo,
       itemChooseWeapon: ArneyanActorSheet.#itemChooseWeapon,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
@@ -618,6 +619,13 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     return item.rollItemDamage();
   }
   static #itemEdit(event, target) { return this._itemFrom(target)?.sheet.render(true); }
+  /** A class on the sheet: its details window (the pencil still opens the editing sheet). */
+  static async #classInfo(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return null;
+    const { ArneyanClassInfo } = await import("./classinfo.mjs");
+    return ArneyanClassInfo.open(item);
+  }
   static async #itemChoose(event, target) {
     const item = this._itemFrom(target);
     if (!item) return null;

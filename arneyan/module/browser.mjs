@@ -306,6 +306,11 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static async #onView(event, target) {
     const doc = await fromUuid(target.closest("[data-uuid]").dataset.uuid);
+    // A class opens its details (what it is and does, level by level), not the GM's editing sheet.
+    if (doc?.type === "class") {
+      const { ArneyanClassInfo } = await import("./classinfo.mjs");
+      return ArneyanClassInfo.open(doc, { actor: this.actor });
+    }
     doc?.sheet.render(true);
   }
 
