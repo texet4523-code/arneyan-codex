@@ -689,3 +689,5 @@ await import("./review-0101.mjs");
 await import("./review-0102.mjs");
 // 0.10.4 Method V and Starting Scores (test/chargen.mjs runs on its own too).
 await import("./chargen.mjs");
+// Foundry v14 effect durations (test/v14dur.mjs runs on its own too).
+await import("./v14dur.mjs");

@@ -8,6 +8,7 @@
 import { ARNEYAN } from "./config.mjs";
 import { reapply } from "./counters.mjs";
 import { combatFor, combatOnScene } from "./fight.mjs";
+import { durationData } from "./duration.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -359,7 +360,8 @@ export async function effectDataFor(entry, item, { cl = 1, caster = null } = {})
     flags: { [SYS]: { rules, cl, sourceName: item.name, casterUuid: caster?.uuid ?? null, rounds } }
   };
   if (rounds) {
-    data.duration = { rounds };
+    // Foundry's own duration too, in the shape this Foundry stores (v13 { rounds }, v14 { value, units }).
+    data.duration = durationData({ rounds });
     // The encounter the caster is fighting in (game.combat is only the one this client's tracker shows).
     const combat = combatFor(caster) ?? combatFor(item?.actor) ?? combatOnScene(globalThis.canvas?.scene?.id);
     if (combat?.started) data.flags[SYS].expires = { combat: combat.id, round: combat.round + rounds, turn: combat.turn ?? 0 };

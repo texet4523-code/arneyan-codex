@@ -7,6 +7,9 @@
  * Numbered timed conditions (Stunned 2) tick down with the clock too when their creature is not in a running combat.
  * A small clock shows the game time; the GM's buttons move it on (10 minutes, 1 hour, 8 hours for a rest, 1 day).
  */
+import { readDuration, hasLength, lengthSeconds, mergedDuration } from "./duration.mjs";
+export { readDuration, durationData } from "./duration.mjs";
+
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -90,14 +93,20 @@ export function gameWhen(t = globalThis.game?.time?.worldTime ?? 0) {
  * When an effect being created should end, in world seconds, or null. `now` is the world time; `spellText` and
  * `cl` let a spell's own duration stand in when the effect carries none (only when the text gives exactly one).
  */
-export function endsAtFor(data, now, { spellText = "", cl = 1, round = ROUND } = {}) {
+export function endsAtFor(data, now, { spellText = "", cl = 1, round = ROUND, source = null } = {}) {
   const f = data?.flags?.[SYS] ?? {};
   if (Number.isFinite(f.endsAt)) return f.endsAt;
-  const d = data?.duration ?? {};
+  // Foundry's own duration, v13 { seconds, rounds, startTime } or v14 { value, units } + start.time. The
+  // creation data may not carry it (or carry it migrated); the effect's own source then stands in.
+  let d = readDuration(data);
+  if (!hasLength(d) && source) d = readDuration(source);
+  if (d.startTime === null && source) d.startTime = readDuration(source).startTime;
   const start = Number.isFinite(d.startTime) ? d.startTime : now;
-  if (Number(d.seconds) > 0) return start + Number(d.seconds);
-  const rounds = Number(f.rounds) || Number(d.rounds) || 0;
+  if (d.seconds > 0) return start + d.seconds;
+  const rounds = Number(f.rounds) || d.rounds || 0;
   if (rounds > 0) return start + rounds * round;
+  const span = lengthSeconds(d, round);
+  if (span > 0) return start + span;
   if (spellText) {
     const s = spellDurationSeconds(spellText, cl);
     if (s > 0) return now + s;
@@ -193,6 +202,27 @@ function spellSource(data, effect) {
   return { text: item.system?.description ?? "", cl };
 }
 
+/**
+ * The end time an update to an effect's own duration gives it (world seconds, or null when the duration was
+ * cleared), or undefined when the update leaves the length alone (or sets endsAt itself). Either duration shape.
+ */
+export function endsAtAfterUpdate(effect, changes, now, round = ROUND) {
+  if (!changes?.duration && !changes?.start) return undefined;
+  const has = (o, k) => foundry.utils.hasProperty?.(o, k) ?? (k.split(".").reduce((x, y) => x?.[y], o) !== undefined);
+  if (has(changes, `flags.${SYS}.endsAt`)) return undefined;
+  const src = effect?._source ?? {};
+  const oldDur = src.duration ?? effect?.duration ?? {};
+  const before = readDuration({ duration: oldDur, start: src.start ?? null });
+  const after = readDuration({
+    duration: changes.duration ? mergedDuration(oldDur, changes.duration) : oldDur,
+    start: changes.start ? { ...(src.start ?? {}), ...changes.start } : (src.start ?? null)
+  });
+  const len = d => lengthSeconds(d, round);
+  if (len(after) === len(before) && after.startTime === before.startTime) return undefined;
+  const start = Number.isFinite(after.startTime) ? after.startTime : now;
+  return len(after) > 0 ? start + len(after) : null;
+}
+
 /** Time left on an effect, for the sheet ("8 min left"), or "". */
 export function timeLeftLabel(effect, now = globalThis.game?.time?.worldTime ?? 0) {
   const at = effect?.flags?.[SYS]?.endsAt;
@@ -272,7 +302,7 @@ export function registerWorldTime() {
       const f = data.flags?.[SYS] ?? {};
       // A spell's own text is only read for the effects it puts on (and its concentration), never for plain conditions.
       const useText = !!src && !!(f.concentration || f.sourceName);
-      const at = endsAtFor(data, now, { spellText: useText ? src.text : "", cl: src?.cl ?? 1, round: roundSeconds() });
+      const at = endsAtFor(data, now, { spellText: useText ? src.text : "", cl: src?.cl ?? 1, round: roundSeconds(), source: effect?._source ?? null });
       if (Number.isFinite(at) && at > now) effect.updateSource({ [`flags.${SYS}.endsAt`]: at });
     } catch (err) {
       console.warn("Arneyan | effect duration", err);
@@ -280,14 +310,12 @@ export function registerWorldTime() {
   });
   // A duration typed into the effect's own settings later on counts too.
   Hooks.on("preUpdateActiveEffect", (effect, changes) => {
-    if (!changes.duration || foundry.utils.hasProperty(changes, `flags.${SYS}.endsAt`)) return;
-    const d = foundry.utils.mergeObject(effect.duration?.toObject?.() ?? { ...(effect.duration ?? {}) }, changes.duration, { inplace: false });
-    const old = effect.duration ?? {};
-    if ((Number(d.seconds) || 0) === (Number(old.seconds) || 0) && (Number(d.rounds) || 0) === (Number(old.rounds) || 0)) return;
-    const now = game.time?.worldTime ?? 0;
-    const start = Number.isFinite(d.startTime) ? d.startTime : now;
-    const at = Number(d.seconds) > 0 ? start + Number(d.seconds) : Number(d.rounds) > 0 ? start + Number(d.rounds) * roundSeconds() : null;
-    foundry.utils.setProperty(changes, `flags.${SYS}.endsAt`, at);
+    try {
+      const at = endsAtAfterUpdate(effect, changes, game.time?.worldTime ?? 0, roundSeconds());
+      if (at !== undefined) foundry.utils.setProperty(changes, `flags.${SYS}.endsAt`, at);
+    } catch (err) {
+      console.warn("Arneyan | effect duration", err);
+    }
   });
 
   Hooks.on("updateWorldTime", (worldTime, dt) => {

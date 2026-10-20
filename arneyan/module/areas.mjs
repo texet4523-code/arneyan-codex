@@ -13,6 +13,7 @@
  */
 import { auraCard, evalRadius } from "./auras.mjs";
 import { combatFor, combatOnScene } from "./fight.mjs";
+import { durationData } from "./duration.mjs";
 
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
@@ -215,7 +216,7 @@ async function startAura(d, actor) {
   const combat = own?.started ? own : null;
   const [effect] = await actor.createEmbeddedDocuments("ActiveEffect", [{
     name: d.spell, img: spell?.img ?? "icons/svg/aura.svg", transfer: false,
-    ...(rounds ? { duration: { rounds } } : {}),
+    ...(rounds ? { duration: durationData({ rounds }) } : {}),
     flags: { [SYS]: { aura: auras, cl: d.cl, dc: d.dc, sourceName: d.spell, rounds,
       ...(rounds && combat ? { expires: { combat: combat.id, round: combat.round + rounds, turn: combat.turn ?? 0 } } : {}) } }
   }]);
