@@ -183,6 +183,8 @@ function reachRing(token) {
   const old = token.children?.find?.(c => c.name === "arnReach");
   if (old) { token.removeChild(old); old.destroy(); }
   if (!token.controlled || !game.settings.get(SYS, "reachRing") || !token.actor?.isOwner) return;
+  // Creatures only: not item piles, storage, the party token or hazards.
+  if (!["character", "npc"].includes(token.actor.type) || token.actor.flags?.["item-piles"]?.data?.enabled || token.document?.flags?.["item-piles"]?.data?.enabled) return;
   const weapons = token.actor.items.filter(i => i.type === "weapon" && i.system.equipped && !i.system.ranged);
   const reach = weapons.some(w => /\breach\b/i.test(w.system.traits ?? "")) ? 10 : 5;
   const grid = canvas.scene.grid;
@@ -245,8 +247,8 @@ export function registerQol() {
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYS, "reachRing", {
-    name: "Reach ring on your selected token", hint: "A faint square at your melee reach (5ft, 10ft with a Reach weapon), to see who you can hit or who can make an attack of opportunity.",
-    scope: "client", config: true, type: Boolean, default: true, onChange: () => canvas?.tokens?.controlled.forEach(reachRing)
+    name: "Reach ring on your selected token", hint: "A faint square at your melee reach (5ft, 10ft with a Reach weapon), to see who you can hit or who can make an attack of opportunity. Also a switch in the token tools and Shift+R.",
+    scope: "client", config: true, type: Boolean, default: true, onChange: () => { canvas?.tokens?.controlled.forEach(reachRing); ui.controls?.render?.(); }
   });
   game.settings.register(SYS, "turnReminders", {
     name: "Start of turn reminders", hint: "One card, to the creature's owners and the GM, listing concentration, effects about to end, ongoing damage and Regeneration.",
@@ -254,6 +256,19 @@ export function registerQol() {
   });
   Hooks.on("updateActor", (actor, changes, options) => { try { floatHp(actor, changes, options); } catch (err) { console.warn("Arneyan | float", err); } });
   Hooks.on("controlToken", token => { try { reachRing(token); } catch (err) { console.warn("Arneyan | reach", err); } });
+  // A switch in the token tools and a key (R by default) turn the reach outline on and off.
+  Hooks.on("getSceneControlButtons", controls => {
+    try {
+      const tokens = controls.tokens ?? controls.token ?? Object.values(controls).find(c => c?.name === "tokens");
+      if (!tokens?.tools) return;
+      tokens.tools.arnReach = { name: "arnReach", title: "Reach outline on your selected token", icon: "fa-regular fa-square", order: Object.keys(tokens.tools).length + 5,
+        toggle: true, active: game.settings.get(SYS, "reachRing"), visible: true, onChange: (event, active) => game.settings.set(SYS, "reachRing", active ?? !game.settings.get(SYS, "reachRing")) };
+    } catch (err) { console.warn("Arneyan | reach tool", err); }
+  });
+  game.keybindings.register(SYS, "reachRing", {
+    name: "Reach outline on or off", hint: "Show or hide the faint square at your selected token's melee reach.",
+    editable: [{ key: "KeyR", modifiers: ["Shift"] }], onDown: () => { game.settings.set(SYS, "reachRing", !game.settings.get(SYS, "reachRing")); return true; }
+  });
   // A token's sprite can be rebuilt (size or image changes): put the ring back if it went.
   Hooks.on("refreshToken", (token, flags) => {
     if (!token.controlled || !(flags?.refreshSize || flags?.redraw)) return;

@@ -26,8 +26,19 @@ async function rollSet() {
   return rolls;
 }
 
+/** Ability score windows still open, by actor id: the 1st-level steps wait for them (scores come first). */
+const OPEN = new Map();
+export function scoresWindowFor(actor) { return OPEN.get(actor?.id) ?? null; }
+
 export async function abilityScores(actor) {
   if (!actor?.isOwner || actor.type !== "character") return;
+  if (OPEN.has(actor.id)) return OPEN.get(actor.id);
+  const run = abilityScoresWindow(actor).finally(() => OPEN.delete(actor.id));
+  OPEN.set(actor.id, run);
+  return run;
+}
+
+async function abilityScoresWindow(actor) {
   let sets = null;          // [[17, 15, ...], [...]] once rolled
   const content = `<div class="arn-scores">
     <p>Method V: roll six pools in order (8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times keeping all 3) for Set Alpha, then again for Set Beta. Keep one whole set; you can't swap scores between them (Rule A). The set you keep needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold). The set you don't keep can be donated to the table (Rule B). Then put each score on an attribute. Your ancestry's changes come when you drop it on the sheet; no score starts above 18.</p>
@@ -142,6 +153,9 @@ export function registerChargen() {
     if (userId !== game.user.id || actor.type !== "character" || options?.arneyanNoSetup || options?.arneyanTransform || actor.getFlag(SYSFLAG, "transform") || actor.flags?.["item-piles"]) return;
     if (actor.items.size || actor._stats?.compendiumSource || actor.flags?.core?.sourceId || actor._stats?.duplicateSource) return;
     if (!KEYS.every(k => actor.system.abilities[k].value === 10)) return;
-    setTimeout(() => abilityScores(actor), 400);
+    // Mark it pending at once, so a class dropped straight away waits for the scores (Book II order).
+    let go;
+    OPEN.set(actor.id, new Promise(r => { go = r; }));
+    setTimeout(() => { OPEN.delete(actor.id); abilityScores(actor).finally(() => go()); }, 400);
   });
 }

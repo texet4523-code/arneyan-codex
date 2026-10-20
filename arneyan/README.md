@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.9 · Foundry v13 and v14
+Version 0.10.10 · Foundry v13 and v14
+
+## What's new in 0.10.10
+
+- **Reach outline:** only creatures get it (not item piles, storage, the party token or hazards), and it has a switch in the token tools (the square icon) and a key, Shift+R (change it in Configure Controls).
+- **New characters:** the 1st-level steps wait for the ability scores window to close, so the two never open on top of each other.
 
 ## What's new in 0.10.9
 

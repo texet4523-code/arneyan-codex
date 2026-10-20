@@ -4,6 +4,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { startingWealth } from "./starting.mjs";
+import { scoresWindowFor } from "./chargen.mjs";
 import { pickFromList, stepTitle } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -437,6 +438,8 @@ async function firstLevelLists(actor, cls) {
 }
 
 async function setUpFirstLevel(actor, cls) {
+  // A new character's ability scores window comes first: wait until it's closed.
+  try { await scoresWindowFor(actor); } catch { /* closed either way */ }
   const { base, kits, feats, skills, ancestries } = await firstLevelLists(actor, cls);
   const steps = [ancestries.length && "ancestry", kits.length && "kit", feats.length && "feat", skills.length && "skills", "finish"].filter(Boolean);
   const stepOf = key => (steps.length > 1 ? `Step ${steps.indexOf(key) + 1} of ${steps.length}` : "");
