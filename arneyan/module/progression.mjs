@@ -346,7 +346,7 @@ function optionsHtml(list, groupBy) {
 }
 
 /** Copy a compendium item onto the actor, linked back to it (as the browser does), so updates from the compendium reach it. */
-export async function addFromUuid(actor, uuid) {
+export async function addFromUuid(actor, uuid, { levelTaken = 0 } = {}) {
   if (!uuid) return;
   const doc = await fromUuid(uuid);
   if (!doc) return;
@@ -354,6 +354,11 @@ export async function addFromUuid(actor, uuid) {
   delete data._id;
   data.folder = null;
   foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
+  // A Feat granted for a level records that level, even when several levels are taken at once (1st to 4th).
+  if (levelTaken && data.type === "feat") {
+    foundry.utils.setProperty(data, "system.levelTaken", levelTaken);
+    return actor.createEmbeddedDocuments("Item", [data], { arneyanKeepLevel: true });
+  }
   return actor.createEmbeddedDocuments("Item", [data]);
 }
 
@@ -369,7 +374,7 @@ export async function promptFeat(actor, charLevel) {
     entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
-  if (uuid && uuid !== "later") await addFromUuid(actor, uuid);
+  if (uuid && uuid !== "later") await addFromUuid(actor, uuid, { levelTaken: charLevel });
 }
 
 export async function promptSkill(actor, charLevel) {

@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.6 · Foundry v13 and v14
+Version 0.10.7 · Foundry v13 and v14
+
+## What's new in 0.10.7
+
+- **Feats record the right level when you level several at once.** Going from 1st to 4th in one go, the 3rd-level Feat now says "taken at level 3", not 4.
 
 ## What's new in 0.10.6
 

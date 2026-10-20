@@ -338,3 +338,16 @@ function doc(type, name, system = {}, parent = null, id = null) {
 
 setGM(true);
 console.log("OK review 0.10.2");
+
+/* ---------------- 0.10.7: a Feat taken for level 3 during a 1 to 4 jump records 3 ---------------- */
+{
+  const feat = { _id: "f", name: "Diehard", type: "feat", uuid: "Compendium.arneyan.feats.Item.f", system: { path: "General Path", levelTaken: 0 } };
+  globalThis.fromUuid = async u => (u === feat.uuid ? { ...feat, uuid: feat.uuid, toObject() { return foundry.utils.deepClone(feat); } } : null);
+  const actor = pc(); let opts = null;
+  const orig = actor.createEmbeddedDocuments?.bind(actor);
+  actor.createEmbeddedDocuments = async (t, d, o) => { opts = o; return orig ? orig(t, d, o) : d; };
+  await P.addFromUuid(actor, feat.uuid, { levelTaken: 3 });
+  assert.equal(actor.created.at(-1).system.levelTaken, 3);
+  assert.equal(opts?.arneyanKeepLevel, true);
+  console.log("OK feat level taken (0.10.7)");
+}
