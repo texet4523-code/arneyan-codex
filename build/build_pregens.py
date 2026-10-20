@@ -106,6 +106,42 @@ def uuid(pack, d):
     return f"Compendium.{SYS}.{pack}.Item.{d['_id']}"
 
 
+def rule_number(value, level, cl):
+    """A rule's value as the sheet works it out (effects.mjs evalNumber): numbers, @level/@cl/@half, + - * / and
+    min/max/floor/ceil. Anything else counts 0, as there."""
+    expr = str(value).strip()
+    half = max(1, level // 2)
+    expr = re.sub(r"@(\w+)", lambda m: str({"level": level, "cl": cl, "half": half}.get(m.group(1), 0)), expr)
+    if not re.fullmatch(r"[\d\s+\-*/().,a-z]*", expr) or set(re.findall(r"[a-z]+", expr)) - {"min", "max", "floor", "ceil"}:
+        return 0
+    try:
+        import math
+        return float(eval(expr, {"__builtins__": {}}, {"min": min, "max": max, "floor": math.floor, "ceil": math.ceil}))
+    except Exception:
+        return 0
+
+
+def hp_from_rules(items, level):
+    """Max HP the sheet adds from rules (actor-models.mjs): hp.max as it is, hp.level times the character level. Only
+    rules that count all the time: no `when`, gear equipped, switches on."""
+    total = 0
+    for it in items:
+        s = it.get("system", {})
+        if it.get("type") in ("weapon", "armour", "equipment") and not s.get("equipped"):
+            continue
+        if s.get("toggle") and not s.get("active"):
+            continue
+        cl = level  # a pregen has one class: its class level is its level
+        for r in s.get("rules", []) or []:
+            if r.get("when"):
+                continue
+            if r.get("key") == "hp.max":
+                total += rule_number(r.get("value", 0), level, cl)
+            elif r.get("key") == "hp.level":
+                total += rule_number(r.get("value", 0), level, cl) * level
+    return int(total)
+
+
 def copy(pack, d, actor_id, salt, **system):
     """An embedded copy of a compendium item, linked back to it (so 0.7 migrations and the sheet's links work)."""
     item = json.loads(json.dumps(d))
@@ -356,6 +392,9 @@ def build():
                     m = re.match(r"ability\.(str|dex|con|int|wis|cha)$", str(r.get("key", "")))
                     if m and not r.get("when") and re.fullmatch(r"-?\d+", str(r.get("value", "")).strip()):
                         a[m.group(1)] = int(a[m.group(1)]) - int(r["value"])
+            # The same for HP: the printed maximum already counts Toughness (+1 per level) and Hag's Vigour (+class level),
+            # and the sheet adds those rules to the stored maximum, so the stored one leaves them out.
+            hp_max = int(c["hpMax"]) - hp_from_rules(items, int(c["level"]))
             size = (anc or {}).get("system", {}).get("size", "medium")
             img = cls_doc.get("img") or "icons/svg/mystery-man.svg"
             actor = {
@@ -364,7 +403,7 @@ def build():
                 "system": {
                     "abilities": {k: {"value": int(a[k])} for k in ("str", "dex", "con", "int", "wis", "cha")},
                     "luck": {"value": int(c.get("luck", 12)), "start": int(c.get("luck", 12)), "max": 20},
-                    "attributes": {"hp": {"value": int(c["hpMax"]), "max": int(c["hpMax"]), "temp": 0},
+                    "attributes": {"hp": {"value": int(c["hpMax"]), "max": hp_max, "temp": 0},
                                    "speed": int(c.get("speed") or (anc or {}).get("system", {}).get("speed", 30))},
                     "currency": {k: int((c.get("coins") or {}).get(k, 0) or 0) for k in ("pp", "gp", "sp", "cp")},
                     "details": {"alignment": c.get("alignment", ""), "deity": c.get("classNote", "") if base_cls in ("Cleric", "Paladin") else "",
