@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.0 · Foundry v13 and v14
+Version 0.10.1 · Foundry v13 and v14
+
+## What's new in 0.10.1
+- **Effects on.** Feats, features, kit features, ancestries and spells change your numbers by themselves (AC, saves, attacks, damage, HP, speed), with situational ones as reminders on the cards.
+- **Activities.** Features, feats and actions do what they say when you press Use: heal, roll a check, call for a save, make several attacks (Twin Nock, Extra Attack, Flèche), or post a reminder. Counts the Handbook works out (Flèche: your Dexterity modifier a day; Turn Undead: 3 + Wisdom) follow your character.
+- **Light timer.** Torches, lanterns and candles burn down in game time (or real time, in Game Settings) and warn their owner when nearly out.
+- **Spells audit.** Spells have their saves, damage, areas and effects from the Handbook.
+- **Actions from the Handbook.** The Actions & Manoeuvres compendium is the Handbook's own list; Charge gives Advantage on its one melee attack, Push deals no damage, and an Attack of Opportunity spends your reaction when it attacks.
+- **Critical range.** With Critical Strike a natural 19 is a critical only if it hits; only a natural 20 hits whatever the AC.
+- **Your choice of attribute.** Will of Iron, Steady Hand and the Fighter's Attribute Bonus ask which attribute gets the +1 when you add them (and the item sheet can change it).
+- **Existing worlds are updated.** The first time the GM opens a world on 0.10.1, items that came from the compendiums (feats, features, kits, ancestries, spells and actions) get the current rules, effects, uses, activities, saves, damage and areas. Names, descriptions, uses left and anything you made yourself stay. The GM gets a whisper saying how many items changed. To keep your own changes to an item, tick **Keep my edits** on its sheet (tick to stop updates overwriting your edits); this sets the item flag `flags.arneyan.keepCustom`.
 
 ## Installing
 
@@ -79,7 +89,9 @@ The Equipment tab has the Catalogue's groups as tabs to flick through (All, Weap
 - **Roll bonuses** on the Effects tab add to every attack, weapon damage, spell damage or cantrip damage roll (numbers or dice).
 
 ## Resting and Exhaustion
-- The Rest button (sidebar) asks where you rest: Safe Haven (largest Hit Die + Con, once per stay), Camp with shelter (Con, minimum 1) or Camp in the open (1 HP). Medium or heavy armour worn means no recovery. A rest removes one level of Exhaustion and refreshes per-day abilities and spell slots. Luck never comes back.
+- The Rest button (sidebar) asks where you rest: Safe Haven (largest Hit Die + Con, once per stay), Camp with shelter (Con, minimum 1) or Camp in the open (1 HP). Medium or heavy armour worn means no recovery. A rest removes one level of Exhaustion and refreshes per-day, per-rest and per-encounter abilities and spell slots. Luck never comes back.
+- **Per-encounter uses** also come back when the GM ends the combat (deletes it from the tracker).
+- **Per-week, per-session and per-month uses** are yours to reset: set the uses back on the feature's sheet when the week (or session, or month) has passed.
 - Exhaustion 1-6 (the pips in the sidebar) applies automatically: Disadvantage on Initiative, halved speed, Disadvantage on checks and attacks, halved Max HP, no spellcasting, and death.
 
 ## Chat cards
@@ -236,6 +248,8 @@ Each is built from the system's own class, ancestry, kit, features, feats, skill
 - **Features do what they say:** Lay on Hands rolls its healing (2 HP per Paladin level), Fast Healing heals, Parry rolls the Dexterity check, a Hex calls for the save, and so on. 112 features have these, read from their own text.
 - **Several options:** a window asks which (Lay on Hands: Heal, Cure Disease, or Divine Healing from 12th). Options with their own count (Cure Disease per week) don't spend the daily use; damage that steps up with level offers only the step you've reached.
 - The feature's sheet lists what it does under **When used**.
+- **Uses from a formula.** A feature whose count the Handbook works out (Flèche, Turn Undead, Rage, Discord, Hex, Smite Evil, Wild Surge, Stun Attack, Ingenuity Points, Blood Magic) has a **Uses formula** on its sheet: `max(1, @dex.mod)`, `3 + @wis.mod`, `@cl` (its class level), `@casting.mod` (your best casting attribute), or a level table such as `5:1, 9:2` (1 from 5th, 2 from 9th). The maximum follows your character.
+- **Several attacks in one Use** (Extra Attack, Flèche, Twin Nock): a target behind Full Cover is skipped and the other attacks still roll. The use is spent once, when the first attack rolls; nothing is spent if you cancel or nothing rolls.
 
 ## Combat rules
 
@@ -258,7 +272,7 @@ Every damage card has a fist button to apply it as non-lethal (subdual) damage. 
 Click Morale on a monster's sheet, or right-click it in the combat tracker, to roll 2d6 against its Morale Score. Higher than the score breaks it. From the tracker, a group of the same monster rolls once. Effects with the `morale` rule key raise or lower the score.
 
 ### Reactions
-Each combatant has a lightning marker in the combat tracker. Click it when the creature reacts; it comes back at the start of its turn. Using Opportunity Attack, Parry or any ability whose text starts with "Reaction" spends it for you, with a warning if it was already spent.
+Each combatant has a lightning marker in the combat tracker. Click it when the creature reacts; it comes back at the start of its turn. Using an Attack of Opportunity (the action, or Combat Reflexes), a Swashbuckler's Flourish Manoeuvres (Parry, Riposte, Acrobatic Escape), Counterspell or any ability whose text starts with "Reaction" spends it for you once the attack or check has rolled, with a warning if it was already spent. Cancelling the weapon or target window leaves it unspent.
 
 ### Firearms
 Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jams the gun (no damage buttons) and it asks to be cleared before it fires again. A natural 1 also rolls the catastrophe d6: damaged, backfire, destroyed or explosion, with a damage card aimed at the right creatures. Reliable guns misfire only on a 1; Silent Mechanism never does. Gunslingers, Fighters, Rangers and Tenor Hold dwarves are trained; anyone else ticks **Trained** under Combat if their backstory or downtime gave it. Untrained shooters have Disadvantage, and a would-be critical jams instead. Firearm damage dice explode.

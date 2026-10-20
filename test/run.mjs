@@ -683,3 +683,5 @@ assert.equal(C.conditionValue(b, "prone"), 0, "Prone has no number");
 console.log("All checks passed.");
 // Light sources: burn timers (test/lights.mjs runs on its own too).
 await import("./lights.mjs");
+// 0.10.1 review fixes (test/review-0101.mjs runs on its own too).
+await import("./review-0101.mjs");
