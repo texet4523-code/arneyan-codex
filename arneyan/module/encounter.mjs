@@ -232,7 +232,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const x = f[Number(target.dataset.i)];
     const n = await rollNumberAppearing(x, event?.shiftKey ? "lair" : "wild");
     if (n === null) return ui.notifications.warn(`Can't read ${x.name}'s No. appearing ("${x.na || "none"}").`);
-    x.count = Math.max(1, n);
+    x.count = Math.clamp(n, 1, MAX_PLACE);
+    if (n > MAX_PLACE) ui.notifications.warn(`Rolled ${n}: placing ${MAX_PLACE} at most. Add more by hand if you really want them all.`);
     ui.notifications.info(`${x.name}: ${x.count} appear (${x.na}).`);
     return this._setFoes(f);
   }
@@ -285,7 +286,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       const rolled = [];
       for (const f of foes) {
         const n = await rollNumberAppearing(f, mode);
-        if (n !== null) { f.count = Math.max(1, n); rolled.push(`${f.name} ${f.count}`); }
+        if (n !== null) { f.count = Math.clamp(n, 1, MAX_PLACE); rolled.push(`${f.name} ${f.count}${n > MAX_PLACE ? ` (rolled ${n})` : ""}`); }
       }
       await this._setFoes(foes);
       foes = this.foes;
@@ -311,6 +312,9 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
 }
 
 /** Roll a foe's No. appearing ("wild" or "lair"); null when the stat block's entry can't be read. */
+/** A lair roll can reach 200: one click places no more than this many of one foe. */
+const MAX_PLACE = 50;
+
 async function rollNumberAppearing(foe, mode = "wild") {
   let na = foe.na;
   if (na === undefined) na = (await fromUuid(foe.uuid).catch(() => null))?.system?.details?.numberAppearing ?? "";

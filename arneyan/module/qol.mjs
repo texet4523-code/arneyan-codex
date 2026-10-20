@@ -174,6 +174,10 @@ function floatHp(actor, changes, options) {
   const tNow = foundry.utils.getProperty(changes, "system.attributes.hp.temp");
   const tPrev = options?.arneyanPrevTemp?.[actor.id];
   if (tNow !== undefined && tPrev !== undefined && Number(tNow) !== Number(tPrev)) pops.push({ d: Number(tNow) - Number(tPrev), text: d => `${d > 0 ? "+" : ""}${d} temp`, fill: () => 0x6bb4ff });
+  // Non-lethal damage only moves its own box: show it too (grey).
+  const sNow = foundry.utils.getProperty(changes, "flags.arneyan.subdual");
+  const sPrev = options?.arneyanPrevSubdual?.[actor.id];
+  if (sNow !== undefined && sPrev !== undefined && Number(sNow) > Number(sPrev)) pops.push({ d: Number(sNow) - Number(sPrev), text: d => `-${d} non-lethal`, fill: () => 0xc0c0c0 });
   if (!pops.length) return;
   for (const t of actor.getActiveTokens?.(true) ?? []) {
     if (!t.visible) continue;

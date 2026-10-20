@@ -50,6 +50,8 @@ export class ArneyanActor extends Actor {
     options.arneyanPrevHp[this.id] = this.system.attributes?.hp?.value;
     options.arneyanPrevTemp ??= {};
     options.arneyanPrevTemp[this.id] = this.system.attributes?.hp?.temp ?? 0;
+    options.arneyanPrevSubdual ??= {};
+    options.arneyanPrevSubdual[this.id] = Number(this.flags?.[SYS]?.subdual ?? 0) || 0;
     const lvl = foundry.utils.getProperty(changes, "system.level");
     if (this.type === "npc" && lvl !== undefined && lvl !== this.system.level && foundry.utils.getProperty(changes, "system.details.levelText") === undefined) {
       foundry.utils.setProperty(changes, "system.details.levelText", "");
@@ -102,7 +104,7 @@ export class ArneyanActor extends Actor {
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
-    return d20Roll({ actor: this, kind: "check", mode, why, title: `${ARNEYAN.abilities[key]} Check`, parts, notes: m?.notesFor("check") ?? [], autoFail: fail });
+    return d20Roll({ actor: this, kind: "check", mode, why, title: `${ARNEYAN.abilities[key]} Check`, parts, notes: m?.notesFor("check") ?? [], autoFail: fail, extra: { ability: key } });
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
@@ -134,7 +136,7 @@ export class ArneyanActor extends Actor {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
-      return d20Roll({ actor: this, kind: "skill", mode, why, title: "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], notes: m?.notesFor("check", "skill") ?? [] });
+      return d20Roll({ actor: this, kind: "skill", mode, why, title: "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], notes: m?.notesFor("check", "skill") ?? [], extra: { skill: "" } });
     }
     const ab = item.system.ability;
     const mod = this.system.abilities[ab].mod;
@@ -145,7 +147,7 @@ export class ArneyanActor extends Actor {
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${item.name} (${master ? "Master" : "Trained"})`, parts,
-      notes: m?.notesFor("check", "skill") ?? [], autoFail: fail
+      notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, extra: { skill: item.name }
     });
   }
 
@@ -513,6 +515,8 @@ export class ArneyanActor extends Actor {
    */
   async restAt(where, { quiet = false } = {}) {
     if (this.type !== "character") return "";
+    // A long rest lets a slain pact servant be called again (Warlock, Pact Summons).
+    if (this.getFlag(SYS, "pactSlain")) await this.unsetFlag(SYS, "pactSlain").catch(() => null);
     const armour = this.items.find(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category));
     const haven = this.system.rest.haven;
     if (armour) {

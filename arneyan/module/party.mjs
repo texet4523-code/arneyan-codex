@@ -386,7 +386,7 @@ export function partyMembers() {
   if (!folder) return [];
   const allies = alliesFolder();
   const inside = f => { for (let x = f; x; x = x.folder) { if (allies && x.id === allies.id) return false; if (x.id === folder.id) return true; } return false; };
-  return game.actors.filter(a => a.type === "character" && a.folder && inside(a.folder)).sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
+  return game.actors.filter(a => a.type === "character" && a.folder && inside(a.folder) && !a.flags?.["item-piles"]?.data?.enabled).sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
 }
 
 /** Joining the party = moving into the party folder; leaving = moving out to the top level. */
@@ -607,7 +607,7 @@ export function registerParty() {
 
   // New player characters go in the party folder.
   Hooks.on("createActor", async actor => {
-    if (actor.type !== "character" || actor.pack || actor.folder || actor.getFlag(SYS, "transform") || !game.user.isGM || game.users.activeGM?.id !== game.user.id) return;
+    if (actor.type !== "character" || actor.pack || actor.folder || actor.getFlag(SYS, "transform") || actor.flags?.["item-piles"] || !game.user.isGM || game.users.activeGM?.id !== game.user.id) return;
     const folder = partyFolder();
     if (folder) await actor.update({ folder: folder.id });
   });

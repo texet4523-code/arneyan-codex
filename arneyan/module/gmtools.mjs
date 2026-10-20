@@ -116,8 +116,9 @@ function rollMatches(roll, req, actor) {
   const speaker = ChatMessage.getSpeakerActor(roll.speaker);
   if (speaker && actor && speaker.uuid !== actor.uuid && speaker.id !== actor.id) return false;
   if (req.kind === "save") return f.kind === "save" && f.save === req.key;
-  if (req.kind === "check") return f.kind === "check";
-  return f.kind === "skill";
+  if (req.kind === "check") return f.kind === "check" && (!f.ability || f.ability === req.key);
+  // An untrained roll (no such skill on the sheet) answers any skill request; a trained one must be that skill.
+  return f.kind === "skill" && (!f.skill || String(f.skill).toLowerCase() === String(req.key).toLowerCase());
 }
 
 // GM side: card updates one at a time, so two results arriving together don't overwrite each other.

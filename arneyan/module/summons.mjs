@@ -330,6 +330,7 @@ async function pickPact(actor, item, req, mode) {
 }
 
 function send(msg) {
+  if (!game.users.activeGM) return ui.notifications.warn("Summoning needs the GM connected.");
   if (game.users.activeGM?.isSelf) return doSummonRequest(msg, game.user.id).catch(err => ui.notifications.error(err.message));
   game.socket.emit(SOCKET, msg);
   ui.notifications.info("Summoning...");
@@ -501,8 +502,15 @@ async function checkTimes() {
 }
 
 /** A summoned creature at 0 HP vanishes; when the last of a summoning goes, the summon ends. */
+const vanishing = new Set();
 async function vanishIfDown(tokenDoc) {
   if (!game.users.activeGM?.isSelf || !tokenDoc?.actor) return;
+  // updateActor and updateToken can both fire for one change: only once per token.
+  if (vanishing.has(tokenDoc.id)) return;
+  vanishing.add(tokenDoc.id);
+  try { return await vanishOnce(tokenDoc); } finally { setTimeout(() => vanishing.delete(tokenDoc.id), 1000); }
+}
+async function vanishOnce(tokenDoc) {
   const info = tokenDoc.actor.flags?.[SYS]?.summoned;
   if (!info || (tokenDoc.actor.system?.attributes?.hp?.value ?? 1) > 0) return;
   const caster = await fromUuid(info.casterUuid).catch(() => null);
@@ -604,7 +612,7 @@ export function registerSummons() {
   // They act straight after their summoner, whatever is rolled for them.
   Hooks.on("preUpdateCombatant", (c, changes, options) => {
     const by = c.flags?.[SYS]?.summonedBy;
-    if (!by || !("initiative" in changes) || options.arneyanSummon) return;
+    if (!by || !("initiative" in changes) || changes.initiative === null || options.arneyanSummon) return;
     const m = c.parent?.combatants?.get(by);
     if (Number.isFinite(m?.initiative)) changes.initiative = m.initiative - 0.01;
   });

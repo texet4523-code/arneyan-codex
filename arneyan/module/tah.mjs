@@ -143,6 +143,10 @@ export async function runHudAction(actor, { actionType, actionId }, event, { ren
       if (render) return doc.sheet?.render(true);
       // Not on the sheet: post its card as this actor's.
       const temp = new CONFIG.Item.documentClass(doc.toObject(), { parent: actor });
+      // Grapple, Trip, Dirty Trick and the rest roll their contest, as from the sheet.
+      const { combatUse } = await import("./combat.mjs");
+      const r = await combatUse(temp, event);
+      if (r !== undefined) return r;
       return temp.toChat();
     }
     case "save": return ARNEYAN.saves[actionId] ? actor.rollSave(actionId, event) : undefined;

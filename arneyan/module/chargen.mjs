@@ -130,7 +130,7 @@ export async function abilityScores(actor) {
 export function registerChargen() {
   // A brand-new character (not imported, duplicated or from a compendium) asks for its scores first.
   Hooks.on("createActor", (actor, options, userId) => {
-    if (userId !== game.user.id || actor.type !== "character" || options?.arneyanNoSetup || options?.arneyanTransform || actor.getFlag(SYSFLAG, "transform")) return;
+    if (userId !== game.user.id || actor.type !== "character" || options?.arneyanNoSetup || options?.arneyanTransform || actor.getFlag(SYSFLAG, "transform") || actor.flags?.["item-piles"]) return;
     if (actor.items.size || actor._stats?.compendiumSource || actor.flags?.core?.sourceId || actor._stats?.duplicateSource) return;
     if (!KEYS.every(k => actor.system.abilities[k].value === 10)) return;
     setTimeout(() => abilityScores(actor), 400);
