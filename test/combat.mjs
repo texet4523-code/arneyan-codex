@@ -122,7 +122,8 @@ const shield = makeItem(IM.ArmourData, "armour", "Shield", { category: "shield",
 assert.equal(C.isLight(dagger), true);
 assert.equal(C.isFinesse(dagger), true);
 assert.equal(C.isLight(makeItem(IM.WeaponData, "weapon", "Longsword", { traits: "Versatile" })), false);
-assert.deepEqual(C.defendOptions(makeActor(CharacterData, "character", {}, [hatchet])), ["light"]);
+assert.deepEqual(C.defendOptions(makeActor(CharacterData, "character", {}, [hatchet])), [], "one weapon: no off-hand to defend with");
+assert.deepEqual(C.defendOptions(makeActor(CharacterData, "character", {}, [hatchet, makeItem(IM.WeaponData, "weapon", "Longsword", { traits: "Versatile", equipped: true })])), ["light"]);
 assert.deepEqual(C.defendOptions(makeActor(CharacterData, "character", {}, [hatchet, dagger])), ["finesse"], "Light Finesse replaces plain Light");
 assert.deepEqual(C.defendOptions(makeActor(CharacterData, "character", {}, [shield])), ["shield"]);
 const guard = makeActor(CharacterData, "character", { abilities: { dex: { value: 10 } } }, [], [{ name: "Fighting defensively", statuses: new Set(), flags: { arneyan: { defensive: "finesse", rules: [{ key: "ac.melee", value: 1 }] } } }]);
@@ -175,7 +176,7 @@ assert.ok(ctx.combat.guns && ctx.combat.guns.trained === false);
 const html = render("templates/actor/actor-sheet.hbs", ctx);
 assert.ok(html.includes('data-action="offhandAttack"'), "Light weapons get an off-hand button");
 assert.ok(html.includes('data-action="contest" data-kind="grapple"') && html.includes('data-kind="dirty"') && !html.includes('data-kind="escape"'), "contests (break free only when Restrained)");
-assert.ok(html.includes('data-mode="finesse"') && html.includes('data-mode="shield"'));
+assert.ok(!html.includes('data-mode="finesse"') && html.includes('data-mode="shield"'), "dagger and shield: the shield is the off-hand");
 assert.ok(html.includes('name="flags.arneyan.subdual" value="4"') && html.includes('data-action="clearSubdual"'));
 assert.ok(html.includes('name="flags.arneyan.firearmsTrained"'));
 assert.ok(typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.contest === "function" && typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.rollMorale === "function");

@@ -58,10 +58,8 @@ export const SUMMON_SPELLS = {
     note: "They act as one group." },
   "Summon Planar Ally": { filter: "extraplanar", duration: { n: 1, unit: "hour", perLevel: true },
     options: [{ label: "One extraplanar creature of Level 16 or lower", max: 16, count: "1" }],
-    note: "Aligned with your deity or alignment. It performs one task for 100 gp per Level, refuses suicidal tasks and leaves if unpaid or attacked." },
-  "Summon Swarm": { filter: ["Bat Swarm", "Rat Swarm", "Spider Swarm"], duration: { n: 1, unit: "round", perLevel: true }, concentration: true,
-    options: [{ label: "A swarm of bats, rats or spiders", max: 99, count: "1" }],
-    note: "It moves 30ft a round as you direct it; fire destroys it." }
+    note: "Aligned with your deity or alignment. It performs one task for 100 gp per Level, refuses suicidal tasks and leaves if unpaid or attacked." }
+  // Summon Swarm isn't here: the spell's swarm is a 10ft area that deals 1d6 (Reflex halves), placed with Place area.
 };
 
 /** Spell-made attackers with no creature to place (Spellcasting in Arneyan): casting one still ends the last summon. */

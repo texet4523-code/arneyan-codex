@@ -91,7 +91,7 @@ assert.match(S.checkPicks(mon, mon.options[1], [], 9), /Pick/);
 const big = index.find(e => S.creatureLevel(e.level, e.levelText) > 6);
 assert.match(S.checkPicks(mon, mon.options[0], [{ entry: big, count: 1 }], 9), /above Level 6/);
 assert.ok(S.candidates(S.SUMMON_SPELLS["Summon Elemental"], { max: 10 }, index).every(e => /Elemental$/.test(e.name)));
-assert.deepEqual(S.candidates(S.SUMMON_SPELLS["Summon Swarm"], { max: 99 }, index).map(e => e.name).sort(), ["Bat Swarm", "Rat Swarm", "Spider Swarm"]);
+assert.equal(S.SUMMON_SPELLS["Summon Swarm"], undefined, "Summon Swarm is an area, not a creature");
 // Pact Summons: every Warlock kit has a path; every servant is in the Bestiary and in the class's Shared Summons table.
 const warlock = docs("classes").find(d => d.name === "Warlock");
 const wtext = strip(warlock.system.description);

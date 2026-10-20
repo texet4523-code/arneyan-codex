@@ -383,6 +383,12 @@ const DEFEND = {
 export function defendOptions(actor) {
   const held = (actor?.items ?? []).filter(i => actor.type === "npc" || i.system?.equipped);
   const out = [];
+  // "Instead of attacking with your off-hand weapon": only with a second weapon in hand.
+  const weapons = held.filter(i => i.type === "weapon");
+  if (weapons.length < 2) {
+    if (held.some(i => i.type === "armour" && i.system.category === "shield")) out.push("shield");
+    return out;
+  }
   // A Light Finesse weapon guards against every melee attack, so it replaces the plain Light option.
   if (held.some(i => isLight(i) && isFinesse(i))) out.push("finesse");
   else if (held.some(i => isLight(i))) out.push("light");
@@ -397,7 +403,9 @@ export async function fightDefensively(actor, mode) {
   const old = actor.effects.filter(e => e.flags?.[SYS]?.defensive);
   if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old.map(e => e.id));
   if (!d || old.some(e => e.flags[SYS].defensive === mode)) return; // clicking the same one again switches it off
-  const expires = startOfNextTurn(game.combat, actor);
+  // The off-hand weapon guards "that round"; the shield until your next turn.
+  const c = game.combat;
+  const expires = mode === "shield" ? startOfNextTurn(c, actor) : (c?.started ? { combat: c.id, round: c.round + 1, turn: 0 } : null);
   await actor.createEmbeddedDocuments("ActiveEffect", [{
     name: `Fighting defensively (${d.label})`, img: "icons/svg/shield.svg", description: `<p>${d.text}</p>`,
     flags: { [SYS]: { rules: d.rules, defensive: mode, sourceName: "Dual Wielding & Shields", ...(expires ? { expires } : {}) } }

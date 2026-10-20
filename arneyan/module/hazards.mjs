@@ -256,7 +256,9 @@ export class EnvironmentTimers extends HandlebarsApplicationMixin(ApplicationV2)
       const con = a.system.abilities?.con?.mod ?? 0;
       Object.assign(c, { stage: "breath", left: breathRounds(con), suffocate: suffocationRounds(con) });
     } else {
-      c.noSave = resists(a, kind === "heat" ? "fire" : "cold");
+      // Cold: an Insulated garment removes the save (Environmental Hazards); heat: fire resistance.
+      const insulated = kind === "cold" && (a.items ?? []).some(i => i.system?.equipped !== false && /\binsulated\b/i.test(`${i.system?.traits ?? ""} ${i.name}`));
+      c.noSave = resists(a, kind === "heat" ? "fire" : "cold") || insulated;
     }
     return c;
   }
