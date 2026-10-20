@@ -21,7 +21,7 @@ import { openForge } from "./forge.mjs";
 import { registerGear } from "./gear.mjs";
 import { registerAreas } from "./areas.mjs";
 import { registerAuras } from "./auras.mjs";
-import { registerQol, useItem, combatClass } from "./qol.mjs";
+import { registerQol, useItem, combatClass, healthLabel } from "./qol.mjs";
 import { registerChargen, abilityScores } from "./chargen.mjs";
 import { registerCounters, drawTokenCounters } from "./counters.mjs";
 import { registerTransform, transformInto, revertTransform } from "./transform.mjs";
@@ -91,6 +91,13 @@ Hooks.once("init", () => {
     _canHUD(user, event) {
       if (altHeld(event) && !this.layer?._draggedToken && this.document.disposition !== CONST.TOKEN_DISPOSITIONS?.SECRET) return true;
       return super._canHUD(user, event);
+    }
+    // Hovering a monster: how hurt it looks (players) or its HP and AC (GM), under the elevation in the tooltip.
+    _getTooltipText() {
+      const base = super._getTooltipText?.() ?? "";
+      let extra = "";
+      try { extra = healthLabel(this); } catch { /* only a convenience */ }
+      return extra ? (base ? `${base}\n${extra}` : extra) : base;
     }
     // Numbered conditions (Burning 2, Slowed 3) show their number on the icon.
     async _drawEffects(...args) {

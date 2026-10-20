@@ -53,35 +53,22 @@ export function healthWord(hp) {
 }
 const WORD_COLOUR = { Unhurt: 0xb9e3b0, Hurt: 0xf3d58a, Bloodied: 0xf0a060, "Near death": 0xff6b5b, Down: 0xbbbbbb };
 
-function showHealth(token, hovered) {
-  const old = token.children?.find?.(c => c.name === "arnHealth");
-  if (old) { token.removeChild(old); old.destroy(); }
-  if (!hovered || !game.settings.get(SYS, "healthWords")) return;
+/**
+ * What a hovered monster's tooltip adds (T49, 20 Oct: a label drawn on the token didn't show): players see how hurt
+ * it looks, the GM its HP and AC. Shown through the token's own tooltip, which core draws and keeps on top.
+ */
+export function healthLabel(token) {
+  if (!token?.hover || !game.settings.get(SYS, "healthWords")) return "";
   const actor = token.actor;
-  if (!actor || actor.type !== "npc") return;
+  if (!actor || actor.type !== "npc") return "";
   const hp = actor.system.attributes?.hp;
-  let text, colour;
-  if (game.user.isGM) {
-    text = `HP ${hp?.value ?? "?"}/${hp?.max ?? "?"} · AC ${actor.system.acTotal ?? actor.system.attributes?.ac ?? "?"}`;
-    colour = 0xffffff;
-  } else {
-    if (actor.isOwner || token.document.hidden) return;
-    text = healthWord(hp);
-    colour = WORD_COLOUR[text] ?? 0xffffff;
-  }
-  if (!text) return;
-  const style = CONFIG.canvasTextStyle?.clone?.() ?? new PIXI.TextStyle();
-  style.fontSize = 14;
-  style.fill = colour;
-  style.stroke = 0x000000;
-  style.strokeThickness = 3;
-  const TextClass = foundry.canvas?.containers?.PreciseText ?? globalThis.PreciseText ?? PIXI.Text;
-  const label = new TextClass(text, style);
-  label.name = "arnHealth";
-  label.anchor.set(0.5, 0);
-  label.position.set(token.w / 2, token.h + 18);
-  label.eventMode = "none";
-  token.addChild(label);
+  if (game.user.isGM) return `HP ${hp?.value ?? "?"}/${hp?.max ?? "?"} · AC ${actor.system.acTotal ?? actor.system.attributes?.ac ?? "?"}`;
+  if (actor.isOwner || token.document.hidden) return "";
+  return healthWord(hp);
+}
+
+function showHealth(token) {
+  token.renderFlags?.set?.({ refreshTooltip: true });
 }
 
 /* -------------------------------------------- */
@@ -292,9 +279,9 @@ export function registerQol() {
     name: "Hover a monster to see how hurt it is", hint: "Players see Unhurt, Hurt, Bloodied, Near death or Down; the GM sees HP and AC.",
     scope: "world", config: true, type: Boolean, default: true
   });
-  Hooks.on("hoverToken", (token, hovered) => { try { showHealth(token, hovered); } catch (err) { console.warn("Arneyan | health word", err); } });
+  Hooks.on("hoverToken", token => { try { showHealth(token); } catch (err) { console.warn("Arneyan | health word", err); } });
   Hooks.on("updateActor", actor => {
-    for (const t of actor.getActiveTokens?.() ?? []) if (t.hover) try { showHealth(t, true); } catch { /* the label is only a convenience */ }
+    for (const t of actor.getActiveTokens?.() ?? []) if (t.hover) try { showHealth(t); } catch { /* the label is only a convenience */ }
   });
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (data?.type !== "Item" || !data.uuid) return;
