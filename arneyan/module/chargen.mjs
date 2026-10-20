@@ -149,7 +149,11 @@ async function abilityScoresWindow(actor) {
 }
 
 /** A player owner of this actor (not a GM), if it has one. */
-const playerOwner = actor => game.users?.find(u => !u.isGM && actor.testUserPermission?.(u, "OWNER")) ?? null;
+const playerOwner = actor => {
+  const players = [...(game.users ?? [])].filter(u => !u.isGM && actor.testUserPermission?.(u, "OWNER"));
+  // The player whose character it is; otherwise the first owner (by id, the same on every client).
+  return players.find(u => u.character?.id === actor.id) ?? players.sort((a, b) => String(a.id).localeCompare(String(b.id)))[0] ?? null;
+};
 /** Still the blank sheet it was made as: every score 10, no class. */
 const blank = actor => KEYS.every(k => actor.system.abilities[k].value === 10) && !actor.items.some(i => i.type === "class");
 /** Characters whose scores window this client has already opened from the sheet (once per session, never a loop). */
@@ -181,6 +185,8 @@ export function registerChargen() {
   Hooks.on("renderActorSheetV2", app => {
     const actor = app.document ?? app.actor;
     if (!actor || actor.type !== "character" || game.user.isGM || !actor.isOwner || ASKED.has(actor.id)) return;
+    // Only one player is asked, so two can't roll over each other.
+    if (playerOwner(actor)?.id !== game.user.id) return;
     if (!actor.getFlag(SYSFLAG, "needsScores") || !blank(actor) || OPEN.has(actor.id)) return;
     ASKED.add(actor.id);
     startScores(actor);

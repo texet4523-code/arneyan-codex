@@ -107,9 +107,16 @@ export async function buyItem(actor, doc, user = game.user) {
     ui.notifications.warn(`${actor.name} can't afford ${doc.name}: it costs ${price.text} and ${actor.name} has ${purseText(cur, ALL_COINS)}.`);
     return false;
   }
-  await addToActor(actor, doc);
-  await actor.update(Object.fromEntries(ALL_COINS.map(k => [`system.currency.${k}`, after[k]])));
-  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} buys ${esc(doc.name)} for ${esc(price.text)}. ${esc(purseText(after, ALL_COINS))} left.</p>` });
+  // Pay only for what arrived (a full or "away" storage, or a hook, can stop it), from the purse as it is now.
+  const made = await addToActor(actor, doc);
+  if (!made?.length) return false;
+  const now = payFromPurse(actor.system.currency, price.cp, price.unit);
+  if (!now) {
+    ui.notifications.warn(`${actor.name} can no longer afford ${doc.name}; it was added, so take it off or pay by hand.`);
+    return false;
+  }
+  await actor.update(Object.fromEntries(ALL_COINS.map(k => [`system.currency.${k}`, now[k]])));
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} buys ${esc(doc.name)} for ${esc(price.text)}. ${esc(purseText(now, ALL_COINS))} left.</p>` });
   return true;
 }
 

@@ -378,6 +378,12 @@ for (const f of ["module/gmtools.mjs", "module/treasure.mjs", "module/hazards.mj
   assert.equal(await B.buyItem(plat, entry("Lantern", "5 gp")), true);
   assert.deepEqual(plat.system.currency, { pp: 0, gp: 6, sp: 0, cp: 0 });
 
+  // Review fix: an item that doesn't arrive (a full or "away" storage, a hook) costs nothing.
+  const blocked = buyer({ gp: 10 });
+  blocked.createEmbeddedDocuments = async () => [];
+  assert.equal(await B.buyItem(blocked, rope), false);
+  assert.deepEqual(blocked.system.currency, { pp: 0, gp: 10, sp: 0, cp: 0 }, "nothing taken");
+
   // Not enough: refused with a warning, nothing taken, nothing added.
   warns.length = 0; chat.length = 0;
   const poor = buyer({ gp: 3, sp: 9, cp: 9 });

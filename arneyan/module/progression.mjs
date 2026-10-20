@@ -4,7 +4,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { startingWealth } from "./starting.mjs";
-import { scoresWindowFor } from "./chargen.mjs";
+import { scoresWindowFor, abilityScores } from "./chargen.mjs";
 import { pickFromList, stepTitle } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -389,20 +389,23 @@ export async function promptSkill(actor, charLevel) {
   const owned = actor.items.filter(i => i.type === "skill");
   const ownedNames = new Set(owned.map(i => i.name));
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
-  const upgrade = owned.filter(i => i.system.tier !== "master");
-  // One slot: a new skill or a Master, never both; every entry shows what it does.
+  const upgrade = owned.filter(i => i.system.tier === "trained");
+  const knacks = owned.filter(i => i.system.tier === "knack");
+  // One slot: a new skill, a Master, or training a Knack (it keeps its Advantage), never two; each shows what it does.
   const entries = [
+    ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
     ...upgrade.map(i => ({ value: `master:${i.id}`, uuid: i.uuid, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
     ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
       .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name))
   ];
   const pick = await pickFromList({
     title: `${actor.name}: new Skill slot (level ${charLevel})`,
-    intro: `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, or on making a trained one Master.</p>`,
+    intro: `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, on making a trained one Master, or on training your Knack.</p>`,
     entries, takeLabel: "Take"
   });
   if (!pick || pick === "later") return;
   if (pick.startsWith("master:")) await actor.items.get(pick.slice(7))?.update({ "system.tier": "master" });
+  else if (pick.startsWith("train:")) await actor.items.get(pick.slice(6))?.update({ "system.tier": "trained", "flags.arneyan.knack": true });
   else await addFromUuid(actor, pick);
 }
 
@@ -472,7 +475,11 @@ export function ancestryExtras(actor) {
 }
 
 async function setUpFirstLevel(actor, cls) {
-  // A new character's ability scores window comes first: wait until it's closed.
+  // A new character's ability scores window comes first: wait until it's closed. A character still waiting for its
+  // scores with no window open (the GM made it for a player, then dropped the class) asks whoever is setting it up.
+  if (!scoresWindowFor(actor) && actor.getFlag?.("arneyan", "needsScores") && ABILITY_KEYS.every(k => actor.system.abilities[k].value === 10)) {
+    try { await abilityScores(actor); } catch { /* closed either way */ }
+  }
   try { await scoresWindowFor(actor); } catch { /* closed either way */ }
   const { base, kits, feats, skills, ancestries } = await firstLevelLists(actor, cls);
   // The ancestry's extra Feat and Knack are steps too; known once the ancestry is (step 1, or already on the sheet).

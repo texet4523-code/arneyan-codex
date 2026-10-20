@@ -1,6 +1,26 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.17 · Foundry v13 and v14
+Version 0.10.18 · Foundry v13 and v14
+
+## What's new in 0.10.18
+
+From a full run-through as a player (a Human Fighter built from scratch to 5th level, a fight and a rest).
+
+**Making a character**
+- **The player gets the scores window.** Players can't usually make characters, so the GM makes one and hands it over. If the player already owns it when the GM makes it, the GM isn't asked; the player is, the first time they open its sheet.
+- **Ancestry extras are steps of their own.** A Human's extra General Path Feat is a step after the class Feat. Every ancestry with "choose one skill at creation" (Human, Dwarf, Automaton, Aasimar, Goblin, Half-Orc, Half-Elf) gets a **Knack** step: a skill with Advantage on its checks that takes no Skill slot. Where the trait names attributes (Aasimar: a Wisdom or Charisma skill) only those are offered; "a Craft skill" is the GM's call.
+- **Knack** is a new skill tier: a plain d20 with Advantage, no slot. A level-up Skill slot can train it (one slot; it keeps the Advantage). A trained skill can't be turned into a Knack (only the GM can, to correct a sheet).
+- **Toughness and the like raise current HP too** when taken at creation or on a level up, and each new level adds their per-level HP to current HP as well as the maximum.
+
+**Fighting**
+- **Crushing Blow** (The Heavy Hand) works by itself: with a two-handed weapon, the weapon's own damage dice showing 1 or 2 are rerolled once. Bonus dice aren't.
+- **Two-handed weapons.** The Catalogue's two-slot melee weapons that aren't Versatile now carry the **Two-handed** trait (28 of them). A Versatile weapon counts when you roll its two-handed die. Add or remove the trait on a weapon to settle it either way.
+- **Weapon Specialisation asks which weapon** when it's added, with **Later**; the sheet shows **Choose weapon** until it's picked (two from 13th level). With that weapon its damage bonus is added and the first attack with it each round has Advantage; with any other weapon they're reminders. A "+1 Greatsword" counts as a Greatsword. Brakka, Big Wen and Brenna come with theirs picked.
+- **For GMs:** a rule can be limited to some weapons (`weapon`: `two-handed`, or `chosen` for the weapons picked on the item), and `damage.reroll` (value n) rerolls the weapon's own dice showing n or less, once.
+
+**Shopping and resting**
+- **Buy** sits beside **Add** in the Browser for anything with a price. It pays from the character's purse (gold, then platinum, then silver for gold prices; smallest coins first for silver and copper prices), puts the item on the sheet as Add does, and says so in chat. Not enough money: it refuses and says why. Where a price has two amounts, Buy charges the first. A player buys only for their own character; **Add** still gives items for free.
+- **Resting in a fight asks first:** "<name> is in a fight. Rest anyway?" The party's **Rest the party** asks too, naming everyone still fighting.
 
 ## What's new in 0.10.17
 

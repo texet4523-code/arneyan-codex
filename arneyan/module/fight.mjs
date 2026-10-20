@@ -63,7 +63,7 @@ export async function confirmRestInFight(actors) {
   const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
   const go = await foundry.applications.api.DialogV2.wait({
     window: { title: "Rest during a fight?", icon: "fa-solid fa-triangle-exclamation" }, classes: ["arneyan"],
-    content: `<p>${esc(nameList(fighting.map(a => a.name)))} ${fighting.length > 1 ? "are" : "is"} in a fight. Rest anyway?</p>`,
+    content: `<p>${esc(nameList(fighting.map(a => a.name)))} ${fighting.length > 1 ? "are" : "is"} ${fighting.some(a => combatFor(a)?.started) ? "in a fight" : "in an encounter that hasn't started yet"}. Rest anyway?</p>`,
     buttons: [
       { action: "rest", label: "Rest anyway", icon: "fa-solid fa-bed" },
       { action: "cancel", label: "Cancel", icon: "fa-solid fa-xmark", default: true }

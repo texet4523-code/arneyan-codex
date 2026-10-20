@@ -260,12 +260,25 @@ const score = (a, k) => a._source.system.abilities[k].value;
   handlers.renderActorSheetV2({ document: a });
   await wait();
   assert.equal(asked, 1, "only once a session");
+  // Two owning players: only the one whose character it is (else the first by id) is asked.
+  const pl2 = { id: "pz", isGM: false };
+  game.users = [gm, pl, pl2];
+  const c2 = mk("C2", ["gm", "pl", "pz"]);
+  game.user = gm; handlers.createActor(c2, {}, "gm"); await wait();
+  const askedBefore = asked;
+  game.user = pl2; handlers.renderActorSheetV2({ document: c2 }); await wait();
+  assert.equal(asked, askedBefore, "the second owner isn't asked");
+  pl2.character = { id: "C2" };
+  handlers.renderActorSheetV2({ document: c2 }); await wait();
+  assert.equal(asked, askedBefore + 1, "the player whose character it is is asked");
+  game.users = [gm, pl];
   // GM makes one with no player owner yet: asked as before.
   game.user = gm;
   const b = mk("B1", ["gm"]);
+  const beforeB = asked;
   handlers.createActor(b, {}, "gm");
   await wait();
-  assert.equal(asked, 2, "the GM is asked when no player owns it");
+  assert.equal(asked, beforeB + 1, "the GM is asked when no player owns it");
   globalThis.Hooks = keepHooks;
 }
 

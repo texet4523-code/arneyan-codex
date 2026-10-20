@@ -841,6 +841,13 @@ export class ArneyanItem extends Item {
     if ((await super._preUpdate(changes, options, user)) === false) return false;
     const tier = foundry.utils.getProperty(changes, "system.tier");
     if (this.type === "skill" && this.parent instanceof Actor && tier && tier !== this.system.tier) {
+      // A Knack comes only from an ancestry at creation: a trained skill can't be turned into one (it would give back
+      // its slots for nothing). The GM may, to correct a sheet.
+      if (tier === "knack" && !user?.isGM) {
+        if (user?.id === game.user.id) ui.notifications.warn(`${this.name}: a Knack comes from your ancestry at creation; a trained skill can't become one.`);
+        for (const app of new Set([this._sheet, ...Object.values(this.apps ?? {})])) if (app?.rendered) app.render();
+        return false;
+      }
       // A higher tier costs the slots between them (Trained to Master one, a Knack to Trained one, to Master two).
       const more = skillCost(tier) - skillCost(this.system.tier);
       if (more > 0 && !(await skillSlotOk(this.parent, more, `Making ${this.name} ${ARNEYAN.skillTiers[tier] ?? tier}`, user))) {
