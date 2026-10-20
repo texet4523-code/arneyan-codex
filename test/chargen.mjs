@@ -142,5 +142,52 @@ const score = (a, k) => a._source.system.abilities[k].value;
   assert.equal(score(actor, "dex"), 20);
 }
 
+// 0.10.8: the bloodline and the family are picked from lists with their text; the +1s and scores box come after.
+{
+  const actor = actorOf({ str: 10, dex: 12, con: 12, int: 13, wis: 10, cha: 15 });
+  const anc = ancOf(actor, "Tiefling", { bonuses: { cha: 2, int: 1, wis: -1 }, family: true,
+    traitList: [{ name: "Family", text: "Raised by another people." }, { name: "Hellish Resistance", text: "Fire 5." }],
+    choice: { label: "Bloodline", options: [{ name: "Infernal (devils)", text: "Devils.", bonuses: {}, rules: [] }, { name: "Abyssal (demons)", text: "Demons.", bonuses: {}, rules: [] }] } });
+  const C = "Compendium.arneyan.ancestries.Item.";
+  const index = [{ uuid: `${C}h`, name: "Human", system: { size: "medium", attributes: "+1 / +1" } }, { uuid: `${C}e`, name: "Elf", system: { size: "medium", attributes: "+2 Dex" } },
+    { uuid: `${C}t`, name: "Tiefling", system: { size: "medium" } }, { uuid: `${C}g`, name: "Gnome", system: { size: "small" } }];
+  const packs = game.packs;
+  game.packs = { get: id => (id === "arneyan.ancestries" ? { getIndex: async () => index } : null) };
+  const seen = [];
+  const pickWith = (o, v) => o.buttons[0].callback(null, { form: { querySelector: () => ({ value: v }) } });
+  DialogV2.wait = async o => {
+    seen.push(o);
+    if (o.window.title === "Tamla: Tiefling bloodline") return pickWith(o, "1");
+    if (o.window.title === "Tamla: family") return pickWith(o, "Elf");
+    return { picks: [], scores: true };
+  };
+  await P.ancestrySetup(actor, anc);
+  assert.deepEqual(seen.map(o => o.window.title), ["Tamla: Tiefling bloodline", "Tamla: family", "Tamla: Tiefling"]);
+  assert.ok(seen[0].content.includes("Abyssal (demons)") && seen[0].content.includes("arn-pick-row"), "bloodlines as picker rows");
+  assert.ok(/value="Human"[^>]*checked/.test(seen[1].content), "Human preselected");
+  assert.ok(!seen[1].content.includes(`data-name="tiefling"`), "not its own ancestry");
+  assert.ok(seen[1].content.indexOf(">Small<") < seen[1].content.indexOf(">Medium<"), "grouped by size");
+  assert.ok(seen[2].content.includes("Abyssal (demons)") && seen[2].content.includes("Elf"), "the form says what was picked");
+  assert.equal(anc.name, "Tiefling (Abyssal)");
+  assert.deepEqual(actor.created.map(c => c.name), ["Family: Elf", "Bloodline: Abyssal (demons)", "Hellish Resistance"]);
+  assert.equal(score(actor, "cha"), 17);
+  // Choose later: no bloodline, no family, the Family trait stays. Skip and X: nothing set up.
+  const b = actorOf({ str: 10, dex: 12, con: 12, int: 13, wis: 10, cha: 15 });
+  const anc2 = ancOf(b, "Tiefling", { ...anc.system });
+  anc2.name = "Tiefling";
+  DialogV2.wait = async o => (o.window.title.endsWith("Tiefling") ? { picks: [], scores: false } : "later");
+  await P.ancestrySetup(b, anc2);
+  assert.equal(anc2.name, "Tiefling");
+  assert.deepEqual(b.created.map(c => c.name), ["Family", "Hellish Resistance"]);
+  for (const [answer, ret] of [["skip", "skip"], [null, false]]) {
+    const c = actorOf(tamla);
+    const anc3 = ancOf(c, "Tiefling", { ...anc.system });
+    DialogV2.wait = async () => answer;
+    assert.equal(await P.ancestrySetup(c, anc3), ret);
+    assert.equal(c.created.length + c.updates.length, 0, `${answer}: nothing set up`);
+  }
+  game.packs = packs;
+}
+
 DialogV2.wait = saved;
 console.log("OK chargen");

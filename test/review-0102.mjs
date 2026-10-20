@@ -351,3 +351,164 @@ console.log("OK review 0.10.2");
   assert.equal(opts?.arneyanKeepLevel, true);
   console.log("OK feat level taken (0.10.7)");
 }
+
+/* ---------------- 0.10.8: the picker picks several; the new-character steps use it ---------------- */
+const PK = await import("../arneyan/module/picker.mjs");
+const take = (o, vals) => o.buttons[0].callback(null, { form: {
+  querySelectorAll: () => vals.map(value => ({ value })), querySelector: () => (vals[0] != null ? { value: vals[0] } : null),
+  elements: { luck: { checked: true } } } });
+{
+  const entries = ["a", "b", "c", "d"].map(v => ({ value: v, name: v.toUpperCase(), group: "G" }));
+  // Several: tick boxes, a counter, Take with none ticked asks again, fewer than the most is allowed with a warning.
+  let seen = [], answers = [[], ["a", "b"]];
+  DialogV2.wait = async o => { seen.push(o); return take(o, answers.shift()); };
+  warnings.length = 0;
+  assert.deepEqual(await PK.pickFromList({ title: "T", step: "Step 3 of 4", entries, max: 3, preselect: ["c"], skipLabel: "Skip" }), ["a", "b"]);
+  assert.equal(seen.length, 2, "nothing ticked: asked again");
+  assert.equal(seen[0].window.title, "T (Step 3 of 4)");
+  assert.ok(seen[0].content.includes('type="checkbox"') && seen[0].content.includes("1 of 3 chosen"), "boxes and a counter");
+  assert.ok(/value="c" aria-label="Choose C" checked/.test(seen[0].content), "preselected");
+  assert.deepEqual(seen[0].buttons.map(b => b.action), ["take", "later", "skip"]);
+  assert.ok(warnings[0].includes("Pick at least one") && warnings[1].includes("2 of 3 chosen"), warnings.join(" | "));
+  // Too many: only the most are kept. Exact: fewer asks again, keeping the ticks.
+  seen = []; answers = [["a", "b", "c", "d"]];
+  assert.deepEqual(await PK.pickFromList({ title: "T", entries, max: 3 }), ["a", "b", "c"]);
+  seen = []; answers = [["a"], ["a", "b", "c"]];
+  assert.deepEqual(await PK.pickFromList({ title: "T", entries, max: 3, exact: true }), ["a", "b", "c"]);
+  assert.equal(seen.length, 2);
+  assert.ok(/value="a" aria-label="Choose A" checked/.test(seen[1].content), "the first tick kept");
+  // One: as before (radio rows); an entry's own text, footer buttons, later, skip and closed.
+  seen = [];
+  DialogV2.wait = async o => { seen.push(o); return "skip"; };
+  assert.equal(await PK.pickFromList({ title: "T", entries: [{ value: "0", name: "Fire", html: "<p>Hot</p>" }], preselect: "0", skipLabel: "Skip", buttons: [{ action: "back", label: "Back" }] }), "skip");
+  assert.equal(seen[0].window.title, "T", "no step: title as given");
+  assert.ok(/type="radio" name="pick" value="0" checked/.test(seen[0].content));
+  assert.deepEqual(seen[0].buttons.map(b => b.action), ["take", "later", "skip", "back"]);
+  DialogV2.wait = async () => null;
+  assert.equal(await PK.pickFromList({ title: "T", entries }), null);
+  DialogV2.wait = async () => "later";
+  assert.equal(await PK.pickFromList({ title: "T", entries, max: 2 }), "later");
+}
+
+{
+  setGM(true);
+  const C8 = "Compendium.arneyan.";
+  const kit = { uuid: `${C8}kits.Item.k1`, name: "The Heavy Hand (Fighter)", type: "kit", system: { className: "Fighter" } };
+  const deity = { uuid: `${C8}kits.Item.k2`, name: "Deity: Bane (Fighter)", type: "kit", system: { className: "Fighter" } };
+  const other = { uuid: `${C8}kits.Item.k3`, name: "Sneak (Rogue)", type: "kit", system: { className: "Rogue" } };
+  const feat = { uuid: `${C8}feats.Item.f1`, name: "Diehard", type: "feat", system: { path: "General Path" } };
+  const sk = [["Riding", "dex"], ["Swimming", "str"], ["Lore", "int"], ["Climbing", "str"]].map(([name, ability], i) => ({ uuid: `${C8}skills.Item.s${i}`, name, type: "skill", system: { ability } }));
+  const elf = { uuid: `${C8}ancestries.Item.a1`, name: "Elf", type: "ancestry", system: { size: "medium", attributes: "+2 Dex", bonuses: {}, traitList: [],
+    choice: { label: "Subtype", options: [{ name: "High Elf", text: "Arcane Sense.", bonuses: {}, rules: [] }, { name: "Saevren (Wood Elf)", text: "Camouflage.", bonuses: {}, rules: [] }] } } };
+  const gnome = { uuid: `${C8}ancestries.Item.a2`, name: "Gnome", type: "ancestry", system: { size: "small", attributes: "+2 Int" } };
+  const all = [kit, deity, other, feat, ...sk, elf, gnome];
+  globalThis.fromUuid = async u => { const d = all.find(x => x.uuid === u); return d ? { ...d, toObject() { const o = foundry.utils.deepClone(d); delete o.uuid; return o; } } : null; };
+  const index = { "arneyan.kits": [kit, deity, other], "arneyan.feats": [feat], "arneyan.skills": sk, "arneyan.ancestries": [elf, gnome] };
+  game.packs = { get: id => (index[id] ? { getIndex: async () => index[id] } : null) };
+  const mk = (withAncestry = true) => {
+    const cls = { id: "c1", type: "class", name: "Fighter", system: { hitDie: "d10", levels: 0, features: [] }, getFlag: () => null,
+      async update(d) { for (const [k, v] of Object.entries(d)) foundry.utils.setProperty(this, k, v); } };
+    const items = [cls];
+    if (withAncestry) items.push({ id: "an", type: "ancestry", name: "Human", getFlag: () => null });
+    const actor = pc({ items });
+    actor.system.luck = { value: 0, start: 0 };
+    return { cls, actor };
+  };
+  const answer = (o, how) => {
+    const t = o.window.title;
+    const key = t.endsWith("starting gold") ? "gold" : /Kit/.test(t) ? "kit" : /Feat/.test(t) ? "feat" : /Skills/.test(t) ? "skills" : /1st-level Fighter/.test(t) ? "finish" : "other";
+    const a = how[key];
+    if (typeof a === "function") return a(o);
+    return a === undefined ? "skip" : a;
+  };
+
+  // Every step: Kit taken, Feat later, three Skills, Apply with Luck; added before starting gold.
+  let { cls, actor } = mk();
+  let seen = [], atGold = -1;
+  DialogV2.wait = async o => { seen.push(o); if (o.window.title.endsWith("starting gold")) atGold = actor.created.length; return answer(o, {
+    kit: o => take(o, [kit.uuid]), feat: "later", skills: o => take(o, sk.slice(0, 3).map(s => s.uuid)), finish: o => take(o, []) }); };
+  nextRoll = 13;
+  assert.equal(await P.firstLevelSetup(actor, cls), "gold");
+  assert.deepEqual(seen.map(o => o.window.title), ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)",
+    "Tess: starting Skills (Step 3 of 4)", "Tess: 1st-level Fighter (Step 4 of 4)", "Tess: starting gold"]);
+  assert.ok(seen[0].content.includes("Max HP is set to <strong>10</strong>"), "the HP line heads step 1");
+  assert.ok(!seen[1].content.includes("Max HP is set"), "and only step 1");
+  assert.ok(seen[0].content.includes('arn-pick-group">Deity<') && seen[0].content.includes(">Bane<") && seen[0].content.includes(">The Heavy Hand<"), "kits grouped, class name dropped");
+  assert.ok(!seen[0].content.includes("Sneak"), "only this class's kits");
+  const sc = seen[2].content;
+  assert.ok(sc.includes('type="checkbox"') && sc.includes("0 of 3 chosen"), "skills: pick three");
+  assert.ok(sc.indexOf(">Strength<") < sc.indexOf(">Dexterity<") && sc.indexOf(">Dexterity<") < sc.indexOf(">Intelligence<"), "grouped by attribute in sheet order");
+  assert.ok(seen[3].content.includes("The Heavy Hand") && seen[3].content.includes("Riding, Swimming, Lore"), "the last step lists the choices");
+  assert.deepEqual(actor.created.map(c => c.name), ["The Heavy Hand (Fighter)", "Riding", "Swimming", "Lore"]);
+  assert.equal(actor.created[0]._stats.compendiumSource, kit.uuid);
+  assert.equal(atGold, 4, "the kit and skills are on before starting gold (an Artificer's toolkit follows the kit)");
+  assert.equal(actor.system.luck.start, 13, "Starting Luck rolled");
+  assert.equal(actor.system.attributes.hp.max, 10);
+
+  // The Feat records level 1.
+  ({ cls, actor } = mk());
+  DialogV2.wait = async o => answer(o, { kit: "later", feat: o => take(o, [feat.uuid]), skills: "later", finish: o => take(o, []) });
+  await P.firstLevelSetup(actor, cls);
+  assert.deepEqual(actor.created.map(c => [c.name, c.system.levelTaken]), [["Diehard", 1]]);
+
+  // Skip part way: what was chosen before is added, no Luck, on to starting gold.
+  ({ cls, actor } = mk());
+  seen = [];
+  DialogV2.wait = async o => { seen.push(o.window.title); return answer(o, { kit: o => take(o, [kit.uuid]), feat: "skip" }); };
+  assert.equal(await P.firstLevelSetup(actor, cls), "gold");
+  assert.deepEqual(seen, ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)", "Tess: starting gold"]);
+  assert.deepEqual(actor.created.map(c => c.name), ["The Heavy Hand (Fighter)"]);
+  assert.equal(actor.system.luck.start, 0);
+
+  // Closed (X) part way: nothing chosen is added, no starting gold; HP is still set.
+  ({ cls, actor } = mk());
+  seen = [];
+  DialogV2.wait = async o => { seen.push(o.window.title); return answer(o, { kit: o => take(o, [kit.uuid]), feat: "later", skills: null }); };
+  assert.equal(await P.firstLevelSetup(actor, cls), null);
+  assert.equal(seen.length, 3);
+  assert.equal(actor.created.length, 0);
+  assert.equal(actor.system.attributes.hp.max, 10);
+  // Closed on the last step: nothing either.
+  ({ cls, actor } = mk());
+  DialogV2.wait = async o => answer(o, { kit: o => take(o, [kit.uuid]), feat: "later", skills: "later", finish: null, gold: () => { throw new Error("no gold after X"); } });
+  assert.equal(await P.firstLevelSetup(actor, cls), null);
+  assert.equal(actor.created.length, 0);
+
+  // No ancestry: it is step 1 (grouped by size), then its subtype from a list with the text, then the class steps.
+  ({ cls, actor } = mk(false));
+  actor._source.system.abilities = Object.fromEntries(["str", "dex", "con", "int", "wis", "cha"].map(k => [k, { value: 12 }]));
+  const created = actor.createEmbeddedDocuments.bind(actor);
+  actor.createEmbeddedDocuments = async (type, data, opts) => {
+    if (data[0]?.type !== "ancestry") return created(type, data, opts);
+    const anc = { ...data[0], id: "an9", img: "x.png", flags: {}, getFlag(s, k) { return this.flags[s]?.[k]; },
+      async update(d) { for (const [k, v] of Object.entries(d)) foundry.utils.setProperty(this, k, v); } };
+    actor.items.push(anc);
+    return [anc];
+  };
+  seen = [];
+  DialogV2.wait = async o => {
+    seen.push(o);
+    const t = o.window.title;
+    if (t.startsWith("Tess: ancestry")) return take(o, [elf.uuid]);
+    if (t.startsWith("Tess: Elf subtype")) return take(o, ["1"]);
+    if (t.startsWith("Tess: Elf (")) return o.buttons[0].callback(null, { form: { elements: { scores: { checked: false } } } });
+    return answer(o, { kit: "later", feat: "later", skills: "later", finish: o => o.buttons[0].callback(null, { form: { elements: { luck: { checked: false } } } }) });
+  };
+  assert.equal(await P.firstLevelSetup(actor, cls), "gold");
+  const titles8 = seen.map(o => o.window.title);
+  assert.deepEqual(titles8.slice(0, 4), ["Tess: ancestry (Step 1 of 5)", "Tess: Elf subtype (Step 1 of 5)", "Tess: Elf (Step 1 of 5)", "Tess: Fighter Kit (Step 2 of 5)"]);
+  assert.ok(seen[0].content.indexOf(">Small<") < seen[0].content.indexOf(">Medium<") && seen[0].content.includes("+2 Dex"), "by size, with the attribute changes");
+  assert.ok(seen[1].content.includes("Saevren (Wood Elf)"), "subtypes listed");
+  assert.equal(actor.items.find(i => i.id === "an9").name, "Elf (Saevren)", "the subtype taken");
+  assert.ok(actor.created.some(c => c.name === "Subtype: Saevren (Wood Elf)"));
+  assert.ok(seen[3].content.includes("Max HP is set"), "HP after the ancestry, at the head of the first class step");
+  // X on the ancestry: HP set, nothing else asked.
+  ({ cls, actor } = mk(false));
+  seen = [];
+  DialogV2.wait = async o => { seen.push(o.window.title); return null; };
+  assert.equal(await P.firstLevelSetup(actor, cls), null);
+  assert.deepEqual(seen, ["Tess: ancestry (Step 1 of 5)"]);
+  assert.equal(actor.system.attributes.hp.max, 10);
+  game.packs = { get: () => null };
+  console.log("OK new-character steps (0.10.8)");
+}

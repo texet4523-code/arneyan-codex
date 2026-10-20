@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.7 · Foundry v13 and v14
+Version 0.10.8 · Foundry v13 and v14
+
+## What's new in 0.10.8
+
+- **Making a character is a few short steps, each like the compendium browser.** Instead of one tall window of boxes, a new character goes through: ancestry (if it has none), its subtype, bloodline, caste or lineage (and a Tiefling's family), then Kit, 1st-level Feat, three starting Skills (tick up to three, with a counter) and last the Starting Luck roll. Every step is a searchable list with the full text of the one you click, and says which step it is ("Step 2 of 5"). **Choose later** leaves a step empty; **Skip** stops choosing and goes on to starting gold with what you have picked so far; closing a step stops the setup without adding anything (Hit Points and class features are set either way).
 
 ## What's new in 0.10.7
 
@@ -70,7 +74,7 @@ Open the Compendium sidebar and look in **The Arneyan Codex** folder, or use the
 Drag anything onto a sheet. You can still make your own items from the Items sidebar.
 
 ## Making a character
-1. Drop a class on a blank character. Max HP is set to the Hit Die maximum + Con, the 1st-level class abilities are added, and a window asks for your Kit, 1st-level Feat (if the class gets one), three Skills and whether to roll Starting Luck (4d6, drop the lowest).
+1. Drop a class on a blank character. Max HP is set to the Hit Die maximum + Con and the 1st-level class abilities are added. Then a few steps, each a searchable list with the full text of the one you click: your Kit, 1st-level Feat, three Skills (tick up to three), and last whether to roll Starting Luck (4d6, drop the lowest). Choose later leaves a step empty, Skip goes on to starting gold with what you have picked, and closing a step stops there.
 2. Drop an ancestry: speed, size and vision are set, and any old ancestry is replaced.
 3. Kit features are added automatically and new ones arrive at the level the kit gives them.
 
@@ -249,7 +253,7 @@ Each is built from the system's own class, ancestry, kit, features, feats, skill
 
 ## New characters
 - **A new character asks for its ability scores first:** roll Method V (Set Alpha and Set Beta, each six pools: 8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times; the roll goes to chat), keep a whole set (the window flags a set without two scores of 14 or higher, the Gygaxian Threshold, and lets you roll both again if neither has them), or type in a donated set. Then put each number on an attribute, with its modifier shown. The dice button by the attributes (in Edit mode) opens it again.
-- Then drop an ancestry and a class: the ancestry window adds its changes, the class window does HP, kit, feat, skills and Luck.
+- Then drop an ancestry and a class: the ancestry steps add its changes, the class steps do HP, kit, feat, skills and Luck.
 
 ## Table conveniences
 - **Initiative:** starting combat rolls every monster's initiative privately; monsters of the same kind share one roll and act together (switch off in the settings).

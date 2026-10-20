@@ -4,7 +4,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { startingWealth } from "./starting.mjs";
-import { pickFromList, describeSelects } from "./picker.mjs";
+import { pickFromList, stepTitle } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const FLAG = "arneyan";
@@ -331,18 +331,11 @@ function featPaths(actor) {
 /*  Prompts                                     */
 /* -------------------------------------------- */
 
-async function packOptions(packName, filter) {
+async function packOptions(packName, filter, more = []) {
   const pack = game.packs.get(`arneyan.${packName}`);
   if (!pack) return [];
-  const index = await pack.getIndex({ fields: ["system.path", "system.className", "system.ability"] });
+  const index = await pack.getIndex({ fields: ["system.path", "system.className", "system.ability", ...more] });
   return index.filter(filter).sort((a, b) => a.name.localeCompare(b.name));
-}
-
-function optionsHtml(list, groupBy) {
-  if (!groupBy) return list.map(e => `<option value="${e.uuid}">${esc(e.name)}</option>`).join("");
-  const groups = {};
-  for (const e of list) (groups[groupBy(e)] ??= []).push(e);
-  return Object.entries(groups).map(([g, es]) => `<optgroup label="${esc(g)}">${es.map(e => `<option value="${e.uuid}">${esc(e.name)}</option>`).join("")}</optgroup>`).join("");
 }
 
 /** Copy a compendium item onto the actor, linked back to it (as the browser does), so updates from the compendium reach it. */
@@ -403,64 +396,126 @@ export async function promptSkill(actor, charLevel) {
 /* -------------------------------------------- */
 
 /**
- * When a character takes its first class: set HP, grant 1st-level features, and offer the
- * kit, 1st-level Feat, three starting skills and a Starting Luck roll in one window.
+ * When a character takes its first class: set HP, grant 1st-level features, then a few steps, each a browser-style
+ * list with descriptions: the ancestry (if it has none), the Kit, the 1st-level Feat and three starting skills, and
+ * last the Starting Luck roll. Each step has Choose later (leave that one empty). Skip in any step stops choosing:
+ * what was chosen in the steps before is added, then starting gold. Closing a step (X) stops the setup: nothing
+ * chosen is added and there is no starting gold. HP and the class features are set either way.
  */
 export async function firstLevelSetup(actor, cls) {
   const next = await locked(actor, () => setUpFirstLevel(actor, cls));
   // Starting gold runs after the level-change lock is released, so leaving the gear window open blocks nothing.
-  // Only Apply or Skip go on to it; closing the window (X) doesn't.
+  // Only Apply or Skip go on to it; closing a window (X) doesn't.
   if (next === "gold") await startingWealth(actor, cls);
   return next;
 }
 
+const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** The lists for the 1st-level steps, as picker entries. */
+async function firstLevelLists(actor, cls) {
+  const base = cls.name.replace(/\s*\(.*\)$/, "");
+  // Kits: "Deity: Bane (Cleric)" goes under Deity as "Bane"; the class name in brackets is dropped.
+  const tail = new RegExp(`\\s*\\(${reEsc(base)}\\)$`);
+  const kits = (await packOptions("kits", e => (e.system?.className ?? "") === base)).map(e => {
+    const m = e.name.match(/^([^:()]+):\s*(.+)$/);
+    return { value: e.uuid, uuid: e.uuid, name: (m ? m[2] : e.name).replace(tail, ""), group: m ? m[1] : `${base} Kits` };
+  }).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
+  const paths = featPaths(actor);
+  const ownedFeats = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
+  const feats = (await packOptions("feats", e => paths.has(e.system?.path) && !ownedFeats.has(e.name)))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: e.system?.path ?? "" }))
+    .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
+  // Skills by attribute, in sheet order.
+  const ownedSkills = new Set(actor.items.filter(i => i.type === "skill").map(i => i.name));
+  const order = k => { const n = ABILITY_KEYS.indexOf(k); return n < 0 ? 99 : n; };
+  const skills = (await packOptions("skills", e => !ownedSkills.has(e.name)))
+    .sort((x, y) => order(x.system?.ability) - order(y.system?.ability) || x.name.localeCompare(y.name))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: ARNEYAN.abilities[e.system?.ability] ?? "Other" }));
+  const ancestries = actor.items.some(i => i.type === "ancestry") ? [] : await ancestryEntries();
+  return { base, kits, feats, skills, ancestries };
+}
+
 async function setUpFirstLevel(actor, cls) {
+  const { base, kits, feats, skills, ancestries } = await firstLevelLists(actor, cls);
+  const steps = [ancestries.length && "ancestry", kits.length && "kit", feats.length && "feat", skills.length && "skills", "finish"].filter(Boolean);
+  const stepOf = key => (steps.length > 1 ? `Step ${steps.indexOf(key) + 1} of ${steps.length}` : "");
+
   // No ancestry yet: pick it first, since its Constitution change counts towards Hit Points.
-  if (!actor.items.some(i => i.type === "ancestry")) await pickAncestry(actor);
+  let stop = "";
+  if (ancestries.length) {
+    const anc = await pickAncestry(actor, { step: stepOf("ancestry"), entries: ancestries, skip: true });
+    if (anc === null) stop = "close";
+    else if (anc === "skip") stop = "skip";
+  }
   const con = actor.system.abilities.con.mod;
   const hp = Math.max(1, Number(cls.system.hitDie.slice(1)) + con);
   await cls.update({ "system.levels": 1, "system.hpRolls": [hp], "system.luckGains": [0] });
   await actor.update({ "system.attributes.hp.max": hp, "system.attributes.hp.value": hp });
   await syncClassFeatures(actor, cls);
+  if (stop === "close") return null;
 
-  const base = cls.name.replace(/\s*\(.*\)$/, "");
-  const kits = await packOptions("kits", e => (e.system?.className ?? "") === base);
-  const paths = featPaths(actor);
-  const feats = await packOptions("feats", e => paths.has(e.system?.path));
-  const skills = await packOptions("skills", () => true);
-  const skillSel = n => `<div class="form-group"><label>Skill ${n}</label><select name="skill${n}" data-describe><option value="">—</option>${optionsHtml(skills, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>`;
+  // Chosen so far: added at the end (Apply or Skip), nothing if a window is closed.
+  const chosen = { kit: "", feat: "", skills: [] };
+  const nameOf = new Map([...kits, ...feats, ...skills].map(e => [e.value, e.name]));
+  const finish = async luck => {
+    if (chosen.kit) await addFromUuid(actor, chosen.kit);
+    if (chosen.feat) await addFromUuid(actor, chosen.feat, { levelTaken: 1 });
+    // One at a time, so each skill goes through the slot check.
+    for (const s of [...new Set(chosen.skills.filter(Boolean))]) await addFromUuid(actor, s);
+    if (luck) {
+      const r = await new Roll("4d6dl").evaluate();
+      await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
+      await actor.update({ "system.luck.start": r.total, "system.luck.value": r.total });
+    }
+    // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it), once the lock is released.
+    return "gold";
+  };
+  if (stop === "skip") return finish(false);
 
+  // The HP line and how the steps work head the first class step.
+  let lead = `<p class="arn-step-lead">Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet.${steps.length > 1 ? " <strong>Choose later</strong> leaves a step empty; <strong>Skip</strong> stops choosing and goes on to starting gold with what you have chosen so far." : ""}</p>`;
+  const intro = text => { const out = lead + text; lead = ""; return out; };
+  const pickers = [
+    kits.length && { key: "kit", ask: () => pickFromList({
+      title: `${actor.name}: ${base} Kit`, step: stepOf("kit"), entries: kits, takeLabel: "Take Kit", skipLabel: "Skip",
+      intro: intro(`<p>Choose your Kit: its 1st-level features go on the sheet. Click one to read it.</p>`)
+    }), set: v => { chosen.kit = v; } },
+    feats.length && { key: "feat", ask: () => pickFromList({
+      title: `${actor.name}: 1st-level Feat`, step: stepOf("feat"), entries: feats, takeLabel: "Take Feat", skipLabel: "Skip",
+      intro: intro(`<p>Choose your 1st-level Feat. Open to you: ${[...featPaths(actor)].map(esc).join(", ")}. Click one to read it.</p>`)
+    }), set: v => { chosen.feat = v; } },
+    skills.length && { key: "skills", ask: () => pickFromList({
+      title: `${actor.name}: starting Skills`, step: stepOf("skills"), entries: skills, max: 3, takeLabel: "Take Skills", skipLabel: "Skip",
+      intro: intro(`<p>Choose three starting skills (NWP), each a different skill. You have ${actor.system.nwp?.max ?? 3} Skill slots${actor.system.nwp?.used ? `, ${actor.system.nwp.used} used` : ""}.</p>`)
+    }), set: v => { chosen.skills = Array.isArray(v) ? v : [v]; } }
+  ].filter(Boolean);
+  for (const p of pickers) {
+    const r = await p.ask();
+    if (r === null) return null;
+    if (r === "skip") return finish(false);
+    if (r !== "later") p.set(r);
+  }
+
+  // Last step: what was chosen, and the Starting Luck roll.
+  const lines = [chosen.kit && `<li><strong>Kit:</strong> ${esc(nameOf.get(chosen.kit) ?? "")}</li>`,
+    chosen.feat && `<li><strong>Feat:</strong> ${esc(nameOf.get(chosen.feat) ?? "")}</li>`,
+    chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`].filter(Boolean);
   const res = await DialogV2.wait({
-    window: { title: `${actor.name}: 1st-level ${cls.name}`, resizable: true },
-    render: (ev, dialog) => describeSelects(dialog.element ?? dialog),
-    position: { width: 560 },
-    content: `<p>Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet. Pick the rest now, or close this and add them later.</p>
-      ${kits.length ? `<div class="form-group"><label>Kit</label><select name="kit" data-describe><option value="">—</option>${optionsHtml(kits)}</select></div>` : ""}
-      <div class="form-group"><label>1st-level Feat</label><select name="feat" data-describe><option value="">—</option>${optionsHtml(feats, e => e.system?.path ?? "")}</select></div>
-      <p class="hint">Three starting skills (NWP), each a different skill.</p>
-      ${skillSel(1)}${skillSel(2)}${skillSel(3)}
-      <div class="form-group"><label>Roll Starting Luck (4d6, drop lowest)</label><input type="checkbox" name="luck" checked></div>`,
+    window: { title: stepTitle(`${actor.name}: 1st-level ${cls.name}`, stepOf("finish")), icon: "fa-solid fa-flag-checkered" },
+    classes: ["arneyan", "arn-step-final"], position: { width: 460 },
+    content: `${intro("")}
+      ${lines.length ? `<p>Added when you press Apply:</p><ul>${lines.join("")}</ul>` : `<p>Nothing chosen here: add a Kit, Feat or Skills later from the compendium.</p>`}
+      <div class="form-group"><label>Roll Starting Luck (4d6, drop lowest)</label><input type="checkbox" name="luck" checked></div>
+      <p class="hint">Apply adds them, rolls Luck if ticked, and goes on to starting gold. Skip adds them without rolling Luck. Closing this window adds nothing.</p>`,
     buttons: [
-      { action: "ok", label: "Apply", default: true, callback: (ev, btn) => {
-        const f = btn.form.elements;
-        return { kit: f.kit?.value, feat: f.feat.value, skills: [f.skill1.value, f.skill2.value, f.skill3.value], luck: f.luck.checked };
-      } },
+      { action: "ok", label: "Apply", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => ({ luck: !!btn.form?.elements?.luck?.checked }) },
       { action: "skip", label: "Skip" }
     ],
     rejectClose: false
   });
   if (!res) return null;
-  if (res === "skip") return "gold";
-  if (res.kit) await addFromUuid(actor, res.kit);
-  if (res.feat) await addFromUuid(actor, res.feat);
-  for (const s of [...new Set(res.skills.filter(Boolean))]) await addFromUuid(actor, s);
-  if (res.luck) {
-    const r = await new Roll("4d6dl").evaluate();
-    await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
-    await actor.update({ "system.luck.start": r.total, "system.luck.value": r.total });
-  }
-  // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it), once the lock is released.
-  return "gold";
+  return finish(res !== "skip" && !!res.luck);
 }
 
 /* -------------------------------------------- */
@@ -533,77 +588,128 @@ export async function placeOverflow(actor, after, over) {
   return { moved, lines, lost };
 }
 
-/** Pick an ancestry for a character that has none (the first class dropped on a blank sheet). */
-export async function pickAncestry(actor) {
-  const list = await packOptions("ancestries", () => true);
-  if (!list.length) return null;
-  const uuid = await DialogV2.wait({
-    window: { title: `${actor.name}: ancestry` }, position: { width: 420 },
-    content: `<p>${esc(actor.name)} has no ancestry yet. Pick one first: its attribute changes count towards your starting Hit Points.</p>
-      <div class="form-group"><label>Ancestry</label><select name="anc">${optionsHtml(list)}</select></div>`,
-    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => btn.form.elements.anc.value }, { action: "skip", label: "Not now" }],
-    rejectClose: false
+/** The ancestries compendium as picker entries: grouped by size, the attribute changes under each name. */
+async function ancestryEntries(filter = () => true) {
+  const sizes = Object.keys(ARNEYAN.sizes);
+  const rank = s => { const n = sizes.indexOf(s); return n < 0 ? 99 : n; };
+  return (await packOptions("ancestries", filter, ["system.size", "system.attributes"]))
+    .sort((a, b) => rank(a.system?.size) - rank(b.system?.size) || a.name.localeCompare(b.name))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: ARNEYAN.sizes[e.system?.size] ?? "Other", meta: e.system?.attributes ?? "" }));
+}
+
+/**
+ * Pick an ancestry for a character that has none (the first class dropped on a blank sheet), then set it up.
+ * Returns the ancestry, "later" (none picked, or none to pick), "skip" (Skip pressed, when `skip` is set) or null
+ * (a window closed).
+ */
+export async function pickAncestry(actor, { step = "", entries = null, skip = false } = {}) {
+  entries ??= await ancestryEntries();
+  if (!entries.length) return "later";
+  const uuid = await pickFromList({
+    title: `${actor.name}: ancestry`, step, entries, takeLabel: "Choose ancestry", skipLabel: skip ? "Skip" : "", width: 720,
+    intro: `<p>${esc(actor.name)} has no ancestry yet. Pick one first: its attribute changes count towards your starting Hit Points. Click one to read it.${skip ? " <strong>Choose later</strong> leaves a step empty; <strong>Skip</strong> stops choosing and goes on to starting gold." : ""}</p>`
   });
-  if (!uuid || uuid === "skip") return null;
+  if (uuid === null) return null;
+  if (uuid === "later" || uuid === "skip") return uuid;
   const doc = await fromUuid(uuid);
-  if (!doc) return null;
+  if (!doc) return "later";
   const data = doc.toObject();
   delete data._id;
   data.folder = null;
   foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
   const [anc] = await actor.createEmbeddedDocuments("Item", [data], { arneyanSkipSetup: true });
-  if (anc) await ancestrySetup(actor, anc);
+  if (!anc) return "later";
+  const done = await ancestrySetup(actor, anc, { step, skip });
+  if (done === false) return null;
+  if (done === "skip" && skip) return "skip";
   return anc;
 }
 
 /**
  * When an ancestry lands on a character: its subtype, bloodline, caste or lineage, a Human's two +1s, a Tiefling's
  * family, and its attribute changes (at creation, no score above 18). Its traits go on the sheet as ancestry
- * features, and the choice's own numbers (a bloodline's Resistance 5) apply as rules.
+ * features, and the choice's own numbers (a bloodline's Resistance 5) apply as rules. The choice and the family are
+ * picked from lists that show their text; the +1s and the scores box are a small form after.
+ * Returns false when a window is closed and "skip" when Skip is pressed (nothing set up either way).
  */
-export async function ancestrySetup(actor, anc) {
+export async function ancestrySetup(actor, anc, { step = "" } = {}) {
   const s = anc.system;
   const baseName = anc.name.replace(/\s*\(.*\)$/, "");
   const opts = s.choice?.options ?? [];
-  const families = s.family ? await packOptions("ancestries", e => e.name !== baseName) : [];
   const atCreation = (actor.system.level ?? 0) <= 1;
   const anyBonus = Object.keys(s.bonuses ?? {}).length || s.pickTwo || opts.some(o => Object.keys(o.bonuses ?? {}).length);
+  const head = `<p><strong>${esc(anc.name)}</strong>${bonusText(s.bonuses) ? `: ${esc(bonusText(s.bonuses))}` : ""}.`;
+
+  // The subtype, bloodline, caste or lineage, each with what it gives.
+  let choice = null;
+  if (opts.length) {
+    const what = esc(s.choice.label.toLowerCase());
+    const pick = await pickFromList({
+      title: `${actor.name}: ${baseName} ${s.choice.label.toLowerCase()}`, step, width: 680,
+      intro: `${head} Choose your ${what}: click one to read what it gives.</p>`,
+      entries: opts.map((o, i) => {
+        const b = bonusText(o.bonuses);
+        return { value: String(i), name: o.name, meta: b, group: s.choice.label,
+          html: `<h3>${esc(o.name)}</h3>${b ? `<p class="arn-pick-meta">${esc(b)}</p>` : ""}<p>${esc(o.text)}</p>` };
+      }),
+      takeLabel: `Choose ${what}`, skipLabel: "Skip"
+    });
+    if (pick === null) return false;
+    if (pick === "skip") return "skip";
+    if (pick !== "later" && opts[Number(pick)]) choice = Number(pick);
+  }
+
+  // A Tiefling's family: another ancestry, with its description.
+  let family = "";
+  if (s.family) {
+    const families = await ancestryEntries(e => e.name !== baseName);
+    if (families.length) {
+      const human = families.find(e => e.name === "Human");
+      const pick = await pickFromList({
+        title: `${actor.name}: family`, step, width: 720,
+        intro: `${head} Which family were you born into? You speak its language. Click one to read about it.</p>`,
+        entries: families.map(e => ({ ...e, value: e.name })), preselect: human ? "Human" : null,
+        takeLabel: "Choose family", skipLabel: "Skip"
+      });
+      if (pick === null) return false;
+      if (pick === "skip") return "skip";
+      if (pick !== "later") family = pick;
+    }
+  }
+
+  // The rest in a small form: a Human's two +1s and whether to add the attribute changes.
+  const o = choice !== null ? opts[choice] : null;
   const attrOpts = ABILITY_KEYS.map(k => `<option value="${k}">${ARNEYAN.abilities[k]}</option>`).join("");
-  const optHtml = opts.map((o, i) => `<option value="${i}">${esc(o.name)}${Object.keys(o.bonuses ?? {}).length ? ` (${bonusText(o.bonuses)})` : ""}</option>`).join("");
+  const picked = [o && `${esc(s.choice.label)}: <strong>${esc(o.name)}</strong>${bonusText(o.bonuses) ? ` (${esc(bonusText(o.bonuses))})` : ""}`,
+    family && `Family: <strong>${esc(family)}</strong>`].filter(Boolean);
   const content = `<div class="arn-anc-setup">
-    <p><strong>${esc(anc.name)}</strong>${bonusText(s.bonuses) ? `: ${esc(bonusText(s.bonuses))}` : ""}. Speed, size and vision are set; its traits go on the Features tab.</p>
-    ${opts.length ? `<div class="form-group"><label>${esc(s.choice.label)}</label><select name="choice">${optHtml}</select></div>
-      <p class="hint arn-anc-text">${esc(opts[0].text)}</p>` : ""}
+    ${head} Speed, size and vision are set; its traits go on the Features tab.</p>
+    ${picked.length ? `<p>${picked.join("<br>")}</p>` : ""}
     ${s.pickTwo ? `<div class="form-group"><label>+1 to</label><select name="pick1">${attrOpts}</select></div>
       <div class="form-group"><label>and +1 to</label><select name="pick2">${attrOpts.replace('value="dex"', 'value="dex" selected')}</select></div>` : ""}
-    ${s.family ? `<div class="form-group"><label>Family you were born into</label><select name="family">${families.map(e => `<option value="${esc(e.name)}" ${e.name === "Human" ? "selected" : ""}>${esc(e.name)}</option>`).join("")}</select></div>` : ""}
     ${anyBonus ? `<div class="form-group"><label>Add the attribute changes to the scores</label><input type="checkbox" name="scores" ${atCreation ? "checked" : ""}></div>
       <p class="hint">${atCreation ? "When a character is created no score can go above 18. If a bonus would take a score past 18, you choose another attribute for the extra points (it also stops at 18)." : "Leave this off if the scores already include them."}</p>` : ""}
   </div>`;
-  const res = await DialogV2.wait({
-    window: { title: `${actor.name}: ${anc.name}` }, position: { width: 460 }, content,
-    render: (event, dialog) => {
-      const el = dialog.element ?? dialog;
-      const sel = el.querySelector("select[name=choice]");
-      const p = el.querySelector(".arn-anc-text");
-      sel?.addEventListener("change", () => { if (p) p.textContent = opts[Number(sel.value)]?.text ?? ""; });
-    },
-    buttons: [
-      { action: "ok", label: "Apply", default: true, callback: (ev, btn) => {
-        const f = btn.form.elements;
-        return { choice: f.choice ? Number(f.choice.value) : null, picks: s.pickTwo ? [f.pick1.value, f.pick2.value] : [],
-          family: f.family?.value ?? "", scores: !!f.scores?.checked };
-      } },
-      { action: "skip", label: "Skip" }
-    ],
-    rejectClose: false
-  });
-  if (!res || res === "skip" || !actor.items.has(anc.id)) return;
-  if (s.pickTwo && res.scores && res.picks[0] === res.picks[1]) {
+  let res;
+  for (;;) {
+    res = await DialogV2.wait({
+      window: { title: stepTitle(`${actor.name}: ${anc.name}`, step) }, position: { width: 460 }, content,
+      buttons: [
+        { action: "ok", label: "Apply", default: true, callback: (ev, btn) => {
+          const f = btn.form.elements;
+          return { picks: s.pickTwo ? [f.pick1.value, f.pick2.value] : [], scores: !!f.scores?.checked };
+        } },
+        { action: "skip", label: "Skip" }
+      ],
+      rejectClose: false
+    });
+    if (!res) return false;
+    if (res === "skip") return "skip";
+    if (!(s.pickTwo && res.scores && res.picks[0] === res.picks[1])) break;
     ui.notifications.warn("A Human's two +1s go to two different attributes: pick again.");
-    return ancestrySetup(actor, anc);
   }
-  const o = res.choice !== null ? opts[res.choice] : null;
+  if (!actor.items.has(anc.id)) return;
+  res = { ...res, picks: res.picks ?? [], choice, family };
   const short = o ? o.name.replace(/\s*\(.*\)$/, "") : "";
   const label = short ? `${baseName} (${short})` : baseName;
 
