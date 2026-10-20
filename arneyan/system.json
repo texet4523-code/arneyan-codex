@@ -16,7 +16,9 @@
     "module/arneyan.mjs"
   ],
   "styles": [
-    "styles/arneyan.css"
+    "styles/arneyan.css",
+    "styles/combat.css",
+    "styles/gmtools.css"
   ],
   "languages": [
     {
@@ -47,6 +49,11 @@
       "storage": {
         "htmlFields": [
           "details.notes"
+        ]
+      },
+      "hazard": {
+        "htmlFields": [
+          "details.description"
         ]
       }
     },
@@ -257,6 +264,18 @@
         "ASSISTANT": "OWNER"
       },
       "flags": {}
+    },
+    {
+      "name": "tables",
+      "label": "Tables of Arneyan",
+      "path": "packs/tables",
+      "type": "RollTable",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -282,7 +301,8 @@
       "sorting": "m",
       "color": "#2a1414",
       "packs": [
-        "monsters"
+        "monsters",
+        "tables"
       ]
     },
     {
@@ -294,5 +314,24 @@
       ]
     }
   ],
-  "socket": true
+  "socket": true,
+  "relationships": {
+    "recommends": [
+      {
+        "id": "dice-so-nice",
+        "type": "module",
+        "reason": "3D dice for every roll, damage dice coloured by type."
+      },
+      {
+        "id": "item-piles",
+        "type": "module",
+        "reason": "Loot piles and merchants that use Arneyan coins and gear."
+      },
+      {
+        "id": "token-action-hud-core",
+        "type": "module",
+        "reason": "A token HUD with attacks, spells, abilities, saves and conditions."
+      }
+    ]
+  }
 }
