@@ -20,26 +20,52 @@ function getPath(obj, path) {
   return path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 }
 
-/** Evaluate a small numeric formula such as "floor(@level/4)" or "@cl". Returns 0 if it can't. */
-export function evalNumber(value, data = {}) {
-  if (typeof value === "number") return value;
-  if (value === null || value === undefined) return 0;
+/** A small numeric formula's value, or null if it isn't one (bad words, strings, a syntax error). */
+export function tryNumber(value, data = {}) {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (value === null || value === undefined) return null;
   let expr = String(value).trim();
-  if (!expr) return 0;
+  if (!expr) return null;
   expr = expr.replace(/@([\w.]+)/g, (_, p) => {
     const v = getPath(data, p);
     return Number.isFinite(Number(v)) ? `(${Number(v)})` : "(0)";
   });
   // Only digits, operators, brackets, commas and the whitelisted functions.
   const words = expr.match(/[a-z_]+/gi) ?? [];
-  if (words.some(w => !Object.hasOwn(FUNCS, w))) return 0;
-  if (/\.\s*[a-z_]/i.test(expr) || /[`'"\[\]{};=]/.test(expr)) return 0; // no property access or strings
-  if (!/^[\d\s+\-*/().,a-z_]*$/i.test(expr)) return 0;
+  if (words.some(w => !Object.hasOwn(FUNCS, w))) return null;
+  if (/\.\s*[a-z_]/i.test(expr) || /[`'"\[\]{};=]/.test(expr)) return null; // no property access or strings
+  if (!/^[\d\s+\-*/().,a-z_]*$/i.test(expr)) return null;
   try {
     const n = Function(...Object.keys(FUNCS), `"use strict"; return (${expr});`)(...Object.values(FUNCS));
-    return Number.isFinite(n) ? n : 0;
+    return Number.isFinite(n) ? n : null;
   } catch {
-    return 0;
+    return null;
+  }
+}
+
+/** Evaluate a small numeric formula such as "floor(@level/4)" or "@cl". Returns 0 if it can't. */
+export function evalNumber(value, data = {}) {
+  return tryNumber(value, data) ?? 0;
+}
+
+/**
+ * Uses worked out from a formula (system.uses.formula): a level table on @cl ("5:1, 9:2, 13:3": 1 from 5th, 2 from
+ * 9th...) or a formula ("max(1, @dex.mod)", "3 + @wis.mod", "@cl"). Never throws: anything it can't read gives
+ * `fallback` (the stored maximum). Never below 0, always a whole number.
+ */
+export function usesMax(formula, data = {}, fallback = 0) {
+  try {
+    const s = String(formula ?? "").trim();
+    if (!s) return fallback;
+    let n = null;
+    if (/^\d+\s*:/.test(s)) {
+      const lvl = Number(data.cl ?? data.level ?? 1) || 0;
+      n = 0;
+      for (const [, at, v] of s.matchAll(/(\d+)\s*:\s*(-?\d+)/g)) if (lvl >= Number(at)) n = Number(v);
+    } else n = tryNumber(s, data);
+    return n === null ? fallback : Math.max(0, Math.floor(n));
+  } catch {
+    return fallback;
   }
 }
 
@@ -86,6 +112,25 @@ export function statusesOf(actor) {
 }
 
 /**
+ * An item's rules with its attribute choice applied: Will of Iron's `ability.wis` counts for Intelligence when the
+ * player picked Intelligence. Never throws; anything odd leaves the rules as they are.
+ */
+export function chosenRules(sys) {
+  const rules = sys?.rules ?? [];
+  try {
+    const opts = (sys?.abilityChoice?.options ?? []).filter(o => Object.hasOwn(ARNEYAN.abilities, o));
+    if (!opts.length) return rules;
+    const pick = opts.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : opts[0];
+    return rules.map(r => {
+      const m = /^ability\.(\w+)$/.exec(String(r?.key ?? "").trim());
+      return m && opts.includes(m[1]) ? { ...r, key: `ability.${pick}` } : r;
+    });
+  } catch {
+    return rules;
+  }
+}
+
+/**
  * Every active rule on an actor, with its source.
  * @returns {{key:string, value:any, when:string, label:string, source:string, data:object}[]}
  */
@@ -101,7 +146,7 @@ export function collectRules(actor, baseData = {}) {
   for (const item of actor.items ?? []) {
     if (!itemRulesActive(item)) continue;
     const cls = item.system.className ? actor.items.find(i => i.type === "class" && i.name.toLowerCase().startsWith(item.system.className.toLowerCase())) : null;
-    push(item.system.rules, item.name, { cl: cls?.system.levels ?? baseData.level ?? 1 });
+    push(chosenRules(item.system), item.name, { cl: cls?.system.levels ?? baseData.level ?? 1 });
   }
   // Active Effects on the actor (spells, abilities and conditions applied to it).
   const conditionsDone = new Set();
@@ -260,6 +305,21 @@ export class ModSet {
   }
 }
 
+/**
+ * A value that changes with level, as a level table: "1:1, 10:1d4" is 1 from 1st and 1d4 from 10th (Stun Attack's
+ * rounds). Anything else comes back as it is.
+ */
+export function byLevelTable(value, level) {
+  const s = String(value ?? "").trim();
+  if (!/^\d+\s*:/.test(s)) return value;
+  let out = "0";
+  for (const part of s.split(",")) {
+    const m = part.match(/^\s*(\d+)\s*:\s*(.+?)\s*$/);
+    if (m && Number(level) >= Number(m[1])) out = m[2];
+  }
+  return out;
+}
+
 /** Parse "fire, cold" style text into a list of lower-case words. */
 export function wordList(text) {
   return String(text ?? "").split(/[,;]/).map(s => s.trim().toLowerCase()).filter(Boolean);
@@ -284,7 +344,7 @@ export async function effectDataFor(entry, item, { cl = 1, caster = null } = {})
     if (!/\d*d\d/i.test(s)) return v;
     try { return (await new Roll(s.replace(/@([\w.]+)/g, (_, p) => String(Number(getPath(data0, p)) || 0))).evaluate()).total; } catch { return 0; }
   };
-  const roundsRaw = await rollIf(entry.rounds ?? 0);
+  const roundsRaw = await rollIf(byLevelTable(entry.rounds ?? 0, cl));
   const rounds = Math.max(0, Math.floor(evalNumber(roundsRaw, data0)));
   const DAMAGEISH = /damage/;
   const rules = [];

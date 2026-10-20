@@ -13,7 +13,9 @@ a level table ("4:1, 9:2") read from that table. Stored as system.activities on:
 Feats and kit features also get their uses here ("Once per session", "Once/day"), read from the text the way class
 features are (build_classes.uses_of), and kit features their save. An entry's "uses" ({"max": 0}) overrides what the
 text reading found, where a frequency in the text isn't a pool ("each target only once per day"); its "save",
-"damage" and "damageType" set the item's own (Use then offers the save and the damage roll together).
+"damage" and "damageType" set the item's own (Use then offers the save and the damage roll together). A "uses" entry
+may carry a "formula" (Flèche: "max(1, @dex.mod)"; Wild Surge: the level table "5:1, 9:2, 13:3, 17:4"), worked out on
+the character from its attribute modifiers, @cl (the class level), @level and @casting.mod (best casting attribute).
 """
 import glob, html, json, os, re
 from lib import OUT
@@ -23,7 +25,7 @@ HERE = os.path.dirname(__file__)
 FIELDS = {"name": "", "kind": "note", "formula": "", "damageType": "", "ability": "", "save": "", "text": "",
           "minLevel": 0, "maxLevel": 0, "cost": 1, "per": "", "target": "", "removeConditions": False,
           "bonus": "", "count": "", "weapons": "", "disadvantage": "", "disUntil": 0, "damageBonus": "",
-          "noStack": "", "targetLevel": ""}
+          "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False}
 KINDS = {"heal", "temp", "damage", "check", "save", "note", "roll", "attacks"}
 INTS = ("minLevel", "maxLevel", "disUntil")
 STRS = ("formula", "damageType", "ability", "save", "per", "target", "name", "bonus", "count", "weapons",
@@ -38,6 +40,8 @@ def clean(a):
         out[k] = int(out[k] or 0)
     out["cost"] = int(out["cost"] if out["cost"] is not None else 1)
     out["removeConditions"] = bool(out["removeConditions"])
+    out["reaction"] = bool(out["reaction"])
+    out["noDamage"] = bool(out["noDamage"])
     for k in STRS:
         out[k] = str(out[k] if out[k] is not None else "")
     if out["disadvantage"] not in ("", "rest", "all"):
@@ -57,7 +61,10 @@ def apply(system, entry, text):
             system[k] = entry[k]
     if entry and "uses" in entry:
         n = int(entry["uses"].get("max", 0))
-        system["uses"] = {"value": n, "max": n, "per": entry["uses"].get("per", "") if n else ""}
+        # A count the text works out ("Dexterity modifier times per day, minimum 1"): the formula sets the maximum on a
+        # character (item-models.mjs usesField); `max` is the fallback shown in the compendium.
+        system["uses"] = {"value": n, "max": n, "per": entry["uses"].get("per", "") if n else "",
+                          "formula": str(entry["uses"].get("formula", "") or "")}
     acts = [clean(a) for a in (entry or {}).get("activities", []) if a.get("name")]
     if not acts:
         return False

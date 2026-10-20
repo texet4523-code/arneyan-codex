@@ -1,5 +1,5 @@
 import { ARNEYAN } from "../config.mjs";
-import { ModSet, collectRules, wordList } from "../effects.mjs";
+import { ModSet, collectRules, wordList, usesMax } from "../effects.mjs";
 
 const { NumberField, StringField, HTMLField, SchemaField, BooleanField, ArrayField } = foundry.data.fields;
 
@@ -17,6 +17,53 @@ function abilitiesSchema() {
 /** Prepare ability modifiers on any actor. */
 function prepareAbilities(system) {
   for (const a of Object.values(system.abilities)) a.mod = ARNEYAN.abilityMod(a.value);
+}
+
+/** The class level a feature counts by: its class (or its kit's class), else the character's level. */
+export function classLevelFor(item, classes, actor, level) {
+  const name = String(item?.system?.className ?? "").toLowerCase();
+  if (!name) return level;
+  const named = n => classes.find(c => c.name.toLowerCase() === n || c.name.toLowerCase().startsWith(`${n} `));
+  const kit = (actor.items ?? []).find?.(i => i.type === "kit" && i.name.toLowerCase() === name);
+  const cls = named(name) ?? (kit?.system?.className ? named(String(kit.system.className).toLowerCase()) : null);
+  return cls?.system?.levels ?? level;
+}
+
+/** What a uses formula can read: attribute modifiers (@dex.mod), @level, @half and @casting.mod. */
+function usesBase(s, classes) {
+  const ab = Object.fromEntries(Object.entries(s.abilities ?? {}).map(([k, v]) => [k, { value: v.total ?? v.value, mod: v.mod ?? ARNEYAN.abilityMod(v.total ?? v.value) }]));
+  // "Your casting-stat modifier" (Blood Magic): the best among the casting classes.
+  const casting = classes.filter(c => c.system.castingAbility && ab[c.system.castingAbility]).map(c => ab[c.system.castingAbility].mod);
+  const level = s.level ?? Math.max(1, classes.reduce((t, c) => t + (c.system.levels || 0), 0));
+  return { ...ab, abilities: ab, level, half: ARNEYAN.halfLevel(level), casting: { mod: casting.length ? Math.max(...casting) : 0 } };
+}
+
+/** An item's uses from its formula on this character as it is now (a feature added mid-game starts full), or null. */
+export function formulaUsesFor(actor, item) {
+  try {
+    const f = item?.system?.uses?.formula;
+    if (!f || actor?.type !== "character") return null;
+    const classes = (actor.items ?? []).filter(i => i.type === "class");
+    const base = usesBase(actor.system, classes);
+    return usesMax(f, { ...base, cl: classLevelFor(item, classes, actor, base.level) }, item.system.uses.max ?? 0);
+  } catch {
+    return null;
+  }
+}
+
+/** Set uses.max on every item with a uses formula, from the character's numbers. Never throws. */
+function prepareFormulaUses(actor, s, classes) {
+  try {
+    const base = usesBase(s, classes);
+    for (const i of actor.items ?? []) {
+      const u = i.system?.uses;
+      if (!u?.formula) continue;
+      try {
+        u.max = usesMax(u.formula, { ...base, cl: classLevelFor(i, classes, actor, s.level) }, u.max);
+        if (u.value > u.max) u.value = u.max;
+      } catch (err) { console.warn(`Arneyan | uses formula on ${i.name}`, err); }
+    }
+  } catch (err) { console.warn("Arneyan | uses formulas", err); }
 }
 
 /* -------------------------------------------- */
@@ -110,6 +157,9 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     const rates = classes.map(c => c.system.xpRate || 10);
     s.xpRate = (rates.length ? Math.max(...rates) : 10) + Math.max(0, classes.length - 1) * 2;
     s.classLabel = classes.map(c => `${c.name} ${c.system.levels}`).join(" / ");
+
+    // Uses worked out from a formula (Flèche: Dexterity modifier a day, minimum 1; Turn Undead: 3 + Wisdom).
+    prepareFormulaUses(actor, s, classes);
 
     // Saves: attribute modifier + half character level (minimum 1) + bonuses.
     for (const [k, cfg] of Object.entries(ARNEYAN.saves)) {

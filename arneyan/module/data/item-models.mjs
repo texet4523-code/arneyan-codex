@@ -35,7 +35,15 @@ export function effectFields() {
       rules: new ArrayField(ruleField())
     })),
     /** Auras this grants (see module/auras.mjs): radius, who, rules for those inside, what happens at their turn. */
-    auras: new ArrayField(new ObjectField())
+    auras: new ArrayField(new ObjectField()),
+    /**
+     * An attribute bonus of the player's choice (Will of Iron: Wisdom, Intelligence or Charisma): its `ability.*` rules
+     * count for the picked attribute (`value`; blank: the first option). Asked for when the item is added to a character.
+     */
+    abilityChoice: new SchemaField({
+      options: new ArrayField(new StringField({ required: true, blank: false })),
+      value: str()
+    })
   };
 }
 
@@ -64,11 +72,16 @@ export function stackSlots(sys) {
   return (sys.slots || 0) * qty;
 }
 
-/** Uses of a feature, feat or kit feature: so many per encounter, day, rest, week, session or month. */
+/**
+ * Uses of a feature, feat or kit feature: so many per encounter, day, rest, week, session or month. `formula`, when
+ * set, works out the maximum on a character instead ("max(1, @dex.mod)", "3 + @wis.mod", "@cl" for the class level,
+ * or a level table "5:1, 9:2"); `max` is kept as the fallback.
+ */
 export const usesField = () => new SchemaField({
   value: int(0, { min: 0 }),
   max: int(0, { min: 0 }),
-  per: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.usesPer })
+  per: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.usesPer }),
+  formula: str()
 });
 
 /**
@@ -108,7 +121,11 @@ export const activityField = () => new ArrayField(new SchemaField({
   /** attacks: a damage rule from this feature doesn't stack with the bonus: the higher counts ("Bow Mastery"). */
   noStack: str(),
   /** attacks: "half": every target must be of Level up to half yours (a warning, not a block). */
-  targetLevel: str()
+  targetLevel: str(),
+  /** Using it takes the creature's reaction for the round (Attack of Opportunity, Riposte, Parry). */
+  reaction: new BooleanField({ initial: false }),
+  /** attacks: a hit does something "instead of dealing damage" (Push): no damage buttons. */
+  noDamage: new BooleanField({ initial: false })
 }));
 
 class BaseItemData extends foundry.abstract.TypeDataModel {

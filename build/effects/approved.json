@@ -1126,8 +1126,12 @@
    }
   ],
   "summary": "+1 Str (switch to Dex if chosen); Advantage reminder on resisting disarm, prone, forced movement.",
-  "manual": "Str or Dex choice.",
-  "confidence": "medium"
+  "manual": "Attribute picked when the item is added to a character (or on its sheet).",
+  "confidence": "medium",
+  "abilityChoice": [
+   "str",
+   "dex"
+  ]
  },
  "feats/CvA3CJOH1jZsKG1W": {
   "name": "Sure Footing",
@@ -1246,8 +1250,13 @@
    }
   ],
   "summary": "+2 Will saves; +1 Wis (switch to Int or Cha if chosen).",
-  "manual": "Wis/Int/Cha choice.",
-  "confidence": "medium"
+  "manual": "Attribute picked when the item is added to a character (or on its sheet).",
+  "confidence": "medium",
+  "abilityChoice": [
+   "wis",
+   "int",
+   "cha"
+  ]
  },
  "class-features/vcBhJLUgua28MVqR": {
   "name": "Running Shot",
@@ -1641,24 +1650,11 @@
  "class-features/xQduvZAeAsW5joJx": {
   "name": "Primeval Will",
   "from": "Barbarian",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Primeval Will",
-    "target": "self",
-    "rounds": 0,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "hp.temp",
-      "value": "2*@cl"
-     }
-    ]
-   }
-  ],
-  "summary": "Gain temporary HP equal to twice your level.",
+  "container": "passive",
+  "summary": "Temporary HP equal to twice your level, from its Use (the activity grants it; no separate effect, so it isn't doubled).",
   "manual": "Trigger (HP at or below twice your level, or automatic at 0); remove remaining HP at combat end.",
-  "confidence": "high"
+  "confidence": "high",
+  "rules": []
  },
  "class-features/IL3Tj1tUwgbuYXoJ": {
   "name": "Strength Bonus",
@@ -2001,8 +1997,12 @@
    }
   ],
   "summary": "+1 Str.",
-  "manual": "Str or Dex choice; switch the key if Dex.",
-  "confidence": "medium"
+  "manual": "Attribute picked when the item is added to a character (or on its sheet).",
+  "confidence": "medium",
+  "abilityChoice": [
+   "str",
+   "dex"
+  ]
  },
  "class-features/1bf69xbYkk9fBqpS": {
   "name": "Legend of Battle",
@@ -2407,17 +2407,13 @@
     "statuses": [],
     "rules": [
      {
-      "key": "hp.temp",
-      "value": "@abilities.cha.mod*@cl"
-     },
-     {
       "key": "adv.attack.first",
       "value": 1
      }
     ]
    }
   ],
-  "summary": "Temporary HP (Cha mod x Knight level) and Advantage on your first attack each round until the encounter ends.",
+  "summary": "Advantage on your first attack each round until the encounter ends; the temporary HP (Cha mod x Knight level) comes from its Use.",
   "manual": "Trigger (below half HP, witnessed); remove at encounter end.",
   "confidence": "high"
  },
@@ -2466,15 +2462,15 @@
    {
     "name": "Stunned",
     "target": "target",
-    "rounds": 1,
+    "rounds": "1:1, 10:1d4",
     "statuses": [
      "stunned"
     ],
     "rules": []
    }
   ],
-  "summary": "Stunned for 1 round on a failed Fortitude save.",
-  "manual": "1d4 rounds from 10th level; daily limit; per-encounter immunity.",
+  "summary": "Stunned for 1 round (1d4 rounds from 10th level) on a failed Fortitude save.",
+  "manual": "Daily limit (uses: once per Monk level a day); per-encounter immunity.",
   "confidence": "medium"
  },
  "class-features/nBePPFAKRD3DlY3k": {
@@ -4498,10 +4494,11 @@
   "rules": [
    {
     "key": "spell.damage",
-    "value": "+@abilities.wis.mod"
+    "value": "+@abilities.wis.mod",
+    "when": "to one target of a damage-dealing spell"
    }
   ],
-  "summary": "+Wis modifier spell damage.",
+  "summary": "Reminder: +Wis modifier bonus damage to one target of a damage-dealing spell.",
   "manual": "Text says one target only: drop the extra from other targets of area spells.",
   "confidence": "medium"
  },

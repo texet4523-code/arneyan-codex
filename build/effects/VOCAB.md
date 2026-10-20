@@ -40,7 +40,7 @@ Multipliers and flags:
 - `no.cast` (1 = cannot cast spells), `no.act` (1 = no actions or reactions), `no.reactions` (1)
 
 Advantage (+1) / Disadvantage (-1), on the creature's own rolls:
-- `adv.attack`, `adv.attack.melee`, `adv.attack.ranged`, `adv.attack.first` (the first attack each round only)
+- `adv.attack`, `adv.attack.melee`, `adv.attack.ranged`, `adv.attack.first` (the first attack each round only), `adv.attack.first.melee` (the first melee attack each round only: Charge)
 - `adv.save`, `adv.save.fort`, `adv.save.ref`, `adv.save.will`
 - `adv.check`, `adv.check.str` … `adv.check.cha`, `adv.skill`
 - `adv.init`, `adv.luck`, `adv.concentration`

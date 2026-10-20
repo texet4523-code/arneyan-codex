@@ -30,6 +30,9 @@ def patch(system, entry):
         if c == "toggle" or not system.get("toggle"):
             system["toggle"] = c == "toggle"
             system["active"] = False
+    # An attribute bonus of the player's choice (Will of Iron: Wis, Int or Cha): the options; the first is the default.
+    if entry.get("abilityChoice"):
+        system["abilityChoice"] = {"options": [str(o) for o in entry["abilityChoice"]], "value": ""}
     if entry.get("applies"):
         # Keep applies the spell or feature already had; add the approved ones not there yet (by name).
         have = {a.get("name") for a in system.get("applies", []) or []}

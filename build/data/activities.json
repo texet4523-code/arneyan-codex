@@ -475,13 +475,18 @@
     "text": "Enter a rage for 3 + Constitution modifier rounds (minimum 3), gaining +2 melee damage (+4 from 10th, +6 from 20th).",
     "minLevel": 0,
     "cost": 0,
-    "per": "day",
+    "per": "",
     "target": "self",
     "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "1 + Con mod per day; uses not tracked on the item."
+  "why": "1 + Con mod per day; uses not tracked on the item.",
+  "uses": {
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, 1 + @con.mod)"
+  }
  },
  "Primeval Instincts|Barbarian": {
   "activities": [
@@ -735,8 +740,8 @@
     "save": "will",
     "text": "Undead within 30ft save against your Turn DC or are turned (destroyed from 8th level if their Level is no more than half yours).",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "",
     "removeConditions": false
    },
@@ -746,14 +751,19 @@
     "save": "will",
     "text": "Evil Clerics only: undead at least 5 Levels below you save against your Turn DC or obey you for 1 hour per Cleric level.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "",
     "removeConditions": false
    }
   ],
   "confidence": "medium",
-  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC."
+  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC.",
+  "uses": {
+   "max": 3,
+   "per": "day",
+   "formula": "3 + @wis.mod"
+  }
  },
  "Perfect Recall|Cleric": {
   "activities": [
@@ -1703,16 +1713,21 @@
     "kind": "damage",
     "formula": "@cl",
     "damageType": "",
-    "text": "Gain Advantage on one attack roll and add +1 damage per Paladin level; uses per day in the Paladin Progression Table.",
+    "text": "Gain Advantage on one attack roll and add +1 damage per Paladin level.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "one",
     "removeConditions": false
    }
   ],
   "confidence": "medium",
-  "why": "Bonus damage stated; daily uses come from the table."
+  "why": "Bonus damage stated; daily uses come from the table.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 15:2, 20:3"
+  }
  },
  "Turn Undead|Paladin": {
   "activities": [
@@ -1722,14 +1737,19 @@
     "save": "will",
     "text": "Undead within 30ft save against your Turn DC (as a Cleric 2 levels lower) or are turned.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "",
     "removeConditions": false
    }
   ],
   "confidence": "medium",
-  "why": "3 + Cha mod per day; Turn DC differs from class DC."
+  "why": "3 + Cha mod per day; Turn DC differs from class DC.",
+  "uses": {
+   "max": 3,
+   "per": "day",
+   "formula": "3 + @cha.mod"
+  }
  },
  "Bequeath Virtue|Paladin": {
   "activities": [
@@ -2242,14 +2262,19 @@
     "kind": "note",
     "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "self",
     "removeConditions": false
    }
   ],
   "confidence": "medium",
-  "why": "1 to 4 uses per day by level; not tracked on the item."
+  "why": "1 to 4 uses per day by level; not tracked on the item.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "5:1, 9:2, 13:3, 17:4"
+  }
  },
  "Sorcerer's Spark|Sorcerer": {
   "activities": [
@@ -2310,7 +2335,8 @@
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    },
    {
     "name": "Riposte",
@@ -2321,7 +2347,8 @@
     "per": "round",
     "target": "one",
     "removeConditions": false,
-    "count": "1"
+    "count": "1",
+    "reaction": true
    },
    {
     "name": "Acrobatic Escape",
@@ -2332,7 +2359,8 @@
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    }
   ],
   "confidence": "high",
@@ -2364,13 +2392,18 @@
     "count": "1",
     "weapons": "melee",
     "disadvantage": "all",
-    "cost": 0,
-    "per": "day (Dexterity modifier, minimum 1)",
+    "cost": 1,
+    "per": "",
     "text": "One additional melee attack this round as part of your action, with Disadvantage (an extra attack)."
    }
   ],
   "confidence": "high",
-  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here."
+  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @dex.mod)"
+  }
  },
  "Eldritch Invocations|Warlock": {
   "activities": [
@@ -2497,10 +2530,10 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for 1 minute, repeating the save each turn.",
+    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "one",
     "removeConditions": false
    },
@@ -2508,10 +2541,10 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on saving throws for 1 minute, repeating the save each turn.",
+    "text": "A creature within 30ft saves or has Disadvantage on saving throws for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "one",
     "removeConditions": false
    },
@@ -2519,10 +2552,10 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on ability checks for 1 minute, repeating the save each turn.",
+    "text": "A creature within 30ft saves or has Disadvantage on ability checks for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "day",
+    "cost": 1,
+    "per": "",
     "target": "one",
     "removeConditions": false
    },
@@ -2588,7 +2621,12 @@
    }
   ],
   "confidence": "medium",
-  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day."
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @wis.mod)"
+  }
  },
  "Cauldron of the Ninth Moon|Witch": {
   "activities": [
@@ -2672,7 +2710,8 @@
     "cost": 1,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    }
   ],
   "confidence": "high",
@@ -3005,7 +3044,8 @@
     "kind": "attacks",
     "count": "1",
     "cost": 0,
-    "text": "On a hit, push a creature up to one size larger than you 10ft instead of dealing damage."
+    "text": "On a hit, push a creature up to one size larger than you 10ft instead of dealing damage.",
+    "noDamage": true
    }
   ],
   "confidence": "high",
@@ -3058,7 +3098,8 @@
     "weapons": "melee",
     "cost": 0,
     "per": "round",
-    "text": "Once per round, against an enemy you can see that leaves your melee reach or moves past or through it. Disengage prevents it."
+    "text": "Once per round, against an enemy you can see that leaves your melee reach or moves past or through it. Disengage prevents it.",
+    "reaction": true
    }
   ],
   "confidence": "high",
@@ -3881,10 +3922,43 @@
     "count": "1",
     "weapons": "melee",
     "cost": 0,
-    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging."
+    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging.",
+    "reaction": true
    }
   ],
   "confidence": "high",
   "why": "Handbook: a creature leaving your reach provokes one melee attack."
+ },
+ "Discord (Charisma)|Bard": {
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @cha.mod)"
+  },
+  "why": "\"usable a number of times per day equal to your Charisma modifier (minimum 1)\""
+ },
+ "Stun Attack|Monk": {
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "@cl"
+  },
+  "why": "\"limited to once per level per day\" (Monk level)"
+ },
+ "Ingenuity Points|Artificer": {
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @int.mod + @cl)"
+  },
+  "why": "\"A daily pool equal to Intelligence modifier + Artificer level (minimum 1)\""
+ },
+ "Blood Magic|Feat": {
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @casting.mod)"
+  },
+  "why": "\"a number of times per day equal to your casting-stat modifier (minimum 1)\" (the best casting class's)"
  }
 }

@@ -35,7 +35,8 @@ KEYS = {"Charge": "Charging", "Attack of Opportunity": "Opportunity Attack"}
 
 # Switches on the sheet, with the effect the table states.
 TOGGLES = {
-    "Charge": [("adv.attack", "1"), ("adv.against", "1")],
+    # "make one melee attack with Advantage": the first melee attack only, not every attack while it's on.
+    "Charge": [("adv.attack.first.melee", "1"), ("adv.against", "1")],
     "Dodge": [("adv.against", "-1")],
     "Shield Blow": [("adv.attack", "-1"), ("note.attack", "Shield Blow: on a hit the target makes a Fortitude save or is Stunned for 1d2 rounds")],
     "Flank Attack": [("adv.attack.melee", "1")],

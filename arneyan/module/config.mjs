@@ -261,7 +261,7 @@ ARNEYAN.ruleKeys = {
     "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
-  "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
+  "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration"],
   "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "crit.against.close"],
   "Automatic failure": ["fail.save.fort", "fail.save.ref", "fail.save.will", "fail.check.str", "fail.check.dex", "fail.check.con", "fail.check.int", "fail.check.wis", "fail.check.cha"],
