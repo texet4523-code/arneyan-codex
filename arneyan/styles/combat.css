@@ -24,3 +24,8 @@
 .arn-reaction:hover { background: rgba(58, 122, 48, .6); }
 .arn-reaction.spent { color: rgba(255, 255, 255, .35); border-color: rgba(255, 255, 255, .2); background: transparent; }
 .arn-reaction.blocked { color: rgba(255, 92, 77, .6); border-color: rgba(139, 42, 31, .6); background: transparent; }
+
+.arneyan .arn-subdual-chip { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 4px; font-size: 11px; }
+.arneyan .arn-subdual-chip .arn-chip { background: color-mix(in srgb, var(--arn-red) 14%, var(--arn-surface)); color: var(--arn-red); border-color: var(--arn-red); }
+.arneyan .arn-subdual-chip a { color: var(--arn-muted); cursor: pointer; }
+.arneyan .arn-subdual-chip a:hover { color: var(--arn-red); }

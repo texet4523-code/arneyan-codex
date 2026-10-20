@@ -205,7 +205,9 @@ const html = render("templates/actor/actor-sheet.hbs", ctx);
 assert.ok(html.includes('data-action="offhandAttack"'), "Light weapons get an off-hand button");
 assert.ok(html.includes('data-action="contest" data-kind="grapple"') && html.includes('data-kind="dirty"') && !html.includes('data-kind="escape"'), "contests (break free only when Restrained)");
 assert.ok(!html.includes('data-mode="finesse"') && html.includes('data-mode="shield"'), "dagger and shield: the shield is the off-hand");
-assert.ok(html.includes('name="flags.arneyan.subdual" value="4"') && html.includes('data-action="clearSubdual"'));
+assert.ok(html.includes("Non-lethal 4") && !html.includes('name="flags.arneyan.subdual"'), "non-lethal shows as a chip, not a box");
+assert.equal(html.includes('data-action="clearSubdual"'), !!globalThis.game?.user?.isGM, "only the GM clears it");
+{ const none = render("templates/actor/actor-sheet.hbs", { ...ctx, combat: { ...ctx.combat, subdual: 0 } }); assert.ok(!none.includes("arn-subdual-chip"), "no chip without non-lethal damage"); }
 assert.ok(html.includes('name="flags.arneyan.firearmsTrained"'));
 assert.ok(typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.contest === "function" && typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.rollMorale === "function");
 const nctx = await sheetContext(ArneyanActorSheet, cowards, { _activeTab: "actions" });

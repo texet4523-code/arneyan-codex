@@ -117,7 +117,7 @@
 .arneyan .arn-step { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--arn-surface-2); color: var(--arn-muted); cursor: pointer; font-size: 11px; }
 .arneyan .arn-step:hover { background: var(--arn-accent); color: #fff; }
 .arneyan .arn-hp-sub { display: flex; justify-content: center; gap: 10px; font-size: 11px; margin-top: 4px; color: var(--arn-muted); }
-.arneyan .arn-hp-sub label { display: inline-flex; align-items: center; gap: 4px; }
+.arneyan .arn-hp-sub label { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .arneyan .arn-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .arneyan .arn-stat { background: var(--arn-surface); border: 1px solid var(--arn-border); border-radius: 8px; padding: 6px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .arneyan .arn-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--arn-muted); font-weight: 700; }

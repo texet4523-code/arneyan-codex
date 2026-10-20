@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.4 · Foundry v13 and v14
+Version 0.10.5 · Foundry v13 and v14
+
+## What's new in 0.10.5
+
+- **Tidier Hit Points box.** The Non-lethal box is gone: non-lethal damage still comes from damage cards, and when a creature has some a red "Non-lethal N" chip shows under its HP (the GM can clear it). Max HP is typed in edit mode only; Temp stays.
 
 ## What's new in 0.10.4
 
