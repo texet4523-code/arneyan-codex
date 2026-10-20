@@ -175,6 +175,7 @@ async function changeClassLevel(actor, cls, target) {
   const con = actor.system.abilities.con.mod;
   const gains = [];
   const lines = [];
+  const hpRolls = [];
   for (let lvl = from + 1; lvl <= target; lvl++) {
     const charLevel = otherLevels + lvl;
     let base;
@@ -185,6 +186,7 @@ async function changeClassLevel(actor, cls, target) {
       base = die / 2 + 1; how = `average ${base}`;
     } else {
       const r = await new Roll(`1d${die}r1`).evaluate();
+      hpRolls.push(r);
       base = r.total; how = `rolled ${base}`;
     }
     const gain = Math.max(1, base + con);
@@ -212,7 +214,7 @@ async function changeClassLevel(actor, cls, target) {
   }
 
   ChatMessage.create({
-    speaker: ChatMessage.getSpeaker({ actor }),
+    speaker: ChatMessage.getSpeaker({ actor }), rolls: hpRolls,
     content: `<div class="arn-card"><header class="arn-card-title">${esc(actor.name)}: ${esc(cls.name)} ${target}</header>
       <ul>${lines.join("")}</ul><p>+${luckGain} Luck (now ${luckAfter}).</p>
       ${newFeatures.length ? `<p><strong>New:</strong> ${newFeatures.map(esc).join(", ")}</p>` : ""}</div>`

@@ -8,6 +8,7 @@ import { areaButton } from "./areas.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { damageRoll, resolveFormula } from "./rolls.mjs";
 import { effectDataFor, applyEffectTo, startConcentration } from "./effects.mjs";
+import { tagDamage, show3d } from "./dsn.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -92,9 +93,11 @@ export async function consume(item) {
   // Healing: rolled once and taken by the one who uses it.
   if (item.system.consumable.heal) {
     const roll = await new Roll(resolveFormula(item.system.consumable.heal, actor.getRollData?.() ?? {})).evaluate();
+    const formula = roll.formula;
+    tagDamage(roll, "healing");
     const r = await actor.applyDamage(roll.total, { mult: -1 });
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), rolls: [roll],
-      content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-heart"></i> <span>${esc(item.name)}</span></header><p>Rolled ${esc(roll.formula)}: <strong>${roll.total}</strong>. ${esc(r.text)}.</p></div>` });
+      content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-heart"></i> <span>${esc(item.name)}</span></header><p>Rolled ${esc(formula)}: <strong>${roll.total}</strong>. ${esc(r.text)}.</p></div>` });
   }
   return useUp(item);
 }
@@ -126,6 +129,7 @@ export async function rechargeAtDawn(actor) {
     let r = null;
     try { r = await new Roll(String(i.system.charges.recharge)).evaluate(); } catch { r = null; }
     if (!r) continue;
+    show3d(r);
     const before = i.system.charges.value;
     const value = Math.min(i.system.charges.max, before + r.total);
     await i.update({ "system.charges.value": value });

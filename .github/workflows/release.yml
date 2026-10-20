@@ -1,0 +1,73 @@
+# Publish a release of The Arneyan Codex that Foundry can install from a link.
+#
+# Runs when a release is published on GitHub (tag "v0.10.0" or "0.10.0"). It compiles the compendiums from
+# packs-src/ (if they are committed), stamps the version and the download link into system.json, zips the
+# arneyan/ folder as arneyan.zip and attaches arneyan.zip and system.json to the release.
+# Foundry's manifest link then always points at the latest release's system.json:
+#   https://github.com/<owner>/<repo>/releases/latest/download/system.json
+# See RELEASING.md.
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Version from the tag
+        id: version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Compile the compendiums
+        run: |
+          if [ -d packs-src ]; then
+            npm ci
+            node build/pack.mjs
+          fi
+          if [ ! -d arneyan/packs ] || [ -z "$(ls -A arneyan/packs)" ]; then
+            echo "::error::No compendiums: commit packs-src/ (or arneyan/packs/) before releasing. See RELEASING.md."
+            exit 1
+          fi
+
+      - name: Stamp system.json
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const f = "arneyan/system.json";
+            const s = JSON.parse(fs.readFileSync(f, "utf8"));
+            const base = `https://github.com/${process.env.REPO}`;
+            s.version = process.env.VERSION;
+            s.url = base;
+            s.manifest = `${base}/releases/latest/download/system.json`;
+            s.download = `${base}/releases/download/${process.env.TAG}/arneyan.zip`;
+            fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");
+          '
+
+      - name: Zip the system
+        run: |
+          cd arneyan
+          zip -r ../arneyan.zip . -x "*.DS_Store"
+          cd ..
+          cp arneyan/system.json system.json
+
+      - name: Attach to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${GITHUB_REF_NAME}" arneyan.zip system.json --clobber
