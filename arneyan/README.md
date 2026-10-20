@@ -1,6 +1,6 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.9.1 · Foundry v13 and v14
+Version 0.10.0 · Foundry v13 and v14
 
 ## Installing
 
@@ -237,6 +237,101 @@ Each is built from the system's own class, ancestry, kit, features, feats, skill
 - **Several options:** a window asks which (Lay on Hands: Heal, Cure Disease, or Divine Healing from 12th). Options with their own count (Cure Disease per week) don't spend the daily use; damage that steps up with level offers only the step you've reached.
 - The feature's sheet lists what it does under **When used**.
 
+## Combat rules
+
+### Cover and concealment
+Half Cover, Full Cover and Concealed are on the token HUD with the other conditions. Attacks against a creature in Half Cover or Concealed have Disadvantage. A creature in Full Cover can't be targeted: the attack stops with a warning.
+
+### Flanking and crowding
+Attack rolls read the map. A melee attack gets Advantage when an ally stands directly opposite you across the target and can reach it. A ranged attack has Disadvantage when an enemy is within 5ft of you, or when the target is next to one of your allies (shooting into melee). The attack card says why. Turn this off in Game Settings ("Flanking and crowding from token positions"). The Flank Attack and Rear Attack switches still work by hand; the Codex has no facing, so Rear Attack is always your call.
+
+### Dual wielding and fighting defensively
+Light weapons have an **Off** button next to their to-hit: an off-hand attack with Disadvantage that adds no attribute modifier to damage. Under **Combat** on the Actions tab, **Fight defensively** uses your off-hand weapon or shield instead: a Light weapon gives +1 AC against the first melee attack that round, a Light Finesse weapon +1 AC against every melee attack, and a shield +1 AC against everything (it costs your extra attacks). It lasts until the start of your next turn; click it again to stop.
+
+### Grapple, Trip, Disarm and other contests
+Target one creature, then press a contest under **Combat** on the Actions tab (or Use on the action from the Actions compendium). Both sides roll, the better attribute is picked for whoever has the choice, the higher total wins and a tie goes to the defender. The GM's client rolls for creatures you don't control. A win applies the result: Grapple makes the target Restrained, Trip and Overbear knock it Prone, Dirty Trick Blinds it until the end of its next turn, Disarm says it drops its weapon. A Restrained creature gets a **Break free** button. Entangling weapons give Advantage on Trip and Grapple, Sunder weapons on Disarm. Monsters use their save minus half their Hit Dice.
+
+### Non-lethal damage
+Every damage card has a fist button to apply it as non-lethal (subdual) damage. Unarmed strikes are non-lethal by default, with a **Lethal** button for the rest. Non-lethal damage builds up in the **Non-lethal** box beside HP; when it reaches the creature's current HP, it is knocked out (Unconscious, not dying). The **Unarmed strike** button under Combat adds an Unarmed Strike (1d2 + Strength) to your weapons the first time. Clear the box with its cross once the creature has recovered.
+
+### Morale
+Click Morale on a monster's sheet, or right-click it in the combat tracker, to roll 2d6 against its Morale Score. Higher than the score breaks it. From the tracker, a group of the same monster rolls once. Effects with the `morale` rule key raise or lower the score.
+
+### Reactions
+Each combatant has a lightning marker in the combat tracker. Click it when the creature reacts; it comes back at the start of its turn. Using Opportunity Attack, Parry or any ability whose text starts with "Reaction" spends it for you, with a warning if it was already spent.
+
+### Firearms
+Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jams the gun (no damage buttons) and it asks to be cleared before it fires again. A natural 1 also rolls the catastrophe d6: damaged, backfire, destroyed or explosion, with a damage card aimed at the right creatures. Reliable guns misfire only on a 1; Silent Mechanism never does. Gunslingers, Fighters, Rangers and Tenor Hold dwarves are trained; anyone else ticks **Trained** under Combat if their backstory or downtime gave it. Untrained shooters have Disadvantage, and a would-be critical jams instead. Firearm damage dice explode.
+
+## GM tools
+
+
+**Ask for a roll.** From the party sheet (Ask for a roll) or the Token tools on the left (the d20 button), pick a saving throw, an attribute check or a skill, and a DC (Easy 10, Moderate 12, Hard 15, Severe 20). Everyone you tick gets a Roll button on one chat card. Each player rolls their own character; the GM can roll for anyone, or press "roll for the rest" for absent players. Results fill into the card with a tick or a cross, and Luck burned afterwards updates them. Someone without the skill rolls it untrained. Tick selected tokens in the window to ask monsters or NPCs too.
+
+**Award XP.** Award XP on the party sheet gives XP to everyone or to the members you tick: the same amount each, or split between them. XP stops at the character's rate (the XP per level of their class) until they take the level. Anyone with enough XP shows "Level up" on the party sheet and in the award card. Taking the level with the level-up arrow spends the XP and sets it back to 0.
+
+**Treasure.** A gem button next to a monster's name (GM only) rolls its Treasure code: individual treasure (P to S) for each creature, a hoard (A to H) once for the group, and the lair hoard if you tick it. Gems are named from the Catalogue's stones, art objects from the book's examples, and magic items link to the Catalogue entry. You can turn part of a hoard's coin into lots of trade goods. "Put it in the party stash" adds the coins to the stash's coins and everything else as items (a "Weapon +1" stays a placeholder until you pick the weapon). The Encounter Builder's "Roll their treasure" does the same for every creature in the encounter.
+
+**Encounter Builder.** "Save for later" keeps the encounter in the world's list of saved encounters; click one to load it. The dice button on a foe rolls its No. appearing as the count (Shift-click for the lair number). The menu by "Place on the current scene" can roll every group's No. appearing (in the wild or in the lair) as they are placed.
+
+**Tables of Arneyan.** A compendium of roll tables from the books: gems (Lesser, Fine, Superb, and the stones of each tier), art objects, trade goods, magic items by rarity (with the iconic item tables, linked to the Catalogue), Unique powers and quirks, the travel Encounter Check, Reaction Checks, a firearm's catastrophic misfire, and the tables in Confusion, Prismatic Spray, Contact Other Plane, the Wand of Wonder and the Efreeti Bottle.
+
+**Hazards and traps.** Create an Actor of type "Hazard or trap". Its sheet holds how to spot it (a Wisdom check and DC), how to disarm it (an attribute check or a skill, and DC), what triggers it, what it does (an attack, a save with damage and a condition), its reset or routine, and its AC, Hardness and HP if someone smashes it. "Ask the party" posts a group roll to spot or disarm it. "Trigger it" posts a card with the attack, save and damage buttons; the damage card has the usual Apply and Apply by saves buttons. A complex hazard rolls initiative and shows its routine on its turn.
+
+**Environmental hazards.** The thermometer in the Token tools opens the clocks for holding your breath (and drowning), extreme heat and extreme cold, for the selected tokens or the whole party. The breath clock moves on with each combat round (or Next round): it counts down each creature's breath (1 + Constitution modifier minutes, at least 30 seconds), then the rounds until it falls unconscious at 0 HP, then dying. Rough water adds a Strength check each round. Heat and cold post each hour's Fortitude save (DC 10, +2 an hour) as a group roll, with Disadvantage for medium or heavy armour in the heat and Advantage for warm clothing, a fire or shelter in the cold; a button gives those who failed a level of Exhaustion. Quick cards cover flames, smoke, acid and lava.
+
+## Time, companions and travel
+
+### Game time
+
+Effects now run on the game clock as well as in combat. A spell or ability effect with a duration (rounds, minutes, hours or days) ends when that much game time has passed, in or out of combat; while its own combat is running, the combat's rounds end it as before. Numbered conditions (Stunned 2) also count down with game time outside combat. Concentration ends when the spell's own duration runs out. Lit torches and lanterns already burn down with game time.
+
+A small clock above the player list shows the game date and time. The GM's buttons move it on 10 minutes, 1 hour, 8 hours (a night's rest; use Rest on the party sheet for its benefits) or 1 day. A world setting hides the clock from players.
+
+### Summoning
+
+Cast a summoning spell (Summon Monster, Summon Animals, Summon Elemental and the rest) and its chat card gets a
+**Summon creatures** button. Pick the creatures from the Bestiary within the spell's limits (Levels, how many, the kind of creature); they appear beside the caster, belong to the caster's player, and join the caster's combat acting straight after the caster. They leave when the spell's duration ends (rounds in combat, game time outside it), when concentration ends (Summon Swarm), when they drop to 0 HP, or when dismissed from the caster's sheet. You can have only one spell-made attacker at a time: summoning again, or casting Spiritual Weapon, Animate Objects, Mordenkainen's Sword and the like, sends the last one away.
+
+A Warlock's **Pact Summons** card has a **Call your patron's servant** button: choose the tier (each spends a slot of its tier, a 5th-level slot for Tier 4) and combat (1 minute) or ritual (1 hour). The servant comes from your Path's Shared Summons; Tier 1 servants arrive with double HP and damage dice. A slain servant can't be called again until a long rest.
+
+### Familiars, companions and mounts
+
+The **Companions** box on a character's sheet holds familiars, animal companions, mounts and pets. Press + and pick what it is (the sheet offers what your class, kit and spells give you) and which creature, or drop any creature from the Bestiary on the box. Each one gets its own small sheet in Allies, Mounts & Pets, owned by the same player, with its stats from the class text, and they follow your level:
+
+- Witch, Familiar: 1 HP per two Witch levels (minimum 1), AC 14.
+- Wizard, Summon Familiar: half your maximum HP.
+- Ranger (Beast Master), Bonded Companion: Hit Dice equal to half your Ranger level, rounded up.
+- Paladin, Divine Mount and Knight, Birthright Mount: a light warhorse (or a war pony for a small Paladin).
+- Artificer (Construct Engineer), Construct Companion: built to its chassis (Guardian, Scout or Striker).
+- Any mount or pet: its Bestiary stat block.
+
+The box shows each one's portrait, HP and AC, with buttons to put it on the map beside you (or find it there) and to let it go. An active summon shows there too, with its time left and a Dismiss button.
+
+### Downtime
+
+Characters have a **Downtime** tab: a log of what they did between adventures. **New activity** offers the Codex's downtime activities: Earn Income, Craft, Brew a Potion, Make a Magic Item, Copy a Spell, Scribe a Scroll, Research a Spell, Learn a Skill, Train, Treat a Disease, Side Quest, and anything else the GM rules on. Each one works out the days and the gold, takes the coins (tick "Paid already" if you've paid), rolls the check where the Codex gives one, pays out income or returns half the gold on a failed craft, and adds a line to the log. Results can be edited afterwards.
+
+### Travel
+
+The party sheet has a **Travel** tab. Set the distance in hexes, how the party travels (on foot, mounted or by ship, or an Umbral Journey), the pace, and whether the terrain is difficult (one pace slower): it shows hexes a day, days to go and the rations needed against what the members and the stash carry. Each day the GM presses **Travel one day**: game time moves on a day, everyone eats a day's rations (a Week's Rations pack holds seven) and drinks a day's water (a canteen or waterskin holds a day's water until refilled; tick "Water along the way" when there are streams and wells), and the Encounter Check is rolled (d12: 11 a Standard Encounter, 12 a Dangerous one), drawing from the encounter roll table named on the tab (or one called Travel Encounters, Random Encounters or the like). Going without food past 3 + Constitution modifier days, or without water, brings Exhaustion.
+
+## Spells, kits and optional modules
+
+### Class-only spells, Patrons and Kits
+
+The spells that only appear in a class entry are in the **Spells** compendium too, each in its class's folder: the Witch's hexes and class-only spells, the Necromancer's class-only spells, and the Warlock's Eldritch Blast, Enslave and Slay Living. Drag them onto a sheet like any other spell.
+
+The Witch's **Patrons** and the Artificer's **Kits** are in the **Kits** compendium (Witch and Artificer folders). Drop one on a character and its features arrive at the right levels: a Patron's Buff at 1st, Curse at 6th and Physical Change at 12th; a Kit's features at 1st, 3rd, 7th, 11th, 15th and 24th. An Artificer Kit's description lists its Workshop options (infusions, chassis mods, gadgets or formulas).
+
+### Optional modules
+
+The system works on its own. If these modules are active, it uses them:
+
+- **Dice So Nice**: every roll shows 3D dice, including damage, healing, rest and level-up rolls. Damage dice take the colour of their damage type (fire, cold, acid and the rest use Dice So Nice's own looks; slashing, piercing, bludgeoning and healing have Arneyan ones). Change the looks in Dice So Nice's Dice Roles settings, or switch off "Apply optional dice role appearances" to keep your own dice.
+- **Item Piles**: loot piles, vaults and merchants use Arneyan coins (pp, gp, sp, cp) and gear, with quantities and Catalogue prices (the first price listed counts, in gold). Gear that changes hands arrives unequipped.
+- **Token Action HUD Core**: select a token for a HUD of its attacks, manoeuvres, spells by level (prepared ones, with slots left), abilities with uses, saves, attribute checks, skills, conditions, initiative, Luck and rest. Click to use, as on the sheet (Shift for Advantage, Ctrl for Disadvantage); right-click an item to open it. With several tokens selected it shows saves, checks, conditions and initiative for all of them. No separate "Arneyan" HUD module is needed.
+
 ## Targeting
 - **Alt + right-click** a token to target or untarget it without losing your other targets.
 
@@ -275,7 +370,6 @@ Each is built from the system's own class, ancestry, kit, features, feats, skill
 ## Not in this version yet
 - Monster attribute scores: stat blocks don't list them, so they sit at 10.
 - The effects for the book's feats, class features, kits, ancestries and spells go in once the GM has approved the list. The engine, conditions and the item Effects tab are already here, so you can add your own now.
-- Class-only and Path spells (Necromancer, Witch, Warlock) are described in their class entries, not yet separate spell items.
 
 ## Credits
 Icons by Lorc, Delapouite and contributors at game-icons.net, CC BY 3.0.
