@@ -13,6 +13,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { toggleCondition } from "./effects.mjs";
+import { tagDamage } from "./dsn.mjs";
 
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
@@ -268,7 +269,7 @@ async function onAuraButton(btn) {
     if (!actor.isOwner) return ui.notifications.warn(`Ask the GM to put ${btn.dataset.status} on ${actor.name}.`);
     return toggleCondition(actor, btn.dataset.status, true);
   }
-  const roll = await new Roll(btn.dataset.formula).evaluate();
+  const roll = tagDamage(await new Roll(btn.dataset.formula).evaluate(), btn.dataset.type);
   const mult = Number(btn.dataset.mult) || 1;
   await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `${esc(btn.dataset.source)}: ${esc(btn.dataset.formula)} ${esc(btn.dataset.type)}${mult < 1 ? " (halved)" : ""}` });
   const { applyDamageTo } = await import("./chat.mjs");

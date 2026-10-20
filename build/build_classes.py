@@ -145,7 +145,7 @@ def build(icon_for_class):
                     continue
                 lvl = 2 if style == "Heading 1" else 3
                 desc.add(f"<h{lvl}>{esc(fix(t))}</h{lvl}>")
-                if re.match(r"^(Kits|Bloodline Kits|Deities|Patron Paths)", t):
+                if re.match(r"^(Kits|Bloodline Kits|Deities|Patron Paths|Patrons$)", t):
                     desc.add(f'<p class="arn-note">Each kit is an item in the <strong>Kits</strong> compendium, in the {esc(name)} folder. Drag one onto your character.</p>')
                 continue
             if info["bold"] and re.match(r"^Kit\s+—", t):

@@ -1,4 +1,5 @@
 import { ARNEYAN } from "./config.mjs";
+import { tagDamage } from "./dsn.mjs";
 
 const SYS = "arneyan";
 
@@ -206,8 +207,8 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
     const max = crit ? maxOfDice(rf) : 0;
     riders.push({ formula: tidy(max ? `${rf} + ${max}` : rf), type, label: x.label || `${rf} ${type}`.trim() });
   }
-  const rolls = [await new Roll(f).evaluate()];
-  for (const r of riders) rolls.push(await new Roll(r.formula).evaluate());
+  const rolls = [tagDamage(await new Roll(f).evaluate(), damageType)];
+  for (const r of riders) rolls.push(tagDamage(await new Roll(r.formula).evaluate(), r.type));
   const total = rolls.reduce((t, r) => t + r.total, 0);
   const split = [{ type: damageType, amount: rolls[0].total }, ...riders.map((r, i) => ({ type: r.type, amount: rolls[i + 1].total }))];
   // Same type twice (a fire sword's fire rider on fire damage) reads as one.

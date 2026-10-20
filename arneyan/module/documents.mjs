@@ -512,12 +512,14 @@ export class ArneyanActor extends Actor {
     let heal = 0;
     let note = "";
     const updates = {};
+    const rolls = [];
     if (where === "haven") {
       heal = haven;
       if (!heal) {
         const dice = this.items.filter(i => i.type === "class").map(c => Number(c.system.hitDie.slice(1)));
         const largest = Math.max(4, ...dice);
         const r = await new Roll(`1d${largest}`).evaluate();
+        rolls.push(r);
         heal = r.total + Math.max(0, con);
         updates["system.rest.haven"] = heal;
         note = ` (rolled d${largest}: ${r.total}, + Con, for every night of this stay)`;
@@ -546,7 +548,7 @@ export class ArneyanActor extends Actor {
     const line = `${this.name}: +${heal} HP${hadExhaustion ? ", one Exhaustion level off" : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
     if (quiet) return line;
     ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ actor: this }), rolls,
       content: `<div class="arn-card"><header class="arn-card-title">${this.name} rests ${label}</header>
         <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadExhaustion ? ", one level of Exhaustion removed" : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
     });

@@ -53,6 +53,9 @@ def rounds_of(head):
 NOT_AREAS = {"Daylight", "Produce Flame", "Secret Page", "Wall of Iron", "Detect Poison", "Polymorph Any Object",
              "Sequester", "Stone Tell", "Antipathy"}
 
+# Spells whose duration is on the creatures, not the area: the area is cleared like an instant one.
+ON_CREATURES = {"Fear (Mass)"}
+
 
 def build():
     n = 0
@@ -61,6 +64,8 @@ def build():
         if d.get("type") != "spell":
             continue
         a = None if d["name"] in NOT_AREAS else area_of(d["system"].get("description", ""))
+        if a and d["name"] in ON_CREATURES:
+            a.update(lingering=False, rounds="")
         d["system"]["template"] = a or {"type": "", "size": 0, "width": 0, "attached": False, "fromSelf": False, "lingering": False, "rounds": "", "sizeFormula": ""}
         if a:
             n += 1

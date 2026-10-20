@@ -7,7 +7,8 @@ PALETTES = {
     "weapon": ("#3a1f17", "#e8c27a"), "armour": ("#1f2a33", "#d9dde2"), "shield": ("#1f2a33", "#d9dde2"),
     "gear": ("#2b2418", "#e9dcc0"), "magic": ("#22163a", "#c9a7ff"), "spell": ("#13263a", "#9fd3ff"),
     "feat": ("#1A3320", "#e8c27a"), "skill": ("#2D5A27", "#f1ead6"), "ancestry": ("#3a2a17", "#f1ead6"),
-    "kit": ("#1A3320", "#f1ead6"), "monster": ("#2a1414", "#f0b9a4"), "rule": ("#1A3320", "#f1ead6"), "action": ("#3a2a17", "#e8c27a"), "form": ("#2b2418", "#d8c7f0"), "place": ("#2b2418", "#e8c27a")
+    "kit": ("#1A3320", "#f1ead6"), "monster": ("#2a1414", "#f0b9a4"), "rule": ("#1A3320", "#f1ead6"), "action": ("#3a2a17", "#e8c27a"), "form": ("#2b2418", "#d8c7f0"), "place": ("#2b2418", "#e8c27a"),
+    "coin-pp": ("#2b2418", "#e5e4e2"), "coin-gp": ("#2b2418", "#e8c27a"), "coin-sp": ("#2b2418", "#c0c4c8"), "coin-cp": ("#2b2418", "#c8834f")
 }
 
 WEAPON = [

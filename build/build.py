@@ -2,7 +2,7 @@
 import os, shutil, subprocess, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import lib, icons
-import build_classes, build_cc, build_spells, build_codex, build_shop, build_actions, build_monsters, build_gear, build_tidy, build_areas, build_auras, build_pregens, build_ancestry_choices, build_activities
+import build_classes, build_cc, build_spells, build_codex, build_shop, build_actions, build_monsters, build_gear, build_tidy, build_areas, build_auras, build_pregens, build_ancestry_choices, build_activities, build_class_kits, build_class_spells
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
@@ -12,10 +12,13 @@ shutil.rmtree(lib.OUT, ignore_errors=True)
 os.makedirs(lib.OUT)
 
 build_classes.build(icons.kit_icon)
+print('patron and artificer kits:', build_class_kits.build(icons.kit_icon))
 build_cc.build(icons.icon)
 print('ancestry choices:', build_ancestry_choices.build())
 print('feature activities (and keys not found):', build_activities.build())
 build_spells.build(icons.icon)
+_cs = build_class_spells.build(icons.icon)
+print('class-only spells:', len(_cs[0]), 'made; already in the compendium:', _cs[1])
 print('spell areas:', build_areas.build())
 build_codex.build()
 build_shop.build(icons.icon)
@@ -36,6 +39,9 @@ print('pregens:', _pg['made'], 'made;', len(_pg['missing']), 'not in a compendiu
 # Icons (storage places' default art too)
 for glyph in ["locked-chest", "bank", "house", "galleon", "locked-box", "wooden-crate"]:
     icons.icon("place", glyph)
+# Coins (Item Piles' currencies)
+for coin in ("pp", "gp", "sp", "cp"):
+    icons.icon(f"coin-{coin}", "two-coins")
 icons.save(os.path.join(ROOT, "icons-used.json"))
 subprocess.run(["node", os.path.join(HERE, "make_icons.mjs"), os.path.join(ROOT, "icons-used.json"), os.path.join(SYS, "assets", "icons")], check=True, cwd=ROOT)
 subprocess.run(["node", os.path.join(HERE, "make_conditions.mjs")], check=True, cwd=ROOT)
