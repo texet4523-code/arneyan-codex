@@ -1,6 +1,6 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.26 · Foundry v13 and v14
+Version 0.10.26 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.26
 
