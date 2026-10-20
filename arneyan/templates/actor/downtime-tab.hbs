@@ -1,0 +1,20 @@
+{{!-- The Downtime log (Drop 4). --}}
+<div class="arn-section-head"><h3>Downtime</h3>
+  <span class="arn-muted">{{#if downtime.any}}{{downtime.days}} days logged · {{downtime.spent}} spent{{else}}Between adventures, in a safe haven{{/if}}</span>
+  {{#if editable}}<a class="arn-btn small" data-action="downtimeNew"><i class="fa-solid fa-plus"></i> New activity</a>{{/if}}</div>
+<p class="arn-help">Downtime runs a week or more. Each activity spends days and coins and, where the Codex gives one, rolls its check. The log stays as a record.</p>
+<ul class="arn-list table arn-downtime">
+  {{#each downtime.rows}}
+  <li data-entry-id="{{id}}">
+    <span class="arn-dt-when arn-muted">{{when}}</span>
+    <span class="arn-dt-what"><strong>{{activity}}</strong>{{#if title}}: {{title}}{{/if}}</span>
+    <span class="arn-dt-days">{{days}} day{{#unless (eq days 1)}}s{{/unless}}</span>
+    <span class="arn-dt-cost arn-muted">{{cost}}</span>
+    <span class="arn-dt-result">{{result}}{{#if roll}} <small class="arn-muted">(rolled {{roll}})</small>{{/if}}</span>
+    {{#if @root.editable}}<span class="arn-controls">
+      <a data-action="downtimeEdit" data-tooltip="Change the result"><i class="fa-solid fa-pen"></i></a>
+      <a data-action="downtimeDelete" data-tooltip="Delete the entry"><i class="fa-solid fa-trash"></i></a>
+    </span>{{/if}}
+  </li>
+  {{else}}<li class="arn-empty">Nothing yet.</li>{{/each}}
+</ul>

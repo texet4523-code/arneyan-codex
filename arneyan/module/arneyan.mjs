@@ -25,6 +25,7 @@ import { registerQol, useItem, combatClass } from "./qol.mjs";
 import { registerChargen, abilityScores } from "./chargen.mjs";
 import { registerCounters, drawTokenCounters } from "./counters.mjs";
 import { registerTransform, transformInto, revertTransform } from "./transform.mjs";
+import { registerWorld } from "./world.mjs";
 
 const SYS = "arneyan";
 
@@ -73,6 +74,7 @@ Hooks.once("init", () => {
   registerQol();
   registerChargen();
   registerCounters();
+  registerWorld();
   Object.assign(game.arneyan, { useItem, abilityScores });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).

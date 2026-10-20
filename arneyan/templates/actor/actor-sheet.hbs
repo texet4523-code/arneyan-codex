@@ -101,6 +101,7 @@
       {{/if}}
       {{#if concentrating}}<div class="arn-conc"><i class="fa-solid fa-brain"></i> {{concentrating}} {{#if editable}}<a data-action="endConcentration" data-tooltip="End concentration"><i class="fa-solid fa-xmark"></i></a>{{/if}}</div>{{/if}}
     </section>
+    {{> "systems/arneyan/templates/actor/companions.hbs"}}
   </aside>
 
   {{!-- ================= MAIN ================= --}}
@@ -501,6 +502,8 @@
         </div>
         {{/if}}
       </div>
+
+      {{#if isCharacter}}<div class="arn-tab" data-tab="downtime">{{> "systems/arneyan/templates/actor/downtime-tab.hbs"}}</div>{{/if}}
 
       {{!-- ============ BIOGRAPHY / DESCRIPTION ============ --}}
       <div class="arn-tab" data-tab="bio">

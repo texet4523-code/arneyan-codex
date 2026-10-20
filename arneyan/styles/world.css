@@ -1,0 +1,57 @@
+/* Drop 4: game clock, companions, summoning, downtime and travel. Uses the --arn-* tokens from arneyan.css. */
+
+/* The game clock, above the player list. */
+#arneyan-clock {
+  position: fixed; left: 15px; bottom: 120px; z-index: 60; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  max-width: 300px; padding: 3px 8px; border-radius: 6px; background: var(--arn-head); color: #f6f1e4;
+  border: 1px solid var(--arn-gold); box-shadow: 0 2px 6px rgba(0, 0, 0, .45); font: 12px/18px "Signika", sans-serif;
+}
+#arneyan-clock .arn-clock-time { white-space: nowrap; }
+#arneyan-clock .arn-clock-time i { color: var(--arn-gold); margin-right: 3px; }
+#arneyan-clock .arn-clock-steps { display: inline-flex; gap: 3px; }
+#arneyan-clock .arn-clock-steps a { padding: 0 5px; border-radius: 4px; background: var(--arn-accent); color: #fff; cursor: pointer; white-space: nowrap; }
+#arneyan-clock .arn-clock-steps a:hover { background: var(--arn-accent-2); }
+
+/* Companions box on the character sheet. */
+.arneyan .arn-companions .arn-block-label { display: flex; align-items: center; justify-content: space-between; }
+.arneyan .arn-comp-add { color: var(--arn-accent); cursor: pointer; }
+.arneyan .arn-comp { display: flex; align-items: center; gap: 6px; padding: 4px 0; border-top: 1px solid var(--arn-surface-2); }
+.arneyan .arn-comp:first-of-type { border-top: none; }
+.arneyan .arn-comp > img { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--arn-border); object-fit: cover; cursor: pointer; background: var(--arn-surface-2); }
+.arneyan .arn-comp > i { width: 36px; text-align: center; font-size: 20px; color: var(--arn-accent); }
+.arneyan .arn-comp-main { flex: 1; min-width: 0; }
+.arneyan .arn-comp-name { font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arneyan .arn-comp-main .arn-hp-bar { height: 4px; margin: 2px 0; }
+.arneyan .arn-comp-ctl { display: flex; flex-direction: column; gap: 4px; color: var(--arn-muted); }
+.arneyan .arn-comp-ctl a { cursor: pointer; }
+.arneyan .arn-comp-ctl a:hover, .arneyan .arn-comp-add:hover { color: var(--arn-accent-2); }
+.arneyan .arn-companions.arn-drop-target { outline: 2px dashed var(--arn-accent); }
+
+/* Picker windows (summons, companions, downtime). */
+.arneyan.arn-summon-app .window-content, .arneyan.arn-comp-app .window-content, .arneyan.arn-dt-app .window-content { padding: 10px 14px; }
+.arneyan .arn-summon-opts { display: flex; flex-direction: column; gap: 3px; border: 1px solid var(--arn-border); border-radius: 6px; padding: 6px 8px; margin: 6px 0; }
+.arneyan .arn-summon-filter { width: 100%; margin: 4px 0; }
+.arneyan .arn-summon-list { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow-y: auto; border: 1px solid var(--arn-border); border-radius: 6px; }
+.arneyan .arn-summon-list li { display: flex; align-items: center; gap: 6px; padding: 3px 6px; border-top: 1px solid var(--arn-surface-2); }
+.arneyan .arn-summon-list li[hidden] { display: none; }
+.arneyan .arn-summon-list li img { width: 26px; height: 26px; border: none; }
+.arneyan .arn-summon-list .arn-summon-name { flex: 1; font-weight: 700; }
+.arneyan .arn-summon-list .arn-pick-many { display: none; width: 44px; }
+.arneyan .arn-summon-list.many .arn-pick-many { display: inline-block; }
+.arneyan .arn-summon-list.many .arn-pick-one { display: none; }
+.arneyan .arn-comp-dialog fieldset { display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--arn-border); border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; }
+.arneyan .arn-comp-dialog label { display: block; }
+.arneyan .arn-dt-dialog section[hidden] { display: none; }
+.arneyan .arn-dt-field { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 8px; margin: 4px 0; }
+.arneyan .arn-dt-field > span { font-size: 12px; color: var(--arn-muted); }
+.arn-card .arn-summon-btn { width: 100%; margin-top: 6px; }
+
+/* Downtime log. */
+.arneyan .arn-downtime li { display: grid; grid-template-columns: 110px 1.4fr 60px 70px 2fr auto; gap: 6px; align-items: start; }
+.arneyan .arn-downtime .arn-dt-when { font-size: 11px; }
+.arneyan .arn-downtime .arn-dt-result { font-size: 12px; }
+
+/* Travel tab. */
+.arneyan .arn-travel-fields label.check { display: flex; align-items: center; gap: 6px; }
+.arneyan .arn-travel-sum { margin: 8px 0; flex-wrap: wrap; }
+.arneyan .arn-travel-rows li { display: grid; grid-template-columns: 1.4fr 90px 80px 2fr; gap: 6px; align-items: center; }

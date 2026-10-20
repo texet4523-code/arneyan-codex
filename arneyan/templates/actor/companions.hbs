@@ -1,0 +1,46 @@
+{{!-- Familiars, companions, mounts and the summon (Drop 4). For characters: the Companions box. For a companion: whose it is. --}}
+{{#if companionOf}}
+<section class="arn-card-block arn-companion-of">
+  <div class="arn-block-label">{{companionOf.kind}}</div>
+  <p class="arn-tiny">{{companionOf.label}} of {{#if companionOf.id}}<a data-action="companionMaster" data-master-id="{{companionOf.id}}">{{companionOf.name}}</a>{{else}}{{companionOf.name}}{{/if}}</p>
+  {{#if companionOf.text}}<p class="arn-tiny arn-muted">{{companionOf.text}}</p>{{/if}}
+</section>
+{{/if}}
+{{#if isCharacter}}
+<section class="arn-card-block arn-companions" data-tooltip="Drop a creature from the Bestiary here for a familiar, companion, mount or pet">
+  <div class="arn-block-label">Companions {{#if editable}}<a class="arn-comp-add" data-action="companionAdd" data-tooltip="A familiar, animal companion, mount or pet"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+  {{#each companions}}
+  <div class="arn-comp" data-companion-id="{{id}}">
+    <img src="{{img}}" alt="" {{#if canOpen}}data-action="companionOpen"{{/if}}>
+    <div class="arn-comp-main">
+      <div class="arn-comp-name">{{#if canOpen}}<a data-action="companionOpen">{{name}}</a>{{else}}{{name}}{{/if}}</div>
+      <div class="arn-hp-bar"><div style="width: {{hpPct}}%"></div></div>
+      <div class="arn-tiny"><span class="arn-muted">{{kind}}</span> · HP <strong>{{hp}}/{{hpMax}}</strong> · AC <strong>{{ac}}</strong></div>
+    </div>
+    {{#if @root.editable}}<span class="arn-comp-ctl">
+      <a data-action="companionPlace" data-tooltip="{{#if onScene}}Find it on the map{{else}}Put it on the map beside you{{/if}}"><i class="fa-solid fa-{{#if onScene}}crosshairs{{else}}location-dot{{/if}}"></i></a>
+      <a data-action="companionRelease" data-tooltip="Let it go"><i class="fa-solid fa-xmark"></i></a>
+    </span>{{/if}}
+  </div>
+  {{else}}
+  <p class="arn-tiny arn-muted">None. Add a familiar, companion or mount, or drop a creature here.</p>
+  {{/each}}
+  {{#if summon}}
+  <div class="arn-comp arn-comp-summon">
+    <i class="fa-solid fa-dragon"></i>
+    <div class="arn-comp-main"><div class="arn-comp-name">{{summon.name}}</div><div class="arn-tiny arn-muted">{{summon.source}}{{#if summon.left}} · {{summon.left}}{{/if}}{{#if summon.concentration}} · concentrating{{/if}}</div></div>
+    {{#if @root.editable}}<span class="arn-comp-ctl"><a data-action="summonDismiss" data-tooltip="Dismiss it"><i class="fa-solid fa-xmark"></i></a></span>{{/if}}
+  </div>
+  {{/if}}
+</section>
+{{else}}
+{{#if summon}}
+<section class="arn-card-block">
+  <div class="arn-block-label">Summoned</div>
+  <div class="arn-comp arn-comp-summon"><i class="fa-solid fa-dragon"></i>
+    <div class="arn-comp-main"><div class="arn-comp-name">{{summon.name}}</div><div class="arn-tiny arn-muted">{{summon.source}}{{#if summon.left}} · {{summon.left}}{{/if}}</div></div>
+    {{#if @root.editable}}<span class="arn-comp-ctl"><a data-action="summonDismiss" data-tooltip="Dismiss it"><i class="fa-solid fa-xmark"></i></a></span>{{/if}}
+  </div>
+</section>
+{{/if}}
+{{/if}}
