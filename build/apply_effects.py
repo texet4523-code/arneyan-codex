@@ -26,10 +26,14 @@ def patch(system, entry):
     c = entry.get("container", "passive")
     if c in ("passive", "toggle"):
         system["rules"] = [rule(r) for r in entry.get("rules", [])]
-        system["toggle"] = c == "toggle"
-        system["active"] = False
+        # A passive effect never switches off a toggle an earlier builder set (Rage, a stance).
+        if c == "toggle" or not system.get("toggle"):
+            system["toggle"] = c == "toggle"
+            system["active"] = False
     if entry.get("applies"):
-        system["applies"] = [applies(a) for a in entry["applies"]]
+        # Keep applies the spell or feature already had; add the approved ones not there yet (by name).
+        have = {a.get("name") for a in system.get("applies", []) or []}
+        system["applies"] = (system.get("applies") or []) + [applies(a) for a in entry["applies"] if str(a.get("name", "")) not in have]
 
 
 def run(out_dir):
