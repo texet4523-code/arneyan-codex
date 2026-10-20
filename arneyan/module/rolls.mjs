@@ -32,19 +32,32 @@ function signed(n) {
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-/** Outcome against a number to beat. */
-export function outcomeFor(total, natural, target, kind, autoFail = false) {
+/**
+ * Outcome against a number to beat. An attack with an expanded critical range (Critical Strike: 19-20) is a critical
+ * on a natural in that range only if it hits ("crit"); only a real natural 20 hits whatever the AC.
+ */
+export function outcomeFor(total, natural, target, kind, autoFail = false, critAt = 20) {
   if (autoFail) return "autofail";
   if (natural === 20) return "nat20";
   if (natural === 1) return "nat1";
   if (target === null || target === undefined || target === "") return "";
-  return total >= target ? "success" : "failure";
+  const hit = total >= target;
+  if (hit && kind === "attack" && natural >= critAt) return "crit";
+  return hit ? "success" : "failure";
+}
+
+/** Is this attack a critical? A natural 20 always; a natural in an expanded range only against a target it hits. */
+export function isCritical(natural, total, critAt = 20, acs = []) {
+  if (natural === 20) return true;
+  if (natural === 1 || natural < critAt) return false;
+  return acs.some(ac => ac !== null && ac !== undefined && ac !== "" && total >= Number(ac));
 }
 
 export function outcomeLabel(outcome, kind) {
   const attack = kind === "attack";
   return {
     nat20: attack ? "Natural 20: hit, and a critical" : "Natural 20: automatic success",
+    crit: "Hit, and a critical (critical range)",
     nat1: attack ? "Natural 1: automatic miss" : "Natural 1: automatic failure",
     success: attack ? "Hit" : "Success",
     failure: attack ? "Miss" : "Failure",
@@ -72,17 +85,22 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   const bonus = parts.reduce((t, p) => t + (Number(p.value) || 0), 0);
   const formula = `${dieFormula(mode)}${bonus ? ` + ${bonus}` : ""}`;
   const roll = await new Roll(formula).evaluate();
-  let natural = naturalOf(roll);
-  // An expanded critical range counts as a natural 20 for attacks (Critical Strike).
-  const crit = kind === "attack" && natural >= critAt;
-  if (crit && natural < 20) notes = [...notes, `Critical range ${critAt}-20`];
-  extra = { ...extra, crit };
-  if (crit) natural = 20;
-  const outcome = targets.length > 1 ? (natural === 20 ? "nat20" : natural === 1 ? "nat1" : "") : outcomeFor(roll.total, natural, target ?? targets[0]?.ac, kind, !!autoFail);
+  const natural = naturalOf(roll);
+  // An expanded critical range (Critical Strike): "a Critical Hit on a natural 20, or on a natural 19 that hits". The
+  // natural stays as rolled, so only a real 20 hits whatever the AC; a 19 is a critical against each target it hits.
+  critAt = kind === "attack" ? Math.clamp(Number(critAt) || 20, 2, 20) : 20;
+  const acs = targets.length ? targets.map(t => t.ac) : [target];
+  const crit = kind === "attack" && !autoFail && isCritical(natural, roll.total, critAt, acs);
+  if (kind === "attack" && natural >= critAt && natural < 20) {
+    const known = acs.some(ac => ac !== null && ac !== undefined && ac !== "");
+    notes = [...notes, known ? `Critical range ${critAt}-20: a natural ${natural} is a critical only against a target it hits` : `Critical range ${critAt}-20: a natural ${natural} is a critical if it hits`];
+  }
+  extra = { ...extra, crit, critAt };
+  const outcome = targets.length > 1 ? (natural === 20 ? "nat20" : natural === 1 ? "nat1" : "") : outcomeFor(roll.total, natural, target ?? targets[0]?.ac, kind, !!autoFail, critAt);
   const flags = { kind, natural, target: target ?? targets[0]?.ac ?? null, targets, total: roll.total, bonus, luckBurned: 0, autoFail: !!autoFail, ...extra };
   // The footer can depend on the roll (an attack's damage buttons on a natural 20 or 1).
   if (typeof footer === "function") footer = footer({ natural, crit, outcome });
-  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0 });
+  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt });
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
     content,
@@ -91,7 +109,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }, { rollMode: game.settings.get("core", "rollMode") });
 }
 
-async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned }) {
+async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20 }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   const whyLabel = why ? [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ") : "";
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
@@ -103,7 +121,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
     dice: roll.dice[0].results.map(r => ({ result: r.result, dropped: !r.active || r.discarded })),
     natural, outcome, outcomeLabel: autoFail ? `Automatic failure (${autoFail})` : outcomeLabel(outcome, kind), target: targets.length > 1 ? null : target,
     targets: targets.length > 1 ? targets.map(t => {
-      const o = outcomeFor(total, natural, t.ac, kind);
+      const o = outcomeFor(total, natural, t.ac, kind, false, critAt);
       return { ...t, outcome: o, label: outcomeLabel(o, kind) };
     }) : [],
     notes, footer, canBurn, luckBurned
@@ -168,6 +186,8 @@ export function resolveFormula(formula, data = {}) {
     });
     if (f === before) break;
   }
+  // No dice is no term: a level formula's "0d6 + 1d8" (Eldritch Blast at 5th) reads "1d8", with no "+" left dangling.
+  f = f.replace(/\s*[+-]\s*0d\d+(?:[a-z]+\d*)?(?!\d)/gi, "").replace(/^\s*0d\d+(?:[a-z]+\d*)?(?!\d)\s*/i, "");
   // Tidy signs and zero terms.
   f = f.replace(/\+\s*-\s*/g, "- ").replace(/-\s*-\s*/g, "+ ").replace(/\s*\+\s*0(?![\d.d])/g, "").replace(/\s+/g, " ").trim();
   f = f.replace(/\s*([+\-*/])\s*/g, " $1 ").replace(/^\s*\+\s*/, "").trim();
@@ -273,7 +293,7 @@ export async function burnLuck(message) {
 
   const burned = (flags.luckBurned || 0) + spend;
   const total = flags.total + burned;
-  const outcome = outcomeFor(total, flags.natural, flags.target, flags.kind);
+  const outcome = outcomeFor(total, flags.natural, flags.target, flags.kind, false, flags.critAt ?? 20);
 
   // Rewrite the card with the new total.
   const html = new DOMParser().parseFromString(message.content, "text/html");
@@ -282,17 +302,20 @@ export async function burnLuck(message) {
   const burnEl = html.querySelector(".arn-luck-burned");
   if (burnEl) { burnEl.textContent = `+${burned} Luck burned`; burnEl.hidden = false; }
   const outEl = html.querySelector(".arn-outcome");
-  if (outEl && (outcome === "success" || outcome === "failure")) {
+  if (outEl && ["success", "failure", "crit"].includes(outcome)) {
     outEl.textContent = outcomeLabel(outcome, flags.kind);
     outEl.className = `arn-outcome ${outcome}`;
   }
   for (const row of html.querySelectorAll("[data-target-ac]")) {
-    const o = outcomeFor(total, flags.natural, Number(row.dataset.targetAc), flags.kind);
+    const o = outcomeFor(total, flags.natural, Number(row.dataset.targetAc), flags.kind, false, flags.critAt ?? 20);
     const res = row.querySelector(".arn-target-result");
     if (res) { res.textContent = outcomeLabel(o, flags.kind); res.className = `arn-target-result ${o}`; }
   }
+  // Burning Luck can turn a natural 19 that missed into a hit, and so into a critical.
+  const acs = (flags.targets ?? []).length ? flags.targets.map(t => t.ac) : [flags.target];
+  const crit = flags.kind === "attack" && !flags.autoFail && isCritical(flags.natural, total, flags.critAt ?? 20, acs);
   if (message.canUserModify(game.user, "update")) {
-    await message.update({ content: html.body.innerHTML, [`flags.${SYS}.luckBurned`]: burned });
+    await message.update({ content: html.body.innerHTML, [`flags.${SYS}.luckBurned`]: burned, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) });
   } else {
     await ChatMessage.create({
       speaker: message.speaker,
