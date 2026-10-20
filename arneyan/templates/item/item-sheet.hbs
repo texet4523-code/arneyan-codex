@@ -4,7 +4,7 @@
     <div class="arn-header-main">
       <input class="arn-name" type="text" name="name" value="{{item.name}}" placeholder="Name" {{#if hideName}}disabled{{/if}}>
       <div class="arn-subline">
-        <span class="arn-chip strong">{{type}}</span>
+        <span class="arn-chip strong">{{type}}</span>{{#if item.levelLabel}} <span class="arn-chip">{{item.levelLabel}}</span>{{/if}}
         <label>Book <select name="system.source.book">{{selectOptions config.books selected=source.source.book}}</select></label>
         <label>Page <input class="short" type="number" name="system.source.page" value="{{source.source.page}}" min="0"></label>
         {{#if source.source.page}}<a class="arn-btn small" data-action="openPage"><i class="fa-solid fa-book-open"></i> Open page</a>{{/if}}

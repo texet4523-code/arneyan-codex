@@ -114,6 +114,20 @@ def non_caster(t):
     return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
 
 
+# Toolkits from the Handbook's Starting Equipment & Gear page (p. 41-42): the Artificer Kit toolkits
+# (free to an Artificer of the matching Kit) and the Artisan's toolkits that go with crafting Skills.
+TOOLKITS = [
+    ("Infuser's Toolkit", "35 gp", "Fine engraving picks, a small portable forge-kit, etching acid, and a set of enchanter's files, carried in a reinforced satchel. Free to an Artificer of the Infuser Kit."),
+    ("Construct Engineer's Toolkit", "35 gp", "Precision screwdrivers, a miniature bellows, spare gears and joints, wiring spools, and a small vice, carried in a hinged case. Free to an Artificer of the Construct Engineer Kit."),
+    ("Gadgeteer's Toolkit", "35 gp", "A lockpick-adjacent fine-tool roll, spare springs and triggers, fuse cord, and a magnifying loupe, carried in a slim leather wrap. Free to an Artificer of the Gadgeteer Kit."),
+    ("Alchemist's Toolkit", "35 gp", "A collapsible burner, glass vials and stoppers, a mortar and pestle, and a small dosage scale, carried in a padded case. Matches the Alchemy Skill; free to an Artificer of the Alchemist Kit."),
+] + [(n, p, f"Artisan's toolkit for the {k} Skill (NWP). You need the tools to craft: with no usable tools you cannot craft.") for n, k, p in [
+    ("Blacksmith's Tools", "Blacksmithing", "20 gp"), ("Carpenter's Tools", "Carpentry", "12 gp"), ("Stonemason's Tools", "Stonemasonry", "15 gp"),
+    ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "10 gp"), ("Cobbler's Tools", "Cobbling", "6 gp"), ("Gem Cutter's Tools", "Gem Cutting", "25 gp"),
+    ("Potter's Tools", "Pottery", "5 gp"), ("Weaver's Tools", "Weaving", "6 gp"), ("Leatherworker's Tools", "Leatherworking", "10 gp"),
+    ("Weaponsmith's Tools", "Weaponsmithing", "22 gp"), ("Armourer's Tools", "Armourer", "25 gp"), ("Brewer's Tools", "Brewing", "10 gp"),
+    ("Vintner's Tools", "Winemaking", "12 gp"), ("Cook's Tools", "Cooking", "5 gp")]]
+
 def build():
     bundled = catalogue_bundles()
     names = spell_names()
@@ -215,5 +229,29 @@ def build():
             }
         }
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
+        changed += 1
+
+    # Toolkits, in Tools & Trades.
+    tools = next((i for i, n in folder_names.items() if n == "Tools & Trades"), None)
+    have = {d["name"] for d in docs.values()}
+    for tk_name, tk_price, tk_text in TOOLKITS:
+        if tk_name in have:
+            continue
+        _id = fid("equipment", "item", tk_name)
+        doc = {
+            "_id": _id, "_key": f"!items!{_id}", "name": tk_name, "type": "equipment", "img": icon("tool", "toolbox"),
+            "folder": tools, "sort": 0, "ownership": {"default": 0}, "flags": {}, "effects": [],
+            "system": {
+                "description": f"<p>{tk_text}</p><p class=\"arn-note\">{tk_price}. Starting Equipment &amp; Gear.</p>", "source": {"book": "phb", "page": 41},
+                "quantity": 1, "slots": 1, "bundle": 1, "price": tk_price, "equipped": False, "inside": "",
+                "identified": True, "unidentifiedName": "", "unidentifiedDescription": "", "ammoType": "",
+                "container": {"holds": False, "capacity": 0, "weightless": False, "extradimensional": False},
+                "consumable": {"use": False, "heal": ""}, "charges": {"value": 0, "max": 0, "recharge": "", "crumble": False},
+                "light": {"bright": 0, "dim": 0, "hours": 0, "lit": False, "litAt": 0, "angle": 360}, "scroll": {"spell": None, "cl": 0, "dc": 0},
+                "itemSpells": [], "castLevel": 0, "nonCasterCl": 0, "nonCasterDc": 0,
+                "rules": [], "toggle": False, "active": False, "applies": []
+            }
+        }
+        json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', tk_name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
     return changed

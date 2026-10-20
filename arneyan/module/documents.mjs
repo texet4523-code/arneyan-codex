@@ -101,6 +101,16 @@ export async function promptAbilityChoice(item) {
   return value;
 }
 
+/** Skills (NWP): a new skill costs one slot, a Master one more. Over the limit a player is stopped; the GM is asked. */
+async function skillSlotOk(actor, cost, what, user) {
+  const nwp = actor?.system?.nwp;
+  if (!nwp || actor.type !== "character" || user?.id !== game.user.id) return true;
+  if (nwp.used + cost <= nwp.max) return true;
+  const msg = `${actor.name} has ${nwp.used} of ${nwp.max} Skill (NWP) slots used: ${what} needs ${cost} more.`;
+  if (!game.user.isGM) { ui.notifications.warn(`${msg} Ask the GM for an extra slot.`); return false; }
+  return foundry.applications.api.DialogV2.confirm({ window: { title: "Skill slots" }, content: `<p>${esc(msg)}</p><p>Add it anyway?</p>`, rejectClose: false });
+}
+
 export class ArneyanActor extends Actor {
 
   /** A monster's "½" or "¼" no longer applies once the GM types a new Level. */
@@ -648,6 +658,18 @@ export class ArneyanActor extends Actor {
 }
 
 export class ArneyanItem extends Item {
+  /** Where a feature or feat comes from and the level it arrives at, for sheets and chat ("Cleric · Level 3"). */
+  get levelLabel() {
+    const sys = this.system ?? {};
+    if (this.type === "ability") {
+      const from = sys.className || "";
+      return [from, sys.level ? `Level ${sys.level}` : ""].filter(Boolean).join(" · ");
+    }
+    if (this.type === "feat") return ["Feat", sys.path, sys.levelTaken ? `taken at level ${sys.levelTaken}` : ""].filter(Boolean).join(" · ");
+    if (this.type === "kit") return [sys.className, "Kit"].filter(Boolean).join(" · ");
+    return "";
+  }
+
 
   /** Unidentified gear: players see a plain name and description until the GM reveals it (PF2e's mystified items). */
   prepareDerivedData() {
@@ -659,12 +681,30 @@ export class ArneyanItem extends Item {
     }
   }
 
+  async _preUpdate(changes, options, user) {
+    if ((await super._preUpdate(changes, options, user)) === false) return false;
+    const tier = foundry.utils.getProperty(changes, "system.tier");
+    if (this.type === "skill" && this.parent instanceof Actor && tier && tier !== this.system.tier) {
+      if (tier === "master" && !(await skillSlotOk(this.parent, 1, `making ${this.name} Master`, user))) return false;
+    }
+  }
+
   async _preCreate(data, options, user) {
     if ((await super._preCreate(data, options, user)) === false) return false;
     // A lit torch handed to someone else arrives unlit.
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
     if (!(actor instanceof Actor) || actor.type !== "character") return;
+    // A feat records the character level it was taken at.
+    if (this.type === "feat" && !actor.items.has(this.id) && !this.system.levelTaken) this.updateSource({ "system.levelTaken": actor.system.level || 1 });
+    // Skills: one of each, and only as many as the slots allow (a Master takes two).
+    if (this.type === "skill" && !actor.items.has(this.id) && !options.arneyanGrant) {
+      if (actor.items.some(i => i.type === "skill" && i.name === this.name)) {
+        if (user.id === game.user.id) ui.notifications.warn(`${actor.name} already has ${this.name}. To improve it, set it to Master.`);
+        return false;
+      }
+      if (!(await skillSlotOk(actor, this.system.tier === "master" ? 2 : 1, this.name, user))) return false;
+    }
     // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
     if (this.system?.uses?.formula && !actor.items.has(this.id)) {
       const n = formulaUsesFor(actor, this);

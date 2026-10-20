@@ -6,6 +6,7 @@
     {{#if item.system.castingTime}} · {{item.system.castingTime}}{{/if}}{{#if item.system.range}} · {{item.system.range}}{{/if}}
     {{#if item.system.duration}} · {{item.system.duration}}{{/if}}{{#if item.system.concentration}} · Concentration{{/if}}
   </div>
+  {{else if item.levelLabel}}<div class="arn-card-meta">{{item.levelLabel}}</div>
   {{/if}}
   <details class="arn-card-desc" {{#if open}}open{{/if}}><summary>Description</summary>{{{description}}}</details>
   {{{extraHtml}}}

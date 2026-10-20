@@ -3,6 +3,7 @@
  * Feat and NWP prompts, and the 1st-level setup when a character takes its first class.
  */
 import { ARNEYAN } from "./config.mjs";
+import { startingWealth } from "./starting.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const FLAG = "arneyan";
@@ -376,14 +377,24 @@ export async function promptSkill(actor, charLevel) {
   const ownedNames = new Set(owned.map(i => i.name));
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
   const upgrade = owned.filter(i => i.system.tier !== "master");
-  const content = `<p>You gain a Skill (NWP) slot at level ${charLevel}. Learn a new skill, or spend the slot to make a trained one a Master.</p>
-    <div class="form-group"><label>New skill</label><select name="skill"><option value="">—</option>${optionsHtml(list, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>
-    ${upgrade.length ? `<div class="form-group"><label>Or make Master</label><select name="master"><option value="">—</option>${upgrade.map(i => `<option value="${i.id}">${esc(i.name)}</option>`).join("")}</select></div>` : ""}`;
+  // One slot: either a new skill or a Master, never both.
+  const content = `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one of these:</p>
+    <div class="form-group"><label><input type="radio" name="pick" value="skill" checked> Learn a new skill</label><select name="skill"><option value="">—</option>${optionsHtml(list, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>
+    ${upgrade.length ? `<div class="form-group"><label><input type="radio" name="pick" value="master"> Or make a trained skill Master</label><select name="master" disabled><option value="">—</option>${upgrade.map(i => `<option value="${i.id}">${esc(i.name)}</option>`).join("")}</select></div>` : ""}`;
   const res = await DialogV2.wait({
     window: { title: `${actor.name}: new Skill slot (level ${charLevel})` },
     content,
+    render: (ev, dialog) => {
+      const form = (dialog.element ?? dialog).querySelector?.("form") ?? dialog.form;
+      const sync = () => { const m = form?.elements.pick?.value === "master"; if (form?.elements.skill) form.elements.skill.disabled = m; if (form?.elements.master) form.elements.master.disabled = !m; };
+      form?.querySelectorAll("input[name=pick]").forEach(r => r.addEventListener("change", sync));
+      sync();
+    },
     buttons: [
-      { action: "ok", label: "Confirm", default: true, callback: (ev, btn) => ({ skill: btn.form.elements.skill?.value, master: btn.form.elements.master?.value }) },
+      { action: "ok", label: "Confirm", default: true, callback: (ev, btn) => {
+        const f = btn.form.elements;
+        return f.pick?.value === "master" ? { master: f.master?.value } : { skill: f.skill?.value };
+      } },
       { action: "later", label: "Choose later" }
     ],
     rejectClose: false
@@ -439,7 +450,7 @@ async function setUpFirstLevel(actor, cls) {
     ],
     rejectClose: false
   });
-  if (!res || res === "skip") return;
+  if (!res || res === "skip") return startingWealth(actor, cls);
   if (res.kit) await addFromUuid(actor, res.kit);
   if (res.feat) await addFromUuid(actor, res.feat);
   for (const s of [...new Set(res.skills.filter(Boolean))]) await addFromUuid(actor, s);
@@ -448,6 +459,8 @@ async function setUpFirstLevel(actor, cls) {
     await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
     await actor.update({ "system.luck.start": r.total, "system.luck.value": r.total });
   }
+  // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it).
+  await startingWealth(actor, cls);
 }
 
 /* -------------------------------------------- */

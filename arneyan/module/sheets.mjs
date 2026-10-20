@@ -2,6 +2,7 @@ import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
 import { breakdown, toggleCondition, statusesOf, endConcentration } from "./effects.mjs";
 import { ArneyanBrowser } from "./browser.mjs";
+import { startingWealth } from "./starting.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
@@ -137,6 +138,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       levelUp: ArneyanActorSheet.#levelUp,
       levelDown: ArneyanActorSheet.#levelDown,
       browse: ArneyanActorSheet.#browse,
+      startingGold: ArneyanActorSheet.#startingGold,
       toggleSlot: ArneyanActorSheet.#toggleSlot,
       castSpell: ArneyanActorSheet.#castSpell,
       toggleEdit: ArneyanActorSheet.#toggleEdit,
@@ -700,6 +702,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     if (cls.system.levels <= 1) return ui.notifications.info(`${cls.name} is already 1st level. Delete the class to remove it.`);
     return this.document.setClassLevel(cls, cls.system.levels - 1);
   }
+  /** Starting Equipment & Gear: roll the class's gold, then a pack or shopping. */
+  static #startingGold() { return startingWealth(this.document); }
   /** Open the system's own browser on the right tab, adding to this actor. */
   static #browse(event, target) {
     const tab = target.dataset.pack === "class-features" ? "features" : target.dataset.pack;

@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.1 · Foundry v13 and v14
+Version 0.10.2 · Foundry v13 and v14
+
+## What's new in 0.10.2
+
+- **Luck sits with the attributes again**, in the same row; the Method V dice button moved to the end of the row (edit mode).
+- **Starting gold and gear.** After a new character's 1st-level setup, a window rolls the class's starting gold (Handbook, Starting Wealth), then offers a starting pack bought from it (Explorer's, Dungeoneer's, Scholar's, Diplomat's, Survivalist's, Healer's Satchel) or keeps the gold and opens the Catalogue to shop. Gunslingers pick a free Derringer, Pistol or Dragon Pistol; Artificers get their Kit's toolkit. The **Starting gold** button by the coins runs it again. The Handbook's toolkits are now in the Catalogue (Tools & Trades).
+- **Skill slots are enforced.** A character can't take the same skill twice or go over their Skill (NWP) slots (a Master takes two); the GM is asked and can allow it. The level-up skill window is one choice: a new skill or a Master, not both.
+- **Where features come from.** Feature rows, item sheets and chat cards show the class or kit and the level (e.g. "Cleric · Level 1"); feats show their path and the level they were taken at.
 
 ## What's new in 0.10.1
 - **Effects on.** Feats, features, kit features, ancestries and spells change your numbers by themselves (AC, saves, attacks, damage, HP, speed), with situational ones as reminders on the cards.
