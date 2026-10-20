@@ -45,7 +45,7 @@ export async function pickFromList({ title, intro = "", entries = [], takeLabel 
     </div>`;
   const res = await DialogV2.wait({
     window: { title, icon: "fa-solid fa-book-atlas", resizable: true },
-    classes: ["arneyan", "arn-picker"], position: { width, height: 560 },
+    classes: ["arneyan", "arn-picker"], position: { width, height: "auto" },
     content,
     render: (ev, dialog) => {
       const root = dialog.element ?? dialog;
