@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.8 · Foundry v13 and v14
+Version 0.10.9 · Foundry v13 and v14
+
+## What's new in 0.10.9
+
+- **Level up button.** When a character has enough XP, a gold **Level up** button appears by the XP bar (with several classes it asks which one takes the level).
+- **Effect durations on Foundry 14.** An effect timed in Foundry's own effect settings (or by a module) now ends with game time on v14 too, and shows its time left.
+- Includes 0.10.7: a Feat granted for a level records that level when several levels are taken at once.
 
 ## What's new in 0.10.8
 
