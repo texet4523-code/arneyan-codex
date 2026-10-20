@@ -3,7 +3,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
-import { useEquipment, spendAmmo, rechargeAtDawn } from "./gear.mjs";
+import { useEquipment, spendAmmo, rechargeAtDawn, putOutData } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual } from "./combat.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -592,7 +592,7 @@ export class ArneyanItem extends Item {
   async _preCreate(data, options, user) {
     if ((await super._preCreate(data, options, user)) === false) return false;
     // A lit torch handed to someone else arrives unlit.
-    if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource({ "system.light.lit": false, "system.light.litAt": 0 });
+    if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
     if (!(actor instanceof Actor) || actor.type !== "character") return;
     if (this.type === "class") {

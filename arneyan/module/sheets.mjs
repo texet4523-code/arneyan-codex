@@ -5,7 +5,7 @@ import { ArneyanBrowser } from "./browser.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
-import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName } from "./gear.mjs";
+import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName, lightInfo } from "./gear.mjs";
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
@@ -216,6 +216,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const holds = i.type === "equipment" && !!s.container?.holds;
       const parent = holderOf(i);
       const light = s.light ?? {};
+      const burn = light.bright || light.dim ? lightInfo(light) : null;
       return {
         id: i.id, item: i, name: i.name, img: i.img, system: s, depth,
         useAction: i.type === "equipment" ? "itemUse" : "itemEdit",
@@ -229,7 +230,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         charges: s.charges?.max ? `${s.charges.value}/${s.charges.max}` : "",
         ammoLabel: s.ammoType && i.type === "equipment" ? `${s.ammoType}s` : "",
         hasLight: !!(light.bright || light.dim), lit: !!light.lit,
-        litTip: light.hours ? `Burns ${light.hours} hour${light.hours === 1 ? "" : "s"} of game time` : "Burns until put out",
+        litTip: burn?.tip ?? "", litLeft: burn?.label ?? "", litLow: !!burn?.low,
+        // Not lit but part burned (a lantern put out at 3 h), or burned out: shown beside it.
+        lightNote: burn && !burn.lit && burn.timed && burn.used ? burn.label : "", lightOut: !!burn?.out,
         holds, capacity: s.container?.capacity ?? 0, contents: s.contents ?? 0, weightless: !!s.container?.weightless,
         overCap: holds && s.container.capacity > 0 && (s.contents ?? 0) > s.container.capacity,
         inside: !!parent, insideName: parent?.name ?? "", freeSlots: !!parent?.system.container.weightless,
@@ -829,6 +832,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       hideName: sys.identified === false && !game.user.isGM,
       hideScroll: sys.identified === false && !game.user.isGM,
       canHoldSpell: item.type === "equipment" && /^scroll\b/i.test(item._source.name) && !sys.scroll?.spell && this.isEditable,
+      lightTimer: item.type === "equipment" && sys.light?.hours > 0 ? lightInfo(sys.light) : null,
       ammoStacks: item.type === "weapon" && item.actor && sys.ammoType ? { "": "The first that fits (plain before silver or magic)", ...Object.fromEntries(item.actor.items.filter(i => i.type === "equipment" && i.system.ammoType === sys.ammoType).map(i => [i.id, `${i.name} × ${i.system.quantity}`])) } : null,
       weaponTraits: item.type === "weapon" ? Object.entries(ARNEYAN.weaponTraits).map(([name, t]) => ({ name, ...t, on: traitList(sys.traits).some(x => x.toLowerCase() === name.toLowerCase()) })) : [],
       materials: item.type === "weapon" ? Object.entries(ARNEYAN.weaponMaterials).map(([name, text]) => ({ name, text, on: traitList(sys.traits).some(x => x.toLowerCase() === name.toLowerCase()) })) : [],

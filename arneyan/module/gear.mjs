@@ -186,35 +186,191 @@ export async function toggleMode(item) {
   say(item.actor, `<p>${esc(item.actor?.name ?? "")}'s ${esc(item.name)}: ${on ? esc(label) : `no longer ${esc(label.toLowerCase())}`}.</p>`);
 }
 
+/*
+ * Burn timers. A light with a burn time (hours > 0) keeps the seconds it has left in system.light.left (null: the
+ * full burn time). The world setting "Light sources burn in" picks how it burns down:
+ * - Game time: `left` is what it had when it was lit (litAt, world seconds); time left is left - (now - litAt).
+ * - Real time: the active GM's client takes a minute off `left` every minute the world is open and not paused.
+ * Putting a light out keeps what it has left; a one-use light (a torch, a candle, a Sunrod) is used up when it
+ * burns out, anything else (a lantern) just goes out. The owner is told once when it gets to 10 minutes.
+ */
+const HOUR = 3600;
+const WARN_AT = 600;
+const REAL_TICK = 60;
+
+/** "game" or "real": what light sources burn in (the world setting). */
+export function burnMode() {
+  try { return game.settings.get(SYS, "lightBurn") === "real" ? "real" : "game"; } catch { return "game"; }
+}
+
+/** Seconds of burn a light has left right now: Infinity for one that burns until put out. */
+export function lightLeft(light, { mode = burnMode(), now = game.time?.worldTime ?? 0 } = {}) {
+  const l = light ?? {};
+  if (!(Number(l.hours) > 0)) return Infinity;
+  let left = typeof l.left === "number" && Number.isFinite(l.left) ? l.left : l.hours * HOUR;
+  if (l.lit && mode === "game") left -= Math.max(0, now - (Number(l.litAt) || 0));
+  return Math.max(0, left);
+}
+
+/** "45 min left", "5 h 30 min left", "under a minute left", "burnt out"; blank for a light with no burn time. */
+export function lightLeftLabel(seconds) {
+  if (!Number.isFinite(seconds)) return "";
+  if (seconds <= 0) return "burnt out";
+  if (seconds < 60) return "under a minute left";
+  const m = Math.ceil(seconds / 60);
+  if (m < 60) return `${m} min left`;
+  const h = Math.floor(m / 60), r = m % 60;
+  return `${h} h${r ? ` ${r} min` : ""} left`;
+}
+
+/** What a light shows on the sheet and in its tooltip. */
+export function lightInfo(light, opts) {
+  const l = light ?? {};
+  const left = lightLeft(l, opts);
+  const timed = Number.isFinite(left);
+  const real = (opts?.mode ?? burnMode()) === "real";
+  const full = timed ? l.hours * HOUR : 0;
+  return {
+    timed, left, label: lightLeftLabel(left), lit: !!l.lit, low: timed && left <= WARN_AT, out: timed && left <= 0,
+    used: timed && left < full, hours: timed ? Math.round((left / HOUR) * 100) / 100 : 0,
+    tip: !timed ? "Burns until put out" : `Burns ${l.hours} hour${l.hours === 1 ? "" : "s"} of ${real ? "real time while the game isn't paused" : "game time"}: ${lightLeftLabel(left)}`
+  };
+}
+
+/** The update that puts a light out, keeping the burn it has left. */
+export function putOutData(light, opts) {
+  const left = lightLeft(light, opts);
+  return { "system.light.lit": false, "system.light.litAt": 0, ...(Number.isFinite(left) ? { "system.light.left": Math.round(left) } : {}) };
+}
+
 /** Light or put out a torch, lantern or Sunrod. */
 export async function toggleLight(item) {
   const l = item.system.light;
   if (!(l.bright || l.dim)) return ui.notifications.warn(`${item.name} has no light radius set. Add one on its sheet (Light).`);
   const on = !l.lit;
-  await item.update({ "system.light.lit": on, "system.light.litAt": on ? game.time.worldTime : 0 });
+  const left = lightLeft(l);
+  if (on && left <= 0) return ui.notifications.warn(`${item.name} has burned out. The GM can give it more time on its sheet (Light).`);
+  await item.update(on ? { "system.light.lit": true, "system.light.litAt": game.time.worldTime, ...(left > WARN_AT ? { "system.light.warned": false } : {}) } : putOutData(l));
   await syncLight(item.actor);
-  say(item.actor, `<p>${esc(item.actor?.name ?? "")} ${on ? "lights" : "puts out"} ${esc(item.name)}${on && l.hours ? ` (burns for ${l.hours} hour${l.hours === 1 ? "" : "s"})` : ""}.</p>`);
+  const label = lightLeftLabel(left);
+  say(item.actor, `<p>${esc(item.actor?.name ?? "")} ${on ? "lights" : "puts out"} ${esc(item.name)}${label ? ` (${label})` : ""}.</p>`);
 }
 
-/** Game time moves on: lights that have burned their time go out, and one-use ones (a torch, a Sunrod) are used up. */
-let burning = false;
-async function burnDown() {
-  if (!game.users.activeGM?.isSelf || burning) return;
-  burning = true;
-  try { await burnDownNow(); } finally { burning = false; }
+/** The GM sets how long a light has left (seconds; null: back to its full burn time). */
+export async function setLightLeft(item, seconds) {
+  const l = item.system.light;
+  const left = seconds === null ? null : Math.max(0, Math.round(Number(seconds) || 0));
+  const now = left ?? (l.hours || 0) * HOUR;
+  return item.update({ "system.light.left": left, ...(l.lit ? { "system.light.litAt": game.time.worldTime } : {}), ...(now > WARN_AT ? { "system.light.warned": false } : {}) });
 }
-async function burnDownNow() {
+
+const timedLit = i => i.type === "equipment" && i.system.light?.lit && i.system.light.hours > 0;
+
+/** Every actor in the world, and the unlinked tokens on every scene. */
+function lightActors() {
+  const out = [...(game.actors?.contents ?? [])];
+  for (const scene of game.scenes ?? []) for (const t of scene.tokens ?? []) if (!t.actorLink && t.actor) out.push(t.actor);
+  return out;
+}
+
+/** One light's time is up, or nearly: out it goes (a torch is used up), or its owner is told. Returns true if it went out. */
+async function settleLight(actor, i, left, { real = false } = {}) {
+  const l = i.system.light;
+  if (left <= 0) {
+    const once = !!i.system.consumable?.use;
+    // A one-use light is gone; what's left of the stack is fresh. A lantern keeps nothing.
+    await i.update({ "system.light.lit": false, "system.light.litAt": 0, "system.light.left": once ? null : 0, "system.light.warned": false });
+    say(actor, `<p>${esc(actor.name)}'s ${esc(i.name)} burns out${once ? "" : ". It needs more fuel before it will light again"}.</p>`);
+    if (once) await useUp(i);
+    return true;
+  }
+  const warn = left <= WARN_AT && !l.warned;
+  const upd = { ...(real ? { "system.light.left": Math.round(left) } : {}), ...(warn ? { "system.light.warned": true } : {}) };
+  if (Object.keys(upd).length) await i.update(upd);
+  if (warn) {
+    const whisper = game.users.filter(u => actor.testUserPermission?.(u, "OWNER") ?? u.isGM).map(u => u.id);
+    ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), whisper, content: `<div class="arn-card"><p><strong>${esc(actor.name)}</strong>: ${esc(i.name)} is nearly out (${lightLeftLabel(left)}).</p></div>` });
+  }
+  return false;
+}
+
+// One burn check at a time, in order (the game clock and the real-time tick both queue here).
+let lightQueue = Promise.resolve();
+const queued = fn => (lightQueue = lightQueue.then(fn).catch(err => console.warn("Arneyan | lights", err)));
+
+/** Game time moves on: lights that have burned their time go out, nearly-out ones warn their owners. */
+export function burnDown() {
+  if (!game.users.activeGM?.isSelf || burnMode() !== "game") return lightQueue;
+  return queued(() => burnLights(0));
+}
+
+/** Check every lit light: in real time, `seconds` of burn come off first. */
+async function burnLights(seconds) {
+  const mode = seconds > 0 ? "real" : "game";
   const now = game.time.worldTime;
-  const actors = [...game.actors.contents, ...canvas?.scene?.tokens?.filter(t => !t.actorLink).map(t => t.actor).filter(Boolean) ?? []];
-  for (const actor of actors) {
-    const out = actor.items.filter(i => i.type === "equipment" && i.system.light?.lit && i.system.light.hours > 0 && now - i.system.light.litAt >= i.system.light.hours * 3600);
-    if (!out.length) continue;
-    for (const i of out) {
-      await i.update({ "system.light.lit": false, "system.light.litAt": 0 });
-      say(actor, `<p>${esc(actor.name)}'s ${esc(i.name)} burns out.</p>`);
-      if (i.system.consumable?.use) await useUp(i);
+  for (const actor of lightActors()) {
+    const lit = actor.items.filter(timedLit);
+    if (!lit.length) continue;
+    let out = false;
+    for (const i of lit) {
+      const left = lightLeft(i.system.light, { mode, now }) - seconds;
+      if (seconds > 0 || left <= WARN_AT) out = (await settleLight(actor, i, left, { real: seconds > 0 })) || out;
     }
-    await syncLight(actor);
+    if (out) await syncLight(actor);
+  }
+}
+
+// Real time: the last tick (ms), so a slow tick still counts the time that passed (at most two minutes).
+let lastTick = null;
+/** The real-time clock ticks (every minute on every client; only the active GM's burns). */
+export function realTick(nowMs = Date.now(), { ignorePause = false } = {}) {
+  const dt = lastTick === null ? 0 : Math.min(Math.max(0, (nowMs - lastTick) / 1000), REAL_TICK * 2);
+  lastTick = nowMs;
+  if ((game.paused && !ignorePause) || dt <= 0 || burnMode() !== "real" || !game.users.activeGM?.isSelf) return lightQueue;
+  return queued(() => burnLights(dt));
+}
+
+/** Pausing counts the burn up to the pause; nothing burns while paused; unpausing starts the count again. */
+export function onPauseGame(paused, nowMs = Date.now()) {
+  if (paused) return realTick(nowMs, { ignorePause: true });
+  lastTick = nowMs;
+  return lightQueue;
+}
+
+/** The setting changes: lit lights carry on from the time they have left now. */
+function switchBurnMode(mode) {
+  lastTick = Date.now();
+  if (!game.users.activeGM?.isSelf) return;
+  const old = mode === "real" ? "game" : "real";
+  return queued(async () => {
+    const now = game.time.worldTime;
+    for (const actor of lightActors()) for (const i of actor.items.filter(timedLit)) {
+      await i.update({ "system.light.left": Math.round(lightLeft(i.system.light, { mode: old, now })), "system.light.litAt": now });
+    }
+  });
+}
+
+/** Game time moved on: open sheets showing a lit light show its new time left. */
+function refreshLightSheets() {
+  for (const app of foundry.applications.instances?.values?.() ?? []) {
+    const doc = app.document;
+    if (!app.rendered || !doc) continue;
+    if ((doc.documentName === "Actor" && doc.items.some(timedLit)) || (doc.documentName === "Item" && timedLit(doc))) app.render();
+  }
+}
+
+/** The item sheet's "Time left" box and reset button (GM). */
+function wireLightTimer(app, element) {
+  const item = app.document;
+  if (item?.type !== "equipment" || !game.user.isGM) return;
+  for (const input of element.querySelectorAll?.("input.arn-light-left") ?? []) {
+    input.addEventListener("change", ev => {
+      ev.stopPropagation();
+      setLightLeft(item, (Number(input.value) || 0) * HOUR);
+    });
+  }
+  for (const a of element.querySelectorAll?.("a.arn-light-reset") ?? []) {
+    a.addEventListener("click", ev => { ev.preventDefault(); ev.stopPropagation(); setLightLeft(item, null); });
   }
 }
 
@@ -529,7 +685,18 @@ export function registerGear() {
     const s = changes.system ?? {};
     if (("active" in s || "toggle" in s || "modeLight" in s || "equipped" in s || "inside" in s) && (item.system.modeLight > 0 || "modeLight" in s)) syncLight(item.parent);
   });
-  Hooks.on("updateWorldTime", () => burnDown().catch(err => console.warn("Arneyan | lights", err)));
+  // Light sources burn down in game time (the clock) or real time (while the world is open and not paused).
+  game.settings.register(SYS, "lightBurn", {
+    name: "Light sources burn in", hint: "Game time: a lit torch or lantern burns down as the game clock moves on. Real time: it burns down while the world is open and the game isn't paused (counted on the GM's client, so a GM must be logged in).",
+    scope: "world", config: true, type: String, default: "game", choices: { game: "Game time", real: "Real time" }, onChange: v => switchBurnMode(v)
+  });
+  Hooks.on("updateWorldTime", () => {
+    burnDown();
+    if (burnMode() === "game") refreshLightSheets();
+  });
+  Hooks.on("pauseGame", paused => onPauseGame(paused));
+  Hooks.once("ready", () => setInterval(() => realTick(), REAL_TICK * 1000));
+  Hooks.on("renderArneyanItemSheet", (app, element) => wireLightTimer(app, element));
   Hooks.on("renderChatMessageHTML", (message, html) => {
     for (const btn of html.querySelectorAll?.(".arn-scroll-effect") ?? []) {
       btn.addEventListener("click", ev => { ev.preventDefault(); scrollEffect(message, Number(btn.dataset.index)); });

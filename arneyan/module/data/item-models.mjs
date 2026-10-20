@@ -275,7 +275,11 @@ export class EquipmentData extends BaseItemData {
         lit: new BooleanField({ initial: false }),
         litAt: num(0),
         /** 360 all round; less for a beam (a bullseye lantern's 60-degree cone). */
-        angle: num(360, { min: 1, max: 360 })
+        angle: num(360, { min: 1, max: 360 }),
+        /** Seconds of burn left (null: the full burn time). Game time: as of when it was lit (litAt). Real time: ticks down. */
+        left: new NumberField({ required: false, nullable: true, initial: null, min: 0 }),
+        /** The owner has been told it's nearly out (10 minutes left). */
+        warned: new BooleanField({ initial: false })
       }),
       /** A spell scroll: the spell, and the writer's caster level and save DC. */
       scroll: new SchemaField({
