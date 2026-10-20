@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.10 · Foundry v13 and v14
+Version 0.10.11 · Foundry v13 and v14
+
+## What's new in 0.10.11
+
+- **Hovering a monster as the GM** shows its HP and AC with the players' word (Unhurt, Hurt, Bloodied, Near death, Down) under them, so you know what the table sees.
 
 ## What's new in 0.10.10
 

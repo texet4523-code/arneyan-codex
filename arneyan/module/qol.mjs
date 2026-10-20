@@ -55,14 +55,19 @@ const WORD_COLOUR = { Unhurt: 0xb9e3b0, Hurt: 0xf3d58a, Bloodied: 0xf0a060, "Nea
 
 /**
  * What a hovered monster's tooltip adds (T49, 20 Oct: a label drawn on the token didn't show): players see how hurt
- * it looks, the GM its HP and AC. Shown through the token's own tooltip, which core draws and keeps on top.
+ * it looks, the GM its HP and AC with that word under them. Shown through the token's own tooltip, which core draws and keeps on top.
  */
 export function healthLabel(token) {
   if (!token?.hover || !game.settings.get(SYS, "healthWords")) return "";
   const actor = token.actor;
   if (!actor || actor.type !== "npc") return "";
   const hp = actor.system.attributes?.hp;
-  if (game.user.isGM) return `HP ${hp?.value ?? "?"}/${hp?.max ?? "?"} · AC ${actor.system.acTotal ?? actor.system.attributes?.ac ?? "?"}`;
+  // The GM sees the numbers with the players' word under them (Kieran, 20 Oct), so they know what the table sees.
+  if (game.user.isGM) {
+    const nums = `HP ${hp?.value ?? "?"}/${hp?.max ?? "?"} · AC ${actor.system.acTotal ?? actor.system.attributes?.ac ?? "?"}`;
+    const word = healthWord(hp);
+    return word ? `${nums}\n${word}` : nums;
+  }
   if (actor.isOwner || token.document.hidden) return "";
   return healthWord(hp);
 }
@@ -291,7 +296,7 @@ export function registerQol() {
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYS, "healthWords", {
-    name: "Hover a monster to see how hurt it is", hint: "Players see Unhurt, Hurt, Bloodied, Near death or Down; the GM sees HP and AC.",
+    name: "Hover a monster to see how hurt it is", hint: "Players see Unhurt, Hurt, Bloodied, Near death or Down; the GM sees HP and AC, with the word under them.",
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("hoverToken", token => { try { showHealth(token); } catch (err) { console.warn("Arneyan | health word", err); } });

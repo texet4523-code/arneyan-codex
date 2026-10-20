@@ -92,7 +92,7 @@ Hooks.once("init", () => {
       if (altHeld(event) && !this.layer?._draggedToken && this.document.disposition !== CONST.TOKEN_DISPOSITIONS?.SECRET) return true;
       return super._canHUD(user, event);
     }
-    // Hovering a monster: how hurt it looks (players) or its HP and AC (GM), under the elevation in the tooltip.
+    // Hovering a monster: how hurt it looks (players), or its HP and AC with that word under them (GM), under the elevation in the tooltip.
     _getTooltipText() {
       const base = super._getTooltipText?.() ?? "";
       let extra = "";

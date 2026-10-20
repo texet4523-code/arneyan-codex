@@ -596,6 +596,18 @@ assert.ok(pat.items.some(i => i.name === "Tiefling (Infernal)") && pat.items.som
 // QoL: how hurt a monster looks, identical monsters sharing one initiative roll, Method V's threshold.
 const { healthWord, rollMonsterInitiative } = await import("../arneyan/module/qol.mjs");
 assert.deepEqual([[20, 20], [15, 20], [8, 20], [3, 20], [0, 20]].map(([v, m]) => healthWord({ value: v, max: m })), ["Unhurt", "Hurt", "Bloodied", "Near death", "Down"]);
+{
+  // T49 (20 Oct): the GM sees HP and AC with the players' word under them; a player sees only the word.
+  const { healthLabel } = await import("../arneyan/module/qol.mjs");
+  const keep = { user: globalThis.game.user, settings: globalThis.game.settings };
+  globalThis.game.settings = { get: () => true };
+  const tok = { hover: true, document: { hidden: false }, actor: { type: "npc", isOwner: false, system: { acTotal: 40, attributes: { hp: { value: 1, max: 3 } } } } };
+  globalThis.game.user = { isGM: true };
+  assert.equal(healthLabel(tok), "HP 1/3 · AC 40\nBloodied");
+  globalThis.game.user = { isGM: false };
+  assert.equal(healthLabel(tok), "Bloodied");
+  Object.assign(globalThis.game, keep);
+}
 globalThis.CONST.DICE_ROLL_MODES ??= { PRIVATE: "gmroll" };
 globalThis.game.settings = { get: (s, k) => k === "groupInitiative" ? true : "publicroll" };
 const cbs = [["g1", "A", "Goblin"], ["g2", "A", "Goblin"], ["g3", "A", "Goblin"], ["o1", "B", "Ogre"], ["pc", "C", "Wen"]].map(([id, actorId, name]) => ({ id, actorId, name, token: { name }, initiative: null, actor: { type: name === "Wen" ? "character" : "npc" } }));
