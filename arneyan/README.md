@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.2 · Foundry v13 and v14
+Version 0.10.3 · Foundry v13 and v14
+
+## What's new in 0.10.3
+
+- **Fixes from review and live testing of 0.10.2.** Starting gold can't be run twice by a player, and the free firearm, toolkit and pack aren't given again on a GM re-run; packs can be paid from platinum and silver too. Feats now record the level they were taken at (compendium feats show none until added). The toolkits sit in Tools & Trades. A GM's "add it anyway" on skill slots counts as an extra slot from then on (shown on the sheet). Reactions, rounds left and first-attack checks now find the right combat even when another combat exists in the world.
 
 ## What's new in 0.10.2
 
