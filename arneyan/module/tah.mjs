@@ -141,12 +141,18 @@ export async function runHudAction(actor, { actionType, actionId }, event, { ren
       const doc = await fromUuid(actionId).catch(() => null);
       if (!doc) return;
       if (render) return doc.sheet?.render(true);
-      // Not on the sheet: post its card as this actor's.
+      // On the sheet after all (added since the HUD was built): use that one, as the sheet does.
+      const mine = actor.items.find?.(i => i.type === doc.type && i.name === doc.name);
+      if (mine) return mine.use(event);
+      // Not on the sheet: a temporary copy, used as this actor's.
       const temp = new CONFIG.Item.documentClass(doc.toObject(), { parent: actor });
       // Grapple, Trip, Dirty Trick and the rest roll their contest, as from the sheet.
       const { combatUse } = await import("./combat.mjs");
       const r = await combatUse(temp, event);
       if (r !== undefined) return r;
+      // What it does when used (Push, Cleave, an Attack of Opportunity: the attack, and the reaction spent). A switch
+      // (Charge, Dodge) needs to be on the sheet to stay on, so it posts its card.
+      if (temp.system?.activities?.length && !temp.system.toggle && typeof temp.use === "function") return temp.use(event);
       return temp.toChat();
     }
     case "save": return ARNEYAN.saves[actionId] ? actor.rollSave(actionId, event) : undefined;

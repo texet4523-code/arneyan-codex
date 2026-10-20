@@ -49,6 +49,7 @@
       <label>Level taken <input type="number" name="system.levelTaken" value="{{source.levelTaken}}"></label>
       <label>Uses <span><input class="short" type="number" name="system.uses.value" value="{{source.uses.value}}"> / <input class="short" type="number" name="system.uses.max" value="{{source.uses.max}}"></span></label>
       <label>Refreshes <select name="system.uses.per">{{selectOptions config.usesPer selected=source.uses.per}}</select></label>
+      <label data-tooltip="Works out the uses on a character: @dex.mod (any attribute), @cl (class level), @level, @casting.mod, min/max/floor, or a level table such as 5:1, 9:2">Uses formula <input type="text" name="system.uses.formula" value="{{source.uses.formula}}" placeholder="max(1, @dex.mod)">{{#if usesFromFormula}} <small class="arn-muted">{{system.uses.max}} on {{item.actor.name}}</small>{{/if}}</label>
     {{/if}}
 
     {{#if (eq type "skill")}}
@@ -61,6 +62,7 @@
       <label>Kind <select name="system.kind">{{selectOptions config.abilityKinds selected=source.kind}}</select></label>
       <label>Uses <span><input class="short" type="number" name="system.uses.value" value="{{source.uses.value}}"> / <input class="short" type="number" name="system.uses.max" value="{{source.uses.max}}"></span></label>
       <label>Refreshes <select name="system.uses.per">{{selectOptions config.usesPer selected=source.uses.per}}</select></label>
+      <label data-tooltip="Works out the uses on a character: @dex.mod (any attribute), @cl (class level), @level, @casting.mod, min/max/floor, or a level table such as 5:1, 9:2">Uses formula <input type="text" name="system.uses.formula" value="{{source.uses.formula}}" placeholder="max(1, @dex.mod)">{{#if usesFromFormula}} <small class="arn-muted">{{system.uses.max}} on {{item.actor.name}}</small>{{/if}}</label>
       <label>Save <select name="system.save">{{selectOptions config.saveTypes selected=source.save}}</select></label>
       <label>DC <input type="number" name="system.dc" value="{{source.dc}}" placeholder="Class Save DC"></label>
       <label>Damage <input type="text" name="system.damage" value="{{source.damage}}" placeholder="2d6"></label>
@@ -70,6 +72,13 @@
         <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#if formula}} · {{formula}}{{/if}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if maxLevel}} · to level {{maxLevel}}{{/if}}{{#if count}} · attacks {{count}}{{/if}}{{#if damageBonus}} · bonus damage {{damageBonus}}{{/if}}{{#if bonus}} · bonus {{bonus}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
       </div>
     {{/if}}{{/if}}
+
+    {{#if abilityChoices}}
+      <label data-tooltip="The attribute this item's bonus goes to">Attribute bonus to <select name="system.abilityChoice.value">{{selectOptions abilityChoices selected=abilityChoiceValue}}</select></label>
+    {{/if}}
+    {{#if fromCompendium}}
+      <label class="check wide" data-tooltip="System updates bring this item's rules, uses and activities up to date from its compendium entry; ticked, they leave it as it is"><input type="checkbox" name="flags.arneyan.keepCustom" {{checked keepCustom}}> Keep my edits (tick to stop updates overwriting your edits)</label>
+    {{/if}}
 
     {{#if (eq type "weapon")}}
       <label>Damage <input type="text" name="system.damage" value="{{source.damage}}"></label>

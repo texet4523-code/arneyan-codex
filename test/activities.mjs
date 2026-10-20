@@ -258,4 +258,91 @@ for (const a of all) {
   assert.ok(!/[—–]/.test(a.text), `${a.name}: no dashes`);
 }
 
+/* ---- 0.10.1 review fixes ---- */
+
+/* Self effects on a feature with activities: applied once per use (Undying Reputation's Advantage), and its temporary
+   HP comes from the activity only (the approved effect no longer carries hp.temp, so it isn't doubled). */
+const ur = dataOf("Undying Reputation", "Knight");
+assert.ok(!ur.applies.some(e => e.rules.some(r => r.key === "hp.temp")), "Undying Reputation: no hp.temp in its effect");
+assert.ok(ur.applies.some(e => e.target === "self" && e.rules.some(r => r.key === "adv.attack.first")), "its Advantage stays");
+assert.ok(ur.activities.some(a => a.kind === "temp"), "the activity grants the temporary HP");
+const pw = dataOf("Primeval Will", "Barbarian");
+assert.ok(!(pw.applies ?? []).some(e => e.rules.some(r => r.key === "hp.temp")), "Primeval Will: no hp.temp effect");
+assert.ok(pw.activities.some(a => a.kind === "temp"));
+for (const d of [...built, ...feats, ...actions]) {
+  const s = d.system;
+  if ((s.activities ?? []).some(a => a.kind === "temp") && (s.applies ?? []).some(e => e.target === "self" && e.rules.some(r => r.key === "hp.temp"))) assert.fail(`${d.name}: temporary HP twice`);
+}
+{
+  const { item, actor } = feature({ ...ur, name: "Undying Reputation" }, { level: 6, cls: "Knight" });
+  const made = [];
+  actor.isOwner = true;
+  actor.system.mods = { traits: { immune: [] } };
+  actor.system.attributes = { hp: { temp: 0 } };
+  actor.update = async () => {};
+  actor.createEmbeddedDocuments = async (t, list) => { const docs = list.map(d => ({ ...d, origin: d.origin, disabled: false })); made.push(...docs); actor.effects.push(...docs); return docs; };
+  posted.length = 0;
+  await item._useActivity(item.availableActivities[0], {});
+  assert.equal(made.length, 1, "the self effect lands on use");
+  assert.equal(made[0].name, "Undying Reputation");
+  assert.ok(!made[0].flags.arneyan.rules.some(r => r.key === "hp.temp"));
+  await item._useActivity(item.availableActivities[0], {});
+  assert.equal(made.length, 1, "used again while it's on: no second copy");
+}
+
+/* Uses from a formula: Flèche (Dexterity modifier a day, minimum 1), and its attack spends one. */
+const fl = dataOf("Flèche", "Swashbuckler");
+assert.equal(fl.uses.formula, "max(1, @dex.mod)");
+assert.equal(fl.uses.per, "day");
+assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
+const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Turn Undead|Paladin": "3 + @cha.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
+  "Discord (Charisma)|Bard": "max(1, @cha.mod)", "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "5:1, 9:2, 13:3, 17:4",
+  "Smite Evil|Paladin": "1:1, 15:2, 20:3", "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)" };
+for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
+assert.equal(feat("Blood Magic").uses.formula, "max(1, @casting.mod)");
+for (const k of ["Turn Undead|Cleric", "Smite Evil|Paladin", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.every(a => a.cost === 1), `${k}: each use spends one`); }
+assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "save").every(a => a.cost === 1) && dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "damage").every(a => a.cost === 0), "a Hex spends one; its damage each turn doesn't");
+
+/* Several attacks: a blocked target (Full Cover) is skipped and the rest still roll; the use is spent once, after an
+   attack rolled; nothing is spent when nothing rolls. */
+{
+  const { item, actor } = feature({ ...fl, name: "Flèche", uses: { value: 2, max: 2, per: "day", formula: "" }, activities: [{ ...fl.activities[0], count: "3", cost: 1 }] }, { level: 5, cls: "Swashbuckler", items: [sword] });
+  let calls = 0;
+  actor.rollAttack = async (w, ev, opts) => { calls++; actor.attacks.push(opts); return calls === 1 ? null : { ok: true }; };
+  const out = await item._useActivity(item.availableActivities[0], {});
+  assert.equal(calls, 3, "the blocked first attack doesn't stop the others");
+  assert.equal(out.length, 2);
+  assert.equal(item.system.uses.value, 1, "one use spent, once");
+  actor.rollAttack = async () => null;
+  const none = await item._useActivity(item.availableActivities[0], {});
+  assert.equal(none.length, 0);
+  assert.equal(item.system.uses.value, 1, "nothing rolled: nothing spent");
+  item.system.uses.value = 0;
+  warnings.length = 0;
+  assert.equal(await item._useActivity(item.availableActivities[0], {}), null);
+  assert.ok(warnings[0].includes("no uses left"));
+}
+/* An Attack of Opportunity spends the reaction after the attack, not before the prompt (and not on a cancel). */
+{
+  const aoo = byName(actions, "Attack of Opportunity").system;
+  const { item, actor } = feature({ ...aoo, name: "Attack of Opportunity" }, { level: 3, items: [sword, makeItem(IM.WeaponData, "weapon", "Axe", { damage: "1d6" })], type: "ability" });
+  const flags = [];
+  const combatant = { actor, isOwner: true, getFlag: () => false, setFlag: async (s, k, v) => flags.push([k, v]) };
+  game.combat = { combatants: [combatant] };
+  foundry.applications.api.DialogV2.wait = async () => null; // cancelled
+  await item._useActivity(item.availableActivities[0], {});
+  assert.equal(flags.length, 0, "cancelled: the reaction is still there");
+  foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callback(null, { form: { querySelector: () => null } });
+  await item._useActivity(item.availableActivities[0], {});
+  assert.deepEqual(flags, [["reacted", true]], "attacked: the reaction is spent");
+  game.combat = null;
+}
+/* Push: its attack carries no damage. */
+{
+  const push = byName(actions, "Push").system;
+  const { item, actor } = feature({ ...push, name: "Push" }, { level: 3, items: [sword], type: "ability" });
+  await item._useActivity(item.availableActivities[0], {});
+  assert.ok(actor.attacks[0].noDamage.startsWith("push a creature"), actor.attacks[0].noDamage);
+}
+
 console.log("OK activities");

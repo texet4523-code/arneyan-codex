@@ -613,12 +613,38 @@ export async function rollMorale(actor, { group = [] } = {}) {
 
 const combatantsOf = actor => (game.combat?.combatants ?? []).filter(c => c.actor === actor || (c.actorId === actor?.id && c.token?.actor === actor));
 
-/** Items that answer a trigger with the creature's reaction. */
-export function isReactionItem(item) {
+/**
+ * Items that answer a trigger with the creature's reaction. With an activity (`act`): that option is one (its data
+ * says so: Combat Reflexes' Attack of Opportunity, a Swashbuckler's Riposte), or the whole item is.
+ */
+export function isReactionItem(item, act = null) {
   if (!item || !["ability", "feat"].includes(item.type)) return false;
+  if (act?.reaction) return true;
   if (item.flags?.[SYS]?.reaction) return true;
+  // Every option it has is a reaction (Flourish Manoeuvres: Parry, Riposte, Acrobatic Escape).
+  const acts = item.system?.activities ?? [];
+  if (acts.length && acts.every(a => a.reaction)) return true;
   if (/^(opportunity attack|attack of opportunity|parry)$/i.test(item.name)) return true;
   return /^\s*(<p>)?\s*reaction\b/i.test(item.system?.description ?? "");
+}
+
+/**
+ * An encounter ended: every combatant's "per encounter" uses (feats, features, kit features) are full again. One
+ * update per creature. Returns how many items were reset. Week uses are left to the players (see the README).
+ */
+export async function resetEncounterUses(combat) {
+  const seen = new Set();
+  let n = 0;
+  for (const c of combat?.combatants ?? []) {
+    const actor = c.actor;
+    if (!actor || seen.has(actor.uuid ?? actor)) continue;
+    seen.add(actor.uuid ?? actor);
+    const updates = (actor.items ?? []).filter(i => ["ability", "feat"].includes(i.type) && i.system?.uses?.per === "encounter" && i.system.uses.max > 0 && i.system.uses.value < i.system.uses.max)
+      .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
+    if (!updates.length) continue;
+    try { await actor.updateEmbeddedDocuments("Item", updates); n += updates.length; } catch (err) { console.warn(`Arneyan | encounter uses: ${actor.name}`, err); }
+  }
+  return n;
 }
 
 /** Spend (or give back) a creature's reaction for this round. */
@@ -627,7 +653,7 @@ export async function setReaction(combatant, spent) {
   return combatant.setFlag(SYS, "reacted", !!spent);
 }
 
-async function spendReaction(actor, why) {
+export async function spendReaction(actor, why) {
   for (const c of combatantsOf(actor)) {
     if (c.getFlag(SYS, "reacted")) ui.notifications.warn(`${actor.name} has already used its reaction this round (${why}).`);
     else await setReaction(c, true);
@@ -641,19 +667,16 @@ async function spendReaction(actor, why) {
 const CONTEST_NAMES = { grapple: "grapple", trip: "trip", disarm: "disarm", "dirty trick": "dirty", overbear: "overbear" };
 
 /**
- * Items with combat rules of their own: contests roll, Unarmed Strike attacks, reactions are spent.
- * Returns a result when it handled the use, else undefined and the item is used as usual.
+ * Items with combat rules of their own: contests roll, Unarmed Strike attacks. Returns a result when it handled the
+ * use, else undefined and the item is used as usual. A reaction is spent by the use itself (documents.mjs), once it
+ * has happened: not when a weapon or target prompt is cancelled, nor when no attack rolled.
  */
 export async function combatUse(item, event) {
   const actor = item.actor;
-  if (!actor || item.type !== "ability") {
-    if (actor && isReactionItem(item)) await spendReaction(actor, item.name).catch(() => null);
-    return undefined;
-  }
+  if (!actor || item.type !== "ability") return undefined;
   const kind = item.flags?.[SYS]?.contest ?? (item.system.kind === "action" ? CONTEST_NAMES[item.name.toLowerCase()] : null);
   if (kind && CONTESTS[kind]) { await startContest(actor, kind, event); return null; }
   if (item.system.kind === "action" && /^unarmed strike$/i.test(item.name)) return (await unarmedStrike(actor, event)) ?? null;
-  if (isReactionItem(item)) await spendReaction(actor, item.name).catch(() => null);
   return undefined;
 }
 
@@ -805,5 +828,7 @@ export function registerCombat() {
   Hooks.on("renderCombatTracker", (app, html) => { try { onRenderTracker(app, html); } catch (err) { console.warn("Arneyan | reactions", err); } });
   Hooks.on("getCombatantContextOptions", trackerOptions);
   Hooks.on("updateCombat", (combat, changed, options) => { onTurn(combat, changed, options).catch(err => console.warn("Arneyan | reactions", err)); });
+  // The fight is over: "per encounter" uses come back (the active GM does it, once).
+  Hooks.on("deleteCombat", combat => { if (game.users.activeGM?.isSelf) resetEncounterUses(combat).catch(err => console.warn("Arneyan | encounter uses", err)); });
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
 }

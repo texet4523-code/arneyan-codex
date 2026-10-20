@@ -172,7 +172,18 @@ for (const gone of ["Feint", "Called Shot", "Offensive Focus", "Parry", "Rear At
 assert.equal(actions["Charge"]._id, "UniEPc3NhFzkrGYI", "Charge keeps the old Charging ID");
 assert.equal(actions["Attack of Opportunity"]._id, "g8Ifmgn7innIiAZy", "Attack of Opportunity keeps the old Opportunity Attack ID");
 assert.equal(actions["Trip"]._id, "oF3I9qCsbxavZOJn", "surviving actions keep their IDs");
-assert.ok(actions["Charge"].system.toggle && actions["Charge"].system.rules.some(r => r.key === "adv.attack" && r.value === "1"), "Charge: Advantage on the attack");
+assert.ok(actions["Charge"].system.toggle && actions["Charge"].system.rules.some(r => r.key === "adv.attack.first.melee" && r.value === "1"), "Charge: Advantage on the attack");
+// Handbook: "make one melee attack with Advantage": the first melee attack only, never a ranged one or every attack.
+assert.ok(!actions["Charge"].system.rules.some(r => ["adv.attack", "adv.attack.ranged", "adv.attack.melee"].includes(r.key)), "Charge doesn't give every attack Advantage");
+// Push: "instead of dealing damage", so its attack has no damage buttons.
+assert.equal(actions["Push"].system.activities[0].noDamage, true, "Push deals no damage");
+// Attack of Opportunity (the action and Combat Reflexes' option) and Riposte take the reaction (data, not names).
+assert.equal(actions["Attack of Opportunity"].system.activities[0].reaction, true);
+const featsPack = Object.fromEntries(packItems("feats").map(i => [i.name, { ...i, flags: i.flags ?? {} }]));
+assert.equal(C.isReactionItem({ ...featsPack["Combat Reflexes"], name: "Combat Reflexes" }), true, "Combat Reflexes is a reaction (its activity says so)");
+const flourish = packItems("class-features").find(i => i.name === "Flourish Manoeuvres");
+assert.equal(C.isReactionItem({ ...flourish, flags: {} }, flourish.system.activities.find(a => a.name === "Riposte")), true, "Riposte takes the reaction");
+assert.equal(C.isReactionItem({ type: "ability", name: "Extra Attack", flags: {}, system: { description: "", activities: [{ name: "Extra Attack", kind: "attacks" }] } }), false, "an ordinary attacks option is no reaction");
 assert.deepEqual(actions["Search"].system.activities.map(a => [a.kind, a.ability]), [["check", "wis"]], "Search rolls a Wisdom check");
 assert.deepEqual(actions["Hide"].system.activities.map(a => [a.kind, a.ability]), [["check", "dex"]], "Hide rolls a Dexterity check");
 assert.equal(actions["Break Free"].flags.arneyan?.contest, "escape", "Break Free uses the break-free contest");

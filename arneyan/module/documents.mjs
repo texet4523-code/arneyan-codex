@@ -3,8 +3,9 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
-import { useEquipment, spendAmmo, rechargeAtDawn, putOutData } from "./gear.mjs";
-import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual } from "./combat.mjs";
+import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
+import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionItem, spendReaction, firearmOf } from "./combat.mjs";
+import { formulaUsesFor } from "./data/actor-models.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -78,6 +79,26 @@ export function weaponTrait(word, type, weapon) {
   if (word === "non-silvered") return weapon !== "silver";
   if (word === "non-adamantine") return weapon !== "adamantine";
   return false;
+}
+
+/** Does this item still need its attribute picked (several options, none chosen yet)? */
+export function needsAbilityChoice(item) {
+  const c = item?.system?.abilityChoice;
+  return (c?.options?.length ?? 0) > 1 && !c.value;
+}
+
+/** Ask which attribute an item's bonus goes to, and store it (system.abilityChoice.value). */
+export async function promptAbilityChoice(item) {
+  const c = item?.system?.abilityChoice;
+  if (!item?.isOwner || !(c?.options?.length > 1)) return null;
+  const amount = (item.system.rules ?? []).find(r => /^ability\./.test(r.key) && !r.when)?.value;
+  const content = `<p>${esc(item.name)}: ${amount ? `+${esc(String(amount).replace(/^\+/, ""))} to ` : ""}which attribute?</p>
+    <div class="arn-acts">${c.options.map((o, i) => `<label class="arn-act"><input type="radio" name="pick" value="${esc(o)}" ${i === 0 ? "checked" : ""}> <strong>${esc(ARNEYAN.abilities[o] ?? o)}</strong></label>`).join("")}</div>`;
+  const pick = await DialogV2.wait({ window: { title: item.name, icon: "fa-solid fa-dumbbell" }, classes: ["arneyan"], position: { width: 360 }, content,
+    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => btn.form.querySelector("input[name=pick]:checked")?.value ?? "" }], rejectClose: false }).catch(() => null);
+  const value = c.options.includes(pick) ? pick : c.options[0];
+  await item.update({ "system.abilityChoice.value": value });
+  return value;
 }
 
 export class ArneyanActor extends Actor {
@@ -243,7 +264,7 @@ export class ArneyanActor extends Actor {
    * `targets`, this attack's own targets; `label`, the card title ("Twin Nock, arrow 2 of 2"); `notes`; and `bonus`, bonus
    * damage on a hit ({ value, label, noStack }) that the damage buttons carry.
    */
-  async rollAttack(item, event, { offhand = false, adv = null, targets: only = null, label = "", notes: more = [], bonus = null } = {}) {
+  async rollAttack(item, event, { offhand = false, adv = null, targets: only = null, label = "", notes: more = [], bonus = null, noDamage = "" } = {}) {
     const targets = only ?? targetActors();
     // Combat rules (combat.mjs): Full Cover, a jammed gun, off-hand, flanking and crowding.
     const sit = await attackSituation(this, item, targets, { offhand });
@@ -269,7 +290,7 @@ export class ArneyanActor extends Actor {
     }
     // Advantage on the first attack each round (Bless, Favoured Enemy and the like).
     let first = NONE;
-    const firstSrc = m?.adv("adv.attack.first") ?? NONE;
+    const firstSrc = m?.adv("adv.attack.first", ...(ranged ? [] : ["adv.attack.first.melee"])) ?? NONE;
     if (firstSrc.values.length) {
       const combat = game.combat;
       const stamp = combat?.started ? `${combat.id}.${combat.round}` : null;
@@ -314,6 +335,8 @@ export class ArneyanActor extends Actor {
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit }) => {
         if (natural === 1 && !crit) return "";
+        // A manoeuvre that hits "instead of dealing damage" (Push): no damage buttons.
+        if (noDamage) return `<p class="arn-card-meta"><i class="fa-solid fa-hand"></i> On a hit: ${esc(noDamage)}. No damage.</p>`;
         const normal = `<button type="button" class="arn-damage" data-item-id="${item.id}" data-crit="0"><i class="fa-solid fa-burst"></i> ${crit ? "Normal damage" : "Roll damage"}</button>`;
         const critical = `<button type="button" class="arn-damage ${crit ? "" : "ghost"}" data-item-id="${item.id}" data-crit="1"><i class="fa-solid fa-star"></i> Critical${crit ? " damage" : ""}</button>`;
         return `<div class="arn-dmg-buttons">${crit ? critical + normal : normal + critical}</div>`;
@@ -642,6 +665,11 @@ export class ArneyanItem extends Item {
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
     if (!(actor instanceof Actor) || actor.type !== "character") return;
+    // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
+    if (this.system?.uses?.formula && !actor.items.has(this.id)) {
+      const n = formulaUsesFor(actor, this);
+      if (n !== null) this.updateSource({ "system.uses.value": n });
+    }
     if (this.type === "class") {
       // Items arriving with their actor (duplicating or importing a character) are left as they are.
       if (actor.items.has(this.id)) return;
@@ -668,6 +696,11 @@ export class ArneyanItem extends Item {
   async _onCreate(data, options, userId) {
     super._onCreate(data, options, userId);
     const actor = this.parent;
+    // An attribute bonus of the player's choice (Will of Iron, a Fighter's Attribute Bonus): ask the one who added it,
+    // granted by a level up too. Nothing picked: the first option stays.
+    if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsAbilityChoice(this)) {
+      promptAbilityChoice(this).catch(err => console.warn("Arneyan | attribute choice", err));
+    }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
       if (!this.flags.arneyan?.fresh) return;
@@ -749,12 +782,17 @@ export class ArneyanItem extends Item {
     return out.join("");
   }
 
-  /** Put this item's self effects on its owner; start concentration if needed. */
-  async _applySelf(cl) {
+  /**
+   * Put this item's self effects on its owner; start concentration if needed. `fresh`: skip an effect of this item's
+   * that is still on (a feature used again through another of its options doesn't stack a second copy).
+   */
+  async _applySelf(cl, { fresh = false } = {}) {
     const actor = this.actor;
     if (!actor) return [];
     const created = [];
     for (const e of (this.system.applies ?? []).filter(x => x.target === "self")) {
+      const name = e.name || this.name;
+      if (fresh && (actor.effects ?? []).some?.(x => x.origin === this.uuid && x.name === name && !x.disabled)) continue;
       created.push(...await applyEffectTo([actor], await effectDataFor(e, this, { cl, caster: actor })));
     }
     if (this.system.concentration) await startConcentration(actor, this, created);
@@ -908,25 +946,39 @@ export class ArneyanItem extends Item {
     return (this.system.applies ?? []).map((e, i) => (e.target === "self" ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
   }
 
+  /** This use took the creature's reaction (Attack of Opportunity, Riposte): mark it on the combat tracker. */
+  async _reacted(act) {
+    if (this.actor && isReactionItem(this, act)) await spendReaction(this.actor, act?.name || this.name).catch(() => null);
+  }
+
+  /** The item's own effects on its user, once per use of an activity (Storm Form, Undying Reputation's Advantage). */
+  async _selfForActivity(cl) {
+    if (!(this.system.applies ?? []).some(e => e.target === "self")) return [];
+    try { return await this._applySelf(cl, { fresh: true }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
+  }
+
   /** Use one of a feature's activities: spend its use, then roll or post what it does. */
   async _useActivity(act, event) {
     const sys = this.system;
     const actor = this.actor;
     if (act.kind === "attacks") return this._useAttacks(act, event);
     if (!(await this._spendFor(act))) return null;
+    await this._reacted(act);
     const cost = Number(act.cost ?? 1);
     const cl = this.featureLevel;
+    const self = await this._selfForActivity(cl);
     const rollData = { ...(actor?.getRollData?.() ?? {}), cl };
     const title = `${this.name}: ${act.name}`;
     const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
-    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : ""].join("");
+    const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
+    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : ""].join("");
     if (act.removeConditions && actor?.isOwner) {
       const gone = actor.effects.filter(e => [...(e.statuses ?? [])].some(s => ARNEYAN.conditions[s] && !["dead", "concentrating"].includes(s)));
       if (gone.length) await actor.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));
     }
     if (["heal", "temp", "damage"].includes(act.kind) && act.formula) {
       const heal = act.kind !== "damage";
-      const notes = [act.text, left, act.kind === "temp" ? "Temporary HP: use the Temp HP button." : "", act.target === "self" ? `On ${actor?.name ?? "yourself"}: select your token (no targets), then Apply.` : ""].filter(Boolean);
+      const notes = [act.text, left, onSelf, act.kind === "temp" ? "Temporary HP: use the Temp HP button." : "", act.target === "self" ? `On ${actor?.name ?? "yourself"}: select your token (no targets), then Apply.` : ""].filter(Boolean);
       return damageRoll({ actor, item: this, title, formula: act.formula, damageType: heal ? "healing" : (act.damageType || ""), rollData, notes });
     }
     if (act.kind === "check" && act.ability && actor?.rollAbility) {
@@ -985,11 +1037,12 @@ export class ArneyanItem extends Item {
       weapon = weapons[pick.w] ?? weapons[0];
       if (targets.length > 1) aim = pick.t.map(i => [targets[i] ?? targets[0]]);
     }
-    if (!(await this._spendFor(act))) return null;
+    // Enough uses for it? Spent only once an attack has actually rolled.
     const cost = Number(act.cost ?? 1);
+    if (cost > 0 && this.system.uses?.max > 0 && this.system.uses.value < cost) { ui.notifications.warn(`${this.name} has no uses left.`); return null; }
     const notes = [];
     if (act.text) notes.push(`${this.name}: ${act.text}`);
-    if (cost > 0 && this.system.uses?.max > 0) notes.push(`${this.system.uses.value} of ${this.system.uses.max} uses left`);
+    if (cost > 0 && this.system.uses?.max > 0) notes.push(`${this.system.uses.value - cost} of ${this.system.uses.max} uses left`);
     // Combat Dominance: only against creatures of Level up to half yours.
     if (act.targetLevel === "half") {
       const cap = Math.floor((actor.system.level ?? lvl) / 2);
@@ -1008,10 +1061,21 @@ export class ArneyanItem extends Item {
       const dis = disOn && (act.disadvantage === "all" || (act.disadvantage === "rest" && i > 0));
       const msg = await actor.rollAttack(weapon, event, {
         adv: dis ? { values: [-1], adv: [], dis: [`${this.name}: attack ${i + 1}`] } : null,
-        targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}`, notes: i === 0 ? notes : [], bonus
+        targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}`, notes: out.length ? [] : notes, bonus,
+        noDamage: act.noDamage ? (act.text || act.name || this.name).replace(/^On a hit,?\s*/i, "").replace(/\s*instead of dealing damage\.?$/i, "").replace(/\.$/, "") : ""
       });
-      // Out of ammunition, a jammed gun, Full Cover: stop there.
-      if (msg === null || msg === undefined) break;
+      if (msg === null || msg === undefined) {
+        // Out of ammunition, or a gun that jammed or needs reloading: no more attacks with it. A target behind Full
+        // Cover only blocks its own attack: carry on with the rest.
+        if ((weapon.system.ammoType && actor.type === "character" && !ammoFor(actor, weapon)) || firearmOf(weapon)) break;
+        continue;
+      }
+      // The first attack that rolls spends the use (and the reaction, for an Attack of Opportunity), once.
+      if (!out.length) {
+        if (cost > 0 && this.system.uses?.max > 0) await this.update({ "system.uses.value": Math.max(0, this.system.uses.value - cost) });
+        await this._reacted(act);
+        await this._selfForActivity(lvl);
+      }
       out.push(msg);
     }
     return out;
@@ -1046,16 +1110,19 @@ export class ArneyanItem extends Item {
       } else {
         await this.update({ "system.active": on });
       }
+      if (on) await this._reacted();
       return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(this.name)}</span></header><p>${on ? "Switched on" : "Switched off"}.</p></div>` });
     }
     if (sys.uses.max > 0) {
       if (sys.uses.value <= 0) return ui.notifications.warn(`${this.name} has no uses left.`);
       await this.update({ "system.uses.value": sys.uses.value - 1 });
     }
+    await this._reacted();
     let dc = sys.dc;
     if (!dc && sys.save && actor?.type === "character") dc = actor.system.classDC;
     if (!dc && sys.save && actor?.type === "npc") dc = actor.system.spellDC;
-    const cl = actor?.system.level ?? 1;
+    // A feature's effects scale with its class level (Stun Attack: 1d4 rounds from Monk 10th).
+    const cl = actor?.type === "character" ? this.featureLevel : (actor?.system.level ?? 1);
     const self = await this._applySelf(cl);
     const lines = [];
     if (sys.uses.max > 0) lines.push(`<p class="arn-card-meta">${sys.uses.value - 1} of ${sys.uses.max} uses left</p>`);

@@ -266,10 +266,28 @@ export async function setLightLeft(item, seconds) {
 
 const timedLit = i => i.type === "equipment" && i.system.light?.lit && i.system.light.hours > 0;
 
-/** Every actor in the world, and the unlinked tokens on every scene. */
-function lightActors() {
+/** A raw item (source data) that is a lit light on a timer. */
+const rawTimedLit = i => i?.type === "equipment" && i.system?.light?.lit && Number(i.system.light.hours) > 0;
+
+/**
+ * The actors that may carry a lit light on a timer: every world actor, and only those unlinked tokens whose own
+ * items (the token's changes) or base actor have one. A token's actor is only built when it might, so a big world
+ * with hundreds of monster tokens doesn't build them all on every tick of the clock.
+ */
+export function lightActors() {
   const out = [...(game.actors?.contents ?? [])];
-  for (const scene of game.scenes ?? []) for (const t of scene.tokens ?? []) if (!t.actorLink && t.actor) out.push(t.actor);
+  const baseLit = new Set(out.filter(a => a.items?.some?.(timedLit)).map(a => a.id));
+  for (const scene of game.scenes ?? []) {
+    for (const t of scene.tokens ?? []) {
+      if (t.actorLink) continue;
+      const delta = t._source?.delta?.items ?? t.delta?._source?.items ?? null;
+      // The token's own copy of a light changed (lit, burning): it has a delta entry. Otherwise it shares the base's.
+      const own = Array.isArray(delta) && delta.some(rawTimedLit);
+      if (!own && !baseLit.has(t.actorId)) continue;
+      const a = t.actor;
+      if (a) out.push(a);
+    }
+  }
   return out;
 }
 

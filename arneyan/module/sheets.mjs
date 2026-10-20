@@ -7,6 +7,7 @@ import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
 import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName, lightInfo } from "./gear.mjs";
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
+import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
@@ -839,6 +840,11 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       bonusDamage: (item._source.system.bonusDamage ?? []).map((b, i) => ({ ...b, i })),
       bonusTypeChoices: { "": "Same as the weapon", ...Object.fromEntries(Object.entries(ARNEYAN.damageTypes).filter(([k]) => k !== "healing")) },
       levelStr: String(item._source.system.level ?? ""),
+      usesFromFormula: !!(item._source.system.uses?.formula && item.actor),
+      abilityChoices: (sys.abilityChoice?.options?.length ?? 0) > 1 ? Object.fromEntries(sys.abilityChoice.options.map(o => [o, ARNEYAN.abilities[o] ?? o])) : null,
+      abilityChoiceValue: sys.abilityChoice?.options?.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : (sys.abilityChoice?.options?.[0] ?? ""),
+      fromCompendium: !!compendiumSourceOf(item),
+      keepCustom: !!item.flags?.arneyan?.keepCustom,
       classesLabel: (sys.classes ?? []).join(", "),
       kitFeatures: item.type === "kit" ? await Promise.all((sys.features ?? []).map(async f => ({ ...f, html: await TextEditorImpl().enrichHTML(f.description), ruleText: (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", ") }))) : [],
       classFeatures: item.type === "class" ? (sys.features ?? []).slice().sort((a, b) => a.level - b.level) : [],
