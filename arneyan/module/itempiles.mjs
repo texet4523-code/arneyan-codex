@@ -10,6 +10,9 @@ const ICON = c => `systems/${SYS}/assets/icons/coin-${c}-two-coins.svg`;
 /** Coins in gold pieces: 1 pp = 10 gp, 1 gp = 10 sp, 1 sp = 10 cp (Catalogue, Currency). */
 export const COIN_RATES = { pp: 10, gp: 1, sp: 0.1, cp: 0.01 };
 
+/** The first "<amount> <coin>" in a price: the amount that counts, here and in the browser's Buy. */
+const PRICE_RE = /(\d[\d,]*(?:\.\d+)?)\s*(pp|gp|sp|cp)\b/i;
+
 /**
  * A Catalogue price in gold pieces. Prices are text ("4,500 gp", "5 sp", "6 sp Hand Keg – 56 gp Tun",
  * "2 gp each; 3 for 5 gp"): the first amount is the one that counts. No amount (a dash, "Unique") is 0.
@@ -18,10 +21,27 @@ export function priceInGp(price) {
   if (typeof price === "number") return Number.isFinite(price) ? Math.max(0, price) : 0;
   // A bare number (a price Item Piles wrote back) is already in gold pieces.
   if (/^\s*\d[\d,]*(?:\.\d+)?\s*$/.test(String(price ?? ""))) return Math.max(0, Number(String(price).replace(/,/g, "")));
-  const m = String(price ?? "").match(/(\d[\d,]*(?:\.\d+)?)\s*(pp|gp|sp|cp)\b/i);
+  const m = String(price ?? "").match(PRICE_RE);
   if (!m) return 0;
   const n = Number(m[1].replace(/,/g, "")) * COIN_RATES[m[2].toLowerCase()];
   return Math.round(n * 100) / 100;
+}
+
+/**
+ * A Catalogue price for buying: { cp, unit, text } with the cost in copper, its coin and the amount as written ("2 sp" from
+ * "2 sp each"), or null when there is no amount to pay. Unlike priceInGp, "no price" is null and not 0, so the
+ * browser can hide Buy instead of selling the item for nothing.
+ */
+export function priceToPay(price) {
+  if (typeof price === "number" || /^\s*\d[\d,]*(?:\.\d+)?\s*$/.test(String(price ?? ""))) {
+    const gp = priceInGp(price);
+    return gp > 0 ? { cp: Math.round(gp * 100), unit: "gp", text: `${gp} gp` } : null;
+  }
+  const m = String(price ?? "").match(PRICE_RE);
+  if (!m) return null;
+  const unit = m[2].toLowerCase();
+  const cp = Math.round(Number(m[1].replace(/,/g, "")) * COIN_RATES[unit] * 100);
+  return cp > 0 ? { cp, unit, text: `${m[1]} ${unit}` } : null;
 }
 
 /** The integration data Item Piles takes (game.itempiles.API.addSystemIntegration). */

@@ -14,13 +14,14 @@
     <a class="arn-btn small ghost" data-action="clear"><i class="fa-solid fa-filter-circle-xmark"></i> Clear</a>
     {{#if isBestiary}}<a class="arn-btn small ghost" data-action="refreshAll" data-tooltip="Copy the current stat blocks onto monsters already in this world"><i class="fa-solid fa-rotate"></i> Update world monsters</a>{{/if}}
   </div>
-  <div class="arn-br-count">{{#if more}}Showing {{shown}} of {{total}}: narrow the search to see the rest{{else}}{{total}} found{{/if}}{{#if actorName}} · Add puts it on <strong>{{actorName}}</strong>{{else}} · {{dragHint}}{{/if}}</div>
+  <div class="arn-br-count">{{#if more}}Showing {{shown}} of {{total}}: narrow the search to see the rest{{else}}{{total}} found{{/if}}{{#if actorName}} · Add puts it on <strong>{{actorName}}</strong>{{#if canBuy}} free; Buy pays for it from their purse{{/if}}{{else}} · {{dragHint}}{{/if}}</div>
   <ul class="arn-br-results">
     {{#each rows}}
     <li data-uuid="{{uuid}}" draggable="true">
       <img src="{{img}}" alt="">
       <div class="arn-br-main"><a class="arn-br-name" data-action="view">{{name}}</a><span class="arn-br-meta">{{meta}}</span></div>
       {{#if @root.canAdd}}<button type="button" class="arn-btn small" data-action="add"><i class="fa-solid fa-plus"></i> Add</button>{{/if}}
+      {{#if buyPrice}}<button type="button" class="arn-btn small" data-action="buy" data-tooltip="Pay {{buyPrice}} from {{@root.actorName}}'s purse"><i class="fa-solid fa-coins"></i> Buy</button>{{/if}}
       {{#if forgeable}}<button type="button" class="arn-btn small ghost" data-action="forge" data-tooltip="Make a magic version"><i class="fa-solid fa-hammer"></i></button>{{/if}}
       {{#if @root.isBestiary}}<button type="button" class="arn-btn small ghost" data-action="encounter" data-tooltip="Add to the Encounter Builder"><i class="fa-solid fa-scale-balanced"></i> Encounter</button>{{/if}}
     </li>

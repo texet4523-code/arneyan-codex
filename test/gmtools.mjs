@@ -334,4 +334,158 @@ for (const f of ["module/gmtools.mjs", "module/treasure.mjs", "module/hazards.mj
   Object.assign(game, { user: saved.user, users: saved.users, messages: saved.messages });
 }
 
+/* ---------------- The browser's Buy, and resting in a fight ---------------- */
+{
+  for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
+  const B = await import("../arneyan/module/browser.mjs");
+  const { priceToPay } = await import("../arneyan/module/itempiles.mjs");
+  const { ArneyanActor } = await import("../arneyan/module/documents.mjs");
+  const { ArneyanPartySheet } = await import("../arneyan/module/party.mjs");
+  const DialogV2 = foundry.applications.api.DialogV2;
+  const saved = { ui: globalThis.ui, ChatMessage: globalThis.ChatMessage, user: game.user, combats: game.combats, wait: DialogV2.wait,
+    actors: game.actors, folders: game.folders, settings: game.settings };
+  const warns = [], chat = [];
+  globalThis.ui = { notifications: { warn: m => warns.push(m), info() {}, error: m => warns.push(m) } };
+  globalThis.ChatMessage = { create: async d => { chat.push(d); return d; }, getSpeaker: o => ({ alias: o?.actor?.name }) };
+  const player = { id: "p1", isGM: false }, gm = { id: "gm", isGM: true };
+  const buyer = (currency, isOwner = true) => ({ name: "Aria", id: "aria", isOwner, items: [], system: { currency: { pp: 0, gp: 0, sp: 0, cp: 0, ...currency } },
+    async createEmbeddedDocuments(type, data) { this.items.push(...data); return data; },
+    async update(u) { for (const [k, v] of Object.entries(u)) foundry.utils.setProperty(this, k, v); } });
+  const entry = (name, price, quantity = 1) => ({ name, uuid: `Compendium.arneyan.equipment.Item.${name}`, system: { price, quantity },
+    toObject() { return { _id: "x", name, folder: "f", type: "equipment", system: { price, quantity } }; } });
+
+  // Prices: the first amount counts, in copper; nothing to pay means no Buy.
+  assert.deepEqual(priceToPay("15 gp"), { cp: 1500, unit: "gp", text: "15 gp" });
+  assert.deepEqual(priceToPay("2 sp"), { cp: 20, unit: "sp", text: "2 sp" });
+  assert.deepEqual(priceToPay("1 cp each"), { cp: 1, unit: "cp", text: "1 cp" });
+  assert.equal(priceToPay("1,000 gp per HD of the dead creature").cp, 100000);
+  for (const p of ["", "—", "Unique (never for sale)", "free (found)", "0 gp", null]) assert.equal(priceToPay(p), null, `no price: ${p}`);
+
+  // Enough money: paid gold first, the item added as Add adds it, and a chat line.
+  game.user = player;
+  const aria = buyer({ gp: 10, sp: 5, cp: 3 });
+  const rope = entry("Rope", "2 gp");
+  assert.equal(await B.buyItem(aria, rope), true);
+  assert.deepEqual(aria.system.currency, { pp: 0, gp: 8, sp: 5, cp: 3 });
+  const added = buyer({});
+  await B.addToActor(added, rope);
+  assert.deepEqual(aria.items, added.items, "Buy adds exactly what Add does");
+  assert.equal(aria.items[0]._stats.compendiumSource, rope.uuid);
+  assert.ok(!("_id" in aria.items[0]) && aria.items[0].folder === null);
+  assert.equal(chat.at(-1).content, "<p>Aria buys Rope for 2 gp. 8 gp, 5 sp, 3 cp left.</p>");
+  // Gold short but platinum covers it, with change in gold.
+  const plat = buyer({ pp: 1, gp: 1 });
+  assert.equal(await B.buyItem(plat, entry("Lantern", "5 gp")), true);
+  assert.deepEqual(plat.system.currency, { pp: 0, gp: 6, sp: 0, cp: 0 });
+
+  // Not enough: refused with a warning, nothing taken, nothing added.
+  warns.length = 0; chat.length = 0;
+  const poor = buyer({ gp: 3, sp: 9, cp: 9 });
+  assert.equal(await B.buyItem(poor, entry("Plate Armour", "50 gp")), false);
+  assert.deepEqual(poor.system.currency, { pp: 0, gp: 3, sp: 9, cp: 9 });
+  assert.equal(poor.items.length, 0);
+  assert.equal(chat.length, 0);
+  assert.equal(warns[0], "Aria can't afford Plate Armour: it costs 50 gp and Aria has 3 gp, 9 sp, 9 cp.");
+
+  // Copper prices: copper first, a silver broken for change only when there's no copper.
+  const candle = entry("Candle", "1 cp each");
+  const coppers = buyer({ gp: 1, cp: 3 });
+  assert.equal(await B.buyItem(coppers, candle), true);
+  assert.deepEqual(coppers.system.currency, { pp: 0, gp: 1, sp: 0, cp: 2 });
+  const noCopper = buyer({ gp: 1 });
+  assert.equal(await B.buyItem(noCopper, candle), true);
+  assert.deepEqual(noCopper.system.currency, { pp: 0, gp: 0, sp: 9, cp: 9 });
+  assert.ok(chat.at(-1).content.includes("buys Candle for 1 cp. 9 sp, 9 cp left."));
+  // Copper alone can pay for a gold-priced item when the bigger coins can't.
+  const jar = buyer({ gp: 0, cp: 150 });
+  assert.equal(await B.buyItem(jar, entry("Sack", "1 gp")), true);
+  assert.deepEqual(jar.system.currency, { pp: 0, gp: 0, sp: 0, cp: 50 });
+
+  // Who can buy: the owner's player or the GM; no price, no Buy.
+  assert.equal(B.canBuyFor(buyer({}, false), player), false);
+  assert.equal(B.canBuyFor(buyer({}, false), gm), true);
+  assert.equal(B.canBuyFor({ isOwner: true, system: {} }, player), false, "no purse");
+  warns.length = 0;
+  const notMine = buyer({ gp: 50 }, false);
+  assert.equal(await B.buyItem(notMine, rope, player), false);
+  assert.equal(notMine.system.currency.gp, 50);
+  assert.ok(warns[0].includes("Only Aria's player or the GM"));
+  assert.equal(await B.buyItem(notMine, rope, gm), true, "the GM buys for anyone");
+  assert.equal(await B.buyItem(buyer({ gp: 50 }), entry("Crown of Ages", "Unique (never for sale)")), false);
+
+  // The window: Buy beside Add where there's a price, none where there isn't.
+  const app = new B.ArneyanBrowser();
+  app.tab = "equipment"; app.actor = buyer({ gp: 5 }); app.filters = { q: "" };
+  app._index = { equipment: [rope, entry("Crown of Ages", "Unique (never for sale)"), candle].map(e => ({ ...e, img: "", type: "equipment", folder: "Gear", group: "Adventuring Gear" })) };
+  const ctx = await app._prepareContext();
+  assert.ok(ctx.canAdd && ctx.canBuy);
+  assert.deepEqual(ctx.rows.map(r => r.buyPrice), ["2 gp", "", "1 cp"]);
+  const html = hbs(root)("templates/apps/browser.hbs", ctx);
+  assert.equal((html.match(/data-action="add"/g) ?? []).length, 3, "Add on every row, for players too");
+  assert.equal((html.match(/data-action="buy"/g) ?? []).length, 2, "Buy only where there's a price");
+  assert.ok(html.includes("Pay 2 gp from Aria's purse") && html.includes("Buy pays for it from their purse"));
+  assert.ok(!html.includes("—"));
+  app.actor = buyer({ gp: 5 }, false);
+  assert.ok(!(await app._prepareContext()).canBuy, "no Buy on someone else's character");
+
+  // Resting in a fight: the sheet's Rest warns first, and Cancel (or closing) stops it.
+  const dialogs = [];
+  const rests = [];
+  const resting = { type: "character", name: "Aria", id: "aria", items: [], system: { rest: { haven: 0 } }, restAt: async where => rests.push(where) };
+  const answer = warning => (DialogV2.wait = async o => { dialogs.push(o.content); return o.content.includes("in a fight") ? warning : "shelter"; });
+  game.combats = [];
+  answer("rest");
+  await ArneyanActor.prototype.rest.call(resting);
+  assert.equal(dialogs.length, 1, "no warning outside a fight");
+  assert.ok(dialogs[0].includes("Where are you resting?"));
+  assert.deepEqual(rests, ["shelter"]);
+  game.combats = [{ id: "c1", started: true, active: true, scene: { id: "s1" }, combatants: [{ actor: resting }] }];
+  for (const [reply, rested] of [["cancel", false], [null, false], ["rest", true]]) {
+    dialogs.length = 0; rests.length = 0;
+    answer(reply);
+    await ArneyanActor.prototype.rest.call(resting);
+    assert.ok(dialogs[0].includes("Aria is in a fight. Rest anyway?"), "warned in a fight");
+    assert.equal(rests.length, rested ? 1 : 0, `${reply}: rest ${rested ? "goes on" : "stopped"}`);
+    assert.equal(dialogs.length, rested ? 2 : 1);
+  }
+  // Someone else's fight doesn't count.
+  game.combats = [{ id: "c2", started: true, active: true, scene: { id: "s1" }, combatants: [{ actor: { name: "Goblin" } }] }];
+  dialogs.length = 0;
+  answer("cancel");
+  await ArneyanActor.prototype.rest.call(resting);
+  assert.equal(dialogs.length, 1);
+
+  // The party's Rest: the same check, naming who's fighting.
+  const pcs = { id: "pcs", name: "Player Characters", type: "Actor", folder: null };
+  const member = (name, sort) => ({ type: "character", name, id: name, folder: pcs, sort, items: [], restAt: async () => { rests.push(name); return `${name}: +1 HP.`; } });
+  const bram = member("Bram", 1), cael = member("Cael", 2);
+  game.actors = Object.assign([bram, cael], { get: id => [bram, cael].find(a => a.id === id) });
+  game.folders = { get: id => (id === "pcs" ? pcs : null), find: fn => [pcs].find(fn) };
+  game.settings = { get: (scope, key) => (key === "partyFolderId" ? "pcs" : "") };
+  game.user = gm;
+  const restParty = ArneyanPartySheet.DEFAULT_OPTIONS.actions.restParty;
+  const sheet = { document: { name: "The Oddballs" } };
+  game.combats = [{ id: "c3", started: true, active: true, scene: { id: "s1" }, combatants: [{ actor: cael }] }];
+  dialogs.length = 0; rests.length = 0;
+  answer("cancel");
+  await restParty.call(sheet);
+  assert.ok(dialogs[0].includes("Cael is in a fight. Rest anyway?"));
+  assert.equal(rests.length, 0, "Cancel stops the party's rest");
+  game.combats = [{ id: "c3", started: true, active: true, scene: { id: "s1" }, combatants: [{ actor: bram }, { actor: cael }] }];
+  dialogs.length = 0;
+  answer("rest");
+  await restParty.call(sheet);
+  assert.ok(dialogs[0].includes("Bram and Cael are in a fight. Rest anyway?"));
+  assert.deepEqual(rests, ["Bram", "Cael"]);
+  game.combats = [];
+  dialogs.length = 0; rests.length = 0;
+  await restParty.call(sheet);
+  assert.equal(dialogs.length, 1, "no warning outside a fight");
+  assert.deepEqual(rests, ["Bram", "Cael"]);
+
+  Object.assign(globalThis, { ui: saved.ui, ChatMessage: saved.ChatMessage });
+  Object.assign(game, { user: saved.user, combats: saved.combats, actors: saved.actors, folders: saved.folders, settings: saved.settings });
+  DialogV2.wait = saved.wait;
+}
+
 console.log("OK gmtools");

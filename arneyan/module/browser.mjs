@@ -6,6 +6,9 @@
 import { ARNEYAN } from "./config.mjs";
 import { ArneyanEncounterBuilder } from "./encounter.mjs";
 import { refreshAllFromBestiary } from "./refresh.mjs";
+import { priceToPay } from "./itempiles.mjs";
+import { payGp, purseText } from "./starting.mjs";
+import { toCp, payCoins } from "./downtime.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -39,6 +42,76 @@ const groupOrder = rows => {
 const levelSort = s => s.details?.levelText === "¼" ? 0.25 : s.details?.levelText === "½" ? 0.5 : s.details?.levelText === "Mythic" ? 99 : (s.level ?? 0);
 const creatureType = s => (s.details?.type ?? "").split(/[\s(]/)[0].toLowerCase();
 const levelName = s => s.details?.levelText || String(s.level ?? 0);
+const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
+const ALL_COINS = ["pp", "gp", "sp", "cp"];
+
+/* -------------------------------------------- */
+/*  Add and Buy                                 */
+/* -------------------------------------------- */
+
+/**
+ * Put a compendium item on an actor as Add does: a copy linked back to its compendium entry, with the entry's own
+ * quantity. Buy goes through here too, so a bought item is exactly what Add would have given.
+ */
+export async function addToActor(actor, doc) {
+  const data = doc.toObject();
+  delete data._id;
+  data.folder = null;
+  foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
+  return actor.createEmbeddedDocuments("Item", [data]);
+}
+
+/**
+ * Who can Buy: the GM, or a player for a character they own (they can only spend their own coins). Only actors
+ * with a purse can pay.
+ */
+export function canBuyFor(actor, user = game.user) {
+  if (!actor?.system?.currency) return false;
+  return !!user?.isGM || !!actor.isOwner;
+}
+
+/**
+ * The purse after paying `cp` copper, or null if it's short. A price in gold or platinum is paid as a starting pack
+ * is (gold first, then platinum, then silver, copper left alone); if those coins can't cover it, or the price is in
+ * silver or copper, it's paid from the whole purse smallest coins first, so a 1 cp candle doesn't break a gold piece
+ * while there's copper to hand.
+ */
+export function payFromPurse(cur, cp, unit = "gp") {
+  const purse = Object.fromEntries(ALL_COINS.map(k => [k, Number(cur?.[k]) || 0]));
+  if (toCp(purse) < cp) return null;
+  if (["gp", "pp"].includes(unit) && cp % 10 === 0) {
+    const paid = payGp(purse, cp / 100);
+    if (paid) return { ...paid, cp: purse.cp };
+  }
+  return payCoins(purse, cp);
+}
+
+/**
+ * Buy a compendium item for an actor: check the price can be paid, add it as Add does, take the coins and say so in
+ * chat. Returns true when bought. The item is added before the coins are taken so a failed add costs nothing.
+ */
+export async function buyItem(actor, doc, user = game.user) {
+  if (!actor || !doc) return false;
+  if (!canBuyFor(actor, user)) {
+    ui.notifications.warn(`Only ${actor.name}'s player or the GM can buy for ${actor.name}.`);
+    return false;
+  }
+  const price = priceToPay(doc.system?.price);
+  if (!price) {
+    ui.notifications.warn(`${doc.name} has no price to pay. Use Add instead.`);
+    return false;
+  }
+  const cur = actor.system.currency;
+  const after = payFromPurse(cur, price.cp, price.unit);
+  if (!after) {
+    ui.notifications.warn(`${actor.name} can't afford ${doc.name}: it costs ${price.text} and ${actor.name} has ${purseText(cur, ALL_COINS)}.`);
+    return false;
+  }
+  await addToActor(actor, doc);
+  await actor.update(Object.fromEntries(ALL_COINS.map(k => [`system.currency.${k}`, after[k]])));
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} buys ${esc(doc.name)} for ${esc(price.text)}. ${esc(purseText(after, ALL_COINS))} left.</p>` });
+  return true;
+}
 
 export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
   static #instance = null;
@@ -70,6 +143,7 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     actions: {
       tab: ArneyanBrowser.#onTab,
       add: ArneyanBrowser.#onAdd,
+      buy: ArneyanBrowser.#onBuy,
       view: ArneyanBrowser.#onView,
       encounter: ArneyanBrowser.#onEncounter,
       forge: ArneyanBrowser.#onForge,
@@ -147,6 +221,9 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       if (name === "solo") filters.push({ name, label: "Solo", options: opts(["true", "false"], f.solo, { true: "Solo only", false: "No solos" }) });
     }
 
+    // Add stays open to players as well as the GM for now (Kieran may limit it later); Buy pays from the purse.
+    const canAdd = cfg.docType !== "Actor" && !!this.actor?.isOwner;
+    const canBuy = canAdd && canBuyFor(this.actor, game.user);
     return {
       tabs: Object.entries(TABS).filter(([, t]) => !t.gm || game.user.isGM).map(([id, t]) => ({ id, label: t.label, icon: t.icon, active: id === this.tab })),
       q: f.q ?? "", filters,
@@ -154,8 +231,12 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       groupTabs: cfg.groups ? [{ value: "", label: "All" }, ...groupOrder(all).map(g => ({ value: g, label: g })), { value: CONSUMABLES, label: "Consumables" }]
         .map(g => ({ ...g, active: (f.group ?? "") === g.value })) : null,
       total: rows.length, shown: Math.min(rows.length, LIMIT), more: rows.length > LIMIT,
-      rows: rows.slice(0, LIMIT).map(r => ({ ...r, meta: this.#meta(r), forgeable: ["weapon", "armour"].includes(r.type) })),
-      actorName: cfg.docType === "Actor" ? "" : this.actor?.name ?? "", canAdd: cfg.docType !== "Actor" && !!this.actor?.isOwner,
+      rows: rows.slice(0, LIMIT).map(r => {
+        // Buy only where the price reads as an amount; "Unique" or a dash has nothing to pay.
+        const price = canBuy ? priceToPay(r.system?.price) : null;
+        return { ...r, meta: this.#meta(r), forgeable: ["weapon", "armour"].includes(r.type), buyPrice: price?.text ?? "" };
+      }),
+      actorName: cfg.docType === "Actor" ? "" : this.actor?.name ?? "", canAdd, canBuy,
       isBestiary: cfg.docType === "Actor", dragHint: cfg.docType === "Actor" ? "drag a row onto the map or into the Encounter Builder" : "drag a row onto a sheet"
     };
   }
@@ -230,15 +311,29 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     return ArneyanEncounterBuilder.addFoe(target.closest("[data-uuid]").dataset.uuid);
   }
 
+  /** The actor rows go to, if it still exists (a deleted character leaves the window pointing at nothing). */
+  #target() {
+    if (this.actor && (this.actor.isToken || game.actors.has(this.actor.id))) return this.actor;
+    ui.notifications.info("Open the browser from a character sheet to add things, or drag a row onto a sheet.");
+    return null;
+  }
+
   static async #onAdd(event, target) {
-    if (!this.actor || (!this.actor.isToken && !game.actors.has(this.actor.id))) return ui.notifications.info("Open the browser from a character sheet to add things, or drag a row onto a sheet.");
+    const actor = this.#target();
+    if (!actor) return;
     const doc = await fromUuid(target.closest("[data-uuid]").dataset.uuid);
     if (!doc) return;
-    const data = doc.toObject();
-    delete data._id;
-    data.folder = null;
-    foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
-    await this.actor.createEmbeddedDocuments("Item", [data]);
-    ui.notifications.info(`${doc.name} added to ${this.actor.name}.`);
+    await addToActor(actor, doc);
+    ui.notifications.info(`${doc.name} added to ${actor.name}.`);
+  }
+
+  static async #onBuy(event, target) {
+    const actor = this.#target();
+    if (!actor) return;
+    const doc = await fromUuid(target.closest("[data-uuid]").dataset.uuid);
+    if (!doc) return;
+    // Disabled while it pays so a double click can't buy twice.
+    target.disabled = true;
+    try { await buyItem(actor, doc); } finally { target.disabled = false; }
   }
 }

@@ -115,8 +115,11 @@ export function payGp(cur, gp) {
   return out;
 }
 
-/** "36 gp, 4 pp, 20 sp": what's in the purse that can pay. */
-const purseText = cur => ["pp", "gp", "sp"].filter(k => cur?.[k]).map(k => `${cur[k]} ${k}`).join(", ") || "0 gp";
+/**
+ * "4 pp, 36 gp, 20 sp": what's in the purse that can pay. Copper is left out by default (it doesn't buy a pack);
+ * the browser's Buy passes all four coins because a cheap item can be paid in copper.
+ */
+export const purseText = (cur, coins = ["pp", "gp", "sp"]) => coins.filter(k => cur?.[k]).map(k => `${cur[k]} ${k}`).join(", ") || "0 gp";
 
 /* -------------------------------------------- */
 /*  The window                                  */

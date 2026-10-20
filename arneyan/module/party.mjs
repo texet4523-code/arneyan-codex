@@ -7,6 +7,7 @@ import { ARNEYAN } from "./config.mjs";
 import { statusesOf } from "./effects.mjs";
 import { putOutData } from "./gear.mjs";
 import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
+import { confirmRestInFight } from "./fight.mjs";
 
 const { HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -272,6 +273,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     if (!game.user.isGM) return ui.notifications.warn("The GM rests the party.");
     const members = partyMembers();
     if (!members.length) return ui.notifications.warn("No party members to rest.");
+    if (!(await confirmRestInFight(members))) return;
     const inArmour = members.filter(m => m.items.some(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category)));
     const where = await foundry.applications.api.DialogV2.wait({
       window: { title: "Rest the party" },
