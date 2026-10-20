@@ -363,13 +363,7 @@
     "per": "",
     "target": "",
     "removeConditions": false
-   }
-  ],
-  "confidence": "medium",
-  "why": "Skill list split across two items by the importer; this one holds the first three."
- },
- "GM rolls secretly|Assassin": {
-  "activities": [
+   },
    {
     "name": "Hide",
     "kind": "check",
@@ -427,7 +421,7 @@
    }
   ],
   "confidence": "medium",
-  "why": "Oddly named item holding the rest of the Assassin skills."
+  "why": "Skill list split across two items by the importer; this one holds the first three."
  },
  "Sneak Attack|Assassin": {
   "activities": [
@@ -3004,20 +2998,6 @@
   "confidence": "high",
   "why": "Handbook manoeuvre: one extra melee attack, once per turn."
  },
- "Opportunity Attack|Action": {
-  "activities": [
-   {
-    "name": "Attack of Opportunity",
-    "kind": "attacks",
-    "count": "1",
-    "weapons": "melee",
-    "cost": 0,
-    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging."
-   }
-  ],
-  "confidence": "high",
-  "why": "Handbook: a creature leaving your reach provokes one melee attack."
- },
  "Push|Action": {
   "activities": [
    {
@@ -3043,26 +3023,6 @@
   ],
   "confidence": "high",
   "why": "Handbook: a Dexterity (Stealth) check."
- },
- "Feint|Action": {
-  "activities": [
-   {
-    "name": "Charisma (Deception)",
-    "kind": "check",
-    "ability": "cha",
-    "cost": 0,
-    "text": "Against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
-   },
-   {
-    "name": "Dexterity",
-    "kind": "check",
-    "ability": "dex",
-    "cost": 0,
-    "text": "Against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
-   }
-  ],
-  "confidence": "medium",
-  "why": "The checks are the Handbook's (Feint feat); the Handbook has Feint only as a feat, used in place of one attack."
  },
  "Flowing Strikes|Feat": {
   "activities": [
@@ -3912,5 +3872,19 @@
   ],
   "confidence": "high",
   "why": "Temp HP from your undead's HD, capped at your Necromancer level; the HD total is the player's to count."
+ },
+ "Attack of Opportunity|Action": {
+  "activities": [
+   {
+    "name": "Attack of Opportunity",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "cost": 0,
+    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: a creature leaving your reach provokes one melee attack."
  }
 }

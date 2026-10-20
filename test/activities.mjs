@@ -219,7 +219,7 @@ assert.equal(feat("Ritual Caster").uses.max, 0);
 /* Actions: Cleave and the Attack of Opportunity roll an attack; Hide rolls Dexterity. */
 const actions = packItems("actions");
 assert.equal(byName(actions, "Cleave").system.activities[0].kind, "attacks");
-assert.equal(byName(actions, "Opportunity Attack").system.activities[0].weapons, "melee");
+assert.equal(byName(actions, "Attack of Opportunity").system.activities[0].weapons, "melee");
 assert.equal(byName(actions, "Hide").system.activities[0].ability, "dex");
 
 /* Kit features: uses from "Once/day", their own damage, and activities; copied on grant. */
