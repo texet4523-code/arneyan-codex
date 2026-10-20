@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.19 · Foundry v13 and v14
+Version 0.10.20 · Foundry v13 and v14
+
+## What's new in 0.10.20
+
+- **Tabs work again on Foundry 14.** The Browser's tabs (Equipment, Spells, Feats and the rest) and the Class details tabs did nothing when clicked: Foundry 14 takes over buttons named "tab" for its own tab groups. They have their own action now.
+- **Class details** use the sheet's font for their labels and table, without Foundry's heading style showing through; the GM's edit button is a plain pencil.
 
 ## What's new in 0.10.19
 

@@ -148,7 +148,8 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     position: { width: 820, height: 720 },
     window: { title: "Arneyan Browser", icon: "fa-solid fa-book-atlas", resizable: true },
     actions: {
-      tab: ArneyanBrowser.#onTab,
+      // Not "tab": Foundry 14 handles that action itself (its own tab groups), so ours never ran.
+      brTab: ArneyanBrowser.#onTab,
       add: ArneyanBrowser.#onAdd,
       buy: ArneyanBrowser.#onBuy,
       view: ArneyanBrowser.#onView,

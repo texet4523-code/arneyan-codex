@@ -40,5 +40,10 @@ const C = await import("../arneyan/module/classinfo.mjs");
   const book = render("templates/apps/class-info.hbs", { ...ctx, tab: "handbook", canAdd: false });
   assert.ok(book.includes("Book text") && !book.includes("Add to"));
   for (const t of [html, book]) assert.ok(!t.includes("—"), "no em dashes in the window");
+  // Foundry 14 handles data-action="tab" itself: the window's tabs must use their own action, or clicks do nothing.
+  assert.ok(html.includes('data-action="ciTab"') && !html.includes('data-action="tab"'));
+  assert.ok(C.ArneyanClassInfo.DEFAULT_OPTIONS.actions.ciTab && !C.ArneyanClassInfo.DEFAULT_OPTIONS.actions.tab);
+  const brTpl = fs.readFileSync(root + "templates/apps/browser.hbs", "utf8");
+  assert.ok(brTpl.includes('data-action="brTab"') && !brTpl.includes('data-action="tab"'), "the Browser's tabs too");
 }
 console.log("OK class details");

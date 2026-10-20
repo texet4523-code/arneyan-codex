@@ -7,10 +7,10 @@
     </div>
     <div class="arn-ci-actions">
       {{#if canAdd}}{{#if already}}<span class="arn-chip">{{actorName}} has this class</span>{{else}}<button type="button" class="arn-btn" data-action="add"><i class="fa-solid fa-plus"></i> Add to {{actorName}}</button>{{/if}}{{/if}}
-      {{#if isGM}}<a class="arn-btn ghost small" data-action="sheet" data-tooltip="Open the editing sheet"><i class="fa-solid fa-pen"></i></a>{{/if}}
+      {{#if isGM}}<button type="button" class="arn-ci-edit" data-action="sheet" data-tooltip="Open the editing sheet"><i class="fa-solid fa-pen"></i></button>{{/if}}
     </div>
   </header>
-  <nav class="arn-ci-tabs">{{#each tabs}}<a data-action="tab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}</nav>
+  <nav class="arn-ci-tabs">{{#each tabs}}<a data-action="ciTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}</nav>
   <div class="arn-ci-body">
     {{#if (eq tab "overview")}}
       <dl class="arn-ci-facts">{{#each facts}}<dt>{{label}}</dt><dd>{{value}}</dd>{{/each}}</dl>

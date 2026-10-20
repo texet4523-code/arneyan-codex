@@ -57,7 +57,7 @@ export class ArneyanClassInfo extends HandlebarsApplicationMixin(ApplicationV2) 
     position: { width: 760, height: 720 },
     window: { icon: "fa-solid fa-user-shield", resizable: true },
     actions: {
-      tab: ArneyanClassInfo.#onTab,
+      ciTab: ArneyanClassInfo.#onTab,
       add: ArneyanClassInfo.#onAdd,
       openKit: ArneyanClassInfo.#onOpenKit,
       sheet: ArneyanClassInfo.#onSheet

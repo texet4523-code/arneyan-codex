@@ -1,6 +1,6 @@
 <div class="arn-browser">
   <nav class="arn-br-tabs">
-    {{#each tabs}}<a data-action="tab" data-tab="{{id}}" class="{{#if active}}active{{/if}}"><i class="fa-solid {{icon}}"></i> {{label}}</a>{{/each}}
+    {{#each tabs}}<a data-action="brTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}"><i class="fa-solid {{icon}}"></i> {{label}}</a>{{/each}}
   </nav>
   {{#if groupTabs}}<nav class="arn-br-groups">{{#each groupTabs}}<a data-action="group" data-group="{{value}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}</nav>{{/if}}
   <div class="arn-br-bar">

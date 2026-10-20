@@ -703,7 +703,13 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 
 /* Class details (classinfo.mjs): read-only, for choosing a class. */
 .arneyan.arn-classinfo-app .window-content { padding: 0; }
-.arneyan .arn-classinfo { display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--arn-bg); color: var(--arn-ink); }
+.arneyan .arn-classinfo { display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--arn-bg); color: var(--arn-ink);
+  font-family: "Signika", "Segoe UI", Arial, sans-serif; font-size: 13px; }
+/* Foundry's own dl, h2, h3 and table styling (heading font, shadows, borders) would otherwise show through. */
+.arneyan .arn-classinfo dt, .arneyan .arn-classinfo dd, .arneyan .arn-classinfo h2, .arneyan .arn-classinfo h3, .arneyan .arn-classinfo th, .arneyan .arn-classinfo td,
+.arneyan .arn-classinfo summary { font-family: inherit; text-shadow: none; letter-spacing: normal; }
+.arneyan .arn-ci-edit { flex: 0 0 auto; width: 28px; height: 24px; padding: 0; border-radius: 6px; border: 1px solid var(--arn-gold); background: transparent; color: #e9e2cc; cursor: pointer; }
+.arneyan .arn-ci-edit:hover { background: rgba(255, 255, 255, .12); }
 .arneyan .arn-ci-head { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--arn-head); color: #e9e2cc; }
 .arneyan .arn-ci-head img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--arn-gold); }
 .arneyan .arn-ci-title { flex: 1; min-width: 0; }
@@ -716,7 +722,8 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-ci-body { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 16px; }
 .arneyan .arn-ci-body h3 { margin: 14px 0 6px; color: var(--arn-accent); font-size: 14px; border-bottom: 1px solid var(--arn-border); }
 .arneyan .arn-ci-facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
-.arneyan .arn-ci-facts dt { font-weight: 700; color: var(--arn-muted); }
+.arneyan .arn-ci-facts dt { font-weight: 700; color: var(--arn-muted); font-size: 13px; }
+.arneyan .arn-ci-facts dd { font-size: 13px; }
 .arneyan .arn-ci-facts dd { margin: 0; }
 .arneyan .arn-ci-levels { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--arn-surface); }
 .arneyan .arn-ci-levels th { background: var(--arn-head); color: #e9e2cc; padding: 4px 6px; text-align: left; position: sticky; top: -12px; }
