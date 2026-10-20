@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.22 · Foundry v13 and v14
+Version 0.10.23 · Foundry v13 and v14
+
+## What's new in 0.10.23
+
+- **No more grey boxes.** The book's tables (the Handbook tab in Class details, descriptions on sheets, a class's spell slot table, the ability scores window) stay on the parchment with Foundry's dark theme on, instead of grey rows.
+- **The Browser says who it's adding to.** Opened from a character's sheet, their starting gold, or the sidebar button (with their token selected, or as your own character), Add and Buy go to that character until the Browser is opened from somewhere else, and Class details offers "Add to" them. **Just browse**, next to the name, stops that.
 
 ## What's new in 0.10.22
 

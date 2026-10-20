@@ -45,6 +45,10 @@ const C = await import("../arneyan/module/classinfo.mjs");
   assert.ok(C.ArneyanClassInfo.DEFAULT_OPTIONS.actions.ciTab && !C.ArneyanClassInfo.DEFAULT_OPTIONS.actions.tab);
   const brTpl = fs.readFileSync(root + "templates/apps/browser.hbs", "utf8");
   assert.ok(brTpl.includes('data-action="brTab"') && !brTpl.includes('data-action="tab"'), "the Browser's tabs too");
+  // 0.10.23: the Browser says who Add puts things on, with "Just browse" to stop.
+  assert.ok(brTpl.includes('data-action="unlink"'));
+  const css = fs.readFileSync(root + "styles/arneyan.css", "utf8");
+  assert.ok(/\.arneyan table:not\(\.arn-ci-levels\)[^{]*\{ background: transparent/.test(css), "book tables stay on the parchment in the dark theme");
 }
 // The Handbook's key attribute line, for every class (the Archer's Wisdom comes from Seeker at 16th).
 {

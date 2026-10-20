@@ -709,3 +709,5 @@ await import("./review-0102.mjs");
 await import("./chargen.mjs");
 // Foundry v14 effect durations (test/v14dur.mjs runs on its own too).
 await import("./v14dur.mjs");
+// 0.10.19 Class details and the Browser's template (test/classinfo.mjs runs on its own too).
+await import("./classinfo.mjs");

@@ -1,6 +1,6 @@
 /**
  * The Arneyan browser: one searchable, filterable window over the system's compendiums,
- * in the spirit of PF2e's compendium browser. Opened from the sheet's book buttons it adds
+ * Opened from the sheet's book buttons it adds
  * straight to that character; rows can also be dragged onto any sheet.
  */
 import { ARNEYAN } from "./config.mjs";
@@ -157,14 +157,16 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       forge: ArneyanBrowser.#onForge,
       refreshAll: () => refreshAllFromBestiary(),
       clear: ArneyanBrowser.#onClear,
-      group: ArneyanBrowser.#onGroup
+      group: ArneyanBrowser.#onGroup,
+      unlink: ArneyanBrowser.#onUnlink
     }
   };
 
   static PARTS = { main: { template: "systems/arneyan/templates/apps/browser.hbs", scrollable: [".arn-br-results"] } };
 
   get title() {
-    return this.actor ? `Arneyan Browser: adding to ${this.actor.name}` : "Arneyan Browser";
+    // The Bestiary never adds to a character, so it doesn't say so.
+    return this.actor && !TABS[this.tab]?.docType ? `Arneyan Browser: adding to ${this.actor.name}` : "Arneyan Browser";
   }
 
   /** Load (once) a pack's index with the fields we filter on, plus folder names. */
@@ -297,7 +299,13 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onTab(event, target) {
     this.tab = target.dataset.tab;
     this.filters = { q: this.filters.q ?? "" };
-    this.render();
+    this.render({ window: { title: this.title } });
+  }
+
+  /** "Just browse": stop adding to the character the Browser was opened from (it stays until opened from elsewhere). */
+  static #onUnlink() {
+    this.actor = null;
+    return this.render({ window: { title: this.title } });
   }
 
   static #onClear() {
