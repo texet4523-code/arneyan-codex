@@ -141,7 +141,8 @@ ARNEYAN.weaponTraits = {
 
 ARNEYAN.skillTiers = { trained: "Trained", master: "Master" };
 
-ARNEYAN.usesPer = { "": "At will", encounter: "Per encounter", day: "Per day", rest: "Per long rest", week: "Per week" };
+/** Session and month uses are not given back by a rest: the GM resets them (the sheet's uses box). */
+ARNEYAN.usesPer = { "": "At will", encounter: "Per encounter", day: "Per day", rest: "Per long rest", week: "Per week", session: "Per session", month: "Per month" };
 
 ARNEYAN.abilityKinds = { "class": "Class ability", action: "Action or manoeuvre", ancestry: "Ancestry trait", monster: "Monster ability", other: "Other" };
 

@@ -64,7 +64,10 @@ export async function syncKitFeatures(actor, kit) {
     create.push({
       name: f.name, type: "ability", img: kit.img,
       system: { description: f.description, kind: "class", level: f.level, className: kit.name,
-        uses: usesOf(f.description), save: saveOf(f.description),
+        // Uses, save and activities set at build time (build_activities.py); older kits fall back to reading the text.
+        uses: f.uses?.max ? foundry.utils.deepClone(f.uses) : usesOf(f.description), save: f.save || saveOf(f.description),
+        damage: f.damage ?? "", ...(f.damageType ? { damageType: f.damageType } : {}),
+        activities: foundry.utils.deepClone(f.activities ?? []),
         rules: foundry.utils.deepClone(f.rules ?? []), toggle: !!f.toggle, active: false, applies: foundry.utils.deepClone(f.applies ?? []) },
       flags: { [FLAG]: { grantedBy: kit.id, source } }
     });
@@ -76,15 +79,16 @@ export async function syncKitFeatures(actor, kit) {
 
 function usesOf(html) {
   const t = String(html).toLowerCase();
-  for (const [re, per] of [[/once per encounter/, "encounter"], [/once per day|once a day/, "day"], [/once per long rest/, "rest"], [/once per week/, "week"]]) {
+  for (const [re, per] of [[/once per encounter/, "encounter"], [/once per day|once a day|once\/day/, "day"], [/once per long rest/, "rest"], [/once per week/, "week"], [/once per session/, "session"], [/once per month/, "month"]]) {
     if (re.test(t)) return { value: 1, max: 1, per };
   }
   return { value: 0, max: 0, per: "" };
 }
 
 function saveOf(html) {
-  const m = String(html).match(/\b(Fortitude|Reflex|Will) save/);
-  return m ? { Fortitude: "fort", Reflex: "ref", Will: "will" }[m[1]] : "";
+  // A save the feature calls for, not a bonus to the owner's own saves ("+1 to Fortitude and Reflex saves").
+  const m = String(html).match(/(?<!(?:succeed on|advantage on|first) (?:an? |the )?)\b(Fortitude|Reflex|Will) save(?!s)(?! DC is)/i);
+  return m ? { fortitude: "fort", reflex: "ref", will: "will" }[m[1].toLowerCase()] : "";
 }
 
 /** Remove everything a class or kit granted (when it is deleted). */

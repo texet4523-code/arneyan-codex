@@ -99,7 +99,7 @@ export function arneyanHudActions(actor, { statusEffects = [], manoeuvres = [] }
   }
 
   // Abilities with uses or something to roll; switches light up while on. Manoeuvres apart.
-  const abilities = items.filter(i => (i.type === "ability" && i.system.kind !== "action" && usable(i)) || (i.type === "feat" && (i.system.toggle || i.system.applies?.length))).sort(byName);
+  const abilities = items.filter(i => (i.type === "ability" && i.system.kind !== "action" && usable(i)) || (i.type === "feat" && usable(i))).sort(byName);
   for (const a of abilities) {
     const u = a.system.uses;
     out.abilities.push(action(`item-${a.id}`, a.name, "item", a.id, { prefix: "Ability: ", img: a.img,

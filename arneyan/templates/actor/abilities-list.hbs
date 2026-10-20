@@ -14,7 +14,7 @@
       {{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}
     </span>
     {{#if item.system.toggle}}<a class="arn-switch {{#if item.system.active}}on{{/if}}" data-action="itemUse"><span></span></a>
-    {{else if (or item.system.uses.max item.system.save item.system.damage item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
+    {{else if (or item.system.uses.max item.system.save item.system.damage item.system.applies.length item.system.activities.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
     {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
     {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
   </li>

@@ -364,7 +364,8 @@
           <li data-item-id="{{id}}" draggable="true">
             <img src="{{item.img}}" alt="">
             <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
-            <span class="arn-muted arn-meta">{{item.system.path}}{{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}</span>
+            <span class="arn-muted arn-meta">{{item.system.path}}{{#if item.system.uses.max}} · {{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}{{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}</span>
+            {{#if (or item.system.uses.max item.system.activities.length item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
             {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
             {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
           </li>

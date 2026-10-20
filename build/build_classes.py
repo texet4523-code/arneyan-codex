@@ -24,7 +24,8 @@ LEVEL_RE = re.compile(r"^(\d+)(?:st|nd|rd|th) Level(?:\s*[—-]\s*(.+))?$|^Level
 def uses_of(text):
     t = text.lower()
     for pat, per in ((r"once per encounter|1/encounter|once an encounter", "encounter"), (r"once per day|once a day|1/day|once/day", "day"),
-                     (r"once per long rest|1/long rest", "rest"), (r"once per week|once a week", "week")):
+                     (r"once per long rest|1/long rest", "rest"), (r"once per week|once a week", "week"),
+                     (r"once per session|once a session", "session"), (r"once per month|once a month", "month")):
         if re.search(pat, t):
             return {"value": 1, "max": 1, "per": per}
     m = re.search(r"(\d+) times? per day", t)
@@ -33,8 +34,24 @@ def uses_of(text):
     return {"value": 0, "max": 0, "per": ""}
 
 def save_of(text):
-    m = re.search(r"\b(Fortitude|Reflex|Will) save", text)
-    return {"Fortitude": "fort", "Reflex": "ref", "Will": "will"}[m.group(1)] if m else ""
+    """The save a feature calls for. Not a bonus to the owner's own saves ("+1 to Fortitude and Reflex saves",
+    "Advantage on Reflex saves"), the owner's own save ("When you succeed on a Reflex save"), or a change to another
+    feature's save ("the first Will save against it", "Fortitude save DC is 2 higher")."""
+    for m in re.finditer(r"\b(Fortitude|Reflex|Will) save(?!s)", text):
+        before = text[max(0, m.start() - 24):m.start()]
+        if re.search(r"(succeed on|advantage on|first) (an? |the )?$", before, re.I) or text[m.end():m.end() + 7] == " DC is ":
+            continue
+        return {"Fortitude": "fort", "Reflex": "ref", "Will": "will"}[m.group(1)]
+    return ""
+
+
+# Damage the feature text states, as a formula (Kieran, 20 Oct 2026). Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at
+# 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th (the same progression as the class-only spell, build_class_spells.py).
+def feature_damage(cls, name):
+    if (cls, name) == ("Warlock", "Eldritch Blast"):
+        from build_class_spells import ELDRITCH_BLAST
+        return ELDRITCH_BLAST, "force"
+    return "", ""
 
 def ordinal(n):
     return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
@@ -225,7 +242,8 @@ def build(icon_for_class):
                 continue
             fdoc = item("class-features", f.name, "ability", {
                 "description": body, "source": {"book": "phb", "page": 0}, "kind": "class",
-                "uses": uses_of(f.text), "save": save_of(f.text), "dc": None, "damage": "",
+                "uses": uses_of(f.text), "save": save_of(f.text), "dc": None, "damage": feature_damage(name, f.name)[0],
+                **({"damageType": feature_damage(name, f.name)[1]} if feature_damage(name, f.name)[1] else {}),
                 "level": f.level, "className": name
             }, icon_for_class(name, f.name), folder=ffol, sort=i, key=f"{name}|{f.level}|{f.name}|{i}")
             system["features"].append({"level": f.level, "name": f.name, "uuid": f"Compendium.arneyan.class-features.Item.{fdoc['_id']}"})

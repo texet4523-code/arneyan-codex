@@ -123,17 +123,19 @@
   "activities": [
    {
     "name": "Twin Nock",
-    "kind": "note",
-    "text": "Fire two arrows (three from 17th) instead of one attack, each with the per-arrow bonus; the second has Disadvantage until 10th level.",
-    "minLevel": 0,
+    "kind": "attacks",
+    "count": "4:2, 17:3",
+    "weapons": "arrow",
+    "disadvantage": "rest",
+    "disUntil": 10,
+    "damageBonus": "4:1, 9:2, 13:3, 21:4",
+    "noStack": "Bow Mastery",
     "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
+    "text": "Arrows in place of the one attack your action gives you, at one target or split. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn."
    }
   ],
-  "confidence": "low",
-  "why": "Per-round attack mode choice rather than a limited use."
+  "confidence": "high",
+  "why": "Handbook: two arrows (three from 17th), the second at Disadvantage until 10th, +1/+2/+3/+4 per arrow at 4th/9th/13th/21st, not stacking with Bow Mastery (the higher counts). Arrows: bows only."
  },
  "Hail of Arrows|Archer": {
   "activities": [
@@ -493,38 +495,35 @@
     "name": "Strength (+4)",
     "kind": "check",
     "ability": "str",
-    "text": "Add +4 to this Strength check in extreme circumstances, if not in medium or heavy armour.",
-    "minLevel": 0,
+    "bonus": "4",
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "text": "+4 to this Strength check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
    },
    {
     "name": "Dexterity (+4)",
     "kind": "check",
     "ability": "dex",
-    "text": "Add +4 to this Dexterity check in extreme circumstances, if not in medium or heavy armour.",
-    "minLevel": 0,
+    "bonus": "4",
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "text": "+4 to this Dexterity check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
    },
    {
     "name": "Constitution (+4)",
     "kind": "check",
     "ability": "con",
-    "text": "Add +4 to this Constitution check in extreme circumstances, if not in medium or heavy armour.",
-    "minLevel": 0,
+    "bonus": "4",
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "text": "+4 to this Constitution check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
    }
   ],
-  "confidence": "low",
-  "why": "Once-per-round +4 boost; the check roll itself will not add the +4."
+  "confidence": "high",
+  "why": "Handbook: +4 to a physical attribute check in extreme circumstances once per round; the roll now adds it."
  },
  "Whirlwind Attack|Barbarian": {
   "activities": [
@@ -782,18 +781,65 @@
  "Holy Campaign|Cleric": {
   "activities": [
    {
-    "name": "Holy Campaign",
-    "kind": "note",
-    "text": "Raise 1 to 100 NPCs with d8 HD and 1 to 100 with d4 HD, who gain +1 on checks while you are present.",
-    "minLevel": 0,
+    "name": "Troops with d8 HD (1d100)",
+    "kind": "roll",
+    "formula": "1d100",
+    "maxLevel": 18,
     "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
+    "text": "How many NPCs with d8 Hit Dice you raise (1 to 100)."
+   },
+   {
+    "name": "Troops with d8 HD (2d100)",
+    "kind": "roll",
+    "formula": "2d100",
+    "minLevel": 19,
+    "maxLevel": 22,
+    "cost": 0,
+    "text": "How many NPCs with d8 Hit Dice you raise (2 to 200)."
+   },
+   {
+    "name": "Troops with d8 HD (4d100)",
+    "kind": "roll",
+    "formula": "4d100",
+    "minLevel": 23,
+    "cost": 0,
+    "text": "How many NPCs with d8 Hit Dice you raise (4 to 400)."
+   },
+   {
+    "name": "Troops with d4 HD (1d100)",
+    "kind": "roll",
+    "formula": "1d100",
+    "maxLevel": 18,
+    "cost": 0,
+    "text": "How many NPCs with d4 Hit Dice you raise (1 to 100)."
+   },
+   {
+    "name": "Troops with d4 HD (2d100)",
+    "kind": "roll",
+    "formula": "2d100",
+    "minLevel": 19,
+    "maxLevel": 22,
+    "cost": 0,
+    "text": "How many NPCs with d4 Hit Dice you raise (2 to 200)."
+   },
+   {
+    "name": "Troops with d4 HD (4d100)",
+    "kind": "roll",
+    "formula": "4d100",
+    "minLevel": 23,
+    "cost": 0,
+    "text": "How many NPCs with d4 Hit Dice you raise (4 to 400)."
+   },
+   {
+    "name": "Campaign bonus",
+    "kind": "note",
+    "formula": "18:1, 19:2, 23:3",
+    "cost": 0,
+    "text": "Bonus on checks for all your troops while you are present. From 23rd level they also gain leaders of 1st, 2nd and 3rd level per 20 troops."
    }
   ],
-  "confidence": "low",
-  "why": "Narrative muster with no stated frequency."
+  "confidence": "medium",
+  "why": "Handbook gives the troop counts as ranges (1-100, 2-200, 4-400): read as 1d100, 2d100, 4d100. No frequency stated."
  },
  "Banish|Cleric": {
   "activities": [
@@ -966,17 +1012,16 @@
   "activities": [
    {
     "name": "Combat Dominance",
-    "kind": "note",
-    "text": "Against foes all of Level up to half yours, make 2 attacks (3 at 8th, 4 at 12th), all but the first with Disadvantage.",
-    "minLevel": 0,
+    "kind": "attacks",
+    "count": "4:2, 8:3, 12:4",
+    "disadvantage": "rest",
+    "targetLevel": "half",
     "cost": 0,
-    "per": "round",
-    "target": "",
-    "removeConditions": false
+    "text": "Only when every creature you attack this round is of Level up to half yours; split the attacks among them as you like. Replaces Extra Attack and the off-hand attack; Flowing Strikes can still add one."
    }
   ],
-  "confidence": "low",
-  "why": "Per-round attack mode choice rather than a limited use."
+  "confidence": "high",
+  "why": "Handbook: 2 attacks at 4th, 3 at 8th, 4 at 12th, all but the first with Disadvantage; warns on a target above half your Level."
  },
  "Battle Space (Improved)|Fighter": {
   "activities": [
@@ -2275,13 +2320,14 @@
    },
    {
     "name": "Riposte",
-    "kind": "note",
-    "text": "When an enemy misses you in melee, make a free attack against it.",
+    "kind": "attacks",
+    "text": "When an enemy misses you with a melee attack, a free attack against it as your Flourish for the round.",
     "minLevel": 3,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "count": "1"
    },
    {
     "name": "Acrobatic Escape",
@@ -2296,7 +2342,7 @@
    }
   ],
   "confidence": "high",
-  "why": "As specified; Riposte and Acrobatic Escape from the 3rd/9th-level items."
+  "why": "As specified; Riposte and Acrobatic Escape from the 3rd/9th-level items. Riposte rolls its free attack."
  },
  "Opening Flourish|Swashbuckler": {
   "activities": [
@@ -2320,17 +2366,17 @@
   "activities": [
    {
     "name": "Flèche",
-    "kind": "note",
-    "text": "Lunge for one additional melee attack this round, rolled with Disadvantage.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "disadvantage": "all",
+    "cost": 0,
+    "per": "day (Dexterity modifier, minimum 1)",
+    "text": "One additional melee attack this round as part of your action, with Disadvantage (an extra attack)."
    }
   ],
-  "confidence": "medium",
-  "why": "Item uses 1/day but text says Dexterity modifier per day."
+  "confidence": "high",
+  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here."
  },
  "Eldritch Invocations|Warlock": {
   "activities": [
@@ -2555,16 +2601,22 @@
    {
     "name": "Cauldron Ritual",
     "kind": "note",
-    "text": "Perform the night-long Cauldron ritual for a Wish-equivalent effect, always at a permanent cost.",
-    "minLevel": 0,
+    "maxLevel": 23,
     "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
+    "per": "several months (the GM's conditions)",
+    "text": "A full night uninterrupted, a lunar or seasonal condition the GM sets and rare, costly ingredients. Success gives an effect equal to the Wish spell, with Wish's risk of twisted or partial results, and always leaves a permanent minor mark the GM chooses."
+   },
+   {
+    "name": "Cauldron Ritual (monthly)",
+    "kind": "note",
+    "minLevel": 24,
+    "cost": 0,
+    "per": "month",
+    "text": "From 24th level, once per month of in-game time without the GM's rare conditions; the ingredients still cost steeply. An effect equal to the Wish spell, with its risks, and always a permanent minor mark."
    }
   ],
-  "confidence": "low",
-  "why": "Story-gated ritual with no fixed frequency."
+  "confidence": "high",
+  "why": "Handbook: a story-level event, not a daily resource; once every several months on the GM's conditions, monthly from 24th."
  },
  "Scribe's Insight|Wizard": {
   "activities": [
@@ -2674,5 +2726,1191 @@
   ],
   "confidence": "high",
   "why": "Daily Intelligence check."
+ },
+ "Cauldron of the Ninth Moon improves|Witch": {
+  "activities": [],
+  "confidence": "high",
+  "why": "The monthly frequency belongs to the Cauldron itself (its 24th-level option); this item spends nothing.",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Extra Attack|Bard": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Paladin": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Ranger": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Barbarian": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Knight": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Fighter": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Does not stack with Combat Dominance: choose one or the other each round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Gunslinger": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage. A firearm still has to be loaded for each shot."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Assassin": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Sneak Attack still applies to only one attack per round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack|Rogue": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Sneak Attack still applies to only one attack per round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+ },
+ "Extra Attack (Battle Priest only)|Cleric": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Battle Priests only."
+   }
+  ],
+  "confidence": "high",
+  "why": "As every Extra Attack; only a Battle Priest has it."
+ },
+ "Extra Attack|Magus": {
+  "activities": [
+   {
+    "name": "Extra Attack",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "rest",
+    "cost": 0,
+    "text": "One additional attack with your bonded weapon type, with Disadvantage. Spellstrike may be delivered through either attack, still once per round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Two attacks with the bonded weapon type, the second with Disadvantage."
+ },
+ "War Magic|Magus": {
+  "activities": [
+   {
+    "name": "War Magic",
+    "kind": "attacks",
+    "count": "1",
+    "cost": 0,
+    "text": "After casting a cantrip as your action: one weapon attack with your bonded weapon type."
+   }
+  ],
+  "confidence": "high",
+  "why": "One weapon attack after a cantrip (Codex p. 8: exactly one attack, no extras)."
+ },
+ "Steady Shot|Gunslinger": {
+  "activities": [
+   {
+    "name": "Steady Shot (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "per": "round",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
+   },
+   {
+    "name": "Steady Shot (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "minLevel": 10,
+    "cost": 0,
+    "per": "round",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
+   },
+   {
+    "name": "Steady Shot (3d6)",
+    "kind": "damage",
+    "formula": "3d6",
+    "minLevel": 15,
+    "cost": 0,
+    "per": "round",
+    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: +1d6 (+2d6 at 10th, +3d6 at 15th) on the first hit each round while Dead Eye applies."
+ },
+ "Relentless Assault|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Relentless Assault",
+    "kind": "damage",
+    "formula": "1d4",
+    "cost": 0,
+    "text": "Each hit after the first against the same target this round: +1d4 (not cumulative)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: flat +1d4 on each hit after the first against the same target in a round."
+ },
+ "Call-to-Arms|Knight": {
+  "activities": [
+   {
+    "name": "Followers this month",
+    "kind": "roll",
+    "formula": "2d10",
+    "cost": 0,
+    "per": "month",
+    "text": "With a stronghold: 0-level followers who arrive this month. A 1st-level knight per 40 followers; a 5th-level knight at 80. Followers must be paid (0-level 6 gp a month; a knight follower 40 gp a month per Level)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: 2d10 followers every month."
+ },
+ "Corruption|Sorcerer": {
+  "activities": [
+   {
+    "name": "Corruption roll",
+    "kind": "roll",
+    "formula": "1d20",
+    "target": "gm",
+    "cost": 0,
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll. 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: the GM rolls d20 in secret on the Corruption Table; a blind roll only the GM sees."
+ },
+ "Cleave|Action": {
+  "activities": [
+   {
+    "name": "Cleave",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "cost": 0,
+    "per": "turn",
+    "text": "After reducing a creature to 0 HP or below with a melee attack: one extra melee attack against a different creature within reach, with the same attack bonus."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook manoeuvre: one extra melee attack, once per turn."
+ },
+ "Opportunity Attack|Action": {
+  "activities": [
+   {
+    "name": "Attack of Opportunity",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "cost": 0,
+    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: a creature leaving your reach provokes one melee attack."
+ },
+ "Push|Action": {
+  "activities": [
+   {
+    "name": "Push",
+    "kind": "attacks",
+    "count": "1",
+    "cost": 0,
+    "text": "On a hit, push a creature up to one size larger than you 10ft instead of dealing damage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook manoeuvre: an attack; on a hit a push instead of damage (no damage roll needed)."
+ },
+ "Hide|Action": {
+  "activities": [
+   {
+    "name": "Dexterity (Stealth)",
+    "kind": "check",
+    "ability": "dex",
+    "cost": 0,
+    "text": "Your action. An observer who is actively looking makes a Wisdom check against it; one who is not uses its passive awareness (10 + Wisdom modifier). You are hidden from each observer your check beats."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: a Dexterity (Stealth) check."
+ },
+ "Feint|Action": {
+  "activities": [
+   {
+    "name": "Charisma (Deception)",
+    "kind": "check",
+    "ability": "cha",
+    "cost": 0,
+    "text": "Against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
+   },
+   {
+    "name": "Dexterity",
+    "kind": "check",
+    "ability": "dex",
+    "cost": 0,
+    "text": "Against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
+   }
+  ],
+  "confidence": "medium",
+  "why": "The checks are the Handbook's (Feint feat); the Handbook has Feint only as a feat, used in place of one attack."
+ },
+ "Flowing Strikes|Feat": {
+  "activities": [
+   {
+    "name": "Against the same creature",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "disadvantage": "all",
+    "cost": 0,
+    "per": "round",
+    "text": "Once per round, after hitting a creature with a melee attack. The extra attack cannot trigger Flowing Strikes again."
+   },
+   {
+    "name": "Against a different creature",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "cost": 0,
+    "per": "round",
+    "text": "Once per round, after hitting a creature with a melee attack. The extra attack cannot trigger Flowing Strikes again. A different creature within your reach."
+   }
+  ],
+  "confidence": "high",
+  "why": "One extra melee attack: Disadvantage against the creature just hit, a normal roll against another."
+ },
+ "Combat Reflexes|Feat": {
+  "activities": [
+   {
+    "name": "Attack of Opportunity",
+    "kind": "attacks",
+    "count": "1",
+    "weapons": "melee",
+    "cost": 0,
+    "per": "round",
+    "text": "Once per round, against an enemy you can see that leaves your melee reach or moves past or through it. Disengage prevents it."
+   }
+  ],
+  "confidence": "high",
+  "why": "One melee attack, once per round."
+ },
+ "Feint|Feat": {
+  "activities": [
+   {
+    "name": "Charisma (Deception)",
+    "kind": "check",
+    "ability": "cha",
+    "cost": 0,
+    "per": "round",
+    "text": "In place of one attack, against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
+   },
+   {
+    "name": "Dexterity",
+    "kind": "check",
+    "ability": "dex",
+    "cost": 0,
+    "per": "round",
+    "text": "In place of one attack, against the target's Wisdom check. On a success, choose: it has Disadvantage on its next attack against you, or you have Advantage on your next attack against it."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round, a Charisma (Deception) or Dexterity check against the target's Wisdom check."
+ },
+ "Battlefield Medic|Feat": {
+  "activities": [
+   {
+    "name": "Treat wounds (Wisdom)",
+    "kind": "check",
+    "ability": "wis",
+    "cost": 0,
+    "text": "DC 15 (the Hard tier). On a success, heal the target."
+   },
+   {
+    "name": "Healing",
+    "kind": "heal",
+    "formula": "@level + max(1, @wis.mod)",
+    "cost": 0,
+    "text": "Your Level + your Wisdom modifier (minimum +1). Each target can be treated by a healer only once per day."
+   }
+  ],
+  "confidence": "medium",
+  "why": "Wisdom check DC 15, then heal Level + Wisdom modifier (minimum +1); the once per day is per target, not a pool.",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Intimidating Presence|Feat": {
+  "activities": [
+   {
+    "name": "Intimidating Presence",
+    "kind": "save",
+    "save": "will",
+    "formula": "10 + @half + @cha.mod",
+    "text": "One enemy within 10ft: unless it passes, it fights the rest of the round at Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter, Will save against 10 + half your level (minimum 1) + Charisma modifier."
+ },
+ "Shield Bash|Feat": {
+  "activities": [
+   {
+    "name": "Shield Bash",
+    "kind": "save",
+    "save": "fort",
+    "formula": "10 + @half + @str.mod",
+    "cost": 0,
+    "per": "round",
+    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save or knocked Prone."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round, Fortitude save against 10 + half your level (minimum 1) + Strength modifier."
+ },
+ "Mighty Deed of Arms|Feat": {
+  "activities": [
+   {
+    "name": "Deed die (1d4)",
+    "kind": "roll",
+    "formula": "1d4",
+    "cost": 0,
+    "per": "round",
+    "text": "Roll alongside your attack: on a hit with 3 or better, choose a deed."
+   },
+   {
+    "name": "Prone, push or disarm",
+    "kind": "save",
+    "save": "fort",
+    "formula": "10 + @half + @str.mod",
+    "cost": 0,
+    "per": "round",
+    "text": "Knock it Prone, push it 10ft or disarm it, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+   },
+   {
+    "name": "Blind",
+    "kind": "save",
+    "save": "ref",
+    "formula": "10 + @half + @str.mod",
+    "cost": 0,
+    "per": "round",
+    "text": "Blind it until the end of its next turn, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+   },
+   {
+    "name": "Attack penalty",
+    "kind": "save",
+    "save": "will",
+    "formula": "10 + @half + @str.mod",
+    "cost": 0,
+    "per": "round",
+    "text": "Disadvantage on its next attack, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, DC 10 + half your level (minimum 1) + Strength modifier."
+ },
+ "Ritual Caster|Feat": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Each spell once per day as a ritual: not a pool of uses.",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Drake's Fury|Followers of Drake (Barbarian)": {
+  "activities": [
+   {
+    "name": "Strength (+6)",
+    "kind": "check",
+    "ability": "str",
+    "bonus": "6",
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "text": "Primeval Instincts in natural wilderness: +6 to this Strength check instead of +4."
+   },
+   {
+    "name": "Dexterity (+6)",
+    "kind": "check",
+    "ability": "dex",
+    "bonus": "6",
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "text": "Primeval Instincts in natural wilderness: +6 to this Dexterity check instead of +4."
+   },
+   {
+    "name": "Constitution (+6)",
+    "kind": "check",
+    "ability": "con",
+    "bonus": "6",
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "text": "Primeval Instincts in natural wilderness: +6 to this Constitution check instead of +4."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: Primeval Instincts rises from +4 to +6 on checks in natural wilderness."
+ },
+ "Granted Power (Ilmater)|Deity: Ilmater (The Winter's Solace) (Cleric)": {
+  "activities": [
+   {
+    "name": "Healing",
+    "kind": "heal",
+    "formula": "2d8 + @wis.mod",
+    "text": "Heal a creature."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day: 2d8 + Wisdom modifier HP."
+ },
+ "Granted Power (Auril)|Deity: Auril (Cleric)": {
+  "activities": [
+   {
+    "name": "Cold strike",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "cold",
+    "text": "On a weapon attack: +1d6 cold, and the target's speed is halved."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day: +1d6 cold on a weapon attack."
+ },
+ "Granted Power (Auril)|Deity: Auril (Paladin)": {
+  "activities": [
+   {
+    "name": "Smite: cold (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "cold",
+    "cost": 0,
+    "text": "With your Smite: +1d6 cold, and the target's movement speed is halved for 1 round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Smite rider, every Smite."
+ },
+ "Granted Power (Kossuth)|Deity: Kossuth (Paladin)": {
+  "activities": [
+   {
+    "name": "Smite: fire (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "fire",
+    "cost": 0,
+    "text": "With your Smite: +1d6 fire."
+   },
+   {
+    "name": "Cone of fire (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "fire",
+    "text": "Once a day: a 15ft cone of fire, Reflex save for half."
+   }
+  ],
+  "confidence": "high",
+  "why": "Smite +1d6 fire every Smite; once/day 2d6 fire cone, Reflex half."
+ },
+ "Granted Power (Bahamut)|Deity: Bahamut (Paladin)": {
+  "activities": [
+   {
+    "name": "Smite: your type (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "With your Smite: +1d6 of the type you chose at 1st level (acid, cold, fire or lightning)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Smite rider of the chosen type."
+ },
+ "Granted Power (Tiamat)|Deity: Tiamat (Paladin)": {
+  "activities": [
+   {
+    "name": "Smite: your type (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "With your Smite: +1d6 of the type you chose at 1st level (acid, cold, fire, lightning or poison)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Smite rider of the chosen type."
+ },
+ "Granted Power (Lolth)|Deity: Lolth (Paladin)": {
+  "activities": [
+   {
+    "name": "Smite on the Restrained (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "poison",
+    "cost": 0,
+    "text": "Your Smite against a Restrained creature: +1d6 poison."
+   }
+  ],
+  "confidence": "high",
+  "why": "Smite rider against Restrained creatures; the webs keep the Reflex save."
+ },
+ "Granted Power (Drake)|Deity: Drake (Drakaenar) (Paladin)": {
+  "activities": [
+   {
+    "name": "Final attack",
+    "kind": "attacks",
+    "count": "1",
+    "text": "When reduced to 0 HP or below: one final attack before falling."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day: one attack."
+ },
+ "Granted Power (Gruumsh)|Deity: Gruumsh (Cleric)": {
+  "activities": [
+   {
+    "name": "Extra damage (1d8)",
+    "kind": "damage",
+    "formula": "1d8",
+    "text": "When you hit: +1d8 damage, and the target saves (below)."
+   },
+   {
+    "name": "Frighten",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "text": "After that hit: Will save or Frightened of you until the end of its next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day: +1d8 on a hit and a Will save or Frightened."
+ },
+ "Necrotic Touch|Pale Master (Necromancer)": {
+  "activities": [
+   {
+    "name": "Necrotic Touch (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "necrotic",
+    "cost": 0,
+    "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this."
+   },
+   {
+    "name": "Necrotic Touch (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "necrotic",
+    "minLevel": 10,
+    "cost": 0,
+    "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this."
+   },
+   {
+    "name": "Wither",
+    "kind": "save",
+    "save": "fort",
+    "cost": 0,
+    "text": "A creature you touch: Fortitude save against your Class Save DC or its maximum HP is reduced by the damage dealt until a full rest."
+   }
+  ],
+  "confidence": "high",
+  "why": "Handbook: 1d6 necrotic on an unarmed hit (2d6 from 10th), and a Fortitude save against max HP loss."
+ },
+ "Stubborn|Mournas Freelance (Gunslinger)": {
+  "activities": [
+   {
+    "name": "Grit recovery",
+    "kind": "heal",
+    "formula": "1d6",
+    "cost": 0,
+    "target": "self",
+    "text": "When Grit activates: recover 1d6 HP instead of stabilising at exactly 1 HP."
+   }
+  ],
+  "confidence": "high",
+  "why": "1d6 HP when Grit activates."
+ },
+ "Warden's Strike|Grave Warden (Necromancer)": {
+  "activities": [
+   {
+    "name": "Undead regain HP",
+    "kind": "heal",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "When you destroy an undead creature: each undead you control within 30ft regains this many HP."
+   }
+  ],
+  "confidence": "high",
+  "why": "1d6 HP to your undead."
+ },
+ "Dark Gift|Levistus (Warlock)": {
+  "activities": [
+   {
+    "name": "Icy temporary HP",
+    "kind": "temp",
+    "formula": "max(1, @cha.mod)",
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "text": "Once per round, when you take damage: temporary HP equal to your Charisma modifier (minimum 1)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Temp HP on taking damage."
+ },
+ "Dark Gift|Zariel (Warlock)": {
+  "activities": [
+   {
+    "name": "Hellfire (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "fire",
+    "cost": 0,
+    "per": "round",
+    "text": "One weapon hit each round, while you have at least one Warlock spell slot unspent."
+   }
+  ],
+  "confidence": "high",
+  "why": "+1d6 fire on one hit a round."
+ },
+ "Bloodline Ability|Storm-born (Sorcerer)": {
+  "activities": [
+   {
+    "name": "Storm-touched (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "lightning",
+    "cost": 0,
+    "text": "When you cast a damaging spell: +1d6 lightning to one target, no save, no slot cost."
+   }
+  ],
+  "confidence": "high",
+  "why": "+1d6 lightning to one target."
+ },
+ "Committed Blade|The Crimson Tide (Swashbuckler)": {
+  "activities": [
+   {
+    "name": "Relentless Assault (2d4)",
+    "kind": "damage",
+    "formula": "2d4",
+    "cost": 0,
+    "text": "Relentless Assault's bonus is +2d4 instead of +1d4, from the second hit against the same target as normal."
+   }
+  ],
+  "confidence": "high",
+  "why": "Replaces Relentless Assault's 1d4."
+ },
+ "Physical Change|Patron: Frostmother Ysolde (Bheur Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Frost (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "cold",
+    "cost": 0,
+    "per": "round",
+    "text": "Once per round, when you hit with a Hex, a damaging spell or the claw: +1d6 cold."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6; +1d6 cold once per round."
+ },
+ "Physical Change|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Claw and Hex (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "When you strike the same target with a claw attack and a successful Hex in the same round: the claw deals an additional 1d6."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6, +1d6 with a Hex on the same target."
+ },
+ "Physical Change|Patron: Old Mossmaw of the Nalwood Deep (Green Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Unarmed strike (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "Your unarmed strikes deal 1d6."
+   }
+  ],
+  "confidence": "medium",
+  "why": "Unarmed strikes deal 1d6."
+ },
+ "Physical Change|Patron: Baba Yaga (Witch)": {
+  "activities": [
+   {
+    "name": "Bite (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed bite attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Blood answers",
+    "kind": "save",
+    "save": "will",
+    "text": "Once per day, as a reaction when struck in melee: the attacker makes a Will save or has Disadvantage on its next attack roll."
+   }
+  ],
+  "confidence": "high",
+  "why": "Bite 1d6 at will; once/day Will save."
+ },
+ "Physical Change|Patron: Mother Loretta (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Hex-laced tonic",
+    "kind": "save",
+    "save": "fort",
+    "text": "Once per day, as an action instead: a creature within 15ft makes a Fortitude save or is Poisoned (Disadvantage on attack rolls and ability checks) for 1 minute."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6 at will; once/day Fortitude save."
+ },
+ "Physical Change|Patron: The Drowned Widow of Coldmere Bay (Sea Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Phantom water",
+    "kind": "save",
+    "save": "fort",
+    "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or is staggered (half speed, Disadvantage on attack rolls) for 1 minute."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6 at will; once/day Fortitude save."
+ },
+ "Physical Change|Patron: The Hollow Bride (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Harbour water (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "damageType": "cold",
+    "text": "Once per day, a melee touch attack instead: on a hit, 2d6 cold, and the target must hold its breath or gain one level of exhaustion."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6 at will; once/day 2d6 cold touch."
+ },
+ "Physical Change|Patron: Vashtira, the Widow of Dreams (Night Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Claw (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
+   },
+   {
+    "name": "Locked gaze",
+    "kind": "save",
+    "save": "will",
+    "text": "Once per day, without spending your action: a creature within 30ft makes a Will save or is Frightened for 1 round and then Shaken (Disadvantage on its next attack roll) for 1 minute."
+   }
+  ],
+  "confidence": "high",
+  "why": "Claw 1d6 at will; once/day Will save."
+ },
+ "Granted Power (Akadi)|Deity: Akadi (Cleric)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day lightning strike: 3d6, Reflex save for half.",
+  "damage": "3d6",
+  "damageType": "lightning",
+  "save": "ref"
+ },
+ "Granted Power (Akadi)|Deity: Akadi (Paladin)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day lightning strike: 3d6, Reflex save for half.",
+  "damage": "3d6",
+  "damageType": "lightning",
+  "save": "ref"
+ },
+ "Granted Power (Bahamut)|Deity: Bahamut (Cleric)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day 15ft cone of the chosen type: 2d6, Reflex half (type left to the player).",
+  "damage": "2d6",
+  "save": "ref"
+ },
+ "Granted Power (Kossuth)|Deity: Kossuth (Cleric)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day 15ft cone of fire: 2d6, Reflex half.",
+  "damage": "2d6",
+  "damageType": "fire",
+  "save": "ref"
+ },
+ "Granted Power (Tiamat)|Deity: Tiamat (Cleric)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day 15ft cone of the chosen type: 2d6, Reflex half (type left to the player).",
+  "damage": "2d6",
+  "save": "ref"
+ },
+ "Bloodline Awakening|Awakened (Sorcerer)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day 30ft burst: Will save or stunned, 5d8 psychic (half on a success).",
+  "damage": "5d8",
+  "damageType": "psychic",
+  "save": "will"
+ },
+ "Patron Feature|Belial & Fierna (Warlock)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day hellfire zone: 4d8 fire, Reflex half.",
+  "damage": "4d8",
+  "damageType": "fire",
+  "save": "ref"
+ },
+ "Patron Feature|Bolothamogg (Warlock)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day Eye: each ray 6d6 force, Reflex half (roll it each turn from the card).",
+  "damage": "6d6",
+  "damageType": "force",
+  "save": "ref"
+ },
+ "Dark Gift|Mephistopheles (Warlock)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day retort: 1d10 fire, +1d10 per 6 Warlock levels, no save.",
+  "damage": "(1 + floor(@cl / 6))d10",
+  "damageType": "fire",
+  "save": ""
+ },
+ "Dark Gift|Tharizdun, the Chained God (Warlock)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day unravel: 1d10 necrotic per 4 Warlock levels (minimum 1d10), Fortitude halves.",
+  "damage": "(max(1, floor(@cl / 4)))d10",
+  "damageType": "necrotic",
+  "save": "fort"
+ },
+ "Patron Feature|Tharizdun, the Chained God (Warlock)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day rift: Will save or stunned and 4d8 psychic.",
+  "damage": "4d8",
+  "damageType": "psychic",
+  "save": "will"
+ },
+ "Bloodline Awakening|Void-blooded (Sorcerer)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day touch: Fortitude save, 4d10 psychic, half on a success.",
+  "damage": "4d10",
+  "damageType": "psychic",
+  "save": "fort"
+ },
+ "Bloodline Ability|Infernal (Sorcerer)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day reaction: fire damage equal to your Charisma modifier, no save.",
+  "damage": "@cha.mod",
+  "damageType": "fire",
+  "save": ""
+ },
+ "Bloodline Awakening|Storm-born (Sorcerer)": {
+  "activities": [
+   {
+    "name": "Storm (2d8)",
+    "kind": "damage",
+    "formula": "2d8",
+    "damageType": "lightning",
+    "text": "Once per day you call the storm (1 minute, 30ft radius): each creature in range takes this each turn, Reflex save for half."
+   },
+   {
+    "name": "Lightning bolt (4d6)",
+    "kind": "damage",
+    "formula": "4d6",
+    "damageType": "lightning",
+    "cost": 0,
+    "text": "Once per turn while the storm lasts, as part of your action: one target within 90ft, Reflex save for half."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day storm 2d8 a turn and a 4d6 bolt once a turn while it lasts; Reflex half."
+ },
+ "Patron Feature|Zariel (Warlock)": {
+  "activities": [
+   {
+    "name": "Undead and fiends (6d8)",
+    "kind": "damage",
+    "formula": "6d8",
+    "damageType": "radiant",
+    "text": "Once per day, 30ft radius: undead and fiends take this, no save."
+   },
+   {
+    "name": "Everyone else (3d8)",
+    "kind": "damage",
+    "formula": "3d8",
+    "damageType": "fire",
+    "cost": 0,
+    "text": "The same burst: all others take this, Reflex save against your Class Save DC for half."
+   }
+  ],
+  "confidence": "high",
+  "why": "One use, two damage rolls: 6d8 radiant to undead and fiends, 3d8 fire to the rest (Reflex half)."
+ },
+ "Patron Curse|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Marked Hex (2d6)",
+    "kind": "damage",
+    "formula": "2d6",
+    "text": "Once per day, mark a creature within 30ft: your next successful Hex against it deals this extra (Fortitude save halves)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day: +2d6 on the next Hex, Fortitude halves."
+ },
+ "Patron Curse|Patron: Frostmother Ysolde (Bheur Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Bone-deep cold",
+    "kind": "save",
+    "save": "fort",
+    "text": "Once per day, a creature within 30ft: Fortitude save or its speed is halved for 1 minute, taking 1d6 cold at the start of each of its turns."
+   },
+   {
+    "name": "Cold each turn (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "cold",
+    "cost": 0,
+    "text": "At the start of each of the cursed creature's turns."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day Fortitude save; 1d6 cold each turn while it lasts."
+ },
+ "Patron Buff|Patron: Frostmother Ysolde (Bheur Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Frost ward",
+    "kind": "note",
+    "text": "Once per day: a touched creature (or you) is immune to natural cold and harsh-weather exhaustion for 24 hours."
+   },
+   {
+    "name": "Frost bite (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "cold",
+    "cost": 0,
+    "text": "For the first minute, a creature that hits the warded one in melee takes this."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day ward; 1d6 cold to melee attackers for a minute."
+ },
+ "Patron Buff|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
+  "activities": [
+   {
+    "name": "Iron strength",
+    "kind": "note",
+    "text": "Once per day: a touched creature (or you) has Advantage on Strength checks for 1 minute."
+   },
+   {
+    "name": "Next hit (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "text": "Their next successful melee hit within the minute deals this extra."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day; +1d6 on the next melee hit."
+ },
+ "Patron Buff|Patron: Mother Loretta (Witch)": {
+  "activities": [
+   {
+    "name": "Tend in combat",
+    "kind": "heal",
+    "formula": "1d8 + floor(@cl / 2)",
+    "text": "As part of your action: a touched creature (or you) regains 1d8 HP plus 1 per two Witch levels."
+   },
+   {
+    "name": "Tend for 10 minutes",
+    "kind": "note",
+    "text": "The touched creature regains HP as for one night of rest in a safe haven. No slot recovery."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once/day, either way: 1d8 + 1 per two Witch levels in combat, or a safe-haven night's healing."
+ },
+ "Ancestor's Fury|Shaman (Druid)": {
+  "activities": [
+   {
+    "name": "Ancestor's Fury (1d8)",
+    "kind": "damage",
+    "formula": "1d8",
+    "text": "Your next spell or attack made while in Wild Shape deals this extra, of any type you choose."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter, +1d8 of a chosen type."
+ },
+ "Undead Resilience|Necromancer": {
+  "activities": [
+   {
+    "name": "Undead Resilience",
+    "kind": "note",
+    "formula": "@cl",
+    "cost": 0,
+    "text": "At the start of each encounter: temporary HP equal to the total HD of all undead you control, up to the number below (your Necromancer level). They last until the encounter ends; add them with the Temp HP button."
+   }
+  ],
+  "confidence": "high",
+  "why": "Temp HP from your undead's HD, capped at your Necromancer level; the HD total is the player's to count."
  }
 }

@@ -15,7 +15,6 @@ build_classes.build(icons.kit_icon)
 print('patron and artificer kits:', build_class_kits.build(icons.kit_icon))
 build_cc.build(icons.icon)
 print('ancestry choices:', build_ancestry_choices.build())
-print('feature activities (and keys not found):', build_activities.build())
 build_spells.build(icons.icon)
 _cs = build_class_spells.build(icons.icon)
 print('class-only spells:', len(_cs[0]), 'made; already in the compendium:', _cs[1])
@@ -23,6 +22,8 @@ print('spell areas:', build_areas.build())
 build_codex.build()
 build_shop.build(icons.icon)
 build_actions.build()
+# After the actions: activities go on class and kit features, feats and actions.
+print('feature activities (and keys not found):', build_activities.build())
 
 # Approved effects (feats, features, kits, ancestries, spells), before the monsters copy their spells.
 import apply_effects

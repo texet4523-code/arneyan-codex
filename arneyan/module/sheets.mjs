@@ -258,7 +258,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     }
     const groups = [];
     for (const [name, list] of Object.entries(abilityGroups)) groups.push({ name, rows: await rows(list) });
-    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length;
+    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length || i.system.activities?.length;
     const combatAbilities = await rows([...byType("ability"), ...byType("feat")].filter(actionable));
 
     // Spells: one section per casting class, PF2e style, with slot pips per level.
