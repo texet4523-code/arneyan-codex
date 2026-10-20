@@ -253,7 +253,13 @@ export function registerQol() {
   });
   game.settings.register(SYS, "reachRing", {
     name: "Reach ring on your selected token", hint: "A faint square at your melee reach (5ft, 10ft with a Reach weapon), to see who you can hit or who can make an attack of opportunity. Also a switch in the token tools and Shift+R.",
-    scope: "client", config: true, type: Boolean, default: true, onChange: () => { canvas?.tokens?.controlled.forEach(reachRing); ui.controls?.render?.(); }
+    scope: "client", config: true, type: Boolean, default: true, onChange: value => {
+      canvas?.tokens?.controlled.forEach(reachRing);
+      // The switch in the token tools keeps its own state: set it, so Shift+R and the settings window light it too.
+      const tool = ui.controls?.controls?.tokens?.tools?.arnReach;
+      if (tool) tool.active = !!value;
+      ui.controls?.render?.();
+    }
   });
   game.settings.register(SYS, "turnReminders", {
     name: "Start of turn reminders", hint: "One card, to the creature's owners and the GM, listing concentration, effects about to end, ongoing damage and Regeneration.",
@@ -261,7 +267,7 @@ export function registerQol() {
   });
   Hooks.on("updateActor", (actor, changes, options) => { try { floatHp(actor, changes, options); } catch (err) { console.warn("Arneyan | float", err); } });
   Hooks.on("controlToken", token => { try { reachRing(token); } catch (err) { console.warn("Arneyan | reach", err); } });
-  // A switch in the token tools and a key (R by default) turn the reach outline on and off.
+  // A switch in the token tools and a key (Shift+R by default) turn the reach outline on and off.
   Hooks.on("getSceneControlButtons", controls => {
     try {
       const tokens = controls.tokens ?? controls.token ?? Object.values(controls).find(c => c?.name === "tokens");

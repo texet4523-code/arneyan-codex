@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.11 · Foundry v13 and v14
+Version 0.10.12 · Foundry v13 and v14
+
+## What's new in 0.10.12
+
+- **Reach outline switch:** the square button in the token tools now lights up and goes dark when you use Shift+R or the setting, not only when you click it.
 
 ## What's new in 0.10.11
 
