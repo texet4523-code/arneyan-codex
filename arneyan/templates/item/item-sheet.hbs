@@ -47,6 +47,8 @@
     {{#if (eq type "feat")}}
       <label>Path <input type="text" name="system.path" value="{{source.path}}" placeholder="Martial, Specialist, General..."></label>
       <label>Level taken <input type="number" name="system.levelTaken" value="{{source.levelTaken}}"></label>
+      <label>Uses <span><input class="short" type="number" name="system.uses.value" value="{{source.uses.value}}"> / <input class="short" type="number" name="system.uses.max" value="{{source.uses.max}}"></span></label>
+      <label>Refreshes <select name="system.uses.per">{{selectOptions config.usesPer selected=source.uses.per}}</select></label>
     {{/if}}
 
     {{#if (eq type "skill")}}
@@ -63,9 +65,9 @@
       <label>DC <input type="number" name="system.dc" value="{{source.dc}}" placeholder="Class Save DC"></label>
       <label>Damage <input type="text" name="system.damage" value="{{source.damage}}" placeholder="2d6"></label>
     {{/if}}
-    {{#if (eq type "ability")}}{{#if source.activities.length}}
+    {{#if (or (eq type "ability") (eq type "feat"))}}{{#if source.activities.length}}
       <div class="arn-acts-list"><strong>When used</strong>{{#if (gt source.activities.length 1)}} (a prompt asks which){{/if}}:
-        <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#if formula}} · {{formula}}{{/if}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
+        <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#if formula}} · {{formula}}{{/if}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if maxLevel}} · to level {{maxLevel}}{{/if}}{{#if count}} · attacks {{count}}{{/if}}{{#if damageBonus}} · bonus damage {{damageBonus}}{{/if}}{{#if bonus}} · bonus {{bonus}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
       </div>
     {{/if}}{{/if}}
 

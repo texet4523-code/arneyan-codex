@@ -251,7 +251,9 @@ def build():
                                   "img": kit.get("img", "icons/svg/book.svg"), "effects": [],
                                   "system": {"description": f.get("description", ""), "kind": "class", "level": f.get("level", 1),
                                              "className": kit["name"], "rules": f.get("rules", []), "toggle": bool(f.get("toggle")),
-                                             "active": False, "applies": f.get("applies", [])},
+                                             "active": False, "applies": f.get("applies", []),
+                                             # As on a grant in Foundry (progression.mjs): uses, save, damage, activities.
+                                             **{k: f[k] for k in ("uses", "save", "damage", "damageType", "activities") if f.get(k)}},
                                   "flags": {SYS: {"grantedBy": kit_item["_id"], "source": f"{kit_item['_id']}.{idx}"}}})
             elif c.get("kit"):
                 miss("kit", c["kit"])

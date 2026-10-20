@@ -26,6 +26,45 @@ function advFrom(event, ...sources) {
 
 const NONE = { values: [], adv: [], dis: [] };
 
+/**
+ * A number that grows with level: a level table ("4:1, 9:2, 13:3": +1 from 4th, +2 from 9th...; 0 below the first
+ * step), or a number or formula (@cl is the feature's class level).
+ */
+export function byLevel(spec, level, data = {}) {
+  const s = String(spec ?? "").trim();
+  if (!s) return 0;
+  if (/^\d+\s*:/.test(s)) {
+    let out = 0;
+    for (const [, at, v] of s.matchAll(/(\d+)\s*:\s*(-?\d+)/g)) if (level >= Number(at)) out = Number(v);
+    return out;
+  }
+  // Bracketed, so a sum with no dice works out to one number ("10 + 3 + 2" is 15).
+  const v = Number(resolveFormula(`(${s})`, { ...data, cl: level }));
+  return Number.isFinite(v) ? v : 0;
+}
+
+/** Does this weapon suit an attacks activity's `weapons` ("" any, "melee", "ranged", or an ammunition type)? */
+export function weaponFits(w, want) {
+  const k = String(want ?? "").toLowerCase();
+  if (!k) return true;
+  if (k === "melee") return !w.system.ranged;
+  if (k === "ranged") return !!w.system.ranged;
+  return String(w.system.ammoType ?? "").toLowerCase() === k;
+}
+
+/** Damage terms with a feature's bonus added: where a rule from `noStack` already adds a bonus, the higher counts. */
+export function featureBonusTerms(terms, notes, bonus) {
+  const value = Number(bonus?.value) || 0;
+  if (!value) return { terms, notes };
+  const clash = bonus.noStack ? terms.filter(t => t.label === bonus.noStack && /^\s*\+?\s*-?\d+\s*$/.test(String(t.value))) : [];
+  const theirs = clash.reduce((t, x) => t + Number(String(x.value).replace(/\s|\+/g, "")), 0);
+  if (clash.length && theirs >= value) return { terms, notes: [...notes, `${bonus.label}: +${value} does not stack with ${bonus.noStack} (+${theirs}); the higher counts`] };
+  const kept = terms.filter(t => !clash.includes(t));
+  const out = [...notes];
+  if (bonus.noStack) out.push(`${bonus.label}: does not stack with ${bonus.noStack}; use the higher`);
+  return { terms: [...kept, { label: bonus.label, value: `+${value}` }], notes: out };
+}
+
 /** Weapon resistances: which weapons each trait word covers (physical damage only). */
 export const WEAPON_TRAITS = {
   "weapons": "weapons", "non-magical": "non-magical weapons",
@@ -99,9 +138,11 @@ export class ArneyanActor extends Actor {
   }
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
-  rollAbility(key, event) {
+  /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
+  rollAbility(key, event, { bonus = 0, label = "" } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
+    if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
     const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
     return d20Roll({ actor: this, kind: "check", mode, why, title: `${ARNEYAN.abilities[key]} Check`, parts, notes: m?.notesFor("check") ?? [], autoFail: fail, extra: { ability: key } });
@@ -196,9 +237,14 @@ export class ArneyanActor extends Actor {
     return `${f}${mod ? `${mod > 0 ? "+" : ""}${mod}` : ""}${extra}${type}${riders}`;
   }
 
-  /** Attack: d20 + attribute modifier + BtH (+ magic and rules), against each target's AC. Bows and the like spend ammunition. */
-  async rollAttack(item, event, { offhand = false } = {}) {
-    const targets = targetActors();
+  /**
+   * Attack: d20 + attribute modifier + BtH (+ magic and rules), against each target's AC. Bows and the like spend ammunition.
+   * A feature making several attacks (activities of kind "attacks") passes: `adv`, an extra Advantage/Disadvantage source;
+   * `targets`, this attack's own targets; `label`, the card title ("Twin Nock, arrow 2 of 2"); `notes`; and `bonus`, bonus
+   * damage on a hit ({ value, label, noStack }) that the damage buttons carry.
+   */
+  async rollAttack(item, event, { offhand = false, adv = null, targets: only = null, label = "", notes: more = [], bonus = null } = {}) {
+    const targets = only ?? targetActors();
     // Combat rules (combat.mjs): Full Cover, a jammed gun, off-hand, flanking and crowding.
     const sit = await attackSituation(this, item, targets, { offhand });
     if (sit.block) return null;
@@ -212,7 +258,7 @@ export class ArneyanActor extends Actor {
     const own = m?.adv("adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
     // Conditions on a single target (Prone, Restrained, Invisible...) change the attacker's roll.
     let against = NONE;
-    const notes = [...(m?.notesFor("attack") ?? [])];
+    const notes = [...more, ...(m?.notesFor("attack") ?? [])];
     if (targets.length === 1) {
       const tm = targets[0].actor.system.mods;
       if (tm) {
@@ -256,14 +302,14 @@ export class ArneyanActor extends Actor {
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
-    const { mode, why } = advFrom(event, own, against, first, heavy, far, ...sit.adv);
+    const { mode, why } = advFrom(event, own, against, first, heavy, far, adv ?? NONE, ...sit.adv);
     notes.push(...sit.notes);
     if (this.system.noAct) notes.unshift(`${this.name} cannot take actions right now.`);
     return sit.after(await d20Roll({
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
-      title: `${item.name}: ${offhand ? "Off-hand " : ""}Attack${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...sit.extra },
+      title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit }) => {
@@ -276,7 +322,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Damage: weapon dice + the same attribute modifier as the attack (+ magic and rules). */
-  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false } = {}) {
+  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null } = {}) {
     const sys = item.system;
     const ammoPlus = Number(String(ammo).match(/\+(\d)/)?.[1] ?? 0);
     // Extra damage with a condition ("against undead", Versatile two-handed) joins the roll only when asked for.
@@ -286,9 +332,10 @@ export class ArneyanActor extends Actor {
     let mod = sys.magic + ammoPlus;
     // An off-hand weapon adds no attribute modifier to damage (Codex, Dual Wielding).
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
-    return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item),
+    const { terms, notes } = featureBonusTerms(this.damageTerms(item), this.mods?.notesFor("damage") ?? [], bonus);
+    return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus,
       actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: sys.damage, mod, crit, damageType: sys.damageType,
-      terms: this.damageTerms(item), notes: this.mods?.notesFor("damage") ?? [], extras, include, hits, misses
+      terms, notes, extras, include, hits, misses
     });
   }
 
@@ -555,7 +602,7 @@ export class ArneyanActor extends Actor {
     // Spell slots and daily abilities.
     const items = [];
     for (const c of this.items.filter(i => i.type === "class")) items.push({ _id: c.id, "system.slotsUsed": Array(10).fill(0) });
-    for (const a of this.items.filter(i => i.type === "ability" && ["day", "rest", "encounter"].includes(i.system.uses.per))) {
+    for (const a of this.items.filter(i => ["ability", "feat"].includes(i.type) && ["day", "rest", "encounter"].includes(i.system.uses?.per) && i.system.uses.max > 0)) {
       items.push({ _id: a.id, "system.uses.value": a.system.uses.max });
     }
     if (items.length) await this.updateEmbeddedDocuments("Item", items);
@@ -667,6 +714,8 @@ export class ArneyanItem extends Item {
       case "skill": return actor?.rollSkill(this, event);
       case "spell": return this._castSpell(event);
       case "ability": return this._useAbility(event);
+      // A feat with an active use (uses, options, a switch or effects) works as an ability does; the rest post their card.
+      case "feat": return this._useAbility(event);
       case "equipment": return useEquipment(this, event);
       default: return this.toChat();
     }
@@ -781,6 +830,9 @@ export class ArneyanItem extends Item {
       data.mod = c?.mod ?? 0;
     } else if (actor?.type === "npc") {
       data.cl = actor.system.level;
+    } else if (actor && ["ability", "feat"].includes(this.type)) {
+      // A feature's damage that grows with its class level (Eldritch Blast: 1d6 at 1st up to 3d8 at 24th).
+      data.cl = this.featureLevel;
     }
     return data;
   }
@@ -822,14 +874,17 @@ export class ArneyanItem extends Item {
     const actor = this.actor;
     const name = String(this.system.className ?? "").toLowerCase();
     if (!actor || actor.type !== "character" || !name) return actor?.system?.level ?? 1;
-    const cls = actor.items.find(i => i.type === "class" && (i.name.toLowerCase() === name || i.name.toLowerCase().startsWith(`${name} `)));
+    const classNamed = n => actor.items.find(i => i.type === "class" && (i.name.toLowerCase() === n || i.name.toLowerCase().startsWith(`${n} `)));
+    // A kit's feature carries the kit's name: its level is the kit's class level.
+    const kit = actor.items.find(i => i.type === "kit" && i.name.toLowerCase() === name);
+    const cls = classNamed(name) ?? (kit?.system?.className ? classNamed(String(kit.system.className).toLowerCase()) : null);
     return cls?.system?.levels ?? actor.system.level ?? 1;
   }
 
   /** The options open at this level. */
   get availableActivities() {
     const lvl = this.featureLevel;
-    const open = (this.system.activities ?? []).filter(a => (a.minLevel ?? 0) <= lvl);
+    const open = (this.system.activities ?? []).filter(a => (a.minLevel ?? 0) <= lvl && (!a.maxLevel || lvl <= a.maxLevel));
     // Damage that steps up with level ("Spark Caster (1d6)", "(1d8)" at 5th): only the highest step reached.
     const base = a => `${a.kind}|${String(a.name).replace(/\s*\(\d*d\d+(?:\s*[+-]\s*\d+)?\)\s*$/i, "")}`;
     const best = new Map();
@@ -837,19 +892,33 @@ export class ArneyanItem extends Item {
     return open.filter(a => best.get(base(a)) === a);
   }
 
-  /** Use one of a feature's activities: spend its use, then roll or post what it does. */
-  async _useActivity(act) {
+  /** Spend an activity's cost from the feature's uses; false (with a warning) when there aren't enough. */
+  async _spendFor(act) {
     const sys = this.system;
-    const actor = this.actor;
     const cost = Number(act.cost ?? 1);
-    if (cost > 0 && sys.uses.max > 0) {
-      if (sys.uses.value < cost) return ui.notifications.warn(`${this.name} has no uses left.`);
+    if (cost > 0 && sys.uses?.max > 0) {
+      if (sys.uses.value < cost) { ui.notifications.warn(`${this.name} has no uses left.`); return false; }
       await this.update({ "system.uses.value": sys.uses.value - cost });
     }
+    return true;
+  }
+
+  /** The "Apply ... to targets" buttons for effects this item puts on others (kept on an activity's card). */
+  _applyButtons(cl) {
+    return (this.system.applies ?? []).map((e, i) => (e.target === "self" ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
+  }
+
+  /** Use one of a feature's activities: spend its use, then roll or post what it does. */
+  async _useActivity(act, event) {
+    const sys = this.system;
+    const actor = this.actor;
+    if (act.kind === "attacks") return this._useAttacks(act, event);
+    if (!(await this._spendFor(act))) return null;
+    const cost = Number(act.cost ?? 1);
     const cl = this.featureLevel;
     const rollData = { ...(actor?.getRollData?.() ?? {}), cl };
     const title = `${this.name}: ${act.name}`;
-    const left = cost > 0 && sys.uses.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
+    const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
     const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : ""].join("");
     if (act.removeConditions && actor?.isOwner) {
       const gone = actor.effects.filter(e => [...(e.statuses ?? [])].some(s => ARNEYAN.conditions[s] && !["dead", "concentrating"].includes(s)));
@@ -862,17 +931,93 @@ export class ArneyanItem extends Item {
     }
     if (act.kind === "check" && act.ability && actor?.rollAbility) {
       await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` });
-      return actor.rollAbility(act.ability);
+      const bonus = byLevel(act.bonus, cl, rollData);
+      return actor.rollAbility(act.ability, event, bonus ? { bonus, label: this.name } : {});
+    }
+    // A formula posted to chat (Holy Campaign's troops; a roll only the GM sees for "gm").
+    if (act.kind === "roll" && act.formula) {
+      const roll = await new Roll(resolveFormula(act.formula, rollData)).evaluate();
+      return roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` },
+        { rollMode: act.target === "gm" ? "blindroll" : game.settings.get("core", "rollMode") });
     }
     let buttons = "";
     if (act.kind === "save" && act.save) {
-      const dc = sys.dc || (actor?.type === "character" ? actor.system.classDC : actor?.system?.spellDC) || "";
+      // A DC of its own where the text gives one (Intimidating Presence: 10 + half your level + Charisma), else the Class Save DC.
+      const own = act.formula ? Math.round(byLevel(act.formula, cl, rollData)) : 0;
+      const dc = own || sys.dc || (actor?.type === "character" ? actor.system.classDC : actor?.system?.spellDC) || "";
       buttons = `<button type="button" class="arn-save-btn" data-save="${esc(act.save)}" data-dc="${dc}" data-source="${esc(this.name)}"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[act.save] ?? act.save} save${dc ? ` DC ${dc}` : ""}</button>`;
     }
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}${buttons}</div>`, flags: { arneyan: { itemUuid: this.uuid } } });
+    // A reminder with a number worked out for you (Parry: half your Level, minimum 1, + Dexterity).
+    const value = act.kind === "note" && act.formula ? (/d\d/i.test(act.formula) ? resolveFormula(act.formula, rollData) : String(byLevel(act.formula, cl, rollData))) : "";
+    const shown = value ? `<p class="arn-card-meta"><strong>${esc(value)}</strong></p>` : "";
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}${shown}${buttons}${this._applyButtons(cl)}</div>`, flags: { arneyan: { itemUuid: this.uuid } } });
   }
 
-  async _useAbility() {
+  /**
+   * Several weapon attacks in one go (Twin Nock, Combat Dominance, Extra Attack): pick the weapon (and, with several
+   * targets, who each attack goes at), then roll each through the usual attack. The count, which attacks have
+   * Disadvantage and until what level, and bonus damage on each come from the activity.
+   */
+  async _useAttacks(act, event) {
+    const actor = this.actor;
+    if (!actor?.rollAttack) return null;
+    const lvl = this.featureLevel;
+    const rollData = { ...(actor.getRollData?.() ?? {}), cl: lvl };
+    const n = Math.max(1, Math.floor(byLevel(act.count || "1", lvl, rollData)));
+    const kindLabel = { melee: "melee weapon", ranged: "ranged weapon", "": "weapon" }[act.weapons ?? ""] ?? `weapon that fires ${act.weapons}s`;
+    const weapons = actor.items.filter(i => i.type === "weapon" && weaponFits(i, act.weapons))
+      .sort((x, y) => Number(!!y.system.equipped) - Number(!!x.system.equipped));
+    if (!weapons.length) { ui.notifications.warn(`${this.name}: ${actor.name} has no ${kindLabel}.`); return null; }
+    const targets = targetActors();
+    let weapon = weapons[0];
+    let aim = Array.from({ length: n }, (_, i) => (targets.length > 1 ? [targets[i % targets.length]] : targets));
+    if (weapons.length > 1 || targets.length > 1) {
+      const opt = (list, sel, f) => list.map((x, i) => `<option value="${i}" ${i === sel ? "selected" : ""}>${esc(f(x))}</option>`).join("");
+      const content = `<p>${esc(this.name)}: ${n} attack${n === 1 ? "" : "s"}.</p>
+        ${weapons.length > 1 ? `<label class="arn-field">Weapon <select name="weapon">${opt(weapons, 0, w => w.name)}</select></label>` : ""}
+        ${targets.length > 1 ? Array.from({ length: n }, (_, i) => `<label class="arn-field">Attack ${i + 1} <select name="t${i}">${opt(targets, i % targets.length, t => t.name)}</select></label>`).join("") : ""}`;
+      const pick = await DialogV2.wait({ window: { title: this.name, icon: "fa-solid fa-crosshairs" }, classes: ["arneyan"], position: { width: 380 }, content,
+        buttons: [{ action: "ok", label: "Attack", default: true, callback: (ev, btn) => {
+          const f = btn.form;
+          return { w: Number(f.querySelector("select[name=weapon]")?.value ?? 0), t: Array.from({ length: n }, (_, i) => Number(f.querySelector(`select[name=t${i}]`)?.value ?? (i % Math.max(1, targets.length)))) };
+        } }, { action: "cancel", label: "Cancel" }], rejectClose: false });
+      if (!pick || typeof pick !== "object") return null;
+      weapon = weapons[pick.w] ?? weapons[0];
+      if (targets.length > 1) aim = pick.t.map(i => [targets[i] ?? targets[0]]);
+    }
+    if (!(await this._spendFor(act))) return null;
+    const cost = Number(act.cost ?? 1);
+    const notes = [];
+    if (act.text) notes.push(`${this.name}: ${act.text}`);
+    if (cost > 0 && this.system.uses?.max > 0) notes.push(`${this.system.uses.value} of ${this.system.uses.max} uses left`);
+    // Combat Dominance: only against creatures of Level up to half yours.
+    if (act.targetLevel === "half") {
+      const cap = Math.floor((actor.system.level ?? lvl) / 2);
+      const over = targets.filter(t => (Number(t.actor.system?.level) || 0) > cap);
+      if (over.length) {
+        const msg = `${this.name}: ${over.map(t => t.name).join(", ")} ${over.length === 1 ? "is" : "are"} above Level ${cap} (half yours), so it doesn't apply.`;
+        ui.notifications.warn(msg);
+        notes.push(msg);
+      }
+    }
+    const disOn = act.disadvantage && !(act.disUntil && lvl >= act.disUntil);
+    const per = byLevel(act.damageBonus, lvl, rollData);
+    const bonus = per ? { value: per, label: this.name, noStack: act.noStack || "" } : null;
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      const dis = disOn && (act.disadvantage === "all" || (act.disadvantage === "rest" && i > 0));
+      const msg = await actor.rollAttack(weapon, event, {
+        adv: dis ? { values: [-1], adv: [], dis: [`${this.name}: attack ${i + 1}`] } : null,
+        targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}`, notes: i === 0 ? notes : [], bonus
+      });
+      // Out of ammunition, a jammed gun, Full Cover: stop there.
+      if (msg === null || msg === undefined) break;
+      out.push(msg);
+    }
+    return out;
+  }
+
+  async _useAbility(event) {
     const sys = this.system;
     const actor = this.actor;
     // Features with options: one goes straight through, several ask which.
@@ -890,7 +1035,7 @@ export class ArneyanItem extends Item {
         if (typeof pick !== "number" || pick < 0) return;
         act = acts[pick];
       }
-      return this._useActivity(act);
+      return this._useActivity(act, event);
     }
     // Switchable abilities (Rage, a stance): using one flips it.
     if (sys.toggle) {

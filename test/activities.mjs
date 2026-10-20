@@ -1,0 +1,261 @@
+// Feature activities: several attacks in one Use (Twin Nock, Combat Dominance, Extra Attack), check bonuses
+// (Primeval Instincts), rolls, own save DCs, level tables, and the built data (feats, kit features, actions).
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { makeItem } from "./harness.mjs";
+
+class FakeRoll {
+  constructor(f) { this.formula = f; }
+  async evaluate() { this.total = 10; this.dice = [{ results: [{ result: 10, active: true }] }]; return this; }
+  async toMessage(data, opts) { posted.push({ roll: this.formula, ...data, rollMode: opts?.rollMode }); return { roll: this.formula }; }
+  static replaceFormulaData(f, d) { return String(f).replace(/@([\w.]+)/g, (_, p) => String(p.split(".").reduce((o, k) => o?.[k], d) ?? 0)); }
+}
+globalThis.Roll = FakeRoll;
+const posted = [];
+const warnings = [];
+globalThis.ui = { notifications: { warn: m => warnings.push(m), error: m => warnings.push(m) } };
+globalThis.ChatMessage = { create: async d => { posted.push(d); return d; }, getSpeaker: () => ({}) };
+foundry.applications.handlebars = { renderTemplate: async (p, ctx) => JSON.stringify({ title: ctx.title, parts: ctx.parts, whyLabel: ctx.whyLabel }) };
+for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
+globalThis.game.user.targets = new Set();
+
+const IM = await import("../arneyan/module/data/item-models.mjs");
+const D = await import("../arneyan/module/documents.mjs");
+const { ArneyanItem, ArneyanActor, byLevel, weaponFits, featureBonusTerms } = D;
+const packItems = dir => fs.readdirSync(new URL(`../packs-src/${dir}/`, import.meta.url)).filter(f => f.startsWith("items_"))
+  .map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/${dir}/${f}`, import.meta.url), "utf8")));
+const byName = (list, name, cls) => list.find(i => i.name === name && (!cls || i.system.className === cls));
+
+/* Level tables and formulas. */
+assert.equal(byLevel("4:1, 9:2, 13:3, 21:4", 3), 0, "below the first step");
+assert.equal(byLevel("4:1, 9:2, 13:3, 21:4", 4), 1);
+assert.equal(byLevel("4:1, 9:2, 13:3, 21:4", 12), 2);
+assert.equal(byLevel("4:1, 9:2, 13:3, 21:4", 24), 4);
+assert.equal(byLevel("4", 1), 4, "a plain number");
+assert.equal(byLevel("10 + @half + @cha.mod", 6, { half: 3, cha: { mod: 2 } }), 15, "a formula");
+assert.equal(byLevel("2*@cl", 7), 14, "@cl is the level passed");
+assert.equal(byLevel("", 7), 0);
+
+/* Which weapons fit. */
+const bow = makeItem(IM.WeaponData, "weapon", "Bow, Long", { ranged: true, ammoType: "arrow", damage: "1d8" });
+const xbow = makeItem(IM.WeaponData, "weapon", "Crossbow, Light", { ranged: true, ammoType: "bolt", damage: "1d8" });
+const sword = makeItem(IM.WeaponData, "weapon", "Sword, Long", { damage: "1d8", equipped: true });
+assert.ok(weaponFits(bow, "arrow") && !weaponFits(xbow, "arrow") && !weaponFits(sword, "arrow"), "arrows: bows only");
+assert.ok(weaponFits(sword, "melee") && !weaponFits(bow, "melee") && weaponFits(xbow, "ranged") && weaponFits(sword, ""));
+
+/* A per-attack bonus that doesn't stack with another rule: the higher counts. */
+let r = featureBonusTerms([{ label: "Bow Mastery", value: "+2" }], [], { value: 1, label: "Twin Nock", noStack: "Bow Mastery" });
+assert.deepEqual(r.terms, [{ label: "Bow Mastery", value: "+2" }], "Bow Mastery's +2 beats Twin Nock's +1");
+assert.ok(r.notes[0].includes("does not stack"));
+r = featureBonusTerms([{ label: "Bow Mastery", value: "+1" }, { label: "Bless", value: "+1d4" }], [], { value: 2, label: "Twin Nock", noStack: "Bow Mastery" });
+assert.deepEqual(r.terms, [{ label: "Bless", value: "+1d4" }, { label: "Twin Nock", value: "+2" }], "Twin Nock's +2 replaces Bow Mastery's +1");
+r = featureBonusTerms([], [], { value: 3, label: "Twin Nock", noStack: "Bow Mastery" });
+assert.deepEqual(r.terms, [{ label: "Twin Nock", value: "+3" }], "a reminder-only Bow Mastery: the bonus is added, with a note");
+assert.equal(featureBonusTerms([{ label: "x", value: "+1" }], [], null).terms.length, 1, "no bonus: unchanged");
+
+/* A feature on a mock character. */
+function feature(src, { level = 1, cls = "Archer", items = [], type = "ability", Model = IM.AbilityData } = {}) {
+  const item = Object.create(ArneyanItem.prototype);
+  const system = new Model(src, item);
+  const actor = {
+    name: "Hero", type: "character", isOwner: true, effects: [], uuid: "Actor.hero",
+    system: { level, classDC: 14, abilities: { str: { mod: 3 }, dex: { mod: 2 }, con: { mod: 1 }, cha: { mod: 2 }, wis: { mod: 1 } } },
+    getRollData: () => ({ level, half: Math.max(1, Math.floor(level / 2)), cha: { mod: 2 }, wis: { mod: 1 }, str: { mod: 3 } }),
+    attacks: [], checks: [],
+    async rollAttack(w, ev, opts) { this.attacks.push({ w: w.name, ...opts }); return { ok: true }; },
+    rollAbility(k, ev, opts) { this.checks.push({ k, ...opts }); return { k }; }
+  };
+  const cls_ = { type: "class", name: cls, system: { levels: level } };
+  actor.items = [cls_, ...items, item];
+  actor.items.get = id => actor.items.find(i => i.id === id);
+  Object.defineProperty(item, "actor", { value: actor });
+  Object.defineProperty(item, "system", { value: system });
+  Object.assign(item, { name: src.name ?? "Feature", type, img: "x.svg", uuid: "Item.f", update: async d => { for (const [k, v] of Object.entries(d)) foundry.utils.setProperty(item, k, v); } });
+  return { item, actor };
+}
+const built = packItems("class-features");
+const dataOf = (name, cls) => { const d = byName(built, name, cls); assert.ok(d, `${name} (${cls}) is built`); return d.system; };
+
+/* Twin Nock: two arrows (three from 17th), the second at Disadvantage until 10th, +1/+2/+3/+4 a hit. */
+const twin = dataOf("Twin Nock", "Archer");
+assert.equal(twin.activities[0].kind, "attacks");
+const fire = async (sys, lvl, opts = {}) => {
+  const { item, actor } = feature({ ...sys, name: opts.name ?? "Twin Nock" }, { level: lvl, cls: opts.cls ?? "Archer", items: opts.items ?? [sword, xbow, bow] });
+  const acts = item.availableActivities;
+  await item._useActivity(acts[0], {});
+  return actor.attacks;
+};
+let shots = await fire(twin, 5);
+assert.equal(shots.length, 2, "two arrows at 5th");
+assert.ok(shots.every(s => s.w === "Bow, Long"), "only the bow fires arrows (the equipped sword and the crossbow don't)");
+assert.equal(shots[0].adv, null, "the first arrow rolls normally");
+assert.deepEqual(shots[1].adv.values, [-1], "the second has Disadvantage before 10th");
+assert.equal(shots[0].bonus.value, 1);
+assert.equal(shots[0].bonus.noStack, "Bow Mastery");
+assert.ok(shots[1].label.includes("2 of 2"));
+shots = await fire(twin, 10);
+assert.ok(shots.length === 2 && shots[1].adv === null && shots[0].bonus.value, "no penalty from 10th");
+assert.equal(shots[0].bonus.value, 2, "+2 from 9th");
+shots = await fire(twin, 17);
+assert.equal(shots.length, 3, "three arrows from 17th");
+assert.equal(shots[2].bonus.value, 3, "+3 from 13th");
+assert.equal((await fire(twin, 21))[0].bonus.value, 4, "+4 from 21st");
+warnings.length = 0;
+assert.equal((await fire(twin, 5, { items: [sword] })).length, 0, "no bow: nothing fired");
+assert.ok(warnings[0].includes("no weapon that fires arrows"), warnings[0]);
+
+/* Split targets: with two targets, one arrow at each by default. */
+const goblin = { name: "Goblin", actor: { system: { level: 1 } } };
+const ogre = { name: "Ogre", actor: { system: { level: 7 } } };
+game.user.targets = new Set([{ actor: goblin.actor, name: "Goblin" }, { actor: ogre.actor, name: "Ogre" }]);
+foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callback(null, { form: { querySelector: () => null } });
+shots = await fire(twin, 5, { items: [bow] });
+assert.deepEqual(shots.map(s => s.targets.map(t => t.name)), [["Goblin"], ["Ogre"]], "one arrow at each target");
+
+/* Combat Dominance: 2/3/4 attacks at 4th/8th/12th, all but the first at Disadvantage, Level up to half yours. */
+const dom = dataOf("Combat Dominance", "Fighter");
+warnings.length = 0;
+shots = await fire(dom, 8, { name: "Combat Dominance", cls: "Fighter", items: [sword] });
+assert.equal(shots.length, 3);
+assert.ok(shots[0].adv === null && shots[1].adv.values[0] === -1 && shots[2].adv.values[0] === -1, "all but the first at Disadvantage");
+assert.ok(warnings.some(w => w.includes("Ogre") && w.includes("Level 4")), "the Level 7 ogre is above half of 8");
+assert.ok(!warnings.some(w => w.includes("Goblin")));
+assert.equal((await fire(dom, 12, { name: "Combat Dominance", cls: "Fighter", items: [sword] })).length, 4);
+assert.equal((await fire(dom, 4, { name: "Combat Dominance", cls: "Fighter", items: [sword] })).length, 2);
+game.user.targets = new Set();
+
+/* Extra Attack: two attacks, the second at Disadvantage, every class that has it. */
+for (const d of built.filter(i => /^Extra Attack/.test(i.name))) {
+  assert.equal(d.system.activities?.[0]?.kind, "attacks", `${d.name} (${d.system.className}) attacks`);
+  assert.equal(d.system.activities[0].count, "2");
+  assert.equal(d.system.activities[0].disadvantage, "rest");
+}
+
+/* Primeval Instincts: the check adds its +4. */
+const prim = dataOf("Primeval Instincts", "Barbarian");
+assert.equal(prim.save, "", "no stray Fortitude save from 'Advantage on Fortitude saves'");
+{
+  const { item, actor } = feature({ ...prim, name: "Primeval Instincts" }, { level: 3, cls: "Barbarian" });
+  await item._useActivity(item.availableActivities.find(a => a.ability === "dex"), {});
+  assert.deepEqual(actor.checks[0], { k: "dex", bonus: 4, label: "Primeval Instincts" });
+}
+/* ...and rollAbility puts the bonus in the roll. */
+{
+  const a = Object.create(ArneyanActor.prototype);
+  Object.defineProperty(a, "system", { value: { abilities: { dex: { mod: 2 } }, mods: null } });
+  Object.assign(a, { name: "Barb", type: "character" });
+  const msg = await a.rollAbility("dex", null, { bonus: 4, label: "Primeval Instincts" });
+  const card = JSON.parse(msg.content);
+  assert.deepEqual(card.parts, [{ label: "Dex", value: "+2" }, { label: "Primeval Instincts", value: "+4" }]);
+  assert.equal(msg.flags.arneyan.bonus, 6, "+2 Dexterity and +4");
+}
+
+/* Holy Campaign: troops rolled by level; Corruption is the GM's secret roll. */
+const holy = dataOf("Holy Campaign", "Cleric");
+for (const [lvl, f] of [[18, "1d100"], [19, "2d100"], [23, "4d100"]]) {
+  const { item } = feature({ ...holy, name: "Holy Campaign" }, { level: lvl, cls: "Cleric" });
+  const rolls = item.availableActivities.filter(a => a.kind === "roll");
+  assert.deepEqual(rolls.map(a => a.formula), [f, f], `two troop rolls of ${f} at ${lvl}`);
+  posted.length = 0;
+  await item._useActivity(item.availableActivities.find(a => a.kind === "note"), {});
+  assert.ok(posted[0].content.includes(`<strong>${lvl >= 23 ? 3 : lvl >= 19 ? 2 : 1}</strong>`), "the campaign bonus by level");
+}
+{
+  const { item } = feature({ ...dataOf("Corruption", "Sorcerer"), name: "Corruption" }, { level: 5, cls: "Sorcerer" });
+  posted.length = 0;
+  await item._useActivity(item.availableActivities[0], {});
+  assert.equal(posted[0].roll, "1d20");
+  assert.equal(posted[0].rollMode, "blindroll", "only the GM sees it");
+}
+
+/* Cauldron: the GM's conditions until 23rd, monthly from 24th; the 24th-level item spends nothing. */
+const cauldron = dataOf("Cauldron of the Ninth Moon", "Witch");
+assert.deepEqual(feature({ ...cauldron }, { level: 20, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual"]);
+assert.deepEqual(feature({ ...cauldron }, { level: 24, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual (monthly)"]);
+assert.equal(dataOf("Cauldron of the Ninth Moon improves", "Witch").uses.max, 0);
+
+/* Data slips: Eldritch Blast deals its damage; Embolden calls for no save. */
+const eb = dataOf("Eldritch Blast", "Warlock");
+assert.equal(eb.save, "ref");
+assert.equal(eb.damageType, "force");
+const { resolveFormula } = await import("../arneyan/module/rolls.mjs");
+const ebAt = cl => resolveFormula(eb.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "");
+assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d6", "2d8", "3d6", "3d6", "3d8"]);
+{
+  const { item } = feature({ ...eb, name: "Eldritch Blast" }, { level: 9, cls: "Warlock" });
+  assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
+}
+assert.equal(dataOf("Embolden", "Knight").save, "");
+for (const [n, c] of [["Evasion", "Rogue"], ["Battle Space (Master)", "Fighter"], ["Signature Style", "Assassin"]]) assert.equal(dataOf(n, c).save, "", `${n}: no save of its own`);
+assert.equal(dataOf("Pinning Shot", "Archer").save, "ref", "a save the feature calls for stays");
+
+/* Feats: uses read from the text (session, encounter), and their activities. */
+const feats = packItems("feats");
+const feat = n => { const f = byName(feats, n); assert.ok(f, n); return f.system; };
+assert.deepEqual(feat("Lucky").uses, { value: 1, max: 1, per: "session" });
+assert.deepEqual(feat("Intimidating Presence").uses, { value: 1, max: 1, per: "encounter" });
+assert.equal(feat("Battlefield Medic").uses.max, 0, "once per day per target is not a pool");
+assert.equal(feat("Ritual Caster").uses.max, 0);
+{
+  const { item, actor } = feature({ ...feat("Intimidating Presence"), name: "Intimidating Presence" }, { level: 6, type: "feat", Model: IM.FeatData });
+  posted.length = 0;
+  await item._useAbility({});
+  assert.ok(posted[0].content.includes('data-dc="15"'), "its own DC: 10 + half level (3) + Charisma (2)");
+  assert.equal(item.system.uses.value, 0, "the encounter's use is spent");
+  posted.length = 0;
+  await item._useAbility({});
+  assert.equal(posted.length, 0, "none left");
+  assert.equal(actor.attacks.length, 0);
+}
+{
+  const { item, actor } = feature({ ...feat("Flowing Strikes"), name: "Flowing Strikes" }, { level: 3, type: "feat", Model: IM.FeatData, items: [sword, bow] });
+  foundry.applications.api.DialogV2.wait = async () => 1;  // "Against a different creature"
+  await item._useAbility({});
+  assert.equal(actor.attacks.length, 1);
+  assert.equal(actor.attacks[0].w, "Sword, Long", "a melee weapon");
+  assert.equal(actor.attacks[0].adv, null, "a normal roll against a different creature");
+}
+
+/* Actions: Cleave and the Attack of Opportunity roll an attack; Hide rolls Dexterity. */
+const actions = packItems("actions");
+assert.equal(byName(actions, "Cleave").system.activities[0].kind, "attacks");
+assert.equal(byName(actions, "Opportunity Attack").system.activities[0].weapons, "melee");
+assert.equal(byName(actions, "Hide").system.activities[0].ability, "dex");
+
+/* Kit features: uses from "Once/day", their own damage, and activities; copied on grant. */
+const kits = packItems("kits");
+const kitFeat = (kit, name) => { const k = kits.find(x => x.name === kit); assert.ok(k, kit); return k.system.features.find(f => f.name === name); };
+const ilmater = kitFeat("Deity: Ilmater (The Winter's Solace) (Cleric)", "Granted Power (Ilmater)");
+assert.deepEqual(ilmater.uses, { value: 1, max: 1, per: "day" });
+assert.equal(ilmater.activities[0].formula, "2d8 + @wis.mod");
+const akadi = kitFeat("Deity: Akadi (Cleric)", "Granted Power (Akadi)");
+assert.deepEqual([akadi.damage, akadi.damageType, akadi.save, akadi.uses.max], ["3d6", "lightning", "ref", 1]);
+assert.equal(kitFeat("Followers of Drake (Barbarian)", "Drake's Fury").activities[0].bonus, "6");
+{
+  const { syncKitFeatures } = await import("../arneyan/module/progression.mjs");
+  const created = [];
+  const kit = { id: "kit1", name: "Deity: Akadi (Cleric)", img: "k.svg", system: kits.find(x => x.name === "Deity: Akadi (Cleric)").system };
+  const actor = { items: [{ type: "class", name: "Cleric", system: { levels: 3 }, getFlag: () => null }], createEmbeddedDocuments: async (t, list) => created.push(...list), deleteEmbeddedDocuments: async () => {} };
+  actor.items.filter = Array.prototype.filter.bind(actor.items);
+  await syncKitFeatures(actor, { ...kit, system: { ...kit.system, className: "Cleric" } });
+  const got = created.find(c => c.name === "Granted Power (Akadi)");
+  assert.ok(got, "granted");
+  assert.deepEqual([got.system.damage, got.system.damageType, got.system.save, got.system.uses.max], ["3d6", "lightning", "ref", 1]);
+}
+
+/* The sheet shows Use for a feature that only has activities. */
+const tpl = fs.readFileSync(new URL("../arneyan/templates/actor/abilities-list.hbs", import.meta.url), "utf8");
+assert.ok(tpl.includes("item.system.activities.length"));
+
+/* Every activity is a known kind; attacks have a count. */
+const KINDS = new Set(["heal", "temp", "damage", "check", "save", "note", "roll", "attacks"]);
+const all = [...built, ...feats, ...actions].flatMap(i => i.system.activities ?? []).concat(kits.flatMap(k => k.system.features.flatMap(f => f.activities ?? [])));
+assert.ok(all.length > 250, `${all.length} activities`);
+for (const a of all) {
+  assert.ok(KINDS.has(a.kind), a.kind);
+  if (a.kind === "attacks") assert.ok(a.count, `${a.name} has a count`);
+  if (["heal", "temp", "damage", "roll"].includes(a.kind)) assert.ok(a.formula, `${a.name} has a formula`);
+  assert.ok(!/[—–]/.test(a.text), `${a.name}: no dashes`);
+}
+
+console.log("OK activities");

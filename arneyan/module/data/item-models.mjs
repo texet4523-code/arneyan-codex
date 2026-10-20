@@ -64,6 +64,53 @@ export function stackSlots(sys) {
   return (sys.slots || 0) * qty;
 }
 
+/** Uses of a feature, feat or kit feature: so many per encounter, day, rest, week, session or month. */
+export const usesField = () => new SchemaField({
+  value: int(0, { min: 0 }),
+  max: int(0, { min: 0 }),
+  per: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.usesPer })
+});
+
+/**
+ * What a player picks when using a feature or feat (Lay on Hands: Heal, Cure Disease, Divine Healing). Several: a
+ * prompt. Kinds: heal, temp, damage, check, save, note, roll (a formula posted to chat) and attacks (several weapon
+ * attacks in one go: Twin Nock, Combat Dominance, Extra Attack). Numbers that grow with level are a level table,
+ * "4:2, 8:3, 12:4" (2 from 4th, 3 from 8th, 4 from 12th), or a formula with @cl (the class level).
+ */
+export const activityField = () => new ArrayField(new SchemaField({
+  name: str(),
+  kind: str("note"),
+  /** heal/temp/damage/roll: the dice; save: its own DC; note: a number worked out for the card. */
+  formula: str(),
+  damageType: str(),
+  ability: str(),
+  save: str(),
+  text: str(),
+  minLevel: int(0, { min: 0 }),
+  /** Last level it applies at (0: no limit), for an option a later level replaces. */
+  maxLevel: int(0, { min: 0 }),
+  cost: int(1, { min: 0 }),  // uses spent from the feature's own uses
+  per: str(),                // an option with its own frequency ("week") that isn't tracked here
+  target: str(),             // "self", "one", "gm" (a roll only the GM sees)
+  removeConditions: new BooleanField({ initial: false }),
+  /** check: added to the roll (a number, @-formula or level table). */
+  bonus: str(),
+  /** attacks: how many attacks (number, @-formula or level table). */
+  count: str(),
+  /** attacks: which weapons: "" any, "melee", "ranged", or an ammunition type ("arrow"). */
+  weapons: str(),
+  /** attacks: "" none, "rest" (every attack after the first) or "all" roll with Disadvantage... */
+  disadvantage: str(),
+  /** ...until this level (0: at every level). */
+  disUntil: int(0, { min: 0 }),
+  /** attacks: bonus damage on each attack (number, @-formula or level table). */
+  damageBonus: str(),
+  /** attacks: a damage rule from this feature doesn't stack with the bonus: the higher counts ("Bow Mastery"). */
+  noStack: str(),
+  /** attacks: "half": every target must be of Level up to half yours (a warning, not a block). */
+  targetLevel: str()
+}));
+
 class BaseItemData extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     if ("slots" in this) this.totalSlots = stackSlots(this);
@@ -135,6 +182,8 @@ export class KitData extends BaseItemData {
       /** Kit features, each gained at a class level. */
       features: new ArrayField(new SchemaField({
         name: str(), level: int(1, { min: 0 }), description: new HTMLField({ required: true, blank: true }),
+        /** Copied onto the ability the feature becomes on an actor (progression.mjs). */
+        uses: usesField(), save: str(), damage: str(), damageType: str(), activities: activityField(),
         ...effectFields()
       }))
     };
@@ -143,7 +192,12 @@ export class KitData extends BaseItemData {
 
 export class FeatData extends BaseItemData {
   static defineSchema() {
-    return { ...base(), path: str(), levelTaken: int(1, { min: 0 }), ...effectFields() };
+    return {
+      ...base(), path: str(), levelTaken: int(1, { min: 0 }),
+      /** A feat with an active use: so many a day or session, and what using it does (as an ability's). */
+      uses: usesField(), activities: activityField(),
+      ...effectFields()
+    };
   }
 }
 
@@ -162,11 +216,7 @@ export class AbilityData extends BaseItemData {
     return {
       ...base(),
       kind: choice(ARNEYAN.abilityKinds, "class"),
-      uses: new SchemaField({
-        value: int(0, { min: 0 }),
-        max: int(0, { min: 0 }),
-        per: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.usesPer })
-      }),
+      uses: usesField(),
       save: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.saveTypes }),
       dc: new NumberField({ required: false, nullable: true, integer: true, initial: null }),
       damage: str(),
@@ -175,20 +225,7 @@ export class AbilityData extends BaseItemData {
       level: int(1, { min: 0 }),
       className: str(),
       /** What a player picks when using it (Lay on Hands: Heal, Cure Disease, Divine Healing). Several: a prompt. */
-      activities: new ArrayField(new SchemaField({
-        name: str(),
-        kind: str("note"),          // heal, temp, damage, check, save, note
-        formula: str(),
-        damageType: str(),
-        ability: str(),
-        save: str(),
-        text: str(),
-        minLevel: int(0, { min: 0 }),
-        cost: int(1, { min: 0 }),  // uses spent from the feature's own uses
-        per: str(),                // an option with its own frequency ("week") that isn't tracked here
-        target: str(),
-        removeConditions: new BooleanField({ initial: false })
-      })),
+      activities: activityField(),
       ...effectFields()
     };
   }
