@@ -38,7 +38,8 @@ export function effectFields() {
     auras: new ArrayField(new ObjectField()),
     /**
      * An attribute bonus of the player's choice (Will of Iron: Wisdom, Intelligence or Charisma): its `ability.*` rules
-     * count for the picked attribute (`value`; blank: the first option). Asked for when the item is added to a character.
+     * count for the picked attribute (`value`). Asked for when the item is added to a character; until one is picked
+     * the item gives no attribute bonus and the sheet shows "Choose attribute" (`needsChoice`).
      */
     abilityChoice: new SchemaField({
       options: new ArrayField(new StringField({ required: true, blank: false })),
@@ -130,6 +131,8 @@ export const activityField = () => new ArrayField(new SchemaField({
 
 class BaseItemData extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
+    // An attribute of the player's choice not picked yet (Will of Iron): the sheet asks for it.
+    if (this.abilityChoice) this.needsChoice = (this.abilityChoice.options?.length ?? 0) > 1 && !this.abilityChoice.options.includes(this.abilityChoice.value);
     if ("slots" in this) this.totalSlots = stackSlots(this);
     // Filled in by the actor: the slots of what's inside this container.
     if (this.container) this.contents = 0;

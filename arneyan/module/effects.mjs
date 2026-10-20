@@ -122,10 +122,12 @@ export function chosenRules(sys) {
   try {
     const opts = (sys?.abilityChoice?.options ?? []).filter(o => Object.hasOwn(ARNEYAN.abilities, o));
     if (!opts.length) return rules;
-    const pick = opts.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : opts[0];
-    return rules.map(r => {
+    // Several options and none picked yet: no attribute bonus until the player chooses (never a silent default).
+    const pick = opts.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : opts.length === 1 ? opts[0] : null;
+    return rules.flatMap(r => {
       const m = /^ability\.(\w+)$/.exec(String(r?.key ?? "").trim());
-      return m && opts.includes(m[1]) ? { ...r, key: `ability.${pick}` } : r;
+      if (!m || !opts.includes(m[1])) return [r];
+      return pick ? [{ ...r, key: `ability.${pick}` }] : [];
     });
   } catch {
     return rules;

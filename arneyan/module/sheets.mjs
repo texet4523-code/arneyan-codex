@@ -122,6 +122,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemUse: ArneyanActorSheet.#itemUse,
       itemDamage: ArneyanActorSheet.#itemDamage,
       itemEdit: ArneyanActorSheet.#itemEdit,
+      itemChoose: ArneyanActorSheet.#itemChoose,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
       itemEquip: ArneyanActorSheet.#itemEquip,
@@ -614,6 +615,12 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     return item.rollItemDamage();
   }
   static #itemEdit(event, target) { return this._itemFrom(target)?.sheet.render(true); }
+  static async #itemChoose(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return null;
+    const { promptAbilityChoice } = await import("./documents.mjs");
+    return promptAbilityChoice(item);
+  }
   static #itemExpand(event, target) {
     const item = this._itemFrom(target);
     if (!item) return;
@@ -869,7 +876,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       levelStr: String(item._source.system.level ?? ""),
       usesFromFormula: !!(item._source.system.uses?.formula && item.actor),
       abilityChoices: (sys.abilityChoice?.options?.length ?? 0) > 1 ? Object.fromEntries(sys.abilityChoice.options.map(o => [o, ARNEYAN.abilities[o] ?? o])) : null,
-      abilityChoiceValue: sys.abilityChoice?.options?.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : (sys.abilityChoice?.options?.[0] ?? ""),
+      abilityChoiceValue: sys.abilityChoice?.options?.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : "",
       fromCompendium: !!compendiumSourceOf(item),
       keepCustom: !!item.flags?.arneyan?.keepCustom,
       classesLabel: (sys.classes ?? []).join(", "),

@@ -157,6 +157,12 @@ def copy(pack, d, actor_id, salt, **system):
         for p in path[:-1]:
             cur = cur.setdefault(p, {})
         cur[path[-1]] = v
+    # An attribute of the player's choice (Will of Iron, Steady Hand): the printed sheet's numbers use the attribute
+    # the item's own rule names, so that's the pick (the sheet would otherwise ask, and give no bonus until answered).
+    ch = item["system"].get("abilityChoice")
+    if isinstance(ch, dict) and len(ch.get("options") or []) > 1 and not ch.get("value"):
+        named = [r["key"].split(".", 1)[1] for r in item["system"].get("rules") or [] if str(r.get("key", "")).startswith("ability.") and not r.get("when")]
+        ch["value"] = next((k for k in named if k in ch["options"]), ch["options"][0])
     return item
 
 

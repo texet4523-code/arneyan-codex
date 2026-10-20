@@ -74,7 +74,7 @@
     {{/if}}{{/if}}
 
     {{#if abilityChoices}}
-      <label data-tooltip="The attribute this item's bonus goes to">Attribute bonus to <select name="system.abilityChoice.value">{{selectOptions abilityChoices selected=abilityChoiceValue}}</select></label>
+      <label data-tooltip="The attribute this item's bonus goes to">Attribute bonus to <select name="system.abilityChoice.value">{{selectOptions abilityChoices selected=abilityChoiceValue blank="Choose (no bonus yet)"}}</select></label>
     {{/if}}
     {{#if fromCompendium}}
       <label class="check wide" data-tooltip="System updates bring this item's rules, uses and activities up to date from its compendium entry; ticked, they leave it as it is"><input type="checkbox" name="flags.arneyan.keepCustom" {{checked keepCustom}}> Keep my edits (tick to stop updates overwriting your edits)</label>

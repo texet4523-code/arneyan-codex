@@ -138,17 +138,22 @@ assert.deepEqual(byName(feats, "Steady Hand").system.abilityChoice.options, ["st
 assert.deepEqual(byName(packItems("class-features"), "Attribute Bonus", "Fighter").system.abilityChoice.options, ["str", "dex"]);
 const woi = makeItem(IM.FeatData, "feat", "Will of Iron", byName(feats, "Will of Iron").system);
 const thinker = makeActor(CharacterData, "character", { abilities: { wis: { value: 12 }, int: { value: 12 } } }, [woi]);
-assert.equal(thinker.system.abilities.wis.total, 13, "nothing picked: the first option (Wisdom)");
+assert.equal(thinker.system.abilities.wis.total, 12, "nothing picked: no bonus yet (0.10.17, never a silent default)");
+assert.equal(woi.system.needsChoice, true, "and the sheet asks for it");
 woi.system.abilityChoice.value = "int";
 thinker.system.prepareDerivedData();
 assert.equal(thinker.system.abilities.int.total, 13, "picked Intelligence");
+woi.system.prepareDerivedData();
+assert.equal(woi.system.needsChoice, false);
 assert.equal(thinker.system.abilities.wis.total, 12);
 assert.equal(thinker.system.saves.will.value, 0 + 1 + 2, "its +2 Will stays (Wis 12: +0, half level 1, +2)");
 woi.system.abilityChoice.value = "str";
 thinker.system.prepareDerivedData();
-assert.equal(thinker.system.abilities.wis.total, 13, "a value not among the options: the first option");
+assert.equal(thinker.system.abilities.wis.total, 12, "a value not among the options: no bonus");
 assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.wis", value: "1" }], abilityChoice: { options: ["wis", "cha"], value: "cha" } }), [{ key: "ability.cha", value: "1" }]);
 assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.wis", value: "1" }] }), [{ key: "ability.wis", value: "1" }], "no choice: unchanged");
+assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.wis", value: "1" }, { key: "save.will", value: "2" }], abilityChoice: { options: ["wis", "cha"], value: "" } }), [{ key: "save.will", value: "2" }], "not picked: the attribute bonus waits, the rest applies");
+assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.wis", value: "1" }], abilityChoice: { options: ["wis"], value: "" } }), [{ key: "ability.wis", value: "1" }], "one option: that one");
 const D = await import("../arneyan/module/documents.mjs");
 woi.system.abilityChoice.value = "";
 assert.equal(D.needsAbilityChoice(woi), true);
@@ -164,7 +169,10 @@ assert.equal(D.needsAbilityChoice({ system: { abilityChoice: { options: ["str"],
   assert.deepEqual(upd, [{ "system.abilityChoice.value": "cha" }]);
   foundry.applications.api.DialogV2.wait = async () => null;
   upd.length = 0;
-  assert.equal(await D.promptAbilityChoice(it), "wis", "closed without choosing: the default");
+  assert.equal(await D.promptAbilityChoice(it), null, "closed without choosing: nothing stored");
+  assert.deepEqual(upd, []);
+  foundry.applications.api.DialogV2.wait = async ({ buttons }) => { assert.ok(buttons.some(b => b.action === "later")); return "later"; };
+  assert.equal(await D.promptAbilityChoice(it), null, "Later: nothing stored");
 }
 // The item sheet: a select for it, the uses formula, and Keep my edits.
 {
@@ -179,6 +187,14 @@ assert.equal(D.needsAbilityChoice({ system: { abilityChoice: { options: ["str"],
   assert.ok(html.includes('name="system.abilityChoice.value"') && html.includes('<option value="int" selected>'), "the attribute select");
   assert.ok(html.includes('name="system.uses.formula"') && html.includes("max(1, @wis.mod)"), "the uses formula field");
   assert.ok(html.includes('name="flags.arneyan.keepCustom" checked'), "Keep my edits, ticked");
+  // 0.10.17: nothing picked: the select starts blank, and the sheet row has "Choose attribute".
+  woi._source.system.abilityChoice.value = ""; woi.system.abilityChoice.value = "";
+  const ctx2 = await sheetContext(ArneyanItemSheet, woi, { _activeTab: "details" });
+  const html2 = render("templates/item/item-sheet.hbs", { ...ctx2, editable: true });
+  assert.ok(html2.includes("Choose (no bonus yet)") && !/<option value="wis" selected>/.test(html2), "blank until picked");
+  const row = render("templates/actor/item-controls.hbs", { system: { needsChoice: true }, editable: true });
+  assert.ok(row.includes('data-action="itemChoose"') && row.includes("Choose attribute"));
+  assert.ok(!render("templates/actor/item-controls.hbs", { system: { needsChoice: false }, editable: true }).includes("itemChoose"));
 }
 
 /* ---------------- 8. Verdant Power: one target's bonus, a reminder ---------------- */

@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.16 · Foundry v13 and v14
+Version 0.10.17 · Foundry v13 and v14
+
+## What's new in 0.10.17
+
+- **Attribute choices are never guessed.** Will of Iron, Steady Hand, a Fighter's Attribute Bonus and the like ask which attribute when they're added, with a **Later** button. Until one is picked the item gives no attribute bonus (it used to count the first option silently), and its row on the sheet shows **Choose attribute**. Its other bonuses (Will of Iron's +2 Will) apply either way.
+- The pregens Maud (Will of Iron: Wisdom) and Big Wen (Steady Hand: Strength) have their picks set, matching their printed sheets.
 
 ## What's new in 0.10.16
 

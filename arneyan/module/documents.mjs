@@ -86,7 +86,7 @@ export function weaponTrait(word, type, weapon) {
 /** Does this item still need its attribute picked (several options, none chosen yet)? */
 export function needsAbilityChoice(item) {
   const c = item?.system?.abilityChoice;
-  return (c?.options?.length ?? 0) > 1 && !c.value;
+  return (c?.options?.length ?? 0) > 1 && !c.options.includes(c.value);
 }
 
 /** Ask which attribute an item's bonus goes to, and store it (system.abilityChoice.value). */
@@ -94,13 +94,15 @@ export async function promptAbilityChoice(item) {
   const c = item?.system?.abilityChoice;
   if (!item?.isOwner || !(c?.options?.length > 1)) return null;
   const amount = (item.system.rules ?? []).find(r => /^ability\./.test(r.key) && !r.when)?.value;
-  const content = `<p>${esc(item.name)}: ${amount ? `+${esc(String(amount).replace(/^\+/, ""))} to ` : ""}which attribute?</p>
+  const content = `<p>${esc(item.name)}${item.actor?.name ? ` (${esc(item.actor.name)})` : ""}: ${amount ? `+${esc(String(amount).replace(/^\+/, ""))} to ` : ""}which attribute?</p>
     <div class="arn-acts">${c.options.map((o, i) => `<label class="arn-act"><input type="radio" name="pick" value="${esc(o)}" ${i === 0 ? "checked" : ""}> <strong>${esc(ARNEYAN.abilities[o] ?? o)}</strong></label>`).join("")}</div>`;
   const pick = await DialogV2.wait({ window: { title: item.name, icon: "fa-solid fa-dumbbell" }, classes: ["arneyan"], position: { width: 360 }, content,
-    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => btn.form.querySelector("input[name=pick]:checked")?.value ?? "" }], rejectClose: false }).catch(() => null);
-  const value = c.options.includes(pick) ? pick : c.options[0];
-  await item.update({ "system.abilityChoice.value": value });
-  return value;
+    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => btn.form.querySelector("input[name=pick]:checked")?.value ?? "" },
+      { action: "later", label: "Later" }], rejectClose: false }).catch(() => null);
+  // Later or closed: nothing stored, no bonus yet; the sheet shows "Choose attribute" on the item.
+  if (!c.options.includes(pick)) return null;
+  await item.update({ "system.abilityChoice.value": pick });
+  return pick;
 }
 
 /** Slots a skill takes: one, or two for a Master. */
@@ -814,7 +816,7 @@ export class ArneyanItem extends Item {
     super._onCreate(data, options, userId);
     const actor = this.parent;
     // An attribute bonus of the player's choice (Will of Iron, a Fighter's Attribute Bonus): ask the one who added it,
-    // granted by a level up too. Nothing picked: the first option stays.
+    // granted by a level up too. Nothing picked (Later, or closed): no bonus yet, and the sheet shows "Choose attribute".
     if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsAbilityChoice(this)) {
       promptAbilityChoice(this).catch(err => console.warn("Arneyan | attribute choice", err));
     }

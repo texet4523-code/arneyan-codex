@@ -223,6 +223,7 @@
 .arneyan .arn-controls { display: flex; gap: 8px; margin-left: auto; color: var(--arn-muted); }
 .arneyan .arn-controls a { cursor: pointer; }
 .arneyan .arn-controls a:hover { color: var(--arn-red); }
+.arneyan .arn-controls a.arn-choose { color: var(--arn-red); font-weight: 600; font-size: 11px; white-space: nowrap; }
 .arneyan .arn-controls a.on { color: var(--arn-accent); }
 .arneyan .arn-expand { flex-basis: 100%; grid-column: 1 / -1; background: var(--arn-surface); border-left: 3px solid var(--arn-accent); border-radius: 0 6px 6px 0; padding: 6px 10px; margin: 2px 0 4px; font-size: 13px; }
 .arneyan .arn-expand p { margin: 3px 0; }

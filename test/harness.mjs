@@ -80,7 +80,9 @@ export function hbs(root) {
   h.registerHelper("checked", v => (v ? "checked" : ""));
   h.registerHelper("selectOptions", (choices, opts) => {
     const sel = opts.hash.selected;
-    return new Handlebars.SafeString(Object.entries(choices).map(([k, v]) => `<option value="${k}" ${String(k) === String(sel) ? "selected" : ""}>${v}</option>`).join(""));
+    // Foundry's `blank` option: an empty first choice with that label.
+    const blank = opts.hash.blank != null ? `<option value="" ${sel ? "" : "selected"}>${opts.hash.blank}</option>` : "";
+    return new Handlebars.SafeString(blank + Object.entries(choices).map(([k, v]) => `<option value="${k}" ${String(k) === String(sel) ? "selected" : ""}>${v}</option>`).join(""));
   });
   const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
   for (const f of walk(root).filter(f => f.endsWith(".hbs"))) {
