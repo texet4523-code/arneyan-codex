@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.12 · Foundry v13 and v14
+Version 0.10.13 · Foundry v13 and v14
+
+## What's new in 0.10.13
+
+- **12 of the last 13 effects are on**, as agreed on the Feature Board:
+  - **Turn Undead** (Cleric and Paladin) leaves turned undead Frightened for 1 minute.
+  - **Delay Poison** makes the target immune to Poisoned for 1 hour per caster level.
+  - **Shifter** gets an on/off switch (it shows as Shifter). Each lineage's benefit is a reminder on the card, not an automatic bonus.
+  - **Expanded Mind** and **Iron Discipline** add reminders on spell and save cards.
+  - Genasi, Tiefling, Elemental Mastery, Eldritch Invocations, Steadfast Courage and Wall-Forged Dread depend on a choice (caste, bloodline, element, invocation or kit), so they stay as text for you to apply.
+- **Aura of Devotion** is unchanged: its aura already reminds allies of Advantage on saves against charm. The Codex doesn't say whether the Paladin benefits too, so that part is left off.
 
 ## What's new in 0.10.12
 

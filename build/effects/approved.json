@@ -10546,5 +10546,191 @@
   "summary": "+1 on saves vs poison from 3rd level, as a reminder.",
   "manual": "This item's text looks like a mis-split part of Assassin's Skills; the Hide/Move Silently speed penalties stay manual.",
   "confidence": "medium"
+ },
+ "feats/4TP6kyqWlVcsxnVl": {
+  "name": "Expanded Mind",
+  "from": "Feat",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Expanded Mind: +1 spell slot of your highest available level."
+   }
+  ],
+  "summary": "Reminder only. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "The extra slot moves to a new level as you level up; add slots.N by hand.",
+  "confidence": "low"
+ },
+ "ancestries/GncQZ7IeG92sBKW9": {
+  "name": "Genasi",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated: every number depends on caste. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Caste resistance 5 (Fire: fire, Earth: poison, Water: cold, Air: lightning): add a resist rule in the \"fire 5\" form once chosen; caste Advantages.",
+  "confidence": "low"
+ },
+ "ancestries/ADRfCMftshwrDIvp": {
+  "name": "Shifter",
+  "from": "Ancestry",
+  "container": "toggle",
+  "rules": [
+   {
+    "key": "adv.attack.melee",
+    "value": 1,
+    "when": "Longtooth: first melee attack each round vs a creature an ally also threatens"
+   },
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Wildhunt: Perception or Survival using scent or tracking"
+   },
+   {
+    "key": "speed",
+    "value": 15,
+    "when": "Swiftstride only"
+   },
+   {
+    "key": "note.attack",
+    "value": "Gorebrute: move through enemy space, Fortitude save or prone. Sslyth: bite poisons on a failed Fortitude save."
+   },
+   {
+    "key": "resist",
+    "value": "bludgeoning 3",
+    "when": "Beasthide only, nonmagical"
+   },
+   {
+    "key": "resist",
+    "value": "piercing 3",
+    "when": "Beasthide only, nonmagical"
+   },
+   {
+    "key": "resist",
+    "value": "slashing 3",
+    "when": "Beasthide only, nonmagical"
+   }
+  ],
+  "summary": "Toggle \"Shifted\" carrying each lineage's benefit as a reminder. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Lineage choice: the GM should keep only the chosen lineage's rule without its \"when\" so it applies; duration (Con mod rounds), uses, Beasthide temp HP.",
+  "confidence": "low"
+ },
+ "ancestries/llnGaa0xA8flx67x": {
+  "name": "Tiefling",
+  "from": "Ancestry",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated: resistance and Advantages depend on bloodline. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Bloodline resistance 5 (Infernal: fire, Abyssal: poison, Outer: necrotic, Shadowfell: cold): add a resist rule in the \"fire 5\" form once chosen; bloodline Advantages; Fiendish Retort.",
+  "confidence": "low"
+ },
+ "class-features/7iaHWvcdv1j6sNCa": {
+  "name": "Turn Undead",
+  "from": "Cleric",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Turned",
+    "target": "target",
+    "rounds": 10,
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Turned undead get Frightened for 1 minute. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "\"Turned\" is not a defined condition; Frightened is an approximation. Destruction and control stay manual.",
+  "confidence": "low"
+ },
+ "class-features/ffPDHq8BhWN1inpF": {
+  "name": "Elemental Mastery",
+  "from": "Druid",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated until the element is chosen. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Add an immune rule for the chosen element (e.g. immune fire); spell reflection.",
+  "confidence": "low"
+ },
+ "class-features/GOKLoYXjDzcYgpad": {
+  "name": "Iron Discipline",
+  "from": "Monk",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Iron Discipline: add the Monk Progression Table save bonus. Iron Body (1st): vs disease, poison, paralysis, polymorph, petrification, death attacks. Iron Mind (9th): vs confusion, charm, fear, mind-affecting spells."
+   }
+  ],
+  "summary": "Reminder on save cards. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "The bonus amount is in the progression table, not the text; once known it could become a save rule with a when.",
+  "confidence": "low"
+ },
+ "class-features/hjEk4CMWD5TSmD3U": {
+  "name": "Turn Undead",
+  "from": "Paladin",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Turned",
+    "target": "target",
+    "rounds": 10,
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Turned undead get Frightened for 1 minute. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "As Cleric Turn Undead; Frightened approximates \"turned\".",
+  "confidence": "low"
+ },
+ "class-features/7qQi9fW8rl1RKTXP": {
+  "name": "Eldritch Invocations",
+  "from": "Warlock",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated: depends on invocations chosen. Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Suggest separate items per invocation: Armour of Shadows (ac +2, +3 from 10th, no armour/shield), Devil's Sight (sense \"Devil's Sight 60ft\"), Agonising Blast (Cha mod to Eldritch Blast), Fiendish Vigour (applies self hp.temp @cl).",
+  "confidence": "low"
+ },
+ "kits/gVuTPk2exlMMJDzM#0": {
+  "name": "Steadfast Courage",
+  "from": "Hedge Knights (Knight)",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated (modifies Embolden). Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Embolden should become +2 Fortitude/Reflex, +3 Will, double duration, 60ft for this kit; needs a kit-specific variant of the Embolden effect.",
+  "confidence": "low"
+ },
+ "kits/WtB20YgHDIiDxb5Q#0": {
+  "name": "Wall-Forged Dread",
+  "from": "Boldock Wall-Knights (Knight)",
+  "container": "passive",
+  "rules": [],
+  "summary": "Nothing automated (modifies Demoralise). Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Demoralise should become -6 Cha checks and Disadvantage on all attacks for this kit; needs a kit-specific variant of the Demoralise effect.",
+  "confidence": "low"
+ },
+ "spells/ebwPab5a9IwqYPl9": {
+  "name": "Delay Poison",
+  "from": "Spell L2",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Delay Poison",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "immune",
+      "value": "condition:poisoned"
+     }
+    ]
+   }
+  ],
+  "summary": "Poison effects suspended for 1 hour per level (modelled as immunity to Poisoned). Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Poison damage; resumes afterwards; whether new poison is covered is unclear.",
+  "confidence": "low"
  }
 }
