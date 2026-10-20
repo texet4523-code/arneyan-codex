@@ -278,4 +278,113 @@ assert.equal(M.fingerprint("rules", [{ when: "", label: "", value: "1", key: "ac
   assert.ok(!("system.traits" in M.fillFrom(w("Trident", "Reach, Brace, Thrown, Two-handed, Barbed"), w("Trident", "Reach, Brace, Thrown"))), "a GM's own trait: left alone");
   assert.deepEqual(M.fillFrom(w("Glaive", "Reach"), w("Glaive", "Reach, Two-handed")), {}, "other weapons: their traits are the GM's");
 }
+{
+  // 0.10.25: a copy of what an update replaces stays on the item, and "Put back" restores it; the report lists what's
+  // now automatic per character; a character whose update failed is tried again on the next load.
+  const SRCF = "Compendium.arneyan.class-features.Item.cb";
+  const NOTE = [{ key: "note.damage", value: "Crushing Blow: reroll 1s and 2s", when: "", label: "" }];
+  const REROLL = [{ key: "damage.reroll", value: "2", when: "", label: "", weapon: "two-handed" }];
+  const docs = { [SRCF]: { type: "ability", name: "Crushing Blow", system: { rules: REROLL } } };
+  class FI {}
+  globalThis.Item = FI;
+  const mkItem = (id, actor) => {
+    const system = { rules: NOTE }, flags = { arneyan: { synced: M.stampOf("ability", { rules: NOTE }) } };
+    return Object.assign(new FI(), { id, uuid: `Actor.${actor}.Item.${id}`, name: "Crushing Blow", type: "ability", system, flags, _stats: { compendiumSource: SRCF }, _source: { system, flags } });
+  };
+  const apply = items => async (t, ups) => { for (const u of ups) { const i = items.find(x => x.id === u._id); for (const [k, v] of Object.entries(u)) {
+    if (k === "_id") continue;
+    if (k.includes("-=")) { const [base, key] = k.split(".-="); delete foundry.utils.getProperty(i, base)[key]; delete foundry.utils.getProperty(i._source, base)[key]; continue; }
+    foundry.utils.setProperty(i, k, v); foundry.utils.setProperty(i._source, k, v); } } };
+  const mkActor = (id, name, broken = false) => {
+    const items = [mkItem(`i${id}`, id)];
+    const a = { id, name, type: "character", items: Object.assign(items, { contents: items }) };
+    a.updateEmbeddedDocuments = broken ? async () => { throw new Error("boom"); } : apply(items);
+    for (const i of items) i.parent = a;
+    return a;
+  };
+  const rowan = mkActor("r", "Rowan"), wen = mkActor("w", "Big Wen", true);
+  game.actors = Object.assign([rowan, wen], { contents: [rowan, wen] });
+  game.items = { contents: [] };
+  globalThis.fromUuid = async u => docs[u] ? { ...docs[u], toObject() { return JSON.parse(JSON.stringify(docs[u])); } } : [rowan, wen].flatMap(a => a.items).find(i => i.uuid === u) ?? null;
+  game.system = { version: "0.10.25" };
+  settings.migratedTo = "0.10.24";
+  foundry.utils.isNewerVersion ??= (a, b) => { const p = v => String(v).split(".").map(Number); const [x, y] = [p(a), p(b)]; for (let i = 0; i < 3; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); return false; };
+  const warn = console.warn; console.warn = () => {};
+  chat.length = 0;
+  const res = await M.runMigration();
+  console.warn = warn;
+  const cb = rowan.items[0];
+  assert.deepEqual(cb.system.rules, REROLL, "updated");
+  const before = cb.flags.arneyan.before;
+  assert.equal(before.version, "0.10.25");
+  assert.deepEqual(JSON.parse(before.json)["system.rules"], NOTE, "a copy of the old rules");
+  const msg = chat.at(-1).content;
+  assert.ok(msg.includes("Now automatic") && msg.includes("Rowan:</strong> Crushing Blow"), msg);
+  assert.ok(msg.includes("Couldn't update</strong> Big Wen") && msg.includes("arn-migrate-putback"), msg);
+  assert.ok(!msg.includes("—"));
+  assert.equal(res.failed, 1);
+  assert.deepEqual(settings.migrateRetry, { version: "0.10.25", actors: ["w"], items: false, tries: 1 });
+  assert.deepEqual(chat.at(-1).flags.arneyan.migrateChanged, [cb.uuid]);
+  // Next load, same version: only Big Wen is tried again, and this time it works.
+  wen.updateEmbeddedDocuments = apply(wen.items);
+  cb.system.rules = NOTE; cb._source.system.rules = NOTE; // (would be left alone anyway: Rowan isn't retried)
+  const again = await M.runMigration();
+  assert.deepEqual(wen.items[0].system.rules, REROLL, "retried");
+  assert.deepEqual(cb.system.rules, NOTE, "the others aren't run again");
+  assert.equal(again.failed, 0);
+  assert.deepEqual(settings.migrateRetry, {});
+  assert.ok(chat.at(-1).content.includes("Tried again"));
+  assert.equal(await M.runMigration(), null, "nothing due: nothing runs");
+  // Put back: the old rules, and the copy goes.
+  game.user = { isGM: true };
+  const n = await M.putBack([wen.items[0].uuid], "0.10.25");
+  assert.equal(n, 1);
+  assert.deepEqual(wen.items[0].system.rules, NOTE);
+  assert.ok(!("before" in wen.items[0].flags.arneyan));
+  assert.equal(await M.putBack([wen.items[0].uuid], "0.10.25"), 0, "nothing to put back twice");
+  // What counts as newly automatic.
+  assert.equal(M.becameAutomatic({ rules: NOTE }, { "system.rules": REROLL }), true);
+  assert.equal(M.becameAutomatic({ rules: REROLL }, { "system.rules": [{ ...REROLL[0], value: "3" }] }), false, "the same rule, changed: not new");
+  assert.equal(M.becameAutomatic({ applies: [] }, { "system.applies": [{ status: "frightened" }] }), true);
+  // Review fixes. A second update in the same version keeps the oldest value in the copy.
+  const twice = { id: "t", uuid: "Actor.x.Item.t", name: "Twice", _source: { system: { uses: { value: 1, max: 1 }, rules: NOTE }, flags: { arneyan: {} } } };
+  const u1 = [{ _id: "t", "system.uses": { value: 1, max: 2 } }];
+  M.keepCopies([twice], u1, "0.10.25");
+  twice._source.flags.arneyan.before = u1[0]["flags.arneyan.before"];
+  twice._source.system.uses = { value: 1, max: 2 };
+  const u2 = [{ _id: "t", "system.rules": REROLL, "system.uses": { value: 1, max: 3 } }];
+  M.keepCopies([twice], u2, "0.10.25");
+  const both = JSON.parse(u2[0]["flags.arneyan.before"].json);
+  assert.deepEqual(both["system.uses"], { value: 1, max: 1 }, "the uses from before the first update");
+  assert.deepEqual(both["system.rules"], NOTE, "and the rules from before the second");
+  // Put back keeps what play changed since (uses left, a weapon picked) and stops gear being filled in again.
+  const played = Object.assign(new FI(), { id: "p", uuid: "Actor.p.Item.p", name: "Spec", type: "ability", parent: null,
+    system: { uses: { value: 0, max: 3 }, weaponChoice: { max: "1", value: ["Maul"] } },
+    flags: { arneyan: { before: { version: "0.10.25", json: JSON.stringify({ "system.uses": { value: 2, max: 2 }, "system.weaponChoice": { max: "1", value: [] } }) } } } });
+  played._source = { system: played.system, flags: played.flags };
+  const ups = [];
+  globalThis.Item.updateDocuments = async u => { ups.push(...u); };
+  globalThis.fromUuid = async u => (u === played.uuid ? played : null);
+  assert.equal(await M.putBack([played.uuid], "0.10.25"), 1);
+  assert.deepEqual(ups[0]["system.uses"], { value: 0, max: 2 }, "uses left stay (within the old maximum)");
+  assert.deepEqual(ups[0]["system.weaponChoice"].value, ["Maul"], "the weapon picked stays");
+  assert.deepEqual(ups[0]["flags.arneyan.putBack"], ["system.uses", "system.weaponChoice"]);
+  const bag = { type: "equipment", system: { container: { holds: false } }, flags: { arneyan: { putBack: ["system.container"] } } };
+  assert.deepEqual(M.fillFrom(bag, { type: "equipment", system: { container: { holds: true, capacity: 10 } } }), {}, "a put-back container isn't filled in again");
+  // A sheet that keeps failing: tried on three loads in all, then left until the next version.
+  wen.updateEmbeddedDocuments = async () => { throw new Error("boom"); };
+  { const w0 = wen.items[0]; const fl = { arneyan: { synced: M.stampOf("ability", { rules: NOTE }) } }; w0.system.rules = NOTE; w0._source.system.rules = NOTE; w0.flags = fl; w0._source.flags = fl; }
+  globalThis.fromUuid = async u => docs[u] ? { ...docs[u], toObject() { return JSON.parse(JSON.stringify(docs[u])); } } : null;
+  game.system = { version: "0.10.26" };
+  console.warn = () => {};
+  await M.runMigration();
+  assert.equal(settings.migrateRetry.tries, 1);
+  await M.runMigration();
+  assert.equal(settings.migrateRetry.tries, 2);
+  await M.runMigration();
+  console.warn = warn;
+  assert.deepEqual(settings.migrateRetry, {}, "given up after three");
+  assert.ok(chat.at(-1).content.includes("After 3 tries"), chat.at(-1).content);
+  assert.equal(await M.runMigration(), null);
+}
 console.log("OK safe world update");

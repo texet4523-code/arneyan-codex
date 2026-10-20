@@ -337,7 +337,8 @@ const M = await import("../arneyan/module/migrate.mjs");
   assert.equal(oldSpell.system.save, spellSrc.system.save, "the spell gets its save");
   assert.equal(oldSpell.system.damage, spellSrc.system.damage, "and its damage");
   assert.equal(oldSpell.system.prepared, true, "prepared stays");
-  assert.deepEqual(res, { items: batches[0].length, actors: 1, world: 0, kept: 0, unstamped: 0 });
+  assert.deepEqual(res, { items: batches[0].length, actors: 1, world: 0, kept: 0, unstamped: 0, automatic: res.automatic, failed: 0, changed: res.changed });
+  assert.ok(res.changed >= 1, "the changed items are listed for Put back");
   assert.equal(settings.migratedTo, "0.10.15");
   assert.ok([oldFleche, oldTurn, oldWoi, oldKit, granted, oldSpell].every(i => i.flags.arneyan?.synced), "updated items get their fingerprints");
   assert.equal(chat.length, 1);
@@ -348,7 +349,7 @@ const M = await import("../arneyan/module/migrate.mjs");
   batches.length = 0; chat.length = 0;
   const again = await M.runMigration({ force: true });
   assert.equal(batches.length, 0, `idempotent: a second run changes nothing (${JSON.stringify(batches).slice(0, 600)})`);
-  assert.deepEqual(again, { items: 0, actors: 0, world: 0, kept: 0, unstamped: 0 });
+  assert.deepEqual(again, { items: 0, actors: 0, world: 0, kept: 0, unstamped: 0, automatic: 0, failed: 0, changed: 0 });
   assert.equal(chat.length, 0);
   // Only the active GM writes it.
   game.users.activeGM = { isSelf: false };

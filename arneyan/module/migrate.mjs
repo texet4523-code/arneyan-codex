@@ -16,6 +16,10 @@
  * fingerprints existed are the GM's call: update them all, or leave them (asked once per new version). An item
  * flagged `flags.arneyan.keepCustom` (the item sheet's "Keep my edits" box) is never touched, nor is anything that
  * didn't come from a system compendium.
+ *
+ * 0.10.25: each item an update changes keeps a copy of what it replaced (flags.arneyan.before), and the GM's report
+ * can put it all back; the report lists, per character, what's now automatic (so a bonus added by hand can come off);
+ * a character whose update failed is tried again the next time the world loads.
  */
 import { formulaUsesFor } from "./data/actor-models.mjs";
 
@@ -160,6 +164,9 @@ export function fillFrom(item, src) {
     const modeDmg = (o.bonusDamage ?? []).filter(b => b.mode);
     if (modeDmg.length) upd["system.bonusDamage"] = [...(s.bonusDamage ?? []).filter(b => !b.mode), ...modeDmg];
   }
+  // What the GM put back after an update stays as it is: it isn't filled in again.
+  const back = item.flags?.[SYS]?.putBack ?? [];
+  if (back.length) for (const k of Object.keys(upd)) if (back.some(p => k === p || k.startsWith(`${p}.`) || p.startsWith(`${k}.`))) delete upd[k];
   return upd;
 }
 
@@ -259,16 +266,41 @@ function maxOn(actor, item, srcUses) {
 
 export function registerMigration() {
   game.settings.register(SYS, "migratedTo", { scope: "world", config: false, type: String, default: "" });
+  game.settings.register(SYS, "migrateRetry", { scope: "world", config: false, type: Object, default: {} });
   Hooks.once("ready", () => runMigration().catch(err => console.warn("Arneyan | migration", err)));
   // The GM's report: "Update these anyway" for the items whose edits were kept.
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const btn = html?.querySelector?.(".arn-migrate-force");
     if (!btn || !game.user.isGM) return;
+    if (message.getFlag(SYS, "migrateForced")) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-check"></i> Updated'; return; }
     btn.addEventListener("click", async () => {
       btn.disabled = true;
       const uuids = message.getFlag(SYS, "migrateKept") ?? [];
-      const res = await forceUpdate(uuids);
+      const changed = [];
+      const res = await forceUpdate(uuids, { changed, version: message.getFlag(SYS, "migrateVersion") ?? null });
+      // What it replaced can be put back from the same report (again, if it was put back before).
+      await message.update({ [`flags.${SYS}.migrateForced`]: true, [`flags.${SYS}.migratePutBack`]: false,
+        [`flags.${SYS}.migrateChanged`]: [...new Set([...(message.getFlag(SYS, "migrateChanged") ?? []), ...changed])] });
       ui.notifications.info(`Updated ${res} item${res === 1 ? "" : "s"} from the compendiums.`);
+    });
+  });
+  // "Put back what this update replaced": every item the report's update (or its "Update these anyway") changed.
+  Hooks.on("renderChatMessageHTML", (message, html) => {
+    const btn = html?.querySelector?.(".arn-migrate-putback");
+    if (!btn || !game.user.isGM) return;
+    if (message.getFlag(SYS, "migratePutBack")) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-check"></i> Put back'; return; }
+    if (!(message.getFlag(SYS, "migrateChanged") ?? []).length) { btn.disabled = true; btn.dataset.tooltip = "Nothing changed yet: use Update these anyway first"; return; }
+    btn.addEventListener("click", async () => {
+      const ok = await foundry.applications.api.DialogV2.confirm({
+        window: { title: "Put back what the update replaced?" },
+        content: `<p>The items this update changed get back the rules, effects, uses and so on they had before it (uses left and anything picked since stay). Later updates leave what you put back alone; if the compendium changes it again, they list it under "Your edits kept".</p>`,
+        rejectClose: false
+      }).catch(() => false);
+      if (!ok) return;
+      btn.disabled = true;
+      const n = await putBack(message.getFlag(SYS, "migrateChanged") ?? [], message.getFlag(SYS, "migrateVersion") ?? null);
+      await message.setFlag(SYS, "migratePutBack", true);
+      ui.notifications.info(`Put back ${n} item${n === 1 ? "" : "s"} as they were before the update.`);
     });
   });
 }
@@ -311,12 +343,113 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds
   return updates;
 }
 
+/** Is a rule one the system applies (not a reminder note)? */
+const autoRule = r => !!r?.key && !String(r.key).startsWith("note.");
+/**
+ * What an update makes automatic that wasn't (Crushing Blow's note turning into its reroll; a spell gaining its
+ * effect or aura): true when the item had no applied rule with a key it has now, or gains effects or auras.
+ */
+export function becameAutomatic(before = {}, upd = {}) {
+  if (Array.isArray(upd["system.rules"])) {
+    const had = new Set((before.rules ?? []).filter(autoRule).map(r => r.key));
+    if (upd["system.rules"].some(r => autoRule(r) && !had.has(r.key))) return true;
+  }
+  for (const k of ["applies", "auras"]) if (Array.isArray(upd[`system.${k}`]) && upd[`system.${k}`].length && !(before[k] ?? []).length) return true;
+  return false;
+}
+
+/**
+ * 0.10.25: before an update replaces an item's mechanics, a copy of what it replaces goes on the item
+ * (flags.arneyan.before: the version and the old values, as JSON so a later copy never merges with an older one).
+ * "Put back what this update replaced" restores it. Adds to `notes.changed` (uuids) and `notes.automatic`.
+ */
+export function keepCopies(items, updates, version, notes = null, label = null) {
+  for (const u of updates) {
+    const keys = Object.keys(u).filter(k => k.startsWith("system."));
+    if (!keys.length) continue;
+    const item = items.find(i => i.id === u._id);
+    if (!item) continue;
+    const src = item._source ?? item;
+    let data = {};
+    for (const k of keys) data[k] = clone(foundry.utils.getProperty(src, k) ?? null);
+    // A second update in the same version (the older items' pass, "Update these anyway") adds to the copy: the value
+    // from before the first one is the one to put back.
+    const prev = src.flags?.[SYS]?.before;
+    if (prev?.version === version) { try { data = { ...data, ...JSON.parse(prev.json) }; } catch { /* unreadable: start again */ } }
+    // An older report's "Update these anyway" doesn't replace a newer update's copy.
+    else if (prev?.version && version && foundry.utils.isNewerVersion?.(prev.version, version)) continue;
+    u[`flags.${SYS}.before`] = { version, json: JSON.stringify(data) };
+    if (!notes) continue;
+    notes.changed?.push(item.uuid);
+    if (notes.automatic && becameAutomatic(src.system ?? {}, u)) {
+      const who = label ?? item.parent?.name ?? "Items directory";
+      (notes.automatic[who] ??= []).push(item.name);
+    }
+  }
+  return updates;
+}
+
+/**
+ * What play has changed since the update stays when it's put back: uses left (up to the restored maximum), and an
+ * attribute or weapon picked; a kit's features keep theirs the same way.
+ */
+function keepPlay(item, data) {
+  const cur = item._source?.system ?? item.system ?? {};
+  if (data["system.uses"] && cur.uses) {
+    const max = Number(data["system.uses"].max) || 0;
+    const left = Number(cur.uses.value) || 0;
+    data["system.uses"] = { ...data["system.uses"], value: max ? Math.max(0, Math.min(left, max)) : left };
+  }
+  if (data["system.abilityChoice"] && cur.abilityChoice?.value) {
+    const opts = data["system.abilityChoice"].options ?? [];
+    if (opts.includes(cur.abilityChoice.value)) data["system.abilityChoice"] = { ...data["system.abilityChoice"], value: cur.abilityChoice.value };
+  }
+  if (data["system.weaponChoice"] && cur.weaponChoice?.value?.length) data["system.weaponChoice"] = { ...data["system.weaponChoice"], value: [...cur.weaponChoice.value] };
+  if (Array.isArray(data["system.features"])) data["system.features"] = kitFeaturesFrom(cur.features ?? [], data["system.features"]);
+  return data;
+}
+
+/** "Put back what this update replaced": the items' mechanics as they were before `version`'s update. Returns how many. */
+export async function putBack(uuids = [], version = null) {
+  if (!game.user.isGM) return 0;
+  const items = (await Promise.all([...new Set(uuids)].map(u => fromUuid(u).catch(() => null)))).filter(i => i instanceof Item);
+  const byParent = new Map();
+  for (const i of items) {
+    const b = i.flags?.[SYS]?.before;
+    if (!b?.json || (version && b.version !== version)) continue;
+    let data;
+    try { data = JSON.parse(b.json); } catch { continue; }
+    keepPlay(i, data);
+    const paths = [...new Set([...(i.flags?.[SYS]?.putBack ?? []), ...Object.keys(data)])];
+    const k = i.parent ?? null;
+    byParent.set(k, [...(byParent.get(k) ?? []), { _id: i.id, ...data, [`flags.${SYS}.putBack`]: paths, [`flags.${SYS}.-=before`]: null }]);
+  }
+  let n = 0;
+  for (const [actor, ups] of byParent) {
+    // One sheet that fails doesn't stop the rest.
+    try {
+      if (actor) await actor.updateEmbeddedDocuments("Item", ups, { arneyanMigration: true });
+      else await Item.updateDocuments(ups, { arneyanMigration: true });
+      n += ups.length;
+    } catch (err) { console.warn(`Arneyan | put back: ${actor?.name ?? "Items directory"}`, err); }
+  }
+  return n;
+}
+
+function mergeNotes(notes, mine) {
+  if (!notes) return;
+  notes.changed?.push(...mine.changed);
+  if (notes.automatic) for (const [who, names] of Object.entries(mine.automatic)) (notes.automatic[who] ??= []).push(...names);
+}
+
 /** One pass over the world: every character's and monster's items, then the Items directory. */
 async function pass(fetch, opts) {
   let items = 0, world = 0, stamped = 0;
   const actors = opts.actorIds ?? new Set();
   const count = ups => ups.filter(u => Object.keys(u).some(k => k.startsWith("system."))).length;
+  const only = opts.only ?? null;
   for (const actor of game.actors) {
+    if (only && !only.actors.has(actor.id)) continue;
     try {
       const updates = await updatesFor(actor.items.contents, actor, fetch, opts);
       // Monsters from the Bestiary: their abilities' auras (Fire Aura, Fear Aura), matched by name.
@@ -330,15 +463,34 @@ async function pass(fetch, opts) {
         }
       }
       if (!updates.length) continue;
+      // Listed only once the update went through.
+      const mine = { changed: [], automatic: {} };
+      keepCopies(actor.items.contents, updates, opts.version, mine, actor.name);
       await actor.updateEmbeddedDocuments("Item", updates, { arneyanForce: true, arneyanMigration: true });
+      mergeNotes(opts.notes, mine);
       const n = count(updates);
       items += n; stamped += updates.length - n; if (n) actors.add(actor.id);
-    } catch (err) { console.warn(`Arneyan | migration: ${actor.name}`, err); }
+      if (opts.notes?.failed) opts.notes.failed = opts.notes.failed.filter(f => f.id !== actor.id);
+    } catch (err) {
+      console.warn(`Arneyan | migration: ${actor.name}`, err);
+      if (opts.notes?.failed && !opts.notes.failed.some(f => f.id === actor.id)) opts.notes.failed.push({ id: actor.id, name: actor.name });
+    }
   }
-  try {
-    const updates = await updatesFor(game.items.contents, null, fetch, opts);
-    if (updates.length) { await Item.updateDocuments(updates, { arneyanMigration: true }); world = count(updates); stamped += updates.length - world; }
-  } catch (err) { console.warn("Arneyan | migration: Items directory", err); }
+  if (!only || only.items) {
+    try {
+      const updates = await updatesFor(game.items.contents, null, fetch, opts);
+      if (updates.length) {
+        const mine = { changed: [], automatic: {} };
+        keepCopies(game.items.contents, updates, opts.version, mine, "Items directory");
+        await Item.updateDocuments(updates, { arneyanMigration: true }); world = count(updates); stamped += updates.length - world;
+        mergeNotes(opts.notes, mine);
+      }
+      if (opts.notes?.failed) opts.notes.failed = opts.notes.failed.filter(f => f.id !== "items");
+    } catch (err) {
+      console.warn("Arneyan | migration: Items directory", err);
+      if (opts.notes?.failed && !opts.notes.failed.some(f => f.id === "items")) opts.notes.failed.push({ id: "items", name: "the Items directory" });
+    }
+  }
   return { items, actors: actors.size, world, stamped };
 }
 
@@ -361,42 +513,73 @@ async function askLegacy(n, actors, version) {
 export async function runMigration({ force = false, legacy = null } = {}) {
   if (!game.users.activeGM?.isSelf) return null;
   const version = currentVersion();
-  if (!force && !foundry.utils.isNewerVersion(version, game.settings.get(SYS, "migratedTo") || "0")) return null;
+  // Sheets an earlier run couldn't update (an error on one character) are tried again, this version's run or not.
+  const retry = readRetry();
+  const due = force || foundry.utils.isNewerVersion(version, game.settings.get(SYS, "migratedTo") || "0");
+  if (!due && !retry) return null;
+  const only = due ? null : { actors: new Set(retry.actors), items: retry.items };
   const cache = new Map();
   const fetch = async uuid => {
     if (!cache.has(uuid)) cache.set(uuid, await fromUuid(uuid).catch(() => null));
     return cache.get(uuid);
   };
-  const notes = { kept: [], unstamped: 0, unstampedActors: new Set() };
+  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [] };
   const actorIds = new Set();
   // First everything that's safe: unedited items, and older items already the same as the compendium.
-  const res = await pass(fetch, { legacy: legacy ?? "skip", notes, actorIds });
+  const res = await pass(fetch, { legacy: legacy ?? "skip", notes, actorIds, version, only });
   let legacyDone = 0;
   if (notes.unstamped && legacy === null) {
     const choice = await askLegacy(notes.unstamped, notes.unstampedActors.size, version);
     if (choice === "update") {
-      const more = await pass(fetch, { legacy: "update", notes: { kept: [], unstamped: 0, unstampedActors: new Set() }, actorIds });
+      const second = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: notes.changed, automatic: notes.automatic, failed: notes.failed };
+      const more = await pass(fetch, { legacy: "update", notes: second, actorIds, version, only });
+      notes.failed = second.failed;
       res.items += more.items; res.world += more.world; res.actors = actorIds.size; legacyDone = notes.unstamped;
     }
   }
-  await game.settings.set(SYS, "migratedTo", version);
+  if (due) await game.settings.set(SYS, "migratedTo", version);
+  // Tried again on the next loads, three times in all (then at the next version).
+  const tries = due ? 1 : (Number(retry?.tries) || 1) + 1;
+  const giveUp = notes.failed.length > 0 && tries >= 3;
+  await writeRetry(notes.failed.length && !giveUp ? { version, actors: notes.failed.filter(f => f.id !== "items").map(f => f.id), items: notes.failed.some(f => f.id === "items"), tries } : null);
   const left = legacyDone ? 0 : (legacy === "update" ? 0 : notes.unstamped);
-  if (res.items || res.world || notes.kept.length || left) {
+  const auto = Object.entries(notes.automatic);
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
-    const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> Updated ${res.items} item${res.items === 1 ? "" : "s"} on ${res.actors} actor${res.actors === 1 ? "" : "s"}${extra} from the compendiums.</p>`
-      + `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium. Names, descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>`
+    const autoList = auto.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc([...new Set(names)].join(", "))}</li>`).join("") + (auto.length > 40 ? `<li>and ${auto.length - 40} more</li>` : "");
+    const changed = [...new Set(notes.changed)];
+    const any = res.items + res.world > 0;
+    const head = any ? `${due ? "Updated" : "Tried again and updated"} ${res.items} item${res.items === 1 ? "" : "s"} on ${res.actors} actor${res.actors === 1 ? "" : "s"}${extra} from the compendiums.`
+      : due ? "Nothing on your sheets was updated from the compendiums." : "Tried the update again.";
+    const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
+      + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium. Names, descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
+      + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")
+      + (notes.failed.length ? `<p class="arn-bad"><strong>Couldn't update</strong> ${esc(nameList(notes.failed.map(f => f.name)))} (the browser console has the error). ${giveUp ? `After ${tries} tries ${notes.failed.length === 1 ? "it's" : "they're"} left until the next version.` : `${notes.failed.length === 1 ? "It's" : "They're"} tried again the next time the world loads.`}</p>` : "")
+      + (changed.length || notes.kept.length ? `<p class="arn-card-meta">Each item an update changes keeps a copy of what it replaced.</p><button type="button" class="arn-migrate-putback"><i class="fa-solid fa-clock-rotate-left"></i> Put back what this update replaced</button>` : "")
       + `</div>`;
-    await ChatMessage.create({ whisper: gms, speaker: { alias: "The Arneyan Codex" }, content, flags: { [SYS]: { migrateKept: notes.kept.map(k => k.uuid) } } });
+    await ChatMessage.create({ whisper: gms, speaker: { alias: "The Arneyan Codex" }, content, flags: { [SYS]: { migrateKept: notes.kept.map(k => k.uuid), migrateChanged: changed, migrateVersion: version } } });
   }
-  return { items: res.items, actors: res.actors, world: res.world, kept: notes.kept.length, unstamped: left };
+  return { items: res.items, actors: res.actors, world: res.world, kept: notes.kept.length, unstamped: left, automatic: auto.length, failed: notes.failed.length, changed: new Set(notes.changed).size };
+}
+
+const nameList = names => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`);
+/** What an earlier run couldn't update: { version, actors: [ids], items: bool }, or null. */
+function readRetry() {
+  try {
+    const r = game.settings.get(SYS, "migrateRetry");
+    return r && (r.actors?.length || r.items) ? r : null;
+  } catch { return null; }
+}
+async function writeRetry(v) {
+  try { await game.settings.set(SYS, "migrateRetry", v ?? {}); } catch { /* not registered (tests) */ }
 }
 
 /** "Update these anyway": replace the listed items' mechanics from the compendium, edits or not. Returns how many. */
-export async function forceUpdate(uuids = []) {
+export async function forceUpdate(uuids = [], { changed = null, version = null } = {}) {
   if (!game.user.isGM) return 0;
   const cache = new Map();
   const fetch = async uuid => {
@@ -419,8 +602,13 @@ export async function forceUpdate(uuids = []) {
     const ups = (await updatesFor(pool, actor, fetch, { legacy: "skip", forceIds: ids, notes: { kept: [], unstamped: 0, unstampedActors: new Set() } }))
       .filter(u => ids.has(u._id) || granted.some(i => i.id === u._id));
     if (!ups.length) continue;
-    if (actor) await actor.updateEmbeddedDocuments("Item", ups, { arneyanForce: true, arneyanMigration: true });
-    else await Item.updateDocuments(ups, { arneyanMigration: true });
+    const mine = { changed: [] };
+    keepCopies(pool, ups, version ?? currentVersion(), mine);
+    try {
+      if (actor) await actor.updateEmbeddedDocuments("Item", ups, { arneyanForce: true, arneyanMigration: true });
+      else await Item.updateDocuments(ups, { arneyanMigration: true });
+    } catch (err) { console.warn(`Arneyan | update anyway: ${actor?.name ?? "Items directory"}`, err); continue; }
+    changed?.push(...mine.changed);
     // Counted as the report counts: an item whose mechanics changed (not only its fingerprints).
     n += ups.filter(u => Object.keys(u).some(k => k.startsWith("system."))).length;
   }

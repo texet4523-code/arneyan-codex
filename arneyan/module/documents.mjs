@@ -206,6 +206,15 @@ export class ArneyanActor extends Actor {
     if ((await super._preCreate(data, options, user)) === false) return false;
     // A pregen or monster from the system's compendiums: its items are as shipped, so they start fingerprinted
     // (migrate.mjs). A duplicated or imported character keeps whatever its items had.
+    // The world update's backups don't travel with a duplicated or imported character.
+    if ((this._source.items ?? []).some(i => i.flags?.arneyan?.before)) {
+      this.updateSource({ items: this._source.items.map(i => {
+        if (!i.flags?.arneyan?.before) return i;
+        const c = foundry.utils.deepClone(i);
+        delete c.flags.arneyan.before;
+        return c;
+      }) });
+    }
     const from = this._source?._stats?.compendiumSource ?? "";
     if (typeof from !== "string" || !from.startsWith("Compendium.arneyan.") || this._source?._stats?.duplicateSource) return;
     let changed = false;
@@ -888,6 +897,8 @@ export class ArneyanItem extends Item {
     if (!stored.flags?.arneyan?.synced && !options?.arneyanMigration) {
       try { const st = await stampOnCreate(stored); if (st) this.updateSource({ "flags.arneyan.synced": st }); } catch (err) { console.warn("Arneyan | fingerprint", err); }
     }
+    // The world update's copy of what it replaced belongs to the item it was taken from, not to copies of it.
+    if (stored.flags?.arneyan?.before && !options?.arneyanMigration) this.updateSource({ "flags.arneyan.-=before": null });
     // A lit torch handed to someone else arrives unlit.
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
