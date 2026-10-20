@@ -2,6 +2,7 @@ import { areaButton } from "./areas.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
+import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionItem, spendReaction, firearmOf } from "./combat.mjs";
@@ -142,6 +143,23 @@ export function planSkills(actor, skills) {
 }
 
 export class ArneyanActor extends Actor {
+  async _preCreate(data, options, user) {
+    if ((await super._preCreate(data, options, user)) === false) return false;
+    // A pregen or monster from the system's compendiums: its items are as shipped, so they start fingerprinted
+    // (migrate.mjs). A duplicated or imported character keeps whatever its items had.
+    const from = this._source?._stats?.compendiumSource ?? "";
+    if (typeof from !== "string" || !from.startsWith("Compendium.arneyan.") || this._source?._stats?.duplicateSource) return;
+    let changed = false;
+    const items = (this._source.items ?? []).map(i => {
+      if (i.flags?.arneyan?.synced || !tracked(i)) return i;
+      const st = stampOf(i.type, i.system);
+      if (!st) return i;
+      changed = true;
+      return foundry.utils.mergeObject(i, { flags: { arneyan: { synced: st } } }, { inplace: false });
+    });
+    if (changed) this.updateSource({ items });
+  }
+
 
   /** A monster's "½" or "¼" no longer applies once the GM types a new Level. */
   async _preUpdate(changes, options, user) {
@@ -752,6 +770,11 @@ export class ArneyanItem extends Item {
 
   async _preCreate(data, options, user) {
     if ((await super._preCreate(data, options, user)) === false) return false;
+    // The world update's fingerprints (migrate.mjs): what this item's mechanics were in the compendium it came from.
+    const stored = this._source ?? this;
+    if (!stored.flags?.arneyan?.synced && !options?.arneyanMigration) {
+      try { const st = await stampOnCreate(stored); if (st) this.updateSource({ "flags.arneyan.synced": st }); } catch (err) { console.warn("Arneyan | fingerprint", err); }
+    }
     // A lit torch handed to someone else arrives unlit.
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;

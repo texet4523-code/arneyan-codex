@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.14 · Foundry v13 and v14
+Version 0.10.15 · Foundry v13 and v14
+
+## What's new in 0.10.15
+
+- **Updates are safe for a live campaign.** Each new version brings the feats, features, kits, ancestries, spells and actions already on sheets up to date with the compendiums (rules, effects, uses, activities, saves, damage, areas). It used to happen once, at 0.10.1.
+  - **Your edits stay.** An item added from a compendium now remembers what its mechanics were when it arrived. If you change a rule on it, the update leaves that rule alone and lists it in a message to the GM, with an **Update these anyway** button.
+  - **Older items are your call.** Items added before this version can't show whether they were edited, so the first time the compendiums have changed, the GM is asked once: **Update them** or **Leave them**. Items that already match the compendium are simply brought into the new tracking.
+  - Names, descriptions, uses left and attributes already picked never change, and an item with **Keep my edits** ticked is never touched.
 
 ## What's new in 0.10.14
 
