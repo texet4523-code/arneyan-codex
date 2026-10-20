@@ -134,6 +134,7 @@
         <input type="number" name="system.attributes.xp" value="{{source.attributes.xp}}" min="0">
         <span class="arn-muted">/ {{system.xpRate}}</span>
         <div class="arn-bar"><div style="width: {{xpPct}}%"></div></div>
+        {{#if levelReady}}{{#if editable}}<a class="arn-btn small arn-levelup-ready" data-action="levelUpReady" data-tooltip="Enough XP for the next level: spend it on one level"><i class="fa-solid fa-circle-up"></i> Level up</a>{{else}}<span class="arn-chip strong"><i class="fa-solid fa-circle-up"></i> Ready to level up</span>{{/if}}{{/if}}
       </div>
       {{else}}
       <div class="arn-subline">

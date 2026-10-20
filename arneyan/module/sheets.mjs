@@ -140,6 +140,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       levelDown: ArneyanActorSheet.#levelDown,
       browse: ArneyanActorSheet.#browse,
       startingGold: ArneyanActorSheet.#startingGold,
+      levelUpReady: ArneyanActorSheet.#levelUpReady,
       toggleSlot: ArneyanActorSheet.#toggleSlot,
       castSpell: ArneyanActorSheet.#castSpell,
       toggleEdit: ArneyanActorSheet.#toggleEdit,
@@ -430,6 +431,10 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       context.bio = await enrich(system.details.biography);
       context.story = await enrich(system.details.backgroundStory);
       context.xpPct = Math.min(100, Math.round((system.attributes.xp / system.xpRate) * 100));
+      // Enough XP for the next level (Book I: spend it all on one level): a Level up button by the XP bar.
+      const clsList = actor.items.filter(i => i.type === "class");
+      context.levelReady = clsList.length > 0 && (system.level ?? 0) < 24 && system.attributes.xp >= system.xpRate;
+      context.levelReadyClass = clsList.length === 1 ? clsList[0].id : "";
       context.nwpLeft = system.nwp.max - system.nwp.used;
       // Starting gold: once rolled, only the GM sees the button (players can't farm it).
       context.canStartingGold = this.isEditable && canRunStartingWealth(actor, game.user);
@@ -705,6 +710,20 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     if (!cls) return;
     if (cls.system.levels <= 1) return ui.notifications.info(`${cls.name} is already 1st level. Delete the class to remove it.`);
     return this.document.setClassLevel(cls, cls.system.levels - 1);
+  }
+  /** The XP bar's Level up: one class goes straight up; with several, ask which (a new class is added by dropping it). */
+  static async #levelUpReady() {
+    const classes = this.document.items.filter(i => i.type === "class");
+    if (!classes.length) return;
+    if (classes.length === 1) return this.document.levelUp(classes[0]);
+    const id = await foundry.applications.api.DialogV2.wait({
+      window: { title: `${this.document.name}: level up` }, classes: ["arneyan"],
+      content: `<p>Which class takes the level? (To start a new class, drop it on the sheet instead.)</p>${classes.map((c, i) => `<label class="checkbox"><input type="radio" name="cls" value="${c.id}" ${i === 0 ? "checked" : ""}> ${foundry.utils.escapeHTML(c.name)} ${c.system.levels}</label>`).join("<br>")}`,
+      buttons: [{ action: "ok", label: "Level up", icon: "fa-solid fa-circle-up", default: true, callback: (ev, btn) => btn.form.querySelector("input[name=cls]:checked")?.value }, { action: "cancel", label: "Cancel" }],
+      rejectClose: false
+    });
+    const cls = classes.find(c => c.id === id);
+    if (cls) return this.document.levelUp(cls);
   }
   /** Starting Equipment & Gear: roll the class's gold, then a pack or shopping. */
   static #startingGold() { return startingWealth(this.document); }

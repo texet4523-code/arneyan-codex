@@ -218,3 +218,18 @@ assert.ok(card({ subdual: true }).includes("Apply (non-lethal)") && card({ subdu
 assert.ok(card({}).includes('data-subdual="1"') && !card({}).includes("Apply (non-lethal)"), "anything else: non-lethal on request");
 
 console.log("OK combat");
+
+// 0.10.9: a Level up button by the XP bar when XP is full.
+{
+  const ready = makeActor(CharacterData, "character", { attributes: { xp: 10 } }, [makeItem(IM.ClassData, "class", "Fighter", { levels: 1, xpRate: 10 })]);
+  ready.uuid = "Actor.ready";
+  const c1 = await sheetContext(ArneyanActorSheet, ready, { _activeTab: "actions" });
+  assert.equal(c1.levelReady, true, "XP 10 of 10: ready");
+  assert.ok(render("templates/actor/actor-sheet.hbs", c1).includes('data-action="levelUpReady"'), "the button shows");
+  const notyet = makeActor(CharacterData, "character", { attributes: { xp: 4 } }, [makeItem(IM.ClassData, "class", "Fighter", { levels: 1, xpRate: 10 })]);
+  notyet.uuid = "Actor.notyet";
+  const c2 = await sheetContext(ArneyanActorSheet, notyet, { _activeTab: "actions" });
+  assert.equal(c2.levelReady, false, "XP 4 of 10: not yet");
+  assert.equal(typeof ArneyanActorSheet.DEFAULT_OPTIONS.actions.levelUpReady, "function");
+  console.log("OK level up button");
+}
