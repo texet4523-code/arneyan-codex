@@ -1,0 +1,55 @@
+<div class="arn-env">
+  <section class="arn-env-start">
+    <p class="arn-help">Start a clock for the selected tokens (or the whole party if none are selected). Breath clocks move on with each combat round, or with Next round.</p>
+    <div class="arn-env-kinds">
+      {{#each kinds}}<a class="arn-btn small" data-action="start" data-kind="{{id}}"><i class="{{icon}}"></i> {{label}}</a>{{/each}}
+    </div>
+  </section>
+
+  <div class="arn-env-list">
+    {{#each timers}}
+    <article class="arn-env-timer" data-timer="{{id}}">
+      <header>
+        <i class="{{icon}}"></i> <strong>{{label}}</strong>
+        <span class="arn-chip">{{#if count}}{{unit}} {{count}}{{else}}just started{{/if}}</span>
+        <a class="arn-ctl" data-action="end" data-tooltip="End it (everyone is out of it)"><i class="fa-solid fa-xmark"></i></a>
+      </header>
+      {{#if isBreath}}
+        <div class="arn-env-opts">
+          <label class="check"><input type="checkbox" {{checked followCombat}} data-action="toggle" data-key="followCombat"> Move on with combat rounds</label>
+          <label class="check"><input type="checkbox" {{checked roughWater}} data-action="toggle" data-key="roughWater"> Rough water (Strength check, DC 12, each round)</label>
+        </div>
+      {{/if}}
+      {{#if isCold}}
+        <div class="arn-env-opts"><label class="check"><input type="checkbox" {{checked sheltered}} data-action="toggle" data-key="sheltered"> Warm clothing, a fire or shelter (Advantage)</label></div>
+      {{/if}}
+      <ul class="arn-list">
+        {{#each creatures}}
+        <li data-uuid="{{uuid}}">
+          <img src="{{img}}" alt="">
+          <span class="arn-item-name">{{name}}</span>
+          <span class="arn-muted arn-meta">{{status}}</span>
+          {{#unless ../isBreath}}<label class="check" data-tooltip="{{#if ../isHeat}}Resistance to fire, shade or a cooling spell{{else}}An Insulated garment, Resistance to cold or a warming spell{{/if}}: no save"><input type="checkbox" {{checked noSave}} data-action="toggle" data-key="noSave"> No save</label>{{/unless}}
+          <a class="arn-ctl" data-action="drop" data-tooltip="Out of it (breathing again, out of the heat)"><i class="fa-solid fa-user-minus"></i></a>
+        </li>
+        {{/each}}
+      </ul>
+      <footer>
+        <a class="arn-btn small ghost" data-action="addSelected"><i class="fa-solid fa-user-plus"></i> Add selected tokens</a>
+        {{#if isBreath}}
+          <a class="arn-btn small" data-action="next"><i class="fa-solid fa-forward-step"></i> Next round</a>
+        {{else}}
+          <a class="arn-btn small" data-action="next" data-tooltip="Posts this hour's Fortitude saves; those who fail gain 1 level of Exhaustion"><i class="fa-solid fa-hourglass-half"></i> Next hour (Fortitude DC {{nextDc}})</a>
+        {{/if}}
+      </footer>
+    </article>
+    {{else}}
+    <p class="arn-empty">No clocks running.</p>
+    {{/each}}
+
+    <div class="arn-section-head"><h3>Quick cards</h3><span class="arn-muted">damage and saves to click</span></div>
+    <ul class="arn-list arn-env-quick">
+      {{#each quick}}<li><a class="arn-btn small ghost" data-action="quick" data-id="{{id}}">{{label}}</a> <span class="arn-muted">{{text}}</span></li>{{/each}}
+    </ul>
+  </div>
+</div>

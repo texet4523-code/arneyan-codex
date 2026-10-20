@@ -9,6 +9,7 @@
  * Difficulty: half the budget easy, the full budget hard, double deadly.
  */
 import { partyMembers } from "./party.mjs";
+import { treasureForFoes } from "./treasure.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -66,6 +67,26 @@ export function encounterBudget(partyLevels, foes) {
   const tier = !total ? "none" : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
   return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, costLabel: c => FRACTION(c) };
+}
+
+/**
+ * A stat block's No. appearing as dice: "2d6 (lair 20-200)" gives { wild: "2d6", lair: "1d181 + 19" }.
+ * A range "4-36" becomes a flat roll across it. Returns null parts it can't read.
+ */
+export function parseNumberAppearing(text) {
+  const t = String(text ?? "").replace(/(\d),(\d)/g, "$1$2").trim();
+  const asDice = s => {
+    s = String(s ?? "").trim();
+    const range = s.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
+    if (range) {
+      const [lo, hi] = [Number(range[1]), Number(range[2])].sort((a, b) => a - b);
+      return lo === hi ? String(lo) : `1d${hi - lo + 1}${lo > 1 ? ` + ${lo - 1}` : ""}`;
+    }
+    return /^[\dd\s+*-]+$/i.test(s) && /\d/.test(s) ? s.replace(/\s+/g, " ") : null;
+  };
+  const lair = t.match(/\(\s*lair\s+([^)]+)\)/i);
+  const wild = t.replace(/\([^)]*\)/g, "").trim();
+  return { wild: asDice(wild), lair: lair ? asDice(lair[1]) : null };
 }
 
 /* -------------------------------------------- */
@@ -126,7 +147,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const foes = app.foes;
     const found = foes.find(f => f.uuid === actor.uuid);
     if (found) found.count += 1;
-    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", solo: !!actor.system.details?.isSolo, count: 1 });
+    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", solo: !!actor.system.details?.isSolo, count: 1, na: actor.system.details?.numberAppearing ?? "" });
     await game.user.setFlag(SYS, "encounter", foes);
     return app.render({ force: true });
   }
@@ -142,6 +163,11 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       remove: ArneyanEncounterBuilder.#remove,
       clear: ArneyanEncounterBuilder.#clear,
       place: ArneyanEncounterBuilder.#place,
+      rollNumber: ArneyanEncounterBuilder.#rollNumber,
+      treasure: ArneyanEncounterBuilder.#treasure,
+      saveEncounter: ArneyanEncounterBuilder.#saveEncounter,
+      loadEncounter: ArneyanEncounterBuilder.#loadEncounter,
+      deleteEncounter: ArneyanEncounterBuilder.#deleteEncounter,
       bestiary: () => game.arneyan?.browser?.({ tab: "monsters" })
     }
   };
@@ -165,14 +191,21 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
       foes: foes.map((f, i) => {
         const c = creatureCost(f.level, b.partyLevel, f.levelText);
-        return { ...f, i, levelLabel: f.levelText || f.level, cost: f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c) };
+        return { ...f, i, levelLabel: f.levelText || f.level, cost: f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
       }),
-      b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100))
+      b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
+      naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",
+      naModes: [["off", "Place the counts above"], ["wild", "Roll No. appearing (in the wild)"], ["lair", "Roll No. appearing (in the lair)"]].map(([id, label]) => ({ id, label })),
+      saved: (game.settings.get(SYS, "savedEncounters") ?? []).map(e => ({ id: e.id, name: e.name, summary: e.foes.map(f => `${f.name} × ${f.count}`).join(", ") }))
     };
   }
 
   async _onRender(context, options) {
     await super._onRender(context, options);
+    this.element.querySelector(".arn-enc-na")?.addEventListener("change", async ev => {
+      await game.user.setFlag(SYS, "encounterNa", ev.target.value);
+      this.render();
+    });
     const zone = this.element.querySelector(".arn-enc-drop");
     zone?.addEventListener("dragover", ev => ev.preventDefault());
     zone?.addEventListener("drop", async ev => {
@@ -193,6 +226,50 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
   static #clear() { return this._setFoes([]); }
 
+  /** Roll a group's No. appearing (in the wild, or in its lair with Shift held) and use it as the count. */
+  static async #rollNumber(event, target) {
+    const f = this.foes;
+    const x = f[Number(target.dataset.i)];
+    const n = await rollNumberAppearing(x, event?.shiftKey ? "lair" : "wild");
+    if (n === null) return ui.notifications.warn(`Can't read ${x.name}'s No. appearing ("${x.na || "none"}").`);
+    x.count = Math.max(1, n);
+    ui.notifications.info(`${x.name}: ${x.count} appear (${x.na}).`);
+    return this._setFoes(f);
+  }
+
+  static #treasure() { return treasureForFoes(this.foes); }
+
+  static async #saveEncounter() {
+    const foes = this.foes;
+    if (!foes.length) return ui.notifications.warn("Add some foes first.");
+    const name = await foundry.applications.api.DialogV2.prompt({
+      window: { title: "Save encounter" }, content: `<div class="form-group"><label>Name</label><input type="text" name="name" value="${foundry.utils.escapeHTML(foes.map(f => f.name).join(" and ").slice(0, 60))}" autofocus></div>`,
+      ok: { label: "Save", icon: "fa-solid fa-floppy-disk", callback: (ev, button) => button.form.elements.name.value.trim() }, rejectClose: false
+    }).catch(() => null);
+    if (!name) return;
+    const list = foundry.utils.deepClone(game.settings.get(SYS, "savedEncounters") ?? []);
+    list.push({ id: foundry.utils.randomID(), name, foes, savedAt: Date.now() });
+    await game.settings.set(SYS, "savedEncounters", list);
+    ui.notifications.info(`Encounter "${name}" saved.`);
+    this.render();
+  }
+
+  static async #loadEncounter(event, target) {
+    const e = (game.settings.get(SYS, "savedEncounters") ?? []).find(x => x.id === target.closest("[data-enc-id]")?.dataset.encId);
+    if (e) return this._setFoes(foundry.utils.deepClone(e.foes));
+  }
+
+  static async #deleteEncounter(event, target) {
+    const id = target.closest("[data-enc-id]")?.dataset.encId;
+    const list = game.settings.get(SYS, "savedEncounters") ?? [];
+    const e = list.find(x => x.id === id);
+    if (!e) return;
+    const ok = await foundry.applications.api.DialogV2.confirm({ window: { title: "Delete encounter" }, content: `<p>Delete the saved encounter <strong>${foundry.utils.escapeHTML(e.name)}</strong>?</p>` });
+    if (!ok) return;
+    await game.settings.set(SYS, "savedEncounters", list.filter(x => x.id !== id));
+    this.render();
+  }
+
   /** Put the encounter's monsters on the current scene, hostile, around the middle of the view. */
   static async #place() {
     const scene = canvas.scene;
@@ -201,7 +278,20 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const c = canvas.stage?.pivot ?? { x: scene.dimensions.width / 2, y: scene.dimensions.height / 2 };
     const data = [];
     let i = 0;
-    for (const f of this.foes) {
+    // No. appearing rolled for each group as it's placed (the counts in the list follow).
+    const mode = game.user.getFlag(SYS, "encounterNa") ?? "off";
+    let foes = this.foes;
+    if (mode !== "off") {
+      const rolled = [];
+      for (const f of foes) {
+        const n = await rollNumberAppearing(f, mode);
+        if (n !== null) { f.count = Math.max(1, n); rolled.push(`${f.name} ${f.count}`); }
+      }
+      await this._setFoes(foes);
+      foes = this.foes;
+      if (rolled.length) ui.notifications.info(`No. appearing: ${rolled.join(", ")}.`);
+    }
+    for (const f of foes) {
       const actor = await fromUuid(f.uuid);
       if (!actor) continue;
       // Compendium monsters are imported to the world first.
@@ -220,6 +310,17 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   }
 }
 
+/** Roll a foe's No. appearing ("wild" or "lair"); null when the stat block's entry can't be read. */
+async function rollNumberAppearing(foe, mode = "wild") {
+  let na = foe.na;
+  if (na === undefined) na = (await fromUuid(foe.uuid).catch(() => null))?.system?.details?.numberAppearing ?? "";
+  const p = parseNumberAppearing(na);
+  const formula = (mode === "lair" && p.lair) || p.wild;
+  if (!formula) return null;
+  return (await new Roll(formula).evaluate()).total;
+}
+
 export function registerEncounters() {
+  game.settings.register(SYS, "savedEncounters", { scope: "world", config: false, type: Array, default: [] });
   Hooks.on("renderCombatTracker", onRenderTracker);
 }

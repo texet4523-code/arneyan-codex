@@ -1,0 +1,72 @@
+/* GM tools: group rolls, XP, treasure, hazards, environmental timers, encounter extras. */
+
+/* Group roll card */
+.arn-card.arn-party-roll .arn-pr-list { list-style: none; margin: 4px 0; padding: 0; }
+.arn-card.arn-party-roll .arn-pr-list li { display: flex; align-items: center; gap: 6px; padding: 2px 0; border-bottom: 1px dotted var(--arn-border); }
+.arn-card.arn-party-roll .arn-pr-list img { width: 24px; height: 24px; border: none; border-radius: 4px; flex: none; }
+.arn-card.arn-party-roll .arn-pr-name { flex: 1; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; min-width: 0; }
+.arn-card.arn-party-roll .arn-pr-roll { flex: none; width: auto; line-height: 20px; font-size: 11px; padding: 0 8px; margin: 0; }
+.arn-card.arn-party-roll .arn-pr-result { flex: none; min-width: 44px; text-align: right; font-size: 14px; }
+.arn-card.arn-party-roll .arn-pr-result.pass { color: var(--arn-accent); }
+.arn-card.arn-party-roll .arn-pr-result.fail { color: var(--arn-red); }
+.arn-card.arn-party-roll .arn-pr-wait { font-size: 11px; }
+.arn-card.arn-party-roll .arn-pr-summary { font-weight: 700; margin: 4px 0; }
+.arn-card.arn-party-roll .arn-pr-gm { display: flex; flex-direction: column; gap: 4px; }
+.arn-card [hidden] { display: none !important; }
+
+/* XP card */
+.arn-card.arn-xp-card li { margin-bottom: 2px; }
+
+/* Treasure card */
+.arn-card.arn-treasure h4 { margin: 6px 0 2px; font-size: 12px; font-weight: 700; color: var(--arn-accent); border: none; text-transform: uppercase; letter-spacing: .05em; }
+.arn-card.arn-treasure ul { margin: 0; padding-left: 16px; }
+.arn-card.arn-treasure .arn-tr-coins { list-style: none; margin-left: -16px; font-weight: 700; }
+.arn-card.arn-treasure .arn-tr-magic { font-weight: 600; }
+.arn-card.arn-treasure .arn-tr-total { margin: 6px 0 4px; }
+.arn-card.arn-treasure button[disabled] { opacity: .5; }
+
+/* Hazard and environment cards */
+.arn-card .arn-card-buttons { display: flex; flex-direction: column; gap: 4px; margin: 4px 0; }
+
+/* Hazard sheet */
+.arneyan .hazard-sheet .arn-body { padding: 8px 12px; display: flex; flex-direction: column; gap: 10px; }
+.arneyan .hazard-sheet .arn-subline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.arneyan .hazard-sheet .arn-subline label { display: inline-flex; gap: 4px; align-items: center; }
+.arneyan .hazard-sheet .arn-head-tools { margin-left: auto; }
+.arneyan .arn-hz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.arneyan .arn-hz-block { background: var(--arn-surface); border: 1px solid var(--arn-border); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; }
+.arneyan .arn-hz-block input[type="text"] { width: 100%; }
+.arneyan .arn-hz-line { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 12px; }
+.arneyan .arn-hz-line input { flex: 1; font-weight: normal; }
+.arneyan .arn-hz-row { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.arneyan .arn-hz-row label { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
+.arneyan .arn-hz-row label input[type="text"] { width: 7em; }
+.arneyan .arn-hz-buttons { display: flex; gap: 6px; }
+
+/* Environmental timers */
+.arneyan.arn-env-app .window-content { padding: 10px 14px; overflow-y: auto; }
+.arneyan .arn-env { display: flex; flex-direction: column; gap: 8px; }
+.arneyan .arn-env-kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+.arneyan .arn-env-list { display: flex; flex-direction: column; gap: 8px; }
+.arneyan .arn-env-timer { background: var(--arn-surface); border: 1px solid var(--arn-border); border-left: 5px solid var(--arn-gold); border-radius: 8px; padding: 6px 10px; }
+.arneyan .arn-env-timer header { display: flex; align-items: center; gap: 6px; }
+.arneyan .arn-env-timer header .arn-ctl { margin-left: auto; cursor: pointer; }
+.arneyan .arn-env-timer footer { display: flex; justify-content: space-between; gap: 6px; margin-top: 4px; }
+.arneyan .arn-env-opts { display: flex; flex-direction: column; gap: 2px; font-size: 12px; margin: 4px 0; }
+.arneyan .arn-env-quick li { flex-wrap: nowrap; }
+.arneyan .arn-env-quick .arn-muted { font-size: 11px; }
+
+/* Encounter Builder extras */
+.arneyan.arn-encounter-app .window-content { overflow-y: auto; }
+.arneyan .arn-enc-place { display: flex; gap: 6px; align-items: center; }
+.arneyan .arn-enc-place select { flex: 1; min-width: 0; }
+.arneyan .arn-enc-place .arn-btn { flex: 1; }
+.arneyan .arn-enc-saved .arn-ctl { cursor: pointer; }
+
+/* Party sheet: more header buttons */
+.arneyan .party-sheet .arn-head-tools { flex-wrap: wrap; justify-content: flex-end; }
+
+/* GM dialogs */
+.arneyan.arn-gm-dialog .arn-pr-who { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--arn-border); border-radius: 6px; padding: 4px 8px; max-height: 220px; overflow-y: auto; }
+.arneyan.arn-gm-dialog .arn-pr-who label { display: flex; align-items: center; gap: 6px; }
+.arneyan.arn-gm-dialog .arn-pr-who img { width: 20px; height: 20px; border: none; border-radius: 3px; }

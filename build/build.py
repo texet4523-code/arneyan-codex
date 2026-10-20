@@ -35,6 +35,7 @@ print('gear:', build_gear.build(), 'catalogue entries made usable')
 print('tidy: removed %d rule items; stray top folders: %s' % build_tidy.build())
 _pg = build_pregens.build()
 print('pregens:', _pg['made'], 'made;', len(_pg['missing']), 'not in a compendium:', '; '.join(_pg['missing']))
+print('roll tables:', __import__('build_tables').build())
 
 # Icons (storage places' default art too)
 for glyph in ["locked-chest", "bank", "house", "galleon", "locked-box", "wooden-crate"]:

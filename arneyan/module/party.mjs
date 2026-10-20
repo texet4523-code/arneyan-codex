@@ -183,6 +183,8 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       openPlace: ArneyanPartySheet.#openPlace,
       newPlace: ArneyanPartySheet.#newPlace,
       encounter: () => game.arneyan.encounter(),
+      askRoll: () => game.arneyan.askRoll?.(),
+      awardXp: () => game.arneyan.awardXp?.(),
       restParty: ArneyanPartySheet.#restParty
     }
   };
@@ -204,6 +206,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         hp: hp.value, hpMax: hp.max, hpPct: Math.clamp(Math.round((Math.max(0, hp.value) / Math.max(1, hp.max)) * 100), 0, 100),
         ac: s.attributes?.ac?.value ?? "-", luck: s.luck?.value ?? "-", speed: s.attributes?.speedNow ?? "-",
         exhaustion: s.attributes?.exhaustion ?? 0,
+        xp: s.attributes?.xp ?? 0, xpRate: s.xpRate ?? 10, levelReady: (s.attributes?.xp ?? 0) >= (s.xpRate ?? 10),
         conditions: [...st].map(id => ({ id, name: ARNEYAN.conditions[id]?.name ?? id, img: `systems/${SYS}/assets/conditions/${id}.svg` }))
       };
     });

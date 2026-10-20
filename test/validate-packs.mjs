@@ -137,6 +137,27 @@ for (const pack of fs.readdirSync(src)) {
         if (p.type !== "text" || p.text?.format !== 1 || typeof p.text?.content !== "string") err(pw, "bad text page");
         if (!Number.isInteger(p.title?.level) || p.title.level < 1 || p.title.level > 6) err(pw, "bad title level");
       }
+    } else if (kind === "tables") {
+      // Roll tables: a formula, results that cover its range, links that point at real compendium entries.
+      if (decl?.type !== "RollTable") err(w, "table in non-RollTable pack");
+      if (!/^\d*d\d+$/.test(d.formula ?? "")) err(w, `bad formula ${d.formula}`);
+      checkImg(w, d.img);
+      const rids = new Set();
+      for (const r of d.results ?? []) {
+        const rw = `${w} > ${r.name || r._id}`;
+        if (!ID.test(r._id) || rids.has(r._id)) err(rw, "bad or duplicate result id");
+        rids.add(r._id);
+        if (r._key !== `!tables.results!${d._id}.${r._id}`) err(rw, "bad result key");
+        if (!["text", "document"].includes(r.type)) err(rw, `bad result type ${r.type}`);
+        if (!Array.isArray(r.range) || r.range.length !== 2 || r.range[0] > r.range[1]) err(rw, "bad range");
+        checkImg(rw, r.img);
+        for (const u of [r.documentUuid, ...[...(r.description ?? "").matchAll(/@UUID\[([^\]]+)\]/g)].map(m => m[1])].filter(Boolean)) {
+          const [, pk, , id] = u.match(/^Compendium\.arneyan\.([\w-]+)\.(\w+)\.(\w+)$/) ?? [];
+          const there = pk && fs.existsSync(path.join(src, pk)) && fs.readdirSync(path.join(src, pk)).some(f => f.endsWith(`_${id}.json`));
+          if (!there) err(rw, `link to a missing entry ${u}`);
+        }
+      }
+      if (!d.results?.length) err(w, "no results");
     } else err(w, `unexpected key ${d._key}`);
   }
 }

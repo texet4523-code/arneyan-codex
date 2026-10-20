@@ -14,6 +14,8 @@
       <span class="arn-head-tools">
         <a class="arn-btn small" data-action="restParty" data-tooltip="Long rest for every member at once, with one summary card"><i class="fa-solid fa-campground"></i> Rest</a>
         <a class="arn-btn small" data-action="encounter" data-tooltip="Build an encounter against this party"><i class="fa-solid fa-scale-balanced"></i> Encounter</a>
+        <a class="arn-btn small" data-action="askRoll" data-tooltip="Ask everyone for a save, check or skill roll on one card"><i class="fa-solid fa-dice-d20"></i> Ask for a roll</a>
+        <a class="arn-btn small" data-action="awardXp" data-tooltip="Give XP to everyone or chosen members"><i class="fa-solid fa-star"></i> Award XP</a>
         <a class="arn-btn small" data-action="gather" data-tooltip="Swap the members' tokens on this scene for the party token"><i class="fa-solid fa-people-arrows"></i> Gather</a>
         <a class="arn-btn small" data-action="deploy" data-tooltip="Place every member's token around the party token and remove it"><i class="fa-solid fa-users-viewfinder"></i> Deploy</a>
       </span>
@@ -35,7 +37,7 @@
           <div class="arn-member-main">
             <div class="arn-member-name">{{#if canOpen}}<a data-action="openMember">{{name}}</a>{{else}}{{name}}{{/if}}
               {{#if @root.editable}}<a class="arn-ctl" data-action="removeMember" data-tooltip="Remove from the party"><i class="fa-solid fa-user-minus"></i></a>{{/if}}</div>
-            <div class="arn-muted">{{classLabel}} · Level {{level}}</div>
+            <div class="arn-muted">{{classLabel}} · Level {{level}} · XP {{xp}}/{{xpRate}}{{#if levelReady}} <span class="arn-chip strong" data-tooltip="Enough XP for the next level: use the level-up arrow on the character sheet"><i class="fa-solid fa-circle-up"></i> Level up</span>{{/if}}</div>
             <div class="arn-hp-bar"><div style="width: {{hpPct}}%"></div></div>
             <div class="arn-member-stats">
               <span>HP <strong>{{hp}}/{{hpMax}}</strong></span><span>AC <strong>{{ac}}</strong></span>
