@@ -4,7 +4,7 @@
     {{#if unidentified}}<span class="arn-chip warn" data-tooltip="Players see a plain name and description">Unidentified</span>{{/if}}
     {{#if charges}}<span class="arn-chip">{{charges}} charges</span>{{/if}}
     {{#if ammoLabel}}<span class="arn-chip">{{ammoLabel}}</span>{{/if}}
-    {{#if system.toggle}}{{#if system.active}}<span class="arn-chip lit"><i class="fa-solid fa-fire"></i> {{#if system.modeLabel}}{{system.modeLabel}}{{else}}On{{/if}}</span>{{/if}}{{/if}}
+    {{#if system.toggle}}{{#if system.active}}<span class="arn-chip lit"><i class="fa-solid fa-{{#if (eq system.modeLabel 'Mounted')}}horse{{else}}fire{{/if}}"></i> {{#if system.modeLabel}}{{system.modeLabel}}{{else}}On{{/if}}</span>{{/if}}{{/if}}
     {{#if lit}}<span class="arn-chip lit {{#if litLow}}low{{/if}}" data-tooltip="{{litTip}}"><i class="fa-solid fa-fire"></i> Lit{{#if litLeft}} · {{litLeft}}{{/if}}</span>{{/if}}
     {{#if lightNote}}<span class="arn-chip {{#if lightOut}}bad{{/if}}" data-tooltip="{{litTip}}">{{#if lightOut}}Burnt out{{else}}{{lightNote}}{{/if}}</span>{{/if}}
     {{#if holds}}<span class="arn-chip {{#if overCap}}bad{{/if}}" data-tooltip="Drag gear onto this row to put it inside{{#if weightless}}; what's inside adds nothing to your slots{{/if}}">{{contents}}{{#if capacity}} / {{capacity}}{{/if}} slots inside{{#if weightless}} · weightless{{/if}}</span>{{/if}}

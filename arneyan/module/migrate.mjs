@@ -143,10 +143,22 @@ export function fillFrom(item, src) {
   if (o.auras?.length && !s.auras?.length) upd["system.auras"] = o.auras;
   // 0.9.1: what a feature does when used (Lay on Hands heals; options ask which).
   if (item.type === "ability" && o.activities?.length && !s.activities?.length) upd["system.activities"] = o.activities;
-  // A weapon that gained a mode (a Flame Tongue ignites): its mode, and its extra damage tied to the mode.
+  // 0.10.24: the Trident is one-handed and a Lance "Two-handed on foot" (Kieran, 20 Oct). Copies of those two from
+  // before get the Catalogue's traits, once (flags.arneyan.handsSet), and only where the Two-handed part is all that
+  // differs: a GM who changes it back later keeps the change.
+  const srcName = String(src.name ?? "");
+  if (item.type === "weapon" && /^(Trident|Lance, (Light|Heavy))$/.test(srcName) && !item.flags?.[SYS]?.handsSet
+      && typeof o.traits === "string" && typeof s.traits === "string") {
+    const plainT = t => t.replace(/,?\s*Two-handed(?: on foot)?(?=\s*(?:,|$))/gi, "").replace(/^[,\s]+|[,\s]+$/g, "").trim();
+    if (s.traits !== o.traits && plainT(s.traits) === plainT(o.traits)) upd["system.traits"] = o.traits;
+    upd[`flags.${SYS}.handsSet`] = true;
+  }
+  // A weapon that gained a mode (a Flame Tongue ignites, a Lance's Mounted switch): its mode, and the extra damage
+  // tied to the mode; extra damage of its own (a forged Lance of Shocking) stays.
   if (item.type === "weapon" && o.toggle && o.modeLabel && !s.modeLabel) {
     upd["system.toggle"] = true; upd["system.modeLabel"] = o.modeLabel; upd["system.modeLight"] = o.modeLight ?? 0;
-    upd["system.bonusDamage"] = o.bonusDamage;
+    const modeDmg = (o.bonusDamage ?? []).filter(b => b.mode);
+    if (modeDmg.length) upd["system.bonusDamage"] = [...(s.bonusDamage ?? []).filter(b => !b.mode), ...modeDmg];
   }
   return upd;
 }

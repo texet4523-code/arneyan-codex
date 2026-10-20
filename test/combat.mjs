@@ -266,6 +266,16 @@ console.log("OK combat");
   assert.equal(E.isTwoHanded(longsword), false, "Versatile in one hand");
   assert.equal(E.isTwoHanded(longsword, { include: ["versatile"] }), true, "Versatile with its two-handed die");
   assert.equal(E.isTwoHanded(oldHalberd), true, "a copy from before the trait: two slots, melee");
+  // 0.10.24 (Kieran, by 2e and 5e): the Trident is one-handed; a Lance is two-handed on foot, not when mounted.
+  const trident = W("Trident", { damage: "1d8", traits: "Reach, Brace, Thrown", slots: 2 });
+  assert.equal(E.isTwoHanded(trident), false, "a two-slot Trident with no trait is still one-handed");
+  assert.equal(E.isTwoHanded(W("+1 Trident", { damage: "1d8", traits: "Reach", slots: 2 })), false, "a forged one too");
+  const lance = W("Lance, Heavy", { damage: "1d8", traits: "Reach, Brace, Two-handed on foot", slots: 2, toggle: true, modeLabel: "Mounted", active: false });
+  assert.equal(E.isTwoHanded(lance), true, "on foot");
+  const riding = W("Lance, Heavy", { damage: "1d8", traits: "Reach, Brace, Two-handed on foot", slots: 2, toggle: true, modeLabel: "Mounted", active: true });
+  assert.equal(E.isTwoHanded(riding), false, "mounted");
+  const flame = W("Flame Tongue", { damage: "2d6", traits: "Heavy, Two-handed", slots: 2, toggle: true, modeLabel: "Ignited", active: true });
+  assert.equal(E.isTwoHanded(flame), true, "another weapon's mode changes nothing");
   assert.equal(E.weaponKey("Sword, Long"), E.weaponKey("+1 Long Sword"));
   assert.equal(E.weaponKey("Greatsword (specialised)"), "greatsword");
 

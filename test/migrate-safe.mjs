@@ -255,4 +255,27 @@ assert.equal(M.fingerprint("rules", [{ when: "", label: "", value: "1", key: "ac
   assert.deepEqual(old.system.rules, BRmine, "and one with no fingerprints isn't overwritten");
   assert.equal(n, 2, "two items changed");
 }
+{
+  // 0.10.24: Tridents and Lances from before get the Catalogue's traits once (the Trident loses Two-handed, a Lance
+  // gets "Two-handed on foot" and its Mounted switch), where only the Two-handed part differs. Nothing else changes.
+  const w = (name, traits, extra = {}, flags = {}) => ({ type: "weapon", name, system: { traits, ...extra }, flags: { arneyan: flags } });
+  const tri = M.fillFrom(w("Trident", "Reach, Brace, Thrown, Two-handed"), w("Trident", "Reach, Brace, Thrown"));
+  assert.equal(tri["system.traits"], "Reach, Brace, Thrown");
+  assert.equal(tri["flags.arneyan.handsSet"], true, "once");
+  assert.deepEqual(M.fillFrom(w("Trident", "Reach, Brace, Thrown, Two-handed", {}, { handsSet: true }), w("Trident", "Reach, Brace, Thrown")), {}, "a GM who put it back keeps it");
+  const LSRC = w("Lance, Heavy", "Reach, Brace, Two-handed on foot", { toggle: true, modeLabel: "Mounted", modeLight: 0, bonusDamage: [] });
+  const lance = M.fillFrom(w("Lance, Heavy", "Reach, Brace, Two-handed"), LSRC);
+  assert.equal(lance["system.traits"], "Reach, Brace, Two-handed on foot");
+  assert.equal(lance["system.modeLabel"], "Mounted");
+  assert.ok(!("system.bonusDamage" in lance), "no mode damage to bring");
+  // A forged Lance of Shocking keeps its lightning.
+  const shock = [{ formula: "1d6", type: "lightning", when: "", mode: false }];
+  const forged = M.fillFrom(w("+1 Lance, Heavy of Shocking", "Reach, Brace, Two-handed", { bonusDamage: shock }), LSRC);
+  assert.ok(!("system.bonusDamage" in forged), "its own extra damage stays");
+  // A Flame Tongue's mode damage still arrives, next to damage of its own.
+  const fire = { formula: "2d6", type: "fire", when: "", mode: true };
+  assert.deepEqual(M.fillFrom(w("Flame Tongue", "Heavy", { bonusDamage: shock }), w("Flame Tongue", "Heavy", { toggle: true, modeLabel: "Ignited", bonusDamage: [fire] }))["system.bonusDamage"], [...shock, fire]);
+  assert.ok(!("system.traits" in M.fillFrom(w("Trident", "Reach, Brace, Thrown, Two-handed, Barbed"), w("Trident", "Reach, Brace, Thrown"))), "a GM's own trait: left alone");
+  assert.deepEqual(M.fillFrom(w("Glaive", "Reach"), w("Glaive", "Reach, Two-handed")), {}, "other weapons: their traits are the GM's");
+}
 console.log("OK safe world update");

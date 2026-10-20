@@ -165,14 +165,17 @@ function weaponKeys(item) {
  * Is this weapon being used two-handed? The Two-handed trait (the Catalogue's † melee weapons carry it) says so and
  * One-handed says not; a Versatile weapon is two-handed when its two-handed die is in the roll (`include` has
  * "versatile"). Copies on sheets from before the trait existed: a two-slot melee weapon that isn't Versatile or Light,
- * which is how the Catalogue marks its two-handed weapons.
+ * which is how the Catalogue marks its two-handed weapons. A Trident is one-handed (Kieran, 20 Oct), even on an older copy.
  */
 export function isTwoHanded(item, { include = [] } = {}) {
   if (item?.type !== "weapon") return false;
   const traits = String(item.system?.traits ?? "");
+  // A Lance: two-handed on foot, one-handed while its Mounted switch is on.
+  if (item.system?.toggle && item.system?.active && /^mounted$/i.test(String(item.system?.modeLabel ?? "").trim())) return false;
   if (/\btwo[- ]handed\b/i.test(traits)) return true;
   if (/\bone[- ]handed\b/i.test(traits)) return false;
   if (/\bversatile\b/i.test(traits)) return include.includes("versatile");
+  if (weaponKeys(item).includes("trident")) return false;
   return !item.system?.ranged && Number(item.system?.slots) >= 2 && !/\blight\b/i.test(traits);
 }
 

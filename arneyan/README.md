@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.23 · Foundry v13 and v14
+Version 0.10.24 · Foundry v13 and v14
+
+## What's new in 0.10.24
+
+- **Which weapons are two-handed** (what Crushing Blow and other two-handed features check). The Trident is one-handed. A Lance is two-handed on foot and one-handed when mounted: its row on the sheet has a switch (a horse) that reads **On foot** or **Mounted**: click it when you get on or off. Every other two-slot melee weapon that isn't Versatile stays two-handed. Lances and Tridents already on sheets update with the world update.
 
 ## What's new in 0.10.23
 

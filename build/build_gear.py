@@ -26,6 +26,10 @@ def load():
     return docs, {d["_id"]: d["name"] for d in folders.values()}
 
 
+ONE_HANDED = {"Trident"}
+LANCES = {"Lance, Light", "Lance, Heavy"}
+
+
 def text(d):
     return re.sub(r"<[^>]+>", " ", d["system"].get("description", ""))
 
@@ -148,8 +152,17 @@ def build():
             # The Catalogue marks two-handed weapons and polearms with a dagger sign and two slots; those melee weapons
             # get the Two-handed trait (Crushing Blow reads it), bar the Versatile, which can be wielded in one hand.
             tr = s.get("traits", "") or ""
-            if not s.get("ranged") and float(s.get("slots") or 0) >= 2 and not re.search(r"\b(versatile|light|two-handed)\b", tr, re.I):
+            if not s.get("ranged") and float(s.get("slots") or 0) >= 2 and not re.search(r"\b(versatile|light|two-handed)\b", tr, re.I) \
+                    and d["name"] not in ONE_HANDED:
                 s["traits"] = f"{tr}, Two-handed" if tr.strip() else "Two-handed"
+            # Kieran, 20 Oct (by AD&D 2e and 5e): the Trident is one-handed; a Lance is two-handed on foot, one-handed
+            # when mounted (its Mounted switch on the sheet says which).
+            if d["name"] in ONE_HANDED:
+                s["traits"] = re.sub(r",?\s*Two-handed(?: on foot)?(?=\s*(?:,|$))", "", s.get("traits", "") or "").strip(", ")
+            if d["name"] in LANCES:
+                t2 = re.sub(r",?\s*Two-handed(?: on foot)?(?=\s*(?:,|$))", "", s.get("traits", "") or "").strip(", ")
+                s["traits"] = f"{t2}, Two-handed on foot" if t2 else "Two-handed on foot"
+                s["toggle"] = True; s["modeLabel"] = "Mounted"; s.setdefault("modeLight", 0); s.setdefault("active", False)
             n = d["name"].lower()
             s["ammoType"] = "bolt" if "crossbow" in n else "arrow" if re.search(r"\bbow\b", n) else "stone" if n == "sling" else ""
             s.setdefault("ammoId", "")

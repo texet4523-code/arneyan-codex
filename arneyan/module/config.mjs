@@ -137,7 +137,8 @@ ARNEYAN.weaponTraits = {
   "Thrown": { text: "Can be thrown for the same damage as a melee strike." },
   "Concealable": { text: "Can be hidden on your person without a check; Advantage to keep it hidden during a search." },
   "Entangling": { text: "Advantage on Trip and Grapple attempts made with this weapon." },
-  "Two-handed": { text: "Needs both hands; it can't be dual wielded.", auto: "Features for two-handed weapons (Crushing Blow) apply to it." }
+  "Two-handed": { text: "Needs both hands; it can't be dual wielded.", auto: "Features for two-handed weapons (Crushing Blow) apply to it." },
+  "Two-handed on foot": { text: "Held in both hands on foot, in one when mounted (a Lance).", auto: "Features for two-handed weapons apply unless its Mounted switch is on." }
 };
 
 /**
