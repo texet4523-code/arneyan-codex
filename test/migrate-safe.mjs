@@ -200,4 +200,59 @@ assert.equal(M.fingerprint("rules", [{ when: "", label: "", value: "1", key: "ac
   // A kit feature with a weapon pick keeps it too.
   assert.deepEqual(M.kitFeaturesFrom([{ name: "Kit Spec", weaponChoice: { max: "1", value: ["Maul"] } }], [{ name: "Kit Spec", weaponChoice: { max: "1", value: [] } }])[0].weaponChoice.value, ["Maul"]);
 }
+{
+  // 0.10.22: kit features gained a weapon pick (0.10.18), which the schema fills in, blank, on every stored kit. A kit
+  // stamped before then (or by 0.10.18 to 0.10.21, blank picks included) is unedited, so The Heavy Hand updates.
+  const NOTE = [{ key: "note.damage", value: "Crushing Blow: reroll 1s and 2s", when: "", label: "" }];
+  const REROLL = [{ key: "damage.reroll", value: "2", when: "", label: "", weapon: "two-handed" }];
+  const blank = { max: "", value: [] };
+  const feat = (rules, wc) => ({ name: "Crushing Blow", rules, uses: { value: 0, max: 0, per: "", formula: "" }, ...(wc ? { weaponChoice: wc } : {}) });
+  const comp = { type: "kit", system: { features: [feat(REROLL, blank)] } };
+  // The 0.10.18 to 0.10.21 fingerprint (the blank pick included), worked out here as that version did.
+  const stable = v => (Array.isArray(v) ? v.map(stable) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map(k => [k, stable(v[k])])) : v);
+  const fnv = str => { let h = 0x811c9dc5; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); };
+  const stamp1018 = fnv(JSON.stringify(stable([{ name: "Crushing Blow", rules: NOTE, uses: { max: 0, per: "", formula: "" }, weaponChoice: { max: "" } }])));
+  const stampOlder = M.fingerprint("features", [feat(NOTE)]);
+  assert.notEqual(stamp1018, stampOlder);
+  for (const stamp of [stampOlder, stamp1018]) {
+    const stored = [feat(NOTE.map(r => ({ ...r, weapon: "" })), blank)];
+    const kit = { id: "k", type: "kit", name: "The Heavy Hand", system: { features: stored }, flags: { arneyan: { synced: { features: stamp } } } };
+    kit._source = { system: kit.system, flags: kit.flags };
+    const r = {};
+    const upd = M.refreshFrom(kit, comp, { report: r });
+    assert.ok(!r.kept, "not counted as an edit");
+    assert.deepEqual(upd["system.features"][0].rules, REROLL);
+  }
+  // A real weapon pick on a kit feature still counts.
+  assert.notEqual(M.fingerprint("features", [feat(NOTE, { max: "1", value: [] })]), M.fingerprint("features", [feat(NOTE)]));
+  // "Update these anyway" on a kit takes the features it granted along (they had stayed as they were).
+  const SRCK = "Compendium.arneyan.kits.Item.hh";
+  const docs = { [SRCK]: comp };
+  class FakeItem {}
+  globalThis.Item = FakeItem;
+  const mk = (id, type, system, flags, src) => Object.assign(new FakeItem(), { id, uuid: `Actor.c.Item.${id}`, name: id === "cb" ? "Crushing Blow" : id, type, system, flags: { arneyan: flags }, _stats: src ? { compendiumSource: src } : {}, _source: { system, flags: { arneyan: flags } } });
+  const mine = [feat([{ key: "note.damage", value: "my own", when: "", label: "" }], blank)];
+  const kit = mk("kit", "kit", { features: mine }, { synced: M.stampOf("kit", { features: [feat(NOTE)] }) }, SRCK);
+  const cb = mk("cb", "ability", { rules: NOTE, uses: { value: 0, max: 0, per: "", formula: "" } }, { grantedBy: "kit", source: "kit.0", synced: M.stampOf("ability", { rules: NOTE, uses: { value: 0, max: 0, per: "", formula: "" } }) });
+  // A second feature the GM changed by hand (stamped as it came): it keeps the change, kit forced or not.
+  const BR = [{ key: "adv.check.str", value: "1", when: "", label: "" }], BRmine = [{ key: "adv.check.str", value: "2", when: "", label: "" }];
+  comp.system.features.push({ name: "Breaker", rules: [{ ...BR[0], value: "3" }], uses: { value: 0, max: 0, per: "", formula: "" }, weaponChoice: blank });
+  const br = mk("br", "ability", { rules: BRmine, uses: { value: 0, max: 0, per: "", formula: "" } }, { grantedBy: "kit", source: "kit.1", synced: M.stampOf("ability", { rules: BR, uses: { value: 0, max: 0, per: "", formula: "" } }) });
+  br.name = "Breaker";
+  // And one with no fingerprints at all (from before they existed): left alone too.
+  const old = mk("old", "ability", { rules: BRmine, uses: { value: 0, max: 0, per: "", formula: "" } }, { grantedBy: "kit", source: "kit.1" });
+  old.name = "Breaker";
+  const items = [kit, cb, br, old];
+  const pc = { id: "c", name: "Rowan", type: "character", items: Object.assign(items, { contents: items }),
+    updateEmbeddedDocuments: async (t, u) => { for (const x of u) { const i = items.find(y => y.id === x._id); for (const [k, v] of Object.entries(x)) if (k !== "_id") { foundry.utils.setProperty(i, k, v); foundry.utils.setProperty(i._source, k, v); } } } };
+  kit.parent = cb.parent = pc;
+  globalThis.fromUuid = async u => (u === kit.uuid ? kit : u === cb.uuid ? cb : docs[u] ? { ...docs[u], toObject() { return JSON.parse(JSON.stringify(docs[u])); } } : null);
+  game.user = { isGM: true };
+  const n = await M.forceUpdate([kit.uuid]);
+  assert.deepEqual(kit.system.features[0].rules, REROLL, "the kit is updated");
+  assert.deepEqual(cb.system.rules, REROLL, "and Crushing Blow with it");
+  assert.deepEqual(br.system.rules, BRmine, "a feature the GM changed keeps the change");
+  assert.deepEqual(old.system.rules, BRmine, "and one with no fingerprints isn't overwritten");
+  assert.equal(n, 2, "two items changed");
+}
 console.log("OK safe world update");

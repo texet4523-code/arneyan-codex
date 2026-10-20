@@ -441,6 +441,30 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   assert.equal(actor.system.luck.start, 13, "Starting Luck rolled");
   assert.equal(actor.system.attributes.hp.max, 10);
 
+  // 0.10.22: while the steps run, a class feature's own question (Weapon Specialisation) waits for them to end.
+  ({ cls, actor } = mk());
+  let during = null;
+  DialogV2.wait = async o => { during ??= P.firstLevelSetupRunning(actor); return answer(o, { kit: "later", feat: "later", skills: "later", finish: o => take(o, []) }); };
+  assert.equal(P.firstLevelSetupRunning(actor), null, "nothing running before");
+  const run = P.firstLevelSetup(actor, cls);
+  await run;
+  assert.ok(during instanceof Promise, "a promise while the steps are open");
+  assert.equal(await Promise.race([during.then(() => "settled"), new Promise(r => setTimeout(() => r("pending"), 50))]), "settled", "settled once they're over");
+  assert.equal(P.firstLevelSetupRunning(actor), null);
+  // A second setup for the same character while one runs is refused, and leaves the first one's promise in place.
+  ({ cls, actor } = mk());
+  let second = "unset", stillMine = null;
+  const warn = ui.notifications.warn; ui.notifications.warn = () => {};
+  DialogV2.wait = async o => {
+    if (second === "unset") { const first = P.firstLevelSetupRunning(actor); second = await P.firstLevelSetup(actor, cls); stillMine = P.firstLevelSetupRunning(actor) === first; }
+    return answer(o, { kit: "later", feat: "later", skills: "later", finish: o => take(o, []) });
+  };
+  await P.firstLevelSetup(actor, cls);
+  ui.notifications.warn = warn;
+  assert.equal(second, false, "the second is refused");
+  assert.ok(stillMine, "the first one's promise is still the one waited on");
+  assert.equal(P.firstLevelSetupRunning(actor), null);
+
   // The Feat records level 1.
   ({ cls, actor } = mk());
   DialogV2.wait = async o => answer(o, { kit: "later", feat: o => take(o, [feat.uuid]), skills: "later", finish: o => take(o, []) });

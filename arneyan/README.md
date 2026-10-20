@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.21 · Foundry v13 and v14
+Version 0.10.22 · Foundry v13 and v14
+
+## What's new in 0.10.22
+
+- **Crushing Blow updates on existing characters.** The world update listed The Heavy Hand as "Your edits kept" on Fighters who took it before 0.10.18, though nobody had changed it: the weapon pick added in 0.10.18 made those unedited Kits look edited. They update now, and Crushing Blow on their sheets with them (rerolling 1s and 2s on two-handed weapon damage).
+- **"Update these anyway" on a Kit** updates the features it gave too (they had stayed as they were). A feature you changed by hand still keeps your change.
+- **New characters: questions after the steps.** Weapon Specialisation's "which weapon?" and an attribute pick (a Fighter's Attribute Bonus, Will of Iron as the 1st-level Feat) opened in the middle of the new-character steps. They now come after the steps and the starting gold. If you keep the money and shop, the weapon question opens beside the Catalogue; it lists the Catalogue's weapons, so you can pick before you buy.
 
 ## What's new in 0.10.21
 

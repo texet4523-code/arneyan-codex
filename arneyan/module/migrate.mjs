@@ -51,7 +51,12 @@ function plainRules(v) {
   if ("key" in out && "value" in out && out.weapon === "") delete out.weapon;
   return out;
 }
-function mechView(field, v) {
+/**
+ * What a fingerprint covers. A kit feature's weapon pick (0.10.18) reads as no field at all while it's blank: the
+ * schema fills it in on every stored kit, which made kits stamped before it look edited. `legacy` is the 0.10.18 to
+ * 0.10.21 view (blank picks included), so their stamps still match.
+ */
+function mechView(field, v, legacy = false) {
   if (v == null) return null;
   if (field === "uses") return { max: Number(v.max) || 0, per: v.per ?? "", formula: v.formula ?? "" };
   if (field === "abilityChoice") return { options: [...(v.options ?? [])] };
@@ -61,17 +66,23 @@ function mechView(field, v) {
     if (c.uses) delete c.uses.value;
     if (c.abilityChoice) delete c.abilityChoice.value;
     if (c.weaponChoice) delete c.weaponChoice.value;
+    if (!legacy && c.weaponChoice && !String(c.weaponChoice.max ?? "")) delete c.weaponChoice;
     return c;
   }));
   if (["rules", "applies", "auras"].includes(field)) return plainRules(v);
   return v;
 }
-/** FNV-1a (32 bit) of a value's stable JSON, in base 36: short, and the same for the same data. */
-export function fingerprint(field, v) {
-  const str = JSON.stringify(stable(mechView(field, v)));
+function hash(view) {
+  const str = JSON.stringify(stable(view));
   let h = 0x811c9dc5;
   for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
   return h.toString(36);
+}
+/** FNV-1a (32 bit) of a value's stable JSON, in base 36: short, and the same for the same data. */
+export function fingerprint(field, v) { return hash(mechView(field, v)); }
+/** Does a value still match its stamp (taken now, or by 0.10.18 to 0.10.21)? */
+export function matchesStamp(field, v, stamp) {
+  return fingerprint(field, v) === stamp || (field === "features" && hash(mechView(field, v, true)) === stamp);
 }
 /** Fingerprints of an item's mechanical fields (those its type has), from its stored system data. */
 export function stampOf(type, system = {}) {
@@ -196,8 +207,8 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   const set = (k, v) => {
     if (same(plainIf(k, s[k]), plainIf(k, v))) { next[k] = fingerprint(k, v); return; }
     // Changed by hand since it arrived (or since the last update): keep it, and its old fingerprint.
-    if (!force && !unstamped && stamps[k] !== undefined && fingerprint(k, s[k]) !== stamps[k]) {
-      if (fingerprint(k, v) !== stamps[k]) kept.push(k);
+    if (!force && !unstamped && stamps[k] !== undefined && !matchesStamp(k, s[k], stamps[k])) {
+      if (!matchesStamp(k, v, stamps[k])) kept.push(k);
       return;
     }
     upd[`system.${k}`] = clone(v);
@@ -257,7 +268,7 @@ const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
  * Every update for one set of items (an actor's, or the Items directory), in one batch. `notes` collects the items
  * whose edits were kept ({ uuid, label, fields }) and counts those added before fingerprints (`unstamped`).
  */
-async function updatesFor(items, actor, fetch, { legacy, force = false, notes }) {
+async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds = null, notes }) {
   const updates = [];
   const kitFeatures = new Map();
   // Kits first: the features they granted follow the kit's new list.
@@ -270,7 +281,7 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, notes })
     if (src) {
       // Feats, features, kits, ancestries, spells and actions only through the fingerprinted refresh (an area the
       // GM cleared stays cleared); gear gets its empty fields filled, unless Keep my edits is ticked.
-      if (REFRESH.has(i.type)) upd = refreshFrom(i, src, { maxNow: maxOn(actor, i, src.system?.uses), legacy, force, report });
+      if (REFRESH.has(i.type)) upd = refreshFrom(i, src, { maxNow: maxOn(actor, i, src.system?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
       else if (!i.flags?.[SYS]?.keepCustom) upd = fillFrom(i, src);
       // The features a kit granted follow the kit as it will be: the compendium's list if the kit takes it, or the
       // kit's own list if it keeps an edit (or is left as it was).
@@ -279,7 +290,7 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, notes })
       const features = kitFeatures.get(i.flags[SYS].grantedBy);
       const idx = Number(String(i.flags[SYS].source ?? "").split(".").pop());
       const f = features[idx]?.name === i.name ? features[idx] : features.find(x => x.name === i.name);
-      upd = refreshGranted(i, features, { maxNow: maxOn(actor, i, f?.uses), legacy, force, report });
+      upd = refreshGranted(i, features, { maxNow: maxOn(actor, i, f?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
     }
     if (report.kept?.length) notes.kept.push({ uuid: i.uuid, label: actor ? `${actor.name}: ${i.name}` : i.name, fields: report.kept });
     if (report.unstamped) { notes.unstamped += 1; notes.unstampedActors.add(actor?.id ?? "items"); }
@@ -385,14 +396,21 @@ export async function forceUpdate(uuids = []) {
   const byParent = new Map();
   for (const i of items) { const k = i.parent ?? null; byParent.set(k, [...(byParent.get(k) ?? []), i]); }
   for (const [actor, list] of byParent) {
-    // A kit's granted features need their kit in the same pass.
-    const pool = actor ? [...new Set([...list, ...actor.items.filter(x => x.type === "kit" && list.some(i => i.flags?.[SYS]?.grantedBy === x.id))])] : list;
-    const ups = (await updatesFor(pool, actor, fetch, { legacy: "update", force: true, notes: { kept: [], unstamped: 0, unstampedActors: new Set() } }))
-      .filter(u => list.some(i => i.id === u._id));
+    // A kit's granted features need their kit in the same pass; a kit updated here takes its granted features along
+    // (Crushing Blow follows The Heavy Hand), with their own edits kept as in any update.
+    // The listed items are forced; anything else here follows the fingerprints, and one with none is left alone.
+    const ids = new Set(list.map(i => i.id));
+    const listedKits = new Set(list.filter(i => i.type === "kit").map(i => i.id));
+    const kits = actor ? actor.items.filter(x => x.type === "kit" && list.some(i => i.flags?.[SYS]?.grantedBy === x.id)) : [];
+    const granted = actor ? actor.items.filter(x => x.type === "ability" && listedKits.has(x.flags?.[SYS]?.grantedBy) && !ids.has(x.id)) : [];
+    const pool = actor ? [...new Set([...list, ...kits, ...granted])] : list;
+    const ups = (await updatesFor(pool, actor, fetch, { legacy: "skip", forceIds: ids, notes: { kept: [], unstamped: 0, unstampedActors: new Set() } }))
+      .filter(u => ids.has(u._id) || granted.some(i => i.id === u._id));
     if (!ups.length) continue;
     if (actor) await actor.updateEmbeddedDocuments("Item", ups, { arneyanForce: true, arneyanMigration: true });
     else await Item.updateDocuments(ups, { arneyanMigration: true });
-    n += ups.length;
+    // Counted as the report counts: an item whose mechanics changed (not only its fingerprints).
+    n += ups.filter(u => Object.keys(u).some(k => k.startsWith("system."))).length;
   }
   return n;
 }

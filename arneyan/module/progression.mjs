@@ -421,12 +421,28 @@ export async function promptSkill(actor, charLevel) {
  * chosen is added and there is no starting gold. HP and the class features are set either way.
  */
 export async function firstLevelSetup(actor, cls) {
-  const next = await locked(actor, () => setUpFirstLevel(actor, cls));
-  // Starting gold runs after the level-change lock is released, so leaving the gear window open blocks nothing.
-  // Only Apply or Skip go on to it; closing a window (X) doesn't.
-  if (next === "gold") await startingWealth(actor, cls);
-  return next;
+  // Already setting this character up (the class removed and dropped again mid-way): the first one carries on.
+  if (setups.has(actor.id)) {
+    ui.notifications.warn(`Finish the current level change for ${actor.name} first.`);
+    return false;
+  }
+  let done;
+  const mine = new Promise(r => { done = r; });
+  setups.set(actor.id, mine);
+  try {
+    const next = await locked(actor, () => setUpFirstLevel(actor, cls));
+    // Starting gold runs after the level-change lock is released, so leaving the gear window open blocks nothing.
+    // Only Apply or Skip go on to it; closing a window (X) doesn't.
+    if (next === "gold") await startingWealth(actor, cls);
+    return next;
+  } finally { if (setups.get(actor.id) === mine) setups.delete(actor.id); done(); }
 }
+const setups = new Map();
+/**
+ * While a new character's 1st-level steps run, a promise that settles when they're over (null otherwise): a class
+ * feature's own question (Weapon Specialisation's weapon) waits for it rather than opening beside the steps.
+ */
+export function firstLevelSetupRunning(actor) { return setups.get(actor?.id) ?? null; }
 
 const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 

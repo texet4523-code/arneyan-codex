@@ -1,7 +1,7 @@
 import { areaButton } from "./areas.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
-import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
+import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
@@ -928,13 +928,17 @@ export class ArneyanItem extends Item {
     const actor = this.parent;
     // An attribute bonus of the player's choice (Will of Iron, a Fighter's Attribute Bonus): ask the one who added it,
     // granted by a level up too. Nothing picked (Later, or closed): no bonus yet, and the sheet shows "Choose attribute".
-    if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsAbilityChoice(this)) {
-      promptAbilityChoice(this).catch(err => console.warn("Arneyan | attribute choice", err));
-    }
+    // A new character's 1st-level steps go first: the question waits until they're over (and isn't asked if it was
+    // answered or the item removed meanwhile).
+    const ask = (needs, prompt, what) => {
+      if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanNoChoice || !needs(this)) return;
+      const run = () => (actor.items.has(this.id) && needs(this) ? prompt(this) : null);
+      const wait = firstLevelSetupRunning(actor);
+      (wait ? wait.then(run) : Promise.resolve(run())).catch(err => console.warn(`Arneyan | ${what} choice`, err));
+    };
+    ask(needsAbilityChoice, promptAbilityChoice, "attribute");
     // The same for a weapon of the player's choice (Weapon Specialisation): Later leaves its rules as reminders.
-    if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsWeaponChoice(this)) {
-      promptWeaponChoice(this).catch(err => console.warn("Arneyan | weapon choice", err));
-    }
+    ask(needsWeaponChoice, promptWeaponChoice, "weapon");
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
       if (!this.flags.arneyan?.fresh) return;
