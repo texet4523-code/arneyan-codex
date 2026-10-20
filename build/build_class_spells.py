@@ -7,7 +7,7 @@ Spells already in the compendium (by name) are never made again."""
 import glob, json, os, re
 import docx
 from lib import *
-import spell_damage
+import spell_damage, spell_saves
 
 SRC = "/tmp/hb/cls/clean2"
 LEVEL_WORD = {"Cantrip": 0, "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, "5th": 5, "6th": 6, "7th": 7, "8th": 8, "9th": 9}
@@ -124,6 +124,7 @@ def build(icon):
         rng = re.match(r"^(Range [^;.]+|Touch|Self|Personal)", text)
         dmg, dtype = (s["damage"], s["damageType"]) if "damage" in s else DAMAGE.get(name) or spell_damage.parse(text)
         save, eff = s.get("save") or save_of(text)
+        eff = spell_saves.EFFECT.get(name, eff)
         classes = s["classes"]
         desc = f"<p>{esc(text)}</p>"
         desc += "".join(f'<p class="arn-note">{esc(n)}</p>' for n in s["notes"])

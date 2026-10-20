@@ -157,11 +157,28 @@ assert.equal(saved["flags.arneyan.subdual"], undefined);
 
 /* Reactions. */
 const actions = Object.fromEntries(packItems("actions").map(i => [i.name, { ...i, flags: i.flags ?? {} }]));
-assert.equal(C.isReactionItem(actions["Parry"]), true);
-assert.equal(C.isReactionItem(actions["Opportunity Attack"]), true);
+assert.equal(C.isReactionItem(actions["Attack of Opportunity"]), true);
 assert.equal(C.isReactionItem(actions["Dodge"]), false);
 assert.ok(actions["Dirty Trick"], "Dirty Trick is in the Actions compendium");
 for (const n of ["Grapple", "Trip", "Disarm", "Dirty Trick", "Overbear"]) assert.ok(actions[n].system.description.includes("press Use"), n);
+
+/* Actions pack: the Handbook v0.9.9 combat chapter (Book I, Section III), no more and no less. */
+const BOOK_ACTIONS = ["Charge", "Disengage", "Dodge", "Hide", "Search", // Combat Manoeuvres: Actions
+  "Cleave", "Dirty Trick", "Disarm", "Grapple", "Guard", "Push", "Shield Blow", "Trip", // Manoeuvres
+  "Flank Attack", "Receiving Charge", "Shield Wall", // Positioning
+  "Ready", "Delay", "Dash", "Attack of Opportunity", "Unarmed Strike", "Overbear", "Break Free", "Fighting Defensively"];
+assert.deepEqual(Object.keys(actions).sort(), [...BOOK_ACTIONS].sort(), "the Actions compendium is the book's list");
+for (const gone of ["Feint", "Called Shot", "Offensive Focus", "Parry", "Rear Attack", "Charging", "Opportunity Attack"]) assert.ok(!actions[gone], `${gone} is not in the current book`);
+assert.equal(actions["Charge"]._id, "UniEPc3NhFzkrGYI", "Charge keeps the old Charging ID");
+assert.equal(actions["Attack of Opportunity"]._id, "g8Ifmgn7innIiAZy", "Attack of Opportunity keeps the old Opportunity Attack ID");
+assert.equal(actions["Trip"]._id, "oF3I9qCsbxavZOJn", "surviving actions keep their IDs");
+assert.ok(actions["Charge"].system.toggle && actions["Charge"].system.rules.some(r => r.key === "adv.attack" && r.value === "1"), "Charge: Advantage on the attack");
+assert.deepEqual(actions["Search"].system.activities.map(a => [a.kind, a.ability]), [["check", "wis"]], "Search rolls a Wisdom check");
+assert.deepEqual(actions["Hide"].system.activities.map(a => [a.kind, a.ability]), [["check", "dex"]], "Hide rolls a Dexterity check");
+assert.equal(actions["Break Free"].flags.arneyan?.contest, "escape", "Break Free uses the break-free contest");
+assert.ok(C.CONTESTS[actions["Break Free"].flags.arneyan.contest], "a contest combat.mjs knows");
+assert.ok(actions["Guard"].system.description.includes("attacks against that ally have Disadvantage"));
+assert.ok(actions["Shield Blow"].system.description.includes("10 + half your level"), "Shield Blow states its DC");
 
 /* Sheet: combat tools, off-hand button, non-lethal track; damage card buttons. */
 const render = hbs(root);
