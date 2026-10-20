@@ -142,21 +142,47 @@ async function abilityScoresWindow(actor) {
   });
   if (!res || res === "skip") return;
   // Remembered so a first ancestry above 1st level knows its bonuses still need adding (progression.mjs).
-  await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true });
+  await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true, "flags.arneyan.-=needsScores": null });
   if (res.spare) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
     content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) can be donated to the table (Rule B).</p>` });
   ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}. Next, drop an ancestry and a class on the sheet.`);
 }
 
+/** A player owner of this actor (not a GM), if it has one. */
+const playerOwner = actor => game.users?.find(u => !u.isGM && actor.testUserPermission?.(u, "OWNER")) ?? null;
+/** Still the blank sheet it was made as: every score 10, no class. */
+const blank = actor => KEYS.every(k => actor.system.abilities[k].value === 10) && !actor.items.some(i => i.type === "class");
+/** Characters whose scores window this client has already opened from the sheet (once per session, never a loop). */
+const ASKED = new Set();
+
+/** Open the scores window as the setup's first step (other steps wait for it: see scoresWindowFor). */
+function startScores(actor) {
+  let go;
+  OPEN.set(actor.id, new Promise(r => { go = r; }));
+  setTimeout(() => { OPEN.delete(actor.id); abilityScores(actor).finally(() => go()); }, 400);
+}
+
 export function registerChargen() {
-  // A brand-new character (not imported, duplicated or from a compendium) asks for its scores first.
+  // A brand-new character (not imported, duplicated or from a compendium) asks for its scores first. It's marked as
+  // needing them, so whoever plays it is asked when they first open it: players can't usually make characters, so
+  // the GM makes one and hands it over (20 Oct 2026: the window used to open for the GM only).
   Hooks.on("createActor", (actor, options, userId) => {
     if (userId !== game.user.id || actor.type !== "character" || options?.arneyanNoSetup || options?.arneyanTransform || actor.getFlag(SYSFLAG, "transform") || actor.flags?.["item-piles"]) return;
     if (actor.items.size || actor._stats?.compendiumSource || actor.flags?.core?.sourceId || actor._stats?.duplicateSource) return;
     if (!KEYS.every(k => actor.system.abilities[k].value === 10)) return;
+    actor.setFlag(SYSFLAG, "needsScores", true).catch(() => {});
+    // The GM making it for a player who already owns it: the player is asked, not the GM.
+    if (game.user.isGM && playerOwner(actor)) return;
     // Mark it pending at once, so a class dropped straight away waits for the scores (Book II order).
-    let go;
-    OPEN.set(actor.id, new Promise(r => { go = r; }));
-    setTimeout(() => { OPEN.delete(actor.id); abilityScores(actor).finally(() => go()); }, 400);
+    ASKED.add(actor.id);
+    startScores(actor);
+  });
+  // The player who owns a character still waiting for its scores opens its sheet: ask them, once.
+  Hooks.on("renderActorSheetV2", app => {
+    const actor = app.document ?? app.actor;
+    if (!actor || actor.type !== "character" || game.user.isGM || !actor.isOwner || ASKED.has(actor.id)) return;
+    if (!actor.getFlag(SYSFLAG, "needsScores") || !blank(actor) || OPEN.has(actor.id)) return;
+    ASKED.add(actor.id);
+    startScores(actor);
   });
 }

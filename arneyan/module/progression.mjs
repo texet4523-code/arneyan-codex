@@ -210,11 +210,16 @@ async function changeClassLevel(actor, cls, target) {
   const luckGains = Array.from({ length: target - from }, (_, i) => (luckBefore + i + 1 <= 20 ? 1 : 0));
   const luckGain = luckAfter - luckBefore;
   await cls.update({ "system.levels": target, "system.hpRolls": [...priorHp, ...gains], "system.luckGains": [...priorLuck, ...luckGains] });
+  // Per-level HP from rules (Toughness: +1 a level) grows the maximum with each level; current HP gains it too.
+  let perLevel = 0;
+  try { perLevel = Number(actor.system.mods?.sum?.("hp.level")) || 0; } catch { perLevel = 0; }
+  const ruleGain = Math.max(0, perLevel * (target - from));
   await actor.update({
     "system.attributes.hp.max": actor._source.system.attributes.hp.max + total,
-    "system.attributes.hp.value": actor.system.attributes.hp.value + total,
+    "system.attributes.hp.value": actor.system.attributes.hp.value + total + ruleGain,
     "system.luck.value": luckAfter
   });
+  if (ruleGain) lines.push(`<li>Per-level HP from feats and features: <strong>+${ruleGain} HP</strong></li>`);
 
   const newFeatures = [...await syncClassFeatures(actor, cls)];
   for (const kit of actor.items.filter(i => i.type === "kit" && classForKit(actor, i)?.id === cls.id)) {
@@ -340,20 +345,27 @@ async function packOptions(packName, filter, more = []) {
 }
 
 /** Copy a compendium item onto the actor, linked back to it (as the browser does), so updates from the compendium reach it. */
-export async function addFromUuid(actor, uuid, { levelTaken = 0 } = {}) {
+export async function addFromUuid(actor, uuid, { levelTaken = 0, extra = null } = {}) {
   if (!uuid) return;
   const doc = await fromUuid(uuid);
   if (!doc) return;
   const data = doc.toObject();
   delete data._id;
   data.folder = null;
+  // A Knack skill (tier and flag), or anything else the caller sets on the copy.
+  if (extra) foundry.utils.mergeObject(data, extra);
   foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
+  const maxBefore = Number(actor.system.attributes?.hp?.max) || 0;
   // A Feat granted for a level records that level, even when several levels are taken at once (1st to 4th).
+  let made;
   if (levelTaken && data.type === "feat") {
     foundry.utils.setProperty(data, "system.levelTaken", levelTaken);
-    return actor.createEmbeddedDocuments("Item", [data], { arneyanKeepLevel: true });
-  }
-  return actor.createEmbeddedDocuments("Item", [data]);
+    made = await actor.createEmbeddedDocuments("Item", [data], { arneyanKeepLevel: true });
+  } else made = await actor.createEmbeddedDocuments("Item", [data]);
+  // Taken while making or levelling the character: a feat that raises max HP (Toughness) raises current HP as much.
+  const maxAfter = Number(actor.system.attributes?.hp?.max) || 0;
+  if (maxAfter > maxBefore && actor.type === "character") await actor.update({ "system.attributes.hp.value": (actor.system.attributes.hp.value ?? 0) + (maxAfter - maxBefore) });
+  return made;
 }
 
 export async function promptFeat(actor, charLevel) {
@@ -437,11 +449,35 @@ async function firstLevelLists(actor, cls) {
   return { base, kits, feats, skills, ancestries };
 }
 
+/**
+ * What a character's ancestry adds to its 1st-level choices, from the trait texts: an extra General Path Feat (a
+ * Human's "additional Feat from the General Path"), and a Knack ("Choose one [Craft / Wisdom or Charisma] skill at
+ * creation; you have Advantage on checks with it ... does not take an NWP slot"). The Knack's skills are limited by
+ * attribute where the trait names attributes; anything else (a Craft skill) is the player's and the GM's call.
+ */
+export function ancestryExtras(actor) {
+  const anc = actor.items.find(i => i.type === "ancestry");
+  const traits = (anc?.system?.traitList ?? []).map(t => `${t.name ?? ""} ${t.text ?? ""}`);
+  const bonusFeat = traits.some(t => /additional Feat from the General Path/i.test(t));
+  const kt = traits.find(t => /Choose one (?:additional )?.*?skill at creation/i.test(t));
+  let knack = null;
+  if (kt) {
+    const what = (kt.match(/Choose one (?:additional )?(.*?)\s*skill at creation/i)?.[1] ?? "").trim();
+    const abilities = Object.entries(ARNEYAN.abilities).filter(([, label]) => new RegExp(`\\b${label}\\b`, "i").test(what)).map(([k]) => k);
+    knack = { what, abilities };
+  }
+  return { bonusFeat, knack };
+}
+
 async function setUpFirstLevel(actor, cls) {
   // A new character's ability scores window comes first: wait until it's closed.
   try { await scoresWindowFor(actor); } catch { /* closed either way */ }
   const { base, kits, feats, skills, ancestries } = await firstLevelLists(actor, cls);
-  const steps = [ancestries.length && "ancestry", kits.length && "kit", feats.length && "feat", skills.length && "skills", "finish"].filter(Boolean);
+  // The ancestry's extra Feat and Knack are steps too; known once the ancestry is (step 1, or already on the sheet).
+  let extras = ancestryExtras(actor);
+  const stepList = () => [ancestries.length && "ancestry", kits.length && "kit", feats.length && "feat", extras.bonusFeat && feats.length && "bonusFeat",
+    skills.length && "skills", extras.knack && skills.length && "knack", "finish"].filter(Boolean);
+  let steps = stepList();
   const stepOf = key => (steps.length > 1 ? `Step ${steps.indexOf(key) + 1} of ${steps.length}` : "");
 
   // No ancestry yet: pick it first, since its Constitution change counts towards Hit Points.
@@ -451,6 +487,8 @@ async function setUpFirstLevel(actor, cls) {
     if (anc === null) stop = "close";
     else if (anc === "skip") stop = "skip";
   }
+  extras = ancestryExtras(actor);
+  steps = stepList();
   const con = actor.system.abilities.con.mod;
   const hp = Math.max(1, Number(cls.system.hitDie.slice(1)) + con);
   await cls.update({ "system.levels": 1, "system.hpRolls": [hp], "system.luckGains": [0] });
@@ -459,13 +497,21 @@ async function setUpFirstLevel(actor, cls) {
   if (stop === "close") return null;
 
   // Chosen so far: added at the end (Apply or Skip), nothing if a window is closed.
-  const chosen = { kit: "", feat: "", skills: [] };
+  const chosen = { kit: "", feat: "", bonusFeat: "", skills: [], knack: "" };
   const nameOf = new Map([...kits, ...feats, ...skills].map(e => [e.value, e.name]));
   const finish = async luck => {
     if (chosen.kit) await addFromUuid(actor, chosen.kit);
     if (chosen.feat) await addFromUuid(actor, chosen.feat, { levelTaken: 1 });
+    if (chosen.bonusFeat && chosen.bonusFeat !== chosen.feat) await addFromUuid(actor, chosen.bonusFeat, { levelTaken: 1 });
     // One at a time, so each skill goes through the slot check.
     for (const s of [...new Set(chosen.skills.filter(Boolean))]) await addFromUuid(actor, s);
+    // The Knack: no slot, Advantage on its checks (its own skill item, or the flag on one already taken).
+    if (chosen.knack) {
+      const name = nameOf.get(chosen.knack);
+      const have = actor.items.find(i => i.type === "skill" && i.name === name);
+      if (have) await have.update({ "flags.arneyan.knack": true });
+      else await addFromUuid(actor, chosen.knack, { extra: { system: { tier: "knack" }, flags: { arneyan: { knack: true } } } });
+    }
     if (luck) {
       const r = await new Roll("4d6dl").evaluate();
       await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
@@ -488,10 +534,24 @@ async function setUpFirstLevel(actor, cls) {
       title: `${actor.name}: 1st-level Feat`, step: stepOf("feat"), entries: feats, takeLabel: "Take Feat", skipLabel: "Skip",
       intro: intro(`<p>Choose your 1st-level Feat. Open to you: ${[...featPaths(actor)].map(esc).join(", ")}. Click one to read it.</p>`)
     }), set: v => { chosen.feat = v; } },
+    extras.bonusFeat && feats.length && { key: "bonusFeat", ask: () => pickFromList({
+      title: `${actor.name}: ancestry Feat (General Path)`, step: stepOf("bonusFeat"), takeLabel: "Take Feat", skipLabel: "Skip",
+      entries: feats.filter(e => e.group === "General Path" && e.value !== chosen.feat),
+      intro: intro(`<p>Your ancestry gives you an extra Feat from the General Path at 1st level, on top of your class Feat. Click one to read it.</p>`)
+    }), set: v => { chosen.bonusFeat = v; } },
     skills.length && { key: "skills", ask: () => pickFromList({
       title: `${actor.name}: starting Skills`, step: stepOf("skills"), entries: skills, max: 3, takeLabel: "Take Skills", skipLabel: "Skip",
       intro: intro(`<p>Choose three starting skills (NWP), each a different skill. You have ${actor.system.nwp?.max ?? 3} Skill slots${actor.system.nwp?.used ? `, ${actor.system.nwp.used} used` : ""}.</p>`)
-    }), set: v => { chosen.skills = Array.isArray(v) ? v : [v]; } }
+    }), set: v => { chosen.skills = Array.isArray(v) ? v : [v]; } },
+    extras.knack && skills.length && { key: "knack", ask: () => {
+      const k = extras.knack;
+      const fits = k.abilities.length ? skills.filter(e => k.abilities.some(a => e.group === ARNEYAN.abilities[a])) : skills;
+      const which = k.what ? `one ${esc(k.what)} skill` : "one skill";
+      return pickFromList({
+        title: `${actor.name}: Knack`, step: stepOf("knack"), entries: fits.length ? fits : skills, takeLabel: "Take Knack", skipLabel: "Skip",
+        intro: intro(`<p>Your ancestry lets you choose ${which}: you have Advantage on checks with it. It isn't a Proficiency tier and takes no Skill slot. It can be one of the skills you just chose.${k.what && !k.abilities.length ? " The GM checks it counts as the kind your ancestry names." : ""}</p>`)
+      });
+    }, set: v => { chosen.knack = v; } }
   ].filter(Boolean);
   for (const p of pickers) {
     const r = await p.ask();
@@ -503,7 +563,9 @@ async function setUpFirstLevel(actor, cls) {
   // Last step: what was chosen, and the Starting Luck roll.
   const lines = [chosen.kit && `<li><strong>Kit:</strong> ${esc(nameOf.get(chosen.kit) ?? "")}</li>`,
     chosen.feat && `<li><strong>Feat:</strong> ${esc(nameOf.get(chosen.feat) ?? "")}</li>`,
-    chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`].filter(Boolean);
+    chosen.bonusFeat && `<li><strong>Ancestry Feat:</strong> ${esc(nameOf.get(chosen.bonusFeat) ?? "")}</li>`,
+    chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`,
+    chosen.knack && `<li><strong>Knack:</strong> ${esc(nameOf.get(chosen.knack) ?? "")} (Advantage, no slot)</li>`].filter(Boolean);
   const res = await DialogV2.wait({
     window: { title: stepTitle(`${actor.name}: 1st-level ${cls.name}`, stepOf("finish")), icon: "fa-solid fa-flag-checkered" },
     classes: ["arneyan", "arn-step-final"], position: { width: 460 },

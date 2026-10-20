@@ -392,7 +392,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       skills: byType("skill").map(s => {
         const ab = s.system.ability;
         const mod = system.abilities[ab].mod;
-        return { item: s, id: s.id, abbr: ARNEYAN.abilityAbbr[ab], tier: ARNEYAN.skillTiers[s.system.tier], bonus: signed((mod <= 0 ? 1 : mod) + (mods?.sum("check", `check.${ab}`, "skill") ?? 0)), master: s.system.tier === "master" };
+        const knackOnly = s.system.tier === "knack";
+        return { item: s, id: s.id, abbr: ARNEYAN.abilityAbbr[ab], tier: ARNEYAN.skillTiers[s.system.tier], bonus: signed(knackOnly ? (mods?.sum("check", "skill") ?? 0) : (mod <= 0 ? 1 : mod) + (mods?.sum("check", `check.${ab}`, "skill") ?? 0)), master: s.system.tier === "master" || knackOnly || !!s.flags?.arneyan?.knack };
       }),
       abilityGroups: groups,
       combatAbilities,

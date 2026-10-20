@@ -139,7 +139,8 @@ ARNEYAN.weaponTraits = {
   "Entangling": { text: "Advantage on Trip and Grapple attempts made with this weapon." }
 };
 
-ARNEYAN.skillTiers = { trained: "Trained", master: "Master" };
+// A Knack (an ancestry's "choose one skill at creation"): Advantage on its checks, not a Proficiency tier, no slot.
+ARNEYAN.skillTiers = { trained: "Trained", master: "Master", knack: "Knack" };
 
 /** Session and month uses are not given back by a rest: the GM resets them (the sheet's uses box). */
 ARNEYAN.usesPer = { "": "At will", encounter: "Per encounter", day: "Per day", rest: "Per long rest", week: "Per week", session: "Per session", month: "Per month" };

@@ -105,8 +105,8 @@ export async function promptAbilityChoice(item) {
   return pick;
 }
 
-/** Slots a skill takes: one, or two for a Master. */
-const skillCost = tier => (tier === "master" ? 2 : 1);
+/** Slots a skill takes: one, two for a Master, none for a Knack (an ancestry's chosen skill). */
+const skillCost = tier => (tier === "master" ? 2 : tier === "knack" ? 0 : 1);
 
 /**
  * Skills (NWP): a new skill costs one slot, a Master one more. Over the limit a player is stopped; the GM is asked, and
@@ -263,12 +263,15 @@ export class ArneyanActor extends Actor {
     const ab = item.system.ability;
     const mod = this.system.abilities[ab].mod;
     const master = item.system.tier === "master";
-    const parts = [{ label: ARNEYAN.abilityAbbr[ab], value: mod <= 0 ? 1 : mod }, ...(m?.parts("check", `check.${ab}`, "skill") ?? [])];
-    const masterSrc = master ? { values: [1], adv: ["Master"], dis: [] } : NONE;
+    // A Knack alone is untrained (a plain d20) with Advantage; a Knack skill also trained keeps its Advantage.
+    const knackOnly = item.system.tier === "knack";
+    const knack = knackOnly || !!item.flags?.arneyan?.knack;
+    const parts = knackOnly ? [...(m?.parts("check", "skill") ?? [])] : [{ label: ARNEYAN.abilityAbbr[ab], value: mod <= 0 ? 1 : mod }, ...(m?.parts("check", `check.${ab}`, "skill") ?? [])];
+    const masterSrc = master || knack ? { values: [1], adv: [master ? "Master" : "Knack"], dis: [] } : NONE;
     const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill") ?? NONE);
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
-      actor: this, kind: "skill", mode, why, title: `${item.name} (${master ? "Master" : "Trained"})`, parts,
+      actor: this, kind: "skill", mode, why, title: `${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts,
       notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, extra: { skill: item.name }
     });
   }
@@ -739,7 +742,9 @@ export class ArneyanItem extends Item {
     if ((await super._preUpdate(changes, options, user)) === false) return false;
     const tier = foundry.utils.getProperty(changes, "system.tier");
     if (this.type === "skill" && this.parent instanceof Actor && tier && tier !== this.system.tier) {
-      if (tier === "master" && !(await skillSlotOk(this.parent, 1, `Making ${this.name} Master`, user))) {
+      // A higher tier costs the slots between them (Trained to Master one, a Knack to Trained one, to Master two).
+      const more = skillCost(tier) - skillCost(this.system.tier);
+      if (more > 0 && !(await skillSlotOk(this.parent, more, `Making ${this.name} ${ARNEYAN.skillTiers[tier] ?? tier}`, user))) {
         // Refused: redraw the open sheet so its Training select goes back to what it was.
         for (const app of new Set([this._sheet, ...Object.values(this.apps ?? {})])) if (app?.rendered) app.render();
         return false;

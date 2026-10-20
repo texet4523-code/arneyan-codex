@@ -226,5 +226,90 @@ const score = (a, k) => a._source.system.abilities[k].value;
   game.packs = packs;
 }
 
+// 0.10.18: the GM makes a character for a player who owns it: the GM isn't asked for its scores; the player is, the
+// first time they open its sheet (once a session). The GM making one with no player owner is asked as before.
+{
+  const handlers = {};
+  const keepHooks = globalThis.Hooks;
+  globalThis.Hooks = { on: (n, f) => { handlers[n] = f; }, once: () => {}, call: () => {}, callAll: () => {} };
+  G.registerChargen();
+  const gm = { id: "gm", isGM: true }, pl = { id: "pl", isGM: false };
+  let asked = 0;
+  DialogV2.wait = async () => { asked++; return "skip"; };
+  const mk = (id, owners) => {
+    const flags = {};
+    return { id, type: "character", name: id, flags, items: Object.assign([], { size: 0 }), _stats: {},
+      system: { abilities: Object.fromEntries(["str", "dex", "con", "int", "wis", "cha"].map(k => [k, { value: 10 }])) },
+      isOwner: true, getFlag: (s, k) => flags[k], setFlag: async (s, k, v) => { flags[k] = v; },
+      testUserPermission: u => owners.includes(u.id), update: async () => {} };
+  };
+  game.users = [gm, pl];
+  const wait = () => new Promise(r => setTimeout(r, 500));
+  // GM makes it, the player already owns it.
+  game.user = gm;
+  const a = mk("A1", ["gm", "pl"]);
+  handlers.createActor(a, {}, "gm");
+  await wait();
+  assert.equal(asked, 0, "the GM isn't asked");
+  assert.equal(a.flags.needsScores, true, "marked as needing scores");
+  // The player opens it: asked once.
+  game.user = pl;
+  handlers.renderActorSheetV2({ document: a });
+  await wait();
+  assert.equal(asked, 1, "the player is asked");
+  handlers.renderActorSheetV2({ document: a });
+  await wait();
+  assert.equal(asked, 1, "only once a session");
+  // GM makes one with no player owner yet: asked as before.
+  game.user = gm;
+  const b = mk("B1", ["gm"]);
+  handlers.createActor(b, {}, "gm");
+  await wait();
+  assert.equal(asked, 2, "the GM is asked when no player owns it");
+  globalThis.Hooks = keepHooks;
+}
+
+// 0.10.18: what an ancestry adds at 1st level, from its own trait texts in the compendium.
+{
+  const fs = await import("node:fs");
+  const anc = name => {
+    const dir = new URL("../packs-src/ancestries/", import.meta.url).pathname;
+    const d = fs.readdirSync(dir).map(f => JSON.parse(fs.readFileSync(dir + f))).find(x => x.name === name);
+    return { items: [{ type: "ancestry", system: d.system }] };
+  };
+  const human = P.ancestryExtras(anc("Human"));
+  assert.equal(human.bonusFeat, true, "a Human's extra General Path Feat");
+  assert.deepEqual(human.knack, { what: "", abilities: [] }, "and a Knack of any skill");
+  assert.deepEqual(P.ancestryExtras(anc("Aasimar")).knack.abilities, ["wis", "cha"], "Aasimar: a Wisdom or Charisma skill");
+  assert.deepEqual(P.ancestryExtras(anc("Dwarf")).knack, { what: "Craft", abilities: [] }, "Dwarf: a Craft skill (the GM checks)");
+  assert.equal(P.ancestryExtras(anc("Dwarf")).bonusFeat, false);
+  assert.equal(P.ancestryExtras(anc("Half-Elf")).knack.what, "", "'one additional skill': any");
+  assert.deepEqual(P.ancestryExtras({ items: [] }), { bonusFeat: false, knack: null }, "no ancestry: nothing extra");
+}
+// A Knack takes no Skill slot; Trained one, Master two.
+{
+  const D = await import("../arneyan/module/documents.mjs");
+  const plan = D.planSkills({ items: [], system: { nwp: { used: 3, max: 3 } } }, [{ name: "Swimming", system: { tier: "knack" } }, { name: "Riding", system: { tier: "trained" } }]);
+  assert.deepEqual([plan.fit.map(d => d.name), plan.over.map(d => d.name)], [["Swimming"], ["Riding"]], "the Knack fits with every slot used");
+}
+
+// 0.10.18: a feat that raises max HP (Toughness, +1 a level) taken while making or levelling a character raises
+// current HP as much (it used to leave a gap that grew each level).
+{
+  const keep = globalThis.fromUuid;
+  globalThis.fromUuid = async () => ({ type: "feat", toObject: () => ({ _id: "x", name: "Toughness", type: "feat", system: {} }) });
+  const ups = [];
+  const a = { type: "character", system: { attributes: { hp: { value: 30, max: 30 } } },
+    createEmbeddedDocuments: async () => { a.system.attributes.hp.max = 35; return [{}]; },
+    update: async d => { ups.push(d); a.system.attributes.hp.value = d["system.attributes.hp.value"]; } };
+  await P.addFromUuid(a, "Compendium.arneyan.feats.Item.t", { levelTaken: 5 });
+  assert.equal(a.system.attributes.hp.value, 35, "current HP rises with the maximum");
+  ups.length = 0;
+  a.createEmbeddedDocuments = async () => [{}];
+  await P.addFromUuid(a, "Compendium.arneyan.feats.Item.t");
+  assert.equal(ups.length, 0, "no change to the maximum: nothing to do");
+  globalThis.fromUuid = keep;
+}
+
 DialogV2.wait = saved;
 console.log("OK chargen");

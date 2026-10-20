@@ -254,7 +254,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     s.nwp = {
       max: ARNEYAN.nwpSlots(s.level) + mods.sum("nwp") + (Number(s.nwpBonus) || 0),
       extra: Number(s.nwpBonus) || 0,
-      used: actor.items.filter(i => i.type === "skill").reduce((t, i) => t + (i.system.tier === "master" ? 2 : 1), 0)
+      used: actor.items.filter(i => i.type === "skill").reduce((t, i) => t + (i.system.tier === "master" ? 2 : i.system.tier === "knack" ? 0 : 1), 0)
     };
 
     // Inventory slots (Codex, Carrying): coins 100 a slot, bundles as the item says, and nothing for
