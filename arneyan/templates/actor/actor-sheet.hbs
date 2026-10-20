@@ -23,6 +23,7 @@
       </div>
       <div class="arn-hp-sub">
         <label>Temp <input class="short" type="number" name="system.attributes.hp.temp" value="{{source.attributes.hp.temp}}"></label>
+        <label class="arn-subdual" data-tooltip="Non-lethal (subdual) damage, tracked apart from HP: at or above current HP it knocks the creature out rather than down">Non-lethal <input class="short" type="number" name="flags.arneyan.subdual" value="{{combat.subdual}}" min="0">{{#if combat.subdual}}{{#if editable}}<a data-action="clearSubdual" data-tooltip="Clear the non-lethal damage"><i class="fa-solid fa-xmark"></i></a>{{/if}}{{/if}}</label>
         {{#if editable}}<label data-tooltip="Your maximum HP before bonuses (Toughness and the like add to it). Change it if you rolled your HP by hand.">Max <input class="short" type="number" name="system.attributes.hp.max" value="{{source.attributes.hp.max}}" min="0"></label>{{/if}}
       </div>
       {{#if hitDice.length}}<div class="arn-hd-row">
@@ -196,7 +197,7 @@
           <li data-item-id="{{id}}" draggable="true" class="{{#unless item.system.equipped}}dim{{/unless}}">
             <span class="arn-name-cell"><img src="{{item.img}}" alt=""><a data-action="itemExpand">{{item.name}}</a>
               {{#if item.system.toggle}}<a class="arn-mode {{#if item.system.active}}on{{/if}}" {{#if @root.editable}}data-action="itemMode"{{/if}} data-tooltip="{{#if item.system.active}}Click to switch it off{{else}}Click to switch it on: its extra damage then counts on every hit{{/if}}"><i class="fa-solid fa-fire"></i> {{#if item.system.modeLabel}}{{item.system.modeLabel}}{{else}}Mode{{/if}}{{#unless item.system.active}}: off{{/unless}}</a>{{/if}}</span>
-            <span><button type="button" class="arn-roll-btn" data-action="itemUse" data-tooltip="{{toHitTip}} · Shift: Advantage · Ctrl: Disadvantage">{{toHit}}</button></span>
+            <span><button type="button" class="arn-roll-btn" data-action="itemUse" data-tooltip="{{toHitTip}} · Shift: Advantage · Ctrl: Disadvantage">{{toHit}}</button>{{#if offhand}}<button type="button" class="arn-roll-btn arn-offhand" data-action="offhandAttack" data-tooltip="Off-hand attack (Light): Disadvantage, and no attribute modifier to damage">Off</button>{{/if}}</span>
             <span><button type="button" class="arn-roll-btn dmg" data-action="itemDamage" data-tooltip="Roll damage · Shift: critical">{{damage}}</button></span>
             <span class="arn-muted">{{#if item.system.range}}{{item.system.range}}{{else}}Melee{{/if}}{{#if ammoNeeded}} · {{#if ammoChoices}}<select class="arn-ammo-pick" data-ammo-for="{{item.id}}" data-tooltip="Each attack spends one: pick which">{{selectOptions ammoChoices selected=item.system.ammoId}}</select>{{else}}<span class="arn-bad">no {{ammoNeeded}}s</span>{{/if}}{{/if}}</span>
             {{> "systems/arneyan/templates/actor/item-controls.hbs" equip=true system=item.system}}
@@ -225,6 +226,7 @@
           </li>
           {{else}}<li class="arn-empty">Abilities with uses, saves, damage or an on/off switch show here.</li>{{/each}}
         </ul>
+        {{> "systems/arneyan/templates/actor/combat-tools.hbs" combat=combat editable=editable}}
         {{#if isCharacter}}
         <div class="arn-quick">
           <button type="button" class="arn-btn ghost" data-action="rollUntrained"><i class="fa-solid fa-dice-d20"></i> Untrained check</button>

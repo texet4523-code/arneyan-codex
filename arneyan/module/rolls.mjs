@@ -177,7 +177,7 @@ export function resolveFormula(formula, data = {}) {
  * Roll damage or healing and post our own card, with Apply buttons.
  * On a critical, add the maximum of the weapon's own dice. Advantage never applies to damage.
  */
-export async function damageRoll({ actor, item = null, title, formula, mod = 0, crit = false, damageType = "", terms = [], extra = "", rollData = null, notes = [], extras = [], include = [], ammo = "", spell = "", hits = null, misses = [] }) {
+export async function damageRoll({ actor, item = null, title, formula, mod = 0, crit = false, damageType = "", terms = [], extra = "", rollData = null, notes = [], extras = [], include = [], ammo = "", spell = "", hits = null, misses = [], offhand = false, subdual = false }) {
   const data = rollData ?? actor?.getRollData?.() ?? {};
   const baseFormula = resolveFormula(formula || "0", data);
   const pieces = [{ label: item?.name ?? "Base", value: baseFormula }];
@@ -235,7 +235,7 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
     }))),
     parts: [...pieces.slice(1).map(p => ({ label: p.label, value: p.value })), ...riders.map(r => ({ label: ARNEYAN.damageTypes[r.type] ?? r.type, value: `+ ${r.formula}` }))],
     split: byType.length > 1 ? byType.map(p => ({ amount: p.amount, type: p.type, label: ARNEYAN.damageTypes[p.type] ?? "untyped" })) : [],
-    offers, notes,
+    offers, notes, subdual: !!subdual && !healing,
     // From an attack against several targets: the damage goes to the ones it hit.
     hits: hits ?? null, hasHits: Array.isArray(hits), hitNames: (hits ?? []).map(h => h.name).join(", "), missNames: (misses ?? []).map(h => h.name).join(", "),
     // A spell with a save: one click applies full damage to those who failed and half (or none) to those who saved.
@@ -246,7 +246,7 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
     speaker: ChatMessage.getSpeaker({ actor }),
     content,
     rolls,
-    flags: { [SYS]: { kind: healing ? "healing" : "damage", damageType, split: byType, weapon, crit, include, ammo, total, hits: hits ?? null, misses, spell: spell || (item?.type === "spell" ? item.name : ""), disrupt: /\bnalwood\b/i.test(item?.system?.traits ?? ""), itemUuid: item?.uuid ?? null, actorUuid: actor?.uuid ?? null,
+    flags: { [SYS]: { kind: healing ? "healing" : "damage", damageType, split: byType, weapon, crit, include, ammo, total, hits: hits ?? null, misses, spell: spell || (item?.type === "spell" ? item.name : ""), disrupt: /\bnalwood\b/i.test(item?.system?.traits ?? ""), itemUuid: item?.uuid ?? null, actorUuid: actor?.uuid ?? null, offhand: !!offhand, subdual: !!subdual && !healing,
       what: item?.name ?? String(title ?? "").replace(/:\s*(Damage|Healing)$/, "") } }
   }, { rollMode: game.settings.get("core", "rollMode") });
 }

@@ -4,6 +4,7 @@ import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from ".
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn } from "./gear.mjs";
+import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual } from "./combat.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -57,6 +58,10 @@ export class ArneyanActor extends Actor {
 
   _onUpdate(changed, options, userId) {
     super._onUpdate(changed, options, userId);
+    // Non-lethal damage: knocked out at current HP, awake again below it (combat.mjs).
+    if (userId === game.user.id && (foundry.utils.hasProperty(changed, "flags.arneyan.subdual") || foundry.utils.hasProperty(changed, "system.attributes.hp.value"))) {
+      syncSubdual(this).catch(err => console.warn("Arneyan | subdual", err));
+    }
     if (userId !== game.user.id || options.arneyanDowned) return;
     if (foundry.utils.hasProperty(changed, "system.attributes.hp.value") || foundry.utils.hasProperty(changed, "system.attributes.hp.max")) {
       this._syncDowned(options.arneyanPrevHp?.[this.id]).catch(err => console.warn("Arneyan | downed", err));
@@ -190,7 +195,11 @@ export class ArneyanActor extends Actor {
   }
 
   /** Attack: d20 + attribute modifier + BtH (+ magic and rules), against each target's AC. Bows and the like spend ammunition. */
-  async rollAttack(item, event) {
+  async rollAttack(item, event, { offhand = false } = {}) {
+    const targets = targetActors();
+    // Combat rules (combat.mjs): Full Cover, a jammed gun, off-hand, flanking and crowding.
+    const sit = await attackSituation(this, item, targets, { offhand });
+    if (sit.block) return null;
     // A creature that can't act doesn't use up ammunition.
     const { ok, ammo } = this.system.noAct ? { ok: true, ammo: null } : await spendAmmo(this, item);
     if (!ok) return null;
@@ -198,7 +207,6 @@ export class ArneyanActor extends Actor {
     const ammoPlus = Number(ammoName.match(/\+(\d)/)?.[1] ?? 0);
     const m = this.mods;
     const ranged = !!item.system.ranged;
-    const targets = targetActors();
     const own = m?.adv("adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
     // Conditions on a single target (Prone, Restrained, Invisible...) change the attacker's roll.
     let against = NONE;
@@ -246,25 +254,27 @@ export class ArneyanActor extends Actor {
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
-    const { mode, why } = advFrom(event, own, against, first, heavy, far);
+    const { mode, why } = advFrom(event, own, against, first, heavy, far, ...sit.adv);
+    notes.push(...sit.notes);
     if (this.system.noAct) notes.unshift(`${this.name} cannot take actions right now.`);
-    return d20Roll({
+    return sit.after(await d20Roll({
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
-      targets: targets.map(t => ({ name: t.name, ac: t.actor.acTotal, uuid: t.actor.uuid })),
-      title: `${item.name}: Attack${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName },
+      targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
+      title: `${item.name}: ${offhand ? "Off-hand " : ""}Attack${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
-      footer: ({ natural, crit }) => {
+      // A gun that misfires has none either (combat.mjs).
+      footer: sit.footer(({ natural, crit }) => {
         if (natural === 1 && !crit) return "";
         const normal = `<button type="button" class="arn-damage" data-item-id="${item.id}" data-crit="0"><i class="fa-solid fa-burst"></i> ${crit ? "Normal damage" : "Roll damage"}</button>`;
         const critical = `<button type="button" class="arn-damage ${crit ? "" : "ghost"}" data-item-id="${item.id}" data-crit="1"><i class="fa-solid fa-star"></i> Critical${crit ? " damage" : ""}</button>`;
         return `<div class="arn-dmg-buttons">${crit ? critical + normal : normal + critical}</div>`;
-      }
-    });
+      })
+    }));
   }
 
   /** Damage: weapon dice + the same attribute modifier as the attack (+ magic and rules). */
-  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [] } = {}) {
+  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false } = {}) {
     const sys = item.system;
     const ammoPlus = Number(String(ammo).match(/\+(\d)/)?.[1] ?? 0);
     // Extra damage with a condition ("against undead", Versatile two-handed) joins the roll only when asked for.
@@ -272,9 +282,10 @@ export class ArneyanActor extends Actor {
     const extras = [...(sys.bonusDamage ?? []).map((b, i) => ({ ...b, key: `b${i}` })).filter(b => !b.mode || sys.active).map(b => (b.mode ? { ...b, when: "" } : b)), ...this._versatileDie(item)]
       .map(x => (include.includes(x.key) ? { ...x, when: "", label: x.when ? `${x.formula} ${x.type || sys.damageType} (${x.when})` : "" } : x));
     let mod = sys.magic + ammoPlus;
-    if (this.type === "character") mod += this.system.abilities[this._weaponAbility(item)].mod;
-    return damageRoll({ ammo,
-      actor: this, item, title: `${item.name}: ${crit ? "Critical Damage" : "Damage"}`, formula: sys.damage, mod, crit, damageType: sys.damageType,
+    // An off-hand weapon adds no attribute modifier to damage (Codex, Dual Wielding).
+    if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
+    return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item),
+      actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: sys.damage, mod, crit, damageType: sys.damageType,
       terms: this.damageTerms(item), notes: this.mods?.notesFor("damage") ?? [], extras, include, hits, misses
     });
   }
@@ -305,7 +316,7 @@ export class ArneyanActor extends Actor {
    * @param {string} [o.weapon]     The weapon that dealt it: "plain", "silver", "adamantine", "magic" or "" (not a weapon).
    * @param {{type:string, amount:number}[]} [o.parts]  Damage of several types (a flaming sword); replaces amount and type.
    */
-  async applyDamage(amount, { type = "", mult = 1, temp = false, weapon = "", parts = null, spell = "", disrupt = false } = {}) {
+  async applyDamage(amount, { type = "", mult = 1, temp = false, weapon = "", parts = null, spell = "", disrupt = false, subdual = false } = {}) {
     const hp = this.system.attributes.hp;
     const before = hp.value;
     const maxHp = hp.max;
@@ -366,8 +377,9 @@ export class ArneyanActor extends Actor {
     tempLeft -= soaked;
     const toHp = dmg - soaked;
     if (soaked) after.push(`${soaked} on temporary HP`);
-    const value = before - toHp;
-    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft }, { arneyanDowned: true });
+    // Non-lethal (subdual) damage goes on its own track instead of off HP (combat.mjs).
+    const value = subdual ? before : before - toHp;
+    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}) }, { arneyanDowned: true });
     await this._syncDowned(before);
     // Concentration check.
     if (dmg > 0 && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
@@ -382,8 +394,9 @@ export class ArneyanActor extends Actor {
     // "Goblin takes 9 damage: 7 slashing, 2 fire (resists fire)", or "Goblin takes 7 slashing damage".
     const typed = taken.filter(x => x.amount > 0 || taken.length === 1);
     const kinds = typed.length > 1 ? `damage: ${typed.map(x => `${x.amount} ${x.type || "untyped"}`).join(", ")}` : `${typed[0]?.type ? `${typed[0].type} ` : ""}damage`;
-    const what = `${this.name} takes ${rolledDmg} ${kinds}${lines.length ? ` (${lines.join(", ")})` : ""}${after.length ? `; ${toHp} to HP after ${after.join(" and ")}` : ""}`;
-    return { text: `${what}. HP ${value}/${maxHp}`, line: `${what}${value <= 0 && before > 0 ? " and goes down" : ""}` };
+    const what = `${this.name} takes ${rolledDmg} ${subdual ? "non-lethal " : ""}${kinds}${lines.length ? ` (${lines.join(", ")})` : ""}${after.length ? `; ${toHp} to HP after ${after.join(" and ")}` : ""}`;
+    const ko = subdual && value > 0 && (Number(this.flags?.[SYS]?.subdual) || 0) >= value;
+    return { text: `${what}. HP ${value}/${maxHp}${subdual ? `, non-lethal ${Number(this.flags?.[SYS]?.subdual) || 0}` : ""}`, line: `${what}${value <= 0 && before > 0 ? " and goes down" : ko ? " and is knocked out" : ""}` };
   }
 
   /**
@@ -640,6 +653,9 @@ export class ArneyanItem extends Item {
   /** Post the item to chat, or roll it where that makes sense. */
   async use(event) {
     const actor = this.actor;
+    // Contests, Unarmed Strike and reactions (combat.mjs).
+    const handled = await combatUse(this, event);
+    if (handled !== undefined) return handled;
     switch (this.type) {
       case "weapon": return actor?.rollAttack(this, event);
       case "skill": return actor?.rollSkill(this, event);

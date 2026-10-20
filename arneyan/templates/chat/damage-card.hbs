@@ -32,7 +32,9 @@
       <button type="button" class="arn-apply-dmg" data-mult="-1" data-tooltip="Heal your targets (or, with none, the tokens you have selected)"><i class="fa-solid fa-heart"></i> Apply healing</button>
       <button type="button" class="arn-apply-dmg" data-mult="-1" data-temp="1" data-tooltip="Give temporary HP instead"><i class="fa-solid fa-shield-heart"></i> Temp HP</button>
     {{else}}
-      <button type="button" class="arn-apply-dmg" data-mult="1" data-tooltip="Apply to your targets (or, with none, the tokens you have selected); resistances count"><i class="fa-solid fa-burst"></i> Apply</button>
+      <button type="button" class="arn-apply-dmg" data-mult="1" data-tooltip="Apply to your targets (or, with none, the tokens you have selected); resistances count"><i class="fa-solid fa-burst"></i> Apply{{#if subdual}} (non-lethal){{/if}}</button>
+      {{#if subdual}}<button type="button" class="arn-apply-dmg" data-mult="1" data-subdual="0" data-tooltip="Apply as lethal damage instead">Lethal</button>
+      {{else}}<button type="button" class="arn-apply-dmg" data-mult="1" data-subdual="1" data-tooltip="Apply as non-lethal (subdual) damage: it builds up beside HP and knocks the creature out, not down, when it reaches its current HP"><i class="fa-solid fa-hand-fist"></i></button>{{/if}}
       <button type="button" class="arn-apply-dmg" data-mult="0.5" data-tooltip="Half damage (a successful save)">½</button>
       <button type="button" class="arn-apply-dmg" data-mult="2" data-tooltip="Double damage">×2</button>
       <button type="button" class="arn-apply-dmg" data-mult="-1" data-tooltip="Apply as healing"><i class="fa-solid fa-heart"></i></button>

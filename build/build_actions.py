@@ -15,8 +15,14 @@ GLYPH = {
     "Rear Attack": "backstab", "Receiving Charge": "spears", "Shield Blow": "shield-bash",
     "Shield Wall": "shield-reflect", "Trip": "falling", "Ready": "hourglass", "Delay": "sands-of-time",
     "Dash": "run", "Opportunity Attack": "sword-wound", "Grapple": "grab", "Overbear": "knockout",
-    "Unarmed Strike": "fist", "Help": "shaking-hands"
+    "Unarmed Strike": "fist", "Help": "shaking-hands", "Dirty Trick": "dust-cloud"
 }
+
+# Manoeuvres the current Codex (Book I, Combat Manoeuvres) has that the older markdown table lacks.
+EXTRA_MANOEUVRES = [
+    ("Dirty Trick", "Contest: your Dexterity check vs. the target's Dexterity or Wisdom check (its choice). You win, it is "
+                    "Blinded until the end of its next turn. A creature only falls for your Dirty Trick once per fight"),
+]
 
 # Manoeuvres you declare and keep up for a while: a switch on the sheet with the table's own effect.
 TOGGLES = {
@@ -34,8 +40,17 @@ def rule(k, v):
     return {"key": k, "value": v, "when": "", "label": ""}
 
 
+# Use rolls these for you (combat.mjs): the contest against your target, or an unarmed attack.
+USE_NOTES = {
+    **{n: "Target one creature and press Use: both sides roll, and the result is applied." for n in ("Disarm", "Dirty Trick", "Grapple", "Overbear", "Trip")},
+    "Unarmed Strike": "Press Use to attack: it adds an Unarmed Strike weapon to the sheet the first time.",
+}
+
+
 def ability(name, html, fol, sort, save="", toggle=False):
     rules = [rule(k, v) for k, v in TOGGLES.get(name, [])]
+    if name in USE_NOTES:
+        html += f"<p class=\"arn-note\">{USE_NOTES[name]}</p>"
     from icons import icon
     item("actions", name, "ability", {
         "description": html, "source": {"book": "phb", "page": 0},
@@ -66,6 +81,11 @@ def build(_icon=None):
         if name in TOGGLES:
             html += "<p class=\"arn-note\">Switch it on from the Actions tab while it applies; the sheet adds the Advantage or Disadvantage.</p>"
         ability(name, html, manoeuvres, n * 10, save="fort" if name == "Shield Blow" else "")
+        n += 1
+    for name, effect in EXTRA_MANOEUVRES:
+        if f"| {name} |" in sec:
+            continue
+        ability(name, f"<p>{md_inline(effect)}</p>{contest}", manoeuvres, n * 10)
         n += 1
 
     # Basic actions from Actions & Turns, Movement, Reactions and Unarmed Combat.

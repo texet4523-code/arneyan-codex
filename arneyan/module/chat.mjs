@@ -87,7 +87,7 @@ export async function applyDamageTo(actors, amount, opts, ctx = {}) {
   for (const actor of actors) {
     if (actor.isOwner) {
       const hp = actor.system.attributes?.hp ?? {};
-      undo.push({ uuid: actor.uuid, value: hp.value ?? 0, temp: hp.temp ?? 0, name: actor.name });
+      undo.push({ uuid: actor.uuid, value: hp.value ?? 0, temp: hp.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, name: actor.name });
       const r = await actor.applyDamage(amount, opts);
       lines.push(r.line ?? r.text);
     } else others.push(actor.uuid);
@@ -164,8 +164,8 @@ async function onSocket(msg, senderId) {
       if (!(actor instanceof Actor) || !creature(actor) || actor.pack) continue;
       try {
         const hp0 = actor.system.attributes?.hp ?? {};
-        undo.push({ uuid: actor.uuid, value: hp0.value ?? 0, temp: hp0.temp ?? 0, name: actor.name });
-        const r = await actor.applyDamage(amount, { type: Object.hasOwn(ARNEYAN.damageTypes, type) ? type : "", mult, temp: !!msg.opts?.temp, weapon: WEAPON_KINDS.includes(msg.opts?.weapon) ? msg.opts.weapon : "", parts, spell: String(msg.opts?.spell ?? "").slice(0, 80), disrupt: !!msg.opts?.disrupt });
+        undo.push({ uuid: actor.uuid, value: hp0.value ?? 0, temp: hp0.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, name: actor.name });
+        const r = await actor.applyDamage(amount, { type: Object.hasOwn(ARNEYAN.damageTypes, type) ? type : "", mult, temp: !!msg.opts?.temp, weapon: WEAPON_KINDS.includes(msg.opts?.weapon) ? msg.opts.weapon : "", parts, spell: String(msg.opts?.spell ?? "").slice(0, 80), disrupt: !!msg.opts?.disrupt, subdual: msg.opts?.subdual === true && mult > 0 });
         lines.push(r.line ?? r.text);
       } catch (err) { console.warn(`Arneyan | Could not apply damage to ${actor.name}`, err); }
     }
@@ -256,7 +256,8 @@ async function undoEntries(entries) {
     if (!(a instanceof Actor) || !a.isOwner) continue;
     const value = Number(e.value), temp = Number(e.temp);
     if (!Number.isFinite(value) || !Number.isFinite(temp)) continue;
-    await a.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": Math.max(0, temp) });
+    const sub = Number(e.subdual);
+    await a.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": Math.max(0, temp), ...(Number.isFinite(sub) && e.subdual !== undefined ? { [`flags.${SYS}.subdual`]: Math.max(0, sub) } : {}) });
     lines.push(`${a.name} back to ${value} HP`);
   }
   if (lines.length) report({ source: "Undo" }, lines, "rotate-left");
@@ -313,7 +314,7 @@ function onRender(message, html) {
       hits = res.filter(r => r.hit).map(({ name, uuid }) => ({ name, uuid }));
       misses = res.filter(r => !r.hit).map(({ name, uuid }) => ({ name, uuid }));
     }
-    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses });
+    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand });
   });
 
   // A damage roll that should have been a critical, or that needs its conditional extra damage: roll it again.
@@ -324,8 +325,8 @@ function onRender(message, html) {
     if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner can roll its damage.`);
     return actor.rollDamage(item, opts);
   };
-  on(".arn-recrit", () => reroll({ crit: true, include: flags.include ?? [], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [] }));
-  on(".arn-reroll-with", (ev, btn) => reroll({ crit: !!flags.crit, include: [...(flags.include ?? []), btn.dataset.key], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [] }));
+  on(".arn-recrit", () => reroll({ crit: true, include: flags.include ?? [], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand }));
+  on(".arn-reroll-with", (ev, btn) => reroll({ crit: !!flags.crit, include: [...(flags.include ?? []), btn.dataset.key], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand }));
 
   on(".arn-item-damage", async (ev, btn) => {
     const item = await fromUuid(btn.dataset.itemUuid);
@@ -343,8 +344,10 @@ function onRender(message, html) {
       actors = (await Promise.all(flags.hits.map(h => fromUuid(h.uuid).catch(() => null)))).filter(a => a && creature(a));
       if (!actors.length) return ui.notifications.info("That attack hit nobody. (Alt-click Apply to use your targets anyway.)");
     } else actors = targetedThenSelected();
+    // Non-lethal: the button says, else the card's default (unarmed strikes).
+    const subdual = mult > 0 && (btn.dataset.subdual !== undefined ? btn.dataset.subdual === "1" : !!flags.subdual);
     return applyDamageTo(actors, total, { type: box?.dataset.type ?? "", mult, temp: !!btn.dataset.temp, weapon: box?.dataset.weapon ?? "",
-      parts: mult > 0 && flags.split?.length > 1 ? flags.split : null, spell: flags.spell ?? "", disrupt: !!flags.disrupt }, sourceOf(message));
+      parts: mult > 0 && flags.split?.length > 1 ? flags.split : null, spell: flags.spell ?? "", disrupt: !!flags.disrupt, subdual }, sourceOf(message));
   });
 
   // Apply by saves: full damage to those who failed this spell's save, half (or none) to those who saved.
@@ -424,14 +427,15 @@ function contextOptions(app, options) {
     const m = msgOf(li);
     return !!m && (m.rolls?.length > 0) && ["damage", "healing"].includes(m.flags?.[SYS]?.kind);
   };
-  const apply = mult => li => {
+  const apply = (mult, subdual) => li => {
     const m = msgOf(li);
     const f = m.flags[SYS];
     applyDamageTo(targetedThenSelected(), f.total ?? m.rolls[0].total, { type: f.damageType ?? "", mult, weapon: f.weapon ?? "",
-      parts: mult > 0 && f.split?.length > 1 ? f.split : null, spell: f.spell ?? "", disrupt: !!f.disrupt }, sourceOf(m));
+      parts: mult > 0 && f.split?.length > 1 ? f.split : null, spell: f.spell ?? "", disrupt: !!f.disrupt, subdual: mult > 0 && (subdual ?? !!f.subdual) }, sourceOf(m));
   };
-  const add = (name, icon, mult) => options.push({ name, label: name, icon: `<i class="fa-solid ${icon}"></i>`, condition: canApply, callback: apply(mult) });
+  const add = (name, icon, mult, subdual) => options.push({ name, label: name, icon: `<i class="fa-solid ${icon}"></i>`, condition: canApply, callback: apply(mult, subdual) });
   add("Apply damage", "fa-burst", 1);
+  add("Apply as non-lethal", "fa-hand-fist", 1, true);
   add("Apply half damage", "fa-shield-halved", 0.5);
   add("Apply double damage", "fa-angles-up", 2);
   add("Apply as healing", "fa-heart", -1);

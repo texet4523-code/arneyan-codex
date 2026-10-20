@@ -1,0 +1,29 @@
+{{!-- Combat tools (combat.mjs): contests, unarmed strikes, fighting defensively, morale, firearms training. --}}
+<section class="arn-combat-tools">
+  <div class="arn-section-head"><h3>Combat</h3></div>
+  <div class="arn-ct-row">
+    <span class="arn-ct-label" data-tooltip="Both sides roll; the higher total wins and ties go to the defender. Target one creature first.">Contests</span>
+    {{#each combat.contests}}<button type="button" class="arn-btn small ghost" data-action="contest" data-kind="{{kind}}" data-tooltip="{{tip}}"><i class="fa-solid fa-{{icon}}"></i> {{label}}</button>{{/each}}
+    {{#if combat.unarmed}}<button type="button" class="arn-btn small ghost" data-action="unarmedStrike" data-tooltip="1d2 + Strength, non-lethal by default"><i class="fa-solid fa-hand-fist"></i> Unarmed strike</button>{{/if}}
+  </div>
+  {{#if combat.defend.length}}
+  <div class="arn-ct-row">
+    <span class="arn-ct-label" data-tooltip="Instead of attacking with the off-hand weapon, or declared at the start of your turn with a shield. Lasts until the start of your next turn.">Fight defensively</span>
+    {{#each combat.defend}}<button type="button" class="arn-btn small {{#unless on}}ghost{{/unless}}" data-action="fightDefensively" data-mode="{{mode}}" data-tooltip="{{tip}}{{#if on}} (click to stop){{/if}}"><i class="fa-solid fa-shield-halved"></i> {{label}}</button>{{/each}}
+  </div>
+  {{/if}}
+  {{#if combat.morale}}
+  <div class="arn-ct-row">
+    <span class="arn-ct-label">Morale</span>
+    <button type="button" class="arn-btn small" data-action="rollMorale" data-tooltip="2d6: higher than the Morale Score and the group breaks"><i class="fa-solid fa-flag"></i> Morale check ({{#if combat.morale.score}}{{combat.morale.score}}{{else}}not set{{/if}}{{#if combat.morale.bonus}}, {{combat.morale.bonus}} from effects{{/if}})</button>
+  </div>
+  {{/if}}
+  {{#if combat.guns}}
+  <div class="arn-ct-row">
+    <span class="arn-ct-label">Firearms</span>
+    {{#if combat.guns.trained}}{{#unless combat.guns.flag}}<span class="arn-muted">Trained (class or ancestry)</span>{{/unless}}{{/if}}
+    {{#if combat.guns.flag}}<label class="check"><input type="checkbox" name="flags.arneyan.firearmsTrained" checked {{#unless editable}}disabled{{/unless}}> Trained (backstory or downtime)</label>
+    {{else}}{{#unless combat.guns.trained}}<label class="check" data-tooltip="Untrained: Disadvantage on the attack roll, and a roll that would be a critical hit jams instead"><input type="checkbox" name="flags.arneyan.firearmsTrained" {{#unless editable}}disabled{{/unless}}> Trained (backstory or downtime)</label>{{/unless}}{{/if}}
+  </div>
+  {{/if}}
+</section>

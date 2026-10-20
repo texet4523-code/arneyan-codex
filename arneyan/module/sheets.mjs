@@ -7,6 +7,7 @@ import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
 import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName } from "./gear.mjs";
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
+import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
 const { ActorSheetV2, ItemSheetV2 } = foundry.applications.sheets;
@@ -154,7 +155,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       npcNewDay: ArneyanActorSheet.#npcNewDay,
       refreshMonster: ArneyanActorSheet.#refreshMonster,
       lastChance: ArneyanActorSheet.#lastChance,
-      revertShape: ArneyanActorSheet.#revertShape
+      revertShape: ArneyanActorSheet.#revertShape,
+      ...combatSheetActions
     }
   };
 
@@ -198,6 +200,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       ammoNeeded: w.system.ammoType || "", ammoName: ammoFor(actor, w)?.name ?? "", ammoLeft: ammoFor(actor, w)?.system.quantity ?? 0,
       ammoChoices: w.system.ammoType ? ammoChoices(actor, w) : null,
       toHitTip: breakdown(actor.attackParts(w)),
+      offhand: isLight(w),
       damageType: ARNEYAN.damageTypes[w.system.damageType] ?? ""
     })));
 
@@ -352,7 +355,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       { key: "ac", label: "AC", value: system.acTotal, tip: breakdown(system.acParts) },
       { key: "bth", label: "Attack", value: signed(system.attributes.attack) },
       { key: "init", label: "Init", value: signed(system.attributes.init), tip: breakdown(system.attributes.initParts), action: "rollInit" },
-      { key: "morale", label: "Morale", value: system.attributes.morale }
+      { key: "morale", label: "Morale", value: system.attributes.morale, action: "rollMorale", tip: "Morale Check: 2d6, higher than this breaks" }
     ];
     const saves = isCharacter
       ? Object.entries(system.saves).map(([k, v]) => ({ key: k, label: v.label, value: v.value, bonus: actor._source.system.saves[k].bonus, valueLabel: signed(v.value), tip: breakdown(v.parts), abbr: ARNEYAN.abilityAbbr[v.ability], autoFail: v.autoFail }))
@@ -397,6 +400,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       })) : [],
       multi: actor.items.filter(i => i.type === "class").length > 1,
       conditions, activeConditions: conditions.filter(c => c.active), effects, toggles, activeRules,
+      combat: combatSheetContext(actor),
       situational: mods?.situational ?? [],
       traits: prettyTraits(system.traits),
       levelLabel: system.details?.levelText || system.level,
