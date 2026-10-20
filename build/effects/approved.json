@@ -1394,21 +1394,6 @@
   "manual": "Permanent item creation.",
   "confidence": "high"
  },
- "class-features/AtjTIhl87NxCjvLp": {
-  "name": "GM rolls secretly",
-  "from": "Assassin",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "save",
-    "value": "min(1,floor(@cl/3))",
-    "when": "vs poison"
-   }
-  ],
-  "summary": "+1 on saves vs poison from 3rd level, as a reminder.",
-  "manual": "This item's text looks like a mis-split part of Assassin's Skills; the Hide/Move Silently speed penalties stay manual.",
-  "confidence": "medium"
- },
  "class-features/g2VIagHD4agUcanm": {
   "name": "Killer's Precision",
   "from": "Assassin",
@@ -10548,6 +10533,21 @@
   ],
   "summary": "Ritual casting: you gain 2 levels of Exhaustion.",
   "manual": "Only when cast as a ritual; the chosen effect.",
+  "confidence": "medium"
+ },
+ "class-features/Xv9Dy6EQsc6c2pyV": {
+  "name": "Assassin's Skills",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "save",
+    "value": "min(1,floor(@cl/3))",
+    "when": "vs poison"
+   }
+  ],
+  "summary": "+1 on saves vs poison from 3rd level, as a reminder.",
+  "manual": "This item's text looks like a mis-split part of Assassin's Skills; the Hide/Move Silently speed penalties stay manual.",
   "confidence": "medium"
  }
 }
