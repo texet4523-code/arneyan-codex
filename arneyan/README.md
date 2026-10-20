@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.26 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.27 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.27
+
+- **Monster art from your art packs.** Game Settings, **Monster art**: tick the art modules you own (token packs, bestiary or adventure modules with creature art, free packs), press **Scan**, then tick **New monsters from the Bestiary get matched art**. Monsters dragged in from the Bestiary then get the token and portrait with the same name (an Ogre gets the pack's ogre). **Use on monsters already here** does the ones already in the world and their tokens. Nothing is copied: the images stay in the art module, so keep it installed (it can stay switched off). Art you set by hand is never replaced.
 
 ## What's new in 0.10.26
 

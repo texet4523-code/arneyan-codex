@@ -29,6 +29,7 @@ import { registerCombat } from "./combat.mjs";
 import { registerIntegrations } from "./integrations.mjs";
 import { registerGmTools } from "./gmtools.mjs";
 import { registerWorld } from "./world.mjs";
+import { registerArt } from "./art.mjs";
 
 const SYS = "arneyan";
 
@@ -81,6 +82,7 @@ Hooks.once("init", () => {
   registerIntegrations();
   registerGmTools();
   registerWorld();
+  registerArt();
   Object.assign(game.arneyan, { useItem, abilityScores });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).

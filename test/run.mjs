@@ -711,3 +711,5 @@ await import("./chargen.mjs");
 await import("./v14dur.mjs");
 // 0.10.19 Class details and the Browser's template (test/classinfo.mjs runs on its own too).
 await import("./classinfo.mjs");
+// 0.10.27 Monster art from art packs (test/art.mjs runs on its own too).
+await import("./art.mjs");

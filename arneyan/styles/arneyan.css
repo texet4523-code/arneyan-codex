@@ -743,3 +743,12 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-table td { color: var(--arn-ink); }
 .arneyan .arn-br-unlink { margin-left: 8px; white-space: nowrap; cursor: pointer; color: var(--arn-accent); font-weight: 600; }
 .arneyan .arn-br-unlink:hover { text-decoration: underline; }
+
+/* Monster art from art packs (art.mjs). */
+.arneyan.arn-art-config .window-content { padding: 10px 14px; }
+.arneyan .arn-art { display: flex; flex-direction: column; gap: 4px; height: 100%; }
+.arneyan .arn-art h3 { margin: 8px 0 2px; color: var(--arn-accent); border-bottom: 1px solid var(--arn-border); font-size: 14px; text-shadow: none; }
+.arneyan .arn-art-mods { flex: 1; min-height: 140px; overflow-y: auto; border: 1px solid var(--arn-border); border-radius: 6px; padding: 4px 8px; background: var(--arn-surface); }
+.arneyan .arn-art-mod { display: block; padding: 2px 0; }
+.arneyan .arn-art-mod .arn-muted { font-size: 11px; margin-left: 4px; }
+.arneyan .arn-art-changed.hidden { display: none; }

@@ -1,0 +1,23 @@
+<div class="arn-art">
+  <p>Use the token art and portraits from art modules you have installed (a token pack, a bestiary or adventure module with creature art), matched to the Bestiary's monsters by name. Nothing is copied: tokens point at the images where the module keeps them, so keep the module installed (it can stay switched off). Art you set by hand is never replaced.</p>
+
+  <h3>1. Art modules to use</h3>
+  <p class="hint">Ticked to start with: the ones that look like art packs. Scan uses the ticks as they are.</p>
+  <div class="arn-art-mods">
+    {{#each mods}}
+    <label class="arn-art-mod"><input type="checkbox" name="mod" value="{{id}}" {{#if checked}}checked{{/if}}> {{title}} <span class="arn-muted">{{id}}</span></label>
+    {{/each}}
+  </div>
+  <p>
+    <button type="button" data-action="scan"><i class="fa-solid fa-magnifying-glass"></i> Scan</button>
+    {{#if names}}<span class="arn-muted">Art for {{names}} Bestiary monsters ({{images}} images looked at){{#if scanned}}, scanned {{scanned}}{{/if}}.</span>{{else}}<span class="arn-muted">Not scanned yet.</span>{{/if}}
+    <span class="arn-art-changed hidden arn-bad">Ticks changed: press Scan to use them.</span>
+  </p>
+
+  <h3>2. Use it</h3>
+  <label class="arn-art-mod"><input type="checkbox" name="auto" {{#if auto}}checked{{/if}}> New monsters from the Bestiary get matched art (saved as soon as you tick it)</label>
+  <p>
+    <button type="button" data-action="apply" {{#unless names}}disabled{{/unless}}><i class="fa-solid fa-wand-magic-sparkles"></i> Use on monsters already here</button>
+    <span class="arn-muted">Bestiary monsters, and their tokens, still showing an Arneyan icon.</span>
+  </p>
+</div>

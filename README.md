@@ -2,7 +2,7 @@
 
 The game system for **The Arneyan Codex**, for Foundry VTT v13 and v14.
 
-**Playtest release: 0.10.26.** The rules are complete enough to play, and updates keep coming as the playtest goes on.
+**Playtest**: released from 0.10.26; the newest version is always under Releases. The rules are complete enough to play, and updates keep coming as the playtest goes on.
 
 ## Install
 
