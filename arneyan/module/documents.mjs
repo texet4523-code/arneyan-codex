@@ -3,7 +3,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestrySetup } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
+import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -103,6 +103,63 @@ export async function promptAbilityChoice(item) {
   if (!c.options.includes(pick)) return null;
   await item.update({ "system.abilityChoice.value": pick });
   return pick;
+}
+
+/** Does this item still need its weapon picked (Weapon Specialisation with none chosen yet)? */
+export function needsWeaponChoice(item) {
+  const c = item?.system?.weaponChoice;
+  return !!String(c?.max ?? "").trim() && !(c.value ?? []).some(v => String(v ?? "").trim());
+}
+
+/**
+ * The weapons a pick offers: the character's own, then the Catalogue's (the equipment compendium's weapons) not
+ * already among them. Names as they're stored, so the sheet and the prompt show the same list.
+ */
+export async function weaponOptions(actor) {
+  const own = [...new Set((actor?.items ?? []).filter(i => i.type === "weapon").map(i => i.name))].sort((a, b) => a.localeCompare(b));
+  let catalogue = [];
+  try {
+    const pack = game.packs?.get(`${SYS}.equipment`);
+    const index = pack ? await pack.getIndex({ fields: ["type"] }) : [];
+    catalogue = [...new Set([...index].filter(e => e.type === "weapon").map(e => e.name))].sort((a, b) => a.localeCompare(b));
+  } catch (err) { console.warn("Arneyan | Catalogue weapons", err); }
+  const mine = new Set(own.map(weaponKey));
+  return { own, catalogue: catalogue.filter(n => !mine.has(weaponKey(n))) };
+}
+
+/** The <option>s of a weapon pick, the character's weapons first. `selected`: the name to mark. */
+export function weaponOptionsHtml({ own = [], catalogue = [] }, selected = "") {
+  const opt = n => `<option value="${esc(n)}"${n === selected ? " selected" : ""}>${esc(n)}</option>`;
+  // A pick that's on neither list (a weapon since sold, a homebrew name) still shows as picked.
+  const other = selected && !own.includes(selected) && !catalogue.includes(selected) ? `<optgroup label="Picked">${opt(selected)}</optgroup>` : "";
+  return other + (own.length ? `<optgroup label="Your weapons">${own.map(opt).join("")}</optgroup>` : "")
+    + (catalogue.length ? `<optgroup label="Catalogue">${catalogue.map(opt).join("")}</optgroup>` : "");
+}
+
+/**
+ * Ask which weapon an item's weapon rules are for (Weapon Specialisation), and store it (system.weaponChoice.value).
+ * From 13th level a Fighter may pick a second one: the prompt offers as many as are still free.
+ */
+export async function promptWeaponChoice(item) {
+  const c = item?.system?.weaponChoice;
+  if (!item?.isOwner || !String(c?.max ?? "").trim()) return null;
+  const actor = item.actor ?? null;
+  const max = weaponPickMax(item.system, featureLevel(actor, item));
+  const have = (c.value ?? []).map(v => String(v ?? "").trim()).filter(Boolean);
+  const free = Math.max(0, max - have.length);
+  if (!free) return null;
+  const options = await weaponOptions(actor);
+  const selects = Array.from({ length: free }, (_, i) => `<label class="arn-act"><select name="pick${i}"><option value="">${i ? "None yet" : "Choose a weapon"}</option>${weaponOptionsHtml(options)}</select></label>`).join("");
+  const content = `<p>${esc(item.name)}${actor?.name ? ` (${esc(actor.name)})` : ""}: which weapon${free > 1 ? "s" : ""}?${have.length ? ` Already picked: ${esc(have.join(", "))}.` : ""}</p>
+    <div class="arn-acts">${selects}</div>`;
+  const picked = await DialogV2.wait({ window: { title: item.name, icon: "fa-solid fa-khanda" }, classes: ["arneyan"], position: { width: 380 }, content,
+    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => [...btn.form.querySelectorAll("select[name^=pick]")].map(s => s.value).filter(Boolean) },
+      { action: "later", label: "Later" }], rejectClose: false }).catch(() => null);
+  // Later or closed: nothing stored; the rules stay reminders and the sheet shows "Choose weapon" on the item.
+  if (!Array.isArray(picked) || !picked.length) return null;
+  const value = [...new Set([...have, ...picked])].slice(0, max);
+  await item.update({ "system.weaponChoice.value": value });
+  return value;
 }
 
 /** Slots a skill takes: one, or two for a Master. */
@@ -291,6 +348,8 @@ export class ArneyanActor extends Actor {
       parts.push({ label: "BtH", value: this.system.bth });
     }
     parts.push(...(m?.parts("attack", ranged ? "attack.ranged" : "attack.melee") ?? []));
+    // Rules for some weapons only (scoped to this one): their attack bonuses too.
+    parts.push(...(m?.forWeapon(item).mods.parts("attack", ranged ? "attack.ranged" : "attack.melee") ?? []));
     parts.push({ label: "Magic", value: item.system.magic });
     parts.push({ label: "Weapon bonus", value: item.system.attackBonus });
     return parts;
@@ -301,10 +360,33 @@ export class ArneyanActor extends Actor {
     return this.attackParts(item).reduce((t, p) => t + (Number(p.value) || 0), 0);
   }
 
-  /** Damage terms from rules for this weapon. */
-  damageTerms(item) {
-    const ranged = !!item.system.ranged;
-    return this.mods?.damage("damage", ranged ? "damage.ranged" : "damage.melee") ?? [];
+  /**
+   * Damage terms from rules for this weapon: everyone's, and those scoped to weapons that fit this one (Weapon
+   * Specialisation's bonus with the picked weapon). `include`: the extras in the roll ("versatile": two-handed).
+   */
+  damageTerms(item, { include = [] } = {}) {
+    const m = this.mods;
+    if (!m) return [];
+    const keys = ["damage", item.system.ranged ? "damage.ranged" : "damage.melee"];
+    return [...m.damage(keys), ...m.forWeapon(item, { include }).mods.damage(keys)];
+  }
+
+  /**
+   * The weapon's own damage dice for a roll, with any reroll worked in (Crushing Blow: 1s and 2s on a two-handed
+   * weapon), and the damage card's notes: reminders, less those a weapon-scoped rule now applies, plus what was
+   * rerolled. Bonus dice (riders, Versatile's extra die) are never rerolled.
+   */
+  weaponDice(item, { include = [] } = {}) {
+    const m = this.mods;
+    const own = item.system.damage;
+    if (!m) return { formula: own, notes: [] };
+    const fw = m.forWeapon(item, { include });
+    const all = m.reroll(), mine = fw.mods.reroll();
+    const n = Math.max(all.value, mine.value);
+    const formula = n ? rerollDice(own, n) : own;
+    const notes = m.notesFor("damage").filter(t => !fw.drop.has(t));
+    if (formula !== own) notes.unshift(rerollNote([...new Set([...all.labels, ...mine.labels])], n));
+    return { formula, notes };
   }
 
   /** Damage as shown on the sheet, with its types, e.g. "1d8+3 slashing + 1d6 fire". */
@@ -339,7 +421,9 @@ export class ArneyanActor extends Actor {
     const own = m?.adv("adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
     // Conditions on a single target (Prone, Restrained, Invisible...) change the attacker's roll.
     let against = NONE;
-    const notes = [...more, ...(m?.notesFor("attack") ?? [])];
+    // Rules scoped to weapons that fit this one apply; their reminders leave the card.
+    const fw = m?.forWeapon(item) ?? null;
+    const notes = [...more, ...(m?.notesFor("attack") ?? []).filter(t => !fw?.drop.has(t))];
     if (targets.length === 1) {
       const tm = targets[0].actor.system.mods;
       if (tm) {
@@ -349,14 +433,26 @@ export class ArneyanActor extends Actor {
       }
     }
     // Advantage on the first attack each round (Bless, Favoured Enemy and the like).
-    let first = NONE;
-    const firstSrc = m?.adv("adv.attack.first", ...(ranged ? [] : ["adv.attack.first.melee"])) ?? NONE;
-    if (firstSrc.values.length) {
+    let first = NONE, firstWith = NONE;
+    const firstKeys = ["adv.attack.first", ...(ranged ? [] : ["adv.attack.first.melee"])];
+    const firstSrc = m?.adv(...firstKeys) ?? NONE;
+    // ...and on the first attack with a particular weapon each round (Weapon Specialisation), tracked per weapon.
+    const withSrc = fw?.mods.adv(...firstKeys) ?? NONE;
+    if (firstSrc.values.length || withSrc.values.length) {
       const combat = combatFor(this);
       const stamp = combat?.started ? `${combat.id}.${combat.round}` : null;
-      const last = this.getFlag?.(SYS, "lastAttack");
-      if (!stamp || last !== stamp) first = { values: firstSrc.values, adv: firstSrc.adv.map(l => `${l} (first attack)`), dis: firstSrc.dis.map(l => `${l} (first attack)`) };
-      if (stamp && this.isOwner) this.setFlag(SYS, "lastAttack", stamp);
+      if (firstSrc.values.length) {
+        const last = this.getFlag?.(SYS, "lastAttack");
+        if (!stamp || last !== stamp) first = { values: firstSrc.values, adv: firstSrc.adv.map(l => `${l} (first attack)`), dis: firstSrc.dis.map(l => `${l} (first attack)`) };
+        if (stamp && this.isOwner) this.setFlag(SYS, "lastAttack", stamp);
+      }
+      if (withSrc.values.length) {
+        const key = weaponKey(item.name) || item.id;
+        const w = this.getFlag?.(SYS, "firstWith");
+        const used = stamp && w?.stamp === stamp ? (w.used ?? []) : [];
+        if (!stamp || !used.includes(key)) firstWith = { values: withSrc.values, adv: withSrc.adv.map(l => `${l} (first attack with ${item.name})`), dis: withSrc.dis.map(l => `${l} (first attack with ${item.name})`) };
+        if (stamp && this.isOwner && !used.includes(key)) this.setFlag(SYS, "firstWith", { stamp, used: [...used, key] });
+      }
     }
     // Weapon traits (Codex): Heavy needs Strength 13 (Small creatures always struggle, Large never do).
     const traits = String(item.system.traits ?? "");
@@ -383,7 +479,7 @@ export class ArneyanActor extends Actor {
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
-    const { mode, why } = advFrom(event, own, against, first, heavy, far, adv ?? NONE, ...sit.adv);
+    const { mode, why } = advFrom(event, own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
     notes.push(...sit.notes);
     if (this.system.noAct) notes.unshift(`${this.name} cannot take actions right now.`);
     return sit.after(await d20Roll({
@@ -415,9 +511,11 @@ export class ArneyanActor extends Actor {
     let mod = sys.magic + ammoPlus;
     // An off-hand weapon adds no attribute modifier to damage (Codex, Dual Wielding).
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
-    const { terms, notes } = featureBonusTerms(this.damageTerms(item), this.mods?.notesFor("damage") ?? [], bonus);
+    // The weapon's dice (rerolls worked in) and the card's notes; the damage terms count rules scoped to this weapon.
+    const dice = this.weaponDice(item, { include });
+    const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), dice.notes, bonus);
     return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus,
-      actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: sys.damage, mod, crit, damageType: sys.damageType,
+      actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: dice.formula, mod, crit, damageType: sys.damageType,
       terms, notes, extras, include, hits, misses
     });
   }
@@ -819,6 +917,10 @@ export class ArneyanItem extends Item {
     // granted by a level up too. Nothing picked (Later, or closed): no bonus yet, and the sheet shows "Choose attribute".
     if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsAbilityChoice(this)) {
       promptAbilityChoice(this).catch(err => console.warn("Arneyan | attribute choice", err));
+    }
+    // The same for a weapon of the player's choice (Weapon Specialisation): Later leaves its rules as reminders.
+    if (userId === game.user.id && actor instanceof Actor && actor.type === "character" && !options.arneyanNoChoice && needsWeaponChoice(this)) {
+      promptWeaponChoice(this).catch(err => console.warn("Arneyan | weapon choice", err));
     }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {

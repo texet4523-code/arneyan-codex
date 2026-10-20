@@ -134,23 +134,134 @@ export function chosenRules(sys) {
   }
 }
 
+/* -------------------------------------------- */
+/*  Rules for some weapons only                 */
+/* -------------------------------------------- */
+
+/**
+ * A weapon name reduced to what identifies the weapon, so a "+1 Longsword", "Long Sword" and the Catalogue's "Sword,
+ * Long" are all one weapon: no magic bonus, nothing in brackets ("Greatsword (specialised)"), the Catalogue's "Kind,
+ * Variety" read the other way round, then letters only.
+ */
+export function weaponKey(name) {
+  let s = String(name ?? "").toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[+-]\s*\d+\b/g, " ");
+  const parts = s.split(",").map(x => x.trim()).filter(Boolean);
+  if (parts.length === 2) s = `${parts[1]} ${parts[0]}`;
+  return s.replace(/[^a-z]/g, "");
+}
+
+/** The names a weapon answers to: its own, its name before any renaming, and the compendium entry it came from. */
+function weaponKeys(item) {
+  const names = [item?.name, item?._source?.name];
+  try {
+    const uuid = item?._stats?.compendiumSource ?? item?.flags?.core?.sourceId;
+    // A synchronous lookup only: the compendium index has the name without loading the entry.
+    if (typeof uuid === "string" && uuid.startsWith("Compendium.") && typeof globalThis.fromUuidSync === "function") names.push(globalThis.fromUuidSync(uuid, { strict: false })?.name);
+  } catch { /* no source to read: its own names do */ }
+  return [...new Set(names.map(weaponKey).filter(Boolean))];
+}
+
+/**
+ * Is this weapon being used two-handed? The Two-handed trait (the Catalogue's † melee weapons carry it) says so and
+ * One-handed says not; a Versatile weapon is two-handed when its two-handed die is in the roll (`include` has
+ * "versatile"). Copies on sheets from before the trait existed: a two-slot melee weapon that isn't Versatile or Light,
+ * which is how the Catalogue marks its two-handed weapons.
+ */
+export function isTwoHanded(item, { include = [] } = {}) {
+  if (item?.type !== "weapon") return false;
+  const traits = String(item.system?.traits ?? "");
+  if (/\btwo[- ]handed\b/i.test(traits)) return true;
+  if (/\bone[- ]handed\b/i.test(traits)) return false;
+  if (/\bversatile\b/i.test(traits)) return include.includes("versatile");
+  return !item.system?.ranged && Number(item.system?.slots) >= 2 && !/\blight\b/i.test(traits);
+}
+
+/** Does a rule scoped to some weapons (`weapon`: "two-handed" or "chosen") count for this weapon? */
+export function weaponMatches(rule, item, opts = {}) {
+  if (item?.type !== "weapon") return false;
+  const scope = String(rule?.weapon ?? "").trim().toLowerCase();
+  if (scope === "two-handed") return isTwoHanded(item, opts);
+  if (scope === "chosen") {
+    const want = new Set((rule.names ?? []).map(weaponKey).filter(Boolean));
+    return want.size > 0 && weaponKeys(item).some(k => want.has(k));
+  }
+  return false;
+}
+
+/** How many weapons an item's weapon pick allows at this class level (0: it has none). */
+export function weaponPickMax(sys, cl = 1) {
+  const max = String(sys?.weaponChoice?.max ?? "").trim();
+  return max ? usesMax(max, { cl, level: cl }, 1) : 0;
+}
+
+/** The weapons picked on an item that count at this class level (a second pick only from 13th, for instance). */
+export function weaponPicks(sys, cl = 1) {
+  const n = weaponPickMax(sys, cl);
+  if (!n) return [];
+  return [...new Set((sys.weaponChoice.value ?? []).map(v => String(v ?? "").trim()).filter(Boolean))].slice(0, n);
+}
+
+/** The class level an item's rules work with on an actor (as collectRules works it out). */
+export function featureLevel(actor, item) {
+  const name = String(item?.system?.className ?? "").toLowerCase();
+  const cls = name ? (actor?.items ?? []).find(i => i.type === "class" && i.name.toLowerCase().startsWith(name)) : null;
+  return cls?.system?.levels ?? actor?.system?.level ?? 1;
+}
+
+/**
+ * The weapon's own damage dice, each die showing `n` or less rolled again once (Foundry's r<=n): "2d6" reads
+ * "2d6r<=2", an exploding "2d6x" reads "2d6r<=2x". A die that already rerolls is left as it is.
+ */
+export function rerollDice(formula, n) {
+  const k = Math.floor(Number(n));
+  if (!(k >= 1)) return formula;
+  return String(formula ?? "").replace(/(\d*d\d+)([a-z][a-z0-9<>=]*)?/gi, (m, dice, mods = "") => (/r/i.test(mods) ? m : `${dice}r<=${k}${mods}`));
+}
+
+/** The damage card's line for a reroll: "Crushing Blow: 1s and 2s on the weapon's damage dice rerolled once". */
+export function rerollNote(labels, n) {
+  const which = n <= 1 ? "1s" : n === 2 ? "1s and 2s" : `1s to ${n}s`;
+  return `${labels.join(", ") || "Reroll"}: ${which} on the weapon's damage dice rerolled once`;
+}
+
+/** What a rule's weapon scope reads as on the sheet: "with two-handed weapons", "with Greatsword". */
+export function scopeText(rule) {
+  const scope = String(rule?.weapon ?? "").trim();
+  if (scope === "two-handed") return "with two-handed weapons";
+  if (scope === "chosen") return rule.names?.length ? `with ${rule.names.join(" or ")}` : "with the picked weapon (none picked yet)";
+  return scope ? `with ${scope} weapons` : "";
+}
+
 /**
  * Every active rule on an actor, with its source.
  * @returns {{key:string, value:any, when:string, label:string, source:string, data:object}[]}
  */
 export function collectRules(actor, baseData = {}) {
   const out = [];
-  const push = (rules, label, extra = {}) => {
+  const push = (rules, label, extra = {}, picks = []) => {
     for (const r of rules ?? []) {
       if (!r?.key) continue;
-      out.push({ key: String(r.key).trim(), value: r.value, when: r.when ?? "", label: r.label || label, data: { ...baseData, ...extra } });
+      const rule = { key: String(r.key).trim(), value: r.value, when: r.when ?? "", label: r.label || label, data: { ...baseData, ...extra } };
+      // Scoped to some weapons (Crushing Blow's two-handed, Weapon Specialisation's picked weapon): ModSet keeps it
+      // apart, for the rolls with a weapon that fits.
+      const weapon = String(r.weapon ?? "").trim();
+      if (weapon) {
+        rule.weapon = weapon;
+        if (weapon === "chosen") {
+          rule.names = picks;
+          // Picked already: the reminder on other weapons' cards names it.
+          if (picks.length && rule.when) rule.when = `${rule.when} (${picks.join(", ")})`;
+        }
+      }
+      out.push(rule);
     }
   };
   // Items: feats, abilities, ancestry, equipped gear, switched-on toggles.
   for (const item of actor.items ?? []) {
     if (!itemRulesActive(item)) continue;
     const cls = item.system.className ? actor.items.find(i => i.type === "class" && i.name.toLowerCase().startsWith(item.system.className.toLowerCase())) : null;
-    push(chosenRules(item.system), item.name, { cl: cls?.system.levels ?? baseData.level ?? 1 });
+    const cl = cls?.system.levels ?? baseData.level ?? 1;
+    push(chosenRules(item.system), item.name, { cl }, weaponPicks(item.system, cl));
   }
   // Active Effects on the actor (spells, abilities and conditions applied to it).
   const conditionsDone = new Set();
@@ -206,6 +317,7 @@ export class ModSet {
     this.traits = { resist: [], immune: [], vuln: [], sense: [] };
     this.notes = new Map();     // group -> [text]
     this.situational = [];      // {label, text, group}
+    this.scoped = [];           // {rule, note}: rules for some weapons only (forWeapon)
     for (const r of rules) {
       try { this.#add(r); } catch (err) { console.warn(`Arneyan | Skipped a bad rule from ${r?.label}`, r, err); }
     }
@@ -224,6 +336,9 @@ export class ModSet {
 
   #add(r) {
     const key = r.key;
+    // A rule for some weapons only: kept for the rolls with a weapon that fits (forWeapon), never applied to all.
+    const scoped = String(r.weapon ?? "").trim() ? { rule: r, note: "" } : null;
+    if (scoped) this.scoped.push(scoped);
     if (r.when) {
       // A resistance, immunity, weakness or sense only some of the time names what it is ("Resistance slashing 3").
       const TRAIT_WORD = { resist: "Resistance", immune: "Immune", vuln: "Vulnerable", sense: "Sense" };
@@ -233,9 +348,14 @@ export class ModSet {
       const group = NOTE_GROUP(key);
       this.situational.push({ label: r.label, text, group });
       this.#push(this.notes, group, text);
+      // With the weapon it's for, the rule applies instead, and this reminder leaves that card.
+      if (scoped) scoped.note = text;
       return;
     }
+    if (scoped) return;
     if (key.startsWith("note.")) return this.#push(this.notes, key.slice(5), `${r.label}: ${r.value}`);
+    // Weapon damage dice rerolled at or below the value (Crushing Blow): a flag, not a damage term.
+    if (key === "damage.reroll") return this.#push(this.flags, key, { label: r.label, value: evalNumber(r.value, r.data) });
     if (Object.hasOwn(this.traits, key)) {
       for (const v of String(r.value ?? "").split(",").map(x => x.trim().toLowerCase()).filter(Boolean)) {
         this.traits[key].push({ value: v, label: r.label });
@@ -310,6 +430,21 @@ export class ModSet {
   /** Reminder notes for these roll groups. */
   notesFor(...groups) {
     return [...new Set(groups.flat().flatMap(g => this.notes.get(g) ?? []))];
+  }
+
+  /**
+   * The rules scoped to weapons that count for this one, as their own ModSet (`mods`), and the reminders they leave
+   * behind on its cards (`drop`). `include`: the damage card's extras in the roll ("versatile": wielded two-handed).
+   */
+  forWeapon(item, { include = [] } = {}) {
+    const hit = this.scoped.filter(s => weaponMatches(s.rule, item, { include }));
+    return { mods: new ModSet(hit.map(s => ({ ...s.rule, when: "", weapon: "" }))), drop: new Set(hit.map(s => s.note).filter(Boolean)) };
+  }
+
+  /** Damage dice rerolled at or below this (the highest `damage.reroll`), and who gives it. */
+  reroll() {
+    const list = (this.flags.get("damage.reroll") ?? []).filter(e => e.value >= 1);
+    return { value: list.length ? Math.max(...list.map(e => Math.floor(e.value))) : 0, labels: [...new Set(list.map(e => e.label))] };
   }
 }
 

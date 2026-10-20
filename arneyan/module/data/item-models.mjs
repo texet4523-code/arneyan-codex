@@ -18,8 +18,12 @@ function base() {
   };
 }
 
-/** One rule of the effects layer (see effects.mjs and build/effects/VOCAB.md). */
-export const ruleField = () => new SchemaField({ key: str(), value: str(), when: str(), label: str() });
+/**
+ * One rule of the effects layer (see effects.mjs and build/effects/VOCAB.md). `weapon` scopes a rule to some weapons
+ * ("two-handed", or "chosen": the weapons picked on the item, as Weapon Specialisation's): it counts only on attack
+ * and damage rolls with a weapon that fits, and is a reminder (its `when`) on the rest.
+ */
+export const ruleField = () => new SchemaField({ key: str(), value: str(), when: str(), label: str(), weapon: str() });
 
 /** Effects an item gives: passive or switchable rules, and effects it puts on targets when used. */
 export function effectFields() {
@@ -44,6 +48,15 @@ export function effectFields() {
     abilityChoice: new SchemaField({
       options: new ArrayField(new StringField({ required: true, blank: false })),
       value: str()
+    }),
+    /**
+     * Weapons of the player's choice (Weapon Specialisation): its rules scoped to "chosen" count with these weapons
+     * (`value`, weapon names). `max` is how many may be picked, a number or a level table on the class level ("1:1,
+     * 13:2"); blank, the item has no weapon pick. Asked for when it's added; until then the sheet shows "Choose weapon".
+     */
+    weaponChoice: new SchemaField({
+      max: str(),
+      value: new ArrayField(new StringField({ required: true, blank: false }))
     })
   };
 }
@@ -133,6 +146,8 @@ class BaseItemData extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     // An attribute of the player's choice not picked yet (Will of Iron): the sheet asks for it.
     if (this.abilityChoice) this.needsChoice = (this.abilityChoice.options?.length ?? 0) > 1 && !this.abilityChoice.options.includes(this.abilityChoice.value);
+    // A weapon of the player's choice not picked yet (Weapon Specialisation): the sheet asks for it.
+    if (this.weaponChoice) this.needsWeapon = !!String(this.weaponChoice.max ?? "").trim() && !(this.weaponChoice.value ?? []).some(v => String(v ?? "").trim());
     if ("slots" in this) this.totalSlots = stackSlots(this);
     // Filled in by the actor: the slots of what's inside this container.
     if (this.container) this.contents = 0;

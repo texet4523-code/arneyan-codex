@@ -8,7 +8,7 @@
  * - Feats, features, kits, ancestries, spells and actions (`refreshFrom`): their mechanics (rules, switch, effects,
  *   activities, uses, save, damage, area, a kit's features) are replaced from the current compendium entry. Name,
  *   description, image, quantity and equipped stay, and so do a switch's on/off, uses left (up to the new maximum)
- *   and an attribute already picked.
+ *   and an attribute or weapon already picked.
  *
  * Safe for a live campaign (0.10.15): an item added from a compendium carries a fingerprint of each mechanical field
  * as it arrived (flags.arneyan.synced). The update replaces a field only while it still matches its fingerprint, so a
@@ -34,18 +34,36 @@ const clone = v => (v === undefined ? v : JSON.parse(JSON.stringify(v)));
 const stable = v => (Array.isArray(v) ? v.map(stable) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map(k => [k, stable(v[k])])) : v);
 const same = (a, b) => JSON.stringify(stable(a ?? null)) === JSON.stringify(stable(b ?? null));
 
-/** The mechanical fields fingerprinted, as they're compared: without what play changes (uses left, a picked attribute). */
-const MECH = [...FIELDS, "uses", "abilityChoice", "features"];
+/**
+ * The mechanical fields fingerprinted, as they're compared: without what play changes (uses left, a picked attribute,
+ * picked weapons).
+ */
+const MECH = [...FIELDS, "uses", "abilityChoice", "weaponChoice", "features"];
+/**
+ * A rule's blank weapon scope (0.10.18: every stored rule gained `weapon`, "" unless it's for some weapons) reads as
+ * no field at all, so fingerprints taken before it existed still match an unedited rule.
+ */
+function plainRules(v) {
+  if (Array.isArray(v)) return v.map(plainRules);
+  if (!v || typeof v !== "object") return v;
+  const out = {};
+  for (const [k, x] of Object.entries(v)) out[k] = plainRules(x);
+  if ("key" in out && "value" in out && out.weapon === "") delete out.weapon;
+  return out;
+}
 function mechView(field, v) {
   if (v == null) return null;
   if (field === "uses") return { max: Number(v.max) || 0, per: v.per ?? "", formula: v.formula ?? "" };
   if (field === "abilityChoice") return { options: [...(v.options ?? [])] };
-  if (field === "features" && Array.isArray(v)) return v.map(f => {
+  if (field === "weaponChoice") return { max: String(v.max ?? "") };
+  if (field === "features" && Array.isArray(v)) return plainRules(v.map(f => {
     const c = clone(f) ?? {};
     if (c.uses) delete c.uses.value;
     if (c.abilityChoice) delete c.abilityChoice.value;
+    if (c.weaponChoice) delete c.weaponChoice.value;
     return c;
-  });
+  }));
+  if (["rules", "applies", "auras"].includes(field)) return plainRules(v);
   return v;
 }
 /** FNV-1a (32 bit) of a value's stable JSON, in base 36: short, and the same for the same data. */
@@ -142,6 +160,7 @@ export function kitFeaturesFrom(oldFeatures = [], srcFeatures = []) {
     const old = (oldFeatures ?? []).find(x => x.name === f.name);
     if (old && nf.uses) nf.uses.value = Math.max(0, Math.min(Number(old.uses?.value) || 0, Number(nf.uses.max) || 0));
     if (old?.abilityChoice?.value && nf.abilityChoice?.options?.includes(old.abilityChoice.value)) nf.abilityChoice.value = old.abilityChoice.value;
+    if (old?.weaponChoice?.value?.length && nf.weaponChoice) nf.weaponChoice.value = [...old.weaponChoice.value];
     return nf;
   });
 }
@@ -172,8 +191,10 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   }
   const next = { ...(unstamped ? {} : stamps) };
   const kept = [];
+  // A blank weapon scope on one side only is no difference (stored rules have it, an older entry may not).
+  const plainIf = (k, v) => (["rules", "applies", "auras", "features"].includes(k) ? plainRules(v) : v);
   const set = (k, v) => {
-    if (same(s[k], v)) { next[k] = fingerprint(k, v); return; }
+    if (same(plainIf(k, s[k]), plainIf(k, v))) { next[k] = fingerprint(k, v); return; }
     // Changed by hand since it arrived (or since the last update): keep it, and its old fingerprint.
     if (!force && !unstamped && stamps[k] !== undefined && fingerprint(k, s[k]) !== stamps[k]) {
       if (fingerprint(k, v) !== stamps[k]) kept.push(k);
@@ -188,6 +209,8 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
     const opts = o.abilityChoice?.options ?? [];
     set("abilityChoice", { options: opts, value: opts.includes(s.abilityChoice?.value) ? s.abilityChoice.value : "" });
   }
+  // Weapons picked already stay (the player's choice, never the GM's edit); the compendium decides how many may be.
+  if (o.weaponChoice !== undefined && "weaponChoice" in s) set("weaponChoice", { max: String(o.weaponChoice?.max ?? ""), value: [...(s.weaponChoice?.value ?? [])] });
   if (o.uses !== undefined && "uses" in s) set("uses", usesFrom(s.uses, o.uses, maxNow));
   if (item.type === "kit" && Array.isArray(o.features)) set("features", kitFeaturesFrom(s.features, o.features));
   if (report && kept.length) report.kept = kept;

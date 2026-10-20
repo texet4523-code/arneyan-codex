@@ -76,6 +76,11 @@
     {{#if abilityChoices}}
       <label data-tooltip="The attribute this item's bonus goes to">Attribute bonus to <select name="system.abilityChoice.value">{{selectOptions abilityChoices selected=abilityChoiceValue blank="Choose (no bonus yet)"}}</select></label>
     {{/if}}
+    {{#if weaponPick}}
+      {{#each weaponPick.slots}}
+      <label data-tooltip="{{#if over}}Counts again once the class level allows another weapon{{else}}Its rules count with this weapon (a magic or renamed one of the same kind too); with any other they are reminders{{/if}}">{{#if i}}Second weapon{{else}}Weapon{{/if}}{{#if over}} (not yet){{/if}} <select class="arn-weapon-pick" data-index="{{i}}"{{#unless @root.editable}} disabled{{/unless}}><option value="">{{blank}}</option>{{{options}}}</select></label>
+      {{/each}}
+    {{/if}}
     {{#if fromCompendium}}
       <label class="check wide" data-tooltip="System updates bring this item's rules, uses and activities up to date from its compendium entry; ticked, they leave it as it is"><input type="checkbox" name="flags.arneyan.keepCustom" {{checked keepCustom}}> Keep my edits (tick to stop updates overwriting your edits)</label>
     {{/if}}

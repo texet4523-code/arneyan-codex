@@ -162,4 +162,42 @@ assert.equal(M.fingerprint("rules", [{ when: "", label: "", value: "1", key: "ac
   assert.ok(chat[0].content.includes("Edith: kit (features)"), chat[0]?.content);
   assert.equal(res.kept, 1);
 }
+{
+  // 0.10.18: Weapon Specialisation's weapon pick. Rules gained a `weapon` scope (blank on every other rule) and the
+  // feature a weapon pick. Fingerprints taken before still match an unedited rule, and the weapon the player picked
+  // is theirs: never a GM edit, never wiped by a refresh.
+  const W = "with your specialised weapon";
+  const before = [{ key: "damage", value: "+1", when: W, label: "" }];
+  const now = [{ key: "damage", value: "+1", when: W, label: "", weapon: "chosen" }];
+  const later = [{ key: "damage", value: "+2", when: W, label: "", weapon: "chosen" }];
+  assert.equal(M.fingerprint("rules", before.map(r => ({ ...r, weapon: "" }))), M.fingerprint("rules", before), "a blank scope is no change");
+  assert.notEqual(M.fingerprint("rules", now), M.fingerprint("rules", before), "a real scope is");
+  assert.equal(M.fingerprint("weaponChoice", { max: "1:1, 13:2", value: ["Greatsword"] }), M.fingerprint("weaponChoice", { max: "1:1, 13:2", value: [] }), "the pick isn't part of the fingerprint");
+  const spec = (rules, weaponChoice, synced) => {
+    const system = { rules, weaponChoice };
+    const flags = { arneyan: { synced } };
+    return { id: "ws", type: "ability", name: "Weapon Specialisation", system, flags, _stats: { compendiumSource: "Compendium.arneyan.class-features.Item.ws" }, _source: { system, flags } };
+  };
+  const compNow = { type: "ability", system: { rules: now, weaponChoice: { max: "1:1, 13:2", value: [] } } };
+  // A world item from before: stamped without the new fields, stored with them blank (the data model fills them in).
+  const old = spec(before.map(r => ({ ...r, weapon: "" })), { max: "", value: [] }, M.stampOf("ability", { rules: before }));
+  const r = {};
+  const upd = M.refreshFrom(old, compNow, { report: r });
+  assert.deepEqual(upd["system.rules"], now, "the scoped rules arrive");
+  assert.deepEqual(upd["system.weaponChoice"], { max: "1:1, 13:2", value: [] }, "and the weapon pick");
+  assert.ok(!r.kept, "nothing counted as the GM's edit");
+  // The player picks a Greatsword; the next version changes the bonus: the bonus updates, the pick stays.
+  const picked = spec(now, { max: "1:1, 13:2", value: ["Greatsword"] }, upd["flags.arneyan.synced"]);
+  const r2 = {};
+  const upd2 = M.refreshFrom(picked, { type: "ability", system: { rules: later, weaponChoice: { max: "1:1, 13:2", value: [] } } }, { report: r2 });
+  assert.deepEqual(upd2["system.rules"], later);
+  assert.ok(!("system.weaponChoice" in upd2), "the picked weapon is left alone");
+  assert.ok(!r2.kept, "a pick is not an edit");
+  assert.deepEqual(M.refreshFrom(picked, compNow, { force: true }), {}, "Update anyway doesn't wipe it either");
+  // How many may be picked follows the compendium, keeping the pick.
+  const upd3 = M.refreshFrom(picked, { type: "ability", system: { rules: now, weaponChoice: { max: "1:1, 11:2", value: [] } } });
+  assert.deepEqual(upd3["system.weaponChoice"], { max: "1:1, 11:2", value: ["Greatsword"] });
+  // A kit feature with a weapon pick keeps it too.
+  assert.deepEqual(M.kitFeaturesFrom([{ name: "Kit Spec", weaponChoice: { max: "1", value: ["Maul"] } }], [{ name: "Kit Spec", weaponChoice: { max: "1", value: [] } }])[0].weaponChoice.value, ["Maul"]);
+}
 console.log("OK safe world update");

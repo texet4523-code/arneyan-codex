@@ -9,6 +9,7 @@
 - Light where the Catalogue gives a radius (Sunrod).
 - Containers: sacks, pouches, quiver, scroll case; Bag of Holding (8 slots) and Portable Hole (20), weightless.
 - The Iconic Weapons as real weapons on their base weapon, with +N and their extra damage.
+- The Two-handed trait on the Catalogue's two-slot melee weapons that aren't Versatile.
 """
 import copy, glob, json, os, re
 from lib import OUT, fid
@@ -144,6 +145,11 @@ def build():
                 or (fold == "Iconic Wands, Staffs & Rods" and d["name"].startswith("Wand")):
             s["bundle"] = 5
         if d["type"] == "weapon":
+            # The Catalogue marks two-handed weapons and polearms with a dagger sign and two slots; those melee weapons
+            # get the Two-handed trait (Crushing Blow reads it), bar the Versatile, which can be wielded in one hand.
+            tr = s.get("traits", "") or ""
+            if not s.get("ranged") and float(s.get("slots") or 0) >= 2 and not re.search(r"\b(versatile|light|two-handed)\b", tr, re.I):
+                s["traits"] = f"{tr}, Two-handed" if tr.strip() else "Two-handed"
             n = d["name"].lower()
             s["ammoType"] = "bolt" if "crossbow" in n else "arrow" if re.search(r"\bbow\b", n) else "stone" if n == "sling" else ""
             s.setdefault("ammoId", "")

@@ -136,8 +136,15 @@ ARNEYAN.weaponTraits = {
   "Light": { text: "Can be used in the off-hand under the Dual Wielding rules." },
   "Thrown": { text: "Can be thrown for the same damage as a melee strike." },
   "Concealable": { text: "Can be hidden on your person without a check; Advantage to keep it hidden during a search." },
-  "Entangling": { text: "Advantage on Trip and Grapple attempts made with this weapon." }
+  "Entangling": { text: "Advantage on Trip and Grapple attempts made with this weapon." },
+  "Two-handed": { text: "Needs both hands; it can't be dual wielded.", auto: "Features for two-handed weapons (Crushing Blow) apply to it." }
 };
+
+/**
+ * What a rule's `weapon` scope may say: the rule counts only on attack and damage rolls with a weapon that fits, and
+ * is a reminder (its "when") on the rest.
+ */
+ARNEYAN.ruleWeaponScopes = { "two-handed": "Two-handed weapons", chosen: "The weapons picked on the item" };
 
 ARNEYAN.skillTiers = { trained: "Trained", master: "Master" };
 
@@ -261,6 +268,8 @@ ARNEYAN.ruleKeys = {
     "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
+  // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).
+  "Weapon dice": ["damage.reroll"],
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration"],
   "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "crit.against.close"],

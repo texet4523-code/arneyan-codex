@@ -31,6 +31,7 @@ cond_section = vocab.split("## Condition ids", 1)[1]
 conditions = set(re.findall(r"[a-z]+", cond_section.split("(")[0]))
 
 CONTAINERS = {"passive", "toggle", "applies"}
+WEAPON_SCOPES = {"two-handed", "chosen"}
 CONF = {"high", "medium", "low"}
 DAMAGE_TYPES = {"acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic",
                 "piercing", "poison", "psychic", "radiant", "slashing", "thunder"}
@@ -49,6 +50,9 @@ def check_rule(where, rule, in_applies=False):
         errors.append(f"{where}: {k} is only allowed inside applies")
     if "value" not in rule:
         errors.append(f"{where}: rule {k} has no value")
+    # A rule for some weapons only: the scopes effects.mjs knows (weaponMatches).
+    if rule.get("weapon") and rule["weapon"] not in WEAPON_SCOPES:
+        errors.append(f"{where}: rule {k} has an unknown weapon scope {rule['weapon']!r}")
     if k in ("resist", "immune", "vuln"):
         v = str(rule["value"])
         if v.startswith("condition:"):
@@ -72,6 +76,10 @@ for eid, e in data.items():
             errors.append(f"{eid}: missing {f}")
     for r in e.get("rules", []):
         check_rule(eid, r)
+    # Rules scoped to the picked weapon need a weapon pick, and a pick needs something to read it.
+    chosen = any(r.get("weapon") == "chosen" for r in e.get("rules", []))
+    if chosen != bool(e.get("weaponChoice")):
+        errors.append(f"{eid}: 'chosen' weapon rules and weaponChoice go together")
     if c == "applies":
         if not e.get("applies"):
             errors.append(f"{eid}: applies container with no effects")
