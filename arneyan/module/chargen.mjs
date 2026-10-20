@@ -141,7 +141,8 @@ async function abilityScoresWindow(actor) {
     rejectClose: false
   });
   if (!res || res === "skip") return;
-  await actor.update(Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])));
+  // Remembered so a first ancestry above 1st level knows its bonuses still need adding (progression.mjs).
+  await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true });
   if (res.spare) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
     content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) can be donated to the table (Rule B).</p>` });
   ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}. Next, drop an ancestry and a class on the sheet.`);

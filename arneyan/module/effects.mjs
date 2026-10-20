@@ -223,7 +223,11 @@ export class ModSet {
   #add(r) {
     const key = r.key;
     if (r.when) {
-      const text = `${r.label}: ${describe(r, evalNumber(r.value, r.data))} ${r.key.startsWith("adv.") || r.key.startsWith("note.") ? "" : `(${r.key}) `}${r.when}`.replace(/\s+/g, " ").trim();
+      // A resistance, immunity, weakness or sense only some of the time names what it is ("Resistance slashing 3").
+      const TRAIT_WORD = { resist: "Resistance", immune: "Immune", vuln: "Vulnerable", sense: "Sense" };
+      const what = Object.hasOwn(TRAIT_WORD, key) ? `${TRAIT_WORD[key]} ${String(r.value ?? "").replace(/^condition:/, "")}`
+        : `${describe(r, evalNumber(r.value, r.data))} ${r.key.startsWith("adv.") || r.key.startsWith("note.") ? "" : `(${r.key})`}`;
+      const text = `${r.label}: ${what} ${r.when}`.replace(/\s+/g, " ").trim();
       const group = NOTE_GROUP(key);
       this.situational.push({ label: r.label, text, group });
       this.#push(this.notes, group, text);

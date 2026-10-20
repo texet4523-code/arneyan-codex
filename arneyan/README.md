@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.13 · Foundry v13 and v14
+Version 0.10.14 · Foundry v13 and v14
+
+## What's new in 0.10.14
+
+- **No score above 18 at any starting level.** A character made above 1st level is capped at 18 when it gets its first ancestry, and spare ancestry points move to another attribute, as at 1st level (Starting Scores: "the cap applies at any starting level"). Swapping one ancestry for another later, or removing one and adding another, still follows the 20 cap. If a higher-level character's scores were typed in by hand, the box to add the ancestry's changes starts unticked, in case they are already included.
+- **Part-time resistances name their type.** A reminder such as Shifter's Beasthide now reads "Resistance slashing 3 Beasthide only", not "+0 (resist)".
 
 ## What's new in 0.10.13
 

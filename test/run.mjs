@@ -93,6 +93,12 @@ assert.ok(hs.mods.adv("adv.init").values.includes(-1), "Exhaustion 1: Disadvanta
 assert.ok(hs.mods.adv("adv.against.melee").values.includes(1), "Prone: melee attacks against it have Advantage");
 assert.equal(hs.mods.damage("damage.melee").length, 0, "Rage is off");
 assert.ok(hs.mods.notesFor("save").some(n => n.includes("vs traps")), "situational rule becomes a reminder");
+{
+  // 0.10.14: a resistance only some of the time names its type (Shifter's Beasthide), not "+0 (resist)".
+  const ms = new ModSet([{ key: "resist", value: "slashing 3", when: "Beasthide only, nonmagical", label: "Shifter" }, { key: "speed", value: "15", when: "Swiftstride only", label: "Shifter" }]);
+  assert.deepEqual(ms.situational.map(x => x.text), ["Shifter: Resistance slashing 3 Beasthide only, nonmagical", "Shifter: +15 (speed) Swiftstride only"]);
+  assert.equal(ms.traits.resist.length, 0, "and it isn't a standing resistance");
+}
 rage.system.active = true;
 hero.system.prepareDerivedData();
 assert.equal(hero.system.mods.damage("damage.melee")[0].value, "+2", "Rage switched on");

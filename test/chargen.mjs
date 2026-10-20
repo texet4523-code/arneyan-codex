@@ -128,9 +128,11 @@ const score = (a, k) => a._source.system.abilities[k].value;
   assert.equal(score(actor, "wis"), 17, "both points to Wisdom, the next best");
 }
 
-// Beyond creation (3rd level), nothing moves and no one is asked: the 20 cap and later increases are as before.
+// Beyond creation (3rd level, a character that has had an ancestry before), nothing moves and no one is asked: the
+// 20 cap and later increases are as before.
 {
   const actor = actorOf(tamla, 3);
+  actor.flags = { arneyan: { hadAncestry: true } };
   const anc = ancOf(actor, "Test Folk", { bonuses: { dex: 2 } });
   let asks = 0;
   DialogV2.wait = async o => {
@@ -140,6 +142,41 @@ const score = (a, k) => a._source.system.abilities[k].value;
   await P.ancestrySetup(actor, anc);
   assert.equal(asks, 0);
   assert.equal(score(actor, "dex"), 20);
+}
+
+// 0.10.14: "the cap applies at any starting level". A 5th-level character's first ancestry is capped and recorded;
+// a swap (the old ancestry replaced) at 5th level is not.
+{
+  const actor = actorOf(tamla, 5);
+  actor.flags = { arneyan: { scoresRolled: true } };
+  const anc = ancOf(actor, "Test Folk", { bonuses: { dex: 2 } });
+  let asks = 0, form = "";
+  DialogV2.wait = async o => {
+    if (o.window.title.endsWith("no score above 18")) { asks++; return null; }
+    form = o.content;
+    return { choice: null, picks: [], family: "", scores: true };
+  };
+  await P.ancestrySetup(actor, anc);
+  assert.ok(/name="scores" checked/.test(form), "scores from the scores window: the box starts ticked");
+  assert.equal(asks, 1, "asked where the spare points go");
+  assert.deepEqual([score(actor, "dex"), score(actor, "int")], [18, 18]);
+  assert.ok(actor.updates.some(u => u["flags.arneyan.hadAncestry"] === true), "remembers it has had an ancestry");
+
+  const b = actorOf(tamla, 5);
+  const anc2 = ancOf(b, "Test Folk", { bonuses: { dex: 2 } });
+  asks = 0;
+  await P.ancestrySetup(b, anc2, { replacing: true });
+  assert.equal(asks, 0);
+  assert.equal(score(b, "dex"), 20, "a swap later follows the 20 cap");
+
+  // Scores typed in by hand for a 5th-level character: the box starts unticked (they may include the bonuses), and
+  // the cap still applies if it is ticked.
+  const c = actorOf(tamla, 5);
+  const anc3 = ancOf(c, "Test Folk", { bonuses: { dex: 2 } });
+  asks = 0;
+  await P.ancestrySetup(c, anc3);
+  assert.ok(!/name="scores" checked/.test(form) && form.includes("Leave this off if the scores already include them") && form.includes("no score can go above 18"));
+  assert.equal(asks, 1);
 }
 
 // 0.10.8: the bloodline and the family are picked from lists with their text; the +1s and scores box come after.

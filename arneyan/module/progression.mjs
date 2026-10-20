@@ -635,11 +635,18 @@ export async function pickAncestry(actor, { step = "", entries = null, skip = fa
  * picked from lists that show their text; the +1s and the scores box are a small form after.
  * Returns false when a window is closed and "skip" when Skip is pressed (nothing set up either way).
  */
-export async function ancestrySetup(actor, anc, { step = "" } = {}) {
+export async function ancestrySetup(actor, anc, { step = "", replacing = false } = {}) {
   const s = anc.system;
   const baseName = anc.name.replace(/\s*\(.*\)$/, "");
   const opts = s.choice?.options ?? [];
-  const atCreation = (actor.system.level ?? 0) <= 1;
+  // Starting Scores: "the cap applies at any starting level". A character's first ancestry is part of making it, at
+  // any level (attribute rewards from higher levels are effects on top, not in these scores). Swapping one ancestry
+  // for another later is not, and neither is a character that has had one before.
+  const firstAncestry = !replacing && !actor.flags?.[FLAG]?.hadAncestry;
+  const atCreation = (actor.system.level ?? 0) <= 1 || firstAncestry;
+  // Add the attribute changes by default at 1st level, or above it when the scores window set the scores; scores
+  // typed in by hand for a higher-level character may already include them.
+  const addByDefault = (actor.system.level ?? 0) <= 1 || (firstAncestry && !!actor.flags?.[FLAG]?.scoresRolled);
   const anyBonus = Object.keys(s.bonuses ?? {}).length || s.pickTwo || opts.some(o => Object.keys(o.bonuses ?? {}).length);
   const head = `<p><strong>${esc(anc.name)}</strong>${bonusText(s.bonuses) ? `: ${esc(bonusText(s.bonuses))}` : ""}.`;
 
@@ -690,8 +697,8 @@ export async function ancestrySetup(actor, anc, { step = "" } = {}) {
     ${picked.length ? `<p>${picked.join("<br>")}</p>` : ""}
     ${s.pickTwo ? `<div class="form-group"><label>+1 to</label><select name="pick1">${attrOpts}</select></div>
       <div class="form-group"><label>and +1 to</label><select name="pick2">${attrOpts.replace('value="dex"', 'value="dex" selected')}</select></div>` : ""}
-    ${anyBonus ? `<div class="form-group"><label>Add the attribute changes to the scores</label><input type="checkbox" name="scores" ${atCreation ? "checked" : ""}></div>
-      <p class="hint">${atCreation ? "When a character is created no score can go above 18. If a bonus would take a score past 18, you choose another attribute for the extra points (it also stops at 18)." : "Leave this off if the scores already include them."}</p>` : ""}
+    ${anyBonus ? `<div class="form-group"><label>Add the attribute changes to the scores</label><input type="checkbox" name="scores" ${addByDefault ? "checked" : ""}></div>
+      <p class="hint">${[addByDefault ? "" : "Leave this off if the scores already include them.", atCreation ? "When a character is created no score can go above 18. If a bonus would take a score past 18, you choose another attribute for the extra points (it also stops at 18)." : ""].filter(Boolean).join(" ")}</p>` : ""}
   </div>`;
   let res;
   for (;;) {
@@ -751,6 +758,7 @@ export async function ancestrySetup(actor, anc, { step = "" } = {}) {
     applied[k] = after[k] - scores[k];
     if (applied[k]) upd[`system.abilities.${k}.value`] = after[k];
   }
+  if (!actor.flags?.[FLAG]?.hadAncestry) upd[`flags.${FLAG}.hadAncestry`] = true;
   if (Object.keys(upd).length) await actor.update(upd);
   await anc.update({ name: label, [`flags.${FLAG}.ancestry`]: { choice: o?.name ?? "", family: res.family, applied, moved: moves.moved } });
   const lines = [bonusText(applied) && `scores ${bonusText(applied)}`, moves.lines.length && `moved ${moves.lines.join(", ")} (no score above 18 at creation)`,

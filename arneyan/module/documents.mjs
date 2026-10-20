@@ -819,7 +819,7 @@ export class ArneyanItem extends Item {
       const old = actor.items.filter(i => i.type === "ancestry" && i.id !== this.id).map(i => i.id);
       if (old.length) await actor.deleteEmbeddedDocuments("Item", old);
       await actor.update({ "system.attributes.speed": this.system.speed, "system.details.size": this.system.size, "system.details.senses": this.system.vision ?? "" });
-      if (!options.arneyanSkipSetup) await ancestrySetup(actor, this);
+      if (!options.arneyanSkipSetup) await ancestrySetup(actor, this, { replacing: old.length > 0 });
     }
   }
 
@@ -828,6 +828,8 @@ export class ArneyanItem extends Item {
     const actor = this.parent;
     if (userId !== game.user.id || !(actor instanceof Actor) || options.arneyanGrant) return;
     if (this.type === "class" || this.type === "kit" || this.type === "ancestry") removeGrants(actor, this);
+    // A character that loses an ancestry has had one: the next isn't part of making it (no 18 cap past 1st level).
+    if (this.type === "ancestry" && actor.type === "character" && !actor.flags?.arneyan?.hadAncestry) actor.update({ "flags.arneyan.hadAncestry": true }).catch(() => {});
   }
 
   /** Post the item to chat, or roll it where that makes sense. */
