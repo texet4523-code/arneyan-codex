@@ -21,7 +21,8 @@
       <li>
         <img src="{{img}}" alt="">
         <span class="arn-item-name">{{name}}{{#if solo}} <span class="arn-chip strong">Solo</span>{{/if}}</span>
-        <span class="arn-muted arn-meta">Level {{levelLabel}} · cost {{cost}}</span>
+        <span class="arn-muted arn-meta">Level {{levelLabel}} · cost {{cost}}{{#if na}} · No. {{na}}{{/if}}</span>
+        {{#if canRoll}}<a class="arn-ctl" data-action="rollNumber" data-i="{{i}}" data-tooltip="Roll No. appearing ({{na}}) for the count. Shift: in the lair"><i class="fa-solid fa-dice"></i></a>{{/if}}
         <span class="arn-enc-count"><a data-action="less" data-i="{{i}}"><i class="fa-solid fa-minus"></i></a> {{count}} <a data-action="more" data-i="{{i}}"><i class="fa-solid fa-plus"></i></a></span>
         <a class="arn-ctl" data-action="remove" data-i="{{i}}"><i class="fa-solid fa-trash"></i></a>
       </li>
@@ -30,5 +31,26 @@
       {{/each}}
     </ul>
   </div>
-  {{#if foes.length}}<button type="button" class="arn-btn wide" data-action="place"><i class="fa-solid fa-map-location-dot"></i> Place on the current scene</button>{{/if}}
+  {{#if foes.length}}
+  <div class="arn-enc-place">
+    <select class="arn-enc-na" data-tooltip="When placing: use the counts in the list, or roll each group's No. appearing">{{#each naModes}}<option value="{{id}}" {{#if (eq id ../naMode)}}selected{{/if}}>{{label}}</option>{{/each}}</select>
+    <button type="button" class="arn-btn" data-action="place"><i class="fa-solid fa-map-location-dot"></i> Place on the current scene</button>
+  </div>
+  <div class="arn-enc-place">
+    <button type="button" class="arn-btn ghost" data-action="treasure" data-tooltip="Individual treasure for every creature, each kind's hoard once"><i class="fa-solid fa-gem"></i> Roll their treasure</button>
+    <button type="button" class="arn-btn ghost" data-action="saveEncounter"><i class="fa-solid fa-floppy-disk"></i> Save for later</button>
+  </div>
+  {{/if}}
+
+  <div class="arn-section-head"><h3>Saved encounters</h3><span class="arn-muted">for this world</span></div>
+  <ul class="arn-list arn-enc-saved">
+    {{#each saved}}
+    <li data-enc-id="{{id}}">
+      <span class="arn-item-name"><a data-action="loadEncounter" data-tooltip="Load it (replaces the foes above)">{{name}}</a></span>
+      <span class="arn-muted arn-meta">{{summary}}</span>
+      <a class="arn-ctl" data-action="loadEncounter" data-tooltip="Load"><i class="fa-solid fa-folder-open"></i></a>
+      <a class="arn-ctl" data-action="deleteEncounter" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>
+    </li>
+    {{else}}<li class="arn-empty">None yet: build one and press Save for later.</li>{{/each}}
+  </ul>
 </div>

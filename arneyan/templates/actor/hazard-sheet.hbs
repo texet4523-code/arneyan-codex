@@ -1,0 +1,93 @@
+<div class="arn-sheet hazard-sheet">
+  <header class="arn-head">
+    <div class="arn-head-top">
+      <img class="arn-party-img" src="{{actor.img}}" data-edit="img" data-action="editImage" alt="{{actor.name}}">
+      <input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Hazard name" {{#unless editable}}disabled{{/unless}}>
+    </div>
+    <div class="arn-subline">
+      <label>Level <input class="short" type="number" name="system.level" value="{{source.level}}" min="0" max="30"></label>
+      <label>Kind <select name="system.kind">{{selectOptions kinds selected=source.kind}}</select></label>
+      <label class="check" data-tooltip="A complex hazard rolls initiative and acts every round (its routine)"><input type="checkbox" name="system.complex" {{checked source.complex}}> Complex</label>
+      {{#if editable}}
+      <span class="arn-head-tools">
+        <a class="arn-btn small" data-action="trigger" data-tooltip="Post what sets it off and what it does, with its attack, save and damage buttons"><i class="fa-solid fa-bolt"></i> Trigger it</a>
+      </span>
+      {{/if}}
+    </div>
+  </header>
+
+  <section class="arn-body">
+    <div class="arn-hz-grid">
+      <section class="arn-hz-block">
+        <div class="arn-section-head"><h3><i class="fa-solid fa-eye"></i> Spot it</h3>
+          {{#if isGM}}<a class="arn-btn small ghost" data-action="spot" data-tooltip="Ask the party for the check, on one card"><i class="fa-solid fa-users"></i> Ask the party</a>{{/if}}</div>
+        <div class="arn-fields two">
+          <label>Check <select name="system.spot.ability">{{selectOptions abilities selected=source.spot.ability}}</select></label>
+          <label>DC <input class="short" type="number" name="system.spot.dc" value="{{source.spot.dc}}" min="0" max="60"></label>
+        </div>
+        <input type="text" name="system.spot.notes" value="{{source.spot.notes}}" placeholder="What gives it away (scratches on the floor, a draught)">
+        <p class="arn-help">Noticing and searching are Wisdom checks.</p>
+      </section>
+
+      <section class="arn-hz-block">
+        <div class="arn-section-head"><h3><i class="fa-solid fa-screwdriver-wrench"></i> Disarm it</h3>
+          {{#if isGM}}<a class="arn-btn small ghost" data-action="disarm" data-tooltip="Ask for the disarm roll (untick everyone but the one trying)"><i class="fa-solid fa-hand"></i> Ask for a roll</a>{{/if}}</div>
+        <div class="arn-fields two">
+          <label>Check <select name="system.disable.ability">{{selectOptions abilities selected=source.disable.ability}}</select></label>
+          <label>DC <input class="short" type="number" name="system.disable.dc" value="{{source.disable.dc}}" min="0" max="60"></label>
+          <label>Or a skill (NWP) <input type="text" name="system.disable.skill" value="{{source.disable.skill}}" placeholder="Engineering"></label>
+        </div>
+        <input type="text" name="system.disable.text" value="{{source.disable.text}}" placeholder="How: jam the pressure plate, cut the wire, dispel the rune">
+        <p class="arn-muted">{{disableLabel}}</p>
+      </section>
+    </div>
+
+    <section class="arn-hz-block">
+      <div class="arn-section-head"><h3><i class="fa-solid fa-bolt"></i> Trigger and effect</h3></div>
+      <label class="arn-hz-line">Trigger <input type="text" name="system.trigger" value="{{source.trigger}}" placeholder="A creature steps on the pressure plate"></label>
+      <label class="arn-hz-line">Effect <input type="text" name="system.effect" value="{{source.effect}}" placeholder="Darts shoot from the walls"></label>
+      <div class="arn-fields arn-hz-row">
+        <label>Attack <input type="text" name="system.attack.label" value="{{source.attack.label}}" placeholder="Dart"></label>
+        <label>Bonus <input class="short" type="number" name="system.attack.bonus" value="{{source.attack.bonus}}"></label>
+        <label>Damage <input class="mid" type="text" name="system.attack.damage" value="{{source.attack.damage}}" placeholder="1d4"></label>
+        <label>Type <select name="system.attack.damageType">{{selectOptions damageTypes selected=source.attack.damageType}}</select></label>
+      </div>
+      <div class="arn-fields arn-hz-row">
+        <label>Save <select name="system.save.key">{{selectOptions saves selected=source.save.key}}</select></label>
+        <label>DC <input class="short" type="number" name="system.save.dc" value="{{source.save.dc}}" min="0" max="60"></label>
+        <label>Damage <input class="mid" type="text" name="system.save.damage" value="{{source.save.damage}}" placeholder="2d6"></label>
+        <label>Type <select name="system.save.damageType">{{selectOptions damageTypes selected=source.save.damageType}}</select></label>
+        <label>On a save <select name="system.save.onSave">{{selectOptions onSave selected=source.save.onSave}}</select></label>
+        <label>Condition on a failure <select name="system.save.condition">{{selectOptions conditions selected=source.save.condition}}</select></label>
+      </div>
+      <p class="arn-help">Traps usually call for a Reflex save. Leave the attack or the save empty if it has none.</p>
+      {{#if editable}}<div class="arn-hz-buttons">
+        {{#if system.attack.damage}}<a class="arn-btn small ghost" data-action="attack" data-tooltip="Against your targets' AC. Shift: Advantage, Ctrl: Disadvantage"><i class="fa-solid fa-crosshairs"></i> Attack</a>{{/if}}
+        {{#if system.save.damage}}<a class="arn-btn small ghost" data-action="damage" data-which="save"><i class="fa-solid fa-burst"></i> Save damage</a>{{/if}}
+      </div>{{/if}}
+      <label class="arn-hz-line">{{#if system.complex}}Routine{{else}}Reset{{/if}} <input type="text" name="system.reset" value="{{source.reset}}" placeholder="{{#if system.complex}}What it does each round{{else}}Resets after 1 hour{{/if}}"></label>
+    </section>
+
+    <section class="arn-hz-block">
+      <div class="arn-section-head"><h3><i class="fa-solid fa-shield"></i> If someone smashes it</h3></div>
+      <div class="arn-fields arn-hz-row">
+        <label>AC <input class="short" type="number" name="system.attributes.ac" value="{{source.attributes.ac}}"></label>
+        <label data-tooltip="Comes off every hit">Hardness <input class="short" type="number" name="system.attributes.hardness" value="{{source.attributes.hardness}}" min="0"></label>
+        <label>HP <input class="short" type="number" name="system.attributes.hp.value" value="{{source.attributes.hp.value}}"> / <input class="short" type="number" name="system.attributes.hp.max" value="{{source.attributes.hp.max}}" min="0"></label>
+        <label>Fort <input class="short" type="number" name="system.saves.fort.value" value="{{source.saves.fort.value}}"></label>
+        <label>Ref <input class="short" type="number" name="system.saves.ref.value" value="{{source.saves.ref.value}}"></label>
+        {{#if system.complex}}<label>Initiative <input class="short" type="number" name="system.attributes.init" value="{{source.attributes.init}}"></label>{{/if}}
+      </div>
+      <div class="arn-fields two">
+        <label>Immunities <input type="text" name="system.details.immunities" value="{{source.details.immunities}}" placeholder="poison, psychic"></label>
+        <label>Resistances <input type="text" name="system.details.resistances" value="{{source.details.resistances}}" placeholder="fire 5"></label>
+      </div>
+      {{#if system.attributes.state}}<p class="arn-warnline"><i class="fa-solid fa-heart-crack"></i> Broken</p>{{/if}}
+    </section>
+
+    <section class="arn-hz-block">
+      <div class="arn-section-head"><h3>Description</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editDescription"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
+      <div class="arn-prose">{{#if description}}{{{description}}}{{else}}<p class="arn-muted">What it looks like, where it is, what it guards.</p>{{/if}}</div>
+    </section>
+  </section>
+</div>
