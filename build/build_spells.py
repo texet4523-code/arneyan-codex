@@ -2,7 +2,7 @@
 import re
 import docx
 from lib import *
-import spell_damage
+import spell_damage, spell_saves
 
 CLASSES = {"Wiz": "Wizard", "Cle": "Cleric", "Ill": "Illusionist", "Dru": "Druid", "Sor": "Sorcerer", "Wit": "Witch",
            "Bar": "Bard", "War": "Warlock", "Mag": "Magus", "Nec": "Necromancer", "Pal": "Paladin"}
@@ -28,11 +28,9 @@ def build(icon):
             text = fix(r[4])
             rng = re.match(r"^(Range [^;.]+|Touch|Self|Personal)", text)
             conc = bool(re.search(r"\bconcentration\b", text, re.I))
-            dmg, dtype = spell_damage.parse(text)
-            if name in ("Teleport", "Ethereal Jaunt", "Meld into Stone", "Reverse Gravity", "Earthquake", "Restoration", "Bless Water", "Spike Growth", "Spike Stones", "Wall of Thorns", "Melf's Minute Meteors", "Stoneskin", "Shillelagh"):
-                dmg, dtype = "", ""   # damage there is a side effect or per distance; roll it by hand
-            dtype = {"Fire Shield": "fire", "Chain Lightning": "lightning", "Flame Strike": "fire"}.get(name, dtype)
-            notes = []
+            dmg, dtype, dnote = spell_damage.for_spell(name, text)
+            save = save or spell_saves.SAVE_ADD.get(name, "")
+            notes = [esc(dnote)] if dnote else []
             if "*" in marks:
                 notes.append("<strong>Reversible:</strong> may be cast as its opposite with the same slot.")
             if "‡" in marks:
@@ -46,7 +44,7 @@ def build(icon):
                 "castingTime": "1 action", "range": rng.group(1) if rng else "",
                 "duration": "", "area": "", "components": comps.replace("· Ritual", "").strip(" ·"),
                 "concentration": conc, "ritual": "Ritual" in comps, "prepared": False,
-                "save": save, "saveEffect": "", "damage": dmg, "damageType": dtype,
+                "save": save, "saveEffect": spell_saves.save_effect(name, text, save), "damage": dmg, "damageType": dtype,
                 "reversible": "*" in marks, "costly": "‡" in marks
             }, icon("spell", school.strip()), folder=fol, sort=count)
             count += 1

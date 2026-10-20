@@ -1,38 +1,63 @@
-"""Actions pack: the Codex's basic actions and Combat Manoeuvres as ability items (kind "action").
+"""Actions pack: Book I (Core Rules), Section III Combat, as ability items (kind "action").
 
-Text comes straight from Book I (Codex), Section III. Switchable manoeuvres carry the rules the
-table states (Advantage or Disadvantage); everything else is a description and a chat card.
-"""
+Source: out2/The_Arneyan_Codex.docx, the Book I master the Player's Handbook v0.9.9 prints (pp. 8-15; the Handbook
+adds only page references). Two folders:
+- Combat Manoeuvres: the book's three tables (Actions, Manoeuvres, Positioning), in its order.
+- Basic Actions: the other actions Section III names (Ready, Delay, Dash, Attack of Opportunity, Unarmed Strike,
+  Overbear, breaking free, Fighting Defensively).
+
+What Use does:
+- Contests (Dirty Trick, Disarm, Grapple, Overbear, Trip, Break Free) roll both sides (combat.mjs, startContest).
+- Unarmed Strike attacks (combat.mjs); Attack of Opportunity spends the reaction.
+- Hide and Search roll the check the book names (an activity, kind "check").
+- Charge, Dodge, Flank Attack and Shield Blow are switches with the table's own Advantage or Disadvantage.
+- Everything else posts its card.
+
+IDs are sha1 of the name (lib.fid), so an action keeps its ID across builds; the two the book renamed keep their old
+key (Charging is now Charge, Opportunity Attack is now Attack of Opportunity)."""
 import re
-from lib import item, folder, esc, md_inline
+import docx
+from lib import item, folder, esc, fix, fid, walk_docx, write
 
-CODEX = "/tmp/hb/mm/codex.md"
+CODEX = "/tmp/hb/out2/The_Arneyan_Codex.docx"
 
 GLYPH = {
-    "Called Shot": "targeted", "Charging": "charging-bull", "Cleave": "axe-swing", "Disarm": "drop-weapon",
-    "Disengage": "exit-door", "Dodge": "dodging", "Feint": "fencer", "Flank Attack": "sword-clash",
-    "Hide": "hood", "Offensive Focus": "crossed-swords", "Parry": "sword-break", "Push": "push",
-    "Rear Attack": "backstab", "Receiving Charge": "spears", "Shield Blow": "shield-bash",
-    "Shield Wall": "shield-reflect", "Trip": "falling", "Ready": "hourglass", "Delay": "sands-of-time",
-    "Dash": "run", "Opportunity Attack": "sword-wound", "Grapple": "grab", "Overbear": "knockout",
-    "Unarmed Strike": "fist", "Help": "shaking-hands", "Dirty Trick": "dust-cloud"
+    "Charge": "charging-bull", "Cleave": "axe-swing", "Disarm": "drop-weapon", "Disengage": "exit-door", "Dodge": "dodging",
+    "Flank Attack": "sword-clash", "Hide": "hood", "Search": "magnifying-glass", "Guard": "shield", "Push": "push",
+    "Receiving Charge": "spears", "Shield Blow": "shield-bash", "Shield Wall": "shield-reflect", "Trip": "falling",
+    "Ready": "hourglass", "Delay": "sands-of-time", "Dash": "run", "Attack of Opportunity": "sword-wound", "Grapple": "grab",
+    "Overbear": "knockout", "Unarmed Strike": "fist", "Dirty Trick": "dust-cloud", "Break Free": "breaking-chain",
+    "Fighting Defensively": "sword-break",
 }
 
-# Manoeuvres the current Codex (Book I, Combat Manoeuvres) has that the older markdown table lacks.
-EXTRA_MANOEUVRES = [
-    ("Dirty Trick", "Contest: your Dexterity check vs. the target's Dexterity or Wisdom check (its choice). You win, it is "
-                    "Blinded until the end of its next turn. A creature only falls for your Dirty Trick once per fight"),
-]
+# Old keys for the actions the book renamed, so their IDs stay the same.
+KEYS = {"Charge": "Charging", "Attack of Opportunity": "Opportunity Attack"}
 
-# Manoeuvres you declare and keep up for a while: a switch on the sheet with the table's own effect.
+# Switches on the sheet, with the effect the table states.
 TOGGLES = {
-    "Charging": [("adv.attack", "1"), ("adv.against", "1")],
-    "Offensive Focus": [("adv.attack", "1"), ("adv.against", "1")],
+    "Charge": [("adv.attack", "1"), ("adv.against", "1")],
     "Dodge": [("adv.against", "-1")],
-    "Called Shot": [("adv.attack", "-1"), ("note.damage", "Called Shot: add one extra damage die on a hit")],
-    "Shield Blow": [("adv.attack", "-1"), ("note.attack", "Shield Blow: on a hit the target makes a Fortitude save or is stunned 1d2 rounds")],
+    "Shield Blow": [("adv.attack", "-1"), ("note.attack", "Shield Blow: on a hit the target makes a Fortitude save or is Stunned for 1d2 rounds")],
     "Flank Attack": [("adv.attack.melee", "1")],
-    "Rear Attack": [("adv.attack", "1")],
+}
+
+# Checks the Use button rolls (the book's attribute; a skill that applies is the player's to add).
+CHECKS = {
+    "Hide": ("dex", "Dexterity (Stealth) check. Each observer who is looking makes a Wisdom check against it; one who is not uses its passive awareness (10 + Wisdom modifier)."),
+    "Search": ("wis", "Wisdom check against the hidden creature's Hide result."),
+}
+
+# combat.mjs picks the contest by name (Grapple, Trip, Disarm, Dirty Trick, Overbear) or by this flag.
+FLAGS = {"Break Free": {"arneyan": {"contest": "escape"}}}
+
+USE_NOTES = {
+    **{n: "Target one creature and press Use: both sides roll, and the result is applied." for n in ("Disarm", "Dirty Trick", "Grapple", "Overbear", "Trip")},
+    "Break Free": "Press Use while Restrained: you roll Strength or Dexterity against the grappler's Strength, and a win ends Restrained.",
+    "Unarmed Strike": "Press Use to attack: it adds an Unarmed Strike weapon to the sheet the first time.",
+    "Hide": "Press Use to roll the Dexterity check.",
+    "Search": "Press Use to roll the Wisdom check.",
+    "Attack of Opportunity": "Press Use to spend your reaction for the round, then attack with your weapon.",
+    "Fighting Defensively": "The Actions tab's Defend buttons apply the bonus.",
 }
 
 
@@ -40,71 +65,127 @@ def rule(k, v):
     return {"key": k, "value": v, "when": "", "label": ""}
 
 
-# Use rolls these for you (combat.mjs): the contest against your target, or an unarmed attack.
-USE_NOTES = {
-    **{n: "Target one creature and press Use: both sides roll, and the result is applied." for n in ("Disarm", "Dirty Trick", "Grapple", "Overbear", "Trip")},
-    "Unarmed Strike": "Press Use to attack: it adds an Unarmed Strike weapon to the sheet the first time.",
-}
-
-
-def ability(name, html, fol, sort, save="", toggle=False):
+def ability(name, html, fol, sort):
     rules = [rule(k, v) for k, v in TOGGLES.get(name, [])]
     if name in USE_NOTES:
-        html += f"<p class=\"arn-note\">{USE_NOTES[name]}</p>"
+        html += f'<p class="arn-note">{USE_NOTES[name]}</p>'
+    if rules:
+        html += '<p class="arn-note">Switch it on from the Actions tab while it applies; the sheet adds the Advantage or Disadvantage.</p>'
+    acts = []
+    if name in CHECKS:
+        ab, text = CHECKS[name]
+        acts.append({"name": name, "kind": "check", "formula": "", "damageType": "", "ability": ab, "save": "", "text": text,
+                     "minLevel": 0, "cost": 0, "per": "", "target": "", "removeConditions": False})
     from icons import icon
-    item("actions", name, "ability", {
+    system = {
         "description": html, "source": {"book": "phb", "page": 0},
-        "kind": "action", "uses": {"value": 0, "max": 0, "per": ""}, "save": save, "dc": None, "damage": "",
-        "level": 0, "className": "", "rules": rules, "toggle": bool(rules), "active": False, "applies": []
-    }, icon("action", GLYPH.get(name, "swords-emblem")), folder=fol, sort=sort)
+        "kind": "action", "uses": {"value": 0, "max": 0, "per": ""}, "save": "fort" if name == "Shield Blow" else "", "dc": None, "damage": "",
+        "level": 0, "className": "", "rules": rules, "toggle": bool(rules), "active": False, "applies": [], "activities": acts
+    }
+    img = icon("action", GLYPH.get(name, "swords-emblem"))
+    if name not in FLAGS:
+        return item("actions", name, "ability", system, img, folder=fol, sort=sort, key=KEYS.get(name))
+    # lib.item has no flags: the same document, written once.
+    _id = fid("actions", "ability", KEYS.get(name) or name)
+    doc = {"_id": _id, "_key": f"!items!{_id}", "name": name, "type": "ability", "img": img, "system": system, "effects": [],
+           "folder": fol, "sort": sort, "ownership": {"default": 0}, "flags": FLAGS[name]}
+    write("actions", doc)
+    return doc
+
+
+def section(d):
+    """Book I, Section III: {heading: [(text, is list)]} and {first column header: rows} for its tables."""
+    heads, tables = {}, {}
+    on, cur = False, None
+    for kind, obj, info in walk_docx(d):
+        if kind == "table":
+            if on:
+                tables.setdefault(obj[0][0], []).append(obj)
+            continue
+        t, style = info["text"].strip(), info["style"]
+        if style == "Heading 1":
+            on = t.startswith("Section III")
+            continue
+        if not on:
+            continue
+        if style.startswith("Heading"):
+            cur = heads.setdefault(t, [])
+            continue
+        if cur is not None and t:
+            cur.append(fix(t))
+    return heads, tables
+
+
+def lead(paras, label):
+    """The paragraph that starts "Label." or "Label (action):", without the label."""
+    for p in paras:
+        m = re.match(re.escape(label) + r"\s*(?:\((?:action|[^)]*)\))?\s*[.:]\s*(.+)$", p)
+        if m:
+            return m.group(1).strip()
+    return ""
+
+
+def ul(lines):
+    return "<ul>" + "".join(f"<li>{esc(x)}</li>" for x in lines) + "</ul>"
 
 
 def build(_icon=None):
-    md = open(CODEX, encoding="utf-8").read()
+    d = docx.Document(CODEX)
+    heads, tables = section(d)
+    man = tables["Action"][0][1:], tables["Manoeuvre"][0][1:], [t for t in tables["Option"] if t[0] == ["Option", "Effect"]][0][1:]
     manoeuvres = folder("actions", "Combat Manoeuvres", sort=1)
     basic = folder("actions", "Basic Actions", sort=0)
-    contest = ("<p class=\"arn-note\">Contest: both sides roll d20 + the stated attribute modifier; "
+    contest = ('<p class="arn-note">Contest: both sides roll d20 + the stated attribute modifier; '
                "the higher total wins and ties go to the defender.</p>")
 
-    # The Combat Manoeuvres table.
-    sec = md[md.index("## Combat Manoeuvres"):]
-    sec = sec[:sec.index("\n## ", 5)]
+    # Fuller text the tables point to ("see Movement & Charging", "see Disengage & Hide", "see Unarmed Combat").
+    moving = heads["Movement & Charging"]
+    i = next(k for k, p in enumerate(moving) if p.startswith("Charging (action)"))
+    hiding = heads["Disengage & Hide"]
+    grappling = heads["Unarmed Combat & Grappling"]
+    more = {
+        "Charge": moving[i:i + 5],
+        "Hide": [p for p in hiding if p.startswith(("Hide (action)", "Unseen"))],
+        "Search": [p for p in hiding if p.startswith("Search (action)")],
+        "Grapple": [p for p in grappling if not p.startswith(("Unarmed Strike", "Grappling:"))],
+    }
+    group = {}
     n = 0
-    for line in sec.splitlines():
-        m = re.match(r"\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", line)
-        if not m or m.group(1) in ("Manoeuvre", "---"):
-            continue
-        name, effect = m.group(1), m.group(2)
-        html = f"<p>{md_inline(effect)}</p>"
-        if "Contest" in effect:
-            html += contest
-        if name in TOGGLES:
-            html += "<p class=\"arn-note\">Switch it on from the Actions tab while it applies; the sheet adds the Advantage or Disadvantage.</p>"
-        ability(name, html, manoeuvres, n * 10, save="fort" if name == "Shield Blow" else "")
-        n += 1
-    for name, effect in EXTRA_MANOEUVRES:
-        if f"| {name} |" in sec:
-            continue
-        ability(name, f"<p>{md_inline(effect)}</p>{contest}", manoeuvres, n * 10)
-        n += 1
+    for label, rows in zip(("Action", "Manoeuvre", "Positioning"), man):
+        for name, effect in rows:
+            html = f"<p>{esc(fix(effect))}.</p>".replace("..</p>", ".</p>")
+            html += f'<p class="arn-note"><strong>Combat Manoeuvres, {label}:</strong> {dict(Action="uses your action.", Manoeuvre="replaces one attack.", Positioning="a benefit for where you stand.")[label]}</p>'
+            if name in more:
+                html += ul(more[name])
+            if "Contest" in effect:
+                html += contest
+            if name == "Shield Blow":
+                html += "<p>The save DC is 10 + half your level (minimum 1) + your Strength modifier. A creature that saves against your Shield Blow is immune to it for the rest of the fight.</p>"
+            ability(name, html, manoeuvres, n * 10)
+            group[name] = label
+            n += 1
 
-    # Basic actions from Actions & Turns, Movement, Reactions and Unarmed Combat.
-    def bullet(label):
-        m = re.search(r"\*\*" + re.escape(label) + r"\.?\*\*\.?\s*(?:\([^)]*\):?)?\s*(.+)", md)
-        return md_inline(m.group(1).strip()) if m else ""
+    # The other actions Section III names.
+    turns = heads["Actions & Turns"]
+    defend = [t for t in tables["Option"] if t[0] == ["Option", "Bonus"]][0]
+    dual = heads["Dual Wielding & Shields"]
+    j = next(k for k, p in enumerate(dual) if p.startswith("Instead of attacking with your off-hand weapon"))
+    unarmed = lead(grappling, "Unarmed Strike")
+    overbear = next(p for p in grappling if p.startswith("To knock a grappled target down"))
+    restrained = next(r for r in tables["Condition"][0] if r[0] == "Restrained")
+    by_grappler = next(p for p in grappling if p.startswith("Win the contest"))
     basics = [
-        ("Ready", bullet("Ready")),
-        ("Delay", bullet("Delay")),
-        ("Dash", "Spend your action to Dash and double your movement for the turn."),
-        ("Opportunity Attack", bullet("Opportunity Attack:")),
-        ("Unarmed Strike", bullet("Unarmed Strike:")),
-        ("Grapple", "Contest: your Strength check against the target's Strength or Dexterity check (their choice). "
-                    "Win, and the target is Restrained until it breaks free with its own contested check on a later turn. "
-                    "Grappling does not knock a target prone by itself."),
-        ("Overbear", "Spend a further attack to knock a creature you have already grappled (Restrained) prone: a second contested check."),
+        ("Ready", f"<p>{esc(lead(turns, 'Ready'))}</p>"),
+        ("Delay", f"<p>{esc(lead(turns, 'Delay'))}</p>"),
+        ("Dash", "<p>Spend your action to Dash and double your movement for the turn (Movement &amp; Charging).</p>"),
+        ("Attack of Opportunity", f"<p>{esc(lead(turns, 'Attack of Opportunity'))}</p><p>{esc(lead(turns, 'Reactions'))}</p>"),
+        ("Unarmed Strike", f"<p>{esc(unarmed[0].upper() + unarmed[1:])}</p>"),
+        ("Overbear", f"<p>{esc(overbear)}</p>{contest}"),
+        ("Break Free", f"<p><strong>Restrained</strong> (Conditions): {esc(fix(restrained[1]))}</p><p><strong>Lasts / ends early by:</strong> {esc(fix(restrained[2]))}</p>"
+                       f"<p>{esc(by_grappler)}</p>{contest}"),
+        ("Fighting Defensively", f"<p>{esc(dual[j])}</p>" + "<ul>" + "".join(f"<li><strong>{esc(o)}:</strong> {esc(fix(b))}</li>" for o, b in defend[1:]) + "</ul>"),
     ]
-    for i, (name, text) in enumerate(basics):
-        if not text:
-            continue
-        ability(name, f"<p>{text[0].upper() + text[1:]}</p>", basic, i * 10)
+    for k, (name, html) in enumerate(basics):
+        assert re.sub(r"<[^>]+>", "", html).strip(), f"no text for {name}"
+        ability(name, html, basic, k * 10)
     return n

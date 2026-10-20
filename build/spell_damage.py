@@ -42,7 +42,8 @@ def parse(text):
         return f"(min({n} + {_lv(per)}, {mx}))d{d}", kind(m.group(0))
 
     # "1d6 ... per (two) level(s) (minimum 4d6, maximum 10d6)" / "(max 10d6)"
-    m = re.search(r"\b1d(\d+)\s+(?:\w+\s+){0,3}?(?:damage\s+)?per (two |three |four )?levels?\s*\((?:minimum (\d+)d\d+,\s*)?max(?:imum)? (\d+)d\d+\)", t)
+    # (Glyph of Warding puts the type after it: "1d8 per two levels thunder damage (max 5d8)".)
+    m = re.search(r"\b1d(\d+)\s+(?:\w+\s+){0,3}?(?:damage\s+)?per (two |three |four )?levels?\s*(?:\w+ damage\s*)?\((?:minimum (\d+)d\d+,\s*)?max(?:imum)? (\d+)d\d+\)", t)
     if m:
         d, per, mn, mx = m.group(1), _per((m.group(2) or "").strip()), m.group(3), m.group(4)
         cnt = f"min({_lv(per)}, {mx})"
@@ -76,6 +77,52 @@ def parse(text):
         return m.group(1).replace(" ", ""), "healing"
     return "", ""
 
+# Spells whose damage is a side effect, a mishap or set per distance fallen or travelled: rolled by hand.
+BY_HAND = {"Teleport", "Ethereal Jaunt", "Meld into Stone", "Reverse Gravity", "Earthquake", "Restoration", "Bless Water",
+           "Stoneskin", "Shillelagh"}
+
+# Damage the parser cannot read, or reads short, written out from the text. (formula, type, note for the card)
+EXPLICIT = {
+    # "missiles ... each dealing 1d4+1 force damage. 1 missile per two levels (min 1, max 5)"
+    "Magic Missile": ("(max(1, min(floor(@cl/2), 5)))d4 + max(1, min(floor(@cl/2), 5))", "force",
+                      "The damage button rolls every missile at one target. Split between targets, each missile deals 1d4+1."),
+    # "1 meteor per level (max 10) ... Each target takes 1d4 fire damage per meteor assigned"
+    "Melf's Minute Meteors": ("(min(@cl, 10))d4", "fire",
+                              "The damage button rolls every meteor at one target. Split between targets, each meteor deals 1d4."),
+    # "hitting automatically (no roll) for 1d8 bludgeoning (2d8 if Large)"
+    "Animate Objects": ("1d8", "bludgeoning", "One object's hit. A Large object deals 2d8."),
+    # "10d6 bludgeoning plus 10d6 fire damage"
+    "Meteor Swarm": ("10d6 + 10d6", "", "10d6 bludgeoning plus 10d6 fire. Place one area for each of the four meteors; a creature in two bursts takes the damage once."),
+    # "1 red 10d6 fire; 2 orange 10d6 acid; 3 yellow 10d6 lightning; 4 green ... (success 10d6 poison)"
+    "Prismatic Spray": ("10d6", "", "Roll d8 for each creature first: red is fire, orange acid, yellow lightning, and green poison on a successful save."),
+    # "1d4 piercing damage per 5ft moved through"
+    "Spike Growth": ("1d4", "piercing", "The damage button rolls one 5ft of movement: 1d4 for each 5ft moved through the area."),
+    # "1d8 piercing damage per 10ft moved (minimum 1d8)"
+    "Spike Stones": ("1d8", "piercing", "The damage button rolls one 10ft of movement: 1d8 for each 10ft moved (at least 1d8)."),
+    # "2d6 piercing damage per 5ft moved"
+    "Wall of Thorns": ("2d6", "piercing", "The damage button rolls one 5ft of movement: 2d6 for each 5ft moved."),
+}
+
+# A reminder on the card where the text has a second number the formula can't carry.
+NOTES = {
+    "Toll the Dead": "The damage button rolls d4s. Against a creature below its maximum HP, roll the same number of d6s instead.",
+    "Fire Seeds": "The damage button rolls an acorn (4d8). A berry deals 1d8.",
+}
+
+# Mixed damage typed as its first type (half fire, half radiant and so on).
+TYPE = {"Fire Shield": "fire", "Chain Lightning": "lightning", "Flame Strike": "fire"}
+
+
+def for_spell(name, text):
+    """(formula, type, note) for a spell on the master list."""
+    if name in BY_HAND:
+        return "", "", ""
+    if name in EXPLICIT:
+        return EXPLICIT[name]
+    dmg, dtype = parse(text)
+    return dmg, TYPE.get(name, dtype), NOTES.get(name, "")
+
+
 if __name__ == "__main__":
     tests = {
         "Deals 1d4 fire damage (+1 die at 5th, 11th and 17th level).": "(1 + floor((@cl + 1) / 6))d4",
@@ -89,6 +136,7 @@ if __name__ == "__main__":
         "takes 3d6 + 1 necrotic damage per level instead": "3d6 + @cl",
         "Each ray deals 2d6 fire damage.": "2d6",
         "it deals 1d6 force damage per level (max 10d6)": "(min(@cl, 10))d6",
+        "dealing 1d8 per two levels thunder damage (max 5d8) in a 5ft radius": "(max(1, min(floor(@cl/2), 5)))d8",
     }
     for s, want in tests.items():
         got = parse(s)[0]

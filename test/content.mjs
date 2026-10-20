@@ -200,4 +200,7 @@ assert.ok(fs.existsSync(path.join(root, "RELEASING.md")));
 // Player-facing text from these files: no em dashes.
 for (const f of ["dsn.mjs", "itempiles.mjs", "tah.mjs", "integrations.mjs"]) assert.ok(!fs.readFileSync(path.join(root, "arneyan/module", f), "utf8").includes("—"), `em dash in ${f}`);
 
+// ---- 8. Spell mechanics against the book text and the Assassin's Skills feature (test/spells.mjs).
+await import("./spells.mjs");
+
 console.log("OK content");

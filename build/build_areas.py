@@ -56,6 +56,42 @@ NOT_AREAS = {"Daylight", "Produce Flame", "Secret Page", "Wall of Iron", "Detect
 # Spells whose duration is on the creatures, not the area: the area is cleared like an instant one.
 ON_CREATURES = {"Fear (Mass)"}
 
+def _area(type_, size, width=0, fromSelf=False, lingering=False, rounds=""):
+    return {"type": type_, "size": size, "width": width, "attached": False, "fromSelf": fromSelf, "lingering": lingering,
+            "rounds": rounds, "sizeFormula": ""}
+
+# Areas stated after the opening line, so area_of() does not see them (the text each rests on is quoted).
+AREAS = {
+    "Call Lightning": _area("circle", 10),          # "striking a 10ft-radius burst" (one bolt a round)
+    "Explosive Runes": _area("circle", 10),         # "explode in a 10ft-radius burst centred on the reader"
+    "Glyph of Warding": _area("circle", 5),         # "thunder damage (max 5d8) in a 5ft radius"
+    "Fire Trap": _area("circle", 5),                # "it explodes in a 5ft radius"
+    "Fire Seeds": _area("circle", 10),              # "each bursts in a 10ft-radius explosion"
+    "Sunbeam": _area("line", 60, 5, fromSelf=True),  # "a 5ft-wide, 60ft-long line of sunlight"
+    "Creeping Doom": _area("circle", 20, lingering=True, rounds="min(1*@cl, 10)"),  # "A 20ft-radius swarm"; "1 round per level (max 10)"
+    "Repel Metal or Stone": _area("cone", 60, fromSelf=True, lingering=True, rounds="1*@cl"),  # "Self; cone 60ft long, 1 round per level"
+    "Meteor Swarm": _area("circle", 20),            # "Four meteors ... each exploding in a 20ft radius"
+    "Symbol": _area("circle", 30),                  # "everything within a 30ft radius is affected"
+    # "one fire no larger than a 20ft cube" is the fire put out; the smoke option "fills a 20ft radius for 1 round per level".
+    "Pyrotechnics": _area("circle", 20, lingering=True, rounds="1*@cl"),
+}
+
+# Template flags the opening line gets wrong: how long the area stays (from later in the text), or that it is centred on you.
+FLAGS = {
+    "Evard's Black Tentacles": {"lingering": True, "rounds": "1*@cl"},   # "fill the area for 1 round per level"
+    "Spike Growth": {"lingering": True, "rounds": "600*@cl"},            # "Lasts 1 hour per level"
+    "Spike Stones": {"lingering": True, "rounds": "600*@cl"},            # "for 1 hour per level"
+    "Sleet Storm": {"lingering": True, "rounds": "1*@cl"},               # "covers the area for 1 round per level"
+    "Hallucinatory Terrain": {"lingering": True, "rounds": "600*@cl"},   # "for 1 hour per level"
+    "Permanent Image": {"lingering": True, "rounds": ""},                # "lasts until dispelled"
+    "Plant Growth": {"lingering": True, "rounds": ""},                   # "until it is cleared or burned"
+    "Prismatic Spray": {"lingering": False, "rounds": ""},               # instant; "1 minute" is the Indigo ray's Blinded
+    "Wail of the Banshee": {"fromSelf": True},                           # "40ft radius around you"
+    "Prayer": {"fromSelf": True},                                        # "40ft radius centred on you"
+    "Disjunction": {"fromSelf": True},                                   # "30ft-radius burst centred on you"
+    "Leomund's Tiny Hut": {"fromSelf": True},                            # "a 10ft-radius dome centred on you, stationary"
+}
+
 
 def build():
     n = 0
@@ -63,9 +99,11 @@ def build():
         d = json.load(open(f))
         if d.get("type") != "spell":
             continue
-        a = None if d["name"] in NOT_AREAS else area_of(d["system"].get("description", ""))
+        a = None if d["name"] in NOT_AREAS else (dict(AREAS[d["name"]]) if d["name"] in AREAS else area_of(d["system"].get("description", "")))
         if a and d["name"] in ON_CREATURES:
             a.update(lingering=False, rounds="")
+        if a and d["name"] in FLAGS:
+            a.update(FLAGS[d["name"]])
         d["system"]["template"] = a or {"type": "", "size": 0, "width": 0, "attached": False, "fromSelf": False, "lingering": False, "rounds": "", "sizeFormula": ""}
         if a:
             n += 1

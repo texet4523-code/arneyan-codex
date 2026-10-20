@@ -19,6 +19,10 @@ FEAT_PATHS = {"Fighter": [M], "Barbarian": [M], "Knight": [M],
               "Bard": [M, A], "Paladin": [M, A], "Magus": [M, A], "Artificer": [S, A],
               "Ranger": [M, S], "Archer": [M, S], "Rogue": [M, S], "Assassin": [M, S], "Monk": [M, S], "Gunslinger": [M, S], "Swashbuckler": [M, S]}
 for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_PATHS[cls] = [A]
+# Paragraphs that lost their list formatting in the class docx. A short bold line reads as a feature heading, so the
+# Assassin's "GM rolls secretly" split Assassin's Skills in two (Handbook p. 55 prints it as a note under Disguise).
+# (class, paragraph text) -> (list level, text to print in its place).
+LIST_FIXES = {("Assassin", "GM rolls secretly"): (1, "GM rolls secretly.")}
 LEVEL_RE = re.compile(r"^(\d+)(?:st|nd|rd|th) Level(?:\s*[—-]\s*(.+))?$|^Level (\d+)$")
 
 def uses_of(text):
@@ -135,6 +139,18 @@ def build(icon_for_class):
                 first = False
                 continue
             if t == "Arneyan Campaign Setting":
+                continue
+            fixed = LIST_FIXES.get((name, t.strip()))
+            if fixed:
+                # A note inside the current feature and the description, not a heading of its own.
+                lvl, text = fixed
+                if cur_feat is not None:
+                    cur_feat.add(esc(text), text, lvl)
+                    # An empty placeholder keeps the place the stray heading had in the list, so the features after it
+                    # keep their IDs (the key holds the position); an empty feature is never written.
+                    if section == "Class Abilities":
+                        feats.append(Feature("", cur_level))
+                (cur_kit[1] if cur_kit else desc).li(esc(text), lvl)
                 continue
             style = info["style"]
             if style.startswith("Heading"):

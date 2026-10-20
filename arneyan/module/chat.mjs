@@ -219,12 +219,22 @@ async function onSocket(msg, senderId) {
   }
 }
 
+/**
+ * What a successful save leaves of the damage, from the item's "On a save" words: "Full damage, but no stun" (Sound
+ * Burst) 1, anything that negates 0, otherwise half (build/spell_saves.py writes them this way).
+ */
+export function saveMultiplier(saveEffect) {
+  const t = String(saveEffect ?? "");
+  if (/\bfull damage\b/i.test(t)) return 1;
+  return /negat/i.test(t) ? 0 : 0.5;
+}
+
 /** Apply a damage card by each creature's latest save against its spell. */
 async function applyBySaves(message, actors, user) {
   const flags = message.flags?.[SYS] ?? {};
   const spell = flags.spell || flags.what || "";
   const item = flags.itemUuid ? await fromUuid(flags.itemUuid).catch(() => null) : null;
-  const halfOrNone = /negat/i.test(item?.system?.saveEffect ?? "") ? 0 : 0.5;
+  const halfOrNone = saveMultiplier(item?.system?.saveEffect);
   const failed = [], saved = [], unknown = [];
   for (const a of actors) {
     const r = latestSave(a, spell);
@@ -244,7 +254,7 @@ async function applyBySaves(message, actors, user) {
   if (!parts?.length) parts = null;
   const base = { type, weapon: WEAPON_KINDS.includes(flags.weapon) ? flags.weapon : "", parts, spell: String(flags.spell ?? "").slice(0, 80), disrupt: !!flags.disrupt };
   if (failed.length) await applyDamageTo(failed, total, { ...base, mult: 1 }, { ...ctx, what: `${ctx.what || spell} (failed the save)` });
-  if (saved.length && halfOrNone) await applyDamageTo(saved, total, { ...base, mult: 0.5 }, { ...ctx, what: `${ctx.what || spell} (saved: half)` });
+  if (saved.length && halfOrNone) await applyDamageTo(saved, total, { ...base, mult: halfOrNone }, { ...ctx, what: `${ctx.what || spell} (saved: ${halfOrNone === 1 ? "full damage" : "half"})` });
   if (saved.length && !halfOrNone) report(ctx, saved.map(a => `${a.name} saved: no damage`), "shield-halved");
 }
 
