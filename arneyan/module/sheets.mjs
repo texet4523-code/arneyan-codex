@@ -8,6 +8,7 @@ import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
 import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName } from "./gear.mjs";
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
+import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
 const { ActorSheetV2, ItemSheetV2 } = foundry.applications.sheets;
@@ -156,7 +157,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       refreshMonster: ArneyanActorSheet.#refreshMonster,
       lastChance: ArneyanActorSheet.#lastChance,
       revertShape: ArneyanActorSheet.#revertShape,
-      ...combatSheetActions
+      ...combatSheetActions,
+      ...WORLD_SHEET_ACTIONS
     }
   };
 
@@ -333,7 +335,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       return {
         id: e.id, name: e.name, img: e.img, disabled: e.disabled, concentration: !!f.concentration,
         source: f.sourceName ?? "", summary: (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", "),
-        duration: rounds !== null ? `${rounds} round${rounds === 1 ? "" : "s"} left` : f.rounds ? `${f.rounds} rounds` : ""
+        duration: rounds !== null ? `${rounds} round${rounds === 1 ? "" : "s"} left` : timeLeftLabel(e) || (f.rounds ? `${f.rounds} rounds` : "")
       };
     });
     const toggles = actor.items.filter(i => i.system.toggle).map(i => ({ id: i.id, name: i.name, img: i.img, active: i.system.active }));
@@ -366,7 +368,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       actor, system, source: actor._source.system, config: ARNEYAN, mods,
       isCharacter, isNpc: !isCharacter, editable: this.isEditable, editMode: this.editMode,
       tabs: (isCharacter
-        ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["bio", "Biography"]]
+        ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]]
         : [["actions", "Actions"], ["spells", "Spells"], ["effects", "Effects"], ["bio", "Description"]]).map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       activeTab: this._activeTab,
       abilities: Object.entries(system.abilities).map(([k, v]) => ({
@@ -414,6 +416,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       stateLabel: { stable: "Unconscious but stable", dying: `Dying: losing 1 HP a turn, dies at ${system.attributes.deathAt}`, dead: "Dead" }[system.attributes.state] ?? ""
     });
 
+    Object.assign(context, worldSheetContext(actor));
     if (isCharacter) {
       context.exhaustion = Array.from({ length: 6 }, (_, i) => ({ level: i + 1, on: system.attributes.exhaustion > i, label: ARNEYAN.exhaustion[i + 1] }));
       context.bio = await enrich(system.details.biography);
@@ -509,6 +512,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   /** A creature dropped on a sheet: change shape into it (Polymorph, Wild Shape and the like). */
   async _onDropActor(event, actor) {
     if (!this.isEditable || !actor || !["character", "npc"].includes(actor.type) || !["character", "npc"].includes(this.document.type)) return null;
+    if (dropOnCompanions(this, event, actor)) return null;
     await promptTransform(this.document, actor);
     return null;
   }

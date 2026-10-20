@@ -1,0 +1,42 @@
+{{!-- Travel (Drop 4): days to a destination, supplies and the Encounter Check. --}}
+<div class="arn-section-head"><h3>Journey</h3>
+  {{#if isGM}}<span class="arn-head-tools">
+    <a class="arn-btn small" data-action="travelDay" data-tooltip="A day on the road: game time moves on a day, everyone eats and drinks, and the Encounter Check is rolled"><i class="fa-solid fa-route"></i> Travel one day</a>
+    <a class="arn-btn small ghost" data-action="travelRefill" data-tooltip="At a stream, a well or a town"><i class="fa-solid fa-droplet"></i> Refill water</a>
+    <a class="arn-btn small ghost" data-action="travelReset" data-tooltip="Start a new journey"><i class="fa-solid fa-rotate-left"></i> New journey</a>
+  </span>{{/if}}</div>
+<div class="arn-fields two arn-travel-fields">
+  <label>Distance (hexes) <input class="short" type="number" min="0" name="flags.arneyan.travel.distance" value="{{travel.distance}}" {{#unless isGM}}disabled{{/unless}}></label>
+  <label>Covered <input class="short" type="number" min="0" name="flags.arneyan.travel.done" value="{{travel.done}}" {{#unless isGM}}disabled{{/unless}}></label>
+  <label>Travelling <select name="flags.arneyan.travel.method" {{#unless isGM}}disabled{{/unless}}>{{selectOptions travel.methods selected=travel.method}}</select></label>
+  <label>Pace <select name="flags.arneyan.travel.pace" {{#unless isGM}}disabled{{/unless}}>{{selectOptions travel.paces selected=travel.pace}}</select></label>
+  <label class="check"><input type="checkbox" name="flags.arneyan.travel.difficult" {{checked travel.difficult}} {{#unless isGM}}disabled{{/unless}}> Difficult terrain (one pace slower)</label>
+  <label class="check"><input type="checkbox" name="flags.arneyan.travel.water" {{checked travel.water}} {{#unless isGM}}disabled{{/unless}}> Water along the way</label>
+  {{#if isGM}}<label>Encounter table <input type="text" name="flags.arneyan.travel.table" value="{{travel.table}}" list="arn-travel-tables" placeholder="Found by name"></label>
+  <datalist id="arn-travel-tables">{{#each travel.tables}}<option value="{{this}}"></option>{{/each}}</datalist>{{/if}}
+</div>
+<div class="arn-subline arn-travel-sum">
+  <span class="arn-chip strong">{{travel.perDay}} hex{{#unless (eq travel.perDay 1)}}es{{/unless}} a day</span>
+  <span class="arn-chip">{{travel.paceLabel}} pace</span>
+  {{#if travel.arrived}}<span class="arn-chip gold">Arrived</span>{{else}}<span class="arn-chip">{{travel.days}} day{{#unless (eq travel.days 1)}}s{{/unless}} to go</span>{{/if}}
+  {{#if travel.day}}<span class="arn-chip">Day {{travel.day}} of the journey</span>{{/if}}
+  <span class="arn-chip {{#if (gt travel.needMeals travel.haveMeals)}}bad{{/if}}" data-tooltip="Each member eats a day's rations a day (a Week's Rations pack holds seven)">Rations {{travel.haveMeals}} / {{travel.needMeals}} needed</span>
+</div>
+{{#if travel.slowNote}}<p class="arn-help">Slow pace: the party can move stealthily and forage (Wisdom (Survival), Moderate).</p>{{/if}}
+{{#if travel.fastNote}}<p class="arn-help">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>{{/if}}
+<div class="arn-section-head"><h3>Supplies</h3><span class="arn-muted">Days of food and full water containers each member carries</span></div>
+<ul class="arn-list table arn-travel-rows">
+  {{#each travel.rows}}
+  <li>
+    <span class="arn-name-cell"><img src="{{img}}" alt="">{{name}}</span>
+    <span class="{{#if short}}arn-bad{{/if}}">Food {{meals}} day{{#unless (eq meals 1)}}s{{/unless}}</span>
+    <span class="{{#if dry}}arn-bad{{/if}}">Water {{water}}</span>
+    <span class="arn-muted">{{#if hungry}}<span class="arn-bad">{{hungry}} day{{#unless (eq hungry 1)}}s{{/unless}} without food</span> (Exhaustion after {{grace}}){{/if}}{{#if thirsty}} <span class="arn-bad">{{thirsty}} without water</span>{{/if}}</span>
+  </li>
+  {{else}}<li class="arn-empty">No members.</li>{{/each}}
+  {{#if travel.stash.meals}}<li><span class="arn-name-cell">Party stash</span><span>Food {{travel.stash.meals}}</span><span>Water {{travel.stash.water}}</span><span></span></li>{{/if}}
+</ul>
+{{#if travel.log.length}}
+<div class="arn-section-head"><h3>On the road</h3></div>
+<ul class="arn-list compact">{{#each travel.log}}<li><span>{{this}}</span></li>{{/each}}</ul>
+{{/if}}

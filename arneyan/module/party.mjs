@@ -5,6 +5,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { statusesOf } from "./effects.mjs";
+import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -185,7 +186,8 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       encounter: () => game.arneyan.encounter(),
       askRoll: () => game.arneyan.askRoll?.(),
       awardXp: () => game.arneyan.awardXp?.(),
-      restParty: ArneyanPartySheet.#restParty
+      restParty: ArneyanPartySheet.#restParty,
+      ...WORLD_PARTY_ACTIONS
     }
   };
 
@@ -216,7 +218,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const speeds = members.map(m => Number(m.speed)).filter(Number.isFinite);
     Object.assign(context, {
       actor, system: actor.system, source: actor._source.system, editable: this.isEditable, isGM: game.user.isGM,
-      tabs: [["members", "Members"], ["stash", "Stash"], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
+      tabs: [["members", "Members"], ["stash", "Stash"], ["travel", "Travel"], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       members, stash,
       places: game.actors.filter(a => a.type === "storage" && a.testUserPermission(game.user, "OBSERVER")).sort((a, b) => a.name.localeCompare(b.name))
         .map(a => ({ id: a.id, name: a.name, img: a.img, location: a.system.location, here: a.system.here, slots: a.system.usedSlots, capacity: a.system.capacity })),
@@ -225,6 +227,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       avgLevel: members.length ? Math.round(members.reduce((t, m) => t + m.level, 0) / members.length * 10) / 10 : "-",
       notes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(actor.system.details.notes ?? "", { relativeTo: actor, secrets: actor.isOwner })
     });
+    Object.assign(context, await worldPartyContext(actor, partyMembers()));
     return context;
   }
 
