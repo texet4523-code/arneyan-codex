@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.3 · Foundry v13 and v14
+Version 0.10.4 · Foundry v13 and v14
+
+## What's new in 0.10.4
+
+- **Method V follows the Player's Handbook.** The ability scores window rolls Pool 1 8d6, Pool 2 5d6 and Pool 3 4d6 (keeping the highest 3 of each), then 3d6 three times, for Set Alpha and Set Beta. Rule C, the Gygaxian Threshold, is two scores of 14 or higher in the set you keep (a typed-in set too); if neither rolled set has them, roll both again or type in a donated set. A good set you don't keep is posted to chat as one you can donate to the table (Rule B).
+- **No score starts above 18.** When an ancestry bonus would take a new character's score past 18, a window asks which attribute gets the extra points (the next best one under 18 is picked for you; it also stops at 18). The move is kept with the ancestry, so removing the ancestry takes it back. Characters past creation are unchanged.
 
 ## What's new in 0.10.3
 
@@ -225,13 +230,13 @@ The **Pregenerated Characters** compendium (in the Adventures folder) has ready 
 Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
 
 ## Ancestry
-- **Dropping an ancestry** on a character opens its setup: the **subtype, bloodline, caste or lineage** (a Tiefling's bloodline sets its Resistance 5; a Genasi's caste and a Shifter's lineage set their attributes), a Human's **two +1s**, a Tiefling's **family**, and whether to **add the attribute changes to the scores** (ticked at 1st level; no score goes above 18 at creation, and you're told which points to move). Speed, size and vision follow the ancestry.
+- **Dropping an ancestry** on a character opens its setup: the **subtype, bloodline, caste or lineage** (a Tiefling's bloodline sets its Resistance 5; a Genasi's caste and a Shifter's lineage set their attributes), a Human's **two +1s**, a Tiefling's **family**, and whether to **add the attribute changes to the scores** (ticked at 1st level; no score goes above 18 at creation, and you pick which attribute takes any points that would). Speed, size and vision follow the ancestry.
 - Its **traits** go on the Features tab under the ancestry's name, with the chosen subtype first. The ancestries' own rules (Resistance 5 to poison for a Dwarf, Advantage reminders) apply; numbers a subtype states (a Wood Elf's +5ft speed, a 1st Generation Automaton's +1 AC) apply too.
 - **Dropping a class on a character with no ancestry** asks for the ancestry first, so its Constitution counts towards starting HP.
 - Removing the ancestry removes its traits and takes back the attribute changes it added.
 
 ## New characters
-- **A new character asks for its ability scores first:** roll Method V (two sets of six pools, 8d6 down to 3d6, best three dice each; the roll goes to chat), keep a set (the window flags a set without two scores of 15 or more, and lets you roll again if neither has them), or type in a donated set. Then put each number on an attribute, with its modifier shown. The dice button by the attributes (in Edit mode) opens it again.
+- **A new character asks for its ability scores first:** roll Method V (Set Alpha and Set Beta, each six pools: 8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times; the roll goes to chat), keep a whole set (the window flags a set without two scores of 14 or higher, the Gygaxian Threshold, and lets you roll both again if neither has them), or type in a donated set. Then put each number on an attribute, with its modifier shown. The dice button by the attributes (in Edit mode) opens it again.
 - Then drop an ancestry and a class: the ancestry window adds its changes, the class window does HP, kit, feat, skills and Luck.
 
 ## Table conveniences

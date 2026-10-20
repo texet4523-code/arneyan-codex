@@ -483,6 +483,68 @@ const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 const signedN = n => (n >= 0 ? `+${n}` : `−${-n}`);
 const bonusText = b => Object.entries(b ?? {}).filter(([, v]) => v).map(([k, v]) => `${signedN(v)} ${ARNEYAN.abilityAbbr[k]}`).join(", ");
 
+/** Starting Scores (Player's Handbook): when a character is created, no score can go above 18. */
+export const START_CAP = 18;
+const pts = n => `${n} point${n === 1 ? "" : "s"}`;
+
+/**
+ * Attribute changes at creation: each score after its change, stopped at 18, and the points that went over
+ * (only a bonus goes over; a score already above 18 keeps its value and the whole bonus is spare).
+ */
+export function capAtCreation(scores, deltas) {
+  const after = { ...scores };
+  const over = {};
+  for (const [k, v] of Object.entries(deltas)) {
+    let next = scores[k] + v;
+    if (v > 0 && next > START_CAP) { over[k] = next - Math.max(scores[k], START_CAP); next = Math.max(scores[k], START_CAP); }
+    after[k] = next;
+  }
+  return { after, over };
+}
+
+/** Where spare points go by default: the next best attribute still under 18 (ties in sheet order). */
+export function overflowTarget(after, exclude = []) {
+  return ABILITY_KEYS.filter(k => !exclude.includes(k) && after[k] < START_CAP).sort((a, b) => after[b] - after[a])[0] ?? null;
+}
+
+/**
+ * "Moving the excess": the points an ancestry bonus would take past 18 go to another attribute the owner picks
+ * (by default the next best one under 18), which also stops at 18. Changes `after` in place; returns what moved
+ * ({ int: 2 }), one line per move, and the points nowhere could take.
+ */
+export async function placeOverflow(actor, after, over) {
+  const moved = {};
+  const lines = [];
+  let lost = 0;
+  for (const [from, total] of Object.entries(over)) {
+    let left = total;
+    while (left > 0) {
+      const def = overflowTarget(after, [from]);
+      if (!def) { lost += left; break; }
+      const room = ABILITY_KEYS.filter(k => k !== from && after[k] < START_CAP);
+      const options = room.map(k => {
+        const put = Math.min(left, START_CAP - after[k]);
+        return `<option value="${k}" ${k === def ? "selected" : ""}>${ARNEYAN.abilities[k]} ${after[k]} (to ${after[k] + put}${put < left ? `, room for ${put}` : ""})</option>`;
+      }).join("");
+      const pick = await DialogV2.wait({
+        window: { title: `${actor.name}: no score above 18`, icon: "fa-solid fa-arrow-right-arrow-left" }, position: { width: 440 },
+        content: `<p>Your ancestry bonus would take ${ARNEYAN.abilities[from]} past 18. When a character is created no score can go above 18, so put the ${pts(left)} that would be lost into another attribute instead. That attribute also stops at 18.</p>
+          <div class="form-group"><label>Move ${pts(left)} to</label><select name="to">${options}</select></div>`,
+        buttons: [{ action: "ok", label: "Move", default: true, callback: (ev, btn) => btn.form.elements.to.value }],
+        rejectClose: false
+      });
+      // Closing the window puts them on the default rather than losing them.
+      const to = room.includes(pick) ? pick : def;
+      const put = Math.min(left, START_CAP - after[to]);
+      after[to] += put;
+      moved[to] = (moved[to] ?? 0) + put;
+      lines.push(`${pts(put)} from ${ARNEYAN.abilityAbbr[from]} to ${ARNEYAN.abilityAbbr[to]}`);
+      left -= put;
+    }
+  }
+  return { moved, lines, lost };
+}
+
 /** Pick an ancestry for a character that has none (the first class dropped on a blank sheet). */
 export async function pickAncestry(actor) {
   const list = await packOptions("ancestries", () => true);
@@ -528,7 +590,7 @@ export async function ancestrySetup(actor, anc) {
       <div class="form-group"><label>and +1 to</label><select name="pick2">${attrOpts.replace('value="dex"', 'value="dex" selected')}</select></div>` : ""}
     ${s.family ? `<div class="form-group"><label>Family you were born into</label><select name="family">${families.map(e => `<option value="${esc(e.name)}" ${e.name === "Human" ? "selected" : ""}>${esc(e.name)}</option>`).join("")}</select></div>` : ""}
     ${anyBonus ? `<div class="form-group"><label>Add the attribute changes to the scores</label><input type="checkbox" name="scores" ${atCreation ? "checked" : ""}></div>
-      <p class="hint">${atCreation ? "At creation no score can go above 18; any point that would, you move to another attribute yourself." : "Leave this off if the scores already include them."}</p>` : ""}
+      <p class="hint">${atCreation ? "When a character is created no score can go above 18. If a bonus would take a score past 18, you choose another attribute for the extra points (it also stops at 18)." : "Leave this off if the scores already include them."}</p>` : ""}
   </div>`;
   const res = await DialogV2.wait({
     window: { title: `${actor.name}: ${anc.name}` }, position: { width: 460 }, content,
@@ -576,19 +638,26 @@ export async function ancestrySetup(actor, anc) {
     for (const [k, v] of Object.entries(o?.bonuses ?? {})) add(k, v);
     for (const k of res.picks) add(k, 1);
   }
+  const scores = Object.fromEntries(ABILITY_KEYS.map(k => [k, actor._source.system.abilities[k].value]));
+  let after = Object.fromEntries(Object.entries(deltas).map(([k, v]) => [k, scores[k] + v]));
+  let moves = { moved: {}, lines: [], lost: 0 };
+  if (atCreation) {
+    const capped = capAtCreation(scores, deltas);
+    if (Object.keys(capped.over).length) moves = await placeOverflow(actor, capped.after, capped.over);
+    after = capped.after;
+  }
+  // What the ancestry added to each score, the moved points included, so removing the ancestry takes it all back.
   const applied = {};
-  const over = [];
   const upd = {};
-  for (const [k, v] of Object.entries(deltas)) {
-    const cur = actor._source.system.abilities[k].value;
-    let next = cur + v;
-    if (atCreation && next > 18 && v > 0) { over.push(`${ARNEYAN.abilities[k]} ${next - Math.max(cur, 18)}`); next = Math.max(cur, 18); }
-    applied[k] = next - cur;
-    upd[`system.abilities.${k}.value`] = next;
+  for (const k of ABILITY_KEYS) {
+    if (!(k in deltas) && !(k in moves.moved)) continue;
+    applied[k] = after[k] - scores[k];
+    if (applied[k]) upd[`system.abilities.${k}.value`] = after[k];
   }
   if (Object.keys(upd).length) await actor.update(upd);
-  await anc.update({ name: label, [`flags.${FLAG}.ancestry`]: { choice: o?.name ?? "", family: res.family, applied } });
-  const lines = [bonusText(applied) && `scores ${bonusText(applied)}`, o && `${s.choice.label.toLowerCase()} ${o.name}`, res.family && `${res.family} family`].filter(Boolean);
+  await anc.update({ name: label, [`flags.${FLAG}.ancestry`]: { choice: o?.name ?? "", family: res.family, applied, moved: moves.moved } });
+  const lines = [bonusText(applied) && `scores ${bonusText(applied)}`, moves.lines.length && `moved ${moves.lines.join(", ")} (no score above 18 at creation)`,
+    o && `${s.choice.label.toLowerCase()} ${o.name}`, res.family && `${res.family} family`].filter(Boolean);
   ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor.name)} is ${/^[AEIOU]/i.test(anc.name) ? "an" : "a"} <strong>${esc(label)}</strong>${lines.length ? `: ${esc(lines.join("; "))}` : ""}.</p>` });
-  if (over.length) ui.notifications.warn(`No score above 18 at creation: move ${over.join(", ")} point(s) to another attribute yourself.`, { permanent: true });
+  if (moves.lost) ui.notifications.warn(`No score above 18 at creation, and every other attribute is already 18: ${pts(moves.lost)} lost.`, { permanent: true });
 }

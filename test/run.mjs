@@ -687,3 +687,5 @@ await import("./lights.mjs");
 await import("./review-0101.mjs");
 // 0.10.2 review fixes (test/review-0102.mjs runs on its own too).
 await import("./review-0102.mjs");
+// 0.10.4 Method V and Starting Scores (test/chargen.mjs runs on its own too).
+await import("./chargen.mjs");

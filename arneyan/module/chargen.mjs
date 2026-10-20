@@ -1,21 +1,24 @@
 /**
  * Ability scores for a new character (Kieran, 19 Oct 2026): the first thing a new PC asks for.
  *
- * Method V (Book II, Attributes): two sets, each six descending pools (8d6, 6d6, 5d6, 4d6, 3d6, 3d6), keeping the
- * best three dice of each; keep one whole set. The Gygaxian Threshold: a set needs two scores of 15 or more; if
- * neither does (and nobody has donated one), roll again. A set donated by another player, or rolled at the table,
- * can be typed in instead. Then assign the six numbers. Ancestry changes come after (dropping the ancestry).
+ * Method V (Player's Handbook, Attributes and Method V): two sets (Alpha and Beta), each six pools rolled in order
+ * (8d6, 5d6 and 4d6 keeping the highest 3, then three pools of 3d6 keeping all 3); keep one whole set (Rule A).
+ * Rule C, the Gygaxian Threshold: the chosen set needs at least two scores of 14 or higher, before ancestry bonuses;
+ * if neither set qualifies and no donated set is available, discard both and roll both again. A set donated by
+ * another player (Rule B), or rolled at the table, can be typed in instead. Then assign the six numbers. Ancestry
+ * changes come after (dropping the ancestry), where no score starts above 18.
  */
 import { ARNEYAN } from "./config.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYSFLAG = "arneyan";
 const KEYS = ["str", "dex", "con", "int", "wis", "cha"];
-const POOLS = ["8d6kh3", "6d6kh3", "5d6kh3", "4d6kh3", "3d6", "3d6"];
+export const POOLS = ["8d6kh3", "5d6kh3", "4d6kh3", "3d6", "3d6", "3d6"];
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 
-/** Two scores of 15 or more. */
-export const meetsThreshold = set => set.filter(n => n >= 15).length >= 2;
+/** Rule C, the Gygaxian Threshold: at least two scores of 14 or higher. */
+export const meetsThreshold = set => set.filter(n => n >= 14).length >= 2;
+const LOW = "below the Gygaxian Threshold";
 
 async function rollSet() {
   const rolls = [];
@@ -27,7 +30,7 @@ export async function abilityScores(actor) {
   if (!actor?.isOwner || actor.type !== "character") return;
   let sets = null;          // [[17, 15, ...], [...]] once rolled
   const content = `<div class="arn-scores">
-    <p>Book II, Method V: two sets of six dice pools (8d6, 6d6, 5d6, 4d6, 3d6 and 3d6, keeping the best three of each). Keep one whole set; a set needs two scores of 15 or more. Then put each number on an attribute. Your ancestry's changes come when you drop it on the sheet.</p>
+    <p>Method V: roll six pools in order (8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times keeping all 3) for Set Alpha, then again for Set Beta. Keep one whole set; you can't swap scores between them (Rule A). The set you keep needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold). The set you don't keep can be donated to the table (Rule B). Then put each score on an attribute. Your ancestry's changes come when you drop it on the sheet; no score starts above 18.</p>
     <div class="arn-scores-mode">
       <label><input type="radio" name="mode" value="roll" checked> Roll Method V</label>
       <label><input type="radio" name="mode" value="own"> Type in a set (donated, or rolled at the table)</label>
@@ -52,7 +55,7 @@ export async function abilityScores(actor) {
         const set = current();
         el.querySelectorAll(".arn-scores-assign select").forEach((sel, i) => {
           const keep = sel.value;
-          sel.innerHTML = set ? set.map((n, j) => `<option value="${j}">${n}</option>`).join("") : `<option value="">—</option>`;
+          sel.innerHTML = set ? set.map((n, j) => `<option value="${j}">${n}</option>`).join("") : `<option value="">-</option>`;
           sel.value = keep !== "" && set && Number(keep) < set.length ? keep : String(i);
         });
         mods();
@@ -68,9 +71,12 @@ export async function abilityScores(actor) {
         const used = [...el.querySelectorAll(".arn-scores-assign select")].map(s => s.value);
         const own = q("input[name=mode]:checked")?.value === "own";
         const dupes = set && new Set(used).size < used.length;
-        const low = set && !own && !meetsThreshold(set);
-        if (dupes) msg.textContent = "Each number goes on one attribute only.";
-        else if (low) msg.textContent = "This set doesn't have two scores of 15 or more: keep the other set, roll again, or type in a donated set.";
+        const low = set && !meetsThreshold(set);
+        const bothLow = sets && !sets.some(meetsThreshold);
+        if (dupes) msg.textContent = "Each score goes on one attribute only.";
+        else if (low && own) msg.textContent = "This set needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold).";
+        else if (low && bothLow) msg.textContent = "Neither set has two scores of 14 or higher: discard both and roll again, or take a set another player donated (Type in a set).";
+        else if (low) msg.textContent = "This set doesn't have two scores of 14 or higher (Rule C): keep the other set.";
         else if (!set) msg.textContent = own ? "" : "Roll the two sets first.";
         else msg.textContent = "";
         // Only a complete, legal assignment can be set (the rolled sets stay in this window, so nothing is rerolled).
@@ -95,12 +101,11 @@ export async function abilityScores(actor) {
         await ChatMessage.create({
           speaker: ChatMessage.getSpeaker({ actor }), rolls: [...a, ...b],
           content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice"></i> <span>${esc(actor.name)}: Method V</span></header>
-            ${sets.map((s, i) => `<p><strong>Set ${names[i]}:</strong> ${s.join(", ")}${ok[i] ? "" : " <em>(below the threshold)</em>"}</p>`).join("")}</div>`
+            ${sets.map((s, i) => `<p><strong>Set ${names[i]}:</strong> ${s.join(", ")}${ok[i] ? "" : ` <em>(${LOW})</em>`}</p>`).join("")}</div>`
         });
-        q(".arn-scores-sets").innerHTML = sets.map((s, i) => `<label class="arn-scores-set ${ok[i] ? "" : "low"}"><input type="radio" name="set" value="${i}" ${i === (ok[0] || !ok[1] ? 0 : 1) ? "checked" : ""}> Set ${names[i]}: <strong>${s.join(", ")}</strong>${ok[i] ? "" : " (below the threshold)"}</label>`).join("");
+        q(".arn-scores-sets").innerHTML = sets.map((s, i) => `<label class="arn-scores-set ${ok[i] ? "" : "low"}"><input type="radio" name="set" value="${i}" ${i === (ok[0] || !ok[1] ? 0 : 1) ? "checked" : ""}> Set ${names[i]}: <strong>${s.join(", ")}</strong>${ok[i] ? "" : ` (${LOW})`}</label>`).join("");
         el.querySelectorAll("input[name=set]").forEach(r => r.addEventListener("change", fill));
         if (!ok[0] && !ok[1]) {
-          msg.textContent = "Neither set has two scores of 15 or more: roll again, or take a set another player donated (Type in a set).";
           btn.disabled = false;
           btn.innerHTML = `<i class="fa-solid fa-dice"></i> Roll again`;
         }
@@ -112,11 +117,13 @@ export async function abilityScores(actor) {
       { action: "ok", label: "Set the scores", default: true, callback: (ev, btn) => {
         const f = btn.form;
         const own = f.querySelector("input[name=mode]:checked")?.value === "own";
-        const set = own ? [...f.querySelectorAll(".arn-scores-own input")].map(i => Math.clamp(Number(i.value) || 3, 3, 18))
-          : sets?.[Number(f.querySelector("input[name=set]:checked")?.value)];
+        const kept = own ? null : Number(f.querySelector("input[name=set]:checked")?.value);
+        const set = own ? [...f.querySelectorAll(".arn-scores-own input")].map(i => Math.clamp(Number(i.value) || 3, 3, 18)) : sets?.[kept];
         const idx = KEYS.map(k => Number(f.elements[`as-${k}`].value));
-        if (!set || new Set(idx).size !== 6 || (!own && !meetsThreshold(set))) return null;
-        return { scores: Object.fromEntries(KEYS.map((k, i) => [k, set[idx[i]]])) };
+        if (!set || new Set(idx).size !== 6 || !meetsThreshold(set)) return null;
+        // Rule B: the rolled set not kept, if it's a good one, can go to the table.
+        const spare = own ? null : sets?.[1 - kept];
+        return { scores: Object.fromEntries(KEYS.map((k, i) => [k, set[idx[i]]])), spare: spare && meetsThreshold(spare) ? { name: kept ? "Alpha" : "Beta", set: spare } : null };
       } },
       { action: "skip", label: "Later" }
     ],
@@ -124,6 +131,8 @@ export async function abilityScores(actor) {
   });
   if (!res || res === "skip") return;
   await actor.update(Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])));
+  if (res.spare) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
+    content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) can be donated to the table (Rule B).</p>` });
   ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}. Next, drop an ancestry and a class on the sheet.`);
 }
 
