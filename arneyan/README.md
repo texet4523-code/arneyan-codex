@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.5 · Foundry v13 and v14
+Version 0.10.6 · Foundry v13 and v14
+
+## What's new in 0.10.6
+
+- **Choosing a Feat or Skill shows what it does.** The level-up Feat and Skill windows are now like the compendium browser: a searchable list grouped by Path (or attribute) on the left, and the full description of the one you click on the right. The Skill window lists new skills and, in their own group, trained skills you can make Master. In the 1st-level window, picking a Kit, Feat or Skill shows its description under the box.
 
 ## What's new in 0.10.5
 

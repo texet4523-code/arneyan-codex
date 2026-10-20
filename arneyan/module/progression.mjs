@@ -4,6 +4,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { startingWealth } from "./starting.mjs";
+import { pickFromList, describeSelects } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const FLAG = "arneyan";
@@ -361,15 +362,12 @@ export async function promptFeat(actor, charLevel) {
   const paths = featPaths(actor);
   const list = await packOptions("feats", e => paths.has(e.system?.path) && !owned.has(e.name));
   if (!list.length) return;
-  const uuid = await DialogV2.wait({
-    window: { title: `${actor.name}: choose a Feat (level ${charLevel})` },
-    content: `<p>You gain a Feat at level ${charLevel}. Open to you: ${[...paths].map(esc).join(", ")}.</p>
-      <div class="form-group"><label>Feat</label><select name="feat">${optionsHtml(list, e => e.system?.path ?? "")}</select></div>`,
-    buttons: [
-      { action: "take", label: "Take Feat", default: true, callback: (ev, btn) => btn.form.elements.feat.value },
-      { action: "later", label: "Choose later" }
-    ],
-    rejectClose: false
+  // Browser-style: the list on the left, what the Feat does on the right.
+  const uuid = await pickFromList({
+    title: `${actor.name}: choose a Feat (level ${charLevel})`,
+    intro: `<p>You gain a Feat at level ${charLevel}. Open to you: ${[...paths].map(esc).join(", ")}. Click one to read it.</p>`,
+    entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
+    takeLabel: "Take Feat"
   });
   if (uuid && uuid !== "later") await addFromUuid(actor, uuid);
 }
@@ -379,36 +377,20 @@ export async function promptSkill(actor, charLevel) {
   const ownedNames = new Set(owned.map(i => i.name));
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
   const upgrade = owned.filter(i => i.system.tier !== "master");
-  // One slot: either a new skill or a Master, never both.
-  const content = `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one of these:</p>
-    <div class="form-group"><label><input type="radio" name="pick" value="skill" checked> Learn a new skill</label><select name="skill"><option value="">—</option>${optionsHtml(list, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>
-    ${upgrade.length ? `<div class="form-group"><label><input type="radio" name="pick" value="master"> Or make a trained skill Master</label><select name="master" disabled><option value="">—</option>${upgrade.map(i => `<option value="${i.id}">${esc(i.name)}</option>`).join("")}</select></div>` : ""}`;
-  const res = await DialogV2.wait({
-    window: { title: `${actor.name}: new Skill slot (level ${charLevel})` },
-    content,
-    render: (ev, dialog) => {
-      const form = (dialog.element ?? dialog).querySelector?.("form") ?? dialog.form;
-      const sync = () => { const m = form?.elements.pick?.value === "master"; if (form?.elements.skill) form.elements.skill.disabled = m; if (form?.elements.master) form.elements.master.disabled = !m; };
-      form?.querySelectorAll("input[name=pick]").forEach(r => r.addEventListener("change", sync));
-      sync();
-    },
-    buttons: [
-      { action: "ok", label: "Confirm", default: true, callback: (ev, btn) => {
-        const f = btn.form.elements;
-        return f.pick?.value === "master" ? { master: f.master?.value } : { skill: f.skill?.value };
-      } },
-      { action: "later", label: "Choose later" }
-    ],
-    rejectClose: false
+  // One slot: a new skill or a Master, never both; every entry shows what it does.
+  const entries = [
+    ...upgrade.map(i => ({ value: `master:${i.id}`, uuid: i.uuid, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
+    ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
+      .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name))
+  ];
+  const pick = await pickFromList({
+    title: `${actor.name}: new Skill slot (level ${charLevel})`,
+    intro: `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, or on making a trained one Master.</p>`,
+    entries, takeLabel: "Take"
   });
-  if (!res || res === "later") return;
-  // Confirm with nothing picked: don't lose the slot quietly; ask again (Choose later keeps it for later).
-  if (!res.master && !res.skill) {
-    ui.notifications.warn("Pick a skill (or one to make Master) for the new slot, or press Choose later.");
-    return promptSkill(actor, charLevel);
-  }
-  if (res.master) await actor.items.get(res.master)?.update({ "system.tier": "master" });
-  else await addFromUuid(actor, res.skill);
+  if (!pick || pick === "later") return;
+  if (pick.startsWith("master:")) await actor.items.get(pick.slice(7))?.update({ "system.tier": "master" });
+  else await addFromUuid(actor, pick);
 }
 
 /* -------------------------------------------- */
@@ -441,14 +423,15 @@ async function setUpFirstLevel(actor, cls) {
   const paths = featPaths(actor);
   const feats = await packOptions("feats", e => paths.has(e.system?.path));
   const skills = await packOptions("skills", () => true);
-  const skillSel = n => `<div class="form-group"><label>Skill ${n}</label><select name="skill${n}"><option value="">—</option>${optionsHtml(skills, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>`;
+  const skillSel = n => `<div class="form-group"><label>Skill ${n}</label><select name="skill${n}" data-describe><option value="">—</option>${optionsHtml(skills, e => ARNEYAN.abilities[e.system?.ability] ?? "")}</select></div>`;
 
   const res = await DialogV2.wait({
-    window: { title: `${actor.name}: 1st-level ${cls.name}` },
-    position: { width: 480 },
+    window: { title: `${actor.name}: 1st-level ${cls.name}`, resizable: true },
+    render: (ev, dialog) => describeSelects(dialog.element ?? dialog),
+    position: { width: 560 },
     content: `<p>Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet. Pick the rest now, or close this and add them later.</p>
-      ${kits.length ? `<div class="form-group"><label>Kit</label><select name="kit"><option value="">—</option>${optionsHtml(kits)}</select></div>` : ""}
-      <div class="form-group"><label>1st-level Feat</label><select name="feat"><option value="">—</option>${optionsHtml(feats, e => e.system?.path ?? "")}</select></div>
+      ${kits.length ? `<div class="form-group"><label>Kit</label><select name="kit" data-describe><option value="">—</option>${optionsHtml(kits)}</select></div>` : ""}
+      <div class="form-group"><label>1st-level Feat</label><select name="feat" data-describe><option value="">—</option>${optionsHtml(feats, e => e.system?.path ?? "")}</select></div>
       <p class="hint">Three starting skills (NWP), each a different skill.</p>
       ${skillSel(1)}${skillSel(2)}${skillSel(3)}
       <div class="form-group"><label>Roll Starting Luck (4d6, drop lowest)</label><input type="checkbox" name="luck" checked></div>`,

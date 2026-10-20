@@ -261,14 +261,16 @@ function doc(type, name, system = {}, parent = null, id = null) {
   assert.equal(actor.created[0]._stats.compendiumSource, skill.uuid);
   assert.equal(actor.created[0]._id, undefined);
 
-  game.packs = { get: () => null };
-  const answers = [{ skill: "" }, { skill: skill.uuid }];
-  let opened = 0;
-  DialogV2.wait = async () => { opened++; return answers.shift(); };
+  // The level-up skill slot is a browser-style picker (picker.mjs): Take with nothing chosen asks again.
+  game.packs = { get: () => ({ getIndex: async () => [{ name: "Riding", uuid: skill.uuid, system: { ability: "dex" } }] }) };
+  const answers = ["", skill.uuid];
+  let opened = 0, content = "";
+  DialogV2.wait = async o => { opened++; content = o.content; return answers.shift(); };
   warnings.length = 0; actor.created.length = 0;
   await P.promptSkill(actor, 4);
-  assert.equal(opened, 2, "Confirm with nothing picked: asked again");
+  assert.equal(opened, 2, "Take with nothing picked: asked again");
   assert.ok(warnings[0].includes("Choose later"));
+  assert.ok(content.includes("arn-pick-row") && content.includes("Riding"), "skills listed as picker rows");
   assert.equal(actor.created.length, 1);
   DialogV2.wait = async () => "later";
   opened = 0;
