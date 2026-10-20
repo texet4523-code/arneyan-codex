@@ -150,7 +150,7 @@ export async function runHudAction(actor, { actionType, actionId }, event, { ren
       const { combatUse } = await import("./combat.mjs");
       const r = await combatUse(temp, event);
       if (r !== undefined) return r;
-      // What it does when used (Push, Cleave, an Attack of Opportunity: the attack, and the reaction spent). A switch
+      // What it does when used (Push, Cleave, an Attack of Opportunity: the attack). A switch
       // (Charge, Dodge) needs to be on the sheet to stay on, so it posts its card.
       if (temp.system?.activities?.length && !temp.system.toggle && typeof temp.use === "function") return temp.use(event);
       return temp.toChat();

@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.15 · Foundry v13 and v14
+Version 0.10.16 · Foundry v13 and v14
+
+## What's new in 0.10.16
+
+- **No reaction tracker.** The lightning markers in the combat tracker, their right-click option and the "already used its reaction" warning are gone. A class feature, kit feature or feat that is a reaction (Riposte, Combat Reflexes) now says so in chat when it's used.
 
 ## What's new in 0.10.15
 
@@ -346,7 +350,7 @@ Every damage card has a fist button to apply it as non-lethal (subdual) damage. 
 Click Morale on a monster's sheet, or right-click it in the combat tracker, to roll 2d6 against its Morale Score. Higher than the score breaks it. From the tracker, a group of the same monster rolls once. Effects with the `morale` rule key raise or lower the score.
 
 ### Reactions
-Each combatant has a lightning marker in the combat tracker. Click it when the creature reacts; it comes back at the start of its turn. Using an Attack of Opportunity (the action, or Combat Reflexes), a Swashbuckler's Flourish Manoeuvres (Parry, Riposte, Acrobatic Escape), Counterspell or any ability whose text starts with "Reaction" spends it for you once the attack or check has rolled, with a warning if it was already spent. Cancelling the weapon or target window leaves it unspent.
+Reactions aren't tracked: only some classes have them. Using a class feature, kit feature or feat that is a reaction (a Swashbuckler's Flourish Manoeuvres such as Riposte, Combat Reflexes) posts a short note in chat saying so, once the attack or check has rolled. General manoeuvres such as Attack of Opportunity and Parry, and monster abilities, post no note.
 
 ### Firearms
 Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jams the gun (no damage buttons) and it asks to be cleared before it fires again. A natural 1 also rolls the catastrophe d6: damaged, backfire, destroyed or explosion, with a damage card aimed at the right creatures. Reliable guns misfire only on a 1; Silent Mechanism never does. Gunslingers, Fighters, Rangers and Tenor Hold dwarves are trained; anyone else ticks **Trained** under Combat if their backstory or downtime gave it. Untrained shooters have Disadvantage, and a would-be critical jams instead. Firearm damage dice explode.

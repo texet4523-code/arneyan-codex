@@ -322,23 +322,25 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   assert.equal(await item._useActivity(item.availableActivities[0], {}), null);
   assert.ok(warnings[0].includes("no uses left"));
 }
-/* An Attack of Opportunity spends the reaction after the attack, not before the prompt (and not on a cancel). */
+/* Reactions aren't tracked (Kieran, 20 Oct 2026): a class feature that is one says so in chat, after the attack and
+   not on a cancel; a general manoeuvre (Attack of Opportunity) says nothing, and no combatant is marked. */
 {
   const aoo = byName(actions, "Attack of Opportunity").system;
-  const { item, actor } = feature({ ...aoo, name: "Attack of Opportunity" }, { level: 3, items: [sword, makeItem(IM.WeaponData, "weapon", "Axe", { damage: "1d6" })], type: "ability" });
-  const flags = [];
-  const combatant = { actor, isOwner: true, getFlag: () => false, setFlag: async (s, k, v) => flags.push([k, v]) };
-  // Two encounters: the tracker (game.combat) shows one on another scene that hasn't started; the fight is the other.
-  const other = { id: "other", started: false, active: true, scene: { id: "s2" }, combatants: [] };
-  const fight = { id: "fight", started: true, active: false, scene: { id: "s1" }, combatants: [combatant] };
-  game.combat = other;
-  game.combats = [other, fight];
-  foundry.applications.api.DialogV2.wait = async () => null; // cancelled
-  await item._useActivity(item.availableActivities[0], {});
-  assert.equal(flags.length, 0, "cancelled: the reaction is still there");
-  foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callback(null, { form: { querySelector: () => null } });
-  await item._useActivity(item.availableActivities[0], {});
-  assert.deepEqual(flags, [["reacted", true]], "attacked: the reaction is spent (in the running encounter, not the tracker's)");
+  const notes = () => posted.filter(p => String(p.content ?? "").includes("is a reaction"));
+  for (const [kind, expect] of [["action", 0], ["class", 1]]) {
+    const { item, actor } = feature({ ...aoo, kind, name: "Attack of Opportunity" }, { level: 3, items: [sword, makeItem(IM.WeaponData, "weapon", "Axe", { damage: "1d6" })], type: "ability" });
+    const flags = [];
+    const combatant = { actor, isOwner: true, getFlag: () => false, setFlag: async (s, k, v) => flags.push([k, v]) };
+    game.combats = [{ id: "fight", started: true, active: true, scene: { id: "s1" }, combatants: [combatant] }];
+    posted.length = 0;
+    foundry.applications.api.DialogV2.wait = async () => null; // cancelled
+    await item._useActivity(item.availableActivities[0], {});
+    assert.equal(notes().length, 0, "cancelled: no note");
+    foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callback(null, { form: { querySelector: () => null } });
+    await item._useActivity(item.availableActivities[0], {});
+    assert.equal(notes().length, expect, kind === "class" ? "a class feature notes its reaction" : "a general manoeuvre doesn't");
+    assert.equal(flags.length, 0, "nothing tracked on the combatant");
+  }
   game.combat = null;
   game.combats = [];
 }

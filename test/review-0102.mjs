@@ -308,7 +308,7 @@ function doc(type, name, system = {}, parent = null, id = null) {
   assert.ok(!warnings.some(w => w.includes("Finish the current level change")), warnings.join(" | "));
 }
 
-/* ---------------- Reactions in the encounter the creature is in ---------------- */
+/* ---------------- The encounter the creature is in ---------------- */
 {
   const actor = { id: "a1", name: "Guard", uuid: "Actor.a1" };
   const flags = {};
@@ -320,11 +320,7 @@ function doc(type, name, system = {}, parent = null, id = null) {
   assert.equal(F.combatFor(actor), fight, "the running encounter it's in, not the tracker's");
   assert.deepEqual(F.combatantsOf(actor), [mine]);
   assert.equal(F.combatById("c-fight"), fight);
-  await C.spendReaction(actor, "Attack of Opportunity");
-  assert.equal(flags.reacted, true, "spent");
-  warnings.length = 0;
-  await C.spendReaction(actor, "Attack of Opportunity");
-  assert.ok(warnings[0]?.includes("already used its reaction"), "and warned the second time");
+  assert.equal(C.spendReaction, undefined, "no reaction tracking (removed 0.10.16)");
   // Two running encounters with the creature in both: the viewed scene's is the one.
   const here = { id: "c-here", started: true, scene: { id: "s9" }, combatants: [{ ...mine }] };
   game.combats = [fight, here];

@@ -8,14 +8,14 @@
  *   for creatures the player doesn't own.
  * - Non-Lethal (Subdual) Damage: its own track; Unconscious, not dying, when it reaches current HP.
  * - Morale Checks: 2d6 against the Morale Score, bonuses move the score.
- * - Reactions: one per round, a marker in the combat tracker.
+ * - Reactions: no tracker (Kieran, 20 Oct: only some classes have them); their features say so in chat.
  * - Firearms: Misfire Threshold, the natural 1 catastrophe, Reliable, Silent Mechanism and training.
  */
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, damageRoll, modeFromEvent } from "./rolls.mjs";
 import { statusesOf, toggleCondition } from "./effects.mjs";
 import { feetBetween, rangeOf } from "./qol.mjs";
-import { combatFor, combatantsOf } from "./fight.mjs";
+import { combatFor } from "./fight.mjs";
 
 const SYS = "arneyan";
 const SOCKET = `system.${SYS}`;
@@ -614,7 +614,6 @@ export async function rollMorale(actor, { group = [] } = {}) {
 /*  Reactions                                   */
 /* -------------------------------------------- */
 
-// combatantsOf (fight.mjs): every running encounter, not only the one this client's tracker shows.
 
 /**
  * Items that answer a trigger with the creature's reaction. With an activity (`act`): that option is one (its data
@@ -650,17 +649,14 @@ export async function resetEncounterUses(combat) {
   return n;
 }
 
-/** Spend (or give back) a creature's reaction for this round. */
-export async function setReaction(combatant, spent) {
-  if (!combatant?.isOwner) return;
-  return combatant.setFlag(SYS, "reacted", !!spent);
-}
-
-export async function spendReaction(actor, why) {
-  for (const c of combatantsOf(actor)) {
-    if (c.getFlag(SYS, "reacted")) ui.notifications.warn(`${actor.name} has already used its reaction this round (${why}).`);
-    else await setReaction(c, true);
-  }
+/**
+ * A class or kit feature, or a feat, that is a reaction (a Swashbuckler's Riposte, Combat Reflexes): its use says so in
+ * chat. General manoeuvres (Attack of Opportunity, Parry) and monster abilities don't, and nothing is tracked
+ * (Kieran, 20 Oct 2026).
+ */
+export function isReactionFeature(item, act = null) {
+  if (!isReactionItem(item, act)) return false;
+  return item.type === "feat" || (item.type === "ability" && !["action", "monster"].includes(item.system?.kind));
 }
 
 /* -------------------------------------------- */
@@ -671,7 +667,7 @@ const CONTEST_NAMES = { grapple: "grapple", trip: "trip", disarm: "disarm", "dir
 
 /**
  * Items with combat rules of their own: contests roll, Unarmed Strike attacks. Returns a result when it handled the
- * use, else undefined and the item is used as usual. A reaction is spent by the use itself (documents.mjs), once it
+ * use, else undefined and the item is used as usual. A reaction feature notes it in chat (documents.mjs) once the use
  * has happened: not when a weapon or target prompt is cancelled, nor when no attack rolled.
  */
 export async function combatUse(item, event) {
@@ -746,31 +742,6 @@ export const combatSheetActions = {
 /*  Combat tracker                              */
 /* -------------------------------------------- */
 
-function onRenderTracker(app, html) {
-  const root = html instanceof HTMLElement ? html : html?.[0];
-  const combat = app.viewed ?? game.combat;
-  if (!root || !combat) return;
-  for (const li of root.querySelectorAll("[data-combatant-id]")) {
-    const c = combat.combatants.get(li.dataset.combatantId);
-    if (!c || li.querySelector(".arn-reaction")) continue;
-    const spent = !!c.getFlag(SYS, "reacted");
-    const blocked = !!(c.actor?.system?.noAct || c.actor?.system?.mods?.has?.("no.reactions"));
-    const a = document.createElement("a");
-    a.className = `arn-reaction${spent ? " spent" : ""}${blocked ? " blocked" : ""}`;
-    a.dataset.tooltip = blocked ? "Can't take reactions right now" : spent ? "Reaction used this round (click to give it back)" : "Reaction ready (click when it reacts)";
-    a.innerHTML = '<i class="fa-solid fa-bolt"></i>';
-    // The row pans to the token on a press: keep the marker's press to itself.
-    for (const type of ["pointerdown", "mousedown", "dblclick"]) a.addEventListener(type, ev => ev.stopPropagation());
-    a.addEventListener("click", ev => {
-      ev.preventDefault(); ev.stopPropagation();
-      if (!c.isOwner) return ui.notifications.warn("Only its owner or the GM can mark this.");
-      setReaction(c, !spent);
-    });
-    const anchor = li.querySelector(".token-initiative, .combatant-controls");
-    if (anchor) anchor.before(a); else li.append(a);
-  }
-}
-
 /** Monsters of one kind share a Morale Score: the same stat block and name. */
 const groupOf = (combat, c) => combat.combatants.filter(o => o.actor?.type === "npc" && !o.isDefeated && (o.actorId === c.actorId) && (o.token?.name ?? o.name) === (c.token?.name ?? c.name));
 
@@ -783,15 +754,6 @@ function trackerOptions(app, options) {
   const push = (label, icon, condition, fn) => options.push({ name: label, label, icon: `<i class="fa-solid ${icon}"></i>`, condition, callback: fn });
   push("Morale check", "fa-flag", li => { const c = combatantOf(li); return !!c?.actor && c.actor.type === "npc" && (game.user.isGM || c.isOwner); },
     li => { const c = combatantOf(li); return rollMorale(c.actor, { group: groupOf(app.viewed ?? game.combat, c) }); });
-  push("Reaction used / ready", "fa-bolt", li => !!combatantOf(li)?.isOwner,
-    li => { const c = combatantOf(li); return setReaction(c, !c.getFlag(SYS, "reacted")); });
-}
-
-/** Reactions come back at the start of each creature's turn. */
-async function onTurn(combat, changed, options = {}) {
-  if (!isGMClient() || !("turn" in changed || "round" in changed) || options.direction === -1) return;
-  const c = combat.combatant;
-  if (c?.getFlag(SYS, "reacted")) await c.setFlag(SYS, "reacted", false).catch(() => null);
 }
 
 /* -------------------------------------------- */
@@ -822,15 +784,13 @@ async function onSocket(msg, senderId) {
 
 export function registerCombat() {
   foundry.applications.handlebars.loadTemplates(["systems/arneyan/templates/actor/combat-tools.hbs"]);
-  if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike, setReaction };
+  if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "positionalCombat", {
     name: "Flanking and crowding from token positions",
     hint: "Melee attacks get Advantage when an ally stands directly opposite the target; ranged attacks get Disadvantage with an enemy within 5ft or when shooting at a target next to an ally. The Flank Attack switch still works by hand.",
     scope: "world", config: true, type: Boolean, default: true
   });
-  Hooks.on("renderCombatTracker", (app, html) => { try { onRenderTracker(app, html); } catch (err) { console.warn("Arneyan | reactions", err); } });
   Hooks.on("getCombatantContextOptions", trackerOptions);
-  Hooks.on("updateCombat", (combat, changed, options) => { onTurn(combat, changed, options).catch(err => console.warn("Arneyan | reactions", err)); });
   // The fight is over: "per encounter" uses come back (the active GM does it, once).
   Hooks.on("deleteCombat", combat => { if (game.users.activeGM?.isSelf) resetEncounterUses(combat).catch(err => console.warn("Arneyan | encounter uses", err)); });
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));

@@ -5,7 +5,7 @@ import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, ancestry
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
-import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionItem, spendReaction, firearmOf } from "./combat.mjs";
+import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf } from "./fight.mjs";
 
@@ -1065,9 +1065,12 @@ export class ArneyanItem extends Item {
     return (this.system.applies ?? []).map((e, i) => (e.target === "self" ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
   }
 
-  /** This use took the creature's reaction (Attack of Opportunity, Riposte): mark it on the combat tracker. */
+  /** A class feature, kit feature or feat that is a reaction (Riposte, Combat Reflexes): say so in chat. Nothing is tracked. */
   async _reacted(act) {
-    if (this.actor && isReactionItem(this, act)) await spendReaction(this.actor, act?.name || this.name).catch(() => null);
+    if (!this.actor || !isReactionFeature(this, act)) return;
+    const what = act?.name && act.name !== this.name ? `${this.name}: ${act.name}` : this.name;
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: `<div class="arn-card arn-report arn-reaction-note"><p><i class="fa-solid fa-bolt"></i> <strong>${esc(what)}</strong> is a reaction.</p></div>` }).catch(() => null);
   }
 
   /** The item's own effects on its user, once per use of an activity (Storm Form, Undying Reputation's Advantage). */
@@ -1189,7 +1192,7 @@ export class ArneyanItem extends Item {
         if ((weapon.system.ammoType && actor.type === "character" && !ammoFor(actor, weapon)) || firearmOf(weapon)) break;
         continue;
       }
-      // The first attack that rolls spends the use (and the reaction, for an Attack of Opportunity), once.
+      // The first attack that rolls spends the use (and notes a reaction feature in chat), once.
       if (!out.length) {
         if (cost > 0 && this.system.uses?.max > 0) await this.update({ "system.uses.value": Math.max(0, this.system.uses.value - cost) });
         await this._reacted(act);

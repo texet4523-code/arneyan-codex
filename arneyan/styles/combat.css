@@ -1,4 +1,4 @@
-/* Combat rules (combat.mjs): the sheet's combat tools, off-hand button, non-lethal track, reaction markers. */
+/* Combat rules (combat.mjs): the sheet's combat tools, off-hand button, non-lethal track. */
 
 /* Off-hand attack beside the to-hit button. */
 .arneyan .arn-attacks .arn-offhand { margin-left: 4px; min-width: 0; padding: 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .03em; }
@@ -18,12 +18,6 @@
 .arn-card .arn-misfire i { margin-right: 4px; }
 .arn-card.arn-contest p, .arn-card.arn-morale p { margin: 4px 0; }
 
-/* Combat tracker: one reaction per round. Outside the sheet, so plain colours (as the encounter budget bar). */
-.arn-reaction { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 22px; width: 22px; height: 22px; margin: 0 2px; border-radius: 50%;
-  color: #f3d58a; border: 1px solid rgba(154, 123, 47, .8); background: rgba(45, 90, 39, .35); font-size: 11px; cursor: pointer; }
-.arn-reaction:hover { background: rgba(58, 122, 48, .6); }
-.arn-reaction.spent { color: rgba(255, 255, 255, .35); border-color: rgba(255, 255, 255, .2); background: transparent; }
-.arn-reaction.blocked { color: rgba(255, 92, 77, .6); border-color: rgba(139, 42, 31, .6); background: transparent; }
 
 .arneyan .arn-subdual-chip { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 4px; font-size: 11px; }
 .arneyan .arn-subdual-chip .arn-chip { background: color-mix(in srgb, var(--arn-red) 14%, var(--arn-surface)); color: var(--arn-red); border-color: var(--arn-red); }
