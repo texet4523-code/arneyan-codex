@@ -15,9 +15,16 @@
 
   <p>
     <button type="button" data-action="scan"><i class="fa-solid fa-magnifying-glass"></i> Scan</button>
-    {{#if names}}<span class="arn-muted">Art for {{names}} Bestiary monsters ({{images}} images looked at){{#if scanned}}, scanned {{scanned}}{{/if}}.</span>{{else}}<span class="arn-muted">Not scanned yet.</span>{{/if}}
+    {{#if names}}<span class="arn-muted">Art for {{names}} Bestiary monsters{{#if near}} ({{near}} by a close name or folder, such as "goblin" in goblin_warrior.webp){{/if}}; {{images}} images looked at{{#if scanned}}, scanned {{scanned}}{{/if}}.</span>{{else}}<span class="arn-muted">Not scanned yet.</span>{{/if}}
     <span class="arn-art-changed hidden arn-bad">Changed: press Scan to use the new list.</span>
   </p>
+
+  {{#if missing.length}}
+  <details class="arn-art-missing"><summary>{{missing.length}} Bestiary monsters without art</summary>
+    <p class="hint">No image named after them in the packs and folders above. These keep the Arneyan icon.</p>
+    <p class="arn-art-missing-list">{{#each missing}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+  </details>
+  {{/if}}
 
   <h3>2. Use it</h3>
   <label class="arn-art-mod"><input type="checkbox" name="auto" {{#if auto}}checked{{/if}}> New monsters from the Bestiary get matched art (saved as soon as you tick it)</label>

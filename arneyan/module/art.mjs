@@ -13,38 +13,101 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const IMAGE = /\.(webp|png|jpe?g|gif|avif|svg)$/i;
 /** Words in art file names that aren't part of the creature's name ("goblin-token-01.webp"). */
 const NOISE = new Set(["token", "tokens", "tok", "topdown", "top", "down", "portrait", "portraits", "art", "full", "round", "ring",
-  "circle", "subject", "img", "image", "icon", "avatar", "bust", "pc", "npc", "the", "of", "a"]);
+  "circle", "subject", "img", "image", "icon", "avatar", "bust", "pc", "npc", "the", "of", "a", "an", "with", "in", "on", "and", "at",
+  "dnd", "dn"]);
 /** Folders that hold maps, scenes, handouts and the like, not creatures: not scanned. */
 const SKIP_DIRS = /^(scenes?|maps?|tiles?|handouts?|journals?|items?|icons?|ui|backgrounds?|audio|sounds?|music|fonts?|scripts?|styles?|lang|packs?|templates?)$/i;
 const MAX_DEPTH = 7;
 /** UK and US spellings read the same ("Grey Ooze", "gray-ooze.webp"). */
-const SPELLING = [[/grey/g, "gray"], [/armour/g, "armor"], [/colour/g, "color"]];
+const SPELLING = [[/grey/g, "gray"], [/armour/g, "armor"], [/colour/g, "color"], [/spectre/g, "specter"]];
 
-/** Words to match on, as one string: "Ancient Red Dragon" and "ancient-red-dragon_02.webp" both read "ancientreddragon". */
-function words(s) {
-  s = String(s ?? "").toLowerCase().replace(/\([^)]*\)/g, " ");
-  for (const [re, to] of SPELLING) s = s.replace(re, to);
-  return s.replace(/[0-9]+/g, " ").replace(/[^a-z]+/g, " ").split(" ").filter(w => w.length > 1 && !NOISE.has(w)).join("");
-}
+/**
+ * Other names a Bestiary monster goes by in art packs, tried after its own: what Pathfinder calls it (the remaster
+ * renamed some: the Aboleth is an alghollthu master, the elementals are living whirlwinds and the like), then close kin
+ * where a pack has nothing by the name (a Brown Bear gets a grizzly). Keyed by the Bestiary name, matched like names.
+ */
+export const ALIASES = {
+  "Aboleth": ["Alghollthu Master"], "Couatl": ["Quetz Couatl"], "Erinyes": ["Erinys"], "Barbed Devil": ["Hamatula"],
+  "Bearded Devil": ["Barbazu"], "Bone Devil": ["Osyluth"], "Horned Devil": ["Cornugon"], "Ice Devil": ["Gelugon"],
+  "Air Elemental": ["Living Whirlwind"], "Earth Elemental": ["Living Landslide"], "Fire Elemental": ["Living Wildfire"],
+  "Water Elemental": ["Living Waterfall"], "Vampire": ["Vampire Count", "Nosferatu Malefactor"], "Mummy": ["Mummy Guardian"],
+  "Mummy Lord": ["Mummy Pharaoh"], "Death Knight": ["Graveknight"], "Treant": ["Arboreal Warden"],
+  "Shambling Mound": ["Shambler"], "Phase Spider": ["Ether Spider"], "Dao": ["Shaitan"], "Deva": ["Astral Deva"],
+  "Rakshasa": ["Raja Rakshasa"], "Flameskull": ["Flaming Skull"], "Crawling Claw": ["Crawling Hand"],
+  "Sahuagin": ["Sea Devil Scout"], "Sahuagin Baron": ["Sea Devil Baron"], "Worg": ["Warg"], "Ice Troll": ["Frost Troll"],
+  "Saber-toothed Tiger": ["Smilodon"], "Giant Ape": ["Megaprimatus"], "Giant Boar": ["Daeodon"], "Giant Hyena": ["Hyaenodon"],
+  "Giant Crocodile": ["Deinosuchus"], "Plesiosaurus": ["Elasmosaurus"], "Giant Lizard": ["Giant Monitor Lizard"],
+  "Giant Poisonous Snake": ["Giant Viper"], "Poisonous Snake": ["Viper"], "Poisonous Snake Swarm": ["Viper Swarm"],
+  "Constrictor Snake": ["Ball Python"], "Giant Snake": ["Giant Anaconda"], "Giant Spider": ["Hunting Spider"],
+  "Giant Wolf Spider": ["Hunting Spider"], "Killer Whale": ["Orca"], "Hunter Shark": ["Great White Shark"],
+  "Giant Shark": ["Megalodon"], "Giant Sea Horse": ["Giant Seahorse"], "Quipper Swarm": ["Piranha Swarm"],
+  "Shadow Dragon": ["Umbral Dragon, Adult"], "Grey Ooze, Psychic": ["Grey Ooze"], "Horse, Light": ["Riding Horse"],
+  "Horse, Heavy": ["War Horse"], "Warhorse, Light": ["War Horse"], "Warhorse, Heavy": ["War Horse"], "Pony": ["Riding Pony"],
+  "Warpony": ["War Pony"], "Warhorse Skeleton": ["Skeletal Horse"], "Mastiff": ["Guard Dog"], "Ape": ["Gorilla"],
+  "Brown Bear": ["Grizzly Bear"], "Axe Beak": ["Terror Bird"], "Panther": ["Leopard"], "Abominable Yeti": ["Yeti"],
+  "Octopus": ["Reef Octopus"], "Bat Swarm": ["Vampire Bat Swarm"], "Giant Beetle": ["Giant Stag Beetle"],
+  "Giant Fire Beetle": ["Flash Beetle"], "Young Remorhaz": ["Remorhaz"], "Ankheg": ["Ankhrav"], "Bullywug": ["Boggard Warrior"],
+  "Kenku": ["Tengu Sneak"], "Yuan-ti Pureblood": ["Zyss Serpentfolk"], "Yuan-ti Malison": ["Aapoph Serpentfolk"],
+  "Yuan-ti Abomination": ["Aapoph Serpentfolk"], "Snapjaw Plant": ["Snapping Flytrap"], "Mud Mephit": ["Ooze Mephit"],
+  "Magma Mephit": ["Fire Mephit"], "Orc War Chief": ["Orc Warchief"], "Hobgoblin Warlord": ["Hobgoblin General"],
+  "Gnoll Pack Lord": ["Gnoll Sergeant"], "Lizardfolk Shaman": ["Lizardfolk Stargazer"], "Drow Elite Warrior": ["Drow Fighter"],
+  "Skeleton Warrior": ["Skeleton Guard"], "Black Dragon, Wyrmling": ["Black Dragon, Young"],
+  "Blue Dragon, Wyrmling": ["Blue Dragon, Young"], "Brass Dragon, Wyrmling": ["Brass Dragon, Young"],
+  "Bronze Dragon, Wyrmling": ["Bronze Dragon, Young"], "Copper Dragon, Wyrmling": ["Copper Dragon, Young"],
+  "Gold Dragon, Wyrmling": ["Gold Dragon, Young"], "Green Dragon, Wyrmling": ["Green Dragon, Young"],
+  "Red Dragon, Wyrmling": ["Red Dragon, Young"], "Silver Dragon, Wyrmling": ["Silver Dragon, Young"],
+  "White Dragon, Wyrmling": ["White Dragon, Young"],
+  "Gnoll": ["Gnoll Hunter"], "Commoner": ["Villager", "Peasant"], "Town Guard": ["Guard", "City Guard"], "Bandit": ["Brigand", "Cutpurse"],
+  "Thug": ["Brawler"], "Noble": ["Nobleman", "Noblewoman"], "Priest": ["Cleric"]
+};
 
-/** A file's key, from its name (browse paths come URL-encoded: "Red%20Dragon%2C%20Adult.webp"). */
-export function fileKey(path) {
-  let s = String(path ?? "").split("/").pop().replace(IMAGE, "");
-  try { s = decodeURIComponent(s); } catch { /* keep it as it is */ }
-  const parts = s.split(",").map(p => p.trim()).filter(Boolean);
-  return words(parts.length === 2 ? `${parts[1]} ${parts[0]}` : s);
+/** A word as matched: singular ("goblins" and "goblin" read the same), UK and US spellings the same. */
+function stem(w) {
+  return w.length > 3 && w.endsWith("s") && !w.endsWith("ss") && !w.endsWith("us") ? w.slice(0, -1) : w;
 }
 
 /**
- * The keys a Bestiary name may go by, best first. "Red Dragon, Adult" is "adult red dragon" in packs, but "Red Dragon,
- * Wyrmling" is "red dragon wyrmling" and "Modron, Monodrone" just "monodrone": all three are tried.
+ * The words to match on: lower case, no numbers or noise words ("token", "portrait"), singular. Words in brackets
+ * count too ("Red Dragon (Adult)").
+ */
+export function nameWords(s) {
+  s = String(s ?? "").toLowerCase().replace(/[()[\]]/g, " ");
+  for (const [re, to] of SPELLING) s = s.replace(re, to);
+  return s.replace(/[0-9]+/g, " ").replace(/[^a-z]+/g, " ").split(" ").filter(w => w.length > 1 && !NOISE.has(w)).map(stem);
+}
+
+/**
+ * Words as one key, in any order: "Red Dragon, Adult", "adult-red-dragon.webp" and "dragon_red_adult.png" all read
+ * "adult-dragon-red".
+ */
+function words(s) {
+  return [...new Set(nameWords(s))].sort().join("-");
+}
+
+/** The keys a file goes by, from its name (browse paths come URL-encoded: "Red%20Dragon%2C%20Adult.webp"). */
+export function fileKeys(path) {
+  let s = String(path ?? "").split("/").pop().replace(IMAGE, "");
+  try { s = decodeURIComponent(s); } catch { /* keep it as it is */ }
+  // "mage with owl.png" is a mage, "veteran in plate armor.png" a veteran: what follows "with" or "in" isn't the creature.
+  const cut = s.replace(/(^|[\s_-])(with|in)([\s_-]).*$/i, "");
+  s = cut.trim() ? cut : s;
+  // "ThugElfFemale" is three words, but "OwlBear" is still an owlbear: both readings.
+  return [...new Set([words(s), words(s.replace(/([a-z])([A-Z])/g, "$1 $2"))].filter(Boolean))];
+}
+/** A file's key, as it reads with its words as written. */
+export const fileKey = path => fileKeys(path)[0] ?? "";
+
+/**
+ * The keys a Bestiary name may go by, best first: the name in any word order, its aliases, and for Modrons the part
+ * after the comma on its own ("Modron, Monodrone" is "monodrone"; "Adult" or "Red" alone would match anything).
  */
 export function nameKeys(name) {
   const s = String(name ?? "");
   const parts = s.split(",").map(p => p.trim()).filter(Boolean);
-  // The part after the comma on its own only for Modrons ("Modron, Monodrone"): "Adult" or "Red" alone would match
-  // any file called adult.webp or red.webp.
-  const keys = parts.length === 2 ? [words(`${parts[1]} ${parts[0]}`), words(`${parts[0]} ${parts[1]}`), ...(/^modrons?$/i.test(parts[0]) ? [words(parts[1])] : [])] : [words(s)];
+  const aliases = Object.hasOwn(ALIASES, s) ? ALIASES[s] : [];
+  // Hyphenated names run together in some files: "YuantiPureblood.webp", "WilloWisp.png".
+  const joined = /[-'’]/.test(s) ? [words(s.replace(/[-'’]/g, "")), words(s.replace(/[^A-Za-z]/g, ""))] : [];
+  const keys = [words(s), ...aliases.map(words), ...(parts.length === 2 && /^modrons?$/i.test(parts[0]) ? [words(parts[1])] : []), ...joined];
   return [...new Set(keys.filter(Boolean))];
 }
 /** The best key for a name (tests and callers that want one). */
@@ -76,8 +139,8 @@ export function indexFrom(paths, keep = null, roots = []) {
   const rankFor = (slot, kind) => (kind === slot ? 2 : kind === "any" ? 1 : 0);
   for (const p of paths) {
     if (!IMAGE.test(p)) continue;
-    const key = fileKey(p);
-    if (!key || (keep && !keep.has(key))) continue;
+    const key = keep ? fileKeys(p).find(k => keep.has(k)) : fileKey(p);
+    if (!key) continue;
     const kind = artKind(p, roots);
     const e = (best[key] ??= {});
     for (const slot of ["token", "portrait"]) {
@@ -94,6 +157,117 @@ export function indexFrom(paths, keep = null, roots = []) {
     if (e.token) out[k].token = e.token.p;
     if (e.portrait) out[k].portrait = e.portrait.p;
   }
+  return out;
+}
+
+/**
+ * Art for the monsters no file is named after exactly, from files whose names hold every word of the monster's and a
+ * couple more ("goblin" in "goblin_warrior_sword.webp"), but never a file named after another Bestiary monster
+ * ("goblin boss" stays the Goblin Boss's). Fewest extra words win, then token or portrait as the slot wants, then the
+ * shortest name. `names`: the Bestiary's names; `have`: keys that already have art. Returns { key: { token, portrait,
+ * near: true } }.
+ */
+/**
+ * The extra words a close name may have: a role, age, colour or the like ("kobold-scout" for a Kobold, "ghost-mage"
+ * for a Ghost). Anything else makes another creature ("vampire-squid" is no Vampire, "goblin-dog" no Goblin).
+ */
+const VARIANT = new Set(["warrior", "scout", "rogue", "brute", "boss", "archer", "thug", "bombardier", "soldier", "guard",
+  "captain", "mage", "priest", "cleric", "champion", "chief", "chieftain", "shaman", "sniper", "raider", "sentry", "commander",
+  "leader", "lieutenant", "adept", "initiate", "fighter", "wizard", "sorcerer", "ranger", "barbarian", "druid", "bard", "warlock",
+  "berserker", "skirmisher", "spearman", "swordsman", "infiltrator", "spellcaster", "male", "female", "alpha", "young", "adult",
+  "elder", "old", "red", "blue", "black", "white", "green", "gold", "silver", "brass", "bronze", "copper", "gray", "brown",
+  "variant", "alt", "alternate", "armed", "armored", "unarmed", "sword", "axe", "bow", "spear", "shield", "staff", "club",
+  "mace", "dagger", "crossbow", "halberd", "blade", "whip", "wand", "torch", "plate", "armor", "leather",
+  "robe", "cloaked", "hooded", "trained", "enraged", "angry", "angered", "feral", "roaring", "attacking"]);
+export const NEAR_EXTRA = 2;
+/**
+ * Every key of every Bestiary monster, as word lists, for telling a close name from another monster's: a file with
+ * "goblin", "boss" and "sword" is the Goblin Boss's, not the Goblin's, though "boss" alone would be a role.
+ */
+function keyWords(names) {
+  return names.map(n => ({ own: new Set(nameKeys(n)), keys: nameKeys(n).map(k => k.split("-")) }));
+}
+/** Does the file (its words) name another monster whose name holds all of `want` and more? */
+function otherMonster(fileWords, want, own, all) {
+  return all.some(m => m.keys.some(k => k.length > want.length && !own.has(k.join("-"))
+    && want.every(x => k.includes(x)) && k.every(x => fileWords.has(x))));
+}
+/** The best of some files for a slot: ones marked for it or either, then by `order`. */
+function pickFor(files, slot, roots, order) {
+  const rank = f => { const kind = artKind(f.p ?? f, roots); return kind === slot ? 2 : kind === "any" ? 1 : 0; };
+  const fit = files.filter(f => rank(f) > 0);
+  return (fit.length ? fit : files).slice().sort((a, b) => order(a, b) || (rank(b) - rank(a)))[0];
+}
+
+export function nearIndex(paths, names, have = new Set(), roots = []) {
+  const files = [];
+  const post = new Map();
+  for (const p of paths) {
+    if (!IMAGE.test(p)) continue;
+    const key = fileKeys(p).at(-1);
+    if (!key) continue;
+    const w = new Set(key.split("-"));
+    const i = files.push({ p, key, w, len: p.split("/").pop().length }) - 1;
+    for (const x of w) { if (!post.has(x)) post.set(x, []); post.get(x).push(i); }
+  }
+  const all = keyWords(names);
+  const out = {};
+  names.forEach((name, n) => {
+    const keys = nameKeys(name);
+    if (!keys.length || keys.some(k => have.has(k))) return;
+    let cands = [];
+    for (const k of keys) {
+      const want = k.split("-");
+      const lists = want.map(x => post.get(x) ?? []).sort((a, b) => a.length - b.length);
+      cands = (lists[0] ?? []).map(i => files[i]).filter(f => {
+        if (!want.every(x => f.w.has(x)) || otherMonster(f.w, want, all[n].own, all)) return false;
+        const extra = [...f.w].filter(x => !want.includes(x));
+        return extra.length <= NEAR_EXTRA && extra.every(x => VARIANT.has(x));
+      });
+      if (cands.length) break;
+    }
+    if (!cands.length) return;
+    const order = (a, b) => (a.w.size - b.w.size) || a.len - b.len;
+    out[keys[0]] = { token: pickFor(cands, "token", roots, order).p, portrait: pickFor(cands, "portrait", roots, order).p, near: true };
+  });
+  return out;
+}
+
+/**
+ * Art from a folder named after the monster, for monsters with no file by their name or a close one: packs that keep
+ * each creature in its own folder ("Thug/ThugElfFemaleMelee (3).webp") or a folder per kind ("Kobolds/kobold bard.png").
+ * The scanned folder or the module's own folder doesn't count. The plainest name in the folder is used.
+ */
+export function folderIndex(paths, names, have = new Set(), roots = []) {
+  const byFolder = new Map();
+  const tops = roots.map(r => decoded(r).replace(/\/+$/, "").toLowerCase());
+  for (const p of paths) {
+    if (!IMAGE.test(p)) continue;
+    const parts = decoded(p).split("/");
+    const dir = parts.slice(0, -1).join("/");
+    if (parts.length < 2 || tops.includes(dir.toLowerCase()) || /^modules\/[^/]+$/i.test(dir)) continue;
+    const key = words(parts[parts.length - 2]);
+    if (!key) continue;
+    if (!byFolder.has(key)) byFolder.set(key, []);
+    byFolder.get(key).push(p);
+  }
+  const all = keyWords(names);
+  const out = {};
+  names.forEach((name, n) => {
+    const keys = nameKeys(name);
+    if (!keys.length || keys.some(k => have.has(k))) return;
+    const k = keys.find(x => byFolder.get(x)?.length);
+    if (!k) return;
+    const want = k.split("-");
+    // Not a file named after another monster that holds this one's name ("Wolf/dire-wolf.webp" is no Wolf).
+    const files = byFolder.get(k).map(p => ({ p, w: new Set(fileKeys(p).at(-1).split("-")) }))
+      .filter(f => !otherMonster(f.w, want, all[n].own, all));
+    if (!files.length) return;
+    // A file that names the creature first ("drakes/river-drake" for a Drake, not "drakes/wyvern"), then the plainest.
+    const named = f => (want.every(x => f.w.has(x)) ? 1 : 0);
+    const order = (a, b) => (named(b) - named(a)) || (a.w.size - b.w.size) || a.p.split("/").pop().length - b.p.split("/").pop().length || a.p.localeCompare(b.p);
+    out[keys[0]] = { token: pickFor(files, "token", roots, order).p, portrait: pickFor(files, "portrait", roots, order).p, near: true };
+  });
   return out;
 }
 
@@ -131,11 +305,9 @@ async function imagesUnder(path, depth = 0) {
 }
 
 /** Every key the Bestiary's monsters go by (so the index keeps only art for them). */
-async function bestiaryKeys() {
+async function bestiaryNames() {
   const pack = game.packs.get(`${SYS}.monsters`);
-  const keys = new Set();
-  for (const e of pack ? await pack.getIndex() : []) for (const k of nameKeys(e.name)) keys.add(k);
-  return keys;
+  return pack ? [...await pack.getIndex()].filter(e => e.type === "npc" || !e.type).map(e => e.name) : [];
 }
 
 /** A folder in the user data as typed or picked ("art/dnd-tokens"), or "" if it isn't one the scan may read. */
@@ -175,9 +347,15 @@ export async function scanArt(moduleIds = [], folders = []) {
       failed.push(id);
     }
   }
-  const entries = indexFrom(paths, await bestiaryKeys(), folders);
-  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, scanned: Date.now(), images: paths.length, entries });
-  return { names: Object.keys(entries).length, images: paths.length, empty, failed };
+  const names = await bestiaryNames();
+  const exact = indexFrom(paths, new Set(names.flatMap(n => nameKeys(n))), folders);
+  const near = { ...folderIndex(paths, names, new Set(Object.keys(exact)), folders), ...nearIndex(paths, names, new Set(Object.keys(exact)), folders) };
+  const entries = { ...near, ...exact };
+  // The monsters still without art, for the window's list.
+  const missing = names.filter(n => !nameKeys(n).some(k => entries[k])).sort();
+  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, scanned: Date.now(), images: paths.length, entries, missing,
+    found: names.length - missing.length, near: Object.keys(near).length });
+  return { names: names.length - missing.length, near: Object.keys(near).length, missing: missing.length, images: paths.length, empty, failed };
 }
 
 /** The changes that give an actor (data or document) its matched art, or null when there's nothing to change. */
@@ -246,7 +424,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
       .map(m => ({ id: m.id, title: m.title, checked: index?.scanned ? chosen.has(m.id) : artLike(m), suggested: artLike(m) }))
       .sort((a, b) => Number(b.suggested) - Number(a.suggested) || a.title.localeCompare(b.title));
     return {
-      mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: Object.keys(index?.entries ?? {}).length, images: index?.images ?? 0,
+      mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
       scanned: index?.scanned ? new Date(index.scanned).toLocaleString() : ""
     };
   }
@@ -295,7 +473,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     try {
       ui.notifications.info("Scanning the art packs. Big packs take a minute.");
       const res = await scanArt(this.#chosen(), this.#folders());
-      ui.notifications.info(`Found art for ${res?.names ?? 0} Bestiary monster${res?.names === 1 ? "" : "s"} (${res?.images ?? 0} images looked at).`);
+      ui.notifications.info(`Found art for ${res?.names ?? 0} Bestiary monster${res?.names === 1 ? "" : "s"} (${res?.near ?? 0} by a close name or folder; ${res?.missing ?? 0} without; ${res?.images ?? 0} images looked at).`);
       for (const id of res?.empty ?? []) ui.notifications.warn(`No images found in ${game.modules.get(id)?.title ?? id}.`);
       for (const id of res?.failed ?? []) ui.notifications.error(`Couldn't read ${game.modules.get(id)?.title ?? id} (the console has the error).`);
     } catch (err) {

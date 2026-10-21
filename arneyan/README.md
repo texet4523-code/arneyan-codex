@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.35 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.36 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.36
+
+- **Monster art finds more.** Press **Scan** again in Game Settings, **Monster art** to pick these up (the old index used the old names).
+  - Word order and wording don't matter: "Red Dragon, Adult" finds "adult red dragon.png", "dragon-red-adult.webp" and "Red Dragon (Adult).webp"; "Spectre" finds "specter"; "mage with owl.png" is a mage and "veteran in plate armor.png" a veteran; "HillGiant.webp" is a hill giant.
+  - Monsters a token pack calls something else are found by that name too: the Aboleth by its newer name (alghollthu master), the four elementals as living whirlwind, landslide, wildfire and waterfall, devils by their older names (barbazu, osyluth, gelugon and so on), the Vampire as vampire count, a Wyrmling as the pack's young dragon, a Light Horse as a riding horse. Where a pack has nothing by the name, a close kin stands in (a grizzly for a Brown Bear, a gorilla for an Ape).
+  - A close name counts when the extra words are a role, age, colour or gear ("kobold scout", "goblin warrior", "chimera red"), never another creature or another Bestiary monster (a vampire squid is no Vampire, a goblin dog or a goblin boss no Goblin).
+  - A folder named after the monster counts too, for packs that keep each creature in its own folder ("Thug/..."), though not for a file in it that is another monster ("Wolf/dire-wolf.png" is the Dire Wolf's).
+  - The window lists the monsters still without art.
 
 ## What's new in 0.10.35
 
