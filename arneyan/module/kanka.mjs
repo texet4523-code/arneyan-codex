@@ -195,10 +195,11 @@ export async function kankaDialog({ today, setToday }) {
   const pulled = game.settings.get(SYS, "kankaEvents");
   const content = `<div class="arn-kanka">
     <p>Keep this calendar in step with the calendar on your Kanka wiki. The token stays in this browser only.</p>
+    <p class="hint"><strong>Pull</strong> brings in Kanka's events and offers its date. <strong>Send date</strong> moves Kanka's date to this one. <strong>Forget pulled</strong> (once you've pulled) goes back to the events the calendar came with.</p>
     <div class="form-group"><label>Kanka token</label><input type="password" name="token" value="${esc(token())}" placeholder="Make one on Kanka: Profile > API" autocomplete="off"></div>
     <div class="form-group"><label>Campaign</label><input type="text" name="campaign" value="${esc(campaignId())}"></div>
     <div class="form-group"><label>Calendar</label><input type="text" name="calendar" value="${esc(calendarId())}"></div>
-    <div class="form-group"><label>Move Kanka's date with this one</label><input type="checkbox" name="follow" ${game.settings.get(SYS, "kankaFollow") ? "checked" : ""}></div>
+    <div class="form-group"><label>Kanka follows this date</label><input type="checkbox" name="follow" ${game.settings.get(SYS, "kankaFollow") ? "checked" : ""}></div>
     <p class="hint">${pulled?.pulledAt ? `Events last pulled ${esc(new Date(pulled.pulledAt).toLocaleString())} (${pulled.items?.length ?? 0} for everyone, ${game.settings.get(SYS, "kankaEventsGm")?.pulledAt === pulled.pulledAt ? game.settings.get(SYS, "kankaEventsGm").items?.length ?? 0 : 0} hidden from players, kept in this browser).` : "Nothing pulled yet: the calendar shows the events it came with."} Moving Kanka's date goes a day at a time (up to ${MAX_STEPS} at once); nothing else on Kanka changes, and nothing is deleted.</p>
   </div>`;
   const save = async form => {
@@ -208,11 +209,11 @@ export async function kankaDialog({ today, setToday }) {
     await game.settings.set(SYS, "kankaFollow", form.elements.follow.checked);
   };
   const act = await DialogV2.wait({
-    window: { title: "Kanka calendar", icon: "fa-solid fa-book-atlas" }, classes: ["arneyan"], position: { width: 460 }, content,
+    window: { title: "Kanka calendar", icon: "fa-solid fa-book-atlas" }, classes: ["arneyan", "arn-kanka-dialog"], position: { width: 560 }, content,
     buttons: [
-      { action: "pull", label: "Pull from Kanka", icon: "fa-solid fa-download", default: true, callback: async (ev, btn) => { await save(btn.form); return "pull"; } },
-      { action: "push", label: "Send today's date to Kanka", icon: "fa-solid fa-upload", callback: async (ev, btn) => { await save(btn.form); return "push"; } },
-      ...(pulled?.pulledAt ? [{ action: "forget", label: "Forget pulled events", icon: "fa-solid fa-rotate-left" }] : []),
+      { action: "pull", label: "Pull", icon: "fa-solid fa-download", default: true, callback: async (ev, btn) => { await save(btn.form); return "pull"; } },
+      { action: "push", label: "Send date", icon: "fa-solid fa-upload", callback: async (ev, btn) => { await save(btn.form); return "push"; } },
+      ...(pulled?.pulledAt ? [{ action: "forget", label: "Forget pulled", icon: "fa-solid fa-rotate-left" }] : []),
       { action: "save", label: "Save", callback: async (ev, btn) => { await save(btn.form); return "save"; } }
     ],
     rejectClose: false

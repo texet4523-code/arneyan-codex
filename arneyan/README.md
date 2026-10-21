@@ -1,13 +1,17 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.32 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.33 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.33
+
+- The calendar's Kanka window is wider and its buttons are shorter (Pull, Send date, Forget pulled, Save), so their text no longer overlaps.
 
 ## What's new in 0.10.32
 
 - **Weak monsters cost nothing.** As in Monsters & Treasure (Building Encounters): a creature 6 or more Levels below the party costs nothing and is never part of a crowd (Level ½ counts as −1, ¼ and 0 as −3). Three goblins against a 12th-level character cost 0. The Encounter Builder shows them as "free (far below)".
 - **The calendar and Kanka.** The calendar's **Kanka** button (GM) keeps it in step with the calendar on your Kanka wiki:
-  - **Pull from Kanka** brings in the calendar's events as they are on the wiki (festivals, dated events, birthdays on other entries) in place of the ones the calendar came with, and offers to set this calendar to Kanka's date (the date only: no time passes). Anything admin-only on Kanka, and events on private entries, are hidden from players: they stay in your browser and never reach theirs. **Forget pulled events** goes back to the built-in list. (An entry hidden from players only through Kanka's role permissions, rather than marked private, can't be seen as hidden from here: mark it private on Kanka, or the reminder admin-only.)
-  - **Send today's date to Kanka**, or tick **Move Kanka's date with this one** and it follows by itself a few seconds after the date moves here.
+  - **Pull** brings in the calendar's events as they are on the wiki (festivals, dated events, birthdays on other entries) in place of the ones the calendar came with, and offers to set this calendar to Kanka's date (the date only: no time passes). Anything admin-only on Kanka, and events on private entries, are hidden from players: they stay in your browser and never reach theirs. **Forget pulled** goes back to the built-in list. (An entry hidden from players only through Kanka's role permissions, rather than marked private, can't be seen as hidden from here: mark it private on Kanka, or the reminder admin-only.)
+  - **Send date** moves Kanka's date to this one; or tick **Kanka follows this date** and it follows by itself a few seconds after the date moves here.
   - Kanka's date moves a day at a time (up to 20 at once, Kanka's limit is 30 requests a minute); for a bigger jump it says how far off Kanka is, to set there by hand. Nothing else on Kanka changes, and nothing is deleted.
   - It needs a Kanka token: make one on Kanka (Profile > API, it lasts a year) and paste it into the Kanka window. It stays in your browser only; players never get it.
 
