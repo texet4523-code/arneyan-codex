@@ -65,14 +65,14 @@
         <label>By day <input type="range" name="dl-light" min="0" max="1" step="0.05" value="{{clock.daylight.light}}"></label>
       </div>
       <p><a class="arn-btn" data-action="saveDaylight"><i class="fa-solid fa-floppy-disk"></i> Save daylight</a>
-        <span class="arn-muted">Darkness now: {{clock.daylight.darkNow}}</span></p>
+        <span class="arn-muted">Darkness now: <span class="arn-cal-dark-now">{{clock.daylight.darkNow}}</span></span></p>
       {{#if clock.scene}}<label><input type="checkbox" name="sceneFollows" {{checked clock.scene.follows}}> {{clock.scene.name}} follows the time of day <span class="arn-muted">(untick for indoors or underground)</span></label>{{/if}}
     </details>
     {{/if}}
   </section>
 
   <footer class="arn-cal-foot">
-    <span class="arn-muted"><i class="fa-solid fa-hourglass-half"></i> Now: {{nowText}}</span>
+    <span class="arn-muted"><i class="fa-solid fa-hourglass-half"></i> Now: <span class="arn-cal-now">{{nowText}}</span></span>
     {{#unless isNowMonth}}<a class="arn-btn" data-action="today"><i class="fa-solid fa-calendar-day"></i> Today</a>{{/unless}}
     {{#if gm}}
       <a class="arn-btn" data-action="addNote" data-tooltip="A note on the day picked, for everyone or the GM only"><i class="fa-solid fa-note-sticky"></i> Add note</a>

@@ -275,7 +275,12 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     this._secTimer = setInterval(() => {
       const el = this.element?.querySelector?.(".arn-cal-clock-time");
       if (!el) return clearInterval(this._secTimer);
-      el.textContent = timeText(whenOf());
+      const w = whenOf();
+      el.textContent = timeText(w);
+      const now = this.element.querySelector(".arn-cal-now");
+      if (now) now.textContent = whenText();
+      const dark = this.element.querySelector(".arn-cal-dark-now");
+      if (dark) dark.textContent = String(RT.darknessAt(Math.floor(w.secondOfDay / 60), RT.daylight()));
     }, 500);
     this._secTimer?.unref?.();
   }

@@ -117,7 +117,8 @@ function noteWorldTime() { lastSaved = { world: game.time?.worldTime ?? 0, at: p
 /** The world time as of this moment: the last saved time plus what has run since (while the clock runs). */
 export function liveWorldTime() {
   const world = game.time?.worldTime ?? 0;
-  if (!clockLive() || lastSaved.world !== world) return world;
+  // No GM connected, nobody saves the clock: show the saved time rather than run ahead and jump back.
+  if (!clockLive() || lastSaved.world !== world || !game.users?.activeGM) return world;
   const since = (performance.now() - lastSaved.at) / 1000;
   // Up to two minutes: the GM's tab in the background may save only once a minute.
   return world + Math.floor(Math.min(since, 120) * clockRate());
@@ -136,7 +137,7 @@ const isClockKeeper = () => !!game.users?.activeGM?.isSelf;
  * start from the same saved time, and one would undo the other. `fn` runs after those seconds are saved.
  */
 let chain = Promise.resolve();
-export function queued(fn = () => null) {
+export function queued(fn = () => null) { // fn must not call queued() or advance() itself: it would wait on itself
   const run = chain.then(async () => {
     const n = pending;
     pending = 0;
@@ -219,8 +220,16 @@ function daylightScenes() {
  * Set the scenes' darkness for the time of day (the active GM's client). The first time daylight takes a scene over,
  * its own darkness is kept, and put back when daylight is turned off or the scene is left out.
  */
-export async function applyDaylight({ force = false } = {}) {
-  if (!isClockKeeper()) return;
+// Daylight changes and putting darkness back run one after another, each reading the settings when its turn comes.
+let lightChain = Promise.resolve();
+const inTurn = fn => (lightChain = lightChain.then(fn).catch(err => console.warn("Arneyan | daylight", err)));
+
+export function applyDaylight(opts = {}) {
+  if (!isClockKeeper()) return Promise.resolve();
+  return inTurn(() => setDaylight(opts));
+}
+
+async function setDaylight({ force = false } = {}) {
   const cfg = daylight();
   const { minuteOfDay } = await import("./calendar.mjs");
   const target = darknessAt(minuteOfDay(), cfg);
@@ -237,9 +246,14 @@ export async function applyDaylight({ force = false } = {}) {
 }
 
 /** Put back a scene's own darkness (daylight off, or the scene left out). */
-export async function restoreDarkness(scene) {
+export function restoreDarkness(scene) {
+  return inTurn(() => putBack(scene));
+}
+async function putBack(scene) {
   const was = scene?.getFlag?.(SYS, "darknessBefore");
   if (!scene || was === undefined || !game.user.isGM) return;
+  // Still followed (ticked again, or daylight back on, before this turn came): leave it to daylight.
+  if (daylight().on && sceneFollows(scene)) return;
   await scene.update({ [darknessKey(scene)]: Number(was) || 0, [`flags.${SYS}.-=darknessBefore`]: null }, { animateDarkness: 2000 }).catch(err => console.warn("Arneyan | daylight", err));
 }
 
@@ -271,6 +285,6 @@ export function registerRealtime() {
   Hooks.on("pauseGame", paused => { if (paused) flush(); lastTick = performance.now(); noteWorldTime(); refresh(); });
   // A combat starting or ending holds or frees the clock.
   for (const h of ["combatStart", "deleteCombat"]) Hooks.on(h, () => { noteWorldTime(); refresh(); });
-  Hooks.on("updateCombat", (c, changes) => { if ("started" in changes || "active" in changes) { noteWorldTime(); refresh(); } });
+  Hooks.on("updateCombat", (c, changes) => { if ("round" in changes || "active" in changes) { noteWorldTime(); refresh(); } });
   Hooks.once("ready", () => { noteWorldTime(); startTicker(); });
 }
