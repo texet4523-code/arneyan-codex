@@ -60,7 +60,7 @@
       <ul class="arn-list table stash">
         {{#each stash}}
         <li data-item-id="{{id}}" draggable="true">
-          <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+          <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="itemExpand" data-tooltip="Show details">{{name}}</a></span>
           <span>× {{qty}}</span>
           <span class="arn-muted">{{price}}</span>
           <span>{{slots}}</span>
@@ -68,6 +68,7 @@
             <a class="arn-btn small ghost" data-action="giveItem" data-tooltip="Give it to a party member"><i class="fa-solid fa-hand-holding"></i> Give</a>
             <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>
           </span>{{/if}}
+          {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
         </li>
         {{else}}<li class="arn-empty">The stash is empty.</li>{{/each}}
       </ul>

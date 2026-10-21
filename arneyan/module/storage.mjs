@@ -11,6 +11,7 @@
  * - It can go on a map as a token (the chest in the corner of the room); double-click opens it.
  */
 import { ARNEYAN } from "./config.mjs";
+import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
 import { blockedCopy, moveDroppedItem, settleMoved, partyMembers } from "./party.mjs";
 import { storageSlots } from "./data/actor-models.mjs";
 
@@ -121,6 +122,8 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
       changeTab: ArneyanStorageSheet.#changeTab,
       toggleHere: ArneyanStorageSheet.#toggleHere,
       itemEdit: ArneyanStorageSheet.#itemEdit,
+      itemExpand: ArneyanStorageSheet.#itemExpand,
+      itemChat: ArneyanStorageSheet.#itemChat,
       itemDelete: ArneyanStorageSheet.#itemDelete,
       takeItem: ArneyanStorageSheet.#takeItem,
       moveCoins: ArneyanStorageSheet.#moveCoins,
@@ -150,10 +153,14 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
         : item.type === "armour" ? `Armour${sys.ac ? ` · AC +${sys.ac}` : ""}`
         : sys.container?.holds ? "Container" : sys.consumable?.use ? "Consumable" : sys.charges?.max ? `${sys.charges.value}/${sys.charges.max} charges` : "Gear";
       rows.push({ id: item.id, name: item.name, img: item.img, qty: sys.quantity ?? 1, slots: sys.totalSlots ?? 0,
-        price: sys.price ?? "", depth, indent: depth * 22, holds: !!sys.container?.holds, kind });
+        price: sys.price ?? "", depth, indent: depth * 22, holds: !!sys.container?.holds, kind,
+        expanded: this._expanded.has(item.id), facts: this._expanded.has(item.id) ? itemFacts(item) : [], item });
       for (const c of actor.items.filter(i => i.system?.inside === item.id).sort(sort)) add(c, depth + 1);
     };
     for (const i of actor.items.filter(i => GEAR.has(i.type) && !byId.has(i.system?.inside)).sort(sort)) add(i, 0);
+    // Opened rows: their descriptions.
+    const enrichDesc = html => foundry.applications.ux.TextEditor.implementation.enrichHTML(html ?? "", { relativeTo: actor, secrets: actor.isOwner });
+    for (const r of rows) r.desc = r.expanded ? await enrichDesc(r.item.system.description) : "";
     const ledger = [...(sys.ledger ?? [])].reverse();
     Object.assign(context, {
       actor, system: sys, source: actor._source.system, editable: this.isEditable, isGM: game.user.isGM, usable,
@@ -174,6 +181,7 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
   async _onRender(context, options) {
     await super._onRender(context, options);
     for (const el of this.element.querySelectorAll(".arn-tab")) el.hidden = el.dataset.tab !== this._activeTab;
+    bindItemWindows(this);
     for (const r of this.element.querySelectorAll("[data-item-id][draggable]")) {
       r.addEventListener("dragstart", ev => {
         const item = this.document.items.get(r.dataset.itemId);
@@ -214,6 +222,17 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
   }
 
   static #itemEdit(event, target) { return this._itemFrom(target)?.sheet.render(true); }
+  /** Rows opened to read (click the name). */
+  _expanded = new Set();
+  static #itemChat(event, target) { return itemToChat(this._itemFrom(target)); }
+  static #itemExpand(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return;
+    if (this._expanded.has(item.id)) this._expanded.delete(item.id);
+    else this._expanded.add(item.id);
+    this.render();
+  }
+
 
   static async #itemDelete(event, target) {
     const item = this._itemFrom(target);

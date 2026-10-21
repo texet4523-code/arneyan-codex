@@ -4,6 +4,7 @@
  * Items dragged between the party and a member (either way) move rather than copy.
  */
 import { ARNEYAN } from "./config.mjs";
+import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
 import { statusesOf } from "./effects.mjs";
 import { putOutData } from "./gear.mjs";
 import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
@@ -173,6 +174,8 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     form: { submitOnChange: true },
     actions: {
       changeTab: ArneyanPartySheet.#changeTab,
+      itemExpand: ArneyanPartySheet.#itemExpand,
+      itemChat: ArneyanPartySheet.#itemChat,
       openMember: ArneyanPartySheet.#openMember,
       removeMember: ArneyanPartySheet.#removeMember,
       itemEdit: ArneyanPartySheet.#itemEdit,
@@ -215,8 +218,10 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       };
     });
     const sort = (a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name);
-    const stash = actor.items.contents.sort(sort).map(i => ({ id: i.id, name: i.name, img: i.img, type: i.type,
-      qty: i.system.quantity ?? 1, slots: i.system.totalSlots ?? "", price: i.system.price ?? "" }));
+    const enrichDesc = html => foundry.applications.ux.TextEditor.implementation.enrichHTML(html ?? "", { relativeTo: actor, secrets: actor.isOwner });
+    const stash = await Promise.all(actor.items.contents.sort(sort).map(async i => ({ id: i.id, name: i.name, img: i.img, type: i.type,
+      qty: i.system.quantity ?? 1, slots: i.system.totalSlots ?? "", price: i.system.price ?? "",
+      expanded: this._expanded.has(i.id), facts: this._expanded.has(i.id) ? itemFacts(i) : [], desc: this._expanded.has(i.id) ? await enrichDesc(i.system.description) : "" })));
     const speeds = members.map(m => Number(m.speed)).filter(Number.isFinite);
     Object.assign(context, {
       actor, system: actor.system, source: actor._source.system, editable: this.isEditable, isGM: game.user.isGM,
@@ -236,6 +241,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   async _onRender(context, options) {
     await super._onRender(context, options);
     for (const el of this.element.querySelectorAll(".arn-tab")) el.hidden = el.dataset.tab !== this._activeTab;
+    bindItemWindows(this);
     for (const r of this.element.querySelectorAll("[data-item-id][draggable]")) {
       r.addEventListener("dragstart", ev => {
         const item = this.document.items.get(r.dataset.itemId);
@@ -304,6 +310,17 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     return removeMember(game.actors.get(target.closest("[data-member-id]").dataset.memberId));
   }
   static #itemEdit(event, target) { return this._itemFrom(target)?.sheet.render(true); }
+  /** Stash rows opened to read (click the name). */
+  _expanded = new Set();
+  static #itemChat(event, target) { return itemToChat(this._itemFrom(target)); }
+  static #itemExpand(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return;
+    if (this._expanded.has(item.id)) this._expanded.delete(item.id);
+    else this._expanded.add(item.id);
+    this.render();
+  }
+
   static async #itemDelete(event, target) {
     const item = this._itemFrom(target);
     if (!item) return;

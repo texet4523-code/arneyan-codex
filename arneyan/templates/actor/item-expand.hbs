@@ -1,0 +1,9 @@
+{{!-- An opened row: the item's key facts, its description, and buttons to show it in chat or open it in its own window. --}}
+<div class="arn-expand">
+  {{#if facts.length}}<p class="arn-facts">{{#each facts}}<span class="arn-chip">{{this}}</span>{{/each}}</p>{{/if}}
+  {{#if desc}}{{{desc}}}{{else}}<p class="arn-muted">No description.</p>{{/if}}
+  <p class="arn-expand-tools">
+    <a class="arn-btn tiny ghost" data-action="itemChat" data-tooltip="Post it to the chat"><i class="fa-solid fa-comment"></i> Show in chat</a>
+    <a class="arn-btn tiny ghost" data-action="itemEdit" data-tooltip="Open it in its own window (or right-click the row)"><i class="fa-solid fa-up-right-from-square"></i> Open</a>
+  </p>
+</div>

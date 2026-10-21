@@ -204,7 +204,7 @@
             <span><button type="button" class="arn-roll-btn dmg" data-action="itemDamage" data-tooltip="Roll damage · Shift: critical">{{damage}}</button></span>
             <span class="arn-muted">{{#if item.system.range}}{{item.system.range}}{{else}}Melee{{/if}}{{#if ammoNeeded}} · {{#if ammoChoices}}<select class="arn-ammo-pick" data-ammo-for="{{item.id}}" data-tooltip="Each attack spends one: pick which">{{selectOptions ammoChoices selected=item.system.ammoId}}</select>{{else}}<span class="arn-bad">no {{ammoNeeded}}s</span>{{/if}}{{/if}}</span>
             {{> "systems/arneyan/templates/actor/item-controls.hbs" equip=true system=item.system}}
-            {{#if expanded}}<div class="arn-expand">{{#if item.system.traits}}<p><strong>Traits:</strong> {{item.system.traits}}</p>{{/if}}{{{desc}}}</div>{{/if}}
+            {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           </li>
           {{else}}<li class="arn-empty">No weapons yet. Drag one in from the Catalogue.</li>{{/each}}
         </ul>
@@ -225,7 +225,7 @@
               <button type="button" class="arn-btn small" data-action="itemUse">Use</button>
             {{/if}}
             {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
-            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+            {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           </li>
           {{else}}<li class="arn-empty">Abilities with uses, saves, damage or an on/off switch show here.</li>{{/each}}
         </ul>
@@ -273,7 +273,7 @@
                 <button type="button" class="arn-btn small" data-action="castSpell">Cast</button>
                 {{#if @root.isCharacter}}{{#if @root.editable}}<a class="arn-ctl" data-action="writeScroll" data-tooltip="Write a scroll of it (1 week and 100 gp a level)"><i class="fa-solid fa-scroll"></i></a>{{/if}}{{/if}}
                 {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
-                {{#if expanded}}<div class="arn-expand"><p class="arn-muted">{{item.system.school}}{{#if item.system.range}} · {{item.system.range}}{{/if}}{{#if item.system.components}} · {{item.system.components}}{{/if}}</p>{{{desc}}}</div>{{/if}}
+                {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
               </li>
               {{/each}}
             </ul>
@@ -295,7 +295,7 @@
               {{#if @root.editable}}{{#if recharge}}<a class="arn-ctl" data-action="recharge" data-tooltip="Set charges or roll the recharge"><i class="fa-solid fa-battery-half"></i></a>{{/if}}{{/if}}
               <a class="arn-ctl" data-action="itemEdit" data-tooltip="Open its sheet"><i class="fa-solid fa-pen"></i></a>
             </div>
-            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+            {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
             <ul class="arn-list">
               {{#each spells}}
               <li data-item-id="{{../id}}">
@@ -349,10 +349,10 @@
           </li>
           {{/each}}
           {{#each ancestry}}
-          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}}</a><span class="arn-muted arn-meta">Ancestry</span>{{> "systems/arneyan/templates/actor/item-controls.hbs"}}</li>
+          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemExpand" data-tooltip="Show details">{{name}}</a><span class="arn-muted arn-meta">Ancestry</span>{{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}{{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}</li>
           {{/each}}
           {{#each kits}}
-          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemEdit">{{name}}</a><span class="arn-muted arn-meta">Kit</span>{{> "systems/arneyan/templates/actor/item-controls.hbs"}}</li>
+          <li data-item-id="{{id}}" draggable="true"><img src="{{img}}" alt=""><a class="arn-item-name" data-action="itemExpand" data-tooltip="Show details">{{name}}</a><span class="arn-muted arn-meta">Kit</span>{{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}{{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}</li>
           {{/each}}
         </ul>
 
@@ -369,7 +369,7 @@
             <span class="arn-muted arn-meta">{{item.system.path}}{{#if item.system.levelTaken}} · taken at level {{item.system.levelTaken}}{{/if}}{{#if item.system.uses.max}} · {{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}{{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}</span>
             {{#if (or item.system.uses.max item.system.activities.length item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
             {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
-            {{#if expanded}}<div class="arn-expand">{{{desc}}}</div>{{/if}}
+            {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           </li>
           {{else}}<li class="arn-empty">No feats yet.</li>{{/each}}
         </ul>
@@ -388,10 +388,11 @@
         <ul class="arn-list arn-skills">
           {{#each skills}}
           <li data-item-id="{{id}}" draggable="true">
-            <a class="arn-roll-btn" data-action="itemUse">{{bonus}}</a>
-            <a class="arn-item-name" data-action="itemUse">{{item.name}}</a>
+            <a class="arn-roll-btn" data-action="itemUse" data-tooltip="Roll it">{{bonus}}</a>
+            <a class="arn-item-name" data-action="itemExpand" data-tooltip="Show details">{{item.name}}</a>
             <span class="arn-muted arn-meta">{{abbr}} · {{tier}}{{#if master}} · Advantage{{/if}}</span>
             {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
+            {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           </li>
           {{else}}<li class="arn-empty">No skills yet.</li>{{/each}}
         </ul>
@@ -423,9 +424,9 @@
         <div class="arn-section-head"><h3>Packs &amp; Containers</h3><span class="arn-muted">Stowed away: drag gear onto a block</span>{{#if editable}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-group="Adventuring Gear" data-tooltip="Add from the Catalogue: backpacks and sacks are under Adventuring Gear, magic bags under Magic Items"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
         {{#unless gear.containers.length}}<p class="arn-empty">No backpack or bag yet.</p>{{/unless}}
         {{#each gear.containers}}
-        <section class="arn-container-block {{#if overCap}}over{{/if}}" data-container-id="{{id}}">
+        <section class="arn-container-block {{#if overCap}}over{{/if}}" data-container-id="{{id}}" data-item-id="{{id}}">
           <header class="arn-container-head" draggable="true" data-item-id="{{id}}">
-            <img src="{{img}}" alt=""><a class="arn-container-name" data-action="itemEdit">{{name}}</a>
+            <img src="{{img}}" alt=""><a class="arn-container-name" data-action="itemExpand" data-tooltip="Show details">{{name}}</a>
             <span class="arn-chip {{#if overCap}}bad{{/if}}">{{contents}}{{#if capacity}} / {{capacity}}{{/if}} slots stowed</span>
             {{#if weightless}}<span class="arn-chip strong" data-tooltip="What's inside adds nothing to your slots">Weightless</span>{{/if}}
             <span class="arn-muted">{{system.totalSlots}} slot{{#unless (eq system.totalSlots 1)}}s{{/unless}} itself</span>
@@ -436,6 +437,7 @@
               <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>{{/if}}
             </span>
           </header>
+          {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           <ul class="arn-list table arn-gear-list">{{#each children}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{else}}<li class="arn-empty">Empty. Drag gear here to stow it.</li>{{/each}}</ul>
         </section>
         {{/each}}

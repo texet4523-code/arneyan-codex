@@ -47,7 +47,7 @@
         {{#each rows}}
         <li data-item-id="{{id}}" {{#if @root.usable}}draggable="true"{{/if}} class="{{#if holds}}arn-holder{{/if}}">
           <span class="storage-item" style="padding-left: {{indent}}px">{{#if depth}}<i class="fa-solid fa-turn-up fa-rotate-90 storage-in"></i>{{/if}}<img src="{{img}}" alt="">
-          <a class="storage-name" data-action="itemEdit">{{name}}{{#if (gt qty 1)}} <span class="storage-qty">× {{qty}}</span>{{/if}}</a></span>
+          <a class="storage-name" data-action="itemExpand" data-tooltip="Show details">{{name}}{{#if (gt qty 1)}} <span class="storage-qty">× {{qty}}</span>{{/if}}</a></span>
           <span class="storage-kind">{{kind}}</span>
           <span class="storage-slots">{{slots}} slot{{#unless (eq slots 1)}}s{{/unless}}</span>
           <span class="storage-price">{{price}}</span>
@@ -55,6 +55,7 @@
             {{#if @root.usable}}<a class="arn-btn tiny ghost" data-action="takeItem" data-tooltip="Take it out to a character"><i class="fa-solid fa-hand-holding"></i> Take</a>
             {{#if @root.editable}}<a data-action="itemDelete" data-tooltip="Throw it away"><i class="fa-solid fa-trash"></i></a>{{/if}}{{/if}}
           </span>
+          {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
         </li>
         {{else}}<li class="arn-empty">Nothing stored here yet.</li>{{/each}}
       </ul>

@@ -1,6 +1,6 @@
 {{!-- One piece of gear; a container lists what's inside it underneath. --}}
 <li data-item-id="{{id}}" draggable="true" class="arn-gear-row {{#if holds}}arn-container{{/if}} {{#if dim}}dim{{/if}}" {{#if holds}}data-container-id="{{id}}"{{/if}}>
-  <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="{{useAction}}" data-tooltip="{{useTip}}">{{name}}</a>
+  <span class="arn-name-cell"><img src="{{img}}" alt=""><a data-action="itemExpand" data-tooltip="Show details">{{name}}</a>
     {{#if unidentified}}<span class="arn-chip warn" data-tooltip="Players see a plain name and description">Unidentified</span>{{/if}}
     {{#if charges}}<span class="arn-chip">{{charges}} charges</span>{{/if}}
     {{#if ammoLabel}}<span class="arn-chip">{{ammoLabel}}</span>{{/if}}
@@ -28,5 +28,6 @@
     <a data-action="itemDelete" data-tooltip="Delete"><i class="fa-solid fa-trash"></i></a>
     {{/if}}
   </span>
+  {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
   {{#if children.length}}<ul class="arn-list table arn-contents">{{#each children}}{{> "systems/arneyan/templates/actor/gear-row.hbs"}}{{/each}}</ul>{{/if}}
 </li>

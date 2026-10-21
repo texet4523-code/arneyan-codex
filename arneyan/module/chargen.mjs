@@ -14,15 +14,17 @@ const { DialogV2 } = foundry.applications.api;
 const SYSFLAG = "arneyan";
 const KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 export const POOLS = ["8d6kh3", "5d6kh3", "4d6kh3", "3d6", "3d6", "3d6"];
+/** The other way to roll (Kieran, 21 Oct 2026): 4d6 six times, dropping the lowest die each time; one set to place. */
+export const FOUR_D6 = Array(6).fill("4d6kh3");
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 
 /** Rule C, the Gygaxian Threshold: at least two scores of 14 or higher. */
 export const meetsThreshold = set => set.filter(n => n >= 14).length >= 2;
 const LOW = "below the Gygaxian Threshold";
 
-async function rollSet() {
+async function rollSet(pools = POOLS) {
   const rolls = [];
-  for (const f of POOLS) rolls.push(await new Roll(f).evaluate());
+  for (const f of pools) rolls.push(await new Roll(f).evaluate());
   return rolls;
 }
 
@@ -40,13 +42,16 @@ export async function abilityScores(actor) {
 
 async function abilityScoresWindow(actor) {
   let sets = null;          // [[17, 15, ...], [...]] once rolled
+  let four = null;          // the 4d6 set, once rolled
   const content = `<div class="arn-scores">
     <p>Method V: roll six pools in order (8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times keeping all 3) for Set Alpha, then again for Set Beta. Keep one whole set; you can't swap scores between them (Rule A). The set you keep needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold). The set you don't keep can be donated to the table (Rule B). Then put each score on an attribute. Your ancestry's changes come when you drop it on the sheet; no score starts above 18.</p>
     <div class="arn-scores-mode">
       <label><input type="radio" name="mode" value="roll" checked> Roll Method V</label>
+      <label><input type="radio" name="mode" value="four"> Roll 4d6, drop the lowest</label>
       <label><input type="radio" name="mode" value="own"> Type in a set (donated, or rolled at the table)</label>
     </div>
     <div class="arn-scores-roll"><button type="button" class="arn-scores-rollbtn"><i class="fa-solid fa-dice"></i> Roll both sets</button><div class="arn-scores-sets"></div></div>
+    <div class="arn-scores-four" hidden><p class="hint">Roll 4d6 six times, dropping the lowest die each time, then put each score on an attribute. One roll: the set stands.</p><button type="button" class="arn-scores-fourbtn"><i class="fa-solid fa-dice"></i> Roll 4d6 six times</button><div class="arn-scores-fourset"></div></div>
     <div class="arn-scores-own" hidden>${KEYS.map((k, i) => `<input type="number" name="own${i}" min="3" max="18" value="${[15, 14, 13, 12, 10, 8][i]}">`).join("")}</div>
     <table class="arn-scores-assign"><tbody>${KEYS.map((k, i) => `<tr><th>${ARNEYAN.abilities[k]}</th><td><select name="as-${k}" data-i="${i}"></select></td><td class="arn-scores-mod" data-k="${k}"></td></tr>`).join("")}</tbody></table>
     <p class="hint arn-scores-msg"></p>
@@ -57,8 +62,10 @@ async function abilityScoresWindow(actor) {
       const el = dialog.element ?? dialog;
       const q = s => el.querySelector(s);
       const msg = q(".arn-scores-msg");
+      const mode = () => q("input[name=mode]:checked")?.value;
       const current = () => {
-        if (q("input[name=mode]:checked")?.value === "own") return [...el.querySelectorAll(".arn-scores-own input")].map(i => Math.clamp(Number(i.value) || 3, 3, 18));
+        if (mode() === "four") return four;
+        if (mode() === "own") return [...el.querySelectorAll(".arn-scores-own input")].map(i => Math.clamp(Number(i.value) || 3, 3, 18));
         const pick = q("input[name=set]:checked");
         return sets && pick ? sets[Number(pick.value)] : null;
       };
@@ -80,24 +87,26 @@ async function abilityScoresWindow(actor) {
           if (cell) cell.textContent = n === undefined ? "" : `${ARNEYAN.abilityMod(n) >= 0 ? "+" : ""}${ARNEYAN.abilityMod(n)}`;
         });
         const used = [...el.querySelectorAll(".arn-scores-assign select")].map(s => s.value);
-        const own = q("input[name=mode]:checked")?.value === "own";
+        const own = mode() === "own";
         const dupes = set && new Set(used).size < used.length;
-        const low = set && !meetsThreshold(set);
+        // The Gygaxian Threshold is Method V's rule (and a typed-in set's): the 4d6 set stands as rolled.
+        const low = set && mode() !== "four" && !meetsThreshold(set);
         const bothLow = sets && !sets.some(meetsThreshold);
         if (dupes) msg.textContent = "Each score goes on one attribute only.";
         else if (low && own) msg.textContent = "This set needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold).";
         else if (low && bothLow) msg.textContent = "Neither set has two scores of 14 or higher: discard both and roll again, or take a set another player donated (Type in a set).";
         else if (low) msg.textContent = "This set doesn't have two scores of 14 or higher (Rule C): keep the other set.";
-        else if (!set) msg.textContent = own ? "" : "Roll the two sets first.";
+        else if (!set) msg.textContent = own ? "" : mode() === "four" ? "Roll the 4d6 set first." : "Roll the two sets first.";
         else msg.textContent = "";
         // Only a complete, legal assignment can be set (the rolled sets stay in this window, so nothing is rerolled).
         const ok = el.querySelector("button[data-action=ok]");
         if (ok) ok.disabled = !set || dupes || low;
       };
       el.querySelectorAll("input[name=mode]").forEach(r => r.addEventListener("change", () => {
-        const own = q("input[name=mode]:checked").value === "own";
-        q(".arn-scores-own").hidden = !own;
-        q(".arn-scores-roll").hidden = own;
+        const m = mode();
+        q(".arn-scores-own").hidden = m !== "own";
+        q(".arn-scores-roll").hidden = m !== "roll";
+        q(".arn-scores-four").hidden = m !== "four";
         fill();
       }));
       el.querySelectorAll(".arn-scores-own input").forEach(i => i.addEventListener("change", fill));
@@ -105,6 +114,9 @@ async function abilityScoresWindow(actor) {
       q(".arn-scores-rollbtn").addEventListener("click", async ev => {
         const btn = ev.currentTarget;
         btn.disabled = true;
+        // One way of rolling per character: 4d6 is shut before the dice even land.
+        const f4 = q("input[name=mode][value=four]");
+        if (f4) f4.disabled = true;
         const a = await rollSet(), b = await rollSet();
         sets = [a.map(r => r.total), b.map(r => r.total)];
         const names = ["Alpha", "Beta"];
@@ -122,12 +134,32 @@ async function abilityScoresWindow(actor) {
         }
         fill();
       });
+      q(".arn-scores-fourbtn").addEventListener("click", async ev => {
+        ev.currentTarget.disabled = true;
+        // One way of rolling per character: Method V is shut before the dice even land.
+        const mv = q("input[name=mode][value=roll]");
+        if (mv) mv.disabled = true;
+        const rolls = await rollSet(FOUR_D6);
+        four = rolls.map(r => r.total);
+        await ChatMessage.create({
+          speaker: ChatMessage.getSpeaker({ actor }), rolls,
+          content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice"></i> <span>${esc(actor.name)}: 4d6, drop the lowest</span></header><p><strong>${four.join(", ")}</strong></p></div>`
+        });
+        q(".arn-scores-fourset").innerHTML = `<p>Rolled: <strong>${four.join(", ")}</strong></p>`;
+        fill();
+      });
       fill();
     },
     buttons: [
       { action: "ok", label: "Set the scores", default: true, callback: (ev, btn) => {
         const f = btn.form;
-        const own = f.querySelector("input[name=mode]:checked")?.value === "own";
+        const m = f.querySelector("input[name=mode]:checked")?.value;
+        const own = m === "own";
+        if (m === "four") {
+          const idx = KEYS.map(k => Number(f.elements[`as-${k}`].value));
+          if (!four || new Set(idx).size !== 6) return null;
+          return { scores: Object.fromEntries(KEYS.map((k, i) => [k, four[idx[i]]])), spare: null };
+        }
         const kept = own ? null : Number(f.querySelector("input[name=set]:checked")?.value);
         const set = own ? [...f.querySelectorAll(".arn-scores-own input")].map(i => Math.clamp(Number(i.value) || 3, 3, 18)) : sets?.[kept];
         const idx = KEYS.map(k => Number(f.elements[`as-${k}`].value));

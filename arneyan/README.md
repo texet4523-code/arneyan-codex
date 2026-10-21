@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.41 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.42 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.42
+
+- **Click a row to read it.** On a character's or monster's sheet, click the name of anything (gear, weapons, armour, containers, skills, feats, features, spells, ancestry, kit) and it opens underneath: its key numbers (damage, range, AC, charges, slots, price, school and so on) and its description, with **Show in chat** and **Open**. Click again to close it. Right-click any row to open the item in its own window. The party stash and storage places work the same way. A skill rolls from its bonus button; a potion or torch is used with its **Use** or **Light** button.
+- **4d6, drop the lowest.** The ability scores window has a third choice: roll 4d6 six times, dropping the lowest die each time, then put each score on an attribute. One roll per character, as with Method V, and the Gygaxian Threshold (Method V's rule) doesn't apply to it.
 
 ## What's new in 0.10.41
 

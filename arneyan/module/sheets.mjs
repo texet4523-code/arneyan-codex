@@ -11,6 +11,7 @@ import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { combatById } from "./fight.mjs";
+import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
@@ -134,6 +135,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemMode: ArneyanActorSheet.#itemMode,
       itemToggle: ArneyanActorSheet.#itemToggle,
       itemExpand: ArneyanActorSheet.#itemExpand,
+      itemChat: ArneyanActorSheet.#itemChat,
       openPage: ArneyanActorSheet.#openPage,
       rest: ArneyanActorSheet.#rest,
       abilityScores: ArneyanActorSheet.#abilityScores,
@@ -202,7 +204,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const per = String(i.getFlag?.("arneyan", "frequency") ?? "").match(/^(\d+)\/day/i);
       return per ? `${Math.max(0, Number(per[1]) - (i.getFlag("arneyan", "used") ?? 0))} of ${per[1]} left today` : "";
     };
-    const row = async i => ({ item: i, id: i.id, usesLabel: i.type === "spell" ? innateLeft(i) : "", expanded: this._expanded.has(i.id), desc: this._expanded.has(i.id) ? await enrich(i.system.description) : "" });
+    const open = i => this._expanded.has(i.id);
+    const row = async i => ({ item: i, id: i.id, usesLabel: i.type === "spell" ? innateLeft(i) : "", expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
     const rows = async list => Promise.all(list.map(row));
 
     // Weapons with their attack bonus and damage worked out.
@@ -220,6 +223,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const c = i.system.inside ? actor.items.get(i.system.inside) : null;
       return c?.system?.container?.holds && c.id !== i.id ? c : null;
     };
+    const gearDesc = new Map();
+    for (const id of this._expanded) {
+      const it = actor.items.get(id);
+      if (it && ["weapon", "armour", "equipment"].includes(it.type)) gearDesc.set(id, await enrich(it.system.description));
+    }
     const gearRow = (i, depth = 0) => {
       const s = i.system;
       const holds = i.type === "equipment" && !!s.container?.holds;
@@ -228,7 +236,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const burn = light.bright || light.dim ? lightInfo(light) : null;
       return {
         id: i.id, item: i, name: i.name, img: i.img, system: s, depth,
-        useAction: i.type === "equipment" ? "itemUse" : "itemEdit",
+        expanded: gearDesc.has(i.id), facts: gearDesc.has(i.id) ? itemFacts(i) : [], desc: gearDesc.get(i.id) ?? "",
         useTip: s.scroll?.spell ? "Read the scroll" : s.charges?.max ? "Use a charge" : s.consumable?.use ? "Use it (one is used up)" : "Show in chat",
         // Anything can be worn or held (a ring, a torch, a shield); containers are worn too but show as their own block.
         equip: !holds, dim: i.type !== "equipment" && !s.equipped && !parent,
@@ -324,7 +332,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const spells = await Promise.all((s.itemSpells ?? []).map(async e => ({ name: e.name, cost: e.cost, short: s.charges?.max ? s.charges.value < e.cost : false, ...(await spellText(i, e)) })));
       const scrollKey = `${i.id}:scroll`;
       return {
-        expanded: this._expanded.has(i.id), desc: this._expanded.has(i.id) ? await enrich(s.description) : "",
+        expanded: this._expanded.has(i.id), facts: this._expanded.has(i.id) ? itemFacts(i) : [], desc: this._expanded.has(i.id) ? await enrich(s.description) : "",
         scrollKey, scrollDesc: s.scroll?.spell && this._expanded.has(scrollKey) ? await enrich(s.scroll.spell.system?.description ?? "") : "",
         id: i.id, name: i.name, img: i.img, qty: s.quantity ?? 1, isWand: !!s.itemSpells?.length,
         charges: s.charges?.max ? `${s.charges.value}/${s.charges.max}` : "", recharge: !!s.charges?.max,
@@ -390,15 +398,15 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: signed(v.mod), tip: v.parts ? breakdown(v.parts) : ""
       })),
       classes: byType("class"),
-      ancestry: byType("ancestry"),
-      kits: byType("kit"),
+      ancestry: await Promise.all(byType("ancestry").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
+      kits: await Promise.all(byType("kit").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
       feats: await rows(byType("feat")),
-      skills: byType("skill").map(s => {
+      skills: await Promise.all(byType("skill").map(async s => {
         const ab = s.system.ability;
         const mod = system.abilities[ab].mod;
         const knackOnly = s.system.tier === "knack";
-        return { item: s, id: s.id, abbr: ARNEYAN.abilityAbbr[ab], tier: ARNEYAN.skillTiers[s.system.tier], bonus: signed(knackOnly ? (mods?.sum("check", "skill") ?? 0) : (mod <= 0 ? 1 : mod) + (mods?.sum("check", `check.${ab}`, "skill") ?? 0)), master: s.system.tier === "master" || knackOnly || !!s.flags?.arneyan?.knack };
-      }),
+        return { ...(await row(s)), abbr: ARNEYAN.abilityAbbr[ab], tier: ARNEYAN.skillTiers[s.system.tier], bonus: signed(knackOnly ? (mods?.sum("check", "skill") ?? 0) : (mod <= 0 ? 1 : mod) + (mods?.sum("check", `check.${ab}`, "skill") ?? 0)), master: s.system.tier === "master" || knackOnly || !!s.flags?.arneyan?.knack };
+      })),
       abilityGroups: groups,
       combatAbilities,
       weapons,
@@ -454,6 +462,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   async _onRender(context, options) {
     await super._onRender(context, options);
     for (const el of this.element.querySelectorAll(".arn-tab")) el.hidden = el.dataset.tab !== this._activeTab;
+    // Right-click a row: the item in its own window.
+    bindItemWindows(this);
     // Item rows can be dragged out to the sidebar or other sheets.
     for (const r of this.element.querySelectorAll("[data-item-id][draggable]")) {
       r.addEventListener("dragstart", ev => {
@@ -644,6 +654,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const { promptWeaponChoice } = await import("./documents.mjs");
     return promptWeaponChoice(item);
   }
+  static #itemChat(event, target) { return itemToChat(this._itemFrom(target)); }
   static #itemExpand(event, target) {
     const item = this._itemFrom(target);
     if (!item) return;

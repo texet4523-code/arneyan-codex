@@ -170,6 +170,7 @@ Hooks.once("init", () => {
   foundry.applications.handlebars.loadTemplates([
     "systems/arneyan/templates/actor/item-controls.hbs",
     "systems/arneyan/templates/actor/gear-row.hbs",
+    "systems/arneyan/templates/actor/item-expand.hbs",
     "systems/arneyan/templates/actor/abilities-list.hbs",
     "systems/arneyan/templates/chat/roll-card.hbs",
     "systems/arneyan/templates/chat/item-card.hbs",

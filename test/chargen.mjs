@@ -35,6 +35,14 @@ assert.equal(G.meetsThreshold([18, 13, 13, 12, 10, 4]), false, "an 18 alone isn'
   for (const t of ["8d6, 5d6 and 4d6", "14 or higher", "Gygaxian Threshold", "Rule A", "Rule B", "above 18"]) assert.ok(text.includes(t), `window says ${t}`);
   for (const t of ["6d6", "15 or more", "—", "–"]) assert.ok(!text.includes(t), `window no longer says ${t}`);
 }
+// 0.10.42: 4d6 six times, dropping the lowest, as a second way to roll.
+assert.deepEqual(G.FOUR_D6, ["4d6kh3", "4d6kh3", "4d6kh3", "4d6kh3", "4d6kh3", "4d6kh3"]);
+{
+  let opts = null;
+  DialogV2.wait = async o => { opts = o; return "skip"; };
+  await G.abilityScores({ isOwner: true, type: "character", name: "Jack", id: "J4" });
+  for (const t of ['value="four"', "Roll 4d6, drop the lowest", "Roll 4d6 six times"]) assert.ok(opts.content.includes(t), t);
+}
 
 /* ---------------- 4. Starting Scores: the cap and where the excess goes ---------------- */
 // Example 2: Tamla's 18 in Dexterity, 16 in Intelligence; +2 Dexterity moves to Intelligence (16 becomes 18).
