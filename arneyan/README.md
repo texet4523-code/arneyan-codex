@@ -1,6 +1,22 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.27 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.28 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.28
+
+The compendiums, the rules and the Rules journals (Books I, II, IV and V) now match the books v0.10.0 (20 October).
+
+- **Turned.** Turn Undead puts the Turned condition on what it turns: Frightened of the turner, and it spends its turns moving away. It lasts 1 minute or until the turner attacks it.
+- **Non-lethal damage heals.** Healing removes as much non-lethal damage as it heals (its full amount, so a creature knocked out at full HP wakes), and a full rest clears all of it. The 1 point per hour of rest is still yours to take off by hand.
+- **XP carries over.** A single award can't take a character up two levels: it stops 1 XP short of the second.
+- **Firearms training** comes from your 1st-level class only. A Wizard who later takes Fighter levels isn't trained.
+- **Creation feats over 18.** If a 1st-level character's feat would push an attribute over 18, the sheet asks which attribute gets the point instead. Press Later and the feat's own sheet keeps saying so until you choose; it also shows where a point went, with **Put it back**. Picking a different attribute for the feat asks afresh, and so does a copy of the feat dragged to another character. Big Wen and Rook Halloway already have theirs moved.
+- **Classes:** Twin Nock gives each arrow your Bow Mastery bonus, added for you (+1, +2 at 6th, +3 at 12th, +4 at 18th); its old per-arrow table is gone. Aura of Devotion covers the Paladin too. The Cleric's Umberlee wave is a Fortitude save. Holy Campaign is once per year, or once per campaign at the GM's call. Combat Dominance says character Level sets the cap.
+- **Spells:** Warlock is on Burning Hands, Scorching Ray, Fireball, Bind Elemental, Darkness, Faerie Fire, Entangle and Hypnotism. Delay Poison holds back poison taken during the spell too.
+- **Catalogue and Bestiary:** the light warhorse (2d10+4, 15 HP) and warpony (2d8+2, 11 HP) have Hit Dice, so a Divine Mount gets 24 and 18. Spell-component price ranges say "(by quality)". The Sun Blade has a **Blade called** switch that sheds bright light in a 20ft radius, like the Flame Tongue.
+- **Attacks of Opportunity** come only from Combat Reflexes or a monster ability that says so.
+- **Kit names** use a comma: "Gladiator, The Pit-Forged".
+- Travel distance is in 6-mile hexes.
 
 ## What's new in 0.10.27
 
@@ -433,7 +449,7 @@ Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jam
 
 **Ask for a roll.** From the party sheet (Ask for a roll) or the Token tools on the left (the d20 button), pick a saving throw, an attribute check or a skill, and a DC (Easy 10, Moderate 12, Hard 15, Severe 20). Everyone you tick gets a Roll button on one chat card. Each player rolls their own character; the GM can roll for anyone, or press "roll for the rest" for absent players. Results fill into the card with a tick or a cross, and Luck burned afterwards updates them. Someone without the skill rolls it untrained. Tick selected tokens in the window to ask monsters or NPCs too.
 
-**Award XP.** Award XP on the party sheet gives XP to everyone or to the members you tick: the same amount each, or split between them. XP stops at the character's rate (the XP per level of their class) until they take the level. Anyone with enough XP shows "Level up" on the party sheet and in the award card. Taking the level with the level-up arrow spends the XP and sets it back to 0.
+**Award XP.** Award XP on the party sheet gives XP to everyone or to the members you tick: the same amount each, or split between them. XP carries over past the character's rate (the XP per level of their class), but one award stops 1 XP short of a second level. Anyone with enough XP shows "Level up" on the party sheet and in the award card. Taking the level with the level-up arrow spends that level's XP and keeps the rest.
 
 **Treasure.** A gem button next to a monster's name (GM only) rolls its Treasure code: individual treasure (P to S) for each creature, a hoard (A to H) once for the group, and the lair hoard if you tick it. Gems are named from the Catalogue's stones, art objects from the book's examples, and magic items link to the Catalogue entry. You can turn part of a hoard's coin into lots of trade goods. "Put it in the party stash" adds the coins to the stash's coins and everything else as items (a "Weapon +1" stays a placeholder until you pick the weapon). The Encounter Builder's "Roll their treasure" does the same for every creature in the encounter.
 

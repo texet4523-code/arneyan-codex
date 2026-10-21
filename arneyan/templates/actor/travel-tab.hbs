@@ -6,7 +6,7 @@
     <a class="arn-btn small ghost" data-action="travelReset" data-tooltip="Start a new journey"><i class="fa-solid fa-rotate-left"></i> New journey</a>
   </span>{{/if}}</div>
 <div class="arn-fields two arn-travel-fields">
-  <label>Distance (hexes) <input class="short" type="number" min="0" name="flags.arneyan.travel.distance" value="{{travel.distance}}" {{#unless isGM}}disabled{{/unless}}></label>
+  <label>Distance (hexes, 6 miles each) <input class="short" type="number" min="0" name="flags.arneyan.travel.distance" value="{{travel.distance}}" {{#unless isGM}}disabled{{/unless}}></label>
   <label>Covered <input class="short" type="number" min="0" name="flags.arneyan.travel.done" value="{{travel.done}}" {{#unless isGM}}disabled{{/unless}}></label>
   <label>Travelling <select name="flags.arneyan.travel.method" {{#unless isGM}}disabled{{/unless}}>{{selectOptions travel.methods selected=travel.method}}</select></label>
   <label>Pace <select name="flags.arneyan.travel.pace" {{#unless isGM}}disabled{{/unless}}>{{selectOptions travel.paces selected=travel.pace}}</select></label>

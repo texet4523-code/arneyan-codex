@@ -752,3 +752,7 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-art-mod { display: block; padding: 2px 0; }
 .arneyan .arn-art-mod .arn-muted { font-size: 11px; margin-left: 4px; }
 .arneyan .arn-art-changed.hidden { display: none; }
+
+/* The creation cap of 18 on a feat's sheet. */
+.arneyan .arn-cap-note { grid-column: 1 / -1; margin: 0.25rem 0; font-size: 0.9em; }
+.arneyan .arn-cap-note a { text-decoration: underline; cursor: pointer; }

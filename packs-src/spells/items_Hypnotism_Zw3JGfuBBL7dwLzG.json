@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-charm.svg",
  "system": {
-  "description": "<p>Range 30ft; 15ft radius. Creatures with a total of 2d4 Levels + CL (lowest Level first) become Charmed and entranced for 1 minute, and follow one simple, nonharmful request you give; Will negates. Damage ends the effect on that creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "description": "<p>Range 30ft; 15ft radius. Creatures with a total of 2d4 Levels + CL (lowest Level first) become Charmed and entranced for 1 minute, and follow one simple, nonharmful request you give; Will negates. Damage ends the effect on that creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Warlock</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,7 +13,8 @@
   "level": 1,
   "className": "Illusionist",
   "classes": [
-   "Illusionist"
+   "Illusionist",
+   "Warlock"
   ],
   "school": "Enchantment",
   "castingTime": "1 action",

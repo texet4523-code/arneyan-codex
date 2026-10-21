@@ -76,6 +76,9 @@
     {{#if abilityChoices}}
       <label data-tooltip="The attribute this item's bonus goes to">Attribute bonus to <select name="system.abilityChoice.value">{{selectOptions abilityChoices selected=abilityChoiceValue blank="Choose (no bonus yet)"}}</select></label>
     {{/if}}
+    {{#if creationCap}}
+      <p class="arn-cap-note">{{#if creationCap.moved}}<i class="fa-solid fa-arrows-left-right"></i> The bonus went to <strong>{{creationCap.moved}}</strong> (no score above 18 at creation).{{#if editable}}{{#if creationCap.undo}} <a data-action="capUndo" data-tooltip="Put the bonus back on the attribute it names">Put it back</a>{{/if}}{{/if}}{{else}}<i class="fa-solid fa-triangle-exclamation"></i> +{{creationCap.amount}} takes <strong>{{creationCap.over}}</strong> past 18, and no score goes above 18 at creation.{{#if editable}} <a data-action="capMove">Choose where it goes</a>{{/if}}{{/if}}</p>
+    {{/if}}
     {{#if weaponPick}}
       {{#each weaponPick.slots}}
       <label data-tooltip="{{#if over}}Counts again once the class level allows another weapon{{else}}Its rules count with this weapon (a magic or renamed one of the same kind too); with any other they are reminders{{/if}}">{{#if i}}Second weapon{{else}}Weapon{{/if}}{{#if over}} (not yet){{/if}} <select class="arn-weapon-pick" data-index="{{i}}"{{#unless @root.editable}} disabled{{/unless}}><option value="">{{blank}}</option>{{{options}}}</select></label>

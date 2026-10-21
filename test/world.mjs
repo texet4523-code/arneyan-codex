@@ -134,7 +134,11 @@ assert.ok(strip(cf("Divine Mount").system.description).includes("Warhorse, Light
 assert.ok(strip(cf("Birthright Mount").system.description).includes("19 HP"));
 assert.ok(strip(docs("kits").find(d => d.name === "Beast Master (Ranger)").system.description).includes("HD equal to half your Ranger level (rounded up)"));
 for (const p of Object.values(C.COMPANION_PRESETS)) for (const n of p.suggest ?? []) assert.ok(byName.has(n), `${n} is in the Bestiary`);
-assert.equal(byName.get("Warhorse, Light") && monsters.find(d => d.name === "Warhorse, Light").system.attributes.hp.max, 19);
+// Books v0.10.0: warhorses have Hit Dice (2d10+4, typically 15 HP; a Divine Mount gets the maximum, 24).
+const wh = monsters.find(d => d.name === "Warhorse, Light").system;
+assert.equal(wh.attributes.hp.max, 15); assert.equal(wh.hd, "2d10+4");
+assert.equal(C.companionStats("divineMount", null, wh)["system.attributes.hp.max"], 24);
+assert.equal(C.companionStats("divineMount", null, monsters.find(d => d.name === "Warpony").system)["system.attributes.hp.max"], 18);
 const cls = (name, levels) => makeItem(IM.ClassData, "class", name, { levels });
 const ab = name => makeItem(IM.AbilityData, "ability", name, {});
 const witch = makeActor(CharacterData, "character", { attributes: { hp: { value: 20, max: 20 } } }, [cls("Witch", 5), ab("Familiar")]);

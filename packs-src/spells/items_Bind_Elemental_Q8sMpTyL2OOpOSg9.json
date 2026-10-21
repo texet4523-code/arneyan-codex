@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
  "system": {
-  "description": "<p>Range 30ft; one elemental within a prepared circle. It is Charmed and bound to your orders for 1 hour per level if it fails a Will save; Will negates. A bound elemental performs tasks you assign. An order that would clearly kill it or contradicts its nature gives it a new save. A creature that saves may attack you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+  "description": "<p>Range 30ft; one elemental within a prepared circle. It is Charmed and bound to your orders for 1 hour per level if it fails a Will save; Will negates. A bound elemental performs tasks you assign. An order that would clearly kill it or contradicts its nature gives it a new save. A creature that saves may attack you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,7 +13,8 @@
   "level": 5,
   "className": "Wizard",
   "classes": [
-   "Wizard"
+   "Wizard",
+   "Warlock"
   ],
   "school": "Conjuration",
   "castingTime": "1 action",

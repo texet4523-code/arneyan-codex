@@ -128,14 +128,14 @@
     "weapons": "arrow",
     "disadvantage": "rest",
     "disUntil": 10,
-    "damageBonus": "4:1, 9:2, 13:3, 21:4",
-    "noStack": "Bow Mastery",
     "cost": 0,
-    "text": "Arrows in place of the one attack your action gives you, at one target or split. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn."
+    "text": "Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn.",
+    "damageBonus": "1:1, 6:2, 12:3, 18:4",
+    "noStack": "Bow Mastery"
    }
   ],
   "confidence": "high",
-  "why": "Handbook: two arrows (three from 17th), the second at Disadvantage until 10th, +1/+2/+3/+4 per arrow at 4th/9th/13th/21st, not stacking with Bow Mastery (the higher counts). Arrows: bows only."
+  "why": "Handbook v0.10.0: two arrows (three from 17th), the second at Disadvantage until 10th, and each arrow gets your Bow Mastery bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th). Bow Mastery itself is a reminder (bows only), so the arrows carry its bonus here; if Bow Mastery ever adds it itself, the higher counts, never both. Arrows: bows only."
  },
  "Hail of Arrows|Archer": {
   "activities": [

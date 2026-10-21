@@ -76,7 +76,7 @@ function feature(src, { level = 1, cls = "Archer", items = [], type = "ability",
 const built = packItems("class-features");
 const dataOf = (name, cls) => { const d = byName(built, name, cls); assert.ok(d, `${name} (${cls}) is built`); return d.system; };
 
-/* Twin Nock: two arrows (three from 17th), the second at Disadvantage until 10th, +1/+2/+3/+4 a hit. */
+/* Twin Nock: two arrows (three from 17th), the second at Disadvantage until 10th, each with Bow Mastery's bonus. */
 const twin = dataOf("Twin Nock", "Archer");
 assert.equal(twin.activities[0].kind, "attacks");
 const fire = async (sys, lvl, opts = {}) => {
@@ -90,16 +90,17 @@ assert.equal(shots.length, 2, "two arrows at 5th");
 assert.ok(shots.every(s => s.w === "Bow, Long"), "only the bow fires arrows (the equipped sword and the crossbow don't)");
 assert.equal(shots[0].adv, null, "the first arrow rolls normally");
 assert.deepEqual(shots[1].adv.values, [-1], "the second has Disadvantage before 10th");
-assert.equal(shots[0].bonus.value, 1);
+// Books v0.10.0: each arrow gets Bow Mastery's bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th), never twice.
+assert.equal(shots[0].bonus.value, 1, "Bow Mastery's +1 at 5th");
 assert.equal(shots[0].bonus.noStack, "Bow Mastery");
 assert.ok(shots[1].label.includes("2 of 2"));
 shots = await fire(twin, 10);
-assert.ok(shots.length === 2 && shots[1].adv === null && shots[0].bonus.value, "no penalty from 10th");
-assert.equal(shots[0].bonus.value, 2, "+2 from 9th");
+assert.ok(shots.length === 2 && shots[1].adv === null, "no penalty from 10th");
+assert.equal(shots[0].bonus.value, 2, "+2 from 6th");
 shots = await fire(twin, 17);
 assert.equal(shots.length, 3, "three arrows from 17th");
-assert.equal(shots[2].bonus.value, 3, "+3 from 13th");
-assert.equal((await fire(twin, 21))[0].bonus.value, 4, "+4 from 21st");
+assert.equal(shots[2].bonus.value, 3, "+3 from 12th");
+assert.equal((await fire(twin, 18))[0].bonus.value, 4, "+4 from 18th");
 warnings.length = 0;
 assert.equal((await fire(twin, 5, { items: [sword] })).length, 0, "no bow: nothing fired");
 assert.ok(warnings[0].includes("no weapon that fires arrows"), warnings[0]);

@@ -288,7 +288,8 @@ export async function askRollDialog(preset = {}) {
 /* -------------------------------------------- */
 
 /**
- * Work out an award. XP stops at the class rate until the level is taken (Codex, How Levels Are Awarded).
+ * Work out an award. XP carries over, but one award never takes a character up two levels: it stops 1 XP short
+ * of the second (Codex v0.10.0, How Levels Are Awarded).
  * @param {{id:string, name:string, xp:number, rate:number}[]} members
  * @param {number} amount
  * @param {"each"|"split"} mode
@@ -301,8 +302,10 @@ export function xpAward(members, amount, mode = "each") {
   const rows = members.map(m => {
     const rate = Math.max(1, Number(m.rate) || 10);
     const before = Math.max(0, Number(m.xp) || 0);
-    const after = Math.min(rate, before + share);
-    return { id: m.id, name: m.name, gain: share, before, after, rate, capped: before + share > rate, ready: after >= rate };
+    // XP carries over past a level's cost, but one award never gives more than one level: it stops 1 short of a second.
+    const cap = Math.max(before, 2 * rate - 1);
+    const after = Math.min(cap, before + share);
+    return { id: m.id, name: m.name, gain: share, before, after, rate, capped: before + share > cap, ready: after >= rate };
   });
   return { share, left, rows };
 }
@@ -315,7 +318,7 @@ export async function awardXpDialog() {
     <div class="form-group"><label>XP</label><input type="number" name="amount" value="1" min="0" max="999" autofocus></div>
     <div class="form-group"><label>How</label><select name="mode"><option value="each">Each chosen character gets it</option><option value="split">Split it between them (rounded down)</option></select></div>
     <div class="form-group"><label>For</label><input type="text" name="reason" placeholder="Rescued the miller's daughter"></div>
-    <p class="arn-help">Completing any quest grants at least 1 XP; more for difficulty, length or a great achievement. Each level costs the class's rate, and XP stops at it until the level is taken.</p>
+    <p class="arn-help">Completing any quest grants at least 1 XP; more for difficulty, length or a great achievement. Each level costs the class's rate; XP past it carries over towards the next, but one award never gives more than one level.</p>
     <fieldset class="arn-pr-who"><legend>Who</legend>
       ${members.map(a => `<label class="checkbox"><input type="checkbox" name="who" value="${a.id}" checked> <img src="${esc(a.img)}" alt=""> ${esc(a.name)} <span class="arn-muted">${a.system.attributes.xp}/${a.system.xpRate} XP</span></label>`).join("")}
     </fieldset></div>`;
@@ -337,7 +340,7 @@ export async function awardXp(actors, amount, mode = "each", reason = "") {
   if (!share) return ui.notifications.warn("That's less than 1 XP each.");
   for (const r of rows) await game.actors.get(r.id)?.update({ "system.attributes.xp": r.after });
   const ready = rows.filter(r => r.ready);
-  const lines = rows.map(r => `<li><strong>${esc(r.name)}</strong>: +${r.gain} XP, now ${r.after} of ${r.rate}${r.capped ? ` <span class="arn-muted">(XP stops at ${r.rate} until the level is taken)</span>` : ""}${r.ready ? ' <span class="arn-chip strong"><i class="fa-solid fa-circle-up"></i> Ready to level up</span>' : ""}</li>`);
+  const lines = rows.map(r => `<li><strong>${esc(r.name)}</strong>: +${r.gain} XP, now ${r.after} of ${r.rate}${r.capped ? ` <span class="arn-muted">(one award stops 1 XP short of a second level)</span>` : ""}${r.ready ? ' <span class="arn-chip strong"><i class="fa-solid fa-circle-up"></i> Ready to level up</span>' : ""}</li>`);
   ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ alias: "GM" }),
     content: `<div class="arn-card arn-report arn-xp-card"><header class="arn-card-title"><i class="fa-solid fa-star"></i> <span>XP awarded${reason ? `: ${esc(reason)}` : ""}</span></header>

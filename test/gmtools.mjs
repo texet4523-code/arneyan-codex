@@ -204,10 +204,12 @@ assert.equal(G.resultFromFlags({ kind: "check", total: 12, natural: 10 }, null).
 {
   const party = [{ id: "a", name: "Rogue", xp: 6, rate: 8 }, { id: "b", name: "Wizard", xp: 0, rate: 12 }, { id: "c", name: "Rogue/Wizard", xp: 13, rate: 14 }];
   const each = G.xpAward(party, 2, "each");
-  assert.deepEqual(each.rows.map(r => [r.after, r.capped, r.ready]), [[8, false, true], [2, false, false], [14, true, true]]);
+  // Books v0.10.0: XP carries over past the cost, but one award stops 1 short of a second level.
+  assert.deepEqual(each.rows.map(r => [r.after, r.capped, r.ready]), [[8, false, true], [2, false, false], [15, false, true]]);
+  assert.deepEqual(G.xpAward([{ id: "d", name: "Fighter", xp: 5, rate: 10 }], 30).rows.map(r => [r.after, r.capped]), [[19, true]], "never two levels from one award");
   const split = G.xpAward(party, 7, "split");
   assert.equal(split.share, 2); assert.equal(split.left, 1);
-  assert.deepEqual(split.rows.map(r => r.after), [8, 2, 14]);
+  assert.deepEqual(split.rows.map(r => r.after), [8, 2, 15]);
   assert.equal(G.xpAward(party, 2, "split").share, 0);
   assert.equal(G.xpAward([], 5, "split").share, 0);
 }

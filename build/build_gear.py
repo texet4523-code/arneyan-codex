@@ -43,7 +43,7 @@ ICONIC = {
     # Ignited on a command word: +1d6 fire on every hit and light 20ft (Catalogue) while on.
     "Flame Tongue": ("Sword, Long", 1, [("1d6", "fire", "mode")], {"toggle": True, "modeLabel": "Ignited", "modeLight": 20}),
     "Frost Brand": ("Sword, Long", 1, [("1d6", "cold", "")], {"rules": [{"key": "resist", "value": "fire 5", "when": "", "label": ""}]}),
-    "Sun Blade": ("Sword, Long", 2, [("1d8", "radiant", "against undead")], {}),
+    "Sun Blade": ("Sword, Long", 2, [("1d8", "radiant", "against undead")], {"toggle": True, "modeLabel": "Blade called", "modeLight": 20}),
     "Luck Blade": ("Sword, Long", 1, [], {}),
     "Vorpal Sword": ("Sword, Long", 3, [], {}),
     "Holy Avenger": ("Sword, Long", 3, [("2d6", "radiant", "against evil outsiders and undead")], {}),

@@ -181,8 +181,9 @@ def build(icon_for_class):
                 if re.match(r"^(Kits|Bloodline Kits|Deities|Patron Paths|Patrons$)", t):
                     desc.add(f'<p class="arn-note">Each kit is an item in the <strong>Kits</strong> compendium, in the {esc(name)} folder. Drag one onto your character.</p>')
                 continue
-            if info["bold"] and re.match(r"^Kit\s+—", t):
-                kname = re.sub(r"^Kit\s+—\s*", "", t).strip()
+            # "Kit — Gladiator — The Pit-Forged" (v0.9.9) or "Kit: Gladiator, The Pit-Forged" (v0.10.0).
+            if info["bold"] and re.match(r"^Kit\s*(—|:)", t):
+                kname = re.sub(r"^Kit\s*(—|:)\s*", "", t).strip()
                 cur_kit = (kname, HtmlBuf(), [])
                 kits.append(cur_kit)
                 continue

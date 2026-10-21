@@ -3,7 +3,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote } from "./effects.mjs";
+import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -103,6 +103,42 @@ export async function promptAbilityChoice(item) {
   if (!c.options.includes(pick)) return null;
   await item.update({ "system.abilityChoice.value": pick });
   return pick;
+}
+
+/**
+ * Starting Scores (Codex v0.10.0): when a character is created no score can go above 18, even after ancestry bonuses
+ * and feats; a creation feat's points over 18 move to another attribute. Returns { from, amount } when this item's
+ * attribute bonus takes a score past 18 on a 1st-level (or newer) character and hasn't been moved yet, else null.
+ */
+export function creationOverflow(item) {
+  const actor = item?.parent;
+  if (item?.type !== "feat" || !actor || actor.type !== "character" || (Number(actor.system?.level) || 0) > 1 || item.system?.abilityChoice?.moved) return null;
+  const rule = chosenRules(item.system).find(r => /^ability\.\w+$/.test(String(r?.key ?? "")) && !r.when && Number(r.value) > 0);
+  if (!rule) return null;
+  const from = rule.key.split(".")[1];
+  const a = actor.system.abilities?.[from];
+  const total = Number(a?.total ?? a?.value) || 0;
+  return total > 18 ? { from, amount: Number(rule.value) } : null;
+}
+
+/** Ask where a creation feat's points over 18 go (the next best attribute under 18 by default), and store it. */
+export async function promptCreationOverflow(item) {
+  const over = creationOverflow(item);
+  if (!over || !item.isOwner) return null;
+  const ab = item.parent.system.abilities;
+  const keys = Object.keys(ARNEYAN.abilities).filter(k => k !== over.from && (Number(ab[k]?.total ?? ab[k]?.value) || 0) < 18);
+  if (!keys.length) { ui.notifications.warn(`${item.name}: every attribute is at 18, so its bonus is lost (no score above 18 at creation).`); return null; }
+  keys.sort((x, y) => (Number(ab[y]?.total ?? ab[y]?.value) || 0) - (Number(ab[x]?.total ?? ab[x]?.value) || 0));
+  const name = k => ARNEYAN.abilities[k] ?? k;
+  const content = `<p>${esc(item.name)}'s +${over.amount} would take ${esc(name(over.from))} past 18. When a character is created no score can go above 18, so the point goes to another attribute instead (that one also stops at 18).</p>
+    <div class="form-group"><label>Move it to</label><select name="to">${keys.map(k => `<option value="${k}">${esc(name(k))} ${Number(ab[k]?.total ?? ab[k]?.value) || 0}</option>`).join("")}</select></div>`;
+  const to = await DialogV2.wait({ window: { title: `${item.parent.name}: no score above 18`, icon: "fa-solid fa-arrows-left-right" }, classes: ["arneyan"], position: { width: 400 }, content,
+    buttons: [{ action: "ok", label: "Move", default: true, callback: (ev, btn) => btn.form.elements.to.value }, { action: "later", label: "Later" }], rejectClose: false }).catch(() => null);
+  if (!keys.includes(to)) return null;
+  // Another feat may have moved its point while this was open (two creation feats on one attribute): check again.
+  if (!creationOverflow(item)) return null;
+  await item.update({ "system.abilityChoice.moved": to });
+  return to;
 }
 
 /** Does this item still need its weapon picked (Weapon Specialisation with none chosen yet)? */
@@ -566,9 +602,14 @@ export class ArneyanActor extends Actor {
       }
       // Healing a creature below 0 HP first sets it to 0, then adds the rest (Codex, Death & Dying).
       const value = Math.min(maxHp, Math.max(0, before) + amount);
-      await this.update({ "system.attributes.hp.value": value }, { arneyanDowned: true });
+      // Healing removes as much non-lethal damage as the HP it restores (Codex v0.10.0, Subdual Damage): read as the
+      // healing's full amount, so a creature knocked out at full HP still wakes.
+      const sub = Math.max(0, Number(this.flags?.arneyan?.subdual) || 0);
+      const subLeft = Math.max(0, sub - Math.max(0, Math.floor(amount) || 0));
+      await this.update({ "system.attributes.hp.value": value, ...(sub ? { "flags.arneyan.subdual": subLeft } : {}) }, { arneyanDowned: true });
       await this._syncDowned(before);
-      return { text: `${this.name} heals ${value - before} HP (now ${value}/${maxHp})`, line: `${this.name} is healed for ${value - before} HP` };
+      const subText = sub ? `, ${sub - subLeft} non-lethal damage gone` : "";
+      return { text: `${this.name} heals ${value - before} HP (now ${value}/${maxHp})${subText}`, line: `${this.name} is healed for ${value - before} HP${subText}` };
     }
     const t = this.system.traits ?? { resist: [], immune: [], vuln: [] };
     // Immune to a particular spell (Shield stops Magic Missile): nothing gets through.
@@ -786,6 +827,9 @@ export class ArneyanActor extends Actor {
     const max = hp.effectiveMax ?? hp.max;
     updates["system.attributes.hp.value"] = Math.min(max, Math.max(hp.value, 0) + heal);
     updates["system.attributes.hp.temp"] = 0;
+    // A full rest heals all non-lethal damage (Codex v0.10.0, Subdual Damage).
+    const hadSubdual = Number(this.flags?.arneyan?.subdual) > 0;
+    if (hadSubdual) updates["flags.arneyan.subdual"] = 0;
     const hadExhaustion = this.system.attributes.exhaustion > 0;
     updates["system.attributes.exhaustion"] = Math.max(0, this.system.attributes.exhaustion - 1);
     await this.update(updates);
@@ -799,12 +843,12 @@ export class ArneyanActor extends Actor {
     // Dawn: staffs regain charges (Catalogue, magic item rules).
     const recharged = await rechargeAtDawn(this);
     const label = { haven: "in a safe haven", shelter: "in camp with shelter", open: "in the open" }[where];
-    const line = `${this.name}: +${heal} HP${hadExhaustion ? ", one Exhaustion level off" : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
+    const line = `${this.name}: +${heal} HP${hadSubdual ? ", non-lethal damage gone" : ""}${hadExhaustion ? ", one Exhaustion level off" : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
     if (quiet) return line;
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }), rolls,
       content: `<div class="arn-card"><header class="arn-card-title">${this.name} rests ${label}</header>
-        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadExhaustion ? ", one level of Exhaustion removed" : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
+        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadSubdual ? ", all non-lethal damage healed" : ""}${hadExhaustion ? ", one level of Exhaustion removed" : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
     });
   }
 
@@ -843,6 +887,12 @@ export class ArneyanItem extends Item {
 
   async _preUpdate(changes, options, user) {
     if ((await super._preUpdate(changes, options, user)) === false) return false;
+    // A new attribute pick undoes the 18 cap's move (the new pick is checked against the cap afresh).
+    const pickNow = foundry.utils.getProperty(changes, "system.abilityChoice.value");
+    if (pickNow !== undefined && pickNow !== this.system.abilityChoice?.value && this.system.abilityChoice?.moved
+      && foundry.utils.getProperty(changes, "system.abilityChoice.moved") === undefined) {
+      foundry.utils.setProperty(changes, "system.abilityChoice.moved", "");
+    }
     const tier = foundry.utils.getProperty(changes, "system.tier");
     if (this.type === "skill" && this.parent instanceof Actor && tier && tier !== this.system.tier) {
       // A Knack comes only from an ancestry at creation: a trained skill can't be turned into one (it would give back
@@ -900,6 +950,9 @@ export class ArneyanItem extends Item {
     if (!(actor instanceof Actor) || actor.type !== "character") return;
     // A feat new to the character records the level it was taken at (options.arneyanKeepLevel keeps the one it has).
     if (this.type === "feat" && !actor.items.has(this.id) && !options.arneyanKeepLevel) this.updateSource({ "system.levelTaken": actor.system.level || 0 });
+    // Where the 18 cap moved a feat's bonus belongs to the character it was moved on: a copy dragged to another starts
+    // again (and is asked afresh if it goes past 18 there). A whole duplicated or imported character keeps its own.
+    if (this.type === "feat" && this.system.abilityChoice?.moved && !options.arneyanMigration) this.updateSource({ "system.abilityChoice.moved": "" });
     // Skills: one of each, and only as many as the slots allow; checked for the whole batch in _preCreateOperation.
     // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
     if (this.system?.uses?.formula && !actor.items.has(this.id)) {
@@ -945,6 +998,8 @@ export class ArneyanItem extends Item {
     ask(needsAbilityChoice, promptAbilityChoice, "attribute");
     // The same for a weapon of the player's choice (Weapon Specialisation): Later leaves its rules as reminders.
     ask(needsWeaponChoice, promptWeaponChoice, "weapon");
+    // A creation feat's attribute bonus over 18 (Toughness's +1 Con on a Con 18 character): where it goes instead.
+    ask(i => !!creationOverflow(i), promptCreationOverflow, "creation cap");
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
       if (!this.flags.arneyan?.fresh) return;
@@ -970,6 +1025,14 @@ export class ArneyanItem extends Item {
       if (old.length) await actor.deleteEmbeddedDocuments("Item", old);
       await actor.update({ "system.attributes.speed": this.system.speed, "system.details.size": this.system.size, "system.details.senses": this.system.vision ?? "" });
       if (!options.arneyanSkipSetup) await ancestrySetup(actor, this, { replacing: old.length > 0 });
+    }
+  }
+
+  _onUpdate(changed, options, userId) {
+    super._onUpdate(changed, options, userId);
+    // An attribute just picked (Steady Hand: Strength) that a new character's 18 cap stops: ask where it goes.
+    if (userId === game.user.id && !options.arneyanMigration && !options.arneyanNoChoice && foundry.utils.hasProperty(changed, "system.abilityChoice.value") && creationOverflow(this)) {
+      promptCreationOverflow(this).catch(err => console.warn("Arneyan | creation cap", err));
     }
   }
 

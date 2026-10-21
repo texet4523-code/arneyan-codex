@@ -63,12 +63,12 @@ function plainRules(v) {
 function mechView(field, v, legacy = false) {
   if (v == null) return null;
   if (field === "uses") return { max: Number(v.max) || 0, per: v.per ?? "", formula: v.formula ?? "" };
-  if (field === "abilityChoice") return { options: [...(v.options ?? [])] };
+  if (field === "abilityChoice") return { options: [...(v.options ?? [])] };  // the pick and a move are play, not mechanics
   if (field === "weaponChoice") return { max: String(v.max ?? "") };
   if (field === "features" && Array.isArray(v)) return plainRules(v.map(f => {
     const c = clone(f) ?? {};
     if (c.uses) delete c.uses.value;
-    if (c.abilityChoice) delete c.abilityChoice.value;
+    if (c.abilityChoice) { delete c.abilityChoice.value; delete c.abilityChoice.moved; }
     if (c.weaponChoice) delete c.weaponChoice.value;
     if (!legacy && c.weaponChoice && !String(c.weaponChoice.max ?? "")) delete c.weaponChoice;
     return c;
@@ -190,6 +190,7 @@ export function kitFeaturesFrom(oldFeatures = [], srcFeatures = []) {
     const old = (oldFeatures ?? []).find(x => x.name === f.name);
     if (old && nf.uses) nf.uses.value = Math.max(0, Math.min(Number(old.uses?.value) || 0, Number(nf.uses.max) || 0));
     if (old?.abilityChoice?.value && nf.abilityChoice?.options?.includes(old.abilityChoice.value)) nf.abilityChoice.value = old.abilityChoice.value;
+    if (old?.abilityChoice?.moved && nf.abilityChoice) nf.abilityChoice.moved = old.abilityChoice.moved;
     if (old?.weaponChoice?.value?.length && nf.weaponChoice) nf.weaponChoice.value = [...old.weaponChoice.value];
     return nf;
   });
@@ -237,7 +238,7 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   // An attribute picked already stays, if the new options still have it.
   if (o.abilityChoice !== undefined && "abilityChoice" in s) {
     const opts = o.abilityChoice?.options ?? [];
-    set("abilityChoice", { options: opts, value: opts.includes(s.abilityChoice?.value) ? s.abilityChoice.value : "" });
+    set("abilityChoice", { options: opts, value: opts.includes(s.abilityChoice?.value) ? s.abilityChoice.value : "", moved: s.abilityChoice?.moved ?? "" });
   }
   // Weapons picked already stay (the player's choice, never the GM's edit); the compendium decides how many may be.
   if (o.weaponChoice !== undefined && "weaponChoice" in s) set("weaponChoice", { max: String(o.weaponChoice?.max ?? ""), value: [...(s.weaponChoice?.value ?? [])] });
@@ -404,6 +405,8 @@ function keepPlay(item, data) {
     const opts = data["system.abilityChoice"].options ?? [];
     if (opts.includes(cur.abilityChoice.value)) data["system.abilityChoice"] = { ...data["system.abilityChoice"], value: cur.abilityChoice.value };
   }
+  // A bonus moved by the 18 cap stays moved.
+  if (data["system.abilityChoice"] && cur.abilityChoice?.moved) data["system.abilityChoice"] = { ...data["system.abilityChoice"], moved: cur.abilityChoice.moved };
   if (data["system.weaponChoice"] && cur.weaponChoice?.value?.length) data["system.weaponChoice"] = { ...data["system.weaponChoice"], value: [...cur.weaponChoice.value] };
   if (Array.isArray(data["system.features"])) data["system.features"] = kitFeaturesFrom(cur.features ?? [], data["system.features"]);
   return data;

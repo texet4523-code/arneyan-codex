@@ -218,6 +218,8 @@ ARNEYAN.conditions = {
     text: "As Charmed, but the controller can command it (an action to issue orders). It gets a fresh save whenever ordered to act against its nature or to harm itself." },
   frightened: { name: "Frightened", icon: "terror", rules: [R("adv.attack", -1, "while it can see the source of its fear"), R("adv.check", -1, "while it can see the source of its fear")],
     text: "Disadvantage on attack rolls and attribute checks while it can see the source of its fear, and it cannot willingly move closer to it." },
+  turned: { name: "Turned", icon: "holy-symbol", rules: [R("adv.attack", -1, "while it can see the turner"), R("adv.check", -1, "while it can see the turner"), R("note.attack", "Turned: Frightened of the turner, and spends its turns moving away from it")],
+    text: "Turn Undead: Frightened of the turner, and must also spend its turns moving away from it. Lasts 1 minute or until the turner attacks it." },
   incapacitated: { name: "Incapacitated", icon: "knocked-out-stars", rules: [...INCAP],
     text: "Cannot take actions or reactions. It can still move unless another condition says otherwise, and it cannot cast spells or maintain concentration." },
   invisible: { name: "Invisible", icon: "invisible", rules: [R("adv.attack", 1), R("adv.against", -1)],

@@ -208,12 +208,19 @@ function startOfNextTurn(combat, actor) {
 /*  Before an attack                            */
 /* -------------------------------------------- */
 
-/** Firearms training (Codex): Gunslinger, Fighter, Ranger and Tenor Hold dwarves; anyone with backstory or downtime training. */
+/**
+ * Firearms training (Codex v0.10.0): a 1st-level class of Gunslinger, Fighter or Ranger, and Tenor Hold dwarves; anyone
+ * with backstory or downtime training. Levels in those classes taken later don't train you (Weapon Proficiency).
+ */
+export function firstClass(actor) {
+  // The class added first (the sheet's order), as starting gold and weapon training read it.
+  return (actor?.items ?? []).find(i => i.type === "class") ?? null;
+}
 export function firearmsTrained(actor) {
   if (actor?.type !== "character") return true;
   if (actor.flags?.[SYS]?.firearmsTrained) return true;
   if ((actor.system.mods?.sum?.("firearms.trained") ?? 0) > 0) return true;
-  if (actor.items.some(i => i.type === "class" && /^(gunslinger|fighter|ranger)\b/i.test(i.name))) return true;
+  if (/^(gunslinger|fighter|ranger)\b/i.test(firstClass(actor)?.name ?? "")) return true;
   return actor.items.some(i => i.type === "ancestry" && /tenor\s*hold/i.test(`${i.name} ${JSON.stringify(i.flags?.[SYS] ?? {})}`));
 }
 

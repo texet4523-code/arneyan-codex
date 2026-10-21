@@ -118,6 +118,11 @@ export function statusesOf(actor) {
  * player picked Intelligence. Never throws; anything odd leaves the rules as they are.
  */
 export function chosenRules(sys) {
+  // The picked attribute first, then the 18 cap's move (a move to one of the item's own options still counts).
+  return movedRules(sys, pickedRules(sys));
+}
+
+function pickedRules(sys) {
   const rules = sys?.rules ?? [];
   try {
     const opts = (sys?.abilityChoice?.options ?? []).filter(o => Object.hasOwn(ARNEYAN.abilities, o));
@@ -132,6 +137,22 @@ export function chosenRules(sys) {
   } catch {
     return rules;
   }
+}
+
+/**
+ * A creation feat whose attribute bonus would have taken a score past 18 (Codex v0.10.0): its unconditional
+ * positive, unconditional `ability.*` bonus counts for the attribute it was moved to (abilityChoice.moved).
+ */
+function movedRules(sys, rules) {
+  const to = sys?.abilityChoice?.moved;
+  if (!to || !Object.hasOwn(ARNEYAN.abilities, to)) return rules;
+  // Only the bonus itself moves (a positive, unconditional one), and only the first: a penalty stays where it is.
+  let done = false;
+  return rules.map(r => {
+    if (done || !/^ability\.\w+$/.test(String(r?.key ?? "").trim()) || r.when || !(Number(r.value) > 0)) return r;
+    done = true;
+    return { ...r, key: `ability.${to}` };
+  });
 }
 
 /* -------------------------------------------- */

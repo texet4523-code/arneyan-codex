@@ -18,7 +18,7 @@ BY_NAME = {
         "key": "courage", "name": "Aura of Courage", "minLevel": 6, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
         "rules": [{"key": "save", "value": "4", "when": "vs fear", "label": "Aura of Courage"}]}],
     ("class-features", "Aura of Devotion"): [{
-        "key": "devotion", "name": "Aura of Devotion", "minLevel": 18, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
+        "key": "devotion", "name": "Aura of Devotion", "minLevel": 18, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": True,
         "rules": [{"key": "adv.save", "value": "1", "when": "vs charm", "label": "Aura of Devotion"}]}],
     ("class-features", "Divine Monolith"): [{
         "key": "monolith", "name": "Divine Monolith", "radius": 20, "who": "all", "includeSelf": True,

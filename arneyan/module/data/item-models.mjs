@@ -47,7 +47,9 @@ export function effectFields() {
      */
     abilityChoice: new SchemaField({
       options: new ArrayField(new StringField({ required: true, blank: false })),
-      value: str()
+      value: str(),
+      /** Where the bonus went instead (Codex v0.10.0: at creation a feat's points over 18 move to another attribute). */
+      moved: str()
     }),
     /**
      * Weapons of the player's choice (Weapon Specialisation): its rules scoped to "chosen" count with these weapons

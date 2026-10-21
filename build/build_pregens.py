@@ -358,7 +358,16 @@ def build():
             for i, f in enumerate(c.get("feats", [])):
                 d = feats.find(f["name"])
                 if d:
-                    items.append(copy("feats", d, actor_id, f"feat-{i}", levelTaken=feat_level(f, c.get("level", 0))))
+                    it = copy("feats", d, actor_id, f"feat-{i}", levelTaken=feat_level(f, c.get("level", 0)))
+                    # The starting cap of 18 moved its point elsewhere ("+1 Strength, moved to Wisdom by the starting cap").
+                    text = re.sub(r"<[^>]+>", " ", f"{c.get('abilitiesText', '')} {c.get('abilitiesHtml', '')} {f.get('note', '')}")
+                    mv = re.search(rf"{re.escape(f['name'])}.{{0,80}}?moved to (\w+) by the starting cap", text, re.I)
+                    names = {"strength": "str", "dexterity": "dex", "constitution": "con", "intelligence": "int", "wisdom": "wis", "charisma": "cha"}
+                    if mv and mv.group(1).lower() in names and isinstance(it["system"].get("abilityChoice"), dict):
+                        it["system"]["abilityChoice"]["moved"] = names[mv.group(1).lower()]
+                    elif mv and mv.group(1).lower() in names:
+                        it["system"]["abilityChoice"] = {"options": [], "value": "", "moved": names[mv.group(1).lower()]}
+                    items.append(it)
                 else:
                     items.append(plain_item(actor_id, f"feat-{i}", f["name"], "ability", para(f.get("note", "")), kind="other"))
 
@@ -448,10 +457,13 @@ def build():
             for it in items:
                 if it["type"] != "feat":
                     continue
+                moved = (it["system"].get("abilityChoice") or {}).get("moved") or ""
                 for r in it["system"].get("rules", []) or []:
                     m = re.match(r"ability\.(str|dex|con|int|wis|cha)$", str(r.get("key", "")))
                     if m and not r.get("when") and re.fullmatch(r"-?\d+", str(r.get("value", "")).strip()):
-                        a[m.group(1)] = int(a[m.group(1)]) - int(r["value"])
+                        # A point moved by the starting cap is counted where it went.
+                        k = moved if moved and int(r["value"]) > 0 else m.group(1)
+                        a[k] = int(a[k]) - int(r["value"])
             # The same for HP: the printed maximum already counts Toughness (+1 per level) and Hag's Vigour (+class level),
             # and the sheet adds those rules to the stored maximum, so the stored one leaves them out.
             hp_max = int(c["hpMax"]) - hp_from_rules(items, int(c["level"]))

@@ -5,7 +5,7 @@
  "type": "weapon",
  "img": "systems/arneyan/assets/icons/magic-swap-bag.svg",
  "system": {
-  "description": "<p>A +2 sword whose hilt shows no blade until a command word (an action) calls a blade of sunlight. +1d8 radiant against undead, and light 15ft.</p><p>Rarity: Rare</p>",
+  "description": "<p>A +2 sword whose hilt shows no blade until a command word (an action) calls a blade of sunlight. +1d8 radiant against undead, and it sheds bright light in a 20ft radius.</p><p>Rarity: Rare</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -37,10 +37,10 @@
     "mode": false
    }
   ],
-  "modeLabel": "",
-  "modeLight": 0,
+  "modeLabel": "Blade called",
+  "modeLight": 20,
   "rules": [],
-  "toggle": false,
+  "toggle": true,
   "active": false,
   "applies": []
  },

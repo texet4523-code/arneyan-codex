@@ -1285,7 +1285,7 @@
    }
   ],
   "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage reminder with bows.",
-  "manual": "Could be made unconditional if the archer only uses bows; does not stack with Twin Nock's per-arrow bonus.",
+  "manual": "Could be made unconditional if the archer only uses bows; Twin Nock's arrows each get it.",
   "confidence": "high"
  },
  "class-features/pUTQBrSdxqlmqF0s": {
@@ -10637,13 +10637,13 @@
     "target": "target",
     "rounds": 10,
     "statuses": [
-     "frightened"
+     "turned"
     ],
     "rules": []
    }
   ],
-  "summary": "Turned undead get Frightened for 1 minute. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "\"Turned\" is not a defined condition; Frightened is an approximation. Destruction and control stay manual.",
+  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away; PHB v0.10.0). Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "Ends early when the turner attacks it (remove it by hand). Destruction and control stay manual.",
   "confidence": "low"
  },
  "class-features/ffPDHq8BhWN1inpF": {
@@ -10679,13 +10679,13 @@
     "target": "target",
     "rounds": 10,
     "statuses": [
-     "frightened"
+     "turned"
     ],
     "rules": []
    }
   ],
-  "summary": "Turned undead get Frightened for 1 minute. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "As Cleric Turn Undead; Frightened approximates \"turned\".",
+  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away; PHB v0.10.0). Approved by Kieran on the Feature Board, 20 Oct 2026.",
+  "manual": "As Cleric Turn Undead: ends early when the turner attacks it.",
   "confidence": "low"
  },
  "class-features/7qQi9fW8rl1RKTXP": {

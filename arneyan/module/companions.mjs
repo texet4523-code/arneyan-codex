@@ -7,7 +7,7 @@
  *   Wizard, Summon Familiar    half the caster's maximum HP
  *   Ranger (Beast Master)      Hit Dice equal to half the Ranger level, rounded up
  *   Paladin, Divine Mount      Warhorse, Light (or Warpony), with maximum HP
- *   Knight, Birthright Mount   Warhorse, Light (19 HP)
+ *   Knight, Birthright Mount   Warhorse, Light (15 HP)
  *   Artificer (Construct Engineer), Construct Companion: d8 Hit Dice equal to Artificer level, AC 14 +1 per four
  *     levels, attack as Martial BtH for its Hit Dice, saves half level (minimum +1), +1 damage per four levels
  * Anyone can also keep a mount or pet straight from the Bestiary, stats unchanged.
@@ -43,7 +43,7 @@ export const COMPANION_PRESETS = {
     text: "A warhorse (or a war pony for a small Paladin) with maximum HP. If it dies, a year and a day must pass before another can be called." },
   birthrightMount: { label: "Birthright Mount (Knight)", kind: "mount", feature: "Birthright Mount",
     suggest: ["Warhorse, Light"],
-    text: "A fully outfitted light warhorse (19 HP)." },
+    text: "A fully outfitted light warhorse (15 HP, 2d10+4)." },
   construct: { label: "Construct Companion (Artificer)", kind: "construct", feature: "Construct Companion",
     text: "A Small construct: d8 Hit Dice equal to your Artificer level, AC 14 +1 per four levels, immune to poison, disease and sleep. It acts on your initiative and follows spoken commands; without one it takes no action." },
   other: { label: "A mount or pet", kind: "pet", any: true, suggest: ["Horse, Light", "Pony", "Mule", "Donkey", "Mastiff", "Black Cat"],

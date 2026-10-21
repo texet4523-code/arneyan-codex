@@ -851,6 +851,17 @@ async function weaponPickContext(item) {
   };
 }
 
+/** The item sheet's line about the creation cap of 18: where a feat's bonus was moved, or that it still needs moving. */
+async function creationCapContext(item) {
+  if (item.type !== "feat" || !item.actor) return null;
+  const name = k => ARNEYAN.abilities[k] ?? k;
+  const moved = item.system.abilityChoice?.moved;
+  if (moved) return { moved: name(moved), undo: (Number(item.actor.system?.level) || 0) <= 1 };
+  const { creationOverflow } = await import("./documents.mjs");
+  const over = creationOverflow(item);
+  return over ? { over: name(over.from), amount: over.amount } : null;
+}
+
 export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["arneyan", "sheet", "item"],
@@ -871,7 +882,9 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       toggleTrait: ArneyanItemSheet.#toggleTrait,
       bdAdd: ArneyanItemSheet.#bdAdd,
       bdDelete: ArneyanItemSheet.#bdDelete,
-      isDelete: ArneyanItemSheet.#isDelete
+      isDelete: ArneyanItemSheet.#isDelete,
+      capMove: ArneyanItemSheet.#capMove,
+      capUndo: ArneyanItemSheet.#capUndo
     }
   };
 
@@ -912,6 +925,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       usesFromFormula: !!(item._source.system.uses?.formula && item.actor),
       abilityChoices: (sys.abilityChoice?.options?.length ?? 0) > 1 ? Object.fromEntries(sys.abilityChoice.options.map(o => [o, ARNEYAN.abilities[o] ?? o])) : null,
       abilityChoiceValue: sys.abilityChoice?.options?.includes(sys.abilityChoice.value) ? sys.abilityChoice.value : "",
+      creationCap: await creationCapContext(item),
       weaponPick: String(sys.weaponChoice?.max ?? "").trim() ? await weaponPickContext(item) : null,
       fromCompendium: !!compendiumSourceOf(item),
       keepCustom: !!item.flags?.arneyan?.keepCustom,
@@ -1025,6 +1039,16 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       name: row.dataset.name, uuid: row.dataset.uuid ?? "",
       cost: Math.max(0, Number(row.querySelector("[data-is=cost]")?.value) || 0)
     }));
+  }
+
+  /** The 18 cap at creation: ask where the bonus goes (after "Later"), or put a moved bonus back. */
+  static async #capMove() {
+    const { promptCreationOverflow } = await import("./documents.mjs");
+    await promptCreationOverflow(this.document);
+  }
+
+  static async #capUndo() {
+    await this.document.update({ "system.abilityChoice.moved": "" });
   }
 
   static #isDelete(event, target) {
