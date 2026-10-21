@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.39 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.40 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.40
+
+- **Show and hide the clock.** In the scene controls on the left, the **Journal Notes** tools have a clock switch, **Show or hide the game clock**, and a **Calendar** button that opens the calendar. Each person's choice is their own.
+- **Move the clock and the calendar.** Drag the small clock by its grip (the dotted handle on its left) to anywhere on the screen; it stays there, and a double-click on the grip puts it back. The calendar window opens where you last left it.
+- **Travel mode.** On the party's **Travel** tab, tick **Travel mode** and move the party token on the map: each hex counts towards the day's hexes at the party's pace (on foot Slow 1, Normal 2, Fast 3; mounted, by vehicle or by ship 2, 3, 4; an Umbral Journey 24). The count shows over the token as it moves ("1 of 2 hexes today (Normal pace): 1 left") and on the tab. When the day's hexes are used the day ends: a card in the chat, the Encounter Check (to the GM) and a day of game time. Stop short with **End the day here**, which ends the day all the same. Every 7 days travelled in travel mode a card asks each character for **7 rations** (or 7 charges), shows who is short (counting the party stash), and has a button for the GM to use them, once. Moves on a square grid (a battle or town map), from a token's settings or a paste don't count; undoing a move gives today's hexes back. With travel mode off, **Travel one day** works as before, eating a day's rations each day.
 
 ## What's new in 0.10.39
 

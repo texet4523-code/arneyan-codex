@@ -117,3 +117,6 @@
 .arneyan .arn-cal-dl-times input[type="text"] { width: 4.5em; }
 #arneyan-clock .arn-clock-run { cursor: pointer; color: var(--arn-gold); margin-left: 4px; }
 #arneyan-clock .arn-clock-run.on { color: #7fd17f; }
+#arneyan-clock .arn-clock-grip { cursor: grab; color: var(--arn-muted); padding: 0 2px; touch-action: none; }
+#arneyan-clock .arn-clock-grip:active { cursor: grabbing; }
+.arneyan .arn-travel-mode { display: block; margin: 4px 0 6px; }

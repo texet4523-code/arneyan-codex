@@ -1,10 +1,12 @@
 {{!-- Travel (Drop 4): days to a destination, supplies and the Encounter Check. --}}
 <div class="arn-section-head"><h3>Journey</h3>
   {{#if isGM}}<span class="arn-head-tools">
-    <a class="arn-btn small" data-action="travelDay" data-tooltip="A day on the road: game time moves on a day, everyone eats and drinks, and the Encounter Check is rolled"><i class="fa-solid fa-route"></i> Travel one day</a>
+    {{#if travel.mode}}<a class="arn-btn small" data-action="travelEndDay" data-tooltip="Camp short of the day's hexes: the day ends all the same (its Encounter Check, a day of game time)"><i class="fa-solid fa-campground"></i> End the day here</a>
+    {{else}}<a class="arn-btn small" data-action="travelDay" data-tooltip="A day on the road: game time moves on a day, everyone eats and drinks, and the Encounter Check is rolled"><i class="fa-solid fa-route"></i> Travel one day</a>{{/if}}
     <a class="arn-btn small ghost" data-action="travelRefill" data-tooltip="At a stream, a well or a town"><i class="fa-solid fa-droplet"></i> Refill water</a>
     <a class="arn-btn small ghost" data-action="travelReset" data-tooltip="Start a new journey"><i class="fa-solid fa-rotate-left"></i> New journey</a>
   </span>{{/if}}</div>
+<label class="check arn-travel-mode" data-tooltip="Move the party token on the map: each hex counts towards the day's hexes at this pace; when they're used, the day ends (its Encounter Check, a day of game time). Every 7 days, a ration reckoning in the chat."><input type="checkbox" name="flags.arneyan.travel.mode" {{checked travel.mode}} {{#unless isGM}}disabled{{/unless}}> <strong>Travel mode</strong>: the party token's moves count hexes</label>
 <div class="arn-fields two arn-travel-fields">
   <label>Distance (hexes, 6 miles each) <input class="short" type="number" min="0" name="flags.arneyan.travel.distance" value="{{travel.distance}}" {{#unless isGM}}disabled{{/unless}}></label>
   <label>Covered <input class="short" type="number" min="0" name="flags.arneyan.travel.done" value="{{travel.done}}" {{#unless isGM}}disabled{{/unless}}></label>
@@ -19,6 +21,8 @@
   <span class="arn-chip strong">{{travel.perDay}} hex{{#unless (eq travel.perDay 1)}}es{{/unless}} a day</span>
   <span class="arn-chip">{{travel.paceLabel}} pace</span>
   {{#if travel.arrived}}<span class="arn-chip gold">Arrived</span>{{else}}<span class="arn-chip">{{travel.days}} day{{#unless (eq travel.days 1)}}s{{/unless}} to go</span>{{/if}}
+  {{#if travel.mode}}<span class="arn-chip strong" data-tooltip="Hexes moved today; when they're all used the day ends">Today {{travel.today}} / {{travel.perDay}}: {{travel.left}} left</span>
+  <span class="arn-chip" data-tooltip="Every 7 days of travel, each character uses 7 rations">Rations due in {{travel.toRations}} day{{#unless (eq travel.toRations 1)}}s{{/unless}}</span>{{/if}}
   {{#if travel.day}}<span class="arn-chip">Day {{travel.day}} of the journey</span>{{/if}}
   <span class="arn-chip {{#if (gt travel.needMeals travel.haveMeals)}}bad{{/if}}" data-tooltip="Each member eats a day's rations a day (a Week's Rations pack holds seven)">Rations {{travel.haveMeals}} / {{travel.needMeals}} needed</span>
 </div>

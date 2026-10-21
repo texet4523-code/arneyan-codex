@@ -10,7 +10,7 @@ import { registerWorldTime, timeLeftLabel } from "./worldtime.mjs";
 import { registerSummons, dismissSummon, summonSummary } from "./summons.mjs";
 import { registerCompanions, companionContext, addCompanion, placeCompanion, releaseCompanion } from "./companions.mjs";
 import { downtimeContext, newDowntime, deleteDowntime, editDowntime } from "./downtime.mjs";
-import { travelContext, travelDay, refillWater, resetJourney, tableNames } from "./travel.mjs";
+import { travelContext, travelDay, refillWater, resetJourney, tableNames, registerTravel, endDayHere } from "./travel.mjs";
 
 export { timeLeftLabel };
 
@@ -18,6 +18,7 @@ export function registerWorld() {
   registerWorldTime();
   registerSummons();
   registerCompanions();
+  registerTravel();
   foundry.applications.handlebars.loadTemplates([
     "systems/arneyan/templates/actor/companions.hbs",
     "systems/arneyan/templates/actor/downtime-tab.hbs",
@@ -72,5 +73,6 @@ export async function worldPartyContext(party, members) {
 export const WORLD_PARTY_ACTIONS = {
   async travelDay() { const { partyMembers } = await import("./party.mjs"); return travelDay(this.document, partyMembers()); },
   async travelRefill() { const { partyMembers } = await import("./party.mjs"); return refillWater(this.document, partyMembers()); },
+  async travelEndDay() { const { partyMembers } = await import("./party.mjs"); return endDayHere(this.document, partyMembers()); },
   travelReset() { return resetJourney(this.document); }
 };

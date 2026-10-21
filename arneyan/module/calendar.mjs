@@ -176,6 +176,28 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     app.render();
   }
 
+  /** Where the window was left (this browser), for the next time it opens. */
+  setPosition(pos) {
+    const out = super.setPosition(pos);
+    clearTimeout(this._posSave);
+    this._posSave = setTimeout(() => {
+      if (this.minimized) return;
+      const { left, top, width } = this.position ?? {};
+      if (Number.isFinite(left) && Number.isFinite(top)) game.settings.set(SYS, "calendarPos", { left, top, width }).catch(() => null);
+    }, 400);
+    this._posSave?.unref?.();
+    return out;
+  }
+
+  _initializeApplicationOptions(options) {
+    const o = super._initializeApplicationOptions(options);
+    try {
+      const p = game.settings.get(SYS, "calendarPos");
+      if (p && Number.isFinite(p.left) && Number.isFinite(p.top)) Object.assign(o.position, { left: Math.max(0, Math.min(p.left, window.innerWidth - 200)), top: Math.max(0, Math.min(p.top, window.innerHeight - 100)), ...(Number.isFinite(p.width) ? { width: p.width } : {}) });
+    } catch { /* first time: Foundry places it */ }
+    return o;
+  }
+
   static DEFAULT_OPTIONS = {
     id: "arneyan-calendar",
     classes: ["arneyan", "arn-calendar-app"],
@@ -454,6 +476,7 @@ async function noteDialog(note, { canDelete = false } = {}) {
 /* -------------------------------------------- */
 
 export function registerCalendar() {
+  game.settings.register(SYS, "calendarPos", { scope: "client", config: false, type: Object, default: null, nullable: true });
   game.settings.register(SYS, "calendarNotes", { scope: "world", config: false, type: Array, default: [], onChange: () => ArneyanCalendar.refresh() });
   // Where the date stands against world time (Set date without time passing); the clock redraws with it.
   game.settings.register(SYS, "dateOffset", { scope: "world", config: false, type: Number, default: 0, onChange: () => { ArneyanCalendar.refresh(); Hooks.callAll("arneyanDateChanged"); } });

@@ -257,12 +257,31 @@ function clockHtml() {
   const gm = game.user.isGM;
   const runs = clockRuns(), live = clockLive();
   const run = gm ? `<a class="arn-clock-run${live ? " on" : ""}" data-run data-tooltip="${runs ? (live ? "The clock runs in real time: click to stop it" : "The clock is held (the game is paused, or a combat runs): click to stop it") : "Run the clock in real time (it stops while the game is paused)"}"><i class="fa-solid ${runs ? "fa-pause" : "fa-play"}"></i></a>` : "";
-  return `<a class="arn-clock-cal" data-calendar data-tooltip="The calendar"><i class="fa-solid fa-calendar-days"></i></a><span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid ${live ? "fa-hourglass-start" : "fa-hourglass-half"}"></i> ${esc(gameWhen())}</span>${run}
+  return `<span class="arn-clock-grip" data-grip data-tooltip="Drag to move it; double-click to put it back"><i class="fa-solid fa-grip-vertical"></i></span><a class="arn-clock-cal" data-calendar data-tooltip="The calendar"><i class="fa-solid fa-calendar-days"></i></a><span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid ${live ? "fa-hourglass-start" : "fa-hourglass-half"}"></i> ${esc(gameWhen())}</span>${run}
     ${gm ? `<span class="arn-clock-steps">${STEPS.map(s => `<a data-step="${s.id}" data-tooltip="${esc(s.tip)}">${esc(s.label)}</a>`).join("")}</span>` : ""}`;
 }
 
+/** Where the clock was dragged to (this browser), or null: then it sits above the player list. */
+const clockPos = () => { try { return game.settings.get(SYS, "clockPos") || null; } catch { return null; } };
+export const clockShown = () => { try { return game.settings.get(SYS, "clockShown") !== false; } catch { return true; } };
+
+/** True while the clock is being dragged (a redraw then leaves it under the pointer). */
+let dragging = false;
+
 function placeClock() {
-  if (!clock) return;
+  if (!clock || dragging) return;
+  const pos = clockPos();
+  if (pos && Number.isFinite(pos.left) && Number.isFinite(pos.top)) {
+    // Kept on the screen if the window got smaller.
+    const w = clock.offsetWidth || 200, h = clock.offsetHeight || 40;
+    clock.style.left = `${Math.round(Math.clamp(pos.left, 0, Math.max(0, window.innerWidth - w)))}px`;
+    clock.style.top = `${Math.round(Math.clamp(pos.top, 0, Math.max(0, window.innerHeight - h)))}px`;
+    clock.style.bottom = "auto";
+    return;
+  }
+  clock.style.top = "";
+  clock.style.left = "";
+  clock.style.bottom = "";
   const players = document.getElementById("players");
   const r = players?.getBoundingClientRect?.();
   if (r && r.width) {
@@ -272,7 +291,7 @@ function placeClock() {
 }
 
 function renderClock() {
-  const show = game.user.isGM || game.settings.get(SYS, "clockForPlayers");
+  const show = (game.user.isGM || game.settings.get(SYS, "clockForPlayers")) && clockShown();
   if (!show) { clock?.remove(); clock = null; return; }
   if (!clock) {
     clock = document.createElement("aside");
@@ -286,6 +305,39 @@ function renderClock() {
       const step = STEPS.find(s => s.id === a.dataset.step);
       if (step) advanceTime(step.seconds);
     });
+    // Drag it anywhere by its grip (remembered in this browser); a double-click puts it back above the player list.
+    clock.addEventListener("pointerdown", ev => {
+      if (!ev.target.closest?.("[data-grip]") || ev.button !== 0) return;
+      ev.preventDefault();
+      const el = clock, r = el.getBoundingClientRect();
+      const dx = ev.clientX - r.left, dy = ev.clientY - r.top, x0 = ev.clientX, y0 = ev.clientY;
+      let moved = false;
+      dragging = true;
+      try { el.setPointerCapture(ev.pointerId); } catch { /* still works without */ }
+      const at = e => ({
+        left: Math.round(Math.clamp(e.clientX - dx, 0, Math.max(0, window.innerWidth - el.offsetWidth))),
+        top: Math.round(Math.clamp(e.clientY - dy, 0, Math.max(0, window.innerHeight - el.offsetHeight)))
+      });
+      const move = e => {
+        if (!moved && Math.hypot(e.clientX - x0, e.clientY - y0) < 4) return;
+        moved = true;
+        const p = at(e);
+        el.style.left = `${p.left}px`; el.style.top = `${p.top}px`; el.style.bottom = "auto";
+      };
+      const end = e => {
+        el.removeEventListener("pointermove", move);
+        for (const t of ["pointerup", "pointercancel", "lostpointercapture"]) el.removeEventListener(t, end);
+        if (!dragging) return;
+        dragging = false;
+        try { el.releasePointerCapture(ev.pointerId); } catch { /* already gone */ }
+        // A click on the grip without moving leaves it where it was.
+        if (moved && e.type !== "pointercancel") game.settings.set(SYS, "clockPos", at(e));
+        else placeClock();
+      };
+      el.addEventListener("pointermove", move);
+      for (const t of ["pointerup", "pointercancel", "lostpointercapture"]) el.addEventListener(t, end);
+    });
+    clock.addEventListener("dblclick", ev => { if (ev.target.closest?.("[data-grip]")) game.settings.set(SYS, "clockPos", null); });
     document.body.append(clock);
   }
   clock.innerHTML = clockHtml();
@@ -303,9 +355,23 @@ export async function advanceTime(seconds) {
 /* -------------------------------------------- */
 
 export function registerWorldTime() {
+  game.settings.register(SYS, "clockShown", { scope: "client", config: false, type: Boolean, default: true, onChange: () => { renderClock(); ui.controls?.render?.(); } });
+  game.settings.register(SYS, "clockPos", { scope: "client", config: false, type: Object, default: null, nullable: true, onChange: () => placeClock() });
+  // The Journal Notes tools: the clock on and off, and the calendar.
+  Hooks.on("getSceneControlButtons", controls => {
+    try {
+      const notes = controls.notes ?? controls.note ?? Object.values(controls).find(c => c?.name === "notes");
+      if (!notes?.tools || !(game.user.isGM || game.settings.get(SYS, "clockForPlayers"))) return;
+      const n = Object.keys(notes.tools).length;
+      notes.tools.arnClock = { name: "arnClock", title: "Show or hide the game clock", icon: "fa-solid fa-clock", order: n + 1, toggle: true, visible: true,
+        active: clockShown(), onChange: (event, active) => game.settings.set(SYS, "clockShown", active ?? !clockShown()) };
+      notes.tools.arnCalendar = { name: "arnCalendar", title: "The calendar", icon: "fa-solid fa-calendar-days", order: n + 2, button: true, visible: true,
+        onChange: () => game.arneyan?.calendar?.() };
+    } catch (err) { console.warn("Arneyan | calendar tools", err); }
+  });
   game.settings.register(SYS, "clockForPlayers", {
     name: "Show the game clock to players", hint: "Players see the game date and time above the player list. Only the GM can move it on.",
-    scope: "world", config: true, type: Boolean, default: true, onChange: () => renderClock()
+    scope: "world", config: true, type: Boolean, default: true, onChange: () => { renderClock(); ui.controls?.render?.({ reset: true }); }
   });
 
   // Effects made with a duration get an end time on the world clock.
