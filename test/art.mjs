@@ -117,6 +117,30 @@ assert.equal(A.fileKey("DnD_Goblin.webp"), A.artKey("Goblin"));
 const near5 = A.nearIndex(["dn/TP035/demon_mezzoloth.webp", "dn/TP043/vermin_monstrous_spider.webp", "dn/TP036/grimlock_handaxe.webp", "dn/TP035/demon_shadow.webp",
   "x/undead_ogre.webp"], ["Mezzoloth", "Spider", "Grimlock", "Shadow", "Shadow Demon", "Ogre", "Ogre Zombie"]);
 assert.deepEqual(Object.keys(near5).sort(), ["demon-shadow", "grimlock", "mezzoloth"], "a shadow demon stays the Shadow Demon's; no monstrous spider for a Spider, no undead ogre for an Ogre");
+// 0.10.38: sources in priority order: the first with any art for a monster gives it, close name or not.
+const mmSrc = { key: "folder:modules/dnd-monster-manual", roots: ["modules/dnd-monster-manual"], paths: ["modules/dnd-monster-manual/assets/tokens/wolf-01.webp",
+  "modules/dnd-monster-manual/assets/portraits/wolf-01.webp", "modules/dnd-monster-manual/assets/tokens/goblin-warrior.webp", "modules/dnd-monster-manual/assets/tokens/tough.webp"] };
+const pfSrc = { key: "module:pf2e-tokens-bestiaries", roots: [], paths: ["modules/pf2e-tokens-bestiaries/tokens/wolf.webp", "modules/pf2e-tokens-bestiaries/tokens/goblin.webp",
+  "modules/pf2e-tokens-bestiaries/tokens/ogre.webp"] };
+const four = ["Wolf", "Goblin", "Ogre", "Thug", "Kraken"];
+let bs = A.indexBySource([mmSrc, pfSrc], four);
+assert.equal(A.artFor("Wolf", bs).token, "modules/dnd-monster-manual/assets/tokens/wolf-01.webp", "the higher source wins a tie");
+assert.equal(A.artFor("Wolf", bs).portrait, "modules/dnd-monster-manual/assets/portraits/wolf-01.webp");
+assert.equal(A.artFor("Goblin", bs).token, "modules/dnd-monster-manual/assets/tokens/goblin-warrior.webp", "even by a close name");
+assert.equal(A.artFor("Ogre", bs).token, "modules/pf2e-tokens-bestiaries/tokens/ogre.webp", "the next source fills the gaps");
+assert.equal(A.artFor("Thug", bs).token, "modules/dnd-monster-manual/assets/tokens/tough.webp", "the 2024 name");
+assert.deepEqual(bs.missing, ["Kraken"]);
+assert.deepEqual(bs.by, { "folder:modules/dnd-monster-manual": 3, "module:pf2e-tokens-bestiaries": 1 });
+assert.equal(bs.near, 1);
+bs = A.indexBySource([pfSrc, mmSrc], four);
+assert.equal(A.artFor("Wolf", bs).token, "modules/pf2e-tokens-bestiaries/tokens/wolf.webp", "the other way round");
+assert.equal(A.artFor("Goblin", bs).token, "modules/pf2e-tokens-bestiaries/tokens/goblin.webp");
+for (const [n, k] of [["Ogre Mage", "oni"], ["Tribal Warrior", "infantry-warrior"], ["Poisonous Snake", "snake-venomous"], ["Yuan-ti Pureblood", "infiltrator-ti-yuan"]])
+  assert.ok(A.nameKeys(n).includes(k), n);
+const html2 = hbs(root)("templates/apps/art-config.hbs", { mods: [], order: [{ key: "folder:a", label: "a", count: 3 }, { key: "module:b", label: "B pack", count: 0 }], names: 3, images: 1 });
+assert.ok(html2.includes('data-source="folder:a"') && html2.includes("3 monsters") && html2.includes('data-action="moveUp"'));
+assert.ok(!html2.includes('arn-art-order-box hidden'));
+assert.ok(hbs(root)("templates/apps/art-config.hbs", { mods: [], order: [] }).includes("arn-art-order-box hidden"));
 for (const [name, alts] of Object.entries(A.ALIASES)) assert.ok(Array.isArray(alts) && alts.length && !alts.includes(name), name);
 
 // The settings window.

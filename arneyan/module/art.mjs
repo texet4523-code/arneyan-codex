@@ -60,6 +60,20 @@ export const ALIASES = {
   "Gnoll": ["Gnoll Hunter"], "Commoner": ["Villager", "Peasant"], "Town Guard": ["Guard", "City Guard"], "Bandit": ["Brigand", "Cutpurse"],
   "Thug": ["Brawler"], "Noble": ["Nobleman", "Noblewoman"], "Priest": ["Cleric"]
 };
+/** The 2024 Monster Manual's new names (its art is named for them), after the ones above. */
+const ALIASES_2024 = {
+  "Ogre Mage": ["Oni"], "Spy": ["Spy Master"], "Tribal Warrior": ["Warrior Infantry"], "Veteran": ["Warrior Veteran"], "Thug": ["Tough"],
+  "Acolyte": ["Priest Acolyte"], "Cult Fanatic": ["Cultist Fanatic"], "Brigand Captain": ["Bandit Captain"],
+  "Flying Sword": ["Animated Flying Sword"], "Rug of Smothering": ["Animated Rug of Smothering"], "Gas Spore": ["Gas Spore Fungus"],
+  "Shrieker": ["Shrieker Fungus"], "Fire Snake": ["Salamander Fire Snake"], "Quipper": ["Piranha"], "Quipper Swarm": ["Swarm of Piranha"],
+  "Spore Servant": ["Myconid Spore Servant"], "Gnoll Demon-Fang": ["Gnoll Fang of Yeenoghu"], "Half-Ogre": ["Ogrillon Ogre"],
+  "Lizard King": ["Lizardfolk Sovereign"], "Sahuagin Priestess": ["Sahuagin Priest"], "Lizardfolk Shaman": ["Lizardfolk Geomancer"],
+  "Poisonous Snake": ["Venomous Snake"], "Poisonous Snake Swarm": ["Swarm of Venomous Snakes"], "Giant Poisonous Snake": ["Giant Venomous Snake"],
+  "Yuan-ti Pureblood": ["Yuan-ti Infiltrator"], "Tyrannosaurus": ["Tyrannosaurus Rex"], "Horse, Light": ["Horse"], "Horse, Heavy": ["Horse"],
+  "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Giant Elk": ["Elk"],
+  "Giant Owl": ["Owl"], "Donkey": ["Mule"], "Toad": ["Frog"]
+};
+for (const [name, alts] of Object.entries(ALIASES_2024)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
 /** A word as matched: singular ("goblins" and "goblin" read the same), UK and US spellings the same. */
 function stem(w) {
@@ -322,44 +336,70 @@ export function cleanFolder(f) {
   return !s || s.split("/").some(part => part === ".." || part === ".") ? "" : s;
 }
 
+/** A source's id in the saved order: "module:<id>" or "folder:<path>". */
+export const sourceKey = (kind, id) => `${kind}:${id}`;
+
+/**
+ * The art for each monster, from sources in priority order: the first source with any art for a monster gives it (its
+ * file by the name or another name the monster goes by, then a folder named after it, then a close name), even when a
+ * later source has a closer name. `sources`: [{ key, paths, roots }], first wins. Returns { entries, near, missing, by }
+ * with entries under each monster's own key and `by` the number of monsters each source gave.
+ */
+export function indexBySource(sources, names) {
+  const keep = new Set(names.flatMap(n => nameKeys(n)));
+  const per = sources.map(src => {
+    const exact = indexFrom(src.paths, keep, src.roots ?? []);
+    const have = new Set(Object.keys(exact));
+    return { key: src.key, exact, folder: folderIndex(src.paths, names, have, src.roots ?? []), near: nearIndex(src.paths, names, have, src.roots ?? []) };
+  });
+  const entries = {}, by = {}, missing = [];
+  let near = 0;
+  for (const name of names) {
+    const keys = nameKeys(name);
+    let hit = null;
+    for (const p of per) {
+      const ex = keys.map(k => p.exact[k]).find(Boolean);
+      hit = ex ? { art: ex, src: p.key } : (p.folder[keys[0]] ?? p.near[keys[0]]) ? { art: p.folder[keys[0]] ?? p.near[keys[0]], src: p.key, near: true } : null;
+      if (hit) break;
+    }
+    if (!hit) { missing.push(name); continue; }
+    entries[keys[0]] = { ...(hit.art.token ? { token: hit.art.token } : {}), ...(hit.art.portrait ? { portrait: hit.art.portrait } : {}), ...(hit.near ? { near: true } : {}) };
+    by[hit.src] = (by[hit.src] ?? 0) + 1;
+    if (hit.near) near++;
+  }
+  return { entries, near, missing: missing.sort(), by };
+}
+
 /**
  * Scan the chosen art modules, and folders in the user data (a token pack downloaded as images), and keep the index
- * (GM). Returns { names, images, empty: [module ids or folders with no images], failed: [ones that couldn't be read] }.
+ * (GM). `order`: source keys, first wins (sources not in it go last, folders before modules as listed). Returns
+ * { names, near, missing, images, empty: [module ids or folders with no images], failed: [ones that couldn't be read] }.
  */
-export async function scanArt(moduleIds = [], folders = []) {
+export async function scanArt(moduleIds = [], folders = [], order = []) {
   if (!game.user.isGM) return null;
-  const paths = [], empty = [], failed = [];
+  const sources = [], empty = [], failed = [];
   folders = [...new Set(folders.map(cleanFolder).filter(Boolean))];
-  for (const f of folders) {
+  moduleIds = moduleIds.filter(id => game.modules.get(id));
+  const read = async (key, path, roots, label) => {
     try {
-      const found = await imagesUnder(f);
-      if (!found.length) empty.push(f);
-      paths.push(...found);
+      const paths = await imagesUnder(path);
+      if (!paths.length) empty.push(label);
+      sources.push({ key, paths, roots });
     } catch (err) {
-      console.warn(`Arneyan | art scan: ${f}`, err);
-      failed.push(f);
+      console.warn(`Arneyan | art scan: ${label}`, err);
+      failed.push(label);
     }
-  }
-  for (const id of moduleIds) {
-    if (!game.modules.get(id)) continue;
-    try {
-      const found = await imagesUnder(`modules/${id}`);
-      if (!found.length) empty.push(id);
-      paths.push(...found);
-    } catch (err) {
-      console.warn(`Arneyan | art scan: ${id}`, err);
-      failed.push(id);
-    }
-  }
+  };
+  for (const f of folders) await read(sourceKey("folder", f), f, [f], f);
+  for (const id of moduleIds) await read(sourceKey("module", id), `modules/${id}`, [], id);
+  const rank = k => { const i = order.indexOf(k); return i < 0 ? order.length : i; };
+  sources.sort((a, b) => rank(a.key) - rank(b.key));
   const names = await bestiaryNames();
-  const exact = indexFrom(paths, new Set(names.flatMap(n => nameKeys(n))), folders);
-  const near = { ...folderIndex(paths, names, new Set(Object.keys(exact)), folders), ...nearIndex(paths, names, new Set(Object.keys(exact)), folders) };
-  const entries = { ...near, ...exact };
-  // The monsters still without art, for the window's list.
-  const missing = names.filter(n => !nameKeys(n).some(k => entries[k])).sort();
-  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, scanned: Date.now(), images: paths.length, entries, missing,
-    found: names.length - missing.length, near: Object.keys(near).length });
-  return { names: names.length - missing.length, near: Object.keys(near).length, missing: missing.length, images: paths.length, empty, failed };
+  const res = indexBySource(sources, names);
+  const images = sources.reduce((n, s) => n + s.paths.length, 0);
+  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, order: sources.map(s => s.key), by: res.by, scanned: Date.now(), images,
+    entries: res.entries, missing: res.missing, found: names.length - res.missing.length, near: res.near });
+  return { names: names.length - res.missing.length, near: res.near, missing: res.missing.length, images, empty, failed };
 }
 
 /** The changes that give an actor (data or document) its matched art, or null when there's nothing to change. */
@@ -410,9 +450,17 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     classes: ["arneyan", "arn-art-config"],
     window: { title: "Monster art from art packs", icon: "fa-solid fa-images", resizable: true },
     position: { width: 560, height: 760 },
-    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply, pickFolder: ArneyanArtConfig.#onPickFolder }
+    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply, pickFolder: ArneyanArtConfig.#onPickFolder,
+      moveUp: ArneyanArtConfig.#onMove, moveDown: ArneyanArtConfig.#onMove }
   };
   static PARTS = { main: { template: `systems/${SYS}/templates/apps/art-config.hbs`, scrollable: [".arn-art-mods"] } };
+
+  /** A source's name as shown: a module's title, or the folder. */
+  static label(key) {
+    const [kind, ...rest] = String(key).split(":");
+    const id = rest.join(":");
+    return kind === "module" ? (game.modules.get(id)?.title ?? id) : id;
+  }
 
   async _prepareContext() {
     const index = readIndex();
@@ -427,8 +475,13 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     const mods = game.modules.contents
       .map(m => ({ id: m.id, title: m.title, checked: index?.scanned ? chosen.has(m.id) : artLike(m), suggested: artLike(m) }))
       .sort((a, b) => Number(b.suggested) - Number(a.suggested) || a.title.localeCompare(b.title));
+    // The priority list: the saved order, then any ticked module or folder not in it yet.
+    const current = [...(index?.folders ?? []).map(f => sourceKey("folder", f)), ...mods.filter(m => m.checked).map(m => sourceKey("module", m.id))];
+    const saved = (index?.order ?? []).filter(k => current.includes(k));
+    const order = [...saved, ...current.filter(k => !saved.includes(k))]
+      .map(key => ({ key, label: ArneyanArtConfig.label(key), count: index?.by?.[key] ?? 0 }));
     return {
-      mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
+      order, mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
       scanned: index?.scanned ? new Date(index.scanned).toLocaleString() : ""
     };
   }
@@ -441,7 +494,48 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
       ui.notifications.info(ev.currentTarget.checked ? "New monsters from the Bestiary get matched art." : "New monsters keep the Bestiary's icons.");
     });
     const note = this.element.querySelector(".arn-art-changed");
-    for (const box of this.element.querySelectorAll('input[name="mod"], textarea[name="folders"]')) box.addEventListener("change", () => note?.classList.remove("hidden"));
+    for (const box of this.element.querySelectorAll('input[name="mod"], textarea[name="folders"]')) box.addEventListener("change", () => {
+      note?.classList.remove("hidden");
+      this.#syncOrder();
+    });
+  }
+
+  /** The priority list follows the ticks and folders: new ones go to the bottom, ones taken away go. */
+  #syncOrder() {
+    const list = this.element.querySelector(".arn-art-order");
+    if (!list) return;
+    const want = [...this.#folders().map(f => sourceKey("folder", f)), ...this.#chosen().map(id => sourceKey("module", id))];
+    const have = [...list.querySelectorAll("li[data-source]")];
+    for (const li of have) if (!want.includes(li.dataset.source)) li.remove();
+    const shown = have.map(li => li.dataset.source);
+    for (const key of want.filter(k => !shown.includes(k))) {
+      const li = document.createElement("li");
+      li.dataset.source = key;
+      const name = document.createElement("span");
+      name.className = "arn-art-order-name";
+      name.textContent = ArneyanArtConfig.label(key);
+      li.append(name);
+      li.insertAdjacentHTML("beforeend", ArneyanArtConfig.#arrows);
+      list.append(li);
+    }
+    list.closest(".arn-art-order-box")?.classList.toggle("hidden", !want.length);
+  }
+
+  static #arrows = `<span class="arn-art-order-move"><button type="button" data-action="moveUp" data-tooltip="Higher: its art wins"><i class="fa-solid fa-arrow-up"></i></button>`
+    + `<button type="button" data-action="moveDown" data-tooltip="Lower"><i class="fa-solid fa-arrow-down"></i></button></span>`;
+
+  /** Move a source up or down the priority list (saved with the next Scan). */
+  static #onMove(event, target) {
+    const li = target.closest("li[data-source]");
+    if (!li) return;
+    if (target.dataset.action === "moveUp" && li.previousElementSibling) li.previousElementSibling.before(li);
+    else if (target.dataset.action === "moveDown" && li.nextElementSibling) li.nextElementSibling.after(li);
+    else return;
+    this.element.querySelector(".arn-art-changed")?.classList.remove("hidden");
+  }
+
+  #order() {
+    return [...this.element.querySelectorAll(".arn-art-order li[data-source]")].map(li => li.dataset.source);
   }
 
   #chosen() {
@@ -468,6 +562,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         const list = box.value.split(/\n+/).map(cleanFolder).filter(Boolean);
         if (!list.includes(f)) box.value = [...list, f].join("\n");
         this.element.querySelector(".arn-art-changed")?.classList.remove("hidden");
+        this.#syncOrder();
       }
     }).render(true);
   }
@@ -476,7 +571,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     target.disabled = true;
     try {
       ui.notifications.info("Scanning the art packs. Big packs take a minute.");
-      const res = await scanArt(this.#chosen(), this.#folders());
+      const res = await scanArt(this.#chosen(), this.#folders(), this.#order());
       ui.notifications.info(`Found art for ${res?.names ?? 0} Bestiary monster${res?.names === 1 ? "" : "s"} (${res?.near ?? 0} by a close name or folder; ${res?.missing ?? 0} without; ${res?.images ?? 0} images looked at).`);
       for (const id of res?.empty ?? []) ui.notifications.warn(`No images found in ${game.modules.get(id)?.title ?? id}.`);
       for (const id of res?.failed ?? []) ui.notifications.error(`Couldn't read ${game.modules.get(id)?.title ?? id} (the console has the error).`);
