@@ -8,6 +8,7 @@
  * A small clock shows the game time; the GM's buttons move it on (10 minutes, 1 hour, 8 hours for a rest, 1 day).
  */
 import { readDuration, hasLength, lengthSeconds, mergedDuration } from "./duration.mjs";
+import { liveWorldTime, clockRuns, clockLive, setClockRuns } from "./realtime.mjs";
 export { readDuration, durationData } from "./duration.mjs";
 
 const SYS = "arneyan";
@@ -74,7 +75,7 @@ export function formatSpan(seconds) {
 }
 
 /** The in-game date and time as text (the world calendar's own format if it has one). */
-export function gameWhen(t = globalThis.game?.time?.worldTime ?? 0) {
+export function gameWhen(t = globalThis.game?.time ? liveWorldTime() : 0) {
   try {
     const cal = globalThis.game?.time?.calendar;
     // The Arneyan calendar's own format ("Tyrsday, 11 Ilmatria 503 AC, 14:05"), else the calendar's default.
@@ -247,7 +248,9 @@ let clock = null;
 
 function clockHtml() {
   const gm = game.user.isGM;
-  return `<a class="arn-clock-cal" data-calendar data-tooltip="The calendar"><i class="fa-solid fa-calendar-days"></i></a><span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid fa-hourglass-half"></i> ${esc(gameWhen())}</span>
+  const runs = clockRuns(), live = clockLive();
+  const run = gm ? `<a class="arn-clock-run${live ? " on" : ""}" data-run data-tooltip="${runs ? (live ? "The clock runs in real time: click to stop it" : "The clock is held (the game is paused, or a combat runs): click to stop it") : "Run the clock in real time (it stops while the game is paused)"}"><i class="fa-solid ${runs ? "fa-pause" : "fa-play"}"></i></a>` : "";
+  return `<a class="arn-clock-cal" data-calendar data-tooltip="The calendar"><i class="fa-solid fa-calendar-days"></i></a><span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid ${live ? "fa-hourglass-start" : "fa-hourglass-half"}"></i> ${esc(gameWhen())}</span>${run}
     ${gm ? `<span class="arn-clock-steps">${STEPS.map(s => `<a data-step="${s.id}" data-tooltip="${esc(s.tip)}">${esc(s.label)}</a>`).join("")}</span>` : ""}`;
 }
 
@@ -270,6 +273,7 @@ function renderClock() {
     clock.className = "arneyan";
     clock.addEventListener("click", ev => {
       if (ev.target.closest?.("[data-calendar]")) return game.arneyan?.calendar?.();
+      if (ev.target.closest?.("[data-run]") && game.user.isGM) return setClockRuns(!clockRuns());
       const a = ev.target.closest?.("[data-step]");
       if (!a || !game.user.isGM) return;
       const step = STEPS.find(s => s.id === a.dataset.step);
@@ -322,6 +326,14 @@ export function registerWorldTime() {
   });
 
   Hooks.on("arneyanDateChanged", () => renderClock());
+  Hooks.on("arneyanClockChanged", () => renderClock());
+  // While the clock runs, the minute on show moves on between the GM's saves.
+  let shown = "";
+  setInterval(() => {
+    if (!clock || !clockLive()) return;
+    const text = gameWhen();
+    if (text !== shown) { shown = text; renderClock(); }
+  }, 1000)?.unref?.();
   Hooks.on("updateWorldTime", (worldTime, dt) => {
     renderClock();
     onWorldTime(worldTime, dt);

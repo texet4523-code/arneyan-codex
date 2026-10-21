@@ -32,6 +32,45 @@
     </ul>{{else}}<p class="arn-muted">Nothing marked on this day.</p>{{/if}}
   </section>
 
+  <section class="arn-cal-clock">
+    <div class="arn-cal-clock-now">
+      <span class="arn-cal-clock-time">{{clock.time}}</span>
+      <span class="arn-muted">{{clock.part}} · {{clock.state}}</span>
+      {{#if gm}}<a class="arn-btn{{#if clock.runs}} on{{/if}}" data-action="toggleClock" data-tooltip="{{#if clock.runs}}Stop the clock{{else}}Run the clock in real time: it stops while the game is paused{{/if}}"><i class="fa-solid {{#if clock.runs}}fa-pause{{else}}fa-play{{/if}}"></i> {{#if clock.runs}}Stop{{else}}Run{{/if}}</a>{{/if}}
+    </div>
+    {{#if gm}}
+    <div class="arn-cal-clock-row">
+      {{#each clock.moves}}<a class="arn-chip{{#if back}} back{{/if}}" data-action="move" data-s="{{s}}" data-tooltip="{{#if back}}Wind the clock back (nothing that was counting undoes){{else}}Time passes{{/if}}">{{label}}</a>{{/each}}
+    </div>
+    <div class="arn-cal-clock-row">
+      {{#each clock.points}}<a class="arn-chip" data-action="toPoint" data-minute="{{minute}}" data-tooltip="To {{label}} today ({{time}})">{{label}}</a>{{/each}}
+      <span class="arn-cal-clock-set"><input type="text" name="clockSet" placeholder="14:30" size="7"><a class="arn-chip" data-action="setTime" data-tooltip="Set the time of day (this day)">Set time</a></span>
+    </div>
+    <div class="arn-cal-clock-row arn-muted">
+      <label>Speed <select name="clockRate">{{#each clock.rates}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+      <label><input type="checkbox" name="clockCombat" {{checked clock.combatPause}}> Hold during combat</label>
+    </div>
+    <details class="arn-cal-daylight" {{#if clock.daylight.on}}open{{/if}}>
+      <summary><i class="fa-solid fa-sun"></i> Daylight on the scene {{#if clock.daylight.on}}<span class="arn-chip strong">On</span>{{/if}}</summary>
+      <p class="hint">The scene being viewed darkens and brightens with the time: dark at night, a gradual dawn up to full day, a gradual dusk down to full night.</p>
+      <label class="arn-cal-dl-on"><input type="checkbox" name="dl-on" {{checked clock.daylight.on}}> Scenes follow the time of day</label>
+      <div class="arn-cal-dl-times">
+        <label>Dawn <input type="text" name="dl-dawn" value="{{clock.daylight.dawnText}}" size="5"></label>
+        <label>Full day <input type="text" name="dl-day" value="{{clock.daylight.dayText}}" size="5"></label>
+        <label>Dusk <input type="text" name="dl-dusk" value="{{clock.daylight.duskText}}" size="5"></label>
+        <label>Full night <input type="text" name="dl-night" value="{{clock.daylight.nightText}}" size="5"></label>
+      </div>
+      <div class="arn-cal-dl-times">
+        <label>Darkness at night <input type="range" name="dl-dark" min="0" max="1" step="0.05" value="{{clock.daylight.dark}}"></label>
+        <label>By day <input type="range" name="dl-light" min="0" max="1" step="0.05" value="{{clock.daylight.light}}"></label>
+      </div>
+      <p><a class="arn-btn" data-action="saveDaylight"><i class="fa-solid fa-floppy-disk"></i> Save daylight</a>
+        <span class="arn-muted">Darkness now: {{clock.daylight.darkNow}}</span></p>
+      {{#if clock.scene}}<label><input type="checkbox" name="sceneFollows" {{checked clock.scene.follows}}> {{clock.scene.name}} follows the time of day <span class="arn-muted">(untick for indoors or underground)</span></label>{{/if}}
+    </details>
+    {{/if}}
+  </section>
+
   <footer class="arn-cal-foot">
     <span class="arn-muted"><i class="fa-solid fa-hourglass-half"></i> Now: {{nowText}}</span>
     {{#unless isNowMonth}}<a class="arn-btn" data-action="today"><i class="fa-solid fa-calendar-day"></i> Today</a>{{/unless}}

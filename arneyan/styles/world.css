@@ -97,3 +97,23 @@
 .arn-kanka-dialog .form-footer button { white-space: normal; line-height: 1.2; height: auto; min-height: 32px; padding: 4px 8px; }
 .arneyan .arn-kanka .form-group label { flex: 0 0 150px; line-height: 1.2; }
 .arneyan .arn-kanka .form-group input[type="checkbox"] { flex: 0 0 auto; }
+
+/* 0.10.39: the clock in the calendar window, real time and daylight. */
+.arneyan .arn-cal-clock { margin-top: 8px; padding: 6px 8px; border: 1px solid var(--arn-border); border-radius: 6px; background: var(--arn-surface); }
+.arneyan .arn-cal-clock-now { display: flex; align-items: center; gap: 10px; }
+.arneyan .arn-cal-clock-now > .arn-muted { flex: 1; }
+.arneyan .arn-cal-clock-time { font-size: 1.6em; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.arneyan .arn-cal-clock .arn-btn.on { background: var(--arn-accent); color: #fff; }
+.arneyan .arn-cal-clock-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-top: 5px; }
+.arneyan .arn-cal-clock-row .arn-chip { cursor: pointer; }
+.arneyan .arn-cal-clock-row .arn-chip.back { opacity: .8; }
+.arneyan .arn-cal-clock-row label { display: inline-flex; align-items: center; gap: 4px; margin-right: 10px; }
+.arneyan .arn-cal-clock-set { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; }
+.arneyan .arn-cal-clock-set input { width: 6em; }
+.arneyan .arn-cal-daylight { margin-top: 6px; }
+.arneyan .arn-cal-daylight summary { cursor: pointer; color: var(--arn-accent); }
+.arneyan .arn-cal-dl-times { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0; }
+.arneyan .arn-cal-dl-times label { display: inline-flex; align-items: center; gap: 4px; }
+.arneyan .arn-cal-dl-times input[type="text"] { width: 4.5em; }
+#arneyan-clock .arn-clock-run { cursor: pointer; color: var(--arn-gold); margin-left: 4px; }
+#arneyan-clock .arn-clock-run.on { color: #7fd17f; }

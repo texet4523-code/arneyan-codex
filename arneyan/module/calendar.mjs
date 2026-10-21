@@ -8,6 +8,7 @@
  */
 import * as C from "./calendar-data.mjs";
 import { registerKanka, kankaDialog, kankaEvents } from "./kanka.mjs";
+import * as RT from "./realtime.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -41,13 +42,22 @@ export function dateOffset() {
   try { return Number(game.settings.get(SYS, "dateOffset")) || 0; } catch { return 0; }
 }
 
-/** The date and time of a world time, from the calendar's own arithmetic. */
-export function whenOf(t = game.time?.worldTime ?? 0) {
+/** The date and time of a world time (now, with the real-time clock's running seconds), from the calendar's arithmetic. */
+export function whenOf(t = RT.liveWorldTime()) {
   t += dateOffset();
   const n = Math.floor(t / DAY);
   const secs = ((t % DAY) + DAY) % DAY;
-  return { ...C.dateOf(n), n, hour: Math.floor(secs / 3600), minute: Math.floor((secs % 3600) / 60) };
+  return { ...C.dateOf(n), n, hour: Math.floor(secs / 3600), minute: Math.floor((secs % 3600) / 60), second: Math.floor(secs % 60), secondOfDay: secs };
 }
+
+/** Minutes since midnight on the calendar (for daylight). */
+export function minuteOfDay(t = game.time?.worldTime ?? 0) {
+  return Math.floor(whenOf(t).secondOfDay / 60);
+}
+
+const two = n => String(n).padStart(2, "0");
+/** "14:05:09". */
+export const timeText = w => `${two(w.hour)}:${two(w.minute)}:${two(w.second)}`;
 
 /** "Tyrsday, 11 Ilmatria 503 AC, 14:05". */
 export function whenText(t) {
@@ -118,6 +128,25 @@ async function saveNotes(notes) {
   await game.settings.set(SYS, "calendarNotes", notes);
 }
 
+/** The time and clock part: running or not, the GM's controls, daylight. */
+function clockContext(now) {
+  const dl = RT.daylight();
+  const scene = globalThis.canvas?.scene ?? null;
+  const runs = RT.clockRuns(), live = RT.clockLive();
+  return {
+    time: timeText(now), runs, live,
+    state: !runs ? "Stopped" : game.paused ? "Paused (the game is paused)" : !live ? "Held while a combat runs" : RT.clockRate() === 1 ? "Running in real time" : `Running, ${RT.clockRate()}× real time`,
+    rate: RT.clockRate(),
+    rates: [[1, "Real time"], [2, "2×"], [6, "6×"], [10, "10×"], [60, "1 min a second"]].map(([value, label]) => ({ value, label, selected: value === RT.clockRate() })),
+    combatPause: (() => { try { return game.settings.get(SYS, "clockCombatPause"); } catch { return true; } })(),
+    part: RT.partOfDay(Math.floor(now.secondOfDay / 60), dl),
+    points: RT.dayPoints(dl).map(p => ({ ...p, time: RT.hmText(p.minute) })),
+    moves: [[-DAY, "−1 day"], [-3600, "−1 h"], [-600, "−10 min"], [-60, "−1 min"], [60, "+1 min"], [600, "+10 min"], [3600, "+1 h"], [DAY, "+1 day"]].map(([s, label]) => ({ s, label, back: s < 0 })),
+    daylight: { ...dl, dawnText: RT.hmText(dl.dawn), dayText: RT.hmText(dl.day), duskText: RT.hmText(dl.dusk), nightText: RT.hmText(dl.night),
+      darkNow: RT.darknessAt(Math.floor(now.secondOfDay / 60), dl) },
+    scene: scene ? { name: scene.name, follows: RT.sceneFollows(scene) } : null
+  };
+}
 /* -------------------------------------------- */
 /*  The window                                  */
 /* -------------------------------------------- */
@@ -153,6 +182,11 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
       today: ArneyanCalendar.#today,
       pickDay: ArneyanCalendar.#pickDay,
       setDate: ArneyanCalendar.#setDate,
+      move: ArneyanCalendar.#moveTime,
+      toPoint: ArneyanCalendar.#toPoint,
+      setTime: ArneyanCalendar.#setTime,
+      toggleClock: ArneyanCalendar.#toggleClock,
+      saveDaylight: ArneyanCalendar.#saveDaylight,
       addNote: ArneyanCalendar.#addNote,
       kanka: ArneyanCalendar.#kanka,
       editNote: ArneyanCalendar.#editNote
@@ -209,8 +243,79 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
         // Most people call it the Dark Moon; its true name is the GM's to give out.
         eye: eye ? { ...eye, label: gm ? `Tharizdun's Eye: ${eye.phase} (cycle ${eye.cycle})` : `The Dark Moon: ${eye.phase}` } : null
       },
-      eyeSet: start != null
+      eyeSet: start != null,
+      clock: clockContext(now)
     };
+  }
+
+
+
+  _onRender(context, options) {
+    super._onRender?.(context, options);
+    // The clock's speed, its combat hold and the scene's daylight save as soon as they change (GM).
+    const on = (sel, fn) => this.element.querySelector(sel)?.addEventListener("change", ev => fn(ev.currentTarget));
+    on('select[name="clockRate"]', el => game.settings.set(SYS, "clockRate", Number(el.value) || 1));
+    on('input[name="clockCombat"]', el => game.settings.set(SYS, "clockCombatPause", el.checked));
+    on('input[name="sceneFollows"]', el => ArneyanCalendar.#sceneDaylight(el.checked));
+    // The seconds run on the window (and the minute, part of day and the like on the next full redraw).
+    clearInterval(this._secTimer);
+    this._secTimer = setInterval(() => {
+      const el = this.element?.querySelector?.(".arn-cal-clock-time");
+      if (!el) return clearInterval(this._secTimer);
+      el.textContent = timeText(whenOf());
+    }, 500);
+    this._secTimer?.unref?.();
+  }
+
+  _onClose(options) {
+    clearInterval(this._secTimer);
+    super._onClose?.(options);
+  }
+
+  /** GM: the time back or on by a step (on: time passes; back: the clock is wound back, nothing undoes). */
+  static async #moveTime(event, target) {
+    await RT.moveTime(Number(target.dataset.s));
+  }
+
+  /** GM: to dawn, midday, dusk or midnight of this day (back or on, as the buttons above). */
+  static async #toPoint(event, target) {
+    const w = whenOf();
+    await RT.moveTime(RT.secondsTo(w.secondOfDay, Number(target.dataset.minute)));
+  }
+
+  /** GM: the time of day typed in ("14:30" or "14:30:15"), this day. */
+  static async #setTime() {
+    const v = String(this.element.querySelector('input[name="clockSet"]')?.value ?? "").trim();
+    const m = v.match(/^(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/);
+    if (!m || Number(m[1]) > 23 || Number(m[2]) > 59 || Number(m[3] ?? 0) > 59) return ui.notifications.warn("Type a time as 14:30 or 14:30:15.");
+    const w = whenOf();
+    await RT.moveTime(Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3] ?? 0) - w.secondOfDay);
+  }
+
+  /** GM: start or stop the clock running in real time. */
+  static async #toggleClock() {
+    if (!game.user.isGM) return;
+    await RT.setClockRuns(!RT.clockRuns());
+  }
+
+  /** GM: the daylight settings from the form (on or off, the four times, how dark the night and the day). */
+  static async #saveDaylight() {
+    if (!game.user.isGM) return;
+    const el = this.element;
+    const val = n => el.querySelector(`[name="${n}"]`);
+    const times = Object.fromEntries(["dawn", "day", "dusk", "night"].map(k => [k, RT.parseHM(val(`dl-${k}`)?.value)]));
+    const bad = Object.entries(times).filter(([, v]) => v === null).map(([k]) => k);
+    if (bad.length) return ui.notifications.warn(`Type the times as 06:30 (${bad.join(", ")}).`);
+    const cfg = RT.cleanDaylight({ on: !!val("dl-on")?.checked, ...times, dark: Number(val("dl-dark")?.value), light: Number(val("dl-light")?.value) });
+    await game.settings.set(SYS, "daylight", cfg);
+  }
+
+  /** GM: whether the scene being viewed follows the time of day. */
+  static async #sceneDaylight(follows) {
+    const scene = globalThis.canvas?.scene;
+    if (!game.user.isGM || !scene) return;
+    await scene.setFlag(SYS, "noDaylight", !follows);
+    ArneyanCalendar.refresh();
   }
 
   static #move(app, dm) {
@@ -335,5 +440,8 @@ export function registerCalendar() {
     }
   });
   Hooks.on("updateWorldTime", () => ArneyanCalendar.refresh());
+  Hooks.on("arneyanClockChanged", () => ArneyanCalendar.refresh());
+  Hooks.on("canvasReady", () => ArneyanCalendar.refresh());
+  RT.registerRealtime();
   registerKanka({ today: () => whenOf(), refresh: () => ArneyanCalendar.refresh() });
 }

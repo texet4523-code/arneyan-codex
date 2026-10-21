@@ -728,6 +728,7 @@ await import("./art.mjs");
 await import("./books0100.mjs");
 // 0.10.39 The books v0.10.4 mirrored.
 await import("./books0104.mjs");
+await import("./realtime.mjs");
 // 0.10.30 Import a character or NPC from a chat (test/import.mjs runs on its own too).
 await import("./import.mjs");
 // 0.10.31 The Arneyan calendar (test/calendar.mjs runs on its own too).

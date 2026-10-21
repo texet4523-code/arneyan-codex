@@ -4,11 +4,16 @@ Version 0.10.39 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.39
 
+- **The clock runs in real time.** Press the play button on the game clock (or **Run** in the calendar) and game time passes a second a second, until you stop it; it holds while the game is paused and, unless you untick it, while a combat runs (combat counts its own rounds). The calendar shows the seconds ticking; the small clock keeps to hours and minutes. Effects, light and rests count the time as it runs. The calendar can run it faster (2×, 6×, 10×, a minute a second).
+- **Move the time freely.** The calendar (GM) has steps back and on (a minute, 10 minutes, an hour, a day), Dawn, Midday, Dusk and Midnight for this day, and **Set time** to type a time of day. Moving on, time passes; winding back moves the clock without undoing anything that was counting.
+- **Daylight on the scene.** In the calendar, **Daylight on the scene**: tick **Scenes follow the time of day** and the scene being viewed darkens and brightens with the time, fully dark at night, a gradual dawn up to full day and a gradual dusk down to full night. Set when dawn, full day, dusk and full night come, and how dark the night and the day are, then **Save daylight**. Untick a scene (indoors, underground) and it keeps its own lighting.
+
 The books v0.10.4 (21 October), mirrored:
 - **Dragonborn:** the draconic type (fire, cold, lightning, poison or acid), chosen at creation, sets both the breath weapon and Resistance 5, as the ancestry now says.
 - **Traps:** a Traps page in the Rules (Book I, after Environmental Hazards). A Hazard's sheet has a **Deadly** tick and **Use the Traps table**, which fills in the Find and Disarm DC, the Save DC and the damage for its Level. A trap in a fight counts towards the encounter like a creature of its Level.
 - **Class-only spells:** the Witch's, Necromancer's and Warlock's own spells show their school and components; the three with a costed component (Animate Dead (Greater), Create Greater Undead, Symbol of Death) say what it is.
 - **Knight kits:** Steadfast Courage (Hedge Knights, 3rd level) and Wall-Forged Dread (Boldock Wall-Knights, 5th) are written out in full and work as the usual Embolden and Demoralise do: once a day, with their own effect to apply. Each takes the place of the class's own on the sheet, which comes back if the kit goes. A character who already has the kit gets the new version by removing the kit and adding it again.
+- **Importing:** importing again onto a sheet, or a second character in the same session, no longer stops part-way; an NPC's attack its base monster already has (the Ogre's Greatclub) takes the block's numbers instead of coming twice.
 - **Monster art:** stand-ins for the last monsters no pack has art for by name (a geist for the Apparition, a fossil golem for the Bone Golem, bison for the Ox, and so on). Press **Scan** again to pick them up. Only the Moth is left without.
 
 ## What's new in 0.10.38
