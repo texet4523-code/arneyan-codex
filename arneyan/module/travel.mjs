@@ -442,13 +442,14 @@ export function registerTravel() {
     if (SKIP_METHODS.has(method)) return;
     onPartyMoved(tok, movedHexes(tok.parent, movement), method === "undo");
   });
-  // Without a movement record, measure from where it stood.
+  // Older Foundry without the moveToken hook: measure from where it stood.
   Hooks.on("preUpdateToken", (tok, changes, options) => {
     if (tok.actor?.type === "party" && ("x" in changes || "y" in changes)) options.arneyanTravelFrom = { x: tok.x, y: tok.y };
   });
   Hooks.on("updateToken", (tok, changes, options) => {
     if (!("x" in changes || "y" in changes) || tok.actor?.type !== "party") return;
-    if (options.movement?.[tok.id]) return; // the moveToken hook has it
+    // Foundry 13 and later report every move to the moveToken hook (above): counting here too would count it twice.
+    if ((game.release?.generation ?? 0) >= 13 || options.movement?.[tok.id] || options._movement) return;
     const from = options.arneyanTravelFrom ?? seen.get(tok.id);
     remember(tok);
     if (!game.users.activeGM?.isSelf || !from || options.isUndo) return;

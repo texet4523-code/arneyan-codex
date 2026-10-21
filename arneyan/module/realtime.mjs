@@ -211,13 +211,18 @@ function sceneDarkness(scene) {
 }
 const darknessKey = scene => (scene.environment ? "environment.darknessLevel" : "darkness");
 
-/** The scenes daylight sets: the one the players are on, and the one the GM is viewing. */
+/**
+ * The scenes daylight sets: the active GM's client sets the one the players are on and the one it is viewing; another
+ * GM's client sets only the one that GM is viewing (when it isn't the players' scene).
+ */
 function daylightScenes() {
-  return [...new Set([game.scenes?.active, globalThis.canvas?.scene].filter(Boolean))];
+  const viewed = globalThis.canvas?.scene;
+  if (!isClockKeeper()) return viewed && viewed !== game.scenes?.active ? [viewed] : [];
+  return [...new Set([game.scenes?.active, viewed].filter(Boolean))];
 }
 
 /**
- * Set the scenes' darkness for the time of day (the active GM's client). The first time daylight takes a scene over,
+ * Set the scenes' darkness for the time of day (the active GM's client; another GM's sets the scene it views). The first time daylight takes a scene over,
  * its own darkness is kept, and put back when daylight is turned off or the scene is left out.
  */
 // Daylight changes and putting darkness back run one after another, each reading the settings when its turn comes.
@@ -225,7 +230,7 @@ let lightChain = Promise.resolve();
 const inTurn = fn => (lightChain = lightChain.then(fn).catch(err => console.warn("Arneyan | daylight", err)));
 
 export function applyDaylight(opts = {}) {
-  if (!isClockKeeper()) return Promise.resolve();
+  if (!game.user?.isGM || !game.users?.activeGM) return Promise.resolve();
   return inTurn(() => setDaylight(opts));
 }
 
@@ -277,8 +282,8 @@ export function registerRealtime() {
   Hooks.on("canvasReady", () => applyDaylight({ force: true }));
   Hooks.on("updateScene", (scene, changes) => {
     if (foundry.utils.hasProperty(changes, "active") && changes.active) applyDaylight({ force: true });
-    if (!foundry.utils.hasProperty(changes, `flags.${SYS}.noDaylight`) || !isClockKeeper()) return;
-    if (changes.flags[SYS].noDaylight) restoreDarkness(scene);
+    if (!foundry.utils.hasProperty(changes, `flags.${SYS}.noDaylight`)) return;
+    if (changes.flags[SYS].noDaylight) { if (isClockKeeper()) restoreDarkness(scene); }
     else applyDaylight({ force: true });
   });
   // A pause saves the time run so far; unpausing starts counting afresh.

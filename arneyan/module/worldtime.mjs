@@ -267,6 +267,7 @@ export const clockShown = () => { try { return game.settings.get(SYS, "clockShow
 
 /** True while the clock is being dragged (a redraw then leaves it under the pointer). */
 let dragging = false;
+let lastGripTap = 0;
 
 function placeClock() {
   if (!clock || dragging) return;
@@ -330,9 +331,12 @@ function renderClock() {
         if (!dragging) return;
         dragging = false;
         try { el.releasePointerCapture(ev.pointerId); } catch { /* already gone */ }
-        // A click on the grip without moving leaves it where it was.
-        if (moved && e.type !== "pointercancel") game.settings.set(SYS, "clockPos", at(e));
-        else placeClock();
+        if (moved && e.type !== "pointercancel") { lastGripTap = 0; return game.settings.set(SYS, "clockPos", at(e)); }
+        // A click on the grip leaves it where it was; two quick clicks put it back above the player list.
+        // (Holding the pointer for the drag keeps the browser's own double-click from reaching the grip.)
+        if (e.type === "pointerup" && Date.now() - lastGripTap < 450) { lastGripTap = 0; return game.settings.set(SYS, "clockPos", null); }
+        if (e.type === "pointerup") lastGripTap = Date.now();
+        placeClock();
       };
       el.addEventListener("pointermove", move);
       for (const t of ["pointerup", "pointercancel", "lostpointercapture"]) el.addEventListener(t, end);

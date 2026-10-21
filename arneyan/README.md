@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.40 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.41 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.41
+
+Fixes from testing 0.10.40 live:
+- **Travel mode counted every move twice** (a one-hex move took two hexes off the day). Each move now counts once.
+- **Double-click the clock's grip** puts it back above the player list again (it didn't in 0.10.40).
+- **Daylight with two GMs:** a second GM's view now follows the time of day too, as well as the scene the players are on.
 
 ## What's new in 0.10.40
 

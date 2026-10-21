@@ -64,3 +64,10 @@ assert.ok(cal.includes('"calendarPos"') && cal.includes("_initializeApplicationO
 const wd = fs.readFileSync(`${root}module/world.mjs`, "utf8");
 assert.ok(wd.includes("registerTravel()") && wd.includes("travelEndDay"));
 console.log("OK travel mode");
+// 0.10.41: on Foundry 13 and later only the moveToken hook counts (the update hook counted every move twice);
+// two quick clicks on the grip put the clock back; another GM's client sets daylight on the scene it views.
+const tr = fs.readFileSync(`${root}module/travel.mjs`, "utf8");
+assert.ok(tr.includes("game.release?.generation ?? 0) >= 13"));
+assert.ok(wt.includes("lastGripTap"));
+assert.ok(fs.readFileSync(`${root}module/realtime.mjs`, "utf8").includes("viewed !== game.scenes?.active ? [viewed] : []"));
+console.log("OK 0.10.41 fixes");
