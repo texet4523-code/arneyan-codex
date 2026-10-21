@@ -16,7 +16,7 @@ const NOISE = new Set(["token", "tokens", "tok", "topdown", "top", "down", "port
   "circle", "subject", "img", "image", "icon", "avatar", "bust", "pc", "npc", "the", "of", "a", "an", "with", "in", "on", "and", "at",
   "dnd", "dn"]);
 /** Folders that hold maps, scenes, handouts and the like, not creatures: not scanned. */
-const SKIP_DIRS = /^(scenes?|maps?|tiles?|handouts?|journals?|items?|icons?|ui|backgrounds?|audio|sounds?|music|fonts?|scripts?|styles?|lang|packs?|templates?)$/i;
+const SKIP_DIRS = /^(scenes?|maps?|tiles?|handouts?|journals?|journal[-_ ]?art|items?|icons?|ui|backgrounds?|audio|sounds?|music|fonts?|scripts?|styles?|lang|packs?|templates?)$/i;
 const MAX_DEPTH = 7;
 /** UK and US spellings read the same ("Grey Ooze", "gray-ooze.webp"). */
 const SPELLING = [[/grey/g, "gray"], [/armour/g, "armor"], [/colour/g, "color"], [/spectre/g, "specter"]];
@@ -340,32 +340,37 @@ export function cleanFolder(f) {
 export const sourceKey = (kind, id) => `${kind}:${id}`;
 
 /**
- * The art for each monster, from sources in priority order: the first source with any art for a monster gives it (its
- * file by the name or another name the monster goes by, then a folder named after it, then a close name), even when a
- * later source has a closer name. `sources`: [{ key, paths, roots }], first wins. Returns { entries, near, missing, by }
+ * The art for each monster, from sources in priority order: each of the token and the portrait comes from the first
+ * source with one (its file by the name or another name the monster goes by, then a folder named after it, then a close
+ * name), even when a later source has a closer name. `sources`: [{ key, paths, roots }], first wins. Returns { entries, near, missing, by }
  * with entries under each monster's own key and `by` the number of monsters each source gave.
  */
 export function indexBySource(sources, names) {
   const keep = new Set(names.flatMap(n => nameKeys(n)));
   const per = sources.map(src => {
     const exact = indexFrom(src.paths, keep, src.roots ?? []);
-    const have = new Set(Object.keys(exact));
+    // A monster with only a portrait by its name may still find a token by a close name here.
+    const have = new Set(Object.keys(exact).filter(k => exact[k].token));
     return { key: src.key, exact, folder: folderIndex(src.paths, names, have, src.roots ?? []), near: nearIndex(src.paths, names, have, src.roots ?? []) };
   });
   const entries = {}, by = {}, missing = [];
   let near = 0;
   for (const name of names) {
     const keys = nameKeys(name);
-    let hit = null;
+    // Each slot from the first source (and within it: by name, then folder, then close name) that has it.
+    const found = {};
     for (const p of per) {
-      const ex = keys.map(k => p.exact[k]).find(Boolean);
-      hit = ex ? { art: ex, src: p.key } : (p.folder[keys[0]] ?? p.near[keys[0]]) ? { art: p.folder[keys[0]] ?? p.near[keys[0]], src: p.key, near: true } : null;
-      if (hit) break;
+      const tiers = [[keys.map(k => p.exact[k]).find(Boolean), false], [p.folder[keys[0]], true], [p.near[keys[0]], true]];
+      for (const [art, close] of tiers) for (const slot of ["token", "portrait"]) {
+        if (art?.[slot] && !found[slot]) found[slot] = { path: art[slot], src: p.key, close };
+      }
+      if (found.token && found.portrait) break;
     }
-    if (!hit) { missing.push(name); continue; }
-    entries[keys[0]] = { ...(hit.art.token ? { token: hit.art.token } : {}), ...(hit.art.portrait ? { portrait: hit.art.portrait } : {}), ...(hit.near ? { near: true } : {}) };
-    by[hit.src] = (by[hit.src] ?? 0) + 1;
-    if (hit.near) near++;
+    const lead = found.token ?? found.portrait;
+    if (!lead) { missing.push(name); continue; }
+    entries[keys[0]] = { ...(found.token ? { token: found.token.path } : {}), ...(found.portrait ? { portrait: found.portrait.path } : {}), ...(lead.close ? { near: true } : {}) };
+    by[lead.src] = (by[lead.src] ?? 0) + 1;
+    if (lead.close) near++;
   }
   return { entries, near, missing: missing.sort(), by };
 }

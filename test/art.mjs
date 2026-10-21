@@ -132,6 +132,12 @@ assert.equal(A.artFor("Thug", bs).token, "modules/dnd-monster-manual/assets/toke
 assert.deepEqual(bs.missing, ["Kraken"]);
 assert.deepEqual(bs.by, { "folder:modules/dnd-monster-manual": 3, "module:pf2e-tokens-bestiaries": 1 });
 assert.equal(bs.near, 1);
+// A source with only a portrait by the name and a token by a close name gives both; a later source isn't asked.
+bs = A.indexBySource([{ key: "mm", roots: [], paths: ["mm/portraits/goblin.webp", "mm/tokens/goblin-warrior.webp"] }, pfSrc], ["Goblin"]);
+assert.deepEqual(A.artFor("Goblin", bs), { token: "mm/tokens/goblin-warrior.webp", portrait: "mm/portraits/goblin.webp", near: true });
+// A token from the first, a portrait from the next when the first has none.
+bs = A.indexBySource([pfSrc, { key: "mm", roots: [], paths: ["mm/portraits/ogre.webp"] }], ["Ogre"]);
+assert.deepEqual(A.artFor("Ogre", bs), { token: "modules/pf2e-tokens-bestiaries/tokens/ogre.webp", portrait: "mm/portraits/ogre.webp" });
 bs = A.indexBySource([pfSrc, mmSrc], four);
 assert.equal(A.artFor("Wolf", bs).token, "modules/pf2e-tokens-bestiaries/tokens/wolf.webp", "the other way round");
 assert.equal(A.artFor("Goblin", bs).token, "modules/pf2e-tokens-bestiaries/tokens/goblin.webp");
