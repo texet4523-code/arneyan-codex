@@ -30,7 +30,7 @@ function classForKit(actor, kit) {
 /* -------------------------------------------- */
 
 /** Add the class's features up to its level and remove any above it. */
-export async function syncClassFeatures(actor, cls) {
+export async function syncClassFeatures(actor, cls, options = { arneyanGrant: true }) {
   const level = cls.system.levels;
   const have = grantedBy(actor, cls);
   const haveSources = new Set(have.map(i => i.getFlag(FLAG, "source")));
@@ -49,12 +49,12 @@ export async function syncClassFeatures(actor, cls) {
     create.push(data);
   }
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-  if (create.length) await actor.createEmbeddedDocuments("Item", create, { arneyanGrant: true });
+  if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
   return create.map(c => c.name);
 }
 
 /** Add a kit's features up to its class's level and remove any above it. */
-export async function syncKitFeatures(actor, kit) {
+export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true }) {
   const cls = classForKit(actor, kit);
   const level = cls?.system.levels ?? 1;
   const have = grantedBy(actor, kit);
@@ -79,7 +79,7 @@ export async function syncKitFeatures(actor, kit) {
     });
   });
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-  if (create.length) await actor.createEmbeddedDocuments("Item", create, { arneyanGrant: true });
+  if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
   return create.map(c => c.name);
 }
 

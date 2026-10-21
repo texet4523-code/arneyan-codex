@@ -163,6 +163,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       luckDeed: ArneyanActorSheet.#luckDeed,
       npcNewDay: ArneyanActorSheet.#npcNewDay,
       refreshMonster: ArneyanActorSheet.#refreshMonster,
+      importSheet: ArneyanActorSheet.#importSheet,
       lastChance: ArneyanActorSheet.#lastChance,
       revertShape: ArneyanActorSheet.#revertShape,
       ...combatSheetActions,
@@ -548,6 +549,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   static #takeOut(event, target) { return this._itemFrom(target)?.update({ "system.inside": "" }); }
   static #writeScroll(event, target) { const i = this._itemFrom(target); return i ? writeScroll(i) : null; }
   static #luckDeed() { return luckForDeed(this.document); }
+  static async #importSheet() {
+    if (!game.user.isGM) return;
+    const { importDialog } = await import("./import.mjs");
+    return importDialog(this.document);
+  }
   static async #refreshMonster() {
     const ok = await foundry.applications.api.DialogV2.confirm({ window: { title: "Update from the Bestiary" }, content: `<p>Replace ${this.document.name}'s stats and items with the current Bestiary entry? HP goes back to full.</p>`, rejectClose: false });
     if (ok) return refreshFromBestiary(this.document);

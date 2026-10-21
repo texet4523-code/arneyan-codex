@@ -952,13 +952,15 @@ export class ArneyanItem extends Item {
     if (this.type === "feat" && !actor.items.has(this.id) && !options.arneyanKeepLevel) this.updateSource({ "system.levelTaken": actor.system.level || 0 });
     // Where the 18 cap moved a feat's bonus belongs to the character it was moved on: a copy dragged to another starts
     // again (and is asked afresh if it goes past 18 there). A whole duplicated or imported character keeps its own.
-    if (this.type === "feat" && this.system.abilityChoice?.moved && !options.arneyanMigration) this.updateSource({ "system.abilityChoice.moved": "" });
+    if (this.type === "feat" && this.system.abilityChoice?.moved && !options.arneyanMigration && !options.arneyanImport && !actor.items.has(this.id)) this.updateSource({ "system.abilityChoice.moved": "" });
     // Skills: one of each, and only as many as the slots allow; checked for the whole batch in _preCreateOperation.
     // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
     if (this.system?.uses?.formula && !actor.items.has(this.id)) {
       const n = formulaUsesFor(actor, this);
       if (n !== null) this.updateSource({ "system.uses.value": n });
     }
+    // An import (import.mjs) sets classes, ancestries and spells' classes itself.
+    if (options.arneyanImport) return;
     if (this.type === "class") {
       // Items arriving with their actor (duplicating or importing a character) are left as they are.
       if (actor.items.has(this.id)) return;

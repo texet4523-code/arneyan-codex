@@ -112,6 +112,7 @@
         {{#if editMode}}<input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Name">{{else}}<h1 class="arn-name">{{actor.name}}</h1>{{/if}}
         {{#if fromBestiary}}<a class="arn-shape-btn" data-action="refreshMonster" data-tooltip="Update from the Bestiary (after a system update)"><i class="fa-solid fa-rotate"></i></a>{{/if}}
         {{#if editable}}{{#unless transformed}}<a class="arn-shape-btn" data-action="changeShape" data-tooltip="Change shape: a harmless creature or an object (or drag any creature onto this sheet)"><i class="fa-solid fa-paw"></i></a>{{/unless}}{{/if}}
+        {{#if editMode}}{{#if isGM}}{{#unless transformed}}<a class="arn-shape-btn" data-action="importSheet" data-tooltip="Import: fill this sheet from an import block a chat wrote (replaces what's on it)"><i class="fa-solid fa-file-import"></i></a>{{/unless}}{{/if}}{{/if}}
         {{#if editable}}<a class="arn-edit-toggle {{#if editMode}}on{{/if}}" data-action="toggleEdit" data-tooltip="{{#if editMode}}Back to play mode{{else}}Edit mode: change scores, max HP and details{{/if}}"><i class="fa-solid fa-{{#if editMode}}lock-open{{else}}lock{{/if}}"></i> {{#if editMode}}Editing{{else}}Edit{{/if}}</a>{{/if}}
       </div>
       {{#if isCharacter}}

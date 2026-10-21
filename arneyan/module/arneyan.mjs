@@ -30,6 +30,7 @@ import { registerIntegrations } from "./integrations.mjs";
 import { registerGmTools } from "./gmtools.mjs";
 import { registerWorld } from "./world.mjs";
 import { registerArt } from "./art.mjs";
+import { registerImport, importDialog } from "./import.mjs";
 
 const SYS = "arneyan";
 
@@ -83,7 +84,8 @@ Hooks.once("init", () => {
   registerGmTools();
   registerWorld();
   registerArt();
-  Object.assign(game.arneyan, { useItem, abilityScores });
+  registerImport();
+  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null) });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).
   const BaseToken = CONFIG.Token.objectClass;

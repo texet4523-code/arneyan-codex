@@ -1,6 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.29 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.30 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.30
+
+- **Import a character or NPC from a chat.** Ask a chat for a character or NPC "in the Arneyan import format" (the project doc *Arneyan Import Format* describes it: one JSON block). Then, as the GM, either press **Import** on the Actors tab to make a new one, or open a sheet, switch to **Edit** and press the file icon by the name to fill that sheet (it replaces everything on it).
+  - Before anything changes, it shows what it found in the compendiums and what it didn't.
+  - Characters get the real classes at their levels with their features (and picks such as Weapon Specialisation's weapon), the Kit and its features, the ancestry with its subtype and traits, feats with their attribute and weapon picks, skills, spells, gear and coins. The scores and HP given are the sheet's totals.
+  - NPCs take a stat block (Level, HD, HP, AC, saves, attacks, abilities, spellcasting), and can start from a Bestiary monster.
+  - Anything it doesn't find comes in as a plain item with the text given, and the report lists it: nothing is guessed, nothing is lost.
 
 ## What's new in 0.10.29
 

@@ -715,3 +715,5 @@ await import("./classinfo.mjs");
 await import("./art.mjs");
 // 0.10.28 The books v0.10.0 mirrored (test/books0100.mjs runs on its own too).
 await import("./books0100.mjs");
+// 0.10.30 Import a character or NPC from a chat (test/import.mjs runs on its own too).
+await import("./import.mjs");
