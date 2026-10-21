@@ -221,6 +221,8 @@ export class KitData extends BaseItemData {
         name: str(), level: int(1, { min: 0 }), description: new HTMLField({ required: true, blank: true }),
         /** Copied onto the ability the feature becomes on an actor (progression.mjs). */
         uses: usesField(), save: str(), damage: str(), damageType: str(), activities: activityField(),
+        /** The class feature this one replaces (a Hedge Knight's Steadfast Courage replaces Embolden). */
+        replaces: str(),
         ...effectFields()
       }))
     };

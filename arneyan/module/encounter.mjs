@@ -109,7 +109,8 @@ const FRIENDLY = () => CONST.TOKEN_DISPOSITIONS?.FRIENDLY ?? 1;
 function trackerBudget(combat) {
   const pcs = combat.combatants.filter(c => c.actor?.type === "character").map(c => c.actor);
   const party = pcs.length ? pcs : partyMembers();
-  const foes = combat.combatants.filter(c => c.actor?.type === "npc" && (c.token?.disposition ?? -1) !== FRIENDLY())
+  // A trap in a fight costs the same as a creature of its Level (Codex, Traps).
+  const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY())
     .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: !!c.actor.system.details?.isSolo, count: 1 }));
   return encounterBudget(party.map(a => a.system.level ?? 1), foes);
 }
@@ -153,7 +154,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   static async addFoe(uuid) {
     if (!game.user.isGM) return;
     const actor = await fromUuid(uuid);
-    if (actor?.type !== "npc") return ui.notifications.warn("Only monsters and NPCs go in an encounter.");
+    if (!["npc", "hazard"].includes(actor?.type)) return ui.notifications.warn("Only monsters, NPCs and traps go in an encounter.");
     const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
     const foes = app.foes;
     const found = foes.find(f => f.uuid === actor.uuid);

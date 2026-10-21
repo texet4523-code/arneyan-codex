@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.38 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.39 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.39
+
+The books v0.10.4 (21 October), mirrored:
+- **Dragonborn:** the draconic type (fire, cold, lightning, poison or acid), chosen at creation, sets both the breath weapon and Resistance 5, as the ancestry now says.
+- **Traps:** a Traps page in the Rules (Book I, after Environmental Hazards). A Hazard's sheet has a **Deadly** tick and **Use the Traps table**, which fills in the Find and Disarm DC, the Save DC and the damage for its Level. A trap in a fight counts towards the encounter like a creature of its Level.
+- **Class-only spells:** the Witch's, Necromancer's and Warlock's own spells show their school and components; the three with a costed component (Animate Dead (Greater), Create Greater Undead, Symbol of Death) say what it is.
+- **Knight kits:** Steadfast Courage (Hedge Knights, 3rd level) and Wall-Forged Dread (Boldock Wall-Knights, 5th) are written out in full and work as the usual Embolden and Demoralise do: once a day, with their own effect to apply. Each takes the place of the class's own on the sheet, which comes back if the kit goes. A character who already has the kit gets the new version by removing the kit and adding it again.
+- **Monster art:** stand-ins for the last monsters no pack has art for by name (a geist for the Apparition, a fossil golem for the Bone Golem, bison for the Ox, and so on). Press **Scan** again to pick them up. Only the Moth is left without.
 
 ## What's new in 0.10.38
 

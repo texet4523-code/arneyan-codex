@@ -69,6 +69,38 @@ export async function hazardDamage(actor, which = "save", crit = false) {
 }
 
 /* -------------------------------------------- */
+/*  The Codex's Traps table                     */
+/* -------------------------------------------- */
+
+/** Find and Disarm DC, Save DC and damage dice by Trap Level (Codex, Traps), each row up to its top Level. */
+export const TRAP_TABLE = [
+  { upTo: 4, find: 12, save: 12, dice: 2 },
+  { upTo: 8, find: 15, save: 14, dice: 4 },
+  { upTo: 12, find: 15, save: 16, dice: 6 },
+  { upTo: 16, find: 20, save: 18, dice: 8 },
+  { upTo: 20, find: 20, save: 20, dice: 10 },
+  { upTo: 24, find: 20, save: 22, dice: 12 }
+];
+
+/** A trap's numbers by its Level: { find, save, damage }. Deadly: +2 to both DCs and double the damage. Past 24 uses the last row. */
+export function trapNumbers(level, deadly = false) {
+  const row = TRAP_TABLE.find(r => Math.max(1, Number(level) || 0) <= r.upTo) ?? TRAP_TABLE.at(-1);
+  const plus = deadly ? 2 : 0;
+  return { find: row.find + plus, save: row.save + plus, damage: `${row.dice * (deadly ? 2 : 1)}d6` };
+}
+
+/** The changes that give a hazard the Traps table's numbers for its Level (spotting, disarming, the save and damage). */
+export function trapUpdate(system) {
+  const t = trapNumbers(system.level, system.deadly);
+  return {
+    "system.spot.ability": "wis", "system.spot.dc": t.find,
+    "system.disable.ability": "int", "system.disable.dc": t.find,
+    "system.save.key": system.save?.key || "ref", "system.save.dc": t.save,
+    "system.save.damage": t.damage
+  };
+}
+
+/* -------------------------------------------- */
 /*  Hazard sheet                                */
 /* -------------------------------------------- */
 
@@ -84,6 +116,7 @@ export class ArneyanHazardSheet extends HandlebarsApplicationMixin(ActorSheetV2)
       trigger: ArneyanHazardSheet.#trigger,
       attack: ArneyanHazardSheet.#attack,
       damage: ArneyanHazardSheet.#damage,
+      trapTable: ArneyanHazardSheet.#trapTable,
       editDescription: ArneyanHazardSheet.#editDescription
     }
   };
@@ -117,6 +150,13 @@ export class ArneyanHazardSheet extends HandlebarsApplicationMixin(ActorSheetV2)
     const s = this.document.system;
     const skill = s.disable.skill.trim();
     return game.arneyan.askRoll({ kind: skill ? "skill" : "check", key: skill || s.disable.ability, dc: s.disable.dc, label: `Disarm: ${this.document.name}`, text: s.disable.text });
+  }
+  /** Fill in the Codex's Traps table numbers for this Level (and Deadly). */
+  static async #trapTable() {
+    const s = this.document.system;
+    await this.document.update(trapUpdate(s));
+    const t = trapNumbers(s.level, s.deadly);
+    ui.notifications.info(`Level ${s.level}${s.deadly ? " deadly" : ""} trap: Find and Disarm DC ${t.find}, Save DC ${t.save}, ${t.damage} damage.`);
   }
   static #trigger() { return triggerHazard(this.document); }
   static #attack(event) { return hazardAttack(this.document, event); }

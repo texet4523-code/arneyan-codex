@@ -19,6 +19,8 @@ export class HazardData extends foundry.abstract.TypeDataModel {
       level: int(1, { min: 0, max: 30 }),
       /** Simple hazards act once when triggered; complex ones roll initiative and act each round. */
       complex: new BooleanField({ initial: false }),
+      /** A deadly trap (the Codex's Traps): +2 to both DCs and double damage when the Traps table fills it in. */
+      deadly: new BooleanField({ initial: false }),
       kind: pick({ trap: "Trap", environmental: "Environmental", magical: "Magical", haunt: "Haunt" }, "trap"),
       /** Noticing it: a Wisdom check (noticing, searching) against this DC, unless the GM picks another attribute. */
       spot: new SchemaField({ ability: new StringField({ required: true, blank: false, initial: "wis", choices: abilities }), dc: int(12, { min: 0, max: 60 }), notes: str() }),

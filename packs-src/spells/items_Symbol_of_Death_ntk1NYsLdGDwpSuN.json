@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch a surface to inscribe a rune, triggered as Symbol of Pain. Living creatures within 60ft with up to 150 HP in total die, lowest HP first; each makes a Fortitude save to resist. One use.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "description": "<p>Touch a surface to inscribe a rune, triggered as Symbol of Pain. Living creatures within 60ft with up to 150 HP in total die, lowest HP first; each makes a Fortitude save to resist. One use.</p><p class=\"arn-note\"><strong>Costed component (‡):</strong> as Symbol.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,12 +15,12 @@
   "classes": [
    "Necromancer"
   ],
-  "school": "",
+  "school": "Necromancy",
   "castingTime": "1 action",
   "range": "Touch",
   "duration": "",
   "area": "",
-  "components": "",
+  "components": "V, S, M",
   "concentration": false,
   "ritual": false,
   "prepared": false,
@@ -29,7 +29,7 @@
   "damage": "",
   "damageType": "",
   "reversible": false,
-  "costly": false,
+  "costly": true,
   "template": {
    "type": "",
    "size": 0,

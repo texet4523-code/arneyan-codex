@@ -1351,6 +1351,25 @@
     "default": -1
    },
    "flags": {}
+  },
+  {
+   "_id": "arnTrapsPage0104",
+   "_key": "!journal.pages!PySVMw3hHuU89X80.arnTrapsPage0104",
+   "name": "Traps",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li>A trap has a Level, set like a monster's: use the party's Level for a dangerous trap and a lower one for a nuisance. A trap that is part of a fight costs the same as a creature of its Level.</li></ul><table><thead><tr><th>Trap Level</th><th>Find and Disarm DC</th><th>Save DC</th><th>Damage</th></tr></thead><tbody><tr><td>1–4</td><td>12</td><td>12</td><td>2d6</td></tr><tr><td>5–8</td><td>15</td><td>14</td><td>4d6</td></tr><tr><td>9–12</td><td>15</td><td>16</td><td>6d6</td></tr><tr><td>13–16</td><td>20</td><td>18</td><td>8d6</td></tr><tr><td>17–20</td><td>20</td><td>20</td><td>10d6</td></tr><tr><td>21–24</td><td>20</td><td>22</td><td>12d6</td></tr></tbody></table><ul><li><strong>Deadly traps:</strong> add 2 to both DCs and double the damage.</li><li><strong>Other effects:</strong> a trap can deal a condition instead of damage, against the same save (Restrained for a net, Poisoned for a needle, Prone for a tripwire). A pit uses Falling Damage.</li><li><strong>Spotting:</strong> the GM rolls a secret Wisdom check for each character moving at Normal or Slow pace who could see the trap. Searching a 10ft square takes 1 minute and gives Advantage. At Fast pace, no one spots anything.</li><li><strong>Disarming:</strong> an Intelligence check against the Find and Disarm DC, taking 1 minute. Failing by 5 or more, or rolling a natural 1, sets it off. Otherwise the character may try again.</li><li><strong>Who can disarm:</strong> Rogues and Assassins use their trap skill on any trap, magical ones included. Rangers use theirs on wilderness traps and any trap they could build. Anyone else can only tackle mechanical traps, with Disadvantage on the check unless trained in a fitting skill (Engineering for a mechanism, Set Snares for a snare). Anything with a spring or lock needs thieves' tools. Kobolds have Advantage (Trapwise).</li><li><strong>Magical traps</strong> (glyphs, runes, Fire Trap): a Wisdom check can't spot one unless it can be seen. Detect Magic reveals it, and Dispel Magic ends it.</li></ul><p class=\"arn-note\">In Foundry: make a Hazard actor and press <strong>Use the Traps table</strong> on its sheet for these numbers by its Level (tick Deadly first for a deadly trap).</p>"
+   },
+   "sort": 6250000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
   }
  ],
  "folder": null,

@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Range 10ft; one corpse; cast at night only. Raises one undead, its type set by your caster level: 15–16 a mummy, 17–18 a spectre, 19–20 a vampire, 21+ a ghost. It uses that creature's stat block in Monsters &amp; Treasure. It obeys you permanently and counts towards your Undead Mastery cap. Material: a black onyx worth 100 gp per HD, consumed.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "description": "<p>Range 10ft; one corpse; cast at night only. Raises one undead, its type set by your caster level: 15–16 a mummy, 17–18 a spectre, 19–20 a vampire, 21+ a ghost. It uses that creature's stat block in Monsters &amp; Treasure. It obeys you permanently and counts towards your Undead Mastery cap. Material: a black onyx worth 100 gp per HD, consumed.</p><p class=\"arn-note\"><strong>Costed component (‡):</strong> black onyx, as Create Undead.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,12 +15,12 @@
   "classes": [
    "Necromancer"
   ],
-  "school": "",
+  "school": "Necromancy",
   "castingTime": "1 action",
   "range": "Range 10ft",
   "duration": "",
   "area": "",
-  "components": "M",
+  "components": "V, S, M",
   "concentration": false,
   "ritual": false,
   "prepared": false,

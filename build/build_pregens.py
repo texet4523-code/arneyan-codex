@@ -350,7 +350,11 @@ def build():
                                              "active": False, "applies": f.get("applies", []),
                                              # As on a grant in Foundry (progression.mjs): uses, save, damage, activities.
                                              **{k: f[k] for k in ("uses", "save", "damage", "damageType", "activities") if f.get(k)}},
-                                  "flags": {SYS: {"grantedBy": kit_item["_id"], "source": f"{kit_item['_id']}.{idx}"}}})
+                                  "flags": {SYS: {"grantedBy": kit_item["_id"], "source": f"{kit_item['_id']}.{idx}",
+                                                  **({"replaces": f["replaces"]} if f.get("replaces") else {})}}})
+                    # The class feature this one replaces goes (Embolden for Steadfast Courage), as in Foundry.
+                    if f.get("replaces"):
+                        items[:] = [i for i in items if not (i["name"] == f["replaces"] and i.get("flags", {}).get(SYS, {}).get("grantedBy") == cls["_id"])]
             elif c.get("kit"):
                 miss("kit", c["kit"])
 

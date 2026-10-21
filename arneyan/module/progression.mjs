@@ -29,6 +29,25 @@ function classForKit(actor, kit) {
 /*  Granting features                           */
 /* -------------------------------------------- */
 
+/** Class features a kit's features replace on this actor, for this class (by name: "Embolden"). */
+function replacedFor(actor, cls) {
+  const out = new Set();
+  for (const i of actor.items) {
+    const name = i.getFlag(FLAG, "replaces");
+    const kit = name ? actor.items.get(i.getFlag(FLAG, "grantedBy")) : null;
+    if (kit?.type === "kit" && classForKit(actor, kit)?.id === cls.id) out.add(name);
+  }
+  return out;
+}
+
+/** Take off the class features a kit replaces (granted by the class, by name). */
+async function dropReplaced(actor, cls, options) {
+  if (!cls) return;
+  const replaced = replacedFor(actor, cls);
+  const ids = grantedBy(actor, cls).filter(i => replaced.has(i.name)).map(i => i.id);
+  if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids, options);
+}
+
 /** Add the class's features up to its level and remove any above it. */
 export async function syncClassFeatures(actor, cls, options = { arneyanGrant: true }) {
   const level = cls.system.levels;
@@ -36,10 +55,11 @@ export async function syncClassFeatures(actor, cls, options = { arneyanGrant: tr
   const haveSources = new Set(have.map(i => i.getFlag(FLAG, "source")));
   const toDelete = have.filter(i => (i.system.level ?? 1) > level).map(i => i.id);
   const wanted = (cls.system.features ?? []).filter(f => f.level <= level && f.uuid && !haveSources.has(f.uuid));
+  const replaced = replacedFor(actor, cls);
   const create = [];
   for (const f of wanted) {
     const doc = await fromUuid(f.uuid);
-    if (!doc) continue;
+    if (!doc || replaced.has(doc.name)) continue;
     const data = doc.toObject();
     delete data._id;
     data.folder = null;
@@ -50,6 +70,7 @@ export async function syncClassFeatures(actor, cls, options = { arneyanGrant: tr
   }
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
   if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
+  await dropReplaced(actor, cls, options);
   return create.map(c => c.name);
 }
 
@@ -75,11 +96,15 @@ export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true
         ...(f.abilityChoice?.options?.length ? { abilityChoice: foundry.utils.deepClone(f.abilityChoice) } : {}),
         // A weapon pick (as Weapon Specialisation's) goes with it, so the new feature asks which weapon.
         ...(String(f.weaponChoice?.max ?? "").trim() ? { weaponChoice: foundry.utils.deepClone(f.weaponChoice) } : {}) },
-      flags: { [FLAG]: { grantedBy: kit.id, source } }
+      flags: { [FLAG]: { grantedBy: kit.id, source, ...(f.replaces ? { replaces: f.replaces } : {}) } }
     });
   });
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
   if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
+  // The class feature this kit replaces goes (Embolden for a Hedge Knight's Steadfast Courage); it comes back if the
+  // kit's feature does (levelling down, or the kit removed).
+  await dropReplaced(actor, cls, options);
+  if (toDelete.length && cls && have.some(i => toDelete.includes(i.id) && i.getFlag(FLAG, "replaces"))) await syncClassFeatures(actor, cls, options);
   return create.map(c => c.name);
 }
 
@@ -126,7 +151,10 @@ export async function removeGrants(actor, source) {
     if (Object.keys(upd).length) await actor.update(upd);
   }
   const unique = [...new Set(ids)].filter(id => actor.items.has(id));
+  // A kit's replacement feature leaving: the class's own comes back.
+  const restore = source.type === "kit" && grantedBy(actor, source).some(i => i.getFlag(FLAG, "replaces")) ? classForKit(actor, source) : null;
   if (unique.length) await actor.deleteEmbeddedDocuments("Item", unique, { arneyanGrant: true });
+  if (restore && actor.items.has(restore.id)) await syncClassFeatures(actor, restore);
 }
 
 /* -------------------------------------------- */

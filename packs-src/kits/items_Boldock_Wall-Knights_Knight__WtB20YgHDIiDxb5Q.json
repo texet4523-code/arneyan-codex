@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<p>Veterans of the Wall facing the Red Waste — disciplined, grim, no pageantry.</p><ul><li><strong>Wall-Forged Dread: </strong>Demoralise penalty increases to -6 to Charisma checks, and affected enemies have Disadvantage on all their attack rolls (instead of only their first each round).</li><li><strong>Siege Discipline: </strong>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</li></ul>",
+  "description": "<p>Veterans of the Wall facing the Red Waste — disciplined, grim, no pageantry.</p><ul><li><strong>Wall-Forged Dread: </strong>your Demoralise replaces the usual one. Once per day, enemies suffer −6 to Charisma checks and must make a Will save against your Class Save DC or have Disadvantage on all their attack rolls. It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th. It cannot combine with Inspire or Embolden.</li><li><strong>Siege Discipline: </strong>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,17 +14,48 @@
   "features": [
    {
     "name": "Wall-Forged Dread",
-    "level": 1,
-    "description": "<p>Demoralise penalty increases to -6 to Charisma checks, and affected enemies have Disadvantage on all their attack rolls (instead of only their first each round).</p>",
+    "level": 5,
+    "description": "<p>Your Demoralise replaces the usual one. Once per day, enemies suffer −6 to Charisma checks and must make a Will save against your Class Save DC or have Disadvantage on all their attack rolls. It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th. It cannot combine with Inspire or Embolden.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
-    "save": "",
+    "save": "will",
     "rules": [],
     "toggle": false,
-    "active": false
+    "active": false,
+    "applies": [
+     {
+      "name": "Demoralised (Wall-Forged Dread)",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "check.cha",
+        "value": "-6",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Demoralised (Wall-Forged Dread, failed save)",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ],
+    "replaces": "Demoralise"
    },
    {
     "name": "Siege Discipline",

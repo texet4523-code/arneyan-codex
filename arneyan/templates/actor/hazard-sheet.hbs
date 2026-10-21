@@ -8,8 +8,10 @@
       <label>Level <input class="short" type="number" name="system.level" value="{{source.level}}" min="0" max="30"></label>
       <label>Kind <select name="system.kind">{{selectOptions kinds selected=source.kind}}</select></label>
       <label class="check" data-tooltip="A complex hazard rolls initiative and acts every round (its routine)"><input type="checkbox" name="system.complex" {{checked source.complex}}> Complex</label>
+      <label class="check" data-tooltip="A deadly trap: +2 to both DCs and double damage from the Traps table"><input type="checkbox" name="system.deadly" {{checked source.deadly}}> Deadly</label>
       {{#if editable}}
       <span class="arn-head-tools">
+        <a class="arn-btn small ghost" data-action="trapTable" data-tooltip="The Codex's Traps table for this Level: Find and Disarm DC, Save DC and damage (Deadly: +2 DCs, double damage)"><i class="fa-solid fa-table"></i> Use the Traps table</a>
         <a class="arn-btn small" data-action="trigger" data-tooltip="Post what sets it off and what it does, with its attack, save and damage buttons"><i class="fa-solid fa-bolt"></i> Trigger it</a>
       </span>
       {{/if}}
@@ -26,7 +28,7 @@
           <label>DC <input class="short" type="number" name="system.spot.dc" value="{{source.spot.dc}}" min="0" max="60"></label>
         </div>
         <input type="text" name="system.spot.notes" value="{{source.spot.notes}}" placeholder="What gives it away (scratches on the floor, a draught)">
-        <p class="arn-help">Noticing and searching are Wisdom checks.</p>
+        <p class="arn-help">Noticing and searching are Wisdom checks: the GM rolls them secretly for each character at Normal or Slow pace who could see it (none at Fast pace). Searching a 10ft square takes 1 minute and gives Advantage. A magical trap can't be spotted unless it can be seen; Detect Magic reveals it.</p>
       </section>
 
       <section class="arn-hz-block">
@@ -39,6 +41,7 @@
         </div>
         <input type="text" name="system.disable.text" value="{{source.disable.text}}" placeholder="How: jam the pressure plate, cut the wire, dispel the rune">
         <p class="arn-muted">{{disableLabel}}</p>
+        <p class="arn-help">An Intelligence check taking 1 minute; failing by 5 or more, or a natural 1, sets it off. Rogues and Assassins: any trap. Rangers: wilderness traps and ones they could build. Anyone else: mechanical traps only, with Disadvantage unless trained (Engineering, Set Snares). A spring or lock needs thieves' tools.</p>
       </section>
     </div>
 
