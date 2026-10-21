@@ -37,6 +37,11 @@ function replacedFor(actor, cls) {
     const kit = name ? actor.items.get(i.getFlag(FLAG, "grantedBy")) : null;
     if (kit?.type === "kit" && classForKit(actor, kit)?.id === cls.id) out.add(name);
   }
+  // And what a kit of this class will replace at this level, before its feature is granted (so a level-up card
+  // doesn't list Embolden on the way to Steadfast Courage).
+  for (const kit of actor.items.filter(i => i.type === "kit" && classForKit(actor, i)?.id === cls.id)) {
+    for (const f of kit.system.features ?? []) if (f.replaces && (f.level ?? 1) <= (cls.system.levels ?? 1)) out.add(f.replaces);
+  }
   return out;
 }
 
@@ -45,7 +50,7 @@ async function dropReplaced(actor, cls, options) {
   if (!cls) return;
   const replaced = replacedFor(actor, cls);
   const ids = grantedBy(actor, cls).filter(i => replaced.has(i.name)).map(i => i.id);
-  if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids, options);
+  if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids, { ...options, parent: undefined });
 }
 
 /** Add the class's features up to its level and remove any above it. */
@@ -69,7 +74,7 @@ export async function syncClassFeatures(actor, cls, options = { arneyanGrant: tr
     create.push(data);
   }
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-  if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
+  if (create.length) await actor.createEmbeddedDocuments("Item", create, { ...options, parent: undefined });
   await dropReplaced(actor, cls, options);
   return create.map(c => c.name);
 }
@@ -100,7 +105,7 @@ export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true
     });
   });
   if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-  if (create.length) await actor.createEmbeddedDocuments("Item", create, options);
+  if (create.length) await actor.createEmbeddedDocuments("Item", create, { ...options, parent: undefined });
   // The class feature this kit replaces goes (Embolden for a Hedge Knight's Steadfast Courage); it comes back if the
   // kit's feature does (levelling down, or the kit removed).
   await dropReplaced(actor, cls, options);

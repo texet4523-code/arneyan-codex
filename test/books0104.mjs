@@ -42,6 +42,8 @@ assert.deepEqual(H.trapUpdate({ level: 9, deadly: false, save: { key: "" } }), {
   "system.spot.ability": "wis", "system.spot.dc": 15, "system.disable.ability": "int", "system.disable.dc": 15,
   "system.save.key": "ref", "system.save.dc": 16, "system.save.damage": "6d6" });
 assert.equal(H.trapUpdate({ level: 9, deadly: false, save: { key: "fort" } })["system.save.key"], "fort", "a save already chosen stays");
+assert.ok(!("system.save.key" in H.trapUpdate({ level: 9, attack: { damage: "1d4" }, save: { key: "" } })), "an attack-only trap gets no save");
+assert.ok(!/^const QUIET = \{/m.test(fs.readFileSync(path.join(root, "module/import.mjs"), "utf8")), "no shared options object (Foundry writes the parent into it)");
 const sheet = fs.readFileSync(path.join(root, "templates/actor/hazard-sheet.hbs"), "utf8");
 assert.ok(sheet.includes('data-action="trapTable"') && sheet.includes('name="system.deadly"'));
 const enc = fs.readFileSync(path.join(root, "module/encounter.mjs"), "utf8");

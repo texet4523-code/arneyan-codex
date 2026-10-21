@@ -18,7 +18,11 @@ const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const ABILITY_KEYS = Object.keys(ARNEYAN.abilities);
 // Options for items the import makes: no prompts, no setup steps, no skill-slot questions, levels and picks kept.
-const QUIET = { arneyanGrant: true, arneyanNoChoice: true, arneyanKeepLevel: true, arneyanImport: true, arneyanSkipSetup: true };
+/**
+ * The options every import change goes with (no prompts, no level-up workflow). A new object each time: Foundry 14 writes
+ * the document's parent into the options it's given, so one shared object would carry the last actor into the next.
+ */
+const quiet = () => ({ arneyanGrant: true, arneyanNoChoice: true, arneyanKeepLevel: true, arneyanImport: true, arneyanSkipSetup: true });
 
 /* -------------------------------------------- */
 /*  Reading the text                            */
@@ -386,8 +390,8 @@ async function ancestryGrants(actor, anc, { choice = "", family = "" } = {}) {
   const create = (s.traitList ?? []).filter(t => !(family && t.name === "Family")).map(t => grant(t.name, t.text));
   if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short }))));
   if (family && s.family) create.unshift(grant(`Family: ${family}`, `Born into a ${family} family: you speak its language, and its people treat you as one of their own once they look past the marks.`));
-  if (create.length) await actor.createEmbeddedDocuments("Item", create, QUIET);
-  await anc.update({ name: label, [`flags.${SYS}.ancestry`]: { choice: o?.name ?? "", family: s.family ? family : "", applied: {}, moved: {} } }, QUIET);
+  if (create.length) await actor.createEmbeddedDocuments("Item", create, quiet());
+  await anc.update({ name: label, [`flags.${SYS}.ancestry`]: { choice: o?.name ?? "", family: s.family ? family : "", applied: {}, moved: {} } }, quiet());
   await actor.update({ "system.attributes.speed": s.speed, "system.details.size": s.size, "system.details.senses": s.vision ?? "", [`flags.${SYS}.hadAncestry`]: true });
   return choice && !o ? `${s.choice?.label ?? "Subtype"} "${choice}" isn't one of ${baseName}'s: none set.` : "";
 }
@@ -398,13 +402,13 @@ const SHEET_FLAGS = ["subdual", "firearmsTrained", "scoresRolled", "needsScores"
 
 /** Take everything off a sheet: items, effects on the actor, its numbers and details (back to a new sheet's). */
 async function clearSheet(actor) {
-  if (actor.items.size) await actor.deleteEmbeddedDocuments("Item", actor.items.map(i => i.id), QUIET);
-  if (actor.effects.size) await actor.deleteEmbeddedDocuments("ActiveEffect", actor.effects.map(e => e.id), QUIET);
+  if (actor.items.size) await actor.deleteEmbeddedDocuments("Item", actor.items.map(i => i.id), quiet());
+  if (actor.effects.size) await actor.deleteEmbeddedDocuments("ActiveEffect", actor.effects.map(e => e.id), quiet());
   const initial = actor.system.constructor.schema.getInitialValue?.() ?? null;
   const flags = Object.fromEntries(SHEET_FLAGS.filter(k => actor.flags?.[SYS]?.[k] !== undefined).map(k => [`flags.${SYS}.-=${k}`, null]));
   // The system data as a whole (not merged into what's there), then the flags on their own.
-  if (initial) await actor.update({ system: initial }, { diff: false, recursive: false, ...QUIET });
-  if (Object.keys(flags).length) await actor.update(flags, QUIET);
+  if (initial) await actor.update({ system: initial }, { diff: false, recursive: false, ...quiet() });
+  if (Object.keys(flags).length) await actor.update(flags, quiet());
 }
 
 /** Fill an actor from a plan. `replace`: take everything off the sheet first. Returns the lines for the chat card. */
@@ -412,7 +416,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
   const data = plan.data;
   const notes = [];
   if (replace) await clearSheet(actor);
-  const create = async list => (list.length ? actor.createEmbeddedDocuments("Item", list, QUIET) : []);
+  const create = async list => (list.length ? actor.createEmbeddedDocuments("Item", list, quiet()) : []);
   const itemsFor = async kind => {
     const out = [];
     for (const f of plan.found.filter(f => f.pack === kind)) {
@@ -429,7 +433,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
     for (const { f, d } of classes) {
       foundry.utils.mergeObject(d, { system: { levels: f.level, hpRolls: [], luckGains: [], slotsUsed: [], extraSlots: [] } });
       const [cls] = await create([d]);
-      if (cls) await syncClassFeatures(actor, cls, QUIET);
+      if (cls) await syncClassFeatures(actor, cls, quiet());
     }
     for (const { f, d } of await itemsFor("ancestries")) {
       const [anc] = await create([d]);
@@ -441,7 +445,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
     }
     for (const { d } of await itemsFor("kits")) {
       const [kit] = await create([d]);
-      if (kit) await syncKitFeatures(actor, kit, QUIET);
+      if (kit) await syncKitFeatures(actor, kit, quiet());
     }
     const level = actor.system.level || 1;
     const feats = (await itemsFor("feats")).map(({ f, d }) => {
@@ -473,7 +477,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
       if (abilityKey(p.moved)) upd["system.abilityChoice.moved"] = abilityKey(p.moved);
       const w = p.weapons.length ? p.weapons : (!k && p.pick ? weaponPicks(p.pick) : []);
       if (w.length && String(it.system.weaponChoice?.max ?? "").trim()) upd["system.weaponChoice.value"] = w;
-      if (Object.keys(upd).length) await it.update(upd, QUIET);
+      if (Object.keys(upd).length) await it.update(upd, quiet());
       else notes.push(`${p.name}: nothing it could take from "${[p.pick, ...p.weapons].filter(Boolean).join(", ")}".`);
     }
     for (const i of actor.items) {
@@ -507,7 +511,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
   // Uses worked out from a formula (Flèche: Dexterity modifier a day) start full, on the scores just set.
   const full = actor.items.filter(i => i.system?.uses?.formula && i.system.uses.max > 0 && i.system.uses.value !== i.system.uses.max)
     .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
-  if (full.length) await actor.updateEmbeddedDocuments("Item", full, QUIET);
+  if (full.length) await actor.updateEmbeddedDocuments("Item", full, quiet());
   return notes;
 }
 
@@ -594,7 +598,7 @@ async function importNpcStats(actor, plan, notes) {
       // The sheet now comes from this Bestiary entry: "Update from the Bestiary" goes back to it, not to an older one.
       await actor.update({ system: src.system, img: src.img, prototypeToken: { texture: src.prototypeToken?.texture ?? {} }, [`flags.${SYS}.importedFrom`]: plan.base.uuid });
       // Its items keep their ids (the sheet is empty), so anything inside a container stays inside it.
-      await actor.createEmbeddedDocuments("Item", src.items, { ...QUIET, keepId: !actor.isToken });
+      await actor.createEmbeddedDocuments("Item", src.items, { ...quiet(), keepId: !actor.isToken });
     }
   }
   // An imported stat block is its own: "Update from the Bestiary" (one sheet or all) must never put the plain
@@ -662,7 +666,7 @@ async function importNpcStats(actor, plan, notes) {
     });
     attacks.push(d);
   }
-  if (attacks.length) await actor.createEmbeddedDocuments("Item", attacks, QUIET);
+  if (attacks.length) await actor.createEmbeddedDocuments("Item", attacks, quiet());
 }
 
 /* -------------------------------------------- */

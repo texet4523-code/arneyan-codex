@@ -92,12 +92,10 @@ export function trapNumbers(level, deadly = false) {
 /** The changes that give a hazard the Traps table's numbers for its Level (spotting, disarming, the save and damage). */
 export function trapUpdate(system) {
   const t = trapNumbers(system.level, system.deadly);
-  return {
-    "system.spot.ability": "wis", "system.spot.dc": t.find,
-    "system.disable.ability": "int", "system.disable.dc": t.find,
-    "system.save.key": system.save?.key || "ref", "system.save.dc": t.save,
-    "system.save.damage": t.damage
-  };
+  const upd = { "system.spot.ability": "wis", "system.spot.dc": t.find, "system.disable.ability": "int", "system.disable.dc": t.find };
+  // A trap that only attacks (darts, no save) keeps it that way; otherwise the save and its damage.
+  if (system.attack?.damage && !system.save?.key) return upd;
+  return { ...upd, "system.save.key": system.save?.key || "ref", "system.save.dc": t.save, "system.save.damage": t.damage };
 }
 
 /* -------------------------------------------- */
@@ -153,6 +151,8 @@ export class ArneyanHazardSheet extends HandlebarsApplicationMixin(ActorSheetV2)
   }
   /** Fill in the Codex's Traps table numbers for this Level (and Deadly). */
   static async #trapTable() {
+    // A Level just typed is saved first (the sheet submits on change, which may not have landed yet).
+    await this.submit?.();
     const s = this.document.system;
     await this.document.update(trapUpdate(s));
     const t = trapNumbers(s.level, s.deadly);
