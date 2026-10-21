@@ -1,0 +1,43 @@
+<div class="arn-cal">
+  <header class="arn-cal-head">
+    <a data-action="prevYear" data-tooltip="A year back"><i class="fa-solid fa-angles-left"></i></a>
+    <a data-action="prev" data-tooltip="The month before"><i class="fa-solid fa-angle-left"></i></a>
+    <div class="arn-cal-title">
+      <h2>{{monthName}} {{year}} {{suffix}}</h2>
+      <span class="arn-muted">The month of {{god}} · {{season}}</span>
+    </div>
+    <a data-action="next" data-tooltip="The month after"><i class="fa-solid fa-angle-right"></i></a>
+    <a data-action="nextYear" data-tooltip="A year on"><i class="fa-solid fa-angles-right"></i></a>
+  </header>
+
+  <table class="arn-cal-grid">
+    <thead><tr>{{#each weekdays}}<th>{{this}}</th>{{/each}}</tr></thead>
+    <tbody>
+      {{#each weeks}}<tr>
+        {{#each this}}<td class="arn-cal-day {{#if today}}today{{/if}} {{#if picked}}picked{{/if}} {{#if past}}past{{/if}} {{#if eyeWatching}}eye{{/if}}" data-action="pickDay" data-n="{{n}}">
+          <span class="arn-cal-num">{{d}}</span>
+          {{#if moon}}<i class="arn-cal-moon {{moon.cls}} {{moon.icon}}" data-tooltip="{{moon.label}}"></i>{{/if}}
+          {{#each things}}<span class="arn-cal-thing {{kind}}" data-tooltip="{{name}}"><i class="{{icon}}"></i></span>{{/each}}
+        </td>{{/each}}
+      </tr>{{/each}}
+    </tbody>
+  </table>
+
+  <section class="arn-cal-detail">
+    <h3>{{picked.text}}{{#if picked.isToday}} <span class="arn-chip strong">Today</span>{{/if}}</h3>
+    <p class="arn-muted">{{picked.season}} · Elnaris: {{picked.moon}}</p>
+    {{#if picked.eye}}<p class="arn-cal-eye{{#if picked.eye.watching}} watching{{/if}}"><i class="fa-solid fa-eye"></i> <strong>{{picked.eye.label}}.</strong> {{picked.eye.text}}</p>{{/if}}
+    {{#if picked.things.length}}<ul class="arn-cal-list">
+      {{#each picked.things}}<li class="{{kind}}"><span class="arn-muted">{{kindLabel}}{{#if yearly}}, every year{{/if}}:</span> {{name}}{{#if id}}{{#if @root.gm}} <a data-action="editNote" data-id="{{id}}" data-tooltip="Change or delete this note"><i class="fa-solid fa-pen"></i></a>{{/if}}{{/if}}</li>{{/each}}
+    </ul>{{else}}<p class="arn-muted">Nothing marked on this day.</p>{{/if}}
+  </section>
+
+  <footer class="arn-cal-foot">
+    <span class="arn-muted"><i class="fa-solid fa-hourglass-half"></i> Now: {{nowText}}</span>
+    {{#unless isNowMonth}}<a class="arn-btn" data-action="today"><i class="fa-solid fa-calendar-day"></i> Today</a>{{/unless}}
+    {{#if gm}}
+      <a class="arn-btn" data-action="addNote" data-tooltip="A note on the day picked, for everyone or the GM only"><i class="fa-solid fa-note-sticky"></i> Add note</a>
+      <a class="arn-btn" data-action="setDate" data-tooltip="Set the date and time (starts from the day picked)"><i class="fa-solid fa-calendar-check"></i> Set date</a>
+    {{/if}}
+  </footer>
+</div>

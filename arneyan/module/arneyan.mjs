@@ -31,12 +31,15 @@ import { registerGmTools } from "./gmtools.mjs";
 import { registerWorld } from "./world.mjs";
 import { registerArt } from "./art.mjs";
 import { registerImport, importDialog } from "./import.mjs";
+import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
 
 const SYS = "arneyan";
 
 Hooks.once("init", () => {
   console.log("Arneyan | Initialising The Arneyan Codex");
   CONFIG.ARNEYAN = ARNEYAN;
+  // The Tobiasian Calendar is the world's calendar (before Foundry builds game.time).
+  configureCalendar();
   game.arneyan = { ARNEYAN, openPdf, forge: openForge, transform: transformInto, revert: revertTransform, effects: Effects, browser: opts => ArneyanBrowser.open(opts), ArneyanTextEditor, party: { active: activeParty, gather: gatherParty, deploy: deployParty }, encounter: () => ArneyanEncounterBuilder.open(), encounterBudget };
 
   // Documents and data models.
@@ -85,7 +88,8 @@ Hooks.once("init", () => {
   registerWorld();
   registerArt();
   registerImport();
-  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null) });
+  registerCalendar();
+  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open() });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).
   const BaseToken = CONFIG.Token.objectClass;

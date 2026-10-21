@@ -63,7 +63,7 @@ function gameWhen() {
   const t = game.time?.worldTime ?? 0;
   try {
     const cal = game.time?.calendar;
-    const f = cal?.format?.(t);
+    const f = globalThis.CONFIG?.time?.formatters?.arneyan ? cal?.format?.(t, "arneyan") : cal?.format?.(t);
     if (typeof f === "string" && f.trim()) return f;
   } catch { /* the calendar can't format: fall back below */ }
   const day = Math.floor(t / 86400) + 1;

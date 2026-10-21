@@ -55,3 +55,39 @@
 .arneyan .arn-travel-fields label.check { display: flex; align-items: center; gap: 6px; }
 .arneyan .arn-travel-sum { margin: 8px 0; flex-wrap: wrap; }
 .arneyan .arn-travel-rows li { display: grid; grid-template-columns: 1.4fr 90px 80px 2fr; gap: 6px; align-items: center; }
+
+/* The calendar (calendar.mjs). */
+#arneyan-clock .arn-clock-cal { cursor: pointer; color: var(--arn-gold); }
+.arn-calendar-app .window-content { padding: 8px 10px; }
+.arneyan .arn-cal-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.arneyan .arn-cal-head > a { padding: 2px 6px; border-radius: 4px; cursor: pointer; color: var(--arn-accent); }
+.arneyan .arn-cal-head > a:hover { background: var(--arn-surface-2); }
+.arneyan .arn-cal-title { flex: 1; text-align: center; }
+.arneyan .arn-cal-title h2 { margin: 0; border: none; font-size: 1.35em; }
+.arneyan .arn-cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; background: transparent; }
+.arneyan .arn-cal-grid th { font-size: .78em; font-weight: 600; color: var(--arn-muted); padding: 2px 0; text-align: center; background: transparent; }
+.arneyan .arn-cal-grid tr { background: transparent; }
+.arneyan .arn-cal-day { height: 54px; vertical-align: top; padding: 3px 4px; border: 1px solid var(--arn-border); cursor: pointer; position: relative; background: var(--arn-surface); }
+.arneyan .arn-cal-day:hover { background: var(--arn-surface-2); }
+.arneyan .arn-cal-day.past { opacity: .75; }
+.arneyan .arn-cal-day.today { box-shadow: inset 0 0 0 2px var(--arn-gold); opacity: 1; }
+.arneyan .arn-cal-day.picked { background: var(--arn-surface-2); }
+.arneyan .arn-cal-day.eye { background-image: linear-gradient(135deg, rgba(60, 20, 70, .18), transparent 60%); }
+.arneyan .arn-cal-num { font-weight: 600; }
+.arneyan .arn-cal-moon { position: absolute; top: 4px; right: 4px; font-size: .8em; color: var(--arn-muted); }
+.arneyan .arn-cal-moon.full { color: var(--arn-gold); }
+.arneyan .arn-cal-thing { display: inline-block; margin-right: 3px; font-size: .8em; }
+.arneyan .arn-cal-thing.festival { color: var(--arn-gold); }
+.arneyan .arn-cal-thing.event { color: var(--arn-accent); }
+.arneyan .arn-cal-thing.note { color: var(--arn-ink); }
+.arneyan .arn-cal-detail { margin-top: 8px; }
+.arneyan .arn-cal-detail h3 { margin: 0 0 2px; border: none; }
+.arneyan .arn-cal-detail p { margin: 2px 0; }
+.arneyan .arn-cal-eye { padding: 4px 6px; border-radius: 4px; background: rgba(60, 20, 70, .12); }
+.arneyan .arn-cal-eye.watching { background: rgba(110, 20, 40, .2); }
+.arneyan .arn-cal-list { margin: 4px 0 0 1.1em; padding: 0; }
+.arneyan .arn-cal-list a { cursor: pointer; color: var(--arn-accent); }
+.arneyan .arn-cal-foot { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.arneyan .arn-cal-foot > span { flex: 1; }
+.arneyan .arn-cal-set .form-group { display: flex; align-items: center; gap: 6px; margin: 4px 0; }
+.arneyan .arn-cal-set .form-group label { flex: 0 0 90px; }

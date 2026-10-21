@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.30 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.31 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.31
+
+- **The Arneyan calendar**, in place of Simple Calendar (switch that module off). It's the Tobiasian Calendar from the Kanka wiki: twelve months of 30 days named for the Tarielian gods (Lathos to Ilmatria), a seven-day week (Moonday to Suneday) that starts again with each month, and years AC.
+  - Open it from the calendar icon on the game clock. Each day shows Elnaris's full moon, new moon and quarters (on the same days as Kanka), the festivals (the Sowing Feast, the First Harvest, the Night of Masks, Highharvestide, the Feast of the Moon and the rest), the seasons, and the wiki's dated events (the Shattering, the Planar Eclipses of 499, 506 and 513).
+  - The Dark Moon: from the date it first rose (Game Settings, "The Dark Moon first rose", 1 Lathos 504 to start with), the calendar shows its six-month cycle, Opening, Watching and Receding, and which cycle it's on. Days of a Watching month are shaded. The GM's calendar shows more about it than the players' does.
+  - The GM can **Set date** and **Add note** on any day, once or every year, shown to players or hidden from their calendar. Players see the calendar and the notes meant for them. (Hidden notes are kept in the world's settings, which a player who knows how could still read: keep real secrets in a GM journal.)
+  - **Set date** only moves the date unless **Time passes** is ticked: setting the campaign's date the first time ends nothing and burns out no torches. Ticked, game time moves on to it, as with the clock's buttons.
+  - The game clock, the downtime log and storage ledgers show the date this way ("Tyrsday, 11 Ilmatria 503 AC, 14:05").
+  - A world already in play: set today's date once with **Set date**.
 
 ## What's new in 0.10.30
 

@@ -76,7 +76,9 @@ export function formatSpan(seconds) {
 /** The in-game date and time as text (the world calendar's own format if it has one). */
 export function gameWhen(t = globalThis.game?.time?.worldTime ?? 0) {
   try {
-    const f = globalThis.game?.time?.calendar?.format?.(t);
+    const cal = globalThis.game?.time?.calendar;
+    // The Arneyan calendar's own format ("Tyrsday, 11 Ilmatria 503 AC, 14:05"), else the calendar's default.
+    const f = globalThis.CONFIG?.time?.formatters?.arneyan ? cal?.format?.(t, "arneyan") : cal?.format?.(t);
     if (typeof f === "string" && f.trim()) return f;
   } catch { /* fall back below */ }
   const day = Math.floor(t / DAY) + 1;
@@ -245,7 +247,7 @@ let clock = null;
 
 function clockHtml() {
   const gm = game.user.isGM;
-  return `<span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid fa-hourglass-half"></i> ${esc(gameWhen())}</span>
+  return `<a class="arn-clock-cal" data-calendar data-tooltip="The calendar"><i class="fa-solid fa-calendar-days"></i></a><span class="arn-clock-time" data-tooltip="Game time"><i class="fa-solid fa-hourglass-half"></i> ${esc(gameWhen())}</span>
     ${gm ? `<span class="arn-clock-steps">${STEPS.map(s => `<a data-step="${s.id}" data-tooltip="${esc(s.tip)}">${esc(s.label)}</a>`).join("")}</span>` : ""}`;
 }
 
@@ -267,6 +269,7 @@ function renderClock() {
     clock.id = "arneyan-clock";
     clock.className = "arneyan";
     clock.addEventListener("click", ev => {
+      if (ev.target.closest?.("[data-calendar]")) return game.arneyan?.calendar?.();
       const a = ev.target.closest?.("[data-step]");
       if (!a || !game.user.isGM) return;
       const step = STEPS.find(s => s.id === a.dataset.step);
@@ -318,6 +321,7 @@ export function registerWorldTime() {
     }
   });
 
+  Hooks.on("arneyanDateChanged", () => renderClock());
   Hooks.on("updateWorldTime", (worldTime, dt) => {
     renderClock();
     onWorldTime(worldTime, dt);
