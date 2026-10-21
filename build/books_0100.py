@@ -41,6 +41,8 @@ TEXT = [
     (re.compile(r"Each arrow deals \+1 bonus damage\."), "Each arrow gets your Bow Mastery bonus."),
     (re.compile(r"<li>Per-arrow bonus by level:[^<]*?use the higher\.</li>"), ""),
     (re.compile(r"each still carrying the current per-arrow bonus"), "each still carrying your Bow Mastery bonus"),
+    # Birthright Mount (books v0.10.1): the light warhorse's HP from its Hit Dice.
+    (re.compile(r"a light warhorse \(19 HP; see"), "a light warhorse (15 HP, Hit Dice 2d10+4; see"),
     # Catalogue, Magic Items: the light-shedding swords say how far.
     (re.compile(r"\+1d6 fire damage on a hit and light 20ft\."), "+1d6 fire damage on a hit, and it sheds bright light in a 20ft radius."),
     (re.compile(r"against undead, and light 15ft\."), "against undead, and it sheds bright light in a 20ft radius."),

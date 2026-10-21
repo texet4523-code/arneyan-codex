@@ -1,4 +1,4 @@
-"""The books v0.10.0 (20 October 2026), mirrored into the Rules journals (Books I, II, IV and V).
+"""The books v0.10.0 (20 October 2026) and v0.10.1 (21 October), mirrored into the Rules journals (Books I, II, IV and V).
 
 The journals were built from the v0.9.9 books. This step swaps each passage that changed in v0.10.0 for the new
 book wording, de-hyphenated and with page numbers dropped as the journals already do. Every edit names the old text
@@ -68,12 +68,11 @@ EDITS = [
      "ability) can be used out of turn: once per round unless it says otherwise, regained at the start of your turn. "
      "Anything that stops reactions (Surprised, Incapacitated) stops these. A feature that gives extra reactions says "
      "so, and those extras can only be used for that feature (the Swashbuckler's Second Flourish)."),
-    # Range and long range (the book adds this bullet after Shooting into melee).
+    # Range and long range: one merged "Range." bullet (books v0.10.1), in place of the old one.
     (B1, "Ranged Attacks",
-     "<li><strong>Shooting into melee.</strong> A ranged attack against a target engaged in melee with an ally has "
-     "Disadvantage.</li>",
-     "<li><strong>Shooting into melee.</strong> A ranged attack against a target engaged in melee with an ally has "
-     "Disadvantage.</li><li><strong>Range.</strong> Up to a weapon's listed range, attack normally. Up to twice that "
+     "<li><strong>Range.</strong> The Range listed for a weapon is how far it shoots normally. Up to twice that "
+     "distance you attack with Disadvantage; beyond that you cannot attack.</li>",
+     "<li><strong>Range.</strong> Up to a weapon's listed range, attack normally. Up to twice that "
      "range, attack with Disadvantage. Beyond it, you cannot attack. Where a weapon lists two ranges (60–200 ft), the "
      "second is its long range. Melee reach is 5ft, or 10ft with Reach.</li>"),
     # Burning stacks.
@@ -111,7 +110,7 @@ EDITS = [
     (B1, "Non-Lethal (Subdual) Damage",
      "they fall unconscious rather than dying.</li>",
      "they fall unconscious rather than dying. Subdual damage heals at 1 point per hour of rest, and all of it after a "
-     "full rest; magical healing removes as much subdual damage as the HP it restores.</li>"),
+     "full rest; magical healing removes subdual damage equal to the full amount healed, even at full HP.</li>"),
     # Light for lamps.
     (B1, "Vision & Light", "candle 5ft / +5ft; torch 20ft", "candle 5ft / +5ft; lamp 15ft / +30ft; torch 20ft"),
     (B1, "Vision & Light", "and a lantern for 6 hours per pint of oil.", "and a lamp or lantern for 6 hours per pint of oil."),

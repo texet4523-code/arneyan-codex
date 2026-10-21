@@ -47,7 +47,7 @@ Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jam
 
 ## 3. For the book chat
 
-1. **Non-lethal damage, how it heals.** The Codex doesn't say. Built: nothing clears it automatically (not healing, not rest); the GM clears or lowers the box. The creature wakes as soon as its HP is above its non-lethal total. Options to switch on later in one place (`syncSubdual` / the Non-lethal box): heal it with HP healing, or clear it on a long rest.
+1. **Non-lethal damage, how it heals.** Settled by the books v0.10.0 and v0.10.1: healing removes non-lethal damage equal to the full amount healed (even at full HP), and a full rest clears it all; the 1 point per hour of rest is left to the GM. The creature wakes as soon as its HP is above its non-lethal total (`syncSubdual`).
 2. **Non-lethal and other details.** Temporary HP soaks non-lethal damage first; resistances and immunities apply as usual. The Unconscious entry says "damage rouses" a creature knocked out by subdual damage, but the subdual rule says it is out while subdual equals or exceeds current HP. Built: the threshold wins, so more damage doesn't wake it while it's still over.
 3. **Off-hand damage** "adds no modifier": built as no attribute modifier; a magic weapon's +N still adds.
 4. **Contests and natural 20/1.** Core Resolution says a natural 20 always succeeds and a 1 always fails. Built: a natural 20 beats any non-20, a 1 loses to any non-1, both the same goes to totals, ties to the defender, an automatic failure (Paralysed) loses to everything.

@@ -54,7 +54,7 @@ assert.equal(wen.system.abilities.str.value, 18);
 assert.equal(wen.system.abilities.wis.value, 13);
 const rook = docs("pregens").find(d => d.name === "Rook Halloway");
 assert.equal(rook.system.abilities.dex.value, 18, "Rook keeps his printed Dexterity 18");
-assert.equal(rook.system.abilities.str.value, 12, "Rook's printed Strength 13 includes the moved point");
+assert.equal(rook.system.abilities.str.value, 13, "Rook: Strength 13 + the moved point = 14 (books v0.10.1)");
 
 // A creation feat's bonus moved by the 18 cap counts where it went.
 assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.con", value: "1" }, { key: "hp.level", value: "1" }], abilityChoice: { options: [], value: "", moved: "dex" } }).map(r => r.key), ["ability.dex", "hp.level"]);
@@ -91,4 +91,12 @@ assert.equal(one("kits", "Gladiator, The Pit-Forged (Fighter)")._id, "AVBy314CbB
 const cls = name => makeItem(IM.ClassData, "class", name, { levels: 3 });
 assert.equal(CB.firearmsTrained(makeActor(CharacterData, "character", {}, [cls("Fighter"), cls("Wizard")])), true);
 assert.equal(CB.firearmsTrained(makeActor(CharacterData, "character", {}, [cls("Wizard"), cls("Fighter")])), false, "Fighter levels taken later don't train you");
+// Books v0.10.1: one merged Range bullet, the full heal clears non-lethal damage, the Birthright Mount's 15 HP.
+const journals = fs.readdirSync(src("rules")).map(f => JSON.parse(fs.readFileSync(path.join(src("rules"), f), "utf8"))).filter(d => d.pages);
+const rulesText = name => journals.find(d => d.name.startsWith(name)).pages.map(p => p.text?.content ?? "").join(" ");
+const b1 = strip(rulesText("Book I:"));
+assert.equal(b1.split("Range.").length - 1, 1, "one Range bullet");
+assert.ok(b1.includes("magical healing removes subdual damage equal to the full amount healed, even at full HP"));
+for (const pack of ["class-features", "classes", "pregens"]) assert.ok(!/light warhorse \(19 HP/.test(allText(pack)), `${pack}: no 19 HP warhorse`);
+assert.ok(strip(one("class-features", "Birthright Mount").system.description).includes("light warhorse (15 HP, Hit Dice 2d10+4;"));
 console.log("OK books v0.10.0");

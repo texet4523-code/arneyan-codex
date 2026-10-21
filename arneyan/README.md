@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.28 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.29 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.29
+
+The books v0.10.1 (21 October), mirrored.
+
+- **Non-lethal damage:** the Rules journal now says what the sheet does: magical healing removes non-lethal damage equal to the full amount healed, even at full HP.
+- **Ranged Attacks** (Book I journal) has one "Range." bullet: normal to the listed range, Disadvantage to twice it, nothing beyond; the second of two listed ranges is long range; reach 5ft or 10ft.
+- **Birthright Mount:** the light warhorse is 15 HP (Hit Dice 2d10+4) in the Knight's text and on Sir Durgan Holdfast.
+- **Rook Halloway:** Strength 14, from Swift Reflexes' point moved by the starting cap (as Big Wen's Wisdom 14).
+- Characters already in a world keep their text and scores: drag Rook or Sir Durgan in again from Pregenerated Characters (or edit by hand) for the new numbers.
 
 ## What's new in 0.10.28
 

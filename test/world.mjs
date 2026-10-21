@@ -131,7 +131,7 @@ assert.ok(large.x + 2 <= 0 || large.x >= 1 || large.y + 2 <= 0 || large.y >= 1, 
 const cf = name => docs("class-features").find(d => d.name === name);
 assert.ok(strip(cf("Familiar").system.description).includes("1 HP per two Witch levels (minimum 1), AC 14"));
 assert.ok(strip(cf("Divine Mount").system.description).includes("Warhorse, Light"));
-assert.ok(strip(cf("Birthright Mount").system.description).includes("19 HP"));
+assert.ok(strip(cf("Birthright Mount").system.description).includes("15 HP, Hit Dice 2d10+4"));
 assert.ok(strip(docs("kits").find(d => d.name === "Beast Master (Ranger)").system.description).includes("HD equal to half your Ranger level (rounded up)"));
 for (const p of Object.values(C.COMPANION_PRESETS)) for (const n of p.suggest ?? []) assert.ok(byName.has(n), `${n} is in the Bestiary`);
 // Books v0.10.0: warhorses have Hit Dice (2d10+4, typically 15 HP; a Divine Mount gets the maximum, 24).
