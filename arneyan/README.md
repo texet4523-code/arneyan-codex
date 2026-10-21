@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.34 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.35 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.35
+
+- The Monster art window scrolls as a whole (its last lines were cut off), with the module list a fixed height inside it. It no longer pre-ticks token tools (Token Action HUD, Token Magic FX, token rings and the like) as art packs; ticks you saved with a scan stay as you left them.
 
 ## What's new in 0.10.34
 

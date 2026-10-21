@@ -235,7 +235,13 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
   async _prepareContext() {
     const index = readIndex();
     const chosen = new Set(index?.modules ?? []);
-    const artLike = m => /\b(tokens?|art|portraits?|bestiar\w*|monsters?|creatures?)\b|caeora|forgotten/i.test(`${m.id.replace(/[-_]/g, " ")} ${m.title}`);
+    // Looks like an art pack: tokens, portraits, a bestiary. Not token tools (a HUD, effects, rings, vision, bars).
+    const artLike = m => {
+      const t = `${m.id.replace(/[-_]/g, " ")} ${m.title}`;
+      // Packs say "Tokens"; tools are usually "Token Something" (Token Info Icons, Token Z).
+      return /\b(tokens|art|portraits?|bestiar\w*|monsters?|creatures?)\b|caeora|forgotten/i.test(t) && !/^token\s/i.test(m.title)
+        && !/\b(hud|magic|fx|rings?|vision|bars?|action|tools?|helpers?|config|animat\w*|automat\w*|variants?|tokenizer|mold|attacher)\b|tokenmagic/i.test(t);
+    };
     const mods = game.modules.contents
       .map(m => ({ id: m.id, title: m.title, checked: index?.scanned ? chosen.has(m.id) : artLike(m), suggested: artLike(m) }))
       .sort((a, b) => Number(b.suggested) - Number(a.suggested) || a.title.localeCompare(b.title));
