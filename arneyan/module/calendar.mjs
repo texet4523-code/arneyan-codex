@@ -164,9 +164,16 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     return app.render({ force: true });
   }
 
-  /** Redraw it if open (the clock moved, notes changed). */
-  static refresh() {
-    if (ArneyanCalendar.#instance?.rendered) ArneyanCalendar.#instance.render();
+  /** Redraw it if open (the clock moved, notes changed). `ifChanged`: only if the day or the part of the day did. */
+  static refresh({ ifChanged = false } = {}) {
+    const app = ArneyanCalendar.#instance;
+    if (!app?.rendered) return;
+    if (ifChanged) {
+      const w = whenOf();
+      const key = `${w.n}|${RT.partOfDay(Math.floor(w.secondOfDay / 60), RT.daylight())}`;
+      if (key === app._shownKey) return;
+    }
+    app.render();
   }
 
   static DEFAULT_OPTIONS = {
@@ -252,6 +259,12 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
 
   _onRender(context, options) {
     super._onRender?.(context, options);
+    const w = whenOf();
+    this._shownKey = `${w.n}|${RT.partOfDay(Math.floor(w.secondOfDay / 60), RT.daylight())}`;
+    // The Daylight panel stays as the GM left it across redraws.
+    const det = this.element.querySelector(".arn-cal-daylight");
+    if (det && this._dlOpen !== undefined) det.open = this._dlOpen;
+    det?.addEventListener("toggle", () => { this._dlOpen = det.open; });
     // The clock's speed, its combat hold and the scene's daylight save as soon as they change (GM).
     const on = (sel, fn) => this.element.querySelector(sel)?.addEventListener("change", ev => fn(ev.currentTarget));
     on('select[name="clockRate"]', el => game.settings.set(SYS, "clockRate", Number(el.value) || 1));
@@ -353,12 +366,17 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!got || typeof got !== "object") return;
     const day = Math.clamp(Math.round(got.day) || 1, 1, C.DAYS_IN_MONTH), month = Math.clamp(Math.round(got.month) || 1, 1, 12);
     const t = C.dayNumber(Math.max(0, Math.round(got.year) || 0), month, day) * DAY + Math.clamp(Math.round(got.hour) || 0, 0, 23) * 3600 + Math.clamp(Math.round(got.minute) || 0, 0, 59) * 60;
-    const world = game.time.worldTime ?? 0;
-    const dt = t - (world + dateOffset());
-    if (got.pass) {
-      if (dt < 0) return ui.notifications.warn("Time can't pass backwards: untick \"Time passes\" to move the date back.");
-      if (dt) await game.time.advance(dt);
-    } else if (dt) await game.settings.set(SYS, "dateOffset", t - world);
+    // Worked out once the running clock's unsaved seconds are saved, so the date lands on the time typed.
+    const warn = await RT.queued(async () => {
+      const world = game.time.worldTime ?? 0;
+      const dt = t - (world + dateOffset());
+      if (got.pass) {
+        if (dt < 0) return true;
+        if (dt) await game.time.advance(dt);
+      } else if (dt) await game.settings.set(SYS, "dateOffset", t - world);
+      return false;
+    });
+    if (warn) return ui.notifications.warn("Time can't pass backwards: untick \"Time passes\" to move the date back.");
     this.view = null;
     this.picked = null;
     this.render();
@@ -398,10 +416,12 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
 /** Move the calendar to a date, keeping the time of day, without time passing (the date offset). GM only. */
 export async function setCalendarDate({ year, month, day }) {
   if (!game.user.isGM) return;
-  const now = whenOf();
-  const world = game.time.worldTime ?? 0;
-  const t = C.dayNumber(year, month, day) * DAY + now.hour * 3600 + now.minute * 60;
-  await game.settings.set(SYS, "dateOffset", t - world);
+  await RT.queued(async () => {
+    const world = game.time.worldTime ?? 0;
+    const now = whenOf(world);
+    const t = C.dayNumber(year, month, day) * DAY + now.secondOfDay;
+    await game.settings.set(SYS, "dateOffset", t - world);
+  });
 }
 
 /** Ask for a note's text and how it repeats. Returns the note, "delete", or null. */
@@ -439,7 +459,9 @@ export function registerCalendar() {
       if (String(v ?? "").trim() && parseDate(v) === null && game.user.isGM) ui.notifications.warn(`"${v}" isn't a date the calendar can read: write it as "1 Lathos 504".`);
     }
   });
-  Hooks.on("updateWorldTime", () => ArneyanCalendar.refresh());
+  // The running clock saves every few seconds: the window redraws only when the day or the part of the day changes
+  // (its seconds run by themselves), so what the GM is typing isn't wiped.
+  Hooks.on("updateWorldTime", () => ArneyanCalendar.refresh({ ifChanged: true }));
   Hooks.on("arneyanClockChanged", () => ArneyanCalendar.refresh());
   Hooks.on("canvasReady", () => ArneyanCalendar.refresh());
   RT.registerRealtime();

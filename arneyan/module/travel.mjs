@@ -9,6 +9,7 @@
  * Members' hunger: flags.arneyan.hunger = { food, water } (days without).
  */
 import { DAY } from "./worldtime.mjs";
+import { advance } from "./realtime.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -239,7 +240,7 @@ export async function travelDay(party, members) {
   });
   await ChatMessage.create({ whisper: game.users.filter(u => u.isGM).map(u => u.id), speaker: ChatMessage.getSpeaker({ actor: party }),
     content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice-d20"></i> <span>Encounter Check, day ${day}</span></header><p>${check}.${drew}</p></div>` });
-  await game.time.advance(DAY);
+  await advance(DAY);
 }
 
 /** Fill every member's water containers (at a stream, a well, a town). */

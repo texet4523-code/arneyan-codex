@@ -8,7 +8,7 @@
  * A small clock shows the game time; the GM's buttons move it on (10 minutes, 1 hour, 8 hours for a rest, 1 day).
  */
 import { readDuration, hasLength, lengthSeconds, mergedDuration } from "./duration.mjs";
-import { liveWorldTime, clockRuns, clockLive, setClockRuns } from "./realtime.mjs";
+import { liveWorldTime, clockRuns, clockLive, setClockRuns, advance } from "./realtime.mjs";
 export { readDuration, durationData } from "./duration.mjs";
 
 const SYS = "arneyan";
@@ -154,9 +154,16 @@ function onWorldTime(worldTime, dt) {
   queue = queue.then(() => processTime(worldTime, dt));
   return queue;
 }
+// The seconds short of a whole round, carried to the next change (the running clock saves every 10 seconds).
+let roundCarry = 0;
 async function processTime(worldTime, dt) {
   try {
-    const rounds = roundsIn(dt, roundSeconds());
+    let rounds = 0;
+    if (dt > 0) {
+      const total = dt + roundCarry;
+      rounds = roundsIn(total, roundSeconds());
+      roundCarry = total - rounds * roundSeconds();
+    }
     for (const actor of allActors()) {
       if (!actor.effects?.size) continue;
       const gone = expiredEffects(actor, worldTime);
@@ -288,7 +295,7 @@ function renderClock() {
 /** Move the world clock on (GM). */
 export async function advanceTime(seconds) {
   if (!game.user.isGM) return ui.notifications.warn("Only the GM moves game time on.");
-  return game.time.advance(Number(seconds) || 0);
+  return advance(seconds);
 }
 
 /* -------------------------------------------- */

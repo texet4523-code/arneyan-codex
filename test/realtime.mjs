@@ -52,7 +52,7 @@ let a = RT.accrue(0, 1.4);
 assert.deepEqual([a.advance, Math.round(a.carry * 10) / 10], [1, 0.4]);
 a = RT.accrue(a.carry, 0.7);
 assert.equal(a.advance, 1);
-assert.equal(RT.accrue(0, 3600).advance, 30);
+assert.equal(RT.accrue(0, 3600).advance, 300, "at most 300 real seconds at once (a background tab checks once a minute)");
 assert.equal(RT.accrue(0, 2, 60).advance, 120, "a minute a second");
 assert.equal(RT.accrue(0, 5, 0).advance, 0, "speed 0 runs nothing");
 assert.equal(RT.accrue(0, -5).advance, 0);

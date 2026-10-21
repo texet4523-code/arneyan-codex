@@ -79,9 +79,10 @@ export function secondsTo(secondsOfDay, minute) {
 
 /**
  * Real seconds into game seconds, between the GM's saves: carries what's left over, never more than `cap` real
- * seconds at once (a laptop that slept doesn't jump the clock hours on).
+ * seconds at once: enough for a browser that checks a tab in the background once a minute, not so much that a laptop
+ * that slept jumps the clock hours on.
  */
-export function accrue(carry, realSeconds, rate = 1, cap = 30) {
+export function accrue(carry, realSeconds, rate = 1, cap = 300) {
   const total = (Number(carry) || 0) + Math.clamp(Number(realSeconds) || 0, 0, cap) * Math.max(0, Number(rate) || 0);
   const whole = Math.floor(total);
   return { advance: whole, carry: total - whole };
@@ -118,15 +119,39 @@ export function liveWorldTime() {
   const world = game.time?.worldTime ?? 0;
   if (!clockLive() || lastSaved.world !== world) return world;
   const since = (performance.now() - lastSaved.at) / 1000;
-  return world + Math.floor(Math.min(since, SAVE_EVERY + 5) * clockRate());
+  // Up to two minutes: the GM's tab in the background may save only once a minute.
+  return world + Math.floor(Math.min(since, 120) * clockRate());
 }
 
 /* -------------------------------------------- */
 /*  The GM's client: moving the clock on        */
 /* -------------------------------------------- */
 
-let ticker = null, carry = 0, lastTick = 0, saving = false, pending = 0;
+let ticker = null, carry = 0, lastTick = 0, pending = 0, flushing = false;
 const isClockKeeper = () => !!game.users?.activeGM?.isSelf;
+
+/**
+ * Every change this system makes to the world clock goes through here, one after another, with the seconds the
+ * running clock has counted but not yet saved folded into the same change: two changes made at once would each
+ * start from the same saved time, and one would undo the other. `fn` runs after those seconds are saved.
+ */
+let chain = Promise.resolve();
+export function queued(fn = () => null) {
+  const run = chain.then(async () => {
+    const n = pending;
+    pending = 0;
+    if (n) await game.time.advance(n);
+    return fn();
+  });
+  chain = run.catch(err => console.warn("Arneyan | game clock", err));
+  return run;
+}
+
+/** Move the world clock on by `seconds` (GM), in turn with the running clock. */
+export function advance(seconds) {
+  const n = Math.round(Number(seconds) || 0);
+  return queued(() => (n ? game.time.advance(n) : null));
+}
 
 async function tick() {
   const now = performance.now();
@@ -135,19 +160,17 @@ async function tick() {
   if (!isClockKeeper()) { carry = 0; pending = 0; return; }
   // Stopped (a combat started, the clock switched off): what had run is saved, and nothing more counts.
   if (!clockLive()) { carry = 0; if (pending) await flush(); return; }
-  const { advance, carry: left } = accrue(carry, real, clockRate());
+  const { advance: n, carry: left } = accrue(carry, real, clockRate());
   carry = left;
-  pending += advance;
-  if (pending >= SAVE_EVERY * Math.max(1, clockRate()) && !saving) await flush();
+  pending += n;
+  if (pending >= SAVE_EVERY * Math.max(1, clockRate())) await flush();
 }
 
-/** Save the time that has run (on a pause, a stop, or every few seconds). */
+/** Save the time that has run (every few seconds, on a pause or a stop). */
 async function flush() {
-  if (!pending || saving || !isClockKeeper()) return;
-  saving = true;
-  const n = pending;
-  pending = 0;
-  try { await game.time.advance(n); } catch (err) { console.warn("Arneyan | real-time clock", err); } finally { saving = false; }
+  if (!pending || flushing || !isClockKeeper()) return;
+  flushing = true;
+  try { await queued(); } finally { flushing = false; }
 }
 
 function startTicker() {
@@ -169,39 +192,55 @@ export async function moveTime(seconds) {
   if (!game.user.isGM) return;
   const s = Math.round(Number(seconds) || 0);
   if (!s) return;
-  await flush();
-  if (s > 0) return game.time.advance(s);
-  const off = Number(get("dateOffset", 0)) || 0;
-  return game.settings.set(SYS, "dateOffset", off + s);
+  if (s > 0) return advance(s);
+  return queued(() => game.settings.set(SYS, "dateOffset", (Number(get("dateOffset", 0)) || 0) + s));
 }
 
 /* -------------------------------------------- */
 /*  Daylight on the scene                       */
 /* -------------------------------------------- */
 
-/** Does this scene follow the time of day? (A scene can be left out: indoors, underground.) */
-export const sceneFollows = scene => !!scene && !scene.getFlag?.(SYS, "noDaylight");
+/** Does this scene follow the time of day? (A scene can be left out: indoors, underground.) Locked darkness is left be. */
+export const sceneFollows = scene => !!scene && !scene.getFlag?.(SYS, "noDaylight") && !scene.environment?.darknessLock;
 
-/** The scene's darkness now (either Foundry's shape). */
+/** The scene's darkness as saved (either Foundry's shape): while it animates, the prepared value lags behind. */
 function sceneDarkness(scene) {
-  return Number(scene?.environment?.darknessLevel ?? scene?.darkness ?? 0);
+  const src = scene?._source ?? {};
+  return Number(src.environment?.darknessLevel ?? src.darkness ?? scene?.environment?.darknessLevel ?? scene?.darkness ?? 0);
+}
+const darknessKey = scene => (scene.environment ? "environment.darknessLevel" : "darkness");
+
+/** The scenes daylight sets: the one the players are on, and the one the GM is viewing. */
+function daylightScenes() {
+  return [...new Set([game.scenes?.active, globalThis.canvas?.scene].filter(Boolean))];
 }
 
-let lastDark = null;
-/** Set the viewed scene's darkness for the time of day (the active GM's client). */
+/**
+ * Set the scenes' darkness for the time of day (the active GM's client). The first time daylight takes a scene over,
+ * its own darkness is kept, and put back when daylight is turned off or the scene is left out.
+ */
 export async function applyDaylight({ force = false } = {}) {
   if (!isClockKeeper()) return;
   const cfg = daylight();
-  const scene = globalThis.canvas?.scene;
-  if (!cfg.on || !sceneFollows(scene)) return;
   const { minuteOfDay } = await import("./calendar.mjs");
   const target = darknessAt(minuteOfDay(), cfg);
-  const cur = sceneDarkness(scene);
-  if (!force && Math.abs(cur - target) < 0.01 && lastDark === target) return;
-  lastDark = target;
-  if (Math.abs(cur - target) < 0.005) return;
-  const key = scene.environment ? "environment.darknessLevel" : "darkness";
-  await scene.update({ [key]: target }, { animateDarkness: Math.abs(cur - target) > 0.2 ? 3000 : 1000 }).catch(err => console.warn("Arneyan | daylight", err));
+  for (const scene of daylightScenes()) {
+    if (!cfg.on || !sceneFollows(scene)) continue;
+    const cur = sceneDarkness(scene);
+    if (!force && Math.abs(cur - target) < 0.01) continue;
+    const upd = { [darknessKey(scene)]: target };
+    if (scene.getFlag(SYS, "darknessBefore") === undefined) upd[`flags.${SYS}.darknessBefore`] = cur;
+    // A jump (the clock moved hours, a new scene) fades over a few seconds; the small steps of a running clock just apply.
+    const fade = Math.abs(cur - target) > 0.2 ? { animateDarkness: 3000 } : {};
+    await scene.update(upd, fade).catch(err => console.warn("Arneyan | daylight", err));
+  }
+}
+
+/** Put back a scene's own darkness (daylight off, or the scene left out). */
+export async function restoreDarkness(scene) {
+  const was = scene?.getFlag?.(SYS, "darknessBefore");
+  if (!scene || was === undefined || !game.user.isGM) return;
+  await scene.update({ [darknessKey(scene)]: Number(was) || 0, [`flags.${SYS}.-=darknessBefore`]: null }, { animateDarkness: 2000 }).catch(err => console.warn("Arneyan | daylight", err));
 }
 
 /* -------------------------------------------- */
@@ -213,13 +252,25 @@ export function registerRealtime() {
   game.settings.register(SYS, "clockRuns", { scope: "world", config: false, type: Boolean, default: false, onChange: () => { noteWorldTime(); refresh(); } });
   game.settings.register(SYS, "clockRate", { scope: "world", config: false, type: Number, default: 1, onChange: () => { noteWorldTime(); refresh(); } });
   game.settings.register(SYS, "clockCombatPause", { scope: "world", config: false, type: Boolean, default: true, onChange: refresh });
-  game.settings.register(SYS, "daylight", { scope: "world", config: false, type: Object, default: DAYLIGHT_DEFAULT, onChange: () => { lastDark = null; applyDaylight({ force: true }); refresh(); } });
+  game.settings.register(SYS, "daylight", { scope: "world", config: false, type: Object, default: DAYLIGHT_DEFAULT, onChange: async v => {
+    // Turned off: the scenes it had taken over get their own darkness back (the active GM's client does it).
+    if (!cleanDaylight(v).on && isClockKeeper()) for (const sc of game.scenes ?? []) if (sc.getFlag(SYS, "darknessBefore") !== undefined) await restoreDarkness(sc);
+    applyDaylight({ force: true });
+    refresh();
+  } });
   Hooks.on("updateWorldTime", () => { noteWorldTime(); applyDaylight(); });
   Hooks.on("arneyanDateChanged", () => applyDaylight());
-  Hooks.on("canvasReady", () => { lastDark = null; applyDaylight({ force: true }); });
-  Hooks.on("updateScene", (scene, changes) => { if (foundry.utils.hasProperty(changes, `flags.${SYS}.noDaylight`)) { lastDark = null; applyDaylight({ force: true }); } });
+  Hooks.on("canvasReady", () => applyDaylight({ force: true }));
+  Hooks.on("updateScene", (scene, changes) => {
+    if (foundry.utils.hasProperty(changes, "active") && changes.active) applyDaylight({ force: true });
+    if (!foundry.utils.hasProperty(changes, `flags.${SYS}.noDaylight`) || !isClockKeeper()) return;
+    if (changes.flags[SYS].noDaylight) restoreDarkness(scene);
+    else applyDaylight({ force: true });
+  });
   // A pause saves the time run so far; unpausing starts counting afresh.
   Hooks.on("pauseGame", paused => { if (paused) flush(); lastTick = performance.now(); noteWorldTime(); refresh(); });
-  for (const h of ["combatStart", "deleteCombat", "updateCombat"]) Hooks.on(h, () => { noteWorldTime(); refresh(); });
+  // A combat starting or ending holds or frees the clock.
+  for (const h of ["combatStart", "deleteCombat"]) Hooks.on(h, () => { noteWorldTime(); refresh(); });
+  Hooks.on("updateCombat", (c, changes) => { if ("started" in changes || "active" in changes) { noteWorldTime(); refresh(); } });
   Hooks.once("ready", () => { noteWorldTime(); startTicker(); });
 }
