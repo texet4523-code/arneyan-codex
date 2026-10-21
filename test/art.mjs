@@ -113,6 +113,10 @@ assert.equal(A.artFor("toString", { entries: {} }), null);
 assert.ok(A.nameKeys("Yuan-ti Pureblood").some(k => A.fileKeys("YuantiPureblood.webp").includes(k)));
 assert.ok(A.nameKeys("Will-o'-Wisp").includes(A.fileKey("WilloWisp.png")));
 assert.equal(A.fileKey("DnD_Goblin.webp"), A.artKey("Goblin"));
+// 0.10.37: free packs that put the kind first or name the weapon.
+const near5 = A.nearIndex(["dn/TP035/demon_mezzoloth.webp", "dn/TP043/vermin_monstrous_spider.webp", "dn/TP036/grimlock_handaxe.webp", "dn/TP035/demon_shadow.webp"],
+  ["Mezzoloth", "Spider", "Grimlock", "Shadow", "Shadow Demon"]);
+assert.deepEqual(Object.keys(near5).sort(), ["demon-shadow", "grimlock", "mezzoloth", "spider"], "and a shadow demon stays the Shadow Demon's");
 for (const [name, alts] of Object.entries(A.ALIASES)) assert.ok(Array.isArray(alts) && alts.length && !alts.includes(name), name);
 
 // The settings window.

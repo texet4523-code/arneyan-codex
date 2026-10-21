@@ -178,7 +178,10 @@ const VARIANT = new Set(["warrior", "scout", "rogue", "brute", "boss", "archer",
   "elder", "old", "red", "blue", "black", "white", "green", "gold", "silver", "brass", "bronze", "copper", "gray", "brown",
   "variant", "alt", "alternate", "armed", "armored", "unarmed", "sword", "axe", "bow", "spear", "shield", "staff", "club",
   "mace", "dagger", "crossbow", "halberd", "blade", "whip", "wand", "torch", "plate", "armor", "leather",
-  "robe", "cloaked", "hooded", "trained", "enraged", "angry", "angered", "feral", "roaring", "attacking"]);
+  "robe", "cloaked", "hooded", "trained", "enraged", "angry", "angered", "feral", "roaring", "attacking",
+  "handaxe", "greataxe", "greatsword", "shortsword", "longsword", "longbow", "scimitar", "flail", "hammer", "warhammer",
+  // Kinds some packs put first ("demon_mezzoloth", "vermin_monstrous_spider"): another monster's name still stays theirs.
+  "demon", "devil", "fiend", "vermin", "monstrous", "beast", "undead"]);
 export const NEAR_EXTRA = 2;
 /**
  * Every key of every Bestiary monster, as word lists, for telling a close name from another monster's: a file with

@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.36 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.37 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.37
+
+- Monster art reads a few more close names: a weapon in the name ("grimlock handaxe") or the kind put first ("demon mezzoloth", "vermin monstrous spider"), still never another Bestiary monster's art. Press **Scan** again to pick them up.
 
 ## What's new in 0.10.36
 
