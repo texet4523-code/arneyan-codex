@@ -764,8 +764,9 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arn-import-actor { flex: 0 0 auto; }
 .arneyan .arn-art textarea[name="folders"] { width: 100%; font-family: monospace; font-size: 12px; }
 .arneyan .arn-art-order-box.hidden { display: none; }
-.arneyan .arn-art-order { margin: 0; padding: 4px 8px 4px 28px; border: 1px solid var(--arn-border); border-radius: 6px; background: var(--arn-surface); }
-.arneyan .arn-art-order li { display: flex; align-items: center; gap: 6px; padding: 2px 0; }
+.arneyan .arn-art-order { margin: 0; padding: 4px 8px; border: 1px solid var(--arn-border); border-radius: 6px; background: var(--arn-surface); list-style: none; counter-reset: arn-art-order; }
+.arneyan .arn-art-order li { display: flex; align-items: center; gap: 6px; padding: 2px 0; counter-increment: arn-art-order; }
+.arneyan .arn-art-order li::before { content: counter(arn-art-order) "."; flex: 0 0 1.6em; text-align: right; color: var(--arn-accent); }
 .arneyan .arn-art-order-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .arneyan .arn-art-order .arn-muted { font-size: 11px; flex: 0 0 auto; }
 .arneyan .arn-art-order-move { display: flex; gap: 2px; flex: 0 0 auto; }

@@ -116,7 +116,7 @@ assert.equal(A.fileKey("DnD_Goblin.webp"), A.artKey("Goblin"));
 // 0.10.37: free packs that put the kind first or name the weapon.
 const near5 = A.nearIndex(["dn/TP035/demon_mezzoloth.webp", "dn/TP043/vermin_monstrous_spider.webp", "dn/TP036/grimlock_handaxe.webp", "dn/TP035/demon_shadow.webp",
   "x/undead_ogre.webp"], ["Mezzoloth", "Spider", "Grimlock", "Shadow", "Shadow Demon", "Ogre", "Ogre Zombie"]);
-assert.deepEqual(Object.keys(near5).sort(), ["demon-shadow", "grimlock", "mezzoloth"], "a shadow demon stays the Shadow Demon's; no monstrous spider for a Spider, no undead ogre for an Ogre");
+assert.deepEqual(Object.keys(near5).sort(), ["grimlock", "mezzoloth"], "a shadow demon file is the Shadow Demon's exactly, never the Shadow's; no monstrous spider for a Spider, no undead ogre for an Ogre");
 // 0.10.38: sources in priority order: the first with any art for a monster gives it, close name or not.
 const mmSrc = { key: "folder:modules/dnd-monster-manual", roots: ["modules/dnd-monster-manual"], paths: ["modules/dnd-monster-manual/assets/tokens/wolf-01.webp",
   "modules/dnd-monster-manual/assets/portraits/wolf-01.webp", "modules/dnd-monster-manual/assets/tokens/goblin-warrior.webp", "modules/dnd-monster-manual/assets/tokens/tough.webp"] };
@@ -145,10 +145,30 @@ assert.equal(A.artFor("Wolf", bs).token, "modules/pf2e-tokens-bestiaries/tokens/
 assert.equal(A.artFor("Goblin", bs).token, "modules/pf2e-tokens-bestiaries/tokens/goblin.webp");
 for (const [n, k] of [["Ogre Mage", "oni"], ["Tribal Warrior", "infantry-warrior"], ["Poisonous Snake", "snake-venomous"], ["Yuan-ti Pureblood", "infiltrator-ti-yuan"]])
   assert.ok(A.nameKeys(n).includes(k), n);
-const html2 = hbs(root)("templates/apps/art-config.hbs", { mods: [], order: [{ key: "folder:a", label: "a", count: 3 }, { key: "module:b", label: "B pack", count: 0 }], names: 3, images: 1 });
+const html2 = hbs(root)("templates/apps/art-config.hbs", { mods: [], order: [{ key: "folder:a", label: "a", count: 3, countText: "3 monsters" }, { key: "module:b", label: "B pack", count: 0 }], names: 3, images: 1 });
 assert.ok(html2.includes('data-source="folder:a"') && html2.includes("3 monsters") && html2.includes('data-action="moveUp"'));
 assert.ok(!html2.includes('arn-art-order-box hidden'));
 assert.ok(hbs(root)("templates/apps/art-config.hbs", { mods: [], order: [] }).includes("arn-art-order-box hidden"));
+// Review: a file by the very name is never a "close" match (portrait-only packs).
+bs = A.indexBySource([{ key: "a", roots: [], paths: ["a/portraits/goblin.webp", "a/portraits/goblin-warrior.webp"] }], ["Goblin"]);
+assert.equal(bs.near, 0);
+assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
+// No other name points at another Bestiary monster, except close kin given on purpose.
+{
+  const bestiary = new Set();
+  for (const f of fs.readdirSync(new URL("../packs-src/monsters/", import.meta.url))) {
+    if (!f.endsWith(".json")) continue;
+    const d = JSON.parse(fs.readFileSync(new URL(`../packs-src/monsters/${f}`, import.meta.url)));
+    if (d?.name && (d.type === "npc" || !d.type)) bestiary.add(d.name);
+  }
+  const primary = new Map([...bestiary].map(n => [A.artKey(n), n]));
+  const kin = new Set(["Abominable Yeti", "Young Remorhaz", "Grey Ooze, Psychic", "Magma Mephit", "Giant Wolf Spider", "Bat Swarm"]);
+  for (const [name, alts] of Object.entries(A.ALIASES)) for (const alt of alts) {
+    const other = primary.get(A.artKey(alt));
+    if (other && other !== name && !kin.has(name) && !/Wyrmling$/.test(name)) assert.fail(`${name}'s other name "${alt}" is the Bestiary's ${other}`);
+  }
+  assert.ok(bestiary.size > 400, "read the Bestiary");
+}
 for (const [name, alts] of Object.entries(A.ALIASES)) assert.ok(Array.isArray(alts) && alts.length && !alts.includes(name), name);
 
 // The settings window.

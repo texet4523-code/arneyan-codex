@@ -18,7 +18,7 @@
     <p class="hint">When more than one has art for a monster, the higher one's is used, even if a lower one's name fits more closely. Use the arrows, then Scan.</p>
     <ol class="arn-art-order">
       {{#each order}}
-      <li data-source="{{key}}"><span class="arn-art-order-name">{{label}}</span>{{#if count}}<span class="arn-muted">{{count}} monsters</span>{{/if}}<span class="arn-art-order-move"><button type="button" data-action="moveUp" data-tooltip="Higher: its art wins"><i class="fa-solid fa-arrow-up"></i></button><button type="button" data-action="moveDown" data-tooltip="Lower"><i class="fa-solid fa-arrow-down"></i></button></span></li>
+      <li data-source="{{key}}"><span class="arn-art-order-name">{{label}}</span>{{#if count}}<span class="arn-muted">{{countText}}</span>{{/if}}<span class="arn-art-order-move"><button type="button" data-action="moveUp" data-tooltip="Higher: its art wins"><i class="fa-solid fa-arrow-up"></i></button><button type="button" data-action="moveDown" data-tooltip="Lower"><i class="fa-solid fa-arrow-down"></i></button></span></li>
       {{/each}}
     </ol>
   </div>

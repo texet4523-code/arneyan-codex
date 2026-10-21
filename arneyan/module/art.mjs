@@ -60,7 +60,7 @@ export const ALIASES = {
   "Gnoll": ["Gnoll Hunter"], "Commoner": ["Villager", "Peasant"], "Town Guard": ["Guard", "City Guard"], "Bandit": ["Brigand", "Cutpurse"],
   "Thug": ["Brawler"], "Noble": ["Nobleman", "Noblewoman"], "Priest": ["Cleric"]
 };
-/** The 2024 Monster Manual's new names (its art is named for them), after the ones above. */
+/** Newer names some art packs use for these (a 2024 bestiary renamed them), after the ones above. */
 const ALIASES_2024 = {
   "Ogre Mage": ["Oni"], "Spy": ["Spy Master"], "Tribal Warrior": ["Warrior Infantry"], "Veteran": ["Warrior Veteran"], "Thug": ["Tough"],
   "Acolyte": ["Priest Acolyte"], "Cult Fanatic": ["Cultist Fanatic"], "Brigand Captain": ["Bandit Captain"],
@@ -70,8 +70,7 @@ const ALIASES_2024 = {
   "Lizard King": ["Lizardfolk Sovereign"], "Sahuagin Priestess": ["Sahuagin Priest"], "Lizardfolk Shaman": ["Lizardfolk Geomancer"],
   "Poisonous Snake": ["Venomous Snake"], "Poisonous Snake Swarm": ["Swarm of Venomous Snakes"], "Giant Poisonous Snake": ["Giant Venomous Snake"],
   "Yuan-ti Pureblood": ["Yuan-ti Infiltrator"], "Tyrannosaurus": ["Tyrannosaurus Rex"], "Horse, Light": ["Horse"], "Horse, Heavy": ["Horse"],
-  "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Giant Elk": ["Elk"],
-  "Giant Owl": ["Owl"], "Donkey": ["Mule"], "Toad": ["Frog"]
+  "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Toad": ["Frog"]
 };
 for (const [name, alts] of Object.entries(ALIASES_2024)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
@@ -240,7 +239,8 @@ export function nearIndex(paths, names, have = new Set(), roots = []) {
       cands = (lists[0] ?? []).map(i => files[i]).filter(f => {
         if (!want.every(x => f.w.has(x)) || otherMonster(f.w, want, all[n].own, all)) return false;
         const extra = [...f.w].filter(x => !want.includes(x));
-        return extra.length <= NEAR_EXTRA && extra.every(x => VARIANT.has(x));
+        // At least one extra word: a file by the very name is an exact match, not a close one.
+        return extra.length >= 1 && extra.length <= NEAR_EXTRA && extra.every(x => VARIANT.has(x));
       });
       if (cands.length) break;
     }
@@ -351,7 +351,7 @@ export function indexBySource(sources, names) {
     const exact = indexFrom(src.paths, keep, src.roots ?? []);
     // A monster with only a portrait by its name may still find a token by a close name here.
     const have = new Set(Object.keys(exact).filter(k => exact[k].token));
-    return { key: src.key, exact, folder: folderIndex(src.paths, names, have, src.roots ?? []), near: nearIndex(src.paths, names, have, src.roots ?? []) };
+    return { key: src.key, roots: src.roots ?? [], exact, folder: folderIndex(src.paths, names, have, src.roots ?? []), near: nearIndex(src.paths, names, have, src.roots ?? []) };
   });
   const entries = {}, by = {}, missing = [];
   let near = 0;
@@ -363,7 +363,10 @@ export function indexBySource(sources, names) {
     for (const p of per) {
       const tiers = [[keys.map(k => p.exact[k]).find(Boolean), false], [p.folder[keys[0]], true], [p.near[keys[0]], true]];
       for (const [art, close] of tiers) for (const slot of ["token", "portrait"]) {
-        if (art?.[slot] && !found[slot]) found[slot] = { path: art[slot], src: p.key, close };
+        if (!art?.[slot] || found[slot]) continue;
+        // A close name only fills a slot with art made for it (a portrait-only pack's close portrait isn't a token).
+        if (close && found[slot === "token" ? "portrait" : "token"] && ![slot, "any"].includes(artKind(art[slot], p.roots))) continue;
+        found[slot] = { path: art[slot], src: p.key, close };
       }
       if (found.token || found.portrait) break;
     }
@@ -398,12 +401,14 @@ export async function scanArt(moduleIds = [], folders = [], order = []) {
   };
   for (const f of folders) await read(sourceKey("folder", f), f, [f], f);
   for (const id of moduleIds) await read(sourceKey("module", id), `modules/${id}`, [], id);
-  const rank = k => { const i = order.indexOf(k); return i < 0 ? order.length : i; };
-  sources.sort((a, b) => rank(a.key) - rank(b.key));
+  // The order as the GM left it, for every picked source (one that couldn't be read keeps its place for next time).
+  const picked = [...folders.map(f => sourceKey("folder", f)), ...moduleIds.map(id => sourceKey("module", id))];
+  const saved = [...new Set([...order.filter(k => picked.includes(k)), ...picked])];
+  sources.sort((a, b) => saved.indexOf(a.key) - saved.indexOf(b.key));
   const names = await bestiaryNames();
   const res = indexBySource(sources, names);
   const images = sources.reduce((n, s) => n + s.paths.length, 0);
-  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, order: sources.map(s => s.key), by: res.by, scanned: Date.now(), images,
+  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, order: saved, by: res.by, scanned: Date.now(), images,
     entries: res.entries, missing: res.missing, found: names.length - res.missing.length, near: res.near });
   return { names: names.length - res.missing.length, near: res.near, missing: res.missing.length, images, empty, failed };
 }
@@ -485,7 +490,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     const current = [...(index?.folders ?? []).map(f => sourceKey("folder", f)), ...mods.filter(m => m.checked).map(m => sourceKey("module", m.id))];
     const saved = (index?.order ?? []).filter(k => current.includes(k));
     const order = [...saved, ...current.filter(k => !saved.includes(k))]
-      .map(key => ({ key, label: ArneyanArtConfig.label(key), count: index?.by?.[key] ?? 0 }));
+      .map(key => { const count = index?.by?.[key] ?? 0; return { key, label: ArneyanArtConfig.label(key), count, countText: `${count} monster${count === 1 ? "" : "s"}` }; });
     return {
       order, mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
       scanned: index?.scanned ? new Date(index.scanned).toLocaleString() : ""
@@ -510,7 +515,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
   #syncOrder() {
     const list = this.element.querySelector(".arn-art-order");
     if (!list) return;
-    const want = [...this.#folders().map(f => sourceKey("folder", f)), ...this.#chosen().map(id => sourceKey("module", id))];
+    const want = [...new Set([...this.#folders().map(f => sourceKey("folder", f)), ...this.#chosen().map(id => sourceKey("module", id))])];
     const have = [...list.querySelectorAll("li[data-source]")];
     for (const li of have) if (!want.includes(li.dataset.source)) li.remove();
     const shown = have.map(li => li.dataset.source);

@@ -5,7 +5,7 @@ Version 0.10.38 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.38
 
 - **Choose which art comes first.** Game Settings, **Monster art** has a new list, **1c. Which art comes first**, of the modules and folders you scan. Move one up with the arrows and its art is used for every monster it has art for, even where a lower one's file name fits more closely; the ones below fill the gaps. Press **Scan** after changing it. Each line shows how many monsters it gave art to.
-- Monster art knows the 2024 Monster Manual's new names: the Ogre Mage is an oni, the Thug a tough, the Tribal Warrior a warrior infantry, the Veteran a warrior veteran, the Yuan-ti Pureblood an infiltrator, the Quipper a piranha, and so on.
+- Monster art knows the newer names some art packs use: the Ogre Mage as an oni, the Thug as a tough, the Tribal Warrior as warrior infantry, the Veteran as a warrior veteran, the Yuan-ti Pureblood as an infiltrator, the Quipper as a piranha, and so on. Press **Scan** again to pick them up.
 
 ## What's new in 0.10.37
 
