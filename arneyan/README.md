@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.33 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.34 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.34
+
+- **Monster art from folders too.** Game Settings, **Monster art** now also reads folders of images in your Foundry Data, not just art modules: a token pack you downloaded as plain images. Unzip it into Data (for example `art/dnd-tokens`), add the folder (type it, or **Pick a folder**), then **Scan**. Images named after a monster ("adult blue dragon.png", "goblin.png") are matched to the Bestiary; others are left alone. Nothing is copied, so leave the folder where it is.
 
 ## What's new in 0.10.33
 

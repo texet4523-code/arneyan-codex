@@ -60,4 +60,22 @@ assert.ok(html.includes('data-action="scan"') && html.includes('data-action="app
 assert.ok(html.includes("arn-art-changed hidden"), "the 'press Scan' note starts hidden");
 assert.ok(!html.includes("—") && !/data-action="tab"/.test(html));
 assert.ok(fs.readFileSync(root + "module/arneyan.mjs", "utf8").includes("registerArt()"));
+// Folders of images in the user data (a pack downloaded as plain images): judged from inside the folder, so a folder
+// called "art" doesn't make every image in it a portrait; ".." never reads outside the data.
+assert.equal(A.cleanFolder(" /art/dnd-tokens/ "), "art/dnd-tokens");
+assert.equal(A.cleanFolder("art/../../secrets"), "");
+assert.equal(A.cleanFolder(""), "");
+assert.equal(A.cleanFolder("art/DnD%20Tokens/"), "art/DnD Tokens", "a picked folder comes encoded");
+assert.equal(A.cleanFolder("art/%2E%2E/x"), "", "an encoded .. too");
+assert.equal(A.artKind("art/DnD%20Tokens/Humanoids/goblin.png", ["art/DnD Tokens"]), "any", "a root with a space: 'Tokens' in its name doesn't count");
+assert.equal(A.artKind("art/DnD%20Tokens/Portraits/goblin.png", ["art/DnD Tokens"]), "portrait");
+assert.equal(A.artKind("art/dnd-tokens/Dragons/adult blue dragon.png", ["art/dnd-tokens"]), "any");
+assert.equal(A.artKind("art/dnd-tokens/Tokens/goblin.png", ["art/dnd-tokens"]), "token");
+const folderIdx = A.indexFrom(["art/dnd-tokens/Dragons/adult blue dragon.png", "art/dnd-tokens/Dragons/black dragon menace.png", "art/dnd-tokens/Goblinoids/goblin.png"],
+  new Set([...A.nameKeys("Blue Dragon, Adult"), ...A.nameKeys("Goblin")]), ["art/dnd-tokens"]);
+assert.equal(A.artFor("Blue Dragon, Adult", { entries: folderIdx })?.token, "art/dnd-tokens/Dragons/adult blue dragon.png");
+assert.equal(A.artFor("Goblin", { entries: folderIdx })?.portrait, "art/dnd-tokens/Goblinoids/goblin.png");
+assert.equal(Object.keys(folderIdx).length, 2, "a descriptive name (black dragon menace) matches nothing");
+const cfgHtml = hbs(root)("templates/apps/art-config.hbs", { mods: [], folders: "art/dnd-tokens", auto: false, names: 0, images: 0 });
+assert.ok(cfgHtml.includes('name="folders"') && cfgHtml.includes("art/dnd-tokens") && cfgHtml.includes('data-action="pickFolder"'));
 console.log("OK monster art");

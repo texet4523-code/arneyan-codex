@@ -50,9 +50,18 @@ export function nameKeys(name) {
 /** The best key for a name (tests and callers that want one). */
 export const artKey = name => nameKeys(name)[0] ?? "";
 
-/** Is this image a token (top-down, round) or a portrait (full art)? Judged from inside the module's folder only. */
-export function artKind(path) {
-  const p = String(path).toLowerCase().replace(/^modules\/[^/]+\//, "");
+/** A path or folder name as typed (browse paths come URL-encoded). */
+const decoded = s => { try { return decodeURIComponent(String(s ?? "")); } catch { return String(s ?? ""); } };
+
+/**
+ * Is this image a token (top-down, round) or a portrait (full art)? Judged from inside the module's folder, or the
+ * scanned folder (`roots`), only: "art/dnd-tokens" mustn't make everything in it a portrait.
+ */
+export function artKind(path, roots = []) {
+  // Browsed paths come URL-encoded ("DnD%20Tokens"), typed folders don't: both sides decoded before comparing.
+  let p = decoded(path).toLowerCase();
+  const root = roots.map(r => `${decoded(r).toLowerCase().replace(/\/+$/, "")}/`).filter(r => p.startsWith(r)).sort((a, b) => b.length - a.length)[0];
+  p = root ? p.slice(root.length) : p.replace(/^modules\/[^/]+\//, "");
   if (/token|topdown|(^|[/_-])tok([/_.-]|$)/.test(p)) return "token";
   if (/portrait|(^|[/_-])art([/_.-]|$)|fullart|(^|[/_-])full([/_.-]|$)|(^|[/_-])bust([/_.-]|$)|avatar|(^|\/)(actors?|characters?)\//.test(p)) return "portrait";
   return "any";
@@ -62,14 +71,14 @@ export function artKind(path) {
  * The index from a list of image paths: { key: { token, portrait } }. For each slot an image marked for it beats one
  * that could be either; then the shortest file name wins ("ogre.webp" over "ogre-2.webp"). `keep`: only these keys.
  */
-export function indexFrom(paths, keep = null) {
+export function indexFrom(paths, keep = null, roots = []) {
   const best = {};
   const rankFor = (slot, kind) => (kind === slot ? 2 : kind === "any" ? 1 : 0);
   for (const p of paths) {
     if (!IMAGE.test(p)) continue;
     const key = fileKey(p);
     if (!key || (keep && !keep.has(key))) continue;
-    const kind = artKind(p);
+    const kind = artKind(p, roots);
     const e = (best[key] ??= {});
     for (const slot of ["token", "portrait"]) {
       const r = rankFor(slot, kind);
@@ -129,13 +138,32 @@ async function bestiaryKeys() {
   return keys;
 }
 
+/** A folder in the user data as typed or picked ("art/dnd-tokens"), or "" if it isn't one the scan may read. */
+export function cleanFolder(f) {
+  let s = String(f ?? "").trim();
+  try { s = decodeURIComponent(s); } catch { /* as typed */ }
+  s = s.replace(/\\/g, "/").replace(/^\/+|\/+$/g, "");
+  return !s || s.split("/").some(part => part === ".." || part === ".") ? "" : s;
+}
+
 /**
- * Scan the chosen art modules and keep the index (GM). Returns { names, images, empty: [module ids with no images],
- * failed: [ids that couldn't be read] }.
+ * Scan the chosen art modules, and folders in the user data (a token pack downloaded as images), and keep the index
+ * (GM). Returns { names, images, empty: [module ids or folders with no images], failed: [ones that couldn't be read] }.
  */
-export async function scanArt(moduleIds = []) {
+export async function scanArt(moduleIds = [], folders = []) {
   if (!game.user.isGM) return null;
   const paths = [], empty = [], failed = [];
+  folders = [...new Set(folders.map(cleanFolder).filter(Boolean))];
+  for (const f of folders) {
+    try {
+      const found = await imagesUnder(f);
+      if (!found.length) empty.push(f);
+      paths.push(...found);
+    } catch (err) {
+      console.warn(`Arneyan | art scan: ${f}`, err);
+      failed.push(f);
+    }
+  }
   for (const id of moduleIds) {
     if (!game.modules.get(id)) continue;
     try {
@@ -147,8 +175,8 @@ export async function scanArt(moduleIds = []) {
       failed.push(id);
     }
   }
-  const entries = indexFrom(paths, await bestiaryKeys());
-  await game.settings.set(SYS, "artIndex", { modules: moduleIds, scanned: Date.now(), images: paths.length, entries });
+  const entries = indexFrom(paths, await bestiaryKeys(), folders);
+  await game.settings.set(SYS, "artIndex", { modules: moduleIds, folders, scanned: Date.now(), images: paths.length, entries });
   return { names: Object.keys(entries).length, images: paths.length, empty, failed };
 }
 
@@ -199,8 +227,8 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     id: "arneyan-art-config",
     classes: ["arneyan", "arn-art-config"],
     window: { title: "Monster art from art packs", icon: "fa-solid fa-images", resizable: true },
-    position: { width: 560, height: 640 },
-    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply }
+    position: { width: 560, height: 760 },
+    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply, pickFolder: ArneyanArtConfig.#onPickFolder }
   };
   static PARTS = { main: { template: `systems/${SYS}/templates/apps/art-config.hbs`, scrollable: [".arn-art-mods"] } };
 
@@ -212,7 +240,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
       .map(m => ({ id: m.id, title: m.title, checked: index?.scanned ? chosen.has(m.id) : artLike(m), suggested: artLike(m) }))
       .sort((a, b) => Number(b.suggested) - Number(a.suggested) || a.title.localeCompare(b.title));
     return {
-      mods, auto: auto(), names: Object.keys(index?.entries ?? {}).length, images: index?.images ?? 0,
+      mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: Object.keys(index?.entries ?? {}).length, images: index?.images ?? 0,
       scanned: index?.scanned ? new Date(index.scanned).toLocaleString() : ""
     };
   }
@@ -225,21 +253,45 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
       ui.notifications.info(ev.currentTarget.checked ? "New monsters from the Bestiary get matched art." : "New monsters keep the Bestiary's icons.");
     });
     const note = this.element.querySelector(".arn-art-changed");
-    for (const box of this.element.querySelectorAll('input[name="mod"]')) box.addEventListener("change", () => note?.classList.remove("hidden"));
+    for (const box of this.element.querySelectorAll('input[name="mod"], textarea[name="folders"]')) box.addEventListener("change", () => note?.classList.remove("hidden"));
   }
 
   #chosen() {
     return [...this.element.querySelectorAll('input[name="mod"]:checked')].map(i => i.value);
   }
 
+  #folders() {
+    return String(this.element.querySelector('textarea[name="folders"]')?.value ?? "").split(/\n+/).map(cleanFolder).filter(Boolean);
+  }
+
+  /** Pick a folder in the user data and add it to the list. */
+  static #onPickFolder() {
+    const FP = foundry.applications.apps.FilePicker.implementation;
+    const first = this.#folders()[0];
+    new FP({
+      type: "folder", activeSource: "data", ...(first ? { current: first } : {}),
+      callback: (path, picker) => {
+        if (picker?.activeSource && picker.activeSource !== "data") return ui.notifications.warn("Pick a folder under User Data.");
+        const f = cleanFolder(path);
+        if (!f) return ui.notifications.warn("Pick a folder inside Data, not Data itself.");
+        // Looked up now: the window may have redrawn while the picker was open.
+        const box = this.element?.querySelector('textarea[name="folders"]');
+        if (!box) return;
+        const list = box.value.split(/\n+/).map(cleanFolder).filter(Boolean);
+        if (!list.includes(f)) box.value = [...list, f].join("\n");
+        this.element.querySelector(".arn-art-changed")?.classList.remove("hidden");
+      }
+    }).render(true);
+  }
+
   static async #onScan(event, target) {
     target.disabled = true;
     try {
       ui.notifications.info("Scanning the art packs. Big packs take a minute.");
-      const res = await scanArt(this.#chosen());
+      const res = await scanArt(this.#chosen(), this.#folders());
       ui.notifications.info(`Found art for ${res?.names ?? 0} Bestiary monster${res?.names === 1 ? "" : "s"} (${res?.images ?? 0} images looked at).`);
       for (const id of res?.empty ?? []) ui.notifications.warn(`No images found in ${game.modules.get(id)?.title ?? id}.`);
-      for (const id of res?.failed ?? []) ui.notifications.error(`Couldn't read ${game.modules.get(id)?.title ?? id}'s folder (the console has the error).`);
+      for (const id of res?.failed ?? []) ui.notifications.error(`Couldn't read ${game.modules.get(id)?.title ?? id} (the console has the error).`);
     } catch (err) {
       console.error("Arneyan | art scan", err);
       ui.notifications.error("The scan failed (the console has the error).");
@@ -264,7 +316,7 @@ export function registerArt() {
   game.settings.registerMenu(SYS, "artConfig", {
     name: "Monster art from art packs",
     label: "Monster art",
-    hint: "Use token art and portraits from art modules you have installed, matched to Bestiary monsters by name. Nothing is copied.",
+    hint: "Use token art and portraits from art modules you have installed, or folders of images in your Data, matched to Bestiary monsters by name. Nothing is copied.",
     icon: "fa-solid fa-images",
     type: ArneyanArtConfig,
     restricted: true

@@ -1,5 +1,5 @@
 <div class="arn-art">
-  <p>Use the token art and portraits from art modules you have installed (a token pack, a bestiary or adventure module with creature art), matched to the Bestiary's monsters by name. Nothing is copied: tokens point at the images where the module keeps them, so keep the module installed (it can stay switched off). Art you set by hand is never replaced.</p>
+  <p>Use the token art and portraits from art modules you have installed (a token pack, a bestiary or adventure module with creature art), or folders of images in your Data, matched to the Bestiary's monsters by name. Nothing is copied: tokens point at the images where they are, so keep the module installed (it can stay switched off) and the folders where they are. Art you set by hand is never replaced.</p>
 
   <h3>1. Art modules to use</h3>
   <p class="hint">Ticked to start with: the ones that look like art packs. Scan uses the ticks as they are.</p>
@@ -8,10 +8,15 @@
     <label class="arn-art-mod"><input type="checkbox" name="mod" value="{{id}}" {{#if checked}}checked{{/if}}> {{title}} <span class="arn-muted">{{id}}</span></label>
     {{/each}}
   </div>
+  <h3>1b. Folders in your Data (optional)</h3>
+  <p class="hint">A token pack you downloaded as plain images rather than a module: unzip it into your Foundry Data folder (for example <code>art/dnd-tokens</code>) and add it here, one folder per line.</p>
+  <textarea name="folders" rows="3" placeholder="art/dnd-tokens">{{folders}}</textarea>
+  <p><button type="button" data-action="pickFolder"><i class="fa-solid fa-folder-open"></i> Pick a folder</button></p>
+
   <p>
     <button type="button" data-action="scan"><i class="fa-solid fa-magnifying-glass"></i> Scan</button>
     {{#if names}}<span class="arn-muted">Art for {{names}} Bestiary monsters ({{images}} images looked at){{#if scanned}}, scanned {{scanned}}{{/if}}.</span>{{else}}<span class="arn-muted">Not scanned yet.</span>{{/if}}
-    <span class="arn-art-changed hidden arn-bad">Ticks changed: press Scan to use them.</span>
+    <span class="arn-art-changed hidden arn-bad">Changed: press Scan to use the new list.</span>
   </p>
 
   <h3>2. Use it</h3>
