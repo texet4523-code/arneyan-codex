@@ -666,7 +666,15 @@ async function importNpcStats(actor, plan, notes) {
     });
     attacks.push(d);
   }
-  if (attacks.length) await actor.createEmbeddedDocuments("Item", attacks, quiet());
+  // An attack the base monster already has (the Ogre's Greatclub) takes the stat block's numbers instead of coming twice.
+  const updates = [], creates = [];
+  for (const d of attacks) {
+    const have = actor.items.find(i => i.type === "weapon" && norm(i.name) === norm(d.name) && !updates.some(u => u._id === i.id));
+    if (have) updates.push({ _id: have.id, system: foundry.utils.mergeObject(have.toObject().system, d.system, { inplace: false }) });
+    else creates.push(d);
+  }
+  if (updates.length) await actor.updateEmbeddedDocuments("Item", updates, quiet());
+  if (creates.length) await actor.createEmbeddedDocuments("Item", creates, quiet());
 }
 
 /* -------------------------------------------- */
