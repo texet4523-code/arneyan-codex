@@ -340,8 +340,8 @@ export function cleanFolder(f) {
 export const sourceKey = (kind, id) => `${kind}:${id}`;
 
 /**
- * The art for each monster, from sources in priority order: each of the token and the portrait comes from the first
- * source with one (its file by the name or another name the monster goes by, then a folder named after it, then a close
+ * The art for each monster, from sources in priority order: the first source with any art for a monster gives its token
+ * and portrait (its file by the name or another name the monster goes by, then a folder named after it, then a close
  * name), even when a later source has a closer name. `sources`: [{ key, paths, roots }], first wins. Returns { entries, near, missing, by }
  * with entries under each monster's own key and `by` the number of monsters each source gave.
  */
@@ -357,14 +357,15 @@ export function indexBySource(sources, names) {
   let near = 0;
   for (const name of names) {
     const keys = nameKeys(name);
-    // Each slot from the first source (and within it: by name, then folder, then close name) that has it.
+    // Both slots from the first source with any art for it (within it: by name, then folder, then close name), so a
+    // monster's token and portrait match; with only one, that one serves for both.
     const found = {};
     for (const p of per) {
       const tiers = [[keys.map(k => p.exact[k]).find(Boolean), false], [p.folder[keys[0]], true], [p.near[keys[0]], true]];
       for (const [art, close] of tiers) for (const slot of ["token", "portrait"]) {
         if (art?.[slot] && !found[slot]) found[slot] = { path: art[slot], src: p.key, close };
       }
-      if (found.token && found.portrait) break;
+      if (found.token || found.portrait) break;
     }
     const lead = found.token ?? found.portrait;
     if (!lead) { missing.push(name); continue; }

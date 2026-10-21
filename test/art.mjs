@@ -135,9 +135,11 @@ assert.equal(bs.near, 1);
 // A source with only a portrait by the name and a token by a close name gives both; a later source isn't asked.
 bs = A.indexBySource([{ key: "mm", roots: [], paths: ["mm/portraits/goblin.webp", "mm/tokens/goblin-warrior.webp"] }, pfSrc], ["Goblin"]);
 assert.deepEqual(A.artFor("Goblin", bs), { token: "mm/tokens/goblin-warrior.webp", portrait: "mm/portraits/goblin.webp", near: true });
-// A token from the first, a portrait from the next when the first has none.
+// Token and portrait from one source: a later one doesn't add a portrait in another style.
 bs = A.indexBySource([pfSrc, { key: "mm", roots: [], paths: ["mm/portraits/ogre.webp"] }], ["Ogre"]);
-assert.deepEqual(A.artFor("Ogre", bs), { token: "modules/pf2e-tokens-bestiaries/tokens/ogre.webp", portrait: "mm/portraits/ogre.webp" });
+assert.deepEqual(A.artFor("Ogre", bs), { token: "modules/pf2e-tokens-bestiaries/tokens/ogre.webp" });
+assert.deepEqual(A.artUpdate({ name: "Ogre", img: "icons/svg/mystery-man.svg", prototypeToken: { texture: { src: "" } } }, bs),
+  { img: "modules/pf2e-tokens-bestiaries/tokens/ogre.webp", "prototypeToken.texture.src": "modules/pf2e-tokens-bestiaries/tokens/ogre.webp" });
 bs = A.indexBySource([pfSrc, mmSrc], four);
 assert.equal(A.artFor("Wolf", bs).token, "modules/pf2e-tokens-bestiaries/tokens/wolf.webp", "the other way round");
 assert.equal(A.artFor("Goblin", bs).token, "modules/pf2e-tokens-bestiaries/tokens/goblin.webp");
