@@ -162,7 +162,7 @@ assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
     if (d?.name && (d.type === "npc" || !d.type)) bestiary.add(d.name);
   }
   const primary = new Map([...bestiary].map(n => [A.artKey(n), n]));
-  const kin = new Set(["Abominable Yeti", "Young Remorhaz", "Grey Ooze, Psychic", "Magma Mephit", "Giant Wolf Spider", "Bat Swarm"]);
+  const kin = new Set(["Abominable Yeti", "Young Remorhaz", "Grey Ooze, Psychic", "Magma Mephit", "Giant Wolf Spider", "Bat Swarm", "Donkey", "Giant Elk", "Giant Owl", "Grick Alpha"]);
   for (const [name, alts] of Object.entries(A.ALIASES)) for (const alt of alts) {
     const other = primary.get(A.artKey(alt));
     if (other && other !== name && !kin.has(name) && !/Wyrmling$/.test(name)) assert.fail(`${name}'s other name "${alt}" is the Bestiary's ${other}`);

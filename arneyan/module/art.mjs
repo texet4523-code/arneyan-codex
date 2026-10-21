@@ -72,7 +72,16 @@ const ALIASES_2024 = {
   "Yuan-ti Pureblood": ["Yuan-ti Infiltrator"], "Tyrannosaurus": ["Tyrannosaurus Rex"], "Horse, Light": ["Horse"], "Horse, Heavy": ["Horse"],
   "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Toad": ["Frog"], "Thri-kreen": ["Thri-kreen Marauder"]
 };
-for (const [name, alts] of Object.entries(ALIASES_2024)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
+/** Stand-ins for monsters no pack has art for by any name: the nearest kin in common packs (after their own names). */
+const STAND_INS = {
+  "Allip": ["Pale Ghostform"], "Apparition": ["Geist"], "Haunt": ["Spectral"], "Crypt Thing": ["Crypt Ghost"],
+  "Skull Lord": ["Armored Undead General"], "Bone Golem": ["Fossil Golem"], "Green Slime": ["Verdurous Ooze"],
+  "Beetle Swarm": ["Cockroach Swarm"], "Bugbear Chief": ["Bugbear Stalker", "Bugbear Tormentor"], "Drow Mage": ["Drow Caster"],
+  "Orc Eye-Priest": ["Orc Mage"], "Orog": ["Orc Berserker"], "Ox": ["Bison"], "Sea Horse": ["Giant Seahorse"],
+  "Star Spawn Grue": ["Abberant Prowler"], "Star Spawn Hulk": ["Far Realm Intruder"],
+  "Donkey": ["Mule"], "Giant Elk": ["Elk"], "Giant Owl": ["Owl"], "Grick Alpha": ["Grick"]
+};
+for (const extra of [ALIASES_2024, STAND_INS]) for (const [name, alts] of Object.entries(extra)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
 /** A word as matched: singular ("goblins" and "goblin" read the same), UK and US spellings the same. */
 function stem(w) {
