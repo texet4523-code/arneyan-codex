@@ -241,6 +241,17 @@ assert.equal(eb.total, 4); assert.equal(eb.label, "Hard");
 render("templates/apps/encounter.hbs", { b: eb, party: [{ name: "Hero", img: "", level: 5 }], foes: [{ i: 0, name: "Dragon", img: "", level: 5, solo: true, count: 1, cost: "1 × party" }], pct: 50 });
 // Fractional Levels: ½ costs as Level -1, ¼ as Level -3.
 assert.equal(creatureCost(0, 1, "½"), 0.5); assert.equal(creatureCost(0, 1, "¼"), 0.25); assert.equal(creatureCost(0, 3, "½"), 0.25);
+// Far below (M&T p.3): 6 or more Levels under the party costs nothing and is never part of a crowd. The book's
+// example: three goblins (¼, so Level −3) against a 12th-level character cost 0, not 1¼.
+assert.equal(creatureCost(6, 12), 0, "6 below: free"); assert.equal(creatureCost(7, 12), 0.25, "5 below: ¼");
+assert.equal(creatureCost(0, 3, "¼"), 0, "Level ¼ counts as −3: 6 below a 3rd-level party");
+eb = encounterBudget([12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }]);
+assert.equal(eb.total, 0); assert.ok(eb.warnings.some(w => w.includes("no cost")));
+assert.equal(eb.label, "Easy (all far below)"); assert.equal(eb.tier, "easy");
+assert.equal(encounterBudget([12], []).label, "No foes");
+assert.ok(encounterBudget([12], [{ name: "Wyrmling", level: 1, solo: true, count: 1 }]).warnings.some(w => w.includes("no cost")), "a solo far below is free too");
+eb = encounterBudget([12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }, { name: "Ogre", level: 12, count: 2 }]);
+assert.equal(eb.total, 3, "the goblins don't make a crowd: only the second ogre doubles");
 // A real monster from the pack: data model, traits, spell DC and every sheet tab.
 const mdir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const lichDoc = JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith("actors_Lich_"))));
@@ -719,3 +730,5 @@ await import("./books0100.mjs");
 await import("./import.mjs");
 // 0.10.31 The Arneyan calendar (test/calendar.mjs runs on its own too).
 await import("./calendar.mjs");
+// 0.10.32 The calendar kept in step with Kanka (test/kanka.mjs runs on its own too).
+await import("./kanka.mjs");

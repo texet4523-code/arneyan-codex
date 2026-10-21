@@ -7,6 +7,7 @@
  * it. The window opens from the clock (the calendar icon) or game.arneyan.calendar().
  */
 import * as C from "./calendar-data.mjs";
+import { registerKanka, kankaDialog, kankaEvents } from "./kanka.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -153,6 +154,7 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
       pickDay: ArneyanCalendar.#pickDay,
       setDate: ArneyanCalendar.#setDate,
       addNote: ArneyanCalendar.#addNote,
+      kanka: ArneyanCalendar.#kanka,
       editNote: ArneyanCalendar.#editNote
     }
   };
@@ -170,18 +172,21 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     this.view = view;
     const gm = game.user.isGM;
     const notes = calendarNotes();
+    // The events pulled from Kanka, once the GM has; until then the ones the calendar came with.
+    const events = kankaEvents();
     const start = eyeStart();
     const first = C.dayNumber(view.year, view.month, 1);
     const days = [];
     for (let d = 1; d <= C.DAYS_IN_MONTH; d++) {
       const n = first + d - 1;
       const moon = C.elnaris(n);
-      const things = C.onDay(view.year, view.month, d, { notes, gm });
+      const things = C.onDay(view.year, view.month, d, { notes, gm, events });
       const eye = C.eye(n, start);
       days.push({
         d, n, today: n === now.n, picked: n === this.picked, past: n < now.n,
         moon: moon.full || moon.new || moon.quarter ? { icon: MOON_ICON[moon.index], label: `Elnaris: ${moon.phase}`, cls: moon.full ? "full" : moon.new ? "new" : "quarter" } : null,
-        things: things.map(t => ({ ...t, icon: { festival: "fa-solid fa-star", event: "fa-solid fa-bookmark", note: t.gmOnly ? "fa-solid fa-eye-slash" : "fa-solid fa-note-sticky" }[t.kind] })),
+        // Anything hidden from players shows as such on the GM's calendar.
+        things: things.map(t => ({ ...t, icon: t.gmOnly ? "fa-solid fa-eye-slash" : { festival: "fa-solid fa-star", event: "fa-solid fa-bookmark", note: "fa-solid fa-note-sticky" }[t.kind] })),
         eyeWatching: !!eye?.watching
       });
     }
@@ -190,7 +195,7 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     for (let i = 0; i < days.length; i += C.WEEKDAYS.length) weeks.push(days.slice(i, i + C.WEEKDAYS.length));
     const pickedN = this.picked ?? now.n;
     const pd = C.dateOf(pickedN);
-    const pickedThings = C.onDay(pd.year, pd.month, pd.day, { notes, gm });
+    const pickedThings = C.onDay(pd.year, pd.month, pd.day, { notes, gm, events });
     const moon = C.elnaris(pickedN);
     const eye = C.eye(pickedN, start);
     return {
@@ -200,7 +205,7 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
       nowText: whenText(), isNowMonth: view.year === now.year && view.month === now.month,
       picked: {
         n: pickedN, text: C.dateText(pd), season: C.seasonOf(pd.month, pd.day), moon: moon.phase, isToday: pickedN === now.n,
-        things: pickedThings.map(t => ({ ...t, kindLabel: { festival: "Festival", event: "Event", note: t.gmOnly ? "GM note" : "Note" }[t.kind] })),
+        things: pickedThings.map(t => ({ ...t, kindLabel: `${t.kind === "festival" && t.every === "month" ? "Every month" : { festival: "Every year", event: "Event", note: "Note" }[t.kind]}${t.gmOnly ? " (hidden from players)" : ""}` })),
         // Most people call it the Dark Moon; its true name is the GM's to give out.
         eye: eye ? { ...eye, label: gm ? `Tharizdun's Eye: ${eye.phase} (cycle ${eye.cycle})` : `The Dark Moon: ${eye.phase}` } : null
       },
@@ -254,6 +259,13 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
+  /** GM: the Kanka window (pull the wiki's events and date, send this date to Kanka). */
+  static async #kanka() {
+    await kankaDialog({ today: () => whenOf(), setToday: d => setCalendarDate(d) });
+    this.view = null;
+    this.render();
+  }
+
   /** GM: a note on the picked day (yearly or once; for everyone or the GM only). */
   static async #addNote() {
     if (!game.user.isGM) return;
@@ -276,6 +288,15 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     else notes[i] = { ...notes[i], ...note };
     await saveNotes(notes);
   }
+}
+
+/** Move the calendar to a date, keeping the time of day, without time passing (the date offset). GM only. */
+export async function setCalendarDate({ year, month, day }) {
+  if (!game.user.isGM) return;
+  const now = whenOf();
+  const world = game.time.worldTime ?? 0;
+  const t = C.dayNumber(year, month, day) * DAY + now.hour * 3600 + now.minute * 60;
+  await game.settings.set(SYS, "dateOffset", t - world);
 }
 
 /** Ask for a note's text and how it repeats. Returns the note, "delete", or null. */
@@ -314,4 +335,5 @@ export function registerCalendar() {
     }
   });
   Hooks.on("updateWorldTime", () => ArneyanCalendar.refresh());
+  registerKanka({ today: () => whenOf(), refresh: () => ArneyanCalendar.refresh() });
 }

@@ -134,14 +134,33 @@ export function eye(n, start) {
 /*  What's on a day                             */
 /* -------------------------------------------- */
 
+/** Whether an event (one pulled from Kanka) falls on a date: once, or every year or month from its start, for its length. */
+export function eventOn(e, year, month, day) {
+  const len = Math.max(1, Number(e.length) || 1);
+  const start = dayNumber(e.year ?? 0, e.month ?? 1, e.day ?? 1);
+  const n = dayNumber(year, month, day);
+  if (n < start || (e.until != null && year > e.until)) return false;
+  const period = e.every === "year" ? DAYS_IN_YEAR : e.every === "month" ? DAYS_IN_MONTH : 0;
+  const since = n - start;
+  return (period ? since % period : since) < len;
+}
+
 /**
  * Festivals, events and notes on a date. `notes`: the GM's own ({ year, month, day, text, yearly, gmOnly, id }).
  * `gm`: include GM-only notes.
  */
-export function onDay(year, month, day, { notes = [], gm = false } = {}) {
+export function onDay(year, month, day, { notes = [], gm = false, events = null } = {}) {
   const out = [];
-  for (const f of FESTIVALS) if (f.month === month && f.day === day && (!f.from || year >= f.from)) out.push({ kind: "festival", name: f.name });
-  for (const e of EVENTS) if (e.year === year && e.month === month && e.day === day) out.push({ kind: "event", name: e.name });
+  if (Array.isArray(events)) {
+    // Pulled from Kanka (kanka.mjs): { name, year, month, day, every: "year" | "month" | "", until, length, gmOnly }.
+    for (const e of events) {
+      if (e.gmOnly && !gm) continue;
+      if (eventOn(e, year, month, day)) out.push({ kind: e.every ? "festival" : "event", every: e.every || "", name: e.name, gmOnly: !!e.gmOnly });
+    }
+  } else {
+    for (const f of FESTIVALS) if (f.month === month && f.day === day && (!f.from || year >= f.from)) out.push({ kind: "festival", name: f.name });
+    for (const e of EVENTS) if (e.year === year && e.month === month && e.day === day) out.push({ kind: "event", name: e.name });
+  }
   for (const n of notes) {
     if (n.gmOnly && !gm) continue;
     if (n.month === month && n.day === day && (n.yearly ? year >= (n.year ?? 0) : n.year === year)) out.push({ kind: "note", name: n.text, id: n.id, gmOnly: !!n.gmOnly, yearly: !!n.yearly });
