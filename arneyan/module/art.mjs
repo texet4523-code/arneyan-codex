@@ -70,7 +70,7 @@ const ALIASES_2024 = {
   "Lizard King": ["Lizardfolk Sovereign"], "Sahuagin Priestess": ["Sahuagin Priest"], "Lizardfolk Shaman": ["Lizardfolk Geomancer"],
   "Poisonous Snake": ["Venomous Snake"], "Poisonous Snake Swarm": ["Swarm of Venomous Snakes"], "Giant Poisonous Snake": ["Giant Venomous Snake"],
   "Yuan-ti Pureblood": ["Yuan-ti Infiltrator"], "Tyrannosaurus": ["Tyrannosaurus Rex"], "Horse, Light": ["Horse"], "Horse, Heavy": ["Horse"],
-  "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Toad": ["Frog"]
+  "Warhorse, Light": ["Warhorse"], "Warhorse, Heavy": ["Warhorse"], "Sphinx": ["Sphinx of Valor"], "Toad": ["Frog"], "Thri-kreen": ["Thri-kreen Marauder"]
 };
 for (const [name, alts] of Object.entries(ALIASES_2024)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
