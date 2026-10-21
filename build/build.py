@@ -40,6 +40,7 @@ print('books v0.10.4:', __import__('books_0104').build())
 _pg = build_pregens.build()
 print('pregens:', _pg['made'], 'made;', len(_pg['missing']), 'not in a compendium:', '; '.join(_pg['missing']))
 print('roll tables:', __import__('build_tables').build())
+print('wild shape forms:', __import__('build_wild_forms').build())
 
 # Icons (storage places' default art too)
 for glyph in ["locked-chest", "bank", "house", "galleon", "locked-box", "wooden-crate"]:

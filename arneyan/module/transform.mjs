@@ -10,6 +10,7 @@
  * token back where the form stood. The original is never altered, so its HP is what it had when it changed.
  */
 import { ARNEYAN } from "./config.mjs";
+import { WILD_FORMS } from "./wild-forms.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -100,7 +101,15 @@ export function formData(original, form, o = {}) {
     if (data.type === "npc" && dc) foundry.utils.setProperty(data, "system.attributes.spellDC", dc);
   }
   data.items = merged(...items);
-  data.effects = merged(f.effects ?? [], opts.keepEffects ? carriedEffects(original) : []);
+  // Wild Shape: up to an hour (its effect ending brings the druid back), and Deepened Shape's temporary HP.
+  const wild = opts.wildShape ? [{
+    name: "Wild Shape", img: "icons/svg/paw.svg", disabled: false, transfer: false,
+    description: "Up to 1 hour, or until you choose to revert. When this ends you return to your own form.",
+    flags: { [SYS]: { wildShape: true, endsAt: (game.time?.worldTime ?? 0) + 3600 } }
+  }] : [];
+  if (opts.tempHp > 0) foundry.utils.setProperty(data, "system.attributes.hp.temp", Math.round(opts.tempHp));
+  info.wildShape = !!opts.wildShape;
+  data.effects = merged(f.effects ?? [], opts.keepEffects ? carriedEffects(original) : [], wild);
   data.flags = { ...(data.flags ?? {}), [SYS]: { ...(data.flags?.[SYS] ?? {}), transform: info } };
   delete data.flags[SYS].autoVision;
   return data;
@@ -162,7 +171,7 @@ export async function doTransform(original, form, opts = {}) {
   const what = form ? `a ${esc(form.name)}` : esc(ARNEYAN.objectForms[opts.object].label);
   await ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor: original }),
-    content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(changed.img)}" alt=""> <span>${esc(original.name)} changes shape</span></header><p>${esc(original.name)} becomes ${what}.${form ? " It takes the form's stat block and keeps its own mind." : " It is helpless while it stays that way."}</p></div>`
+    content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(changed.img)}" alt=""> <span>${esc(original.name)} changes shape</span></header><p>${esc(original.name)} becomes ${what}${opts.wildShape ? " (Wild Shape, up to 1 hour)" : ""}.${form ? " It takes the form's stat block and keeps its own mind." : " It is helpless while it stays that way."}${opts.tempHp > 0 ? ` ${Math.round(opts.tempHp)} temporary HP (Deepened Shape).` : ""}</p></div>`
   });
   return { actor: changed, placed };
 }
@@ -267,15 +276,23 @@ async function onSocket(msg, senderId) {
     if (msg.action === "transform") {
       const original = await fromUuid(String(msg.originalUuid)).catch(() => null);
       if (!(original instanceof Actor) || original.pack || !original.testUserPermission(sender, "OWNER")) return;
+      const o = msg.opts ?? {};
       let form = null;
+      let wild = null;
       if (msg.formUuid) {
         form = await fromUuid(String(msg.formUuid)).catch(() => null);
         if (!(form instanceof Actor) || !["character", "npc"].includes(form.type)) return;
-        const canSee = form.pack ? game.packs.get(form.pack)?.testUserPermission(sender, "OBSERVER") : form.testUserPermission(sender, "OBSERVER");
-        if (!canSee) return;
+        // Wild Shape: a beast from the Bestiary within the druid's own cap (the player may not see the Bestiary itself).
+        if (o.wildShape) {
+          wild = wildShapeFor(original);
+          if (!wild || form.pack !== `${SYS}.monsters` || !isWildForm(form) || levelOf(form) > wild.cap) return;
+        } else {
+          const canSee = form.pack ? game.packs.get(form.pack)?.testUserPermission(sender, "OBSERVER") : form.testUserPermission(sender, "OBSERVER");
+          if (!canSee) return;
+        }
       }
-      const o = msg.opts ?? {};
-      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells, keepEffects: !!o.keepEffects };
+      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells, keepEffects: !!o.keepEffects,
+        wildShape: !!wild, tempHp: wild?.tempHp ?? 0 };
       if (!form) {
         if (!Object.hasOwn(ARNEYAN.objectForms, String(o.object))) return;
         opts.object = o.object;
@@ -298,8 +315,7 @@ async function onSocket(msg, senderId) {
 const box = (name, label, checked, hint) =>
   `<label class="arn-check" ${hint ? `data-tooltip="${esc(hint)}"` : ""}><input type="checkbox" name="${name}" ${checked ? "checked" : ""}> ${label}</label>`;
 
-function optionsHtml() {
-  const d = DEFAULT_OPTIONS;
+function optionsHtml(d = DEFAULT_OPTIONS) {
   return `<fieldset class="arn-shape-opts"><legend>The creature keeps</legend>
     ${box("keepMind", "Its own mind (Intelligence, Wisdom, Charisma)", d.keepMind, "Every way of changing shape keeps the creature's own mind.")}
     ${box("keepEffects", "Its conditions and effects", d.keepEffects)}
@@ -341,7 +357,8 @@ export async function chooseForm(original) {
   const critters = ARNEYAN.harmlessForms.map(n => index?.find(e => e.name === n)).filter(Boolean);
   const tile = (attrs, img, label) => `<button type="button" class="arn-shape-tile" ${attrs}><img src="${esc(img)}" alt=""><span>${esc(label)}</span></button>`;
   const content = `<div class="arn-shape-dialog">
-    <p class="arn-muted">To take a creature's form, drag it from the Actors sidebar, a compendium or the Bestiary onto ${esc(original.name)}'s sheet.</p>
+    <p class="arn-muted">To take a creature's form, drag it from the Actors sidebar, a compendium or the Bestiary onto ${esc(original.name)}'s sheet${pack?.visible ? ", or pick one from the whole Bestiary" : ""}.</p>
+    ${pack?.visible ? `<button type="button" class="arn-shape-all"><i class="fa-solid fa-dragon"></i> Every creature in the Bestiary</button>` : ""}
     ${critters.length ? `<h4>A harmless creature</h4><div class="arn-shape-grid">${critters.map(c => tile(`data-uuid="${c.uuid}"`, c.img, c.name)).join("")}</div>` : ""}
     <h4>An object <span class="arn-muted">(helpless; keeps its own stats)</span></h4>
     <div class="arn-shape-grid">${Object.entries(ARNEYAN.objectForms).map(([k, o]) => tile(`data-object="${k}"`, o.img, o.label.replace(/^an? /, ""))).join("")}</div>
@@ -354,6 +371,11 @@ export async function chooseForm(original) {
     render: (event, dialog) => {
       const root = dialog?.element ?? (dialog instanceof HTMLElement ? dialog : event?.target?.element);
       const form = root?.matches?.("form") ? root : root?.querySelector("form");
+      root?.querySelector(".arn-shape-all:not([data-bound])")?.addEventListener("click", ev => {
+        ev.currentTarget.dataset.bound = "1";
+        picked = { all: true, opts: readOptions(form) };
+        dialog.close();
+      });
       root?.querySelectorAll(".arn-shape-tile:not([data-bound])").forEach(btn => {
         btn.dataset.bound = "1";
         btn.addEventListener("click", () => {
@@ -364,13 +386,185 @@ export async function chooseForm(original) {
     }
   });
   if (!picked) return opts;
+  if (picked.all) {
+    const entries = await bestiaryForms();
+    if (!entries.length) return ui.notifications.warn("The Bestiary has no creatures you can see.");
+    const choice = await pickForm({ title: `Change Shape: ${original.name}`, entries, defaults: picked.opts, typeFilter: true,
+      note: "Every creature in the Bestiary, at any Level: which you can become is the spell's (and the GM's) call." });
+    if (!choice) return;
+    const f = await fromUuid(choice.uuid);
+    return f ? transformInto(original, f, choice.opts) : undefined;
+  }
   if (picked.object) return transformInto(original, null, { ...picked.opts, object: picked.object });
   const form = await fromUuid(picked.uuid);
   if (form) return transformInto(original, form, picked.opts);
 }
 
+/* -------------------------------------------- */
+/*  Wild Shape: pick a beast                    */
+/* -------------------------------------------- */
+
+/**
+ * Beast-like monsters (not "beast" by type) a druid can become: animal-minded and not magical (Wild Shape: "a wolf,
+ * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call).
+ */
+export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Carrion Crawler", "Grick", "Grick Alpha",
+  "Hook Horror", "Young Remorhaz", "Remorhaz", "Roc", "Purple Worm", "Hydra", "Piercer", "Rust Monster"];
+
+const typeOf = e => String(foundry.utils.getProperty(e, "system.details.type") ?? "").toLowerCase();
+const levelOf = e => Number(foundry.utils.getProperty(e, "system.level")) || 0;
+const levelLabel = e => foundry.utils.getProperty(e, "system.details.levelText") || String(levelOf(e));
+
+/** A beast, or a beast-like monster on the list. */
+export const isWildForm = e => typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name);
+
+/** The highest Level a druid can take (half the Druid level, at least 1; the full level from Deepened Shape). */
+export const wildShapeCap = (druidLevel, deepened = false) => deepened ? Math.max(1, druidLevel) : Math.max(1, Math.floor(druidLevel / 2));
+
+/** The Druid level a form of this Level first opens at: twice its Level, or its own Level from 12th (Deepened Shape). */
+export const druidLevelFor = lvl => lvl <= 1 ? 1 : Math.min(2 * lvl, Math.max(12, lvl));
+
+/** A creature's Wild Shape: its Druid level, cap and Deepened Shape's temporary HP (null without the feature). */
+export function wildShapeFor(actor) {
+  const item = actor?.items?.find?.(i => i.name === "Wild Shape");
+  if (!item) return null;
+  const level = Number(item.featureLevel ?? actor.system?.level) || 1;
+  const deepened = level >= 12 || actor.items.some(i => i.name === "Deepened Shape");
+  return { item, level, deepened, cap: wildShapeCap(level, deepened), tempHp: deepened ? 2 * level : 0 };
+}
+
+/** The Wild Shape forms built into the system (players see these even when the Bestiary is hidden from them). */
+export const builtWildForms = () => WILD_FORMS.map(e => ({ ...e, uuid: `Compendium.${SYS}.monsters.Actor.${e.id}` }));
+
+/** A monster's art from the art index (the packs it was scanned from), where it has some. */
+async function withArt(entries) {
+  try {
+    const { artFor } = await import("./art.mjs");
+    return entries.map(e => { const a = artFor(e.name); return a ? { ...e, img: a.token || a.portrait || e.img } : e; });
+  } catch { return entries; }
+}
+
+/** The creatures in the Bestiary (the system's monsters) this user can see, with their Level and type. */
+export async function bestiaryForms() {
+  const pack = game.packs.get(`${SYS}.monsters`);
+  if (!pack?.visible) return [];
+  const index = await pack.getIndex({ fields: ["system.details.type", "system.level", "system.details.levelText"] });
+  return withArt(index.filter(e => e.type === "npc").map(e => ({ uuid: e.uuid, name: e.name, img: e.img, level: levelOf(e), levelText: levelLabel(e), type: typeOf(e) }))
+    .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name)));
+}
+
+/**
+ * The form picker: a searchable grid of creatures (those above `cap` shown but locked), and what the creature keeps.
+ * Returns { uuid, opts } or null.
+ */
+export async function pickForm({ title, entries, cap = Infinity, lockTip = () => "", defaults = DEFAULT_OPTIONS, note = "", typeFilter = false }) {
+  const types = [...new Set(entries.map(e => e.type.split(" (")[0]).filter(Boolean))].sort();
+  const tile = e => {
+    const locked = e.level > cap;
+    return `<button type="button" class="arn-shape-tile ${locked ? "locked" : ""}" data-uuid="${esc(e.uuid)}" data-name="${esc(e.name.toLowerCase())}" data-type="${esc(e.type.split(" (")[0])}"
+      ${locked ? `disabled data-tooltip="${esc(lockTip(e))}"` : `data-tooltip="${esc(`${e.name}: Level ${e.levelText}, ${e.type || "creature"}`)}"`}>
+      <img src="${esc(e.img)}" alt="" loading="lazy"><span>${esc(e.name)}</span><small>Level ${esc(e.levelText)}${locked ? ' <i class="fa-solid fa-lock"></i>' : ""}</small></button>`;
+  };
+  const content = `<div class="arn-shape-dialog arn-shape-picker">
+    ${note ? `<p class="arn-muted">${note}</p>` : ""}
+    <div class="arn-shape-find"><input type="search" class="arn-shape-search" placeholder="Search by name" autocomplete="off">
+      ${typeFilter ? `<select class="arn-shape-type"><option value="">Every type</option>${types.map(t => `<option value="${esc(t)}">${esc(t[0].toUpperCase() + t.slice(1))}</option>`).join("")}</select>` : ""}
+      ${Number.isFinite(cap) ? `<label class="arn-check"><input type="checkbox" class="arn-shape-onlyok"> Only the ones I can take</label>` : ""}</div>
+    <div class="arn-shape-grid arn-shape-scroll">${entries.map(tile).join("")}</div>
+    <p class="arn-muted arn-shape-count"></p>
+    ${optionsHtml(defaults)}</div>`;
+  let picked = null;
+  await DialogV2.wait({
+    window: { title, icon: "fa-solid fa-paw" }, classes: ["arneyan", "arn-shape-app"], position: { width: 640 }, content,
+    buttons: [{ action: "cancel", label: "Cancel" }],
+    rejectClose: false,
+    render: (event, dialog) => {
+      const root = dialog?.element ?? (dialog instanceof HTMLElement ? dialog : event?.target?.element);
+      const form = root?.matches?.("form") ? root : root?.querySelector("form");
+      if (!root || root.dataset.arnPicker) return;
+      root.dataset.arnPicker = "1";
+      const tiles = [...root.querySelectorAll(".arn-shape-tile")];
+      const count = root.querySelector(".arn-shape-count");
+      const filter = () => {
+        const q = String(root.querySelector(".arn-shape-search")?.value ?? "").trim().toLowerCase();
+        const t = root.querySelector(".arn-shape-type")?.value ?? "";
+        const ok = !!root.querySelector(".arn-shape-onlyok")?.checked;
+        let n = 0;
+        for (const b of tiles) {
+          const show = (!q || b.dataset.name.includes(q)) && (!t || b.dataset.type === t) && (!ok || !b.disabled);
+          b.hidden = !show;
+          if (show) n++;
+        }
+        if (count) count.textContent = `${n} shown`;
+      };
+      root.querySelector(".arn-shape-search")?.addEventListener("input", filter);
+      root.querySelector(".arn-shape-type")?.addEventListener("change", filter);
+      root.querySelector(".arn-shape-onlyok")?.addEventListener("change", filter);
+      for (const b of tiles) b.addEventListener("click", () => {
+        if (b.disabled) return;
+        picked = { uuid: b.dataset.uuid, opts: readOptions(form) };
+        dialog.close();
+      });
+      filter();
+      root.querySelector(".arn-shape-search")?.focus();
+    }
+  });
+  return picked;
+}
+
+/** The Wild Shape feature used (its Use button): pick a beast up to your Level cap and become it. */
+export async function wildShape(item) {
+  const actor = item?.actor;
+  if (!actor?.isOwner) return;
+  // Already a beast: using it again (or Change Shape) brings the druid back.
+  if (actor.getFlag(SYS, "transform")) return revertTransform(actor);
+  if (isChanged(actor)) return ui.notifications.warn(`${actor.name} has already changed shape. Return to its own form first.`);
+  const uses = item.system.uses ?? {};
+  if (uses.max > 0 && uses.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
+  if (!game.user.isGM && !gm()) return ui.notifications.warn("Changing shape needs the GM to be online.");
+  const level = Number(item.featureLevel ?? actor.system.level) || 1;
+  const deepened = level >= 12 || actor.items.some(i => i.name === "Deepened Shape");
+  const cap = wildShapeCap(level, deepened);
+  // The Bestiary's own index when this user can see it (the GM), else the list built into the system.
+  const visible = game.packs.get(`${SYS}.monsters`)?.visible;
+  const entries = visible ? (await bestiaryForms()).filter(e => isWildForm({ name: e.name, system: { details: { type: e.type } } })) : await withArt(builtWildForms());
+  if (!entries.length) return ui.notifications.warn("The Bestiary has no beasts you can see.");
+  const choice = await pickForm({
+    title: `Wild Shape: ${actor.name}`, entries, cap,
+    lockTip: e => `Level ${e.levelText}: needs Druid level ${druidLevelFor(e.level)}`,
+    defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= 15 },
+    note: `A beast or beast-like monster of Level ${cap} or lower (${deepened ? "your Druid level: Deepened Shape" : "half your Druid level, at least 1"}). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? ` You gain ${2 * level} temporary HP.` : ""}`
+  });
+  if (!choice) return;
+  const picked = entries.find(e => e.uuid === choice.uuid);
+  if (!picked) return;
+  if (picked.level > cap) return ui.notifications.warn(`${picked.name} is Level ${picked.levelText}: above your Wild Shape cap of ${cap}.`);
+  // The use is spent once the form is picked (read fresh: another use may have happened meanwhile).
+  const now = item.system.uses ?? {};
+  if (now.max > 0) {
+    if (now.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
+    await item.update({ "system.uses.value": now.value - 1 });
+  }
+  const opts = { ...choice.opts, wildShape: true, tempHp: deepened ? 2 * level : 0 };
+  if (game.user.isGM) {
+    const form = await fromUuid(choice.uuid);
+    return form ? transformInto(actor, form, opts) : ui.notifications.warn(`${picked.name} isn't in the Bestiary any more.`);
+  }
+  // A player: the GM's client finds the form and checks it is within the cap.
+  if (!gm()) return ui.notifications.warn("Changing shape needs the GM to be online.");
+  game.socket.emit(SOCKET, { action: "transform", originalUuid: actor.uuid, formUuid: choice.uuid, opts });
+  actor.sheet?.close();
+  ui.notifications.info(`${actor.name} changes shape...`);
+}
+
 export function registerTransform() {
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
+  // Wild Shape's hour runs out (its effect ends): the druid returns to its own form.
+  Hooks.on("deleteActiveEffect", (effect, options, userId) => {
+    if (userId !== game.user.id || !effect.flags?.[SYS]?.wildShape) return;
+    const actor = effect.parent;
+    if (actor instanceof Actor && actor.getFlag(SYS, "transform")) revertTransform(actor).catch(err => console.warn("Arneyan | wild shape", err));
+  });
   // A form at 0 HP (from damage or typed on the sheet) returns to its own form.
   Hooks.on("updateActor", (actor, changes, options, userId) => {
     if (userId !== game.user.id || !actor.getFlag(SYS, "transform")) return;

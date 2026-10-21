@@ -1398,6 +1398,11 @@ export class ArneyanItem extends Item {
   async _useAbility(event) {
     const sys = this.system;
     const actor = this.actor;
+    // Wild Shape: pick the beast to become (transform.mjs).
+    if (this.name === "Wild Shape" && actor && ["character", "npc"].includes(actor.type)) {
+      const { wildShape } = await import("./transform.mjs");
+      return wildShape(this, event);
+    }
     // Features with options: one goes straight through, several ask which.
     const acts = this.availableActivities;
     if (acts.length && !sys.toggle) {
