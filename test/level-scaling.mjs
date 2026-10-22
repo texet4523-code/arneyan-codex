@@ -140,33 +140,54 @@ const d6g = makeActor(CharacterData, "character", { level: 6 }, [cls("Druid", 6)
 assert.equal(d6.items[1].system.uses.max, 3);
 assert.equal(d6g.items[1].system.uses.max, 4);
 
-/* Fated Survivor: +1 Luck when taken, +1 at 5th, 10th, 15th and 20th. */
+/* Fated Survivor: +1 Luck when taken, then +1 at each of 5th, 10th, 15th and 20th reached after that. */
 const P = await import("../arneyan/module/progression.mjs");
-assert.deepEqual([1, 4, 5, 9, 10, 15, 20, 24].map(l => P.luckDue("Fated Survivor", l)), [1, 1, 2, 2, 3, 4, 5, 5]);
+assert.deepEqual([1, 4, 5, 9, 10, 15, 20, 24].map(l => P.luckDue("Fated Survivor", l, { taken: 1 })), [1, 1, 2, 2, 3, 4, 5, 5]);
+assert.equal(P.luckDue("Fated Survivor", 15, { taken: 15 }), 1, "taken at 15th: the steps already passed aren't given (cautious reading)");
+assert.equal(P.luckDue("Fated Survivor", 20, { taken: 15 }), 2);
+assert.equal(P.luckDue("Fated Survivor", 9, { taken: 4, base: 0 }), 1, "a feat from before: only steps reached from now");
 assert.equal(P.luckDue("Toughness", 20), 0);
 globalThis.ChatMessage ??= { create: async () => ({}), getSpeaker: () => ({}) };
-const hero = (level, flags) => {
-  const feat = { id: "f1", type: "feat", name: "Fated Survivor", flags: { arneyan: flags } };
-  const a = { type: "character", isOwner: true, items: [feat], system: { level, luck: { value: 10, start: 9 } },
-    updateEmbeddedDocuments: async (t, ups) => { for (const u of ups) feat.flags.arneyan.luckGiven = u["flags.arneyan.luckGiven"]; },
+let posted = [];
+ChatMessage.create = async m => { posted.push(m.content); return {}; };
+const hero = (level, luck, rec, luckStart = 9) => {
+  const feat = { id: "f1", type: "feat", name: "Fated Survivor", flags: { arneyan: rec === undefined ? {} : { luck: rec } } };
+  const a = { id: `a${Math.random()}`, type: "character", isOwner: true, items: [feat], system: { level, luck: { value: luck, start: luckStart } },
+    updateEmbeddedDocuments: async (t, ups) => { for (const u of ups) feat.flags.arneyan.luck = u["flags.arneyan.luck"]; },
     update: async u => { a.system.luck.value = u["system.luck.value"]; a.system.luck.start = u["system.luck.start"]; } };
+  a.feat = feat;
   return a;
 };
-let h = hero(5, { luckGiven: 0 });                       // just taken at 5th: +1, and the 5th-level step
-assert.equal(await P.syncLuckFeats(h), 2);
-assert.deepEqual([h.system.luck.value, h.system.luck.start], [12, 11]);
-h.system.level = 10;                                      // levelled to 10th
-assert.equal(await P.syncLuckFeats(h, { fromLevel: 9 }), 1);
-assert.equal(h.system.luck.value, 13);
-assert.equal(await P.syncLuckFeats(h, { fromLevel: 9 }), 0, "never twice");
-h.system.level = 7;                                       // down to 7th: the 10th-level step comes off
-assert.equal(await P.syncLuckFeats(h, { fromLevel: 10 }), -1);
-assert.equal(h.system.luck.value, 12);
-h = hero(4, {});                                          // taken before 0.10.48 (no record), levelled 4th to 5th
+// Taken at 5th (a fresh record): +1 only, not the 5th-level step it was taken at.
+let h = hero(5, 10, P.newLuckRecord(5));
+await P.syncLuckFeats(h);
+assert.deepEqual([h.system.luck.value, h.system.luck.start], [11, 10]);
+assert.equal(await P.syncLuckFeats(h), 0, "never twice");
+h.system.level = 10;
+await P.syncLuckFeats(h, { fromLevel: 9 });
+assert.equal(h.system.luck.value, 12, "10th: +1");
+h.system.level = 7;
+await P.syncLuckFeats(h, { fromLevel: 10 });
+assert.equal(h.system.luck.value, 11, "back to 7th: the 10th-level step comes off");
+// Two syncs at once (a level change and the feat's own): queued, so +1 once.
+h = hero(3, 10, P.newLuckRecord(3));
+await Promise.all([P.syncLuckFeats(h), P.syncLuckFeats(h, { fromLevel: 2 })]);
+assert.equal(h.system.luck.value, 11);
+// At the cap: Current Luck 20 gains nothing, and removing the feat takes off only what it added.
+h = hero(9, 20, P.newLuckRecord(1), 14);
+h.feat.flags.arneyan.luck.units = 2; h.feat.flags.arneyan.luck.start = 2; h.feat.flags.arneyan.luck.value = 1;
+h.system.level = 10;
+await P.syncLuckFeats(h, { fromLevel: 9 });
+assert.deepEqual([h.system.luck.value, h.system.luck.start], [20, 15]);
+assert.deepEqual(h.feat.flags.arneyan.luck, { taken: 1, base: 1, units: 3, start: 3, value: 1 });
+await P.removeLuckFeat(h, h.feat);
+assert.deepEqual([h.system.luck.value, h.system.luck.start], [19, 12], "removed: −1 Current (all it added), −3 Starting");
+// A feat from before 0.10.48 (no record): nothing now; the next step reached adds 1.
+h = hero(4, 12, undefined);
 assert.equal(await P.syncLuckFeats(h, { fromLevel: 4 }), 0);
+assert.equal(h.system.luck.value, 12);
 h.system.level = 5;
-assert.equal(await P.syncLuckFeats(h, { fromLevel: 4 }), 1, "recorded at 4th: the 5th-level step is new");
-const legacy = hero(5, {}); 
-assert.equal(await P.syncLuckFeats(legacy, { fromLevel: 4 }), 1, "a feat from before: only the step just reached");
-assert.equal(legacy.system.luck.value, 11);
+await P.syncLuckFeats(h, { fromLevel: 4 });
+assert.equal(h.system.luck.value, 13);
+assert.ok(posted.some(t => /Fated Survivor: \+1 Luck/.test(t)));
 console.log("OK level scaling");

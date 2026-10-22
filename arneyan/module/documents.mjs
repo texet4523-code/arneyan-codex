@@ -2,7 +2,7 @@ import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
-import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, shiftLuck } from "./progression.mjs";
+import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
@@ -1013,6 +1013,11 @@ export class ArneyanItem extends Item {
     if (this.type === "feat" && !actor.items.has(this.id) && !options.arneyanKeepLevel) this.updateSource({ "system.levelTaken": actor.system.level || 0 });
     // Where the 18 cap moved a feat's bonus belongs to the character it was moved on: a copy dragged to another starts
     // again (and is asked afresh if it goes past 18 there). A whole duplicated or imported character keeps its own.
+    // A Luck feat (Fated Survivor) new to this character: a fresh record, so it gives its +1 (a copy dragged from another
+    // sheet starts over; one arriving with its actor, or by import or update, keeps what it has).
+    if (this.type === "feat" && LUCK_FEATS[this.name] && actor?.type === "character" && !options.arneyanMigration && !options.arneyanImport && !actor.items.has(this.id)) {
+      this.updateSource({ "flags.arneyan.luck": newLuckRecord(actor.system?.level ?? 1) });
+    }
     if (this.type === "feat" && this.system.abilityChoice?.moved && !options.arneyanMigration && !options.arneyanImport && !actor.items.has(this.id)) this.updateSource({ "system.abilityChoice.moved": "" });
     // Skills: one of each, and only as many as the slots allow; checked for the whole batch in _preCreateOperation.
     // A count worked out from a formula (Flèche: Dexterity modifier a day) starts full.
@@ -1063,12 +1068,13 @@ export class ArneyanItem extends Item {
     ask(needsWeaponChoice, promptWeaponChoice, "weapon");
     // A creation feat's attribute bonus over 18 (Toughness's +1 Con on a Con 18 character): where it goes instead.
     ask(i => !!creationOverflow(i), promptCreationOverflow, "creation cap");
-    // A feat that raises Luck (Fated Survivor): +1 now, and the steps already reached at this level.
-    if (userId === game.user.id && this.type === "feat" && LUCK_FEATS[this.name] && actor instanceof Actor && actor.type === "character") {
-      try {
-        await this.update({ "flags.arneyan.luckGiven": 0 });
-        await syncLuckFeats(actor);
-      } catch (err) { console.warn("Arneyan | Luck feat", err); }
+    // A feat that raises Luck (Fated Survivor), new to the sheet: its +1, once the 1st-level setup (which rolls
+    // Starting Luck) is over; during a level change, that change syncs it at the end.
+    if (userId === game.user.id && this.type === "feat" && LUCK_FEATS[this.name] && actor instanceof Actor && actor.type === "character"
+      && this.flags?.arneyan?.luck?.units === 0 && !levelChangeRunning(actor)) {
+      const wait = firstLevelSetupRunning(actor);
+      (wait ? wait.catch(() => {}) : Promise.resolve()).then(() => (actor.items.has(this.id) ? syncLuckFeats(actor) : null))
+        .catch(err => console.warn("Arneyan | Luck feat", err));
     }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
@@ -1111,9 +1117,8 @@ export class ArneyanItem extends Item {
     const actor = this.parent;
     if (userId !== game.user.id || !(actor instanceof Actor) || options.arneyanGrant) return;
     if (this.type === "class" || this.type === "kit" || this.type === "ancestry") removeGrants(actor, this);
-    // A Luck feat removed: the Luck it gave comes off.
-    const luckGiven = Number(this.flags?.arneyan?.luckGiven);
-    if (this.type === "feat" && actor.type === "character" && LUCK_FEATS[this.name] && luckGiven > 0) shiftLuck(actor, -luckGiven, `${this.name} removed`).catch(() => {});
+    // A Luck feat removed: what it added comes off.
+    if (this.type === "feat" && actor.type === "character" && LUCK_FEATS[this.name]) removeLuckFeat(actor, this).catch(() => {});
     // A character that loses an ancestry has had one: the next isn't part of making it (no 18 cap past 1st level).
     if (this.type === "ancestry" && actor.type === "character" && !actor.flags?.arneyan?.hadAncestry) actor.update({ "flags.arneyan.hadAncestry": true }).catch(() => {});
   }
