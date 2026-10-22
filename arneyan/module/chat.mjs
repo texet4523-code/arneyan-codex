@@ -3,6 +3,7 @@
  * and a socket so players can apply damage and effects to creatures they don't own.
  */
 import { ARNEYAN } from "./config.mjs";
+import { spellTargets } from "./targeting.mjs";
 import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
 import { turnReminder } from "./qol.mjs";
 import { tickCounters, turnDamageFor, advancePoison } from "./counters.mjs";
@@ -80,6 +81,8 @@ const WEAPON_KINDS = ["", "plain", "silver", "adamantine", "magic"];
 
 export async function applyDamageTo(actors, amount, opts, ctx = {}) {
   if (!actors.length) return ui.notifications.warn("Select or target the tokens to apply this to.");
+  // One click can make several report cards (yours and the GM's; failed and saved): Undo on any of them undoes all.
+  ctx = { ...ctx, group: ctx.group ?? foundry.utils.randomID() };
   if (actors.some(a => !a.isOwner) && !gmOnline()) actors = actors.filter(a => a.isOwner);
   const lines = [];
   const others = [];
@@ -95,7 +98,7 @@ export async function applyDamageTo(actors, amount, opts, ctx = {}) {
   // Everything the GM has to do goes in one message, so it reports as one card.
   if (others.length) {
     game.socket.emit(SOCKET, { action: "damage", actorUuids: others, amount, opts,
-      ctx: { source: String(ctx.source ?? "").slice(0, 80), what: String(ctx.what ?? "").slice(0, 80), whisper: ctx.whisper ?? null, blind: !!ctx.blind } });
+      ctx: { source: String(ctx.source ?? "").slice(0, 80), what: String(ctx.what ?? "").slice(0, 80), whisper: ctx.whisper ?? null, blind: !!ctx.blind, group: ctx.group } });
   }
   report({ ...ctx, undo, appliedBy: ctx.appliedBy ?? game.user.id }, lines, opts?.mult < 0 ? "heart" : "burst");
 }
@@ -111,7 +114,7 @@ export function report(ctx, lines, icon = "burst") {
     ...(ctx.whisper ? { whisper: ctx.whisper } : {}),
     ...(ctx.blind ? { blind: true, whisper: game.users.filter(u => u.isGM).map(u => u.id) } : {}),
     content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-${icon}"></i> <span>${head}</span></header><ul>${lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul>${ctx.undo?.length ? `<button type="button" class="arn-undo" data-tooltip="Put their HP back as it was (the misclick on the wrong token)"><i class="fa-solid fa-rotate-left"></i> Undo</button>` : ""}</div>`,
-    ...(ctx.undo?.length ? { flags: { [SYS]: { undo: ctx.undo, appliedBy: ctx.appliedBy ?? game.user.id } } } : {})
+    ...(ctx.undo?.length ? { flags: { [SYS]: { undo: ctx.undo, appliedBy: ctx.appliedBy ?? game.user.id, ...(ctx.group ? { undoGroup: String(ctx.group).slice(0, 32) } : {}) } } } : {})
   });
 }
 
@@ -119,6 +122,9 @@ export async function applyItemEffect(item, index, cl, actors) {
   const entry = item.system.applies?.[index];
   if (!entry) return;
   if (!actors.length) return ui.notifications.warn("Target the creatures to affect (or select their tokens).");
+  // Hold Animal holds animals, Charm Person charms humanoids: the wrong kind is left out (targeting.mjs).
+  if (item.type === "spell") actors = spellTargets(item.name, actors);
+  if (!actors.length) return;
   const caster = item.actor;
   const data = await effectDataFor(entry, item, { cl, caster });
   const mine = actors.filter(a => a.isOwner);
@@ -172,16 +178,23 @@ async function onSocket(msg, senderId) {
     const ids = new Set(game.users.map(u => u.id));
     const whisper = Array.isArray(msg.ctx?.whisper) ? msg.ctx.whisper.filter(id => ids.has(id)) : null;
     report({ source: String(msg.ctx?.source || sender.name).slice(0, 80), what: String(msg.ctx?.what ?? "").slice(0, 80),
-      speaker: ChatMessage.getSpeaker({ user: sender }), whisper: whisper?.length ? whisper : null, blind: !!msg.ctx?.blind, undo, appliedBy: sender.id }, lines, mult < 0 ? "heart" : "burst");
+      speaker: ChatMessage.getSpeaker({ user: sender }), whisper: whisper?.length ? whisper : null, blind: !!msg.ctx?.blind, undo, appliedBy: sender.id,
+      group: typeof msg.ctx?.group === "string" ? msg.ctx.group.slice(0, 32) : null }, lines, mult < 0 ? "heart" : "burst");
   } else if (msg.action === "undo") {
-    // Only the HP stored on that report card, and only for whoever applied it (or a GM).
-    const m = game.messages.get(String(msg.messageId));
-    const entries = m?.flags?.[SYS]?.undo;
-    if (!m || !Array.isArray(entries) || m.flags[SYS].undone) return;
-    // A GM-written report (players can't edit those) of damage this player applied, or a GM asking.
-    if (!sender.isGM && !(m.author?.isGM && m.flags[SYS].appliedBy === sender.id)) return;
+    // Only the HP stored on those report cards (one click's), and only for whoever applied it (or a GM).
+    const ids = Array.isArray(msg.messageIds) ? msg.messageIds.slice(0, 10) : [msg.messageId];
+    const entries = [], done = [];
+    for (const id of ids) {
+      const m = game.messages.get(String(id));
+      const e = m?.flags?.[SYS]?.undo;
+      if (!m || !Array.isArray(e) || m.flags[SYS].undone) continue;
+      // A GM-written report (players can't edit those) of damage this player applied, or a GM asking.
+      if (!sender.isGM && !(m.author?.isGM && m.flags[SYS].appliedBy === sender.id)) continue;
+      entries.push(...e); done.push(m);
+    }
+    if (!entries.length) return;
     await undoEntries(entries);
-    await m.setFlag(SYS, "undone", true);
+    for (const m of done) await m.setFlag(SYS, "undone", true);
   } else if (msg.action === "applySaves") {
     const m = game.messages.get(String(msg.messageId));
     if (!m || m.flags?.[SYS]?.kind !== "damage") return;
@@ -210,7 +223,8 @@ async function onSocket(msg, senderId) {
     const entry = item.system.applies?.[Number(msg.index)];
     if (!entry) return;
     const data = await effectDataFor(entry, item, { cl: Math.clamp(Number(msg.cl) || 1, 1, 30), caster: item.actor });
-    const actors = (await Promise.all((msg.actorUuids ?? []).slice(0, 50).map(u => fromUuid(String(u)).catch(() => null)))).filter(a => a instanceof Actor && creature(a) && !a.pack);
+    const all = ((await Promise.all((msg.actorUuids ?? []).slice(0, 50).map(u => fromUuid(String(u)).catch(() => null)))).filter(a => a instanceof Actor && creature(a) && !a.pack));
+    const actors = item.type === "spell" ? spellTargets(item.name, all, { notify: false }) : all;
     const created = await applyEffectTo(actors, data);
     await linkToConcentration(item.actor, item, created.map(e => e.uuid));
     const rounds = data.flags?.[SYS]?.rounds;
@@ -233,6 +247,7 @@ export function saveMultiplier(saveEffect) {
 async function applyBySaves(message, actors, user) {
   const flags = message.flags?.[SYS] ?? {};
   const spell = flags.spell || flags.what || "";
+  actors = spellTargets(flags.spell, actors, { notify: user?.id === game.user.id });
   const item = flags.itemUuid ? await fromUuid(flags.itemUuid).catch(() => null) : null;
   const halfOrNone = saveMultiplier(item?.system?.saveEffect);
   const failed = [], saved = [], unknown = [];
@@ -241,7 +256,7 @@ async function applyBySaves(message, actors, user) {
     if (!r) unknown.push(a.name);
     else (r.saved ? saved : failed).push(a);
   }
-  const ctx = { ...sourceOf(message), appliedBy: user?.id ?? game.user.id };
+  const ctx = { ...sourceOf(message), appliedBy: user?.id ?? game.user.id, group: foundry.utils.randomID() };
   if (unknown.length) {
     const text = `No save against ${spell || "this"} with a DC yet for ${unknown.join(", ")}: left out.`;
     if (user?.id === game.user.id) ui.notifications.warn(text); else report({ ...ctx, whisper: [user.id, ...game.users.filter(u => u.isGM).map(u => u.id)] }, [text], "shield-halved");
@@ -338,6 +353,35 @@ function onRender(message, html) {
   on(".arn-recrit", () => reroll({ crit: true, include: flags.include ?? [], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null }));
   on(".arn-reroll-with", (ev, btn) => reroll({ crit: !!flags.crit, include: [...(flags.include ?? []), btn.dataset.key], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null }));
 
+  // Touch spells (touch.mjs): the attack, then its damage or effects on the ones it hit.
+  on(".arn-touch-attack", async (ev, btn) => {
+    const item = await fromUuid(btn.dataset.itemUuid);
+    if (!item?.actor) return ui.notifications.warn("That spell is no longer on the sheet.");
+    if (!item.actor.isOwner) return ui.notifications.warn(`Only ${item.actor.name}'s owner can make its attack.`);
+    return item.actor.rollSpellAttack(item, ev, { cl: Number(btn.dataset.cl) || 1 });
+  });
+  const touchHits = () => {
+    if (!(flags.targets ?? []).length) return { hits: null, misses: [] };
+    const total = (flags.total ?? 0) + (flags.luckBurned ?? 0);
+    const res = flags.targets.map(t => ({ name: t.name, uuid: t.uuid, hit: !["failure", "nat1"].includes(outcomeFor(total, flags.natural, t.ac, "attack")) }));
+    return { hits: res.filter(r => r.hit).map(({ name, uuid }) => ({ name, uuid })), misses: res.filter(r => !r.hit).map(({ name, uuid }) => ({ name, uuid })) };
+  };
+  on(".arn-touch-damage", async (ev, btn) => {
+    const item = flags.touchSpell ? await fromUuid(flags.touchSpell) : null;
+    if (!item) return ui.notifications.warn("That spell is no longer on the sheet.");
+    if (!item.actor?.isOwner) return ui.notifications.warn(`Only ${item.actor?.name ?? "its caster"}'s owner can roll its damage.`);
+    const { hits, misses } = touchHits();
+    return item.rollItemDamage({ hits, misses, crit: !!(flags.crit || flags.natural === 20), as: btn.dataset.as ?? "" });
+  });
+  on(".arn-touch-effect", async (ev, btn) => {
+    const item = flags.touchSpell ? await fromUuid(flags.touchSpell) : null;
+    if (!item) return ui.notifications.warn("That spell is no longer on the sheet.");
+    const { hits } = touchHits();
+    const actors = hits ? (await Promise.all(hits.map(h => fromUuid(h.uuid).catch(() => null)))).filter(a => a && creature(a)) : targetedThenSelected();
+    if (!actors.length) return ui.notifications.info("The touch missed: no effect.");
+    return applyItemEffect(item, Number(btn.dataset.index), Number(flags.cl) || 1, actors);
+  });
+
   on(".arn-item-damage", async (ev, btn) => {
     const item = await fromUuid(btn.dataset.itemUuid);
     if (!item) return ui.notifications.warn("That item is no longer on the sheet.");
@@ -354,6 +398,11 @@ function onRender(message, html) {
       actors = (await Promise.all(flags.hits.map(h => fromUuid(h.uuid).catch(() => null)))).filter(a => a && creature(a));
       if (!actors.length) return ui.notifications.info("That attack hit nobody. (Alt-click Apply to use your targets anyway.)");
     } else actors = targetedThenSelected();
+    // A spell that only harms one kind of creature (Disrupt Undead) leaves the others out.
+    if (flags.spell && mult > 0) {
+      actors = spellTargets(flags.spell, actors);
+      if (!actors.length) return;
+    }
     // Non-lethal: the button says, else the card's default (unarmed strikes).
     const subdual = mult > 0 && (btn.dataset.subdual !== undefined ? btn.dataset.subdual === "1" : !!flags.subdual);
     return applyDamageTo(actors, total, { type: box?.dataset.type ?? "", mult, temp: !!btn.dataset.temp, weapon: box?.dataset.weapon ?? "",
@@ -381,29 +430,42 @@ function onRender(message, html) {
   }
   on(".arn-undo", async (ev, btn) => {
     if (flags.undone) return;
+    // Every card from the same click (failed and saved, yours and the GM's), not undone yet.
+    const cards = flags.undoGroup ? game.messages.contents.filter(m => m.flags?.[SYS]?.undoGroup === flags.undoGroup && !m.flags[SYS].undone) : [message];
+    if (!cards.includes(message)) cards.push(message);
     const mine = [], theirs = [];
-    for (const e of flags.undo ?? []) {
+    for (const e of cards.flatMap(m => m.flags?.[SYS]?.undo ?? [])) {
       const a = await fromUuid(e.uuid).catch(() => null);
       if (!a) continue;
       (a.isOwner ? mine : theirs).push(e);
     }
     // Creatures the player doesn't own, or a GM-written card the player can't mark as undone: the GM does it.
-    if ((theirs.length || !message.isOwner) && !game.user.isGM) {
+    if ((theirs.length || cards.some(m => !m.isOwner)) && !game.user.isGM) {
       if (!gmOnline()) return;
-      game.socket.emit(SOCKET, { action: "undo", messageId: message.id });
+      // Your own cards (your own creatures) here; the GM's cards on the GM's client.
+      const own = cards.filter(m => m.isOwner);
+      if (own.length) {
+        await undoEntries(own.flatMap(m => m.flags?.[SYS]?.undo ?? []));
+        for (const m of own) await m.setFlag(SYS, "undone", true);
+      }
+      const gms = cards.filter(m => !m.isOwner);
+      if (gms.length) game.socket.emit(SOCKET, { action: "undo", messageId: gms[0].id, messageIds: gms.map(m => m.id) });
       btn.hidden = true;
       return;
     }
     await undoEntries([...mine, ...theirs]);
-    if (message.isOwner) await message.setFlag(SYS, "undone", true);
+    for (const m of cards) if (m.isOwner) await m.setFlag(SYS, "undone", true);
     btn.hidden = true;
   });
 
   on(".arn-save-btn", async (ev, btn) => {
     const dc = btn.dataset.dc ? Number(btn.dataset.dc) : null;
     const concentration = !!btn.dataset.concentration;
-    const actors = btn.dataset.actorUuid ? [await fromUuid(btn.dataset.actorUuid)].filter(Boolean) : saveRollers();
-    if (!actors.length) return ui.notifications.warn("Target the creatures that should roll (or select them, or assign your character).");
+    const picked = btn.dataset.actorUuid ? [await fromUuid(btn.dataset.actorUuid)].filter(Boolean) : saveRollers();
+    if (!picked.length) return ui.notifications.warn("Target the creatures that should roll (or select them, or assign your character).");
+    // Creatures the spell can't work on don't roll (Hold Animal and a goblin).
+    const actors = btn.dataset.spell ? spellTargets(btn.dataset.source, picked) : picked;
+    if (!actors.length) return;
     await rollSavesFor(actors, { save: btn.dataset.save, dc, concentration, disrupted: !!btn.dataset.disrupted, source: btn.dataset.source ?? "", event: ev });
   });
 

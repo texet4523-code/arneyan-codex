@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<p>Veterans of the Wall facing the Red Waste — disciplined, grim, no pageantry.</p><ul><li><strong>Wall-Forged Dread: </strong>your Demoralise replaces the usual one. Once per day, enemies suffer −6 to Charisma checks and must make a Will save against your Class Save DC or have Disadvantage on all their attack rolls. It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th. It cannot combine with Inspire or Embolden.</li><li><strong>Siege Discipline: </strong>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</li></ul>",
+  "description": "<p>Veterans of the Wall facing the Red Waste — disciplined, grim, no pageantry.</p><ul><li><strong>Wall-Forged Dread: </strong>your Demoralise replaces the usual one.</li><li>Once per day, enemies suffer −6 to Charisma checks and must make a <strong>Will save</strong> against your Class Save DC or have <strong>Disadvantage</strong> on all their attack rolls.</li><li>It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th.</li><li>It cannot combine with Inspire or Embolden.</li><li><strong>Siege Discipline: </strong><strong>Advantage</strong> on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Wall-Forged Dread",
     "level": 5,
-    "description": "<p>Your Demoralise replaces the usual one. Once per day, enemies suffer −6 to Charisma checks and must make a Will save against your Class Save DC or have Disadvantage on all their attack rolls. It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th. It cannot combine with Inspire or Embolden.</p>",
+    "description": "<p>Your Demoralise replaces the usual one.</p><ul><li>Once per day, enemies suffer −6 to Charisma checks and must make a <strong>Will save</strong> against your Class Save DC or have <strong>Disadvantage</strong> on all their attack rolls.</li><li>It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th.</li><li>It cannot combine with Inspire or Embolden.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -60,7 +60,7 @@
    {
     "name": "Siege Discipline",
     "level": 1,
-    "description": "<p>Advantage on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</p>",
+    "description": "<p><strong>Advantage</strong> on checks involving fortification, siege assessment, or coordinating soldiers during a defensive action.</p>",
     "uses": {
      "value": 0,
      "max": 0,

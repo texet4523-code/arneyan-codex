@@ -1,0 +1,177 @@
+{
+ "_id": "AnimObjLarge0001",
+ "_key": "!actors!AnimObjLarge0001",
+ "name": "Animated Object, Large",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 1,
+  "hd": "",
+  "attributes": {
+   "hp": {
+    "value": 20,
+    "max": 20,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "construct",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "",
+   "resistances": "",
+   "immunities": "poison, condition:frightened",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large construct</em> made by Animate Objects.</p><p>A nonmagical, unattended object brought to life. It obeys its caster and attacks one creature within reach each round.</p><p class=\"arn-note\">Made from the spell's own numbers (Spellcasting in Arneyan); not a Monsters &amp; Treasure entry.</p>",
+   "treasure": ""
+  }
+ },
+ "items": [
+  {
+   "name": "Slam (hits automatically)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Attacks one creature within reach each round, <strong>hitting automatically</strong> (no roll) for <strong>2d8</strong> bludgeoning damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d8",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "activities": []
+   },
+   "_id": "AnimObjLargeit00",
+   "_key": "!actors.items!AnimObjLarge0001.AnimObjLargeit00",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "activities": []
+   },
+   "_id": "AnimObjLargeit01",
+   "_key": "!actors.items!AnimObjLarge0001.AnimObjLargeit01",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Animated Object, Large",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-golem-head.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "madeFor": "Animate Objects"
+  }
+ }
+}

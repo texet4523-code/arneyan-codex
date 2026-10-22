@@ -167,6 +167,7 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
       awayText: usable ? "" : awayReason(actor),
       kinds: Object.fromEntries(Object.entries(ARNEYAN.storageKinds).map(([k, v]) => [k, v.label])),
       kindLabel: ARNEYAN.storageKinds[sys.kind]?.label ?? "",
+      activeTab: this._activeTab,
       tabs: [["contents", "Contents"], ["ledger", `Ledger (${ledger.length})`], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       rows, ledger,
       capLabel: sys.capacity ? `${sys.usedSlots} of ${sys.capacity} slots` : `${sys.usedSlots} slots (no limit)`,

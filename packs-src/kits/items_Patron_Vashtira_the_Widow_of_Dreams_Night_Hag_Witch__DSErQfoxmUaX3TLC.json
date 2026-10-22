@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>She walks the space between sleep and waking, riding the dreams of the exhausted and collecting what they'd rather forget. Her Witches wake tired for reasons they can't explain, carrying a little less of themselves than they went to bed with.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) advantage on saves vs fear and mind-affecting effects for 1 hour — the recipient sleeps a little less easily afterward.</li><li><strong>Patron Curse</strong> (6th): Once per day, afflict a creature within 30ft with Vashtira's Weight (Will save against your Class Save DC) — while cursed, the target's dreams are haunted and they gain no benefit from rest until the curse is lifted or a week passes.</li><li><strong>Physical Change</strong> (12th): Your eyes lose their whites — solid black, cold to look into. You gain darkvision and advantage on saves vs being magically put to sleep. You may make an unarmed claw attack dealing 1d6 damage. Once per day, without spending your action, lock your gaze on a creature within 30ft — Will save or frightened for 1 round and shaken (disadvantage on their next attack roll) for 1 minute after.</li></ul>",
+  "description": "<p>She walks the space between sleep and waking, riding the dreams of the exhausted and collecting what they'd rather forget. Her Witches wake tired for reasons they can't explain, carrying a little less of themselves than they went to bed with.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) advantage on saves vs fear and mind-affecting effects for <strong>1 hour</strong> — the recipient sleeps a little less easily afterward.</li><li><strong>Patron Curse</strong> (6th): Once per day, afflict a creature within <strong>30ft</strong> with Vashtira's Weight (<strong>Will save</strong> against your Class Save DC) — while cursed, the target's dreams are haunted and they gain no benefit from rest until the curse is lifted or a week passes.</li><li><strong>Physical Change</strong> (12th): Your eyes lose their whites — solid black, cold to look into.</li><li>You gain darkvision and advantage on saves vs being magically put to sleep.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, without spending your action, lock your gaze on a creature within <strong>30ft</strong> — <strong>Will save</strong> or frightened for <strong>1 round</strong> and shaken (disadvantage on their next attack roll) for <strong>1 minute</strong> after.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Patron Buff",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) advantage on saves vs fear and mind-affecting effects for 1 hour — the recipient sleeps a little less easily afterward.</p>",
+    "description": "<p>Once per day, grant a touched creature (or yourself) advantage on saves vs fear and mind-affecting effects for <strong>1 hour</strong> — the recipient sleeps a little less easily afterward.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -26,7 +26,7 @@
    {
     "name": "Patron Curse",
     "level": 6,
-    "description": "<p>Once per day, afflict a creature within 30ft with Vashtira's Weight (Will save against your Class Save DC) — while cursed, the target's dreams are haunted and they gain no benefit from rest until the curse is lifted or a week passes.</p>",
+    "description": "<p>Once per day, afflict a creature within <strong>30ft</strong> with Vashtira's Weight (<strong>Will save</strong> against your Class Save DC) — while cursed, the target's dreams are haunted and they gain no benefit from rest until the curse is lifted or a week passes.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -37,7 +37,7 @@
    {
     "name": "Physical Change",
     "level": 12,
-    "description": "<p>Your eyes lose their whites — solid black, cold to look into. You gain darkvision and advantage on saves vs being magically put to sleep. You may make an unarmed claw attack dealing 1d6 damage. Once per day, without spending your action, lock your gaze on a creature within 30ft — Will save or frightened for 1 round and shaken (disadvantage on their next attack roll) for 1 minute after.</p>",
+    "description": "<p>Your eyes lose their whites — solid black, cold to look into.</p><ul><li>You gain darkvision and advantage on saves vs being magically put to sleep.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, without spending your action, lock your gaze on a creature within <strong>30ft</strong> — <strong>Will save</strong> or frightened for <strong>1 round</strong> and shaken (disadvantage on their next attack roll) for <strong>1 minute</strong> after.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,

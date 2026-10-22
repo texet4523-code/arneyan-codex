@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Master of hellfire and unbreakable contracts. More dangerous to cross than to serve.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, when a creature damages you, they immediately take 1d10 fire, +1d10 per 6 Warlock levels, as a reaction. No saving throw.</li><li><strong>Patron's Mark</strong> (6th): Once per day, speak a statement of 10 words or fewer that becomes magically binding on you — if you break it you take 2d6 fire damage. Creatures who witness the oath are compelled to honour any deal made in that moment; breaking a witnessed deal deals 1d6 fire damage to them.</li><li><strong>Patron Feature</strong> (12th): Once per day, bind a creature to a spoken contract (Will save against your Class Save DC). Breaking it deals 4d6 fire and marks them — other devils will pursue the oathbreaker.</li></ul>",
+  "description": "<p>Master of hellfire and unbreakable contracts. More dangerous to cross than to serve.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, when a creature damages you, they immediately take <strong>1d10</strong> fire, +<strong>1d10</strong> per 6 Warlock levels, as a reaction. No saving throw.</li><li><strong>Patron's Mark</strong> (6th): Once per day, speak a statement of 10 words or fewer that becomes magically binding on you — if you break it you take <strong>2d6</strong> fire damage. Creatures who witness the oath are compelled to honour any deal made in that moment; breaking a witnessed deal deals <strong>1d6</strong> fire damage to them.</li><li><strong>Patron Feature</strong> (12th): Once per day, bind a creature to a spoken contract (<strong>Will save</strong> against your Class Save DC). Breaking it deals <strong>4d6</strong> fire and marks them — other devils will pursue the oathbreaker.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Dark Gift",
     "level": 1,
-    "description": "<p>Once per day, when a creature damages you, they immediately take 1d10 fire, +1d10 per 6 Warlock levels, as a reaction. No saving throw.</p>",
+    "description": "<p>Once per day, when a creature damages you, they immediately take <strong>1d10</strong> fire, +<strong>1d10</strong> per 6 Warlock levels, as a reaction. No saving throw.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -28,7 +28,7 @@
    {
     "name": "Patron's Mark",
     "level": 6,
-    "description": "<p>Once per day, speak a statement of 10 words or fewer that becomes magically binding on you — if you break it you take 2d6 fire damage. Creatures who witness the oath are compelled to honour any deal made in that moment; breaking a witnessed deal deals 1d6 fire damage to them.</p>",
+    "description": "<p>Once per day, speak a statement of 10 words or fewer that becomes magically binding on you — if you break it you take <strong>2d6</strong> fire damage. Creatures who witness the oath are compelled to honour any deal made in that moment; breaking a witnessed deal deals <strong>1d6</strong> fire damage to them.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -39,7 +39,7 @@
    {
     "name": "Patron Feature",
     "level": 12,
-    "description": "<p>Once per day, bind a creature to a spoken contract (Will save against your Class Save DC). Breaking it deals 4d6 fire and marks them — other devils will pursue the oathbreaker.</p>",
+    "description": "<p>Once per day, bind a creature to a spoken contract (<strong>Will save</strong> against your Class Save DC). Breaking it deals <strong>4d6</strong> fire and marks them — other devils will pursue the oathbreaker.</p>",
     "uses": {
      "value": 1,
      "max": 1,

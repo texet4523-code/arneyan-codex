@@ -6,7 +6,7 @@ import { makeItem, makeActor } from "./harness.mjs";
 
 const src = p => new URL(`../packs-src/${p}/`, import.meta.url).pathname;
 const docs = pack => fs.readdirSync(src(pack)).map(f => JSON.parse(fs.readFileSync(path.join(src(pack), f), "utf8"))).filter(d => d.system);
-const strip = h => String(h ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+const strip = h => String(h ?? "").replace(/<\/?(?:strong|b|em)>/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
 const one = (pack, name) => docs(pack).find(d => d.name === name);
 for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
 

@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Advantage on saves against spells and other magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -229,7 +229,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>2/day each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. 1/day: @UUID[Compendium.arneyan.spells.Item.n8TMmevXLiQJvt74]{cloudkill} (@Check[fort|dc:9]{Fortitude DC 9}).</p>",
+    "description": "<p><strong>2/day</strong> each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.n8TMmevXLiQJvt74]{cloudkill} (@Check[fort|dc:9]{Fortitude DC 9}).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -266,7 +266,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -329,7 +329,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -394,7 +394,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 120ft; 20ft-radius, 20ft-high fog that moves 10ft per round away from you for 1 round per level. A creature that enters or starts its turn inside makes a Fortitude save: creatures of Level 4 or lower that fail die; others that fail take 2d6 poison damage; Fortitude negates. Heavier than air; sinks into pits.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Necromancer</p>",
+    "description": "<p>Range <strong>120ft</strong>; <strong>20ft</strong>-radius, <strong>20ft</strong>-high fog that moves <strong>10ft</strong> per round away from you for <strong>1 round per level</strong>.</p><ul><li>A creature that enters or starts its turn inside makes a <strong>Fortitude save</strong>: creatures of Level 4 or lower that fail die; others that fail take <strong>2d6</strong> poison damage; <strong>Fortitude negates</strong>.</li><li>Heavier than air; sinks into pits.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0

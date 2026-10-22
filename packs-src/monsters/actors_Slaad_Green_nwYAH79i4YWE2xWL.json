@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>regains 10 HP at the start of its turn while it has at least 1 HP.</p>",
+    "description": "<p>regains <strong>10 HP</strong> at the start of its turn while it has at least <strong>1 HP</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -261,7 +261,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}. 2/day: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:12]{Will DC 12}), @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only). 1/day: @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:12]{Reflex DC 12}).</p>",
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}. <strong>2/day</strong>: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:12]{Will DC 12}), @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:12]{Reflex DC 12}).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -298,7 +298,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -365,7 +365,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range 60ft cone, 1 minute per level (concentration). Each round you focus on one creature in the cone and read its surface thoughts; Will negates for that creature (it knows nothing has been read). Stone 3ft thick, lead or metal sheets block it. Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>, <strong>1 minute per level</strong> (concentration).</p><ul><li>Each round you focus on one creature in the cone and read its surface thoughts; <strong>Will negates</strong> for that creature (it knows nothing has been read).</li><li>Stone <strong>3ft</strong> thick, lead or metal sheets block it.</li><li>Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -428,7 +428,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -487,7 +487,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 60ft cone. Creatures in the cone that fail a Will save are Frightened and must flee from you at full speed for 1 round per level, dropping anything held; Will negates. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -561,7 +561,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -637,7 +637,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range 150ft; 20ft-radius burst. 1d6 fire damage per level (max 10d6); Reflex halves. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -697,7 +697,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>Advantage on saves against spells and other magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0

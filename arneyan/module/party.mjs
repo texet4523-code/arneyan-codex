@@ -225,6 +225,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const speeds = members.map(m => Number(m.speed)).filter(Number.isFinite);
     Object.assign(context, {
       actor, system: actor.system, source: actor._source.system, editable: this.isEditable, isGM: game.user.isGM,
+      activeTab: this._activeTab,
       tabs: [["members", "Members"], ["stash", "Stash"], ["travel", "Travel"], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       members, stash,
       places: game.actors.filter(a => a.type === "storage" && a.testUserPermission(game.user, "OBSERVER")).sort((a, b) => a.name.localeCompare(b.name))

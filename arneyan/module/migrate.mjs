@@ -60,7 +60,7 @@ function plainRules(v) {
  * schema fills it in on every stored kit, which made kits stamped before it look edited. `legacy` is the 0.10.18 to
  * 0.10.21 view (blank picks included), so their stamps still match.
  */
-function mechView(field, v, legacy = false) {
+function mechView(field, v, legacy = false, raw = false) {
   if (v == null) return null;
   if (field === "uses") return { max: Number(v.max) || 0, per: v.per ?? "", formula: v.formula ?? "" };
   if (field === "abilityChoice") return { options: [...(v.options ?? [])] };  // the pick and a move are play, not mechanics
@@ -71,6 +71,8 @@ function mechView(field, v, legacy = false) {
     if (c.abilityChoice) { delete c.abilityChoice.value; delete c.abilityChoice.moved; }
     if (c.weaponChoice) delete c.weaponChoice.value;
     if (!legacy && c.weaponChoice && !String(c.weaponChoice.max ?? "")) delete c.weaponChoice;
+    // 0.10.43: a feature's text counts by its words, so a new layout (short points, bold terms) isn't a change.
+    if (!legacy && !raw && typeof c.description === "string") c.description = wordsOf(c.description);
     return c;
   }));
   if (["rules", "applies", "auras"].includes(field)) return plainRules(v);
@@ -86,7 +88,25 @@ function hash(view) {
 export function fingerprint(field, v) { return hash(mechView(field, v)); }
 /** Does a value still match its stamp (taken now, or by 0.10.18 to 0.10.21)? */
 export function matchesStamp(field, v, stamp) {
-  return fingerprint(field, v) === stamp || (field === "features" && hash(mechView(field, v, true)) === stamp);
+  return fingerprint(field, v) === stamp
+    || (field === "features" && (hash(mechView(field, v, false, true)) === stamp || hash(mechView(field, v, true)) === stamp));
+}
+
+/**
+ * A kit's features with the compendium's layout for each description whose words are the same (by name, else by
+ * place in the list): the GM's own edits (uses, a reworded text) stay.
+ */
+export function laidOutFeatures(features, srcFeatures) {
+  if (!Array.isArray(features) || !Array.isArray(srcFeatures)) return null;
+  let changed = false;
+  const out = features.map((f, i) => {
+    const src = srcFeatures.find(x => x?.name === f?.name) ?? srcFeatures[i];
+    const d = layoutFrom(f?.description, src?.description);
+    if (!d) return f;
+    changed = true;
+    return { ...clone(f), description: d };
+  });
+  return changed ? out : null;
 }
 /** Fingerprints of an item's mechanical fields (those its type has), from its stored system data. */
 export function stampOf(type, system = {}) {
@@ -122,6 +142,18 @@ export function compendiumSourceOf(item) {
   return null;
 }
 const sourceOf = compendiumSourceOf;
+
+/** A description's words alone (no tags, no spaces), to tell a new layout from a reworded text. */
+export function wordsOf(h) { return String(h ?? "").replace(/<[^>]+>/g, "").replace(/&nbsp;|&#160;/g, "").replace(/\s+/g, ""); }
+
+/**
+ * 0.10.43: descriptions laid out for reading (short points, key terms in bold). A copy on a sheet takes the new
+ * layout only when its words are exactly the compendium's: a description anyone reworded stays as it is.
+ */
+export function layoutFrom(desc, srcDesc) {
+  if (typeof desc !== "string" || typeof srcDesc !== "string" || desc === srcDesc) return null;
+  return wordsOf(desc) === wordsOf(srcDesc) ? srcDesc : null;
+}
 
 /** What to fill in on one item from its compendium entry (nothing if it's already set). */
 export function fillFrom(item, src) {
@@ -223,12 +255,14 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   const next = { ...(unstamped ? {} : stamps) };
   const kept = [];
   // A blank weapon scope on one side only is no difference (stored rules have it, an older entry may not).
-  const plainIf = (k, v) => (["rules", "applies", "auras", "features"].includes(k) ? plainRules(v) : v);
+  const plainIf = (k, v) => (k === "features" ? mechView("features", v) : ["rules", "applies", "auras"].includes(k) ? plainRules(v) : v);
   const set = (k, v) => {
     if (same(plainIf(k, s[k]), plainIf(k, v))) { next[k] = fingerprint(k, v); return; }
     // Changed by hand since it arrived (or since the last update): keep it, and its old fingerprint.
     if (!force && !unstamped && stamps[k] !== undefined && !matchesStamp(k, s[k], stamps[k])) {
-      if (!matchesStamp(k, v, stamps[k])) kept.push(k);
+      // Listed only when the compendium changed more than its layout (the copy's own text read in its place).
+      const asBefore = k === "features" ? (laidOutFeatures(v, s[k]) ?? v) : v;
+      if (!matchesStamp(k, v, stamps[k]) && !matchesStamp(k, asBefore, stamps[k])) kept.push(k);
       return;
     }
     upd[`system.${k}`] = clone(v);
@@ -331,11 +365,30 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds
       // The features a kit granted follow the kit as it will be: the compendium's list if the kit takes it, or the
       // kit's own list if it keeps an edit (or is left as it was).
       if (i.type === "kit") kitFeatures.set(i.id, clone(upd["system.features"] ?? (i._source?.system ?? i.system)?.features ?? []));
+      // The new layout of the same words (not while the GM is still to be asked about older items).
+      const back = i.flags?.[SYS]?.putBack ?? [];
+      if (!i.flags?.[SYS]?.keepCustom && !report.unstamped) {
+        const d = !back.includes("system.description") && layoutFrom((i._source?.system ?? i.system)?.description, src.system?.description);
+        if (d) upd["system.description"] = d;
+        if (i.type === "kit") {
+          const now = upd["system.features"] ?? (i._source?.system ?? i.system)?.features;
+          const laid = laidOutFeatures(now, src.system?.features);
+          if (laid) {
+            upd["system.features"] = laid;
+            kitFeatures.set(i.id, clone(laid));
+            // A stamp that matched before still matches (its words are the same): stamped again in the new form.
+            const synced = upd[`flags.${SYS}.synced`] ?? i._source?.flags?.[SYS]?.synced;
+            if (synced && typeof synced === "object" && matchesStamp("features", now, synced.features)) upd[`flags.${SYS}.synced`] = { ...synced, features: fingerprint("features", laid) };
+          }
+        }
+      }
     } else if (i.type === "ability" && kitFeatures.has(i.flags?.[SYS]?.grantedBy)) {
       const features = kitFeatures.get(i.flags[SYS].grantedBy);
       const idx = Number(String(i.flags[SYS].source ?? "").split(".").pop());
       const f = features[idx]?.name === i.name ? features[idx] : features.find(x => x.name === i.name);
       upd = refreshGranted(i, features, { maxNow: maxOn(actor, i, f?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
+      const d = !i.flags?.[SYS]?.keepCustom && !report.unstamped && !(i.flags?.[SYS]?.putBack ?? []).includes("system.description") && layoutFrom((i._source?.system ?? i.system)?.description, f?.description);
+      if (d) upd["system.description"] = d;
     }
     if (report.kept?.length) notes.kept.push({ uuid: i.uuid, label: actor ? `${actor.name}: ${i.name}` : i.name, fields: report.kept });
     if (report.unstamped) { notes.unstamped += 1; notes.unstampedActors.add(actor?.id ?? "items"); }
@@ -557,7 +610,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const head = any ? `${due ? "Updated" : "Tried again and updated"} ${res.items} item${res.items === 1 ? "" : "s"} on ${res.actors} actor${res.actors === 1 ? "" : "s"}${extra} from the compendiums.`
       : due ? "Nothing on your sheets was updated from the compendiums." : "Tried the update again.";
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
-      + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium. Names, descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
+      + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

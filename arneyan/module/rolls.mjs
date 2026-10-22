@@ -260,7 +260,8 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
     // From an attack against several targets: the damage goes to the ones it hit.
     hits: hits ?? null, hasHits: Array.isArray(hits), hitNames: (hits ?? []).map(h => h.name).join(", "), missNames: (misses ?? []).map(h => h.name).join(", "),
     // A spell with a save: one click applies full damage to those who failed and half (or none) to those who saved.
-    bySaves: !healing && !!(spell || (item?.type === "spell" && item.system?.save) || item?.system?.save),
+    // Not after a touch attack (it replaces the save: the damage goes to the ones hit).
+    bySaves: !healing && !Array.isArray(hits) && !!(spell || (item?.type === "spell" && item.system?.save) || item?.system?.save),
     canCrit: !crit && !healing && item?.type === "weapon" && !!actor
   });
   return ChatMessage.create({

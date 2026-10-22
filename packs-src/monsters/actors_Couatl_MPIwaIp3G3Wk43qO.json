@@ -197,7 +197,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>A creature bitten makes a @Check[fort|dc:15]{Fortitude save DC 15} or is @Condition[poisoned]{Poisoned} for 24 hours and @Condition[unconscious]{Unconscious} while it is @Condition[poisoned]{Poisoned}.</p>",
+    "description": "<p>A creature bitten makes a @Check[fort|dc:15]{Fortitude save DC 15} or is @Condition[poisoned]{Poisoned} for <strong>24 hours</strong> and @Condition[unconscious]{Unconscious} while it is @Condition[poisoned]{Poisoned}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -234,7 +234,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>A Medium or smaller creature hit by the constrict attack is @Condition[restrained]{Restrained} (escape DC 14).</p>",
+    "description": "<p>A Medium or smaller creature hit by the constrict attack is @Condition[restrained]{Restrained} (escape <strong>DC 14</strong>).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -308,7 +308,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 50ft; up to 6 allies; 1 minute. Targets have Advantage on their first attack roll each round and gain +1 to saving throws. Cast reversed (Bane): up to 6 enemies within range have Disadvantage on their first attack roll each round and suffer -1 to saving throws for 1 minute; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "description": "<p>Range <strong>50ft</strong>; up to 6 allies; <strong>1 minute</strong>.</p><ul><li>Targets have <strong>Advantage</strong> on their first attack roll each round and gain +1 to saving throws.</li><li>Cast reversed (Bane): up to 6 enemies within range have <strong>Disadvantage</strong> on their first attack roll each round and suffer -1 to saving throws for <strong>1 minute</strong>; <strong>Will negates</strong>.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -410,7 +410,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature. Heals 1d8 HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals 1d8 necrotic damage plus 1 per level (max +5); Fortitude halves.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p>Touch; one creature. Heals <strong>1d8</strong> HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (max +5); <strong>Fortitude halves</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -471,7 +471,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -529,7 +529,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Touch; one creature. Restores 1d4 points of one ability score reduced by a spell, poison or disease. Does not restore HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Touch; one creature. Restores <strong>1d4</strong> points of one ability score reduced by a spell, poison or disease. Does not restore HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -587,7 +587,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature; 1 minute per level. Choose Good, Evil, Law or Chaos: the target gains +2 AC and +2 to saving throws against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Touch; one creature; <strong>1 minute per level</strong>. Choose Good, Evil, Law or Chaos: the target gains +2 AC and +2 to saving throws against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Magus, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -672,7 +672,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range: any distance on the same plane; 1 minute per level (concentration). Choose a creature or a place you have visited. You see and hear within 10ft of the target; a creature target makes a Will save, with Advantage if you know it only second-hand and Disadvantage if you hold a piece of its body. Will negates. Material: a polished silver mirror worth 250 gp (not consumed).</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p>Range: any distance on the same plane; <strong>1 minute per level</strong> (concentration).</p><ul><li>Choose a creature or a place you have visited.</li><li>You see and hear within <strong>10ft</strong> of the target; a creature target makes a <strong>Will save</strong>, with <strong>Advantage</strong> if you know it only second-hand and <strong>Disadvantage</strong> if you hold a piece of its body. <strong>Will negates</strong>.</li><li>Material: a polished silver mirror worth 250 gp (not consumed).</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0

@@ -12,6 +12,7 @@ import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { combatById } from "./fight.mjs";
 import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
+import { isTouchAttack } from "./touch.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
@@ -135,6 +136,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemMode: ArneyanActorSheet.#itemMode,
       itemToggle: ArneyanActorSheet.#itemToggle,
       itemExpand: ArneyanActorSheet.#itemExpand,
+      toggleSpellLevel: ArneyanActorSheet.#toggleSpellLevel,
       itemChat: ArneyanActorSheet.#itemChat,
       openPage: ArneyanActorSheet.#openPage,
       rest: ArneyanActorSheet.#rest,
@@ -179,6 +181,14 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
 
   _activeTab = "actions";
   _expanded = new Set();
+  /** Spell levels folded away on this sheet ("<caster id>:<level>"), remembered in this browser. */
+  get _folded() {
+    if (!this.__folded) {
+      try { this.__folded = new Set(JSON.parse(localStorage.getItem(`arneyan.spellFold.${this.document.id}`) ?? "[]")); }
+      catch { this.__folded = new Set(); }
+    }
+    return this.__folded;
+  }
   _editMode = null;
 
   get editMode() {
@@ -205,7 +215,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       return per ? `${Math.max(0, Number(per[1]) - (i.getFlag("arneyan", "used") ?? 0))} of ${per[1]} left today` : "";
     };
     const open = i => this._expanded.has(i.id);
-    const row = async i => ({ item: i, id: i.id, usesLabel: i.type === "spell" ? innateLeft(i) : "", expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
+    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), usesLabel: i.type === "spell" ? innateLeft(i) : "", expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
     const rows = async list => Promise.all(list.map(row));
 
     // Weapons with their attack bonus and damage worked out.
@@ -300,7 +310,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
             pips: n === 0 ? [] : Array.from({ length: slot.total }, (_, i) => ({ index: i, used: i >= slot.left })),
             left: slot.left, total: slot.total, isCantrip: n === 0,
             cantripsKnown: n === 0 && !c.npc ? `${list.length} / ${c.cantrips} known` : "",
-            spells: await rows(list)
+            spells: await rows(list), foldKey: `${c.id}:${n}`, folded: this._folded.has(`${c.id}:${n}`)
           });
         }
         spellSections.push({ ...c, levels, abilityLabel: c.npc ? "" : ARNEYAN.abilities[c.ability], modLabel: c.npc ? "" : signed(c.mod), dcTip: breakdown(c.dcParts) });
@@ -311,7 +321,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const levels = [];
       for (let n = 0; n <= 9; n++) {
         const list = loose.filter(s => s.system.level === n);
-        if (list.length) levels.push({ level: n, label: n === 0 ? "Cantrips" : `${ARNEYAN.spellLevels[n]} Level`, pips: [], spells: await rows(list) });
+        if (list.length) levels.push({ level: n, label: n === 0 ? "Cantrips" : `${ARNEYAN.spellLevels[n]} Level`, pips: [], spells: await rows(list), foldKey: `loose:${n}`, folded: this._folded.has(`loose:${n}`), count: list.length });
       }
       spellSections.push({ name: isCharacter ? "Other Spells" : system.casters?.length ? "Innate Spells" : "Spells", levels, loose: true, dc: isCharacter ? null : system.spellDC, npcDay: !isCharacter });
     }
@@ -386,6 +396,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       : system.saveList.map(s => ({ key: s.key, label: s.label, value: s.value, valueLabel: signed(s.total), tip: breakdown(s.parts), autoFail: s.autoFail }));
 
     const hp = system.attributes.hp;
+    const noScores = !isCharacter && Object.values(system.abilities).every(v => (v.base ?? v.value) === 10 && (v.total ?? v.value) === 10);
     Object.assign(context, {
       actor, system, source: actor._source.system, config: ARNEYAN, mods,
       isCharacter, isNpc: !isCharacter, editable: this.isEditable, editMode: this.editMode,
@@ -393,9 +404,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]]
         : [["actions", "Actions"], ["spells", "Spells"], ["effects", "Effects"], ["bio", "Description"]]).map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       activeTab: this._activeTab,
+      // A monster Monsters & Treasure gives no ability scores for (every one still 10): shown as "–", not as +0.
       abilities: Object.entries(system.abilities).map(([k, v]) => ({
-        key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: v.total ?? v.value,
-        changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: signed(v.mod), tip: v.parts ? breakdown(v.parts) : ""
+        key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: noScores ? "–" : (v.total ?? v.value),
+        changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: noScores ? "–" : signed(v.mod),
+        tip: noScores ? "No ability scores in Monsters & Treasure for this creature (its saves are given directly). Edit to set them." : v.parts ? breakdown(v.parts) : ""
       })),
       classes: byType("class"),
       ancestry: await Promise.all(byType("ancestry").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
@@ -655,6 +668,15 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     return promptWeaponChoice(item);
   }
   static #itemChat(event, target) { return itemToChat(this._itemFrom(target)); }
+  /** Fold a spell level away (or open it again); the sheet remembers it in this browser. */
+  static #toggleSpellLevel(event, target) {
+    const key = target.closest("[data-fold-key]")?.dataset.foldKey;
+    if (!key) return;
+    if (this._folded.has(key)) this._folded.delete(key);
+    else this._folded.add(key);
+    try { localStorage.setItem(`arneyan.spellFold.${this.document.id}`, JSON.stringify([...this._folded])); } catch { /* this session only */ }
+    this.render();
+  }
   static #itemExpand(event, target) {
     const item = this._itemFrom(target);
     if (!item) return;
@@ -919,6 +941,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     Object.assign(context, {
       item, system: sys, source: item._source.system, config: ARNEYAN, type: item.type,
       editable: this.isEditable,
+      activeTab: this._activeTab,
       tabs: [["details", "Details"], ...(hasEffects ? [["effects", "Effects"]] : []), ["description", "Description"]]
         .map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       hasEffects,

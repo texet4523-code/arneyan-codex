@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>Every swamp has one, or claims to. Old Mossmaw wears a different lovely face every time she's seen, and every villager who's traded with her swears they got the better deal — until they check what they actually walked away with.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) a glamour — +4 to Deception and Persuasion checks for 1 hour, appearance unchanged to true sight or careful magical scrutiny. While the glamour lasts, the first attack made against the recipient in each encounter has Disadvantage.</li><li><strong>Patron Curse</strong> (6th): Once per day, force a creature within 30ft to see themselves as hideous in every reflective surface for 24 hours (Will save negates) — disadvantage on Charisma checks with anyone who has seen their reflection.</li><li><strong>Physical Change</strong> (12th): Your skin takes on a faint mottled green cast in dim light, and warts bloom at your knuckles. Advantage on Stealth checks in swamp, marsh, or bog terrain. Your hands harden with a bog-witch's grip — unarmed strikes deal 1d6 damage and you gain advantage on grapple and overbearing checks.</li></ul>",
+  "description": "<p>Every swamp has one, or claims to. Old Mossmaw wears a different lovely face every time she's seen, and every villager who's traded with her swears they got the better deal — until they check what they actually walked away with.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) a glamour — +4 to Deception and Persuasion checks for <strong>1 hour</strong>, appearance unchanged to true sight or careful magical scrutiny. While the glamour lasts, the first attack made against the recipient in each encounter has <strong>Disadvantage</strong>.</li><li><strong>Patron Curse</strong> (6th): Once per day, force a creature within <strong>30ft</strong> to see themselves as hideous in every reflective surface for <strong>24 hours</strong> (<strong>Will save</strong> negates) — disadvantage on Charisma checks with anyone who has seen their reflection.</li><li><strong>Physical Change</strong> (12th): Your skin takes on a faint mottled green cast in dim light, and warts bloom at your knuckles.</li><li><strong>Advantage</strong> on Stealth checks in swamp, marsh, or bog terrain.</li><li>Your hands harden with a bog-witch's grip — unarmed strikes deal <strong>1d6</strong> damage and you gain advantage on grapple and overbearing checks.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Patron Buff",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) a glamour — +4 to Deception and Persuasion checks for 1 hour, appearance unchanged to true sight or careful magical scrutiny. While the glamour lasts, the first attack made against the recipient in each encounter has Disadvantage.</p>",
+    "description": "<p>Once per day, grant a touched creature (or yourself) a glamour — +4 to Deception and Persuasion checks for <strong>1 hour</strong>, appearance unchanged to true sight or careful magical scrutiny. While the glamour lasts, the first attack made against the recipient in each encounter has <strong>Disadvantage</strong>.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -26,7 +26,7 @@
    {
     "name": "Patron Curse",
     "level": 6,
-    "description": "<p>Once per day, force a creature within 30ft to see themselves as hideous in every reflective surface for 24 hours (Will save negates) — disadvantage on Charisma checks with anyone who has seen their reflection.</p>",
+    "description": "<p>Once per day, force a creature within <strong>30ft</strong> to see themselves as hideous in every reflective surface for <strong>24 hours</strong> (<strong>Will save</strong> negates) — disadvantage on Charisma checks with anyone who has seen their reflection.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -37,7 +37,7 @@
    {
     "name": "Physical Change",
     "level": 12,
-    "description": "<p>Your skin takes on a faint mottled green cast in dim light, and warts bloom at your knuckles. Advantage on Stealth checks in swamp, marsh, or bog terrain. Your hands harden with a bog-witch's grip — unarmed strikes deal 1d6 damage and you gain advantage on grapple and overbearing checks.</p>",
+    "description": "<p>Your skin takes on a faint mottled green cast in dim light, and warts bloom at your knuckles.</p><ul><li><strong>Advantage</strong> on Stealth checks in swamp, marsh, or bog terrain.</li><li>Your hands harden with a bog-witch's grip — unarmed strikes deal <strong>1d6</strong> damage and you gain advantage on grapple and overbearing checks.</li></ul>",
     "uses": {
      "value": 0,
      "max": 0,

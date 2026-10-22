@@ -188,7 +188,7 @@ assert.deepEqual(actions["Search"].system.activities.map(a => [a.kind, a.ability
 assert.deepEqual(actions["Hide"].system.activities.map(a => [a.kind, a.ability]), [["check", "dex"]], "Hide rolls a Dexterity check");
 assert.equal(actions["Break Free"].flags.arneyan?.contest, "escape", "Break Free uses the break-free contest");
 assert.ok(C.CONTESTS[actions["Break Free"].flags.arneyan.contest], "a contest combat.mjs knows");
-assert.ok(actions["Guard"].system.description.includes("attacks against that ally have Disadvantage"));
+assert.ok(actions["Guard"].system.description.replace(/<\/?strong>/g, "").includes("attacks against that ally have Disadvantage"));
 assert.ok(actions["Shield Blow"].system.description.includes("10 + half your level"), "Shield Blow states its DC");
 
 /* Sheet: combat tools, off-hand button, non-lethal track; damage card buttons. */

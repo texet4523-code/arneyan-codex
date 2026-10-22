@@ -28,7 +28,7 @@
   </nav>
 
   <section class="arn-body">
-    <div class="arn-tab" data-tab="members">
+    <div class="arn-tab" data-tab="members" {{#unless (eq @root.activeTab "members")}}hidden{{/unless}}>
       <p class="arn-help">Every player character in the <strong>Player Characters</strong> folder is in the party. Drag a character into that folder (or onto this sheet) to add them; new player characters join automatically.</p>
       <div class="arn-members">
         {{#each members}}
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="arn-tab" data-tab="stash">
+    <div class="arn-tab" data-tab="stash" {{#unless (eq @root.activeTab "stash")}}hidden{{/unless}}>
       <div class="arn-section-head"><h3>Party Stash</h3>
         <span class="arn-muted">Drag items here from a sheet to move them in; drag them out to a sheet to take them.</span>
         {{#if editable}}<a class="arn-browse" data-action="browse" data-tooltip="Browse the Catalogue"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}</div>
@@ -93,9 +93,9 @@
       </ul>
     </div>
 
-    <div class="arn-tab" data-tab="travel">{{> "systems/arneyan/templates/actor/travel-tab.hbs"}}</div>
+    <div class="arn-tab" data-tab="travel" {{#unless (eq @root.activeTab "travel")}}hidden{{/unless}}>{{> "systems/arneyan/templates/actor/travel-tab.hbs"}}</div>
 
-    <div class="arn-tab" data-tab="notes">
+    <div class="arn-tab" data-tab="notes" {{#unless (eq @root.activeTab "notes")}}hidden{{/unless}}>
       <div class="arn-section-head"><h3>Party notes</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editNotes"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
       <div class="arn-prose">{{#if notes}}{{{notes}}}{{else}}<p class="arn-muted">Quests, debts, rumours, who owes whom.</p>{{/if}}</div>
     </div>

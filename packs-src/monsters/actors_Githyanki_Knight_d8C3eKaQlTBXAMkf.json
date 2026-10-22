@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). 3/day each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only), @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. 1/day each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.A15OTsOTdAjkWzDt]{telekinesis}.</p>",
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only), @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.A15OTsOTdAjkWzDt]{telekinesis}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -154,7 +154,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -213,7 +213,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; one creature; 1 minute per level. The target can jump 30ft horizontally or 15ft vertically without a check, with or without a running start. Does not lessen fall damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Touch; one creature; <strong>1 minute per level</strong>. The target can jump <strong>30ft</strong> horizontally or <strong>15ft</strong> vertically without a check, with or without a running start. Does not lessen fall damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -273,7 +273,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Self; teleport up to 30ft to an unoccupied space you can see, carrying only what you wear or carry. Cast as part of your movement.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
+    "description": "<p>Self; teleport up to <strong>30ft</strong> to an unoccupied space you can see, carrying only what you wear or carry. Cast as part of your movement.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -331,7 +331,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature or object for 1 hour per level. Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (d20 + casting-stat modifier + half its level) vs DC 10 + the spell's level, failing means the spell fails. Material: diamond dust worth 50 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
+    "description": "<p>Touch; one creature or object for <strong>1 hour per level</strong>.</p><ul><li>Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (<strong>d20</strong> + casting-stat modifier + half its level) vs <strong>DC 10</strong> + the spell's level, failing means the spell fails.</li><li>Material: diamond dust worth 50 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -393,7 +393,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Touch; one creature. It speaks and understands any language for 10 minutes per level. Cast reversed (Babble): Range 30ft; one creature cannot speak or understand any language (and cannot cast verbal spells) for 1 minute per level; Will negates.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "description": "<p>Touch; one creature. It speaks and understands any language for <strong>10 minutes per level</strong>. Cast reversed (Babble): Range <strong>30ft</strong>; one creature cannot speak or understand any language (and cannot cast verbal spells) for <strong>1 minute per level</strong>; <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -456,7 +456,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (<strong>Will negates</strong>). Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -515,7 +515,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range 120ft; for up to 1 round per level (concentration) you lift and move objects totalling up to 25 lb per level (max 500 lb) at up to 20ft per round. A held creature is Restrained while lifted; Will negates. A creature's carried items require a Will save.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p>Range <strong>120ft</strong>; for up to <strong>1 round per level</strong> (concentration) you lift and move objects totalling up to 25 lb per level (max 500 lb) at up to <strong>20ft</strong> per round. A held creature is <strong>Restrained</strong> while lifted; <strong>Will negates</strong>. A creature's carried items require a <strong>Will save</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -585,7 +585,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>Advantage on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -622,7 +622,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>Once per 3 rounds, when its greatsword hits, the target makes a @Check[will|dc:13]{Will save DC 13} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, when its greatsword hits, the target makes a @Check[will|dc:13]{Will save DC 13} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0

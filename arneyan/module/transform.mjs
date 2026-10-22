@@ -164,7 +164,8 @@ export async function doTransform(original, form, opts = {}) {
       flags: { [SYS]: { standsInFor: t.id } }
     }, { parent: scene });
     const [made] = await scene.createEmbeddedDocuments("Token", [doc.toObject()]);
-    await t.update({ hidden: true, [`flags.${SYS}.wasHidden`]: t.hidden, [`flags.${SYS}.changedTo`]: made.id });
+    // The creature's own token waits, hidden and locked, where it stood (it can't be moved while it's changed).
+    await t.update({ hidden: true, locked: true, [`flags.${SYS}.wasHidden`]: t.hidden, [`flags.${SYS}.wasLocked`]: !!t.locked, [`flags.${SYS}.changedTo`]: made.id });
     await swapCombatants(scene, t.id, made);
     placed++;
   }
@@ -195,8 +196,8 @@ export async function doRevert(changed, { dropped = false } = {}) {
       const f = forms.find(x => x.id === orig.getFlag(SYS, "changedTo"));
       if (f) used.add(f.id);
       // Move it while it's still hidden (no slide across the map), then show it.
-      if (f) await orig.update({ x: f.x, y: f.y, elevation: f.elevation }, { animate: false });
-      await orig.update({ hidden: !!orig.getFlag(SYS, "wasHidden"), [`flags.${SYS}.wasHidden`]: null, [`flags.${SYS}.changedTo`]: null });
+      if (f) await orig.update({ x: f.x, y: f.y, elevation: f.elevation }, { animate: false, arneyanRevert: true });
+      await orig.update({ hidden: !!orig.getFlag(SYS, "wasHidden"), locked: !!orig.getFlag(SYS, "wasLocked"), [`flags.${SYS}.wasHidden`]: null, [`flags.${SYS}.wasLocked`]: null, [`flags.${SYS}.changedTo`]: null }, { arneyanRevert: true });
       if (f) await swapCombatants(scene, f.id, orig);
     }
     // A form whose original token is gone: put the creature back on the map where the form stood.
@@ -286,6 +287,8 @@ async function onSocket(msg, senderId) {
         if (o.wildShape) {
           wild = wildShapeFor(original);
           if (!wild || form.pack !== `${SYS}.monsters` || !isWildForm(form) || levelOf(form) > wild.cap) return;
+          const u = wild.item.system?.uses;
+          if (u?.max > 0 && u.value <= 0) return;
         } else {
           const canSee = form.pack ? game.packs.get(form.pack)?.testUserPermission(sender, "OBSERVER") : form.testUserPermission(sender, "OBSERVER");
           if (!canSee) return;
@@ -298,6 +301,7 @@ async function onSocket(msg, senderId) {
         opts.object = o.object;
       }
       await doTransform(original, form, opts);
+      if (wild) await spendWildShape(original);
     } else if (msg.action === "revert") {
       const changed = await fromUuid(String(msg.actorUuid)).catch(() => null);
       if (!(changed instanceof Actor) || !changed.getFlag(SYS, "transform") || !changed.testUserPermission(sender, "OWNER")) return;
@@ -512,6 +516,13 @@ export async function pickForm({ title, entries, cap = Infinity, lockTip = () =>
   return picked;
 }
 
+/** Spend a use of Wild Shape (after the change has happened). */
+async function spendWildShape(actor) {
+  const item = actor?.items?.find?.(i => i.name === "Wild Shape");
+  const u = item?.system?.uses;
+  if (u?.max > 0 && u.value > 0) await item.update({ "system.uses.value": u.value - 1 });
+}
+
 /** The Wild Shape feature used (its Use button): pick a beast up to your Level cap and become it. */
 export async function wildShape(item) {
   const actor = item?.actor;
@@ -539,16 +550,16 @@ export async function wildShape(item) {
   const picked = entries.find(e => e.uuid === choice.uuid);
   if (!picked) return;
   if (picked.level > cap) return ui.notifications.warn(`${picked.name} is Level ${picked.levelText}: above your Wild Shape cap of ${cap}.`);
-  // The use is spent once the form is picked (read fresh: another use may have happened meanwhile).
+  // A use is spent only once the change has happened (the GM's client spends it for a player).
   const now = item.system.uses ?? {};
-  if (now.max > 0) {
-    if (now.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
-    await item.update({ "system.uses.value": now.value - 1 });
-  }
+  if (now.max > 0 && now.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
   const opts = { ...choice.opts, wildShape: true, tempHp: deepened ? 2 * level : 0 };
   if (game.user.isGM) {
     const form = await fromUuid(choice.uuid);
-    return form ? transformInto(actor, form, opts) : ui.notifications.warn(`${picked.name} isn't in the Bestiary any more.`);
+    if (!form) return ui.notifications.warn(`${picked.name} isn't in the Bestiary any more.`);
+    await transformInto(actor, form, opts);
+    if (isChanged(actor)) await spendWildShape(actor);
+    return;
   }
   // A player: the GM's client finds the form and checks it is within the cap.
   if (!gm()) return ui.notifications.warn("Changing shape needs the GM to be online.");
@@ -558,6 +569,14 @@ export async function wildShape(item) {
 }
 
 export function registerTransform() {
+  // A creature that has changed shape stays put: its own token doesn't move until it returns (the form moves instead).
+  Hooks.on("preUpdateToken", (tok, changes, options) => {
+    if (options?.arneyanRevert || !tok.getFlag?.(SYS, "changedTo") || !tok.parent?.tokens?.has(tok.getFlag(SYS, "changedTo"))) return;
+    if ("x" in changes || "y" in changes || "elevation" in changes) {
+      if (game.user.id === options?.userId || !options?.userId) ui.notifications?.warn(`${tok.name} has changed shape: move the form instead (its own token comes back where the form stands).`);
+      return false;
+    }
+  });
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
   // Wild Shape's hour runs out (its effect ends): the druid returns to its own form.
   Hooks.on("deleteActiveEffect", (effect, options, userId) => {

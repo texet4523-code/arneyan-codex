@@ -25,7 +25,7 @@
   </nav>
 
   <section class="arn-body">
-    <div class="arn-tab" data-tab="contents">
+    <div class="arn-tab" data-tab="contents" {{#unless (eq @root.activeTab "contents")}}hidden{{/unless}}>
       <div class="storage-top">
         <label>Kind <select name="system.kind" {{#unless editable}}disabled{{/unless}}>{{selectOptions kinds selected=source.kind}}</select></label>
         <label class="wide">Where <input type="text" name="system.location" value="{{source.location}}" placeholder="Brass Bank of Mournas, the cottage in Tariel..." {{#unless editable}}disabled{{/unless}}></label>
@@ -61,7 +61,7 @@
       </ul>
     </div>
 
-    <div class="arn-tab" data-tab="ledger">
+    <div class="arn-tab" data-tab="ledger" {{#unless (eq @root.activeTab "ledger")}}hidden{{/unless}}>
       <div class="arn-section-head"><h3>Ledger</h3><span class="arn-muted">Newest first: what went in and out, when, and who.</span>
         {{#if isGM}}<a class="arn-btn small ghost" data-action="clearLedger"><i class="fa-solid fa-eraser"></i> Clear</a>{{/if}}</div>
       <ul class="arn-list table arn-ledger">
@@ -71,7 +71,7 @@
       </ul>
     </div>
 
-    <div class="arn-tab" data-tab="notes">
+    <div class="arn-tab" data-tab="notes" {{#unless (eq @root.activeTab "notes")}}hidden{{/unless}}>
       <div class="arn-section-head"><h3>Notes</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editNotes"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
       <div class="arn-prose">{{#if notes}}{{{notes}}}{{else}}<p class="arn-muted">Who holds the key, the banker's name, the fee you agreed.</p>{{/if}}</div>
     </div>

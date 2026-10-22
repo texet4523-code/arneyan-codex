@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>A Mournas legend — a bride who drowned in the harbour on her wedding night and never stopped waiting at the water's edge. Witches who serve her carry a little of that patience, and a little of that grief.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for 1 hour — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have Disadvantage.</li><li><strong>Patron Curse</strong> (6th): Once per day, bind a creature within 30ft to a single spoken promise (Will save negates) — if they knowingly break it within 24 hours, they take 3d6 cold damage and know exactly why.</li><li><strong>Physical Change</strong> (12th): Your skin is faintly cool to the touch and you no longer cast a reflection in still water. Advantage on Swim checks and on saves vs drowning or exhaustion in water. You may make an unarmed claw attack dealing 1d6 damage. Once per day, make a melee touch attack instead — on a hit, the target takes 2d6 cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</li></ul>",
+  "description": "<p>A Mournas legend — a bride who drowned in the harbour on her wedding night and never stopped waiting at the water's edge. Witches who serve her carry a little of that patience, and a little of that grief.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for <strong>1 hour</strong> — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have <strong>Disadvantage</strong>.</li><li><strong>Patron Curse</strong> (6th): Once per day, bind a creature within <strong>30ft</strong> to a single spoken promise (<strong>Will save</strong> negates) — if they knowingly break it within <strong>24 hours</strong>, they take <strong>3d6</strong> cold damage and know exactly why.</li><li><strong>Physical Change</strong> (12th): Your skin is faintly cool to the touch and you no longer cast a reflection in still water.</li><li><strong>Advantage</strong> on Swim checks and on saves vs drowning or exhaustion in water.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — on a hit, the target takes <strong>2d6</strong> cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Patron Buff",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for 1 hour — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have Disadvantage.</p>",
+    "description": "<p>Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for <strong>1 hour</strong> — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have <strong>Disadvantage</strong>.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -26,7 +26,7 @@
    {
     "name": "Patron Curse",
     "level": 6,
-    "description": "<p>Once per day, bind a creature within 30ft to a single spoken promise (Will save negates) — if they knowingly break it within 24 hours, they take 3d6 cold damage and know exactly why.</p>",
+    "description": "<p>Once per day, bind a creature within <strong>30ft</strong> to a single spoken promise (<strong>Will save</strong> negates) — if they knowingly break it within <strong>24 hours</strong>, they take <strong>3d6</strong> cold damage and know exactly why.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -37,7 +37,7 @@
    {
     "name": "Physical Change",
     "level": 12,
-    "description": "<p>Your skin is faintly cool to the touch and you no longer cast a reflection in still water. Advantage on Swim checks and on saves vs drowning or exhaustion in water. You may make an unarmed claw attack dealing 1d6 damage. Once per day, make a melee touch attack instead — on a hit, the target takes 2d6 cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</p>",
+    "description": "<p>Your skin is faintly cool to the touch and you no longer cast a reflection in still water.</p><ul><li><strong>Advantage</strong> on Swim checks and on saves vs drowning or exhaustion in water.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — on a hit, the target takes <strong>2d6</strong> cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,

@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Advantage on saves against spells and other magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -233,7 +233,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit is cursed: it cannot benefit from a long rest, and has Disadvantage on Wisdom checks and Will saves, until the curse is removed by Remove Curse or similar.</p>",
+    "description": "<p>A creature hit is cursed: it cannot benefit from a long rest, and has <strong>Disadvantage</strong> on Wisdom checks and <strong>Will saves</strong>, until the curse is removed by Remove Curse or similar.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -270,7 +270,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. 3/day each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). 1/day each: @UUID[Compendium.arneyan.spells.Item.sPNYzzVBNaySeweE]{dominate person} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl]{fly}, @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.VxbCRNTnzPCp7Aug]{true seeing}.</p>",
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.sPNYzzVBNaySeweE]{dominate person} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.rBcnhLiT5w4NlZTl]{fly}, @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.VxbCRNTnzPCp7Aug]{true seeing}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -307,7 +307,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range 60ft cone, 1 minute per level (concentration). Each round you focus on one creature in the cone and read its surface thoughts; Will negates for that creature (it knows nothing has been read). Stone 3ft thick, lead or metal sheets block it. Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>, <strong>1 minute per level</strong> (concentration).</p><ul><li>Each round you focus on one creature in the cone and read its surface thoughts; <strong>Will negates</strong> for that creature (it knows nothing has been read).</li><li>Stone <strong>3ft</strong> thick, lead or metal sheets block it.</li><li>Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -370,7 +370,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; 10 minutes per level. Your appearance, clothes and gear look like a humanoid of the same body shape and within 1ft of your height. Touch reveals nothing, but your voice, weight and abilities are unchanged. You cannot copy a specific person.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Bard</p>",
+    "description": "<p>Self; <strong>10 minutes per level</strong>. Your appearance, clothes and gear look like a humanoid of the same body shape and within <strong>1ft</strong> of your height. Touch reveals nothing, but your voice, weight and abilities are unchanged. You cannot copy a specific person.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Necromancer, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -431,7 +431,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -490,7 +490,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 60ft; 15ft cube; 1 minute. Create a visual illusion of an object or creature that makes no sound, smell or heat and cannot harm. A creature that touches it or studies it for 1 round gets a Will save; success sees through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>15ft cube</strong>; <strong>1 minute</strong>. Create a visual illusion of an object or creature that makes no sound, smell or heat and cannot harm. A creature that touches it or studies it for <strong>1 round</strong> gets a <strong>Will save</strong>; success sees through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -548,7 +548,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 120ft; one humanoid. It is Charmed and regards you as a trusted friend for 1 hour per level; Will negates (the save has Advantage if you or your allies are fighting it). Ends if you or your allies attack it. It will not obey orders that harm itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one humanoid. It is <strong>Charmed</strong> and regards you as a trusted friend for <strong>1 hour per level</strong>; <strong>Will negates</strong> (the save has <strong>Advantage</strong> if you or your allies are fighting it). Ends if you or your allies attack it. It will not obey orders that harm itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -622,7 +622,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; 60ft cone; 1 round per level. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by 1ft of stone, 1 inch of metal or 3ft of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -689,7 +689,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to 1 hour per level. Target is Invisible. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -765,7 +765,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 400ft. Create an illusion filling a 20ft cube plus 10ft per level on each side, with sight, sound, smell, temperature and ground tremors, for 1 minute per level (concentration). Directing its movement needs no action. It deals no real damage. Creatures that touch or study it make a Will save to see through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "description": "<p>Range <strong>400ft</strong>.</p><ul><li>Create an illusion filling a <strong>20ft cube</strong> plus <strong>10ft</strong> per level on each side, with sight, sound, smell, temperature and ground tremors, for <strong>1 minute per level</strong> (concentration).</li><li>Directing its movement needs no action.</li><li>It deals no real damage.</li><li>Creatures that touch or study it make a <strong>Will save</strong> to see through it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -824,7 +824,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 30ft; one creature that understands you. It follows a reasonable-sounding command of up to 25 words for 1 hour per level or until completed. Will negates. A command that is obviously harmful to the target fails automatically. Mindless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "description": "<p>Range <strong>30ft</strong>; one creature that understands you.</p><ul><li>It follows a reasonable-sounding command of up to 25 words for <strong>1 hour per level</strong> or until completed. <strong>Will negates</strong>.</li><li>A command that is obviously harmful to the target fails automatically.</li><li>Mindless creatures are immune.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -886,7 +886,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 60ft; one humanoid. It is Dominated and obeys your commands for 1 day per level; Will negates. It can make a new Will save every 24 hours, and gets a new save if ordered to act against its nature or harm itself. You can command it telepathically at any distance on the same plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Witch, Bard</p>",
+    "description": "<p>Range <strong>60ft</strong>; one humanoid.</p><ul><li>It is Dominated and obeys your commands for <strong>1 day per level</strong>; <strong>Will negates</strong>.</li><li>It can make a new <strong>Will save</strong> every <strong>24 hours</strong>, and gets a new save if ordered to act against its nature or harm itself.</li><li>You can command it telepathically at any distance on the same plane.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Witch, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -958,7 +958,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; one creature. It gains a fly speed of 90ft for 1 minute per level. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Touch; one creature. It gains a fly speed of <strong>90ft</strong> for <strong>1 minute per level</strong>. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1035,7 +1035,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (<strong>Will negates</strong>). Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1094,7 +1094,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Touch; one creature for 1 minute per level. It sees through Invisibility, illusions and magical darkness, sees creatures that are Ethereal, and sees the true form of polymorphed or shapechanged creatures, out to 120ft.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Cleric, Bard, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature for <strong>1 minute per level</strong>. It sees through Invisibility, illusions and magical darkness, sees creatures that are Ethereal, and sees the true form of polymorphed or shapechanged creatures, out to <strong>120ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Cleric, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1172,7 +1172,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>If it dies anywhere but its home plane, it re-forms there in 1d10 years.</p>",
+    "description": "<p>If it dies anywhere but its home plane, it re-forms there in <strong>1d10</strong> years.</p>",
     "source": {
      "book": "mt",
      "page": 0

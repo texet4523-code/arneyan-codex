@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit by both pincers in the same round is @Condition[restrained]{Restrained} (escape DC 18). It takes 2d10 damage at the start of each of its turns while held.</p>",
+    "description": "<p>A creature hit by both pincers in the same round is @Condition[restrained]{Restrained} (escape <strong>DC 18</strong>). It takes <strong>2d10</strong> damage at the start of each of its turns while held.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>3/day each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. 1/day: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} granting a bargain that always harms the wisher.</p>",
+    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} granting a bargain that always harms the wisher.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -223,7 +223,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -286,7 +286,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 120ft; 15ft-radius. Creatures in the area act randomly for 1 round per level; Will negates. At the start of each affected creature's turn roll 1d10: 1-3 it attacks the nearest creature (friend or foe); 4-6 it does nothing; 7-8 it moves in a random direction at full speed; 9-10 it acts normally.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; <strong>15ft</strong>-radius.</p><ul><li>Creatures in the area act randomly for <strong>1 round per level</strong>; <strong>Will negates</strong>.</li><li>At the start of each affected creature's turn roll <strong>1d10</strong>: 1-3 it attacks the nearest creature (friend or foe); 4-6 it does nothing; 7-8 it moves in a random direction at full speed; 9-10 it acts normally.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -349,7 +349,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range 120ft; one creature, object or 20ft-radius area. Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (d20 + casting-stat modifier + half your level (minimum 1)) vs DC 10 + the spell's level. A magic item in the area is suppressed for 1d4 rounds if you succeed on a casting check against DC 10 + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's Will save instead. Artefacts and Uniques are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -414,7 +414,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Cast as a spell: duplicates any spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies. Cast as a Ritual (no slot; takes 1 hour; consumes 25,000 gp of components; you gain 2 levels of Exhaustion): shape reality by choosing one effect: raise one attribute of one creature by 1 permanently (once per creature); return a dead creature to life as True Resurrection, with no body or time limit needed; end any curse, disease, affliction, ability loss or Exhaustion; free a creature from Imprisonment, Temporal Stasis, Maze or Trap the Soul; create one nonmagical object worth up to 25,000 gp; or transport up to 8 creatures anywhere on any plane. Any other effect must be approved by the GM before the ritual begins; it cannot kill a creature outright or grant levels, and the GM names its cost up front.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "description": "<p>Cast as a spell: duplicates any spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies.</p><ul><li>Cast as a Ritual (no slot; takes <strong>1 hour</strong>; consumes 25,000 gp of components; you gain 2 levels of Exhaustion): shape reality by choosing one effect: raise one attribute of one creature by 1 permanently (once per creature); return a dead creature to life as True Resurrection, with no body or time limit needed; end any curse, disease, affliction, ability loss or Exhaustion; free a creature from Imprisonment, Temporal Stasis, Maze or Trap the Soul; create one nonmagical object worth up to 25,000 gp; or transport up to 8 creatures anywhere on any plane.</li><li>Any other effect must be approved by the GM before the ritual begins; it cannot kill a creature outright or grant levels, and the GM names its cost up front.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
     "source": {
      "book": "phb",
      "page": 0

@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). 3/day each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only).</p>",
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -154,7 +154,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -213,7 +213,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; one creature; 1 minute per level. The target can jump 30ft horizontally or 15ft vertically without a check, with or without a running start. Does not lessen fall damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Touch; one creature; <strong>1 minute per level</strong>. The target can jump <strong>30ft</strong> horizontally or <strong>15ft</strong> vertically without a check, with or without a running start. Does not lessen fall damage.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -273,7 +273,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Self; teleport up to 30ft to an unoccupied space you can see, carrying only what you wear or carry. Cast as part of your movement.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
+    "description": "<p>Self; teleport up to <strong>30ft</strong> to an unoccupied space you can see, carrying only what you wear or carry. Cast as part of your movement.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -331,7 +331,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature or object for 1 hour per level. Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (d20 + casting-stat modifier + half its level) vs DC 10 + the spell's level, failing means the spell fails. Material: diamond dust worth 50 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
+    "description": "<p>Touch; one creature or object for <strong>1 hour per level</strong>.</p><ul><li>Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (<strong>d20</strong> + casting-stat modifier + half its level) vs <strong>DC 10</strong> + the spell's level, failing means the spell fails.</li><li>Material: diamond dust worth 50 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -393,7 +393,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>Advantage on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0

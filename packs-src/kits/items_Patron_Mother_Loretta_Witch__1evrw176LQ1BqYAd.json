@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>Ancient beyond any coven's memory of her arrival, Mother Loretta is said to have written down half the hexes every Witch in Arneyan still uses — usually without anyone crediting her for it. She doesn't take students anymore. She just occasionally shows up to collect what she considers owed.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, tend a touched creature (or yourself) for 10 minutes: they regain HP as for one night of rest in a safe haven. No slot recovery. In combat you may instead tend them as part of your action: they regain 1d8 HP plus 1 per two Witch levels.</li><li><strong>Patron Curse</strong> (6th): Once per day, unravel a piece of luck from a creature within 30ft — their next d20 roll within 1 hour is rolled twice, worst result used (Will save negates).</li><li><strong>Physical Change</strong> (12th): Your hair greys prematurely regardless of true age, and small green shoots occasionally bud at your temples. Advantage on Wisdom checks involving herbalism, folk remedies, or oral tradition. You may make an unarmed claw attack dealing 1d6 damage. Once per day, spit a hex-laced tonic at a creature within 15ft as an action instead — Fortitude save or poisoned (disadvantage on attack rolls and ability checks) for 1 minute.</li></ul>",
+  "description": "<p>Ancient beyond any coven's memory of her arrival, Mother Loretta is said to have written down half the hexes every Witch in Arneyan still uses — usually without anyone crediting her for it.</p><ul><li>She doesn't take students anymore.</li><li>She just occasionally shows up to collect what she considers owed.</li></ul><ul><li><strong>Patron Buff</strong> (1st): Once per day, tend a touched creature (or yourself) for <strong>10 minutes</strong>: they regain HP as for one night of rest in a safe haven. No slot recovery. In combat you may instead tend them as part of your action: they regain <strong>1d8</strong> HP plus 1 per two Witch levels.</li><li><strong>Patron Curse</strong> (6th): Once per day, unravel a piece of luck from a creature within <strong>30ft</strong> — their next <strong>d20</strong> roll within <strong>1 hour</strong> is rolled twice, worst result used (<strong>Will save</strong> negates).</li><li><strong>Physical Change</strong> (12th): Your hair greys prematurely regardless of true age, and small green shoots occasionally bud at your temples.</li><li><strong>Advantage</strong> on Wisdom checks involving herbalism, folk remedies, or oral tradition.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, spit a hex-laced tonic at a creature within <strong>15ft</strong> as an action instead — <strong>Fortitude save</strong> or poisoned (disadvantage on attack rolls and ability checks) for <strong>1 minute</strong>.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Patron Buff",
     "level": 1,
-    "description": "<p>Once per day, tend a touched creature (or yourself) for 10 minutes: they regain HP as for one night of rest in a safe haven. No slot recovery. In combat you may instead tend them as part of your action: they regain 1d8 HP plus 1 per two Witch levels.</p>",
+    "description": "<p>Once per day, tend a touched creature (or yourself) for <strong>10 minutes</strong>: they regain HP as for one night of rest in a safe haven. No slot recovery. In combat you may instead tend them as part of your action: they regain <strong>1d8</strong> HP plus 1 per two Witch levels.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -78,7 +78,7 @@
    {
     "name": "Patron Curse",
     "level": 6,
-    "description": "<p>Once per day, unravel a piece of luck from a creature within 30ft — their next d20 roll within 1 hour is rolled twice, worst result used (Will save negates).</p>",
+    "description": "<p>Once per day, unravel a piece of luck from a creature within <strong>30ft</strong> — their next <strong>d20</strong> roll within <strong>1 hour</strong> is rolled twice, worst result used (<strong>Will save</strong> negates).</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -89,7 +89,7 @@
    {
     "name": "Physical Change",
     "level": 12,
-    "description": "<p>Your hair greys prematurely regardless of true age, and small green shoots occasionally bud at your temples. Advantage on Wisdom checks involving herbalism, folk remedies, or oral tradition. You may make an unarmed claw attack dealing 1d6 damage. Once per day, spit a hex-laced tonic at a creature within 15ft as an action instead — Fortitude save or poisoned (disadvantage on attack rolls and ability checks) for 1 minute.</p>",
+    "description": "<p>Your hair greys prematurely regardless of true age, and small green shoots occasionally bud at your temples.</p><ul><li><strong>Advantage</strong> on Wisdom checks involving herbalism, folk remedies, or oral tradition.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, spit a hex-laced tonic at a creature within <strong>15ft</strong> as an action instead — <strong>Fortitude save</strong> or poisoned (disadvantage on attack rolls and ability checks) for <strong>1 minute</strong>.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,

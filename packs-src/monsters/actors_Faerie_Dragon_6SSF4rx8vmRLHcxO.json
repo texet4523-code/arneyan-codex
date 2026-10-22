@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per 3 rounds, as an action, it exhales a puff of gas at one creature within 5ft; @Check[will|dc:13]{Will save DC 13} or for 1 minute it can do nothing but wander aimlessly, repeating the save each turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, it exhales a puff of gas at one creature within <strong>5ft</strong>; @Check[will|dc:13]{Will save DC 13} or for <strong>1 minute</strong> it can do nothing but wander aimlessly, repeating the save each turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Its colour shows its age and its magic. Red: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. Orange to blue add @UUID[Compendium.arneyan.spells.Item.mkPuEoZ3iLHnMOCR]{colour spray}, @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:13]{Will DC 13}). Indigo and violet add @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force} and @UUID[Compendium.arneyan.spells.Item.Hu5Nkr2VmWzyG2Uj]{polymorph} (@Check[will|dc:13]{Will DC 13}). Each 1/day except the first three.</p>",
+    "description": "<p>Its colour shows its age and its magic.</p><ul><li>Red: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}, @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}.</li><li>Orange to blue add @UUID[Compendium.arneyan.spells.Item.mkPuEoZ3iLHnMOCR]{colour spray}, @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:13]{Will DC 13}).</li><li>Indigo and violet add @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force} and @UUID[Compendium.arneyan.spells.Item.Hu5Nkr2VmWzyG2Uj]{polymorph} (@Check[will|dc:13]{Will DC 13}).</li><li>Each <strong>1/day</strong> except the first three.</li></ul>",
     "source": {
      "book": "mt",
      "page": 0
@@ -222,7 +222,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range 120ft; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to 60ft per round as you direct; 1 minute. Lights must stay within 20ft of each other; the spell ends if one passes beyond 120ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Range <strong>120ft</strong>; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to <strong>60ft</strong> per round as you direct; <strong>1 minute</strong>. Lights must stay within <strong>20ft</strong> of each other; the spell ends if one passes beyond <strong>120ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -285,7 +285,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range 30ft; 1 minute. An invisible hand lifts or moves one unattended object of up to 5 lb at 15ft per round. It cannot attack, trigger devices that need force, or carry the object beyond 30ft from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -344,7 +344,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 60ft; 15ft cube; 1 minute. Create a visual illusion of an object or creature that makes no sound, smell or heat and cannot harm. A creature that touches it or studies it for 1 round gets a Will save; success sees through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>15ft cube</strong>; <strong>1 minute</strong>. Create a visual illusion of an object or creature that makes no sound, smell or heat and cannot harm. A creature that touches it or studies it for <strong>1 round</strong> gets a <strong>Will save</strong>; success sees through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -402,7 +402,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>15ft cone. Creatures in the cone lose sight by Level: Level 2 or lower fall Unconscious for 2d4 rounds; Level 3–4 are Blinded for 1d4 rounds; Level 5 or higher are Stunned for 1 round. Will negates. Sightless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+    "description": "<p><strong>15ft cone</strong>. Creatures in the cone lose sight by Level: Level 2 or lower fall <strong>Unconscious</strong> for <strong>2d4</strong> rounds; Level 3–4 are <strong>Blinded</strong> for <strong>1d4</strong> rounds; Level 5 or higher are <strong>Stunned</strong> for <strong>1 round</strong>. <strong>Will negates</strong>. Sightless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -489,7 +489,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -552,7 +552,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 30ft; one creature that understands you. It follows a reasonable-sounding command of up to 25 words for 1 hour per level or until completed. Will negates. A command that is obviously harmful to the target fails automatically. Mindless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "description": "<p>Range <strong>30ft</strong>; one creature that understands you.</p><ul><li>It follows a reasonable-sounding command of up to 25 words for <strong>1 hour per level</strong> or until completed. <strong>Will negates</strong>.</li><li>A command that is obviously harmful to the target fails automatically.</li><li>Mindless creatures are immune.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -614,7 +614,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 400ft. Create an illusion filling a 20ft cube plus 10ft per level on each side, with sight, sound, smell, temperature and ground tremors, for 1 minute per level (concentration). Directing its movement needs no action. It deals no real damage. Creatures that touch or study it make a Will save to see through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "description": "<p>Range <strong>400ft</strong>.</p><ul><li>Create an illusion filling a <strong>20ft cube</strong> plus <strong>10ft</strong> per level on each side, with sight, sound, smell, temperature and ground tremors, for <strong>1 minute per level</strong> (concentration).</li><li>Directing its movement needs no action.</li><li>It deals no real damage.</li><li>Creatures that touch or study it make a <strong>Will save</strong> to see through it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -673,7 +673,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; you or one creature (an unwilling creature: Will negates) takes the form of a beast or monster of Level no higher than your level (Level 10 at most) for 1 hour per level or until dismissed. It takes the form's whole stat block, keeps its mind and cannot cast spells. When the form drops to 0 HP it returns to its own form (see Changing Shape). Used on an enemy, a harmless form keeps it out of the fight until the spell ends or the form is beaten.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Witch</p>",
+    "description": "<p>Touch; you or one creature (an unwilling creature: <strong>Will negates</strong>) takes the form of a beast or monster of Level no higher than your level (Level 10 at most) for <strong>1 hour per level</strong> or until dismissed.</p><ul><li>It takes the form's whole stat block, keeps its mind and cannot cast spells.</li><li>When the form drops to <strong>0 HP</strong> it returns to its own form (see Changing Shape).</li><li>Used on an enemy, a harmless form keeps it out of the fight until the spell ends or the form is beaten.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -733,7 +733,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Speaks by thought to any creature within 60ft that knows a language.</p>",
+    "description": "<p>Speaks by thought to any creature within <strong>60ft</strong> that knows a language.</p>",
     "source": {
      "book": "mt",
      "page": 0

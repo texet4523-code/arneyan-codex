@@ -58,12 +58,17 @@ export const SUMMON_SPELLS = {
     note: "They act as one group." },
   "Summon Planar Ally": { filter: "extraplanar", duration: { n: 1, unit: "hour", perLevel: true },
     options: [{ label: "One extraplanar creature of Level 16 or lower", max: 16, count: "1" }],
-    note: "Aligned with your deity or alignment. It performs one task for 100 gp per Level, refuses suicidal tasks and leaves if unpaid or attacked." }
+    note: "Aligned with your deity or alignment. It performs one task for 100 gp per Level, refuses suicidal tasks and leaves if unpaid or attacked." },
+  // Animate Objects (0.10.43): the objects the spell describes, as two Bestiary creatures made from its numbers
+  // (build_animated.py): up to one per two caster levels, a Large one counting as two.
+  "Animate Objects": { filter: ["Animated Object", "Animated Object, Large"], duration: { n: 1, unit: "round", perLevel: true },
+    options: [{ label: "Objects up to 1 per two levels (a Large object counts as 2)", max: 99, units: { per: 2, weights: { "Animated Object, Large": 2 } } }],
+    note: "Each obeys you and attacks one creature within reach each round, hitting automatically." },
   // Summon Swarm isn't here: the spell's swarm is a 10ft area that deals 1d6 (Reflex halves), placed with Place area.
 };
 
 /** Spell-made attackers with no creature to place (Spellcasting in Arneyan): casting one still ends the last summon. */
-export const ATTACKER_SPELLS = ["Spiritual Weapon", "Animate Objects", "Mordenkainen's Sword", "Mordenkainen's Faithful Hound", "Bigby's Clenched Fist", "Bigby's Crushing Hand", "Bigby's Interposing Hand", "Shadow Monsters", "Changestaff"];
+export const ATTACKER_SPELLS = ["Spiritual Weapon", "Mordenkainen's Sword", "Mordenkainen's Faithful Hound", "Bigby's Clenched Fist", "Bigby's Crushing Hand", "Bigby's Interposing Hand", "Shadow Monsters", "Changestaff"];
 
 /** The Warlock's patron paths: which kits belong to each, and its servants by tier (Warlock class, Shared Summons). */
 export const PACT_PATHS = {
@@ -133,6 +138,13 @@ export function checkPicks(spec, option, picks, cl = 1) {
     if (!fitsFilter(spec.filter, p.entry)) return `${p.entry.name} isn't the kind of creature this calls.`;
     if (creatureLevel(p.entry.level, p.entry.levelText) > (option.max ?? 99)) return `${p.entry.name} is above Level ${option.max}.`;
     if (!Number.isInteger(p.count) || p.count < 1 || p.count > 30) return "That's not a sensible number of creatures.";
+  }
+  // So many per caster levels, some counting double (Animate Objects: 1 per two levels, a Large object as 2).
+  if (option.units) {
+    const cap = Math.max(1, Math.floor(Math.max(1, cl) / (option.units.per || 1)));
+    const used = list.reduce((t, p) => t + p.count * (option.units.weights?.[p.entry.name] ?? 1), 0);
+    if (used > cap) return `That's ${used} (a Large object counts as 2); your limit is ${cap}.`;
+    return "";
   }
   if (option.totalLevels) {
     const cap = Math.min(Math.max(1, cl), option.totalLevels);
@@ -236,10 +248,10 @@ async function pickSpell(actor, item, spec, req) {
   const rows = candidates(spec, loosest, index);
   if (!rows.length) return ui.notifications.warn("No creature in the Bestiary fits this summoning.");
   const secs = summonSeconds(spec, cl);
-  const multi = o => !!o.totalLevels;
+  const multi = o => !!(o.totalLevels || o.units);
   const content = `<div class="arn-summon">
     <p>Caster level ${cl}: they stay for <strong>${formatSpan(secs)}</strong>${spec.concentration ? " while you concentrate" : ""}. ${esc(spec.note ?? "")}</p>
-    ${spec.options.length > 1 ? `<fieldset class="arn-summon-opts">${spec.options.map((o, i) => `<label><input type="radio" name="option" value="${i}" ${i === 0 ? "checked" : ""}> ${esc(o.label)}</label>`).join("")}</fieldset>` : `<p class="arn-muted">${esc(spec.options[0].label)}${multi(spec.options[0]) ? `: up to ${Math.min(cl, spec.options[0].totalLevels)} Levels in all.` : ""}</p><input type="hidden" name="option" value="0">`}
+    ${spec.options.length > 1 ? `<fieldset class="arn-summon-opts">${spec.options.map((o, i) => `<label><input type="radio" name="option" value="${i}" ${i === 0 ? "checked" : ""}> ${esc(o.label)}</label>`).join("")}</fieldset>` : `<p class="arn-muted">${esc(spec.options[0].label)}${spec.options[0].totalLevels ? `: up to ${Math.min(cl, spec.options[0].totalLevels)} Levels in all.` : spec.options[0].units ? `: up to ${Math.max(1, Math.floor(cl / spec.options[0].units.per))} in all.` : ""}</p><input type="hidden" name="option" value="0">`}
     <input type="search" class="arn-summon-filter" placeholder="Filter by name or type">
     <ul class="arn-summon-list">${rows.map(e => `<li data-level="${creatureLevel(e.level, e.levelText)}" data-name="${esc(`${e.name} ${e.type}`.toLowerCase())}">
       <input class="arn-pick-one" type="radio" name="pick" value="${esc(e.uuid)}">
@@ -278,7 +290,7 @@ function wirePicker(root, spec) {
     const i = Number(root.querySelector("input[name=option]:checked")?.value ?? root.querySelector("input[name=option]")?.value ?? 0) || 0;
     const o = spec.options[i];
     const q = String(root.querySelector(".arn-summon-filter")?.value ?? "").trim().toLowerCase();
-    list.classList.toggle("many", !!o.totalLevels);
+    list.classList.toggle("many", !!(o.totalLevels || o.units));
     for (const li of list.children) li.hidden = Number(li.dataset.level) > (o.max ?? 99) || (q && !li.dataset.name.includes(q));
   };
   root.querySelectorAll("input[name=option]").forEach(r => r.addEventListener("change", apply));
@@ -375,8 +387,9 @@ export async function doSummonRequest(msg, senderId) {
     const picks = (Array.isArray(msg.picks) ? msg.picks : []).slice(0, 20).map(p => ({ entry: byUuid.get(String(p?.uuid)), count: Math.floor(Number(p?.count) || 0) })).filter(p => p.entry);
     const err = checkPicks(spec, opt, picks, cl);
     if (err) throw new Error(err);
-    if (!opt.totalLevels && opt.count !== "1") picks[0].count = Math.max(1, (await new Roll(opt.count).evaluate()).total);
-    plan = { name: item.name, kind: "spell", picks, seconds: summonSeconds(spec, cl), concentration: !!spec.concentration, note: spec.note ?? "", rolled: !opt.totalLevels && opt.count !== "1" ? opt.count : "" };
+    const rolls = !opt.totalLevels && !opt.units && opt.count && opt.count !== "1";
+    if (rolls) picks[0].count = Math.max(1, (await new Roll(opt.count).evaluate()).total);
+    plan = { name: item.name, kind: "spell", picks, seconds: summonSeconds(spec, cl), concentration: !!spec.concentration, note: spec.note ?? "", rolled: rolls ? opt.count : "" };
   } else if (msg.kind === "pact") {
     if (!/^pact summons/i.test(item.name)) throw new Error("Not Pact Summons.");
     const lock = warlockOf(caster);
@@ -566,6 +579,8 @@ export function registerSummons() {
 
   // A Summon button on summoning spells' cards and on Pact Summons, for whoever controls the caster.
   Hooks.on("renderChatMessageHTML", (message, html) => {
+    // The spell's own card, not its damage or attack card.
+    if (message.flags?.[SYS]?.kind) return;
     const item = chatItem(message);
     if (!item?.actor?.isOwner) return;
     const pact = item.type === "ability" && /^pact summons/i.test(item.name);
@@ -583,7 +598,7 @@ export function registerSummons() {
 
   // Casting another spell-made attacker (a summoning, Spiritual Weapon and the like) ends the summon (GM).
   Hooks.on("createChatMessage", message => {
-    if (!game.users.activeGM?.isSelf) return;
+    if (!game.users.activeGM?.isSelf || message.flags?.[SYS]?.kind) return;
     const item = chatItem(message);
     if (item?.type !== "spell" || !item.actor || !(ATTACKER_SPELLS.includes(item.name) || SUMMON_SPELLS[item.name])) return;
     if (!/Cast as|Concentrating/.test(message.content ?? "") && item.actor.type !== "npc") return;

@@ -149,7 +149,7 @@
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>On a hit: 1d4 Wisdom (see the creature's abilities).</p>",
+    "description": "<p>On a hit: <strong>1d4</strong> Wisdom (see the creature's abilities).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>3/day each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}.</p>",
+    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -224,7 +224,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 120ft; one humanoid. It is Charmed and regards you as a trusted friend for 1 hour per level; Will negates (the save has Advantage if you or your allies are fighting it). Ends if you or your allies attack it. It will not obey orders that harm itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one humanoid. It is <strong>Charmed</strong> and regards you as a trusted friend for <strong>1 hour per level</strong>; <strong>Will negates</strong> (the save has <strong>Advantage</strong> if you or your allies are fighting it). Ends if you or your allies attack it. It will not obey orders that harm itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -298,7 +298,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; 1 minute per level. You create 1d4+1 illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -361,7 +361,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range: any distance on the same plane; 1 minute per level (concentration). Choose a creature or a place you have visited. You see and hear within 10ft of the target; a creature target makes a Will save, with Advantage if you know it only second-hand and Disadvantage if you hold a piece of its body. Will negates. Material: a polished silver mirror worth 250 gp (not consumed).</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p>Range: any distance on the same plane; <strong>1 minute per level</strong> (concentration).</p><ul><li>Choose a creature or a place you have visited.</li><li>You see and hear within <strong>10ft</strong> of the target; a creature target makes a <strong>Will save</strong>, with <strong>Advantage</strong> if you know it only second-hand and <strong>Disadvantage</strong> if you hold a piece of its body. <strong>Will negates</strong>.</li><li>Material: a polished silver mirror worth 250 gp (not consumed).</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -425,7 +425,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range 30ft; one creature that understands you. It follows a reasonable-sounding command of up to 25 words for 1 hour per level or until completed. Will negates. A command that is obviously harmful to the target fails automatically. Mindless creatures are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "description": "<p>Range <strong>30ft</strong>; one creature that understands you.</p><ul><li>It follows a reasonable-sounding command of up to 25 words for <strong>1 hour per level</strong> or until completed. <strong>Will negates</strong>.</li><li>A command that is obviously harmful to the target fails automatically.</li><li>Mindless creatures are immune.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -487,7 +487,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range 400ft. Create an illusion filling a 20ft cube plus 10ft per level on each side, with sight, sound, smell, temperature and ground tremors, for 1 minute per level (concentration). Directing its movement needs no action. It deals no real damage. Creatures that touch or study it make a Will save to see through it.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
+    "description": "<p>Range <strong>400ft</strong>.</p><ul><li>Create an illusion filling a <strong>20ft cube</strong> plus <strong>10ft</strong> per level on each side, with sight, sound, smell, temperature and ground tremors, for <strong>1 minute per level</strong> (concentration).</li><li>Directing its movement needs no action.</li><li>It deals no real damage.</li><li>Creatures that touch or study it make a <strong>Will save</strong> to see through it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -546,7 +546,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>A creature touched makes a @Check[will|dc:14]{Will save DC 14} or loses 1d4 Wisdom, which returns after a long rest.</p>",
+    "description": "<p>A creature touched makes a @Check[will|dc:14]{Will save DC 14} or loses <strong>1d4</strong> Wisdom, which returns after a long rest.</p>",
     "source": {
      "book": "mt",
      "page": 0

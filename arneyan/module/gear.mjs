@@ -5,6 +5,7 @@
  * Creation (Recovering Luck).
  */
 import { areaButton } from "./areas.mjs";
+import { TOUCH_ATTACK } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { damageRoll, resolveFormula } from "./rolls.mjs";
 import { effectDataFor, applyEffectTo, startConcentration } from "./effects.mjs";
@@ -476,8 +477,10 @@ export async function castSpellCard(actor, sp, { cl, dc, from }) {
   const data = { cl, level: actor.system.level ?? cl };
   const s = sp.system ?? {};
   const out = [`<p class="arn-card-meta">From ${esc(from)} · caster level ${cl}${s.save ? ` · DC ${dc}` : ""}</p>`];
-  if (s.save) {
-    out.push(`<button type="button" class="arn-save-btn" data-save="${s.save}" data-dc="${dc}" data-source="${esc(sp.name)}"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[s.save]} save DC ${dc}</button>`);
+  // A touch spell from a scroll or wand: an attack, not a save (touch.mjs); a cure heals an ally with neither.
+  if (TOUCH_ATTACK.has(sp.name)) out.push(`<p class="arn-card-meta"><i class="fa-solid fa-hand-sparkles"></i> Touch spell: against an enemy roll d20 + BtH + casting modifier against its AC in place of the save (no save); an ally is touched automatically.</p>`);
+  else if (s.save) {
+    out.push(`<button type="button" class="arn-save-btn" data-save="${s.save}" data-dc="${dc}" data-source="${esc(sp.name)}" data-spell="1"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[s.save]} save DC ${dc}</button>`);
     if (s.saveEffect) out.push(`<p class="arn-save-effect">On a save: ${esc(s.saveEffect)}</p>`);
   }
   if (s.damage) {

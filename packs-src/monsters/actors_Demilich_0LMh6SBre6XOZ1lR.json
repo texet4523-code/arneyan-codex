@@ -73,7 +73,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Immune to poison, sleep, charm, fear and psychic damage, and to damage from non-magical weapons. Resistance 10 to all other damage except force and radiant. Cannot be @Condition[paralysed]{Paralysed}, @Condition[petrified]{Petrified}, @Condition[poisoned]{Poisoned}, @Condition[stunned]{Stunned} or knocked prone.</p>",
+    "description": "<p>Immune to poison, sleep, charm, fear and psychic damage, and to damage from non-magical weapons.</p><ul><li>Resistance 10 to all other damage except force and radiant.</li><li>Cannot be @Condition[paralysed]{Paralysed}, @Condition[petrified]{Petrified}, @Condition[poisoned]{Poisoned}, @Condition[stunned]{Stunned} or knocked prone.</li></ul>",
     "source": {
      "book": "mt",
      "page": 0
@@ -147,7 +147,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Once per 3 rounds, as an action, every creature within 30ft that can hear it makes a @Check[fort|dc:22]{Fortitude save DC 22} or drops to 0 HP. A creature that saves is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, every creature within <strong>30ft</strong> that can hear it makes a @Check[fort|dc:22]{Fortitude save DC 22} or drops to <strong>0 HP</strong>. A creature that saves is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -184,7 +184,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>As an action, up to three creatures within 10ft make a @Check[fort|dc:22]{Fortitude save DC 22} or take @Damage[6d6 necrotic]{6d6 necrotic damage}, and the demilich regains the total. This is also its second action each round.</p>",
+    "description": "<p>As an action, up to three creatures within <strong>10ft</strong> make a @Check[fort|dc:22]{Fortitude save DC 22} or take @Damage[6d6 necrotic]{6d6 necrotic damage}, and the demilich regains the total. This is also its second action each round.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -221,7 +221,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Once per day, as an action, it targets one creature within 30ft: @Check[will|dc:22]{Will save DC 22} or its soul is pulled into one of the gems in the demilich's skull, and its body crumbles. A soul trapped for 24 hours is devoured; breaking the gem before then frees it, and @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} or @UUID[Compendium.arneyan.spells.Item.8XhTI839UkXWg4Sr]{true resurrection} can return it.</p>",
+    "description": "<p>Once per day, as an action, it targets one creature within <strong>30ft</strong>: @Check[will|dc:22]{Will save DC 22} or its soul is pulled into one of the gems in the demilich's skull, and its body crumbles. A soul trapped for <strong>24 hours</strong> is devoured; breaking the gem before then frees it, and @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} or @UUID[Compendium.arneyan.spells.Item.8XhTI839UkXWg4Sr]{true resurrection} can return it.</p>",
     "source": {
      "book": "mt",
      "page": 0

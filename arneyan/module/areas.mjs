@@ -223,7 +223,8 @@ async function startAura(d, actor) {
   if (effect) await linkConcentration(actor, d.spell, effect.uuid);
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
-    content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-circle-radiation"></i> <span>${esc(d.spell)}</span></header><p>${esc(actor.name)}: ${esc(d.spell)} surrounds them (${d.size}ft)${rounds ? ` for ${rounds} rounds` : ""}. Creatures that start their turn inside get a card.</p></div>`
+    content: `<div class="arn-card arn-report arn-area-card"><header class="arn-card-title"><i class="fa-solid fa-circle-radiation"></i> <span>${esc(d.spell)}</span></header><p>${esc(actor.name)}: ${esc(d.spell)} surrounds them (${d.size}ft)${rounds ? ` for ${rounds} rounds` : ""}. Creatures that start their turn inside get a card.</p>
+      ${effect ? `<div class="arn-area-tools"><button type="button" class="arn-area-remove" data-uuid="${effect.uuid}"><i class="fa-solid fa-eraser"></i> Remove area</button></div>` : ""}</div>`
   });
 }
 

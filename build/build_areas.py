@@ -28,7 +28,10 @@ def area_of(text):
     if not out:
         return None
     self_ = bool(re.match(r"\s*self\b", head, re.I))
-    out["attached"] = bool(re.search(r"moves with you", head, re.I)) or (self_ and out["type"] == "circle" and bool(re.search(r"around you|centred on you|centered on you", head, re.I)))
+    # Follows the caster (an aura) when it says so, or is a circle around them, unless it says it stays put
+    # (Obscuring Mist: "It does not move with you": placed where the caster stands, with Remove area).
+    stays = bool(re.search(r"does not move with you|doesn't move with you|stays where", t, re.I))
+    out["attached"] = not stays and (bool(re.search(r"moves with you", head, re.I)) or (self_ and out["type"] == "circle" and bool(re.search(r"around you|centred on you|centered on you", head, re.I))))
     out["fromSelf"] = self_ or out["type"] == "cone"  # a cone always spreads from the caster
     out["lingering"] = bool(re.search(r"\b\d+\s*(?:round|minute|hour|turn)s?\b|round per level|minute per level|minutes per level|hours? per level|rounds per level|concentration", head, re.I))
     out["rounds"] = rounds_of(head) if out["lingering"] else ""

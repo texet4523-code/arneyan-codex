@@ -7,7 +7,7 @@ import { makeItem, makeActor, hbs, sheetContext } from "./harness.mjs";
 const root = new URL("../arneyan/", import.meta.url).pathname;
 const src = p => new URL(`../packs-src/${p}/`, import.meta.url).pathname;
 const docs = pack => fs.readdirSync(src(pack)).filter(f => !f.startsWith("folders_")).map(f => JSON.parse(fs.readFileSync(path.join(src(pack), f), "utf8")));
-const strip = h => String(h ?? "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+const strip = h => String(h ?? "").replace(/<\/?(?:strong|b|em)>/g, "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
 for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
 foundry.utils.randomID = () => Math.random().toString(36).slice(2, 18);
 foundry.utils.hasProperty = (o, k) => foundry.utils.getProperty(o, k) !== undefined;

@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>As an action, it bolts lightning, fire, cold or radiance at a creature within 600ft; @Check[ref|dc:26]{Reflex save DC 26} or 7d6 damage of that type, half on a success.</p>",
+    "description": "<p>As an action, it bolts lightning, fire, cold or radiance at a creature within <strong>600ft</strong>; @Check[ref|dc:26]{Reflex save DC 26} or <strong>7d6</strong> damage of that type, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -222,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.gqmBg31ZDAX78zYs]{greater restoration}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}, @UUID[Compendium.arneyan.spells.Item.fuUDWKXtaA2wCbNy]{air/water walk}. 1/day each: @UUID[Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI]{commune}, @UUID[Compendium.arneyan.spells.Item.U2sZQNhnPvLauDZm]{dispel alignment}, @UUID[Compendium.arneyan.spells.Item.FsQf7DH8yk26yt39]{earthquake}, @UUID[Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH]{fire storm} (@Check[ref|dc:26]{Reflex DC 26}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
+    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.gqmBg31ZDAX78zYs]{greater restoration}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}, @UUID[Compendium.arneyan.spells.Item.fuUDWKXtaA2wCbNy]{air/water walk}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI]{commune}, @UUID[Compendium.arneyan.spells.Item.U2sZQNhnPvLauDZm]{dispel alignment}, @UUID[Compendium.arneyan.spells.Item.FsQf7DH8yk26yt39]{earthquake}, @UUID[Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH]{fire storm} (@Check[ref|dc:26]{Reflex DC 26}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -259,7 +259,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; ends Blinded, Deafened, Charmed, Stunned, Paralysed and all Exhausted levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency). It does not restore HP. Material: diamond dust worth 5,000 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "description": "<p>Touch; ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Charmed</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong> and all <strong>Exhausted</strong> levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency).</p><ul><li>It does not restore HP.</li><li>Material: diamond dust worth 5,000 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -318,7 +318,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature or object for 1 hour per level. Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (d20 + casting-stat modifier + half its level) vs DC 10 + the spell's level, failing means the spell fails. Material: diamond dust worth 50 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
+    "description": "<p>Touch; one creature or object for <strong>1 hour per level</strong>.</p><ul><li>Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (<strong>d20</strong> + casting-stat modifier + half its level) vs <strong>DC 10</strong> + the spell's level, failing means the spell fails.</li><li>Material: diamond dust worth 50 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Magus</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -380,7 +380,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range 30ft; up to 1 creature per level. Targets can breathe water for 2 hours (and still breathe air).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Cleric, Sorcerer</p>",
+    "description": "<p>Range <strong>30ft</strong>; up to 1 creature per level. Targets can breathe water for <strong>2 hours</strong> (and still breathe air).</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Cleric, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -441,7 +441,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Touch; up to 1 creature per three levels (minimum 1). For 10 minutes per level, each target walks on water or other liquid as on solid ground, or climbs through the air as on a stair (ascending or descending at up to 45 degrees, at half speed). A target that is not touching the ground when the spell ends falls.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Touch; up to 1 creature per three levels (minimum 1).</p><ul><li>For <strong>10 minutes per level</strong>, each target walks on water or other liquid as on solid ground, or climbs through the air as on a stair (ascending or descending at up to 45 degrees, at half speed).</li><li>A target that is not touching the ground when the spell ends falls.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -499,7 +499,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Self; ritual, 10 minutes. Ask your deity up to 1 yes/no question per level (max 10), one per round; it answers 'yes', 'no' or 'unclear'. Answers are truthful but limited by the deity's knowledge. Usable once per 7 days.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Self; ritual, <strong>10 minutes</strong>. Ask your deity up to 1 yes/no question per level (max 10), one per round; it answers 'yes', 'no' or 'unclear'. Answers are truthful but limited by the deity's knowledge. Usable once per <strong>7 days</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -557,7 +557,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range 30ft; one creature of opposing alignment (evil vs good, lawful vs chaotic). It makes a Will save; on a failure an extraplanar creature is sent to its home plane for 24 hours, and others are Frightened for 1 minute; Will negates.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Range <strong>30ft</strong>; one creature of opposing alignment (evil vs good, lawful vs chaotic). It makes a <strong>Will save</strong>; on a failure an extraplanar creature is sent to its home plane for <strong>24 hours</strong>, and others are <strong>Frightened</strong> for <strong>1 minute</strong>; <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -626,7 +626,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
    "system": {
-    "description": "<p>Range 120ft; 5ft radius per level (max 100ft); 1 round. Creatures standing on the ground fall Prone and cannot cast spells that round; Reflex negates. Each structure takes 20d6 damage and collapses at 0 HP or below, dealing 8d6 bludgeoning to occupants (Reflex halves). One fissure per five levels opens (10ft wide, 30ft deep); creatures on it fall in and take 3d6 damage; Reflex negates. Flying creatures are unaffected.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "description": "<p>Range <strong>120ft</strong>; <strong>5ft radius</strong> per level (max <strong>100ft</strong>); <strong>1 round</strong>.</p><ul><li>Creatures standing on the ground fall <strong>Prone</strong> and cannot cast spells that round; <strong>Reflex negates</strong>.</li><li>Each structure takes <strong>20d6</strong> damage and collapses at <strong>0 HP</strong> or below, dealing <strong>8d6</strong> bludgeoning to occupants (<strong>Reflex halves</strong>).</li><li>One fissure per five levels opens (<strong>10ft</strong> wide, <strong>30ft</strong> deep); creatures on it fall in and take <strong>3d6</strong> damage; <strong>Reflex negates</strong>.</li><li>Flying creatures are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -703,7 +703,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
    "system": {
-    "description": "<p>Range 150ft; 30ft-radius area. Pillars of fire deal 1d8 fire damage per level (max 15d8); Reflex halves. Plants and flammable objects in the area ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>30ft</strong>-radius area. Pillars of fire deal <strong>1d8</strong> fire damage per level (max <strong>15d8</strong>); <strong>Reflex halves</strong>. Plants and flammable objects in the area ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -762,7 +762,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (Will negates). Travel to a plane you choose; arrival is within 1d100 miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (<strong>Will negates</strong>). Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0

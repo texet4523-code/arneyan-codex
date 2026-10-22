@@ -17,7 +17,7 @@
     {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
   </nav>
   <section class="arn-body">
-  <div class="arn-tab" data-tab="details">
+  <div class="arn-tab" data-tab="details" {{#unless (eq @root.activeTab "details")}}hidden{{/unless}}>
     <div class="arn-fields two">
 
     {{#if (eq type "class")}}
@@ -241,7 +241,7 @@
   </div>
 
   {{#if hasEffects}}
-  <div class="arn-tab" data-tab="effects">
+  <div class="arn-tab" data-tab="effects" {{#unless (eq @root.activeTab "effects")}}hidden{{/unless}}>
     <div class="arn-rules-editor">
       <p class="arn-help">Rules change the character's numbers automatically. Gear only counts while equipped. Put a condition in "only when" to make it a reminder instead of always on. Keys and examples are in the README.</p>
       {{#unless (eq type "spell")}}
@@ -306,7 +306,7 @@
   </div>
   {{/if}}
 
-  <div class="arn-tab" data-tab="description">
+  <div class="arn-tab" data-tab="description" {{#unless (eq @root.activeTab "description")}}hidden{{/unless}}>
     <div class="arn-section-head"><h3>Description</h3>{{#if editable}}{{#unless hideName}}<a class="arn-btn small ghost" data-action="editText" data-field="system.description" data-label="Description"><i class="fa-solid fa-pen"></i> Edit</a>{{/unless}}{{/if}}</div>
     <div class="arn-prose">{{#if description}}{{{description}}}{{else}}<p class="arn-muted">No description yet.</p>{{/if}}</div>
   </div>

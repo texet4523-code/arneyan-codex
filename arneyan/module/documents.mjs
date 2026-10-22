@@ -1,4 +1,5 @@
 import { areaButton } from "./areas.mjs";
+import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup } from "./progression.mjs";
@@ -543,6 +544,48 @@ export class ArneyanActor extends Actor {
     }));
   }
 
+  /**
+   * A touch spell's attack (touch.mjs): d20 + BtH + casting modifier against each target's AC, in place of the save.
+   * On a hit its damage and effects go to the ones hit.
+   */
+  async rollSpellAttack(item, event, { cl = 1 } = {}) {
+    const targets = targetActors();
+    if (!targets.length) ui.notifications.info("Target the creature you touch (an ally needs no roll).");
+    const own = this.mods?.adv("adv.attack", "adv.attack.melee") ?? NONE;
+    // A single target's conditions change the roll, as for any melee attack (Blinded, Stunned, Paralysed...).
+    let against = NONE;
+    const tm = targets.length === 1 ? targets[0].actor.system.mods : null;
+    if (tm) {
+      const a = tm.adv("adv.against", "adv.against.melee");
+      against = { values: a.values, adv: a.adv.map(l => `${targets[0].name}: ${l}`), dis: a.dis.map(l => `${targets[0].name}: ${l}`) };
+    }
+    const { mode, why } = advFrom(event, own, against);
+    const sys = item.system;
+    const cure = CURES.has(item.name);
+    return d20Roll({
+      actor: this, kind: "attack", mode, why, critAt: 20,
+      targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged: false }), uuid: t.actor.uuid })),
+      title: `${item.name}: Touch attack`, parts: touchParts(this, item),
+      notes: [...(this.system.noAct ? [`${this.name} cannot take actions right now.`] : []), "A touch spell: the attack replaces the save. On a hit it takes full effect; on a miss, none."],
+      extra: { itemId: item.id, actorUuid: this.uuid, touchSpell: item.uuid, cl },
+      footer: ({ natural }) => {
+        if (natural === 1) return "";
+        const b = [];
+        if (cure && sys.damage) {
+          b.push(`<button type="button" class="arn-touch-damage" data-as="undead"><i class="fa-solid fa-sun"></i> Damage the undead: ${esc(item.damageFormulaLabel())} radiant</button>`);
+          b.push(`<button type="button" class="arn-touch-damage" data-as="reversed"><i class="fa-solid fa-skull"></i> Cast reversed: ${esc(item.damageFormulaLabel())} necrotic</button>`);
+        } else if (sys.damage && sys.damageType !== "healing") {
+          b.push(`<button type="button" class="arn-touch-damage"><i class="fa-solid fa-burst"></i> Roll damage: ${esc(item.damageFormulaLabel())}</button>`);
+        }
+        for (const { e, i } of touchApplies(item)) {
+          b.push(`<button type="button" class="arn-touch-effect" data-index="${i}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || item.name)} to the one hit</button>`);
+        }
+        if (!b.length) b.push(`<p class="arn-card-meta"><i class="fa-solid fa-hand-sparkles"></i> On a hit, ${esc(item.name)} takes effect (no save).</p>`);
+        return b.join("");
+      }
+    });
+  }
+
   /** Damage: weapon dice + the same attribute modifier as the attack (+ magic and rules). */
   rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null } = {}) {
     const sys = item.system;
@@ -1077,8 +1120,14 @@ export class ArneyanItem extends Item {
   _actionButtons({ dc = null, cl = 1 } = {}) {
     const sys = this.system;
     const out = [];
-    if (sys.save) {
-      out.push(`<button type="button" class="arn-save-btn" data-save="${sys.save}" data-dc="${dc ?? ""}" data-source="${esc(this.name)}"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[sys.save]} save${dc ? ` DC ${dc}` : ""}</button>`);
+    // A touch spell: an attack roll in place of the save (touch.mjs). One that only harms has its damage and effects
+    // on the attack's card, for the creature it hits; a cure or a reversible spell keeps them here for an ally.
+    const touch = isTouchAttack(this);
+    const forAllies = touch && (CURES.has(this.name) || REVERSED_ONLY.has(this.name) || ["Polymorph", "Plane Shift"].includes(this.name));
+    if (touch) out.push(`<button type="button" class="arn-touch-attack" data-item-uuid="${this.uuid}" data-cl="${cl}" data-tooltip="d20 + BtH + casting modifier against the target's AC (no save). An ally is touched automatically."><i class="fa-solid fa-hand-sparkles"></i> ${esc(touchLabel(this))}</button>`);
+    if (touch && !forAllies) return out.concat(sys.template?.type && this.actor ? [areaButton(this, { actor: this.actor, dc, cl, formula: sys.damage ? this.damageFormulaLabel() : "", itemUuid: this.uuid })] : []).join("");
+    if (sys.save && !touch) {
+      out.push(`<button type="button" class="arn-save-btn" data-save="${sys.save}" data-dc="${dc ?? ""}" data-source="${esc(this.name)}"${this.type === "spell" ? ' data-spell="1"' : ""}><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[sys.save]} save${dc ? ` DC ${dc}` : ""}</button>`);
       if (sys.saveEffect) out.push(`<p class="arn-save-effect">On a save: ${esc(sys.saveEffect)}</p>`);
     }
     if (sys.damage) {
@@ -1197,9 +1246,11 @@ export class ArneyanItem extends Item {
   }
 
   /** Roll this spell or ability's damage (or healing). */
-  rollItemDamage() {
+  rollItemDamage({ hits = null, misses = [], crit = false, as = "" } = {}) {
     const actor = this.actor;
-    const heal = this.system.damageType === "healing";
+    // A cure's dice as damage after a touch attack: radiant to an undead, necrotic cast reversed (touch.mjs).
+    const heal = this.system.damageType === "healing" && !as;
+    const damageType = as === "undead" ? "radiant" : as === "reversed" ? "necrotic" : this.system.damageType;
     let terms = [];
     if (this.type === "spell" && actor && !heal) {
       terms = actor.mods?.damage("spell.damage", ...(this.system.level === 0 ? ["cantrip.damage"] : [])) ?? [];
@@ -1212,8 +1263,8 @@ export class ArneyanItem extends Item {
       if (dice) terms.push({ label: "Per healing die", value: `+${dice * perDie}` });
     }
     return damageRoll({
-      actor, item: this, title: `${this.name}: ${heal ? "Healing" : "Damage"}`,
-      formula: this.system.damage, damageType: this.system.damageType, terms, rollData: this.damageRollData(),
+      actor, item: this, title: `${this.name}: ${heal ? "Healing" : as === "reversed" ? "Damage (reversed)" : as === "undead" ? "Damage to the undead" : "Damage"}`,
+      formula: this.system.damage, damageType, terms, rollData: this.damageRollData(), hits, misses, crit,
       notes: heal ? [] : (actor?.mods?.notesFor("damage") ?? [])
     });
   }

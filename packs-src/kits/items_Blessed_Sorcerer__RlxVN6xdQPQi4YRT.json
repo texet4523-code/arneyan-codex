@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<p>A divine spark landed in your bloodline — not cleanly, not intentionally. The gods do not always aim well.</p><ul><li><strong>Bloodline Ability</strong> (1st): Once per day, channel divine energy into one spell — it deals radiant damage instead of its normal type and ignores resistance (not immunity). Advantage on saves vs divine magic. Once per day, lay hands on a creature to cure one disease or poison. Advantage on Wisdom checks involving divine lore or identifying holy and unholy sites.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, for 1 minute your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover half your expended spell slots, rounded down.</li></ul>",
+  "description": "<p>A divine spark landed in your bloodline — not cleanly, not intentionally. The gods do not always aim well.</p><ul><li><strong>Bloodline Ability</strong> (1st): Once per day, channel divine energy into one spell — it deals radiant damage instead of its normal type and ignores resistance (not immunity).</li><li><strong>Advantage</strong> on saves vs divine magic.</li><li>Once per day, lay hands on a creature to cure one disease or poison.</li><li><strong>Advantage</strong> on Wisdom checks involving divine lore or identifying holy and unholy sites.</li><li><strong>Bloodline Awakening</strong> (15th): Once per day, for <strong>1 minute</strong> your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover half your expended spell slots, rounded down.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Bloodline Ability",
     "level": 1,
-    "description": "<p>Once per day, channel divine energy into one spell — it deals radiant damage instead of its normal type and ignores resistance (not immunity). Advantage on saves vs divine magic. Once per day, lay hands on a creature to cure one disease or poison. Advantage on Wisdom checks involving divine lore or identifying holy and unholy sites.</p>",
+    "description": "<p>Once per day, channel divine energy into one spell — it deals radiant damage instead of its normal type and ignores resistance (not immunity).</p><ul><li><strong>Advantage</strong> on saves vs divine magic.</li><li>Once per day, lay hands on a creature to cure one disease or poison.</li><li><strong>Advantage</strong> on Wisdom checks involving divine lore or identifying holy and unholy sites.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -42,7 +42,7 @@
    {
     "name": "Bloodline Awakening",
     "level": 15,
-    "description": "<p>Once per day, for 1 minute your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover half your expended spell slots, rounded down.</p>",
+    "description": "<p>Once per day, for <strong>1 minute</strong> your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover half your expended spell slots, rounded down.</p>",
     "uses": {
      "value": 1,
      "max": 1,

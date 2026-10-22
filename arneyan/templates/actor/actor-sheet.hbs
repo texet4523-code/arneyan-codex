@@ -188,7 +188,7 @@
     <section class="arn-body">
 
       {{!-- ============ ACTIONS ============ --}}
-      <div class="arn-tab" data-tab="actions">
+      <div class="arn-tab" data-tab="actions" {{#unless (eq @root.activeTab "actions")}}hidden{{/unless}}>
         <div class="arn-section-head">
           <h3>Weapons</h3>
           {{#if editable}}{{#if isCharacter}}<a class="arn-browse" data-action="browse" data-pack="equipment" data-tooltip="Browse the Catalogue"><i class="fa-solid fa-book-atlas"></i></a>{{/if}}
@@ -239,7 +239,7 @@
       </div>
 
       {{!-- ============ SPELLS ============ --}}
-      <div class="arn-tab" data-tab="spells">
+      <div class="arn-tab" data-tab="spells" {{#unless (eq @root.activeTab "spells")}}hidden{{/unless}}>
         {{#if noCast}}<div class="arn-warnline"><i class="fa-solid fa-ban"></i> Cannot cast spells ({{noCast}})</div>{{/if}}
         {{#if editable}}<div class="arn-tabbar"><button type="button" class="arn-btn small ghost" data-action="browse" data-pack="spells"><i class="fa-solid fa-book-atlas"></i> Browse spells</button><button type="button" class="arn-btn small ghost" data-action="browse" data-pack="features"><i class="fa-solid fa-shield-halved"></i> Class abilities</button></div>{{/if}}
         {{#each spellSections}}
@@ -251,9 +251,10 @@
             {{#if npcDay}}{{#if @root.editable}}<a class="arn-btn small ghost" data-action="npcNewDay" data-tooltip="Spell slots and innate uses back"><i class="fa-solid fa-sun"></i> New day</a>{{/if}}{{/if}}
           </header>
           {{#each levels}}
-          <div class="arn-spell-level">
+          <div class="arn-spell-level {{#if folded}}folded{{/if}}" data-fold-key="{{foldKey}}">
             <div class="arn-spell-level-head">
-              <span class="arn-spell-level-name">{{label}}</span>
+              <a class="arn-fold" data-action="toggleSpellLevel" data-tooltip="{{#if folded}}Show these spells{{else}}Fold these spells away{{/if}}"><i class="fa-solid fa-chevron-{{#if folded}}right{{else}}down{{/if}}"></i></a>
+              <span class="arn-spell-level-name" data-action="toggleSpellLevel">{{label}}{{#if folded}} <span class="arn-muted">({{spells.length}})</span>{{/if}}</span>
               {{#if isCantrip}}<span class="arn-muted">at will · {{cantripsKnown}}</span>{{/if}}
               {{#if pips.length}}
               <span class="arn-pips">
@@ -268,7 +269,7 @@
               <li data-item-id="{{id}}" draggable="true">
                 <img src="{{item.img}}" alt="">
                 <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
-                <span class="arn-muted arn-meta">{{#if usesLabel}}<span class="arn-chip">{{usesLabel}}</span> {{/if}}{{#if item.system.save}}{{lookup @root.config.saveTypes item.system.save}}{{/if}}{{#if item.system.concentration}} · Conc.{{/if}}{{#if item.system.ritual}} · Ritual{{/if}}{{#if item.system.applies.length}} · <i class="fa-solid fa-wand-sparkles" data-tooltip="Applies an effect"></i>{{/if}}</span>
+                <span class="arn-muted arn-meta">{{#if usesLabel}}<span class="arn-chip">{{usesLabel}}</span> {{/if}}{{#if touch}}<span data-tooltip="A touch spell: an attack roll, not a save">Touch attack</span>{{else if item.system.save}}{{lookup @root.config.saveTypes item.system.save}}{{/if}}{{#if item.system.concentration}} · Conc.{{/if}}{{#if item.system.ritual}} · Ritual{{/if}}{{#if item.system.applies.length}} · <i class="fa-solid fa-wand-sparkles" data-tooltip="Applies an effect"></i>{{/if}}</span>
                 {{#if item.system.damage}}<button type="button" class="arn-roll-btn dmg small" data-action="itemDamage" data-tooltip="Roll {{#if (eq item.system.damageType 'healing')}}healing{{else}}damage{{/if}}"><i class="fa-solid fa-{{#if (eq item.system.damageType 'healing')}}heart{{else}}burst{{/if}}"></i></button>{{/if}}
                 <button type="button" class="arn-btn small" data-action="castSpell">Cast</button>
                 {{#if @root.isCharacter}}{{#if @root.editable}}<a class="arn-ctl" data-action="writeScroll" data-tooltip="Write a scroll of it (1 week and 100 gp a level)"><i class="fa-solid fa-scroll"></i></a>{{/if}}{{/if}}
@@ -331,7 +332,7 @@
 
       {{!-- ============ FEATURES (characters) ============ --}}
       {{#if isCharacter}}
-      <div class="arn-tab" data-tab="features">
+      <div class="arn-tab" data-tab="features" {{#unless (eq @root.activeTab "features")}}hidden{{/unless}}>
         <div class="arn-section-head">
           <h3>Class, Ancestry &amp; Kit</h3>
           {{#if editable}}<span class="arn-head-tools">
@@ -377,7 +378,7 @@
       </div>
 
       {{!-- ============ SKILLS ============ --}}
-      <div class="arn-tab" data-tab="skills">
+      <div class="arn-tab" data-tab="skills" {{#unless (eq @root.activeTab "skills")}}hidden{{/unless}}>
         <div class="arn-section-head">
           <h3>Skills (NWP)</h3>
           <span class="arn-muted">{{system.nwp.used}} / {{system.nwp.max}} slots{{#if system.nwp.extra}} <span data-tooltip="Extra slots the GM allowed">(+{{system.nwp.extra}} from the GM)</span>{{/if}}{{#if nwpLeft}} · {{nwpLeft}} free{{/if}}</span>
@@ -400,7 +401,7 @@
       </div>
 
       {{!-- ============ INVENTORY ============ --}}
-      <div class="arn-tab" data-tab="gear">
+      <div class="arn-tab" data-tab="gear" {{#unless (eq @root.activeTab "gear")}}hidden{{/unless}}>
         <div class="arn-gear-top">
           <div class="arn-coins">
             <label>pp <input type="number" name="system.currency.pp" value="{{source.currency.pp}}"></label>
@@ -450,7 +451,7 @@
       {{/if}}
 
       {{!-- ============ EFFECTS ============ --}}
-      <div class="arn-tab" data-tab="effects">
+      <div class="arn-tab" data-tab="effects" {{#unless (eq @root.activeTab "effects")}}hidden{{/unless}}>
         <div class="arn-section-head"><h3>Conditions</h3><span class="arn-muted">Click to switch on or off</span></div>
         <div class="arn-cond-grid">
           {{#each conditions}}
@@ -512,10 +513,10 @@
         {{/if}}
       </div>
 
-      {{#if isCharacter}}<div class="arn-tab" data-tab="downtime">{{> "systems/arneyan/templates/actor/downtime-tab.hbs"}}</div>{{/if}}
+      {{#if isCharacter}}<div class="arn-tab" data-tab="downtime" {{#unless (eq @root.activeTab "downtime")}}hidden{{/unless}}>{{> "systems/arneyan/templates/actor/downtime-tab.hbs"}}</div>{{/if}}
 
       {{!-- ============ BIOGRAPHY / DESCRIPTION ============ --}}
-      <div class="arn-tab" data-tab="bio">
+      <div class="arn-tab" data-tab="bio" {{#unless (eq @root.activeTab "bio")}}hidden{{/unless}}>
         {{#if isCharacter}}
           <div class="arn-fields two">
             <label>Alignment <input type="text" name="system.details.alignment" value="{{source.details.alignment}}"></label>

@@ -1,6 +1,26 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.42 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.43 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.43
+
+- **Wild Shape picks the beast.** A druid's **Wild Shape** (its **Use** button) opens a list of every beast and beast-like monster in the Bestiary (a wolf, a giant spider, an owlbear and so on), with search. Those above your cap (half your Druid level, at least 1; your full Druid level from Deepened Shape at 12th) are shown locked with the level they open at. Pick one and you become it, as Change Shape does: a use is spent, the form lasts up to an hour (a **Wild Shape** effect on the form; when it ends you return to your own form) and at 0 HP you return as before. From 12th level the form also gets twice your Druid level in temporary HP; from 15th, your spells come along (Wild Shape Casting). The form's sheet has a button to return to your own form (and using Wild Shape on the form does the same, if its features came along). Players see the list even when the Bestiary is hidden from them; the GM's side checks the pick is within the cap.
+- **Change Shape: every creature.** The Change Shape window (the paw on a sheet) has **Every creature in the Bestiary** for the GM: the whole Bestiary at any Level, with search and a type filter, for Polymorph, Shapechange and the like.
+- **Players are asked for initiative.** When a player's character (or their companion) joins a fight without an initiative, or the fight starts, a small window pops up with **Roll initiative**. The GM's bell in the combat tracker asks everyone still waiting again.
+- **Easier to read.** Descriptions of features, feats, kits, spells, actions and gear are laid out in short points instead of long paragraphs, and key terms are bold (dice, DCs, distances, durations, uses per day, Advantage and Disadvantage, saves, HP and conditions). The words are the books'. Copies already on sheets (and kits' features) take the new layout when the update runs, unless their words were changed; a monster's own abilities, made in the world rather than taken from a compendium, keep theirs.
+- **Spells for one kind of creature.** Hold Animal, Animal Friendship and Calm Animals only work on animals (beasts); Charm Person, Hold Person, Dominate Person, Enslave and Daze on humanoids (a player character counts as one); Charm Monster and Hold Monster not on undead (Charm Monster not on constructs either); Bind Elemental on elementals; the undead spells on undead; Cause Fear and Scare up to their Level (Scare not on undead or constructs). The spells' save, effect and damage buttons leave the others out and say who and why (a monster's ability with the same name isn't limited).
+- **Obscuring Mist** is now placed where the caster stands (it doesn't move with them) and has **Remove area**. Spells that move with the caster (Spirit Guardians, Invisibility Sphere and the like) have **Remove area** on their card too.
+- **Chat card buttons** fit their words (a long label wraps inside the button).
+- **Touch spells roll to hit** (Kieran's ruling): a touch spell against an enemy is an attack, d20 + BtH + your casting modifier against its AC, in place of the save; on a hit it takes full effect, on a miss none. An ally is touched automatically. The spell's card has **Touch attack**; damage and effects are on the attack's card, for the one it hit. Cure Light, Serious and Critical Wounds heal an ally with no save or roll; against an undead (radiant damage) or cast reversed (necrotic) they're a touch attack. Reversible spells (Heal, Remove Curse and the like) attack only when cast reversed.
+- **No spells or features above your level.** A player can't add a spell above the highest level they have slots for, or a class feature above their level in that class (or from a class they don't have). The GM can add anything; levelling up and kits add theirs as before.
+- **Fold spell levels.** Click a spell level's name (or its arrow) to fold its spells away; the sheet remembers it in your browser.
+- **No more jumping.** Opening a spell (or anything) on a sheet no longer scrolls the sheet up.
+- **Changing shape:** the creature's own token, hidden while it's a form, is locked: move the form instead, and the creature comes back where the form stands.
+- **Undo** on an area spell's damage undoes everyone it hit: Apply by saves makes one card for those who failed and one for those who saved (and the GM's for monsters), and Undo on any of them now puts them all back.
+- **Animate Objects summons** its objects: **Animated Object** and **Animated Object, Large** (20 HP, AC 14, speed 30ft, a slam that hits automatically for 1d8 or 2d8), made from the spell's own numbers. Up to one per two caster levels; a Large one counts as two.
+- **Monsters without ability scores** (Monsters & Treasure gives none yet) show "–" instead of 10 and +0. Their saves are the book's.
+
+Beast-like monsters on the list (the GM's call, as the feature says; intelligent or magical ones left out): Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Remorhaz, Roc, Purple Worm, Hydra, Piercer and Rust Monster.
 
 ## What's new in 0.10.42
 
