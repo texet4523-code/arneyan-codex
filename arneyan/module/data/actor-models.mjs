@@ -38,6 +38,14 @@ function usesBase(s, classes) {
   return { ...ab, abilities: ab, level, half: ARNEYAN.halfLevel(level), casting: { mod: casting.length ? Math.max(...casting) : 0 } };
 }
 
+/** The rule key for extra uses of a feature: "uses.extra.wild-shape" for Wild Shape. */
+export const usesExtraKey = name => `uses.extra.${String(name ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+
+/** Extra uses of a feature other features give (0 without any). */
+function usesExtra(mods, name) {
+  try { return Math.max(0, Math.floor(mods?.sum?.(usesExtraKey(name)) ?? 0)); } catch { return 0; }
+}
+
 /** An item's uses from its formula on this character as it is now (a feature added mid-game starts full), or null. */
 export function formulaUsesFor(actor, item) {
   try {
@@ -45,7 +53,8 @@ export function formulaUsesFor(actor, item) {
     if (!f || actor?.type !== "character") return null;
     const classes = (actor.items ?? []).filter(i => i.type === "class");
     const base = usesBase(actor.system, classes);
-    return usesMax(f, { ...base, cl: classLevelFor(item, classes, actor, base.level) }, item.system.uses.max ?? 0);
+    const max = usesMax(f, { ...base, cl: classLevelFor(item, classes, actor, base.level) }, item.system.uses.max ?? 0);
+    return max > 0 ? max + usesExtra(actor.system?.mods, item.name) : max;
   } catch {
     return null;
   }
@@ -57,9 +66,12 @@ function prepareFormulaUses(actor, s, classes) {
     const base = usesBase(s, classes);
     for (const i of actor.items ?? []) {
       const u = i.system?.uses;
-      if (!u?.formula) continue;
+      const extra = usesExtra(s.mods, i.name);
+      if (!u?.formula && !extra) continue;
       try {
-        u.max = usesMax(u.formula, { ...base, cl: classLevelFor(i, classes, actor, s.level) }, u.max);
+        if (u.formula) u.max = usesMax(u.formula, { ...base, cl: classLevelFor(i, classes, actor, s.level) }, u.max);
+        // Extra uses another feature gives (Voice of the Grove: one more Wild Shape a day).
+        if (extra && u.max > 0) u.max += extra;
         if (u.value > u.max) u.value = u.max;
       } catch (err) { console.warn(`Arneyan | uses formula on ${i.name}`, err); }
     }
@@ -188,9 +200,10 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     else if (body?.system.category === "heavy") dexToAc = Math.min(dex, 0);
     let acBase = body ? 10 : Math.max(10, mods.best("ac.base") ?? 10);
     let acBaseLabel = acBase > 10 ? `Base (${mods.numbers.get("ac.base").find(e => e.value === acBase).label})` : "Base";
-    // An AC that is the table value with no Dexterity, while wearing no armour (the Monk's: "Your AC is the table
-    // value; Dexterity does not add"). Another base AC (Mage Armour) still wins when it gives more.
-    const unarmoured = body ? null : mods.best("ac.unarmoured");
+    // An AC that is the table value with no Dexterity, while wearing no armour or shield (the Monk's: "Your AC is the
+    // table value; Dexterity does not add"; "Armour or a shield replaces the monk's table AC"). Another base AC (Mage
+    // Armour) still wins when it gives more.
+    const unarmoured = body || shields.length ? null : mods.best("ac.unarmoured");
     let dexLabel = `Dex${dexToAc !== dex ? " (capped)" : ""}`;
     if (unarmoured !== null && (acBase <= 10 || unarmoured > acBase + dexToAc)) {
       acBaseLabel = `Base (${mods.numbers.get("ac.unarmoured").find(e => e.value === unarmoured).label})`;
@@ -304,9 +317,12 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // Speed: base + bonuses, then halving or zero, then the inventory penalty (never below 0).
     // A base speed set by a feature (the Monk's Fast Movement: 35ft at 1st up to 60ft), used when higher; it's lost
     // while over the inventory limit.
-    const fast = s.inventory.over ? null : mods.best("speed.base");
+    // Over the limit a Monk "moves at 30ft, reduced as normal", whatever the ancestry's speed.
+    const fastRule = mods.best("speed.base");
+    const fast = s.inventory.over ? null : fastRule;
     const fastFrom = fast !== null && fast > s.attributes.speed ? mods.numbers.get("speed.base").find(e => e.value === fast).label : "";
-    const speedParts = [{ label: fastFrom ? `Base (${fastFrom})` : "Base", value: fastFrom ? fast : s.attributes.speed }, ...mods.parts("speed")];
+    const slowBase = fastRule !== null && s.inventory.over ? Math.max(s.attributes.speed, 30) : s.attributes.speed;
+    const speedParts = [{ label: fastFrom ? `Base (${fastFrom})` : "Base", value: fastFrom ? fast : slowBase }, ...mods.parts("speed")];
     const speedMult = mods.mult("speed.mult");
     const beforePenalty = Math.floor(speedParts.reduce((t, p) => t + p.value, 0) * speedMult);
     if (s.inventory.over) speedParts.push({ label: `Over the inventory limit (${s.inventory.overBy} slots over)`, value: -s.inventory.speedPenalty });

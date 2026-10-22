@@ -268,8 +268,10 @@ export function collectRules(actor, baseData = {}) {
       if (!r?.key) continue;
       // A value or text that steps up with level (Sneak Attack's dice, Iron Body's save bonus) at this class level;
       // a whole level table that gives nothing yet (Iron Mind before 9th) is left out.
+      // A table in braces that starts above this level (Aura of Courage's allies, from 6th) is left out too.
+      if (isLevelTable(r.value) && levelText(r.value, lvl) === "0") continue;
+      if (tableNotYet(r.value, lvl)) continue;
       const value = levelText(r.value, lvl);
-      if (value !== r.value && /^\s*\d+\s*:/.test(String(r.value)) && !String(r.value).includes("{") && (value === "0" || value === "")) continue;
       const rule = { key: String(r.key).trim(), value, when: levelText(r.when ?? "", lvl), label: r.label || label, data: { ...baseData, ...extra } };
       // Scoped to some weapons (Crushing Blow's two-handed, Weapon Specialisation's picked weapon): ModSet keeps it
       // apart, for the rolls with a weapon that fits.
@@ -288,7 +290,11 @@ export function collectRules(actor, baseData = {}) {
   // Items: feats, abilities, ancestry, equipped gear, switched-on toggles.
   for (const item of actor.items ?? []) {
     if (!itemRulesActive(item)) continue;
-    const cls = item.system.className ? actor.items.find(i => i.type === "class" && i.name.toLowerCase().startsWith(item.system.className.toLowerCase())) : null;
+    const cn = String(item.system.className ?? "").toLowerCase();
+    const classNamed = n => actor.items.find(i => i.type === "class" && i.name.toLowerCase().startsWith(n));
+    // A kit's feature carries the kit's name: its level is the kit's class level.
+    const kit = cn ? actor.items.find(i => i.type === "kit" && i.name.toLowerCase() === cn) : null;
+    const cls = cn ? (classNamed(cn) ?? (kit?.system?.className ? classNamed(String(kit.system.className).toLowerCase()) : null)) : null;
     const cl = cls?.system.levels ?? baseData.level ?? 1;
     push(chosenRules(item.system), item.name, { cl }, weaponPicks(item.system, cl));
   }
@@ -514,8 +520,23 @@ export function byLevelTable(value, level) {
 export function levelText(value, level) {
   if (typeof value !== "string") return value;
   const lvl = Number(level) || 1;
-  if (/^\s*\d+\s*:/.test(value) && !value.includes("{")) return byLevelTable(value.trim(), lvl);
+  if (isLevelTable(value)) return byLevelTable(value.trim(), lvl);
   return value.replace(/\{(\s*\d+\s*:[^{}]*)\}/g, (_, table) => byLevelTable(table.trim(), lvl));
+}
+
+/**
+ * A whole value that is a level table of numbers or dice ("1:13, 2:14", "1:1d4, 7:1d10"). Text never is ("10:00
+ * curfew: ..." stays text): a table inside text goes in braces.
+ */
+export function isLevelTable(value) {
+  return typeof value === "string" && /^\s*\d+\s*:\s*-?(?:\d*d\d+|\d+)\s*(?:,\s*\d+\s*:\s*-?(?:\d*d\d+|\d+)\s*)*$/i.test(value);
+}
+
+/** Text whose level tables in braces haven't started at this level (Aura of Courage's range before 6th). */
+export function tableNotYet(value, level) {
+  if (typeof value !== "string") return false;
+  const lvl = Number(level) || 1;
+  return [...value.matchAll(/\{\s*(\d+)\s*:/g)].some(m => Number(m[1]) > lvl);
 }
 
 /** Parse "fire, cold" style text into a list of lower-case words. */

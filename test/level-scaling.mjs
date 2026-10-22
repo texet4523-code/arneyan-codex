@@ -1,9 +1,9 @@
 // 0.10.48: class features whose numbers step up with level (the Codex's progression tables) follow the class level.
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { makeActor } from "./harness.mjs";
+import { makeActor, makeItem } from "./harness.mjs";
 
-const { levelText, ModSet, usesMax, collectRules } = await import("../arneyan/module/effects.mjs");
+const { levelText, isLevelTable, tableNotYet, ModSet, usesMax, collectRules } = await import("../arneyan/module/effects.mjs");
 const { CharacterData } = await import("../arneyan/module/data/actor-models.mjs");
 const { ARNEYAN } = await import("../arneyan/module/config.mjs");
 const feature = name => {
@@ -89,4 +89,41 @@ for (const f of fs.readdirSync(new URL("../packs-src/class-features/", import.me
 }
 // The Monk's second and third attacks open at 6th and 16th (one button each, the highest step reached).
 assert.deepEqual(h2h.system.activities.filter(a => a.minLevel === 6 || a.minLevel === 16).map(a => a.name), ["Second unarmed attack (1d4)", "Third unarmed attack (1d4)"]);
+
+/* Review fixes. */
+// Text is never read as a whole table; only numbers or dice are.
+assert.equal(levelText("10:00 curfew: Disadvantage on Stealth", 5), "10:00 curfew: Disadvantage on Stealth");
+assert.equal(levelText("3: roll on the table", 5), "3: roll on the table");
+assert.ok(isLevelTable("1:1d4, 7:1d10") && isLevelTable("1:-1, 18:-2") && !isLevelTable("6:Aura, 15:x"));
+assert.equal(collectRules({ items: [item("Curfew", "", [{ key: "note.check", value: "10:00 curfew: Disadvantage" }])] }, { level: 3 }).length, 1, "a homebrew note that starts with a time stays");
+// A reminder whose table starts later is left out until then (Aura of Courage from 6th).
+assert.ok(tableNotYet("allies within {6:10ft, 15:30ft}", 5) && !tableNotYet("allies within {6:10ft, 15:30ft}", 6));
+const aura = feature("Divine Protection")("Paladin").system.rules.find(r => /Aura of Courage/.test(String(r.value)) && r.key === "note.save");
+const pal = lvl => collectRules({ items: [cls("Paladin", lvl), item("Divine Protection", "Paladin", [aura])] }, { level: lvl });
+assert.equal(pal(5).length, 0);
+assert.equal(pal(15)[0].value, "Aura of Courage: allies within 30ft gain +4 on saves vs fear.");
+// A shield switches off the table AC ("Armour or a shield replaces the monk's table AC").
+const shield = { type: "armour", name: "Shield", system: { category: "shield", ac: 1, magic: 0, equipped: true } };
+const shielded = monkAt(7, 14, [shield]);
+assert.equal(shielded.system.attributes.ac.value, 10 + shielded.system.abilities.dex.mod + 1);
+// Over the inventory limit a Monk moves at 30ft before the usual penalty, even with a 25ft ancestry.
+const IM = await import("../arneyan/module/data/item-models.mjs");
+const bricks = Array.from({ length: 30 }, (_, n) => makeItem(IM.EquipmentData, "equipment", `Brick${n}`, { quantity: 1, slots: 1 }));
+const loaded = makeActor(CharacterData, "character", { level: 7, attributes: { speed: 25 }, abilities: { str: { value: 10 } } }, [cls("Monk", 7), item(fast.name, "Monk", fast.system.rules), ...bricks]);
+assert.ok(loaded.system.inventory.over, "the bricks put the Monk over the limit");
+assert.equal(loaded.system.attributes.speedParts[0].value, 30, "Fast Movement lost: 30ft, then the usual penalty");
+assert.ok(loaded.system.attributes.speedNow < 30);
+assert.equal(monkAt(7).system.attributes.speedNow, 50, "not over the limit: Fast Movement");
+// Kit features read their tables at the kit's class level (a Fighter 5 / Monk 2 with a Monk kit: Monk 2).
+const kitRules = collectRules({ items: [cls("Fighter", 5), cls("Monk", 2), { type: "kit", name: "Iron Fist School", system: { className: "Monk" } },
+  item("Kit Thing", "Iron Fist School", [{ key: "check", value: "1:1, 5:5" }])] }, { level: 7 });
+assert.equal(kitRules[0].value, "1");
+// Extra uses another feature gives: Voice of the Grove's extra Wild Shape a day.
+const ws = feature("Wild Shape")("Druid");
+const grove = { type: "ability", name: "Voice of the Grove", system: { className: "Tanatharen Grove (Druid)", rules: [{ key: "uses.extra.wild-shape", value: "1" }] }, flags: {} };
+const wsItem = () => ({ type: "ability", name: "Wild Shape", system: { className: "Druid", uses: { ...ws.system.uses, value: 9 } }, flags: {} });
+const d6 = makeActor(CharacterData, "character", { level: 6 }, [cls("Druid", 6), wsItem()]);
+const d6g = makeActor(CharacterData, "character", { level: 6 }, [cls("Druid", 6), wsItem(), grove]);
+assert.equal(d6.items[1].system.uses.max, 3);
+assert.equal(d6g.items[1].system.uses.max, 4);
 console.log("OK level scaling");

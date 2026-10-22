@@ -271,7 +271,9 @@ ARNEYAN.ruleKeys = {
     "slots.1", "slots.2", "slots.3", "slots.4", "slots.5", "slots.6", "slots.7", "slots.8", "slots.9",
     "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly",
     // The Monk's: AC with no Dexterity while unarmoured, and a base speed lost over the inventory limit.
-    "ac.unarmoured", "speed.base"],
+    "ac.unarmoured", "speed.base",
+    // One more use a day of the named feature (Voice of the Grove: uses.extra.wild-shape).
+    "uses.extra.wild-shape"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).

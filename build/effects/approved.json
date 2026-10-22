@@ -2630,7 +2630,7 @@
    },
    {
     "key": "note.save",
-    "value": "Aura of Courage: allies within {1:0ft (from 6th), 6:10ft, 15:30ft, 20:50ft} share your immunity to fear."
+    "value": "Aura of Courage: allies within {6:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear."
    }
   ],
   "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 6th.",
@@ -4523,6 +4523,10 @@
     "key": "adv.check",
     "value": 1,
     "when": "Language of the Wilderlands with trees and plant life"
+   },
+   {
+    "key": "uses.extra.wild-shape",
+    "value": 1
    }
   ],
   "summary": "Advantage on checks (Language of the Wilderlands with trees and plant life). Shown as reminders.",
