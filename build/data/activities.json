@@ -4050,88 +4050,17 @@
   "why": "0.10.48: steps up with level (Progression Table)",
   "activities": [
    {
-    "name": "Second unarmed attack (1d4)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 6,
+    "name": "Unarmed attacks",
+    "kind": "attacks",
+    "weapons": "unarmed",
+    "count": "1:1, 6:2, 16:3",
+    "formula": "; {6:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
+    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 6th) and third (from 16th) with the Secondary and Tertiary dice.",
+    "minLevel": 0,
     "cost": 0,
     "per": "",
     "target": "one",
-    "removeConditions": false,
-    "formula": "1d4 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Second unarmed attack (1d6)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 9,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d6 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Second unarmed attack (1d8)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 13,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d8 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Second unarmed attack (1d10)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 18,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d10 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Third unarmed attack (1d4)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 16,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d4 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Third unarmed attack (1d6)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 19,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d6 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
-   },
-   {
-    "name": "Third unarmed attack (1d8)",
-    "kind": "damage",
-    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
-    "minLevel": 22,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1d8 + max(@str.mod, @dex.mod)",
-    "damageType": "bludgeoning"
+    "removeConditions": false
    }
   ]
  }

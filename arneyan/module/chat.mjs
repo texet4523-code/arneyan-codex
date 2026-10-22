@@ -339,7 +339,7 @@ function onRender(message, html) {
       hits = res.filter(r => r.hit).map(({ name, uuid }) => ({ name, uuid }));
       misses = res.filter(r => !r.hit).map(({ name, uuid }) => ({ name, uuid }));
     }
-    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand, bonus: flags.featureBonus ?? null });
+    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "" });
   });
 
   // A damage roll that should have been a critical, or that needs its conditional extra damage: roll it again.
@@ -350,8 +350,8 @@ function onRender(message, html) {
     if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner can roll its damage.`);
     return actor.rollDamage(item, opts);
   };
-  on(".arn-recrit", () => reroll({ crit: true, include: flags.include ?? [], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null }));
-  on(".arn-reroll-with", (ev, btn) => reroll({ crit: !!flags.crit, include: [...(flags.include ?? []), btn.dataset.key], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null }));
+  on(".arn-recrit", () => reroll({ crit: true, include: flags.include ?? [], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "" }));
+  on(".arn-reroll-with", (ev, btn) => reroll({ crit: !!flags.crit, include: [...(flags.include ?? []), btn.dataset.key], ammo: flags.ammo ?? "", hits: flags.hits ?? null, misses: flags.misses ?? [], offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "" }));
 
   // Touch spells (touch.mjs): the attack, then its damage or effects on the ones it hit.
   on(".arn-touch-attack", async (ev, btn) => {

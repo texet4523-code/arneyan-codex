@@ -2,7 +2,7 @@ import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
-import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup } from "./progression.mjs";
+import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, shiftLuck } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
@@ -51,6 +51,7 @@ export function byLevel(spec, level, data = {}) {
 export function weaponFits(w, want) {
   const k = String(want ?? "").toLowerCase();
   if (!k) return true;
+  if (k === "unarmed") return /^unarmed strike$/i.test(w._source?.name ?? w.name);
   if (k === "melee") return !w.system.ranged;
   if (k === "ranged") return !!w.system.ranged;
   return String(w.system.ammoType ?? "").toLowerCase() === k;
@@ -434,9 +435,10 @@ export class ArneyanActor extends Actor {
     return avg(best.value) > avg(own) ? best.value : own;
   }
 
-  weaponDice(item, { include = [] } = {}) {
+  weaponDice(item, { include = [], dice = "" } = {}) {
     const m = this.mods;
-    const own = this.ownDice(item);
+    // `dice`: this attack's own dice (a Monk's second unarmed attack: the Secondary column).
+    const own = String(dice ?? "").trim() || this.ownDice(item);
     if (!m) return { formula: own, notes: [] };
     const fw = m.forWeapon(item, { include });
     const all = m.reroll(), mine = fw.mods.reroll();
@@ -464,7 +466,7 @@ export class ArneyanActor extends Actor {
    * `targets`, this attack's own targets; `label`, the card title ("Twin Nock, arrow 2 of 2"); `notes`; and `bonus`, bonus
    * damage on a hit ({ value, label, noStack }) that the damage buttons carry.
    */
-  async rollAttack(item, event, { offhand = false, adv = null, targets: only = null, label = "", notes: more = [], bonus = null, noDamage = "" } = {}) {
+  async rollAttack(item, event, { offhand = false, adv = null, targets: only = null, label = "", notes: more = [], bonus = null, noDamage = "", dice = "" } = {}) {
     const targets = only ?? targetActors();
     // Combat rules (combat.mjs): Full Cover, a jammed gun, off-hand, flanking and crowding.
     const sit = await attackSituation(this, item, targets, { offhand });
@@ -544,7 +546,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit }) => {
@@ -601,7 +603,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Damage: weapon dice + the same attribute modifier as the attack (+ magic and rules). */
-  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null } = {}) {
+  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null, dice = "" } = {}) {
     const sys = item.system;
     const ammoPlus = Number(String(ammo).match(/\+(\d)/)?.[1] ?? 0);
     // Extra damage with a condition ("against undead", Versatile two-handed) joins the roll only when asked for.
@@ -612,10 +614,10 @@ export class ArneyanActor extends Actor {
     // An off-hand weapon adds no attribute modifier to damage (Codex, Dual Wielding).
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
     // The weapon's dice (rerolls worked in) and the card's notes; the damage terms count rules scoped to this weapon.
-    const dice = this.weaponDice(item, { include });
-    const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), dice.notes, bonus);
-    return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus,
-      actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: dice.formula, mod, crit, damageType: sys.damageType,
+    const own = this.weaponDice(item, { include, dice });
+    const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), own.notes, bonus);
+    return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus, weaponDice: dice || "",
+      actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: own.formula, mod, crit, damageType: sys.damageType,
       terms, notes, extras, include, hits, misses
     });
   }
@@ -1061,6 +1063,13 @@ export class ArneyanItem extends Item {
     ask(needsWeaponChoice, promptWeaponChoice, "weapon");
     // A creation feat's attribute bonus over 18 (Toughness's +1 Con on a Con 18 character): where it goes instead.
     ask(i => !!creationOverflow(i), promptCreationOverflow, "creation cap");
+    // A feat that raises Luck (Fated Survivor): +1 now, and the steps already reached at this level.
+    if (userId === game.user.id && this.type === "feat" && LUCK_FEATS[this.name] && actor instanceof Actor && actor.type === "character") {
+      try {
+        await this.update({ "flags.arneyan.luckGiven": 0 });
+        await syncLuckFeats(actor);
+      } catch (err) { console.warn("Arneyan | Luck feat", err); }
+    }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
       if (!this.flags.arneyan?.fresh) return;
@@ -1102,6 +1111,9 @@ export class ArneyanItem extends Item {
     const actor = this.parent;
     if (userId !== game.user.id || !(actor instanceof Actor) || options.arneyanGrant) return;
     if (this.type === "class" || this.type === "kit" || this.type === "ancestry") removeGrants(actor, this);
+    // A Luck feat removed: the Luck it gave comes off.
+    const luckGiven = Number(this.flags?.arneyan?.luckGiven);
+    if (this.type === "feat" && actor.type === "character" && LUCK_FEATS[this.name] && luckGiven > 0) shiftLuck(actor, -luckGiven, `${this.name} removed`).catch(() => {});
     // A character that loses an ancestry has had one: the next isn't part of making it (no 18 cap past 1st level).
     if (this.type === "ancestry" && actor.type === "character" && !actor.flags?.arneyan?.hadAncestry) actor.update({ "flags.arneyan.hadAncestry": true }).catch(() => {});
   }
@@ -1400,7 +1412,12 @@ export class ArneyanItem extends Item {
     const lvl = this.featureLevel;
     const rollData = { ...(actor.getRollData?.() ?? {}), cl: lvl };
     const n = Math.max(1, Math.floor(byLevel(act.count || "1", lvl, rollData)));
-    const kindLabel = { melee: "melee weapon", ranged: "ranged weapon", "": "weapon" }[act.weapons ?? ""] ?? `weapon that fires ${act.weapons}s`;
+    const kindLabel = { melee: "melee weapon", ranged: "ranged weapon", unarmed: "Unarmed Strike", "": "weapon" }[act.weapons ?? ""] ?? `weapon that fires ${act.weapons}s`;
+    // Unarmed attacks (a Monk's): the Unarmed Strike, added to the sheet if it isn't there yet.
+    if (act.weapons === "unarmed") {
+      const { ensureUnarmed } = await import("./combat.mjs");
+      await ensureUnarmed(actor);
+    }
     const weapons = actor.items.filter(i => i.type === "weapon" && weaponFits(i, act.weapons))
       .sort((x, y) => Number(!!y.system.equipped) - Number(!!x.system.equipped));
     if (!weapons.length) { ui.notifications.warn(`${this.name}: ${actor.name} has no ${kindLabel}.`); return null; }
@@ -1440,12 +1457,14 @@ export class ArneyanItem extends Item {
     const disOn = act.disadvantage && !(act.disUntil && lvl >= act.disUntil);
     const per = byLevel(act.damageBonus, lvl, rollData);
     const bonus = per ? { value: per, label: this.name, noStack: act.noStack || "" } : null;
+    // Each attack's own weapon dice, where the activity gives them ("; 1d6; 1d4": the first uses the weapon's own).
+    const diceFor = String(act.formula ?? "").split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
     const out = [];
     for (let i = 0; i < n; i++) {
       const dis = disOn && (act.disadvantage === "all" || (act.disadvantage === "rest" && i > 0));
       const msg = await actor.rollAttack(weapon, event, {
         adv: dis ? { values: [-1], adv: [], dis: [`${this.name}: attack ${i + 1}`] } : null,
-        targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}`, notes: out.length ? [] : notes, bonus,
+        targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}${diceFor[i] ? ` (${diceFor[i]})` : ""}`, notes: out.length ? [] : notes, bonus, dice: diceFor[i] || "",
         noDamage: act.noDamage ? (act.text || act.name || this.name).replace(/^On a hit,?\s*/i, "").replace(/\s*instead of dealing damage\.?$/i, "").replace(/\.$/, "") : ""
       });
       if (msg === null || msg === undefined) {

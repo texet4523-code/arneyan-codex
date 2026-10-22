@@ -428,10 +428,16 @@ export async function fightDefensively(actor, mode) {
 
 /** Unarmed Strike (Codex): 1d2 + Strength, subdual. Added to the sheet as a weapon the first time it's used. */
 export async function unarmedStrike(actor, event) {
-  if (!actor) return;
+  const w = await ensureUnarmed(actor);
+  return w ? actor.rollAttack(w, event) : undefined;
+}
+
+/** The actor's Unarmed Strike weapon, added to the sheet the first time it's needed (null if it can't be). */
+export async function ensureUnarmed(actor) {
+  if (!actor) return null;
   let w = actor.items.find(i => i.type === "weapon" && /^unarmed strike$/i.test(i._source?.name ?? i.name));
   if (!w) {
-    if (!actor.isOwner) return;
+    if (!actor.isOwner) return null;
     [w] = await actor.createEmbeddedDocuments("Item", [{
       name: "Unarmed Strike", type: "weapon", img: "systems/arneyan/assets/icons/action-fist.svg",
       system: { damage: "1d2", damageType: "bludgeoning", ability: "str", ranged: false, traits: "Subdual", equipped: true, slots: 0,
@@ -439,7 +445,7 @@ export async function unarmedStrike(actor, event) {
     }]);
     ui.notifications.info(`${actor.name}: Unarmed Strike added to the weapons.`);
   }
-  return actor.rollAttack(w, event);
+  return w ?? null;
 }
 
 /* -------------------------------------------- */

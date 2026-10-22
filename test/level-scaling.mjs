@@ -87,8 +87,21 @@ for (const f of fs.readdirSync(new URL("../packs-src/class-features/", import.me
   const texts = [...(d.system.activities ?? []).flatMap(a => [a.text, a.formula]), ...(d.system.rules ?? []).map(r => String(r.value))];
   for (const t of texts.filter(Boolean)) assert.ok(!/\{|\}/.test(levelText(t, 24)), `${d.name}: ${t}`);
 }
-// The Monk's second and third attacks open at 6th and 16th (one button each, the highest step reached).
-assert.deepEqual(h2h.system.activities.filter(a => a.minLevel === 6 || a.minLevel === 16).map(a => a.name), ["Second unarmed attack (1d4)", "Third unarmed attack (1d4)"]);
+// The Monk's unarmed attacks: one button, 1 attack (2 from 6th, 3 from 16th) through the weapon pipeline; the second
+// and third with the Secondary and Tertiary dice.
+const ua = h2h.system.activities.find(a => a.name === "Unarmed attacks");
+assert.equal(ua.kind, "attacks");
+assert.equal(ua.weapons, "unarmed");
+assert.deepEqual([1, 6, 16].map(l => levelText(ua.count, l)), ["1", "2", "3"]);
+const diceAt = l => levelText(ua.formula, l).split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
+assert.deepEqual(diceAt(1), ["", "", ""]);
+assert.deepEqual(diceAt(9), ["", "1d6", ""]);
+assert.deepEqual(diceAt(22), ["", "1d10", "1d8"]);
+const docsSrc = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
+assert.ok(docsSrc.includes('if (k === "unarmed") return /^unarmed strike$/i'), "attacks can pick the Unarmed Strike");
+assert.ok(docsSrc.includes("weaponDice: dice") && docsSrc.includes('String(dice ?? "").trim() || this.ownDice(item)'), "an attack's own dice reach its damage");
+const chatSrc = fs.readFileSync(new URL("../arneyan/module/chat.mjs", import.meta.url), "utf8");
+assert.equal((chatSrc.match(/dice: flags\.weaponDice/g) ?? []).length, 3, "damage, crit and reroll buttons keep the attack's dice");
 
 /* Review fixes. */
 // Text is never read as a whole table; only numbers or dice are.
@@ -126,4 +139,34 @@ const d6 = makeActor(CharacterData, "character", { level: 6 }, [cls("Druid", 6),
 const d6g = makeActor(CharacterData, "character", { level: 6 }, [cls("Druid", 6), wsItem(), grove]);
 assert.equal(d6.items[1].system.uses.max, 3);
 assert.equal(d6g.items[1].system.uses.max, 4);
+
+/* Fated Survivor: +1 Luck when taken, +1 at 5th, 10th, 15th and 20th. */
+const P = await import("../arneyan/module/progression.mjs");
+assert.deepEqual([1, 4, 5, 9, 10, 15, 20, 24].map(l => P.luckDue("Fated Survivor", l)), [1, 1, 2, 2, 3, 4, 5, 5]);
+assert.equal(P.luckDue("Toughness", 20), 0);
+globalThis.ChatMessage ??= { create: async () => ({}), getSpeaker: () => ({}) };
+const hero = (level, flags) => {
+  const feat = { id: "f1", type: "feat", name: "Fated Survivor", flags: { arneyan: flags } };
+  const a = { type: "character", isOwner: true, items: [feat], system: { level, luck: { value: 10, start: 9 } },
+    updateEmbeddedDocuments: async (t, ups) => { for (const u of ups) feat.flags.arneyan.luckGiven = u["flags.arneyan.luckGiven"]; },
+    update: async u => { a.system.luck.value = u["system.luck.value"]; a.system.luck.start = u["system.luck.start"]; } };
+  return a;
+};
+let h = hero(5, { luckGiven: 0 });                       // just taken at 5th: +1, and the 5th-level step
+assert.equal(await P.syncLuckFeats(h), 2);
+assert.deepEqual([h.system.luck.value, h.system.luck.start], [12, 11]);
+h.system.level = 10;                                      // levelled to 10th
+assert.equal(await P.syncLuckFeats(h, { fromLevel: 9 }), 1);
+assert.equal(h.system.luck.value, 13);
+assert.equal(await P.syncLuckFeats(h, { fromLevel: 9 }), 0, "never twice");
+h.system.level = 7;                                       // down to 7th: the 10th-level step comes off
+assert.equal(await P.syncLuckFeats(h, { fromLevel: 10 }), -1);
+assert.equal(h.system.luck.value, 12);
+h = hero(4, {});                                          // taken before 0.10.48 (no record), levelled 4th to 5th
+assert.equal(await P.syncLuckFeats(h, { fromLevel: 4 }), 0);
+h.system.level = 5;
+assert.equal(await P.syncLuckFeats(h, { fromLevel: 4 }), 1, "recorded at 4th: the 5th-level step is new");
+const legacy = hero(5, {}); 
+assert.equal(await P.syncLuckFeats(legacy, { fromLevel: 4 }), 1, "a feat from before: only the step just reached");
+assert.equal(legacy.system.luck.value, 11);
 console.log("OK level scaling");

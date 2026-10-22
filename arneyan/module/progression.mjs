@@ -183,7 +183,62 @@ async function locked(actor, fn) {
 
 /** Returns false if the change was cancelled or refused. */
 export function setClassLevel(actor, cls, target) {
-  return locked(actor, () => changeClassLevel(actor, cls, target));
+  return locked(actor, async () => {
+    const before = actor.system?.level ?? null;
+    const done = await changeClassLevel(actor, cls, target);
+    // Luck from feats that step up with level (Fated Survivor at 5th, 10th, 15th and 20th).
+    if (done !== false) await syncLuckFeats(actor, { fromLevel: before }).catch(err => console.warn("Arneyan | Luck feats", err));
+    return done;
+  });
+}
+
+/* -------------------------------------------- */
+/*  Feats that raise Luck                       */
+/* -------------------------------------------- */
+
+/**
+ * Feats that add to Luck when taken and again at set character levels. Fated Survivor: "+1 to your Starting Luck
+ * Score immediately upon taking this Feat, with further +1 increases at 5th, 10th, 15th, and 20th level (your Current
+ * Luck rises by the same amount, to a maximum of 20)".
+ */
+export const LUCK_FEATS = { "Fated Survivor": [5, 10, 15, 20] };
+
+/** How much Luck a Luck feat has given by this character level (0 for any other feat). */
+export function luckDue(name, level) {
+  const steps = LUCK_FEATS[name];
+  return steps ? 1 + steps.filter(l => (Number(level) || 0) >= l).length : 0;
+}
+
+/**
+ * Bring Luck in line with the character's Luck feats at its level now: the steps reached since, added to Starting and
+ * Current Luck (to 20 at most); steps lost to a level down, taken off. Each feat records what it has given
+ * (flags.arneyan.luckGiven). A feat on the sheet from before 0.10.48 has no record: it counts as having given what
+ * was due at `fromLevel` (the level before this change), so Luck added by hand isn't added twice.
+ */
+export async function syncLuckFeats(actor, { fromLevel = null } = {}) {
+  if (actor?.type !== "character" || !actor.isOwner) return 0;
+  const level = actor.system?.level ?? 1;
+  let delta = 0;
+  const upd = [];
+  for (const feat of actor.items.filter(i => i.type === "feat" && LUCK_FEATS[i.name])) {
+    const had = Number(feat.flags?.[FLAG]?.luckGiven);
+    const given = Number.isFinite(had) ? had : luckDue(feat.name, fromLevel ?? level);
+    const due = luckDue(feat.name, level);
+    delta += due - given;
+    if (due !== had) upd.push({ _id: feat.id, [`flags.${FLAG}.luckGiven`]: due });
+  }
+  if (upd.length) await actor.updateEmbeddedDocuments("Item", upd, { arneyanGrant: true });
+  if (delta) await shiftLuck(actor, delta, "Fated Survivor");
+  return delta;
+}
+
+/** Add to (or take from) Starting and Current Luck, kept between 0 and 20, with a line in chat. */
+export async function shiftLuck(actor, delta, why) {
+  const l = actor.system.luck;
+  const value = Math.clamp((l.value ?? 0) + delta, 0, 20), start = Math.clamp((l.start ?? 0) + delta, 0, 20);
+  await actor.update({ "system.luck.value": value, "system.luck.start": start });
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
+    content: `<p><strong>${esc(why)}:</strong> ${delta > 0 ? "+" : "−"}${Math.abs(delta)} Luck (now ${value}).</p>` }).catch(() => null);
 }
 
 async function changeClassLevel(actor, cls, target) {
