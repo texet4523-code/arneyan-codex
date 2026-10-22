@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 15
    },
    "int": {
-    "value": 10
+    "value": 6
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 7
    }
   },
   "level": 7,
@@ -41,8 +41,8 @@
   },
   "saves": {
    "fort": 4,
-   "ref": 2,
-   "will": 2
+   "ref": 3,
+   "will": 3
   },
   "spellcasting": {
    "className": "",
@@ -59,7 +59,7 @@
    "resistances": "",
    "immunities": "",
    "vulnerabilities": "",
-   "senses": "Blindsight 60ft, Darkvision 120ft",
+   "senses": "Blindsight 60ft",
    "isSolo": false,
    "levelText": "",
    "page": 0,
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 60ft, darkvision 120ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>60ft</strong>, darkvision <strong>120ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1Dnc4OJVh2VgnERi",
+   "_key": "!actors.items!flBxVDf9BdKWdeLR.1Dnc4OJVh2VgnERi",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Echolocation",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "fdbJFgE3z7DQ6uG1",
-   "_key": "!actors.items!flBxVDf9BdKWdeLR.fdbJFgE3z7DQ6uG1",
+   "_id": "pQmjnDIMbz8epeeB",
+   "_key": "!actors.items!flBxVDf9BdKWdeLR.pQmjnDIMbz8epeeB",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,34 @@
     "active": false,
     "applies": []
    },
-   "_id": "Pz4E39unAlQJXOST",
-   "_key": "!actors.items!flBxVDf9BdKWdeLR.Pz4E39unAlQJXOST",
+   "_id": "j7WA39wkfiKuTISZ",
+   "_key": "!actors.items!flBxVDf9BdKWdeLR.j7WA39wkfiKuTISZ",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "lpLN2D5hAJEHKqcu",
+   "_key": "!actors.items!flBxVDf9BdKWdeLR.lpLN2D5hAJEHKqcu",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -198,12 +258,20 @@
   },
   "sight": {
    "enabled": true,
-   "range": 120,
-   "visionMode": "darkvision"
+   "range": 0,
+   "visionMode": "basic"
   }
  },
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 4,
+    "ref": 2,
+    "will": 2
+   }
+  }
+ }
 }

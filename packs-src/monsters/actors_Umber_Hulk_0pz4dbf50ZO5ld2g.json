@@ -7,16 +7,16 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 20
    },
    "dex": {
-    "value": 10
+    "value": 13
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 9
    },
    "wis": {
     "value": 10
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 6,
-   "ref": 4,
-   "will": 4
+   "fort": 7,
+   "ref": 6,
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -280,5 +280,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 4
+   }
+  }
+ }
 }

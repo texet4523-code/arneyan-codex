@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 17
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 6
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 7
    }
   },
   "level": 4,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 3,
-   "ref": 1,
-   "will": 3
+   "fort": 4,
+   "ref": 2,
+   "will": 2
   },
   "spellcasting": {
    "className": "",
@@ -420,6 +420,29 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Athletics",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-biceps.svg",
+   "system": {
+    "description": "<p>A Athletics check: a Strength check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "str",
+    "tier": "trained"
+   },
+   "_id": "fN864rd3OJx70WeC",
+   "_key": "!actors.items!Y69U0PIjqSlhTJQn.fN864rd3OJx70WeC",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -446,5 +469,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 1,
+    "will": 3
+   }
+  }
+ }
 }

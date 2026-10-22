@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 17
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 22
    },
    "int": {
-    "value": 10
+    "value": 11
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 10,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 6,
-   "ref": 4,
-   "will": 4
+   "fort": 10,
+   "ref": 5,
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Darkvision 60ft, tremorsense 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>Darkvision <strong>60ft</strong>, tremorsense <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "snEKrl35FF6V8Mag",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.snEKrl35FF6V8Mag",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Earth Glide",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Qk0xzHFHDAoZauln",
-   "_key": "!actors.items!7uaWqHdyVvq7OVow.Qk0xzHFHDAoZauln",
+   "_id": "ho44rBcV59zipwrb",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.ho44rBcV59zipwrb",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "BNWwyaKK9gPQcvSu",
-   "_key": "!actors.items!7uaWqHdyVvq7OVow.BNWwyaKK9gPQcvSu",
+   "_id": "Cc05gwBbpKZqy2sw",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.Cc05gwBbpKZqy2sw",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "gBmZZEtF3ZT0mIt5",
-   "_key": "!actors.items!7uaWqHdyVvq7OVow.gBmZZEtF3ZT0mIt5",
+   "_id": "GKM0AmLkvpN7SRwr",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.GKM0AmLkvpN7SRwr",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,57 @@
     "active": false,
     "applies": []
    },
-   "_id": "4mXDR0Cr0CQYNyiX",
-   "_key": "!actors.items!7uaWqHdyVvq7OVow.4mXDR0Cr0CQYNyiX",
+   "_id": "ba63c3PxF5FOtlVG",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.ba63c3PxF5FOtlVG",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "IdetkwbMYFmvmazk",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.IdetkwbMYFmvmazk",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "oaD69342XnGpqhK8",
+   "_key": "!actors.items!7uaWqHdyVvq7OVow.oaD69342XnGpqhK8",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -317,5 +400,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 4
+   }
+  }
+ }
 }

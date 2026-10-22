@@ -19,10 +19,10 @@
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 14
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 2,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 1,
    "ref": 1,
-   "will": 3
+   "will": 2
   },
   "spellcasting": {
    "className": "Cleric",
@@ -374,6 +374,58 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Religion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Knowledge of gods, rites, and holy law</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
+   },
+   "_id": "8nNgjADQimjk6iGg",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.8nNgjADQimjk6iGg",
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "First Aid/Healing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Treating wounds and stabilising the injured</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.uHU3VeDjXNFWESGx"
+   },
+   "_id": "iphhBIX7em0OdPYA",
+   "_key": "!actors.items!C3DYit4VJDNXrvBX.iphhBIX7em0OdPYA",
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -400,5 +452,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 3
+   }
+  }
+ }
 }

@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 29
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 20
    },
    "int": {
-    "value": 10
+    "value": 16
    },
    "wis": {
-    "value": 10
+    "value": 18
    },
    "cha": {
-    "value": 10
+    "value": 18
    }
   },
   "level": 18,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 10,
+   "fort": 13,
    "ref": 10,
-   "will": 10
+   "will": 12
   },
   "spellcasting": {
    "className": "",
@@ -441,6 +441,104 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "AcHjC1wtIiX3oUIQ",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.AcHjC1wtIiX3oUIQ",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Athletics",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-biceps.svg",
+   "system": {
+    "description": "<p>A Athletics check: a Strength check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "str",
+    "tier": "trained"
+   },
+   "_id": "6ABLwe6ExRONQ4oJ",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.6ABLwe6ExRONQ4oJ",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "iF97Ix3ikdoobvad",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.iF97Ix3ikdoobvad",
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "SkjTHyY9kCplBcmu",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.SkjTHyY9kCplBcmu",
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -467,5 +565,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 10,
+    "ref": 10,
+    "will": 10
+   }
+  }
+ }
 }

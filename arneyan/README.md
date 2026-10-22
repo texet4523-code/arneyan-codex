@@ -1,6 +1,23 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.44 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.45 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.45
+
+Monsters & Treasure v0.10.5 (the books of 22 October): **every monster has attribute scores.**
+- **Scores.** All 464 stat blocks (and the two animated objects) have Strength to Charisma, so a monster's attribute checks, initiative and contests use real modifiers. The "–" for monsters without scores is gone.
+- **Saves** are worked out as the book now does: the attribute modifier + half the Level (minimum 1), Constitution for Fortitude, Dexterity for Reflex and Wisdom for Will (Level ¼ and ½ count as 1, Mythic as 30).
+- **Skills.** 265 monsters have the book's Skills line, shown under their saves and rolled from there: a listed skill adds the modifier (at least +1), a Master one also rolls with Advantage (a star marks it). Spellcraft, Ancient History, First Aid/Healing, Religion, Survival and Tumbling are the Handbook's Skills (NWP); Perception, Stealth, Insight and the like are named attribute checks.
+- **Contests** (Grapple, Trip and the rest): a monster rolls d20 + its attribute modifier, as a character does. The old "save minus half its HD" is gone, from the Codex journal too.
+- **The book's other stat-block changes** come with it: the riders that now say how long they last, the Giant Shark's bite (2d8+4) and the other beasts the book retuned, senses printed in the blocks, and the animated objects, now Monsters & Treasure's own (same names, so Animate Objects still summons them).
+- **Animal Friendship** checks the target's Intelligence (1 or 2, as the spell says).
+- **Spell DCs.** A monster whose stat block gives no spell DC works it out as a caster does, 10 + half its Level + its best Intelligence, Wisdom or Charisma modifier. With real scores that modifier now counts, so 26 innate casters' DCs rise (most by 1 or 2; a Deva or Djinni by 4, the Solar by 9). Set a DC on the sheet (edit mode) to override it.
+- **Monsters already in your world** (all six scores still 10) take their scores when the update runs, plus the new saves where theirs are still the old book's (each save you changed stays) and their skills if they have none. Companions and mounts kept from the Bestiary are included. The GM's update card lists them. Their attacks and abilities aren't changed: **Update from the Bestiary** on a monster's sheet brings the whole new stat block.
+- **Importing an NPC** with scores and no saves works its saves out the same way, and an NPC's import block can list skills.
+
+From the Player's Handbook v0.10.6, which settles what Foundry asked:
+- **4d6, drop the lowest** is now the Handbook's optional Quick Roll, and Rule C applies to it: a set without two scores of 14 or higher can't be kept, and the window offers **Roll again**.
+- **Travel encounters:** an Encounter Check of 11 is a **Hard** Encounter and 12 a **Deadly** one (the Handbook's words now), with the 7-day rations as before.
 
 ## What's new in 0.10.44
 
@@ -557,7 +574,7 @@ Attack rolls read the map. A melee attack gets Advantage when an ally stands dir
 Light weapons have an **Off** button next to their to-hit: an off-hand attack with Disadvantage that adds no attribute modifier to damage. Under **Combat** on the Actions tab, **Fight defensively** uses your off-hand weapon or shield instead: a Light weapon gives +1 AC against the first melee attack that round, a Light Finesse weapon +1 AC against every melee attack, and a shield +1 AC against everything (it costs your extra attacks). It lasts until the start of your next turn; click it again to stop.
 
 ### Grapple, Trip, Disarm and other contests
-Target one creature, then press a contest under **Combat** on the Actions tab (or Use on the action from the Actions compendium). Both sides roll, the better attribute is picked for whoever has the choice, the higher total wins and a tie goes to the defender. The GM's client rolls for creatures you don't control. A win applies the result: Grapple makes the target Restrained, Trip and Overbear knock it Prone, Dirty Trick Blinds it until the end of its next turn, Disarm says it drops its weapon. A Restrained creature gets a **Break free** button. Entangling weapons give Advantage on Trip and Grapple, Sunder weapons on Disarm. Monsters use their save minus half their Hit Dice.
+Target one creature, then press a contest under **Combat** on the Actions tab (or Use on the action from the Actions compendium). Both sides roll, the better attribute is picked for whoever has the choice, the higher total wins and a tie goes to the defender. The GM's client rolls for creatures you don't control. A win applies the result: Grapple makes the target Restrained, Trip and Overbear knock it Prone, Dirty Trick Blinds it until the end of its next turn, Disarm says it drops its weapon. A Restrained creature gets a **Break free** button. Entangling weapons give Advantage on Trip and Grapple, Sunder weapons on Disarm. Monsters roll d20 + the attribute modifier from their stat block, as characters do.
 
 ### Non-lethal damage
 Every damage card has a fist button to apply it as non-lethal (subdual) damage. Unarmed strikes are non-lethal by default, with a **Lethal** button for the rest. Non-lethal damage builds up apart from HP and shows as a red **Non-lethal** chip under it; when it reaches the creature's current HP, it is knocked out (Unconscious, not dying). The **Unarmed strike** button under Combat adds an Unarmed Strike (1d2 + Strength) to your weapons the first time. The GM clears it with the chip's cross once the creature has recovered.
@@ -622,7 +639,7 @@ Characters have a **Downtime** tab: a log of what they did between adventures. *
 
 ### Travel
 
-The party sheet has a **Travel** tab. Set the distance in hexes, how the party travels (on foot, mounted or by ship, or an Umbral Journey), the pace, and whether the terrain is difficult (one pace slower): it shows hexes a day, days to go and the rations needed against what the members and the stash carry. Each day the GM presses **Travel one day**: game time moves on a day, everyone eats a day's rations (a Week's Rations pack holds seven) and drinks a day's water (a canteen or waterskin holds a day's water until refilled; tick "Water along the way" when there are streams and wells), and the Encounter Check is rolled (d12: 11 a Standard Encounter, 12 a Dangerous one), drawing from the encounter roll table named on the tab (or one called Travel Encounters, Random Encounters or the like). Going without food past 3 + Constitution modifier days, or without water, brings Exhaustion.
+The party sheet has a **Travel** tab. Set the distance in hexes, how the party travels (on foot, mounted or by ship, or an Umbral Journey), the pace, and whether the terrain is difficult (one pace slower): it shows hexes a day, days to go and the rations needed against what the members and the stash carry. Each day the GM presses **Travel one day**: game time moves on a day, everyone eats a day's rations (a Week's Rations pack holds seven) and drinks a day's water (a canteen or waterskin holds a day's water until refilled; tick "Water along the way" when there are streams and wells), and the Encounter Check is rolled (d12: 11 a Hard Encounter, 12 a Deadly one), drawing from the encounter roll table named on the tab (or one called Travel Encounters, Random Encounters or the like). Going without food past 3 + Constitution modifier days, or without water, brings Exhaustion.
 
 ## Spells, kits and optional modules
 

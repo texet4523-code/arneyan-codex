@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 25
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 23
    },
    "int": {
-    "value": 10
+    "value": 16
    },
    "wis": {
-    "value": 10
+    "value": 15
    },
    "cha": {
-    "value": 10
+    "value": 19
    }
   },
   "level": 17,
@@ -40,8 +40,8 @@
    "morale": 12
   },
   "saves": {
-   "fort": 9,
-   "ref": 9,
+   "fort": 14,
+   "ref": 8,
    "will": 9
   },
   "spellcasting": {
@@ -59,7 +59,7 @@
    "resistances": "necrotic 5",
    "immunities": "poison, lightning, condition:charmed, condition:frightened, condition:paralysed",
    "vulnerabilities": "",
-   "senses": "Blindsight 60ft, Darkvision 120ft",
+   "senses": "Blindsight 60ft",
    "isSolo": true,
    "levelText": "",
    "page": 0,
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 60ft, darkvision 120ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>60ft</strong>, darkvision <strong>120ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wroFakx6ishEGYdf",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.wroFakx6ishEGYdf",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Template",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "fmqeGhz4bdR6nexB",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.fmqeGhz4bdR6nexB",
+   "_id": "cqss8UqUtTQMqSaP",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.cqss8UqUtTQMqSaP",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "wbSfev5DNKDX2BSj",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.wbSfev5DNKDX2BSj",
+   "_id": "9EhoqNKQ66JNiaI4",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.9EhoqNKQ66JNiaI4",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "RWFhmcTYcvDF1cPX",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.RWFhmcTYcvDF1cPX",
+   "_id": "qOTIuX2vSWaOm2Zs",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.qOTIuX2vSWaOm2Zs",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "0HXNly7dOABrWAeU",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.0HXNly7dOABrWAeU",
+   "_id": "3RR3IGV0KVL8D5sy",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.3RR3IGV0KVL8D5sy",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -319,11 +356,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "9HuSKWrurbd3THWI",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.9HuSKWrurbd3THWI",
+   "_id": "LbpbeLq3CixVAxJx",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.LbpbeLq3CixVAxJx",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -362,11 +399,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "aC4roo3wSkHe94bY",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.aC4roo3wSkHe94bY",
+   "_id": "HfDBOsAZBcyHUe0T",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.HfDBOsAZBcyHUe0T",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -404,11 +441,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "iL51yENEbpsaWPRF",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.iL51yENEbpsaWPRF",
+   "_id": "Gl5a0nUvBmX0Ln7P",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.Gl5a0nUvBmX0Ln7P",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -432,12 +469,20 @@
   },
   "sight": {
    "enabled": true,
-   "range": 120,
-   "visionMode": "darkvision"
+   "range": 0,
+   "visionMode": "basic"
   }
  },
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 9,
+    "ref": 9,
+    "will": 9
+   }
+  }
+ }
 }

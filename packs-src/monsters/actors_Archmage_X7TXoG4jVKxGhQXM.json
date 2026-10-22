@@ -10,19 +10,19 @@
     "value": 10
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 12
    },
    "int": {
-    "value": 10
+    "value": 20
    },
    "wis": {
-    "value": 10
+    "value": 15
    },
    "cha": {
-    "value": 10
+    "value": 16
    }
   },
   "level": 12,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 9,
-   "ref": 11,
-   "will": 11
+   "fort": 6,
+   "ref": 7,
+   "will": 7
   },
   "spellcasting": {
    "className": "Wizard",
@@ -1019,6 +1019,58 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "master"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "ZLHiRcqJ19dvtc0x",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.ZLHiRcqJ19dvtc0x",
+   "flags": {},
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "master"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "GmtfQK8r9VLsOgNh",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.GmtfQK8r9VLsOgNh",
+   "flags": {},
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -1045,5 +1097,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 9,
+    "ref": 11,
+    "will": 11
+   }
+  }
+ }
 }

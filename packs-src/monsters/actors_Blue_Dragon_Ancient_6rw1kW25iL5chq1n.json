@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 29
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 27
    },
    "int": {
-    "value": 10
+    "value": 18
    },
    "wis": {
-    "value": 10
+    "value": 17
    },
    "cha": {
-    "value": 10
+    "value": 21
    }
   },
   "level": 23,
@@ -40,8 +40,8 @@
    "morale": 11
   },
   "saves": {
-   "fort": 13,
-   "ref": 13,
+   "fort": 18,
+   "ref": 11,
    "will": 13
   },
   "spellcasting": {
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 60ft, darkvision 120ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>60ft</strong>, darkvision <strong>120ft</strong>. Immune to lightning.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kqd5VoNuys9u5X0M",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.kqd5VoNuys9u5X0M",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Breath Weapon",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Rtyhyuotvf641hc4",
-   "_key": "!actors.items!6rw1kW25iL5chq1n.Rtyhyuotvf641hc4",
+   "_id": "9vVhWbp5T7yrnpRQ",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.9vVhWbp5T7yrnpRQ",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "ZRNYvzHL8MNY6lYi",
-   "_key": "!actors.items!6rw1kW25iL5chq1n.ZRNYvzHL8MNY6lYi",
+   "_id": "IQyxWokolgn7ORF6",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.IQyxWokolgn7ORF6",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "dcrvYIAbfweK2aNN",
-   "_key": "!actors.items!6rw1kW25iL5chq1n.dcrvYIAbfweK2aNN",
+   "_id": "J9Vljd4ZhTQtC5wk",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.J9Vljd4ZhTQtC5wk",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "XQwPMHLNfLAPEAuH",
-   "_key": "!actors.items!6rw1kW25iL5chq1n.XQwPMHLNfLAPEAuH",
+   "_id": "qzkL2WOrGJSXu8R3",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.qzkL2WOrGJSXu8R3",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -324,11 +361,57 @@
     "active": false,
     "applies": []
    },
-   "_id": "arPP1YWA9OfbJU2l",
-   "_key": "!actors.items!6rw1kW25iL5chq1n.arPP1YWA9OfbJU2l",
+   "_id": "73O5YR6pkoX0SmvM",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.73O5YR6pkoX0SmvM",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "y87sJ6dswCtH9kfJ",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.y87sJ6dswCtH9kfJ",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "IULsnfI69nMGZloP",
+   "_key": "!actors.items!6rw1kW25iL5chq1n.IULsnfI69nMGZloP",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -359,5 +442,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 13,
+    "ref": 13,
+    "will": 13
+   }
+  }
+ }
 }

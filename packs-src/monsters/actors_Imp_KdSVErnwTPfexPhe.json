@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 6
    },
    "dex": {
-    "value": 10
+    "value": 17
    },
    "con": {
-    "value": 10
+    "value": 13
    },
    "int": {
-    "value": 10
+    "value": 11
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 14
    }
   },
   "level": 0,
@@ -40,7 +40,7 @@
    "morale": 8
   },
   "saves": {
-   "fort": 3,
+   "fort": 2,
    "ref": 3,
    "will": 1
   },
@@ -291,6 +291,98 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "ADRxYaR9rgsVeAmA",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.ADRxYaR9rgsVeAmA",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "sSdzAzJyb4mgwtAx",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.sSdzAzJyb4mgwtAx",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "1LcyhZFaW2Z3VSYE",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.1LcyhZFaW2Z3VSYE",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Persuasion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "01LJbFkKg7lvs3VG",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.01LJbFkKg7lvs3VG",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -317,5 +409,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 3,
+    "will": 1
+   }
+  }
+ }
 }

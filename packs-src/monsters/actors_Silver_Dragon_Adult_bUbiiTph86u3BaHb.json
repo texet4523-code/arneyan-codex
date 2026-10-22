@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 27
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 25
    },
    "int": {
-    "value": 10
+    "value": 16
    },
    "wis": {
-    "value": 10
+    "value": 13
    },
    "cha": {
-    "value": 10
+    "value": 21
    }
   },
   "level": 16,
@@ -40,8 +40,8 @@
    "morale": 10
   },
   "saves": {
-   "fort": 9,
-   "ref": 9,
+   "fort": 14,
+   "ref": 8,
    "will": 9
   },
   "spellcasting": {
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 60ft, darkvision 120ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>60ft</strong>, darkvision <strong>120ft</strong>. Immune to cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PuWerQfBVKCD58Cw",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.PuWerQfBVKCD58Cw",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Breath Weapon",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "y0ds7ZNRczfIiLyg",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.y0ds7ZNRczfIiLyg",
+   "_id": "TUlerG7PKrjXQb4g",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.TUlerG7PKrjXQb4g",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "RW3TZ6MnkPX3ACcs",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.RW3TZ6MnkPX3ACcs",
+   "_id": "iYiwK5UKrYZUfvYL",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.iYiwK5UKrYZUfvYL",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "zJvVJUgERrL2qQbc",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.zJvVJUgERrL2qQbc",
+   "_id": "w5I0vW2wCum1vijl",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.w5I0vW2wCum1vijl",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -287,11 +324,109 @@
     "active": false,
     "applies": []
    },
-   "_id": "ycNTrqvteIQArvgs",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.ycNTrqvteIQArvgs",
+   "_id": "NqY3N59HhWefxKdd",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.NqY3N59HhWefxKdd",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "NZrjiLnAqGJSXUFv",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.NZrjiLnAqGJSXUFv",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "idjfd6xT7pRuhGEF",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.idjfd6xT7pRuhGEF",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "KulWmwA3lvjlwEBP",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.KulWmwA3lvjlwEBP",
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "EOpgif4ZyJFQu7Bg",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.EOpgif4ZyJFQu7Bg",
+   "flags": {},
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -322,5 +457,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 9,
+    "ref": 9,
+    "will": 9
+   }
+  }
+ }
 }

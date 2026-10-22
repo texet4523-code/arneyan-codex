@@ -306,7 +306,7 @@ def build():
         lo, hi = _span(cells[0].replace("-", DASH))
         res.append(T.text(lo, hi, cells[1].rstrip(".") + "."))
     doc = T.table("Encounter Check", "1d12", res, f_road, img_road,
-                  "<p>At the start of each new segment of dangerous travel (daily travel or a dungeon phase), roll a d12 for each day travelled. Resting in hostile territory: an 11 or 12 is a Standard Encounter, never Dangerous.</p>")
+                  "<p>At the start of each new segment of dangerous travel (daily travel or a dungeon phase), roll a d12 for each day travelled. Resting in hostile territory: an 11 or 12 is a Hard Encounter, never Deadly.</p>")
     _check_ranges(doc, 12)
     rc = _rules_page(rules, "Reaction Checks")
     res = []

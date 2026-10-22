@@ -88,6 +88,14 @@ assert.deepEqual(plan.spellcasting, { className: "Cleric", level: 3 });
 assert.equal(plan.made[0].system.kind, "monster");
 assert.ok(I.planHtml(plan).includes("Starts from:"));
 assert.deepEqual(plan.missing, [], plan.missing.join("; "));
+// Books v0.10.5: an NPC's skills. Perception and the like are attribute checks (made, not missing); Spellcraft is the compendium's.
+plan = await I.planImport(I.readImport(JSON.stringify({ type: "npc", name: "Sly", base: "Ogre", skills: ["Perception (Master)", "Stealth", "Spellcraft"] })), { find });
+assert.deepEqual(plan.made.filter(m => m.type === "skill").map(m => [m.name, m.system.ability, m.system.tier]), [["Perception", "wis", "master"], ["Stealth", "dex", "trained"]]);
+assert.ok(!plan.missing.some(m => /Perception|Stealth/.test(m)), plan.missing.join("; "));
+assert.ok(plan.found.some(f => f.pack === "skills" && f.name === "Spellcraft"));
+// A character's block isn't a monster's: Perception there is still reported as not in the compendium.
+plan = await I.planImport(I.readImport(JSON.stringify({ type: "character", name: "Pip", classes: ["Fighter 1"], skills: ["Perception"] })), { find });
+assert.ok(plan.missing.some(m => m === "Skill: Perception"));
 // Review fixes: curly quotes inside text are fine; bracketed names that are names; picks for class features; Kits
 // only for the character's class; ranged attacks; uses periods; string lists split at semicolons only.
 assert.equal(I.readImport('{ "name": "Q", "biography": "He said “hello”" }').biography, "He said “hello”");

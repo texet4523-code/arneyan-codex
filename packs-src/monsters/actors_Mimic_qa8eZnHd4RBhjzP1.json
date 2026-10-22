@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 17
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
-    "value": 10
+    "value": 15
    },
    "int": {
-    "value": 10
+    "value": 5
    },
    "wis": {
-    "value": 10
+    "value": 13
    },
    "cha": {
-    "value": 10
+    "value": 8
    }
   },
   "level": 7,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 5,
+   "fort": 4,
    "ref": 3,
-   "will": 3
+   "will": 4
   },
   "spellcasting": {
    "className": "",
@@ -260,6 +260,29 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "master"
+   },
+   "_id": "85vdHqYVAPM60vwu",
+   "_key": "!actors.items!qa8eZnHd4RBhjzP1.85vdHqYVAPM60vwu",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -286,5 +309,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 5,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

@@ -807,3 +807,6 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan.arn-shape-app button.arn-shape-tile span { color: var(--arn-ink, #2b2620); font-weight: 600; }
 .arneyan.arn-shape-app button.arn-shape-tile.locked { opacity: .5; filter: grayscale(.6); cursor: not-allowed; }
 .arneyan.arn-shape-app button.arn-shape-tile img { background: transparent; }
+
+/* 0.10.45: a monster's Skills line (books v0.10.5). */
+.arneyan .arn-npc-skill-list .arn-master { font-size: 0.7em; color: var(--arn-accent, #b8862b); margin-left: 2px; }

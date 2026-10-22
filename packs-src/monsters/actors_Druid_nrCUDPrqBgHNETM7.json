@@ -10,19 +10,19 @@
     "value": 10
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
-    "value": 10
+    "value": 13
    },
    "int": {
-    "value": 10
+    "value": 12
    },
    "wis": {
-    "value": 10
+    "value": 15
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 2,
@@ -41,8 +41,8 @@
   },
   "saves": {
    "fort": 2,
-   "ref": 2,
-   "will": 4
+   "ref": 1,
+   "will": 2
   },
   "spellcasting": {
    "className": "Druid",
@@ -452,6 +452,81 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "2bdMntZkVQxfXWOD",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.2bdMntZkVQxfXWOD",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Survival",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Finding food, water, and shelter in the wild</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
+   },
+   "_id": "6UKX4DsmrFq6Shhh",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.6UKX4DsmrFq6Shhh",
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "First Aid/Healing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Treating wounds and stabilising the injured</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.uHU3VeDjXNFWESGx"
+   },
+   "_id": "F7BsqgnduoH6hI0C",
+   "_key": "!actors.items!nrCUDPrqBgHNETM7.F7BsqgnduoH6hI0C",
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -478,5 +553,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 2,
+    "ref": 2,
+    "will": 4
+   }
+  }
+ }
 }

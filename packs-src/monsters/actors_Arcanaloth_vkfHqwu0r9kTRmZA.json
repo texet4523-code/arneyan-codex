@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 17
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
-    "value": 10
+    "value": 14
    },
    "int": {
-    "value": 10
+    "value": 20
    },
    "wis": {
-    "value": 10
+    "value": 16
    },
    "cha": {
-    "value": 10
+    "value": 17
    }
   },
   "level": 10,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 7,
-   "ref": 9,
-   "will": 9
+   "fort": 6,
+   "ref": 5,
+   "will": 7
   },
   "spellcasting": {
    "className": "Wizard",
@@ -1139,6 +1139,101 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "tr4QZzeCyleUS7xt",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.tr4QZzeCyleUS7xt",
+   "effects": [],
+   "flags": {},
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "3oaFNZAKRmdnAgyZ",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.3oaFNZAKRmdnAgyZ",
+   "effects": [],
+   "flags": {},
+   "sort": 1900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "DSHdDWB84nXlThEA",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.DSHdDWB84nXlThEA",
+   "effects": [],
+   "flags": {},
+   "sort": 2000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "IIeL0Vsfmhy1btFC",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.IIeL0Vsfmhy1btFC",
+   "flags": {},
+   "sort": 2100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -1165,5 +1260,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 7,
+    "ref": 9,
+    "will": 9
+   }
+  }
+ }
 }

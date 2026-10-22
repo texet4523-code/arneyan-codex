@@ -2,9 +2,12 @@
 
 Stat block lines (the books' own DSL):
   = Name | Size type (subtype) | Level [solo]
-  hd 3d6 · ac 15 · mv 30ft · mor 8 · tr R · no 2d6 · sv RW (good saves) or svx "Fort +x, Ref +y, Will +z"
-  hp 135 (override) · atk ... · sp Name: text (repeated) · gm text
-Saves: half HD (minimum 1), +2 for each good save letter. HP: the HD average unless hp overrides it.
+  hd 3d6 · ac 15 · mv 30ft · mor 8 · tr R · no 2d6 · ab 15 14 14 12 10 13 (Str Dex Con Int Wis Cha)
+  sk Perception (Master), Stealth · hp 135 (override) · atk ... · sp Name: text (repeated) · gm text
+Saves (books v0.10.5): the attribute modifier + half the Level (minimum 1), Constitution for Fortitude, Dexterity for
+Reflex and Wisdom for Will; Level ¼ and ½ count as 1 and Mythic as 30. (The older `sv`/`svx` lines still read.)
+Skills: a listed skill adds the modifier (at least +1); Master also rolls with Advantage. HP: the HD average unless hp
+overrides it.
 Attacks become weapon items; special abilities become ability items whose text links saves, damage,
 conditions and spells so the GM can click them.
 """
@@ -23,6 +26,72 @@ CONDITIONS = {"Blinded": "blinded", "Burning": "burning", "Charmed": "charmed", 
 CONDITION_IMMUNE = {"charm": "charmed", "fear": "frightened", "frighten": "frightened", "unconscious": "unconscious", "paralyse": "paralysed", "paralysis": "paralysed", "poisoned": "poisoned",
                     "petrif": "petrified", "stun": "stunned", "blind": "blinded", "deafen": "deafened", "prone": "prone"}
 SAVE = {"fortitude": "fort", "reflex": "ref", "will": "will"}
+# Skills a stat block names that aren't Skills (NWP) in the Player's Handbook: named attribute checks.
+CHECK_SKILLS = {"Perception": "wis", "Stealth": "dex", "Deception": "cha", "Insight": "wis", "Intimidation": "cha",
+                "Persuasion": "cha", "Performance": "cha", "Athletics": "str", "Investigation": "int"}
+ABIL_KEYS = ("str", "dex", "con", "int", "wis", "cha")
+ABIL_NAMES = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
+SAVE_ABIL = (("fort", "con"), ("ref", "dex"), ("will", "wis"))
+
+
+SIZE_RUN = r"^(?:(?:tiny|small|medium|large|huge|gargantuan)\s+(?:or\s+)?)+"
+
+
+def size_and_type(typ):
+    """"Small or Medium construct" -> ("medium", "construct"): the larger size named, and the type after the sizes."""
+    run = re.match(SIZE_RUN, typ, re.I)
+    words = re.findall(r"tiny|small|medium|large|huge|gargantuan", run.group(0).lower()) if run else []
+    order = ["tiny", "small", "medium", "large", "huge", "gargantuan"]
+    return (max(words, key=order.index) if words else "medium"), re.sub(SIZE_RUN, "", typ, flags=re.I)
+
+
+def ability_mod(score):
+    """The Arneyan Modifier Table (config.mjs)."""
+    for hi, m in ((0, -5), (2, -4), (3, -3), (5, -2), (8, -1), (12, 0), (15, 1), (17, 2), (18, 3), (20, 4), (22, 5), (25, 6), (27, 7), (29, 8)):
+        if score <= hi:
+            return m
+    return 9
+
+
+def save_level(lv):
+    """The Level saves count: ¼ and ½ count as 1, Mythic as 30."""
+    return {"¼": 1, "½": 1, "Mythic": 30}.get(lv) or int(lv)
+
+
+# Made from the spell before Monsters & Treasure had them (0.10.43): the same ids, so copies already in a world match.
+KEEP_IDS = {"Animated Object": "AnimObjMedium001", "Animated Object, Large": "AnimObjLarge0001"}
+SKILL_DOCS = {}
+
+
+def load_skills():
+    for f in glob.glob(os.path.join(OUT, "skills", "items_*.json")):
+        d = json.load(open(f))
+        SKILL_DOCS[d["name"]] = d
+
+
+def skill_items(line):
+    """"Perception (Master), Stealth" -> skill items, trained or master. A Skill (NWP) is copied from the compendium;
+    Perception, Stealth and the like are named attribute checks, made here."""
+    out = []
+    for raw in [x.strip() for x in line.split(",") if x.strip()]:
+        master = "(master)" in raw.lower()
+        name = re.sub(r"\s*\(master\)", "", raw, flags=re.I).strip()
+        tier = "master" if master else "trained"
+        d = SKILL_DOCS.get(name)
+        if d:
+            sysd = json.loads(json.dumps(d["system"]))
+            sysd["tier"] = tier
+            out.append({"name": d["name"], "type": "skill", "img": d["img"], "system": sysd, "effects": [],
+                        "_stats": {"compendiumSource": f"Compendium.arneyan.skills.Item.{d['_id']}"}})
+            continue
+        ab = CHECK_SKILLS.get(name)
+        assert ab, f"unknown monster skill: {name}"
+        out.append({"name": name, "type": "skill", "img": icon("skill", ab),
+                    "system": {"description": f"<p>A {name} check: a {ABIL_NAMES[ab]} check the creature is trained in.</p>",
+                               "source": {"book": "mt", "page": 0}, "ability": ab, "tier": tier}})
+    return out
+
+
 SIZE = {"tiny": ("tiny", 0.5), "small": ("small", 1), "medium": ("medium", 1), "large": ("large", 2), "huge": ("huge", 3), "gargantuan": ("gargantuan", 4)}
 
 # Token art: game-icons.net glyphs by name keyword, then by creature type.
@@ -426,6 +495,8 @@ def build():
     for g in OBJECT_FORMS:
         icon("form", g)
     load_spells()
+    load_skills()
+    before = json.load(open(os.path.join(os.path.dirname(__file__), "data", "monster_saves_0102.json")))
     groups = {}
     count = 0
     for i, fn in enumerate(FILES):
@@ -444,16 +515,23 @@ def build():
             hd = parse_hd(f.get("hd", "")) if f.get("hd", "—") != "—" else None
             n = hd[0] if hd else 1
             hp = int(f["hp"]) if "hp" in f else (hd[1] if hd else 1)
-            base = max(1, int(n) // 2) if n >= 1 else 1
-            good = f.get("sv", "")
-            saves = {k: base + (2 if letter in good else 0) for k, letter in (("fort", "F"), ("ref", "R"), ("will", "W"))}
+            scores = [int(x) for x in f["ab"].split()] if "ab" in f else [10] * 6
+            assert len(scores) == 6, f"{m['name']}: ab needs six scores"
+            abilities = dict(zip(ABIL_KEYS, scores))
+            if "ab" in f:
+                half = max(1, save_level(lv) // 2)
+                saves = {k: ability_mod(abilities[a]) + half for k, a in SAVE_ABIL}
+            else:
+                base = max(1, int(n) // 2) if n >= 1 else 1
+                good = f.get("sv", "")
+                saves = {k: base + (2 if letter in good else 0) for k, letter in (("fort", "F"), ("ref", "R"), ("will", "W"))}
             if "svx" in f:
                 for k, lab in (("fort", "Fort"), ("ref", "Ref"), ("will", "Will")):
                     mm = re.search(lab + r"\s*\+?(-?\d+)", f["svx"])
                     if mm:
                         saves[k] = int(mm.group(1))
             ac = int(re.match(r"\d+", f.get("ac", "10")).group(0))
-            size_word = m["type"].split()[0].lower()
+            size_word, type_only = size_and_type(m["type"])
             size, token = SIZE.get(size_word, ("medium", 1))
             img = icon("monster", glyph_for(m["name"], m["type"]))
             # Attacks
@@ -461,6 +539,13 @@ def build():
             first = next((int(x.group(1)) for x in (re.match(r".+?\s+([+-]\d+)\s*\(", s) for s in segs) if x), 0)
             items = []
             for seg in segs:
+                auto = re.match(rf"(.+?)\s*\(hits automatically,\s*({DICE})\s*({TYPES})?\)\s*$", seg)
+                if auto:
+                    nm = auto.group(1).strip()
+                    it = ability_item(f"{nm[0].upper() + nm[1:]} (hits automatically)",
+                                      f"Attacks one creature within reach, **hitting automatically** (no roll) for {auto.group(2)} {auto.group(3) or damage_type_of(nm)} damage.", img)
+                    items.append(it)
+                    continue
                 w = weapon_item(seg, first, img)
                 if w:
                     items.append(w)
@@ -473,6 +558,8 @@ def build():
                 cm = re.match(r"(Spellcasting|Innate):\s*(.*)", s_)
                 if cm:
                     items += spell_items(cm.group(2))
+            if "sk" in f:
+                items += skill_items(f["sk"])
             dcs = [x for it in items for x in it.pop("_dcs", [])]
             # "Casts as an 11th-level cleric": that class's spell slots at that level.
             spellcasting = {"className": "", "level": 0, "slots": [], "used": []}
@@ -485,7 +572,7 @@ def build():
                     spellcasting = {"className": cname, "level": lvl, "slots": table[min(lvl, len(table)) - 1] if table else [], "used": []}
             resist, immune, vuln, senses = traits_from(m["sp"])
             if not senses:
-                senses = added_senses(m["name"], re.sub(r"^(tiny|small|medium|large|huge|gargantuan)\s+", "", m["type"], flags=re.I).split()[0].split("(")[0].lower())
+                senses = added_senses(m["name"], type_only.split()[0].split("(")[0].lower())
                 if senses:
                     ADDED[m["name"]] = senses
             more = dragon_blindsight(m["name"], senses)
@@ -497,13 +584,13 @@ def build():
             if m["gm"]:
                 desc += f"<p><strong>GM:</strong> {enrich(m['gm'])}</p>"
             system = {
-                "abilities": {k: {"value": 10} for k in ("str", "dex", "con", "int", "wis", "cha")},
+                "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),
                 "attributes": {"hp": {"value": hp, "max": hp, "temp": 0}, "ac": ac, "speed": f.get("mv", ""), "attack": first, "spellDC": max(dcs) if dcs else 0,
                                "morale": int(re.match(r"-?\d+", f.get("mor", "0")).group(0)) if re.match(r"-?\d+", f.get("mor", "0")) else 0},
                 "saves": saves, "spellcasting": spellcasting,
                 "details": {
-                    "type": re.sub(r"^(tiny|small|medium|large|huge|gargantuan)\s+", "", m["type"], flags=re.I), "size": size,
+                    "type": type_only, "size": size,
                     "alignment": "", "xp": "", "numberAppearing": f.get("no", ""), "resistances": ", ".join(resist),
                     "immunities": ", ".join(immune), "vulnerabilities": ", ".join(vuln), "senses": ", ".join(senses),
                     "isSolo": solo, "levelText": level_text, "page": 0, "description": desc,
@@ -515,6 +602,9 @@ def build():
                      "sight": vision_of(senses)}
             # Detection modes (Truesight, Blindsight, Tremorsense) are worked out by the system when a token is
             # prepared: Foundry 13 keeps them as a list and Foundry 14 by id, so the Bestiary stores none.
-            actor("monsters", m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto)
+            # The saves Monsters & Treasure v0.10.2 gave (half HD, +2 if good), so a copy in a world still on them can
+            # take the new ones (migrate.mjs) while one the GM edited keeps its own.
+            flags = {"arneyan": {"savesBefore": dict(zip(("fort", "ref", "will"), before[m["name"]]))}} if m["name"] in before else None
+            actor("monsters", m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto, flags=flags, _id=KEEP_IDS.get(m["name"]))
             count += 1
     return count

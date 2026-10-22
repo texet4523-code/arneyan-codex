@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 9
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 11
    },
    "int": {
-    "value": 10
+    "value": 17
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 4,
@@ -40,9 +40,9 @@
    "morale": 8
   },
   "saves": {
-   "fort": 4,
-   "ref": 4,
-   "will": 6
+   "fort": 2,
+   "ref": 3,
+   "will": 2
   },
   "spellcasting": {
    "className": "Wizard",
@@ -758,6 +758,58 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "ygLo3v0ht3kAa8zJ",
+   "_key": "!actors.items!kqNX1TisPlhQRAJO.ygLo3v0ht3kAa8zJ",
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "fMJW3luSBdXIBpct",
+   "_key": "!actors.items!kqNX1TisPlhQRAJO.fMJW3luSBdXIBpct",
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -784,5 +836,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 4,
+    "ref": 4,
+    "will": 6
+   }
+  }
+ }
 }

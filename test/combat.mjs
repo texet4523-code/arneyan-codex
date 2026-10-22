@@ -46,11 +46,12 @@ assert.equal(C.sizeAllows("small", "medium"), true);
 assert.equal(C.sizeAllows("large", "tiny"), true);
 assert.equal(C.hdCount("7d12+28"), 7);
 assert.equal(C.hdCount("—", 3), 3);
-// A monster uses a save minus half its HD (Codex, Contested Checks).
-const ogre = makeActor(NpcData, "npc", { level: 4, hd: "5d8", saves: { fort: 6, ref: 1, will: 2 } });
+// A monster uses the attribute modifiers in its stat block, as a character does (Codex, books v0.10.5).
+const ogre = makeActor(NpcData, "npc", { level: 4, hd: "5d8", saves: { fort: 6, ref: 1, will: 2 }, abilities: { str: { value: 19 }, dex: { value: 8 } } });
 const op = C.contestParts(ogre, "str", "grapple");
-assert.equal(op.total, 6 - 2, "Fortitude 6 minus half of 5 HD");
-assert.equal(C.contestParts(ogre, "dex", "grapple").total, 1 - 2);
+assert.equal(op.total, 4, "Strength 19: +4 (not a save minus half its HD)");
+assert.ok(!op.parts.some(p => /HD|save/i.test(p.label)));
+assert.equal(C.contestParts(ogre, "dex", "grapple").total, -1);
 assert.equal(C.bestChoice(ogre, ["str", "dex"], "grapple"), "str", "defender picks the better");
 const fighter = makeActor(CharacterData, "character", { abilities: { str: { value: 16 }, dex: { value: 12 } } });
 assert.equal(C.contestParts(fighter, "str", "trip").total, 2);

@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 12
    },
    "dex": {
-    "value": 10
+    "value": 16
    },
    "con": {
-    "value": 10
+    "value": 11
    },
    "int": {
-    "value": 10
+    "value": 12
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 14
    }
   },
   "level": 3,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 1,
    "ref": 3,
-   "will": 3
+   "will": 1
   },
   "spellcasting": {
    "className": "",
@@ -261,6 +261,75 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "YRjdeEFeM4l40cbX",
+   "_key": "!actors.items!CPyFjt5wnczExzF4.YRjdeEFeM4l40cbX",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "viVLug6MFtfviiTx",
+   "_key": "!actors.items!CPyFjt5wnczExzF4.viVLug6MFtfviiTx",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Performance",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Performance check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "master"
+   },
+   "_id": "qRlFuGRqvohxJ7dx",
+   "_key": "!actors.items!CPyFjt5wnczExzF4.qRlFuGRqvohxJ7dx",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -287,5 +356,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

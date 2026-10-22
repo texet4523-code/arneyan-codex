@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 24
    },
    "dex": {
-    "value": 10
+    "value": 13
    },
    "con": {
-    "value": 10
+    "value": 21
    },
    "int": {
-    "value": 10
+    "value": 4
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 11,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 5,
-   "ref": 3,
-   "will": 3
+   "fort": 10,
+   "ref": 6,
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Darkvision 60ft, tremorsense 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Darkvision <strong>60ft</strong>, tremorsense <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KdyiAGtoVtgzVa9f",
+   "_key": "!actors.items!pInqHL1hswNDLpq4.KdyiAGtoVtgzVa9f",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Heated Body",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "XOCpbP72JzPUUilX",
-   "_key": "!actors.items!pInqHL1hswNDLpq4.XOCpbP72JzPUUilX",
+   "_id": "S6lxB8WBRvIqJEfV",
+   "_key": "!actors.items!pInqHL1hswNDLpq4.S6lxB8WBRvIqJEfV",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "yIFDmd9u0ut10BLy",
-   "_key": "!actors.items!pInqHL1hswNDLpq4.yIFDmd9u0ut10BLy",
+   "_id": "BaNeP7r4PTBJlblq",
+   "_key": "!actors.items!pInqHL1hswNDLpq4.BaNeP7r4PTBJlblq",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "yNCiIeSsLnBQ0H7W",
-   "_key": "!actors.items!pInqHL1hswNDLpq4.yNCiIeSsLnBQ0H7W",
+   "_id": "5xxIRTmwPnAsxbdQ",
+   "_key": "!actors.items!pInqHL1hswNDLpq4.5xxIRTmwPnAsxbdQ",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -242,5 +279,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 5,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 15
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 13
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
-    "value": 10
+    "value": 13
    }
   },
   "level": 4,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 3,
    "ref": 3,
-   "will": 1
+   "will": 2
   },
   "spellcasting": {
    "className": "",
@@ -59,7 +59,7 @@
    "resistances": "",
    "immunities": "acid",
    "vulnerabilities": "",
-   "senses": "Blindsight 10ft, Darkvision 60ft",
+   "senses": "Blindsight 10ft",
    "isSolo": false,
    "levelText": "",
    "page": 0,
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 10ft, darkvision 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>10ft</strong>, darkvision <strong>60ft</strong>. Immune to acid.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0Ebcvfw7SAYg2ScR",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.0Ebcvfw7SAYg2ScR",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Breath Weapon",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "VpqQKyp3a8cF52bL",
-   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.VpqQKyp3a8cF52bL",
+   "_id": "dPbRudi9G0rfVY7c",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.dPbRudi9G0rfVY7c",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "qzDTKycCKReEbI0K",
-   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.qzDTKycCKReEbI0K",
+   "_id": "op14TrYobd0KE5GQ",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.op14TrYobd0KE5GQ",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,57 @@
     "active": false,
     "applies": []
    },
-   "_id": "XE2x2tzP5jKVI3kI",
-   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.XE2x2tzP5jKVI3kI",
+   "_id": "JqSpp3TUiXqusDs4",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.JqSpp3TUiXqusDs4",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "s5Jscdd2MnnarrdW",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.s5Jscdd2MnnarrdW",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "JkDWsZmJ01x4QVFy",
+   "_key": "!actors.items!ujAZ8Ww5gOGOpUCR.JkDWsZmJ01x4QVFy",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -273,12 +356,20 @@
   },
   "sight": {
    "enabled": true,
-   "range": 60,
-   "visionMode": "darkvision"
+   "range": 0,
+   "visionMode": "basic"
   }
  },
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 3,
+    "will": 1
+   }
+  }
+ }
 }

@@ -1,12 +1,14 @@
 /**
  * Spells that only work on one kind of creature (Kieran, 21 Oct 2026: Hold Animal held a goblin). Their save, effect
  * and damage buttons leave out targets of the wrong type, or above (or below) the Level the spell allows, and say so.
- * The types are the Bestiary's (a monster's type line); a player character counts as a humanoid.
+ * The types are the Bestiary's (a monster's type line); a player character counts as a humanoid. `maxInt`: the highest
+ * Intelligence score the spell allows.
  */
 /** Spell name: types it works on, types it never works on, the Levels it allows, and the words to show. */
 export const SPELL_TARGETS = {
   "Hold Animal": { types: ["beast"], text: "animals only" },
-  "Animal Friendship": { types: ["beast"], text: "a normal animal only" },
+  // "One normal animal (Intelligence 1-2, not magical)": checkable now monsters have scores (books v0.10.5).
+  "Animal Friendship": { types: ["beast"], maxInt: 2, text: "a normal animal (Intelligence 1-2) only" },
   "Calm Animals": { types: ["beast"], text: "animals only" },
   "Charm Person": { types: ["humanoid"], text: "humanoids only" },
   "Charm Person or Mammal": { types: ["humanoid", "beast"], text: "humanoids and mammals only" },
@@ -47,6 +49,11 @@ export function spellFits(spellName, actor) {
   if (rule.notTypes && type && isType(type, rule.notTypes)) return { ok: false, why: `${spellName} works on ${rule.text}` };
   if (rule.maxLevel !== undefined && lvl > rule.maxLevel) return { ok: false, why: `${spellName} works on ${rule.text}` };
   if (rule.minLevel !== undefined && lvl < rule.minLevel) return { ok: false, why: `${spellName} works on ${rule.text}` };
+  if (rule.maxInt !== undefined) {
+    const int = actor.system?.abilities?.int;
+    const score = Number(int?.total ?? int?.value);
+    if (Number.isFinite(score) && score > rule.maxInt) return { ok: false, why: `${spellName} works on ${rule.text}` };
+  }
   return { ok: true, why: "" };
 }
 

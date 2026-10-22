@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 23
    },
    "dex": {
-    "value": 10
+    "value": 15
    },
    "con": {
-    "value": 10
+    "value": 20
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 9
    }
   },
   "level": 14,
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 7,
-   "ref": 7,
-   "will": 5
+   "fort": 11,
+   "ref": 8,
+   "will": 7
   },
   "spellcasting": {
    "className": "",
@@ -254,6 +254,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "NQdmYhVckKMzI4Zm",
+   "_key": "!actors.items!EN56FE9Q3vKoBVyB.NQdmYhVckKMzI4Zm",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Athletics",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-biceps.svg",
+   "system": {
+    "description": "<p>A Athletics check: a Strength check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "str",
+    "tier": "master"
+   },
+   "_id": "VO7nuitJ1X0XcccS",
+   "_key": "!actors.items!EN56FE9Q3vKoBVyB.VO7nuitJ1X0XcccS",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -280,5 +326,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 7,
+    "ref": 7,
+    "will": 5
+   }
+  }
+ }
 }

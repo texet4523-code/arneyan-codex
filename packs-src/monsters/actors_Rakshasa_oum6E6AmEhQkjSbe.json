@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 14
    },
    "dex": {
-    "value": 10
+    "value": 17
    },
    "con": {
-    "value": 10
+    "value": 18
    },
    "int": {
-    "value": 10
+    "value": 13
    },
    "wis": {
-    "value": 10
+    "value": 16
    },
    "cha": {
-    "value": 10
+    "value": 20
    }
   },
   "level": 14,
@@ -40,9 +40,9 @@
    "morale": 11
   },
   "saves": {
-   "fort": 8,
-   "ref": 8,
-   "will": 10
+   "fort": 10,
+   "ref": 9,
+   "will": 9
   },
   "spellcasting": {
    "className": "",
@@ -1203,6 +1203,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "LltUmkAFNom3BGmz",
+   "_key": "!actors.items!oum6E6AmEhQkjSbe.LltUmkAFNom3BGmz",
+   "effects": [],
+   "flags": {},
+   "sort": 2000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "wKMXDrUPRQMSnmkr",
+   "_key": "!actors.items!oum6E6AmEhQkjSbe.wKMXDrUPRQMSnmkr",
+   "effects": [],
+   "flags": {},
+   "sort": 2100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -1229,5 +1275,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 8,
+    "ref": 8,
+    "will": 10
+   }
+  }
+ }
 }

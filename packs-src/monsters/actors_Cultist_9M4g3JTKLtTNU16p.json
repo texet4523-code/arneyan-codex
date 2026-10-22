@@ -7,10 +7,10 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 11
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
     "value": 10
@@ -19,7 +19,7 @@
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
     "value": 10
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 1,
    "ref": 1,
-   "will": 3
+   "will": 1
   },
   "spellcasting": {
    "className": "",
@@ -180,6 +180,55 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "q1P6FZ6Y5cJ2Hl2X",
+   "_key": "!actors.items!9M4g3JTKLtTNU16p.q1P6FZ6Y5cJ2Hl2X",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Religion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Knowledge of gods, rites, and holy law</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
+   },
+   "_id": "nS25f240H3IUbWdO",
+   "_key": "!actors.items!9M4g3JTKLtTNU16p.nS25f240H3IUbWdO",
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -206,5 +255,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 3
+   }
+  }
+ }
 }

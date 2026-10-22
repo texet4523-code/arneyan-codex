@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 17
    },
    "dex": {
-    "value": 10
+    "value": 11
    },
    "con": {
-    "value": 10
+    "value": 15
    },
    "int": {
-    "value": 10
+    "value": 11
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
-    "value": 10
+    "value": 15
    }
   },
   "level": 5,
@@ -41,8 +41,8 @@
   },
   "saves": {
    "fort": 3,
-   "ref": 1,
-   "will": 3
+   "ref": 2,
+   "will": 2
   },
   "spellcasting": {
    "className": "",
@@ -254,6 +254,55 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "cAdvLXKjcbSdMPp4",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.cAdvLXKjcbSdMPp4",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Survival",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Finding food, water, and shelter in the wild</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
+   },
+   "_id": "wLyi6au4DNik16v2",
+   "_key": "!actors.items!i6eGLiEHR04mTJJO.wLyi6au4DNik16v2",
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -280,5 +329,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 1,
+    "will": 3
+   }
+  }
+ }
 }

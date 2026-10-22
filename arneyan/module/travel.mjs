@@ -3,7 +3,7 @@
  * hexes a day by method and pace (difficult terrain drops one pace step). Each day of travel the GM presses
  * Travel one day: the world clock moves on a day, each member eats a Day's Rations (or a meal from an open Week's
  * Rations pack, seven meals to a pack) and drinks a day's water, and the Encounter Check is rolled (a d12: 11 a
- * Standard Encounter, 12 a Dangerous one), drawing from the encounter roll table named on the tab if there is one.
+ * Hard Encounter, 12 a Deadly one), drawing from the encounter roll table named on the tab if there is one.
  * Days without food (beyond 3 + Con modifier, minimum 1) or water (from the first) bring Exhaustion.
  * State: party flags.arneyan.travel = { distance, done, method, pace, difficult, water, table, day, log }.
  * Members' hunger: flags.arneyan.hunger = { food, water } (days without).
@@ -205,7 +205,7 @@ export async function tableNames() {
   return [...out].sort((a, b) => a.localeCompare(b));
 }
 
-/** The Encounter Check result for a d12 (Codex): 1-10 nothing, 11 Standard, 12 Dangerous. */
+/** The Encounter Check result for a d12 (Codex): 1-10 nothing, 11 Hard, 12 Deadly. */
 export const encounterFor = n => (n >= 12 ? "dangerous" : n === 11 ? "standard" : "none");
 
 /** Feed and water one member (or take from the stash): returns lines for the card. GM. */
@@ -249,7 +249,7 @@ async function encounterCheck(t) {
   } else {
     const r = await new Roll("1d12").evaluate();
     const what = encounterFor(r.total);
-    check = `d12: ${r.total}, ${{ none: "nothing happens", standard: "a Standard Encounter", dangerous: "a Dangerous Encounter" }[what]}`;
+    check = `d12: ${r.total}, ${{ none: "nothing happens", standard: "a Hard Encounter", dangerous: "a Deadly Encounter" }[what]}`;
     if (what !== "none" && table) {
       await table.draw({ displayChat: true, rollMode: "gmroll" }).catch(err => console.warn("Arneyan | encounter table", err));
       drew = ` Drawn from ${esc(table.name)}.`;
@@ -337,12 +337,12 @@ async function endDays(party, t, days, perDay) {
   }
 }
 
-/** Roll a day's Encounter Check (anyone, once per day): 11 a Standard Encounter, 12 a Dangerous one. */
+/** Roll a day's Encounter Check (anyone, once per day): 11 a Hard Encounter, 12 a Deadly one. */
 export async function rollEncounterCheck(party, day) {
   if (encounterRolled(party.id, day)) return ui.notifications.info(`Day ${day}'s Encounter Check is already rolled.`);
   const r = await new Roll("1d12").evaluate();
   const what = encounterFor(r.total);
-  const label = { none: "nothing happens", standard: "a Standard Encounter", dangerous: "a Dangerous Encounter" }[what];
+  const label = { none: "nothing happens", standard: "a Hard Encounter", dangerous: "a Deadly Encounter" }[what];
   // Rolled in the open, whatever the roller's roll mode, so everyone's button knows it's done.
   return r.toMessage({ speaker: ChatMessage.getSpeaker({ actor: party }), flavor: `Encounter Check, day ${day}: ${label}`,
     flags: { [SYS]: { encounterRolled: { party: party.id, day, total: r.total, what } } } }, { rollMode: CONST.DICE_ROLL_MODES.PUBLIC });

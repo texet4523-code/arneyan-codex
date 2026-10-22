@@ -1133,6 +1133,8 @@ export class ArneyanItem extends Item {
     if (sys.damage) {
       const heal = sys.damageType === "healing";
       out.push(`<button type="button" class="arn-item-damage" data-item-uuid="${this.uuid}"><i class="fa-solid fa-${heal ? "heart" : "burst"}"></i> ${heal ? "Roll healing" : "Roll damage"}: ${esc(this.damageFormulaLabel())}</button>`);
+      // Handbook v0.10.6: "a Cause Wounds spell heals an undead instead".
+      if (heal && CURES.has(this.name)) out.push(`<p class="arn-card-meta"><i class="fa-solid fa-skull"></i> Cast reversed on an undead, it heals: use Roll healing on it (no attack).</p>`);
     }
     if (sys.template?.type && this.actor) out.push(areaButton(this, { actor: this.actor, dc, cl, formula: sys.damage ? this.damageFormulaLabel() : "", itemUuid: this.uuid }));
     (sys.applies ?? []).forEach((e, i) => {

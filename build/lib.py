@@ -221,8 +221,8 @@ def journal(pack, name, pages, folder=None, sort=0):
     write(pack, doc)
     return doc
 
-def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None):
-    _id = fid(pack, "actor", name)
+def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None, flags=None, _id=None):
+    _id = _id or fid(pack, "actor", name)
     its = []
     for it in items:
         iid = fid(pack, "actoritem", name, it["name"], it["type"], str(len(its)))
@@ -238,7 +238,7 @@ def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None)
     doc = {"_id": _id, "_key": f"!actors!{_id}", "name": name, "type": type_, "img": img,
            "system": system, "items": its, "effects": [], "folder": folder,
            "prototypeToken": prototype or {"name": name, "texture": {"src": img}, "actorLink": False},
-           "ownership": {"default": 0}, "flags": {}}
+           "ownership": {"default": 0}, "flags": flags or {}}
     write(pack, doc)
     return doc
 

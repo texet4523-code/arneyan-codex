@@ -7,7 +7,7 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 14
    },
    "dex": {
     "value": 10
@@ -16,17 +16,17 @@
     "value": 10
    },
    "int": {
-    "value": 10
+    "value": 1
    },
    "wis": {
-    "value": 10
+    "value": 3
    },
    "cha": {
-    "value": 10
+    "value": 1
    }
   },
-  "level": 1,
-  "hd": "",
+  "level": 3,
+  "hd": "—",
   "attributes": {
    "hp": {
     "value": 20,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 1,
    "ref": 1,
-   "will": 1
+   "will": -2
   },
   "spellcasting": {
    "className": "",
@@ -55,16 +55,16 @@
    "size": "medium",
    "alignment": "",
    "xp": "",
-   "numberAppearing": "",
+   "numberAppearing": "1",
    "resistances": "",
-   "immunities": "poison, condition:frightened",
+   "immunities": "condition:charmed, condition:frightened, poison",
    "vulnerabilities": "",
-   "senses": "",
+   "senses": "Blindsight 30ft",
    "isSolo": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium construct</em> made by Animate Objects.</p><p>A nonmagical, unattended object brought to life. It obeys its caster and attacks one creature within reach each round.</p><p class=\"arn-note\">Made from the spell's own numbers (Spellcasting in Arneyan); not a Monsters &amp; Treasure entry.</p>",
-   "treasure": ""
+   "description": "<p><em>Small or Medium construct</em></p><p><strong>GM:</strong> A chair, a statue, a cart: whatever the caster's spell wakes. It fights without thought until the magic runs out.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
  "items": [
@@ -73,7 +73,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p>Attacks one creature within reach each round, <strong>hitting automatically</strong> (no roll) for <strong>1d8</strong> bludgeoning damage.</p>",
+    "description": "<p>Attacks one creature within reach, <strong>hitting automatically</strong> (no roll) for @Damage[1d8 bludgeoning]{1d8 bludgeoning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -93,14 +93,13 @@
     "rules": [],
     "toggle": false,
     "active": false,
-    "applies": [],
-    "activities": []
+    "applies": []
    },
-   "_id": "AnimObjMediuit00",
-   "_key": "!actors.items!AnimObjMedium001.AnimObjMediuit00",
+   "_id": "WA2VyYswmItHCCpk",
+   "_key": "!actors.items!AnimObjMedium001.WA2VyYswmItHCCpk",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 0,
    "ownership": {
     "default": 0
    },
@@ -111,7 +110,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "description": "<p>Immune to charm, fear and poison. Needs no air, food or sleep.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -131,14 +130,50 @@
     "rules": [],
     "toggle": false,
     "active": false,
-    "applies": [],
-    "activities": []
+    "applies": []
    },
-   "_id": "AnimObjMediuit01",
-   "_key": "!actors.items!AnimObjMedium001.AnimObjMediuit01",
+   "_id": "g6UGgnTlWJ1Nwcs7",
+   "_key": "!actors.items!AnimObjMedium001.g6UGgnTlWJ1Nwcs7",
    "effects": [],
    "flags": {},
    "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animated",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Created by the @UUID[Compendium.arneyan.spells.Item.mAmWaIU8zCyB4OD5]{animate objects} spell. It obeys its caster and falls inert when the spell ends or it drops to <strong>0 HP</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZjgywcoutYvLuUuc",
+   "_key": "!actors.items!AnimObjMedium001.ZjgywcoutYvLuUuc",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -171,7 +206,11 @@
  },
  "flags": {
   "arneyan": {
-   "madeFor": "Animate Objects"
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 1
+   }
   }
  }
 }

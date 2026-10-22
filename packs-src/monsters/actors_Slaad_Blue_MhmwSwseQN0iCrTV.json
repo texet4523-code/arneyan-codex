@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 20
    },
    "dex": {
-    "value": 10
+    "value": 15
    },
    "con": {
-    "value": 10
+    "value": 18
    },
    "int": {
-    "value": 10
+    "value": 7
    },
    "wis": {
-    "value": 10
+    "value": 7
    },
    "cha": {
-    "value": 10
+    "value": 9
    }
   },
   "level": 8,
@@ -40,8 +40,8 @@
    "morale": 10
   },
   "saves": {
-   "fort": 5,
-   "ref": 3,
+   "fort": 7,
+   "ref": 5,
    "will": 3
   },
   "spellcasting": {
@@ -260,6 +260,29 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "sx3MSoi9xviLBlEk",
+   "_key": "!actors.items!MhmwSwseQN0iCrTV.sx3MSoi9xviLBlEk",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -286,5 +309,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 5,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

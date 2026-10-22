@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 17
    },
    "int": {
-    "value": 10
+    "value": 11
    },
    "wis": {
-    "value": 10
+    "value": 18
    },
    "cha": {
-    "value": 10
+    "value": 16
    }
   },
   "level": 11,
@@ -40,8 +40,8 @@
    "morale": 12
   },
   "saves": {
-   "fort": 8,
-   "ref": 6,
+   "fort": 7,
+   "ref": 5,
    "will": 8
   },
   "spellcasting": {
@@ -796,6 +796,58 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "oCm9LhjbwUrj3CZg",
+   "_key": "!actors.items!LpTsArKotSHQklo8.oCm9LhjbwUrj3CZg",
+   "flags": {},
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Religion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Knowledge of gods, rites, and holy law</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
+   },
+   "_id": "zjh00rluUX9fHm0a",
+   "_key": "!actors.items!LpTsArKotSHQklo8.zjh00rluUX9fHm0a",
+   "flags": {},
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -822,5 +874,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 8,
+    "ref": 6,
+    "will": 8
+   }
+  }
+ }
 }

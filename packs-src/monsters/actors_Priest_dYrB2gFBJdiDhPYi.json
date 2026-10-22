@@ -13,16 +13,16 @@
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 12
    },
    "int": {
-    "value": 10
+    "value": 13
    },
    "wis": {
-    "value": 10
+    "value": 16
    },
    "cha": {
-    "value": 10
+    "value": 13
    }
   },
   "level": 2,
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 2,
-   "ref": 2,
-   "will": 4
+   "fort": 1,
+   "ref": 1,
+   "will": 3
   },
   "spellcasting": {
    "className": "Cleric",
@@ -547,6 +547,81 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Persuasion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "NdHLnCkYHcAJN9wg",
+   "_key": "!actors.items!dYrB2gFBJdiDhPYi.NdHLnCkYHcAJN9wg",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Religion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Knowledge of gods, rites, and holy law</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
+   },
+   "_id": "eeKnMK739Is3c6TQ",
+   "_key": "!actors.items!dYrB2gFBJdiDhPYi.eeKnMK739Is3c6TQ",
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "First Aid/Healing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Treating wounds and stabilising the injured</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.uHU3VeDjXNFWESGx"
+   },
+   "_id": "lTXvntjGQYsPZOlt",
+   "_key": "!actors.items!dYrB2gFBJdiDhPYi.lTXvntjGQYsPZOlt",
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -573,5 +648,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 2,
+    "ref": 2,
+    "will": 4
+   }
+  }
+ }
 }

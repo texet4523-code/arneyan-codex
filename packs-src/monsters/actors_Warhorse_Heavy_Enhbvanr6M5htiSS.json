@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 20
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 2
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 7
    }
   },
   "level": 2,
@@ -40,7 +40,7 @@
    "morale": 10
   },
   "saves": {
-   "fort": 1,
+   "fort": 3,
    "ref": 1,
    "will": 1
   },
@@ -205,5 +205,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 1
+   }
+  }
+ }
 }

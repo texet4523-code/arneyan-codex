@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 19
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 5
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 8,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>A target held in a pincer is grappled and takes <strong>1d8</strong> damage at the start of each of its turns.</p>",
+    "description": "<p>A target held in a pincer is grappled and takes <strong>1d8</strong> damage at the start of each of its turns while grappled.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -253,6 +253,29 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "jrgGBner3nKE8CUj",
+   "_key": "!actors.items!8sZrQ9fWCLvVBvOP.jrgGBner3nKE8CUj",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -279,5 +302,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 4
+   }
+  }
+ }
 }

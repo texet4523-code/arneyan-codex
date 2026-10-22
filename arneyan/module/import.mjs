@@ -17,6 +17,10 @@ import { bestiarySource } from "./refresh.mjs";
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const ABILITY_KEYS = Object.keys(ARNEYAN.abilities);
+/** A skill's icon by attribute (build/icons.py). */
+const SKILL_GLYPH = { str: "biceps", dex: "juggler", con: "heart-plus", int: "brain", wis: "owl", cha: "drama-masks" };
+/** Skills a stat block names that are named attribute checks rather than Skills (NWP): their attribute. */
+const CHECK_SKILLS = { perception: "wis", stealth: "dex", deception: "cha", insight: "wis", intimidation: "cha", persuasion: "cha", performance: "cha", athletics: "str", investigation: "int" };
 // Options for items the import makes: no prompts, no setup steps, no skill-slot questions, levels and picks kept.
 /**
  * The options every import change goes with (no prompts, no level-up workflow). A new object each time: Foundry 14 writes
@@ -211,6 +215,12 @@ export async function planImport(data, { find = finder } = {}) {
   const plan = { type: data.type, name: String(data.name).trim(), found: [], made: [], missing: [], notes: [], data };
   const hit = (pack, e, extra = {}) => plan.found.push({ pack, uuid: e.uuid, name: e.name, type: e.type, ...extra });
   const miss = (what, name, item) => { plan.missing.push(`${what}: ${name}`); if (item) plan.made.push(item); };
+  // A monster's Perception, Stealth and the like are attribute checks, not Skills (NWP): made, not missing.
+  const checkSkill = (name, tier) => {
+    const ab = CHECK_SKILLS[norm(name)];
+    plan.made.push({ name, type: "skill", img: `systems/${SYS}/assets/icons/skill-${SKILL_GLYPH[ab]}.svg`,
+      system: { tier, ability: ab, source: { book: "mt", page: 0 }, description: `<p>A ${name} check: a ${ARNEYAN.abilities[ab]} check the creature is trained in.</p>` } });
+  };
 
   if (plan.type === "character") {
     const classes = readClasses(data);
@@ -260,14 +270,6 @@ export async function planImport(data, { find = finder } = {}) {
         plan.picks.push({ name, pick: isAbility ? v : "", moved: "", weapons: isAbility ? [] : weaponPicks(v) });
       }
     }
-    const skillF = await find("skills");
-    for (const v of list(data.skills)) {
-      const s = entryIn(v, "tier", skillF, ["skill"], b => Object.keys(ARNEYAN.skillTiers).some(t => norm(b).startsWith(t.slice(0, 4))));
-      const tier = Object.keys(ARNEYAN.skillTiers).find(t => norm(s.tier ?? "trained").startsWith(t.slice(0, 4))) ?? "trained";
-      const e = skillF.find(s.name, { types: ["skill"] });
-      if (e) hit("skills", e, { tier });
-      else miss("Skill", s.name, { name: s.name, type: "skill", system: { tier, ability: abilityKey(s.ability) || "int" } });
-    }
   } else {
     if (data.base) {
       const e = (await find("monsters")).find(String(data.base));
@@ -289,7 +291,16 @@ export async function planImport(data, { find = finder } = {}) {
     }
   }
 
-  // Both: spells, gear, extra abilities.
+  // Both: skills (a monster's Skills line too, books v0.10.5), spells, gear, extra abilities.
+  const skillF = await find("skills");
+  for (const v of list(data.skills)) {
+    const s = entryIn(v, "tier", skillF, ["skill"], b => Object.keys(ARNEYAN.skillTiers).some(t => norm(b).startsWith(t.slice(0, 4))));
+    const tier = Object.keys(ARNEYAN.skillTiers).find(t => norm(s.tier ?? "trained").startsWith(t.slice(0, 4))) ?? "trained";
+    const e = skillF.find(s.name, { types: ["skill"] });
+    if (e) hit("skills", e, { tier });
+    else if (plan.type === "npc" && CHECK_SKILLS[norm(s.name)] && !abilityKey(s.ability)) checkSkill(s.name, tier);
+    else miss("Skill", s.name, { name: s.name, type: "skill", system: { tier, ability: abilityKey(s.ability) || "int" } });
+  }
   const spellF = await find("spells");
   const classNames = (await find("classes")).entries.map(e => norm(e.name));
   for (const v of list(data.spells)) {
@@ -465,7 +476,6 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
       return d;
     });
     await create(feats);
-    await create((await itemsFor("skills")).map(({ f, d }) => { d.system.tier = f.tier; return d; }));
     // Picks for class and Kit features (Weapon Specialisation's weapon, the Attribute Bonus).
     for (const p of plan.picks ?? []) {
       if (!p.pick && !p.moved && !p.weapons.length) continue;
@@ -488,7 +498,25 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
     await importNpcStats(actor, plan, notes);
   }
 
-  // Spells, gear and plain items (both kinds).
+  // Skills, spells, gear and plain items (both kinds). A skill the sheet already has (a Bestiary monster's) takes
+  // the tier given rather than coming twice.
+  // (Only a monster's: a character's tier changes go through the skill-slot checks, and its import starts empty.)
+  const skillsGiven = [];
+  const skip = new Set();
+  const named = new Set();
+  const sameSkill = name => actor.type === "npc" ? actor.items.find(i => i.type === "skill" && norm(i.name) === norm(name)) : null;
+  for (const { f, d } of await itemsFor("skills")) {
+    const have = sameSkill(d.name);
+    if (have) { if (have.system.tier !== f.tier) await have.update({ "system.tier": f.tier }, quiet()); }
+    else if (actor.type !== "npc" || !named.has(norm(d.name))) { d.system.tier = f.tier; skillsGiven.push(d); named.add(norm(d.name)); }
+  }
+  for (const m of plan.made.filter(x => x.type === "skill" && actor.type === "npc")) {
+    const have = sameSkill(m.name);
+    if (have && m.system?.tier && have.system.tier !== m.system.tier) await have.update({ "system.tier": m.system.tier }, quiet());
+    if (have || named.has(norm(m.name))) skip.add(m);
+    named.add(norm(m.name));
+  }
+  await create(skillsGiven);
   await create((await itemsFor("spells")).map(({ f, d }) => {
     if (f.className) d.system.className = f.className;
     else if (actor.type === "character") {
@@ -505,7 +533,7 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
     if (f.label) d.name = f.label;
     return d;
   }));
-  await create(plan.made.map(m => ({ img: { feat: "icons/svg/upgrade.svg", skill: "icons/svg/book.svg", equipment: "icons/svg/item-bag.svg" }[m.type] ?? "icons/svg/aura.svg", ...m })));
+  await create(plan.made.filter(m => !skip.has(m)).map(m => ({ img: { feat: "icons/svg/upgrade.svg", skill: "icons/svg/book.svg", equipment: "icons/svg/item-bag.svg" }[m.type] ?? "icons/svg/aura.svg", ...m })));
 
   if (actor.type === "character") await importCharacterStats(actor, data, notes);
   // Uses worked out from a formula (Flèche: Dexterity modifier a day) start full, on the scores just set.
@@ -609,7 +637,8 @@ async function importNpcStats(actor, plan, notes) {
   const lvl = String(data.level ?? "").trim();
   if (lvl) {
     const frac = { "¼": 0.25, "1/4": 0.25, "½": 0.5, "1/2": 0.5 }[lvl];
-    upd[`${s}.level`] = frac ? 0 : Math.max(0, Math.round(num(lvl, 1)));
+    // Mythic is stored as Level 25, as the Bestiary's tarrasque is.
+    upd[`${s}.level`] = frac ? 0 : /^mythic/i.test(lvl) ? 25 : Math.max(0, Math.round(num(lvl, 1)));
     upd[`${s}.details.levelText`] = frac || !/^\d+$/.test(lvl) ? lvl : "";
   }
   if (data.hd != null) upd[`${s}.hd`] = String(data.hd);
@@ -638,6 +667,19 @@ async function importNpcStats(actor, plan, notes) {
   if (data.treasure) upd[`${det}.treasure`] = textHtml(data.treasure);
   const scores = readScores(data.scores ?? data.abilities_scores ?? data.attributesScores ?? (typeof data.attributes === "object" ? data.attributes : null));
   for (const [k, v] of Object.entries(scores)) upd[`${s}.abilities.${k}.value`] = v;
+  // Saves not given: worked out from the scores as Monsters & Treasure does (books v0.10.5): the attribute modifier +
+  // half the Level (minimum 1), ¼ and ½ counting as 1 and Mythic as 30. Only the saves whose attribute the block
+  // gives, so a Bestiary base keeps its book saves for the rest.
+  if (Object.keys(scores).length) {
+    const text = upd[`${s}.details.levelText`] ?? actor.system.details?.levelText ?? "";
+    const L = /mythic/i.test(text) ? 30 : (upd[`${s}.level`] ?? actor.system.level ?? 0);
+    const half = Math.max(1, Math.floor(L / 2));
+    for (const [k, ab] of [["fort", "con"], ["ref", "dex"], ["will", "wis"]]) {
+      if (`${s}.saves.${k}` in upd || !(ab in scores)) continue;
+      const score = scores[ab];
+      upd[`${s}.saves.${k}`] = ARNEYAN.abilityMod(score) + half;
+    }
+  }
   if (plan.spellcasting?.className) {
     upd[`${s}.spellcasting.className`] = plan.spellcasting.className;
     upd[`${s}.spellcasting.level`] = plan.spellcasting.level;

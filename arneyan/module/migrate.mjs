@@ -498,6 +498,39 @@ function mergeNotes(notes, mine) {
   if (notes.automatic) for (const [who, names] of Object.entries(mine.automatic)) (notes.automatic[who] ??= []).push(...names);
 }
 
+const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
+
+/**
+ * Books v0.10.5: monsters have attribute scores. A Bestiary monster copied into the world before then (all six at 10)
+ * takes the stat block's scores, each save still at the old book's number (half HD, +2 if good; an edited save
+ * stays), and its skills if it has none. Once per monster. Returns { update, skills, changed } or null.
+ */
+export function scoresFrom(actor, src) {
+  if (!actor || !src || actor.flags?.[SYS]?.scoresFilled) return null;
+  const mine = actor.system?.abilities ?? {}, theirs = src.system?.abilities ?? {};
+  const value = (a, k) => Number(a?.[k]?.value ?? a?.[k]) || 0;
+  const update = { [`flags.${SYS}.scoresFilled`]: true };
+  // Scores only onto a sheet still at all 10s; then each save still at the old book's number takes the new one (a
+  // save the GM changed stays). A sheet whose scores the GM set keeps its saves too.
+  if (ABILITY_KEYS.every(k => value(mine, k) === 10)) {
+    for (const k of ABILITY_KEYS) if (value(theirs, k) !== 10) update[`system.abilities.${k}.value`] = value(theirs, k);
+    const before = src.flags?.[SYS]?.savesBefore;
+    if (before) for (const k of ["fort", "ref", "will"]) {
+      const now = Number(src.system?.saves?.[k]) || 0;
+      if (Number(actor.system?.saves?.[k]) === Number(before[k]) && now !== Number(before[k])) update[`system.saves.${k}`] = now;
+    }
+  }
+  const items = actor.items?.contents ?? actor.items ?? [];
+  const has = items.some?.(i => i.type === "skill");
+  const srcItems = src.items?.contents ?? src.items ?? [];
+  const skills = has ? [] : srcItems.filter(i => i.type === "skill").map(i => {
+    const d = typeof i.toObject === "function" ? i.toObject() : foundry.utils.deepClone(i);
+    delete d._id;
+    return d;
+  });
+  return { update, skills, changed: Object.keys(update).length > 1 || skills.length > 0 };
+}
+
 /** One pass over the world: every character's and monster's items, then the Items directory. */
 async function pass(fetch, opts) {
   let items = 0, world = 0, stamped = 0;
@@ -509,13 +542,21 @@ async function pass(fetch, opts) {
     try {
       const updates = await updatesFor(actor.items.contents, actor, fetch, opts);
       // Monsters from the Bestiary: their abilities' auras (Fire Aura, Fear Aura), matched by name.
-      const msrc = actor._stats?.compendiumSource ?? actor.flags?.core?.sourceId ?? "";
+      // (A companion or mount kept from the Bestiary names its monster in flags.arneyan.bestiary.)
+      const msrc = actor._stats?.compendiumSource ?? actor.flags?.core?.sourceId ?? actor.flags?.[SYS]?.bestiary ?? "";
       if (actor.type === "npc" && typeof msrc === "string" && msrc.startsWith(`Compendium.${SYS}.monsters.`)) {
         const m = await fetch(msrc);
         for (const i of actor.items) {
           const o = m?.items?.find(x => x.name === i.name && x.type === i.type);
           // Once (a monster added before auras existed); one the GM took the aura off, or marked Keep my edits, stays.
           if (o?.system?.auras?.length && !i.system.auras?.length && !i.flags?.[SYS]?.aurasFilled && !i.flags?.[SYS]?.keepCustom && !updates.some(u => u._id === i.id)) updates.push({ _id: i.id, "system.auras": o.system.auras, [`flags.${SYS}.aurasFilled`]: true });
+        }
+        const sc = scoresFrom(actor, m);
+        if (sc) {
+          // Skills first: the flag that stops a second try is written only once they're on.
+          if (sc.skills.length) await actor.createEmbeddedDocuments("Item", sc.skills, { arneyanGrant: true, arneyanMigration: true });
+          await actor.update(sc.update, { arneyanMigration: true });
+          if (sc.changed) { opts.notes?.scored?.push({ id: actor.id, name: actor.name }); actors.add(actor.id); }
         }
       }
       if (!updates.length) continue;
@@ -579,7 +620,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     if (!cache.has(uuid)) cache.set(uuid, await fromUuid(uuid).catch(() => null));
     return cache.get(uuid);
   };
-  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [] };
+  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [] };
   const actorIds = new Set();
   // First everything that's safe: unedited items, and older items already the same as the compendium.
   const res = await pass(fetch, { legacy: legacy ?? "skip", notes, actorIds, version, only });
@@ -587,7 +628,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   if (notes.unstamped && legacy === null) {
     const choice = await askLegacy(notes.unstamped, notes.unstampedActors.size, version);
     if (choice === "update") {
-      const second = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: notes.changed, automatic: notes.automatic, failed: notes.failed };
+      const second = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: notes.changed, automatic: notes.automatic, failed: notes.failed, scored: notes.scored };
       const more = await pass(fetch, { legacy: "update", notes: second, actorIds, version, only });
       notes.failed = second.failed;
       res.items += more.items; res.world += more.world; res.actors = actorIds.size; legacyDone = notes.unstamped;
@@ -600,7 +641,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   await writeRetry(notes.failed.length && !giveUp ? { version, actors: notes.failed.filter(f => f.id !== "items").map(f => f.id), items: notes.failed.some(f => f.id === "items"), tries } : null);
   const left = legacyDone ? 0 : (legacy === "update" ? 0 : notes.unstamped);
   const auto = Object.entries(notes.automatic);
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length) {
+  const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -611,6 +653,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       : due ? "Nothing on your sheets was updated from the compendiums." : "Tried the update again.";
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
+      + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")
@@ -619,7 +662,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + `</div>`;
     await ChatMessage.create({ whisper: gms, speaker: { alias: "The Arneyan Codex" }, content, flags: { [SYS]: { migrateKept: notes.kept.map(k => k.uuid), migrateChanged: changed, migrateVersion: version } } });
   }
-  return { items: res.items, actors: res.actors, world: res.world, kept: notes.kept.length, unstamped: left, automatic: auto.length, failed: notes.failed.length, changed: new Set(notes.changed).size };
+  return { items: res.items, actors: res.actors, world: res.world, scored: scored.length, kept: notes.kept.length, unstamped: left, automatic: auto.length, failed: notes.failed.length, changed: new Set(notes.changed).size };
 }
 
 const nameList = names => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`);

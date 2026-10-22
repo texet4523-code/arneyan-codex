@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 20
    },
    "dex": {
-    "value": 10
+    "value": 8
    },
    "con": {
-    "value": 10
+    "value": 20
    },
    "int": {
-    "value": 10
+    "value": 5
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 10,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 6,
+   "fort": 9,
    "ref": 4,
-   "will": 4
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Darkvision 60ft, tremorsense 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p>Darkvision <strong>60ft</strong>, tremorsense <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IKujhtsosapRylnK",
+   "_key": "!actors.items!xG5OvQflX3ycsgyp.IKujhtsosapRylnK",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Earth Glide",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "dLqzot5tFXh1Ky8D",
-   "_key": "!actors.items!xG5OvQflX3ycsgyp.dLqzot5tFXh1Ky8D",
+   "_id": "1xQgaUyDp6ve3LBU",
+   "_key": "!actors.items!xG5OvQflX3ycsgyp.1xQgaUyDp6ve3LBU",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "GP685dRkYlaW41tt",
-   "_key": "!actors.items!xG5OvQflX3ycsgyp.GP685dRkYlaW41tt",
+   "_id": "cBYbxUcCR7cvKvgU",
+   "_key": "!actors.items!xG5OvQflX3ycsgyp.cBYbxUcCR7cvKvgU",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "d1QznGcitc49fLhy",
-   "_key": "!actors.items!xG5OvQflX3ycsgyp.d1QznGcitc49fLhy",
+   "_id": "4ba3dJ75h6HMmQhk",
+   "_key": "!actors.items!xG5OvQflX3ycsgyp.4ba3dJ75h6HMmQhk",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -244,11 +281,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "JWq0Ee83jPN6NjT3",
-   "_key": "!actors.items!xG5OvQflX3ycsgyp.JWq0Ee83jPN6NjT3",
+   "_id": "uhdGei61g0a40qfD",
+   "_key": "!actors.items!xG5OvQflX3ycsgyp.uhdGei61g0a40qfD",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -279,5 +316,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 4
+   }
+  }
+ }
 }

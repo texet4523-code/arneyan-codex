@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 11
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 12
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 13
    },
    "cha": {
-    "value": 10
+    "value": 14
    }
   },
   "level": 4,
@@ -41,8 +41,8 @@
   },
   "saves": {
    "fort": 2,
-   "ref": 2,
-   "will": 4
+   "ref": 3,
+   "will": 3
   },
   "spellcasting": {
    "className": "Cleric",
@@ -486,6 +486,78 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "RxbqGJHoZY0fOymb",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.RxbqGJHoZY0fOymb",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Persuasion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "j6SWvTw4fgapL4EW",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.j6SWvTw4fgapL4EW",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Religion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Knowledge of gods, rites, and holy law</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
+   },
+   "_id": "Y8osZoxcvBhqRlS6",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.Y8osZoxcvBhqRlS6",
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -512,5 +584,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 2,
+    "ref": 2,
+    "will": 4
+   }
+  }
+ }
 }

@@ -7,19 +7,19 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 16
    },
    "dex": {
-    "value": 10
+    "value": 13
    },
    "con": {
-    "value": 10
+    "value": 14
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
     "value": 10
@@ -41,8 +41,8 @@
   },
   "saves": {
    "fort": 4,
-   "ref": 2,
-   "will": 2
+   "ref": 4,
+   "will": 3
   },
   "spellcasting": {
    "className": "",
@@ -182,6 +182,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 10ft, darkvision 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>10ft</strong>, darkvision <strong>60ft</strong>. Immune to fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MPHxl5To8KeusO9r",
+   "_key": "!actors.items!3lZd6SqiZjrYAVxO.MPHxl5To8KeusO9r",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Breath Weapon",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "MmA8FesjX5hTjudl",
-   "_key": "!actors.items!3lZd6SqiZjrYAVxO.MmA8FesjX5hTjudl",
+   "_id": "w9tOS3UXe8qYtCnH",
+   "_key": "!actors.items!3lZd6SqiZjrYAVxO.w9tOS3UXe8qYtCnH",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "SvUfXpG1GsTpqE1Y",
-   "_key": "!actors.items!3lZd6SqiZjrYAVxO.SvUfXpG1GsTpqE1Y",
+   "_id": "RHxt1qk6PIboXrvf",
+   "_key": "!actors.items!3lZd6SqiZjrYAVxO.RHxt1qk6PIboXrvf",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "KjdbYduib8MPyIpZ",
-   "_key": "!actors.items!3lZd6SqiZjrYAVxO.KjdbYduib8MPyIpZ",
+   "_id": "WBMtF8xZdKsVWMdm",
+   "_key": "!actors.items!3lZd6SqiZjrYAVxO.WBMtF8xZdKsVWMdm",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -317,5 +354,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 4,
+    "ref": 2,
+    "will": 2
+   }
+  }
+ }
 }

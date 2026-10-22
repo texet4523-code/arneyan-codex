@@ -7,19 +7,19 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 5
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
     "value": 10
    },
    "int": {
-    "value": 10
+    "value": 9
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
     "value": 10
@@ -40,9 +40,9 @@
    "morale": 7
   },
   "saves": {
-   "fort": 2,
-   "ref": 4,
-   "will": 2
+   "fort": 1,
+   "ref": 2,
+   "will": 1
   },
   "spellcasting": {
    "className": "",
@@ -327,6 +327,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "Roh7oOoXB8vX3XaV",
+   "_key": "!actors.items!XyDrWGh1MTCYIkyy.Roh7oOoXB8vX3XaV",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "x7lOGZYFCBmxJoPf",
+   "_key": "!actors.items!XyDrWGh1MTCYIkyy.x7lOGZYFCBmxJoPf",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -353,5 +399,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 2,
+    "ref": 4,
+    "will": 2
+   }
+  }
+ }
 }

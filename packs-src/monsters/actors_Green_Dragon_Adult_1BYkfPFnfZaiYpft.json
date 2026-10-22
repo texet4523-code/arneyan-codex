@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 23
    },
    "dex": {
-    "value": 10
+    "value": 12
    },
    "con": {
-    "value": 10
+    "value": 21
    },
    "int": {
-    "value": 10
+    "value": 18
    },
    "wis": {
-    "value": 10
+    "value": 15
    },
    "cha": {
-    "value": 10
+    "value": 17
    }
   },
   "level": 15,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 9,
-   "ref": 9,
-   "will": 9
+   "fort": 12,
+   "ref": 7,
+   "will": 8
   },
   "spellcasting": {
    "className": "",
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 60ft, darkvision 120ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>60ft</strong>, darkvision <strong>120ft</strong>. Immune to poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5aximY2cm2lONjTK",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.5aximY2cm2lONjTK",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Breath Weapon",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "JVezPMXgrYXPRyUz",
-   "_key": "!actors.items!1BYkfPFnfZaiYpft.JVezPMXgrYXPRyUz",
+   "_id": "4CA6ElL3cCgvewYz",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.4CA6ElL3cCgvewYz",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "oklrZ8mUhA3P7Ws9",
-   "_key": "!actors.items!1BYkfPFnfZaiYpft.oklrZ8mUhA3P7Ws9",
+   "_id": "GxHOnVcvwZLsrb8K",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.GxHOnVcvwZLsrb8K",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "HKUmeO4jPUH4As5D",
-   "_key": "!actors.items!1BYkfPFnfZaiYpft.HKUmeO4jPUH4As5D",
+   "_id": "6nwawKjiDgYAc9C4",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.6nwawKjiDgYAc9C4",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -287,11 +324,126 @@
     "active": false,
     "applies": []
    },
-   "_id": "fqtK53DCau2g8DAm",
-   "_key": "!actors.items!1BYkfPFnfZaiYpft.fqtK53DCau2g8DAm",
+   "_id": "edCBsdR0VuN88Jqh",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.edCBsdR0VuN88Jqh",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "LeDRvVxj6FRTXrU4",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.LeDRvVxj6FRTXrU4",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "bb8EAUCgffs6F7KA",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.bb8EAUCgffs6F7KA",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "ZkZXnt9BHYxaKmZm",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.ZkZXnt9BHYxaKmZm",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "htWVnF1YJH3FnWD1",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.htWVnF1YJH3FnWD1",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Persuasion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "8s8nk1pm8AFlqBdr",
+   "_key": "!actors.items!1BYkfPFnfZaiYpft.8s8nk1pm8AFlqBdr",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -322,5 +474,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 9,
+    "ref": 9,
+    "will": 9
+   }
+  }
+ }
 }

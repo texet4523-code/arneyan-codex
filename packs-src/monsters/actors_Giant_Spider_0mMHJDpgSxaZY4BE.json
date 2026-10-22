@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 14
    },
    "dex": {
-    "value": 10
+    "value": 16
    },
    "con": {
-    "value": 10
+    "value": 12
    },
    "int": {
-    "value": 10
+    "value": 2
    },
    "wis": {
-    "value": 10
+    "value": 11
    },
    "cha": {
-    "value": 10
+    "value": 4
    }
   },
   "level": 4,
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 10ft, darkvision 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>10ft</strong>, darkvision <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DPAWQcjD7svxRGY9",
+   "_key": "!actors.items!0mMHJDpgSxaZY4BE.DPAWQcjD7svxRGY9",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Web",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-spider-face.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "ZHt3TZyjvZWkokjS",
-   "_key": "!actors.items!0mMHJDpgSxaZY4BE.ZHt3TZyjvZWkokjS",
+   "_id": "KMkPuya1kWN9mLCc",
+   "_key": "!actors.items!0mMHJDpgSxaZY4BE.KMkPuya1kWN9mLCc",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "aW7NrOG7YKjWNLAV",
-   "_key": "!actors.items!0mMHJDpgSxaZY4BE.aW7NrOG7YKjWNLAV",
+   "_id": "133YWnS0Duoqyyz9",
+   "_key": "!actors.items!0mMHJDpgSxaZY4BE.133YWnS0Duoqyyz9",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,34 @@
     "active": false,
     "applies": []
    },
-   "_id": "gKceWgqoAL49ivJU",
-   "_key": "!actors.items!0mMHJDpgSxaZY4BE.gKceWgqoAL49ivJU",
+   "_id": "T6FGtOci0c9emiDZ",
+   "_key": "!actors.items!0mMHJDpgSxaZY4BE.T6FGtOci0c9emiDZ",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "master"
+   },
+   "_id": "cesMebgDpVbiUg8M",
+   "_key": "!actors.items!0mMHJDpgSxaZY4BE.cesMebgDpVbiUg8M",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -242,5 +302,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 2,
+    "ref": 4,
+    "will": 2
+   }
+  }
+ }
 }

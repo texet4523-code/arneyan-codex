@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
-    "value": 10
+    "value": 18
    },
    "con": {
-    "value": 10
+    "value": 18
    },
    "int": {
-    "value": 10
+    "value": 17
    },
    "wis": {
-    "value": 10
+    "value": 20
    },
    "cha": {
-    "value": 10
+    "value": 20
    }
   },
   "level": 10,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 8,
    "ref": 8,
-   "will": 8
+   "will": 9
   },
   "spellcasting": {
    "className": "",
@@ -541,6 +541,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "nbppQOCo7qmmyKhu",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.nbppQOCo7qmmyKhu",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "b51kBeX6cU3PHXOg",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.b51kBeX6cU3PHXOg",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -567,5 +613,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 8,
+    "ref": 8,
+    "will": 8
+   }
+  }
+ }
 }

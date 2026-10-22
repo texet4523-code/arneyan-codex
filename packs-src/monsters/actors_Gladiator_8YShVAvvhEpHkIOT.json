@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
-    "value": 10
+    "value": 15
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 15
    }
   },
   "level": 7,
@@ -41,7 +41,7 @@
   },
   "saves": {
    "fort": 5,
-   "ref": 5,
+   "ref": 4,
    "will": 3
   },
   "spellcasting": {
@@ -254,6 +254,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Athletics",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-biceps.svg",
+   "system": {
+    "description": "<p>A Athletics check: a Strength check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "str",
+    "tier": "master"
+   },
+   "_id": "gyANv1MN4vVgu620",
+   "_key": "!actors.items!8YShVAvvhEpHkIOT.gyANv1MN4vVgu620",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Intimidation",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Intimidation check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "AUk1eak8gCRUAqjU",
+   "_key": "!actors.items!8YShVAvvhEpHkIOT.AUk1eak8gCRUAqjU",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -280,5 +326,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 5,
+    "ref": 5,
+    "will": 3
+   }
+  }
+ }
 }

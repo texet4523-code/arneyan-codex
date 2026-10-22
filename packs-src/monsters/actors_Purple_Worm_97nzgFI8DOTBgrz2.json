@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 28
    },
    "dex": {
-    "value": 10
+    "value": 7
    },
    "con": {
-    "value": 10
+    "value": 22
    },
    "int": {
-    "value": 10
+    "value": 1
    },
    "wis": {
-    "value": 10
+    "value": 8
    },
    "cha": {
-    "value": 10
+    "value": 4
    }
   },
   "level": 12,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 9,
-   "ref": 7,
-   "will": 7
+   "fort": 11,
+   "ref": 5,
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 30ft, tremorsense 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>30ft</strong>, tremorsense <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NXPXtJ32l04UmaC2",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.NXPXtJ32l04UmaC2",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Tunneller",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "m5sx8dWKanCsrxL9",
-   "_key": "!actors.items!97nzgFI8DOTBgrz2.m5sx8dWKanCsrxL9",
+   "_id": "q7ZXXYDSxkPrbKhF",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.q7ZXXYDSxkPrbKhF",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Gzu5Uxl93oJWolLG",
-   "_key": "!actors.items!97nzgFI8DOTBgrz2.Gzu5Uxl93oJWolLG",
+   "_id": "weu07Caiem5jF6sd",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.weu07Caiem5jF6sd",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "jCApY1pDCzCIw5Zi",
-   "_key": "!actors.items!97nzgFI8DOTBgrz2.jCApY1pDCzCIw5Zi",
+   "_id": "kK9G9ZzMLj1jeklH",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.kK9G9ZzMLj1jeklH",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -287,11 +324,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Ov9uIT4f8o77brcM",
-   "_key": "!actors.items!97nzgFI8DOTBgrz2.Ov9uIT4f8o77brcM",
+   "_id": "Cyeq78PT0ssF4jmr",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.Cyeq78PT0ssF4jmr",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -322,5 +359,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 9,
+    "ref": 7,
+    "will": 7
+   }
+  }
+ }
 }

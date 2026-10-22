@@ -460,18 +460,13 @@ export const CONTESTS = {
   escape: { label: "Break free", icon: "unlock", att: ["str", "dex"], def: ["str"], win: "" }
 };
 
-/** An attribute check's parts and Advantage for a contest. Monsters use a save minus half their HD (Codex). */
+/**
+ * An attribute check's parts and Advantage for a contest: d20 + the attribute modifier. A monster uses the modifiers in
+ * its stat block, as a character does (Codex, books v0.10.5; the old "save minus half its HD" is gone).
+ */
 export function contestParts(actor, ab, kind) {
   const m = actor.system?.mods;
-  let parts;
-  if (actor.type === "npc") {
-    const save = { str: "fort", dex: "ref", wis: "will" }[ab] ?? "fort";
-    const s = actor.system.saveList?.find(x => x.key === save);
-    const half = Math.floor(hdCount(actor.system.hd, actor.system.level) / 2);
-    parts = [{ label: `${ARNEYAN.saves[save].label} save`, value: s?.total ?? actor.system.saves?.[save] ?? 0 }, { label: "Half HD", value: -half }, ...(m?.parts("check", `check.${ab}`) ?? [])];
-  } else {
-    parts = [{ label: ARNEYAN.abilityAbbr[ab], value: actor.system.abilities[ab].mod }, ...(m?.parts("check", `check.${ab}`) ?? [])];
-  }
+  const parts = [{ label: ARNEYAN.abilityAbbr[ab], value: actor.system.abilities?.[ab]?.mod ?? 0 }, ...(m?.parts("check", `check.${ab}`) ?? [])];
   const adv = m?.adv("adv.check", `adv.check.${ab}`) ?? NONE;
   const fail = m?.has?.(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
   return { parts, adv, fail, total: parts.reduce((t, p) => t + (Number(p.value) || 0), 0) };
@@ -499,7 +494,6 @@ async function contestRoll(actor, ab, { kind, role, vs, extraAdv = [], event = n
   if (event?.shiftKey) why.adv.push("Shift-click");
   if (event?.ctrlKey || event?.metaKey) why.dis.push("Ctrl-click");
   const label = ARNEYAN.abilities[ab];
-  if (actor.type === "npc") notes = [...notes, `A monster uses its ${ARNEYAN.saves[{ str: "fort", dex: "ref", wis: "will" }[ab] ?? "fort"].label} save minus half its HD.`];
   return d20Roll({
     actor, kind: "contest", mode: modeFromEvent(event, values), why, autoFail: c.fail,
     title: `${CONTESTS[kind].label}: ${label} check${role === "defender" ? " (resisting)" : ""}${vs ? ` vs ${vs}` : ""}`,

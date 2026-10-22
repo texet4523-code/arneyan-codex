@@ -79,6 +79,23 @@
       {{/if}}
     </section>
 
+    {{!-- A monster's skills (books v0.10.5): the stat block's Skills line, rolled from here. --}}
+    {{#if showNpcSkills}}
+    <section class="arn-card-block arn-npc-skills">
+      <div class="arn-block-label">Skills{{#if editMode}}{{#if editable}} <a class="arn-browse" data-action="browse" data-pack="skills" data-tooltip="Browse skills"><i class="fa-solid fa-book-atlas"></i></a> <a class="arn-add" data-action="itemCreate" data-type="skill" data-tooltip="New skill"><i class="fa-solid fa-plus"></i></a>{{/if}}{{/if}}</div>
+      <ul class="arn-save-list arn-npc-skill-list">
+        {{#each skills}}
+        <li data-item-id="{{id}}">
+          <a class="arn-rollable" data-action="itemUse" data-tooltip="{{abbr}} · {{tier}}{{#if master}}: rolls with Advantage{{/if}}">{{item.name}}{{#if master}} <i class="fa-solid fa-star arn-master" aria-label="Master"></i>{{/if}}</a>
+          <span class="arn-save-val">{{bonus}}</span>
+          {{#if @root.editMode}}{{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}{{/if}}
+        </li>
+        {{else}}<li class="arn-empty">No skills. Drop one here, or browse.</li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+
     {{!-- Exhaustion and rest --}}
     {{#if isCharacter}}
     <section class="arn-card-block">

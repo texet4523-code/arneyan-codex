@@ -396,7 +396,6 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       : system.saveList.map(s => ({ key: s.key, label: s.label, value: s.value, valueLabel: signed(s.total), tip: breakdown(s.parts), autoFail: s.autoFail }));
 
     const hp = system.attributes.hp;
-    const noScores = !isCharacter && Object.values(system.abilities).every(v => (v.base ?? v.value) === 10 && (v.total ?? v.value) === 10);
     Object.assign(context, {
       actor, system, source: actor._source.system, config: ARNEYAN, mods,
       isCharacter, isNpc: !isCharacter, editable: this.isEditable, editMode: this.editMode,
@@ -404,11 +403,10 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]]
         : [["actions", "Actions"], ["spells", "Spells"], ["effects", "Effects"], ["bio", "Description"]]).map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       activeTab: this._activeTab,
-      // A monster Monsters & Treasure gives no ability scores for (every one still 10): shown as "–", not as +0.
       abilities: Object.entries(system.abilities).map(([k, v]) => ({
-        key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: noScores ? "–" : (v.total ?? v.value),
-        changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: noScores ? "–" : signed(v.mod),
-        tip: noScores ? "No ability scores in Monsters & Treasure for this creature (its saves are given directly). Edit to set them." : v.parts ? breakdown(v.parts) : ""
+        key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: v.total ?? v.value,
+        changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: signed(v.mod),
+        tip: v.parts ? breakdown(v.parts) : ""
       })),
       classes: byType("class"),
       ancestry: await Promise.all(byType("ancestry").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
@@ -451,6 +449,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       concentrating: actor.effects.find(e => e.flags?.[SYS]?.concentration)?.flags[SYS].sourceName ?? "",
       stateLabel: { stable: "Unconscious but stable", dying: `Dying: losing 1 HP a turn, dies at ${system.attributes.deathAt}`, dead: "Dead" }[system.attributes.state] ?? ""
     });
+    // A monster's Skills block: shown when it has skills, or while editing (to add some).
+    context.showNpcSkills = !isCharacter && (context.skills.length > 0 || !!this.editMode);
 
     Object.assign(context, worldSheetContext(actor));
     if (isCharacter) {

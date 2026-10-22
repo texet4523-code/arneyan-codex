@@ -10,19 +10,19 @@
     "value": 10
    },
    "dex": {
-    "value": 10
+    "value": 9
    },
    "con": {
-    "value": 10
+    "value": 13
    },
    "int": {
-    "value": 10
+    "value": 3
    },
    "wis": {
-    "value": 10
+    "value": 8
    },
    "cha": {
-    "value": 10
+    "value": 4
    }
   },
   "level": 0,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 3,
+   "fort": 2,
    "ref": 1,
-   "will": 1
+   "will": 0
   },
   "spellcasting": {
    "className": "",
@@ -205,5 +205,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 1,
+    "will": 1
+   }
+  }
+ }
 }

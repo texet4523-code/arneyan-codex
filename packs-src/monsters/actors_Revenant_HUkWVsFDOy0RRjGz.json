@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
-    "value": 10
+    "value": 14
    },
    "con": {
-    "value": 10
+    "value": 18
    },
    "int": {
-    "value": 10
+    "value": 13
    },
    "wis": {
-    "value": 10
+    "value": 16
    },
    "cha": {
-    "value": 10
+    "value": 18
    }
   },
   "level": 7,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 6,
    "ref": 4,
-   "will": 6
+   "will": 5
   },
   "spellcasting": {
    "className": "",
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "system": {
-    "description": "<p>If both fists hit the same creature, it is grappled and takes <strong>2d6</strong> damage at the start of each of its turns.</p>",
+    "description": "<p>If both fists hit the same creature, it is grappled and takes <strong>2d6</strong> damage at the start of each of its turns while grappled.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -316,5 +316,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 6
+   }
+  }
+ }
 }

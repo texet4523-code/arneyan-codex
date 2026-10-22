@@ -255,7 +255,7 @@ assert.equal(eb.total, 3, "the goblins don't make a crowd: only the second ogre 
 // A real monster from the pack: data model, traits, spell DC and every sheet tab.
 const mdir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const lichDoc = JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith("actors_Lich_"))));
-const itemModels = { ability: IM.AbilityData, weapon: IM.WeaponData, spell: IM.SpellData };
+const itemModels = { ability: IM.AbilityData, weapon: IM.WeaponData, spell: IM.SpellData, skill: IM.SkillData };
 const lich = makeActor(NpcData, "npc", lichDoc.system, lichDoc.items.map(i => makeItem(itemModels[i.type], i.type, i.name, i.system)));
 assert.equal(lich.system.spellDC, 20, "stat block spell DC");
 assert.ok(lich.system.traits.immune.includes("condition:charmed") && lich.system.traits.resist.includes("cold 5"));
@@ -263,6 +263,8 @@ for (const t of ["actions", "spells", "effects", "bio"]) {
   const ctx = await sheetContext(ArneyanActorSheet, lich, { _activeTab: t });
   const html = render("templates/actor/actor-sheet.hbs", ctx);
   assert.ok(html.includes("Fireball") && html.includes("Level 16") && html.includes("Charmed"), `lich sheet ${t}`);
+  // Books v0.10.5: its scores and Skills line (Spellcraft: Int 20, +4).
+  assert.ok(html.includes("arn-npc-skills") && html.includes("Spellcraft") && !html.includes(">–<"), `lich skills ${t}`);
 }
 const kobDoc = JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith("actors_Kobold_"))));
 const kob = makeActor(NpcData, "npc", kobDoc.system, kobDoc.items.map(i => makeItem(itemModels[i.type], i.type, i.name, i.system)));

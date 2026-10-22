@@ -16,13 +16,13 @@
     "value": 10
    },
    "int": {
-    "value": 10
+    "value": 14
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 2,
@@ -42,7 +42,7 @@
   "saves": {
    "fort": 1,
    "ref": 1,
-   "will": 3
+   "will": 1
   },
   "spellcasting": {
    "className": "Wizard",
@@ -548,6 +548,58 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "X6WnMx995ZY1LqnB",
+   "_key": "!actors.items!jselg1hCNImjWpR3.X6WnMx995ZY1LqnB",
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ancient History",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Recalling lost kingdoms and old events</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
+   },
+   "_id": "V2D7Yp3SoJ2weEN4",
+   "_key": "!actors.items!jselg1hCNImjWpR3.V2D7Yp3SoJ2weEN4",
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -574,5 +626,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 3
+   }
+  }
+ }
 }

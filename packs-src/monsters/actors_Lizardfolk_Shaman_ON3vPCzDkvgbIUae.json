@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 15
    },
    "dex": {
     "value": 10
    },
    "con": {
-    "value": 10
+    "value": 13
    },
    "int": {
     "value": 10
    },
    "wis": {
-    "value": 10
+    "value": 15
    },
    "cha": {
-    "value": 10
+    "value": 8
    }
   },
   "level": 3,
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 4,
-   "ref": 2,
-   "will": 4
+   "fort": 2,
+   "ref": 1,
+   "will": 2
   },
   "spellcasting": {
    "className": "Druid",
@@ -509,6 +509,78 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "xmSxyJtGTx2TFL3V",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.xmSxyJtGTx2TFL3V",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "fOuIKNxnTJfKySkI",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.fOuIKNxnTJfKySkI",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Survival",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Finding food, water, and shelter in the wild</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
+   },
+   "_id": "olV7TtsZ9SEdZGXo",
+   "_key": "!actors.items!ON3vPCzDkvgbIUae.olV7TtsZ9SEdZGXo",
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -535,5 +607,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 4,
+    "ref": 2,
+    "will": 4
+   }
+  }
+ }
 }

@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 19
    },
    "dex": {
-    "value": 10
+    "value": 11
    },
    "con": {
-    "value": 10
+    "value": 21
    },
    "int": {
-    "value": 10
+    "value": 2
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 7,
@@ -40,7 +40,7 @@
    "morale": 10
   },
   "saves": {
-   "fort": 5,
+   "fort": 8,
    "ref": 3,
    "will": 3
   },
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Darkvision 60ft, tremorsense 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Darkvision <strong>60ft</strong>, tremorsense <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dXwcQfh914FsiOKG",
+   "_key": "!actors.items!eUKju42q042SEJh7.dXwcQfh914FsiOKG",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Deadly Leap",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "2YROcro10VpPO4Lo",
-   "_key": "!actors.items!eUKju42q042SEJh7.2YROcro10VpPO4Lo",
+   "_id": "q2NPbKmHIiciES5G",
+   "_key": "!actors.items!eUKju42q042SEJh7.q2NPbKmHIiciES5G",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,34 @@
     "active": false,
     "applies": []
    },
-   "_id": "4vlyvOr0V7v7sXlS",
-   "_key": "!actors.items!eUKju42q042SEJh7.4vlyvOr0V7v7sXlS",
+   "_id": "2GqY7sH5NvGuIDmx",
+   "_key": "!actors.items!eUKju42q042SEJh7.2GqY7sH5NvGuIDmx",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "DxZIuzTlqJ9kFUhL",
+   "_key": "!actors.items!eUKju42q042SEJh7.DxZIuzTlqJ9kFUhL",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -205,5 +265,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 5,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

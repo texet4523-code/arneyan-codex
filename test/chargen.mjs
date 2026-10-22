@@ -2,6 +2,7 @@
 // and an ancestry bonus that would take a score past 18 at creation moving to another attribute the owner picks.
 // Runs on its own or from test/run.mjs.
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import "./harness.mjs";
 
 for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
@@ -41,7 +42,12 @@ assert.deepEqual(G.FOUR_D6, ["4d6kh3", "4d6kh3", "4d6kh3", "4d6kh3", "4d6kh3", "
   let opts = null;
   DialogV2.wait = async o => { opts = o; return "skip"; };
   await G.abilityScores({ isOwner: true, type: "character", name: "Jack", id: "J4" });
-  for (const t of ['value="four"', "Roll 4d6, drop the lowest", "Roll 4d6 six times"]) assert.ok(opts.content.includes(t), t);
+  for (const t of ['value="four"', "Roll 4d6, drop the lowest", "Roll 4d6 six times", "Rule C still applies"]) assert.ok(opts.content.includes(t), t);
+}
+// Handbook v0.10.6: Rule C applies to the Quick Roll too.
+{
+  const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");
+  assert.ok(src.includes("const low = set && !meetsThreshold(set);") && src.includes("!meetsThreshold(four)"));
 }
 
 /* ---------------- 4. Starting Scores: the cap and where the excess goes ---------------- */

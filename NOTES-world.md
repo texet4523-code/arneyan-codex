@@ -91,7 +91,7 @@ or an Umbral Journey), the pace, and whether the terrain is difficult (one pace 
 go and the rations needed against what the members and the stash carry. Each day the GM presses **Travel one day**:
 game time moves on a day, everyone eats a day's rations (a Week's Rations pack holds seven) and drinks a day's water
 (a canteen or waterskin holds a day's water until refilled; tick "Water along the way" when there are streams and
-wells), and the Encounter Check is rolled (d12: 11 a Standard Encounter, 12 a Dangerous one), drawing from the
+wells), and the Encounter Check is rolled (d12: 11 a Hard Encounter, 12 a Dangerous one), drawing from the
 encounter roll table named on the tab (or one called Travel Encounters, Random Encounters or the like). Going without
 food past 3 + Constitution modifier days, or without water, brings Exhaustion.
 

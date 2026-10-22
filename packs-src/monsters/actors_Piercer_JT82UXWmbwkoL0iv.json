@@ -10,19 +10,19 @@
     "value": 10
    },
    "dex": {
-    "value": 10
+    "value": 13
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 1
    },
    "wis": {
-    "value": 10
+    "value": 7
    },
    "cha": {
-    "value": 10
+    "value": 3
    }
   },
   "level": 0,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 1,
-   "ref": 1,
-   "will": 1
+   "fort": 3,
+   "ref": 2,
+   "will": 0
   },
   "spellcasting": {
    "className": "",
@@ -59,7 +59,7 @@
    "resistances": "",
    "immunities": "",
    "vulnerabilities": "",
-   "senses": "Blindsight 30ft, Darkvision 60ft",
+   "senses": "Blindsight 30ft",
    "isSolo": false,
    "levelText": "½",
    "page": 0,
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Blindsight 30ft, darkvision 60ft",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Blindsight <strong>30ft</strong>, darkvision <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Np7fDXLqSetTqUUR",
+   "_key": "!actors.items!JT82UXWmbwkoL0iv.Np7fDXLqSetTqUUR",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Drop",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "22AUiax7Zyl91T6q",
-   "_key": "!actors.items!JT82UXWmbwkoL0iv.22AUiax7Zyl91T6q",
+   "_id": "hIt5NxSgWF6t3QCv",
+   "_key": "!actors.items!JT82UXWmbwkoL0iv.hIt5NxSgWF6t3QCv",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "a1rvaPs2E8U7Nyh9",
-   "_key": "!actors.items!JT82UXWmbwkoL0iv.a1rvaPs2E8U7Nyh9",
+   "_id": "pPCbnpFhdzys0dtV",
+   "_key": "!actors.items!JT82UXWmbwkoL0iv.pPCbnpFhdzys0dtV",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -198,12 +235,20 @@
   },
   "sight": {
    "enabled": true,
-   "range": 60,
-   "visionMode": "darkvision"
+   "range": 0,
+   "visionMode": "basic"
   }
  },
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 1
+   }
+  }
+ }
 }

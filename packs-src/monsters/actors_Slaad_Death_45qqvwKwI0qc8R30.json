@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 20
    },
    "dex": {
-    "value": 10
+    "value": 15
    },
    "con": {
-    "value": 10
+    "value": 19
    },
    "int": {
-    "value": 10
+    "value": 15
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 16
    }
   },
   "level": 15,
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 6,
-   "ref": 4,
-   "will": 6
+   "fort": 11,
+   "ref": 8,
+   "will": 7
   },
   "spellcasting": {
    "className": "",
@@ -1021,6 +1021,55 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "wRJ6gN94WWp16tFX",
+   "_key": "!actors.items!45qqvwKwI0qc8R30.wRJ6gN94WWp16tFX",
+   "effects": [],
+   "flags": {},
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "s3GlgQXKWPMHdgTb",
+   "_key": "!actors.items!45qqvwKwI0qc8R30.s3GlgQXKWPMHdgTb",
+   "flags": {},
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -1047,5 +1096,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 6,
+    "ref": 4,
+    "will": 6
+   }
+  }
+ }
 }

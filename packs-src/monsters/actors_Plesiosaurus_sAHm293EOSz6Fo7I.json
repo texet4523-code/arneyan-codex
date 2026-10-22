@@ -7,22 +7,22 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 18
    },
    "dex": {
-    "value": 10
+    "value": 15
    },
    "con": {
-    "value": 10
+    "value": 16
    },
    "int": {
-    "value": 10
+    "value": 2
    },
    "wis": {
-    "value": 10
+    "value": 12
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 6,
@@ -35,13 +35,13 @@
    },
    "ac": 13,
    "speed": "20ft, swim 40ft",
-   "attack": 10,
+   "attack": 8,
    "spellDC": 0,
    "morale": 8
   },
   "saves": {
-   "fort": 3,
-   "ref": 3,
+   "fort": 5,
+   "ref": 4,
    "will": 3
   },
   "spellcasting": {
@@ -82,7 +82,7 @@
     "slots": 0,
     "price": "",
     "equipped": true,
-    "damage": "2d6+3",
+    "damage": "2d8+3",
     "damageType": "piercing",
     "ability": "str",
     "ranged": false,
@@ -142,6 +142,52 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "4ReN6NkD2thp14M3",
+   "_key": "!actors.items!sAHm293EOSz6Fo7I.4ReN6NkD2thp14M3",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "54MtHtSc21DkKRDT",
+   "_key": "!actors.items!sAHm293EOSz6Fo7I.54MtHtSc21DkKRDT",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -168,5 +214,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 3,
+    "will": 3
+   }
+  }
+ }
 }

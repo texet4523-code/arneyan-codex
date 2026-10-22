@@ -10,19 +10,19 @@
     "value": 10
    },
    "dex": {
-    "value": 10
+    "value": 13
    },
    "con": {
-    "value": 10
+    "value": 12
    },
    "int": {
-    "value": 10
+    "value": 4
    },
    "wis": {
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 5
    }
   },
   "level": 0,
@@ -41,7 +41,7 @@
   },
   "saves": {
    "fort": 1,
-   "ref": 1,
+   "ref": 2,
    "will": 1
   },
   "spellcasting": {
@@ -243,5 +243,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 1,
+    "ref": 1,
+    "will": 1
+   }
+  }
+ }
 }

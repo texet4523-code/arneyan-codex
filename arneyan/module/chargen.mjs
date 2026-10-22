@@ -14,7 +14,10 @@ const { DialogV2 } = foundry.applications.api;
 const SYSFLAG = "arneyan";
 const KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 export const POOLS = ["8d6kh3", "5d6kh3", "4d6kh3", "3d6", "3d6", "3d6"];
-/** The other way to roll (Kieran, 21 Oct 2026): 4d6 six times, dropping the lowest die each time; one set to place. */
+/**
+ * The other way to roll (Kieran, 21 Oct 2026; the Handbook's optional Quick Roll from v0.10.6): 4d6 six times, dropping
+ * the lowest die each time. Rule C still applies (two scores of 14 or higher, or roll again), as does the cap of 18.
+ */
 export const FOUR_D6 = Array(6).fill("4d6kh3");
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 
@@ -51,7 +54,7 @@ async function abilityScoresWindow(actor) {
       <label><input type="radio" name="mode" value="own"> Type in a set (donated, or rolled at the table)</label>
     </div>
     <div class="arn-scores-roll"><button type="button" class="arn-scores-rollbtn"><i class="fa-solid fa-dice"></i> Roll both sets</button><div class="arn-scores-sets"></div></div>
-    <div class="arn-scores-four" hidden><p class="hint">Roll 4d6 six times, dropping the lowest die each time, then put each score on an attribute. One roll: the set stands.</p><button type="button" class="arn-scores-fourbtn"><i class="fa-solid fa-dice"></i> Roll 4d6 six times</button><div class="arn-scores-fourset"></div></div>
+    <div class="arn-scores-four" hidden><p class="hint">The Quick Roll: roll 4d6 six times, dropping the lowest die each time, then put each score on an attribute. Rule C still applies: without two scores of 14 or higher, roll again.</p><button type="button" class="arn-scores-fourbtn"><i class="fa-solid fa-dice"></i> Roll 4d6 six times</button><div class="arn-scores-fourset"></div></div>
     <div class="arn-scores-own" hidden>${KEYS.map((k, i) => `<input type="number" name="own${i}" min="3" max="18" value="${[15, 14, 13, 12, 10, 8][i]}">`).join("")}</div>
     <table class="arn-scores-assign"><tbody>${KEYS.map((k, i) => `<tr><th>${ARNEYAN.abilities[k]}</th><td><select name="as-${k}" data-i="${i}"></select></td><td class="arn-scores-mod" data-k="${k}"></td></tr>`).join("")}</tbody></table>
     <p class="hint arn-scores-msg"></p>
@@ -89,10 +92,11 @@ async function abilityScoresWindow(actor) {
         const used = [...el.querySelectorAll(".arn-scores-assign select")].map(s => s.value);
         const own = mode() === "own";
         const dupes = set && new Set(used).size < used.length;
-        // The Gygaxian Threshold is Method V's rule (and a typed-in set's): the 4d6 set stands as rolled.
-        const low = set && mode() !== "four" && !meetsThreshold(set);
+        // Rule C, the Gygaxian Threshold, for every way of rolling (the Quick Roll too, Handbook v0.10.6).
+        const low = set && !meetsThreshold(set);
         const bothLow = sets && !sets.some(meetsThreshold);
         if (dupes) msg.textContent = "Each score goes on one attribute only.";
+        else if (low && mode() === "four") msg.textContent = "This set doesn't have two scores of 14 or higher (Rule C): roll again.";
         else if (low && own) msg.textContent = "This set needs at least two scores of 14 or higher (Rule C, the Gygaxian Threshold).";
         else if (low && bothLow) msg.textContent = "Neither set has two scores of 14 or higher: discard both and roll again, or take a set another player donated (Type in a set).";
         else if (low) msg.textContent = "This set doesn't have two scores of 14 or higher (Rule C): keep the other set.";
@@ -135,7 +139,8 @@ async function abilityScoresWindow(actor) {
         fill();
       });
       q(".arn-scores-fourbtn").addEventListener("click", async ev => {
-        ev.currentTarget.disabled = true;
+        const btn = ev.currentTarget;
+        btn.disabled = true;
         // One way of rolling per character: Method V is shut before the dice even land.
         const mv = q("input[name=mode][value=roll]");
         if (mv) mv.disabled = true;
@@ -143,9 +148,11 @@ async function abilityScoresWindow(actor) {
         four = rolls.map(r => r.total);
         await ChatMessage.create({
           speaker: ChatMessage.getSpeaker({ actor }), rolls,
-          content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice"></i> <span>${esc(actor.name)}: 4d6, drop the lowest</span></header><p><strong>${four.join(", ")}</strong></p></div>`
+          content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice"></i> <span>${esc(actor.name)}: 4d6, drop the lowest</span></header><p><strong>${four.join(", ")}</strong>${meetsThreshold(four) ? "" : ` <em>(${LOW}: roll again)</em>`}</p></div>`
         });
-        q(".arn-scores-fourset").innerHTML = `<p>Rolled: <strong>${four.join(", ")}</strong></p>`;
+        const good = meetsThreshold(four);
+        q(".arn-scores-fourset").innerHTML = `<p>Rolled: <strong>${four.join(", ")}</strong>${good ? "" : ` (${LOW})`}</p>`;
+        if (!good) { btn.disabled = false; btn.innerHTML = `<i class="fa-solid fa-dice"></i> Roll again`; }
         fill();
       });
       fill();
@@ -157,7 +164,7 @@ async function abilityScoresWindow(actor) {
         const own = m === "own";
         if (m === "four") {
           const idx = KEYS.map(k => Number(f.elements[`as-${k}`].value));
-          if (!four || new Set(idx).size !== 6) return null;
+          if (!four || new Set(idx).size !== 6 || !meetsThreshold(four)) return null;
           return { scores: Object.fromEntries(KEYS.map((k, i) => [k, four[idx[i]]])), spare: null };
         }
         const kept = own ? null : Number(f.querySelector("input[name=set]:checked")?.value);

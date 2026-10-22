@@ -7,13 +7,13 @@
  "system": {
   "abilities": {
    "str": {
-    "value": 10
+    "value": 15
    },
    "dex": {
-    "value": 10
+    "value": 11
    },
    "con": {
-    "value": 10
+    "value": 14
    },
    "int": {
     "value": 10
@@ -22,7 +22,7 @@
     "value": 10
    },
    "cha": {
-    "value": 10
+    "value": 11
    }
   },
   "level": 1,
@@ -40,7 +40,7 @@
    "morale": 8
   },
   "saves": {
-   "fort": 3,
+   "fort": 2,
    "ref": 1,
    "will": 1
   },
@@ -186,6 +186,29 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Intimidation",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Intimidation check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "ArUMkYfqPEwGkM7G",
+   "_key": "!actors.items!sbXHooLNc4C4u5Bq.ArUMkYfqPEwGkM7G",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],
@@ -212,5 +235,13 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "savesBefore": {
+    "fort": 3,
+    "ref": 1,
+    "will": 1
+   }
+  }
+ }
 }
