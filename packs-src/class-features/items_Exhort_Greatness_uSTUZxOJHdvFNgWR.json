@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "day",
+   "formula": "1:1, 15:2"
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "One creature within 30ft gains Advantage on its first attack each round and temporary HP equal to two rolls of its Hit Die plus its Constitution modifier on each.",
+    "text": "Up to {1:1, 11:2, 13:3, 15:4, 17:5, 19:6, 21:7, 23:8} creatures within 30ft gain Advantage on their first attack each round and temporary HP equal to two rolls of their Hit Die plus their Constitution modifier on each.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

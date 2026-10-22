@@ -4,7 +4,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules } from "./effects.mjs";
+import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -420,9 +420,22 @@ export class ArneyanActor extends Actor {
    * weapon), and the damage card's notes: reminders, less those a weapon-scoped rule now applies, plus what was
    * rerolled. Bonus dice (riders, Versatile's extra die) are never rerolled.
    */
+  /**
+   * A weapon's own damage dice: its stored dice, or for an Unarmed Strike the dice a feature gives when they're
+   * bigger (Hand-to-Hand Combat: 1d4 at Monk 1st up to 1d10 at 7th).
+   */
+  ownDice(item) {
+    const own = item?.system?.damage;
+    if (item?.type !== "weapon" || !/^unarmed strike$/i.test(item._source?.name ?? item.name)) return own;
+    const best = this.mods?.dice?.("unarmed.dice");
+    if (!best) return own;
+    const avg = d => { const m = String(d ?? "").match(/^(\d*)d(\d+)$/i); return m ? (Number(m[1]) || 1) * (Number(m[2]) + 1) / 2 : 0; };
+    return avg(best.value) > avg(own) ? best.value : own;
+  }
+
   weaponDice(item, { include = [] } = {}) {
     const m = this.mods;
-    const own = item.system.damage;
+    const own = this.ownDice(item);
     if (!m) return { formula: own, notes: [] };
     const fw = m.forWeapon(item, { include });
     const all = m.reroll(), mine = fw.mods.reroll();
@@ -437,7 +450,7 @@ export class ArneyanActor extends Actor {
   damageLabel(item) {
     let mod = item.system.magic;
     if (this.type === "character") mod += this.system.abilities[this._weaponAbility(item)].mod;
-    const f = item.system.damage || "-";
+    const f = this.ownDice(item) || "-";
     const extra = this.damageTerms(item).map(t => t.value).join("");
     const type = item.system.damageType ? ` ${item.system.damageType}` : "";
     const riders = (item.system.bonusDamage ?? []).filter(b => b.formula && !b.when && (!b.mode || item.system.active)).map(b => ` + ${String(b.formula).replace(/^\+\s*/, "")} ${b.type || item.system.damageType}`).join("");
@@ -617,6 +630,8 @@ export class ArneyanActor extends Actor {
     let a = item.system.ability;
     // The Finesse trait: the better of Strength and Dexterity, whatever the attribute box says.
     if (a === "str" && /\bfinesse\b/i.test(item.system.traits ?? "")) a = "finesse";
+    // A Monk's unarmed strikes use Strength or Dexterity, the player's choice: the better one.
+    if (a === "str" && this.ownDice(item) !== item.system.damage) a = "finesse";
     if (a === "finesse") return this.system.abilities.dex.mod >= this.system.abilities.str.mod ? "dex" : "str";
     return a;
   }
@@ -1291,7 +1306,8 @@ export class ArneyanItem extends Item {
     const base = a => `${a.kind}|${String(a.name).replace(/\s*\(\d*d\d+(?:\s*[+-]\s*\d+)?\)\s*$/i, "")}`;
     const best = new Map();
     for (const a of open) if (!best.has(base(a)) || (a.minLevel ?? 0) >= (best.get(base(a)).minLevel ?? 0)) best.set(base(a), a);
-    return open.filter(a => best.get(base(a)) === a);
+    // Text and formulas with level tables read at this level ("up to {1:2, 6:3, 10:4} foes" reads "up to 3 foes" at 6th).
+    return open.filter(a => best.get(base(a)) === a).map(a => ({ ...a, text: levelText(a.text ?? "", lvl), formula: levelText(a.formula ?? "", lvl) }));
   }
 
   /** Spend an activity's cost from the feature's uses; false (with a warning) when there aren't enough. */

@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "day",
+   "formula": "@cl"
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "One ally within 60ft gains +2 (+3 at 6th, +4 at 12th, +5 at 18th) on attribute checks and saves for rounds equal to your Bard level.",
+    "text": "One ally within 60ft gains +{1:2, 6:3, 12:4, 18:5} on attribute checks and saves (not attack rolls) for rounds equal to your Bard level.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

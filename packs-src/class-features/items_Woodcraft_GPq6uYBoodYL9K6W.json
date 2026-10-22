@@ -129,7 +129,7 @@
     "damageType": "",
     "ability": "wis",
     "save": "",
-    "text": "Detect, set or disable simple wilderness traps.",
+    "text": "Detect, set or disable simple wilderness traps. Your traps deal {1:1d4, 13:2d4, 18:3d4, 24:4d4}.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -213,7 +213,7 @@
    },
    {
     "key": "skill",
-    "value": "2",
+    "value": "1:2, 13:3, 18:4, 24:6",
     "when": "actively searching for wilderness traps",
     "label": ""
    }

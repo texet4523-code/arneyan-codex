@@ -20,7 +20,23 @@
   "dc": null,
   "damage": "",
   "level": 1,
-  "className": "Monk"
+  "className": "Monk",
+  "rules": [
+   {
+    "key": "ac.unarmoured",
+    "value": "1:13, 2:14, 4:15, 7:16, 11:17, 15:18, 21:19",
+    "when": "",
+    "label": "Monk Progression Table"
+   },
+   {
+    "key": "speed.base",
+    "value": "1:35, 3:40, 6:50, 10:60",
+    "when": "",
+    "label": "Monk Progression Table"
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "F4ugkKNsZhwE5mHp",

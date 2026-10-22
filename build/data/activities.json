@@ -428,16 +428,27 @@
    {
     "name": "Sneak Attack",
     "kind": "note",
-    "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Assassin Progression Table for the dice.",
+    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against an unsuspecting target within 30ft, once per round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
     "removeConditions": false
+   },
+   {
+    "name": "Sneak Attack damage",
+    "kind": "damage",
+    "text": "Add to the weapon's damage on a hit, once per round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6"
    }
   ],
   "confidence": "medium",
-  "why": "Once per round; dice come from the Assassin Progression Table."
+  "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table)"
  },
  "Slow Kill|Assassin": {
   "activities": [
@@ -529,7 +540,7 @@
    {
     "name": "Whirlwind Attack",
     "kind": "note",
-    "text": "Replace your action with one attack against each of up to 2 adjacent foes of Level up to half yours; see the Barbarian Progression Table for scaling.",
+    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to half yours.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -628,7 +639,7 @@
    {
     "name": "Exalt",
     "kind": "note",
-    "text": "One ally within 60ft gains +2 (+3 at 6th, +4 at 12th, +5 at 18th) on attribute checks and saves for rounds equal to your Bard level.",
+    "text": "One ally within 60ft gains +{1:2, 6:3, 12:4, 18:5} on attribute checks and saves (not attack rolls) for rounds equal to your Bard level.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -637,7 +648,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Daily ally buff; text says once per day per level."
+  "why": "Daily ally buff; text says once per day per level.; 0.10.48: steps up with level (Progression Table)",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "@cl"
+  }
  },
  "Fascinate (Charisma)|Bard": {
   "activities": [
@@ -645,7 +661,7 @@
     "name": "Fascinate",
     "kind": "save",
     "save": "will",
-    "text": "Up to 2 creatures (4 at 6th, 10 at 12th) that can see and hear you save or fall into a trance for rounds equal to your Bard level.",
+    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you save or fall into a trance for rounds equal to your Bard level.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -705,7 +721,7 @@
    {
     "name": "Exhort Greatness",
     "kind": "note",
-    "text": "One creature within 30ft gains Advantage on its first attack each round and temporary HP equal to two rolls of its Hit Die plus its Constitution modifier on each.",
+    "text": "Up to {1:1, 11:2, 13:3, 15:4, 17:5, 19:6, 21:7, 23:8} creatures within 30ft gain Advantage on their first attack each round and temporary HP equal to two rolls of their Hit Die plus their Constitution modifier on each.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -714,7 +730,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Daily buff; temp HP depends on the target's Hit Die."
+  "why": "Daily buff; temp HP depends on the target's Hit Die.; 0.10.48: steps up with level (Progression Table)",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 15:2"
+  }
  },
  "Rally|Bard": {
   "activities": [
@@ -959,7 +980,12 @@
    }
   ],
   "confidence": "medium",
-  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1."
+  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table)",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 3:2, 6:3, 9:4, 15:5, 24:6"
+  }
  },
  "Dismiss Woodland Creatures (Wisdom)|Druid": {
   "activities": [
@@ -1495,7 +1521,7 @@
     "name": "Deflect Missiles",
     "kind": "check",
     "ability": "dex",
-    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage.",
+    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -1615,12 +1641,13 @@
    {
     "name": "Animate Dead",
     "kind": "note",
-    "text": "Animate one corpse as a skeleton or zombie without a slot, using one of your free daily uses.",
+    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a slot each):",
     "minLevel": 0,
     "cost": 0,
     "per": "day",
     "target": "",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "1:1, 5:2, 10:3, 15:4, 20:5"
    },
    {
     "name": "Command Undead",
@@ -1685,7 +1712,7 @@
    {
     "name": "Cure Disease",
     "kind": "note",
-    "text": "Cure any disease by touch, no check required; uses per week in the Paladin Progression Table.",
+    "text": "Cure any disease by touch, no check required: {1:1, 6:2, 12:3} times a week.",
     "minLevel": 0,
     "cost": 0,
     "per": "week",
@@ -1774,8 +1801,8 @@
     "kind": "note",
     "text": "Reroll any one die result: attack, damage, save, turn undead or attribute check.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "week",
+    "cost": 1,
+    "per": "",
     "target": "self",
     "removeConditions": false
    },
@@ -1784,8 +1811,8 @@
     "kind": "note",
     "text": "Gain Advantage on all your attack rolls and double weapon damage dice for 1 round.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "week",
+    "cost": 1,
+    "per": "",
     "target": "self",
     "removeConditions": false
    },
@@ -1794,14 +1821,19 @@
     "kind": "note",
     "text": "Halve all damage you suffer this round.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "week",
+    "cost": 1,
+    "per": "",
     "target": "self",
     "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "Three listed options; uses per week from the table."
+  "why": "Three listed options; uses per week from the table.; 0.10.48: steps up with level (Progression Table)",
+  "uses": {
+   "max": 1,
+   "per": "week",
+   "formula": "13:1, 17:2, 22:3"
+  }
  },
  "Cleanse Soul|Paladin": {
   "activities": [
@@ -1897,7 +1929,7 @@
     "name": "Traps",
     "kind": "check",
     "ability": "wis",
-    "text": "Detect, set or disable simple wilderness traps.",
+    "text": "Detect, set or disable simple wilderness traps. Your traps deal {1:1d4, 13:2d4, 18:3d4, 24:4d4}.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2068,7 +2100,7 @@
    {
     "name": "Back Attack",
     "kind": "note",
-    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice; see the Rogue Progression Table.",
+    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -2084,16 +2116,27 @@
    {
     "name": "Sneak Attack",
     "kind": "note",
-    "text": "Gain Advantage and add the Sneak Attack die against an unsuspecting target within 30ft; see the Rogue Progression Table for the dice.",
+    "text": "Gain Advantage and add {1:1d6, 13:2d6, 18:3d6, 23:4d6} against an unsuspecting target within 30ft, once per round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
     "removeConditions": false
+   },
+   {
+    "name": "Sneak Attack damage",
+    "kind": "damage",
+    "text": "Add to the weapon's damage on a hit, once per round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6"
    }
   ],
   "confidence": "medium",
-  "why": "Once per round; dice come from the Rogue Progression Table."
+  "why": "Once per round; dice come from the Rogue Progression Table.; 0.10.48: steps up with level (Progression Table)"
  },
  "Uncanny Dodge|Rogue": {
   "activities": [
@@ -3960,5 +4003,136 @@
    "formula": "max(1, @casting.mod)"
   },
   "why": "\"a number of times per day equal to your casting-stat modifier (minimum 1)\" (the best casting class's)"
+ },
+ "Grit|Gunslinger": {
+  "confidence": "high",
+  "why": "0.10.48: steps up with level (Progression Table)",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 10:2, 20:3"
+  }
+ },
+ "Surprise|Assassin": {
+  "confidence": "high",
+  "why": "0.10.48: steps up with level (Progression Table)",
+  "activities": [
+   {
+    "name": "Surprise",
+    "kind": "note",
+    "text": "Targets take {1:-1, 18:-2, 23:-3} on their Wisdom check to spot your ambush.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ]
+ },
+ "Slow Fall|Monk": {
+  "confidence": "high",
+  "why": "0.10.48: steps up with level (Progression Table)",
+  "activities": [
+   {
+    "name": "Slow Fall",
+    "kind": "note",
+    "text": "Within 10ft of a vertical surface while falling: treat the fall as {4:20, 6:25, 9:30, 13:35, 18:40}ft shorter.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ]
+ },
+ "Hand-to-Hand Combat|Monk": {
+  "confidence": "high",
+  "why": "0.10.48: steps up with level (Progression Table)",
+  "activities": [
+   {
+    "name": "Second unarmed attack (1d4)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 6,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d4 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Second unarmed attack (1d6)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d6 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Second unarmed attack (1d8)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 13,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d8 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Second unarmed attack (1d10)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 18,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d10 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Third unarmed attack (1d4)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 16,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d4 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Third unarmed attack (1d6)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 19,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d6 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   },
+   {
+    "name": "Third unarmed attack (1d8)",
+    "kind": "damage",
+    "text": "Roll the attack with Unarmed Strike; on a hit, this is its damage (Strength or Dexterity, the better).",
+    "minLevel": 22,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d8 + max(@str.mod, @dex.mod)",
+    "damageType": "bludgeoning"
+   }
+  ]
  }
 }

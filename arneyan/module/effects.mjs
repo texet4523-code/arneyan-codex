@@ -263,9 +263,14 @@ export function scopeText(rule) {
 export function collectRules(actor, baseData = {}) {
   const out = [];
   const push = (rules, label, extra = {}, picks = []) => {
+    const lvl = extra.cl ?? baseData.cl ?? baseData.level ?? 1;
     for (const r of rules ?? []) {
       if (!r?.key) continue;
-      const rule = { key: String(r.key).trim(), value: r.value, when: r.when ?? "", label: r.label || label, data: { ...baseData, ...extra } };
+      // A value or text that steps up with level (Sneak Attack's dice, Iron Body's save bonus) at this class level;
+      // a whole level table that gives nothing yet (Iron Mind before 9th) is left out.
+      const value = levelText(r.value, lvl);
+      if (value !== r.value && /^\s*\d+\s*:/.test(String(r.value)) && !String(r.value).includes("{") && (value === "0" || value === "")) continue;
+      const rule = { key: String(r.key).trim(), value, when: levelText(r.when ?? "", lvl), label: r.label || label, data: { ...baseData, ...extra } };
       // Scoped to some weapons (Crushing Blow's two-handed, Weapon Specialisation's picked weapon): ModSet keeps it
       // apart, for the rolls with a weapon that fits.
       const weapon = String(r.weapon ?? "").trim();
@@ -378,6 +383,12 @@ export class ModSet {
     }
     if (scoped) return;
     if (key.startsWith("note.")) return this.#push(this.notes, key.slice(5), `${r.label}: ${r.value}`);
+    // Dice that replace a weapon's own (the Monk's unarmed strike: 1d4 at 1st up to 1d10): the biggest wins.
+    if (key.endsWith(".dice")) {
+      const v = String(r.value ?? "").trim();
+      if (/^\d*d\d+$/i.test(v)) this.#push(this.flags, key, { label: r.label, value: v });
+      return;
+    }
     // Weapon damage dice rerolled at or below the value (Crushing Blow): a flag, not a damage term.
     if (key === "damage.reroll") return this.#push(this.flags, key, { label: r.label, value: evalNumber(r.value, r.data) });
     if (Object.hasOwn(this.traits, key)) {
@@ -428,6 +439,14 @@ export class ModSet {
   best(key) {
     const list = this.numbers.get(key) ?? [];
     return list.length ? Math.max(...list.map(e => e.value)) : null;
+  }
+
+  /** The biggest dice among rules with this key ("1d10" beats "1d8"; "2d6" beats "1d10"), and who gives them, or null. */
+  dice(key) {
+    const avg = d => { const m = String(d).match(/^(\d*)d(\d+)$/i); return m ? (Number(m[1]) || 1) * (Number(m[2]) + 1) / 2 : 0; };
+    const list = (this.flags.get(key) ?? []).filter(e => avg(e.value) > 0);
+    if (!list.length) return null;
+    return list.reduce((a, b) => (avg(b.value) > avg(a.value) ? b : a));
   }
 
   /** Lowest value among the keys (crit range), or null. */
@@ -485,6 +504,18 @@ export function byLevelTable(value, level) {
     if (m && Number(level) >= Number(m[1])) out = m[2];
   }
   return out;
+}
+
+/**
+ * Text or a value that changes with level: a whole level table ("1:13, 2:14, 4:15" is 14 at 3rd) or level tables in
+ * braces inside text ("add {1:1d6, 13:2d6, 18:3d6} once per round" reads "add 2d6 once per round" at 13th). Anything
+ * that isn't a string, or has no table, comes back as it is.
+ */
+export function levelText(value, level) {
+  if (typeof value !== "string") return value;
+  const lvl = Number(level) || 1;
+  if (/^\s*\d+\s*:/.test(value) && !value.includes("{")) return byLevelTable(value.trim(), lvl);
+  return value.replace(/\{(\s*\d+\s*:[^{}]*)\}/g, (_, table) => byLevelTable(table.trim(), lvl));
 }
 
 /** Parse "fire, cold" style text into a list of lower-case words. */

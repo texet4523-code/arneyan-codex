@@ -1,6 +1,17 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.47 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.48 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.48
+
+**Class features follow your level** (Kieran: "wild shape's ability doesn't improve when the PC levels up, make sure all abilities like that change based on level"). Numbers that step up in the class Progression Tables now change on the sheet and on the cards when a character levels up, instead of staying at their 1st-level value. Characters already in the world get this with the usual update when the world loads (uses left are kept, up to the new maximum).
+
+- **Uses a day (or week):** Wild Shape (1 a day, 2 from 3rd, 3 from 6th, 4 from 9th, 5 from 15th, 6 from 24th), Grit (2 from 10th, 3 from 20th), Exalt (once a day per Bard level), Exhort Greatness (twice from 15th), Divine Intervention (1 a week from 13th, 2 from 17th, 3 from 22nd).
+- **Monk:** AC from the Monk table while unarmoured, with no Dexterity (13 at 1st up to 19 at 21st); Fast Movement (35ft up to 60ft; lost while over the inventory limit); Unarmed Strike dice from the table (1d4 up to 1d10), with the better of Strength and Dexterity; buttons for the second and third unarmed attacks' damage from 6th and 16th; Iron Body and Iron Mind save bonuses (Iron Mind from 9th); Deflect Missiles a round; Slow Fall distance.
+- **Rogue and Assassin:** Sneak Attack dice (Rogue 1d6 to 4d6, Assassin 1d6 to 7d6), with a damage button; Back Attack multiplier (x2 to x6); the Assassin's Surprise penalty.
+- **Ranger:** Survival Instincts surprise bonus (+2 to +6), trap search bonus and trap damage.
+- **Bard, Barbarian, Paladin:** Exalt bonus (+2 to +5), Fascinate targets (2, 4, 10), Exhort Greatness creatures, Whirlwind Attack opponents (2 to 5), Cure Disease a week, Aura of Courage range, Animate Dead's free uses a day.
+- For homebrew: a rule's value or an activity's text can carry a level table, as a whole value ("1:13, 2:14, 4:15") or in braces inside text ("add {1:1d6, 13:2d6}"), read at the feature's class level.
 
 ## What's new in 0.10.47
 

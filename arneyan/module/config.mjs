@@ -269,11 +269,14 @@ ARNEYAN.ruleKeys = {
     "damage", "damage.melee", "damage.ranged", "spell.damage", "cantrip.damage", "spell.dc", "class.dc", "save", "save.fort", "save.ref", "save.will",
     "check", "check.str", "check.dex", "check.con", "check.int", "check.wis", "check.cha", "skill", "init", "speed", "hp.max", "hp.level", "nwp", "inventory",
     "slots.1", "slots.2", "slots.3", "slots.4", "slots.5", "slots.6", "slots.7", "slots.8", "slots.9",
-    "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly"],
+    "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly",
+    // The Monk's: AC with no Dexterity while unarmoured, and a base speed lost over the inventory limit.
+    "ac.unarmoured", "speed.base"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).
-  "Weapon dice": ["damage.reroll"],
+  // unarmed.dice: dice ("1d8") an Unarmed Strike uses instead of its own when bigger (Monk's Hand-to-Hand Combat).
+  "Weapon dice": ["damage.reroll", "unarmed.dice"],
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration"],
   "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "crit.against.close"],

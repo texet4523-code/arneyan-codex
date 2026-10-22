@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice; see the Rogue Progression Table.",
+    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -57,7 +57,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Back Attack: multiply the weapon's damage dice (x2 at 1st, up to x6 at 20th, see Rogue Progression Table).",
+    "value": "Back Attack: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
     "when": "",
     "label": ""
    }

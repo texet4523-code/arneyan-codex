@@ -186,11 +186,22 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     let dexToAc = dex;
     if (body?.system.category === "medium") dexToAc = Math.min(dex, 2);
     else if (body?.system.category === "heavy") dexToAc = Math.min(dex, 0);
-    const acBase = body ? 10 : Math.max(10, mods.best("ac.base") ?? 10);
+    let acBase = body ? 10 : Math.max(10, mods.best("ac.base") ?? 10);
+    let acBaseLabel = acBase > 10 ? `Base (${mods.numbers.get("ac.base").find(e => e.value === acBase).label})` : "Base";
+    // An AC that is the table value with no Dexterity, while wearing no armour (the Monk's: "Your AC is the table
+    // value; Dexterity does not add"). Another base AC (Mage Armour) still wins when it gives more.
+    const unarmoured = body ? null : mods.best("ac.unarmoured");
+    let dexLabel = `Dex${dexToAc !== dex ? " (capped)" : ""}`;
+    if (unarmoured !== null && (acBase <= 10 || unarmoured > acBase + dexToAc)) {
+      acBaseLabel = `Base (${mods.numbers.get("ac.unarmoured").find(e => e.value === unarmoured).label})`;
+      acBase = unarmoured;
+      dexToAc = 0;
+      dexLabel = "Dex (not added)";
+    }
     const acParts = [
-      { label: acBase > 10 ? `Base (${mods.numbers.get("ac.base").find(e => e.value === acBase).label})` : "Base", value: acBase },
+      { label: acBaseLabel, value: acBase },
       ...(body ? [{ label: body.name, value: body.system.ac + body.system.magic }] : []),
-      { label: `Dex${dexToAc !== dex ? " (capped)" : ""}`, value: dexToAc },
+      { label: dexLabel, value: dexToAc },
       ...shields.map(i => ({ label: i.name, value: i.system.ac + i.system.magic })),
       { label: "Sheet bonus", value: s.attributes.ac.bonus },
       ...mods.parts("ac")
@@ -291,7 +302,11 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     }
 
     // Speed: base + bonuses, then halving or zero, then the inventory penalty (never below 0).
-    const speedParts = [{ label: "Base", value: s.attributes.speed }, ...mods.parts("speed")];
+    // A base speed set by a feature (the Monk's Fast Movement: 35ft at 1st up to 60ft), used when higher; it's lost
+    // while over the inventory limit.
+    const fast = s.inventory.over ? null : mods.best("speed.base");
+    const fastFrom = fast !== null && fast > s.attributes.speed ? mods.numbers.get("speed.base").find(e => e.value === fast).label : "";
+    const speedParts = [{ label: fastFrom ? `Base (${fastFrom})` : "Base", value: fastFrom ? fast : s.attributes.speed }, ...mods.parts("speed")];
     const speedMult = mods.mult("speed.mult");
     const beforePenalty = Math.floor(speedParts.reduce((t, p) => t + p.value, 0) * speedMult);
     if (s.inventory.over) speedParts.push({ label: `Over the inventory limit (${s.inventory.overBy} slots over)`, value: -s.inventory.speedPenalty });
