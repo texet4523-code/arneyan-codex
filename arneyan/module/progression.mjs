@@ -223,7 +223,7 @@ export function luckDue(name, level, { taken = 0, base = 1 } = {}) {
 }
 
 /** A fresh record for a Luck feat new to a character at this level (set before it's saved, item _preCreate). */
-export const newLuckRecord = level => ({ taken: Number(level) || 1, base: 1, units: 0, start: 0, value: 0 });
+export const newLuckRecord = level => ({ taken: Number(level) || 1, base: 1, units: 0, start: 0, value: 0, gains: [] });
 
 /** One Luck sync at a time per character (each reads Luck and writes it back). */
 const luckQueue = new Map();
@@ -237,9 +237,16 @@ const luckQueue = new Map();
  */
 export function syncLuckFeats(actor, { fromLevel = null } = {}) {
   if (actor?.type !== "character" || !actor.isOwner) return Promise.resolve(0);
+  return queueLuck(actor, () => syncLuckNow(actor, fromLevel));
+}
+
+/** Run one Luck change after any already queued for this character; the queue never holds a rejection. */
+function queueLuck(actor, fn) {
   const prev = luckQueue.get(actor.id) ?? Promise.resolve();
-  const run = prev.catch(() => {}).then(() => syncLuckNow(actor, fromLevel));
-  luckQueue.set(actor.id, run.finally(() => { if (luckQueue.get(actor.id) === run) luckQueue.delete(actor.id); }));
+  const run = prev.then(fn);
+  const tail = run.catch(() => {});
+  luckQueue.set(actor.id, tail);
+  tail.then(() => { if (luckQueue.get(actor.id) === tail) luckQueue.delete(actor.id); });
   return run;
 }
 
@@ -252,19 +259,27 @@ async function syncLuckNow(actor, fromLevel) {
   const upd = [], lines = [];
   for (const feat of feats) {
     const old = feat.flags?.[FLAG]?.luck;
-    const rec = old && typeof old === "object" ? { ...old } : { taken: Number(fromLevel ?? level) || 1, base: 0, units: 0, start: 0, value: 0 };
+    const rec = old && typeof old === "object" ? { ...old, gains: [...(old.gains ?? [])] } : { taken: Number(fromLevel ?? level) || 1, base: 0, units: 0, start: 0, value: 0, gains: [] };
     const due = luckDue(feat.name, level, rec);
-    const diff = due - (Number(rec.units) || 0);
-    if (diff > 0) {
-      const s = Math.max(0, Math.min(diff, 20 - start)), v = Math.max(0, Math.min(diff, 20 - value));
-      start += s; value += v; rec.start = (rec.start || 0) + s; rec.value = (rec.value || 0) + v;
-      lines.push(`${feat.name}: +${diff} Luck${v < diff ? " (Current Luck is at 20)" : ""}`);
-    } else if (diff < 0) {
-      const s = Math.min(-diff, rec.start || 0), v = Math.min(-diff, rec.value || 0);
-      start -= s; value -= v; rec.start = (rec.start || 0) - s; rec.value = (rec.value || 0) - v;
-      if (s || v) lines.push(`${feat.name}: −${v} Luck (levels removed)`);
+    // What each +1 actually added ([Starting, Current]: 0 where 20 capped it), so a level down takes off only that.
+    if (!rec.gains.length && (Number(rec.units) || 0) > 0) {
+      // A record from before the per-step list: rebuilt from its totals.
+      rec.gains = Array.from({ length: Number(rec.units) }, (_, i) => [i < (rec.start || 0) ? 1 : 0, i < (rec.value || 0) ? 1 : 0]);
+    }
+    let added = 0, addedV = 0, lost = 0;
+    for (let n = rec.gains.length; n < due; n++) {
+      const g = [start < 20 ? 1 : 0, value < 20 ? 1 : 0];
+      start += g[0]; value += g[1]; rec.gains.push(g); added++; addedV += g[1];
+    }
+    while (rec.gains.length > due) {
+      const [gs, gv] = rec.gains.pop();
+      start -= gs; value -= gv; lost += gv;
     }
     rec.units = due;
+    rec.start = rec.gains.reduce((t, g) => t + g[0], 0);
+    rec.value = rec.gains.reduce((t, g) => t + g[1], 0);
+    if (added) lines.push(`${feat.name}: +${addedV} Luck${addedV < added ? " (Current Luck is at 20)" : ""}`);
+    if (lost) lines.push(`${feat.name}: −${lost} Luck (levels removed)`);
     if (JSON.stringify(rec) !== JSON.stringify(old ?? null)) upd.push({ _id: feat.id, [`flags.${FLAG}.luck`]: rec });
   }
   if (upd.length) await actor.updateEmbeddedDocuments("Item", upd, { arneyanGrant: true, arneyanNoChoice: true });
@@ -278,14 +293,11 @@ async function syncLuckNow(actor, fromLevel) {
 export async function removeLuckFeat(actor, feat) {
   const rec = feat.flags?.[FLAG]?.luck;
   if (actor?.type !== "character" || !actor.isOwner || !rec || !(rec.start > 0 || rec.value > 0)) return;
-  const prev = luckQueue.get(actor.id) ?? Promise.resolve();
-  const run = prev.catch(() => {}).then(async () => {
+  return queueLuck(actor, async () => {
     const value = Math.max(0, (actor.system.luck.value ?? 0) - (rec.value || 0)), start = Math.max(0, (actor.system.luck.start ?? 0) - (rec.start || 0));
     await actor.update({ "system.luck.value": value, "system.luck.start": start });
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(feat.name)} removed: −${rec.value || 0} Luck (now ${value}).</p>` }).catch(() => null);
   });
-  luckQueue.set(actor.id, run);
-  return run;
 }
 
 async function changeClassLevel(actor, cls, target) {
@@ -675,7 +687,10 @@ async function setUpFirstLevel(actor, cls) {
     if (luck) {
       const r = await new Roll("4d6dl").evaluate();
       await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
-      await actor.update({ "system.luck.start": r.total, "system.luck.value": r.total });
+      // A Luck feat added before the roll (Fated Survivor dropped on early) keeps its +1 on top of it.
+      const recs = actor.items.filter(i => i.type === "feat" && LUCK_FEATS[i.name]).map(i => i.flags?.[FLAG]?.luck).filter(Boolean);
+      const plusS = recs.reduce((t, x) => t + (x.start || 0), 0), plusV = recs.reduce((t, x) => t + (x.value || 0), 0);
+      await actor.update({ "system.luck.start": Math.min(20, r.total + plusS), "system.luck.value": Math.min(20, r.total + plusV) });
     }
     // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it), once the lock is released.
     return "gold";

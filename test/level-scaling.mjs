@@ -179,7 +179,14 @@ h.feat.flags.arneyan.luck.units = 2; h.feat.flags.arneyan.luck.start = 2; h.feat
 h.system.level = 10;
 await P.syncLuckFeats(h, { fromLevel: 9 });
 assert.deepEqual([h.system.luck.value, h.system.luck.start], [20, 15]);
-assert.deepEqual(h.feat.flags.arneyan.luck, { taken: 1, base: 1, units: 3, start: 3, value: 1 });
+assert.deepEqual((({ units, start, value }) => ({ units, start, value }))(h.feat.flags.arneyan.luck), { units: 3, start: 3, value: 1 });
+assert.deepEqual(h.feat.flags.arneyan.luck.gains.at(-1), [1, 0], "the 10th-level step added to Starting Luck only");
+// Level down: the capped step took nothing off Current Luck.
+h.system.level = 9;
+await P.syncLuckFeats(h, { fromLevel: 10 });
+assert.deepEqual([h.system.luck.value, h.system.luck.start], [20, 14]);
+h.system.level = 10;
+await P.syncLuckFeats(h, { fromLevel: 9 });
 await P.removeLuckFeat(h, h.feat);
 assert.deepEqual([h.system.luck.value, h.system.luck.start], [19, 12], "removed: −1 Current (all it added), −3 Starting");
 // A feat from before 0.10.48 (no record): nothing now; the next step reached adds 1.

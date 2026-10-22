@@ -1016,7 +1016,7 @@ export class ArneyanItem extends Item {
     // A Luck feat (Fated Survivor) new to this character: a fresh record, so it gives its +1 (a copy dragged from another
     // sheet starts over; one arriving with its actor, or by import or update, keeps what it has).
     if (this.type === "feat" && LUCK_FEATS[this.name] && actor?.type === "character" && !options.arneyanMigration && !options.arneyanImport && !actor.items.has(this.id)) {
-      this.updateSource({ "flags.arneyan.luck": newLuckRecord(actor.system?.level ?? 1) });
+      this.updateSource({ "flags.arneyan.luck": newLuckRecord(this._source.system?.levelTaken || actor.system?.level || 1) });
     }
     if (this.type === "feat" && this.system.abilityChoice?.moved && !options.arneyanMigration && !options.arneyanImport && !actor.items.has(this.id)) this.updateSource({ "system.abilityChoice.moved": "" });
     // Skills: one of each, and only as many as the slots allow; checked for the whole batch in _preCreateOperation.
@@ -1071,10 +1071,13 @@ export class ArneyanItem extends Item {
     // A feat that raises Luck (Fated Survivor), new to the sheet: its +1, once the 1st-level setup (which rolls
     // Starting Luck) is over; during a level change, that change syncs it at the end.
     if (userId === game.user.id && this.type === "feat" && LUCK_FEATS[this.name] && actor instanceof Actor && actor.type === "character"
-      && this.flags?.arneyan?.luck?.units === 0 && !levelChangeRunning(actor)) {
+      && this.flags?.arneyan?.luck?.units === 0) {
+      // The 1st-level setup (it holds the level lock too) first: its Luck roll, then the +1 on top.
       const wait = firstLevelSetupRunning(actor);
-      (wait ? wait.catch(() => {}) : Promise.resolve()).then(() => (actor.items.has(this.id) ? syncLuckFeats(actor) : null))
-        .catch(err => console.warn("Arneyan | Luck feat", err));
+      if (wait || !levelChangeRunning(actor)) {
+        (wait ? wait.catch(() => {}) : Promise.resolve()).then(() => (actor.items.has(this.id) ? syncLuckFeats(actor) : null))
+          .catch(err => console.warn("Arneyan | Luck feat", err));
+      }
     }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {
