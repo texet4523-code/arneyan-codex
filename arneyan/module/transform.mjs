@@ -294,7 +294,7 @@ async function onSocket(msg, senderId) {
           if (!canSee) return;
         }
       }
-      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells, keepEffects: !!o.keepEffects,
+      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells && (!wild || wild.level >= 15), keepEffects: !!o.keepEffects,
         wildShape: !!wild, tempHp: wild?.tempHp ?? 0 };
       if (!form) {
         if (!Object.hasOwn(ARNEYAN.objectForms, String(o.object))) return;
@@ -319,12 +319,13 @@ async function onSocket(msg, senderId) {
 const box = (name, label, checked, hint) =>
   `<label class="arn-check" ${hint ? `data-tooltip="${esc(hint)}"` : ""}><input type="checkbox" name="${name}" ${checked ? "checked" : ""}> ${label}</label>`;
 
-function optionsHtml(d = DEFAULT_OPTIONS) {
+function optionsHtml(d = DEFAULT_OPTIONS, { spellsLocked = "" } = {}) {
   return `<fieldset class="arn-shape-opts"><legend>The creature keeps</legend>
     ${box("keepMind", "Its own mind (Intelligence, Wisdom, Charisma)", d.keepMind, "Every way of changing shape keeps the creature's own mind.")}
     ${box("keepEffects", "Its conditions and effects", d.keepEffects)}
     ${box("keepFeatures", "Its class abilities and feats", d.keepFeatures, "For Wild Shape: Wisdom-based abilities and the like. Tick it and delete what doesn't apply.")}
-    ${box("keepSpells", "Its spells", d.keepSpells, "Only where the form can still cast, such as Wild Shape Casting. Polymorph and Shapechange can't.")}
+    ${spellsLocked ? `<label class="arn-check" data-tooltip="${esc(spellsLocked)}"><input type="checkbox" name="keepSpells" disabled> Its spells <span class="arn-muted">(${esc(spellsLocked)})</span></label>`
+      : box("keepSpells", "Its spells", d.keepSpells, "Only where the form can still cast, such as Wild Shape Casting. Polymorph and Shapechange can't.")}
   </fieldset>`;
 }
 
@@ -461,7 +462,7 @@ export async function bestiaryForms() {
  * The form picker: a searchable grid of creatures (those above `cap` shown but locked), and what the creature keeps.
  * Returns { uuid, opts } or null.
  */
-export async function pickForm({ title, entries, cap = Infinity, lockTip = () => "", defaults = DEFAULT_OPTIONS, note = "", typeFilter = false }) {
+export async function pickForm({ title, entries, cap = Infinity, lockTip = () => "", defaults = DEFAULT_OPTIONS, note = "", typeFilter = false, spellsLocked = "" }) {
   const types = [...new Set(entries.map(e => e.type.split(" (")[0]).filter(Boolean))].sort();
   const tile = e => {
     const locked = e.level > cap;
@@ -476,7 +477,7 @@ export async function pickForm({ title, entries, cap = Infinity, lockTip = () =>
       ${Number.isFinite(cap) ? `<label class="arn-check"><input type="checkbox" class="arn-shape-onlyok"> Only the ones I can take</label>` : ""}</div>
     <div class="arn-shape-grid arn-shape-scroll">${entries.map(tile).join("")}</div>
     <p class="arn-muted arn-shape-count"></p>
-    ${optionsHtml(defaults)}</div>`;
+    ${optionsHtml(defaults, { spellsLocked })}</div>`;
   let picked = null;
   await DialogV2.wait({
     window: { title, icon: "fa-solid fa-paw" }, classes: ["arneyan", "arn-shape-app"], position: { width: 640 }, content,
@@ -544,6 +545,8 @@ export async function wildShape(item) {
     title: `Wild Shape: ${actor.name}`, entries, cap,
     lockTip: e => `Level ${e.levelText}: needs Druid level ${druidLevelFor(e.level)}`,
     defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= 15 },
+    // Casting in a form comes with Wild Shape Casting (15th level), and then only spells with no somatic component.
+    spellsLocked: level >= 15 || game.user.isGM ? "" : "from 15th level: Wild Shape Casting",
     note: `A beast or beast-like monster of Level ${cap} or lower (${deepened ? "your Druid level: Deepened Shape" : "half your Druid level, at least 1"}). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? ` You gain ${2 * level} temporary HP.` : ""}`
   });
   if (!choice) return;

@@ -1,6 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.43 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.44 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.44
+
+Fixes from the first night's play:
+- **Travel mode and the clock.** Each hex the party token moves takes its share of an 8-hour travelling day (on foot at Normal pace, 2 hexes: 4 hours each; an Umbral Journey's 24: 20 minutes each). When the day's hexes are done (or **End the day here**), the party camps and the clock goes on to the next morning (dawn, as set in the calendar's Daylight panel). Undoing a move (Ctrl+Z) winds the clock back by those hexes' time.
+- **The players roll the Encounter Check.** The end-of-day card has **Roll the Encounter Check (d12)** for anyone to press, once per day; on an 11 or 12 the GM gets **Draw from the encounter table**. Nothing is rolled automatically in travel mode any more. The 7-day ration card stays as it was.
+- **Daylight per scene.** Each scene's settings (Environment tab) have **Follow the time of day**: tick it and that scene darkens at night and brightens by day with the game clock; untick it and the scene gets its own darkness back. It's off until ticked, so a scene the old all-scenes daylight darkened gets its own darkness back after the update: tick it again if it should follow. The calendar's Daylight panel keeps the times (dawn, full day, dusk, full night) and how dark the night and day are, and saves them as you change them.
+- **Wild Shape window** in the sheet's colours (no more grey boxes; forms above your cap are greyed and locked). **Its spells** can't be ticked before 15th level (Wild Shape Casting, and then only spells with no somatic component).
 
 ## What's new in 0.10.43
 

@@ -50,10 +50,9 @@
       <label>Speed <select name="clockRate">{{#each clock.rates}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
       <label><input type="checkbox" name="clockCombat" {{checked clock.combatPause}}> Hold during combat</label>
     </div>
-    <details class="arn-cal-daylight" {{#if clock.daylight.on}}open{{/if}}>
-      <summary><i class="fa-solid fa-sun"></i> Daylight on the scene {{#if clock.daylight.on}}<span class="arn-chip strong">On</span>{{/if}}</summary>
-      <p class="hint">The scene being viewed darkens and brightens with the time: dark at night, a gradual dawn up to full day, a gradual dusk down to full night.</p>
-      <label class="arn-cal-dl-on"><input type="checkbox" name="dl-on" {{checked clock.daylight.on}}> Scenes follow the time of day</label>
+    <details class="arn-cal-daylight">
+      <summary><i class="fa-solid fa-sun"></i> Daylight on the scene {{#if clock.scene.follows}}<span class="arn-chip strong">This scene follows</span>{{/if}}</summary>
+      <p class="hint">A scene follows the time of day when <strong>Follow the time of day</strong> is ticked in its settings (Environment tab): dark at night, a gradual dawn up to full day, a gradual dusk down to full night. Set the times and the darkness here; they save as you change them.</p>
       <div class="arn-cal-dl-times">
         <label>Dawn <input type="text" name="dl-dawn" value="{{clock.daylight.dawnText}}" size="5"></label>
         <label>Full day <input type="text" name="dl-day" value="{{clock.daylight.dayText}}" size="5"></label>
@@ -64,9 +63,7 @@
         <label>Darkness at night <input type="range" name="dl-dark" min="0" max="1" step="0.05" value="{{clock.daylight.dark}}"></label>
         <label>By day <input type="range" name="dl-light" min="0" max="1" step="0.05" value="{{clock.daylight.light}}"></label>
       </div>
-      <p><a class="arn-btn" data-action="saveDaylight"><i class="fa-solid fa-floppy-disk"></i> Save daylight</a>
-        <span class="arn-muted">Darkness now: <span class="arn-cal-dark-now">{{clock.daylight.darkNow}}</span></span></p>
-      {{#if clock.scene}}<label><input type="checkbox" name="sceneFollows" {{checked clock.scene.follows}}> {{clock.scene.name}} follows the time of day <span class="arn-muted">(untick for indoors or underground)</span></label>{{/if}}
+      <p class="arn-muted">Darkness now: <span class="arn-cal-dark-now">{{clock.daylight.darkNow}}</span>{{#if clock.scene}} · {{clock.scene.name}} {{#if clock.scene.follows}}follows the time of day{{else}}doesn't follow it (tick it in the scene's settings, Environment){{/if}}{{/if}}</p>
     </details>
     {{/if}}
   </section>

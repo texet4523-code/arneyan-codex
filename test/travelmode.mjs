@@ -71,3 +71,23 @@ assert.ok(tr.includes("game.release?.generation ?? 0) >= 13"));
 assert.ok(wt.includes("lastGripTap"));
 assert.ok(fs.readFileSync(`${root}module/realtime.mjs`, "utf8").includes("viewed !== game.scenes?.active ? [viewed] : []"));
 console.log("OK 0.10.41 fixes");
+// 0.10.44: each hex moves the clock on by its share of an 8-hour travelling day; a day's end goes on to the next dawn;
+// the players roll the Encounter Check from the day's card; scenes choose to follow the time of day.
+assert.equal(T.hexSeconds(2), 4 * 3600); assert.equal(T.hexSeconds(24), 1200); assert.equal(T.hexSeconds(3), 9600);
+assert.equal(T.toDawn(18 * 3600, 360), 12 * 3600, "18:00 to 06:00 next day");
+assert.equal(T.toDawn(3 * 3600, 360), 3 * 3600, "03:00: dawn is today");
+assert.equal(T.toDawn(6 * 3600, 360), 24 * 3600, "at dawn already: the next one");
+assert.ok(tr.includes('class="arn-travel-encounter"') && tr.includes("export async function rollEncounterCheck") && !/async function endDays[\s\S]{0,400}encounterCheck\(t\)/.test(tr));
+const rt = fs.readFileSync(`${root}module/realtime.mjs`, "utf8");
+assert.ok(rt.includes('scene.getFlag?.(SYS, "followDaylight") === true') && rt.includes('Hooks.on("renderSceneConfig"') && rt.includes(`name="flags.\${SYS}.followDaylight"`));
+const RT = await import("../arneyan/module/realtime.mjs");
+assert.equal(RT.sceneFollows({ getFlag: () => undefined, environment: {} }), false, "off unless ticked");
+assert.equal(RT.sceneFollows({ getFlag: () => true, environment: { darknessLock: true } }), false, "a locked darkness never follows");
+assert.equal(RT.sceneFollows({ getFlag: () => true, environment: {} }), true);
+const trf = fs.readFileSync(`${root}module/transform.mjs`, "utf8");
+assert.ok(trf.includes('spellsLocked: level >= 15 || game.user.isGM ? "" : "from 15th level: Wild Shape Casting"') && trf.includes("!!o.keepSpells && (!wild || wild.level >= 15)"));
+console.log("OK 0.10.44 travel clock, encounter roll, scene daylight, Wild Shape spells");
+// Review fixes: the clock loop ends days as travelMove does; the check is rolled in public; drawn once; old darkness restored.
+assert.ok(tr.includes("while (today >= perDay && ended.length)") && tr.includes("rollMode: CONST.DICE_ROLL_MODES.PUBLIC") && tr.includes('"encounterDrawn"') && tr.includes("moveTime(-back * hexSeconds("));
+assert.ok(rt.includes('sc.getFlag(SYS, "darknessBefore") !== undefined && !sceneFollows(sc)'));
+console.log("OK 0.10.44 review fixes");

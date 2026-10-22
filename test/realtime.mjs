@@ -67,8 +67,9 @@ const ctx = {
 };
 const html = hbs(root)("templates/apps/calendar.hbs", ctx);
 for (const s of ['class="arn-cal-clock-time">14:05:09', 'data-action="toggleClock"', "fa-pause", 'data-action="move" data-s="-60"', 'data-action="toPoint" data-minute="360"',
-  'name="clockSet"', '<option value="1" selected>Real time</option>', 'name="clockCombat" checked', 'name="dl-dawn" value="06:00"', 'data-action="saveDaylight"', 'name="sceneFollows" >', "Tariel follows the time of day"])
+  'name="clockSet"', '<option value="1" selected>Real time</option>', 'name="clockCombat" checked', 'name="dl-dawn" value="06:00"', "Tariel doesn't follow it (tick it in the scene's settings, Environment)"])
   assert.ok(html.includes(s), s);
 const player = hbs(root)("templates/apps/calendar.hbs", { ...ctx, gm: false });
 assert.ok(player.includes("14:05:09") && !player.includes("toggleClock") && !player.includes("dl-dawn"), "players see the time, not the controls");
+assert.ok(!html.includes('name="dl-on"') && !html.includes('name="sceneFollows"'), "the scene's own settings decide now");
 console.log("OK real-time clock");

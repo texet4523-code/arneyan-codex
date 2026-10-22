@@ -800,3 +800,10 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-spell-level .arn-fold { cursor: pointer; color: var(--arn-muted); width: 14px; display: inline-flex; justify-content: center; }
 .arneyan .arn-spell-level .arn-spell-level-name[data-action] { cursor: pointer; }
 .arneyan .arn-spell-level.folded > ul.arn-list { display: none; }
+
+/* 0.10.44: the form picker's tiles in the sheet's own colours (not Foundry's grey buttons). */
+.arneyan.arn-shape-app button.arn-shape-tile { background: var(--arn-surface, #fbf6ea); color: var(--arn-ink, #2b2620); border: 1px solid var(--arn-border, #cbbf9f); box-shadow: none; }
+.arneyan.arn-shape-app button.arn-shape-tile:hover:not([disabled]) { border-color: var(--arn-accent, #2f5d3a); background: color-mix(in srgb, var(--arn-accent, #2f5d3a) 10%, var(--arn-surface, #fbf6ea)); }
+.arneyan.arn-shape-app button.arn-shape-tile span { color: var(--arn-ink, #2b2620); font-weight: 600; }
+.arneyan.arn-shape-app button.arn-shape-tile.locked { opacity: .5; filter: grayscale(.6); cursor: not-allowed; }
+.arneyan.arn-shape-app button.arn-shape-tile img { background: transparent; }

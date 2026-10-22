@@ -8,8 +8,8 @@
  * State: party flags.arneyan.travel = { distance, done, method, pace, difficult, water, table, day, log }.
  * Members' hunger: flags.arneyan.hunger = { food, water } (days without).
  */
-import { DAY } from "./worldtime.mjs";
-import { advance } from "./realtime.mjs";
+import { DAY, HOUR } from "./worldtime.mjs";
+import { advance, daylight, secondsTo } from "./realtime.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -23,6 +23,23 @@ const STEP_DOWN = { fast: "normal", normal: "slow", slow: "slow" };
 export const TABLE_NAMES = ["Travel Encounters", "Random Encounters", "Wilderness Encounters", "Encounter Check"];
 
 export const DEFAULT_TRAVEL = { distance: 0, done: 0, method: "foot", pace: "normal", difficult: false, water: true, table: "", day: 0, log: [], mode: false, today: 0, road: 0 };
+
+/**
+ * Travel mode's clock (Kieran, 22 Oct 2026): each hex takes its share of a travelling day of TRAVEL_HOURS hours (on
+ * foot at Normal, 2 hexes: 4 hours each); when the day's hexes are done the party camps, and the clock goes on to the
+ * next morning (dawn, as the calendar's daylight sets it).
+ */
+export const TRAVEL_HOURS = 8;
+export const hexSeconds = perDay => Math.round((TRAVEL_HOURS * HOUR) / Math.max(1, Number(perDay) || 1));
+/** Seconds from a time of day (seconds since midnight) to the next dawn (dawn in minutes after midnight). */
+export function toDawn(secondOfDay, dawnMinute = 360) {
+  const s = secondsTo(secondOfDay, dawnMinute);
+  return s > 0 ? s : s + DAY;
+}
+async function onToMorning() {
+  const { whenOf } = await import("./calendar.mjs");
+  await advance(toDawn(whenOf().secondOfDay, daylight().dawn));
+}
 
 /** Days of travel between ration reckonings (Kieran's Ration Consumption rule: 7 rations a character every 7 days). */
 export const RATION_DAYS = 7;
@@ -304,21 +321,34 @@ export function hexesBetween(scene, from, to) {
   return Math.round(Math.hypot(to.x - from.x, to.y - from.y) / size);
 }
 
-/** End days of travel in travel mode (GM): each rolls its Encounter Check and moves game time on a day. */
+/**
+ * A day of travel ends in travel mode (GM): a card in the chat with a button for the players to roll the day's
+ * Encounter Check (d12) themselves; the GM draws from the encounter table on an 11 or 12.
+ */
 async function endDays(party, t, days, perDay) {
   const pace = effectivePace(t.method, t.pace, t.difficult);
   for (const day of days) {
-    const { check, drew } = await encounterCheck(t);
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }),
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }), flags: { [SYS]: { travelDay: { party: party.id, day } } },
       content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-route"></i> <span>${esc(party.name)}: day ${day} on the road ends</span></header>
-        <p>${perDay} hex${perDay === 1 ? "" : "es"} at ${PACES[pace]} pace (${esc(METHODS[t.method] ?? "")}${t.difficult ? ", difficult terrain" : ""}).${t.distance > 0 ? ` ${Math.min(t.done, t.distance)} of ${t.distance} to the destination.` : ""}</p>
+        <p>${perDay} hex${perDay === 1 ? "" : "es"} at ${PACES[pace]} pace (${esc(METHODS[t.method] ?? "")}${t.difficult ? ", difficult terrain" : ""}).${t.distance > 0 ? ` ${Math.min(t.done, t.distance)} of ${t.distance} to the destination.` : ""} The party camps; the clock goes on to the next morning.</p>
         ${pace === "slow" ? `<p class="arn-muted">Slow pace: the party can move stealthily and forage (Wisdom (Survival), Moderate, DC 12, feeds one person for the day).</p>` : ""}
-        ${pace === "fast" ? `<p class="arn-muted">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>` : ""}</div>` });
-    await ChatMessage.create({ whisper: game.users.filter(u => u.isGM).map(u => u.id), speaker: ChatMessage.getSpeaker({ actor: party }),
-      content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice-d20"></i> <span>Encounter Check, day ${day}</span></header><p>${check}.${drew}</p></div>` });
-    await advance(DAY);
+        ${pace === "fast" ? `<p class="arn-muted">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>` : ""}
+        <div class="arn-card-buttons"><button type="button" class="arn-travel-encounter" data-party="${esc(party.id)}" data-day="${day}"><i class="fa-solid fa-dice-d20"></i> Roll the Encounter Check (d12)</button></div></div>` });
   }
 }
+
+/** Roll a day's Encounter Check (anyone, once per day): 11 a Standard Encounter, 12 a Dangerous one. */
+export async function rollEncounterCheck(party, day) {
+  if (encounterRolled(party.id, day)) return ui.notifications.info(`Day ${day}'s Encounter Check is already rolled.`);
+  const r = await new Roll("1d12").evaluate();
+  const what = encounterFor(r.total);
+  const label = { none: "nothing happens", standard: "a Standard Encounter", dangerous: "a Dangerous Encounter" }[what];
+  // Rolled in the open, whatever the roller's roll mode, so everyone's button knows it's done.
+  return r.toMessage({ speaker: ChatMessage.getSpeaker({ actor: party }), flavor: `Encounter Check, day ${day}: ${label}`,
+    flags: { [SYS]: { encounterRolled: { party: party.id, day, total: r.total, what } } } }, { rollMode: CONST.DICE_ROLL_MODES.PUBLIC });
+}
+/** The day's Encounter Check (the first one rolled, if two players pressed at once). */
+const encounterRolled = (partyId, day) => game.messages?.contents?.find(m => m.flags?.[SYS]?.encounterRolled?.party === partyId && m.flags[SYS].encounterRolled.day === Number(day)) ?? null;
 
 /** The ration reckoning after every 7 days of travel: who has 7 days' rations, who doesn't, and a button to eat them. */
 export async function rationCard(party, members, day) {
@@ -377,6 +407,7 @@ export function endDayHere(party, members) {
     if (reckon) road = 0;
     await party.update({ [`flags.${SYS}.travel`]: { ...t, day, road, today: 0, log: [...(t.log ?? []), `Day ${day}: ${t.today} of ${perDay} hexes, camped early.`].slice(-40) } }, { arneyanTravelMoved: true });
     await endDays(party, { ...t, day }, [day], t.today);
+    await onToMorning();
     if (reckon) await rationCard(party, members, day);
   });
 }
@@ -394,6 +425,9 @@ function onPartyMoved(tokenDoc, hexes, undo = false) {
     if (undo) {
       const back = Math.min(Number(t.today) || 0, hexes);
       if (!back) return;
+      // The hexes' time goes back too (the clock is wound back; nothing that was counting is undone).
+      const { moveTime } = await import("./realtime.mjs");
+      await moveTime(-back * hexSeconds(hexesPerDay(t.method, t.pace, t.difficult)));
       return party.update({ [`flags.${SYS}.travel`]: { ...t, today: t.today - back, done: Math.max(0, (Number(t.done) || 0) - back) } }, { arneyanTravelMoved: true });
     }
     const perDay = hexesPerDay(t.method, t.pace, t.difficult);
@@ -402,7 +436,22 @@ function onPartyMoved(tokenDoc, hexes, undo = false) {
     const pace = PACES[effectivePace(t.method, t.pace, t.difficult)];
     const log = [...(t.log ?? []), ...r.ended.map(d => `Day ${d}: ${perDay} hexes (${pace}).`)].slice(-40);
     await party.update({ [`flags.${SYS}.travel`]: { ...t, today: r.today, day: r.day, road: r.road, done, log } }, { arneyanTravelMoved: true });
-    if (r.ended.length) await endDays(party, { ...t, done }, r.ended, perDay);
+    // The clock: each hex its share of the travelling day; at a day's end, camp and on to the next morning.
+    let today = Number(t.today) || 0, secs = 0;
+    const ended = [...r.ended];
+    for (let k = 0; k < hexes; k++) {
+      secs += hexSeconds(perDay);
+      today++;
+      // As travelMove counts: hexes already over a day's worth (the pace was changed mid-day) end their days too.
+      while (today >= perDay && ended.length) {
+        today -= perDay;
+        if (secs) await advance(secs);
+        secs = 0;
+        await endDays(party, { ...t, done }, [ended.shift()], perDay);
+        await onToMorning();
+      }
+    }
+    if (secs) await advance(secs);
     if (r.rations.length) {
       const { partyMembers } = await import("./party.mjs");
       for (const d of r.rations) await rationCard(party, partyMembers(), d);
@@ -465,6 +514,47 @@ export function registerTravel() {
     }
   });
   // The ration card's button: once only (marked on the message).
+  // The day's Encounter Check: a button for the players; once rolled it says so. The GM draws on an 11 or 12.
+  Hooks.on("renderChatMessageHTML", (message, html) => {
+    const b = html.querySelector?.(".arn-travel-encounter");
+    if (b) {
+      const done = encounterRolled(b.dataset.party, Number(b.dataset.day));
+      if (done) { b.disabled = true; b.innerHTML = `<i class="fa-solid fa-check"></i> Rolled: ${done.flags[SYS].encounterRolled.total}`; }
+      else b.addEventListener("click", async ev => {
+        ev.currentTarget.disabled = true;
+        const party = game.actors.get(b.dataset.party);
+        if (party) await rollEncounterCheck(party, Number(b.dataset.day));
+      });
+    }
+    const rolled = message.flags?.[SYS]?.encounterRolled;
+    // The GM's draw: on the day's first check only, once.
+    const first = rolled ? encounterRolled(rolled.party, rolled.day) : null;
+    if (rolled && rolled.what !== "none" && game.user.isGM && first?.id === message.id && !html.querySelector?.(".arn-travel-draw")) {
+      const draw = document.createElement("button");
+      draw.type = "button"; draw.className = "arn-travel-draw";
+      const drawn = !!message.getFlag?.(SYS, "encounterDrawn");
+      draw.disabled = drawn;
+      draw.innerHTML = drawn ? '<i class="fa-solid fa-check"></i> Drawn' : '<i class="fa-solid fa-table-list"></i> Draw from the encounter table (GM)';
+      draw.addEventListener("click", async () => {
+        if (message.getFlag?.(SYS, "encounterDrawn")) return;
+        const party = game.actors.get(rolled.party);
+        const table = await encounterTable(travelState(party ?? {}).table).catch(() => null);
+        if (!table) return ui.notifications.warn("No encounter table found: build one, or name it on the party's Travel tab.");
+        draw.disabled = true;
+        await message.setFlag(SYS, "encounterDrawn", true);
+        // A table that is itself the d12 check reads the players' roll instead of rolling again.
+        const isCheck = /^1d12$/i.test(String(table.formula ?? "").replace(/\s/g, ""));
+        await table.draw({ displayChat: true, rollMode: "gmroll", ...(isCheck ? { roll: await new Roll(String(rolled.total)).evaluate() } : {}) });
+      });
+      (html.querySelector?.(".message-content") ?? html).append(draw);
+    }
+  });
+  // When the check is rolled, the day's card updates its button.
+  Hooks.on("createChatMessage", message => {
+    const r = message.flags?.[SYS]?.encounterRolled;
+    if (!r) return;
+    for (const m of game.messages.contents.slice(-30)) if (m.flags?.[SYS]?.travelDay?.party === r.party && m.flags[SYS].travelDay.day === r.day) ui.chat?.updateMessage?.(m);
+  });
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const btn = html.querySelector?.(".arn-travel-eat");
     if (!btn) return;

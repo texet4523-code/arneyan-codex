@@ -202,7 +202,11 @@ export async function moveTime(seconds) {
 /* -------------------------------------------- */
 
 /** Does this scene follow the time of day? (A scene can be left out: indoors, underground.) Locked darkness is left be. */
-export const sceneFollows = scene => !!scene && !scene.getFlag?.(SYS, "noDaylight") && !scene.environment?.darknessLock;
+/**
+ * Does a scene follow the time of day? Each scene's own choice (0.10.44, Kieran): "Follow the time of day" in its
+ * settings, Environment tab. Off unless ticked; a scene whose darkness is locked never follows.
+ */
+export const sceneFollows = scene => !!scene && scene.getFlag?.(SYS, "followDaylight") === true && !scene.environment?.darknessLock;
 
 /** The scene's darkness as saved (either Foundry's shape): while it animates, the prepared value lags behind. */
 function sceneDarkness(scene) {
@@ -239,7 +243,7 @@ async function setDaylight({ force = false } = {}) {
   const { minuteOfDay } = await import("./calendar.mjs");
   const target = darknessAt(minuteOfDay(), cfg);
   for (const scene of daylightScenes()) {
-    if (!cfg.on || !sceneFollows(scene)) continue;
+    if (!sceneFollows(scene)) continue;
     const cur = sceneDarkness(scene);
     if (!force && Math.abs(cur - target) < 0.01) continue;
     const upd = { [darknessKey(scene)]: target };
@@ -258,7 +262,7 @@ async function putBack(scene) {
   const was = scene?.getFlag?.(SYS, "darknessBefore");
   if (!scene || was === undefined || !game.user.isGM) return;
   // Still followed (ticked again, or daylight back on, before this turn came): leave it to daylight.
-  if (daylight().on && sceneFollows(scene)) return;
+  if (sceneFollows(scene)) return;
   await scene.update({ [darknessKey(scene)]: Number(was) || 0, [`flags.${SYS}.-=darknessBefore`]: null }, { animateDarkness: 2000 }).catch(err => console.warn("Arneyan | daylight", err));
 }
 
@@ -272,8 +276,7 @@ export function registerRealtime() {
   game.settings.register(SYS, "clockRate", { scope: "world", config: false, type: Number, default: 1, onChange: () => { noteWorldTime(); refresh(); } });
   game.settings.register(SYS, "clockCombatPause", { scope: "world", config: false, type: Boolean, default: true, onChange: refresh });
   game.settings.register(SYS, "daylight", { scope: "world", config: false, type: Object, default: DAYLIGHT_DEFAULT, onChange: async v => {
-    // Turned off: the scenes it had taken over get their own darkness back (the active GM's client does it).
-    if (!cleanDaylight(v).on && isClockKeeper()) for (const sc of game.scenes ?? []) if (sc.getFlag(SYS, "darknessBefore") !== undefined) await restoreDarkness(sc);
+    // New times or darkness: the scenes that follow it take them at once.
     applyDaylight({ force: true });
     refresh();
   } });
@@ -282,14 +285,35 @@ export function registerRealtime() {
   Hooks.on("canvasReady", () => applyDaylight({ force: true }));
   Hooks.on("updateScene", (scene, changes) => {
     if (foundry.utils.hasProperty(changes, "active") && changes.active) applyDaylight({ force: true });
-    if (!foundry.utils.hasProperty(changes, `flags.${SYS}.noDaylight`)) return;
-    if (changes.flags[SYS].noDaylight) { if (isClockKeeper()) restoreDarkness(scene); }
+    if (!foundry.utils.hasProperty(changes, `flags.${SYS}.followDaylight`)) return;
+    if (!changes.flags[SYS].followDaylight) { if (isClockKeeper()) restoreDarkness(scene); }
     else applyDaylight({ force: true });
+  });
+  // The scene's own settings, Environment tab: "Follow the time of day" (GM).
+  Hooks.on("renderSceneConfig", (app, html) => {
+    try {
+      const root = html instanceof HTMLElement ? html : html?.[0] ?? app.element;
+      const scene = app.document ?? app.object;
+      if (!root || !scene || root.querySelector(".arn-follow-daylight")) return;
+      const tab = root.querySelector('.tab[data-tab="environment"]') ?? root.querySelector('.tab[data-tab="ambience"]')
+        ?? root.querySelector('.tab[data-tab="lighting"]') ?? root.querySelector('.tab[data-tab="basics"]');
+      if (!tab) return;
+      const box = document.createElement("fieldset");
+      box.className = "arn-follow-daylight";
+      box.innerHTML = `<legend>Time of day (Arneyan calendar)</legend>
+        <div class="form-group"><label>Follow the time of day</label><div class="form-fields"><input type="checkbox" name="flags.${SYS}.followDaylight" ${scene.getFlag(SYS, "followDaylight") === true ? "checked" : ""}></div>
+        <p class="hint">Darkens at night and brightens by day with the game clock (dawn, full day, dusk and full night are set in the calendar's Daylight panel). Leave it off indoors or underground; unticking it puts the scene's own darkness back. A locked darkness level is never changed.</p></div>`;
+      tab.prepend(box);
+    } catch (err) { console.warn("Arneyan | scene daylight setting", err); }
   });
   // A pause saves the time run so far; unpausing starts counting afresh.
   Hooks.on("pauseGame", paused => { if (paused) flush(); lastTick = performance.now(); noteWorldTime(); refresh(); });
   // A combat starting or ending holds or frees the clock.
   for (const h of ["combatStart", "deleteCombat"]) Hooks.on(h, () => { noteWorldTime(); refresh(); });
   Hooks.on("updateCombat", (c, changes) => { if ("round" in changes || "active" in changes) { noteWorldTime(); refresh(); } });
-  Hooks.once("ready", () => { noteWorldTime(); startTicker(); });
+  Hooks.once("ready", () => {
+    noteWorldTime(); startTicker();
+    // 0.10.44: scenes the old all-scenes daylight had darkened, and not now ticked to follow, get their own darkness back.
+    if (isClockKeeper()) for (const sc of game.scenes ?? []) if (sc.getFlag(SYS, "darknessBefore") !== undefined && !sceneFollows(sc)) restoreDarkness(sc);
+  });
 }

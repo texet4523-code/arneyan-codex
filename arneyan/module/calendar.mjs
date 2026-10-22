@@ -291,7 +291,18 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     const on = (sel, fn) => this.element.querySelector(sel)?.addEventListener("change", ev => fn(ev.currentTarget));
     on('select[name="clockRate"]', el => game.settings.set(SYS, "clockRate", Number(el.value) || 1));
     on('input[name="clockCombat"]', el => game.settings.set(SYS, "clockCombatPause", el.checked));
-    on('input[name="sceneFollows"]', el => ArneyanCalendar.#sceneDaylight(el.checked));
+    // Daylight times and darkness save as they change (nothing to lose on the next redraw).
+    // The field the GM moved on to keeps the focus through the redraw the save brings.
+    for (const n of ["dl-dawn", "dl-day", "dl-dusk", "dl-night", "dl-dark", "dl-light"]) on(`input[name="${n}"]`, () => setTimeout(() => {
+      const next = document.activeElement;
+      this._refocus = next && this.element?.contains(next) ? next.name : null;
+      ArneyanCalendar.#saveDaylight.call(this);
+    }, 0));
+    if (this._refocus) {
+      const f = this.element.querySelector(`[name="${this._refocus}"]`);
+      this._refocus = null;
+      if (f) { f.focus(); f.select?.(); }
+    }
     // The seconds run on the window (and the minute, part of day and the like on the next full redraw).
     clearInterval(this._secTimer);
     this._secTimer = setInterval(() => {
@@ -346,16 +357,8 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     const times = Object.fromEntries(["dawn", "day", "dusk", "night"].map(k => [k, RT.parseHM(val(`dl-${k}`)?.value)]));
     const bad = Object.entries(times).filter(([, v]) => v === null).map(([k]) => k);
     if (bad.length) return ui.notifications.warn(`Type the times as 06:30 (${bad.join(", ")}).`);
-    const cfg = RT.cleanDaylight({ on: !!val("dl-on")?.checked, ...times, dark: Number(val("dl-dark")?.value), light: Number(val("dl-light")?.value) });
+    const cfg = RT.cleanDaylight({ on: true, ...times, dark: Number(val("dl-dark")?.value), light: Number(val("dl-light")?.value) });
     await game.settings.set(SYS, "daylight", cfg);
-  }
-
-  /** GM: whether the scene being viewed follows the time of day. */
-  static async #sceneDaylight(follows) {
-    const scene = globalThis.canvas?.scene;
-    if (!game.user.isGM || !scene) return;
-    await scene.setFlag(SYS, "noDaylight", !follows);
-    ArneyanCalendar.refresh();
   }
 
   static #move(app, dm) {
