@@ -430,7 +430,9 @@ export async function gatherParty(party) {
   const scene = canvas.scene;
   if (!scene) return;
   const ids = new Set(partyMembers().map(a => a.id));
-  const tokens = scene.tokens.filter(t => ids.has(t.actorId));
+  // (A member in another form: its token is the form's, and remembers whose it is.)
+  const whose = t => t.getFlag?.(SYS, "shapeBefore")?.actorId ?? t.actorId;
+  const tokens = scene.tokens.filter(t => ids.has(whose(t)));
   const fighting = game.combats.some(c => c.scene?.id === scene.id && c.combatants.some(cb => ids.has(cb.actorId)));
   if (fighting) {
     const ok = await DialogV2.confirm({ window: { title: "Gather the party?" }, content: "<p>Party members are in a combat on this scene. Gathering removes their tokens and their places in the combat. Carry on?</p>" });
@@ -465,7 +467,7 @@ export async function deployParty(party) {
   const size = scene.grid.size;
   const cx = pt?.x ?? (canvas.stage?.pivot?.x ?? 0);
   const cy = pt?.y ?? (canvas.stage?.pivot?.y ?? 0);
-  const onScene = new Set(scene.tokens.map(t => t.actorId));
+  const onScene = new Set(scene.tokens.map(t => t.getFlag?.(SYS, "shapeBefore")?.actorId ?? t.actorId));
   const members = partyMembers().filter(m => !onScene.has(m.id));
   const ring = [[0, 0], [1, 0], [0, 1], [1, 1], [-1, 0], [0, -1], [-1, -1], [1, -1], [-1, 1], [2, 0], [0, 2], [2, 1], [1, 2], [-2, 0], [0, -2], [2, 2]];
   const data = [];

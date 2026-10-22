@@ -66,7 +66,8 @@ for (const t of ["party-sheet.hbs", "storage-sheet.hbs"]) assert.ok(read(`templa
 // 6. The changed creature's own token can't be moved. (Monsters without scores showed "–" until the books gave them
 // scores in v0.10.5.)
 const tr = read("module/transform.mjs");
-assert.ok(tr.includes("locked: true") && tr.includes("arneyanRevert: true") && tr.includes('Hooks.on("preUpdateToken"'));
+// (0.10.46: the creature's own token turns into the form instead; the lock stays only for tokens changed before.)
+assert.ok(tr.includes("shapeBefore") && tr.includes("arneyanRevert: true") && tr.includes('Hooks.on("preUpdateToken"'));
 assert.ok(!read("module/sheets.mjs").includes("noScores"));
 console.log("OK feedback 0.10.43");
 // Review fixes: drops on a sheet (keepId) are checked; Battle Priests; kit features; each class's own slots.

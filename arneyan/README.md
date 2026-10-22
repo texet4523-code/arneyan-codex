@@ -1,6 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.45 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.46 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.46
+
+- **Changing shape changes the token itself** (Kieran: "I want the original actor to turn into that thing literally, and can be reverted back"). Polymorph, Wild Shape, Change Shape and the rest no longer hide the creature's token and put a second one beside it: its own token becomes the form where it stands (the form's art, size, sight and sheet; the same place in the combat tracker) and turns back on return, wherever the form went. A monster's unlinked token gets its own HP and changes back too. The form uses the GM's art packs where the Bestiary has art for it.
+- **The creature's own sheet** shows a banner while it's out in a form: **Open the form** and **Return to own form**.
+- The form's actor can't be deleted from the sidebar while the creature is out in it (that would strand its token): return to its own form instead.
+- Gathering and deploying the party finds a member who is out in a form.
+- A creature changed on an earlier version (its token hidden and locked) still returns the old way.
 
 ## What's new in 0.10.45
 
@@ -40,7 +48,7 @@ Fixes from the first night's play:
 - **No spells or features above your level.** A player can't add a spell above the highest level they have slots for, or a class feature above their level in that class (or from a class they don't have). The GM can add anything; levelling up and kits add theirs as before.
 - **Fold spell levels.** Click a spell level's name (or its arrow) to fold its spells away; the sheet remembers it in your browser.
 - **No more jumping.** Opening a spell (or anything) on a sheet no longer scrolls the sheet up.
-- **Changing shape:** the creature's own token, hidden while it's a form, is locked: move the form instead, and the creature comes back where the form stands.
+- **Changing shape:** the creature's own token, hidden while it's a form, is locked: move the form instead, and the creature comes back where the form stands. (From 0.10.46 the token itself turns into the form.)
 - **Undo** on an area spell's damage undoes everyone it hit: Apply by saves makes one card for those who failed and one for those who saved (and the GM's for monsters), and Undo on any of them now puts them all back.
 - **Animate Objects summons** its objects: **Animated Object** and **Animated Object, Large** (20 HP, AC 14, speed 30ft, a slam that hits automatically for 1d8 or 2d8), made from the spell's own numbers. Up to one per two caster levels; a Large one counts as two.
 - **Monsters without ability scores** (Monsters & Treasure gives none yet) show "–" instead of 10 and +0. Their saves are the book's.
@@ -491,10 +499,10 @@ Each compendium window has a button that opens the same list in the **Arneyan Br
 ## Changing shape
 Polymorph, Wild Shape, Shapechange, Animal Shapes and Polymorph Any Object, following Changing Shape in Spellcasting in Arneyan.
 - **Drag a creature onto a sheet** (from the Actors sidebar, a compendium or the Bestiary). A box asks what the creature keeps: its own mind (always, by the rules), its conditions and effects, and, for Wild Shape, its class abilities and feats and any spells it can still cast.
-- It takes the form's **whole stat block**: HP, AC, attacks, saves and movement. The changed creature is a new actor named "Ilsa (Wolf)" in a **Transformed** folder, owned by the same players. Its token takes the original's place on every scene, in combat too, and the original token is hidden.
+- It takes the form's **whole stat block**: HP, AC, attacks, saves and movement. The form's stat block is an actor named "Ilsa (Wolf)" in a **Transformed** folder, owned by the same players, and the creature's **own token turns into it** where it stands, on every scene: the form's art, size and sight, the same place in the combat tracker. Nothing is hidden or left behind. On return the token turns back (its art, size, sight and, for a monster's unlinked token, its own HP and changes), where the form stood. The creature's own sheet shows a banner while it's out in a form, with **Open the form** and **Return to own form**.
 - **At 0 HP** it returns to its own form automatically, with the HP it had when it changed; damage beyond 0 doesn't carry over. Or press **Return to own form** on the banner on its sheet.
 - The **paw button** on a sheet offers quick harmless forms from Monsters & Treasure (toad, rat, moth and so on) and **objects** (a teapot, a chair, a statue...). An object keeps the creature's own stats but is helpless (Paralysed, speed 0, no spells) until it returns.
-- Players can change their own characters when the GM is online. Players can't see the Monsters & Treasure compendium, so for Wild Shape the GM drags the form on, or imports a few beasts to the Actors sidebar and shares them.
+- Players can change their own characters when the GM is online. For Wild Shape they pick from the built-in list of beasts, even when the Bestiary is hidden from them.
 
 ## Spell areas
 - A spell with an area (96 of them: Fireball, Burning Hands, Lightning Bolt, Web, Cloudkill...) has a **Place area** button on its card, from a slot, a scroll, a wand or a staff.

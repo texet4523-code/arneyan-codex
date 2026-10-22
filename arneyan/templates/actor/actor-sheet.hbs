@@ -128,7 +128,7 @@
       <div class="arn-head-top">
         {{#if editMode}}<input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Name">{{else}}<h1 class="arn-name">{{actor.name}}</h1>{{/if}}
         {{#if fromBestiary}}<a class="arn-shape-btn" data-action="refreshMonster" data-tooltip="Update from the Bestiary (after a system update)"><i class="fa-solid fa-rotate"></i></a>{{/if}}
-        {{#if editable}}{{#unless transformed}}<a class="arn-shape-btn" data-action="changeShape" data-tooltip="Change shape: a harmless creature or an object (or drag any creature onto this sheet)"><i class="fa-solid fa-paw"></i></a>{{/unless}}{{/if}}
+        {{#if editable}}{{#unless transformed}}{{#unless shapeOut}}<a class="arn-shape-btn" data-action="changeShape" data-tooltip="Change shape: a harmless creature or an object (or drag any creature onto this sheet)"><i class="fa-solid fa-paw"></i></a>{{/unless}}{{/unless}}{{/if}}
         {{#if editMode}}{{#if isGM}}{{#unless transformed}}<a class="arn-shape-btn" data-action="importSheet" data-tooltip="Import: fill this sheet from an import block a chat wrote (replaces what's on it)"><i class="fa-solid fa-file-import"></i></a>{{/unless}}{{/if}}{{/if}}
         {{#if editable}}<a class="arn-edit-toggle {{#if editMode}}on{{/if}}" data-action="toggleEdit" data-tooltip="{{#if editMode}}Back to play mode{{else}}Edit mode: change scores, max HP and details{{/if}}"><i class="fa-solid fa-{{#if editMode}}lock-open{{else}}lock{{/if}}"></i> {{#if editMode}}Editing{{else}}Edit{{/if}}</a>{{/if}}
       </div>
@@ -172,6 +172,7 @@
         {{/if}}
       </div>
       {{/if}}
+      {{#if shapeOut}}<div class="arn-shape-banner"><i class="fa-solid fa-paw"></i> <span><strong>{{actor.name}}</strong> is out in another form (<strong>{{shapeOut.name}}</strong>): its token is the form until it returns. This sheet is its own form, unchanged.</span><a class="arn-btn small" data-action="openShape" data-actor-id="{{shapeOut.id}}"><i class="fa-solid fa-up-right-from-square"></i> Open the form</a>{{#if editable}}<a class="arn-btn small" data-action="revertShapeOut" data-actor-id="{{shapeOut.id}}"><i class="fa-solid fa-rotate-left"></i> Return to own form</a>{{/if}}</div>{{/if}}
       {{#if transformed}}<div class="arn-shape-banner"><i class="fa-solid fa-paw"></i> <span><strong>{{transformed.originalName}}</strong> in the form of <strong>{{transformed.formName}}</strong>. At 0 HP it returns to its own form.</span>{{#if editable}}<a class="arn-btn small" data-action="revertShape"><i class="fa-solid fa-rotate-left"></i> Return to own form</a>{{/if}}</div>{{/if}}
       {{#if noAct}}<div class="arn-warnline"><i class="fa-solid fa-ban"></i> Cannot take actions ({{noAct}})</div>{{/if}}
     </header>

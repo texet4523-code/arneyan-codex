@@ -4,10 +4,12 @@
  * own mind. When the form drops to 0 HP it returns to its own form with the HP it had when it changed; damage
  * beyond 0 does not carry over. Polymorph Any Object can also turn a creature into an object, helpless.
  *
- * How it works here: drop a creature onto a sheet (or use the sheet's Change Shape button). The changed creature
- * is a new actor, "Ilsa (Wolf)", in the Transformed folder. On every scene its token stands where the original's
- * was, and the original token is hidden. Returning to its own form deletes the new actor and brings the original
- * token back where the form stood. The original is never altered, so its HP is what it had when it changed.
+ * How it works here (0.10.46, Kieran: "I want the original actor to turn into that thing literally, and can be
+ * reverted back"): drop a creature onto a sheet (or use the sheet's Change Shape button). The form's stat block is an
+ * actor of its own, "Ilsa (Wolf)", in the Transformed folder, and the creature's own token on every scene turns into
+ * it where it stands: the same token, now the form's art, size and sheet (its place in the combat tracker stays).
+ * Returning to its own form turns the token back, with the creature's own art, size and sheet. The creature's own
+ * sheet is never altered, so its HP is what it had when it changed.
  */
 import { ARNEYAN } from "./config.mjs";
 import { WILD_FORMS } from "./wild-forms.mjs";
@@ -146,27 +148,76 @@ export function isChanged(actor) {
   return game.actors.some(a => a.getFlag(SYS, "transform")?.originalUuid === actor.uuid);
 }
 
+/** What a token looked like and stood for before it changed, to put back on return. */
+export function tokenBefore(t) {
+  const o = t.toObject();
+  return {
+    actorId: o.actorId, actorLink: !!o.actorLink, name: o.name, texture: o.texture ?? {}, width: o.width, height: o.height,
+    // (Not the detection modes: the system works those out from the creature's senses, on both versions.)
+    sight: o.sight ?? {}, ring: o.ring ?? null,
+    // An unlinked token's own changes (its HP and so on): Foundry keeps them, but they're put back explicitly too.
+    delta: o.actorLink ? null : (o.delta ?? null)
+  };
+}
+
+/** The token update that turns a token into the form. */
+export function tokenToForm(formProto, changedId) {
+  const p = formProto ?? {};
+  return {
+    actorId: changedId, actorLink: true,
+    texture: { ...(p.texture ?? {}) }, width: p.width ?? 1, height: p.height ?? 1,
+    sight: { ...(p.sight ?? {}) }, ...(p.ring ? { ring: foundry.utils.deepClone(p.ring) } : {})
+  };
+}
+
+/** The token update that turns it back. */
+export function tokenFromForm(before) {
+  const b = before ?? {};
+  return {
+    actorId: b.actorId, actorLink: !!b.actorLink, name: b.name, texture: b.texture ?? {}, width: b.width ?? 1, height: b.height ?? 1,
+    sight: b.sight ?? {}, ...(b.ring ? { ring: b.ring } : {}),
+    ...(!b.actorLink && b.delta ? { delta: b.delta } : {})
+  };
+}
+
+async function setCombatantActor(scene, tokenId, actorId) {
+  for (const combat of game.combats) {
+    for (const c of combat.combatants) {
+      if (c.sceneId === scene.id && c.tokenId === tokenId && c.actorId !== actorId) await c.update({ actorId }).catch(err => console.warn("Arneyan | combatant", err));
+    }
+  }
+}
+
 /** Change a creature into a form (or an object). Runs on the GM's client. */
 export async function doTransform(original, form, opts = {}) {
   if (!original || original.pack || !["character", "npc"].includes(original.type)) throw new Error("Only a creature in the world can change shape.");
   if (form && !["character", "npc"].includes(form.type)) throw new Error("Only creatures can be a form.");
   if (isChanged(original)) throw new Error(`${original.name} has already changed shape. Return to its own form first.`);
+  // Wild Shape's use is spent first, on the creature's own sheet (an unlinked token's own changes are kept from here
+  // and put back on return, so a use spent after the change would come back).
+  if (opts.wildShape) await spendWildShape(original);
+  const tokens = tokensOf(original);
   const data = formData(original, form, opts);
   data.flags[SYS].transform.baseActorId = original.isToken ? original.token?.actorId : original.id;
+  // The form's art from the GM's art packs, where the Bestiary has some for it (the picker shows the same).
+  if (form) {
+    try {
+      const { artFor, plainArt } = await import("./art.mjs");
+      const a = artFor(form.name);
+      if (a && plainArt(data.img)) data.img = a.portrait ?? a.token;
+      if (a && plainArt(data.prototypeToken?.texture?.src)) foundry.utils.setProperty(data, "prototypeToken.texture.src", a.token ?? a.portrait);
+    } catch (err) { console.warn("Arneyan | form art", err); }
+  }
   const folder = await transformFolder();
   data.folder = folder?.id ?? null;
   const changed = await Actor.create(data, { arneyanGrant: true, arneyanTransform: true });
+  const proto = changed.prototypeToken?.toObject?.() ?? data.prototypeToken;
   let placed = 0;
-  for (const t of tokensOf(original)) {
+  // The creature's own token turns into the form, where it stands.
+  for (const t of tokens) {
     const scene = t.parent;
-    const doc = await changed.getTokenDocument({
-      x: t.x, y: t.y, elevation: t.elevation, hidden: t.hidden, disposition: t.disposition, name: t.name,
-      flags: { [SYS]: { standsInFor: t.id } }
-    }, { parent: scene });
-    const [made] = await scene.createEmbeddedDocuments("Token", [doc.toObject()]);
-    // The creature's own token waits, hidden and locked, where it stood (it can't be moved while it's changed).
-    await t.update({ hidden: true, locked: true, [`flags.${SYS}.wasHidden`]: t.hidden, [`flags.${SYS}.wasLocked`]: !!t.locked, [`flags.${SYS}.changedTo`]: made.id });
-    await swapCombatants(scene, t.id, made);
+    await t.update({ ...tokenToForm(proto, changed.id), [`flags.${SYS}.shapeBefore`]: tokenBefore(t) }, { arneyanTransform: true, animate: false });
+    await setCombatantActor(scene, t.id, changed.id);
     placed++;
   }
   const what = form ? `a ${esc(form.name)}` : esc(ARNEYAN.objectForms[opts.object].label);
@@ -181,12 +232,21 @@ export async function doTransform(original, form, opts = {}) {
 export async function doRevert(changed, { dropped = false } = {}) {
   const info = changed.getFlag(SYS, "transform");
   if (!info) return;
-  const original = await fromUuid(info.originalUuid).catch(() => null);
+  // (An unlinked token's creature: while its token is the form, its uuid finds the form, so that doesn't count.)
+  let original = await fromUuid(info.originalUuid).catch(() => null);
+  if (original?.id === changed.id) original = null;
   const base = game.actors.get(info.baseActorId);
   const belongs = t => original?.isToken ? t.id === original.token?.id : (t.actorLink && t.actorId === info.baseActorId);
   for (const scene of game.scenes) {
-    const forms = scene.tokens.filter(t => t.actorId === changed.id);
-    // Hidden originals: the ones these forms stand in for, plus any whose form token was deleted by hand.
+    // The creature's own tokens, now the form: turned back where they stand.
+    const turned = scene.tokens.filter(t => t.actorId === changed.id && t.getFlag(SYS, "shapeBefore"));
+    for (const t of turned) {
+      const before = t.getFlag(SYS, "shapeBefore");
+      await t.update({ ...tokenFromForm(before), [`flags.${SYS}.-=shapeBefore`]: null }, { arneyanRevert: true, animate: false });
+      await setCombatantActor(scene, t.id, before.actorId);
+    }
+    // Before 0.10.46 the creature's token waited hidden while a separate form token stood in for it.
+    const forms = scene.tokens.filter(t => t.actorId === changed.id && !t.getFlag(SYS, "shapeBefore"));
     const origs = scene.tokens.filter(t => {
       const to = t.getFlag(SYS, "changedTo");
       return to && (forms.some(f => f.id === to) || (!scene.tokens.has(to) && belongs(t)));
@@ -195,15 +255,17 @@ export async function doRevert(changed, { dropped = false } = {}) {
     for (const orig of origs) {
       const f = forms.find(x => x.id === orig.getFlag(SYS, "changedTo"));
       if (f) used.add(f.id);
-      // Move it while it's still hidden (no slide across the map), then show it.
       if (f) await orig.update({ x: f.x, y: f.y, elevation: f.elevation }, { animate: false, arneyanRevert: true });
       await orig.update({ hidden: !!orig.getFlag(SYS, "wasHidden"), locked: !!orig.getFlag(SYS, "wasLocked"), [`flags.${SYS}.wasHidden`]: null, [`flags.${SYS}.wasLocked`]: null, [`flags.${SYS}.changedTo`]: null }, { arneyanRevert: true });
       if (f) await swapCombatants(scene, f.id, orig);
     }
-    // A form whose original token is gone: put the creature back on the map where the form stood.
+    // A form token placed by hand (dragged out of the Transformed folder): the creature comes back where it stood,
+    // unless it's already on this scene (its own token, just turned back) or was a placed monster (its token is its own).
+    const unlinked = /\.Token\./.test(String(info.originalUuid ?? ""));
+    const here = turned.length > 0 || used.size > 0 || scene.tokens.some(t => t.actorLink && t.actorId === info.baseActorId);
     for (const f of forms.filter(x => !used.has(x.id))) {
       const who = original && !original.isToken ? original : base;
-      if (!who) continue;
+      if (!who || unlinked || here) continue;
       const doc = await who.getTokenDocument({ x: f.x, y: f.y, elevation: f.elevation, hidden: f.hidden }, { parent: scene });
       const [made] = await scene.createEmbeddedDocuments("Token", [doc.toObject()]);
       await swapCombatants(scene, f.id, made);
@@ -211,17 +273,18 @@ export async function doRevert(changed, { dropped = false } = {}) {
     if (forms.length) await scene.deleteEmbeddedDocuments("Token", forms.map(t => t.id));
   }
   // An object keeps the creature's own stats, so what happened to them stays.
-  if (info.object && original) {
+  const back = await fromUuid(info.originalUuid).catch(() => null) ?? original;
+  if (info.object && back) {
     const hp = changed.system.attributes?.hp ?? {};
-    const before = original.system.attributes?.hp?.value ?? 0;
-    await original.update({ "system.attributes.hp.value": hp.value ?? before, "system.attributes.hp.temp": hp.temp ?? 0 });
+    const before = back.system.attributes?.hp?.value ?? 0;
+    await back.update({ "system.attributes.hp.value": hp.value ?? before, "system.attributes.hp.temp": hp.temp ?? 0 });
   }
   await ChatMessage.create({
-    speaker: original ? ChatMessage.getSpeaker({ actor: original }) : ChatMessage.getSpeaker(),
-    content: `<div class="arn-card"><p>${esc(info.originalName)} returns to its own form${dropped && !info.object ? ` as the ${esc(info.formName)} form drops` : ""}${original ? `, with ${original.system.attributes?.hp?.value ?? "?"} HP` : ""}.</p></div>`
+    speaker: back ? ChatMessage.getSpeaker({ actor: back }) : ChatMessage.getSpeaker(),
+    content: `<div class="arn-card"><p>${esc(info.originalName)} returns to its own form${dropped && !info.object ? ` as the ${esc(info.formName)} form drops` : ""}${back ? `, with ${back.system.attributes?.hp?.value ?? "?"} HP` : ""}.</p></div>`
   });
   await changed.delete({ arneyanForce: true, arneyanGrant: true });
-  return original;
+  return back;
 }
 
 /* -------------------------------------------- */
@@ -301,7 +364,6 @@ async function onSocket(msg, senderId) {
         opts.object = o.object;
       }
       await doTransform(original, form, opts);
-      if (wild) await spendWildShape(original);
     } else if (msg.action === "revert") {
       const changed = await fromUuid(String(msg.actorUuid)).catch(() => null);
       if (!(changed instanceof Actor) || !changed.getFlag(SYS, "transform") || !changed.testUserPermission(sender, "OWNER")) return;
@@ -561,7 +623,6 @@ export async function wildShape(item) {
     const form = await fromUuid(choice.uuid);
     if (!form) return ui.notifications.warn(`${picked.name} isn't in the Bestiary any more.`);
     await transformInto(actor, form, opts);
-    if (isChanged(actor)) await spendWildShape(actor);
     return;
   }
   // A player: the GM's client finds the form and checks it is within the cap.
@@ -572,7 +633,7 @@ export async function wildShape(item) {
 }
 
 export function registerTransform() {
-  // A creature that has changed shape stays put: its own token doesn't move until it returns (the form moves instead).
+  // Before 0.10.46: a creature's own token waited hidden and locked while a separate form token moved.
   Hooks.on("preUpdateToken", (tok, changes, options) => {
     if (options?.arneyanRevert || !tok.getFlag?.(SYS, "changedTo") || !tok.parent?.tokens?.has(tok.getFlag(SYS, "changedTo"))) return;
     if ("x" in changes || "y" in changes || "elevation" in changes) {
@@ -581,6 +642,20 @@ export function registerTransform() {
     }
   });
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
+  // The creature's own sheet, open anywhere, drops its "in another form" banner once the form is gone.
+  Hooks.on("deleteActor", actor => {
+    const info = actor.flags?.[SYS]?.transform;
+    if (!info) return;
+    for (const app of foundry.applications.instances?.values?.() ?? []) {
+      if (app.document?.uuid === info.originalUuid || app.document?.id === info.baseActorId) app.render?.();
+    }
+  });
+  // A form's actor deleted by hand would leave the creature's own token pointing at nothing: return first.
+  Hooks.on("preDeleteActor", (actor, options) => {
+    if (options?.arneyanForce || !actor.getFlag?.(SYS, "transform")) return;
+    ui.notifications?.warn(`${actor.name} is a creature in another form: use Return to own form (its sheet's banner) instead of deleting it.`);
+    return false;
+  });
   // Wild Shape's hour runs out (its effect ends): the druid returns to its own form.
   Hooks.on("deleteActiveEffect", (effect, options, userId) => {
     if (userId !== game.user.id || !effect.flags?.[SYS]?.wildShape) return;

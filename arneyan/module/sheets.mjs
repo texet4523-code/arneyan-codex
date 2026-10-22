@@ -170,6 +170,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       importSheet: ArneyanActorSheet.#importSheet,
       lastChance: ArneyanActorSheet.#lastChance,
       revertShape: ArneyanActorSheet.#revertShape,
+      openShape: ArneyanActorSheet.#openShape,
+      revertShapeOut: ArneyanActorSheet.#revertShapeOut,
       ...combatSheetActions,
       ...WORLD_SHEET_ACTIONS
     }
@@ -443,6 +445,12 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       isGM: game.user.isGM,
       fromBestiary: game.user.isGM && !!bestiarySource(actor) && !actor.isToken,
       transformed: actor.getFlag?.("arneyan", "transform") ?? null,
+      // This creature is out in another form: its token is the form's until it returns.
+      shapeOut: (() => {
+        const f = game.actors?.find?.(a => a?.flags?.arneyan?.transform?.originalUuid === actor.uuid);
+        const t = f?.flags?.arneyan?.transform;
+        return t && actor.uuid && t.originalUuid === actor.uuid ? { id: f.id, name: t.formName } : null;
+      })(),
       levelTexts: { "": "None", "¼": "¼", "½": "½", "Mythic": "Mythic" },
       noCast: system.noCast ? mods.sources("no.cast").join(", ") : "",
       noAct: system.noAct ? mods.sources("no.act").join(", ") : "",
@@ -592,6 +600,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
   static #lastChance(event) { return this.document.lastChance(event); }
   static #revertShape() { return revertTransform(this.document); }
+  static #openShape(event, target) { game.actors.get(target.dataset.actorId)?.sheet?.render(true); }
+  static #revertShapeOut(event, target) {
+    const f = game.actors.get(target.dataset.actorId);
+    if (f) return revertTransform(f);
+  }
 
   /** Gear dragged from another sheet you own (the party stash, a friend) moves rather than copies. */
   async _onDropItem(event, item) {
