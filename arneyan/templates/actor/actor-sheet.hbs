@@ -127,6 +127,7 @@
     <header class="arn-head">
       <div class="arn-head-top">
         {{#if editMode}}<input class="arn-name" type="text" name="name" value="{{actor.name}}" placeholder="Name">{{else}}<h1 class="arn-name">{{actor.name}}</h1>{{/if}}
+        {{#if isGM}}{{#if isNpc}}{{#if editable}}<a class="arn-shape-btn" data-action="randomArt" data-tooltip="Random art: another picture of this monster from your art packs ({{#if actor.isToken}}this token only{{else}}the token it places{{/if}})"><i class="fa-solid fa-dice"></i></a>{{/if}}{{/if}}{{/if}}
         {{#if fromBestiary}}<a class="arn-shape-btn" data-action="refreshMonster" data-tooltip="Update from the Bestiary (after a system update)"><i class="fa-solid fa-rotate"></i></a>{{/if}}
         {{#if editable}}{{#unless transformed}}{{#unless shapeOut}}<a class="arn-shape-btn" data-action="changeShape" data-tooltip="Change shape: a harmless creature or an object (or drag any creature onto this sheet)"><i class="fa-solid fa-paw"></i></a>{{/unless}}{{/unless}}{{/if}}
         {{#if editMode}}{{#if isGM}}{{#unless transformed}}<a class="arn-shape-btn" data-action="importSheet" data-tooltip="Import: fill this sheet from an import block a chat wrote (replaces what's on it)"><i class="fa-solid fa-file-import"></i></a>{{/unless}}{{/if}}{{/if}}
@@ -196,7 +197,7 @@
         {{#if isGM}}<a class="arn-luck-deed" data-action="luckDeed" data-tooltip="+1 Luck for a deed true to their Alignment (GM, once a session, never above 20)"><i class="fa-solid fa-plus"></i></a>{{/if}}
       </div>
       {{/if}}
-      {{#if isCharacter}}{{#if editMode}}<a class="arn-scores-link" data-action="abilityScores" data-tooltip="Roll Method V or type in a set, then assign the six scores"><i class="fa-solid fa-dice"></i></a>{{/if}}{{/if}}
+      {{#if isCharacter}}{{#if editMode}}<a class="arn-scores-link" data-action="abilityScores" data-tooltip="Roll Method V or type in a set, then assign the six scores"><i class="fa-solid fa-dice"></i></a>{{/if}}{{/if}}{{/if}}
     </section>
 
     <nav class="arn-tabs">

@@ -170,6 +170,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       importSheet: ArneyanActorSheet.#importSheet,
       lastChance: ArneyanActorSheet.#lastChance,
       revertShape: ArneyanActorSheet.#revertShape,
+      randomArt: ArneyanActorSheet.#randomArt,
       openShape: ArneyanActorSheet.#openShape,
       revertShapeOut: ArneyanActorSheet.#revertShapeOut,
       ...combatSheetActions,
@@ -600,6 +601,10 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
   static #lastChance(event) { return this.document.lastChance(event); }
   static #revertShape() { return revertTransform(this.document); }
+  static async #randomArt() {
+    const { randomArt } = await import("./art.mjs");
+    if (await randomArt(this.document)) this.render();
+  }
   static #openShape(event, target) { game.actors.get(target.dataset.actorId)?.sheet?.render(true); }
   static #revertShapeOut(event, target) {
     const f = game.actors.get(target.dataset.actorId);

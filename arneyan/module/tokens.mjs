@@ -212,7 +212,78 @@ function schedule(actor) {
   }, 150));
 }
 
+/* -------------------------------------------- */
+/*  Numbered duplicates                         */
+/* -------------------------------------------- */
+
+const NUMBERED = /^(.*\S)\s+\((\d+)\)$/;
+/** A token's name without its number: "Goblin (2)" is a Goblin. */
+export const baseName = name => { const m = String(name ?? "").match(NUMBERED); return m ? m[1] : String(name ?? ""); };
+const numberOf = name => Number(String(name ?? "").match(NUMBERED)?.[2]) || 0;
+
+/**
+ * Names for monsters of the same kind on one scene (Kieran, 22 Oct 2026: "multiple of the same enemies can be called
+ * Goblin (1) for dupes to help me keep track better in combat"). `tokens`: [{ id, name, base, order }] for one scene's
+ * unlinked monster tokens, where `base` is the name its actor gives its tokens. A token whose name is its base (or its
+ * base with a number) is counted; one the GM renamed is left alone. A kind with two or more gets numbers: those already
+ * numbered keep theirs, the rest take the next free numbers in the order they were placed (`order`, then `idx`, the
+ * scene's order). Returns [{ id, name }] to change.
+ */
+export function duplicateNames(tokens) {
+  const groups = new Map();
+  for (const t of tokens) {
+    const base = String(t.base ?? "").trim();
+    if (!base || baseName(t.name) !== base) continue;
+    if (!groups.has(base)) groups.set(base, []);
+    groups.get(base).push(t);
+  }
+  const out = [];
+  for (const [base, list] of groups) {
+    if (list.length < 2) continue;
+    // The first token (in placing order) with a number keeps it; a second with the same number (a copied token) and
+    // those without one take the next free numbers.
+    const sorted = [...list].sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || (a.idx ?? 0) - (b.idx ?? 0));
+    const kept = new Set();
+    for (const t of sorted) { const n = numberOf(t.name); if (n && !kept.has(n)) { kept.add(n); t._keep = true; } }
+    const used = new Set(kept);
+    let next = 1;
+    for (const t of sorted) {
+      if (t._keep) continue;
+      while (used.has(next)) next++;
+      used.add(next);
+      const name = `${base} (${next})`;
+      if (name !== t.name) out.push({ id: t.id, name });
+    }
+  }
+  return out;
+}
+
+const numbering = new Map();
+/** Number a scene's duplicate monsters (the active GM's client, a moment after tokens arrive). */
+function scheduleNumbering(scene) {
+  if (!scene || !game.users.activeGM?.isSelf) return;
+  let on = true;
+  try { on = game.settings.get(SYS, "numberDuplicates"); } catch { /* default */ }
+  if (!on) return;
+  clearTimeout(numbering.get(scene.id));
+  numbering.set(scene.id, setTimeout(async () => {
+    numbering.delete(scene.id);
+    // (In the order they were placed: tokens have no creation time, but the scene keeps them in that order.)
+    const list = scene.tokens.contents.map((t, i) => ({ t, i })).filter(({ t }) => !t.actorLink && t.actor?.type === "npc").map(({ t, i }) => ({
+      id: t.id, name: t.name, order: t._stats?.createdTime ?? Number.MAX_SAFE_INTEGER, idx: i,
+      base: baseName(game.actors.get(t.actorId)?.prototypeToken?.name || t.actor?.name || "")
+    }));
+    const upd = duplicateNames(list).map(({ id, name }) => ({ _id: id, name }));
+    if (upd.length) await scene.updateEmbeddedDocuments("Token", upd).catch(err => console.warn("Arneyan | numbering", err));
+  }, 300));
+}
+
 export function registerTokens() {
+  game.settings.register(SYS, "numberDuplicates", {
+    name: "Number duplicate monsters", hint: "When a scene has two or more of the same monster, their tokens are named Goblin (1), Goblin (2) and so on, in the order they were placed. A token you rename yourself is left alone.",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+  Hooks.on("createToken", token => scheduleNumbering(token.parent));
   game.settings.register(SYS, "autoVision", {
     name: "Token vision follows senses", hint: "Tokens see in the dark as far as the creature's Darkvision (or Truesight), and get Low-Light Vision, Blindsight, Tremorsense and Truesight from its senses. The party token sees as far as its best-sighted member. Turn this off to set every token's vision by hand.",
     scope: "world", config: true, type: Boolean, default: true, onChange: () => schedule("all")

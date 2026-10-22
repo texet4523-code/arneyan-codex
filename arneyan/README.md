@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.46 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.47 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.47
+
+- **Random art.** A monster's sheet has a dice button (GM only): it gives the monster another picture of itself from your art packs (the ones picked under Monster art in the system's settings), found beside the art it has: files named after it ("goblin-2") or a close name ("goblin-warrior", "goblin_archer_bow"), never another monster's ("goblin-boss"). On a placed monster it changes that token only, so a band of goblins can each look different; on a monster in the Actors sidebar, the token it places.
+- **Numbered duplicates.** When a scene has two or more of the same monster, their tokens are named Goblin (1), Goblin (2) and so on, in the order they were placed (the first one becomes Goblin (1) when the second arrives). A token you rename yourself is left alone. Turn it off with **Number duplicate monsters** in the system's settings.
 
 ## What's new in 0.10.46
 

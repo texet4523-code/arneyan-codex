@@ -439,6 +439,98 @@ const fromBestiary = actor => {
   return typeof src === "string" && src.startsWith(`Compendium.${SYS}.monsters.`);
 };
 
+/**
+ * The pictures that could be this monster among some files: named after it ("goblin.webp", "goblin-2.webp"), or by a
+ * close name ("goblin-warrior.webp", "goblin_archer_bow.png": its words and up to two role, colour or gear words), but
+ * never another monster's ("goblin-boss.webp" is the Goblin Boss's). `names`: every Bestiary name, to tell which.
+ */
+export function variantFiles(paths, name, names = []) {
+  const keys = nameKeys(name);
+  if (!keys.length) return [];
+  const all = keyWords(names.length ? names : [name]);
+  const i = names.indexOf(name);
+  const own = i >= 0 ? all[i].own : new Set(keys);
+  const out = [];
+  for (const p of paths) {
+    if (!IMAGE.test(p)) continue;
+    const fk = fileKeys(p);
+    if (keys.some(k => fk.includes(k))) { out.push(p); continue; }
+    const w = new Set((fk.at(-1) ?? "").split("-"));
+    const fits = keys.some(k => {
+      const want = k.split("-");
+      if (!want.every(x => w.has(x)) || otherMonster(w, want, own, all)) return false;
+      const extra = [...w].filter(x => !want.includes(x));
+      return extra.length <= NEAR_EXTRA && extra.every(x => VARIANT.has(x));
+    });
+    if (fits) out.push(p);
+  }
+  return [...new Set(out)];
+}
+
+/** A different picture from a list (not the one it has), or null. `rand`: for tests. */
+export function pickOther(list, current = "", rand = Math.random) {
+  const others = list.filter(p => decoded(p) !== decoded(current));
+  return others.length ? others[Math.floor(rand() * others.length)] : null;
+}
+
+const folderCache = new Map();
+/** Every image under a folder (as the scan reads them), remembered for this session. */
+async function imagesCached(dir, deep = true) {
+  const key = `${deep ? "deep" : "flat"}:${dir}`;
+  if (folderCache.has(key)) return folderCache.get(key);
+  const job = (async () => {
+    if (deep) return imagesUnder(dir);
+    const FP = foundry.applications.apps.FilePicker.implementation;
+    return ((await FP.browse("data", dir)).files ?? []).filter(f => IMAGE.test(f));
+  })().catch(err => { console.warn(`Arneyan | random art: ${dir}`, err); folderCache.delete(key); return []; });
+  folderCache.set(key, job);
+  return job;
+}
+const dirOf = p => decoded(p).split("/").slice(0, -1).join("/");
+
+/**
+ * Random art (Kieran, 22 Oct 2026: "a button to use a random pic"): a different picture of the same monster, from the
+ * art packs picked under Monster art (and the folder of the art it has). On a placed monster (an unlinked token) only
+ * that token changes, so a band of goblins can each look different; on a monster in the Actors sidebar, the token it
+ * places and its linked tokens (and its picture, if that's still a system icon). GM only. Returns the new path, or null.
+ */
+export async function randomArt(actor) {
+  if (!game.user.isGM || !actor || actor.pack) return null;
+  const token = actor.isToken ? actor.token : null;
+  const current = token?.texture?.src ?? actor.prototypeToken?.texture?.src ?? actor.img ?? "";
+  const index = readIndex() ?? {};
+  const roots = [...(index.folders ?? []), ...(index.modules ?? []).map(id => `modules/${id}`)];
+  const own = [...new Set([current, actor.img].filter(p => p && !plainArt(p)).map(dirOf).filter(Boolean))];
+  if (!roots.length && !own.length) {
+    ui.notifications.warn(`No art packs to look in: pick them under Monster art in the system's settings.`);
+    return null;
+  }
+  if (roots.some(r => !folderCache.has(`deep:${r}`))) ui.notifications.info("Looking through your art packs...");
+  const names = await bestiaryNames().catch(() => []);
+  const files = [];
+  for (const r of roots) files.push(...variantFiles(await imagesCached(r), actor.name, names));
+  for (const d of own) files.push(...variantFiles(await imagesCached(d, false), actor.name, names));
+  // Token art over portraits, where the packs say which is which.
+  const all = [...new Set(files)];
+  const tokenish = all.filter(p => artKind(p, roots) !== "portrait");
+  const pick = pickOther(tokenish, current) ?? pickOther(all, current);
+  if (!pick) {
+    ui.notifications.info(`${actor.name}: your art packs have no other picture of it.`);
+    return null;
+  }
+  if (token) await token.update({ "texture.src": pick });
+  else {
+    await actor.update({ "prototypeToken.texture.src": pick, ...(plainArt(actor.img) ? { img: pick } : {}) });
+    // A linked monster (a named villain): its tokens on scenes take the new picture too.
+    for (const scene of game.scenes) {
+      const ids = scene.tokens.filter(t => t.actorLink && t.actorId === actor.id).map(t => ({ _id: t.id, "texture.src": pick }));
+      if (ids.length) await scene.updateEmbeddedDocuments("Token", ids);
+    }
+  }
+  ui.notifications.info(`${actor.name}: new picture.`);
+  return pick;
+}
+
 /** "Use on monsters already here": the world's Bestiary monsters (and their tokens on scenes) still on system icons. */
 export async function applyArtToWorld() {
   if (!game.user.isGM) return 0;
@@ -631,5 +723,5 @@ export function registerArt() {
     if (upd) actor.updateSource(upd);
   });
   game.arneyan ??= {};
-  game.arneyan.art = { scan: scanArt, applyToWorld: applyArtToWorld, find: name => artFor(name) };
+  game.arneyan.art = { scan: scanArt, applyToWorld: applyArtToWorld, find: name => artFor(name), random: randomArt };
 }
