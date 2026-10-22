@@ -28,6 +28,10 @@ for (const n of T.BEAST_LIKE) {
   assert.ok(!String(m.system.details.type).startsWith("beast"), `${n} is beast-like, not a beast`);
 }
 for (const n of ["Worg", "Winter Wolf", "Displacer Beast", "Manticore", "Basilisk", "Phase Spider", "Goblin", "Treant"]) assert.ok(!wild.some(m => m.name === n), `${n} isn't a Wild Shape form`);
+// Never a solo (M3, 0.10.49): the Roc and the Purple Worm are off, and any solo beast is refused.
+for (const n of ["Roc", "Purple Worm"]) assert.ok(!wild.some(m => m.name === n), `${n} (a solo) isn't a Wild Shape form`);
+assert.ok(monsters.filter(m => m.system.details.isSolo).every(m => !T.isWildForm(m)), "no solo is a form");
+assert.equal(T.isWildForm({ name: "Wolf", system: { details: { type: "beast", isSolo: true } } }), false);
 
 // Wild Shape's form: an hour-long Wild Shape effect, and Deepened Shape's temporary HP.
 const src = { name: "Ilsa", type: "character", img: "i.png", system: { abilities: { int: { value: 12 }, wis: { value: 17 }, cha: { value: 9 } } }, items: [], effects: [], ownership: {}, prototypeToken: {}, flags: {} };

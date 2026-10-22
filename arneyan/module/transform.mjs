@@ -473,17 +473,18 @@ export async function chooseForm(original) {
 
 /**
  * Beast-like monsters (not "beast" by type) a druid can become: animal-minded and not magical (Wild Shape: "a wolf,
- * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call).
+ * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call). Never a
+ * solo (0.10.49, M3: the Roc and the Purple Worm are off the list).
  */
 export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Carrion Crawler", "Grick", "Grick Alpha",
-  "Hook Horror", "Young Remorhaz", "Remorhaz", "Roc", "Purple Worm", "Hydra", "Piercer", "Rust Monster"];
+  "Hook Horror", "Young Remorhaz", "Remorhaz", "Hydra", "Piercer", "Rust Monster"];
 
 const typeOf = e => String(foundry.utils.getProperty(e, "system.details.type") ?? "").toLowerCase();
 const levelOf = e => Number(foundry.utils.getProperty(e, "system.level")) || 0;
 const levelLabel = e => foundry.utils.getProperty(e, "system.details.levelText") || String(levelOf(e));
 
-/** A beast, or a beast-like monster on the list. */
-export const isWildForm = e => typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name);
+/** A beast, or a beast-like monster on the list; never a solo monster (M3). */
+export const isWildForm = e => !foundry.utils.getProperty(e ?? {}, "system.details.isSolo") && (typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name));
 
 /** The highest Level a druid can take (half the Druid level, at least 1; the full level from Deepened Shape). */
 export const wildShapeCap = (druidLevel, deepened = false) => deepened ? Math.max(1, druidLevel) : Math.max(1, Math.floor(druidLevel / 2));
@@ -515,8 +516,8 @@ async function withArt(entries) {
 export async function bestiaryForms() {
   const pack = game.packs.get(`${SYS}.monsters`);
   if (!pack?.visible) return [];
-  const index = await pack.getIndex({ fields: ["system.details.type", "system.level", "system.details.levelText"] });
-  return withArt(index.filter(e => e.type === "npc").map(e => ({ uuid: e.uuid, name: e.name, img: e.img, level: levelOf(e), levelText: levelLabel(e), type: typeOf(e) }))
+  const index = await pack.getIndex({ fields: ["system.details.type", "system.level", "system.details.levelText", "system.details.isSolo"] });
+  return withArt(index.filter(e => e.type === "npc").map(e => ({ uuid: e.uuid, name: e.name, img: e.img, level: levelOf(e), levelText: levelLabel(e), type: typeOf(e), solo: !!foundry.utils.getProperty(e, "system.details.isSolo") }))
     .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name)));
 }
 
@@ -601,7 +602,7 @@ export async function wildShape(item) {
   const cap = wildShapeCap(level, deepened);
   // The Bestiary's own index when this user can see it (the GM), else the list built into the system.
   const visible = game.packs.get(`${SYS}.monsters`)?.visible;
-  const entries = visible ? (await bestiaryForms()).filter(e => isWildForm({ name: e.name, system: { details: { type: e.type } } })) : await withArt(builtWildForms());
+  const entries = visible ? (await bestiaryForms()).filter(e => isWildForm({ name: e.name, system: { details: { type: e.type, isSolo: e.solo } } })) : await withArt(builtWildForms());
   if (!entries.length) return ui.notifications.warn("The Bestiary has no beasts you can see.");
   const choice = await pickForm({
     title: `Wild Shape: ${actor.name}`, entries, cap,

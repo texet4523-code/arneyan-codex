@@ -197,4 +197,7 @@ h.system.level = 5;
 await P.syncLuckFeats(h, { fromLevel: 4 });
 assert.equal(h.system.luck.value, 13);
 assert.ok(posted.some(t => /Fated Survivor: \+1 Luck/.test(t)));
+// F3 (0.10.49): the Ranger's trap search has Advantage as well as the table bonus.
+const wood = feature("Woodcraft")("Ranger").system.rules;
+assert.ok(wood.some(r => r.key === "adv.skill" && /wilderness traps/.test(r.when)) && wood.some(r => r.key === "skill" && /wilderness traps/.test(r.when) && /^1:2/.test(r.value)));
 console.log("OK level scaling");

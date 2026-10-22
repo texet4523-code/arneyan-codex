@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.48 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.49 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.49
+
+Two book decisions of 22 October (the Coordination Board), ahead of the next Handbook build:
+- **Wild Shape is never a solo monster** (M3): the Roc and the Purple Worm are off the beast-like list, and any solo is refused.
+- **Ranger trap search** (F3): Advantage when actively searching for wilderness traps, as well as the Ranger table's search bonus (+2 at 1st up to +6 at 24th).
 
 ## What's new in 0.10.48
 
@@ -71,7 +77,7 @@ Fixes from the first night's play:
 - **Animate Objects summons** its objects: **Animated Object** and **Animated Object, Large** (20 HP, AC 14, speed 30ft, a slam that hits automatically for 1d8 or 2d8), made from the spell's own numbers. Up to one per two caster levels; a Large one counts as two.
 - **Monsters without ability scores** (Monsters & Treasure gives none yet) show "–" instead of 10 and +0. Their saves are the book's.
 
-Beast-like monsters on the list (the GM's call, as the feature says; intelligent or magical ones left out): Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Remorhaz, Roc, Purple Worm, Hydra, Piercer and Rust Monster.
+Beast-like monsters on the list (the GM's call, as the feature says; intelligent or magical ones left out): Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Remorhaz, Hydra, Piercer and Rust Monster. Never a solo monster (so not the Roc or the Purple Worm).
 
 ## What's new in 0.10.42
 
