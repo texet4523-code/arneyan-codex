@@ -108,29 +108,58 @@ export async function ensureDonatedJournal() {
   });
   return j;
 }
-/** A donation a chat message carries: the new flag, or an older card's "kept Set Beta. Set Alpha (...) can be donated". */
-export function donationFrom(message) {
-  const f = message?.flags?.[SYSFLAG]?.donation;
-  if (f && goodSet(f.set)) return { set: [...f.set], from: String(f.from ?? message.speaker?.alias ?? "") };
-  const m = String(message?.content ?? "").replace(/<[^>]+>/g, " ").match(/kept Set (?:Alpha|Beta)\.\s*Set (?:Alpha|Beta) \(([\d,\s]+)\) (?:can be donated|goes on the table)/i);
+/** Before 0.10.53, a set not kept was only written into chat ("... can be donated to the table"). */
+const OLD_CARDS_BEFORE = Date.parse("2026-10-25T12:15:00Z");
+
+/**
+ * A donation a chat message carries, or null. The new flag counts on a public message from the GM or from an owner
+ * of the character it speaks for; an older card's text ("kept Set Beta. Set Alpha (...) can be donated to the table")
+ * counts only from before 0.10.53, when the world loads.
+ */
+export function donationFrom(message, { oldCards = false } = {}) {
+  if (!message || message.whisper?.length || message.blind) return null;
+  const author = message.author ?? message.user ?? null;
+  const f = message.flags?.[SYSFLAG]?.donation;
+  if (f && goodSet(f.set)) {
+    const speaker = message.speaker?.actor ? game.actors?.get?.(message.speaker.actor) : null;
+    const ok = !author || author.isGM || (speaker && speaker.testUserPermission?.(author, "OWNER"));
+    if (!ok) return null;
+    const name = String(f.from ?? message.speaker?.alias ?? "").slice(0, 40).trim();
+    return { set: [...f.set], from: author && !author.isGM && author.name && !name.includes(author.name) ? (name ? `${name}, ${author.name}` : author.name) : name };
+  }
+  if (!oldCards || !(Number(message.timestamp) < OLD_CARDS_BEFORE)) return null;
+  const m = String(message.content ?? "").replace(/<[^>]+>/g, " ").match(/kept Set (?:Alpha|Beta)\.\s*Set (?:Alpha|Beta) \(([\d,\s]+)\) can be donated/i);
   const set = m ? m[1].split(",").map(n => Number(n.trim())) : null;
-  return goodSet(set) ? { set, from: String(message.speaker?.alias ?? "") } : null;
+  return goodSet(set) ? { set, from: String(message.speaker?.alias ?? ""), old: true } : null;
 }
 
 /**
  * Copy into the journal every donation in chat not copied yet (the active GM, when the world loads and on each new
- * message). The journal remembers which messages it has taken, so a set taken from it isn't added back.
+ * message). The journal's page remembers which messages it has taken, so a set taken from it isn't added back.
  */
-export async function syncDonatedFromChat(messages = game.messages?.contents ?? []) {
+export async function syncDonatedFromChat(messages = game.messages?.contents ?? [], { oldCards = false } = {}) {
   if (!game.users?.activeGM?.isSelf) return 0;
   return inTurn(async () => {
     const j = await ensureDonatedJournal();
-    if (!j) return 0;
-    const seen = new Set(j.getFlag(SYSFLAG, "fromChat") ?? []);
-    const found = messages.filter(m => m?.id && !seen.has(m.id)).map(m => ({ m, d: donationFrom(m) })).filter(x => x.d);
-    if (!found.length) return 0;
-    await writeDonated([...donatedSets(), ...found.map(x => ({ set: x.d.set, from: x.d.from.replace(/[()]/g, "").slice(0, 60) }))]);
-    await j.setFlag(SYSFLAG, "fromChat", [...seen, ...found.map(x => x.m.id)].slice(-300));
+    const page = donatedPage(j);
+    if (!j || !page) return 0;
+    const seen = new Set(page.getFlag?.(SYSFLAG, "fromChat") ?? j.getFlag?.(SYSFLAG, "fromChat") ?? []);
+    const list = donatedSets();
+    const key = set => set.join(",");
+    const found = [];
+    for (const m of messages) {
+      if (!m?.id || seen.has(m.id)) continue;
+      const d = donationFrom(m, { oldCards });
+      if (!d) continue;
+      // An older card's set someone already typed in by hand isn't listed twice.
+      if (d.old && [...list, ...found.map(x => x.d)].some(x => key(x.set) === key(d.set))) { seen.add(m.id); continue; }
+      found.push({ m, d });
+    }
+    const ids = [...seen, ...found.map(x => x.m.id)].filter(id => !game.messages?.has || game.messages.has(id));
+    if (!found.length && ids.length === seen.size) return 0;
+    const next = [...list, ...found.map(x => ({ set: x.d.set, from: x.d.from.replace(/[()]/g, "").slice(0, 60) }))];
+    // One write: the list and the messages it came from together.
+    await page.update({ "text.content": donatedHtml(page.text?.content ?? "", next), [`flags.${SYSFLAG}.fromChat`]: ids });
     return found.length;
   });
 }
@@ -391,7 +420,7 @@ function startScores(actor) {
 export function registerChargen() {
   Hooks.once("ready", () => {
     game.socket.on(SOCKET, onSocket);
-    if (game.users.activeGM?.isSelf) ensureDonatedJournal().then(() => syncDonatedFromChat()).catch(err => console.warn("Arneyan | donated sets journal", err));
+    if (game.users.activeGM?.isSelf) syncDonatedFromChat(undefined, { oldCards: true }).catch(err => console.warn("Arneyan | donated sets journal", err));
   });
   // A donation posted in chat goes straight into the journal (the active GM copies it).
   Hooks.on("createChatMessage", message => {

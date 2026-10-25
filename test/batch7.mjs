@@ -68,7 +68,8 @@ const CB = await import("../arneyan/module/combat.mjs");
 const CG = await import("../arneyan/module/chargen.mjs");
 {
   // A mock journal with one text page.
-  const page = { id: "pg", type: "text", text: { content: "" }, update: async u => { await new Promise(r => setTimeout(r, 5)); page.text.content = u["text.content"]; } };
+  const pageFlags = {};
+  const page = { id: "pg", type: "text", text: { content: "" }, getFlag: (s, k) => pageFlags[k], update: async u => { await new Promise(r => setTimeout(r, 5)); if ("text.content" in u) page.text.content = u["text.content"]; if ("flags.arneyan.fromChat" in u) pageFlags.fromChat = u["flags.arneyan.fromChat"]; } };
   let journal = null;
   game.journal = { find: fn => (journal && fn(journal) ? journal : undefined) };
   globalThis.JournalEntry = { create: async d => { page.text.content = d.pages[0].text.content; journal = { name: d.name, ownership: d.ownership, flags: d.flags, getFlag: (s, k) => d.flags?.[s]?.[k], setFlag: async (s, k, v) => { d.flags[s][k] = v; }, pages: { contents: [page] } }; return journal; } };
@@ -107,15 +108,27 @@ const CG = await import("../arneyan/module/chargen.mjs");
   assert.equal(CG.donatedHtml("<h2>Sets</h2><p>16, 15, 12, 10, 9, 8</p>", []), "<h2>Sets</h2><ul></ul>");
   // Donations in chat (Kieran: "pull from the chat"): the new flag and older cards' text both count, once each.
   page.text.content = "<p>Intro</p><ul></ul>";
+  const old = Date.parse("2026-10-24T12:00:00Z");
   const msgs = [
-    { id: "m1", speaker: { alias: "Brunt" }, content: "<p>Brunt McHaggard kept Set Beta. Set Alpha (16, 16, 11, 9, 16, 9) can be donated to the table (Rule B).</p>", flags: {} },
-    { id: "m2", speaker: { alias: "Ann" }, content: "<p>...</p>", flags: { arneyan: { donation: { set: [15, 14, 13, 12, 10, 8], from: "Ann" } } } },
-    { id: "m3", speaker: { alias: "Test" }, content: "<p>Test: Method V Set Alpha: 13, 14, 14, 12, 14, 12</p>", flags: {} }
+    { id: "m1", timestamp: old, speaker: { alias: "Brunt" }, content: "<p>Brunt McHaggard kept Set Beta. Set Alpha (16, 16, 11, 9, 16, 9) can be donated to the table (Rule B).</p>", flags: {} },
+    { id: "m2", timestamp: Date.parse("2026-11-01T00:00:00Z"), speaker: { alias: "Ann" }, content: "<p>...</p>", flags: { arneyan: { donation: { set: [15, 14, 13, 12, 10, 8], from: "Ann" } } } },
+    { id: "m3", timestamp: old, speaker: { alias: "Test" }, content: "<p>Test: Method V Set Alpha: 13, 14, 14, 12, 14, 12</p>", flags: {} },
+    { id: "m4", timestamp: old, speaker: { alias: "Cass" }, content: "<p>Cass kept Set Beta. Set Alpha (17, 15, 12, 10, 9, 8) goes on the table's donated sets.</p>", flags: {} },
+    { id: "m5", timestamp: Date.parse("2026-11-01T00:00:00Z"), speaker: { alias: "Faker" }, content: "<p>Faker kept Set Beta. Set Alpha (18, 18, 18, 18, 18, 18) can be donated to the table (Rule B).</p>", flags: {} },
+    { id: "m6", timestamp: Date.parse("2026-11-01T00:00:00Z"), whisper: ["gm"], speaker: { alias: "Ann" }, content: "", flags: { arneyan: { donation: { set: [16, 16, 16, 16, 16, 16], from: "Ann" } } } },
+    { id: "m7", timestamp: Date.parse("2026-11-01T00:00:00Z"), author: { name: "Bob", isGM: false }, speaker: { alias: "Brunt", actor: "brunt" }, content: "", flags: { arneyan: { donation: { set: [16, 16, 16, 16, 16, 16], from: "Brunt" } } } }
   ];
-  assert.equal(await CG.syncDonatedFromChat(msgs), 2);
-  assert.deepEqual(CG.donatedSets().map(d => [d.set.join(","), d.from]), [["16,16,11,9,16,9", "Brunt"], ["15,14,13,12,10,8", "Ann"]]);
-  await CG.gmTake(CG.donatedSets()[0].id, "Cass");
-  assert.equal(await CG.syncDonatedFromChat(msgs), 0, "a message already copied isn't copied again, so a taken set stays gone");
+  game.actors = { get: id => (id === "brunt" ? { testUserPermission: u => u.name === "Kieran" } : null) };
+  const n1 = await CG.syncDonatedFromChat(msgs);
+  assert.equal(n1, 1, "live: only the flagged public message from an owner");
+  assert.equal(await CG.syncDonatedFromChat(msgs, { oldCards: true }), 1, "on load: the pre-0.10.53 card too; never 'goes on the table' (added already), a new typed sentence, a whisper or a non-owner");
+  assert.deepEqual(CG.donatedSets().map(d => [d.set.join(","), d.from]), [["15,14,13,12,10,8", "Ann"], ["16,16,11,9,16,9", "Brunt"]]);
+  await CG.gmTake(CG.donatedSets()[1].id, "Cass");
+  assert.equal(await CG.syncDonatedFromChat(msgs, { oldCards: true }), 0, "a message already copied isn't copied again, so a taken set stays gone");
+  assert.equal(CG.donatedSets().length, 1);
+  // An old card whose set was already typed in by hand isn't listed twice.
+  page.text.content = "<p>Intro</p><ul><li>14, 14, 10, 10, 10, 10</li></ul>";
+  assert.equal(await CG.syncDonatedFromChat([{ id: "m8", timestamp: old, speaker: { alias: "Dee" }, content: "Dee kept Set Beta. Set Alpha (14, 14, 10, 10, 10, 10) can be donated to the table", flags: {} }], { oldCards: true }), 0);
   assert.equal(CG.donatedSets().length, 1);
   // Nobody can delete the journal.
   const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");

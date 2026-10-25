@@ -184,8 +184,18 @@ async function manoeuvreList() {
 /* -------------------------------------------- */
 
 const TAH = "token-action-hud-core";
-const tahActive = () => !!game.modules?.get(TAH)?.active;
+const tahActive = () => !!game.modules?.get(TAH)?.active && !!game.settings?.settings?.has?.(`${TAH}.enable`);
 const tahOn = () => { try { return !!game.settings.get(TAH, "enable"); } catch { return false; } };
+/** Token Action HUD lets this user use it (its "allow" setting: the lowest role). */
+const tahAllowed = () => { try { return game.user.role >= Number(game.settings.get(TAH, "allow") ?? 0); } catch { return true; } };
+/** Show or hide the bar: Token Action HUD's own toggle (which also closes or redraws it), else its setting. */
+async function setTah(on) {
+  if (tahOn() === on) return;
+  const hud = game.tokenActionHud;
+  if (typeof hud?.toggleHudEnable === "function") return hud.toggleHudEnable();
+  await game.settings.set(TAH, "enable", on);
+  if (on) Hooks.callAll("forceUpdateTokenActionHud"); else hud?.closeHud?.();
+}
 
 /**
  * Kieran (25 Oct 2026): the action bar (Token Action HUD) is off by default and switched on or off with a button among
@@ -193,16 +203,18 @@ const tahOn = () => { try { return !!game.settings.get(TAH, "enable"); } catch {
  */
 function registerTahToggle() {
   game.settings?.register?.(SYS, "tahDefaultOff", { scope: "client", config: false, type: Boolean, default: false });
-  globalThis.Hooks?.once?.("ready", async () => {
+  // Once per browser, when Token Action HUD is ready (its settings are registered then): start with the bar off.
+  globalThis.Hooks?.once?.("tokenActionHudReady", async () => {
     let done = true;
     try { done = game.settings.get(SYS, "tahDefaultOff"); } catch { /* not registered */ }
     if (!tahActive() || done) return;
-    // Once per browser: start with the bar off.
-    await game.settings.set(SYS, "tahDefaultOff", true);
-    if (tahOn()) await game.settings.set(TAH, "enable", false).catch(err => console.warn("Arneyan | action bar", err));
+    try {
+      await setTah(false);
+      await game.settings.set(SYS, "tahDefaultOff", true);
+    } catch (err) { console.warn("Arneyan | action bar", err); }
   });
   globalThis.Hooks?.on?.("renderTokenHUD", (hud, html) => {
-    if (!tahActive()) return;
+    if (!tahActive() || !tahAllowed()) return;
     const root = html instanceof HTMLElement ? html : html?.[0];
     const col = root?.querySelector(".col.left") ?? root?.querySelector(".col.right");
     if (!col) return;
@@ -216,7 +228,7 @@ function registerTahToggle() {
     btn.addEventListener("click", async ev => {
       ev.preventDefault();
       ev.stopPropagation();
-      await game.settings.set(TAH, "enable", !tahOn());
+      try { await setTah(!tahOn()); } catch (err) { console.warn("Arneyan | action bar", err); }
       hud.render?.();
     });
     col.appendChild(btn);
