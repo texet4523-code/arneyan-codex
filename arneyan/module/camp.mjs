@@ -174,7 +174,29 @@ export const CAMP_ACTIVITIES = [
     text: "Pitch the camp and get a fire going." }
 ];
 
-export const DEFAULT_CAMP = { mode: false, onWatch: 0, checked: "", log: [] };
+export const DEFAULT_CAMP = { mode: false, onWatch: 0, checked: "", log: [], assign: {} };
+
+/**
+ * Batch 6c: the menu puts each member on a watch and an activity (camp.assign[memberId] = { watch: "1".., job: id }).
+ * Who stands each watch: as assigned when anyone is, else in order (defaultWatch). Watches past the night's count are
+ * left out.
+ */
+export function watchList(camp, members, n) {
+  const k = watchSlots(n).length;
+  const assign = camp?.assign ?? {};
+  const ids = members.map(m => m.id);
+  const any = ids.some(id => Number(assign[id]?.watch) >= 1);
+  if (!any) return defaultWatch(ids, n);
+  const out = Array.from({ length: k }, () => []);
+  for (const id of ids) {
+    const w = Number(assign[id]?.watch);
+    if (w >= 1 && w <= k) out[w - 1].push(id);
+  }
+  return out;
+}
+
+/** Members on an activity in the menu. */
+export const onJob = (camp, members, job) => members.filter(m => camp?.assign?.[m.id]?.job === job);
 export const campState = party => ({ ...DEFAULT_CAMP, ...(party?.flags?.[SYS]?.camp ?? {}) });
 
 /** Does an actor carry what hunting needs: a ranged weapon, or traps or snares? */
@@ -185,9 +207,11 @@ export function campContext(party, members = [], minute = 0) {
   const c = campState(party);
   const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
   const slots = watchSlots(n);
-  const ids = members.map(m => m.id);
-  const who = defaultWatch(ids, n);
+  const who = watchList(c, members, n);
   const now = nightAt(minute, slots.length);
+  const assign = c.assign ?? {};
+  const watchChoices = { "": "Not on watch", ...Object.fromEntries(slots.map((sl, i) => [String(i + 1), `Watch ${i + 1} (${hm(sl.start)})`])) };
+  const jobChoices = { "": "Resting", ...Object.fromEntries(CAMP_ACTIVITIES.filter(a => a.id !== "watch").map(a => [a.id, a.label])) };
   const names = id => members.find(m => m.id === id)?.name ?? "";
   return {
     camp: {
@@ -195,7 +219,9 @@ export function campContext(party, members = [], minute = 0) {
       watches: slots.map((s, i) => ({ ...s, label: `Watch ${i + 1}`, time: `${hm(s.start)} to ${hm(s.end)}`, length: hoursMinutes(s.minutes),
         names: who[i].map(names).filter(Boolean).join(" and ") || "nobody", now: now.night && now.index === i })),
       nightNow: now.night, timeNow: hm(minute),
-      activities: CAMP_ACTIVITIES.map(a => ({ ...a })),
+      activities: CAMP_ACTIVITIES.map(a => ({ ...a, who: (a.id === "watch" ? (now.night ? who[now.index] ?? [] : who.flat()) : onJob(c, members, a.id).map(m => m.id)).map(names).filter(Boolean).join(", ") })),
+      assigned: Object.values(assign).some(x => x?.watch || x?.job),
+      rows: members.map(m => ({ id: m.id, name: m.name, img: m.img, watch: String(assign[m.id]?.watch ?? ""), job: String(assign[m.id]?.job ?? ""), watchChoices, jobChoices })),
       log: [...(c.log ?? [])].reverse().slice(0, 12)
     }
   };
@@ -230,7 +256,7 @@ export async function nightCheck(party, members) {
   if (c.checked === nightKey) return ui.notifications.info("Tonight's Encounter Check is already rolled.");
   const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
   const slots = watchSlots(n);
-  const who = defaultWatch(members.map(m => m.id), n);
+  const who = watchList(c, members, n);
   const r = await new Roll("1d12").evaluate();
   const what = r.total >= 12 ? "a Deadly Encounter" : r.total === 11 ? "a Hard Encounter" : "";
   let body = `<p>d12: ${r.total}: ${what || "the night passes quietly"}.</p>`;
@@ -261,7 +287,18 @@ export async function askWatch(party, watcherIds, watch) {
 export async function doActivity(party, members, id, event = null) {
   const a = CAMP_ACTIVITIES.find(x => x.id === id);
   if (!a) return;
-  const who = await pickMember(members, a.label);
+  // Those the menu put on it (keeping watch: whoever stands the watch now, else anyone on watch), else anyone.
+  const c = campState(party);
+  let pool = onJob(c, members, id);
+  if (id === "watch") {
+    const { whenOf } = await import("./calendar.mjs");
+    const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
+    const list = watchList(c, members, n);
+    const now = nightAt(whenOf().secondOfDay / 60, list.length);
+    const ids = now.night ? (list[now.index] ?? []) : list.flat();
+    pool = members.filter(m => ids.includes(m.id));
+  }
+  const who = await pickMember(pool.length ? pool : members, a.label);
   if (!who) return;
   const { whenOf } = await import("./calendar.mjs");
   const day = `${party.id}.camp.${whenOf().n}`;

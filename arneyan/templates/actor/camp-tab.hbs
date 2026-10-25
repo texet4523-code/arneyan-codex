@@ -25,13 +25,25 @@
 </ul>
 <p class="arn-help">The watch is split by how many stand it: one or two take 4 hours each, three 2 h 40 m, four 2 hours; with five, four 2-hour watches and one of them a pair. A long rest is 8 hours in each 24 and needn't be in one go.</p>
 
-<div class="arn-section-head"><h3>Activities</h3><span class="arn-muted">Each button rolls the check for your character (the GM picks who).</span></div>
+<div class="arn-section-head"><h3>Who does what</h3><span class="arn-muted">Put each member on a watch and an activity. The watches and the Roll buttons follow this.</span></div>
+<ul class="arn-list table arn-camp-assign">
+  {{#each camp.rows}}
+  <li>
+    <span class="arn-name-cell"><img src="{{img}}" alt="">{{name}}</span>
+    <span><select name="flags.arneyan.camp.assign.{{id}}.watch" {{#unless @root.isGM}}disabled{{/unless}}>{{selectOptions watchChoices selected=watch}}</select></span>
+    <span><select name="flags.arneyan.camp.assign.{{id}}.job" {{#unless @root.isGM}}disabled{{/unless}}>{{selectOptions jobChoices selected=job}}</select></span>
+  </li>
+  {{else}}<li class="arn-empty">No members.</li>{{/each}}
+</ul>
+{{#unless camp.assigned}}<p class="arn-help">Nobody is assigned yet: the watches go in order, and each Roll button asks who.</p>{{/unless}}
+
+<div class="arn-section-head"><h3>Activities</h3><span class="arn-muted">Each button rolls for the member on it (asks if there are several, or none).</span></div>
 <ul class="arn-list table arn-camp-acts">
   {{#each camp.activities}}
   <li>
     <span class="arn-name-cell"><i class="fa-solid {{icon}}"></i> <strong>{{label}}</strong></span>
     <span class="arn-muted">{{check}}</span>
-    <span>{{text}}</span>
+    <span>{{text}}{{#if who}} <span class="arn-chip">{{who}}</span>{{/if}}</span>
     <span class="arn-controls"><a class="arn-btn small" data-action="campActivity" data-activity="{{id}}"><i class="fa-solid fa-dice-d20"></i> Roll</a></span>
   </li>
   {{/each}}

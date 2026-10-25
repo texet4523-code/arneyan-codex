@@ -67,3 +67,17 @@ assert.ok(!html.includes("—"), "no em dashes");
 const party = fs.readFileSync(new URL("../arneyan/templates/actor/party-sheet.hbs", import.meta.url), "utf8");
 assert.ok(party.includes('data-tab="camp"') && party.includes("camp-tab.hbs"));
 console.log("OK camp tab");
+
+/* Batch 6c: the menu puts members on watches and activities. */
+const camp = { onWatch: 3, assign: { m0: { watch: "3", job: "cook" }, m1: { watch: "1", job: "forage" }, m2: { watch: "1", job: "" } } };
+assert.deepEqual(C.watchList(camp, members, 3), [["m1", "m2"], [], ["m0"]], "as assigned (a pair on watch 1, nobody on 2)");
+assert.deepEqual(C.watchList({ onWatch: 2, assign: { m0: { watch: "3" } } }, members, 2), [[], []], "a watch past the night's count is left out");
+assert.deepEqual(C.watchList({ assign: {} }, members, 3), [["m0"], ["m1"], ["m2"]], "nobody assigned: in order");
+assert.deepEqual(C.onJob(camp, members, "forage").map(m => m.id), ["m1"]);
+const ctx2 = C.campContext({ flags: { arneyan: { camp } } }, members, 23 * 60);
+assert.equal(ctx2.camp.watches[0].names, "Bo and Cy");
+assert.equal(ctx2.camp.activities.find(a => a.id === "cook").who, "Ana");
+assert.equal(ctx2.camp.activities.find(a => a.id === "watch").who, "Bo, Cy", "11pm: watch 1 stands it");
+const html2 = hbs(root)("templates/actor/camp-tab.hbs", { ...ctx2, isGM: true });
+for (const s of ['name="flags.arneyan.camp.assign.m0.watch"', 'name="flags.arneyan.camp.assign.m1.job"', "Not on watch", "Resting", "Watch 3 (03:20)"]) assert.ok(html2.includes(s), s);
+console.log("OK camp menu");
