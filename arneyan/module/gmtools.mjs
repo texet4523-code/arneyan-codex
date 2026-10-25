@@ -66,7 +66,8 @@ export function partyRollHtml(data, { gm = false } = {}) {
   const rows = data.members.map(m => {
     const mode = m.mode > 0 ? '<span class="arn-chip">Advantage</span>' : m.mode < 0 ? '<span class="arn-chip">Disadvantage</span>' : "";
     const note = m.note ? ` <span class="arn-muted">${esc(m.note)}</span>` : "";
-    const shown = `<span class="arn-pr-result ${m.pass === true ? "pass" : m.pass === false ? "fail" : ""}" data-tooltip="${esc(OUTCOME_TEXT[m.outcome] ?? "")}"><strong>${m.total}</strong>${m.pass === true ? ' <i class="fa-solid fa-check"></i>' : m.pass === false ? ' <i class="fa-solid fa-xmark"></i>' : ""}</span>`;
+    const lost = m.rollId && (m.total === null || m.total === undefined);
+    const shown = lost ? '<span class="arn-pr-result arn-muted" data-tooltip="Its roll message was deleted">?</span>' : `<span class="arn-pr-result ${m.pass === true ? "pass" : m.pass === false ? "fail" : ""}" data-tooltip="${esc(OUTCOME_TEXT[m.outcome] ?? "")}"><strong>${m.total}</strong>${m.pass === true ? ' <i class="fa-solid fa-check"></i>' : m.pass === false ? ' <i class="fa-solid fa-xmark"></i>' : ""}</span>`;
     // Secret: players see only that it's rolled; the GM's view shows the result.
     const res = m.rollId
       ? (data.secret && !gm ? '<span class="arn-pr-secret arn-muted"><i class="fa-solid fa-eye-slash"></i> rolled</span>' : shown)
@@ -152,7 +153,7 @@ async function recordResult(cardId, uuid, rollId) {
   // Secret: only that it's rolled goes on the card (the GM's view reads the result from the roll).
   const fresh = !m.rollId;
   Object.assign(m, data.secret ? { rollId } : { rollId, ...resultFromFlags(roll.flags[SYS], data.dc) });
-  if (data.secret && !fresh) return ui.chat?.updateMessage?.(card);
+  if (data.secret && !fresh) return;
   await card.update({ content: partyRollHtml(data), [`flags.${SYS}.partyRoll`]: data });
 }
 
@@ -220,9 +221,12 @@ export async function onSocket(msg, senderId) {
 
 /** Luck burned on a roll after it was recorded: the card follows (GM). */
 function onUpdateMessage(message, changes) {
-  if (!game.users.activeGM?.isSelf || foundry.utils.getProperty(changes, `flags.${SYS}.luckBurned`) === undefined) return;
+  if (!game.user.isGM || foundry.utils.getProperty(changes, `flags.${SYS}.luckBurned`) === undefined) return;
   const cards = game.messages.contents.slice(-80).filter(c => c.flags?.[SYS]?.partyRoll?.members?.some(m => m.rollId === message.id));
   for (const c of cards) {
+    // A secret card: each GM's own view reads the new total.
+    if (c.flags[SYS].partyRoll.secret) { ui.chat?.updateMessage?.(c); continue; }
+    if (!game.users.activeGM?.isSelf) continue;
     const m = c.flags[SYS].partyRoll.members.find(x => x.rollId === message.id);
     enqueue(() => recordResult(c.id, m.uuid, message.id));
   }
@@ -231,7 +235,8 @@ function onUpdateMessage(message, changes) {
 function onRenderCard(message, html) {
   const data = message.flags?.[SYS]?.partyRoll;
   if (!data) return;
-  // A secret roll: the GM's view fills the results in from the (blind) roll messages.
+  // A secret roll: the GM's view fills the results in from the (blind) roll messages. (This replaces the card's
+  // content, so another module's earlier changes to it don't show on the GM's secret cards.)
   if (data.secret && game.user.isGM) {
     const body = html.querySelector(".message-content");
     if (body) body.innerHTML = partyRollHtml({ ...data, members: filledMembers(data) }, { gm: true });

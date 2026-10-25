@@ -415,7 +415,7 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds
         const short = String(o.name).replace(/\s*\(.*\)$/, "");
         upd["system.toggle"] = true;
         upd["system.active"] = false;
-        if (o.uses) upd["system.uses"] = { ...o.uses };
+        if (o.uses) upd["system.uses"] = { ...o.uses, value: maxOn(actor, i, o.uses) ?? o.uses.value };
         if (!((i._source?.system ?? i.system)?.rules ?? []).length && o.rules?.length) upd["system.rules"] = o.rules.map(r => ({ ...r, label: r.label || short }));
         upd[`flags.${SYS}.toggleSet`] = true;
       }
@@ -494,7 +494,10 @@ function keepPlay(item, data) {
   // Options picked since (Eldritch Invocations): kept, where the restored list still has them.
   if (data["system.optionChoice"]) {
     const names = new Set((data["system.optionChoice"].options ?? []).map(o => o?.name));
-    data["system.optionChoice"] = { ...data["system.optionChoice"], value: (cur.optionChoice?.value ?? []).filter(v => names.has(v)) };
+    const restored = data["system.optionChoice"].value ?? [];
+    const now = (cur.optionChoice?.value ?? []).filter(v => names.has(v));
+    // Both: a pick the update dropped (its option renamed) comes back with the option.
+    data["system.optionChoice"] = { ...data["system.optionChoice"], value: [...new Set([...now, ...restored.filter(v => names.has(v))])] };
   }
   if (Array.isArray(data["system.features"])) data["system.features"] = kitFeaturesFrom(cur.features ?? [], data["system.features"]);
   return data;

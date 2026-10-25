@@ -85,7 +85,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(R.loadedOf(musket), 1, "loaded until fired");
   await R.spendShot(musket);
   assert.equal(R.loadedOf(musket), 0);
-  game.combats = { find: () => ({}) }; // in a fight
+  game.combats = { find: () => ({ started: true, combatant: { actorId: "g1" }, combatants: [{ actorId: "g1" }] }) }; // in a fight, on the gunner's turn
   await R.startReload(musket);
   assert.deepEqual(R.ammoOf(musket), { loaded: 0, capacity: 1, reloading: 2 }, "this turn's action and the next");
   await R.advanceReloads(musket.actor);
@@ -102,6 +102,16 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   const rl = fs.readFileSync(new URL("../arneyan/module/reload.mjs", import.meta.url), "utf8");
   assert.ok(rl.includes("options?.direction === -1") && rl.includes("seen.has(key)") && rl.includes('Hooks.on("deleteCombat"'));
   assert.equal(R.turnKey({ round: 3, combatant: { id: "c1" } }), "3:c1");
+  // Started on someone else's turn: their own next turn's action is the first.
+  const other = gun("Pistol", "Reload 1 rd, misfire on 1-2.", "Light");
+  other.actor.uuid = "Actor.g1";
+  game.combats = { find: fn => { const c = { started: true, combatant: { actor: { uuid: "Actor.zz" }, actorId: "zz" }, combatants: [{ actor: { uuid: "Actor.g1" }, actorId: "g1" }] }; return fn(c) ? c : null; } };
+  await R.spendShot(other); await R.startReload(other);
+  assert.equal(R.ammoOf(other).reloading, 2);
+  // A sheet opened from the sidebar (base actor) with an unlinked token in the fight still counts as fighting.
+  game.combats = { find: fn => { const c = { started: true, combatant: null, combatants: [{ actor: { uuid: "Scene.s.Token.t.Actor.g1" }, actorId: "g1" }] }; return fn(c) ? c : null; } };
+  assert.equal(R.inFight(other.actor), true);
+  game.combats = { find: () => null };
   // Out of a fight: at once.
   game.combats = { find: () => null };
   await R.spendShot(musket); await R.startReload(musket);
@@ -144,6 +154,8 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   const filled = G.filledMembers(bare, id => (id === "r1" ? { flags: { arneyan: { kind: "skill", total: 12, natural: 9 } } } : null));
   assert.deepEqual([filled[0].total, filled[0].pass], [12, false]);
   assert.equal(filled[1].total, null);
+  const gone = G.filledMembers(bare, () => null);
+  assert.ok(G.partyRollHtml({ ...bare, members: gone }, { gm: true }).includes("roll message was deleted"), "a deleted roll shows ?, not null");
   const src = fs.readFileSync(new URL("../arneyan/module/gmtools.mjs", import.meta.url), "utf8");
   assert.ok(src.includes('req.secret ? "blindroll"') && src.includes('name="secret"'));
   const rolls = fs.readFileSync(new URL("../arneyan/module/rolls.mjs", import.meta.url), "utf8");

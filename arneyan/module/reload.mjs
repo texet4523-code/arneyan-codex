@@ -73,7 +73,18 @@ export async function spendShot(item) {
 /** Is this actor (this very token, for an unlinked one) in a fight that has started? */
 export function inFight(actor) {
   if (!actor) return false;
-  return !!game.combats?.find?.(c => c.started && c.combatants.some(x => x.actor && x.actor.uuid === actor.uuid));
+  return !!fightOf(actor);
+}
+/** The started fight this actor is in. A sheet opened from the sidebar (the base actor) counts its linked or unlinked token. */
+function fightOf(actor) {
+  if (!actor) return null;
+  const mine = x => (x.actor && x.actor.uuid === actor.uuid) || (!actor.isToken && x.actorId === actor.id);
+  return game.combats?.find?.(c => c.started && c.combatants.some(mine)) ?? null;
+}
+/** Is it this actor's turn in that fight? */
+function onTurn(combat, actor) {
+  const x = combat?.combatant;
+  return !!x && ((x.actor && x.actor.uuid === actor?.uuid) || (!actor?.isToken && x.actorId === actor?.id));
 }
 
 /** Start reloading: done now out of a fight (or if it takes no time), else over the wielder's turns. */
@@ -90,9 +101,14 @@ export async function startReload(item, { inCombat = null } = {}) {
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}.</p>` });
     return ammoOf(item);
   }
-  await item.setFlag(SYS, "ammo", { loaded: a.loaded, reloading: rounds });
+  // Started outside the wielder's own turn: their next turn's action is the first.
+  const combat = inCombat === null ? fightOf(actor) : null;
+  const offTurn = !!combat && !onTurn(combat, actor);
+  await item.setFlag(SYS, "ammo", { loaded: a.loaded, reloading: rounds + (offTurn ? 1 : 0) });
   const more = rounds - 1;
-  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}: this turn's action${more ? ` and the next ${more === 1 ? "turn's" : `${more} turns'`}` : ""}. Ready to fire ${more ? "on the turn after" : "next turn"}; moving is still fine.</p>` });
+  const first = offTurn ? "their next turn's action" : "this turn's action";
+  const then = more ? ` and ${more === 1 ? "the turn after's" : `the next ${more} turns'`}` : "";
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}: ${first}${then}, then it's ready to fire. Moving is still fine.</p>` });
   return ammoOf(item);
 }
 
@@ -119,7 +135,7 @@ export async function loadedReady(item) {
   const note = busy ? ` It's being reloaded: ${a.reloading} more action${a.reloading === 1 ? "" : "s"}.` : "";
   const res = await DialogV2.wait({
     window: { title: item.name, icon: "fa-solid fa-gun" }, classes: ["arneyan"], position: { width: 380 },
-    content: `<p><strong>${esc(item.name)}</strong> is empty.${note} Reloading takes ${!fighting ? "no time out of a fight" : rounds ? `${rounds === 1 ? "this turn's action" : `this turn's action and the next ${rounds - 1}`}, ready to fire ${rounds === 1 ? "next turn" : "after that"} (you can still move)` : "no time"}.</p>`,
+    content: `<p><strong>${esc(item.name)}</strong> is empty.${note} Reloading takes ${!fighting ? "no time out of a fight" : rounds ? `${rounds === 1 ? "this turn's action" : `this turn's action and ${rounds === 2 ? "the next turn's" : `the next ${rounds - 1} turns'`}`}, ready to fire ${rounds === 1 ? "next turn" : "after that"} (you can still move)` : "no time"}.</p>`,
     buttons: [
       ...(busy ? [] : [{ action: "reload", label: "Reload", icon: "fa-solid fa-rotate", default: true }]),
       ...(game.user.isGM ? [{ action: "fire", label: "Fire anyway (GM)" }] : []),

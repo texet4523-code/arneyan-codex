@@ -393,13 +393,15 @@ async function ancestryGrants(actor, anc, { choice = "", family = "" } = {}) {
   const o = idx >= 0 ? s.choice.options[idx] : null;
   const short = o ? o.name.replace(/\s*\(.*\)$/, "") : "";
   const label = short ? `${baseName} (${short})` : baseName;
-  const grant = (name, text, rules = []) => ({
+  const grant = (name, text, rules = [], extra = {}) => ({
     name, type: "ability", img: anc.img,
-    system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules },
+    system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules, ...extra },
     flags: { [SYS]: { grantedBy: anc.id, source: `${anc.id}.${name}` } }
   });
   const create = (s.traitList ?? []).filter(t => !(family && t.name === "Family")).map(t => grant(t.name, t.text));
-  if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short }))));
+  // A choice that only counts while switched on (a Shifter's lineage while shifted): a switch with its uses, as the ancestry window gives it.
+  if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
+    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}) }));
   if (family && s.family) create.unshift(grant(`Family: ${family}`, `Born into a ${family} family: you speak its language, and its people treat you as one of their own once they look past the marks.`));
   if (create.length) await actor.createEmbeddedDocuments("Item", create, quiet());
   await anc.update({ name: label, [`flags.${SYS}.ancestry`]: { choice: o?.name ?? "", family: s.family ? family : "", applied: {}, moved: {} } }, quiet());
