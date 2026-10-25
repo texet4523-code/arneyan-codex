@@ -211,7 +211,7 @@ def printed_slots(entry):
 def fit_slots(item, entry):
     """Make a copied Catalogue item take the slots its printed sheet gives (12 sticks of chalk in 1 slot, four Fire
     Bombs in 1): a bundle when they share slots, else the slots each. An item the Catalogue gives no slot (the
-    Backpack, Kieran 25 Oct, F-B6) stays free, whatever an older sheet says."""
+    Backpack, Kieran 25 Oct, F-B6) stays free, whatever an older sheet says; a printed 0 is left to the Catalogue."""
     want = printed_slots(entry)
     sys_ = item.get("system", {})
     if want is None or "slots" not in sys_ or not (sys_.get("slots") or 0):
@@ -225,6 +225,8 @@ def fit_slots(item, entry):
     stacks = want / each
     if want < now and stacks == int(stacks) and math.ceil(qty / math.ceil(qty / stacks)) == stacks:
         sys_["bundle"] = math.ceil(qty / stacks)
+    elif item.get("type") == "weapon":
+        return item  # a weapon's own slots also say whether it's two-handed (effects.mjs isTwoHanded): never changed here
     else:
         sys_["bundle"] = 0
         sys_["slots"] = round(want / qty, 4)

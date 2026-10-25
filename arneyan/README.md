@@ -4,7 +4,7 @@ Version 0.10.59 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.59
 
-A fix from the last play test on TAC (25 Oct): **ten pregens started over their inventory limit**, with Disadvantage on attacks and up to 30ft off their Speed. Their sheets' "Chalk, 12 sticks" counted 12 slots instead of the printed 1. Every pregen's gear now takes the slots its printed sheet gives (12 sticks of chalk in 1 slot, four Fire Bombs in 1, two daggers in 1), and all 19 start inside their limit. The Backpack still takes no slot, as Kieran ruled on 25 Oct. A pregen already in a world keeps its old slots: drag a fresh copy from the compendium.
+A fix from the last play test on TAC (25 Oct): **ten pregens started over their inventory limit**, with Disadvantage on attacks and up to 30ft off their Speed. Their sheets' "Chalk, 12 sticks" counted 12 slots instead of the printed 1. Wherever a printed sheet gives a slot total, the gear now takes it (12 sticks of chalk in 1 slot, four Fire Bombs in 1), the Level 1 Keepers carry their two flasks of lamp oil, and all 19 start inside their limit. The Backpack still takes no slot, as Kieran ruled on 25 Oct. A pregen already in a world keeps its old slots: drag a fresh copy from the compendium.
 
 ## What's new in 0.10.58
 
