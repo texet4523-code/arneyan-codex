@@ -1,3 +1,4 @@
+import { hideState, rollHide, rollSearch } from "./stealth.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
 import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, weaponPickMax, featureLevel } from "./effects.mjs";
@@ -153,6 +154,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       toggleEdit: ArneyanActorSheet.#toggleEdit,
       setExhaustion: ArneyanActorSheet.#setExhaustion,
       toggleCondition: ArneyanActorSheet.#toggleCondition,
+      rollHide: ArneyanActorSheet.#rollHide,
+      rollSearch: ArneyanActorSheet.#rollSearch,
       effectToggle: ArneyanActorSheet.#effectToggle,
       effectDelete: ArneyanActorSheet.#effectDelete,
       endConcentration: ArneyanActorSheet.#endConcentration,
@@ -382,6 +385,15 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     }
     const activeRules = [...bySource].map(([label, list]) => ({ label, text: list.join(" · ") }));
 
+    // Passive awareness and hiding (books v0.10.10, K2): click to Search, or to Hide.
+    const aw = system.attributes.awareness;
+    const hid = hideState(actor);
+    const stealthStats = aw ? [
+      { key: "awareness", label: "Aware", value: aw.value, action: "rollSearch", sub: "passive",
+        tip: `Passive awareness: ${breakdown(aw.parts)}. Click to Search (a Wisdom check against a targeted hidden creature's Search DC).${aw.notes.length ? ` Sometimes: ${aw.notes.join("; ")}` : ""}` },
+      { key: "hide", label: "Hide", value: hid ? `DC ${hid.dc}` : "—", action: "rollHide", sub: hid ? hid.label : "not hidden",
+        tip: hid ? `${hid.label}: Search DC ${hid.dc}. Stays hidden ${hid.holds}. Click to Hide again.` : "Hide (action): a Dexterity (Stealth) check, only while unobserved or in cover or concealment. 12 Partially Hidden, 15 Hidden, 20 Completely Hidden." }
+    ] : [];
     // Sidebar stats with breakdowns.
     const sideStats = isCharacter ? [
       { key: "ac", label: "AC", value: system.attributes.ac.value, tip: breakdown(system.attributes.ac.parts), sub: system.attributes.ac.armour || "Unarmoured" },
@@ -394,6 +406,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       { key: "init", label: "Init", value: signed(system.attributes.init), tip: breakdown(system.attributes.initParts), action: "rollInit" },
       { key: "morale", label: "Morale", value: system.attributes.morale, action: "rollMorale", tip: "Morale Check: 2d6, higher than this breaks" }
     ];
+    sideStats.push(...stealthStats);
     const saves = isCharacter
       ? Object.entries(system.saves).map(([k, v]) => ({ key: k, label: v.label, value: v.value, bonus: actor._source.system.saves[k].bonus, valueLabel: signed(v.value), tip: breakdown(v.parts), abbr: ARNEYAN.abilityAbbr[v.ability], autoFail: v.autoFail }))
       : system.saveList.map(s => ({ key: s.key, label: s.label, value: s.value, valueLabel: signed(s.total), tip: breakdown(s.parts), autoFail: s.autoFail }));
@@ -658,6 +671,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   static #rollAbility(event, target) { return this.document.rollAbility(target.dataset.ability, event); }
   static #rollSave(event, target) { return this.document.rollSave(target.dataset.save, event); }
   static #rollLuck(event) { return this.document.rollLuck(event); }
+  static #rollHide(event) { return rollHide(this.document, event); }
+  static #rollSearch(event) { return rollSearch(this.document, event); }
   static async #rollInit() {
     const actor = this.document;
     if (typeof actor.rollInitiative === "function") return actor.rollInitiative({ createCombatants: true });

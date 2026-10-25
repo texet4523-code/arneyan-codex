@@ -212,7 +212,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         id: m.id, name: m.name, img: m.img, canOpen: m.testUserPermission(game.user, "OBSERVER"),
         classLabel: s.classLabel || "No class yet", level: s.level ?? 1,
         hp: hp.value, hpMax: hp.max, hpPct: Math.clamp(Math.round((Math.max(0, hp.value) / Math.max(1, hp.max)) * 100), 0, 100),
-        ac: s.attributes?.ac?.value ?? "-", luck: s.luck?.value ?? "-", speed: s.attributes?.speedNow ?? "-",
+        ac: s.attributes?.ac?.value ?? "-", luck: s.luck?.value ?? "-", speed: s.attributes?.speedNow ?? "-", awareness: s.attributes?.awareness?.value ?? "-",
         exhaustion: s.attributes?.exhaustion ?? 0,
         xp: s.attributes?.xp ?? 0, xpRate: s.xpRate ?? 10, levelReady: (s.attributes?.xp ?? 0) >= (s.xpRate ?? 10),
         conditions: [...st].map(id => ({ id, name: ARNEYAN.conditions[id]?.name ?? id, img: `systems/${SYS}/assets/conditions/${id}.svg` }))

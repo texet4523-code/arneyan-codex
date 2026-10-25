@@ -955,12 +955,11 @@
     "value": 1
    },
    {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Perception to avoid being surprised or ambushed"
+    "key": "adv.surprise",
+    "value": 1
    }
   ],
-  "summary": "+1 Wis; Advantage reminder on Perception vs surprise.",
+  "summary": "+1 Wis; Advantage (+5 passive awareness) against being surprised.",
   "manual": "",
   "confidence": "high"
  },
@@ -1557,12 +1556,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "check",
-    "value": 2,
-    "when": "surprise checks against anyone trying to surprise you"
+    "key": "surprise",
+    "value": 2
    }
   ],
-  "summary": "+2 reminder on surprise checks.",
+  "summary": "+2 to surprise checks (added to passive awareness when the party could be surprised).",
   "manual": "Attackers gaining no Advantage from flanking/Unseen and no Back Attack against you.",
   "confidence": "medium"
  },
@@ -2791,12 +2789,11 @@
     "value": 1
    },
    {
-    "key": "check",
-    "value": "15:2, 17:3, 19:4, 21:5, 23:6",
-    "when": "surprise checks"
+    "key": "surprise",
+    "value": "15:2, 17:3, 19:4, 21:5, 23:6"
    }
   ],
-  "summary": "+1 Dex; +2 reminder on surprise checks.",
+  "summary": "+1 Dex; +2 to +6 to surprise checks (added to passive awareness for surprise).",
   "manual": "Rises to +6 at 23rd via the progression table (steps not in the text).",
   "confidence": "medium"
  },
@@ -2900,12 +2897,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "check",
-    "value": "1+floor((@cl-14)/4)",
-    "when": "surprise checks"
+    "key": "surprise",
+    "value": "1+floor((@cl-14)/4)"
    }
   ],
-  "summary": "+1/+2/+3 (14th/18th/22nd) reminder on surprise checks.",
+  "summary": "+1/+2/+3 (14th/18th/22nd) to surprise checks (added to passive awareness for surprise).",
   "manual": "",
   "confidence": "high"
  },
@@ -3902,12 +3898,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Perception"
+    "key": "adv.awareness",
+    "value": 1
    }
   ],
-  "summary": "Advantage on skill checks (Perception). Shown as reminders.",
+  "summary": "Advantage on noticing: +5 passive awareness, and Advantage on Search.",
   "manual": "Once/day remove blindness or darkness.",
   "confidence": "high"
  },
@@ -10778,6 +10773,20 @@
    }
   ],
   "summary": "Monk AC and movement from the Monk Progression Table.",
+  "confidence": "high"
+ },
+ "class-features/Sqxt8w1xDKWpnqaM": {
+  "name": "Surprise",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "surprise.against",
+    "value": "13:1, 18:2, 23:3"
+   }
+  ],
+  "summary": "Targets' passive awareness is 1 lower (2 at 18th, 3 at 23rd) against the Assassin's ambush (books v0.10.10, K2).",
+  "manual": "",
   "confidence": "high"
  }
 }

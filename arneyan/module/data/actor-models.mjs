@@ -1,5 +1,6 @@
 import { ARNEYAN } from "../config.mjs";
 import { ModSet, collectRules, wordList, usesMax } from "../effects.mjs";
+import { awarenessOf } from "../awareness.mjs";
 
 const { NumberField, StringField, HTMLField, SchemaField, BooleanField, ArrayField } = foundry.data.fields;
 
@@ -227,6 +228,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // Initiative.
     s.attributes.initParts = [{ label: "Dex", value: dex }, ...mods.parts("init")];
     s.attributes.init = s.attributes.initParts.reduce((t, p) => t + p.value, 0);
+    // Passive awareness (books v0.10.10, K2).
+    s.attributes.awareness = awarenessOf(s, mods, actor?.items ?? []);
 
     // Hit points: the stored maximum plus bonuses, then any halving (Debilitated).
     const hp = s.attributes.hp;
@@ -417,6 +420,7 @@ export class NpcData extends foundry.abstract.TypeDataModel {
     }
     s.attributes.initParts = [{ label: "Dex", value: s.abilities.dex.mod }, ...mods.parts("init")];
     s.attributes.init = s.attributes.initParts.reduce((t, p) => t + p.value, 0);
+    s.attributes.awareness = awarenessOf(s, mods, actor?.items ?? []);
     s.bth = s.attributes.attack;
     s.acParts = [{ label: "Stat block", value: s.attributes.ac }, ...mods.parts("ac")];
     s.acTotal = s.acParts.reduce((t, p) => t + p.value, 0);

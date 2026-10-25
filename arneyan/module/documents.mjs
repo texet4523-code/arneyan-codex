@@ -1,3 +1,4 @@
+import { endHiding } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
@@ -343,13 +344,13 @@ export class ArneyanActor extends Actor {
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
   /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
-  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "" } = {}) {
+  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [] } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
-    const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`) ?? NONE);
+    const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`, ...advKeys) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
-    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: m?.notesFor("check") ?? [], autoFail: fail, extra: { ability: key } });
+    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: m?.notesFor("check") ?? [], autoFail: fail, footer, extra: { ...extra, ability: key } });
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
@@ -377,7 +378,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Skill (NWP) check. Untrained is a plain d20. Trained adds the modifier (minimum +1). Master also has Advantage. */
-  rollSkill(item, event, { dc = null, title = "" } = {}) {
+  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [] } = {}) {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
@@ -391,11 +392,11 @@ export class ArneyanActor extends Actor {
     const knack = knackOnly || !!item.flags?.arneyan?.knack;
     const parts = knackOnly ? [...(m?.parts("check", "skill") ?? [])] : [{ label: ARNEYAN.abilityAbbr[ab], value: mod <= 0 ? 1 : mod }, ...(m?.parts("check", `check.${ab}`, "skill") ?? [])];
     const masterSrc = master || knack ? { values: [1], adv: [master ? "Master" : "Knack"], dis: [] } : NONE;
-    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill") ?? NONE);
+    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill", ...advKeys) ?? NONE);
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
-      notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, extra: { skill: item.name }
+      notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, footer, extra: { ...extra, skill: item.name }
     });
   }
 
@@ -498,6 +499,8 @@ export class ArneyanActor extends Actor {
     // A creature that can't act doesn't use up ammunition.
     const { ok, ammo } = this.system.noAct ? { ok: true, ammo: null } : await spendAmmo(this, item);
     if (!ok) return null;
+    // Attacking ends hiding (books v0.10.10, Disengage & Hide).
+    endHiding(this, "attacks").catch(() => null);
     const ammoName = ammo?._source?.name ?? ammo?.name ?? "";
     const ammoPlus = Number(ammoName.match(/\+(\d)/)?.[1] ?? 0);
     const m = this.mods;
@@ -589,6 +592,7 @@ export class ArneyanActor extends Actor {
    * On a hit its damage and effects go to the ones hit.
    */
   async rollSpellAttack(item, event, { cl = 1 } = {}) {
+    endHiding(this, "casts a spell").catch(() => null);
     const targets = targetActors();
     if (!targets.length) ui.notifications.info("Target the creature you touch (an ally needs no roll).");
     const own = this.mods?.adv("adv.attack", "adv.attack.melee") ?? NONE;
@@ -1230,6 +1234,8 @@ export class ArneyanItem extends Item {
     let dc = null;
     let caster = null;
     if (actor?.system.noCast) return ui.notifications.warn(`${actor.name} cannot cast spells right now (${actor.mods.sources("no.cast").join(", ")}).`);
+    // Casting ends hiding.
+    if (actor) endHiding(actor, "casts a spell").catch(() => null);
     if (actor && canvas?.scene) (await import("./qol.mjs")).warnSpellRange(actor, this);
     if (actor?.type === "character") {
       caster = this.caster;

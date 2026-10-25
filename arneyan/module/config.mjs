@@ -251,6 +251,15 @@ ARNEYAN.conditions = {
     text: "Half Speed, and only one attack per round." },
   weakened: { name: "Weakened", icon: "arm-sling", rules: [R("adv.attack", -1)],
     text: "Disadvantage on attack rolls." },
+  // Hiding tiers (books v0.10.10, K2): set from a Hide roll's card (stealth.mjs), one at a time.
+  hiddenPartial: { name: "Partially Hidden", icon: "semi-closed-eye", counter: "none", rules: [],
+    text: "Hide 12-14: Search DC 12. Stays hidden only while heavily obscured or behind three-quarters or total cover. Darkvision doesn't find it. Attacking, casting a spell or a loud noise ends it." },
+  hiddenFull: { name: "Hidden", icon: "hood", counter: "none", rules: [],
+    text: "Hide 15-19: Search DC 15. Stays hidden while lightly or heavily obscured or behind any cover. Darkvision and tremorsense don't find it. Attacking, casting a spell or a loud noise ends it." },
+  hiddenComplete: { name: "Completely Hidden", icon: "cowled", counter: "none", rules: [],
+    text: "Hide 20+: Search DC 20. As Hidden, and blindsight and truesight don't find it either. Attacking, casting a spell or a loud noise ends it." },
+  surprised: { name: "Surprised", icon: "surprised", counter: "none", rules: [...INCAP, R("speed.mult", 0), R("no.reactions", 1)],
+    text: "Caught unaware: in the surprise round it can't move, take actions or take reactions. Comes off when the next round begins." },
   concentrating: { name: "Concentrating", icon: "concentration-orb", counter: "none", rules: [], system: true,
     text: "Maintaining a concentration effect. Taking damage calls for a Fortitude save, DC 10 or half the damage, whichever is higher." },
   dead: { name: "Dead", icon: "skull-crossed-bones", rules: [...HELPLESS], system: true, counter: "none", text: "Dead." }
@@ -277,14 +286,18 @@ ARNEYAN.ruleKeys = {
     // The Monk's: AC with no Dexterity while unarmoured, and a base speed lost over the inventory limit.
     "ac.unarmoured", "speed.base",
     // One more use a day of the named feature (Voice of the Grove: uses.extra.wild-shape).
-    "uses.extra.wild-shape"],
+    "uses.extra.wild-shape",
+    // Passive awareness (books v0.10.10, K2): a flat bonus; surprise: added to it only to notice an ambush;
+    // surprise.against: taken off the targets' passive awareness when this creature is among the ambushers (Assassin).
+    "awareness", "surprise", "surprise.against"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).
   // unarmed.dice: dice ("1d8") an Unarmed Strike uses instead of its own when bigger (Monk's Hand-to-Hand Combat).
   "Weapon dice": ["damage.reroll", "unarmed.dice"],
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
-    "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration"],
+    "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration",
+    "adv.awareness", "adv.surprise"],
   "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "crit.against.close"],
   "Automatic failure": ["fail.save.fort", "fail.save.ref", "fail.save.will", "fail.check.str", "fail.check.dex", "fail.check.con", "fail.check.int", "fail.check.wis", "fail.check.cha"],
   "Traits": ["resist", "immune", "vuln", "sense"],

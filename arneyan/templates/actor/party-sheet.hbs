@@ -42,7 +42,7 @@
             <div class="arn-hp-bar"><div style="width: {{hpPct}}%"></div></div>
             <div class="arn-member-stats">
               <span>HP <strong>{{hp}}/{{hpMax}}</strong></span><span>AC <strong>{{ac}}</strong></span>
-              <span>Luck <strong>{{luck}}</strong></span><span>Speed <strong>{{speed}}</strong></span>
+              <span>Luck <strong>{{luck}}</strong></span><span>Speed <strong>{{speed}}</strong></span><span data-tooltip="Passive awareness">Aware <strong>{{awareness}}</strong></span>
               {{#if exhaustion}}<span class="arn-bad">Exhaustion {{exhaustion}}</span>{{/if}}
             </div>
             {{#if conditions.length}}<div class="arn-cond-icons">{{#each conditions}}<span class="arn-cond on" data-tooltip="{{name}}"><img src="{{img}}" alt="{{name}}"></span>{{/each}}</div>{{/if}}

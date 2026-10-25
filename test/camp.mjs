@@ -27,7 +27,7 @@ assert.deepEqual(calls, [["skill", "Hunting", 12], ["ability", "int", 10], ["ski
 assert.ok(fs.readdirSync(new URL("../packs-src/equipment/", import.meta.url)).some(f => f.includes("7ou5GBNDo9o4VQKz")));
 // Rolls take a DC (shown as success or failure on the card).
 const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
-assert.ok(docs.includes('rollSkill(item, event, { dc = null, title = "" } = {})') && docs.includes('dc = null, title = "" } = {}) {'));
+assert.ok(docs.includes('rollSkill(item, event, { dc = null, title = ""') && docs.includes('rollAbility(key, event, { bonus = 0, label = "", dc = null, title = ""'));
 console.log("OK camp (forage)");
 
 /* Batch 6b: watches from 10pm to 6am. */
