@@ -33,14 +33,59 @@ async function rollSet(pools = POOLS) {
 
 /* ---------------- Rule B: the table's donated sets ---------------- */
 // Player feedback (23 Oct 2026): a Method V set not kept goes into a shared list anyone making a character can take
-// it from. Kept in a world setting; players add and take through the active GM.
+// it from. Kieran (25 Oct 2026): the list lives in a journal, "Donated Ability Score Sets", which the GM can edit (add,
+// change or strike out sets by hand) but nobody can delete. Each set is one line (a list item) with its six scores;
+// "(from Name)" after them says who gave it. Players add and take sets through the active GM.
 const SOCKET = `system.${SYSFLAG}`;
-const SETTING = "donatedSets";
+const JOURNAL_NAME = "Donated Ability Score Sets";
 const goodSet = set => Array.isArray(set) && set.length === 6 && set.every(n => Number.isInteger(n) && n >= 3 && n <= 18) && meetsThreshold(set);
-export function donatedSets() {
-  try { return (game.settings.get(SYSFLAG, SETTING) ?? []).filter(d => goodSet(d?.set)); } catch { return []; }
+const INTRO = "<p>Method V sets nobody kept (Rule B). Anyone making a character can take one under <strong>Type in a set</strong> in the ability scores window; it comes off this list when they set their scores. One set per line: six scores, then who gave it. The GM can add, change or remove lines here by hand. This journal can't be deleted.</p>";
+
+export function donatedJournal() { return game.journal?.find?.(j => j.getFlag?.(SYSFLAG, "donatedSets")) ?? null; }
+const donatedPage = (j = donatedJournal()) => j?.pages?.contents?.find(p => p.type === "text") ?? null;
+
+/** The sets written in the journal's page: every list item (or line) with six scores that pass Rule C. */
+export function parseDonated(html = "") {
+  const raw = /<li[\s>]/i.test(html) ? [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(m => m[1]) : String(html).split(/<br\s*\/?>|<\/p>|<\/div>|\n/i);
+  const out = [];
+  for (const r of raw) {
+    const text = r.replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+    const set = (text.match(/\b\d{1,2}\b/g) ?? []).slice(0, 6).map(Number);
+    if (!goodSet(set)) continue;
+    const from = text.match(/\bfrom\s+(.+?)\)?\s*$/i)?.[1]?.trim() ?? "";
+    out.push({ id: `${set.join("-")}|${from}`, set, from });
+  }
+  return out;
 }
-async function writeDonated(list) { await game.settings.set(SYSFLAG, SETTING, list.slice(-20)); }
+export function donatedSets() {
+  try { return parseDonated(donatedPage()?.text?.content ?? ""); } catch { return []; }
+}
+/** The page's text with its list replaced (anything else the GM wrote stays). */
+export function donatedHtml(old = "", list = []) {
+  const ul = `<ul>${list.map(d => `<li>${d.set.join(", ")}${d.from ? ` (from ${esc(d.from)})` : ""}</li>`).join("")}</ul>`;
+  if (/<(ul|ol)[\s>][\s\S]*?<\/\1>/i.test(old)) return old.replace(/<(ul|ol)[\s>][\s\S]*?<\/\1>/i, ul);
+  return `${old || INTRO}${ul}`;
+}
+/** The journal, made if it isn't there yet (GM only). Players can read it. */
+export async function ensureDonatedJournal() {
+  let j = donatedJournal();
+  if (j || !game.user?.isGM) return j;
+  j = await JournalEntry.create({
+    name: JOURNAL_NAME, ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER },
+    flags: { [SYSFLAG]: { donatedSets: true } },
+    pages: [{ name: "Donated sets", type: "text", text: { content: `${INTRO}<ul></ul>` } }]
+  });
+  return j;
+}
+async function writeDonated(list) {
+  const j = await ensureDonatedJournal();
+  const page = donatedPage(j);
+  if (!page) {
+    await j?.createEmbeddedDocuments("JournalEntryPage", [{ name: "Donated sets", type: "text", text: { content: donatedHtml("", list) } }]);
+    return;
+  }
+  await page.update({ "text.content": donatedHtml(page.text?.content ?? "", list) });
+}
 // One change at a time, so two arriving together can't both start from the same list.
 let queue = Promise.resolve();
 const inTurn = fn => (queue = queue.then(fn, fn));
@@ -48,7 +93,7 @@ export function gmDonate(set, from) { return inTurn(() => donate(set, from)); }
 export function gmTake(id, by = "") { return inTurn(() => take(id, by)); }
 async function donate(set, from) {
   if (!goodSet(set)) return false;
-  await writeDonated([...donatedSets(), { id: foundry.utils.randomID(), set: [...set], from: String(from ?? "").slice(0, 60), at: Date.now() }]);
+  await writeDonated([...donatedSets(), { set: [...set], from: String(from ?? "").replace(/[()]/g, "").slice(0, 60) }]);
   return true;
 }
 async function take(id, by = "") {
@@ -58,7 +103,8 @@ async function take(id, by = "") {
     ChatMessage.create({ whisper: ChatMessage.getWhisperRecipients?.("GM")?.map(u => u.id) ?? [], content: `<p>A donated set ${by ? `${esc(by)} took ` : ""}was already gone from the list.</p>` });
     return false;
   }
-  await writeDonated(list.filter(x => x.id !== id));
+  const i = list.indexOf(d);
+  await writeDonated(list.filter((x, k) => k !== i));
   return true;
 }
 /** Add or take a set: directly as the GM, otherwise through the active GM. False when no GM is on. */
@@ -72,7 +118,7 @@ function onSocket(msg, senderId) {
   if (!game.users.activeGM?.isSelf) return;
   // The player who sent it is named from their user, not from the message.
   const sender = game.users.get(senderId);
-  const tag = name => { const n = String(name ?? "").slice(0, 40).trim(); return sender ? (n ? `${n} (${sender.name})` : sender.name) : n; };
+  const tag = name => { const n = String(name ?? "").slice(0, 40).trim(); return sender ? (n ? `${n}, ${sender.name}` : sender.name) : n; };
   if (msg?.action === "chargen.donate") gmDonate(msg.set, tag(msg.from)).catch(err => console.warn("Arneyan | donated set", err));
   if (msg?.action === "chargen.take") gmTake(msg.id, tag(msg.by)).catch(err => console.warn("Arneyan | donated set", err));
 }
@@ -101,8 +147,8 @@ async function abilityScoresWindow(actor) {
       <label><input type="radio" name="mode" value="four"> Roll 4d6, drop the lowest</label>
       <label><input type="radio" name="mode" value="own"> Type in a set (donated, or rolled at the table)${donated.length ? ` <span class="arn-chip gold">${donated.length} donated</span>` : ""}</label>
     </div>
-    <div class="arn-scores-donated" hidden>${donated.length ? `<p class="hint">Sets other players didn't keep (Rule B). Use one to fill in the scores; it leaves the list when you set your scores.</p>
-      ${donated.map(d => `<div class="arn-scores-don"><button type="button" class="arn-btn small" data-donated="${d.id}"><i class="fa-solid fa-hand-holding-heart"></i> Use</button> <strong>${d.set.join(", ")}</strong>${d.from ? ` <span class="arn-muted">from ${esc(d.from)}</span>` : ""}${game.user.isGM ? ` <a class="arn-scores-don-remove" data-remove="${d.id}" data-tooltip="Take it off the list"><i class="fa-solid fa-xmark"></i></a>` : ""}</div>`).join("")}`
+    <div class="arn-scores-donated" hidden>${donated.length ? `<p class="hint">Sets other players didn't keep (Rule B), from the <a class="arn-scores-journal">${JOURNAL_NAME}</a> journal. Use one to fill in the scores; it leaves the list when you set your scores.</p>
+      ${donated.map(d => `<div class="arn-scores-don"><button type="button" class="arn-btn small" data-donated="${esc(d.id)}"><i class="fa-solid fa-hand-holding-heart"></i> Use</button> <strong>${d.set.join(", ")}</strong>${d.from ? ` <span class="arn-muted">from ${esc(d.from)}</span>` : ""}${game.user.isGM ? ` <a class="arn-scores-don-remove" data-remove="${esc(d.id)}" data-tooltip="Take it off the list"><i class="fa-solid fa-xmark"></i></a>` : ""}</div>`).join("")}`
       : `<p class="hint">No donated sets right now. Type in a set rolled at the table.</p>`}</div>
     <div class="arn-scores-roll"><button type="button" class="arn-scores-rollbtn"><i class="fa-solid fa-dice"></i> Roll both sets</button><div class="arn-scores-sets"></div></div>
     <div class="arn-scores-four" hidden><p class="hint">The Quick Roll: roll 4d6 six times, dropping the lowest die each time, then put each score on an attribute. Rule C still applies: without two scores of 14 or higher, roll again.</p><button type="button" class="arn-scores-fourbtn"><i class="fa-solid fa-dice"></i> Roll 4d6 six times</button><div class="arn-scores-fourset"></div></div>
@@ -166,6 +212,7 @@ async function abilityScoresWindow(actor) {
         fill();
       }));
       el.querySelectorAll(".arn-scores-own input").forEach(i => i.addEventListener("change", fill));
+      el.querySelectorAll(".arn-scores-journal").forEach(a => a.addEventListener("click", () => donatedJournal()?.sheet?.render(true)));
       el.querySelectorAll("[data-donated]").forEach(b => b.addEventListener("click", () => {
         const d = donated.find(x => x.id === b.dataset.donated);
         if (!d) return;
@@ -283,8 +330,22 @@ function startScores(actor) {
 }
 
 export function registerChargen() {
-  game.settings?.register?.(SYSFLAG, SETTING, { scope: "world", config: false, type: Array, default: [] });
-  Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
+  Hooks.once("ready", () => {
+    game.socket.on(SOCKET, onSocket);
+    if (game.users.activeGM?.isSelf) ensureDonatedJournal().catch(err => console.warn("Arneyan | donated sets journal", err));
+  });
+  // The donated sets journal can be edited but not deleted (nor its page).
+  Hooks.on("preDeleteJournalEntry", j => {
+    if (!j.getFlag?.(SYSFLAG, "donatedSets")) return;
+    ui.notifications.warn(`${j.name} can't be deleted: edit its list instead.`);
+    return false;
+  });
+  Hooks.on("preDeleteJournalEntryPage", page => {
+    const j = page.parent;
+    if (!j?.getFlag?.(SYSFLAG, "donatedSets") || donatedPage(j)?.id !== page.id) return;
+    ui.notifications.warn(`The list in ${j.name} can't be deleted: edit it instead.`);
+    return false;
+  });
   // A brand-new character (not imported, duplicated or from a compendium) asks for its scores first. It's marked as
   // needing them, so whoever plays it is asked when they first open it: players can't usually make characters, so
   // the GM makes one and hands it over (20 Oct 2026: the window used to open for the GM only).

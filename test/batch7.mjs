@@ -47,52 +47,60 @@ const CB = await import("../arneyan/module/combat.mjs");
   CB.checkHpMax({ ...actor, pack: "x" }, "p1");
   await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 2);
-  // HP typed in by hand above the maximum is kept until the maximum falls below what it was typed against.
+  // Current HP can never be set above the maximum (Kieran, 25 Oct): held to it before saving.
   {
-    game.users = { activeGM: { id: "gm", isSelf: true } };
-    const ups = [];
-    const npc = { type: "npc", uuid: "Actor.n", name: "Ogre", system: { attributes: { hp: { value: 30, max: 5, effectiveMax: 5 } } },
-      update: async u => { ups.push(u); npc.system.attributes.hp.value = u["system.attributes.hp.value"]; } };
-    assert.equal(CB.noteHandSetHp(npc, { system: { attributes: { hp: { value: 30 } } } }), true, "typed HP noted");
-    CB.checkHpMax(npc, "gm"); // an AC edit, a condition removed...
-    await new Promise(r => setTimeout(r, 350));
-    assert.equal(ups.length, 0, "typed HP kept");
-    npc.system.attributes.hp.max = npc.system.attributes.hp.effectiveMax = 4; // the maximum falls below it
-    CB.checkHpMax(npc, "gm");
-    await new Promise(r => setTimeout(r, 350));
-    assert.deepEqual(ups, [{ "system.attributes.hp.value": 4 }], "then brought down");
-    assert.equal(CB.noteHandSetHp(npc, { name: "x" }), false, "other changes aren't typed HP");
+    for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
+    const { capHpChange } = await import("../arneyan/module/documents.mjs");
+    const npc = { type: "npc", _source: { system: { attributes: { hp: { max: 5 } } } }, system: { attributes: { hp: { value: 5, max: 7, effectiveMax: 7 } } } };
+    let ch = { system: { attributes: { hp: { value: 30 } } } };
+    capHpChange(npc, ch); assert.equal(ch.system.attributes.hp.value, 7, "typed above the maximum: held to it");
+    ch = { system: { attributes: { hp: { value: 30, max: 20 } } } };
+    capHpChange(npc, ch); assert.equal(ch.system.attributes.hp.value, 22, "with a new stored maximum (20 + 2 from rules)");
+    ch = { system: { attributes: { hp: { max: 2 } } } };
+    capHpChange(npc, ch); assert.equal(ch.system.attributes.hp.value, 4, "lowering the stored maximum brings current HP with it");
+    ch = { system: { attributes: { hp: { value: 3 } } } };
+    capHpChange(npc, ch); assert.equal(ch.system.attributes.hp.value, 3, "below the maximum: untouched");
   }
   console.log("OK max HP lowered takes current HP down, and it stays");
 }
 
-/* ---------------- Rule B: the table's donated sets ---------------- */
+/* ---------------- Rule B: the table's donated sets, in a journal ---------------- */
 const CG = await import("../arneyan/module/chargen.mjs");
 {
-  let stored = [];
-  game.settings = { get: (s, k) => (k === "donatedSets" ? stored : "publicroll"), set: async (s, k, v) => { if (k === "donatedSets") stored = v; } };
+  // A mock journal with one text page.
+  const page = { id: "pg", type: "text", text: { content: "" }, update: async u => { await new Promise(r => setTimeout(r, 5)); page.text.content = u["text.content"]; } };
+  let journal = null;
+  game.journal = { find: fn => (journal && fn(journal) ? journal : undefined) };
+  globalThis.JournalEntry = { create: async d => { page.text.content = d.pages[0].text.content; journal = { name: d.name, ownership: d.ownership, flags: d.flags, getFlag: (s, k) => d.flags?.[s]?.[k], pages: { contents: [page] } }; return journal; } };
   game.user = { id: "gm", isGM: true, targets: new Set() };
+  game.users = { activeGM: { id: "gm", isSelf: true }, get: () => null };
   globalThis.ChatMessage = { create: () => {}, getWhisperRecipients: () => [] };
   assert.equal(await CG.gmDonate([16, 15, 12, 10, 9, 8], "Tess"), true);
+  assert.equal(journal.name, "Donated Ability Score Sets", "the journal is made on first use");
+  assert.equal(journal.ownership.default, 2, "players can read it");
+  assert.ok(page.text.content.includes("<li>16, 15, 12, 10, 9, 8 (from Tess)</li>"));
   assert.equal(await CG.gmDonate([12, 11, 10, 9, 8, 7], "Bad"), false, "a set below the Gygaxian Threshold isn't donated");
   assert.equal(await CG.gmDonate([19, 15, 14, 10, 9, 8], "Bad"), false, "nor one with a score above 18");
-  assert.equal(CG.donatedSets().length, 1);
-  assert.deepEqual(CG.donatedSets()[0].set, [16, 15, 12, 10, 9, 8]);
-  assert.equal(CG.donatedSets()[0].from, "Tess");
+  assert.deepEqual(CG.donatedSets().map(d => [d.set, d.from]), [[[16, 15, 12, 10, 9, 8], "Tess"]]);
+  // The GM edits the page by hand: their own text stays, their lines count.
+  page.text.content = "<p>My note: 14 is the line.</p><ul><li>16, 15, 12, 10, 9, 8 (from Tess)</li><li>17 14 13 12 11 10</li><li>not a set</li></ul>";
+  assert.equal(CG.donatedSets().length, 2, "a line typed by hand counts");
   const id = CG.donatedSets()[0].id;
   assert.equal(await CG.gmTake(id, "Bran"), true);
-  assert.equal(CG.donatedSets().length, 0, "taken off the list");
+  assert.deepEqual(CG.donatedSets().map(d => d.set), [[17, 14, 13, 12, 11, 10]], "taken off the list");
+  assert.ok(page.text.content.startsWith("<p>My note: 14 is the line.</p>"), "the GM's own text stays");
   assert.equal(await CG.gmTake(id, "Cass"), false, "it can't be taken twice");
   // Two arriving together both land (one change at a time).
-  stored = [];
-  game.settings.set = async (s, k, v) => { await new Promise(r => setTimeout(r, 10)); if (k === "donatedSets") stored = v; };
   await Promise.all([CG.gmDonate([16, 15, 12, 10, 9, 8], "A"), CG.gmDonate([15, 14, 12, 10, 9, 8], "B")]);
-  assert.equal(CG.donatedSets().length, 2, "neither is lost");
-  for (let i = 0; i < 25; i++) await CG.gmDonate([14, 14, 10, 10, 10, 10], `P${i}`);
-  assert.equal(CG.donatedSets().length, 20, "the list keeps the latest 20");
+  assert.equal(CG.donatedSets().length, 3, "neither is lost");
+  // A name can't break the list.
+  await CG.gmDonate([14, 14, 10, 10, 10, 10], '<b>"x"</b>');
+  assert.ok(!page.text.content.includes("<b>"), "names are escaped");
+  // Nobody can delete the journal.
   const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");
-  assert.ok(src.includes("arn-scores-donated") && src.includes('data-donated="${d.id}"'), "the scores window lists them");
-  console.log("OK donated sets");
+  assert.ok(src.includes('Hooks.on("preDeleteJournalEntry"') && src.includes('Hooks.on("preDeleteJournalEntryPage"'));
+  assert.ok(src.includes("arn-scores-donated") && src.includes('data-donated="${esc(d.id)}"'), "the scores window lists them");
+  console.log("OK donated sets journal");
 }
 
 /* ---------------- Who can move the party token ---------------- */

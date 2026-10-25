@@ -112,7 +112,7 @@
     <section class="arn-card-block">
       <div class="arn-block-label">Conditions</div>
       <div class="arn-cond-icons">
-        {{#each activeConditions}}<a class="arn-cond on" data-action="toggleCondition" data-condition="{{id}}" data-tooltip="{{name}}: {{text}} (click to remove)"><img src="{{img}}" alt="{{name}}"></a>{{else}}<span class="arn-muted">None</span>{{/each}}
+        {{#each activeConditions}}<a class="arn-cond on" data-action="toggleCondition" data-condition="{{id}}" data-tooltip="{{name}}: {{text}} (click or right-click to remove)"><img src="{{img}}" alt="{{name}}"></a>{{else}}<span class="arn-muted">None</span>{{/each}}
       </div>
       {{#if editable}}
       <select class="arn-add-condition"><option value="">Add a condition...</option>{{#each conditions}}{{#unless active}}<option value="{{id}}">{{name}}</option>{{/unless}}{{/each}}</select>

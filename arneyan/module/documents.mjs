@@ -239,6 +239,28 @@ export function planSkills(actor, skills) {
   return { dupes, fit, over, cost: [...fit, ...over].reduce((t, d) => t + skillCost(d.system?.tier), 0) };
 }
 
+/**
+ * Current HP can never be above maximum HP (Kieran, 25 Oct 2026). A change that sets current HP is held to the
+ * maximum: the derived maximum now, moved by however much the change alters the stored maximum. (Lowering the
+ * maximum by an effect or item brings current HP down after the fact: combat.mjs checkHpMax.)
+ */
+export function capHpChange(actor, changes) {
+  if (!["character", "npc"].includes(actor?.type)) return;
+  const val = foundry.utils.getProperty(changes, "system.attributes.hp.value");
+  const newStored = foundry.utils.getProperty(changes, "system.attributes.hp.max");
+  const hp = actor.system?.attributes?.hp;
+  if (!hp) return;
+  const derived = hp.effectiveMax ?? hp.max;
+  if (!Number.isFinite(derived)) return;
+  const oldStored = Number(actor._source?.system?.attributes?.hp?.max ?? hp.max) || 0;
+  const max = newStored !== undefined && Number.isFinite(Number(newStored)) ? Math.max(1, derived + (Number(newStored) - oldStored)) : derived;
+  if (val !== undefined) {
+    if (Number.isFinite(Number(val)) && Number(val) > max) foundry.utils.setProperty(changes, "system.attributes.hp.value", max);
+  } else if (newStored !== undefined && Number(hp.value) > max) {
+    foundry.utils.setProperty(changes, "system.attributes.hp.value", max);
+  }
+}
+
 export class ArneyanActor extends Actor {
   async _preCreate(data, options, user) {
     if ((await super._preCreate(data, options, user)) === false) return false;
@@ -275,6 +297,8 @@ export class ArneyanActor extends Actor {
     if (this.type === "npc" && lvl !== undefined && lvl !== this.system.level && foundry.utils.getProperty(changes, "system.details.levelText") === undefined) {
       foundry.utils.setProperty(changes, "system.details.levelText", "");
     }
+    // Current HP never goes above the maximum (Kieran, 25 Oct 2026), the maximum as this change leaves it.
+    capHpChange(this, changes);
   }
 
   _onUpdate(changed, options, userId) {

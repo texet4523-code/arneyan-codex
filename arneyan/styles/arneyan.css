@@ -409,21 +409,26 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-level-preview ul { margin: 6px 0; padding-left: 18px; display: flex; flex-direction: column; gap: 3px; }
 .arneyan .arn-lp-head { font-size: 15px; margin: 0 0 4px; color: var(--arn-accent); }
 .arneyan .arn-lp-q { font-weight: 700; margin: 8px 0 0; }
-/* Dialog buttons in every Arneyan window (player feedback, 23 Oct 2026: Done and the like looked dim on parchment).
-   The main button is green; the others are outlined; a button that can't be pressed yet is clearly greyed. */
+/* Dialog buttons in every Arneyan window (player feedback, 23 Oct; Kieran, 25 Oct: green, not grey). Every button
+   is green; the main one has a gold ring; one that can't be pressed yet is clearly greyed. */
 .arneyan.application footer.form-footer button, .arneyan.application .dialog-buttons button {
-  background: var(--arn-surface); color: var(--arn-ink); border: 1px solid var(--arn-border); border-radius: 5px; font-weight: 600; opacity: 1;
+  background: var(--arn-accent); color: var(--arn-accent-ink); border: 1px solid var(--arn-accent); border-radius: 5px; font-weight: 600; opacity: 1;
 }
 .arneyan.application footer.form-footer button:hover:not([disabled]), .arneyan.application .dialog-buttons button:hover:not([disabled]) {
-  background: var(--arn-surface-2); border-color: var(--arn-accent); box-shadow: none;
+  background: var(--arn-accent-2); border-color: var(--arn-accent-2); box-shadow: none;
 }
 .arneyan.application footer.form-footer button:is([autofocus], .default, [data-default]), .arneyan.application .dialog-buttons button.default {
-  background: var(--arn-accent); color: var(--arn-accent-ink); border-color: var(--arn-accent);
+  box-shadow: 0 0 0 2px var(--arn-gold);
 }
-.arneyan.application footer.form-footer button:is([autofocus], .default, [data-default]):hover:not([disabled]) { background: var(--arn-accent-2); }
 .arneyan.application footer.form-footer button[disabled], .arneyan.application .dialog-buttons button[disabled] {
-  background: var(--arn-surface-2); color: var(--arn-muted); border-style: dashed; cursor: not-allowed; opacity: .8;
+  background: var(--arn-surface-2); color: var(--arn-muted); border: 1px dashed var(--arn-border); box-shadow: none; cursor: not-allowed; opacity: .8;
 }
+/* Plain buttons inside Arneyan windows (Roll both sets, Scan...) match: green, not Foundry's grey. */
+.arneyan .window-content button:not(.arn-shape-tile):not(.arn-btn):not(.arn-ci-edit):not([data-action=moveUp]):not([data-action=moveDown]):not([disabled]) {
+  background: var(--arn-accent); color: var(--arn-accent-ink); border: 1px solid var(--arn-accent); border-radius: 5px;
+}
+.arneyan .window-content button:not(.arn-shape-tile):not(.arn-btn):not(.arn-ci-edit):not([data-action=moveUp]):not([data-action=moveDown]):not([disabled]):hover { background: var(--arn-accent-2); }
+.arneyan .window-content button[disabled]:not(.arn-shape-tile) { background: var(--arn-surface-2); color: var(--arn-muted); border: 1px dashed var(--arn-border); cursor: not-allowed; }
 .arneyan .arn-luck-pick { border: 1px solid var(--arn-border); border-radius: 6px; padding: 6px 10px; margin: 8px 0; display: flex; flex-direction: column; gap: 4px; }
 .arneyan .arn-luck-pick legend { font-weight: 700; padding: 0 4px; }
 .arneyan .arn-luck-pick label { display: flex; align-items: center; gap: 6px; }

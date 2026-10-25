@@ -549,6 +549,12 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         cls.update({ "system.extraSlots": extra });
       });
     }
+    // Right-click a condition that's on to take it off (as in the effects panel; Kieran, 25 Oct 2026).
+    this.element.querySelectorAll(".arn-cond.on[data-condition], .arn-cond-chip.on[data-condition]").forEach(el => el.addEventListener("contextmenu", ev => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      toggleCondition(this.document, el.dataset.condition, false);
+    }));
     // Add a condition from the drop-down.
     this.element.querySelector("select.arn-add-condition")?.addEventListener("change", ev => {
       ev.stopPropagation();

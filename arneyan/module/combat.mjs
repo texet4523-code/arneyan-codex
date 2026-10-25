@@ -794,9 +794,10 @@ async function onSocket(msg, senderId) {
 /* -------------------------------------------- */
 
 /**
- * Player feedback (23 Oct 2026): when a creature's maximum HP drops below its current HP (a level lost, a feature
- * removed, Debilitated, a drain), its current HP drops to the new maximum, and stays there when the maximum comes
- * back. One client writes it: the active GM, or with no GM on, whoever made the change.
+ * Player feedback (23 Oct 2026) and Kieran (25 Oct): current HP can never be above maximum HP. When the maximum
+ * drops below current HP (a level lost, a feature removed, Debilitated, a drain), current HP drops to the new
+ * maximum, and stays there when the maximum comes back. One client writes it: the active GM, or with no GM on,
+ * whoever made the change. A change that sets current HP is held to the maximum before it's saved (capHpChange).
  */
 const HP_PENDING = new Map();
 export function hpOverMax(actor) {
@@ -819,27 +820,10 @@ export function checkHpMax(actor, userId) {
     try { now = globalThis.fromUuidSync ? fromUuidSync(key) : actor; } catch { return; }
     if (!now) return;
     const max = hpOverMax(now);
-    if (max === null) { HAND_SET.delete(key); return; }
-    // Typed in by hand against this maximum or a lower one: left as it is.
-    if (HAND_SET.has(key) && max >= HAND_SET.get(key)) return;
-    HAND_SET.delete(key);
+    if (max === null) return;
     console.log(`Arneyan | ${now.name}: current HP ${now.system.attributes.hp.value} down to the new maximum ${max}`);
     now.update({ "system.attributes.hp.value": max }, { arneyanHpClamp: true }).catch(err => console.warn("Arneyan | HP to max", err));
   }, 250));
-}
-/**
- * HP typed in above the maximum by hand (an NPC built from the sheet, value first and maximum after; a GM's ruling)
- * is kept: remembered with the maximum it was typed against, and only brought down if the maximum then falls below
- * that.
- */
-const HAND_SET = new Map();
-export function noteHandSetHp(actor, changes) {
-  if (foundry.utils.getProperty(changes, "system.attributes.hp.value") === undefined) return false;
-  const hp = actor?.system?.attributes?.hp;
-  const max = hp?.effectiveMax ?? hp?.max;
-  if (hp && Number.isFinite(max) && hp.value > max) HAND_SET.set(actor.uuid, max);
-  else HAND_SET.delete(actor?.uuid);
-  return true;
 }
 const ownerActor = doc => {
   let p = doc?.parent;
@@ -848,13 +832,8 @@ const ownerActor = doc => {
 };
 
 export function registerCombat() {
-  // Current HP set directly is noted (and kept, above: noteHandSetHp); anything else may have lowered the maximum.
-  Hooks.on("updateActor", (actor, changes, options, userId) => {
-    if (options?.arneyanHpClamp) return;
-    const typed = noteHandSetHp(actor, changes);
-    if (foundry.utils.getProperty(changes, "system.attributes.hp.max") === undefined && typed) return;
-    checkHpMax(actor, userId);
-  });
+  // Current HP never stays above the maximum (Kieran, 25 Oct 2026): checked after every change to the actor.
+  Hooks.on("updateActor", (actor, changes, options, userId) => { if (!options?.arneyanHpClamp) checkHpMax(actor, userId); });
   for (const h of ["createItem", "updateItem", "deleteItem", "createActiveEffect", "updateActiveEffect", "deleteActiveEffect"]) {
     Hooks.on(h, (doc, ...rest) => checkHpMax(ownerActor(doc), rest.at(-1)));
   }
