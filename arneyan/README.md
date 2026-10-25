@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.55 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.56 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.56
+
+**The compendiums now follow the books v0.10.11** (Players Handbook and Monsters & Treasure), read from the book chat's own Markdown sources.
+
+- **Monsters:** save DCs as the books regenerated them; every spellcasting monster has its printed **spell DC** (60 had none before); Combat Reflexes on the eight creatures that have it; the Archmage's dagger +14; the Remorhaz a Level 11 solo with 125 HP.
+- **Spells:** harmful Touch spells use a touch attack instead of a save, as the books now print (Chill Touch, Shocking Grasp, Bestow Curse, the Cure and Cause spells against undead and so on). Updated wording for Animal Friendship, Hold Animal, Charm Person or Mammal, Healing Circle and others.
+- **Classes and kits:** the books' latest wording, including Assassin and Rogue hiding (Hidden while lightly obscured even on 12 to 14), Wild Shape's list of beast-like monsters, Woodcraft's trap search, Pact Summons' Shared Summons stats and the Necromancer's and Witch's class-only spells with school and components.
+- **Rules journals:** Book I's reorganised Downtime, Traps, Resting & Recovery and Hiding & Search pages; Book II's Quick Roll option and Backpack line; Book IV's Spell Targeting and touch attacks.
+- **Catalogue:** two-handed weapons say so in their traits; spell components keep "(by quality)" in their price.
+
+Characters' own copies of items keep their wording; their rules, saves and uses follow the update as usual. Drag an item in again from the compendium for the new text.
 
 ## What's new in 0.10.55
 
