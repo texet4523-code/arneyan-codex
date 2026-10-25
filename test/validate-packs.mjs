@@ -75,7 +75,7 @@ const ID = /^[a-zA-Z0-9]{16}$/;
 const src = new URL("../packs-src/", import.meta.url).pathname;
 let count = 0;
 for (const pack of fs.readdirSync(src)) {
-  // A pack held back from release (build/held-back-packs.json, the pregens) is still checked against its own entry.
+  // A pack held back from release (build/held-back-packs.json; none at the moment) is still checked against its own entry.
   const decl = sys.packs.find(p => p.name === pack) ?? held.packs.find(p => p.name === pack);
   if (!decl) err(pack, "pack not declared in system.json");
   const docs = fs.readdirSync(path.join(src, pack)).map(f => JSON.parse(fs.readFileSync(path.join(src, pack, f))));

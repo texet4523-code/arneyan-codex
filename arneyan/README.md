@@ -7,7 +7,7 @@ Version 0.10.58 · Foundry v13 and v14 · **Playtest release**
 **The playtest version.** The compendiums follow the books **v0.10.13** (Players Handbook and Monsters & Treasure), and the **Pregenerated Characters** are back.
 
 - **Book I:** the Codex's Healing says current HP can never exceed max HP (Foundry has worked this way since 0.10.52), and Energy drain is reworded (it inflicts Exhaustion, never past level 5).
-- **Pregenerated Characters** return in the Adventures folder: the 15 Broken Anvil characters and the four Jacob's Well Keepers. HP matches every printed sheet; the five AC differences from before stay (Armour Master and Shield Expert are reminders, the Ring of Protection isn't automated, Maud's 15 assumes Mage Armour).
+- **Pregenerated Characters** return in the Adventures folder: the 15 Broken Anvil characters and the four Jacob's Well Keepers. HP matches every printed sheet. Five small differences from before stay, as agreed: AC for Brakka, Brenna, Gauthak, Liriel and Maud (Armour Master, Shield Expert and Liriel's Agile Defence are reminders, the Ring of Protection isn't automated, and Maud's 15 assumes Mage Armour), and Brenna's Reflex by 1.
 
 ## What's new in 0.10.57
 

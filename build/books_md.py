@@ -25,7 +25,7 @@ SHOP = os.path.join(OUT, "V_Catalogue.md")
 def src(part):
     p = os.path.join(SRC, f"HB_v{VERSION}_{part}.md")
     if not os.path.exists(p):
-        raise SystemExit(f"Missing Handbook source {p}: copy the Builder's v{VERSION} Markdown there (board F5).")
+        raise SystemExit(f"Missing Handbook source {p}: copy the Builder's v{VERSION} Markdown there (board F5, F10).")
     return p
 
 
