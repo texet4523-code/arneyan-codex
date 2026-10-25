@@ -474,10 +474,10 @@ export async function chooseForm(original) {
 /**
  * Beast-like monsters (not "beast" by type) a druid can become: animal-minded and not magical (Wild Shape: "a wolf,
  * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call). Never a
- * solo (0.10.49, M3: the Roc and the Purple Worm are off the list).
+ * solo (0.10.49, M3: the Roc and the Purple Worm are off the list; 0.10.50, B1/R-F1: the Remorhaz, a solo from books v0.10.8).
  */
 export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Carrion Crawler", "Grick", "Grick Alpha",
-  "Hook Horror", "Young Remorhaz", "Remorhaz", "Hydra", "Piercer", "Rust Monster"];
+  "Hook Horror", "Young Remorhaz", "Hydra", "Piercer", "Rust Monster"];
 
 const typeOf = e => String(foundry.utils.getProperty(e, "system.details.type") ?? "").toLowerCase();
 const levelOf = e => Number(foundry.utils.getProperty(e, "system.level")) || 0;

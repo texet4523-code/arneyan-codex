@@ -29,7 +29,7 @@ for (const n of T.BEAST_LIKE) {
 }
 for (const n of ["Worg", "Winter Wolf", "Displacer Beast", "Manticore", "Basilisk", "Phase Spider", "Goblin", "Treant"]) assert.ok(!wild.some(m => m.name === n), `${n} isn't a Wild Shape form`);
 // Never a solo (M3, 0.10.49): the Roc and the Purple Worm are off, and any solo beast is refused.
-for (const n of ["Roc", "Purple Worm"]) assert.ok(!wild.some(m => m.name === n), `${n} (a solo) isn't a Wild Shape form`);
+for (const n of ["Roc", "Purple Worm", "Remorhaz"]) assert.ok(!wild.some(m => m.name === n), `${n} (a solo) isn't a Wild Shape form`);
 assert.ok(monsters.filter(m => m.system.details.isSolo).every(m => !T.isWildForm(m)), "no solo is a form");
 assert.equal(T.isWildForm({ name: "Wolf", system: { details: { type: "beast", isSolo: true } } }), false);
 

@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.49 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.50 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.50
+
+- **The Remorhaz is off the Wild Shape list** (books v0.10.8 make it a Level 11 solo, and Wild Shape is never a solo). The Young Remorhaz stays. Its new stat block arrives with the next Bestiary rebuild.
 
 ## What's new in 0.10.49
 
@@ -77,7 +81,7 @@ Fixes from the first night's play:
 - **Animate Objects summons** its objects: **Animated Object** and **Animated Object, Large** (20 HP, AC 14, speed 30ft, a slam that hits automatically for 1d8 or 2d8), made from the spell's own numbers. Up to one per two caster levels; a Large one counts as two.
 - **Monsters without ability scores** (Monsters & Treasure gives none yet) show "–" instead of 10 and +0. Their saves are the book's.
 
-Beast-like monsters on the list (the GM's call, as the feature says; intelligent or magical ones left out): Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Remorhaz, Hydra, Piercer and Rust Monster. Never a solo monster (so not the Roc or the Purple Worm).
+Beast-like monsters on the list (the GM's call, as the feature says; intelligent or magical ones left out): Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Hydra, Piercer and Rust Monster. Never a solo monster (so not the Roc, the Purple Worm or the Remorhaz).
 
 ## What's new in 0.10.42
 
