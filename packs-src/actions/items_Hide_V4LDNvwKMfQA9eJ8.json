@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/action-hood.svg",
  "system": {
-  "description": "<p>Action: Dexterity (Stealth) check; 12, 15 or 20+ sets how hidden you are and the Search DC (see Disengage &amp; Hide).</p><p class=\"arn-note\"><strong>Combat Manoeuvres, Action:</strong> uses your action.</p><ul><li>Hide (action): make a Dexterity (Stealth) check, only while unobserved or in cover or concealment. The result sets how well you are hidden and the Search DC to find you. Below 12 you are not hidden.</li><li>Unseen: an attack against a creature that cannot see you has <strong>Advantage</strong>, and your attack against a creature you cannot see has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\">Press Use to roll the Dexterity check.</p>",
+  "description": "<p>Action: Dexterity (Stealth) check; 12, 15 or 20+ sets how hidden you are and the Search DC (see Disengage &amp; Hide).</p><p class=\"arn-note\"><strong>Combat Manoeuvres, Action:</strong> uses your action.</p><ul><li>Hide (action): make a Dexterity (Stealth) check, only while unobserved or in cover or concealment. The result sets how well you are hidden and the Search DC to find you. Below 12 you are not hidden.</li><li>Partially Hidden (12 to 14): you stay hidden only while heavily obscured or behind three-quarters or total cover. Darkvision does not find you. Search <strong>DC 12</strong>.</li><li>Hidden (15 to 19): you stay hidden while lightly or heavily obscured or behind any cover. Darkvision and tremorsense do not find you. Search <strong>DC 15</strong>.</li><li>Completely Hidden (20 or more): as Hidden, and blindsight and truesight do not find you either. Search <strong>DC 20</strong>.</li><li>Passive awareness: 10 + Wisdom modifier; add 5 if the creature would have <strong>Advantage</strong> on the check (Master, or a feature) and take 5 if it would have <strong>Disadvantage</strong>.</li><li>A creature that is not actively looking spots you if its passive awareness meets your Search DC.</li><li>A sense you are hidden from does not reveal you on its own.</li><li>Unseen: an attack against a creature that cannot see you has <strong>Advantage</strong>, and your attack against a creature you cannot see has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\">Press Use to roll the Dexterity check.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Your action. An observer who is actively looking makes a Wisdom check against it; one who is not uses its passive awareness (10 + Wisdom modifier). You are hidden from each observer your check beats.",
+    "text": "Your action, only while unobserved or in cover or concealment. The result sets how hidden you are and the Search DC: below 12 not hidden; 12 to 14 Partially Hidden (DC 12); 15 to 19 Hidden (DC 15); 20 or more Completely Hidden (DC 20). A creature not actively looking spots you if its passive awareness meets the Search DC.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

@@ -35,7 +35,7 @@ assert.equal(mult(s("Finger of Death").saveEffect), 1, "Finger of Death: a save 
 assert.equal(mult(s("Shatter").saveEffect), 0.5, "Shatter: Fortitude halves");
 assert.equal(mult(s("Web").saveEffect), 0.5, "Web: the fire damage, Reflex halves");
 // Saves the Save column leaves out but the text states.
-assert.equal(s("Forcecage").save, "ref"); assert.equal(s("Polymorph").save, "will"); assert.equal(s("Mislead").save, "will");
+assert.equal(s("Forcecage").save, "ref"); assert.equal(s("Polymorph").save, "", "Touch: a touch attack on an unwilling creature (Handbook v0.10.11)"); assert.equal(s("Mislead").save, "will");
 
 // ---- Damage the text states, with its scaling.
 assert.equal(at("Magic Missile", 1), "1d4+1", "1 missile at 1st"); assert.equal(at("Magic Missile", 6), "3d4+3"); assert.equal(at("Magic Missile", 14), "5d4+5", "max 5 missiles");

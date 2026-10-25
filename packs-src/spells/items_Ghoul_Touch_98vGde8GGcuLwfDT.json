@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one living creature is <strong>Paralysed</strong> for <strong>1d6+2</strong> rounds; <strong>Fortitude negates</strong>. While <strong>Paralysed</strong> it gives off a stench: any other living creature that starts its turn within <strong>10ft</strong> makes a <strong>Fortitude save</strong> or is <strong>Sickened</strong> until it starts a turn outside the stench.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "description": "<p>Touch; one living creature is <strong>Paralysed</strong> for <strong>1d6+2</strong> rounds (touch attack). While <strong>Paralysed</strong> it gives off a stench: any other living creature that starts its turn within <strong>10ft</strong> makes a <strong>Fortitude save</strong> or is <strong>Sickened</strong> until it starts a turn outside the stench.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,8 +24,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": false,

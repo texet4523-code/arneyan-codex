@@ -7,7 +7,8 @@ import os, re
 import docx
 from lib import *
 
-SRC = "/tmp/hb/cls/clean2"
+import books_md
+SRC = books_md.CLASSES
 LVL = re.compile(r"\((\d+)(?:st|nd|rd|th)\)")
 
 
@@ -57,7 +58,7 @@ def witch():
             continue
         if not on:
             continue
-        m = re.match(r"^Patron\s+[—–-]\s+(.+)$", t)
+        m = re.match(r"^Patron\s*(?:[—–-]|:)\s+(.+)$", t)
         if m:
             cur = {"name": f"Patron: {m.group(1).strip()}", "intro": [], "features": []}
             kits.append(cur)
@@ -83,12 +84,12 @@ def artificer():
             section, cur, sub = t.strip(), None, None
             continue
         if style == "Heading 2":
-            m = re.match(r"^Kit\s+[—–-]\s+(.+)$", t)
+            m = re.match(r"^Kit\s*(?:[—–-]|:)\s+(.+)$", t)
             cur = {"name": m.group(1).strip(), "intro": [], "features": []} if m and section.startswith("Kits") else None
             if cur:
                 kits.append(cur)
             # The Workshop's known lists: "Infuser — Known Infusions", "Alchemist — Known Formulas".
-            k = re.match(r"^(Infuser|Construct Engineer|Gadgeteer|Alchemist)\s+[—–-]\s+(.+)$", t)
+            k = re.match(r"^(Infuser|Construct Engineer|Gadgeteer|Alchemist)\s*(?:[—–-]|:)\s+(.+)$", t)
             sub = (k.group(1), k.group(2).strip()) if k and section.startswith("The Artificer") else None
             if sub:
                 known[sub[0]] = {"title": sub[1], "html": HtmlBuf()}

@@ -45,8 +45,8 @@ TOGGLES = {
 
 # Checks the Use button rolls (the book's attribute; a skill that applies is the player's to add).
 CHECKS = {
-    "Hide": ("dex", "Dexterity (Stealth) check. Each observer who is looking makes a Wisdom check against it; one who is not uses its passive awareness (10 + Wisdom modifier)."),
-    "Search": ("wis", "Wisdom check against the hidden creature's Hide result."),
+    "Hide": ("dex", "Dexterity (Stealth) check: 12, 15 or 20+ sets how hidden you are and the Search DC (12, 15 or 20); below 12 you are not hidden. A creature not actively looking spots you if its passive awareness meets the Search DC."),
+    "Search": ("wis", "Wisdom check against the hidden creature's Search DC; on a success you find it."),
 }
 
 # combat.mjs picks the contest by name (Grapple, Trip, Disarm, Dirty Trick, Overbear) or by this flag.
@@ -147,7 +147,7 @@ def build(_icon=None):
     grappling = heads["Unarmed Combat & Grappling"]
     more = {
         "Charge": moving[i:i + 5],
-        "Hide": [p for p in hiding if p.startswith(("Hide (action)", "Unseen"))],
+        "Hide": [p for p in hiding if p.startswith(("Hide (action)", "Partially Hidden", "Hidden (", "Completely Hidden", "Passive awareness", "Unseen"))],
         "Search": [p for p in hiding if p.startswith("Search (action)")],
         "Grapple": [p for p in grappling if not p.startswith(("Unarmed Strike", "Grappling:"))],
     }

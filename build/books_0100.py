@@ -124,6 +124,10 @@ def build():
             d["system"]["hd"] = hd
             d["system"]["attributes"]["hp"].update({"value": hp, "max": hp})
             _save(f, d); n["monsters"] += 1
+    # Spell-component prices given as a range said what the range is (books v0.10.0). Retired with the books v0.10.11,
+    # which print "(by quality)" themselves where they mean it; and the Attack of Opportunity action's text below is
+    # the book's own now (build_actions.py reads it from the Codex).
+    return n
     # Spell-component prices given as a range say what the range is.
     folder = {d.get("_id"): d.get("name", "") for f, d in _each("equipment", folders=True) if "system" not in d}
     for f, d in _each("equipment"):

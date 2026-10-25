@@ -32,6 +32,9 @@ def src(part):
 def to_docx(md_path, docx_path):
     html = docx_path[:-5] + ".html"
     subprocess.run(["pandoc", "-f", "markdown-smart", "-t", "html", md_path, "-o", html], check=True)
+    # pandoc marks "↔" for text presentation (U+FE0E); the book has no such character.
+    h = open(html, encoding="utf-8").read()
+    open(html, "w", encoding="utf-8").write(h.replace("\ufe0e", ""))
     subprocess.run(["pandoc", "-f", "html", "-t", "docx", html, "-o", docx_path], check=True)
     os.remove(html)
 

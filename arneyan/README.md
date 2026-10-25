@@ -6,10 +6,11 @@ Version 0.10.56 · Foundry v13 and v14 · **Playtest release**
 
 **The compendiums now follow the books v0.10.11** (Players Handbook and Monsters & Treasure), read from the book chat's own Markdown sources.
 
-- **Monsters:** save DCs as the books regenerated them; every spellcasting monster has its printed **spell DC** (60 had none before); Combat Reflexes on the eight creatures that have it; the Archmage's dagger +14; the Remorhaz a Level 11 solo with 125 HP.
-- **Spells:** harmful Touch spells use a touch attack instead of a save, as the books now print (Chill Touch, Shocking Grasp, Bestow Curse, the Cure and Cause spells against undead and so on). Updated wording for Animal Friendship, Hold Animal, Charm Person or Mammal, Healing Circle and others.
+- **Monsters:** save DCs as the books regenerated them; every spellcasting monster has its printed **spell DC** (26 gain one, 34 have theirs corrected); Combat Reflexes on the eight creatures that have it; the Archmage's dagger +14; the Remorhaz a Level 11 solo with 125 HP.
+- **Spells:** harmful Touch spells use a touch attack instead of a save, as the books now print (Chill Touch, Shocking Grasp, Bestow Curse, Polymorph on an unwilling creature, the Cure and Cause spells against undead, and the Necromancer's and Witch's Touch of Fatigue, Inflict Light Wounds, Ghoul Touch, Contagion and Harm). Updated wording for Animal Friendship, Hold Animal, Charm Person or Mammal, Healing Circle and others.
 - **Classes and kits:** the books' latest wording, including Assassin and Rogue hiding (Hidden while lightly obscured even on 12 to 14), Wild Shape's list of beast-like monsters, Woodcraft's trap search, Pact Summons' Shared Summons stats and the Necromancer's and Witch's class-only spells with school and components.
-- **Rules journals:** Book I's Downtime pages (training, crafting, magic items, scribing), Traps, and the hiding and Search rules; Book II's Quick Roll option and Backpack line; Book IV's Spell Targeting and touch attacks.
+- **Rules journals:** Book I's Disengage & Hide (hiding tiers and Search DCs), Surprise Rounds, Combat Manoeuvres, Inventory (the Backpack takes no slot), Non-Lethal Damage, Travelling Rules, Ranged Attacks and Traps; Book II's Quick Roll option and Backpack line; Book IV's Spell Targeting and touch attacks. Journal pages keep their ids, so links to them still work.
+- **Hide and Search actions** use the hiding tiers and Search DCs on their cards too.
 - **Catalogue:** two-handed weapons say so in their traits; spell components keep "(by quality)" in their price.
 
 - **Pregenerated Characters held back** until the final playtest version (Kieran); pregens already imported into a world stay.

@@ -63,7 +63,8 @@ def build(icon):
             buf.add(table_html(rows))
             continue
         p, t = obj, info["text"]
-        if info["style"] in ("Title",) or t in ("Arneyan Campaign Setting",) or (first and t == "Spellcasting in Arneyan"):
+        # (the master spell list's own title, a Title in the old Word file and plain text, twice, in the v0.10.11 Markdown)
+        if info["style"] in ("Title",) or t in ("Arneyan Campaign Setting", "Arneyan Master Spell List") or (first and t == "Spellcasting in Arneyan"):
             first = False
             continue
         if info["style"] == "Heading 1":

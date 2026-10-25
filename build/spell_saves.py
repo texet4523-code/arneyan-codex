@@ -10,7 +10,8 @@ with the readings the plain parser would get wrong written out below."""
 import re
 
 # Spells whose Save column is "—" in both books, though the text names a save.
-SAVE_ADD = {"Forcecage": "ref", "Polymorph": "will", "Mislead": "will", "Dispel Magic": "will"}
+# (Polymorph: the books v0.10.11 print Touch, a touch attack on an unwilling creature, so no save.)
+SAVE_ADD = {"Forcecage": "ref", "Mislead": "will", "Dispel Magic": "will"}
 
 EFFECT = {
     # Illusions: a save sees through them.
@@ -51,7 +52,6 @@ EFFECT = {
     "Reverse Gravity": "Grabs a fixed object and stays put",
     "Wall of Force": "Picks which side of the wall it is on",
     "Forcecage": "Slips out of the cage",
-    "Polymorph": "Negates (an unwilling creature only)",
     "Dispel Magic": "A worn or carried magic item is not suppressed",
     # Reversible spells whose save is the reverse's.
     "Bless": "Negates (Bane only)",

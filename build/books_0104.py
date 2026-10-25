@@ -62,9 +62,10 @@ TRAPS = (
     "needs thieves' tools. Kobolds have Advantage (Trapwise).</li>"
     "<li><strong>Magical traps</strong> (glyphs, runes, Fire Trap): a Wisdom check can't spot one unless it can be seen. Detect Magic "
     "reveals it, and Dispel Magic ends it.</li></ul>"
-    "<p class=\"arn-note\">In Foundry: make a Hazard actor and press <strong>Use the Traps table</strong> on its sheet for these "
-    "numbers by its Level (tick Deadly first for a deadly trap).</p>"
 )
+TRAPS_TIP = ("<p class=\"arn-note\">In Foundry: make a Hazard actor and press <strong>Use the Traps table</strong> on its sheet for these "
+             "numbers by its Level (tick Deadly first for a deadly trap).</p>")
+TRAPS += TRAPS_TIP
 
 # Class-only spells (PHB v0.10.4): (school, components, costed note). Eldritch Blast gives none.
 SPELLS = {
@@ -167,7 +168,11 @@ def build():
                     c2 = c2.replace(old, new)
                 if c2 != c:
                     p["text"]["content"] = c2; ch = True
-        # (The Codex has its own Traps page from books v0.10.11: then this one isn't added.)
+        # (The Codex has its own Traps page from books v0.10.11: then this one isn't added, and the Foundry tip goes on
+        # the book's page instead.)
+        own = next((p for p in d.get("pages", []) if p.get("name") == "Traps"), None) if d["name"].startswith("Book I:") else None
+        if own is not None and TRAPS_TIP not in own["text"]["content"]:
+            own["text"]["content"] += TRAPS_TIP; ch = True
         if d["name"].startswith("Book I:") and not any(p.get("_id") == TRAPS_ID or p.get("name") == "Traps" for p in d["pages"]):
             env = next((p for p in d["pages"] if p["name"] == "Environmental Hazards"), None)
             if env is None:

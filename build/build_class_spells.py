@@ -9,7 +9,8 @@ import docx
 from lib import *
 import spell_damage, spell_saves
 
-SRC = "/tmp/hb/cls/clean2"
+import books_md
+SRC = books_md.CLASSES
 LEVEL_WORD = {"Cantrip": 0, "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, "5th": 5, "6th": 6, "7th": 7, "8th": 8, "9th": 9}
 ICON = {"Witch": "enchantment", "Necromancer": "necromancy", "Warlock": "evocation"}
 FOLDER_SORT = {"Necromancer": 10, "Warlock": 11, "Witch": 12}
@@ -28,7 +29,10 @@ DAMAGE = {"Slay Living": ("(@cl)d6", "necrotic")}
 
 
 def save_of(text):
-    """(save, on a save) from "Will negates", "Fortitude halves", "(Fortitude save for half)", "Reflex negates"."""
+    """(save, on a save) from "Will negates", "Fortitude halves", "(Fortitude save for half)", "Reflex negates".
+    "(touch attack)" (books v0.10.11): the touch attack replaces the save (touch.mjs), so none."""
+    if re.search(r"\(touch attack\)", text):
+        return "", ""
     m = re.search(r"\b(Will|Reflex|Fortitude)\b(?: save)?\s*(?:for\s+)?(negates|halves|half|to resist)?", text)
     if not m:
         return "", ""
@@ -37,8 +41,36 @@ def save_of(text):
     return save, eff
 
 
+def _header(t):
+    """"Name (1st; Necromancy; V, S, M‡ (black onyx, 25 gp)) — text" (books v0.10.11) or "Name (1st) — text":
+    (name, level word, school, components, text), or None."""
+    m = re.match(r"^(.+?)\s*\((Cantrip|\d(?:st|nd|rd|th))\b", t)
+    if not m:
+        return None
+    i = t.index("(", len(m.group(1)))
+    depth, j = 0, i
+    for j in range(i, len(t)):
+        depth += {"(": 1, ")": -1}.get(t[j], 0)
+        if depth == 0:
+            break
+    else:
+        return None
+    parts, cur, d = [], "", 0
+    for ch in t[i + 1:j]:
+        d += {"(": 1, ")": -1}.get(ch, 0)
+        if ch == ";" and d == 0:
+            parts.append(cur.strip()); cur = ""
+        else:
+            cur += ch
+    parts.append(cur.strip())
+    rest = re.match(r"^\s*[—–-]\s*(.+)$", t[j + 1:])
+    if not rest:
+        return None
+    return m.group(1).strip(), parts[0], (parts[1] if len(parts) > 1 else ""), (parts[2] if len(parts) > 2 else ""), rest.group(1).strip()
+
+
 def class_only(name):
-    """[(spell name, level, text)] from a class's "Class-Only Spells" section."""
+    """[(spell name, level, text, school, components)] from a class's "Class-Only Spells" section."""
     d = docx.Document(os.path.join(SRC, f"{name}.docx"))
     out, on = [], False
     for kind, obj, info in walk_docx(d):
@@ -50,9 +82,10 @@ def class_only(name):
             continue
         if not on:
             continue
-        m = re.match(r"^(.+?)\s*\((Cantrip|\d(?:st|nd|rd|th))\)\s*[—–-]\s*(.+)$", t)
-        if m:
-            out.append((m.group(1).strip(), LEVEL_WORD[m.group(2)], m.group(3).strip()))
+        h = _header(t)
+        if h:
+            nm, lvl, school, comps, text = h
+            out.append((nm, LEVEL_WORD[lvl], text, school, comps))
     return out
 
 
@@ -89,8 +122,8 @@ def build(icon):
     # name -> {level, text, classes, folder class, path note}
     spells = {}
     for cls in ("Witch", "Necromancer"):
-        for name, lvl, text in class_only(cls):
-            s = spells.setdefault(name, {"level": lvl, "text": text, "classes": [], "home": cls, "notes": []})
+        for name, lvl, text, school, comps in class_only(cls):
+            s = spells.setdefault(name, {"level": lvl, "text": text, "classes": [], "home": cls, "notes": [], "school": school, "components": comps})
             s["classes"].append(cls)
     # Eldritch Blast (Warlock, 1st level): an at-will cantrip in the book's words.
     spells["Eldritch Blast"] = {
@@ -130,15 +163,16 @@ def build(icon):
         desc += "".join(f'<p class="arn-note">{esc(n)}</p>' for n in s["notes"])
         desc += f'<p class="arn-note"><strong>Classes:</strong> {esc(", ".join(classes))} (class-only spell, from the class entry)</p>'
         material = re.search(r"\bMaterial:\s*([^.]+)", text)
+        comps = s.get("components", "")
         item("spells", name, "spell", {
             "description": desc, "source": {"book": "phb", "page": 0},
             "level": s["level"], "className": classes[0] if len(classes) == 1 else "",
-            "classes": classes, "school": "",
+            "classes": classes, "school": s.get("school", ""),
             "castingTime": "1 action", "range": rng.group(1) if rng else "",
-            "duration": "", "area": "", "components": "M" if material else "",
+            "duration": "", "area": "", "components": re.sub(r"\s*\(.*\)\s*$", "", comps.replace("‡", "")).strip() if comps else ("M" if material else ""),
             "concentration": bool(re.search(r"\bconcentration\b", text, re.I)), "ritual": False, "prepared": False,
             "save": save, "saveEffect": eff, "damage": dmg, "damageType": dtype,
-            "reversible": False, "costly": bool(material and re.search(r"\bgp\b", material.group(1)))
+            "reversible": False, "costly": "‡" in comps or bool(material and re.search(r"\bgp\b", material.group(1)))
         }, icon("spell", ICON.get(home, "")), folder=folders[home], sort=i, key=f"class-only|{name}")
         made.append(name)
     return made, skipped

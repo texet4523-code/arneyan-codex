@@ -15,6 +15,8 @@ import { ARNEYAN } from "./config.mjs";
 export const TOUCH_ATTACK = new Set([
   "Shocking Grasp", "Chill Touch", "Inflict Light Wounds", "Vampiric Touch", "Ghoul Touch", "Bestow Curse", "Contagion",
   "Harm", "Touch of Fatigue", "Death Knell", "Polymorph", "Plane Shift", "Temporal Stasis", "Imprisonment",
+  // "As Bestow Curse" (Necromancer class-only spell, Handbook v0.10.11).
+  "Bestow Curse (Greater)",
   // Reversible: the touch attack is for the reversed form (or, for the cures, an undead).
   "Cure Light Wounds", "Cure Serious Wounds", "Cure Critical Wounds", "Heal", "Remove Curse", "Remove Disease",
   "Remove Blindness or Deafness", "Enhance Attribute", "Restoration"

@@ -206,11 +206,27 @@ def folder(pack, name, type_="Item", parent=None, sort=0, color=None):
     write(pack, doc)
     return _id
 
+_PAGE_IDS = None
+
+
+def _page_ids():
+    global _PAGE_IDS
+    if _PAGE_IDS is None:
+        p = os.path.join(os.path.dirname(__file__), "data", "page_ids.json")
+        _PAGE_IDS = json.load(open(p, encoding="utf-8"))["pages"] if os.path.exists(p) else {}
+    return _PAGE_IDS
+
+
 def journal(pack, name, pages, folder=None, sort=0):
+    """A journal of text pages. A page keeps the id it was released with (data/page_ids.json, by title); a new page's
+    id comes from its title and how many pages before it share that title, so moving pages never changes ids."""
     _id = fid(pack, "journal", name)
     ps = []
+    seen = {}
     for i, (title, content) in enumerate(pages):
-        pid = fid(pack, "page", name, title, str(i))
+        n = seen[title] = seen.get(title, -1) + 1
+        known = _page_ids().get(f"{name}|{title}", [])
+        pid = known[n] if n < len(known) else fid(pack, "page", name, title, "t" + str(n))
         ps.append({
             "_id": pid, "_key": f"!journal.pages!{_id}.{pid}", "name": title, "type": "text",
             "title": {"show": True, "level": 1}, "text": {"format": 1, "content": content},

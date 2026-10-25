@@ -44,7 +44,7 @@ const s = n => byName[n].system;
 assert.equal(s("Hex of Stumbling").level, 1); assert.equal(s("Hex of Stumbling").save, "ref"); assert.equal(s("Hex of Stumbling").saveEffect, "Negates");
 assert.equal(s("Hex of Stumbling").range, "Range 30ft");
 assert.equal(s("Bind Wound").damage, "2d8 + min(@cl, 10)"); assert.equal(s("Bind Wound").damageType, "healing"); assert.equal(s("Bind Wound").range, "Touch");
-assert.equal(s("Inflict Light Wounds").damage, "1d8 + min(@cl, 5)"); assert.equal(s("Inflict Light Wounds").damageType, "necrotic"); assert.equal(s("Inflict Light Wounds").saveEffect, "Half");
+assert.equal(s("Inflict Light Wounds").damage, "1d8 + min(@cl, 5)"); assert.equal(s("Inflict Light Wounds").damageType, "necrotic"); assert.equal(s("Inflict Light Wounds").save, "", "a touch attack, no save (Handbook v0.10.11)");
 assert.equal(s("Horrid Wilting").damage, "(min(@cl, 20))d6"); assert.equal(s("Horrid Wilting").template.type, "circle"); assert.equal(s("Horrid Wilting").template.size, 30);
 assert.equal(s("Vile Blight").template.type, "cone"); assert.equal(s("Vile Blight").save, "fort"); assert.equal(s("Vile Blight").saveEffect, "Half");
 assert.equal(s("Fear (Mass)").template.type, "cone"); assert.equal(s("Fear (Mass)").template.lingering, false, "Fear (Mass) lasts on the creatures, not the area");
