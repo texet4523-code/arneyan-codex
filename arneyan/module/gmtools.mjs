@@ -54,18 +54,21 @@ export function partyRollHtml(data) {
   const rows = data.members.map(m => {
     const mode = m.mode > 0 ? '<span class="arn-chip">Advantage</span>' : m.mode < 0 ? '<span class="arn-chip">Disadvantage</span>' : "";
     const note = m.note ? ` <span class="arn-muted">${esc(m.note)}</span>` : "";
+    const shown = `<span class="arn-pr-result ${m.pass === true ? "pass" : m.pass === false ? "fail" : ""}" data-tooltip="${esc(OUTCOME_TEXT[m.outcome] ?? "")}"><strong>${m.total}</strong>${m.pass === true ? ' <i class="fa-solid fa-check"></i>' : m.pass === false ? ' <i class="fa-solid fa-xmark"></i>' : ""}</span>`;
+    // Secret: players see only that it's rolled; the GM's copy of the card shows the result.
     const res = m.rollId
-      ? `<span class="arn-pr-result ${m.pass === true ? "pass" : m.pass === false ? "fail" : ""}" data-tooltip="${esc(OUTCOME_TEXT[m.outcome] ?? "")}"><strong>${m.total}</strong>${m.pass === true ? ' <i class="fa-solid fa-check"></i>' : m.pass === false ? ' <i class="fa-solid fa-xmark"></i>' : ""}</span>`
+      ? (data.secret ? `<span class="arn-gm-only">${shown}</span><span class="arn-player-only arn-muted"><i class="fa-solid fa-eye-slash"></i> rolled</span>` : shown)
       : `<button type="button" class="arn-pr-roll" data-uuid="${esc(m.uuid)}"><i class="fa-solid fa-dice-d20"></i> Roll</button><span class="arn-pr-wait arn-muted">waiting</span>`;
     return `<li data-uuid="${esc(m.uuid)}"><img src="${esc(m.img)}" alt=""><span class="arn-pr-name">${esc(m.name)}${mode}${note}</span>${res}</li>`;
   }).join("");
   const s = summarise(data.members);
-  const summary = dc === null ? `${s.rolled} of ${data.members.length} rolled` : `${s.passed} passed, ${s.failed} failed${s.waiting ? `, ${s.waiting} still to roll` : ""}`;
+  const open = dc === null ? `${s.rolled} of ${data.members.length} rolled` : `${s.passed} passed, ${s.failed} failed${s.waiting ? `, ${s.waiting} still to roll` : ""}`;
+  const summary = data.secret ? `<span class="arn-gm-only">${open}</span><span class="arn-player-only">${s.rolled} of ${data.members.length} rolled (secret: only the GM sees the results)</span>` : open;
   const cons = data.consequence === "exhaustion" ? (data.applied
     ? '<p class="arn-muted"><i class="fa-solid fa-check"></i> Exhaustion applied to those who failed.</p>'
     : `<button type="button" class="arn-pr-apply"${s.failed ? "" : " disabled"}><i class="fa-solid fa-person-falling"></i> Those who failed gain 1 level of Exhaustion</button>`) : "";
   return `<div class="arn-card arn-party-roll"><header class="arn-card-title"><i class="fa-solid fa-users"></i> <span>${esc(head)}</span>${dc !== null ? `<span class="arn-mode">DC ${dc}</span>` : ""}</header>
-    <p class="arn-card-meta">${esc(sub)}</p>
+    <p class="arn-card-meta">${esc(sub)}${data.secret ? ' · <i class="fa-solid fa-eye-slash"></i> Secret' : ""}</p>
     ${data.text ? `<p>${esc(data.text)}</p>` : ""}
     <ul class="arn-pr-list">${rows}</ul>
     <p class="arn-pr-summary">${summary}</p>
@@ -88,12 +91,12 @@ export function partyRollHtml(data) {
  * @param {""|"exhaustion"} [o.consequence]
  * @param {Record<string, {mode?:number, note?:string}>} [o.per]  Advantage/Disadvantage and notes by actor uuid.
  */
-export async function askForRoll({ actors, kind, key, dc = null, label = "", text = "", consequence = "", per = {} }) {
+export async function askForRoll({ actors, kind, key, dc = null, label = "", text = "", consequence = "", per = {}, secret = false }) {
   if (!game.user.isGM) return ui.notifications.warn("The GM asks for group rolls.");
   if (!actors?.length) return ui.notifications.warn("Nobody to ask: add party members, or select tokens.");
   const data = {
     kind, key, dc: dc === null || dc === "" || !Number.isFinite(Number(dc)) ? null : Math.clamp(Number(dc), 0, 60), label: String(label ?? "").slice(0, 120),
-    text: String(text ?? "").slice(0, 300), consequence, applied: false,
+    text: String(text ?? "").slice(0, 300), consequence, applied: false, secret: !!secret,
     members: actors.map(a => ({ uuid: a.uuid, name: a.name, img: a.img, mode: per[a.uuid]?.mode ?? 0, note: per[a.uuid]?.note ?? "", rollId: "", total: null, natural: null, outcome: "", pass: null }))
   };
   return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ alias: "GM" }), content: partyRollHtml(data), flags: { [SYS]: { kind: "partyRoll", partyRoll: data } } });
@@ -103,10 +106,12 @@ export async function askForRoll({ actors, kind, key, dc = null, label = "", tex
 async function rollOne(actor, req, member, event = null) {
   const ev = { shiftKey: !!event?.shiftKey || member.mode > 0, ctrlKey: !!(event?.ctrlKey || event?.metaKey) || member.mode < 0 };
   const source = req.label || "";
-  if (req.kind === "save") return actor.rollSave(req.key, ev, { dc: req.dc, source });
-  if (req.kind === "check") return actor.rollAbility(req.key, ev);
+  // A secret roll (Batch 8): only the GM sees the result, the roller included.
+  const rollMode = req.secret ? "blindroll" : null;
+  if (req.kind === "save") return actor.rollSave(req.key, ev, { dc: req.dc, source, rollMode });
+  if (req.kind === "check") return actor.rollAbility(req.key, ev, { rollMode });
   const item = actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === String(req.key).toLowerCase()) ?? null;
-  return actor.rollSkill(item, ev);
+  return actor.rollSkill(item, ev, { rollMode });
 }
 
 /** Does this roll message answer the request for this creature? */
@@ -225,6 +230,9 @@ function onRenderCard(message, html) {
     if (may) busy(b, ev => onRollButton(message, b.dataset.uuid, ev));
   }
   for (const b of html.querySelectorAll(".arn-pr-rest, .arn-pr-apply")) b.hidden = !game.user.isGM;
+  // A secret roll's results: the GM's view only.
+  for (const el of html.querySelectorAll(".arn-gm-only")) if (!game.user.isGM) el.remove();
+  for (const el of html.querySelectorAll(".arn-player-only")) if (game.user.isGM) el.remove();
   for (const b of html.querySelectorAll(".arn-pr-rest")) busy(b, () => rollTheRest(message));
   for (const b of html.querySelectorAll(".arn-pr-apply")) busy(b, () => applyExhaustion(message));
 }
@@ -264,6 +272,7 @@ export async function askRollDialog(preset = {}) {
     <div class="form-group"><label>DC</label><input type="number" name="dc" value="${preset.dc ?? 12}" min="0" max="60" list="arn-dc-tiers">
       <datalist id="arn-dc-tiers">${Object.entries(ARNEYAN.difficulties).map(([k, v]) => `<option value="${v}">${k[0].toUpperCase()}${k.slice(1)}</option>`).join("")}</datalist></div>
     <p class="arn-help">Easy 10, Moderate 12, Hard 15, Severe 20. Leave it empty to compare the totals instead.</p>
+    <label class="checkbox"><input type="checkbox" name="secret"${preset.secret ? " checked" : ""}> Secret: only you see the results (the players roll blind)</label>
     <div class="form-group"><label>Heading</label><input type="text" name="label" value="${esc(preset.label ?? "")}" placeholder="Spot the tripwire"></div>
     <fieldset class="arn-pr-who"><legend>Who rolls</legend>
       ${pool.map(a => `<label class="checkbox"><input type="checkbox" name="who" value="${esc(a.uuid)}"${chosen.has(a.uuid) ? " checked" : ""}> <img src="${esc(a.img)}" alt=""> ${esc(a.name)}</label>`).join("")}
@@ -274,13 +283,13 @@ export async function askRollDialog(preset = {}) {
       const f = button.form.elements;
       const [kind, ...rest] = String(f.what.value).split(":");
       const who = [...button.form.querySelectorAll('input[name="who"]:checked')].map(x => x.value);
-      return { kind, key: rest.join(":"), dc: f.dc.value === "" ? null : Number(f.dc.value), label: f.label.value.trim(), who };
+      return { kind, key: rest.join(":"), dc: f.dc.value === "" ? null : Number(f.dc.value), label: f.label.value.trim(), who, secret: !!f.secret?.checked };
     } },
     rejectClose: false
   }).catch(() => null);
   if (!res) return;
   const actors = pool.filter(a => res.who.includes(a.uuid));
-  return askForRoll({ actors, kind: res.kind, key: res.key, dc: res.dc, label: res.label, consequence: preset.consequence ?? "", per: preset.per ?? {}, text: preset.text ?? "" });
+  return askForRoll({ actors, kind: res.kind, key: res.key, dc: res.dc, label: res.label, consequence: preset.consequence ?? "", per: preset.per ?? {}, text: preset.text ?? "", secret: res.secret });
 }
 
 /* -------------------------------------------- */

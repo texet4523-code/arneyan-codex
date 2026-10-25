@@ -387,17 +387,17 @@ export class ArneyanActor extends Actor {
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
   /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
-  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [] } = {}) {
+  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
     const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`, ...advKeys) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
-    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: [...new Set([...(m?.notesFor("check") ?? []), ...more])], autoFail: fail, footer, extra: { ...extra, ability: key } });
+    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: [...new Set([...(m?.notesFor("check") ?? []), ...more])], autoFail: fail, footer, rollMode, extra: { ...extra, ability: key } });
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
-  rollSave(key, event, { dc = null, concentration = false, disrupted = false, source = "" } = {}) {
+  rollSave(key, event, { dc = null, concentration = false, disrupted = false, source = "", rollMode = null } = {}) {
     const m = this.mods;
     const label = `${ARNEYAN.saves[key].label} Save${concentration ? " (Concentration)" : ""}`;
     let parts;
@@ -413,7 +413,7 @@ export class ArneyanActor extends Actor {
     const { mode, why } = advFrom(event, adv);
     const fail = m?.has(`fail.save.${key}`) ? m.sources(`fail.save.${key}`).join(", ") : "";
     return d20Roll({
-      actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc,
+      actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc, rollMode,
       notes: m?.notesFor("save") ?? [], autoFail: fail,
       extra: { save: key, concentration, actorUuid: this.uuid, source },
       footer: concentration ? `<button type="button" class="arn-end-conc" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-circle-xmark"></i> Concentration broken: end it</button>` : ""
@@ -421,11 +421,11 @@ export class ArneyanActor extends Actor {
   }
 
   /** Skill (NWP) check. Untrained is a plain d20. Trained adds the modifier (minimum +1). Master also has Advantage. */
-  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [] } = {}) {
+  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null } = {}) {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
-      return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], extra: { skill: "" } });
+      return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], rollMode, extra: { skill: "" } });
     }
     const ab = item.system.ability;
     const mod = this.system.abilities[ab].mod;
@@ -441,7 +441,7 @@ export class ArneyanActor extends Actor {
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
-      notes: [...new Set([...(m?.notesFor("check", "skill") ?? []), ...more])], autoFail: fail, footer, extra: { ...extra, skill: item.name }
+      notes: [...new Set([...(m?.notesFor("check", "skill") ?? []), ...more])], autoFail: fail, footer, rollMode, extra: { ...extra, skill: item.name }
     });
   }
 

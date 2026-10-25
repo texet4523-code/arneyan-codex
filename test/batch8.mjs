@@ -101,4 +101,21 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.ok(cb.includes("loadedReady(item)") && cb.includes("spendShot(item)"));
   console.log("OK firearm reloads");
 }
+/* ---------------- 8.4 Secret group rolls ---------------- */
+{
+  const G = await import("../arneyan/module/gmtools.mjs");
+  const data = { kind: "skill", key: "Perception", dc: 15, label: "Spot the ambush", secret: true, members: [
+    { uuid: "a", name: "Ann", img: "", mode: 0, rollId: "r1", total: 17, pass: true, outcome: "success" },
+    { uuid: "b", name: "Ben", img: "", mode: 0, rollId: "", total: null, pass: null } ] };
+  const html = G.partyRollHtml(data);
+  assert.ok(html.includes('class="arn-gm-only"') && html.includes("arn-player-only") && html.includes("Secret"), "results marked GM-only");
+  assert.ok(html.includes("<strong>17</strong>") && html.includes("rolled (secret"));
+  const open = G.partyRollHtml({ ...data, secret: false });
+  assert.ok(!open.includes("arn-gm-only"));
+  const src = fs.readFileSync(new URL("../arneyan/module/gmtools.mjs", import.meta.url), "utf8");
+  assert.ok(src.includes('req.secret ? "blindroll"') && src.includes('name="secret"'));
+  const rolls = fs.readFileSync(new URL("../arneyan/module/rolls.mjs", import.meta.url), "utf8");
+  assert.ok(rolls.includes('rollMode: rollMode || game.settings.get("core", "rollMode")'));
+  console.log("OK secret group rolls");
+}
 console.log("All batch 8 checks passed.");

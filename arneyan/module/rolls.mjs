@@ -81,7 +81,7 @@ export function outcomeLabel(outcome, kind) {
  * @param {object} [o.extra]               Extra flags stored on the message.
  * @param {string|Function} [o.footer]     Extra HTML under the result, or a function of { natural, crit, outcome } giving it.
  */
-export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, target = null, targets = [], kind = "check", notes = [], autoFail = "", extra = {}, footer = "", critAt = 20 }) {
+export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, target = null, targets = [], kind = "check", notes = [], autoFail = "", extra = {}, footer = "", critAt = 20, rollMode = null }) {
   const bonus = parts.reduce((t, p) => t + (Number(p.value) || 0), 0);
   const formula = `${dieFormula(mode)}${bonus ? ` + ${bonus}` : ""}`;
   const roll = await new Roll(formula).evaluate();
@@ -106,7 +106,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
     content,
     rolls: [roll],
     flags: { [SYS]: flags }
-  }, { rollMode: game.settings.get("core", "rollMode") });
+  }, { rollMode: rollMode || game.settings.get("core", "rollMode") });
 }
 
 async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20 }) {

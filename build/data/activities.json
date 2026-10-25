@@ -6,7 +6,7 @@
     "kind": "damage",
     "formula": "1d6",
     "damageType": "fire",
-    "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material.",
+    "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th.)",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -45,8 +45,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these."
+  "confidence": "high",
+  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th."
  },
  "Bent Path|Archer": {
   "activities": [
@@ -260,8 +260,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Damage tiers stated in text; only the highest unlocked tier should be used."
+  "confidence": "high",
+  "why": "Damage tiers stated in text; only the highest unlocked tier should be used. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Tinker's Craft (Intelligence)|Artificer": {
   "activities": [
@@ -309,8 +309,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Optional rider paid with Ingenuity Points, not item uses."
+  "confidence": "high",
+  "why": "Optional rider paid with Ingenuity Points, not item uses. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Fletcher's Craft (Intelligence)|Archer": {
   "activities": [
@@ -412,7 +412,7 @@
     "name": "Traps",
     "kind": "check",
     "ability": "int",
-    "text": "Find, disable or set a trap; a failed disable triggers it.",
+    "text": "Find, disable or set a trap; disabling takes 1 minute, and failing by 5 or more or rolling a natural 1 sets it off.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -420,8 +420,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Skill list split across two items by the importer; this one holds the first three."
+  "confidence": "high",
+  "why": "All eight Assassin's Skills, each a check on its own attribute (checked against Handbook v0.10.10, 25 Oct)."
  },
  "Sneak Attack|Assassin": {
   "activities": [
@@ -447,15 +447,15 @@
     "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6"
    }
   ],
-  "confidence": "medium",
-  "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table)"
+  "confidence": "high",
+  "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
  },
  "Slow Kill|Assassin": {
   "activities": [
    {
     "name": "Slow Kill",
     "kind": "note",
-    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; up to four strikes per target per encounter.",
+    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; bleeding stacks, 1d6 for each Slow Kill strike, up to four strikes per target per encounter. Not against creatures that don't bleed.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -467,15 +467,26 @@
     "kind": "damage",
     "formula": "1d6",
     "damageType": "",
-    "text": "The target loses 1d6 HP from blood loss at the start of the round.",
+    "text": "The target loses 1d6 HP from blood loss at the start of the round, for each Slow Kill strike on it (roll once per strike).",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
     "removeConditions": false
+   },
+   {
+    "name": "Cripple Limb",
+    "kind": "save",
+    "save": "fort",
+    "text": "The Assassin picks a limb; the target saves against the Class Save DC or loses use of it until healed. Not against creatures that don't bleed.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
    }
   ],
-  "confidence": "medium",
+  "confidence": "high",
   "why": "Strike reminder plus a button for the per-round bleed."
  },
  "Rage|Barbarian": {
@@ -565,8 +576,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "\"Twice your level\" read as total level."
+  "confidence": "high",
+  "why": "\"Twice your level\" read as total level. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Ancestral Calling|Barbarian": {
   "activities": [
@@ -597,8 +608,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Once per month narrative summon."
+  "confidence": "high",
+  "why": "Once per month narrative summon. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Decipher Script (Intelligence)|Bard": {
   "activities": [
@@ -713,8 +724,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Follow-up options come from the Bard 5th/8th/12th/18th-level feature items."
+  "confidence": "high",
+  "why": "Follow-up options come from the Bard 5th/8th/12th/18th-level feature items. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Exhort Greatness|Bard": {
   "activities": [
@@ -778,8 +789,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC.",
+  "confidence": "high",
+  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 3,
    "per": "day",
@@ -860,11 +871,11 @@
     "kind": "note",
     "formula": "18:1, 19:2, 23:3",
     "cost": 0,
-    "text": "Bonus on checks for all your troops while you are present. From 23rd level they also gain leaders of 1st, 2nd and 3rd level per 20 troops."
+    "text": "Once per year (or once per campaign at the GM's call). Bonus on checks for all your troops while you are present. From 23rd level they also gain leaders of 1st, 2nd and 3rd level per 20 troops."
    }
   ],
-  "confidence": "medium",
-  "why": "Handbook gives the troop counts as ranges (1-100, 2-200, 4-400): read as 1d100, 2d100, 4d100. No frequency stated."
+  "confidence": "high",
+  "why": "Handbook gives the troop counts as ranges (1-100, 2-200, 4-400): read as 1d100, 2d100, 4d100. Once per year, or once per campaign at the GM's call (in the text: no yearly uses)."
  },
  "Banish|Cleric": {
   "activities": [
@@ -879,8 +890,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Turn-like use; frequency not stated."
+  "confidence": "high",
+  "why": "Turn-like use; frequency not stated. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Mark of the Saint|Cleric": {
   "activities": [
@@ -935,8 +946,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Granted spell-like uses, each with its own frequency."
+  "confidence": "high",
+  "why": "Granted spell-like uses, each with its own frequency. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Nature Lore (Wisdom)|Druid": {
   "activities": [
@@ -979,8 +990,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table)",
+  "confidence": "high",
+  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -1018,8 +1029,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Reaction check vs spell DC."
+  "confidence": "high",
+  "why": "Reaction check vs spell DC. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Perfect Recall|Druid": {
   "activities": [
@@ -1156,8 +1167,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Bonus damage after aiming; no stated frequency."
+  "confidence": "high",
+  "why": "Bonus damage after aiming; no stated frequency. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Perfect Shot|Gunslinger": {
   "activities": [
@@ -1189,8 +1200,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Named check, but the GM rolls it secretly."
+  "confidence": "high",
+  "why": "Named check, but the GM rolls it secretly. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Minor Figment|Illusionist": {
   "activities": [
@@ -1304,8 +1315,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Once per month ritual."
+  "confidence": "high",
+  "why": "Once per month ritual. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Horsemanship (Dexterity)|Knight": {
   "activities": [
@@ -1369,8 +1380,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Command action; frequency not stated."
+  "confidence": "high",
+  "why": "Command action; frequency not stated. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Honour Attack|Knight": {
   "activities": [
@@ -1473,14 +1484,14 @@
     "formula": "2d6",
     "damageType": "",
     "text": "Expend a 3rd or 4th-level slot to deliver the spell on a hit, plus 2d6 bonus damage of its type (force if none).",
-    "minLevel": 3,
+    "minLevel": 7,
     "cost": 0,
     "per": "round",
     "target": "one",
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
+  "confidence": "high",
   "why": "Cantrip tiers plus levelled options; once per round."
  },
  "Everstrike|Magus": {
@@ -1641,7 +1652,7 @@
    {
     "name": "Animate Dead",
     "kind": "note",
-    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a slot each):",
+    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a 3rd-level slot each, from 5th level):",
     "minLevel": 0,
     "cost": 0,
     "per": "day",
@@ -1653,16 +1664,21 @@
     "name": "Command Undead",
     "kind": "save",
     "save": "will",
-    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap.",
+    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap. 1 + half your Necromancer level times a day; its Level can't exceed your Necromancer level; control lasts 1 hour per Necromancer level unless you upkeep it (Soul Tax).",
     "minLevel": 0,
-    "cost": 0,
+    "cost": 1,
     "per": "day",
     "target": "one",
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Two use-time actions; daily counts scale by level."
+  "confidence": "high",
+  "why": "Animate Dead's free uses a day scale by level (its own table); Command Undead uses the feature's uses (1 + half Necromancer level a day). Checked 25 Oct.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1 + floor(@cl / 2)"
+  }
  },
  "Death's Grasp|Necromancer": {
   "activities": [
@@ -1693,8 +1709,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Mostly passive; Detect Evil is the at-will active part."
+  "confidence": "high",
+  "why": "Mostly passive; Detect Evil is the at-will active part. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Lay on Hands|Paladin": {
   "activities": [
@@ -1748,8 +1764,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Bonus damage stated; daily uses come from the table.",
+  "confidence": "high",
+  "why": "Bonus damage stated; daily uses come from the table. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -1770,8 +1786,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "3 + Cha mod per day; Turn DC differs from class DC.",
+  "confidence": "high",
+  "why": "3 + Cha mod per day; Turn DC differs from class DC. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 3,
    "per": "day",
@@ -1791,8 +1807,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "One item per day."
+  "confidence": "high",
+  "why": "One item per day. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Divine Intervention|Paladin": {
   "activities": [
@@ -1860,8 +1876,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Two-stage use: Charisma check then Will save."
+  "confidence": "high",
+  "why": "Two-stage use: Charisma check then Will save. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Marked Prey|Ranger": {
   "activities": [
@@ -2092,8 +2108,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Listen's attribute taken from the Assassin's matching skill."
+  "confidence": "high",
+  "why": "Listen's attribute taken from the Assassin's matching skill. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Back Attack|Rogue": {
   "activities": [
@@ -2108,8 +2124,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Once per round; multiplier from the Rogue Progression Table."
+  "confidence": "high",
+  "why": "Once per round; multiplier from the Rogue Progression Table. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Sneak Attack|Rogue": {
   "activities": [
@@ -2135,8 +2151,8 @@
     "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6"
    }
   ],
-  "confidence": "medium",
-  "why": "Once per round; dice come from the Rogue Progression Table.; 0.10.48: steps up with level (Progression Table)"
+  "confidence": "high",
+  "why": "Once per round; dice come from the Rogue Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
  },
  "Uncanny Dodge|Rogue": {
   "activities": [
@@ -2159,7 +2175,7 @@
    {
     "name": "Evasive Manoeuvre",
     "kind": "note",
-    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities.",
+    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -2167,8 +2183,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Per-round stance choice."
+  "confidence": "high",
+  "why": "Per-round stance choice. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Quick Reaction (Improved)|Rogue": {
   "activities": [
@@ -2199,8 +2215,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Use-time payment; cost tracked on attributes, not uses."
+  "confidence": "high",
+  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Metamagic Options|Sorcerer": {
   "activities": [
@@ -2311,8 +2327,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "1 to 4 uses per day by level; not tracked on the item.",
+  "confidence": "high",
+  "why": "1 to 4 uses per day by level (5th, 9th, 13th, 17th), tracked on the item. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -2472,15 +2488,15 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Only the active invocations; usable only if chosen."
+  "confidence": "high",
+  "why": "Only the active invocations; usable only if chosen. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Pact Summons|Warlock": {
   "activities": [
    {
     "name": "Combat Summons",
     "kind": "note",
-    "text": "As your action, expend a slot of the servant's tier to summon it for 1 minute.",
+    "text": "As your action, expend a slot of the servant's tier (Tier 4: a 5th-level slot) to summon it for 1 minute. Only one summon can be active at a time.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2490,7 +2506,7 @@
    {
     "name": "Ritual Summons",
     "kind": "note",
-    "text": "Over 10 minutes, expend a slot of the servant's tier to summon it for 1 hour.",
+    "text": "Over 10 minutes, expend a slot of the servant's tier (Tier 4: a 5th-level slot) to summon it for 1 hour. Only one summon can be active at a time.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2498,7 +2514,7 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
+  "confidence": "high",
   "why": "Paid with spell slots; stat blocks elsewhere."
  },
  "Dark Harvest|Warlock": {
@@ -2532,8 +2548,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "7d6 stated for 20th; general rule is 1d6 per surge level."
+  "confidence": "high",
+  "why": "7d6 stated for 20th; general rule is 1d6 per surge level. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Patron's Whisper|Warlock": {
   "activities": [
@@ -2663,8 +2679,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day.",
+  "confidence": "high",
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -2783,8 +2799,8 @@
     "removeConditions": false
    }
   ],
-  "confidence": "medium",
-  "why": "Two spells each once per day; item uses (1) would block the second."
+  "confidence": "high",
+  "why": "Two spells each once per day; item uses (1) would block the second. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Perfect Recall|Wizard": {
   "activities": [
@@ -3187,8 +3203,8 @@
     "text": "Your Level + your Wisdom modifier (minimum +1). Each target can be treated by a healer only once per day."
    }
   ],
-  "confidence": "medium",
-  "why": "Wisdom check DC 15, then heal Level + Wisdom modifier (minimum +1); the once per day is per target, not a pool.",
+  "confidence": "high",
+  "why": "Wisdom check DC 15, then heal Level + Wisdom modifier (minimum +1); the once per day is per target, not a pool. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
    "max": 0
   }
@@ -3603,8 +3619,8 @@
     "text": "Your unarmed strikes deal 1d6."
    }
   ],
-  "confidence": "medium",
-  "why": "Unarmed strikes deal 1d6."
+  "confidence": "high",
+  "why": "Unarmed strikes deal 1d6. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Physical Change|Patron: Baba Yaga (Witch)": {
   "activities": [
