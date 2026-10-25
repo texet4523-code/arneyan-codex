@@ -307,7 +307,7 @@ export async function refillWater(party, members) {
 export async function resetJourney(party) {
   if (!game.user.isGM) return;
   const t = travelState(party);
-  return party.update({ [`flags.${SYS}.travel`]: { ...t, done: 0, day: 0, today: 0, road: 0, log: [] } });
+  return party.update({ [`flags.${SYS}.travel`]: { ...t, done: 0, day: 0, today: 0, road: 0, mealDue: 0, log: [] } });
 }
 
 /* -------------------------------------------- */

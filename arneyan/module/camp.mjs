@@ -117,10 +117,12 @@ export async function collectFood(button) {
   if (!actor?.isOwner) return ui.notifications.warn("Only the character's owner collects.");
   if (!roll) return ui.notifications.warn("The roll is gone from the chat.");
   const key = `collected.${roll.id}`;
-  if (actor.getFlag(SYS, "collected") === roll.id || busy.has(key)) return;
+  const done = [].concat(actor.getFlag(SYS, "collected") ?? []);
+  if (done.includes(roll.id) || busy.has(key)) return;
   busy.add(key);
   try {
-    await actor.setFlag(SYS, "collected", roll.id);
+    // Every roll collected (the last 50), so collecting one never re-opens another.
+    await actor.setFlag(SYS, "collected", [...done, roll.id].slice(-50));
     const f = roll.flags?.[SYS] ?? {};
     const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
     if (f.autoFail || f.natural === 1 || total < FORAGE_DC) {
@@ -129,7 +131,11 @@ export async function collectFood(button) {
     }
     const r = await new Roll(button.dataset.die || "1d4").evaluate();
     const found = r.total + forageBonus(total);
-    await addRations(actor, found);
+    try { await addRations(actor, found); } catch (err) {
+      // Nothing was added: the roll can be collected again.
+      await actor.setFlag(SYS, "collected", done);
+      throw err;
+    }
     await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }),
       flavor: `<div class="arn-card"><p><i class="fa-solid fa-basket-shopping"></i> ${esc(actor.name)} collects <strong>${found} Day's Rations</strong> (${esc(button.dataset.die)}${forageBonus(total) ? ` + ${forageBonus(total)} for beating DC ${FORAGE_DC} by ${total - FORAGE_DC}` : ""}).</p></div>` });
     return found;
@@ -293,7 +299,7 @@ export async function moveWatch(party, members, dir) {
     return ui.notifications.info(dir > 0 ? "Already at the next watch." : night ? "This is the first watch of the night." : "It's daytime: the watches start at 22:00.");
   }
   await moveTime(Math.round(mins * 60));
-  rerenderCamp();
+  rerenderCamp({ force: true });
 }
 
 /**
@@ -375,11 +381,22 @@ export const hunt = (actor, _key, event = null) => findFood(actor, { kind: "hunt
 
 /** Re-draw open party sheets showing the Camp tab (the time and the watch now have moved). */
 let redraw = null;
-export function rerenderCamp() {
+export function rerenderCamp({ force = false } = {}) {
   clearTimeout(redraw);
-  redraw = setTimeout(() => {
+  redraw = setTimeout(async () => {
+    let minute = 0;
+    try { const { whenOf } = await import("./calendar.mjs"); minute = whenOf().secondOfDay / 60; } catch { /* no clock */ }
+    const { partyMembers } = await import("./party.mjs");
+    const members = partyMembers();
     for (const app of foundry.applications?.instances?.values?.() ?? []) {
-      if (app.document?.type === "party" && app._activeTab === "camp" && app.rendered) app.render();
+      if (app.document?.type !== "party" || app._activeTab !== "camp" || !app.rendered) continue;
+      // Only when the watch changes (the running clock saves every few seconds; a redraw would close an open drop-down).
+      const k = watchSlots(onWatchOf(campState(app.document), members)).length;
+      const now = nightAt(minute, k);
+      const key = `${now.night}.${now.index}`;
+      if (!force && app._campWatchKey === key) continue;
+      app._campWatchKey = key;
+      app.render();
     }
   }, 250);
 }

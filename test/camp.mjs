@@ -105,4 +105,7 @@ assert.equal(C.watchMove(6 * 60 + 0.02, 4, -1), (480 - 120) - 480.02);
 assert.equal(C.watchMove(12 * 60, 4, -1), 0);
 // Members who left don't count as assigned.
 assert.equal(C.campContext({ flags: { arneyan: { camp: { assign: { gone: { watch: "1" } } } } } }, members, 0).camp.assigned, false);
+const csrc2 = fs.readFileSync(new URL("../arneyan/module/camp.mjs", import.meta.url), "utf8");
+assert.ok(csrc2.includes("[...done, roll.id].slice(-50)") && csrc2.includes("done.includes(roll.id)"), "every collected roll is remembered");
+assert.ok(csrc2.includes("app._campWatchKey === key"), "the Camp tab redraws only when the watch changes");
 console.log("OK camp review fixes");
