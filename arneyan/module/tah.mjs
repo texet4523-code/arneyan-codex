@@ -188,13 +188,14 @@ const tahActive = () => !!game.modules?.get(TAH)?.active && !!game.settings?.set
 const tahOn = () => { try { return !!game.settings.get(TAH, "enable"); } catch { return false; } };
 /** Token Action HUD lets this user use it (its "allow" setting: the lowest role). */
 const tahAllowed = () => { try { return game.user.role >= Number(game.settings.get(TAH, "allow") ?? 0); } catch { return true; } };
-/** Show or hide the bar: Token Action HUD's own toggle (which also closes or redraws it), else its setting. */
+/**
+ * Show or hide the bar: its setting, then close it or have it drawn again. (Not Token Action HUD's own toggle: that
+ * one stops with an error when its show/hide key has no binding, which is how TAC has it.)
+ */
 async function setTah(on) {
   if (tahOn() === on) return;
-  const hud = game.tokenActionHud;
-  if (typeof hud?.toggleHudEnable === "function") return hud.toggleHudEnable();
   await game.settings.set(TAH, "enable", on);
-  if (on) Hooks.callAll("forceUpdateTokenActionHud"); else hud?.closeHud?.();
+  if (on) Hooks.callAll("forceUpdateTokenActionHud"); else game.tokenActionHud?.closeHud?.();
 }
 
 /**

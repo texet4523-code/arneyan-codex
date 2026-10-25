@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.54 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.55 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.55
+
+- **Action bar toggle fixed.** The Token HUD button that shows or hides the Token Action HUD bar, and the bar starting hidden, now work when Token Action HUD's own show/hide key has no binding (as on TAC). Before, both stopped with an error and the bar stayed on.
 
 ## What's new in 0.10.54
 
