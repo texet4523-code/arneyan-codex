@@ -147,7 +147,8 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       const follow = doc => {
         const app = ArneyanBrowser.#instance;
         const actor = doc?.documentName === "Actor" ? doc : doc?.parent;
-        if (app?.rendered && app.actor && actor?.id === app.actor.id) app.refreshPurse();
+        // Once the actor's totals have been worked out again.
+        if (app?.rendered && app.actor && actor?.id === app.actor.id) { clearTimeout(app._purseTimer); app._purseTimer = setTimeout(() => app.refreshPurse(), 50); }
       };
       for (const h of ["updateActor", "createItem", "updateItem", "deleteItem"]) globalThis.Hooks?.on?.(h, follow);
     }

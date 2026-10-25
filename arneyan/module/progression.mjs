@@ -752,11 +752,12 @@ async function setUpFirstLevel(actor, cls) {
     chosen.bonusFeat && `<li><strong>Ancestry Feat:</strong> ${esc(nameOf.get(chosen.bonusFeat) ?? "")}</li>`,
     chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`,
     chosen.knack && `<li><strong>Knack:</strong> ${esc(nameOf.get(chosen.knack) ?? "")} (Advantage, no slot)</li>`].filter(Boolean);
+  const head = intro("");
   const askFinal = async () => {
   const res = await DialogV2.wait({
     window: { title: stepTitle(`${actor.name}: 1st-level ${cls.name}`, stepOf("finish")), icon: "fa-solid fa-flag-checkered" },
     classes: ["arneyan", "arn-step-final"], position: { width: 460 },
-    content: `${intro("")}
+    content: `${head}
       ${lines.length ? `<p>Added when you press Apply:</p><ul>${lines.join("")}</ul>` : `<p>Nothing chosen here: add a Kit, Feat or Skills later from the compendium.</p>`}
       <fieldset class="arn-luck-pick"><legend>Starting Luck (4d6, drop the lowest)</legend>
         <label><input type="radio" name="luckHow" value="type" checked> I rolled it at the table: <input type="number" name="luckTyped" min="3" max="18" step="1" class="short"></label>

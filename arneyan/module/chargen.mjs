@@ -41,12 +41,17 @@ export function donatedSets() {
   try { return (game.settings.get(SYSFLAG, SETTING) ?? []).filter(d => goodSet(d?.set)); } catch { return []; }
 }
 async function writeDonated(list) { await game.settings.set(SYSFLAG, SETTING, list.slice(-20)); }
-export async function gmDonate(set, from) {
+// One change at a time, so two arriving together can't both start from the same list.
+let queue = Promise.resolve();
+const inTurn = fn => (queue = queue.then(fn, fn));
+export function gmDonate(set, from) { return inTurn(() => donate(set, from)); }
+export function gmTake(id, by = "") { return inTurn(() => take(id, by)); }
+async function donate(set, from) {
   if (!goodSet(set)) return false;
   await writeDonated([...donatedSets(), { id: foundry.utils.randomID(), set: [...set], from: String(from ?? "").slice(0, 60), at: Date.now() }]);
   return true;
 }
-export async function gmTake(id, by = "") {
+async function take(id, by = "") {
   const list = donatedSets();
   const d = list.find(x => x.id === id);
   if (!d) {
@@ -58,15 +63,18 @@ export async function gmTake(id, by = "") {
 }
 /** Add or take a set: directly as the GM, otherwise through the active GM. False when no GM is on. */
 function viaGm(action, data) {
-  if (game.user.isGM) return action === "donate" ? gmDonate(data.set, data.from) : gmTake(data.id, data.by);
+  if (game.users.activeGM?.isSelf) return action === "donate" ? gmDonate(data.set, data.from) : gmTake(data.id, data.by);
   if (!game.users.activeGM) return false;
   game.socket.emit(SOCKET, { action: `chargen.${action}`, ...data });
   return true;
 }
-function onSocket(msg) {
+function onSocket(msg, senderId) {
   if (!game.users.activeGM?.isSelf) return;
-  if (msg?.action === "chargen.donate") gmDonate(msg.set, msg.from).catch(err => console.warn("Arneyan | donated set", err));
-  if (msg?.action === "chargen.take") gmTake(msg.id, msg.by).catch(err => console.warn("Arneyan | donated set", err));
+  // The player who sent it is named from their user, not from the message.
+  const sender = game.users.get(senderId);
+  const tag = name => (sender ? `${String(name ?? "").slice(0, 40)} (${sender.name})` : String(name ?? ""));
+  if (msg?.action === "chargen.donate") gmDonate(msg.set, tag(msg.from)).catch(err => console.warn("Arneyan | donated set", err));
+  if (msg?.action === "chargen.take") gmTake(msg.id, tag(msg.by)).catch(err => console.warn("Arneyan | donated set", err));
 }
 
 /** Ability score windows still open, by actor id: the 1st-level steps wait for them (scores come first). */
@@ -167,8 +175,12 @@ async function abilityScoresWindow(actor) {
         fill();
       }));
       el.querySelectorAll("[data-remove]").forEach(a => a.addEventListener("click", async () => {
-        await gmTake(a.dataset.remove);
+        const id = a.dataset.remove;
+        await gmTake(id);
         a.closest(".arn-scores-don")?.remove();
+        const i = donated.findIndex(x => x.id === id);
+        if (i >= 0) donated.splice(i, 1);
+        if (using?.id === id) using = null;
       }));
       el.querySelector(".arn-scores-assign").addEventListener("change", mods);
       q(".arn-scores-rollbtn").addEventListener("click", async ev => {

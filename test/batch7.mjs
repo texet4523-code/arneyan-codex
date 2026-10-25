@@ -20,13 +20,13 @@ const CB = await import("../arneyan/module/combat.mjs");
   assert.equal(CB.hpOverMax(actor), 20);
   CB.checkHpMax(actor, "player");
   CB.checkHpMax(actor, "player"); // twice in a row: one write
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 350));
   assert.deepEqual(updates.map(u => u[0]), [{ "system.attributes.hp.value": 20 }], "down to the new maximum, once");
   assert.equal(updates[0][1].arneyanHpClamp, true);
   // The maximum comes back: current HP stays where it was put.
   actor.system.attributes.hp.max = actor.system.attributes.hp.effectiveMax = 30;
   CB.checkHpMax(actor, "player");
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 1, "nothing written when the maximum rises");
   assert.equal(actor.system.attributes.hp.value, 20);
   // Another client with a GM on: it leaves the write to the GM.
@@ -34,19 +34,25 @@ const CB = await import("../arneyan/module/combat.mjs");
   game.user = { id: "p1", isGM: false, targets: new Set() };
   actor.system.attributes.hp.max = actor.system.attributes.hp.effectiveMax = 10;
   CB.checkHpMax(actor, "p1");
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 1, "only the active GM writes");
   // No GM on: whoever made the change writes it.
   game.users = { activeGM: null };
   CB.checkHpMax(actor, "p1");
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 2);
   assert.equal(actor.system.attributes.hp.value, 10);
   // Parties, storage and compendium entries are left alone.
   CB.checkHpMax({ ...actor, type: "party" }, "p1");
   CB.checkHpMax({ ...actor, pack: "x" }, "p1");
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 2);
+  // Typing current HP by hand (value first, then the maximum) isn't clamped; anything else that can lower it is.
+  assert.equal(CB.hpMaxMayHaveFallen({ system: { attributes: { hp: { value: 30 } } } }), false);
+  assert.equal(CB.hpMaxMayHaveFallen({ _id: "a", system: { attributes: { hp: { temp: 5 } } } }), false);
+  assert.equal(CB.hpMaxMayHaveFallen({ system: { attributes: { hp: { max: 10 } } } }), true);
+  assert.equal(CB.hpMaxMayHaveFallen({ system: { abilities: { con: { value: 8 } } } }), true);
+  assert.equal(CB.hpMaxMayHaveFallen({ flags: { arneyan: { x: 1 } } }), true);
   console.log("OK max HP lowered takes current HP down, and it stays");
 }
 
@@ -67,6 +73,11 @@ const CG = await import("../arneyan/module/chargen.mjs");
   assert.equal(await CG.gmTake(id, "Bran"), true);
   assert.equal(CG.donatedSets().length, 0, "taken off the list");
   assert.equal(await CG.gmTake(id, "Cass"), false, "it can't be taken twice");
+  // Two arriving together both land (one change at a time).
+  stored = [];
+  game.settings.set = async (s, k, v) => { await new Promise(r => setTimeout(r, 10)); if (k === "donatedSets") stored = v; };
+  await Promise.all([CG.gmDonate([16, 15, 12, 10, 9, 8], "A"), CG.gmDonate([15, 14, 12, 10, 9, 8], "B")]);
+  assert.equal(CG.donatedSets().length, 2, "neither is lost");
   for (let i = 0; i < 25; i++) await CG.gmDonate([14, 14, 10, 10, 10, 10], `P${i}`);
   assert.equal(CG.donatedSets().length, 20, "the list keeps the latest 20");
   const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");
@@ -90,7 +101,7 @@ const PT = await import("../arneyan/module/party.mjs");
   assert.ok(r.issues.some(i => i.includes("locked")) && r.issues.some(i => i.includes("paused")));
   game.user = { id: "gm", isGM: true, targets: new Set() };
   await PT.letPlayersMoveParty(party);
-  assert.equal(ownership.p2, undefined, "the lower level is cleared");
+  assert.equal(ownership.p2, 3, "the lower level is raised to Owner");
   assert.equal(PT.partyControlReport(party, scene).allOwn, true);
   const tpl = fs.readFileSync(new URL("../arneyan/templates/actor/party-sheet.hbs", import.meta.url), "utf8");
   assert.ok(tpl.includes('data-action="partyControl"'));

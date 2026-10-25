@@ -798,7 +798,7 @@ async function onSocket(msg, senderId) {
  * removed, Debilitated, a drain), its current HP drops to the new maximum, and stays there when the maximum comes
  * back. One client writes it: the active GM, or with no GM on, whoever made the change.
  */
-const HP_PENDING = new Set();
+const HP_PENDING = new Map();
 export function hpOverMax(actor) {
   const hp = actor?.system?.attributes?.hp;
   if (!hp) return null;
@@ -810,14 +810,32 @@ export function checkHpMax(actor, userId) {
   const gm = game.users?.activeGM;
   if (gm ? !gm.isSelf : userId !== game.user?.id) return;
   const key = actor.uuid;
-  if (HP_PENDING.has(key)) return;
-  HP_PENDING.add(key);
-  // After the change has settled (an item and its effects arrive one after another).
-  setTimeout(() => {
+  // After the changes have settled (an item and its effects arrive one after another): each new one restarts the wait.
+  clearTimeout(HP_PENDING.get(key));
+  HP_PENDING.set(key, setTimeout(() => {
     HP_PENDING.delete(key);
-    const max = hpOverMax(actor);
-    if (max !== null) actor.update({ "system.attributes.hp.value": max }, { arneyanHpClamp: true }).catch(err => console.warn("Arneyan | HP to max", err));
-  }, 100);
+    // The actor as it is now (a deleted one, or a token's actor that was replaced, is skipped).
+    const now = globalThis.fromUuidSync ? fromUuidSync(key) : actor;
+    if (!now) return;
+    const max = hpOverMax(now);
+    if (max === null) return;
+    console.log(`Arneyan | ${now.name}: current HP ${now.system.attributes.hp.value} down to the new maximum ${max}`);
+    now.update({ "system.attributes.hp.value": max }, { arneyanHpClamp: true }).catch(err => console.warn("Arneyan | HP to max", err));
+  }, 250));
+}
+/** An actor update that can lower the maximum: anything but a change to current or temporary HP alone. */
+export function hpMaxMayHaveFallen(changes = {}) {
+  const keys = [];
+  const walk = (o, pre) => {
+    for (const [k, v] of Object.entries(o ?? {})) {
+      const path = pre ? `${pre}.${k}` : k;
+      if (v && typeof v === "object" && !Array.isArray(v) && Object.keys(v).length) walk(v, path);
+      else keys.push(path);
+    }
+  };
+  walk(changes, "");
+  const real = keys.filter(k => k !== "_id" && !k.startsWith("_stats"));
+  return !real.every(k => /^system\.attributes\.hp\.(value|temp)$/.test(k)) || !real.length;
 }
 const ownerActor = doc => {
   let p = doc?.parent;
@@ -826,7 +844,12 @@ const ownerActor = doc => {
 };
 
 export function registerCombat() {
-  Hooks.on("updateActor", (actor, changes, options, userId) => { if (!options?.arneyanHpClamp) checkHpMax(actor, userId); });
+  // Only when something that can lower the maximum changed: HP typed in by hand (an NPC built from the sheet, value
+  // first and maximum after) is left alone.
+  Hooks.on("updateActor", (actor, changes, options, userId) => {
+    if (options?.arneyanHpClamp || !hpMaxMayHaveFallen(changes)) return;
+    checkHpMax(actor, userId);
+  });
   for (const h of ["createItem", "updateItem", "deleteItem", "createActiveEffect", "updateActiveEffect", "deleteActiveEffect"]) {
     Hooks.on(h, (doc, ...rest) => checkHpMax(ownerActor(doc), rest.at(-1)));
   }

@@ -530,7 +530,7 @@ export async function letPlayersMoveParty(party = activeParty()) {
   const upd = { "ownership.default": OWNER };
   for (const u of game.users.filter(u => !u.isGM)) {
     const l = party.ownership?.[u.id];
-    if (l !== undefined && l < OWNER) upd[`ownership.-=${u.id}`] = null;
+    if (l !== undefined && l < OWNER) upd[`ownership.${u.id}`] = OWNER;
   }
   await party.update(upd);
 }
