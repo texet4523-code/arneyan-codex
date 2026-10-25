@@ -108,6 +108,33 @@ export async function ensureDonatedJournal() {
   });
   return j;
 }
+/** A donation a chat message carries: the new flag, or an older card's "kept Set Beta. Set Alpha (...) can be donated". */
+export function donationFrom(message) {
+  const f = message?.flags?.[SYSFLAG]?.donation;
+  if (f && goodSet(f.set)) return { set: [...f.set], from: String(f.from ?? message.speaker?.alias ?? "") };
+  const m = String(message?.content ?? "").replace(/<[^>]+>/g, " ").match(/kept Set (?:Alpha|Beta)\.\s*Set (?:Alpha|Beta) \(([\d,\s]+)\) (?:can be donated|goes on the table)/i);
+  const set = m ? m[1].split(",").map(n => Number(n.trim())) : null;
+  return goodSet(set) ? { set, from: String(message.speaker?.alias ?? "") } : null;
+}
+
+/**
+ * Copy into the journal every donation in chat not copied yet (the active GM, when the world loads and on each new
+ * message). The journal remembers which messages it has taken, so a set taken from it isn't added back.
+ */
+export async function syncDonatedFromChat(messages = game.messages?.contents ?? []) {
+  if (!game.users?.activeGM?.isSelf) return 0;
+  return inTurn(async () => {
+    const j = await ensureDonatedJournal();
+    if (!j) return 0;
+    const seen = new Set(j.getFlag(SYSFLAG, "fromChat") ?? []);
+    const found = messages.filter(m => m?.id && !seen.has(m.id)).map(m => ({ m, d: donationFrom(m) })).filter(x => x.d);
+    if (!found.length) return 0;
+    await writeDonated([...donatedSets(), ...found.map(x => ({ set: x.d.set, from: x.d.from.replace(/[()]/g, "").slice(0, 60) }))]);
+    await j.setFlag(SYSFLAG, "fromChat", [...seen, ...found.map(x => x.m.id)].slice(-300));
+    return found.length;
+  });
+}
+
 async function writeDonated(list) {
   const j = await ensureDonatedJournal();
   const page = donatedPage(j);
@@ -334,10 +361,11 @@ async function abilityScoresWindow(actor) {
     const ok = await viaGm("take", { id: res.took, by: actor.name });
     if (!ok) ui.notifications.warn("No GM is on to take that set off the donated list: ask the GM to remove it.");
   }
+  // The set not kept goes to the table through chat: the GM's client copies it into the journal (now, or when a GM
+  // next comes on), so it's never lost (Kieran, 25 Oct 2026: "pull from the chat").
   if (res.spare) {
-    const added = await viaGm("donate", { set: res.spare.set, from: actor.name });
-    ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
-      content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) ${added ? "goes on the table's donated sets (Rule B): anyone making a character can take it under Type in a set." : "can be donated to the table (Rule B); no GM is on to add it to the donated sets, so type it in by hand."}</p>` });
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), flags: { [SYSFLAG]: { donation: { set: [...res.spare.set], from: actor.name } } },
+      content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) goes on the table's donated sets (Rule B, the ${JOURNAL_NAME} journal): anyone making a character can take it under Type in a set.</p>` });
   }
   ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}. Next, drop an ancestry and a class on the sheet.`);
 }
@@ -363,7 +391,12 @@ function startScores(actor) {
 export function registerChargen() {
   Hooks.once("ready", () => {
     game.socket.on(SOCKET, onSocket);
-    if (game.users.activeGM?.isSelf) ensureDonatedJournal().catch(err => console.warn("Arneyan | donated sets journal", err));
+    if (game.users.activeGM?.isSelf) ensureDonatedJournal().then(() => syncDonatedFromChat()).catch(err => console.warn("Arneyan | donated sets journal", err));
+  });
+  // A donation posted in chat goes straight into the journal (the active GM copies it).
+  Hooks.on("createChatMessage", message => {
+    if (!game.users.activeGM?.isSelf || !donationFrom(message)) return;
+    syncDonatedFromChat([message]).catch(err => console.warn("Arneyan | donated sets journal", err));
   });
   // Only one donated sets journal: a copy (duplicated, or imported) is an ordinary journal.
   Hooks.on("preCreateJournalEntry", (j, data) => {
