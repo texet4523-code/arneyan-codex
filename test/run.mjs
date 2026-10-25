@@ -257,7 +257,7 @@ const mdir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const lichDoc = JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith("actors_Lich_"))));
 const itemModels = { ability: IM.AbilityData, weapon: IM.WeaponData, spell: IM.SpellData, skill: IM.SkillData };
 const lich = makeActor(NpcData, "npc", lichDoc.system, lichDoc.items.map(i => makeItem(itemModels[i.type], i.type, i.name, i.system)));
-assert.equal(lich.system.spellDC, 20, "stat block spell DC");
+assert.equal(lich.system.spellDC, 21, "stat block spell DC (books v0.10.11: \"spell DC 21\")");
 assert.ok(lich.system.traits.immune.includes("condition:charmed") && lich.system.traits.resist.includes("cold 5"));
 for (const t of ["actions", "spells", "effects", "bio"]) {
   const ctx = await sheetContext(ArneyanActorSheet, lich, { _activeTab: t });
@@ -509,7 +509,7 @@ const guardianFx = { disabled: false, name: "Spirit Guardians", id: "e1", flags:
 assert.equal(aurasOf({ items: [], effects: [guardianFx] })[0].dc, 15);
 const pitFiend = fs.readdirSync(mdir).map(f => JSON.parse(fs.readFileSync(mdir + f))).find(d => d.name === "Pit Fiend");
 const fear = pitFiend.items.find(i => i.system.auras?.length).system.auras[0];
-assert.deepEqual([fear.radius, fear.turn.save, fear.turn.dc, fear.turn.status], [20, "will", 20, "frightened"]);
+assert.deepEqual([fear.radius, fear.turn.save, fear.turn.dc, fear.turn.status], [20, "will", 24, "frightened"], "Fear Aura DC 24 (books v0.10.8 DCs)");
 // Spell areas: Fireball a 20ft circle; Place area on its card.
 const spDir = new URL("../packs-src/spells/", import.meta.url).pathname;
 const spells = fs.readdirSync(spDir).map(f => JSON.parse(fs.readFileSync(spDir + f)));

@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>20ft line</strong> deals @Damage[12d6 lightning]{12d6 lightning damage} (@Check[ref|dc:16]{Reflex DC 16} for half).</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>20ft line</strong> deals @Damage[12d6 lightning]{12d6 lightning damage} (@Check[ref|dc:20]{Reflex DC 20} for half).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -161,7 +161,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 16,
+    "dc": 20,
     "damage": "12d6",
     "damageType": "lightning",
     "level": 0,

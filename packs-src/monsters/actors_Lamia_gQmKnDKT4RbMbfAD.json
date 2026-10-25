@@ -36,7 +36,7 @@
    "ac": 18,
    "speed": "30ft",
    "attack": 9,
-   "spellDC": 14,
+   "spellDC": 17,
    "morale": 9
   },
   "saves": {
@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}.</p>",
+    "description": "<p>Spell <strong>DC 17</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:17]{Will DC 17}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}, @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:17]{Will DC 17}), @UUID[Compendium.arneyan.spells.Item.BqnljtarRPIIaAdQ]{spectral force}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -546,7 +546,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>A creature touched makes a @Check[will|dc:14]{Will save DC 14} or loses <strong>1d4</strong> Wisdom, which returns after a long rest.</p>",
+    "description": "<p>A creature touched makes a @Check[will|dc:17]{Will save DC 17} or loses <strong>1d4</strong> Wisdom, which returns after a long rest.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -558,7 +558,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 14,
+    "dc": 17,
     "damage": "",
     "damageType": "",
     "level": 0,

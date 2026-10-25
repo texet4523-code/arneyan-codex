@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-shambling-zombie.svg",
    "system": {
-    "description": "<p>Once per round, as part of its action, it fires one random ray at a creature within <strong>60ft</strong> (roll <strong>1d4</strong>): 1 paralysing (@Check[fort|dc:13]{Fortitude DC 13} or @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save each turn); 2 fear (@Check[will|dc:13]{Will DC 13} or @Condition[frightened]{Frightened} for <strong>1 minute</strong>); 3 enervation (@Check[fort|dc:13]{Fortitude DC 13} for half of @Damage[4d8 necrotic]{4d8 necrotic damage}); 4 disintegration (@Check[ref|dc:13]{Reflex DC 13} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to <strong>0 HP</strong> is turned to dust).</p>",
+    "description": "<p>Once per round, as part of its action, it fires one random ray at a creature within <strong>60ft</strong> (roll <strong>1d4</strong>): 1 paralysing (@Check[fort|dc:14]{Fortitude DC 14} or @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save each turn); 2 fear (@Check[will|dc:14]{Will DC 14} or @Condition[frightened]{Frightened} for <strong>1 minute</strong>); 3 enervation (@Check[fort|dc:14]{Fortitude DC 14} for half of @Damage[4d8 necrotic]{4d8 necrotic damage}); 4 disintegration (@Check[ref|dc:14]{Reflex DC 14} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to <strong>0 HP</strong> is turned to dust).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 13,
+    "dc": 14,
     "damage": "4d8",
     "damageType": "necrotic",
     "level": 0,

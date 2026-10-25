@@ -36,7 +36,7 @@
    "ac": 20,
    "speed": "30ft, fly 50ft",
    "attack": 16,
-   "spellDC": 20,
+   "spellDC": 24,
    "morale": 12
   },
   "saves": {
@@ -261,7 +261,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature within <strong>20ft</strong> that sees it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>. A creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>20ft</strong> that sees it makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>. A creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -273,7 +273,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 24,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -292,10 +292,10 @@
       "rules": [],
       "turn": {
        "save": "will",
-       "dc": 20,
+       "dc": 24,
        "status": "frightened",
        "statusRounds": 10,
-       "text": "A creature within 20ft that sees it makes a Will save DC 20 or is Frightened for 1 minute."
+       "text": "A creature within 20ft that sees it makes a Will save DC 24 or is Frightened for 1 minute."
       }
      }
     ]
@@ -315,7 +315,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym]{hold monster} (@Check[will|dc:20]{Will DC 20}).</p>",
+    "description": "<p>Spell <strong>DC 24</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:24]{Reflex DC 24}), @UUID[Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym]{hold monster} (@Check[will|dc:24]{Will DC 24}).</p>",
     "source": {
      "book": "mt",
      "page": 0

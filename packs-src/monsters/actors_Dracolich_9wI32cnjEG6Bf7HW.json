@@ -260,7 +260,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:20]{Reflex DC 20} for half of @Damage[10d6 lightning]{10d6 lightning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:24]{Reflex DC 24} for half of @Damage[10d6 lightning]{10d6 lightning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -272,7 +272,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 20,
+    "dc": 24,
     "damage": "10d6",
     "damageType": "lightning",
     "level": 0,
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>A creature within <strong>120ft</strong> that sees it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong> and cannot regain HP while @Condition[frightened]{Frightened} this way; a creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>120ft</strong> that sees it makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong> and cannot regain HP while @Condition[frightened]{Frightened} this way; a creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -309,7 +309,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 22,
     "damage": "",
     "damageType": "",
     "level": 0,

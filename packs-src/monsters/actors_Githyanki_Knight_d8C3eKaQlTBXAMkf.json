@@ -36,7 +36,7 @@
    "ac": 19,
    "speed": "30ft",
    "attack": 9,
-   "spellDC": 0,
+   "spellDC": 16,
    "morale": 11
   },
   "saves": {
@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only), @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.A15OTsOTdAjkWzDt]{telekinesis}.</p>",
+    "description": "<p>Spell <strong>DC 16</strong>. At will: @UUID[Compendium.arneyan.spells.Item.AFRtgCyQ4YRadGrg]{mage hand} (the hand is invisible). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.WoxF4A0jeufo77uC]{jump}, @UUID[Compendium.arneyan.spells.Item.Ly9jam25X92WVgYl]{misty step}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only), @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}, @UUID[Compendium.arneyan.spells.Item.A15OTsOTdAjkWzDt]{telekinesis}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -622,7 +622,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, when its greatsword hits, the target makes a @Check[will|dc:13]{Will save DC 13} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, when its greatsword hits, the target makes a @Check[will|dc:16]{Will save DC 16} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -634,7 +634,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 13,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -649,6 +649,43 @@
    "effects": [],
    "flags": {},
    "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Combat Reflexes",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Once per round, makes an Attack of Opportunity (one melee attack) against an enemy it can see that leaves its reach or moves past or through it. Disengaging prevents it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cpK28UHISkmu2H5x",
+   "_key": "!actors.items!d8C3eKaQlTBXAMkf.cpK28UHISkmu2H5x",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

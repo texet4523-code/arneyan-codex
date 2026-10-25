@@ -36,7 +36,7 @@
    "ac": 16,
    "speed": "30ft, fly 90ft",
    "attack": 11,
-   "spellDC": 0,
+   "spellDC": 19,
    "morale": 9
   },
   "saves": {
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tornado.svg",
    "system": {
-    "description": "<p>Once per day, as an action, it turns into a whirlwind. Creatures within <strong>5ft</strong> make a @Check[ref|dc:19]{Reflex save DC 19} or take @Damage[3d6 bludgeoning]{3d6 bludgeoning damage} and be flung <strong>20ft</strong>.</p>",
+    "description": "<p>Once per day, as an action, it turns into a whirlwind. Creatures within <strong>5ft</strong> make a @Check[ref|dc:20]{Reflex save DC 20} or take @Damage[3d6 bludgeoning]{3d6 bludgeoning damage} and be flung <strong>20ft</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": "day"
     },
     "save": "ref",
-    "dc": 19,
+    "dc": 20,
     "damage": "3d6",
     "damageType": "bludgeoning",
     "level": 0,
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tornado.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.9N0fC3WlZZ5yN2Jd]{create food and water}, @UUID[Compendium.arneyan.spells.Item.QXj9BCqiSy38dLbf]{wind walk}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} (for others only).</p>",
+    "description": "<p>Spell <strong>DC 19</strong>. At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.9N0fC3WlZZ5yN2Jd]{create food and water}, @UUID[Compendium.arneyan.spells.Item.QXj9BCqiSy38dLbf]{wind walk}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} (for others only).</p>",
     "source": {
      "book": "mt",
      "page": 0

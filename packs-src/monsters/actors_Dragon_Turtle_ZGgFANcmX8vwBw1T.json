@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>60ft</strong> that sees it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>60ft</strong> that sees it makes a @Check[will|dc:16]{Will save DC 16} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, when it is under a vessel, it surges upward; the vessel makes a 50% check to capsize, and creatures on deck make a @Check[ref|dc:20]{Reflex save DC 20} or are thrown overboard.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, when it is under a vessel, it surges upward; the vessel makes a 50% check to capsize, and creatures on deck make a @Check[ref|dc:22]{Reflex save DC 22} or are thrown overboard.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +235,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 20,
+    "dc": 22,
     "damage": "",
     "damageType": "",
     "level": 0,

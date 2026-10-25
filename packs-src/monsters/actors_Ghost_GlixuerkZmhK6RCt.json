@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ghost.svg",
    "system": {
-    "description": "<p>Each creature within <strong>60ft</strong> that can see the ghost makes a @Check[will|dc:18]{Will save DC 18} or is frightened for <strong>1 minute</strong> and ages <strong>1d4</strong>×10 years. A creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>Each creature within <strong>60ft</strong> that can see the ghost makes a @Check[will|dc:16]{Will save DC 16} or is frightened for <strong>1 minute</strong> and ages <strong>1d4</strong>×10 years. A creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 18,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -222,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ghost.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, one creature within <strong>5ft</strong> makes a @Check[will|dc:18]{Will save DC 18} or the ghost takes control of its body until the ghost is forced out or the creature is reduced to <strong>0 HP</strong>.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, one creature within <strong>5ft</strong> makes a @Check[will|dc:16]{Will save DC 16} or the ghost takes control of its body until the ghost is forced out or the creature is reduced to <strong>0 HP</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -234,7 +234,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 18,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,

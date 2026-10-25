@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>A creature hit by the tentacles makes a @Check[fort|dc:9]{Fortitude save DC 9} or is @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save at the end of each of its turns, and is grappled (escape <strong>DC 13</strong>).</p>",
+    "description": "<p>A creature hit by the tentacles makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save at the end of each of its turns, and is grappled.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -161,7 +161,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 9,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

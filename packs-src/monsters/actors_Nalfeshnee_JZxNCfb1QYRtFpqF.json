@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, creatures within <strong>15ft</strong> make a @Check[will|dc:19]{Will save DC 19} or are @Condition[frightened]{Frightened} for <strong>1 minute</strong> and take @Damage[3d6 psychic]{3d6 psychic damage} on a failure.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, creatures within <strong>15ft</strong> make a @Check[will|dc:17]{Will save DC 17} or are @Condition[frightened]{Frightened} for <strong>1 minute</strong> and take @Damage[3d6 psychic]{3d6 psychic damage} on a failure.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -161,7 +161,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 19,
+    "dc": 17,
     "damage": "3d6",
     "damageType": "psychic",
     "level": 0,

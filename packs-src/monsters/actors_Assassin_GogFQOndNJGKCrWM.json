@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-bandit.svg",
    "system": {
-    "description": "<p>Weapon poison; @Check[fort|dc:15]{Fortitude DC 15} or @Condition[poisoned]{Poisoned} and take @Damage[3d6 poison]{3d6 poison damage}; a creature that saves takes half damage.</p>",
+    "description": "<p>Weapon poison; @Check[fort|dc:14]{Fortitude DC 14} or @Condition[poisoned]{Poisoned} and take @Damage[3d6 poison]{3d6 poison damage}; a creature that saves takes half damage.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 14,
     "damage": "3d6",
     "damageType": "poison",
     "level": 0,

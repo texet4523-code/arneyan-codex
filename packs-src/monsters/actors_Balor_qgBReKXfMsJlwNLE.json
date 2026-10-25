@@ -213,7 +213,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>When it dies, it explodes. Creatures within <strong>30ft</strong> make a @Check[ref|dc:26]{Reflex save DC 26} or take @Damage[20d6 fire]{20d6 fire damage}, half on a success.</p>",
+    "description": "<p>When it dies, it explodes. Creatures within <strong>30ft</strong> make a @Check[ref|dc:24]{Reflex save DC 24} or take @Damage[20d6 fire]{20d6 fire damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -225,7 +225,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 26,
+    "dc": 24,
     "damage": "20d6",
     "damageType": "fire",
     "level": 0,

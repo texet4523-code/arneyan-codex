@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft cone</strong> of poison; @Check[fort|dc:24]{Fortitude DC 24} for half of @Damage[15d6 poison]{15d6 poison damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft cone</strong> of poison; @Check[fort|dc:27]{Fortitude DC 27} for half of @Damage[15d6 poison]{15d6 poison damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 24,
+    "dc": 27,
     "damage": "15d6",
     "damageType": "poison",
     "level": 0,
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>120ft</strong> that sees the dragon makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>120ft</strong> that sees the dragon makes a @Check[will|dc:25]{Will save DC 25} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +235,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 24,
+    "dc": 25,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -260,7 +260,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per day, as an action, one creature that can hear the dragon makes a @Check[will|dc:24]{Will save DC 24} or regards it as a trusted friend for <strong>1 minute</strong>; the effect ends if the dragon or its allies harm it.</p>",
+    "description": "<p>Once per day, as an action, one creature that can hear the dragon makes a @Check[will|dc:25]{Will save DC 25} or regards it as a trusted friend for <strong>1 minute</strong>; the effect ends if the dragon or its allies harm it.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -272,7 +272,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 24,
+    "dc": 25,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, every creature within <strong>15ft</strong> makes a @Check[ref|dc:24]{Reflex save DC 24} or takes <strong>2d8</strong> damage and is knocked prone.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, every creature within <strong>15ft</strong> makes a @Check[ref|dc:28]{Reflex save DC 28} or takes <strong>2d8</strong> damage and is knocked prone.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -309,7 +309,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 24,
+    "dc": 28,
     "damage": "2d8",
     "damageType": "bludgeoning",
     "level": 0,

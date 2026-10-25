@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>A creature hit by the claws makes a @Check[will|dc:12]{Will save DC 12} or loses <strong>1d4</strong> Intelligence. At 0 Intelligence it is @Condition[stunned]{Stunned}.</p>",
+    "description": "<p>A creature hit by the claws makes a @Check[will|dc:11]{Will save DC 11} or loses <strong>1d4</strong> Intelligence. At 0 Intelligence it is @Condition[stunned]{Stunned}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 12,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>May attempt to possess a @Condition[stunned]{Stunned} creature (@Check[will|dc:12]{Will save DC 12}, to resist). On success it controls the body until the host dies or it is driven out.</p>",
+    "description": "<p>May attempt to possess a @Condition[stunned]{Stunned} creature (@Check[will|dc:11]{Will save DC 11}, to resist). On success it controls the body until the host dies or it is driven out.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 12,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,

@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, it moves through creatures' spaces. Each Medium or smaller creature it passes makes a @Check[fort|dc:15]{Fortitude save DC 15} or is knocked @Condition[prone]{Prone} and takes @Damage[2d8 bludgeoning]{2d8 bludgeoning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, it moves through creatures' spaces. Each Medium or smaller creature it passes makes a @Check[fort|dc:16]{Fortitude save DC 16} or is knocked @Condition[prone]{Prone} and takes @Damage[2d8 bludgeoning]{2d8 bludgeoning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 16,
     "damage": "2d8",
     "damageType": "bludgeoning",
     "level": 0,

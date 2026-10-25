@@ -36,7 +36,7 @@
    "ac": 12,
    "speed": "30ft",
    "attack": 1,
-   "spellDC": 13,
+   "spellDC": 12,
    "morale": 6
   },
   "saves": {
@@ -160,7 +160,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Casts as a 3rd-level wizard. Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:13]{Reflex DC 13}).</p>",
+    "description": "<p>Casts as a 3rd-level wizard (spell <strong>DC 12</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:12]{Will DC 12}), @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:12]{Reflex DC 12}).</p>",
     "source": {
      "book": "mt",
      "page": 0

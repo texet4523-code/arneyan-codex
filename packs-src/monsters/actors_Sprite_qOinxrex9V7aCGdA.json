@@ -36,7 +36,7 @@
    "ac": 15,
    "speed": "10ft, fly 40ft",
    "attack": 3,
-   "spellDC": 0,
+   "spellDC": 12,
    "morale": 8
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p>A creature hit makes a @Check[fort|dc:13]{Fortitude save DC 13} or falls @Condition[unconscious]{Unconscious} for <strong>1d6</strong> hours. It wakes if damaged.</p>",
+    "description": "<p>A creature hit makes a @Check[fort|dc:11]{Fortitude save DC 11} or falls @Condition[unconscious]{Unconscious} for <strong>1d6</strong> hours. It wakes if damaged.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 13,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}.</p>",
+    "description": "<p>Spell <strong>DC 12</strong>. At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}.</p>",
     "source": {
      "book": "mt",
      "page": 0

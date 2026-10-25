@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "30ft, fly 30ft",
    "attack": 17,
-   "spellDC": 18,
+   "spellDC": 22,
    "morale": 10
   },
   "saves": {
@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit makes a @Check[fort|dc:18]{Fortitude save DC 18} or takes @Damage[6d6 poison]{6d6 poison damage}, half on a success.</p>",
+    "description": "<p>A creature hit makes a @Check[fort|dc:16]{Fortitude save DC 16} or takes @Damage[6d6 poison]{6d6 poison damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -171,7 +171,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 18,
+    "dc": 16,
     "damage": "6d6",
     "damageType": "poison",
     "level": 0,
@@ -196,7 +196,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Casts as a 16th-level wizard. Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.QrlDx0PCOE7axE63]{counterspell}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}, @UUID[Compendium.arneyan.spells.Item.Ce9CoeIEmfUWAnKT]{contact other plane}, @UUID[Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym]{hold monster} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.K5yC38tndzb5KEst]{chain lightning} (@Check[ref|dc:18]{Reflex DC 18}), @UUID[Compendium.arneyan.spells.Item.EpuyiKXqFH4JG7ON]{finger of death} (@Check[fort|dc:18]{Fortitude DC 18}), @UUID[Compendium.arneyan.spells.Item.vP1i9qkDLWC0Pnub]{mind blank}.</p>",
+    "description": "<p>Casts as a 16th-level wizard (spell <strong>DC 22</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.kBpGm2UqsC7Kv0j9]{mirror image}, @UUID[Compendium.arneyan.spells.Item.QrlDx0PCOE7axE63]{counterspell}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:22]{Will DC 22}), @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment} (@Check[will|dc:22]{Will DC 22}), @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}, @UUID[Compendium.arneyan.spells.Item.Ce9CoeIEmfUWAnKT]{contact other plane}, @UUID[Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym]{hold monster} (@Check[will|dc:22]{Will DC 22}), @UUID[Compendium.arneyan.spells.Item.K5yC38tndzb5KEst]{chain lightning} (@Check[ref|dc:22]{Reflex DC 22}), @UUID[Compendium.arneyan.spells.Item.EpuyiKXqFH4JG7ON]{finger of death} (@Check[fort|dc:22]{Fortitude DC 22}), @UUID[Compendium.arneyan.spells.Item.vP1i9qkDLWC0Pnub]{mind blank}.</p>",
     "source": {
      "book": "mt",
      "page": 0

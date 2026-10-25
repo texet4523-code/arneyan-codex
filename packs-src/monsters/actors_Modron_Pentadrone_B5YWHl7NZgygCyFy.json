@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>30ft cone</strong>; @Check[fort|dc:12]{Fortitude save DC 12} or @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save each turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>30ft cone</strong>; @Check[fort|dc:11]{Fortitude save DC 11} or @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save each turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 12,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,

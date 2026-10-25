@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
    "system": {
-    "description": "<p>A creature hit by its fist makes a @Check[fort|dc:16]{Fortitude save DC 16} or cannot regain HP, and gains 1 level of Exhaustion each day until the curse is lifted.</p>",
+    "description": "<p>A creature hit by its fist makes a @Check[fort|dc:15]{Fortitude save DC 15} or cannot regain HP, and gains 1 level of Exhaustion each day until the curse is lifted.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 16,
+    "dc": 15,
     "damage": "",
     "damageType": "",
     "level": 0,

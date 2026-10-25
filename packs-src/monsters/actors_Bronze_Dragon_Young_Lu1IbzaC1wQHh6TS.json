@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>60ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:17]{Reflex DC 17} for half of @Damage[7d6 lightning]{7d6 lightning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>60ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:19]{Reflex DC 19} for half of @Damage[7d6 lightning]{7d6 lightning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 17,
+    "dc": 19,
     "damage": "7d6",
     "damageType": "lightning",
     "level": 0,
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:17]{Reflex save DC 17} or are pushed <strong>15ft</strong> and knocked prone.</p>",
+    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:20]{Reflex save DC 20} or are pushed <strong>15ft</strong> and knocked prone.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -309,7 +309,7 @@
      "per": "day"
     },
     "save": "ref",
-    "dc": 17,
+    "dc": 20,
     "damage": "",
     "damageType": "",
     "level": 0,

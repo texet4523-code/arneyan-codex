@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:15]{Reflex DC 15} for half of @Damage[4d6 lightning]{4d6 lightning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:14]{Reflex DC 14} for half of @Damage[4d6 lightning]{4d6 lightning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 15,
+    "dc": 14,
     "damage": "4d6",
     "damageType": "lightning",
     "level": 0,
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>30ft</strong> that sees the dragon makes a @Check[will|dc:15]{Will save DC 15} or is @Condition[frightened]{Frightened} for <strong>1 round</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>30ft</strong> that sees the dragon makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[frightened]{Frightened} for <strong>1 round</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +235,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 15,
+    "dc": 14,
     "damage": "",
     "damageType": "",
     "level": 0,

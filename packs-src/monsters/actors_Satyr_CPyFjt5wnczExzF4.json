@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p>Once per day, as an action, it plays haunting music. Creatures within <strong>60ft</strong> make a @Check[will|dc:13]{Will save DC 13} or are @Condition[charmed]{Charmed}, @Condition[frightened]{Frightened} or @Condition[unconscious]{Unconscious} (asleep) for <strong>1 minute</strong> (satyr's choice).</p>",
+    "description": "<p>Once per day, as an action, it plays haunting music. Creatures within <strong>60ft</strong> make a @Check[will|dc:12]{Will save DC 12} or are @Condition[charmed]{Charmed}, @Condition[frightened]{Frightened} or @Condition[unconscious]{Unconscious} (asleep) for <strong>1 minute</strong> (satyr's choice).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -199,7 +199,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 13,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

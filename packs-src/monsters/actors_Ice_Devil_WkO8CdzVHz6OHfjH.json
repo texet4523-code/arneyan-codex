@@ -224,7 +224,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Once per day, as an action, it raises a wall of ice (<strong>30ft</strong> long, <strong>15ft</strong> high, <strong>1ft</strong> thick). Creatures nearby make a @Check[fort|dc:20]{Fortitude save DC 20} or take @Damage[4d6 cold]{4d6 cold damage}.</p>",
+    "description": "<p>Once per day, as an action, it raises a wall of ice (<strong>30ft</strong> long, <strong>15ft</strong> high, <strong>1ft</strong> thick). Creatures nearby make a @Check[fort|dc:19]{Fortitude save DC 19} or take @Damage[4d6 cold]{4d6 cold damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -236,7 +236,7 @@
      "per": "day"
     },
     "save": "fort",
-    "dc": 20,
+    "dc": 19,
     "damage": "4d6",
     "damageType": "cold",
     "level": 0,
@@ -261,7 +261,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit by its tail makes a @Check[fort|dc:20]{Fortitude save DC 20} or has its speed halved for <strong>1 minute</strong>.</p>",
+    "description": "<p>A creature hit by its tail makes a @Check[fort|dc:19]{Fortitude save DC 19} or has its speed halved for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -273,7 +273,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 20,
+    "dc": 19,
     "damage": "",
     "damageType": "",
     "level": 0,

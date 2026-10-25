@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>A creature that starts its turn within <strong>30ft</strong> and can see the bodak's eyes makes a @Check[fort|dc:17]{Fortitude save DC 17} or takes @Damage[4d10 necrotic]{4d10 necrotic damage} (half on a save). A creature that averts its eyes has <strong>Disadvantage</strong> on attacks against it.</p>",
+    "description": "<p>A creature that starts its turn within <strong>30ft</strong> and can see the bodak's eyes makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[4d10 necrotic]{4d10 necrotic damage} (half on a save). A creature that averts its eyes has <strong>Disadvantage</strong> on attacks against it.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 17,
+    "dc": 15,
     "damage": "4d10",
     "damageType": "necrotic",
     "level": 0,

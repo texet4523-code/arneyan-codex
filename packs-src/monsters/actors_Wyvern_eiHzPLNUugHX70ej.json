@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-wyvern.svg",
    "system": {
-    "description": "<p>A creature stung makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[7d6 poison]{7d6 poison damage} and is @Condition[poisoned]{Poisoned}; on a save it takes half and is not @Condition[poisoned]{Poisoned}.</p>",
+    "description": "<p>A creature stung makes a @Check[fort|dc:16]{Fortitude save DC 16} or takes @Damage[7d6 poison]{7d6 poison damage} and is @Condition[poisoned]{Poisoned}; on a save it takes half and is not @Condition[poisoned]{Poisoned}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -199,7 +199,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 16,
     "damage": "7d6",
     "damageType": "poison",
     "level": 0,

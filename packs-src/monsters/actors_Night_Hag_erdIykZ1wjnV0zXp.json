@@ -36,7 +36,7 @@
    "ac": 20,
    "speed": "30ft",
    "attack": 10,
-   "spellDC": 0,
+   "spellDC": 16,
    "morale": 10
   },
   "saves": {
@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>Once per day, while ethereal, it touches a sleeping humanoid. @Check[will|dc:17]{Will save DC 17} or the target has no rest and takes @Damage[1d10 psychic]{1d10 psychic damage}.</p>",
+    "description": "<p>Once per day, while ethereal, it touches a sleeping humanoid. @Check[will|dc:16]{Will save DC 16} or the target has no rest and takes @Damage[1d10 psychic]{1d10 psychic damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -166,7 +166,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 17,
+    "dc": 16,
     "damage": "1d10",
     "damageType": "psychic",
     "level": 0,
@@ -191,7 +191,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}. <strong>2/day</strong> each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only), @UUID[Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj]{ray of enfeeblement}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.ZPHqsexVWgFWPhZq]{etherealness}.</p>",
+    "description": "<p>Spell <strong>DC 16</strong>. At will: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}. <strong>2/day</strong> each: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only), @UUID[Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj]{ray of enfeeblement}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.ZPHqsexVWgFWPhZq]{etherealness}.</p>",
     "source": {
      "book": "mt",
      "page": 0

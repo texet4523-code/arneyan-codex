@@ -36,7 +36,7 @@
    "ac": 21,
    "speed": "30ft, fly 90ft",
    "attack": 9,
-   "spellDC": 0,
+   "spellDC": 17,
    "morale": 11
   },
   "saves": {
@@ -197,7 +197,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>A creature bitten makes a @Check[fort|dc:15]{Fortitude save DC 15} or is @Condition[poisoned]{Poisoned} for <strong>24 hours</strong> and @Condition[unconscious]{Unconscious} while it is @Condition[poisoned]{Poisoned}.</p>",
+    "description": "<p>A creature bitten makes a @Check[fort|dc:16]{Fortitude save DC 16} or is @Condition[poisoned]{Poisoned} for <strong>24 hours</strong> and @Condition[unconscious]{Unconscious} while it is @Condition[poisoned]{Poisoned}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -209,7 +209,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -234,7 +234,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>A Medium or smaller creature hit by the constrict attack is @Condition[restrained]{Restrained} (escape <strong>DC 14</strong>).</p>",
+    "description": "<p>A Medium or smaller creature hit by the constrict attack is @Condition[restrained]{Restrained}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -271,7 +271,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>Casts as a 7th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.UQlLkustRg8BIKev]{cure light wounds}, @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.LK1mn7d62Vbakmqc]{lesser restoration}, @UUID[Compendium.arneyan.spells.Item.A91JjCEXBT93e1Bu]{protection from alignment}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}.</p>",
+    "description": "<p>Casts as a 7th-level cleric (spell <strong>DC 17</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.UQlLkustRg8BIKev]{cure light wounds}, @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.LK1mn7d62Vbakmqc]{lesser restoration}, @UUID[Compendium.arneyan.spells.Item.A91JjCEXBT93e1Bu]{protection from alignment}, @UUID[Compendium.arneyan.spells.Item.tKux9yZ5Ic5Wj8Vw]{scrying}.</p>",
     "source": {
      "book": "mt",
      "page": 0

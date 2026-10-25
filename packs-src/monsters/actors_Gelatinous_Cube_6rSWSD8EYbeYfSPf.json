@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-slime.svg",
    "system": {
-    "description": "<p>As an action, it moves into the space of one Medium or smaller creature.</p><ul><li>That creature makes a @Check[ref|dc:16]{Reflex save DC 16} or is engulfed and takes @Damage[3d6 acid]{3d6 acid damage} at the start of each of its turns while engulfed.</li><li>The creature can be seen inside it, and may escape with a Strength check against <strong>DC 16</strong>.</li></ul>",
+    "description": "<p>As an action, it moves into the space of one Medium or smaller creature.</p><ul><li>That creature makes a @Check[ref|dc:13]{Reflex save DC 13} or is engulfed and takes @Damage[3d6 acid]{3d6 acid damage} at the start of each of its turns while engulfed.</li><li>The creature can be seen inside it, and may escape with a Strength check against <strong>DC 16</strong>.</li></ul>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 16,
+    "dc": 13,
     "damage": "3d6",
     "damageType": "acid",
     "level": 0,

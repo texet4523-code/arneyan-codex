@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p><strong>3/day</strong>, a creature within <strong>30ft</strong> makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[charmed]{Charmed} and obeys the aboleth's telepathic commands until it dies.</p>",
+    "description": "<p><strong>3/day</strong>, a creature within <strong>30ft</strong> makes a @Check[will|dc:18]{Will save DC 18} or is @Condition[charmed]{Charmed} and obeys the aboleth's telepathic commands until it dies.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 17,
+    "dc": 18,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>A creature that touches it or hits it in melee while underwater makes a @Check[fort|dc:17]{Fortitude save DC 17} or can breathe only water for <strong>1d4</strong> hours.</p>",
+    "description": "<p>A creature that touches it or hits it in melee while underwater makes a @Check[fort|dc:16]{Fortitude save DC 16} or can breathe only water for <strong>1d4</strong> hours.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 17,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,

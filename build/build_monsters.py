@@ -271,10 +271,19 @@ def uses_of(text):
     return {"value": n, "max": n, "per": per}
 
 
+SPELL_LINE = re.compile(r"(Spellcasting|Innate)(?:\s*\(spell DC (\d+)\))?$")
+
+
 def ability_item(name, text, img):
-    if name in ("Spellcasting", "Innate"):
-        # The DCs belong to single spells; the spells themselves are added to the sheet.
-        text_dc = [int(x) for x in re.findall(r"DC (\d+)", text)]
+    sl = SPELL_LINE.match(name)
+    if sl:
+        # "Innate (spell DC 14)" (books v0.10.8, F1): the creature's spell DC. Older lines only give DCs on single
+        # spells, and the highest counts. The spells themselves are added to the sheet.
+        name = sl.group(1)
+        named = sl.group(2) or (re.search(r"\bspell DC (\d+)", text) or [None, None])[1]
+        text_dc = [int(named)] if named else [int(x) for x in re.findall(r"DC (\d+)", text)]
+        if sl.group(2):
+            text = f"Spell DC {sl.group(2)}. {text}"
         return {"name": "Innate Spellcasting" if name == "Innate" else name, "type": "ability", "img": img,
                 "system": {"description": f"<p>{enrich(text)}</p>", "source": {"book": "mt", "page": 0}, "kind": "monster",
                            "uses": {"value": 0, "max": 0, "per": ""}, "save": "", "dc": None, "damage": "", "damageType": "",
@@ -555,7 +564,7 @@ def build():
             # Special abilities. Senses, immunities and resistances also go on the stat line (and into the damage engine).
             for s_ in m["sp"]:
                 items += sp_items(s_, img)
-                cm = re.match(r"(Spellcasting|Innate):\s*(.*)", s_)
+                cm = re.match(r"(Spellcasting|Innate)(?:\s*\(spell DC \d+\))?:\s*(.*)", s_)
                 if cm:
                     items += spell_items(cm.group(2))
             if "sk" in f:

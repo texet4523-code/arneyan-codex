@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "30ft",
    "attack": 17,
-   "spellDC": 19,
+   "spellDC": 18,
    "morale": 12
   },
   "saves": {
@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
    "system": {
-    "description": "<p>Casts as an 11th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}, @UUID[Compendium.arneyan.spells.Item.O3YOzbX96zszK02y]{blight}, @UUID[Compendium.arneyan.spells.Item.GXaNBvfQ5bVaxK14]{harm} (@Check[fort|dc:19]{Fortitude DC 19}).</p>",
+    "description": "<p>Casts as an 11th-level cleric (spell <strong>DC 18</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}, @UUID[Compendium.arneyan.spells.Item.O3YOzbX96zszK02y]{blight}, @UUID[Compendium.arneyan.spells.Item.GXaNBvfQ5bVaxK14]{harm} (@Check[fort|dc:18]{Fortitude DC 18}).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -612,7 +612,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
    "system": {
-    "description": "<p>Once per round, one creature within <strong>60ft</strong> that can see it makes a @Check[will|dc:19]{Will save DC 19} or is frightened and paralysed for <strong>1 round</strong>.</p>",
+    "description": "<p>Once per round, one creature within <strong>60ft</strong> that can see it makes a @Check[will|dc:17]{Will save DC 17} or is frightened and paralysed for <strong>1 round</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -624,7 +624,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 19,
+    "dc": 17,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -649,7 +649,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
    "system": {
-    "description": "<p>A creature hit by its fist makes a @Check[fort|dc:20]{Fortitude save DC 20} or cannot regain HP, and gains 1 level of Exhaustion each day until the curse is lifted.</p>",
+    "description": "<p>A creature hit by its fist makes a @Check[fort|dc:17]{Fortitude save DC 17} or cannot regain HP, and gains 1 level of Exhaustion each day until the curse is lifted.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -661,7 +661,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 20,
+    "dc": 17,
     "damage": "",
     "damageType": "",
     "level": 0,

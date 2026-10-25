@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
    "system": {
-    "description": "<p>A Large or smaller creature hit is grappled (escape <strong>DC 11</strong>) and @Condition[restrained]{Restrained}.</p>",
+    "description": "<p>A Large or smaller creature hit is grappled and @Condition[restrained]{Restrained}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
    "system": {
-    "description": "<p>Once per day, as an action, grasping roots fill a <strong>15ft radius</strong> within <strong>30ft</strong> for <strong>1 minute</strong>; creatures there make a @Check[ref|dc:11]{Reflex save DC 11} or are @Condition[restrained]{Restrained}, and the area is difficult terrain.</p>",
+    "description": "<p>Once per day, as an action, grasping roots fill a <strong>15ft radius</strong> within <strong>30ft</strong> for <strong>1 minute</strong>; creatures there make a @Check[ref|dc:12]{Reflex save DC 12} or are @Condition[restrained]{Restrained}, and the area is difficult terrain.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": "day"
     },
     "save": "ref",
-    "dc": 11,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>15ft cone</strong> of gas. @Check[fort|dc:25]{Fortitude DC 25} or take @Damage[10d8 poison]{10d8 poison damage}; a creature that saves takes half.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>15ft cone</strong> of gas. @Check[fort|dc:21]{Fortitude DC 21} or take @Damage[10d8 poison]{10d8 poison damage}; a creature that saves takes half.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 25,
+    "dc": 21,
     "damage": "10d8",
     "damageType": "poison",
     "level": 0,

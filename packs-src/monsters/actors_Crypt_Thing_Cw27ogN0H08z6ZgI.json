@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p><strong>3/day</strong>, one creature within <strong>30ft</strong> that can see it makes a @Check[will|dc:16]{Will save DC 16} or is teleported <strong>1d6</strong>×<strong>100ft</strong> in a random direction.</p>",
+    "description": "<p><strong>3/day</strong>, one creature within <strong>30ft</strong> that can see it makes a @Check[will|dc:12]{Will save DC 12} or is teleported <strong>1d6</strong>×<strong>100ft</strong> in a random direction.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 16,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

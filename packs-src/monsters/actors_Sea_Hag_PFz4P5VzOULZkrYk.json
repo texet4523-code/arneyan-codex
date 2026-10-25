@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>Once per round, as an action, a creature within <strong>30ft</strong> makes a @Check[will|dc:14]{Will save DC 14} or is Shaken for <strong>1 round</strong>.</p>",
+    "description": "<p>Once per round, as an action, a creature within <strong>30ft</strong> makes a @Check[will|dc:12]{Will save DC 12} or is Shaken for <strong>1 round</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 14,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>Once per day, as an action, a Shaken creature within <strong>30ft</strong> makes a @Check[will|dc:14]{Will save DC 14}. If it has under <strong>10 HP</strong>, it drops to <strong>0 HP</strong> on a failure.</p>",
+    "description": "<p>Once per day, as an action, a Shaken creature within <strong>30ft</strong> makes a @Check[will|dc:12]{Will save DC 12}. If it has under <strong>10 HP</strong>, it drops to <strong>0 HP</strong> on a failure.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 14,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>A creature that sees her true form makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>.</p>",
+    "description": "<p>A creature that sees her true form makes a @Check[will|dc:12]{Will save DC 12} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 14,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

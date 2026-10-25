@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "40ft",
    "attack": 15,
-   "spellDC": 18,
+   "spellDC": 19,
    "morale": 11
   },
   "saves": {
@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit by both pincers in the same round is @Condition[restrained]{Restrained} (escape <strong>DC 18</strong>). It takes <strong>2d10</strong> damage at the start of each of its turns while held.</p>",
+    "description": "<p>A creature hit by both pincers in the same round is @Condition[restrained]{Restrained}. It takes <strong>2d10</strong> damage at the start of each of its turns while held.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} granting a bargain that always harms the wisher.</p>",
+    "description": "<p>Spell <strong>DC 19</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} granting a bargain that always harms the wisher.</p>",
     "source": {
      "book": "mt",
      "page": 0

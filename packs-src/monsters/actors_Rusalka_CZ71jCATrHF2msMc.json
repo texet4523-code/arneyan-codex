@@ -36,7 +36,7 @@
    "ac": 14,
    "speed": "30ft, swim 40ft",
    "attack": 6,
-   "spellDC": 14,
+   "spellDC": 13,
    "morale": 9
   },
   "saves": {
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}.</p>",
+    "description": "<p>Spell <strong>DC 13</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -342,7 +342,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>A creature it has grappled in water makes a @Check[fort|dc:14]{Fortitude save DC 14} at the start of each of its turns or begins to drown, taking <strong>1d8</strong> damage.</p>",
+    "description": "<p>A creature it has grappled in water makes a @Check[fort|dc:11]{Fortitude save DC 11} at the start of each of its turns or begins to drown, taking <strong>1d8</strong> damage.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -354,7 +354,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 14,
+    "dc": 11,
     "damage": "1d8",
     "damageType": "",
     "level": 0,

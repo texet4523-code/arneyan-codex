@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only). <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.P3Na8Xr3sYbSrJJg]{blindness/deafness} (@Check[fort|dc:11]{Fortitude DC 11}), @UUID[Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3]{blur}, @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}.</p>",
+    "description": "<p>Spell <strong>DC 11</strong>. At will: @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection} (self only). <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.P3Na8Xr3sYbSrJJg]{blindness/deafness} (@Check[fort|dc:11]{Fortitude DC 11}), @UUID[Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3]{blur}, @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -540,7 +540,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>A creature hit makes a @Check[fort|dc:11]{Fortitude save DC 11} or is @Condition[poisoned]{Poisoned}.</p>",
+    "description": "<p>A creature hit makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[poisoned]{Poisoned}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -552,7 +552,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 11,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

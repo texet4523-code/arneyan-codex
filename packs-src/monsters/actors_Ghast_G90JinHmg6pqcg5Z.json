@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>A creature hit by its claw makes a @Check[fort|dc:14]{Fortitude save DC 14} or is paralysed for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</p>",
+    "description": "<p>A creature hit by its claw makes a @Check[fort|dc:12]{Fortitude save DC 12} or is paralysed for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 14,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>A creature that starts its turn within <strong>10ft</strong> makes a @Check[fort|dc:14]{Fortitude save DC 14} or retches, taking <strong>Disadvantage</strong> on attack rolls until the start of its next turn. A creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature that starts its turn within <strong>10ft</strong> makes a @Check[fort|dc:12]{Fortitude save DC 12} or retches, taking <strong>Disadvantage</strong> on attack rolls until the start of its next turn. A creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +235,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 14,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

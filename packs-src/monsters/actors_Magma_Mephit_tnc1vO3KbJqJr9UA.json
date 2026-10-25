@@ -36,7 +36,7 @@
    "ac": 11,
    "speed": "30ft, fly 30ft",
    "attack": 4,
-   "spellDC": 10,
+   "spellDC": 11,
    "morale": 7
   },
   "saves": {
@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong>; @Check[ref|dc:10]{Reflex DC 10} for half of @Damage[2d6 fire]{2d6 fire damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong>; @Check[ref|dc:11]{Reflex DC 11} for half of @Damage[2d6 fire]{2d6 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -129,7 +129,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 10,
+    "dc": 11,
     "damage": "2d6",
     "damageType": "fire",
     "level": 0,
@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>When it dies, it explodes in lava; creatures within <strong>5ft</strong> make a @Check[ref|dc:10]{Reflex save DC 10} or take @Damage[2d6 fire]{2d6 fire damage}.</p>",
+    "description": "<p>When it dies, it explodes in lava; creatures within <strong>5ft</strong> make a @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[2d6 fire]{2d6 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -166,7 +166,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 10,
+    "dc": 11,
     "damage": "2d6",
     "damageType": "fire",
     "level": 0,
@@ -265,7 +265,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p><strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2]{heat metal} (@Check[fort|dc:10]{Fortitude DC 10}).</p>",
+    "description": "<p>Spell <strong>DC 11</strong>. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.f3yrvVkTntuOkQk2]{heat metal} (@Check[fort|dc:11]{Fortitude DC 11}).</p>",
     "source": {
      "book": "mt",
      "page": 0

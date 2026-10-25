@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Once per day, as an action, a <strong>20ft</strong> cloud. Creatures inside make a @Check[fort|dc:12]{Fortitude save DC 12} or are @Condition[poisoned]{Poisoned} while inside and for <strong>1 round</strong> after.</p>",
+    "description": "<p>Once per day, as an action, a <strong>20ft</strong> cloud. Creatures inside make a @Check[fort|dc:11]{Fortitude save DC 11} or are @Condition[poisoned]{Poisoned} while inside and for <strong>1 round</strong> after.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": "day"
     },
     "save": "fort",
-    "dc": 12,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,

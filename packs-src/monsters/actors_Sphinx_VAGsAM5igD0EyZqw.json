@@ -36,7 +36,7 @@
    "ac": 22,
    "speed": "40ft, fly 60ft",
    "attack": 15,
-   "spellDC": 0,
+   "spellDC": 17,
    "morale": 11
   },
   "saves": {
@@ -122,7 +122,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p>Casts as a 9th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.ioLVklpAS43XVX5x]{locate object}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike}.</p>",
+    "description": "<p>Casts as a 9th-level cleric (spell <strong>DC 17</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.ioLVklpAS43XVX5x]{locate object}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -410,7 +410,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p><strong>3/day</strong>. Creatures within <strong>120ft</strong> make a @Check[will|dc:18]{Will save DC 18} or are @Condition[frightened]{Frightened} for <strong>1d4</strong> rounds.</p>",
+    "description": "<p><strong>3/day</strong>. Creatures within <strong>120ft</strong> make a @Check[will|dc:19]{Will save DC 19} or are @Condition[frightened]{Frightened} for <strong>1d4</strong> rounds.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -422,7 +422,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 18,
+    "dc": 19,
     "damage": "",
     "damageType": "",
     "level": 0,

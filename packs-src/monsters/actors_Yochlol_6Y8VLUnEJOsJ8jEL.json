@@ -228,7 +228,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>In mist form it can enter other creatures' spaces; a creature that starts its turn there makes a @Check[fort|dc:16]{Fortitude save DC 16} or is @Condition[poisoned]{Poisoned} until the end of its next turn.</p>",
+    "description": "<p>In mist form it can enter other creatures' spaces; a creature that starts its turn there makes a @Check[fort|dc:18]{Fortitude save DC 18} or is @Condition[poisoned]{Poisoned} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -240,7 +240,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 16,
+    "dc": 18,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -265,7 +265,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:16]{Reflex DC 16}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.sPNYzzVBNaySeweE]{dominate person} (@Check[will|dc:16]{Will DC 16}).</p>",
+    "description": "<p>Spell <strong>DC 16</strong>. At will: @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.rDpdzZoIy4ena8a1]{web} (@Check[ref|dc:16]{Reflex DC 16}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.sPNYzzVBNaySeweE]{dominate person} (@Check[will|dc:16]{Will DC 16}).</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-scorpion.svg",
    "system": {
-    "description": "<p>A creature stung makes a @Check[fort|dc:9]{Fortitude save DC 9} or takes @Damage[1d8 poison]{1d8 poison damage}, half on a success.</p>",
+    "description": "<p>A creature stung makes a @Check[fort|dc:10]{Fortitude save DC 10} or takes @Damage[1d8 poison]{1d8 poison damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 9,
+    "dc": 10,
     "damage": "1d8",
     "damageType": "poison",
     "level": 0,

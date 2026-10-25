@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-giant.svg",
    "system": {
-    "description": "<p>A creature hit by the sting must make a @Check[fort|dc:12]{Fortitude save DC 12} or be paralysed for <strong>1 round</strong>; on a second consecutive failed save it is paralysed for <strong>1 minute</strong>.</p>",
+    "description": "<p>A creature hit by the sting must make a @Check[fort|dc:11]{Fortitude save DC 11} or be paralysed for <strong>1 round</strong>; on a second consecutive failed save it is paralysed for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 12,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,

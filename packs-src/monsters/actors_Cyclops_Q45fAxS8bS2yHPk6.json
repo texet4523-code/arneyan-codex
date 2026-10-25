@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
    "system": {
-    "description": "<p>Once per day, as an action, curses a creature within <strong>60ft</strong>; @Check[will|dc:19]{Will DC 19} or <strong>Disadvantage</strong> on its attack rolls for <strong>1 minute</strong>.</p>",
+    "description": "<p>Once per day, as an action, curses a creature within <strong>60ft</strong>; @Check[will|dc:15]{Will DC 15} or <strong>Disadvantage</strong> on its attack rolls for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 19,
+    "dc": 15,
     "damage": "",
     "damageType": "",
     "level": 0,

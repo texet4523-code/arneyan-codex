@@ -36,7 +36,7 @@
    "ac": 18,
    "speed": "50ft",
    "attack": 9,
-   "spellDC": 0,
+   "spellDC": 15,
    "morale": 9
   },
   "saves": {
@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
    "system": {
-    "description": "<p>If it moves at least <strong>20ft</strong> in a straight line before a horn attack, the attack deals +<strong>2d8</strong> damage. A creature hit makes a @Check[fort|dc:17]{Fortitude save DC 17} or is knocked @Condition[prone]{Prone}.</p>",
+    "description": "<p>If it moves at least <strong>20ft</strong> in a straight line before a horn attack, the attack deals +<strong>2d8</strong> damage. A creature hit makes a @Check[fort|dc:16]{Fortitude save DC 16} or is knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -161,7 +161,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 17,
+    "dc": 16,
     "damage": "2d8",
     "damageType": "",
     "level": 0,
@@ -266,7 +266,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}.</p>",
+    "description": "<p>Spell <strong>DC 15</strong>. At will: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS]{nondetection}.</p>",
     "source": {
      "book": "mt",
      "page": 0

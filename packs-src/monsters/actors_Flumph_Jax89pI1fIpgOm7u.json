@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, it sprays a <strong>15ft cone</strong> of reeking fluid. Creatures in it make a @Check[ref|dc:10]{Reflex save DC 10} or stink for <strong>1 hour</strong>; any creature within <strong>5ft</strong> of a stinking creature is @Condition[poisoned]{Poisoned} while it stays there.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, it sprays a <strong>15ft cone</strong> of reeking fluid. Creatures in it make a @Check[ref|dc:11]{Reflex save DC 11} or stink for <strong>1 hour</strong>; any creature within <strong>5ft</strong> of a stinking creature is @Condition[poisoned]{Poisoned} while it stays there.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -166,7 +166,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 10,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,

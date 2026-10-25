@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mushroom-gills.svg",
    "system": {
-    "description": "<p>A creature hit by two or more tentacles in <strong>one round</strong> makes a @Check[fort|dc:13]{Fortitude save DC 13} or suffers rot: take @Damage[1d8 necrotic]{1d8 necrotic damage} and lose <strong>1d4</strong> HP of maximum health until healed.</p>",
+    "description": "<p>A creature hit by two or more tentacles in <strong>one round</strong> makes a @Check[fort|dc:11]{Fortitude save DC 11} or suffers rot: take @Damage[1d8 necrotic]{1d8 necrotic damage} and lose <strong>1d4</strong> HP of maximum health until healed.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 13,
+    "dc": 11,
     "damage": "1d8",
     "damageType": "necrotic",
     "level": 0,

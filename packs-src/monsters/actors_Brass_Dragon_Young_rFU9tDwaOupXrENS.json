@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>60ft line</strong>, <strong>5ft</strong> wide of fire; @Check[ref|dc:15]{Reflex DC 15} for half of @Damage[6d6 fire]{6d6 fire damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>60ft line</strong>, <strong>5ft</strong> wide of fire; @Check[ref|dc:16]{Reflex DC 16} for half of @Damage[6d6 fire]{6d6 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 15,
+    "dc": 16,
     "damage": "6d6",
     "damageType": "fire",
     "level": 0,
@@ -260,7 +260,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per day, as an action, throws sand in a <strong>15ft cone</strong>; creatures in it make a @Check[will|dc:15]{Will save DC 15} or fall asleep for <strong>1 minute</strong>, waking if damaged or shaken.</p>",
+    "description": "<p>Once per day, as an action, throws sand in a <strong>15ft cone</strong>; creatures in it make a @Check[will|dc:16]{Will save DC 16} or fall asleep for <strong>1 minute</strong>, waking if damaged or shaken.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -272,7 +272,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 15,
+    "dc": 16,
     "damage": "",
     "damageType": "",
     "level": 0,

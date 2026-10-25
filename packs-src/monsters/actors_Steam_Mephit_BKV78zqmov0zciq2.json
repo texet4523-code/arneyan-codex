@@ -36,7 +36,7 @@
    "ac": 10,
    "speed": "30ft, fly 30ft",
    "attack": 6,
-   "spellDC": 0,
+   "spellDC": 11,
    "morale": 7
   },
   "saves": {
@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong> of scalding steam; @Check[ref|dc:9]{Reflex DC 9} for half of @Damage[4d4 fire]{4d4 fire damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong> of scalding steam; @Check[ref|dc:11]{Reflex DC 11} for half of @Damage[4d4 fire]{4d4 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -129,7 +129,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 9,
+    "dc": 11,
     "damage": "4d4",
     "damageType": "fire",
     "level": 0,
@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>When it dies, it bursts in a cloud of steam; creatures within <strong>5ft</strong> make a @Check[ref|dc:9]{Reflex save DC 9} or take @Damage[1d8 fire]{1d8 fire damage}.</p>",
+    "description": "<p>When it dies, it bursts in a cloud of steam; creatures within <strong>5ft</strong> make a @Check[ref|dc:11]{Reflex save DC 11} or take @Damage[1d8 fire]{1d8 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -166,7 +166,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 9,
+    "dc": 11,
     "damage": "1d8",
     "damageType": "fire",
     "level": 0,
@@ -228,7 +228,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p><strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3]{blur}.</p>",
+    "description": "<p>Spell <strong>DC 11</strong>. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3]{blur}.</p>",
     "source": {
      "book": "mt",
      "page": 0

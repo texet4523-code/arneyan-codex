@@ -36,7 +36,7 @@
    "ac": 12,
    "speed": "30ft, fly 30ft",
    "attack": 6,
-   "spellDC": 0,
+   "spellDC": 11,
    "morale": 7
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong> of ash; @Check[ref|dc:10]{Reflex save DC 10} or @Condition[blinded]{Blinded} until the end of its next turn.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, a <strong>15ft cone</strong> of ash; @Check[ref|dc:11]{Reflex save DC 11} or @Condition[blinded]{Blinded} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 10,
+    "dc": 11,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -222,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p><strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}.</p>",
+    "description": "<p>Spell <strong>DC 11</strong>. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}.</p>",
     "source": {
      "book": "mt",
      "page": 0

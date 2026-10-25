@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-giant.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as part of its action, one creature within <strong>60ft</strong> that it can see makes a @Check[will|dc:15]{Will save DC 15} or takes @Damage[6d8 psychic]{6d8 psychic damage}, half on a success.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as part of its action, one creature within <strong>60ft</strong> that it can see makes a @Check[will|dc:13]{Will save DC 13} or takes @Damage[6d8 psychic]{6d8 psychic damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 15,
+    "dc": 13,
     "damage": "6d8",
     "damageType": "psychic",
     "level": 0,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-giant.svg",
    "system": {
-    "description": "<p>Once per day, as an action, a creature within <strong>60ft</strong> that fails a @Check[will|dc:15]{Will save DC 15} is magically deformed until Remove Curse or similar ends it: its speed is halved, it has <strong>Disadvantage</strong> on checks and saves of one attribute, and its appearance is twisted.</p>",
+    "description": "<p>Once per day, as an action, a creature within <strong>60ft</strong> that fails a @Check[will|dc:13]{Will save DC 13} is magically deformed until Remove Curse or similar ends it: its speed is halved, it has <strong>Disadvantage</strong> on checks and saves of one attribute, and its appearance is twisted.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -160,7 +160,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 15,
+    "dc": 13,
     "damage": "",
     "damageType": "",
     "level": 0,

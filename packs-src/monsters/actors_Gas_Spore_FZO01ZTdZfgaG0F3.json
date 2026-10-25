@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
    "system": {
-    "description": "<p>When it drops to <strong>0 HP</strong> it explodes; creatures within <strong>20ft</strong> make a @Check[fort|dc:15]{Fortitude save DC 15} or take @Damage[4d10 poison]{4d10 poison damage}, half on a success, and a creature that fails is infected: it dies in <strong>1d12</strong> hours unless cured, and <strong>2d4</strong> tiny gas spores grow from its body.</p>",
+    "description": "<p>When it drops to <strong>0 HP</strong> it explodes; creatures within <strong>20ft</strong> make a @Check[fort|dc:8]{Fortitude save DC 8} or take @Damage[4d10 poison]{4d10 poison damage}, half on a success, and a creature that fails is infected: it dies in <strong>1d12</strong> hours unless cured, and <strong>2d4</strong> tiny gas spores grow from its body.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 8,
     "damage": "4d10",
     "damageType": "poison",
     "level": 0,

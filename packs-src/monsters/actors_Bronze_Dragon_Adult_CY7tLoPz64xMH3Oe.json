@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:20]{Reflex DC 20} for half of @Damage[10d6 lightning]{10d6 lightning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>90ft line</strong>, <strong>5ft</strong> wide of lightning; @Check[ref|dc:23]{Reflex DC 23} for half of @Damage[10d6 lightning]{10d6 lightning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 20,
+    "dc": 23,
     "damage": "10d6",
     "damageType": "lightning",
     "level": 0,
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>90ft</strong> that sees the dragon makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
+    "description": "<p>A creature within <strong>90ft</strong> that sees the dragon makes a @Check[will|dc:21]{Will save DC 21} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>; a creature that saves is immune for <strong>24 hours</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +235,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 21,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:20]{Reflex save DC 20} or are pushed <strong>15ft</strong> and knocked prone.</p>",
+    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:23]{Reflex save DC 23} or are pushed <strong>15ft</strong> and knocked prone.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -309,7 +309,7 @@
      "per": "day"
     },
     "save": "ref",
-    "dc": 20,
+    "dc": 23,
     "damage": "",
     "damageType": "",
     "level": 0,

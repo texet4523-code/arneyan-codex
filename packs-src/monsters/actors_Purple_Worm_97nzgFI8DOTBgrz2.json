@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
    "system": {
-    "description": "<p>A bitten Large or smaller creature is grappled (escape <strong>DC 19</strong>) and swallowed on a following hit, taking @Damage[4d6 acid]{4d6 acid damage} per round while inside.</p>",
+    "description": "<p>A bitten Large or smaller creature is grappled and swallowed on a following hit, taking @Damage[4d6 acid]{4d6 acid damage} per round while inside.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -260,7 +260,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
    "system": {
-    "description": "<p>A creature stung makes a @Check[fort|dc:19]{Fortitude save DC 19} or takes @Damage[12d6 poison]{12d6 poison damage}, or half on a save.</p>",
+    "description": "<p>A creature stung makes a @Check[fort|dc:21]{Fortitude save DC 21} or takes @Damage[12d6 poison]{12d6 poison damage}, or half on a save.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -272,7 +272,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 19,
+    "dc": 21,
     "damage": "12d6",
     "damageType": "poison",
     "level": 0,

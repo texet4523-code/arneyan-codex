@@ -36,7 +36,7 @@
    "ac": 18,
    "speed": "40ft, fly 40ft",
    "attack": 9,
-   "spellDC": 15,
+   "spellDC": 14,
    "morale": 9
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ogre.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:15]{Will DC 15}), @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:15]{Will DC 15}). Once per day: @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:15]{Reflex DC 15}, <strong>6d6</strong>).</p>",
+    "description": "<p>Spell <strong>DC 14</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:14]{Will DC 14}). Once per day: @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:14]{Reflex DC 14}, <strong>6d6</strong>).</p>",
     "source": {
      "book": "mt",
      "page": 0

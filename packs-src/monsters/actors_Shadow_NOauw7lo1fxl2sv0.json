@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ghost.svg",
    "system": {
-    "description": "<p>A creature hit makes a @Check[fort|dc:13]{Fortitude save DC 13} or loses <strong>1d4</strong> Strength for <strong>24 hours</strong>. A creature reduced to 0 Strength dies and rises as a shadow in <strong>1d4</strong> rounds.</p>",
+    "description": "<p>A creature hit makes a @Check[fort|dc:12]{Fortitude save DC 12} or loses <strong>1d4</strong> Strength for <strong>24 hours</strong>. A creature reduced to 0 Strength dies and rises as a shadow in <strong>1d4</strong> rounds.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 13,
+    "dc": 12,
     "damage": "",
     "damageType": "",
     "level": 0,

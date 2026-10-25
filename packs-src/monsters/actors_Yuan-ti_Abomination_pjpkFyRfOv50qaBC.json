@@ -36,7 +36,7 @@
    "ac": 15,
    "speed": "40ft, climb 30ft",
    "attack": 10,
-   "spellDC": 12,
+   "spellDC": 18,
    "morale": 11
   },
   "saves": {
@@ -274,7 +274,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>A Large or smaller creature hit by the constrict is grappled (escape <strong>DC 11</strong>) and @Condition[restrained]{Restrained}.</p>",
+    "description": "<p>A Large or smaller creature hit by the constrict is grappled and @Condition[restrained]{Restrained}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -311,7 +311,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.8wydvL7jdR3G5Zfj]{animal friendship} (snakes only). <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:12]{Will DC 12}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:12]{Will DC 12}).</p>",
+    "description": "<p>Spell <strong>DC 18</strong>. At will: @UUID[Compendium.arneyan.spells.Item.8wydvL7jdR3G5Zfj]{animal friendship} (snakes only). <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:18]{Will DC 18}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:18]{Will DC 18}).</p>",
     "source": {
      "book": "mt",
      "page": 0

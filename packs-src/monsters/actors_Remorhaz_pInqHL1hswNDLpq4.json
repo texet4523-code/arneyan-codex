@@ -26,11 +26,11 @@
    }
   },
   "level": 11,
-  "hd": "7d10",
+  "hd": "14d10+28",
   "attributes": {
    "hp": {
-    "value": 38,
-    "max": 38,
+    "value": 125,
+    "max": 125,
     "temp": 0
    },
    "ac": 20,
@@ -55,12 +55,12 @@
    "size": "huge",
    "alignment": "",
    "xp": "",
-   "numberAppearing": "1d4",
+   "numberAppearing": "1",
    "resistances": "",
    "immunities": "cold, fire",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft, Tremorsense 60ft",
-   "isSolo": false,
+   "isSolo": true,
    "levelText": "",
    "page": 0,
    "description": "<p><em>Huge monstrosity</em></p><p><strong>GM:</strong> A white-hot ice worm that tunnels beneath the frozen north. Its heat melts glaciers in a stream of steam.</p>",
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>A grappled Medium or smaller creature is swallowed on a hit and takes @Damage[6d6 fire]{6d6 fire damage} per round.</p>",
+    "description": "<p>A bitten Medium or smaller creature is grappled, and swallowed on a following hit, taking @Damage[6d6 fire]{6d6 fire damage} per round while inside.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -249,6 +249,48 @@
    "effects": [],
    "flags": {},
    "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Legendary Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 3,
+     "max": 3,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Legendary Resistance: may turn a failed save into a success"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "smH3NOo4ZSjewY3Z",
+   "_key": "!actors.items!pInqHL1hswNDLpq4.smH3NOo4ZSjewY3Z",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
    "ownership": {
     "default": 0
    },

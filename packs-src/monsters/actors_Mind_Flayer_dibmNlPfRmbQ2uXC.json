@@ -36,7 +36,7 @@
    "ac": 15,
    "speed": "30ft",
    "attack": 8,
-   "spellDC": 16,
+   "spellDC": 17,
    "morale": 10
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>60ft cone</strong>. Creatures make a @Check[will|dc:16]{Will save DC 16} or are @Condition[stunned]{Stunned} for <strong>1 round</strong>.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>60ft cone</strong>. Creatures make a @Check[will|dc:17]{Will save DC 17} or are @Condition[stunned]{Stunned} for <strong>1 round</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 16,
+    "dc": 17,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:16]{Will DC 16}).</p>",
+    "description": "<p>Spell <strong>DC 17</strong>. At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:17]{Will DC 17}).</p>",
     "source": {
      "book": "mt",
      "page": 0

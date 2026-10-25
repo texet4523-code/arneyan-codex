@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit by the tail makes a @Check[fort|dc:22]{Fortitude save DC 22} or is Constricted, taking <strong>1d6</strong> damage per round. It can escape with a Strength check (<strong>DC 22</strong>).</p>",
+    "description": "<p>A creature hit by the tail makes a @Check[fort|dc:21]{Fortitude save DC 21} or is Constricted, taking <strong>1d6</strong> damage per round. It breaks free with a check contested by the marilith's Strength.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -161,7 +161,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 22,
+    "dc": 21,
     "damage": "1d6",
     "damageType": "bludgeoning",
     "level": 0,

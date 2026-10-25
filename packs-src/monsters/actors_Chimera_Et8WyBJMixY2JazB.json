@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, the dragon head breathes a <strong>15ft cone</strong> for @Damage[7d8 fire]{7d8 fire damage} (@Check[ref|dc:15]{Reflex DC 15} for half).</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, the dragon head breathes a <strong>15ft cone</strong> for @Damage[7d8 fire]{7d8 fire damage} (@Check[ref|dc:20]{Reflex DC 20} for half).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -199,7 +199,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 15,
+    "dc": 20,
     "damage": "7d8",
     "damageType": "fire",
     "level": 0,

@@ -36,7 +36,7 @@
    "ac": 22,
    "speed": "40ft, fly 60ft",
    "attack": 23,
-   "spellDC": 23,
+   "spellDC": 19,
    "morale": 12
   },
   "saves": {
@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p>Casts as a 12th-level cleric. Typical spells: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:23]{Will DC 23}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:23]{Reflex DC 23}), @UUID[Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj]{restoration}, @UUID[Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2]{heal}.</p>",
+    "description": "<p>Casts as a 12th-level cleric (spell <strong>DC 19</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:19]{Reflex DC 19}), @UUID[Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj]{restoration}, @UUID[Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2]{heal}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -763,7 +763,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p><strong>3/day</strong>, as an action. Each roar is worse than the last: first, creatures within <strong>500ft</strong> make a @Check[will|dc:23]{Will save DC 23} or are @Condition[frightened]{Frightened} for <strong>1 minute</strong>; second, a @Check[will|dc:23]{Will save DC 23} or @Condition[deafened]{Deafened} and @Condition[frightened]{Frightened}, and @Condition[paralysed]{Paralysed} for <strong>1 minute</strong> (repeating the save each turn); third, a @Check[fort|dc:23]{Fortitude save DC 23} or take @Damage[10d10 thunder]{10d10 thunder damage} and are knocked prone, half and not prone on a success.</p>",
+    "description": "<p><strong>3/day</strong>, as an action. Each roar is worse than the last: first, creatures within <strong>500ft</strong> make a @Check[will|dc:24]{Will save DC 24} or are @Condition[frightened]{Frightened} for <strong>1 minute</strong>; second, a @Check[will|dc:24]{Will save DC 24} or @Condition[deafened]{Deafened} and @Condition[frightened]{Frightened}, and @Condition[paralysed]{Paralysed} for <strong>1 minute</strong> (repeating the save each turn); third, a @Check[fort|dc:24]{Fortitude save DC 24} or take @Damage[10d10 thunder]{10d10 thunder damage} and are knocked prone, half and not prone on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -775,7 +775,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 23,
+    "dc": 24,
     "damage": "10d10",
     "damageType": "thunder",
     "level": 0,

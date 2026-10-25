@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "30ft, fly 60ft, swim 90ft",
    "attack": 11,
-   "spellDC": 0,
+   "spellDC": 19,
    "morale": 10
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>As an action instead of its attacks, it blasts a <strong>60ft line</strong> of water; creatures in it make a @Check[ref|dc:15]{Reflex save DC 15} or take @Damage[6d6 bludgeoning]{6d6 bludgeoning damage} and are pushed <strong>20ft</strong>, half and not pushed on a success.</p>",
+    "description": "<p>As an action instead of its attacks, it blasts a <strong>60ft line</strong> of water; creatures in it make a @Check[ref|dc:21]{Reflex save DC 21} or take @Damage[6d6 bludgeoning]{6d6 bludgeoning damage} and are pushed <strong>20ft</strong>, half and not pushed on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 15,
+    "dc": 21,
     "damage": "6d6",
     "damageType": "bludgeoning",
     "level": 0,
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>At will: @UUID[Compendium.arneyan.spells.Item.QO4mbm79IYWhMYO8]{create water}, @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}, @UUID[Compendium.arneyan.spells.Item.syarXOGx8nh5o8RA]{purify food and drink}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.gRmo8TYPVyUPlT6B]{summon elemental} (water only), @UUID[Compendium.arneyan.spells.Item.2lybFNG07TUKXP5p]{control water}, @UUID[Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN]{gaseous form}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}. Once a century: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} (for others only).</p>",
+    "description": "<p>Spell <strong>DC 19</strong>.</p><ul><li>At will: @UUID[Compendium.arneyan.spells.Item.QO4mbm79IYWhMYO8]{create water}, @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.l6h74QxTQY0uVZRn]{fog cloud}, @UUID[Compendium.arneyan.spells.Item.syarXOGx8nh5o8RA]{purify food and drink}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.gRmo8TYPVyUPlT6B]{summon elemental} (water only), @UUID[Compendium.arneyan.spells.Item.2lybFNG07TUKXP5p]{control water}, @UUID[Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN]{gaseous form}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}.</li><li>Once a century: @UUID[Compendium.arneyan.spells.Item.RjGWGxIhUqHUiLMv]{wish} (for others only).</li></ul>",
     "source": {
      "book": "mt",
      "page": 0

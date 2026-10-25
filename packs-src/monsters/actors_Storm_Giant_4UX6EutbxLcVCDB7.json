@@ -36,7 +36,7 @@
    "ac": 24,
    "speed": "50ft, swim 50ft",
    "attack": 24,
-   "spellDC": 0,
+   "spellDC": 22,
    "morale": 10
   },
   "saves": {
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-giant.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, calls a bolt from the sky on a creature it can see outdoors within <strong>500ft</strong>; @Check[ref|dc:25]{Reflex DC 25} for half of @Damage[12d8 lightning]{12d8 lightning damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, calls a bolt from the sky on a creature it can see outdoors within <strong>500ft</strong>; @Check[ref|dc:23]{Reflex DC 23} for half of @Damage[12d8 lightning]{12d8 lightning damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 25,
+    "dc": 23,
     "damage": "12d8",
     "damageType": "lightning",
     "level": 0,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-giant.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.SC9XbAERdQ6hWMjC]{control weather}, @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}.</p>",
+    "description": "<p>Spell <strong>DC 22</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.SC9XbAERdQ6hWMjC]{control weather}, @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.woHMry5rcF4klVSn]{water breathing}.</p>",
     "source": {
      "book": "mt",
      "page": 0

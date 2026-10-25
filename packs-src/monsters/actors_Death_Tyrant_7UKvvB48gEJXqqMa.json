@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "system": {
-    "description": "<p>Once per round, as part of its action, three different random rays (roll <strong>1d10</strong> each) at creatures within <strong>120ft</strong>: 1 charm (@Check[will|dc:20]{Will DC 20} or @Condition[charmed]{Charmed} for <strong>1 hour</strong>); 2 paralysing (@Check[fort|dc:20]{Fortitude DC 20} or @Condition[paralysed]{Paralysed} <strong>1 minute</strong>, repeating the save); 3 fear (@Check[will|dc:20]{Will DC 20} or @Condition[frightened]{Frightened} <strong>1 minute</strong>); 4 slowing (@Check[ref|dc:20]{Reflex DC 20} or half speed and only one attack for <strong>1 minute</strong>); 5 enervation (@Check[fort|dc:20]{Fortitude DC 20} for half of @Damage[8d8 necrotic]{8d8 necrotic damage}); 6 telekinesis (@Check[fort|dc:20]{Fortitude DC 20} or moved <strong>30ft</strong> and @Condition[restrained]{Restrained} until its next turn); 7 sleep (@Check[will|dc:20]{Will DC 20} or @Condition[unconscious]{Unconscious} <strong>1 minute</strong>); 8 petrification (@Check[fort|dc:20]{Fortitude DC 20} or @Condition[petrified]{Petrified}, after a second failed save on its next turn); 9 disintegration (@Check[ref|dc:20]{Reflex DC 20} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to <strong>0 HP</strong> is turned to dust); 10 death (@Check[fort|dc:20]{Fortitude DC 20} for half of @Damage[10d10 necrotic]{10d10 necrotic damage}; a creature reduced to <strong>0 HP</strong> dies).</p>",
+    "description": "<p>Once per round, as part of its action, three different random rays (roll <strong>1d10</strong> each) at creatures within <strong>120ft</strong>: 1 charm (@Check[will|dc:18]{Will DC 18} or @Condition[charmed]{Charmed} for <strong>1 hour</strong>); 2 paralysing (@Check[fort|dc:18]{Fortitude DC 18} or @Condition[paralysed]{Paralysed} <strong>1 minute</strong>, repeating the save); 3 fear (@Check[will|dc:18]{Will DC 18} or @Condition[frightened]{Frightened} <strong>1 minute</strong>); 4 slowing (@Check[ref|dc:18]{Reflex DC 18} or half speed and only one attack for <strong>1 minute</strong>); 5 enervation (@Check[fort|dc:18]{Fortitude DC 18} for half of @Damage[8d8 necrotic]{8d8 necrotic damage}); 6 telekinesis (@Check[fort|dc:18]{Fortitude DC 18} or moved <strong>30ft</strong> and @Condition[restrained]{Restrained} until its next turn); 7 sleep (@Check[will|dc:18]{Will DC 18} or @Condition[unconscious]{Unconscious} <strong>1 minute</strong>); 8 petrification (@Check[fort|dc:18]{Fortitude DC 18} or @Condition[petrified]{Petrified}, after a second failed save on its next turn); 9 disintegration (@Check[ref|dc:18]{Reflex DC 18} for half of @Damage[10d8 force]{10d8 force damage}; a creature reduced to <strong>0 HP</strong> is turned to dust); 10 death (@Check[fort|dc:18]{Fortitude DC 18} for half of @Damage[10d10 necrotic]{10d10 necrotic damage}; a creature reduced to <strong>0 HP</strong> dies).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 18,
     "damage": "8d8",
     "damageType": "necrotic",
     "level": 0,

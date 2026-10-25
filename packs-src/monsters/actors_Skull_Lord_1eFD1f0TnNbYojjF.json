@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "30ft",
    "attack": 14,
-   "spellDC": 18,
+   "spellDC": 20,
    "morale": 11
   },
   "saves": {
@@ -222,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, hurls <strong>1d4+1</strong> burning skulls at creatures within <strong>60ft</strong>; each target makes a @Check[ref|dc:18]{Reflex save DC 18} or takes @Damage[3d6 necrotic]{3d6 necrotic damage} (half on a save).</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, hurls <strong>1d4+1</strong> burning skulls at creatures within <strong>60ft</strong>; each target makes a @Check[ref|dc:17]{Reflex save DC 17} or takes @Damage[3d6 necrotic]{3d6 necrotic damage} (half on a save).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -234,7 +234,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 18,
+    "dc": 17,
     "damage": "3d6",
     "damageType": "necrotic",
     "level": 0,
@@ -259,7 +259,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p><strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}.</p>",
+    "description": "<p>Spell <strong>DC 20</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}.</p>",
     "source": {
      "book": "mt",
      "page": 0

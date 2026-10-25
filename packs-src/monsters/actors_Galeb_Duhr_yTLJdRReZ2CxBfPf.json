@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
    "system": {
-    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:13]{Fortitude save DC 13} or is knocked prone.</p>",
+    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:16]{Fortitude save DC 16} or is knocked prone.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 13,
+    "dc": 16,
     "damage": "2d6",
     "damageType": "",
     "level": 0,
