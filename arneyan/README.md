@@ -4,10 +4,19 @@ Version 0.10.51 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.51
 
-Batch 6, part 1 (Kieran, 22 Oct):
+Batch 6 (Kieran, 22 Oct): travel food, foraging and camp mode. Every roll is a button someone presses; only eating is automatic.
+
+**Travel**
 - **Hours, not hexes.** In travel mode the party token shows the hours travelled today with the journey's day in brackets, "4 h (Day 3)" (each hex is its share of the 8-hour travelling day), and so does the Travel tab.
-- **Food every day.** At dawn after each day of travel, every member eats one Day's Rations automatically (their own first, then the party stash; a Week's Rations pack counts as seven) and drinks. A card says who ate. At 0 food, after the Codex's grace of 3 + Constitution modifier days (minimum 1), each day without brings a level of Exhaustion. This replaces the 7-day ration card. A Week's Rations from the shop is the seven-day bundle.
-- **Foraging.** At Slow pace the day's card has a **Forage** button: each character rolls Survival (DC 12) once that day (untrained: a plain d20) and, on a success, finds 1d4 Day's Rations, plus one for every 5 over the DC, put straight into their pack.
+- **Food every day.** At dawn after each day of travel, every member eats one Day's Rations (their own first, then the party stash; a Week's Rations pack counts as seven) and drinks a day's water. The meal is eaten when the party sets off, so food foraged that evening counts. A card says who ate. At 0 food, after the Codex's grace of 3 + Constitution modifier days (minimum 1), each day without brings a level of Exhaustion. This replaces the 7-day ration card; a Week's Rations from the shop is the seven-day bundle.
+- **Foraging.** At Slow pace the day's card has a **Forage** button (and the Camp tab has one too): Survival, DC 12 (untrained: a plain d20), once per character per day (dawn to dawn). The roll card's **Collect** button (press it after any Luck you burn) puts 1d4 Day's Rations, plus one for every 5 over the DC, into the character's pack.
+
+**Camp tab** (on the party sheet)
+- **Watches** from 22:00 to 06:00, split by how many stand them (1 or 2: 4 hours each; 3: 2 h 40 m; 4: 2 hours; 5: four 2-hour watches, one of them a pair). The watch now is marked.
+- **Next watch / Previous watch** (GM) move the game clock between watches (from daytime, on to 22:00; after the last, to 06:00).
+- **Night Encounter Check** (GM, secret, once a night): a d12, 11 a Hard Encounter, 12 a Deadly one. If something comes, a die picks the watch it comes in, and a button asks that watch for **Perception** (a Wisdom check, not a skill): each watcher rolls their own, and the result decides surprise.
+- **Activities**, each with a Roll button: Keep watch (Perception), Forage (Survival, DC 12), Hunt (Hunting or Survival, DC 12, needs a ranged weapon or traps: 1d6 Day's Rations, +1 per 5 over), Cook (Cooking), Tend wounds (First Aid/Healing), Repair gear (your craft), Scout the camp (Wisdom, once a night), Make camp (Fire-building). Cook's and Scout's bonuses are the GM's call.
+- **Who does what:** a watch and an activity for each member, from drop-downs. The watches, the night check and the Roll buttons follow it (a Roll button rolls for the member on that job); with nobody assigned the watches go in order and each button asks who.
 
 ## What's new in 0.10.50
 

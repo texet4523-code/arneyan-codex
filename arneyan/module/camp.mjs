@@ -64,9 +64,22 @@ export async function pickMember(members, title) {
   return choices.find(m => m.id === id) ?? null;
 }
 
-/** Today on the calendar (the world's day number): foraging and hunting are once each per calendar day. */
-export async function today() {
-  try { const { whenOf } = await import("./calendar.mjs"); return String(whenOf().n); } catch { return "0"; }
+/**
+ * The day a check belongs to, as a key: the calendar day, counted from a boundary hour instead of midnight. Foraging
+ * and hunting go from dawn to dawn (6am: an evening's forage and the night in camp are the same day); a night (the
+ * night's Encounter Check, Scout the camp) from noon to noon, so a check at 06:30 still belongs to the night just gone.
+ */
+export function dayKey(w, boundaryHour = 6) {
+  return String(w.secondOfDay < boundaryHour * 3600 ? w.n - 1 : w.n);
+}
+export async function today(boundaryHour = 6) {
+  try { const { whenOf } = await import("./calendar.mjs"); return dayKey(whenOf(), boundaryHour); } catch { return "0"; }
+}
+
+/** How many stand watch: the tab's choice, never more than the members (1 to 5). */
+export function onWatchOf(camp, members = []) {
+  const most = Math.max(1, Math.min(5, members.length || 1));
+  return Math.max(1, Math.min(most, Number(camp?.onWatch) || most));
 }
 
 /** Rolls in progress (a double click doesn't roll twice). */
@@ -163,7 +176,8 @@ export const hm = m => `${String(Math.floor((((m % 1440) + 1440) % 1440) / 60)).
 /** Who stands each watch by default: in order, one each; with five, the fifth joins the first watch (the pair). */
 export function defaultWatch(memberIds, n) {
   const on = memberIds.slice(0, Math.max(1, Math.min(5, n)));
-  const slots = watchSlots(on.length);
+  // One list per watch of the night, whoever is there to stand it (an empty watch when there are too few).
+  const slots = watchSlots(Math.max(1, Math.min(5, n)));
   const out = slots.map((_, i) => (on[i] ? [on[i]] : []));
   if (on.length === 5) out[0].push(on[4]);
   return out;
@@ -184,7 +198,7 @@ export function watchMove(minuteOfDay, k, dir) {
     if (!night) return 1440 - into;                                        // on to 10pm
     return Math.min(NIGHT_MINUTES, (index + 1) * len) - into;              // the next watch, or 6am after the last
   }
-  if (!night) return into === NIGHT_MINUTES ? -len : 0;                     // just after 6am: back to the last watch
+  if (!night) return into < NIGHT_MINUTES + 30 ? (NIGHT_MINUTES - len) - into : 0; // just after 6am: back to the last watch
   const start = index * len;
   if (into > start + 0.5) return start - into;                              // back to the start of this watch
   return index > 0 ? (index - 1) * len - into : 0;                          // the watch before
@@ -241,7 +255,7 @@ export const canHunt = actor => (actor?.items ?? []).some(i => (i.type === "weap
 /** Everything the Camp tab shows. `minute` is the time of day (minutes after midnight). */
 export function campContext(party, members = [], minute = 0) {
   const c = campState(party);
-  const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
+  const n = onWatchOf(c, members);
   const slots = watchSlots(n);
   const who = watchList(c, members, n);
   const now = nightAt(minute, slots.length);
@@ -256,7 +270,7 @@ export function campContext(party, members = [], minute = 0) {
         names: who[i].map(names).filter(Boolean).join(" and ") || "nobody", now: now.night && now.index === i })),
       nightNow: now.night, timeNow: hm(minute),
       activities: CAMP_ACTIVITIES.map(a => ({ ...a, who: (a.id === "watch" ? (now.night ? who[now.index] ?? [] : who.flat()) : onJob(c, members, a.id).map(m => m.id)).map(names).filter(Boolean).join(", ") })),
-      assigned: Object.values(assign).some(x => x?.watch || x?.job),
+      assigned: members.some(m => assign[m.id]?.watch || assign[m.id]?.job),
       rows: members.map(m => ({ id: m.id, name: m.name, img: m.img, watch: String(assign[m.id]?.watch ?? ""), job: String(assign[m.id]?.job ?? ""), watchChoices, jobChoices })),
       log: [...(c.log ?? [])].reverse().slice(0, 12)
     }
@@ -271,11 +285,15 @@ export async function moveWatch(party, members, dir) {
   const { moveTime } = await import("./realtime.mjs");
   const w = whenOf();
   const c = campState(party);
-  const k = watchSlots(Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1))).length;
+  const k = watchSlots(onWatchOf(c, members)).length;
   const minute = w.secondOfDay / 60;
   const mins = watchMove(minute, k, dir);
-  if (!mins) return ui.notifications.info(dir > 0 ? "Already at the next watch." : "This is the first watch of the night.");
+  if (!mins) {
+    const { night } = nightAt(minute, k);
+    return ui.notifications.info(dir > 0 ? "Already at the next watch." : night ? "This is the first watch of the night." : "It's daytime: the watches start at 22:00.");
+  }
   await moveTime(Math.round(mins * 60));
+  rerenderCamp();
 }
 
 /**
@@ -287,10 +305,10 @@ export async function nightCheck(party, members) {
   const { whenOf } = await import("./calendar.mjs");
   const w = whenOf();
   // The night belongs to the evening it starts: before 6am it's still the night before.
-  const nightKey = String(w.secondOfDay < 6 * 3600 ? w.n - 1 : w.n);
+  const nightKey = dayKey(w, 12);
   const c = campState(party);
   if (c.checked === nightKey) return ui.notifications.info("Tonight's Encounter Check is already rolled.");
-  const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
+  const n = onWatchOf(c, members);
   const slots = watchSlots(n);
   const who = watchList(c, members, n);
   const r = await new Roll("1d12").evaluate();
@@ -328,12 +346,13 @@ export async function doActivity(party, members, id, event = null) {
   let pool = onJob(c, members, id);
   if (id === "watch") {
     const { whenOf } = await import("./calendar.mjs");
-    const n = Math.max(1, Math.min(5, Number(c.onWatch) || Math.min(5, members.length) || 1));
+    const n = onWatchOf(c, members);
     const list = watchList(c, members, n);
     const now = nightAt(whenOf().secondOfDay / 60, list.length);
     const ids = now.night ? (list[now.index] ?? []) : list.flat();
     pool = members.filter(m => ids.includes(m.id));
   }
+  if (pool.length && !game.user.isGM && !pool.some(m => m.isOwner)) return ui.notifications.warn(`${a.label} is ${pool.map(m => m.name).join(" and ")}'s to roll tonight.`);
   const who = await pickMember(pool.length ? pool : members, a.label);
   if (!who) return;
   const { whenOf } = await import("./calendar.mjs");
@@ -344,7 +363,7 @@ export async function doActivity(party, members, id, event = null) {
     return hunt(who, day, event);
   }
   if (a.oncePerCamp) {
-    const key = `${party.id}.${id}.${whenOf().n}`;
+    const key = `${party.id}.${id}.${dayKey(whenOf(), 12)}`;
     if (who.getFlag(SYS, `camp-${id}`) === key) return ui.notifications.info(`${who.name} has already done that at this camp.`);
     await who.setFlag(SYS, `camp-${id}`, key);
   }
@@ -354,8 +373,21 @@ export async function doActivity(party, members, id, event = null) {
 /** Hunt: Hunting (or Survival) at DC 12; 1d6 Day's Rations on a success, +1 per 5 over. Once a calendar day. */
 export const hunt = (actor, _key, event = null) => findFood(actor, { kind: "hunt", label: "Hunt", skills: ["Hunting", "Survival"], die: "1d6", icon: "fa-crosshairs", nothing: "comes back empty-handed" }, event);
 
-/** The camp's chat buttons (the watch's Perception). */
+/** Re-draw open party sheets showing the Camp tab (the time and the watch now have moved). */
+let redraw = null;
+export function rerenderCamp() {
+  clearTimeout(redraw);
+  redraw = setTimeout(() => {
+    for (const app of foundry.applications?.instances?.values?.() ?? []) {
+      if (app.document?.type === "party" && app._activeTab === "camp" && app.rendered) app.render();
+    }
+  }, 250);
+}
+
+/** The camp's chat buttons (the watch's Perception), and the tab's clock. */
 export function registerCamp() {
+  Hooks.on("updateWorldTime", rerenderCamp);
+  Hooks.on("arneyanDateChanged", rerenderCamp);
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const ask = html.querySelector?.(".arn-camp-askwatch");
     if (ask) ask.addEventListener("click", ev => {
@@ -367,6 +399,8 @@ export function registerCamp() {
     if (col) col.addEventListener("click", ev => { ev.currentTarget.disabled = true; collectFood(col); });
     const per = html.querySelector?.(".arn-camp-perception");
     if (per) per.addEventListener("click", async ev => {
+      per.disabled = true;
+      setTimeout(() => { per.disabled = false; }, 3000);
       const watchers = String(per.dataset.watchers || "").split(",").map(id => game.actors.get(id)).filter(Boolean);
       const who = await pickMember(watchers, "Perception");
       if (who) await campCheck(who, { ability: "wis", title: "Perception" }, ev);

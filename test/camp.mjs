@@ -86,3 +86,23 @@ assert.ok(csrc.includes("await actor.setFlag(SYS, flag, day);\n    const msg = a
 assert.ok(csrc.includes("(Number(f.total) || 0) + (Number(f.luckBurned) || 0)"), "Collect counts Luck burned");
 assert.ok(csrc.includes('class="arn-food-collect"') && csrc.includes("collectFood(col)"));
 console.log("OK camp menu");
+
+/* Camp review fixes. */
+// The blocker: "On watch" above the member count never breaks the tab, the night check or the watch list.
+assert.equal(C.onWatchOf({ onWatch: 4 }, members.slice(0, 2)), 2);
+assert.equal(C.onWatchOf({ onWatch: "3" }, []), 1);
+assert.equal(C.onWatchOf({}, members), 3);
+assert.deepEqual(C.defaultWatch(["a", "b"], 4), [["a"], ["b"], [], []], "one list per watch, empty when too few");
+const few = C.campContext({ flags: { arneyan: { camp: { onWatch: 4 } } } }, members.slice(0, 2), 23 * 60);
+assert.equal(few.camp.watches.length, 2);
+assert.doesNotThrow(() => C.campContext({ flags: { arneyan: { camp: { onWatch: "3" } } } }, [], 0));
+// Day keys: foraging from dawn to dawn, a night from noon to noon.
+const at = (n, h) => ({ n, secondOfDay: h * 3600 });
+assert.deepEqual([C.dayKey(at(10, 23)), C.dayKey(at(11, 1)), C.dayKey(at(11, 7))], ["10", "10", "11"], "an evening forage and the night in camp are one day");
+assert.deepEqual([C.dayKey(at(11, 6.5), 12), C.dayKey(at(11, 13), 12)], ["10", "11"], "a night check at 06:30 is last night's");
+// Previous watch just after 6am, and nothing to go back to at noon.
+assert.equal(C.watchMove(6 * 60 + 0.02, 4, -1), (480 - 120) - 480.02);
+assert.equal(C.watchMove(12 * 60, 4, -1), 0);
+// Members who left don't count as assigned.
+assert.equal(C.campContext({ flags: { arneyan: { camp: { assign: { gone: { watch: "1" } } } } } }, members, 0).camp.assigned, false);
+console.log("OK camp review fixes");
