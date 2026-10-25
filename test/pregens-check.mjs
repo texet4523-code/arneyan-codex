@@ -9,6 +9,7 @@ const dir = new URL("../packs-src/pregens/", import.meta.url).pathname;
 const rows = [];
 let bad = 0;
 const hpBad = [];
+const overBad = [];
 for (const f of fs.readdirSync(dir).filter(f => f.startsWith("actors_"))) {
   const d = JSON.parse(fs.readFileSync(dir + f));
   const items = d.items.map(i => { const it = makeItem(M[i.type], i.type, i.name, i.system); it.id = i._id; it.flags = i.flags ?? {}; it.getFlag = (s, k) => it.flags?.[s]?.[k]; return it; });
@@ -19,6 +20,8 @@ for (const f of fs.readdirSync(dir).filter(f => f.startsWith("actors_"))) {
   const diff = Object.keys(want).filter(k => want[k] != null && Number(want[k]) !== got[k]).map(k => `${k} sheet ${want[k]} / Foundry ${got[k]}`);
   if (diff.length) bad++;
   if (diff.some(d => d.startsWith("hp "))) hpBad.push(d.name);
+  // Every pregen starts inside its inventory limit (the printed sheets' own slot totals: 12 sticks of chalk take 1 slot).
+  if (!s.inventory || s.inventory.over) overBad.push(`${d.name} ${s.inventory?.used}/${s.inventory?.max}`);
   rows.push(`${d.name.padEnd(28)} L${got.level} ${diff.length ? "DIFF: " + diff.join("; ") : "ok"}`);
 }
 console.log(rows.sort().join("\n"));
@@ -26,3 +29,5 @@ console.log(`${rows.length} pregens, ${bad} with differences`);
 // Max HP must match the printed sheet on every pregen (Toughness and Hag's Vigour are added by their rules, not twice).
 if (hpBad.length) { console.error(`HP differs from the printed sheet: ${hpBad.join(", ")}`); process.exit(1); }
 console.log(`HP matches the printed sheet on all ${rows.length}.`);
+if (overBad.length) { console.error(`Over the inventory limit: ${overBad.join(", ")}`); process.exit(1); }
+console.log(`All ${rows.length} start inside their inventory limit.`);

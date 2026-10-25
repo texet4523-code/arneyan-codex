@@ -7,7 +7,7 @@ compendiums, so they behave like a character built on the sheet. Anything that i
 symbol, a satchel) becomes a plain gear item with the sheet's slots. The sheet's own text (abilities,
 personality, tactics) goes in the biography, so nothing on the printed sheet is lost.
 """
-import glob, html, json, os, re
+import glob, html, json, math, os, re
 from lib import OUT, fid, write
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -194,6 +194,41 @@ def picked_weapons(feature, c, gear):
                 return []
         return out
     return []
+
+
+PRINTED_SLOTS = re.compile(r"(?i)slots?:\s*(\d+(?:\.\d+)?)|\b(?:all \w+|both(?: \w+)?) take (\d+) slots?")
+
+
+def printed_slots(entry):
+    """The slots a printed sheet gives an entry in all: its own "slots", else "Slots: 1 (all 3)", "All four take 1
+    slot" or "Both axes take 1 slot" in its notes. None when the sheet doesn't say."""
+    if isinstance(entry.get("slots"), (int, float)):
+        return float(entry["slots"])
+    m = PRINTED_SLOTS.search(str(entry.get("notes", "")))
+    return float(m.group(1) or m.group(2)) if m else None
+
+
+def fit_slots(item, entry):
+    """Make a copied Catalogue item take the slots its printed sheet gives (12 sticks of chalk in 1 slot, four Fire
+    Bombs in 1): a bundle when they share slots, else the slots each. An item the Catalogue gives no slot (the
+    Backpack, Kieran 25 Oct, F-B6) stays free, whatever an older sheet says."""
+    want = printed_slots(entry)
+    sys_ = item.get("system", {})
+    if want is None or "slots" not in sys_ or not (sys_.get("slots") or 0):
+        return item
+    qty = max(1, int(sys_.get("quantity") or 1))
+    each = float(sys_.get("slots") or 1)
+    bundle = int(sys_.get("bundle") or 0)
+    now = math.ceil(qty / bundle) * each if bundle > 0 else each * qty
+    if abs(now - want) < 0.01 or want <= 0:
+        return item
+    stacks = want / each
+    if want < now and stacks == int(stacks) and math.ceil(qty / math.ceil(qty / stacks)) == stacks:
+        sys_["bundle"] = math.ceil(qty / stacks)
+    else:
+        sys_["bundle"] = 0
+        sys_["slots"] = round(want / qty, 4)
+    return item
 
 
 def plain_item(actor_id, salt, name, itype="equipment", description="", **system):
@@ -392,19 +427,19 @@ def build():
                 if w.get("magic"):
                     extra["magic"] = int(w["magic"])
                 if d and d["type"] == "weapon":
-                    items.append(copy("equipment", d, actor_id, f"w-{i}", **extra))
+                    items.append(fit_slots(copy("equipment", d, actor_id, f"w-{i}", **extra), w))
                 elif d:  # Alchemist's Fire and the like: thrown gear, not a weapon
-                    items.append(copy("equipment", d, actor_id, f"w-{i}", quantity=extra["quantity"]))
+                    items.append(fit_slots(copy("equipment", d, actor_id, f"w-{i}", quantity=extra["quantity"]), w))
                 else:
                     miss("weapon", w["name"])
-                    items.append(plain_item(actor_id, f"w-{i}", w["name"], "equipment", para(w.get("notes", "")), quantity=extra["quantity"]))
+                    items.append(fit_slots(plain_item(actor_id, f"w-{i}", w["name"], "equipment", para(w.get("notes", "")), quantity=extra["quantity"]), w))
             for i, a in enumerate(c.get("armour", [])):
                 d = gear.find(a["name"])
                 extra = {"equipped": True}
                 if a.get("magic"):
                     extra["magic"] = int(a["magic"])
                 if d and d["type"] == "armour":
-                    items.append(copy("equipment", d, actor_id, f"a-{i}", **extra))
+                    items.append(fit_slots(copy("equipment", d, actor_id, f"a-{i}", **extra), a))
                 else:
                     miss("armour", a["name"])
                     items.append(plain_item(actor_id, f"a-{i}", a["name"], "equipment", para(a.get("notes", "")), slots=a.get("slots", 1)))
@@ -415,7 +450,7 @@ def build():
                 qty = max(1, int(g.get("qty") or 1))
                 worn = bool(re.search(r"(?i)\bworn\b|^ring of|^amulet|^cloak of|^boots of|^bracers", g["name"]))
                 if d:
-                    items.append(copy("equipment", d, actor_id, f"g-{i}", quantity=qty, **({"equipped": True} if worn else {})))
+                    items.append(fit_slots(copy("equipment", d, actor_id, f"g-{i}", quantity=qty, **({"equipped": True} if worn else {})), g))
                 else:
                     items.append(plain_item(actor_id, f"g-{i}", g["name"][:1].upper() + g["name"][1:], quantity=qty,
                                             slots=float(g.get("slots", 1)) / qty if qty > 1 else g.get("slots", 1)))
