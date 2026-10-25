@@ -454,7 +454,9 @@ export function endDayHere(party, members) {
  * An undone move gives today's hexes back (a day already ended stays ended).
  */
 function onPartyMoved(tokenDoc, hexes, undo = false) {
-  const party = tokenDoc.actor;
+  // The party itself, also for an unlinked token (a party made before 0.10.57, or imported unlinked): the count is the
+  // party's, and its sheet shows it.
+  const party = tokenDoc.actorLink ? tokenDoc.actor : (game.actors.get(tokenDoc.actorId) ?? tokenDoc.actor);
   if (party?.type !== "party" || !hexes) return;
   return serial(async () => {
     const t = travelState(party);

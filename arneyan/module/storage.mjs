@@ -11,7 +11,7 @@
  * - It can go on a map as a token (the chest in the corner of the room); double-click opens it.
  */
 import { ARNEYAN } from "./config.mjs";
-import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
+import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer, publicName } from "./expand.mjs";
 import { blockedCopy, moveDroppedItem, settleMoved, partyMembers } from "./party.mjs";
 import { storageSlots } from "./data/actor-models.mjs";
 
@@ -150,7 +150,7 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
       if (depth > 8) return;
       const sys = item.system;
       const hide = hiddenFromPlayer(item);
-      const kind = item.type === "weapon" ? `${sys.damage ?? ""} ${ARNEYAN.damageTypes?.[sys.damageType] ?? ""}`.trim() || "Weapon"
+      const kind = hide ? "Gear" : item.type === "weapon" ? `${sys.damage ?? ""} ${ARNEYAN.damageTypes?.[sys.damageType] ?? ""}`.trim() || "Weapon"
         : item.type === "armour" ? `Armour${sys.ac ? ` · AC +${sys.ac}` : ""}`
         : sys.container?.holds ? "Container" : sys.consumable?.use ? "Consumable" : sys.charges?.max && !hide ? `${sys.charges.value}/${sys.charges.max} charges` : "Gear";
       rows.push({ id: item.id, name: item.name, img: item.img, qty: sys.quantity ?? 1, slots: sys.totalSlots ?? 0,
@@ -436,16 +436,16 @@ export function registerStorage() {
   // The ledger, written by whoever made the change.
   Hooks.on("createItem", (item, options, userId) => {
     const actor = storageOf(item);
-    if (actor && userId === game.user.id && !options?.arneyanContents) logStorage(actor, `Put in ${item.name}${(item.system.quantity ?? 1) !== 1 ? ` × ${item.system.quantity}` : ""}`, options);
+    if (actor && userId === game.user.id && !options?.arneyanContents) logStorage(actor, `Put in ${publicName(item)}${(item.system.quantity ?? 1) !== 1 ? ` × ${item.system.quantity}` : ""}`, options);
   });
   Hooks.on("deleteItem", (item, options, userId) => {
     const actor = storageOf(item);
-    if (actor && userId === game.user.id && !options?.arneyanContents) logStorage(actor, `Took out ${item.name}${(item.system.quantity ?? 1) !== 1 ? ` × ${item.system.quantity}` : ""}`, options);
+    if (actor && userId === game.user.id && !options?.arneyanContents) logStorage(actor, `Took out ${publicName(item)}${(item.system.quantity ?? 1) !== 1 ? ` × ${item.system.quantity}` : ""}`, options);
   });
   Hooks.on("updateItem", (item, changes, options, userId) => {
     const actor = storageOf(item);
     const q = foundry.utils.getProperty(changes, "system.quantity");
-    if (actor && userId === game.user.id && q !== undefined) logStorage(actor, `${item.name}: now × ${q}`, options);
+    if (actor && userId === game.user.id && q !== undefined) logStorage(actor, `${publicName(item)}: now × ${q}`, options);
   });
   Hooks.on("updateActor", (actor, changes, options, userId) => {
     if (actor.type !== "storage" || userId !== game.user.id || options?.arneyanLedger || !foundry.utils.hasProperty(changes, "system.currency")) return;

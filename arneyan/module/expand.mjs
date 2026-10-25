@@ -8,10 +8,17 @@ import { ARNEYAN } from "./config.mjs";
 const slotsText = n => `${n} slot${n === 1 ? "" : "s"}`;
 const signed = n => `${n >= 0 ? "+" : ""}${n}`;
 
-/** The short facts shown above an item's description when its row is opened. */
 /** Unidentified gear a player looks at: rows show its name and slots, not its price or charges (T130, 25 Oct 2026). */
 export const hiddenFromPlayer = (item, gm = globalThis.game?.user?.isGM ?? false) => item?.system?.identified === false && !gm;
 
+/** The name everyone may read (chat, ledgers): unidentified gear by its plain name, as players see it. */
+export function publicName(item) {
+  const s = item?.system ?? {};
+  if (s.identified !== false) return item?.name ?? "";
+  return s.unidentifiedName || `Unidentified ${{ weapon: "weapon", armour: "armour", equipment: "item" }[item?.type] ?? "item"}`;
+}
+
+/** The short facts shown above an item's description when its row is opened. */
 export function itemFacts(item, { gm = globalThis.game?.user?.isGM ?? false } = {}) {
   const s = item?.system ?? {};
   const out = [];

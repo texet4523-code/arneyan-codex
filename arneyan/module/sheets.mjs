@@ -13,7 +13,7 @@ import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { combatById } from "./fight.mjs";
-import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
+import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
 import { isTouchAttack } from "./touch.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
@@ -251,6 +251,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     }
     const gearRow = (i, depth = 0) => {
       const s = i.system;
+      // Unidentified gear on a player's sheet: no price, charges or recharge that would give it away.
+      const hide = hiddenFromPlayer(i);
       const holds = i.type === "equipment" && !!s.container?.holds;
       const parent = holderOf(i);
       const light = s.light ?? {};
@@ -258,14 +260,15 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       return {
         id: i.id, item: i, name: i.name, img: i.img, system: s, depth,
         expanded: gearDesc.has(i.id), facts: gearDesc.has(i.id) ? itemFacts(i) : [], desc: gearDesc.get(i.id) ?? "",
-        useTip: s.scroll?.spell ? "Read the scroll" : s.charges?.max ? "Use a charge" : s.consumable?.use ? "Use it (one is used up)" : "Show in chat",
+        useTip: hide ? "Use it" : s.scroll?.spell ? "Read the scroll" : s.charges?.max ? "Use a charge" : s.consumable?.use ? "Use it (one is used up)" : "Show in chat",
+        price: hide ? "" : (s.price ?? ""),
         // Anything can be worn or held (a ring, a torch, a shield); containers are worn too but show as their own block.
         equip: !holds, dim: i.type !== "equipment" && !s.equipped && !parent,
         usable: i.type === "equipment" && !holds && !!(s.consumable?.use || s.charges?.max || s.scroll?.spell || light.bright || light.dim || /^scroll\b/i.test(i._source?.name ?? "")),
-        useLabel: light.bright || light.dim ? (light.lit ? "Put out" : "Light") : s.scroll?.spell ? "Read" : s.charges?.max ? "Use" : blankScrollLevel(i) !== null ? "Inscribe" : "Use",
-        recharge: !!s.charges?.max,
+        useLabel: light.bright || light.dim ? (light.lit ? "Put out" : "Light") : hide ? "Use" : s.scroll?.spell ? "Read" : s.charges?.max ? "Use" : blankScrollLevel(i) !== null ? "Inscribe" : "Use",
+        recharge: !hide && !!s.charges?.max,
         unidentified: s.identified === false && game.user.isGM,
-        charges: s.charges?.max ? `${s.charges.value}/${s.charges.max}` : "",
+        charges: s.charges?.max && !hide ? `${s.charges.value}/${s.charges.max}` : "",
         ammoLabel: s.ammoType && i.type === "equipment" ? `${s.ammoType}s` : "",
         hasLight: !!(light.bright || light.dim), lit: !!light.lit,
         litTip: burn?.tip ?? "", litLeft: burn?.label ?? "", litLow: !!burn?.low,
@@ -347,7 +350,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const meta = sp ? `<p class="arn-muted">${[sp.system.level ? `${ARNEYAN.spellLevels[sp.system.level]} level` : "Cantrip", sp.system.school, sp.system.range].filter(Boolean).join(" · ")}</p>` : "";
       return { key, desc: sp ? meta + await enrich(sp.system.description) : "<p class=\"arn-muted\">Not found in the Spells compendium.</p>" };
     };
-    const magicItems = await Promise.all(actor.items.filter(i => i.type === "equipment" && (i.system.itemSpells?.length || i.system.scroll?.spell || blankScrollLevel(i) !== null)).sort(sort).map(async i => {
+    // (Unidentified ones stay off a player's list: their spells and charges would say what they are.)
+    const magicItems = await Promise.all(actor.items.filter(i => i.type === "equipment" && !hiddenFromPlayer(i) && (i.system.itemSpells?.length || i.system.scroll?.spell || blankScrollLevel(i) !== null)).sort(sort).map(async i => {
       const s = i.system;
       const blank = blankScrollLevel(i);
       const spells = await Promise.all((s.itemSpells ?? []).map(async e => ({ name: e.name, cost: e.cost, short: s.charges?.max ? s.charges.value < e.cost : false, ...(await spellText(i, e)) })));

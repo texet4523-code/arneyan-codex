@@ -173,5 +173,14 @@ console.log("All batch 8 checks passed.");
   assert.equal(hiddenFromPlayer({ system: { identified: false } }, true), false, "the GM sees it all");
   assert.equal(hiddenFromPlayer({ system: { identified: true } }, false), false);
   for (const f of ["storage.mjs", "party.mjs"]) assert.ok(fs.readFileSync(new URL(`../arneyan/module/${f}`, import.meta.url), "utf8").includes("hiddenFromPlayer("), `${f}: no price for unidentified gear`);
+  const { publicName } = await import("../arneyan/module/expand.mjs");
+  assert.equal(publicName({ type: "equipment", name: "Wand of Fireball", system: { identified: false, unidentifiedName: "Carved stick" } }), "Carved stick");
+  assert.equal(publicName({ type: "weapon", name: "Flame Tongue", system: { identified: false } }), "Unidentified weapon");
+  assert.equal(publicName({ type: "weapon", name: "Longsword", system: { identified: true } }), "Longsword");
+  const sheets = fs.readFileSync(new URL("../arneyan/module/sheets.mjs", import.meta.url), "utf8");
+  assert.ok(sheets.includes("price: hide ? \"\" : (s.price ?? \"\"),") && sheets.includes("!hiddenFromPlayer(i) && (i.system.itemSpells"), "gear rows and the wands list hide unidentified gear");
+  assert.ok(fs.readFileSync(new URL("../arneyan/templates/actor/gear-row.hbs", import.meta.url), "utf8").includes('<span class="arn-muted">{{price}}</span>'));
+  const travel = fs.readFileSync(new URL("../arneyan/module/travel.mjs", import.meta.url), "utf8");
+  assert.ok(travel.includes("tokenDoc.actorLink ? tokenDoc.actor : (game.actors.get(tokenDoc.actorId) ?? tokenDoc.actor)"), "an unlinked party token counts on the party");
   console.log("OK linked party tokens, unidentified rows");
 }

@@ -10,7 +10,7 @@
     {{#if holds}}<span class="arn-chip {{#if overCap}}bad{{/if}}" data-tooltip="Drag gear onto this row to put it inside{{#if weightless}}; what's inside adds nothing to your slots{{/if}}">{{contents}}{{#if capacity}} / {{capacity}}{{/if}} slots inside{{#if weightless}} · weightless{{/if}}</span>{{/if}}
   </span>
   <span>× {{system.quantity}}</span>
-  <span class="arn-muted">{{system.price}}</span>
+  <span class="arn-muted">{{price}}</span>
   <span>{{#if freeSlots}}<span class="arn-muted" data-tooltip="Inside a weightless container">0</span>{{else}}{{system.totalSlots}}{{/if}}</span>
   <span class="arn-controls">
     {{#if @root.editable}}

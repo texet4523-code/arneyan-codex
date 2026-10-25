@@ -5,8 +5,8 @@ Version 0.10.57 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.57
 
 Two fixes from re-running the play tests T128 to T132 on TAC (25 Oct):
-- **A new party's token is linked to the party**, as characters' are. Before, a party actor made from the sidebar had an unlinked token, so travel mode counted its hexes on the token's own copy and the party sheet showed nothing. (The Party on TAC was already linked.)
-- **Unidentified gear shows players no price** in a storage place or the party stash (and no charges for a wand or staff). Its name and slots still show; the GM sees everything as before.
+- **Travel mode counts on the party itself**, even when its token isn't linked (a party made from the sidebar had an unlinked token, so the count went on the token's own copy and the party sheet showed nothing). New parties' tokens are now linked, as characters' are. (The Party on TAC was already linked.)
+- **Unidentified gear gives nothing away to players:** no price, charges or recharge button on their sheet's Gear tab, in a storage place or in the party stash; storage lists it as plain Gear; an unidentified wand, staff or scroll stays off their Wands, Staffs & Scrolls list; and the storage ledger and "gives ... to" chat lines use its plain name. Its name and slots still show, and the GM sees everything as before.
 
 ## What's new in 0.10.56
 

@@ -4,7 +4,7 @@
  * Items dragged between the party and a member (either way) move rather than copy.
  */
 import { ARNEYAN } from "./config.mjs";
-import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
+import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer, publicName } from "./expand.mjs";
 import { statusesOf } from "./effects.mjs";
 import { putOutData } from "./gear.mjs";
 import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
@@ -117,7 +117,7 @@ export async function giveItemTo(item) {
   if (!to || !from.items.has(item.id)) return;
   if (to.isOwner) {
     const made = await moveItemTo(item, to);
-    if (made) say(`${from.name} gives ${item.name} to ${to.name}.`, from);
+    if (made) say(`${from.name} gives ${publicName(item)} to ${to.name}.`, from);
     return made;
   }
   if (!game.users.activeGM) return ui.notifications.warn(`Giving to ${to.name} needs the GM online (you don't control them).`);

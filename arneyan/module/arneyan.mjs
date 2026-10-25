@@ -223,7 +223,7 @@ Hooks.on("preCreateActor", (actor, data) => {
   const upd = {};
   if (!("actorLink" in proto)) upd["prototypeToken.actorLink"] = true;
   if (!("disposition" in proto)) upd["prototypeToken.disposition"] = 1;
-  if (actor.type === "character" && (!proto.sight || !("enabled" in proto.sight))) upd["prototypeToken.sight.enabled"] = true;
+  if (!proto.sight || !("enabled" in proto.sight)) upd["prototypeToken.sight.enabled"] = true;
   if (Object.keys(upd).length) actor.updateSource(upd);
 });
 
