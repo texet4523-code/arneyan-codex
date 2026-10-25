@@ -179,7 +179,52 @@ async function manoeuvreList() {
   return manoeuvreIndex;
 }
 
+/* -------------------------------------------- */
+/*  Show or hide the action bar from the Token HUD  */
+/* -------------------------------------------- */
+
+const TAH = "token-action-hud-core";
+const tahActive = () => !!game.modules?.get(TAH)?.active;
+const tahOn = () => { try { return !!game.settings.get(TAH, "enable"); } catch { return false; } };
+
+/**
+ * Kieran (25 Oct 2026): the action bar (Token Action HUD) is off by default and switched on or off with a button among
+ * the token's own buttons (right-click a token). Each player's choice is their own (Token Action HUD's client setting).
+ */
+function registerTahToggle() {
+  game.settings?.register?.(SYS, "tahDefaultOff", { scope: "client", config: false, type: Boolean, default: false });
+  globalThis.Hooks?.once?.("ready", async () => {
+    let done = true;
+    try { done = game.settings.get(SYS, "tahDefaultOff"); } catch { /* not registered */ }
+    if (!tahActive() || done) return;
+    // Once per browser: start with the bar off.
+    await game.settings.set(SYS, "tahDefaultOff", true);
+    if (tahOn()) await game.settings.set(TAH, "enable", false).catch(err => console.warn("Arneyan | action bar", err));
+  });
+  globalThis.Hooks?.on?.("renderTokenHUD", (hud, html) => {
+    if (!tahActive()) return;
+    const root = html instanceof HTMLElement ? html : html?.[0];
+    const col = root?.querySelector(".col.left") ?? root?.querySelector(".col.right");
+    if (!col) return;
+    col.querySelector(".arn-tah-toggle")?.remove();
+    const on = tahOn();
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `control-icon arn-tah-toggle${on ? " active" : ""}`;
+    btn.dataset.tooltip = on ? "Hide the action bar" : "Show the action bar (attacks, spells, checks for this token)";
+    btn.innerHTML = `<i class="fa-solid fa-table-cells"></i>`;
+    btn.addEventListener("click", async ev => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      await game.settings.set(TAH, "enable", !tahOn());
+      hud.render?.();
+    });
+    col.appendChild(btn);
+  });
+}
+
 export function registerTokenActionHud() {
+  registerTahToggle();
   Hooks.once("tokenActionHudCoreApiReady", async coreModule => {
     const api = coreModule?.api;
     if (!api?.ActionHandler || !api?.RollHandler || !api?.SystemManager) return;
