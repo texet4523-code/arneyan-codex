@@ -13,6 +13,7 @@
 """
 import copy, glob, json, os, re
 from lib import OUT, fid
+import books_md
 from icons import icon
 
 PACK = os.path.join(OUT, "equipment")
@@ -79,7 +80,7 @@ AMMO = [
 def catalogue_bundles():
     """Names the Catalogue marks "bundles 5/slot" (in its tables and bullet lists)."""
     names = set()
-    for ln in open("/tmp/hb/mm/cat.md", encoding="utf-8"):
+    for ln in open(books_md.SHOP, encoding="utf-8"):
         if not re.search(r"bundles?\s*(?:of\s*)?5\s*(?:/|per)\s*slot", ln, re.I):
             continue
         m = re.match(r"\|\s*([^|]+?)\s*\|", ln) or re.search(r"\*\*([^*]+?):?\*\*", ln)

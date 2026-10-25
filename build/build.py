@@ -8,6 +8,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 SYS = os.path.join(ROOT, "arneyan")
 
+import books_md
+print('handbook sources:', books_md.prepare())
+
 shutil.rmtree(lib.OUT, ignore_errors=True)
 os.makedirs(lib.OUT)
 
@@ -35,7 +38,8 @@ print('auras (monsters):', build_auras.after_monsters())
 print('gear:', build_gear.build(), 'catalogue entries made usable')
 print('tidy: removed %d rule items; stray top folders: %s' % build_tidy.build())
 print('books v0.10.0:', __import__('books_0100').build())
-print('books v0.10.0 rules:', __import__('books_0100_rules').build())
+# books_0100_rules (the v0.10.0 wording of Books I, II and V) is retired: the Handbook v0.10.11 Markdown has all of it,
+# and running it on the new text would add a second copy of the Catalogue's light ranges.
 print('books v0.10.4:', __import__('books_0104').build())
 print('books v0.10.5:', __import__('books_0105').build())
 _pg = build_pregens.build()

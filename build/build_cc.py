@@ -1,12 +1,13 @@
 """Ancestries, feats, skills and the Character Creation journal from cc2.md."""
 import re
 from lib import *
+import books_md
 
 ABIL = {"Str": "str", "Dex": "dex", "Con": "con", "Int": "int", "Wis": "wis", "Cha": "cha",
         "Strength": "str", "Dexterity": "dex", "Constitution": "con", "Intelligence": "int", "Wisdom": "wis", "Charisma": "cha"}
 
 def build(icon):
-    md = open("/tmp/hb/cc2.md").read()
+    md = open(books_md.CC).read()
     lines = md.split("\n")
 
     # ---------------- Ancestries

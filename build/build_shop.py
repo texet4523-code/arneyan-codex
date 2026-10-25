@@ -1,6 +1,7 @@
 """The Shopkeeper's Catalogue: weapons, armour, gear and magic items, plus the Book V journal."""
 import re
 from lib import *
+import books_md
 
 BLUDGEON = re.compile(r"club|hammer|mace|maul|flail|staff|sap|knuckle|cestus|fist|sling|morning|bolas|blowpipe|cudgel|baton|warhammer|mallet|quarterstaff|lucerne|horseman's pick", re.I)
 PIERCE = re.compile(r"spear|dagger|dirk|knife|pick|bow|crossbow|dart|javelin|harpoon|rapier|trident|lance|pike|katar|stiletto|aclis|estoc|awl|fork|ranseur|spetum|partisan|military fork|gun|pistol|rifle|musket|carbine|cannon|blunderbuss|derringer|net", re.I)
@@ -40,7 +41,7 @@ def weapon_damage(d):
     return base
 
 def build(icon):
-    md = open("/tmp/hb/shop2.md").read()
+    md = open(books_md.SHOP).read()
     lines = md.split("\n")
     sec2 = sec3 = ""
     folders = {}
@@ -84,7 +85,8 @@ def build(icon):
                 price_m = re.findall(r"\(([^()]*?\d[\d,]*\s*(?:gp|sp|cp|pp)[^()]*)\)", rest)
                 price = price_m[0] if len(price_m) == 1 else ""
                 if not price:
-                    pm = re.fullmatch(r"[^;()]*?\b(\d[\d,]*\s*(?:gp|sp|cp|pp)\b[^;()]*)", rest)
+                    # (a trailing note such as "(by quality)" stays with the price, books v0.10.11)
+                    pm = re.fullmatch(r"[^;()]*?\b(\d[\d,]*\s*(?:gp|sp|cp|pp)\b[^;()]*(?:\([^()]*\))?)", rest)
                     price = pm.group(1).strip() if pm and len(rest) < 60 else ""
                 parent = fol(re.sub(r"^\d+\.\s*", "", sec2), root_gear)
                 f = fol(sec3, parent) if sec3 else parent

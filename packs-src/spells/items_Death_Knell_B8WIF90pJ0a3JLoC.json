@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one living creature below <strong>0 HP</strong> and dying. It dies immediately (<strong>Will negates</strong>; the target is otherwise unaffected) and you gain <strong>temporary HP</strong> equal to its HD for <strong>1 hour</strong>. Cannot target stable or healthy creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock, Necromancer</p>",
+  "description": "<p>Touch; one living creature below <strong>0 HP</strong> and dying. It dies immediately and you gain <strong>temporary HP</strong> equal to its HD for <strong>1 hour</strong>. Cannot target stable or healthy creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock, Necromancer</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,8 +26,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "will",
-  "saveEffect": "Negates",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": false,

@@ -19,7 +19,8 @@ import re
 import docx
 from lib import item, folder, esc, fix, fid, walk_docx, write
 
-CODEX = "/tmp/hb/out2/The_Arneyan_Codex.docx"
+import books_md
+CODEX = books_md.CODEX
 
 GLYPH = {
     "Charge": "charging-bull", "Cleave": "axe-swing", "Disarm": "drop-weapon", "Disengage": "exit-door", "Dodge": "dodging",

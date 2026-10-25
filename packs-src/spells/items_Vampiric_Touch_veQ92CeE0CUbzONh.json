@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch. Deals <strong>1d6</strong> necrotic damage per two levels (max <strong>5d6</strong>); <strong>Fortitude halves</strong>. You gain <strong>temporary HP</strong> equal to the damage dealt for <strong>1 hour</strong>; <strong>temporary HP</strong> do not stack.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
+  "description": "<p>Touch. Deals <strong>1d6</strong> necrotic damage per two levels (max <strong>5d6</strong>). You gain <strong>temporary HP</strong> equal to the damage dealt for <strong>1 hour</strong>; <strong>temporary HP</strong> do not stack.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -27,8 +27,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Half",
+  "save": "",
+  "saveEffect": "",
   "damage": "(max(1, min(floor(@cl/2), 5)))d6",
   "damageType": "necrotic",
   "reversible": false,

@@ -1,7 +1,8 @@
-"""Spells and the Spellcasting journal from Spellcasting_in_Arneyan_v2.docx."""
+"""Spells and the Spellcasting journal from the Handbook's Book IV (books_md.SPELLS, v0.10.11)."""
 import re
 import docx
 from lib import *
+import books_md
 import spell_damage, spell_saves
 
 CLASSES = {"Wiz": "Wizard", "Cle": "Cleric", "Ill": "Illusionist", "Dru": "Druid", "Sor": "Sorcerer", "Wit": "Witch",
@@ -11,7 +12,7 @@ LEVELS = ["Cantrips", "1st Level", "2nd Level", "3rd Level", "4th Level", "5th L
 DTYPES = ["slashing", "piercing", "bludgeoning", "fire", "cold", "lightning", "thunder", "acid", "poison", "necrotic", "radiant", "psychic", "force"]
 
 def build(icon):
-    d = docx.Document("/tmp/hb/Spellcasting_in_Arneyan_v2.docx")
+    d = docx.Document(books_md.SPELLS)
     spell_tables = [t for t in d.tables if tbl_rows(t)[0][:2] == ["Spell", "Classes"]]
     count = 0
     for lvl, t in enumerate(spell_tables):

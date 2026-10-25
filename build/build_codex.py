@@ -1,10 +1,11 @@
-"""Book I: Core Rules journal from out2/The_Arneyan_Codex.docx, one page per rule."""
+"""Book I: Core Rules journal from the Handbook's Book I (books_md.CODEX, v0.10.11), one page per rule."""
 import re
 import docx
 from lib import *
+import books_md
 
 def build():
-    d = docx.Document("/tmp/hb/out2/The_Arneyan_Codex.docx")
+    d = docx.Document(books_md.CODEX)
     pages = []
     section = ""
     title = "Introduction"

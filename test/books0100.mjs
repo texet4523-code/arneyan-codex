@@ -96,7 +96,7 @@ const journals = fs.readdirSync(src("rules")).map(f => JSON.parse(fs.readFileSyn
 const rulesText = name => journals.find(d => d.name.startsWith(name)).pages.map(p => p.text?.content ?? "").join(" ");
 const b1 = strip(rulesText("Book I:"));
 assert.equal(b1.split("Range.").length - 1, 1, "one Range bullet");
-assert.ok(b1.includes("magical healing removes subdual damage equal to the full amount healed, even at full HP"));
+assert.ok(b1.includes("magical healing removes subdual damage equal to the full amount it heals, even if the creature is already at full HP"), "books v0.10.11 wording");
 for (const pack of ["class-features", "classes", "pregens"]) assert.ok(!/light warhorse \(19 HP/.test(allText(pack)), `${pack}: no 19 HP warhorse`);
 assert.ok(strip(one("class-features", "Birthright Mount").system.description).includes("light warhorse (15 HP, Hit Dice 2d10+4;"));
 console.log("OK books v0.10.0");

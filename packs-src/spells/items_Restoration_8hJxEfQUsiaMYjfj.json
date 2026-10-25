@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained ability scores (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one ability score of your choice; <strong>Fortitude negates</strong>.</li><li>Material: diamond dust worth 100 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+  "description": "<p>Touch; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained ability scores (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one ability score of your choice.</li><li>Material: diamond dust worth 100 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,8 +26,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates (Withering Touch only)",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": true,

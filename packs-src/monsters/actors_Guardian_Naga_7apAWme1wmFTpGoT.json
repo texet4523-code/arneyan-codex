@@ -444,7 +444,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature. Choose at casting: -4 to one ability score (minimum 1), or <strong>Disadvantage</strong> on one of attack rolls, saving throws or attribute checks. Lasts <strong>1 hour per level</strong>. <strong>Will negates</strong>. Remove Curse ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature. Choose at casting: -4 to one ability score (minimum 1), or <strong>Disadvantage</strong> on one of attack rolls, saving throws or attribute checks. Lasts <strong>1 hour per level</strong>. Remove Curse ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -465,8 +465,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "will",
-    "saveEffect": "Negates",
+    "save": "",
+    "saveEffect": "",
     "damage": "",
     "damageType": "",
     "reversible": false,

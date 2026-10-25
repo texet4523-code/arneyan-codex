@@ -1,9 +1,10 @@
-"""Classes and kits from cls/clean2/<Class>.docx."""
+"""Classes and kits from the Handbook's Book III, one Word file per class (books_md.CLASSES, v0.10.11)."""
 import glob, os, re
 import docx
 from lib import *
 
-SRC = "/tmp/hb/cls/clean2"
+import books_md
+SRC = books_md.CLASSES
 ABIL = {"Strength": "str", "Dexterity": "dex", "Constitution": "con", "Intelligence": "int", "Wisdom": "wis", "Charisma": "cha"}
 XP = {"Assassin": 8, "Rogue": 8, "Necromancer": 12, "Paladin": 12, "Witch": 12, "Wizard": 12}
 CAST = {"Bard": "cha", "Cleric": "wis", "Druid": "wis", "Illusionist": "int", "Magus": "int", "Necromancer": "int",

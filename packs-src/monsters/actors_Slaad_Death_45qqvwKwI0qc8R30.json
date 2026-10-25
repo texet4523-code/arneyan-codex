@@ -664,7 +664,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -674,7 +674,8 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Magus",
+     "Warlock"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -925,7 +926,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (<strong>Will negates</strong>). Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -945,8 +946,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "will",
-    "saveEffect": "Negates",
+    "save": "",
+    "saveEffect": "",
     "damage": "",
     "damageType": "",
     "reversible": false,

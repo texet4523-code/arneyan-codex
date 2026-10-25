@@ -167,7 +167,8 @@ def build():
                     c2 = c2.replace(old, new)
                 if c2 != c:
                     p["text"]["content"] = c2; ch = True
-        if d["name"].startswith("Book I:") and not any(p.get("_id") == TRAPS_ID for p in d["pages"]):
+        # (The Codex has its own Traps page from books v0.10.11: then this one isn't added.)
+        if d["name"].startswith("Book I:") and not any(p.get("_id") == TRAPS_ID or p.get("name") == "Traps" for p in d["pages"]):
             env = next((p for p in d["pages"] if p["name"] == "Environmental Hazards"), None)
             if env is None:
                 n["misses"].append("Book I: no Environmental Hazards page for Traps")

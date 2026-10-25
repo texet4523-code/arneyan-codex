@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature reduces it to <strong>1d4</strong> HP (no effect if it already has fewer); <strong>Fortitude negates</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
+  "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature reduces it to <strong>1d4</strong> HP (no effect if it already has fewer).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,8 +26,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates (Harm only)",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": true,

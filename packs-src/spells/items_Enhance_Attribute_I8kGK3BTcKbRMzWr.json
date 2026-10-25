@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-transform.svg",
  "system": {
-  "description": "<p>Touch; one creature. One attribute rises by <strong>1d4+1</strong> (max 20) for <strong>1 hour per level</strong>. Cast reversed (Diminish Attribute), the target loses <strong>1d4+1</strong> from one attribute (min 3) for the same duration; <strong>Fortitude negates</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+  "description": "<p>Touch; one creature. One attribute rises by <strong>1d4+1</strong> (max 20) for <strong>1 hour per level</strong>. Cast reversed (Diminish Attribute), the target loses <strong>1d4+1</strong> from one attribute (min 3) for the same duration.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,8 +26,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates (Diminish Attribute only)",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": true,

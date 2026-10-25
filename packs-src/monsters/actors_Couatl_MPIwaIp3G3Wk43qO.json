@@ -410,7 +410,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature. Heals <strong>1d8</strong> HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (max +5); <strong>Fortitude halves</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p>Touch; one creature. Heals <strong>1d8</strong> HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (max +5).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -432,8 +432,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "fort",
-    "saveEffect": "Half damage (Cause Light Wounds only)",
+    "save": "",
+    "saveEffect": "",
     "damage": "1d8 + min(@cl, 5)",
     "damageType": "healing",
     "reversible": true,

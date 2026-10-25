@@ -1035,7 +1035,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature touched (<strong>Will negates</strong>). Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1055,8 +1055,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "will",
-    "saveEffect": "Negates",
+    "save": "",
+    "saveEffect": "",
     "damage": "",
     "damageType": "",
     "reversible": false,

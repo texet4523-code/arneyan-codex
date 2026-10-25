@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-transform.svg",
  "system": {
-  "description": "<p>Touch; one creature; <strong>Fortitude negates</strong>. On a failure it freezes in time: it cannot move, be moved, be harmed or be targeted, and does not age or need anything. Lasts until you end it by touch, or Freedom (reverse of Imprisonment) or Disjunction frees it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+  "description": "<p>Touch; one creature. On a hit it freezes in time: it cannot move, be moved, be harmed or be targeted, and does not age or need anything. Lasts until you end it by touch, or Freedom (reverse of Imprisonment) or Disjunction frees it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,8 +25,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": false,

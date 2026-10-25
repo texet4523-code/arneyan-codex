@@ -19,7 +19,7 @@ assert.ok(!strip(db.system.description).includes("a chosen damage type"));
 assert.deepEqual(db.system.traitList.slice(0, 2).map(t => t.name), ["Draconic type", "Resistance 5"]);
 assert.equal(db.system.choice.options.length, 5, "one choice sets both");
 const ref = all("rules").find(d => d.name.startsWith("Book II:")).pages.find(p => p.name === "Full Ancestry Reference");
-assert.ok(ref.text.content.includes("Resistance 5</strong> to your draconic type"));
+assert.ok(strip(ref.text.content).includes("Resistance 5 to your draconic type"), "books v0.10.11: the whole phrase in bold");
 
 // Traps: a page after Environmental Hazards, with the table.
 const b1 = all("rules").find(d => d.name.startsWith("Book I:"));

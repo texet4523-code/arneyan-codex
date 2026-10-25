@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one creature. Deals <strong>1d6</strong> necrotic damage plus 1 per four levels, and it cannot regain HP until the end of its next turn; <strong>Fortitude halves</strong> the damage and negates the healing block. Undead are immune to the healing block.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
+  "description": "<p>Touch; one creature. Deals <strong>1d6</strong> necrotic damage plus 1 per four levels, and it cannot regain HP until the end of its next turn. Undead are immune to the healing block.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -27,8 +27,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Half damage, and it can still regain HP",
+  "save": "",
+  "saveEffect": "",
   "damage": "1d6 + floor(@cl/4)",
   "damageType": "necrotic",
   "reversible": false,

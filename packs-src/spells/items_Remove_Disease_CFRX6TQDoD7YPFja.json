@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
  "system": {
-  "description": "<p>Touch.</p><ul><li>Cures all diseases afflicting the target, including magical ones, and kills parasites.</li><li>Cast reversed (Cause Disease): <strong>Fortitude negates</strong>; the target gains 1 level of Exhaustion and 1 more each day (maximum 5) until it succeeds on 2 <strong>Fortitude saves</strong> in a row; the levels then fade as normal.</li><li>Remove Disease cures it.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin</p>",
+  "description": "<p>Touch.</p><ul><li>Cures all diseases afflicting the target, including magical ones, and kills parasites.</li><li>Cast reversed (Cause Disease): the target gains 1 level of Exhaustion and 1 more each day (maximum 5) until it succeeds on 2 <strong>Fortitude saves</strong> in a row; the levels then fade as normal.</li><li>Remove Disease cures it.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,8 +26,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "fort",
-  "saveEffect": "Negates (Cause Disease only)",
+  "save": "",
+  "saveEffect": "",
   "damage": "",
   "damageType": "",
   "reversible": true,
