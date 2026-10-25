@@ -428,6 +428,17 @@ assert.deepEqual(fillFrom({ type: "equipment", name: "Torch", system: { slots: 1
 assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", system: { slots: 1, container: { holds: true }, itemSpells: [] } }, packDoc), { "system.slots": 0, "flags.arneyan.slotsSet": true });
 assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", system: { slots: 2, container: { holds: true }, itemSpells: [] } }, packDoc), {}, "a GM's slot value stays");
 assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", flags: { arneyan: { slotsSet: true } }, system: { slots: 1, container: { holds: true }, itemSpells: [] } }, packDoc), {}, "only once");
+// 0.10.60: Knives bundle 5 a slot (Kieran, 25 Oct); Daggers and Hand/Throwing Axes stay 1 each.
+{
+  const docOf = n => JSON.parse(fs.readFileSync(edir + fs.readdirSync(edir).find(f => new RegExp(`^items_${n}_[A-Za-z0-9]{16}\\.json$`).test(f))));
+  const knifeDoc = docOf("Knife"), daggerDoc = docOf("Dagger"), axeDoc = docOf("Axe_Hand_Throwing");
+  assert.deepEqual([knifeDoc.system.bundle, daggerDoc.system.bundle, axeDoc.system.bundle], [5, 0, 0]);
+  const oldKnife = { type: "weapon", name: "Knife", system: { ...structuredClone(knifeDoc.system), bundle: 0 } };
+  const upd = fillFrom(oldKnife, knifeDoc);
+  assert.equal(upd["system.bundle"], 5); assert.equal(upd["flags.arneyan.slotsSet"], true);
+  assert.equal(fillFrom({ ...oldKnife, flags: { arneyan: { slotsSet: true } } }, knifeDoc)["system.bundle"], undefined, "only once");
+  assert.equal(fillFrom({ type: "weapon", name: "Dagger", system: structuredClone(daggerDoc.system) }, daggerDoc)["system.bundle"], undefined);
+}
 const { packSlots, STARTING_PACKS } = await import("../arneyan/module/starting.mjs");
 {
   const info = new Map(fs.readdirSync(edir).filter(f => f.startsWith("items_")).map(f => JSON.parse(fs.readFileSync(edir + f))).map(d => [d.name, { slots: Number(d.system.slots) || 0, bundle: Number(d.system.bundle) || 0 }]));

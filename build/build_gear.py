@@ -40,7 +40,9 @@ CONTAINERS = {"Backpack": 0, "Rucksack": 0, "Saddlebag": 0, "Sack, Small": 0, "S
 THROWN = {"Dart", "Aclis", "Javelin", "Harpoon", "Bolas", "Knife (thrown)"}
 # Kieran, 25 Oct 2026 (player feedback: the starting packs over-filled the inventory): torches bundle 5 a slot, and
 # the Backpack takes no slot, since it "provides the grid itself".
-EXTRA_BUNDLES = {"Torch", "Torches"}  # build_tidy renames Torches to Torch later
+# Kieran, 25 Oct 2026: throwing knives bundle 5 a slot (thinner and lighter than a dagger); Daggers and Hand/Throwing
+# Axes stay 1 slot each.
+EXTRA_BUNDLES = {"Torch", "Torches", "Knife"}  # build_tidy renames Torches to Torch later
 NO_SLOT = {"Backpack"}
 
 # Iconic weapon -> (base weapon, +N, extra damage [(formula, type, when)], extras)

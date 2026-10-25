@@ -192,9 +192,10 @@ export function fillFrom(item, src) {
   }
   // 0.10.52: torches bundle 5 a slot and the Backpack takes no slot (Kieran, 25 Oct). Copies from before change once
   // (flags.arneyan.slotsSet), and only while they still have the old values: a GM's own change stays.
-  if (item.type === "equipment" && /^(Torch|Backpack)$/.test(srcName) && !item.flags?.[SYS]?.slotsSet) {
+  // 0.10.60: Knives bundle 5 a slot too (Kieran, 25 Oct); Daggers don't.
+  if (((item.type === "equipment" && /^(Torch|Backpack)$/.test(srcName)) || (item.type === "weapon" && srcName === "Knife")) && !item.flags?.[SYS]?.slotsSet) {
     let set = false;
-    if (srcName === "Torch" && o.bundle === 5 && !(s.bundle > 0) && Number(s.slots) === 1) { upd["system.bundle"] = 5; set = true; }
+    if (/^(Torch|Knife)$/.test(srcName) && o.bundle === 5 && !(s.bundle > 0) && Number(s.slots) === 1) { upd["system.bundle"] = 5; set = true; }
     if (srcName === "Backpack" && Number(o.slots) === 0 && Number(s.slots) === 1) { upd["system.slots"] = 0; set = true; }
     if (set) upd[`flags.${SYS}.slotsSet`] = true;
   }

@@ -214,6 +214,11 @@ def fit_slots(item, entry):
     Backpack, Kieran 25 Oct, F-B6) stays free, whatever an older sheet says; a printed 0 is left to the Catalogue."""
     want = printed_slots(entry)
     sys_ = item.get("system", {})
+    # Weapons count as the Catalogue says (Kieran, 25 Oct: Daggers and Hand/Throwing Axes take 1 slot each, Knives
+    # bundle 5), whatever an older sheet's note says ("Both daggers take 1 slot"). A weapon's slots also mean
+    # two-handed (effects.mjs isTwoHanded).
+    if item.get("type") == "weapon":
+        return item
     if want is None or "slots" not in sys_ or not (sys_.get("slots") or 0):
         return item
     qty = max(1, int(sys_.get("quantity") or 1))
@@ -225,8 +230,6 @@ def fit_slots(item, entry):
     stacks = want / each
     if want < now and stacks == int(stacks) and math.ceil(qty / math.ceil(qty / stacks)) == stacks:
         sys_["bundle"] = math.ceil(qty / stacks)
-    elif item.get("type") == "weapon":
-        return item  # a weapon's own slots also say whether it's two-handed (effects.mjs isTwoHanded): never changed here
     else:
         sys_["bundle"] = 0
         sys_["slots"] = round(want / qty, 4)

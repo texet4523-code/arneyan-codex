@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.59 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.60 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.60
+
+**Throwing knives bundle 5 a slot** (Kieran, 25 Oct): a Knife is thinner and lighter than a Dagger, and it's Concealable. Daggers and Hand/Throwing Axes can still be thrown but take 1 slot each, whatever a pregen's older note says. Knives already in a world change once; a slot value the GM set by hand stays.
+
+- **Pip Thistlewick** carries two throwing knives (1d2+4) instead of two daggers, so she starts at 17 of 18 slots rather than right at her limit.
+- Tansy, Wren and Sir Durgan count their pair of daggers or axes at 2 slots now. All three stay well inside their limits.
 
 ## What's new in 0.10.59
 
