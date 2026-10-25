@@ -57,15 +57,25 @@ const lurker = mk("Lurker", 0, { hidden: "hiddenFull" });
 assert.equal(ST.hideState(lurker)?.dc, 15);
 const assassin = mk("Assassin", 0, { mods: new ModSet([{ key: "surprise.against", value: 2, label: "Surprise" }]) });
 const guard = mk("Guard", 3), sharp = mk("Sharp", 0, { items: master }), barbarian = mk("Barbarian", 1, { mods: barb });
-const r = ST.surpriseResults([lurker, assassin], [guard, sharp, barbarian]);
-assert.equal(r.dc, 15, "the lowest Search DC among the hiding ambushers");
-assert.equal(r.against, 2);
-assert.deepEqual(r.rows.map(x => [x.name, x.awareness, x.surprised]), [["Guard", 11, true], ["Sharp", 13, true], ["Barbarian", 11 + 5 + 2 - 2, false]]);
-assert.equal(ST.surpriseResults([assassin], [guard], 12).dc, 12, "a Difficulty Tiers DC when nobody hid");
-assert.equal(ST.surpriseResults([assassin], [guard]).dc, null);
+const r = ST.surpriseResults([lurker], [guard, sharp, barbarian]);
+assert.equal(r.dc, 15, "the hiding ambusher's Search DC");
+assert.equal(ST.surpriseResults([lurker, assassin], [guard]).dc, 12, "one not hiding gives the group away at the Difficulty DC (Moderate)");
+assert.equal(ST.surpriseResults([lurker, assassin], [guard], 15).dc, 15, "or Hard for a prepared ambush");
+const hid = ST.surpriseResults([lurker, mk("Hidden Assassin", 0, { hidden: "hiddenComplete", mods: new ModSet([{ key: "surprise.against", value: 2, label: "Surprise" }]) })], [guard, sharp, barbarian]);
+assert.equal(hid.dc, 15); assert.equal(hid.against, 2);
+assert.deepEqual(hid.rows.map(x => [x.name, x.awareness, x.surprised]), [["Guard", 11, true], ["Sharp", 13, true], ["Barbarian", 11 + 5 + 2 - 2, false]]);
+// A creature that can't be surprised isn't marked.
+const foresight = mk("Seer", 0, { mods: new ModSet([{ key: "note.init", value: "Foresight: cannot be surprised", label: "Foresight" }]) });
+assert.equal(ST.surpriseResults([lurker], [foresight]).rows[0].surprised, false);
+// A Perception Knack counts as Advantage.
+assert.equal(AW.awarenessOf(s, none, [{ type: "skill", name: "Perception", system: { tier: "knack" } }]).value, 17);
 
 const tier = AW.hideTier(16);
 const rows = ST.noticeRows(lurker, tier, [{ id: "t1", name: "Guard", actor: guard }, { id: "t2", name: "Mole", actor: mk("Mole", 6, { senses: "Tremorsense 30ft, Blindsight 10ft" }) }]);
+// Allies of the hider (same disposition as its token) aren't listed.
+const lurkTok = { id: "lt", document: { id: "lt", disposition: -1 } };
+const lurker2 = { ...lurker, getActiveTokens: () => [lurkTok] };
+assert.deepEqual(ST.noticeRows(lurker2, tier, [{ id: "t1", document: { id: "t1", name: "Guard", disposition: 1 }, actor: guard }, { id: "t3", document: { id: "t3", name: "Goblin", disposition: -1 }, actor: guard }]).map(x => x.name), ["Guard"]);
 assert.deepEqual(rows.map(x => [x.name, x.awareness, x.spots]), [["Mole", 16, true], ["Guard", 13, false]]);
 assert.deepEqual(rows[0].beaten, ["tremorsense"]);
 assert.deepEqual(rows[0].still, ["blindsight"], "a sense the tier doesn't beat");

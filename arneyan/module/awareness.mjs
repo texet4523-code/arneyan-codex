@@ -34,10 +34,12 @@ export function netAdv(adv = 0, dis = 0) {
   return adv > 0 && dis > 0 ? 0 : adv > 0 ? 1 : dis > 0 ? -1 : 0;
 }
 
-/** A Perception skill trained to Master (a monster's stat block, or a character's Knack-free Master). */
+const isPerception = i => i?.type === "skill" && /^perception$/i.test(String(i.name ?? "").trim());
+/** A Perception skill rolled with Advantage: Master (a monster's stat block), or a Knack. */
 export function perceptionMaster(items = []) {
-  return [...items].some(i => i?.type === "skill" && /^perception$/i.test(String(i.name ?? "").trim()) && i.system?.tier === "master");
+  return [...items].some(i => isPerception(i) && (i.system?.tier === "master" || i.system?.tier === "knack" || !!i.flags?.arneyan?.knack));
 }
+export const hasPerception = (items = []) => [...items].some(isPerception);
 
 /**
  * Passive awareness for prepared data.
@@ -48,9 +50,11 @@ export function perceptionMaster(items = []) {
  */
 export function awarenessOf(s, mods, items = []) {
   const wis = Number(s?.abilities?.wis?.mod) || 0;
-  const a = mods?.adv?.("adv.awareness", "adv.check", "adv.check.wis") ?? { adv: [], dis: [] };
+  // Advantage on the check it would make: a Wisdom check, or its Perception skill (which also takes adv.skill).
+  const keys = ["adv.awareness", "adv.check", "adv.check.wis", ...(hasPerception(items) ? ["adv.skill"] : [])];
+  const a = mods?.adv?.(...keys) ?? { adv: [], dis: [] };
   const adv = [...a.adv];
-  if (perceptionMaster(items)) adv.push("Master in Perception");
+  if (perceptionMaster(items)) adv.push("Perception (Master or Knack)");
   const dis = [...a.dis];
   const net = netAdv(adv.length, dis.length);
   const parts = [{ label: "Base", value: 10 }, { label: "Wis", value: wis }];

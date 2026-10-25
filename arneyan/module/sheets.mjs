@@ -566,6 +566,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     this.element.querySelectorAll(".arn-cond.on[data-condition], .arn-cond-chip.on[data-condition]").forEach(el => el.addEventListener("contextmenu", ev => {
       ev.preventDefault();
       ev.stopPropagation();
+      if (!this.isEditable) return;
       toggleCondition(this.document, el.dataset.condition, false);
     }));
     // Add a condition from the drop-down.

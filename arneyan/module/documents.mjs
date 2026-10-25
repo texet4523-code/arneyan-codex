@@ -254,7 +254,18 @@ export function capHpChange(actor, changes) {
   const derived = hp.effectiveMax ?? hp.max;
   if (!Number.isFinite(derived)) return;
   const oldStored = Number(actor._source?.system?.attributes?.hp?.max ?? hp.max) || 0;
-  const max = newStored !== undefined && Number.isFinite(Number(newStored)) ? Math.max(1, derived + (Number(newStored) - oldStored)) : derived;
+  // Anything besides current HP in the change (a new stored maximum, a level, a score) can move the maximum: work it
+  // out on a copy with the change applied, so halving (Debilitated) and per-level bonuses count.
+  const onlyValue = Object.keys(changes.system ?? {}).length === 1 && Object.keys(changes.system?.attributes ?? {}).length === 1
+    && Object.keys(changes.system?.attributes?.hp ?? {}).every(k => k === "value" || k === "temp") && Object.keys(changes).every(k => k === "system" || k === "_id");
+  let max = derived;
+  if (!onlyValue) {
+    let copy = null;
+    try { copy = typeof actor.clone === "function" ? actor.clone(foundry.utils.deepClone(changes)) : null; } catch { copy = null; }
+    const m = copy?.system?.attributes?.hp;
+    max = Number.isFinite(m?.effectiveMax ?? m?.max) ? (m.effectiveMax ?? m.max)
+      : newStored !== undefined && Number.isFinite(Number(newStored)) ? Math.max(1, derived + (Number(newStored) - oldStored)) : derived;
+  }
   if (val !== undefined) {
     if (Number.isFinite(Number(val)) && Number(val) > max) foundry.utils.setProperty(changes, "system.attributes.hp.value", max);
   } else if (newStored !== undefined && Number(hp.value) > max) {
@@ -392,7 +403,9 @@ export class ArneyanActor extends Actor {
     const knack = knackOnly || !!item.flags?.arneyan?.knack;
     const parts = knackOnly ? [...(m?.parts("check", "skill") ?? [])] : [{ label: ARNEYAN.abilityAbbr[ab], value: mod <= 0 ? 1 : mod }, ...(m?.parts("check", `check.${ab}`, "skill") ?? [])];
     const masterSrc = master || knack ? { values: [1], adv: [master ? "Master" : "Knack"], dis: [] } : NONE;
-    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill", ...advKeys) ?? NONE);
+    // Perception (a monster's, or a character's) also takes Advantage on noticing (adv.awareness).
+    const keys = /^perception$/i.test(String(item.name).trim()) && !advKeys.includes("adv.awareness") ? [...advKeys, "adv.awareness"] : advKeys;
+    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill", ...keys) ?? NONE);
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
@@ -500,7 +513,7 @@ export class ArneyanActor extends Actor {
     const { ok, ammo } = this.system.noAct ? { ok: true, ammo: null } : await spendAmmo(this, item);
     if (!ok) return null;
     // Attacking ends hiding (books v0.10.10, Disengage & Hide).
-    endHiding(this, "attacks").catch(() => null);
+    await endHiding(this, "attacks").catch(() => null);
     const ammoName = ammo?._source?.name ?? ammo?.name ?? "";
     const ammoPlus = Number(ammoName.match(/\+(\d)/)?.[1] ?? 0);
     const m = this.mods;
@@ -592,7 +605,7 @@ export class ArneyanActor extends Actor {
    * On a hit its damage and effects go to the ones hit.
    */
   async rollSpellAttack(item, event, { cl = 1 } = {}) {
-    endHiding(this, "casts a spell").catch(() => null);
+    await endHiding(this, "casts a spell").catch(() => null);
     const targets = targetActors();
     if (!targets.length) ui.notifications.info("Target the creature you touch (an ally needs no roll).");
     const own = this.mods?.adv("adv.attack", "adv.attack.melee") ?? NONE;
@@ -1234,8 +1247,6 @@ export class ArneyanItem extends Item {
     let dc = null;
     let caster = null;
     if (actor?.system.noCast) return ui.notifications.warn(`${actor.name} cannot cast spells right now (${actor.mods.sources("no.cast").join(", ")}).`);
-    // Casting ends hiding.
-    if (actor) endHiding(actor, "casts a spell").catch(() => null);
     if (actor && canvas?.scene) (await import("./qol.mjs")).warnSpellRange(actor, this);
     if (actor?.type === "character") {
       caster = this.caster;
@@ -1266,6 +1277,8 @@ export class ArneyanItem extends Item {
         await actor.update({ "system.spellcasting.used": used });
       }
     }
+    // Casting ends hiding (once the spell is really cast: slots and uses checked).
+    if (actor) await endHiding(actor, "casts a spell").catch(() => null);
     const cl = caster?.classLevel ?? actor?.system.spellcasting?.level ?? actor?.system.level ?? 1;
     const self = await this._applySelf(cl);
     const lines = [];

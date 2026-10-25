@@ -96,6 +96,9 @@ const CG = await import("../arneyan/module/chargen.mjs");
   // A name can't break the list.
   await CG.gmDonate([14, 14, 10, 10, 10, 10], '<b>"x"</b>');
   assert.ok(!page.text.content.includes("<b>"), "names are escaped");
+  // Struck-out lines don't count; names with apostrophes survive; sets typed as paragraphs move into the list.
+  assert.equal(CG.parseDonated("<ul><li><s>16, 15, 12, 10, 9, 8</s></li><li>15, 15, 12, 10, 9, 8 (from D&#39;Arcy)</li></ul>").map(d => d.from).join(), "D'Arcy");
+  assert.equal(CG.donatedHtml("<p>Intro</p><p>16, 15, 12, 10, 9, 8 (from A)</p>", CG.parseDonated("<p>16, 15, 12, 10, 9, 8 (from A)</p>")), "<p>Intro</p><ul><li>16, 15, 12, 10, 9, 8 (from A)</li></ul>");
   // Nobody can delete the journal.
   const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");
   assert.ok(src.includes('Hooks.on("preDeleteJournalEntry"') && src.includes('Hooks.on("preDeleteJournalEntryPage"'));

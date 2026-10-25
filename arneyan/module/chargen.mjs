@@ -44,12 +44,22 @@ const INTRO = "<p>Method V sets nobody kept (Rule B). Anyone making a character 
 export function donatedJournal() { return game.journal?.find?.(j => j.getFlag?.(SYSFLAG, "donatedSets")) ?? null; }
 const donatedPage = (j = donatedJournal()) => j?.pages?.contents?.find(p => p.type === "text") ?? null;
 
+/** Plain text from a bit of HTML (entities decoded; no scripts run). */
+const plainText = html => {
+  if (typeof DOMParser !== "undefined") return new DOMParser().parseFromString(`<body>${html}</body>`, "text/html").body.textContent ?? "";
+  const ent = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", "#39": "'", "#160": " " };
+  return String(html).replace(/<[^>]+>/g, " ").replace(/&(#?\w+);/g, (m, k) => ent[k] ?? (/^#\d+$/.test(k) ? String.fromCharCode(Number(k.slice(1))) : m));
+};
+/** A line the GM struck out (strikethrough) no longer counts. */
+const struck = html => /<(s|del|strike)[\s>]/i.test(html);
+
 /** The sets written in the journal's page: every list item (or line) with six scores that pass Rule C. */
 export function parseDonated(html = "") {
   const raw = /<li[\s>]/i.test(html) ? [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(m => m[1]) : String(html).split(/<br\s*\/?>|<\/p>|<\/div>|\n/i);
   const out = [];
   for (const r of raw) {
-    const text = r.replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+    if (struck(r)) continue;
+    const text = plainText(r).replace(/\s+/g, " ").trim();
     const set = (text.match(/\b\d{1,2}\b/g) ?? []).slice(0, 6).map(Number);
     if (!goodSet(set)) continue;
     const from = text.match(/\bfrom\s+(.+?)\)?\s*$/i)?.[1]?.trim() ?? "";
@@ -64,7 +74,9 @@ export function donatedSets() {
 export function donatedHtml(old = "", list = []) {
   const ul = `<ul>${list.map(d => `<li>${d.set.join(", ")}${d.from ? ` (from ${esc(d.from)})` : ""}</li>`).join("")}</ul>`;
   if (/<(ul|ol)[\s>][\s\S]*?<\/\1>/i.test(old)) return old.replace(/<(ul|ol)[\s>][\s\S]*?<\/\1>/i, ul);
-  return `${old || INTRO}${ul}`;
+  // No list yet (sets typed as paragraphs): those lines move into the list; anything else written stays.
+  const kept = String(old).split(/(?<=<\/p>)/i).filter(p => p.trim() && !parseDonated(p).length).join("");
+  return `${kept || INTRO}${ul}`;
 }
 /** The journal, made if it isn't there yet (GM only). Players can read it. */
 export async function ensureDonatedJournal() {
@@ -333,6 +345,10 @@ export function registerChargen() {
   Hooks.once("ready", () => {
     game.socket.on(SOCKET, onSocket);
     if (game.users.activeGM?.isSelf) ensureDonatedJournal().catch(err => console.warn("Arneyan | donated sets journal", err));
+  });
+  // Only one donated sets journal: a copy (duplicated, or imported) is an ordinary journal.
+  Hooks.on("preCreateJournalEntry", (j, data) => {
+    if (foundry.utils.getProperty(data, `flags.${SYSFLAG}.donatedSets`) && donatedJournal()) j.updateSource({ [`flags.${SYSFLAG}.donatedSets`]: false });
   });
   // The donated sets journal can be edited but not deleted (nor its page).
   Hooks.on("preDeleteJournalEntry", j => {

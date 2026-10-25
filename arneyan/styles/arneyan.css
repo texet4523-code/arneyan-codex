@@ -423,12 +423,13 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan.application footer.form-footer button[disabled], .arneyan.application .dialog-buttons button[disabled] {
   background: var(--arn-surface-2); color: var(--arn-muted); border: 1px dashed var(--arn-border); box-shadow: none; cursor: not-allowed; opacity: .8;
 }
-/* Plain buttons inside Arneyan windows (Roll both sets, Scan...) match: green, not Foundry's grey. */
-.arneyan .window-content button:not(.arn-shape-tile):not(.arn-btn):not(.arn-ci-edit):not([data-action=moveUp]):not([data-action=moveDown]):not([disabled]) {
+/* Plain buttons inside Arneyan windows (Roll both sets, Scan...) match: green, not Foundry's grey. Listed one by one,
+   so roll buttons, editors and Foundry's own pickers keep their looks. */
+.arneyan .window-content :is(.arn-scores-rollbtn, .arn-scores-fourbtn, .arn-shape-all, button[data-action=scan], button[data-action=pickFolder], button[data-action=apply]):not([disabled]) {
   background: var(--arn-accent); color: var(--arn-accent-ink); border: 1px solid var(--arn-accent); border-radius: 5px;
 }
-.arneyan .window-content button:not(.arn-shape-tile):not(.arn-btn):not(.arn-ci-edit):not([data-action=moveUp]):not([data-action=moveDown]):not([disabled]):hover { background: var(--arn-accent-2); }
-.arneyan .window-content button[disabled]:not(.arn-shape-tile) { background: var(--arn-surface-2); color: var(--arn-muted); border: 1px dashed var(--arn-border); cursor: not-allowed; }
+.arneyan .window-content :is(.arn-scores-rollbtn, .arn-scores-fourbtn, .arn-shape-all, button[data-action=scan], button[data-action=pickFolder], button[data-action=apply]):not([disabled]):hover { background: var(--arn-accent-2); }
+.arneyan .window-content :is(.arn-scores-rollbtn, .arn-scores-fourbtn, .arn-shape-all, button[data-action=scan], button[data-action=pickFolder], button[data-action=apply])[disabled] { background: var(--arn-surface-2); color: var(--arn-muted); border: 1px dashed var(--arn-border); cursor: not-allowed; }
 .arneyan .arn-luck-pick { border: 1px solid var(--arn-border); border-radius: 6px; padding: 6px 10px; margin: 8px 0; display: flex; flex-direction: column; gap: 4px; }
 .arneyan .arn-luck-pick legend { font-weight: 700; padding: 0 4px; }
 .arneyan .arn-luck-pick label { display: flex; align-items: center; gap: 6px; }
