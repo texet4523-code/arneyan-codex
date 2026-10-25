@@ -182,6 +182,19 @@ ARNEYAN.inventorySlots = function (str) {
   return 18;
 };
 
+/** F18: the bonuses on top of the Max HP box, as "+ 1 Toughness" ("" when none), so the box never reads as off by one. */
+ARNEYAN.hpBonusText = function (hp) {
+  if (!hp) return "";
+  const parts = Array.isArray(hp.parts) ? hp.parts.slice(1) : [];
+  const words = parts.filter(p => Number(p.value)).map(p => `${p.value < 0 ? "\u2212" : "+"} ${Math.abs(p.value)} ${String(p.label ?? "").replace(/\s*\(x\d+\)$/, "")}`.trim());
+  if (!parts.length && Number.isFinite(hp.base) && Number.isFinite(hp.max) && !hp.halved) {
+    const diff = hp.max - hp.base;
+    if (diff) words.push(`${diff < 0 ? "\u2212" : "+"} ${Math.abs(diff)} bonuses`);
+  }
+  if (hp.halved) words.push("then halved");
+  return words.join(" ");
+};
+
 /** Half level, minimum 1, rounded down. */
 ARNEYAN.halfLevel = function (level) {
   return Math.max(1, Math.floor((Number(level) || 0) / 2));

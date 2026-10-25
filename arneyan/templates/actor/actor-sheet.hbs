@@ -23,7 +23,7 @@
       </div>
       <div class="arn-hp-sub">
         <label data-tooltip="Temporary HP: lost first, never healed back">Temp <input class="short" type="number" name="system.attributes.hp.temp" value="{{source.attributes.hp.temp}}" min="0"></label>
-        {{#if editMode}}<label data-tooltip="Your maximum HP before bonuses (Toughness and the like add to it). Change it if you rolled your HP by hand.">Max <input class="short" type="number" name="system.attributes.hp.max" value="{{source.attributes.hp.max}}" min="0"></label>{{/if}}
+        {{#if editMode}}<label data-tooltip="Your maximum HP before bonuses (Toughness and the like add to it). Change it if you rolled your HP by hand.">Max <input class="short" type="number" name="system.attributes.hp.max" value="{{source.attributes.hp.max}}" min="0">{{#if hpBonus}}<span class="arn-hp-bonus">{{hpBonus}}</span>{{/if}}</label>{{/if}}
       </div>
       {{#if combat.subdual}}<div class="arn-subdual-chip"><span class="arn-chip" data-tooltip="Non-lethal (subdual) damage, tracked apart from HP: at or above current HP it knocks the creature out rather than down. It comes from damage cards.">Non-lethal {{combat.subdual}}</span>{{#if isGM}}<a data-action="clearSubdual" data-tooltip="Clear the non-lethal damage"><i class="fa-solid fa-xmark"></i></a>{{/if}}</div>{{/if}}
       {{#if hitDice.length}}<div class="arn-hd-row">

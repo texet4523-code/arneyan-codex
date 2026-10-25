@@ -449,6 +449,7 @@ export class NpcData extends foundry.abstract.TypeDataModel {
     hp.base = this.parent?._source?.system?.attributes?.hp?.max ?? hp.max;
     hp.max = Math.max(1, Math.floor((hp.base + mods.sum("hp.max") + mods.sum("hp.level") * s.level) * mods.mult("hp.mult")));
     hp.effectiveMax = hp.max;
+    hp.halved = mods.mult("hp.mult") < 1;
     s.attributes.state = hp.value <= 0 ? "dead" : "";
     s.attributes.speedMult = mods.mult("speed.mult");
     s.noCast = mods.has("no.cast");

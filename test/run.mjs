@@ -13,6 +13,13 @@ for (const [s, m] of Object.entries(table)) assert.equal(ARNEYAN.abilityMod(Numb
 const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 2, arcane: 2 };
 const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 5, arcane: 4 };
 for (const k of Object.keys(bth12)) { assert.equal(ARNEYAN.bth(k, 12), bth12[k]); assert.equal(ARNEYAN.bth(k, 24), bth24[k]); assert.equal(ARNEYAN.bth(k, 1), 0); }
+// F18: the bonus text beside the Max HP box.
+assert.equal(ARNEYAN.hpBonusText({ base: 6, max: 7, parts: [{ label: "Levels", value: 6 }, { label: "Toughness (x1)", value: 1 }] }), "+ 1 Toughness");
+assert.equal(ARNEYAN.hpBonusText({ base: 30, max: 30, parts: [{ label: "Levels", value: 30 }] }), "");
+assert.equal(ARNEYAN.hpBonusText({ base: 20, max: 13, halved: true, parts: [{ label: "Levels", value: 20 }, { label: "Toughness (x5)", value: 5 }, { label: "Cursed", value: -2 }] }), "+ 5 Toughness \u2212 2 Cursed then halved");
+assert.equal(ARNEYAN.hpBonusText({ base: 40, max: 45 }), "+ 5 bonuses");      // a monster: no breakdown kept
+assert.equal(ARNEYAN.hpBonusText({ base: 40, max: 20, halved: true }), "then halved");
+assert.equal(ARNEYAN.hpBonusText(undefined), "");
 // F16: inventory slots from Strength, at every step boundary.
 for (const [str, slots] of [[3, 16], [6, 16], [7, 18], [12, 18], [13, 20], [15, 20], [16, 22], [18, 22], [25, 22]]) assert.equal(ARNEYAN.inventorySlots(str), slots, `slots at Str ${str}`);
 

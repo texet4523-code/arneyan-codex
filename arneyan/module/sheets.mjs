@@ -423,6 +423,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const hp = system.attributes.hp;
     Object.assign(context, {
       actor, system, source: actor._source.system, config: ARNEYAN, mods,
+      hpBonus: ARNEYAN.hpBonusText(hp),
       isCharacter, isNpc: !isCharacter, editable: this.isEditable, editMode: this.editMode,
       tabs: (isCharacter
         ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]]
