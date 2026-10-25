@@ -1,0 +1,42 @@
+{{!-- Camp mode (batch 6b): watches through the night, the night's Encounter Check, and camp activities. --}}
+<div class="arn-section-head"><h3>Camp</h3>
+  {{#if isGM}}<span class="arn-head-tools">
+    <a class="arn-btn small" data-action="campPrevWatch" data-tooltip="Wind the clock back to the start of this watch, or the one before"><i class="fa-solid fa-backward-step"></i> Previous watch</a>
+    <a class="arn-btn small" data-action="campNextWatch" data-tooltip="Move the clock on to the next watch (from daytime: to 10pm; after the last watch: to 6am)"><i class="fa-solid fa-forward-step"></i> Next watch</a>
+    <a class="arn-btn small" data-action="campNightCheck" data-tooltip="Once a night, secret: a d12 (11 a Hard Encounter, 12 a Deadly one). If something comes, a die picks the watch it comes in"><i class="fa-solid fa-moon"></i> Night Encounter Check</a>
+  </span>{{/if}}</div>
+<label class="check arn-camp-mode"><input type="checkbox" name="flags.arneyan.camp.mode" {{checked camp.mode}} {{#unless isGM}}disabled{{/unless}}> <strong>Camp mode</strong>: the party is camped for the night</label>
+<div class="arn-subline">
+  <span class="arn-chip strong">Now {{camp.timeNow}}</span>
+  {{#if camp.nightNow}}<span class="arn-chip">The night watches are on</span>{{else}}<span class="arn-chip">Daytime: watches run 22:00 to 06:00</span>{{/if}}
+</div>
+
+<div class="arn-section-head"><h3>Watches</h3>
+  <label class="arn-inline">On watch <select name="flags.arneyan.camp.onWatch" {{#unless isGM}}disabled{{/unless}}>{{selectOptions camp.onWatchChoices selected=camp.onWatch}}</select></label></div>
+<ul class="arn-list table arn-camp-watches">
+  {{#each camp.watches}}
+  <li class="{{#if now}}arn-current{{/if}}">
+    <span class="arn-name-cell"><strong>{{label}}</strong>{{#if now}} <span class="arn-chip gold">Now</span>{{/if}}</span>
+    <span>{{time}}</span>
+    <span class="arn-muted">{{length}}</span>
+    <span>{{names}}</span>
+  </li>
+  {{/each}}
+</ul>
+<p class="arn-help">The watch is split by how many stand it: one or two take 4 hours each, three 2 h 40 m, four 2 hours; with five, four 2-hour watches and one of them a pair. A long rest is 8 hours in each 24 and needn't be in one go.</p>
+
+<div class="arn-section-head"><h3>Activities</h3><span class="arn-muted">Each button rolls the check for your character (the GM picks who).</span></div>
+<ul class="arn-list table arn-camp-acts">
+  {{#each camp.activities}}
+  <li>
+    <span class="arn-name-cell"><i class="fa-solid {{icon}}"></i> <strong>{{label}}</strong></span>
+    <span class="arn-muted">{{check}}</span>
+    <span>{{text}}</span>
+    <span class="arn-controls"><a class="arn-btn small" data-action="campActivity" data-activity="{{id}}"><i class="fa-solid fa-dice-d20"></i> Roll</a></span>
+  </li>
+  {{/each}}
+</ul>
+{{#if camp.log.length}}
+<div class="arn-section-head"><h3>Nights</h3></div>
+<ul class="arn-list compact">{{#each camp.log}}<li><span>{{this}}</span></li>{{/each}}</ul>
+{{/if}}

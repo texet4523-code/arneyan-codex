@@ -95,6 +95,8 @@
 
     <div class="arn-tab" data-tab="travel" {{#unless (eq @root.activeTab "travel")}}hidden{{/unless}}>{{> "systems/arneyan/templates/actor/travel-tab.hbs"}}</div>
 
+    <div class="arn-tab" data-tab="camp" {{#unless (eq @root.activeTab "camp")}}hidden{{/unless}}>{{> "systems/arneyan/templates/actor/camp-tab.hbs"}}</div>
+
     <div class="arn-tab" data-tab="notes" {{#unless (eq @root.activeTab "notes")}}hidden{{/unless}}>
       <div class="arn-section-head"><h3>Party notes</h3>{{#if editable}}<a class="arn-btn small ghost" data-action="editNotes"><i class="fa-solid fa-pen"></i> Edit</a>{{/if}}</div>
       <div class="arn-prose">{{#if notes}}{{{notes}}}{{else}}<p class="arn-muted">Quests, debts, rumours, who owes whom.</p>{{/if}}</div>

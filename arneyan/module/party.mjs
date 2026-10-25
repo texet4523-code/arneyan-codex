@@ -226,7 +226,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     Object.assign(context, {
       actor, system: actor.system, source: actor._source.system, editable: this.isEditable, isGM: game.user.isGM,
       activeTab: this._activeTab,
-      tabs: [["members", "Members"], ["stash", "Stash"], ["travel", "Travel"], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
+      tabs: [["members", "Members"], ["stash", "Stash"], ["travel", "Travel"], ["camp", "Camp"], ["notes", "Notes"]].map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       members, stash,
       places: game.actors.filter(a => a.type === "storage" && a.testUserPermission(game.user, "OBSERVER")).sort((a, b) => a.name.localeCompare(b.name))
         .map(a => ({ id: a.id, name: a.name, img: a.img, location: a.system.location, here: a.system.here, slots: a.system.usedSlots, capacity: a.system.capacity })),

@@ -11,6 +11,7 @@ import { registerSummons, dismissSummon, summonSummary } from "./summons.mjs";
 import { registerCompanions, companionContext, addCompanion, placeCompanion, releaseCompanion } from "./companions.mjs";
 import { downtimeContext, newDowntime, deleteDowntime, editDowntime } from "./downtime.mjs";
 import { travelContext, travelDay, refillWater, resetJourney, tableNames, registerTravel, endDayHere } from "./travel.mjs";
+import { campContext, moveWatch, nightCheck, doActivity, registerCamp } from "./camp.mjs";
 
 export { timeLeftLabel };
 
@@ -19,10 +20,12 @@ export function registerWorld() {
   registerSummons();
   registerCompanions();
   registerTravel();
+  registerCamp();
   foundry.applications.handlebars.loadTemplates([
     "systems/arneyan/templates/actor/companions.hbs",
     "systems/arneyan/templates/actor/downtime-tab.hbs",
-    "systems/arneyan/templates/actor/travel-tab.hbs"
+    "systems/arneyan/templates/actor/travel-tab.hbs",
+    "systems/arneyan/templates/actor/camp-tab.hbs"
   ]);
 }
 
@@ -67,6 +70,9 @@ export function dropOnCompanions(sheet, event, actor) {
 export async function worldPartyContext(party, members) {
   const ctx = travelContext(party, members);
   ctx.travel.tables = globalThis.game?.packs ? await tableNames().catch(() => []) : [];
+  let minute = 0;
+  try { const { whenOf } = await import("./calendar.mjs"); minute = Math.floor(whenOf().secondOfDay / 60); } catch { /* no clock in tests */ }
+  Object.assign(ctx, campContext(party, members, minute));
   return ctx;
 }
 
@@ -74,5 +80,9 @@ export const WORLD_PARTY_ACTIONS = {
   async travelDay() { const { partyMembers } = await import("./party.mjs"); return travelDay(this.document, partyMembers()); },
   async travelRefill() { const { partyMembers } = await import("./party.mjs"); return refillWater(this.document, partyMembers()); },
   async travelEndDay() { const { partyMembers } = await import("./party.mjs"); return endDayHere(this.document, partyMembers()); },
-  travelReset() { return resetJourney(this.document); }
+  travelReset() { return resetJourney(this.document); },
+  async campNextWatch() { const { partyMembers } = await import("./party.mjs"); return moveWatch(this.document, partyMembers(), 1); },
+  async campPrevWatch() { const { partyMembers } = await import("./party.mjs"); return moveWatch(this.document, partyMembers(), -1); },
+  async campNightCheck() { const { partyMembers } = await import("./party.mjs"); return nightCheck(this.document, partyMembers()); },
+  async campActivity(event, target) { const { partyMembers } = await import("./party.mjs"); return doActivity(this.document, partyMembers(), target.dataset.activity, event); }
 };
