@@ -18,6 +18,7 @@ import { toggleCondition, statusesOf } from "./effects.mjs";
 import { HIDE_TIERS, HIDE_IDS, hideTier, sensesOf, surpriseAwareness } from "./awareness.mjs";
 
 const SYS = "arneyan";
+const SOCKET = `system.${SYS}`;
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 const gmIds = () => game.users.filter(u => u.isGM).map(u => u.id);
 const ROGUELIKE = /^(Rogue|Assassin)\b/i;
@@ -71,7 +72,8 @@ export function tierText(tier, actor = null) {
 
 /** Everyone else on the scene who could notice the hider, with their passive awareness against the DC. */
 export function noticeRows(hider, tier, tokens = []) {
-  const mine = hider?.getActiveTokens?.() ?? [];
+  // The hider's own token(s) on this scene: its active tokens, or any token whose actor is the hider.
+  const mine = [...(hider?.getActiveTokens?.() ?? []), ...tokens.filter(t => (t.actor ?? t.document?.actor)?.uuid && (t.actor ?? t.document?.actor)?.uuid === hider?.uuid)];
   const own = new Set(mine.map(t => t.document?.id ?? t.id));
   // The other side: creatures of a different disposition from the hider's token (everyone, if it has none).
   const disp = (mine[0]?.document ?? mine[0])?.disposition;
@@ -101,11 +103,19 @@ async function onHideSet(button) {
   await setHideTier(actor, tier, total);
   await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><p><strong>${esc(actor.name)}</strong> (Hide ${total}): ${esc(tierText(tier, actor))}</p></div>` });
   if (!tier) return;
-  const rows = noticeRows(actor, tier, globalThis.canvas?.tokens?.placeables ?? []);
+  // Only the GM sees who notices: a player's click asks the active GM to post it.
+  const sceneId = globalThis.canvas?.scene?.id ?? "";
+  if (game.users.activeGM?.isSelf) return postNotice(actor, tier, sceneId);
+  if (game.users.activeGM) game.socket.emit(SOCKET, { action: "stealth.notice", actorUuid: actor.uuid, sceneId });
+}
+
+/** The GM's private card: who on the scene notices the hider. */
+async function postNotice(actor, tier, sceneId) {
+  const scene = game.scenes?.get(sceneId) ?? globalThis.canvas?.scene;
+  const rows = noticeRows(actor, tier, [...(scene?.tokens ?? [])]);
   if (!rows.length) return;
   const line = r => `<li><strong>${esc(r.name)}</strong>: passive awareness ${r.awareness} ${r.spots ? `<strong>notices</strong>` : "doesn't notice"}${r.beaten.length ? ` (${esc(r.beaten.join(", "))} beaten)` : ""}${r.still.length ? `; its ${esc(r.still.join(", "))} still finds it in range` : ""}</li>`;
-  // Blind: only the GM sees it, not the player who pressed the button.
-  await ChatMessage.create({ whisper: gmIds(), blind: true, speaker: ChatMessage.getSpeaker({ actor }),
+  await ChatMessage.create({ whisper: gmIds(), speaker: ChatMessage.getSpeaker({ actor }),
     content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-eye"></i> <span>Who notices ${esc(actor.name)} (DC ${tier.dc})</span></header><ul>${rows.map(line).join("")}</ul><p class="arn-muted">A creature not actively looking notices if its passive awareness meets the Search DC. A sense the creature is hidden from doesn't reveal it on its own.</p></div>` });
 }
 
@@ -146,7 +156,7 @@ async function onSearchFound(button) {
 export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulties.moderate) {
   // Each ambusher gives the group away at its Search DC if it's hiding, or at the Difficulty Tiers DC if not (the
   // noisiest one counts: the lowest).
-  const fallback = Number.isFinite(Number(fixedDc)) && fixedDc !== null ? Number(fixedDc) : ARNEYAN.difficulties.moderate;
+  const fallback = fixedDc !== null && fixedDc !== "" && Number.isFinite(Number(fixedDc)) ? Number(fixedDc) : ARNEYAN.difficulties.moderate;
   const dcs = ambushers.map(a => hideState(a)?.dc ?? fallback);
   const dc = dcs.length ? Math.min(...dcs) : null;
   const against = Math.max(0, ...ambushers.map(a => Number(a.system?.mods?.sum?.("surprise.against") ?? a.mods?.sum?.("surprise.against")) || 0));
@@ -209,7 +219,17 @@ async function endSurprise(combat) {
   for (const a of actors) if (statusesOf(a).has("surprised")) await toggleCondition(a, "surprised", false);
 }
 
+async function onSocket(msg, senderId) {
+  if (msg?.action !== "stealth.notice" || !game.users.activeGM?.isSelf) return;
+  const actor = await fromUuid(String(msg.actorUuid ?? "")).catch(() => null);
+  const sender = game.users.get(senderId);
+  if (!(actor instanceof Actor) || !sender || !actor.testUserPermission(sender, "OWNER")) return;
+  const tier = hideState(actor);
+  if (tier) await postNotice(actor, tier, String(msg.sceneId ?? ""));
+}
+
 export function registerStealth() {
+  Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
   if (game.arneyan) Object.assign(game.arneyan, { hide: rollHide, search: rollSearch, surprise: surpriseDialog });
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const root = html instanceof HTMLElement ? html : html?.[0];

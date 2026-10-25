@@ -99,6 +99,12 @@ const CG = await import("../arneyan/module/chargen.mjs");
   // Struck-out lines don't count; names with apostrophes survive; sets typed as paragraphs move into the list.
   assert.equal(CG.parseDonated("<ul><li><s>16, 15, 12, 10, 9, 8</s></li><li>15, 15, 12, 10, 9, 8 (from D&#39;Arcy)</li></ul>").map(d => d.from).join(), "D'Arcy");
   assert.equal(CG.donatedHtml("<p>Intro</p><p>16, 15, 12, 10, 9, 8 (from A)</p>", CG.parseDonated("<p>16, 15, 12, 10, 9, 8 (from A)</p>")), "<p>Intro</p><ul><li>16, 15, 12, 10, 9, 8 (from A)</li></ul>");
+  // A set typed as a paragraph beside the (empty) list counts, and leaves when taken; the GM's own lines stay.
+  const typed = "<p>Intro</p><ul></ul><p>16, 15, 12, 10, 9, 8</p>";
+  assert.equal(CG.parseDonated(typed).length, 1);
+  assert.equal(CG.donatedHtml(typed, []), "<p>Intro</p><ul></ul>");
+  assert.equal(CG.donatedHtml("<p>Intro<br>16, 15, 12, 10, 9, 8</p>", CG.parseDonated("<p>Intro<br>16, 15, 12, 10, 9, 8</p>")), "<p>Intro</p><ul><li>16, 15, 12, 10, 9, 8</li></ul>");
+  assert.equal(CG.donatedHtml("<h2>Sets</h2><p>16, 15, 12, 10, 9, 8</p>", []), "<h2>Sets</h2><ul></ul>");
   // Nobody can delete the journal.
   const src = fs.readFileSync(new URL("../arneyan/module/chargen.mjs", import.meta.url), "utf8");
   assert.ok(src.includes('Hooks.on("preDeleteJournalEntry"') && src.includes('Hooks.on("preDeleteJournalEntryPage"'));

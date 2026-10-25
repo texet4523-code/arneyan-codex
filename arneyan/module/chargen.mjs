@@ -44,39 +44,58 @@ const INTRO = "<p>Method V sets nobody kept (Rule B). Anyone making a character 
 export function donatedJournal() { return game.journal?.find?.(j => j.getFlag?.(SYSFLAG, "donatedSets")) ?? null; }
 const donatedPage = (j = donatedJournal()) => j?.pages?.contents?.find(p => p.type === "text") ?? null;
 
-/** Plain text from a bit of HTML (entities decoded; no scripts run). */
+/** Plain text from a bit of HTML: tags become spaces, then entities are decoded (no scripts run). */
 const plainText = html => {
-  if (typeof DOMParser !== "undefined") return new DOMParser().parseFromString(`<body>${html}</body>`, "text/html").body.textContent ?? "";
+  const spaced = String(html ?? "").replace(/<[^>]+>/g, " ");
+  if (typeof DOMParser !== "undefined") return new DOMParser().parseFromString(`<body>${spaced}</body>`, "text/html").body.textContent ?? "";
   const ent = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", "#39": "'", "#160": " " };
-  return String(html).replace(/<[^>]+>/g, " ").replace(/&(#?\w+);/g, (m, k) => ent[k] ?? (/^#\d+$/.test(k) ? String.fromCharCode(Number(k.slice(1))) : m));
+  return spaced.replace(/&(#?\w+);/g, (m, k) => ent[k] ?? (/^#\d+$/.test(k) ? String.fromCharCode(Number(k.slice(1))) : m));
 };
 /** A line the GM struck out (strikethrough) no longer counts. */
 const struck = html => /<(s|del|strike)[\s>]/i.test(html);
+const LIST_RE = /<(ul|ol)[\s>][\s\S]*?<\/\1>/gi;
+/** Lines of the page outside its lists: blocks (paragraphs, headings, divs), and lines split by line breaks. */
+const outsideLines = html => String(html ?? "").replace(LIST_RE, "\n").split(/(?<=<\/(?:p|h[1-6]|div|blockquote)>)|<br\s*\/?>|\n/i);
 
-/** The sets written in the journal's page: every list item (or line) with six scores that pass Rule C. */
+/** One line as a set, or null. */
+function lineSet(r) {
+  if (!r || struck(r)) return null;
+  const text = plainText(r).replace(/\s+/g, " ").trim();
+  const set = (text.match(/\b\d{1,2}\b/g) ?? []).slice(0, 6).map(Number);
+  if (!goodSet(set)) return null;
+  const from = text.match(/\bfrom\s+(.+?)\)?\s*$/i)?.[1]?.trim() ?? "";
+  return { id: `${set.join("-")}|${from}`, set, from };
+}
+
+/** The sets written in the journal's page: every list item, and any line outside a list, with six scores that pass Rule C. */
 export function parseDonated(html = "") {
-  const raw = /<li[\s>]/i.test(html) ? [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(m => m[1]) : String(html).split(/<br\s*\/?>|<\/p>|<\/div>|\n/i);
-  const out = [];
-  for (const r of raw) {
-    if (struck(r)) continue;
-    const text = plainText(r).replace(/\s+/g, " ").trim();
-    const set = (text.match(/\b\d{1,2}\b/g) ?? []).slice(0, 6).map(Number);
-    if (!goodSet(set)) continue;
-    const from = text.match(/\bfrom\s+(.+?)\)?\s*$/i)?.[1]?.trim() ?? "";
-    out.push({ id: `${set.join("-")}|${from}`, set, from });
-  }
-  return out;
+  const items = [...String(html ?? "").matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(m => m[1]);
+  return [...items, ...outsideLines(html)].map(lineSet).filter(Boolean);
 }
 export function donatedSets() {
   try { return parseDonated(donatedPage()?.text?.content ?? ""); } catch { return []; }
 }
-/** The page's text with its list replaced (anything else the GM wrote stays). */
+/** The page's text with its list replaced; sets written outside the list move into it; anything else stays. */
 export function donatedHtml(old = "", list = []) {
   const ul = `<ul>${list.map(d => `<li>${d.set.join(", ")}${d.from ? ` (from ${esc(d.from)})` : ""}</li>`).join("")}</ul>`;
-  if (/<(ul|ol)[\s>][\s\S]*?<\/\1>/i.test(old)) return old.replace(/<(ul|ol)[\s>][\s\S]*?<\/\1>/i, ul);
-  // No list yet (sets typed as paragraphs): those lines move into the list; anything else written stays.
-  const kept = String(old).split(/(?<=<\/p>)/i).filter(p => p.trim() && !parseDonated(p).length).join("");
-  return `${kept || INTRO}${ul}`;
+  // Drop set lines outside lists (a block that's a set, or a set line inside a block with line breaks).
+  const strip = chunk => chunk.split(/(?<=<\/(?:p|h[1-6]|div|blockquote)>)/i).map(block => {
+    // A set line inside a block keeps only its tags (the block's closing tag may be on it).
+    if (/<br\s*\/?>/i.test(block)) return block.split(/<br\s*\/?>/i).map(line => (lineSet(line) ? (line.match(/<[^>]+>/g) ?? []).join("") : line)).join("<br>").replace(/(?:<br>)+(\s*<\/(?:p|div|h[1-6]|blockquote)>)/gi, "$1").replace(/(<(?:p|div)[^>]*>)(?:<br>)+/gi, "$1");
+    return lineSet(block) ? "" : block;
+  }).join("");
+  let replaced = false;
+  const parts = String(old ?? "").split(/(<(?:ul|ol)[\s>][\s\S]*?<\/(?:ul|ol)>)/i);
+  const out = parts.map(part => {
+    if (/^<(ul|ol)[\s>]/i.test(part)) {
+      if (replaced) return "";
+      replaced = true;
+      return ul;
+    }
+    return strip(part);
+  }).join("");
+  if (replaced) return out;
+  return `${out.replace(/<p>\s*<\/p>/gi, "").trim() || INTRO}${ul}`;
 }
 /** The journal, made if it isn't there yet (GM only). Players can read it. */
 export async function ensureDonatedJournal() {
@@ -348,7 +367,7 @@ export function registerChargen() {
   });
   // Only one donated sets journal: a copy (duplicated, or imported) is an ordinary journal.
   Hooks.on("preCreateJournalEntry", (j, data) => {
-    if (foundry.utils.getProperty(data, `flags.${SYSFLAG}.donatedSets`) && donatedJournal()) j.updateSource({ [`flags.${SYSFLAG}.donatedSets`]: false });
+    if (j._source?.flags?.[SYSFLAG]?.donatedSets && donatedJournal()) j.updateSource({ [`flags.${SYSFLAG}.donatedSets`]: false });
   });
   // The donated sets journal can be edited but not deleted (nor its page).
   Hooks.on("preDeleteJournalEntry", j => {

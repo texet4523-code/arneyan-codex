@@ -251,6 +251,7 @@ export function capHpChange(actor, changes) {
   const newStored = foundry.utils.getProperty(changes, "system.attributes.hp.max");
   const hp = actor.system?.attributes?.hp;
   if (!hp) return;
+  if (val === undefined && newStored === undefined) return;
   const derived = hp.effectiveMax ?? hp.max;
   if (!Number.isFinite(derived)) return;
   const oldStored = Number(actor._source?.system?.attributes?.hp?.max ?? hp.max) || 0;
