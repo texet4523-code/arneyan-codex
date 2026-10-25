@@ -54,11 +54,19 @@ const isRoguelike = actor => [...(actor?.items ?? [])].some(i => i.type === "cla
 const sensesText = actor => actor?.system?.traits?.senses ?? actor?.system?.details?.senses ?? "";
 const skillNamed = (actor, re) => [...(actor?.items ?? [])].find(i => i.type === "skill" && re.test(String(i.name).trim()));
 
+/** The reminders on a Hide roll: the Codex's limits, the class's own Hide text, and Stealth or Rogue Skill features. */
+export function hideNotes(actor, text = "") {
+  const own = [...(actor?.items ?? [])].flatMap(i => (i.system?.activities ?? []).filter(a => /^hide$/i.test(String(a.name ?? "").trim())).map(a => a.text)).filter(Boolean);
+  const mods = actor?.system?.mods ?? actor?.mods;
+  const features = (mods?.notesFor?.("check", "skill") ?? []).filter(n => /stealth|hid(e|ing)|rogue skills/i.test(n));
+  return [...new Set(["Hide only while unobserved, or in cover or concealment.", ...(text ? [text] : own), ...features])];
+}
+
 /** Roll Hide: Stealth if the creature has it as a skill (a monster), otherwise a Dexterity check. */
-export function rollHide(actor, event) {
+export function rollHide(actor, event, { text = "" } = {}) {
   const footer = `<button type="button" class="arn-hide-set" data-actor-uuid="${esc(actor.uuid)}"><i class="fa-solid fa-user-ninja"></i> Set how hidden (after any Luck)</button>`;
   const stealth = skillNamed(actor, /^stealth$/i);
-  const opts = { title: "Hide", footer, extra: { hide: true } };
+  const opts = { title: "Hide", footer, extra: { hide: true }, notes: hideNotes(actor, text) };
   return stealth ? actor.rollSkill(stealth, event, opts) : actor.rollAbility("dex", event, { ...opts, title: "Hide (Dexterity)" });
 }
 
@@ -154,11 +162,14 @@ async function onSearchFound(button) {
  * @param {number|null} fixedDc  A Difficulty Tiers DC when the ambushers weren't hiding.
  */
 export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulties.moderate) {
-  // Each ambusher gives the group away at its Search DC if it's hiding, or at the Difficulty Tiers DC if not (the
-  // noisiest one counts: the lowest).
+  // Books v0.10.11 (m24): hiding ambushers are noticed at the lowest Search DC among them, and an ambusher who isn't
+  // hidden gives the group away (no surprise). Ambushers who weren't hiding at all: a Difficulty Tiers DC (Moderate
+  // for a quiet approach, Hard for a prepared ambush).
   const fallback = fixedDc !== null && fixedDc !== "" && Number.isFinite(Number(fixedDc)) ? Number(fixedDc) : ARNEYAN.difficulties.moderate;
-  const dcs = ambushers.map(a => hideState(a)?.dc ?? fallback);
-  const dc = dcs.length ? Math.min(...dcs) : null;
+  const states = ambushers.map(a => hideState(a));
+  const hiding = states.filter(Boolean);
+  const givenAway = hiding.length && hiding.length < states.length ? ambushers.filter((a, i) => !states[i]).map(a => a.name) : [];
+  const dc = !ambushers.length ? null : givenAway.length ? 0 : hiding.length ? Math.min(...hiding.map(s => s.dc)) : fallback;
   const against = Math.max(0, ...ambushers.map(a => Number(a.system?.mods?.sum?.("surprise.against") ?? a.mods?.sum?.("surprise.against")) || 0));
   const rows = unaware.map(a => {
     const aw = a.system?.attributes?.awareness;
@@ -167,7 +178,7 @@ export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulti
     const cannot = (mods?.notesFor?.("init", "check", "skill") ?? []).filter(n => /cannot be surprised|can't be surprised/i.test(n));
     return { actor: a, name: a.name, awareness: s.value, bonus: s.bonus, against: s.against, surprised: dc !== null && s.value < dc && !cannot.length, cannot };
   });
-  return { dc, against, rows };
+  return { dc, against, rows, givenAway };
 }
 
 export async function surpriseDialog() {
@@ -179,9 +190,9 @@ export async function surpriseDialog() {
   const guess = t => hidden.has(t.id) || hiddenDisp.has(t.document.disposition) ? "amb" : hiddenDisp.size ? "un" : "";
   const row = t => `<tr><td>${esc(t.name)}${hidden.has(t.id) ? ` <span class="arn-chip">${esc(hideState(t.actor).label)}, DC ${hideState(t.actor).dc}</span>` : ""}</td>
     ${["amb", "un", ""].map(v => `<td><input type="radio" name="side-${t.id}" value="${v}" ${guess(t) === v ? "checked" : ""}></td>`).join("")}</tr>`;
-  const content = `<p>Surprise happens only when one side has a real chance to catch the other unaware (your call). Each creature on the unaware side compares its passive awareness with the lowest DC among the ambushers: a hiding ambusher's Search DC, or the DC below for one that isn't hiding (the noisiest gives the group away).</p>
+  const content = `<p>Surprise happens only when one side has a real chance to catch the other unaware (your call). Each creature on the unaware side compares its passive awareness with the lowest Search DC among the hiding ambushers; an ambusher who isn't hidden gives the group away. If nobody was hiding, the DC below is used.</p>
     <table class="arn-surprise-table"><thead><tr><th>Creature</th><th>Ambusher</th><th>Unaware</th><th>Neither</th></tr></thead><tbody>${tokens.map(row).join("")}</tbody></table>
-    <div class="form-group"><label>Ambushers not hiding</label><select name="dc"><option value="${ARNEYAN.difficulties.moderate}">Quiet approach (Moderate ${ARNEYAN.difficulties.moderate})</option><option value="${ARNEYAN.difficulties.hard}">Prepared ambush (Hard ${ARNEYAN.difficulties.hard})</option></select></div>`;
+    <div class="form-group"><label>If nobody hid</label><select name="dc"><option value="${ARNEYAN.difficulties.moderate}">Quiet approach (Moderate ${ARNEYAN.difficulties.moderate})</option><option value="${ARNEYAN.difficulties.hard}">Prepared ambush (Hard ${ARNEYAN.difficulties.hard})</option></select></div>`;
   const res = await foundry.applications.api.DialogV2.wait({
     window: { title: "Surprise check", icon: "fa-solid fa-eye" }, classes: ["arneyan"], position: { width: 520 }, content,
     buttons: [{ action: "ok", label: "Check", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => {
@@ -197,6 +208,9 @@ export async function surpriseDialog() {
   if (!amb.length || !un.length) return ui.notifications.warn("Choose at least one ambusher and one unaware creature.");
   const r = surpriseResults(amb, un.map(t => t.actor), Number(res.dc));
   const surprisedTokens = un.filter((t, i) => r.rows[i].surprised).map(t => t.document.uuid);
+  if (r.givenAway.length) {
+    return ChatMessage.create({ whisper: gmIds(), content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-eye"></i> <span>Surprise check</span></header><p>${esc(r.givenAway.join(", "))} ${r.givenAway.length > 1 ? "aren't" : "isn't"} hidden and ${r.givenAway.length > 1 ? "give" : "gives"} the group away: nobody is surprised. (Leave out anyone who isn't part of the ambush: Neither.)</p></div>` });
+  }
   const lines = r.rows.map(x => `<li><strong>${esc(x.name)}</strong>: ${x.awareness}${x.bonus ? ` (incl. +${x.bonus} surprise)` : ""}${x.against ? ` (−${x.against} ambush)` : ""} ${x.surprised ? "<strong>surprised</strong>" : "notices"}${x.cannot.length ? ` <em>${esc(x.cannot.join("; "))}</em>` : ""}</li>`).join("");
   await ChatMessage.create({ whisper: gmIds(), content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-eye"></i> <span>Surprise check (DC ${r.dc})</span></header><ul>${lines}</ul>
     ${surprisedTokens.length ? `<button type="button" class="arn-surprise-mark" data-tokens="${esc(surprisedTokens.join(","))}"><i class="fa-solid fa-person-falling"></i> Mark the surprised</button>` : "<p>Nobody is surprised.</p>"}

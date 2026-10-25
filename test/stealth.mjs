@@ -59,8 +59,15 @@ const assassin = mk("Assassin", 0, { mods: new ModSet([{ key: "surprise.against"
 const guard = mk("Guard", 3), sharp = mk("Sharp", 0, { items: master }), barbarian = mk("Barbarian", 1, { mods: barb });
 const r = ST.surpriseResults([lurker], [guard, sharp, barbarian]);
 assert.equal(r.dc, 15, "the hiding ambusher's Search DC");
-assert.equal(ST.surpriseResults([lurker, assassin], [guard]).dc, 12, "one not hiding gives the group away at the Difficulty DC (Moderate)");
-assert.equal(ST.surpriseResults([lurker, assassin], [guard], 15).dc, 15, "or Hard for a prepared ambush");
+// Books v0.10.11 (m24): an ambusher who isn't hidden gives the group away.
+const away = ST.surpriseResults([lurker, assassin], [guard]);
+assert.deepEqual(away.givenAway, ["Assassin"]); assert.equal(away.rows[0].surprised, false, "nobody is surprised");
+assert.equal(ST.surpriseResults([assassin], [guard]).dc, 12, "nobody hid: Moderate for a quiet approach");
+assert.equal(ST.surpriseResults([assassin], [guard], 15).dc, 15, "or Hard for a prepared ambush");
+// The Hide roll's reminders: the Codex's limit, the class's own Hide text, Stealth features.
+const rogueish = { items: [{ type: "ability", system: { activities: [{ name: "Hide", text: "Disadvantage above half speed." }] } }], mods: new ModSet([{ key: "adv.skill", value: 1, label: "Halfling", when: "Stealth checks" }]) };
+const hn = ST.hideNotes(rogueish);
+assert.ok(hn[0].includes("unobserved") && hn.includes("Disadvantage above half speed.") && hn.some(n => n.includes("Stealth")));
 const hid = ST.surpriseResults([lurker, mk("Hidden Assassin", 0, { hidden: "hiddenComplete", mods: new ModSet([{ key: "surprise.against", value: 2, label: "Surprise" }]) })], [guard, sharp, barbarian]);
 assert.equal(hid.dc, 15); assert.equal(hid.against, 2);
 assert.deepEqual(hid.rows.map(x => [x.name, x.awareness, x.surprised]), [["Guard", 11, true], ["Sharp", 13, true], ["Barbarian", 11 + 5 + 2 - 2, false]]);

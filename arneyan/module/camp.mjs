@@ -213,7 +213,7 @@ export function watchMove(minuteOfDay, k, dir) {
 /** Camp activities (Kieran's list, 22 Oct): each a check the player rolls from its button. */
 export const CAMP_ACTIVITIES = [
   { id: "watch", label: "Keep watch", check: "Perception (a Wisdom check)", ability: "wis", skills: [], icon: "fa-eye",
-    text: "Spot trouble before it reaches the camp. The night's Encounter Check falls in one watch; that watch's Perception decides surprise." },
+    text: "Spot trouble before it reaches the camp. The night's Encounter Check falls in one watch: the watch's passive awareness against the comers' Search DC decides surprise (books v0.10.10), or the watch actively Searches (a Wisdom check)." },
   { id: "forage", label: "Forage", check: "Survival, DC 12", skills: ["Survival"], dc: FORAGE_DC, icon: "fa-seedling",
     text: "1d4 Day's Rations on a success, +1 for every 5 over. Once a day." },
   { id: "hunt", label: "Hunt", check: "Hunting or Survival, DC 12", skills: ["Hunting", "Survival"], dc: FORAGE_DC, icon: "fa-crosshairs", needsGear: true,
@@ -325,8 +325,10 @@ export async function nightCheck(party, members) {
     const i = pick.total - 1;
     const watchers = who[i];
     const names = watchers.map(id => members.find(m => m.id === id)?.name).filter(Boolean);
+    const aware = watchers.map(id => members.find(m => m.id === id)).filter(Boolean).map(m => `${esc(m.name)} ${m.system?.attributes?.awareness?.value ?? "?"}`);
     body += `<p>It comes during <strong>watch ${i + 1}</strong> (${hm(slots[i].start)} to ${hm(slots[i].end)}, d${slots.length}: ${pick.total}), on ${esc(names.join(" and ") || "nobody")}'s watch.</p>
-      <div class="arn-card-buttons"><button type="button" class="arn-camp-askwatch" data-party="${esc(party.id)}" data-watchers="${esc(watchers.join(","))}" data-watch="${i + 1}"><i class="fa-solid fa-eye"></i> Ask the watch for Perception</button></div>`;
+      ${aware.length ? `<p>Passive awareness: ${aware.join(", ")}. A watcher who meets the comers' lowest Search DC (or Moderate 12 / Hard 15 if they weren't hiding) isn't surprised; the Surprise check in the token tools works it out. Or rule on it from the camp's precautions.</p>` : ""}
+      <div class="arn-card-buttons"><button type="button" class="arn-camp-askwatch" data-party="${esc(party.id)}" data-watchers="${esc(watchers.join(","))}" data-watch="${i + 1}"><i class="fa-solid fa-eye"></i> Ask the watch to Search</button></div>`;
   }
   await party.update({ [`flags.${SYS}.camp`]: { ...c, checked: nightKey, log: [...(c.log ?? []), `Night Encounter Check: ${r.total}${what ? ` (${what})` : ""}.`].slice(-30) } });
   await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }), whisper: game.users.filter(u => u.isGM).map(u => u.id), rolls: [r],
@@ -338,9 +340,9 @@ export async function askWatch(party, watcherIds, watch) {
   if (!game.user.isGM) return;
   const names = watcherIds.map(id => game.actors.get(id)?.name).filter(Boolean);
   await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }),
-    content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-eye"></i> <span>Watch ${watch}: Perception</span></header>
-      <p>${esc(names.join(" and ") || "The watch")}: roll Perception (a Wisdom check) to notice what's coming. The result decides surprise.</p>
-      <div class="arn-card-buttons"><button type="button" class="arn-camp-perception" data-watchers="${esc(watcherIds.join(","))}"><i class="fa-solid fa-eye"></i> Roll Perception</button></div></div>` });
+    content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-eye"></i> <span>Watch ${watch}: Search</span></header>
+      <p>${esc(names.join(" and ") || "The watch")}: something's out there. Search (a Wisdom check, Perception) to spot it against its Search DC.</p>
+      <div class="arn-card-buttons"><button type="button" class="arn-camp-perception" data-watchers="${esc(watcherIds.join(","))}"><i class="fa-solid fa-eye"></i> Search</button></div></div>` });
 }
 
 /** A camp activity's button: the user's character rolls it. */
@@ -420,7 +422,7 @@ export function registerCamp() {
       setTimeout(() => { per.disabled = false; }, 3000);
       const watchers = String(per.dataset.watchers || "").split(",").map(id => game.actors.get(id)).filter(Boolean);
       const who = await pickMember(watchers, "Perception");
-      if (who) await campCheck(who, { ability: "wis", title: "Perception" }, ev);
+      if (who) await (await import("./stealth.mjs")).rollSearch(who, ev);
     });
   });
 }

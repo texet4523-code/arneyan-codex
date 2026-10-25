@@ -1,4 +1,4 @@
-import { endHiding } from "./stealth.mjs";
+import { endHiding, rollHide } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
@@ -356,13 +356,13 @@ export class ArneyanActor extends Actor {
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
   /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
-  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [] } = {}) {
+  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [] } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
     const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`, ...advKeys) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
-    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: m?.notesFor("check") ?? [], autoFail: fail, footer, extra: { ...extra, ability: key } });
+    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: [...new Set([...(m?.notesFor("check") ?? []), ...more])], autoFail: fail, footer, extra: { ...extra, ability: key } });
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
@@ -390,7 +390,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Skill (NWP) check. Untrained is a plain d20. Trained adds the modifier (minimum +1). Master also has Advantage. */
-  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [] } = {}) {
+  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [] } = {}) {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
@@ -410,7 +410,7 @@ export class ArneyanActor extends Actor {
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
-      notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, footer, extra: { ...extra, skill: item.name }
+      notes: [...new Set([...(m?.notesFor("check", "skill") ?? []), ...more])], autoFail: fail, footer, extra: { ...extra, skill: item.name }
     });
   }
 
@@ -1422,6 +1422,8 @@ export class ArneyanItem extends Item {
       return damageRoll({ actor, item: this, title, formula: act.formula, damageType: heal ? "healing" : (act.damageType || ""), rollData, notes });
     }
     if (act.kind === "check" && act.ability && actor?.rollAbility) {
+      // A Rogue's or Assassin's Hide sets how hidden the creature is, as the sheet's Hide box does (K2).
+      if (/^hide$/i.test(String(act.name ?? "").trim())) return rollHide(actor, event, { text: act.text });
       await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` });
       const bonus = byLevel(act.bonus, cl, rollData);
       return actor.rollAbility(act.ability, event, bonus ? { bonus, label: this.name } : {});
