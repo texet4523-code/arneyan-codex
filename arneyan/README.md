@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.52 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.53 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.53
+
+- **The action bar is off by default** (Kieran, 25 Oct). The Token Action HUD bar (Attacks, Abilities, Saves & Checks...) no longer pops up on its own: right-click a token and use the new grid button among its buttons to show or hide it. Each player's choice is their own. (Only with the Token Action HUD module installed.)
+- **The donated sets journal fills itself from chat.** The set a player doesn't keep is posted in chat and copied into the Donated Ability Score Sets journal by the GM's client, at once or the next time a GM comes on. Sets posted by earlier versions ("can be donated to the table") are picked up when the world loads. A set taken from the journal doesn't come back.
 
 ## What's new in 0.10.52
 
