@@ -16,7 +16,7 @@ New versions then appear under **Game Systems** with an **Update** button. World
 
 ## What's in it
 
-Character sheets with the new-character steps, classes, Kits, ancestries, feats, skills and spells; the Shopkeeper's Catalogue; the Bestiary (the pregenerated characters come back with the final playtest version); combat, conditions, auras and areas; GM tools for encounters, treasure, travel, time and downtime. The full guide is [arneyan/README.md](arneyan/README.md).
+Character sheets with the new-character steps, classes, Kits, ancestries, feats, skills and spells; the Shopkeeper's Catalogue; the Bestiary; the pregenerated characters; combat, conditions, auras and areas; GM tools for encounters, treasure, travel, time and downtime. The full guide is [arneyan/README.md](arneyan/README.md).
 
 ## For maintainers
 

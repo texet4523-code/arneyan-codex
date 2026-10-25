@@ -2,7 +2,7 @@
   "id": "arneyan",
   "title": "The Arneyan Codex",
   "description": "Game system for The Arneyan Codex: character, NPC and monster sheets, d20 rolls, Luck, saves, BtH, NWPs, spells and handbook page links. Includes the Player's Handbook as compendiums. Icons from game-icons.net (CC BY 3.0).",
-  "version": "0.10.57",
+  "version": "0.10.58",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -120,7 +120,7 @@
   "initiative": "1d20 + @abilities.dex.mod",
   "url": "https://github.com/texet4523-code/arneyan-codex",
   "manifest": "https://github.com/texet4523-code/arneyan-codex/releases/latest/download/system.json",
-  "download": "https://github.com/texet4523-code/arneyan-codex/releases/download/v0.10.57/arneyan.zip",
+  "download": "https://github.com/texet4523-code/arneyan-codex/releases/download/v0.10.58/arneyan.zip",
   "packs": [
     {
       "name": "classes",
@@ -265,6 +265,18 @@
         "ASSISTANT": "OWNER"
       },
       "flags": {}
+    },
+    {
+      "name": "pregens",
+      "label": "Pregenerated Characters",
+      "path": "packs/pregens",
+      "type": "Actor",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -292,6 +304,14 @@
       "packs": [
         "monsters",
         "tables"
+      ]
+    },
+    {
+      "name": "Adventures",
+      "sorting": "m",
+      "color": "#5a2a1a",
+      "packs": [
+        "pregens"
       ]
     }
   ],

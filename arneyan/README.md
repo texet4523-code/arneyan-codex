@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.57 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.58 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.58
+
+**The playtest version.** The compendiums follow the books **v0.10.13** (Players Handbook and Monsters & Treasure), and the **Pregenerated Characters** are back.
+
+- **Book I:** the Codex's Healing says current HP can never exceed max HP (Foundry has worked this way since 0.10.52), and Energy drain is reworded (it inflicts Exhaustion, never past level 5).
+- **Pregenerated Characters** return in the Adventures folder: the 15 Broken Anvil characters and the four Jacob's Well Keepers. HP matches every printed sheet; the five AC differences from before stay (Armour Master and Shield Expert are reminders, the Ring of Protection isn't automated, Maud's 15 assumes Mage Armour).
 
 ## What's new in 0.10.57
 
@@ -637,7 +644,7 @@ Polymorph, Wild Shape, Shapechange, Animal Shapes and Polymorph Any Object, foll
 The rest of the Codex's conditions table: **Confused** (a reminder to roll 1d10 each turn), **Shaken** (Disadvantage on the next attack), **Slowed** (half Speed, one attack a round) and **Weakened** (Disadvantage on attacks). The Bone Devil's Fear Aura now offers Shaken.
 
 ## Pregenerated characters
-**Held back for now** (Kieran, 25 Oct 2026): the compendium returns with the final playtest version. Pregens already imported into a world stay there. When it returns, the **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
+The **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
 - **The Broken Anvil:** 15 characters in three folders, Level 1 - The Apprentices, Level 5 - The Journeymen and Level 9 - The Veterans (five seats each, seat 5 being the spare).
 - **Jacob's Well:** the four 3rd-level Keepers.
 Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.

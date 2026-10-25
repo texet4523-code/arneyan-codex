@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5, 25 Oct 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10, 25 Oct 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,13 +8,13 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01011/HB_v0.10.11_*.md (md5s on the board, F5). Output: /tmp/hb/v01011.
+Sources: /tmp/hb/src_v01013/HB_v0.10.13_*.md (md5s on the board, F10). Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01011"
+SRC = "/tmp/hb/src_v01013"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.11"
+VERSION = "0.10.13"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
