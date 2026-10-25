@@ -149,7 +149,7 @@ async function giveFromSocket(msg, senderId) {
   const inAllies = a => { for (let f = a.folder; f && allies; f = f.folder) if (f.id === allies.id) return true; return false; };
   if (!partyMembers().some(a => a.id === to.id) && !inAllies(to)) return;
   const made = await moveItemTo(item, to);
-  if (made) say(`${from.name} gives ${item.name} to ${to.name}.`, from);
+  if (made) say(`${from.name} gives ${publicName(item)} to ${to.name}.`, from);
 }
 
 /* -------------------------------------------- */
@@ -167,6 +167,17 @@ async function partySight(party) {
 }
 
 export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+  /**
+   * An unlinked party token's sheet opens the party's own: travel, the stash and the camp belong to the party, and
+   * travel mode reads them there (0.10.57). A linked token's sheet already is the party's.
+   */
+  render(options = {}, _options = {}) {
+    const doc = this.document;
+    const base = doc?.isToken && doc.type === "party" ? game.actors.get(doc.id) : null;
+    if (base && base !== doc) return base.sheet.render(options, _options);
+    return super.render(options, _options);
+  }
+
   static DEFAULT_OPTIONS = {
     classes: ["arneyan", "sheet", "actor", "party"],
     position: { width: 760, height: 720 },

@@ -7,6 +7,7 @@
 import { areaButton } from "./areas.mjs";
 import { TOUCH_ATTACK } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
+import { publicName } from "./expand.mjs";
 import { damageRoll, resolveFormula } from "./rolls.mjs";
 import { effectDataFor, applyEffectTo, startConcentration } from "./effects.mjs";
 import { tagDamage, show3d } from "./dsn.mjs";
@@ -53,6 +54,12 @@ export async function spendAmmo(actor, weapon) {
 /** What happens when someone uses a piece of equipment from their sheet. */
 export async function useEquipment(item, event) {
   const s = item.system;
+  // Unidentified gear a player tries (a wand, a staff, a potion): the GM says what happens, so nothing on screen names
+  // it (T130, 25 Oct 2026). An unknown scroll keeps its own rule (a check to read it, below). The GM's use is as usual.
+  if (s.identified === false && !game.user.isGM && !s.scroll?.spell) {
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: item.actor }), content: `<p>${foundry.utils.escapeHTML(item.actor?.name ?? "")} tries to use ${foundry.utils.escapeHTML(publicName(item))}. The GM says what happens.</p>` });
+    return ui.notifications.info(`${publicName(item)} is unidentified: the GM decides what happens when you use it.`);
+  }
   if (s.scroll?.spell) return readScroll(item, event);
   if (blankScrollLevel(item) !== null) return inscribeScroll(item);
   // A wand or staff that casts spells: pick one (or the only one).

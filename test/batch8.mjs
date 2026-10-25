@@ -182,5 +182,10 @@ console.log("All batch 8 checks passed.");
   assert.ok(fs.readFileSync(new URL("../arneyan/templates/actor/gear-row.hbs", import.meta.url), "utf8").includes('<span class="arn-muted">{{price}}</span>'));
   const travel = fs.readFileSync(new URL("../arneyan/module/travel.mjs", import.meta.url), "utf8");
   assert.ok(travel.includes("tokenDoc.actorLink ? tokenDoc.actor : (game.actors.get(tokenDoc.actorId) ?? tokenDoc.actor)"), "an unlinked party token counts on the party");
+  const pm = fs.readFileSync(new URL("../arneyan/module/party.mjs", import.meta.url), "utf8");
+  assert.ok(!pm.includes("gives ${item.name}"), "both give lines use the plain name");
+  assert.ok(pm.includes('doc?.isToken && doc.type === "party" ? game.actors.get(doc.id)'), "an unlinked party token opens the party's own sheet");
+  const gear = fs.readFileSync(new URL("../arneyan/module/gear.mjs", import.meta.url), "utf8");
+  assert.ok(gear.includes('if (s.identified === false && !game.user.isGM && !s.scroll?.spell)'), "a player's use of unidentified gear names nothing");
   console.log("OK linked party tokens, unidentified rows");
 }
