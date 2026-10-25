@@ -22,7 +22,7 @@
   <span class="arn-chip">{{travel.paceLabel}} pace</span>
   {{#if travel.arrived}}<span class="arn-chip gold">Arrived</span>{{else}}<span class="arn-chip">{{travel.days}} day{{#unless (eq travel.days 1)}}s{{/unless}} to go</span>{{/if}}
   {{#if travel.mode}}<span class="arn-chip strong" data-tooltip="Hours travelled today ({{travel.today}} of {{travel.perDay}} hexes); the travelling day is {{travel.hoursDay}}">{{travel.hoursToday}} (Day {{travel.dayNow}})</span>
-  <span class="arn-chip" data-tooltip="After each day of travel, everyone eats a day's rations at dawn">Rations eaten at dawn</span>{{/if}}
+  <span class="arn-chip" data-tooltip="After each day of travel, everyone eats a day's rations at dawn, when the party sets off (so food foraged that evening counts)">Rations eaten at dawn</span>{{/if}}
   {{#if travel.day}}<span class="arn-chip">Day {{travel.day}} of the journey</span>{{/if}}
   <span class="arn-chip {{#if (gt travel.needMeals travel.haveMeals)}}bad{{/if}}" data-tooltip="Each member eats a day's rations a day (a Week's Rations pack holds seven)">Rations {{travel.haveMeals}} / {{travel.needMeals}} needed</span>
 </div>

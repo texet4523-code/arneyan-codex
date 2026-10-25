@@ -80,4 +80,9 @@ assert.equal(ctx2.camp.activities.find(a => a.id === "cook").who, "Ana");
 assert.equal(ctx2.camp.activities.find(a => a.id === "watch").who, "Bo, Cy", "11pm: watch 1 stands it");
 const html2 = hbs(root)("templates/actor/camp-tab.hbs", { ...ctx2, isGM: true });
 for (const s of ['name="flags.arneyan.camp.assign.m0.watch"', 'name="flags.arneyan.camp.assign.m1.job"', "Not on watch", "Resting", "Watch 3 (03:20)"]) assert.ok(html2.includes(s), s);
+// Review fixes: once per calendar day, marked before the roll; a Collect button reads the roll (Luck included).
+const csrc = fs.readFileSync(new URL("../arneyan/module/camp.mjs", import.meta.url), "utf8");
+assert.ok(csrc.includes("await actor.setFlag(SYS, flag, day);\n    const msg = await campCheck("), "the day is marked before the roll");
+assert.ok(csrc.includes("(Number(f.total) || 0) + (Number(f.luckBurned) || 0)"), "Collect counts Luck burned");
+assert.ok(csrc.includes('class="arn-food-collect"') && csrc.includes("collectFood(col)"));
 console.log("OK camp menu");

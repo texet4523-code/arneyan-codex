@@ -64,27 +64,63 @@ export async function pickMember(members, title) {
   return choices.find(m => m.id === id) ?? null;
 }
 
+/** Today on the calendar (the world's day number): foraging and hunting are once each per calendar day. */
+export async function today() {
+  try { const { whenOf } = await import("./calendar.mjs"); return String(whenOf().n); } catch { return "0"; }
+}
+
+/** Rolls in progress (a double click doesn't roll twice). */
+const busy = new Set();
+
 /**
- * Forage (a button): the character's Survival check at DC 12; on a success, 1d4 Day's Rations (+1 per 5 over) go into
- * their pack. Once a day for each character (`key` names the day: "<party id>.<day>").
+ * A finding check (Forage, Hunt): once per character per calendar day, marked before the roll. The roll card gets a
+ * Collect button that reads the roll as it stands when pressed (so Luck burned on it counts): on a success, `die`
+ * Day's Rations, plus one for every 5 over the DC, into the character's pack.
  */
-export async function forage(actor, key, event = null) {
+async function findFood(actor, { kind, label, skills, die, icon, nothing }, event) {
   if (!actor?.isOwner) return null;
-  if (key && actor.getFlag(SYS, "foraged") === key) return ui.notifications.info(`${actor.name} has already foraged today.`);
-  const msg = await campCheck(actor, { skills: ["Survival"], dc: FORAGE_DC, title: "Forage" }, event);
-  if (key) await actor.setFlag(SYS, "foraged", key);
-  const f = msg?.flags?.[SYS] ?? {};
-  const ok = !f.autoFail && f.natural !== 1 && Number(f.total) >= FORAGE_DC;
-  if (!ok) {
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><p><i class="fa-solid fa-seedling"></i> ${esc(actor.name)} finds nothing to eat.</p></div>` });
-    return 0;
-  }
-  const r = await new Roll("1d4").evaluate();
-  const found = r.total + forageBonus(f.total);
-  await addRations(actor, found);
-  await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }),
-    flavor: `<div class="arn-card"><p><i class="fa-solid fa-seedling"></i> ${esc(actor.name)} forages <strong>${found} Day's Rations</strong> (1d4${forageBonus(f.total) ? ` + ${forageBonus(f.total)} for beating DC ${FORAGE_DC} by ${Number(f.total) - FORAGE_DC}` : ""}).</p></div>` });
-  return found;
+  const day = await today();
+  const flag = kind === "hunt" ? "hunted" : "foraged";
+  if (actor.getFlag(SYS, flag) === day || busy.has(`${actor.id}.${kind}`)) return ui.notifications.info(`${actor.name} has already ${kind === "hunt" ? "hunted" : "foraged"} today.`);
+  busy.add(`${actor.id}.${kind}`);
+  try {
+    await actor.setFlag(SYS, flag, day);
+    const msg = await campCheck(actor, { skills, dc: FORAGE_DC, title: label }, event);
+    if (!msg) return null;
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
+      content: `<div class="arn-card"><p><i class="fa-solid ${icon}"></i> ${esc(actor.name)}'s ${esc(label.toLowerCase())}: on a success, ${die} Day's Rations, +1 for every 5 over DC ${FORAGE_DC}. Burn Luck on the roll first if you want to.</p>
+        <div class="arn-card-buttons"><button type="button" class="arn-food-collect" data-actor="${esc(actor.uuid)}" data-roll="${esc(msg.id)}" data-die="${die}" data-nothing="${esc(nothing)}"><i class="fa-solid fa-basket-shopping"></i> Collect</button></div></div>` });
+    return msg;
+  } finally { busy.delete(`${actor.id}.${kind}`); }
+}
+
+/** Forage (a button): Survival at DC 12; 1d4 Day's Rations on a success, +1 per 5 over. Once a calendar day. */
+export const forage = (actor, _key, event = null) => findFood(actor, { kind: "forage", label: "Forage", skills: ["Survival"], die: "1d4", icon: "fa-seedling", nothing: "finds nothing to eat" }, event);
+
+/** Collect a finding check's rations (its card's button): reads the roll now, Luck burned included. Once. */
+export async function collectFood(button) {
+  const actor = await fromUuid(button.dataset.actor).catch(() => null);
+  const roll = game.messages.get(button.dataset.roll);
+  if (!actor?.isOwner) return ui.notifications.warn("Only the character's owner collects.");
+  if (!roll) return ui.notifications.warn("The roll is gone from the chat.");
+  const key = `collected.${roll.id}`;
+  if (actor.getFlag(SYS, "collected") === roll.id || busy.has(key)) return;
+  busy.add(key);
+  try {
+    await actor.setFlag(SYS, "collected", roll.id);
+    const f = roll.flags?.[SYS] ?? {};
+    const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
+    if (f.autoFail || f.natural === 1 || total < FORAGE_DC) {
+      await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><p>${esc(actor.name)} ${esc(button.dataset.nothing || "finds nothing")}.</p></div>` });
+      return 0;
+    }
+    const r = await new Roll(button.dataset.die || "1d4").evaluate();
+    const found = r.total + forageBonus(total);
+    await addRations(actor, found);
+    await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }),
+      flavor: `<div class="arn-card"><p><i class="fa-solid fa-basket-shopping"></i> ${esc(actor.name)} collects <strong>${found} Day's Rations</strong> (${esc(button.dataset.die)}${forageBonus(total) ? ` + ${forageBonus(total)} for beating DC ${FORAGE_DC} by ${total - FORAGE_DC}` : ""}).</p></div>` });
+    return found;
+  } finally { busy.delete(key); }
 }
 
 /** Add Day's Rations to an actor: onto a stack it already carries, else a new one from the compendium. */
@@ -301,7 +337,7 @@ export async function doActivity(party, members, id, event = null) {
   const who = await pickMember(pool.length ? pool : members, a.label);
   if (!who) return;
   const { whenOf } = await import("./calendar.mjs");
-  const day = `${party.id}.camp.${whenOf().n}`;
+  const day = String(whenOf().n);
   if (a.id === "forage") return forage(who, day, event);
   if (a.id === "hunt") {
     if (!canHunt(who)) return ui.notifications.warn(`${who.name} needs a ranged weapon or traps to hunt.`);
@@ -315,22 +351,8 @@ export async function doActivity(party, members, id, event = null) {
   return campCheck(who, { skills: a.skills, ability: a.ability, dc: a.dc ?? null, title: a.label }, event);
 }
 
-/** Hunt: Hunting (or Survival) at DC 12; 1d6 Day's Rations on a success, +1 per 5 over. Once a day. */
-export async function hunt(actor, key, event = null) {
-  if (key && actor.getFlag(SYS, "hunted") === key) return ui.notifications.info(`${actor.name} has already hunted today.`);
-  const msg = await campCheck(actor, { skills: ["Hunting", "Survival"], dc: FORAGE_DC, title: "Hunt" }, event);
-  if (key) await actor.setFlag(SYS, "hunted", key);
-  const f = msg?.flags?.[SYS] ?? {};
-  if (f.autoFail || f.natural === 1 || !(Number(f.total) >= FORAGE_DC)) {
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><p><i class="fa-solid fa-crosshairs"></i> ${esc(actor.name)} comes back empty-handed.</p></div>` });
-    return 0;
-  }
-  const r = await new Roll("1d6").evaluate();
-  const found = r.total + forageBonus(f.total);
-  await addRations(actor, found);
-  await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `<div class="arn-card"><p><i class="fa-solid fa-crosshairs"></i> ${esc(actor.name)} brings back <strong>${found} Day's Rations</strong>.</p></div>` });
-  return found;
-}
+/** Hunt: Hunting (or Survival) at DC 12; 1d6 Day's Rations on a success, +1 per 5 over. Once a calendar day. */
+export const hunt = (actor, _key, event = null) => findFood(actor, { kind: "hunt", label: "Hunt", skills: ["Hunting", "Survival"], die: "1d6", icon: "fa-crosshairs", nothing: "comes back empty-handed" }, event);
 
 /** The camp's chat buttons (the watch's Perception). */
 export function registerCamp() {
@@ -341,6 +363,8 @@ export function registerCamp() {
       const party = game.actors.get(ask.dataset.party);
       if (party) askWatch(party, String(ask.dataset.watchers || "").split(",").filter(Boolean), ask.dataset.watch);
     });
+    const col = html.querySelector?.(".arn-food-collect");
+    if (col) col.addEventListener("click", ev => { ev.currentTarget.disabled = true; collectFood(col); });
     const per = html.querySelector?.(".arn-camp-perception");
     if (per) per.addEventListener("click", async ev => {
       const watchers = String(per.dataset.watchers || "").split(",").map(id => game.actors.get(id)).filter(Boolean);

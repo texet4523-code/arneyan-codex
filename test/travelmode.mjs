@@ -68,7 +68,12 @@ const wd = fs.readFileSync(`${root}module/world.mjs`, "utf8");
 assert.ok(wd.includes("registerTravel()") && wd.includes("travelEndDay"));
 // Batch 6: rations eaten at dawn after each day in travel mode (no 7-day card); the forage button at Slow pace.
 const tsrc = fs.readFileSync(`${root}module/travel.mjs`, "utf8");
-assert.ok(tsrc.includes("await eatAtDawn(party, partyMembers(), t, dayDone)") && tsrc.includes("await eatAtDawn(party, members, t, day)"));
+// The dawn meal is due after each day and eaten when the party sets off (next move or next day's end), once.
+assert.ok(tsrc.includes("[`flags.${SYS}.travel.mealDue`]: dayDone") && tsrc.includes("[`flags.${SYS}.travel.mealDue`]: day }"));
+assert.ok(tsrc.includes("if (t.mealDue) {") && (tsrc.match(/await eatDue\(party/g) ?? []).length >= 3);
+assert.ok(tsrc.includes("Date.now() - lastEndDay < 2500"), "End the day here: one day per double click");
+assert.ok(tsrc.includes("Number(b.dataset.day) !== Number(travelState(party).day)"), "an old card's Forage is spent");
+assert.ok(!tsrc.includes("Wisdom (Survival)"));
 assert.ok(!/await rationCard\(/.test(tsrc), "no 7-day ration card in travel mode");
 assert.ok(tsrc.includes('class="arn-forage"') && tsrc.includes("forage(who,"));
 console.log("OK travel mode");

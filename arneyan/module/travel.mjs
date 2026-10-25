@@ -289,7 +289,7 @@ export async function travelDay(party, members) {
     content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-route"></i> <span>${esc(party.name)}: day ${day} on the road</span></header>
       <p>${done - t.done} hex${done - t.done === 1 ? "" : "es"} covered: ${done} of ${t.distance}.${done >= t.distance ? " <strong>They arrive.</strong>" : ` ${daysToGo(t.distance, done, perDay)} more day${daysToGo(t.distance, done, perDay) === 1 ? "" : "s"} to go.`}</p>
       <ul>${lines.join("")}</ul>
-      ${effectivePace(t.method, t.pace, t.difficult) === "slow" ? `<p class="arn-muted">Slow pace: the party can move stealthily and forage (Wisdom (Survival), Moderate, DC 12, feeds one person for the day).</p>` : ""}
+      ${effectivePace(t.method, t.pace, t.difficult) === "slow" ? `<p class="arn-muted">Slow pace: each character can forage once today (Survival, DC ${FORAGE_DC}: 1d4 Day's Rations, +1 for every 5 over), from the Camp tab.</p>` : ""}
       ${effectivePace(t.method, t.pace, t.difficult) === "fast" ? `<p class="arn-muted">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>` : ""}</div>`
   });
   await ChatMessage.create({ whisper: game.users.filter(u => u.isGM).map(u => u.id), speaker: ChatMessage.getSpeaker({ actor: party }),
@@ -337,7 +337,7 @@ async function endDays(party, t, days, perDay) {
   for (const day of days) {
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }), flags: { [SYS]: { travelDay: { party: party.id, day } } },
       content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-route"></i> <span>${esc(party.name)}: day ${day} on the road ends</span></header>
-        <p>${perDay} hex${perDay === 1 ? "" : "es"} at ${PACES[pace]} pace (${esc(METHODS[t.method] ?? "")}${t.difficult ? ", difficult terrain" : ""}).${t.distance > 0 ? ` ${Math.min(t.done, t.distance)} of ${t.distance} to the destination.` : ""} The party camps; the clock goes on to the next morning, and everyone eats a day's rations at dawn.</p>
+        <p>${perDay} hex${perDay === 1 ? "" : "es"} at ${PACES[pace]} pace (${esc(METHODS[t.method] ?? "")}${t.difficult ? ", difficult terrain" : ""}).${t.distance > 0 ? ` ${Math.min(t.done, t.distance)} of ${t.distance} to the destination.` : ""} The party camps; the clock goes on to the next morning. Everyone eats a day's rations at dawn, when the party sets off.</p>
         ${pace === "slow" ? `<p class="arn-muted">Slow pace: each character can forage once today (Survival, DC ${FORAGE_DC}: 1d4 Day's Rations, +1 for every 5 over).</p>` : ""}
         ${pace === "fast" ? `<p class="arn-muted">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>` : ""}
         <div class="arn-card-buttons"><button type="button" class="arn-travel-encounter" data-party="${esc(party.id)}" data-day="${day}"><i class="fa-solid fa-dice-d20"></i> Roll the Encounter Check (d12)</button>
@@ -401,7 +401,9 @@ export async function eatRations(party, members) {
 
 /**
  * Dawn after a day of travel in travel mode (GM): each member eats a Day's Rations (their own first, then the stash)
- * and drinks; days without food beyond 3 + Con bring Exhaustion (Codex). One card says who ate.
+ * and drinks; days without food beyond 3 + Con bring Exhaustion (Codex). One card says who ate. The meal is eaten
+ * when the party sets off again (its next move, or the next day's end), so food foraged at the day's end or in camp
+ * that night can feed it (`mealDue` on the party's travel state).
  */
 export async function eatAtDawn(party, members, t, day) {
   if (!members.length) return;
@@ -411,13 +413,26 @@ export async function eatAtDawn(party, members, t, day) {
     content: `<div class="arn-card arn-report arn-dawn-card"><header class="arn-card-title"><i class="fa-solid fa-drumstick-bite"></i> <span>Dawn after day ${day}: rations</span></header><ul>${lines.join("")}</ul></div>` });
 }
 
+/** Eat the dawn meal still due after a day of travel (GM), once. */
+export async function eatDue(party, members) {
+  const t = travelState(party);
+  if (!t.mealDue) return false;
+  await party.update({ [`flags.${SYS}.travel.mealDue`]: 0 }, { arneyanTravelMoved: true });
+  await eatAtDawn(party, members, t, t.mealDue);
+  return true;
+}
+
 /** Travel mode's changes run one at a time, each reading the party as the last one left it. */
 let travelQueue = Promise.resolve();
 const serial = fn => (travelQueue = travelQueue.then(fn).catch(err => console.warn("Arneyan | travel mode", err)));
 
 /** End the day here (travel mode, GM): camp short of the day's hexes; the day counts all the same. */
+let lastEndDay = 0;
 export function endDayHere(party, members) {
   if (!game.user.isGM) return;
+  // A double click ends one day, not two.
+  if (Date.now() - lastEndDay < 2500) return;
+  lastEndDay = Date.now();
   return serial(async () => {
     const t = travelState(party);
     const perDay = hexesPerDay(t.method, t.pace, t.difficult);
@@ -426,9 +441,10 @@ export function endDayHere(party, members) {
     const reckon = road >= RATION_DAYS;
     if (reckon) road = 0;
     await party.update({ [`flags.${SYS}.travel`]: { ...t, day, road, today: 0, log: [...(t.log ?? []), `Day ${day}: ${t.today} of ${perDay} hexes, camped early.`].slice(-40) } }, { arneyanTravelMoved: true });
+    await eatDue(party, members);
     await endDays(party, { ...t, day }, [day], t.today);
     await onToMorning();
-    await eatAtDawn(party, members, t, day);
+    await party.update({ [`flags.${SYS}.travel.mealDue`]: day }, { arneyanTravelMoved: true });
     void reckon; // the 7-day ration card is replaced by eating at dawn (batch 6)
   });
 }
@@ -451,6 +467,12 @@ function onPartyMoved(tokenDoc, hexes, undo = false) {
       await moveTime(-back * hexSeconds(hexesPerDay(t.method, t.pace, t.difficult)));
       return party.update({ [`flags.${SYS}.travel`]: { ...t, today: t.today - back, done: Math.max(0, (Number(t.done) || 0) - back) } }, { arneyanTravelMoved: true });
     }
+    // Setting off: the dawn meal after the last day comes first.
+    if (t.mealDue) {
+      const { partyMembers } = await import("./party.mjs");
+      await eatDue(party, partyMembers());
+      Object.assign(t, travelState(party));
+    }
     const perDay = hexesPerDay(t.method, t.pace, t.difficult);
     const r = travelMove(t, hexes, perDay);
     const done = (Number(t.done) || 0) + hexes;
@@ -469,10 +491,11 @@ function onPartyMoved(tokenDoc, hexes, undo = false) {
         if (secs) await advance(secs);
         secs = 0;
         const dayDone = ended.shift();
+        const { partyMembers } = await import("./party.mjs");
+        await eatDue(party, partyMembers());
         await endDays(party, { ...t, done }, [dayDone], perDay);
         await onToMorning();
-        const { partyMembers } = await import("./party.mjs");
-        await eatAtDawn(party, partyMembers(), t, dayDone);
+        await party.update({ [`flags.${SYS}.travel.mealDue`]: dayDone }, { arneyanTravelMoved: true });
       }
     }
     if (secs) await advance(secs);
@@ -581,7 +604,12 @@ export function registerTravel() {
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const b = html.querySelector?.(".arn-forage");
     if (!b) return;
+    // Only the day just travelled: an older card's button is spent.
+    const party = game.actors.get(b.dataset.party);
+    if (party && Number(b.dataset.day) !== Number(travelState(party).day)) { b.disabled = true; b.innerHTML = '<i class="fa-solid fa-seedling"></i> Forage (that day is over)'; return; }
     b.addEventListener("click", async ev => {
+      b.disabled = true;
+      setTimeout(() => { b.disabled = false; }, 3000);
       const { partyMembers } = await import("./party.mjs");
       const who = await pickMember(partyMembers(), "Forage");
       if (who) await forage(who, `${b.dataset.party}.${b.dataset.day}`, ev);
