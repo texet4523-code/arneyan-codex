@@ -1,5 +1,5 @@
 import { ARNEYAN } from "../config.mjs";
-import { ModSet, collectRules, wordList, usesMax } from "../effects.mjs";
+import { ModSet, collectRules, wordList, usesMax, featureLevel, optionPickMax, optionPicks } from "../effects.mjs";
 import { awarenessOf } from "../awareness.mjs";
 
 const { NumberField, StringField, HTMLField, SchemaField, BooleanField, ArrayField } = foundry.data.fields;
@@ -298,6 +298,15 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     const coins = Object.values(s.currency).reduce((t, v) => t + v, 0);
     const gearItems = actor.items.filter(i => ["weapon", "armour", "equipment"].includes(i.type));
     const holder = id => { const c = actor.items.get(id); return c?.system?.container?.holds ? c : null; };
+    // Options of the player's choice (Eldritch Invocations): "Choose" while the class level allows another pick.
+    for (const i of actor.items) {
+      const oc = i.system?.optionChoice;
+      if (!(oc?.options?.length)) continue;
+      try {
+        const max = Math.min(optionPickMax(i.system, featureLevel(actor, i)), oc.options.length);
+        i.system.needsOption = optionPicks(i.system).length < max;
+      } catch { /* leave the item's own flag */ }
+    }
     let itemSlots = 0;
     for (const i of gearItems) {
       // Every container it sits in (a pouch in a Bag of Holding) counts it; anything weightless above it makes it free.

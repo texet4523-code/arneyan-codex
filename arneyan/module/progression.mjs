@@ -194,7 +194,7 @@ export function setClassLevel(actor, cls, target) {
       // during this level change (its own sync waits for this one). Run even when the change was cancelled.
       await syncLuckFeats(actor, { fromLevel: before }).catch(err => console.warn("Arneyan | Luck feats", err));
       // A new level that allows another option pick (Eldritch Invocations at 5th, 9th...): ask for it.
-      if ((actor.system?.level ?? 0) > (before ?? 0)) {
+      if (actor.type === "character" && (actor.system?.level ?? 0) > (before ?? 0)) {
         const { needsOptionChoice, promptOptionChoice } = await import("./documents.mjs");
         for (const item of actor.items.filter(i => i.system?.optionChoice?.options?.length && needsOptionChoice(i))) {
           await promptOptionChoice(item).catch(err => console.warn("Arneyan | option choice", err));

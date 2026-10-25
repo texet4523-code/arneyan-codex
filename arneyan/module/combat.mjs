@@ -235,7 +235,7 @@ async function gunReady(item, fire) {
     damaged: `<p><strong>${esc(item.name)}</strong> is damaged and unusable until repaired.</p><p>Has it been repaired?</p>`,
     destroyed: `<p><strong>${esc(item.name)}</strong> was destroyed by a misfire. Restore it (GM)?</p>`
   }[state] ?? "";
-  const ok = await DialogV2.confirm({ window: { title: item.name }, content: text, rejectClose: false, yes: { label: state === "jammed" ? "Cleared: fire" : "Yes" }, no: { label: "Not yet" } });
+  const ok = await DialogV2.confirm({ window: { title: item.name }, content: text, rejectClose: false, yes: { label: state === "jammed" ? "Cleared" : "Yes" }, no: { label: "Not yet" } });
   if (!ok) return false;
   if (item.isOwner) await item.unsetFlag(SYS, "gunState");
   return true;
@@ -354,7 +354,11 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     const f = msg.flags?.[SYS] ?? {};
     const r = misfireResult(out.fire, f.natural, { trained: out.trained, crit: !!f.crit });
     if (!r.jam) return msg;
-    if (item.isOwner) await item.setFlag(SYS, "gunState", "jammed").catch(() => null);
+    if (item.isOwner) {
+      await item.setFlag(SYS, "gunState", "jammed").catch(() => null);
+      // Cleared or not, it then needs a normal reload (even with Quick Reload, which refilled it as it fired).
+      if (out.reloadable) await item.setFlag(SYS, "ammo", { loaded: 0, reloading: 0 }).catch(() => null);
+    }
     if (r.catastrophe) await catastrophe(actor, item);
     return msg;
   };

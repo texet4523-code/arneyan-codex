@@ -210,9 +210,20 @@ export function needsOptionChoice(item) {
 }
 
 /** Ask which options an item's choice takes (ticked up to the number allowed at this level), and store them. */
+const optionDialogs = new Set();
 export async function promptOptionChoice(item) {
   const c = item?.system?.optionChoice;
   if (!item?.isOwner || !(c?.options?.length)) return null;
+  // One question per item at a time (a level up and the item's arrival can both ask).
+  if (optionDialogs.has(item.uuid)) return null;
+  optionDialogs.add(item.uuid);
+  try {
+    return await askOptions(item, c);
+  } finally {
+    optionDialogs.delete(item.uuid);
+  }
+}
+async function askOptions(item, c) {
   const actor = item.actor ?? null;
   const max = Math.min(optionPickMax(item.system, featureLevel(actor, item)), c.options.length);
   const have = new Set(optionPicks(item.system));
@@ -226,7 +237,7 @@ export async function promptOptionChoice(item) {
   if (!Array.isArray(picked) || !picked.length) return null;
   if (picked.length > max) {
     ui.notifications.warn(`${item.name}: choose at most ${max}.`);
-    return promptOptionChoice(item);
+    return askOptions(item, c);
   }
   await item.update({ "system.optionChoice.value": picked });
   return picked;
@@ -1122,17 +1133,19 @@ export class ArneyanItem extends Item {
     // granted by a level up too. Nothing picked (Later, or closed): no bonus yet, and the sheet shows "Choose attribute".
     // A new character's 1st-level steps go first: the question waits until they're over (and isn't asked if it was
     // answered or the item removed meanwhile).
-    const ask = (needs, prompt, what) => {
+    const ask = (needs, prompt, what, { atLevelEnd = false } = {}) => {
       if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanNoChoice || !needs(this)) return;
       const run = () => (actor.items.has(this.id) && needs(this) ? prompt(this) : null);
       const wait = firstLevelSetupRunning(actor);
+      // Granted by a level up: that level change asks once it's over (setClassLevel), not in the middle of it.
+      if (atLevelEnd && !wait && levelChangeRunning(actor)) return;
       (wait ? wait.then(run) : Promise.resolve(run())).catch(err => console.warn(`Arneyan | ${what} choice`, err));
     };
     ask(needsAbilityChoice, promptAbilityChoice, "attribute");
     // The same for a weapon of the player's choice (Weapon Specialisation): Later leaves its rules as reminders.
     ask(needsWeaponChoice, promptWeaponChoice, "weapon");
     // Options of the player's choice (Elemental Mastery's element, Eldritch Invocations).
-    ask(needsOptionChoice, promptOptionChoice, "option");
+    ask(needsOptionChoice, promptOptionChoice, "option", { atLevelEnd: true });
     // A creation feat's attribute bonus over 18 (Toughness's +1 Con on a Con 18 character): where it goes instead.
     ask(i => !!creationOverflow(i), promptCreationOverflow, "creation cap");
     // A feat that raises Luck (Fated Survivor), new to the sheet: its +1, once the 1st-level setup (which rolls

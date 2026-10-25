@@ -7,15 +7,15 @@ Version 0.10.54 · Foundry v13 and v14 · **Playtest release**
 Batch 8 (Kieran, 25 Oct).
 
 **Automatic effects**
-- **Choose-one features:** **Elemental Mastery** asks for its element and makes you immune to it (fire, cold, lightning; earth, water and air as a reminder). **Eldritch Invocations** asks for one at 1st and another at 5th, 9th, 13th and 17th (asked when you level up); Devil's Sight gives the sense, the others show on the right cards. Until you pick, the feature shows **Choose** on the sheet.
+- **Choose-one features:** **Elemental Mastery** asks for its element and makes you immune to it (fire, cold, lightning; earth, water and air as a reminder). **Eldritch Invocations** asks for one at 1st and another at 5th, 9th, 13th and 17th (asked when you level up); Devil's Sight gives the sense, the others show on the right cards. While there's a pick to make, the feature shows **Choose** on the sheet; once picked, the list icon beside it changes the picks.
 - **Expanded Mind** adds a spell slot of your highest level, and it moves up as you level.
-- **Shifter:** your lineage becomes a **Shifted** switch with The Beast Within's uses (half your level a day, rounded up). Its benefit counts only while it's on: Swiftstride +15ft speed, Beasthide Resistance 3 to non-magical weapons; the others as reminders.
+- **Shifter:** your lineage becomes a **Shifted** switch with The Beast Within's uses (half your level a day, rounded up). Its benefit counts only while it's on: Swiftstride +15ft speed, Beasthide Resistance 3 to non-magical weapons; the others as reminders. Shifters made before this update get the switch too.
 - **Turn Undead:** a Turned creature stops being Turned when the one who turned it attacks it.
 - Already working, now noted as such: Genasi and Tiefling resistance from the caste or bloodline you pick, Iron Body and Iron Mind save bonuses, the Hedge Knights' and Boldock Wall-Knights' own Embolden and Demoralise, Aura of Devotion.
 
 **Feature buttons** checked against the Handbook (v0.10.10): Assassin's Traps (1 minute to disable; failing by 5 or a natural 1 sets it off), Slow Kill (bleeding stacks; a Cripple Limb save), Holy Campaign (once a year), Necromancer Command Undead (1 + half your level a day, its own uses), Magus Levelled Spellstrike 3rd-4th from 7th level, Pact Summons (Tier 4 takes a 5th-level slot; one summon at a time), Arrow Repertoire's daily arrows.
 
-**Firearm reloads.** Guns and heavy crossbows keep track of what's loaded (the Repeating Pistol holds 5, the Wind Rifle 6, Paired Pistols 2). Each shot uses one; an empty weapon asks you to reload. Reloading takes the weapon's listed rounds of your action: in a fight, this turn and your next turns (you can still move); out of a fight, at once. Quick Reload, and a Gunslinger's Lightning Reload, make it part of the attack or a round faster. The weapon's row shows what's loaded, with a reload button.
+**Firearm reloads.** Guns and heavy crossbows keep track of what's loaded (the Repeating Pistol holds 5, the Wind Rifle 6, Paired Pistols 2). Each shot uses one; an empty weapon asks you to reload. Reloading takes the weapon's listed rounds of your action: in a fight, this turn's action and as many more as it needs, and it's ready to fire on the turn after (you can still move); out of a fight, at once. A misfire empties it: clear it, then reload. Quick Reload, and a Gunslinger's Lightning Reload, make it part of the attack or a round faster. The weapon's row shows what's loaded, with a reload button.
 
 **Secret group rolls.** Ask for a roll has a **Secret** box: the players roll blind, their card shows only who has rolled, and you see the results.
 

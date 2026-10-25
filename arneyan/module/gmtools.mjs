@@ -45,8 +45,20 @@ export function summarise(members) {
   return { rolled: done.length, waiting: members.length - done.length, passed: done.filter(m => m.pass === true).length, failed: done.filter(m => m.pass === false).length };
 }
 
-/** The group card's HTML, from its flags. */
-export function partyRollHtml(data) {
+/**
+ * A secret roll's members with their results, read from the roll messages themselves (blind rolls reach only the GM).
+ * The card's own content and flags never hold a secret result, so players' clients never receive one.
+ */
+export function filledMembers(data, getMessage = id => game.messages?.get(id)) {
+  return data.members.map(m => {
+    if (!data.secret || !m.rollId) return m;
+    const f = getMessage(m.rollId)?.flags?.[SYS];
+    return f ? { ...m, ...resultFromFlags(f, data.dc ?? null) } : m;
+  });
+}
+
+/** The group card's HTML, from its flags. A secret roll shows results only in the GM's view (`gm`, filled in first). */
+export function partyRollHtml(data, { gm = false } = {}) {
   const what = requestLabel(data.kind, data.key);
   const dc = data.dc ?? null;
   const head = data.label || what;
@@ -55,15 +67,15 @@ export function partyRollHtml(data) {
     const mode = m.mode > 0 ? '<span class="arn-chip">Advantage</span>' : m.mode < 0 ? '<span class="arn-chip">Disadvantage</span>' : "";
     const note = m.note ? ` <span class="arn-muted">${esc(m.note)}</span>` : "";
     const shown = `<span class="arn-pr-result ${m.pass === true ? "pass" : m.pass === false ? "fail" : ""}" data-tooltip="${esc(OUTCOME_TEXT[m.outcome] ?? "")}"><strong>${m.total}</strong>${m.pass === true ? ' <i class="fa-solid fa-check"></i>' : m.pass === false ? ' <i class="fa-solid fa-xmark"></i>' : ""}</span>`;
-    // Secret: players see only that it's rolled; the GM's copy of the card shows the result.
+    // Secret: players see only that it's rolled; the GM's view shows the result.
     const res = m.rollId
-      ? (data.secret ? `<span class="arn-gm-only">${shown}</span><span class="arn-player-only arn-muted"><i class="fa-solid fa-eye-slash"></i> rolled</span>` : shown)
+      ? (data.secret && !gm ? '<span class="arn-pr-secret arn-muted"><i class="fa-solid fa-eye-slash"></i> rolled</span>' : shown)
       : `<button type="button" class="arn-pr-roll" data-uuid="${esc(m.uuid)}"><i class="fa-solid fa-dice-d20"></i> Roll</button><span class="arn-pr-wait arn-muted">waiting</span>`;
     return `<li data-uuid="${esc(m.uuid)}"><img src="${esc(m.img)}" alt=""><span class="arn-pr-name">${esc(m.name)}${mode}${note}</span>${res}</li>`;
   }).join("");
   const s = summarise(data.members);
   const open = dc === null ? `${s.rolled} of ${data.members.length} rolled` : `${s.passed} passed, ${s.failed} failed${s.waiting ? `, ${s.waiting} still to roll` : ""}`;
-  const summary = data.secret ? `<span class="arn-gm-only">${open}</span><span class="arn-player-only">${s.rolled} of ${data.members.length} rolled (secret: only the GM sees the results)</span>` : open;
+  const summary = data.secret && !gm ? `${s.rolled} of ${data.members.length} rolled (secret: only the GM sees the results)` : open;
   const cons = data.consequence === "exhaustion" ? (data.applied
     ? '<p class="arn-muted"><i class="fa-solid fa-check"></i> Exhaustion applied to those who failed.</p>'
     : `<button type="button" class="arn-pr-apply"${s.failed ? "" : " disabled"}><i class="fa-solid fa-person-falling"></i> Those who failed gain 1 level of Exhaustion</button>`) : "";
@@ -137,7 +149,10 @@ async function recordResult(cardId, uuid, rollId) {
   const m = data.members.find(x => x.uuid === uuid);
   const roll = game.messages.get(rollId);
   if (!m || !roll) return;
-  Object.assign(m, { rollId, ...resultFromFlags(roll.flags[SYS], data.dc) });
+  // Secret: only that it's rolled goes on the card (the GM's view reads the result from the roll).
+  const fresh = !m.rollId;
+  Object.assign(m, data.secret ? { rollId } : { rollId, ...resultFromFlags(roll.flags[SYS], data.dc) });
+  if (data.secret && !fresh) return ui.chat?.updateMessage?.(card);
   await card.update({ content: partyRollHtml(data), [`flags.${SYS}.partyRoll`]: data });
 }
 
@@ -172,7 +187,7 @@ export async function applyExhaustion(card) {
   const data = foundry.utils.deepClone(card.flags[SYS].partyRoll);
   if (data.applied) return;
   const lines = [];
-  for (const m of data.members.filter(x => x.pass === false)) {
+  for (const m of filledMembers(data).filter(x => x.pass === false)) {
     const a = await fromUuid(m.uuid).catch(() => null);
     if (a?.type !== "character") { if (a) lines.push(`${a.name}: no Exhaustion track (only characters have one)`); continue; }
     const now = Math.min(6, (a.system.attributes.exhaustion ?? 0) + 1);
@@ -181,7 +196,7 @@ export async function applyExhaustion(card) {
   }
   data.applied = true;
   await card.update({ content: partyRollHtml(data), [`flags.${SYS}.partyRoll`]: data });
-  if (lines.length) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ alias: "GM" }), content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-person-falling"></i> <span>${esc(data.label || "Exhaustion")}</span></header><ul>${lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul></div>` });
+  if (lines.length) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ alias: "GM" }), ...(data.secret ? { whisper: game.users.filter(u => u.isGM).map(u => u.id) } : {}), content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-person-falling"></i> <span>${esc(data.label || "Exhaustion")}</span></header><ul>${lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul></div>` });
 }
 
 /** GM side of a player's result: everything is checked against the messages themselves. */
@@ -216,6 +231,11 @@ function onUpdateMessage(message, changes) {
 function onRenderCard(message, html) {
   const data = message.flags?.[SYS]?.partyRoll;
   if (!data) return;
+  // A secret roll: the GM's view fills the results in from the (blind) roll messages.
+  if (data.secret && game.user.isGM) {
+    const body = html.querySelector(".message-content");
+    if (body) body.innerHTML = partyRollHtml({ ...data, members: filledMembers(data) }, { gm: true });
+  }
   const busy = (el, fn) => el.addEventListener("click", ev => {
     ev.preventDefault();
     if (el.dataset.busy) return;
@@ -230,9 +250,6 @@ function onRenderCard(message, html) {
     if (may) busy(b, ev => onRollButton(message, b.dataset.uuid, ev));
   }
   for (const b of html.querySelectorAll(".arn-pr-rest, .arn-pr-apply")) b.hidden = !game.user.isGM;
-  // A secret roll's results: the GM's view only.
-  for (const el of html.querySelectorAll(".arn-gm-only")) if (!game.user.isGM) el.remove();
-  for (const el of html.querySelectorAll(".arn-player-only")) if (game.user.isGM) el.remove();
   for (const b of html.querySelectorAll(".arn-pr-rest")) busy(b, () => rollTheRest(message));
   for (const b of html.querySelectorAll(".arn-pr-apply")) busy(b, () => applyExhaustion(message));
 }

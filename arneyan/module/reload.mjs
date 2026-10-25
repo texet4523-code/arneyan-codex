@@ -5,9 +5,10 @@
  * round to reload after each shot. Guns that hold several shots (the Repeating Pistol's 5, the Wind Rifle's 6) fire
  * that many before reloading.
  *
- * State on the weapon (flags.arneyan.ammo): { loaded, reloading } where `reloading` is the rounds of action still to
- * spend. No state yet means fully loaded. In a fight, each of the wielder's turns spends one round; out of a fight a
- * reload is done at once.
+ * State on the weapon (flags.arneyan.ammo): { loaded, reloading } where `reloading` is the reload actions still owed,
+ * counting the one in progress. No state yet means fully loaded. In a fight the action of the turn the reload starts
+ * is the first; each of the wielder's later turns spends one more, and the gun is ready at the start of the turn after
+ * the last (a 1-round reload started this turn fires next turn). Out of a fight a reload is done at once.
  */
 import { firearmOf } from "./combat.mjs";
 
@@ -69,34 +70,40 @@ export async function spendShot(item) {
   return loaded;
 }
 
-/** Start reloading: done now out of a fight (or if it takes no time), else over the wielder's next turns. */
+/** Is this actor (this very token, for an unlinked one) in a fight that has started? */
+export function inFight(actor) {
+  if (!actor) return false;
+  return !!game.combats?.find?.(c => c.started && c.combatants.some(x => x.actor && x.actor.uuid === actor.uuid));
+}
+
+/** Start reloading: done now out of a fight (or if it takes no time), else over the wielder's turns. */
 export async function startReload(item, { inCombat = null } = {}) {
   if (!isReloadable(item) || !item.isOwner) return null;
   const a = ammoOf(item);
-  if (a.loaded >= a.capacity) { ui.notifications.info(`${item.name} is already loaded.`); return a; }
   const actor = item.actor;
+  const fighting = inCombat ?? inFight(actor);
+  if (a.loaded >= a.capacity) { ui.notifications.info(`${item.name} is already loaded.`); return a; }
+  if (fighting && a.reloading > 0) { ui.notifications.info(`${item.name} is being reloaded: ${a.reloading} more action${a.reloading === 1 ? "" : "s"}.`); return a; }
   const rounds = reloadRounds(item, actor);
-  const fighting = inCombat ?? !!game.combats?.find?.(c => c.started && c.combatants.some(x => x.actor?.id === actor?.id));
-  // This turn's action is the first round of it.
-  const left = fighting ? Math.max(0, rounds - 1) : 0;
-  if (!left) {
+  if (!fighting || !rounds) {
     await item.setFlag(SYS, "ammo", { loaded: a.capacity, reloading: 0 });
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}${fighting && rounds ? " (this turn's action)" : ""}.</p>` });
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}.</p>` });
     return ammoOf(item);
   }
-  await item.setFlag(SYS, "ammo", { loaded: a.loaded, reloading: left });
-  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} starts reloading ${esc(item.name)}: ${rounds} rounds of action (this turn's and the next ${left}). Moving is still fine.</p>` });
+  await item.setFlag(SYS, "ammo", { loaded: a.loaded, reloading: rounds });
+  const more = rounds - 1;
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>${esc(actor?.name ?? "")} reloads ${esc(item.name)}: this turn's action${more ? ` and the next ${more === 1 ? "turn's" : `${more} turns'`}` : ""}. Ready to fire ${more ? "on the turn after" : "next turn"}; moving is still fine.</p>` });
   return ammoOf(item);
 }
 
-/** A combatant's turn starts: its reloading weapons spend this turn's action and may finish. */
+/** A combatant's turn starts: a reload action owed from the last turn is done; one still owed takes this turn's action. */
 export async function advanceReloads(actor) {
   for (const item of [...(actor?.items ?? [])].filter(i => isReloadable(i) && ammoOf(i).reloading > 0)) {
     const a = ammoOf(item);
     const left = a.reloading - 1;
     await item.setFlag(SYS, "ammo", { loaded: left ? a.loaded : a.capacity, reloading: left });
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
-      content: `<p>${esc(actor.name)} ${left ? `keeps reloading ${esc(item.name)} (this turn's action; ${left} more)` : `finishes reloading ${esc(item.name)} (this turn's action): ready to fire next turn`}.</p>` });
+      content: `<p>${esc(actor.name)} ${left ? `keeps reloading ${esc(item.name)}: this turn's action${left > 1 ? ` (${left - 1} more after this)` : ""}, ready to fire next turn` : `has reloaded ${esc(item.name)}: ready to fire`}.</p>` });
   }
 }
 
@@ -106,13 +113,15 @@ export async function loadedReady(item) {
   const a = ammoOf(item);
   if (a.loaded > 0) return true;
   const rounds = reloadRounds(item);
+  const fighting = inFight(item.actor);
+  const busy = fighting && a.reloading > 0;
   const { DialogV2 } = foundry.applications.api;
-  const busy = a.reloading > 0 ? ` It's being reloaded: ${a.reloading} more round${a.reloading === 1 ? "" : "s"} of action.` : "";
+  const note = busy ? ` It's being reloaded: ${a.reloading} more action${a.reloading === 1 ? "" : "s"}.` : "";
   const res = await DialogV2.wait({
     window: { title: item.name, icon: "fa-solid fa-gun" }, classes: ["arneyan"], position: { width: 380 },
-    content: `<p><strong>${esc(item.name)}</strong> is empty.${busy} Reloading takes ${rounds ? `${rounds} round${rounds === 1 ? "" : "s"} of your action (you can still move)` : "no time"}.</p>`,
+    content: `<p><strong>${esc(item.name)}</strong> is empty.${note} Reloading takes ${!fighting ? "no time out of a fight" : rounds ? `${rounds === 1 ? "this turn's action" : `this turn's action and the next ${rounds - 1}`}, ready to fire ${rounds === 1 ? "next turn" : "after that"} (you can still move)` : "no time"}.</p>`,
     buttons: [
-      ...(a.reloading ? [] : [{ action: "reload", label: "Reload", icon: "fa-solid fa-rotate", default: true }]),
+      ...(busy ? [] : [{ action: "reload", label: "Reload", icon: "fa-solid fa-rotate", default: true }]),
       ...(game.user.isGM ? [{ action: "fire", label: "Fire anyway (GM)" }] : []),
       { action: "cancel", label: "Cancel" }
     ],
@@ -120,18 +129,38 @@ export async function loadedReady(item) {
   });
   if (res === "fire") return true;
   if (res === "reload") {
-    await startReload(item);
-    // Loaded at once (no time, or out of a fight): it still took this turn's action unless it was free.
-    return rounds === 0;
+    await startReload(item, { inCombat: fighting });
+    // Loaded at once (no time, or out of a fight): fire. Otherwise the reload took this turn's action.
+    return ammoOf(item).loaded > 0;
   }
   return false;
 }
 
+/** Which turn each fight last spent reloads for, so a turn re-sent (initiative rolled, a combatant added) or stepped back to doesn't spend another. */
+const spentFor = new Map();
+export function turnKey(combat) { return `${combat?.round ?? 0}:${combat?.combatant?.id ?? ""}`; }
+
 export function registerReload() {
-  // Each combatant's turn spends a round of its reloads (the active GM writes them).
-  Hooks.on("updateCombat", (combat, changes) => {
+  // Each combatant's turn spends a round of its reloads (the active GM writes them). Going back a turn doesn't.
+  Hooks.on("updateCombat", (combat, changes, options) => {
     if (!game.users.activeGM?.isSelf || !("turn" in changes || "round" in changes) || !combat.started) return;
+    if (options?.direction === -1) return;
+    const key = turnKey(combat);
+    const seen = spentFor.get(combat.id) ?? new Set();
+    if (seen.has(key)) return;
+    seen.add(key);
+    spentFor.set(combat.id, seen);
     const actor = combat.combatant?.actor;
     if (actor) advanceReloads(actor).catch(err => console.warn("Arneyan | reload", err));
+  });
+  // The fight's over: reloads in progress finish (there's time now).
+  Hooks.on("deleteCombat", combat => {
+    spentFor.delete(combat.id);
+    if (!game.users.activeGM?.isSelf) return;
+    for (const c of combat.combatants ?? []) {
+      for (const item of [...(c.actor?.items ?? [])].filter(i => isReloadable(i) && ammoOf(i).reloading > 0)) {
+        item.setFlag(SYS, "ammo", { loaded: ammoOf(item).capacity, reloading: 0 }).catch(err => console.warn("Arneyan | reload", err));
+      }
+    }
   });
 }

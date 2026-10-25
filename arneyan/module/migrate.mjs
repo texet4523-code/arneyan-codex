@@ -403,6 +403,22 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds
       upd = refreshGranted(i, features, { maxNow: maxOn(actor, i, f?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
       const d = !i.flags?.[SYS]?.keepCustom && !report.unstamped && !(i.flags?.[SYS]?.putBack ?? []).includes("system.description") && layoutFrom((i._source?.system ?? i.system)?.description, f?.description);
       if (d) upd["system.description"] = d;
+    } else if (i.type === "ability" && actor && !i.flags?.[SYS]?.toggleSet && !i.flags?.[SYS]?.keepCustom) {
+      // 0.10.54: a Shifter's lineage counts only while shifted, as a switch with its uses (Batch 8). One granted
+      // before gets the switch, its uses and its rules once (flags.arneyan.toggleSet); a GM's own rules stay.
+      const anc = actor.items?.get?.(i.flags?.[SYS]?.grantedBy);
+      const ancUuid = anc?.type === "ancestry" ? sourceOf(anc) : null;
+      const ancSrc = ancUuid ? plain(await fetch(ancUuid)) : null;
+      const ch = ancSrc?.system?.choice;
+      const o = (ch?.options ?? []).find(x => x?.toggle && `${ch.label}: ${x.name}` === i.name);
+      if (o && !(i._source?.system ?? i.system)?.toggle) {
+        const short = String(o.name).replace(/\s*\(.*\)$/, "");
+        upd["system.toggle"] = true;
+        upd["system.active"] = false;
+        if (o.uses) upd["system.uses"] = { ...o.uses };
+        if (!((i._source?.system ?? i.system)?.rules ?? []).length && o.rules?.length) upd["system.rules"] = o.rules.map(r => ({ ...r, label: r.label || short }));
+        upd[`flags.${SYS}.toggleSet`] = true;
+      }
     }
     if (report.kept?.length) notes.kept.push({ uuid: i.uuid, label: actor ? `${actor.name}: ${i.name}` : i.name, fields: report.kept });
     if (report.unstamped) { notes.unstamped += 1; notes.unstampedActors.add(actor?.id ?? "items"); }
@@ -475,6 +491,11 @@ function keepPlay(item, data) {
   // A bonus moved by the 18 cap stays moved.
   if (data["system.abilityChoice"] && cur.abilityChoice?.moved) data["system.abilityChoice"] = { ...data["system.abilityChoice"], moved: cur.abilityChoice.moved };
   if (data["system.weaponChoice"] && cur.weaponChoice?.value?.length) data["system.weaponChoice"] = { ...data["system.weaponChoice"], value: [...cur.weaponChoice.value] };
+  // Options picked since (Eldritch Invocations): kept, where the restored list still has them.
+  if (data["system.optionChoice"]) {
+    const names = new Set((data["system.optionChoice"].options ?? []).map(o => o?.name));
+    data["system.optionChoice"] = { ...data["system.optionChoice"], value: (cur.optionChoice?.value ?? []).filter(v => names.has(v)) };
+  }
   if (Array.isArray(data["system.features"])) data["system.features"] = kitFeaturesFrom(cur.features ?? [], data["system.features"]);
   return data;
 }

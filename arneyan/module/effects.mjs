@@ -89,7 +89,8 @@ const GEAR = new Set(["weapon", "armour", "equipment"]);
 /** Is an item's rule set switched on? Gear must be equipped; toggles must be on. */
 export function itemRulesActive(item) {
   const s = item.system;
-  if (!s?.rules?.length) return false;
+  // Options picked (Elemental Mastery's element, Eldritch Invocations) carry rules of their own.
+  if (!s?.rules?.length && !optionPicks(s).length) return false;
   if (GEAR.has(item.type) && !s.equipped) return false;
   if (s.toggle && !s.active) return false;
   return true;

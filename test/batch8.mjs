@@ -23,6 +23,19 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.ok(E.chosenRules(three, 9).some(r => r.key === "sense" && /Devil's Sight 60ft/.test(r.value)));
   // A pick the compendium no longer has doesn't count.
   assert.deepEqual(E.optionPicks({ ...inv, optionChoice: { ...inv.optionChoice, value: ["Gone"] } }), []);
+  // Through the real path: an item with no rules of its own but options picked counts (review, Batch 8).
+  const cls = { type: "class", name: "Warlock", system: { levels: 9 } };
+  const invItem = { type: "ability", name: "Eldritch Invocations", system: { ...three, className: "Warlock" } };
+  const emItem = { type: "ability", name: "Elemental Mastery", system: { ...picked, className: "Warlock" } };
+  assert.equal(E.itemRulesActive(invItem), true);
+  assert.equal(E.itemRulesActive({ ...invItem, system: inv }), false, "nothing picked: nothing to apply");
+  const rules = E.collectRules({ items: Object.assign([cls, invItem, emItem], { find: Array.prototype.find }), effects: [], system: { level: 9 } }, { level: 9 });
+  assert.ok(rules.some(r => r.key === "immune" && r.value === "cold"), "Elemental Mastery's pick applies");
+  assert.ok(rules.some(r => r.key === "sense" && /Devil's Sight/.test(r.value)), "an invocation applies");
+  const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
+  assert.ok(docs.includes("optionDialogs.has(item.uuid)") && docs.includes('"option", { atLevelEnd: true }'), "one option question at a time; a level up asks at its end");
+  const models = fs.readFileSync(new URL("../arneyan/module/data/actor-models.mjs", import.meta.url), "utf8");
+  assert.ok(models.includes("i.system.needsOption = optionPicks(i.system).length < max"), "Choose shows while the level allows another pick");
   const { refreshFrom } = await import("../arneyan/module/migrate.mjs");
   assert.ok(typeof refreshFrom === "function");
   console.log("OK option choices (Elemental Mastery, Eldritch Invocations)");
@@ -74,9 +87,21 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(R.loadedOf(musket), 0);
   game.combats = { find: () => ({}) }; // in a fight
   await R.startReload(musket);
-  assert.deepEqual(R.ammoOf(musket), { loaded: 0, capacity: 1, reloading: 1 }, "this turn and one more");
+  assert.deepEqual(R.ammoOf(musket), { loaded: 0, capacity: 1, reloading: 2 }, "this turn's action and the next");
   await R.advanceReloads(musket.actor);
-  assert.deepEqual(R.ammoOf(musket), { loaded: 1, capacity: 1, reloading: 0 }, "done at the next turn");
+  assert.deepEqual(R.ammoOf(musket), { loaded: 0, capacity: 1, reloading: 1 }, "the next turn's action goes on it: can't fire yet");
+  await R.advanceReloads(musket.actor);
+  assert.deepEqual(R.ammoOf(musket), { loaded: 1, capacity: 1, reloading: 0 }, "ready at the turn after");
+  // A 1-round reload in a fight: fires next turn, not this one.
+  const flint = gun("Flintlock Pistol", "Reload 1 rd, misfire on 1-2.", "Light");
+  await R.spendShot(flint); await R.startReload(flint);
+  assert.deepEqual(R.ammoOf(flint), { loaded: 0, capacity: 1, reloading: 1 });
+  await R.advanceReloads(flint.actor);
+  assert.equal(R.loadedOf(flint), 1);
+  // The same turn sent again (initiative rolled mid-fight) spends nothing; a step back doesn't either.
+  const rl = fs.readFileSync(new URL("../arneyan/module/reload.mjs", import.meta.url), "utf8");
+  assert.ok(rl.includes("options?.direction === -1") && rl.includes("seen.has(key)") && rl.includes('Hooks.on("deleteCombat"'));
+  assert.equal(R.turnKey({ round: 3, combatant: { id: "c1" } }), "3:c1");
   // Out of a fight: at once.
   game.combats = { find: () => null };
   await R.spendShot(musket); await R.startReload(musket);
@@ -99,6 +124,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(R.reloadRounds(paired), 2, "one round each");
   const cb = fs.readFileSync(new URL("../arneyan/module/combat.mjs", import.meta.url), "utf8");
   assert.ok(cb.includes("loadedReady(item)") && cb.includes("spendShot(item)"));
+  assert.ok(cb.includes('setFlag(SYS, "ammo", { loaded: 0, reloading: 0 })'), "a misfire empties the gun: clear it, then a normal reload");
   console.log("OK firearm reloads");
 }
 /* ---------------- 8.4 Secret group rolls ---------------- */
@@ -108,10 +134,16 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
     { uuid: "a", name: "Ann", img: "", mode: 0, rollId: "r1", total: 17, pass: true, outcome: "success" },
     { uuid: "b", name: "Ben", img: "", mode: 0, rollId: "", total: null, pass: null } ] };
   const html = G.partyRollHtml(data);
-  assert.ok(html.includes('class="arn-gm-only"') && html.includes("arn-player-only") && html.includes("Secret"), "results marked GM-only");
-  assert.ok(html.includes("<strong>17</strong>") && html.includes("rolled (secret"));
+  assert.ok(!html.includes("<strong>17</strong>") && !html.includes("passed") && html.includes("rolled (secret") && html.includes("Secret"), "the public card holds no result");
+  const gmView = G.partyRollHtml(data, { gm: true });
+  assert.ok(gmView.includes("<strong>17</strong>") && gmView.includes("1 passed"), "the GM's view shows it");
   const open = G.partyRollHtml({ ...data, secret: false });
-  assert.ok(!open.includes("arn-gm-only"));
+  assert.ok(open.includes("<strong>17</strong>") && !open.includes("rolled (secret"));
+  // The GM's view reads secret results from the roll messages (the card's flags hold only the roll id).
+  const bare = { ...data, members: [{ ...data.members[0], total: null, pass: null, outcome: "" }, data.members[1]] };
+  const filled = G.filledMembers(bare, id => (id === "r1" ? { flags: { arneyan: { kind: "skill", total: 12, natural: 9 } } } : null));
+  assert.deepEqual([filled[0].total, filled[0].pass], [12, false]);
+  assert.equal(filled[1].total, null);
   const src = fs.readFileSync(new URL("../arneyan/module/gmtools.mjs", import.meta.url), "utf8");
   assert.ok(src.includes('req.secret ? "blindroll"') && src.includes('name="secret"'));
   const rolls = fs.readFileSync(new URL("../arneyan/module/rolls.mjs", import.meta.url), "utf8");
