@@ -39,8 +39,11 @@ assert.equal(T.hexesBetween(scene, { x: 0, y: 0 }, { x: 300, y: 0 }), 3);
 assert.equal(T.hexesBetween(scene, { x: 0, y: 0 }, { x: 0, y: 0 }), 0);
 assert.equal(T.hexesBetween({ grid: { size: 100 } }, { x: 0, y: 0 }, { x: 0, y: 200 }), 2, "no measurePath: by size");
 assert.equal(T.hexesBetween({ grid: { size: 100, distance: 6, measurePath: () => ({ spaces: 0, distance: 18 }) } }, { x: 0, y: 0 }, { x: 1, y: 1 }), 3, "gridless: distance over the grid's");
-assert.equal(T.hexesLabel({ method: "foot", pace: "normal", today: 1 }), "1 of 2 hexes today (Normal pace): 1 left");
-assert.match(T.hexesLabel({ method: "foot", pace: "slow", today: 2 }), /: 0 left$/, "never below 0 after a change of pace");
+// Batch 6: hours travelled today, the journey's day in brackets (8-hour travelling day: on foot at Normal, 4 h a hex).
+assert.equal(T.hexesLabel({ method: "foot", pace: "normal", today: 1, day: 0 }), "4 h (Day 1)");
+assert.equal(T.hexesLabel({ method: "foot", pace: "fast", today: 1, day: 37 }), "2 h 40 m (Day 38)");
+assert.equal(T.hexesLabel({ method: "foot", pace: "normal", today: 0, day: 2 }), "0 h (Day 3)");
+assert.deepEqual([T.hoursText(9600), T.hoursText(3600 * 8), T.hoursText(0)], ["2 h 40 m", "8 h", "0 h"]);
 // Square grids (battle and town maps) don't count; a move's own path count comes first.
 assert.equal(T.hexesBetween({ grid: { size: 100, isSquare: true } }, { x: 0, y: 0 }, { x: 300, y: 0 }), 0);
 assert.equal(T.movedHexes(scene, { passed: { spaces: 4 }, origin: { x: 0, y: 0 }, destination: { x: 100, y: 0 } }), 4, "a path through waypoints");
@@ -51,10 +54,10 @@ assert.equal(T.movedHexes({ grid: { isSquare: true } }, { passed: { spaces: 4 } 
 const ctx = T.travelContext({ flags: { arneyan: { travel: { mode: true, today: 1, day: 9, road: 5 } } } }, []);
 assert.deepEqual([ctx.travel.left, ctx.travel.toRations], [1, 2]);
 const html = hbs(root)("templates/actor/travel-tab.hbs", { ...ctx, isGM: true });
-for (const s of ['name="flags.arneyan.travel.mode" checked', "Today 1 / 2: 1 left", "Rations due in 2 days", 'data-action="travelEndDay"']) assert.ok(html.includes(s), s);
+for (const s of ['name="flags.arneyan.travel.mode" checked', "4 h (Day 10)", "Rations eaten at dawn", 'data-action="travelEndDay"']) assert.ok(html.includes(s), s);
 assert.ok(!html.includes('data-action="travelDay"'));
 const off = hbs(root)("templates/actor/travel-tab.hbs", { ...T.travelContext({ flags: {} }, []), isGM: true });
-assert.ok(off.includes('data-action="travelDay"') && !off.includes("Today "));
+assert.ok(off.includes('data-action="travelDay"') && !off.includes("Rations eaten at dawn"));
 
 // The clock: a grip to drag it, a switch in the Journal Notes tools, and the calendar remembers where it was.
 const wt = fs.readFileSync(`${root}module/worldtime.mjs`, "utf8");
@@ -63,6 +66,11 @@ const cal = fs.readFileSync(`${root}module/calendar.mjs`, "utf8");
 assert.ok(cal.includes('"calendarPos"') && cal.includes("_initializeApplicationOptions"));
 const wd = fs.readFileSync(`${root}module/world.mjs`, "utf8");
 assert.ok(wd.includes("registerTravel()") && wd.includes("travelEndDay"));
+// Batch 6: rations eaten at dawn after each day in travel mode (no 7-day card); the forage button at Slow pace.
+const tsrc = fs.readFileSync(`${root}module/travel.mjs`, "utf8");
+assert.ok(tsrc.includes("await eatAtDawn(party, partyMembers(), t, dayDone)") && tsrc.includes("await eatAtDawn(party, members, t, day)"));
+assert.ok(!/await rationCard\(/.test(tsrc), "no 7-day ration card in travel mode");
+assert.ok(tsrc.includes('class="arn-forage"') && tsrc.includes("forage(who,"));
 console.log("OK travel mode");
 // 0.10.41: on Foundry 13 and later only the moveToken hook counts (the update hook counted every move twice);
 // two quick clicks on the grip put the clock back; another GM's client sets daylight on the scene it views.

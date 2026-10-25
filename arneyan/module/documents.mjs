@@ -319,13 +319,13 @@ export class ArneyanActor extends Actor {
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
   /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
-  rollAbility(key, event, { bonus = 0, label = "" } = {}) {
+  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "" } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
     const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`) ?? NONE);
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
-    return d20Roll({ actor: this, kind: "check", mode, why, title: `${ARNEYAN.abilities[key]} Check`, parts, notes: m?.notesFor("check") ?? [], autoFail: fail, extra: { ability: key } });
+    return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: m?.notesFor("check") ?? [], autoFail: fail, extra: { ability: key } });
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
@@ -353,11 +353,11 @@ export class ArneyanActor extends Actor {
   }
 
   /** Skill (NWP) check. Untrained is a plain d20. Trained adds the modifier (minimum +1). Master also has Advantage. */
-  rollSkill(item, event) {
+  rollSkill(item, event, { dc = null, title = "" } = {}) {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
-      return d20Roll({ actor: this, kind: "skill", mode, why, title: "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], notes: m?.notesFor("check", "skill") ?? [], extra: { skill: "" } });
+      return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], extra: { skill: "" } });
     }
     const ab = item.system.ability;
     const mod = this.system.abilities[ab].mod;
@@ -370,7 +370,7 @@ export class ArneyanActor extends Actor {
     const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill") ?? NONE);
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
-      actor: this, kind: "skill", mode, why, title: `${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts,
+      actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
       notes: m?.notesFor("check", "skill") ?? [], autoFail: fail, extra: { skill: item.name }
     });
   }

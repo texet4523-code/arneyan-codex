@@ -6,7 +6,7 @@
     <a class="arn-btn small ghost" data-action="travelRefill" data-tooltip="At a stream, a well or a town"><i class="fa-solid fa-droplet"></i> Refill water</a>
     <a class="arn-btn small ghost" data-action="travelReset" data-tooltip="Start a new journey"><i class="fa-solid fa-rotate-left"></i> New journey</a>
   </span>{{/if}}</div>
-<label class="check arn-travel-mode" data-tooltip="Move the party token on the map: each hex counts towards the day's hexes at this pace; when they're used, the day ends (its Encounter Check, a day of game time). Every 7 days, a ration reckoning in the chat."><input type="checkbox" name="flags.arneyan.travel.mode" {{checked travel.mode}} {{#unless isGM}}disabled{{/unless}}> <strong>Travel mode</strong>: the party token's moves count hexes</label>
+<label class="check arn-travel-mode" data-tooltip="Move the party token on the map: each hex counts towards the day's hexes at this pace; when they're used, the day ends (its Encounter Check, a day of game time). Everyone eats a day's rations at dawn after each day."><input type="checkbox" name="flags.arneyan.travel.mode" {{checked travel.mode}} {{#unless isGM}}disabled{{/unless}}> <strong>Travel mode</strong>: the party token's moves count hexes</label>
 <div class="arn-fields two arn-travel-fields">
   <label>Distance (hexes, 6 miles each) <input class="short" type="number" min="0" name="flags.arneyan.travel.distance" value="{{travel.distance}}" {{#unless isGM}}disabled{{/unless}}></label>
   <label>Covered <input class="short" type="number" min="0" name="flags.arneyan.travel.done" value="{{travel.done}}" {{#unless isGM}}disabled{{/unless}}></label>
@@ -21,12 +21,12 @@
   <span class="arn-chip strong">{{travel.perDay}} hex{{#unless (eq travel.perDay 1)}}es{{/unless}} a day</span>
   <span class="arn-chip">{{travel.paceLabel}} pace</span>
   {{#if travel.arrived}}<span class="arn-chip gold">Arrived</span>{{else}}<span class="arn-chip">{{travel.days}} day{{#unless (eq travel.days 1)}}s{{/unless}} to go</span>{{/if}}
-  {{#if travel.mode}}<span class="arn-chip strong" data-tooltip="Hexes moved today; when they're all used the day ends">Today {{travel.today}} / {{travel.perDay}}: {{travel.left}} left</span>
-  <span class="arn-chip" data-tooltip="Every 7 days of travel, each character uses 7 rations">Rations due in {{travel.toRations}} day{{#unless (eq travel.toRations 1)}}s{{/unless}}</span>{{/if}}
+  {{#if travel.mode}}<span class="arn-chip strong" data-tooltip="Hours travelled today ({{travel.today}} of {{travel.perDay}} hexes); the travelling day is {{travel.hoursDay}}">{{travel.hoursToday}} (Day {{travel.dayNow}})</span>
+  <span class="arn-chip" data-tooltip="After each day of travel, everyone eats a day's rations at dawn">Rations eaten at dawn</span>{{/if}}
   {{#if travel.day}}<span class="arn-chip">Day {{travel.day}} of the journey</span>{{/if}}
   <span class="arn-chip {{#if (gt travel.needMeals travel.haveMeals)}}bad{{/if}}" data-tooltip="Each member eats a day's rations a day (a Week's Rations pack holds seven)">Rations {{travel.haveMeals}} / {{travel.needMeals}} needed</span>
 </div>
-{{#if travel.slowNote}}<p class="arn-help">Slow pace: the party can move stealthily and forage (Wisdom (Survival), Moderate).</p>{{/if}}
+{{#if travel.slowNote}}<p class="arn-help">Slow pace: the party can move stealthily, and each character can forage once a day (Survival, DC 12: 1d4 Day's Rations, +1 for every 5 over). The day's card has the Forage button.</p>{{/if}}
 {{#if travel.fastNote}}<p class="arn-help">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>{{/if}}
 <div class="arn-section-head"><h3>Supplies</h3><span class="arn-muted">Days of food and full water containers each member carries</span></div>
 <ul class="arn-list table arn-travel-rows">
