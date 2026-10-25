@@ -4,7 +4,7 @@
  * Items dragged between the party and a member (either way) move rather than copy.
  */
 import { ARNEYAN } from "./config.mjs";
-import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
+import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
 import { statusesOf } from "./effects.mjs";
 import { putOutData } from "./gear.mjs";
 import { worldPartyContext, WORLD_PARTY_ACTIONS } from "./world.mjs";
@@ -221,7 +221,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const sort = (a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name);
     const enrichDesc = html => foundry.applications.ux.TextEditor.implementation.enrichHTML(html ?? "", { relativeTo: actor, secrets: actor.isOwner });
     const stash = await Promise.all(actor.items.contents.sort(sort).map(async i => ({ id: i.id, name: i.name, img: i.img, type: i.type,
-      qty: i.system.quantity ?? 1, slots: i.system.totalSlots ?? "", price: i.system.price ?? "",
+      qty: i.system.quantity ?? 1, slots: i.system.totalSlots ?? "", price: hiddenFromPlayer(i) ? "" : (i.system.price ?? ""),
       expanded: this._expanded.has(i.id), facts: this._expanded.has(i.id) ? itemFacts(i) : [], desc: this._expanded.has(i.id) ? await enrichDesc(i.system.description) : "" })));
     const speeds = members.map(m => Number(m.speed)).filter(Number.isFinite);
     Object.assign(context, {

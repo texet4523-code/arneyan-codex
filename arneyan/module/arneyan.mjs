@@ -214,15 +214,16 @@ Hooks.on("renderCompendiumDirectory", (app, html) => {
   (root.querySelector(".header-actions, .directory-header") ?? root).prepend(btn);
 });
 
-/* Player characters: tokens are linked to the actor, so sheet changes always reach the token. */
+/* Player characters and the party: tokens are linked to the actor, so sheet changes always reach the token (and a
+ * party's travel count, kept on the actor, follows its token's moves: T129, 25 Oct 2026). */
 Hooks.on("preCreateActor", (actor, data) => {
-  if (actor.type !== "character") return;
+  if (!["character", "party"].includes(actor.type)) return;
   // Only fill gaps: imported or duplicated characters keep the token settings they came with.
   const proto = data.prototypeToken ?? {};
   const upd = {};
   if (!("actorLink" in proto)) upd["prototypeToken.actorLink"] = true;
   if (!("disposition" in proto)) upd["prototypeToken.disposition"] = 1;
-  if (!proto.sight || !("enabled" in proto.sight)) upd["prototypeToken.sight.enabled"] = true;
+  if (actor.type === "character" && (!proto.sight || !("enabled" in proto.sight))) upd["prototypeToken.sight.enabled"] = true;
   if (Object.keys(upd).length) actor.updateSource(upd);
 });
 

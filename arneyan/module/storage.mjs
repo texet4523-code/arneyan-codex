@@ -11,7 +11,7 @@
  * - It can go on a map as a token (the chest in the corner of the room); double-click opens it.
  */
 import { ARNEYAN } from "./config.mjs";
-import { itemFacts, bindItemWindows, itemToChat } from "./expand.mjs";
+import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
 import { blockedCopy, moveDroppedItem, settleMoved, partyMembers } from "./party.mjs";
 import { storageSlots } from "./data/actor-models.mjs";
 
@@ -149,11 +149,12 @@ export class ArneyanStorageSheet extends HandlebarsApplicationMixin(ActorSheetV2
     const add = (item, depth) => {
       if (depth > 8) return;
       const sys = item.system;
+      const hide = hiddenFromPlayer(item);
       const kind = item.type === "weapon" ? `${sys.damage ?? ""} ${ARNEYAN.damageTypes?.[sys.damageType] ?? ""}`.trim() || "Weapon"
         : item.type === "armour" ? `Armour${sys.ac ? ` · AC +${sys.ac}` : ""}`
-        : sys.container?.holds ? "Container" : sys.consumable?.use ? "Consumable" : sys.charges?.max ? `${sys.charges.value}/${sys.charges.max} charges` : "Gear";
+        : sys.container?.holds ? "Container" : sys.consumable?.use ? "Consumable" : sys.charges?.max && !hide ? `${sys.charges.value}/${sys.charges.max} charges` : "Gear";
       rows.push({ id: item.id, name: item.name, img: item.img, qty: sys.quantity ?? 1, slots: sys.totalSlots ?? 0,
-        price: sys.price ?? "", depth, indent: depth * 22, holds: !!sys.container?.holds, kind,
+        price: hide ? "" : (sys.price ?? ""), depth, indent: depth * 22, holds: !!sys.container?.holds, kind,
         expanded: this._expanded.has(item.id), facts: this._expanded.has(item.id) ? itemFacts(item) : [], item });
       for (const c of actor.items.filter(i => i.system?.inside === item.id).sort(sort)) add(c, depth + 1);
     };

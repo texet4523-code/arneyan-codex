@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.56 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.57 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.57
+
+Two fixes from re-running the play tests T128 to T132 on TAC (25 Oct):
+- **A new party's token is linked to the party**, as characters' are. Before, a party actor made from the sidebar had an unlinked token, so travel mode counted its hexes on the token's own copy and the party sheet showed nothing. (The Party on TAC was already linked.)
+- **Unidentified gear shows players no price** in a storage place or the party stash (and no charges for a wand or staff). Its name and slots still show; the GM sees everything as before.
 
 ## What's new in 0.10.56
 

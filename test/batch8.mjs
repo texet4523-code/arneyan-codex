@@ -163,3 +163,15 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   console.log("OK secret group rolls");
 }
 console.log("All batch 8 checks passed.");
+
+/* ---------------- TAC tests 25 Oct: party tokens linked; unidentified rows ---------------- */
+{
+  const src = fs.readFileSync(new URL("../arneyan/module/arneyan.mjs", import.meta.url), "utf8");
+  assert.ok(src.includes('if (!["character", "party"].includes(actor.type)) return;'), "a new party's token is linked, so travel counts on the party");
+  const { hiddenFromPlayer } = await import("../arneyan/module/expand.mjs");
+  assert.equal(hiddenFromPlayer({ system: { identified: false } }, false), true);
+  assert.equal(hiddenFromPlayer({ system: { identified: false } }, true), false, "the GM sees it all");
+  assert.equal(hiddenFromPlayer({ system: { identified: true } }, false), false);
+  for (const f of ["storage.mjs", "party.mjs"]) assert.ok(fs.readFileSync(new URL(`../arneyan/module/${f}`, import.meta.url), "utf8").includes("hiddenFromPlayer("), `${f}: no price for unidentified gear`);
+  console.log("OK linked party tokens, unidentified rows");
+}
