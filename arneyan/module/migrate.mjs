@@ -42,7 +42,7 @@ const same = (a, b) => JSON.stringify(stable(a ?? null)) === JSON.stringify(stab
  * The mechanical fields fingerprinted, as they're compared: without what play changes (uses left, a picked attribute,
  * picked weapons).
  */
-const MECH = [...FIELDS, "uses", "abilityChoice", "weaponChoice", "features"];
+const MECH = [...FIELDS, "uses", "abilityChoice", "weaponChoice", "optionChoice", "features"];
 /**
  * A rule's blank weapon scope (0.10.18: every stored rule gained `weapon`, "" unless it's for some weapons) reads as
  * no field at all, so fingerprints taken before it existed still match an unedited rule.
@@ -65,6 +65,7 @@ function mechView(field, v, legacy = false, raw = false) {
   if (field === "uses") return { max: Number(v.max) || 0, per: v.per ?? "", formula: v.formula ?? "" };
   if (field === "abilityChoice") return { options: [...(v.options ?? [])] };  // the pick and a move are play, not mechanics
   if (field === "weaponChoice") return { max: String(v.max ?? "") };
+  if (field === "optionChoice") return (v.options?.length ? { label: v.label ?? "", max: String(v.max ?? ""), options: plainRules(v.options) } : null);
   if (field === "features" && Array.isArray(v)) return plainRules(v.map(f => {
     const c = clone(f) ?? {};
     if (c.uses) delete c.uses.value;
@@ -284,6 +285,11 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   }
   // Weapons picked already stay (the player's choice, never the GM's edit); the compendium decides how many may be.
   if (o.weaponChoice !== undefined && "weaponChoice" in s) set("weaponChoice", { max: String(o.weaponChoice?.max ?? ""), value: [...(s.weaponChoice?.value ?? [])] });
+  // Options picked already stay where the compendium still has them (Elemental Mastery's element).
+  if (o.optionChoice?.options?.length && "optionChoice" in s) {
+    const names = new Set(o.optionChoice.options.map(x => x?.name));
+    set("optionChoice", { ...clone(o.optionChoice), value: (s.optionChoice?.value ?? []).filter(v => names.has(v)) });
+  }
   if (o.uses !== undefined && "uses" in s) set("uses", usesFrom(s.uses, o.uses, maxNow));
   if (item.type === "kit" && Array.isArray(o.features)) set("features", kitFeaturesFrom(s.features, o.features));
   if (report && kept.length) report.kept = kept;

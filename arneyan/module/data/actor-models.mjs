@@ -247,7 +247,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // DC = 10 + half class level (min 1) + casting modifier. Slots = the class's Spells Per Day
     // row, plus bonus slots from the casting stat (13+ one 1st, 16+ one 2nd, 18+ one 3rd, only
     // where the table gives that level; Sorcerers take a spell known instead), plus extras.
-    s.casters = classes.filter(c => c.system.castingAbility && c.system.levels >= 1).map(c => {
+    s.casters = classes.filter(c => c.system.castingAbility && c.system.levels >= 1).map((c, ci) => {
       const lvl = Math.clamp(c.system.levels, 1, 24);
       const row = c.system.slotTable?.[lvl - 1] ?? [];
       const score = s.abilities[c.system.castingAbility].total;
@@ -260,6 +260,14 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
         const used = n === 0 ? 0 : Math.min(total, c.system.slotsUsed?.[n] ?? 0);
         return { level: n, table, bonus, total, used, left: total - used };
       });
+      // One more slot of the highest level the table gives (Expanded Mind), for the first casting class only.
+      const highest = ci === 0 ? mods.sum("slots.highest") : 0;
+      const top = slots.findLast?.(x => x.level > 0 && x.table > 0) ?? [...slots].reverse().find(x => x.level > 0 && x.table > 0);
+      if (highest && top) {
+        top.total += highest;
+        top.used = Math.min(top.total, c.system.slotsUsed?.[top.level] ?? 0);
+        top.left = top.total - top.used;
+      }
       const dcParts = [{ label: "Base", value: 10 }, { label: "Half class level", value: ARNEYAN.halfLevel(c.system.levels) }, { label: ARNEYAN.abilityAbbr[c.system.castingAbility], value: mod }, ...mods.parts("spell.dc")];
       return {
         id: c.id, name: c.name, ability: c.system.castingAbility, mod, classLevel: c.system.levels,

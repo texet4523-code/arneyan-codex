@@ -10570,75 +10570,40 @@
   "container": "passive",
   "rules": [
    {
-    "key": "note.spell",
-    "value": "Expanded Mind: +1 spell slot of your highest available level."
+    "key": "slots.highest",
+    "value": 1
    }
   ],
-  "summary": "Reminder only. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "The extra slot moves to a new level as you level up; add slots.N by hand.",
-  "confidence": "low"
+  "summary": "+1 spell slot of your highest available level (it moves up as you level).",
+  "manual": "With two casting classes it goes to the first.",
+  "confidence": "high"
  },
  "ancestries/GncQZ7IeG92sBKW9": {
   "name": "Genasi",
   "from": "Ancestry",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated: every number depends on caste. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Caste resistance 5 (Fire: fire, Earth: poison, Water: cold, Air: lightning): add a resist rule in the \"fire 5\" form once chosen; caste Advantages.",
-  "confidence": "low"
+  "summary": "The caste's resistance 5 comes with the caste picked when the ancestry is added (an ancestry feature).",
+  "manual": "Caste Advantages are reminders in the caste's text.",
+  "confidence": "high"
  },
  "ancestries/ADRfCMftshwrDIvp": {
   "name": "Shifter",
   "from": "Ancestry",
-  "container": "toggle",
-  "rules": [
-   {
-    "key": "adv.attack.melee",
-    "value": 1,
-    "when": "Longtooth: first melee attack each round vs a creature an ally also threatens"
-   },
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Wildhunt: Perception or Survival using scent or tracking"
-   },
-   {
-    "key": "speed",
-    "value": 15,
-    "when": "Swiftstride only"
-   },
-   {
-    "key": "note.attack",
-    "value": "Gorebrute: move through enemy space, Fortitude save or prone. Sslyth: bite poisons on a failed Fortitude save."
-   },
-   {
-    "key": "resist",
-    "value": "bludgeoning 3",
-    "when": "Beasthide only, nonmagical"
-   },
-   {
-    "key": "resist",
-    "value": "piercing 3",
-    "when": "Beasthide only, nonmagical"
-   },
-   {
-    "key": "resist",
-    "value": "slashing 3",
-    "when": "Beasthide only, nonmagical"
-   }
-  ],
-  "summary": "Toggle \"Shifted\" carrying each lineage's benefit as a reminder. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Lineage choice: the GM should keep only the chosen lineage's rule without its \"when\" so it applies; duration (Con mod rounds), uses, Beasthide temp HP.",
-  "confidence": "low"
+  "container": "passive",
+  "rules": [],
+  "summary": "The lineage picked when the ancestry is added becomes a feature with a Shifted switch (half your level a day, rounded up): its benefit counts only while it's on (Swiftstride +15ft, Beasthide Resistance 3 to non-magical weapons; the others reminders).",
+  "manual": "Duration (Constitution modifier rounds) and Beasthide's temporary HP by hand.",
+  "confidence": "high"
  },
  "ancestries/llnGaa0xA8flx67x": {
   "name": "Tiefling",
   "from": "Ancestry",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated: resistance and Advantages depend on bloodline. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Bloodline resistance 5 (Infernal: fire, Abyssal: poison, Outer: necrotic, Shadowfell: cold): add a resist rule in the \"fire 5\" form once chosen; bloodline Advantages; Fiendish Retort.",
-  "confidence": "low"
+  "summary": "The bloodline's resistance 5 comes with the bloodline picked when the ancestry is added (an ancestry feature).",
+  "manual": "Bloodline Advantages and Fiendish Retort's damage are in the bloodline's text.",
+  "confidence": "high"
  },
  "class-features/7iaHWvcdv1j6sNCa": {
   "name": "Turn Undead",
@@ -10655,18 +10620,84 @@
     "rules": []
    }
   ],
-  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away; PHB v0.10.0). Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Ends early when the turner attacks it (remove it by hand). Destruction and control stay manual.",
-  "confidence": "low"
+  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away); it comes off when the turner attacks it.",
+  "manual": "Destruction and control stay manual.",
+  "confidence": "high"
  },
  "class-features/ffPDHq8BhWN1inpF": {
   "name": "Elemental Mastery",
   "from": "Druid",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated until the element is chosen. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Add an immune rule for the chosen element (e.g. immune fire); spell reflection.",
-  "confidence": "low"
+  "summary": "Choose the element: immune to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Spell reflection: a reminder.",
+  "manual": "Reflecting a spell of that element (a Wisdom check against its DC) stays with the table.",
+  "confidence": "high",
+  "optionChoice": {
+   "label": "Element",
+   "max": "1",
+   "options": [
+    {
+     "name": "Fire",
+     "text": "Immune to fire damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "fire"
+      }
+     ]
+    },
+    {
+     "name": "Cold",
+     "text": "Immune to cold damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "cold"
+      }
+     ]
+    },
+    {
+     "name": "Lightning",
+     "text": "Immune to lightning damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "lightning"
+      }
+     ]
+    },
+    {
+     "name": "Earth",
+     "text": "Immune to damage from earth (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is)."
+      }
+     ]
+    },
+    {
+     "name": "Water",
+     "text": "Immune to damage from water (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is)."
+      }
+     ]
+    },
+    {
+     "name": "Air",
+     "text": "Immune to damage from air (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is)."
+      }
+     ]
+    }
+   ]
+  }
  },
  "class-features/GOKLoYXjDzcYgpad": {
   "name": "Iron Discipline",
@@ -10684,9 +10715,9 @@
     "when": "vs confusion, charm, fear and mind-affecting spells (Iron Mind)"
    }
   ],
-  "summary": "Reminder on save cards. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "The bonus amount is in the progression table, not the text; once known it could become a save rule with a when.",
-  "confidence": "low"
+  "summary": "Iron Body and Iron Mind save bonuses from the Monk table (Iron Body +1 at 1st to +5 at 15th; Iron Mind +3 at 9th to +5 at 14th), as reminders on the matching saves.",
+  "manual": "",
+  "confidence": "high"
  },
  "class-features/hjEk4CMWD5TSmD3U": {
   "name": "Turn Undead",
@@ -10703,36 +10734,98 @@
     "rules": []
    }
   ],
-  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away; PHB v0.10.0). Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "As Cleric Turn Undead: ends early when the turner attacks it.",
-  "confidence": "low"
+  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away); it comes off when the turner attacks it.",
+  "manual": "Destruction and control stay manual.",
+  "confidence": "high"
  },
  "class-features/7qQi9fW8rl1RKTXP": {
   "name": "Eldritch Invocations",
   "from": "Warlock",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated: depends on invocations chosen. Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Suggest separate items per invocation: Armour of Shadows (ac +2, +3 from 10th, no armour/shield), Devil's Sight (sense \"Devil's Sight 60ft\"), Agonising Blast (Cha mod to Eldritch Blast), Fiendish Vigour (applies self hp.temp @cl).",
-  "confidence": "low"
+  "summary": "Choose invocations (one at 1st, another at 5th, 9th, 13th and 17th): Devil's Sight gives the sense; the others are reminders on the right cards.",
+  "manual": "Agonising Blast's and Armour of Shadows' numbers are reminders; Fiendish Vigour's temporary HP by hand.",
+  "confidence": "high",
+  "optionChoice": {
+   "label": "Invocation",
+   "max": "1:1, 5:2, 9:3, 13:4, 17:5",
+   "options": [
+    {
+     "name": "Agonising Blast",
+     "text": "Add your Charisma modifier to Eldritch Blast damage.",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Agonising Blast: add your Charisma modifier to Eldritch Blast damage."
+      }
+     ]
+    },
+    {
+     "name": "Repelling Blast",
+     "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Repelling Blast: a Large or smaller creature hit by Eldritch Blast is pushed 10ft."
+      }
+     ]
+    },
+    {
+     "name": "Armour of Shadows",
+     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level).",
+     "rules": [
+      {
+       "key": "ac",
+       "value": "1:2, 10:3",
+       "when": "while you wear no armour and carry no shield (doesn't stack with other unarmoured bonuses)"
+      }
+     ]
+    },
+    {
+     "name": "Fiendish Vigour",
+     "text": "Once per day, as part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+     "rules": [
+      {
+       "key": "note.init",
+       "value": "Fiendish Vigour: once a day, temporary HP equal to your Warlock level (until your next long rest)."
+      }
+     ]
+    },
+    {
+     "name": "Mask of Many Faces",
+     "text": "Cast Change Self at will.",
+     "rules": []
+    },
+    {
+     "name": "Devil's Sight",
+     "text": "See normally in darkness, magical or otherwise, to 60ft.",
+     "rules": [
+      {
+       "key": "sense",
+       "value": "Devil's Sight 60ft"
+      }
+     ]
+    }
+   ]
+  }
  },
  "kits/gVuTPk2exlMMJDzM#0": {
   "name": "Steadfast Courage",
   "from": "Hedge Knights (Knight)",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated (modifies Embolden). Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Embolden should become +2 Fortitude/Reflex, +3 Will, double duration, 60ft for this kit; needs a kit-specific variant of the Embolden effect.",
-  "confidence": "low"
+  "summary": "The kit's own Embolden (+2 Fortitude and Reflex, +3 Will, twice your Knight level in rounds, 60ft), once a day; it replaces the usual one.",
+  "manual": "",
+  "confidence": "high"
  },
  "kits/WtB20YgHDIiDxb5Q#0": {
   "name": "Wall-Forged Dread",
   "from": "Boldock Wall-Knights (Knight)",
   "container": "passive",
   "rules": [],
-  "summary": "Nothing automated (modifies Demoralise). Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Demoralise should become -6 Cha checks and Disadvantage on all attacks for this kit; needs a kit-specific variant of the Demoralise effect.",
-  "confidence": "low"
+  "summary": "The kit's own Demoralise (-6 Charisma checks; on a failed Will save, Disadvantage on all attacks), once a day; it replaces the usual one.",
+  "manual": "Number of creatures affected.",
+  "confidence": "high"
  },
  "spells/ebwPab5a9IwqYPl9": {
   "name": "Delay Poison",
@@ -10752,9 +10845,9 @@
     ]
    }
   ],
-  "summary": "Poison effects suspended for 1 hour per level (modelled as immunity to Poisoned). Approved by Kieran on the Feature Board, 20 Oct 2026.",
-  "manual": "Poison damage; resumes afterwards; whether new poison is covered is unclear.",
-  "confidence": "low"
+  "summary": "Poison is suspended for 1 hour per level: immune to Poisoned meanwhile.",
+  "manual": "Poison damage already taken, and whether a delayed poison resumes afterwards, are the GM's call.",
+  "confidence": "medium"
  },
  "class-features/6uf0iFxdTfpRNUBQ": {
   "name": "Fast Movement",

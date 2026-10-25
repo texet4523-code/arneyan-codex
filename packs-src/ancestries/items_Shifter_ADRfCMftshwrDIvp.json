@@ -38,7 +38,21 @@
       "str": 1,
       "int": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "adv.attack.first.melee",
+       "value": "1",
+       "when": "against a creature an ally also threatens",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     },
     {
      "name": "Canidae-Wildhunt",
@@ -48,7 +62,21 @@
       "wis": 1,
       "str": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "adv.skill",
+       "value": "1",
+       "when": "Perception or Survival involving scent or tracking",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     },
     {
      "name": "Felidae-Swiftstride",
@@ -58,7 +86,21 @@
       "dex": 1,
       "wis": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "speed",
+       "value": "15",
+       "when": "",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     },
     {
      "name": "Ursidae-Beasthide",
@@ -68,7 +110,27 @@
       "str": 1,
       "dex": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "resist",
+       "value": "non-magical 3",
+       "when": "",
+       "label": ""
+      },
+      {
+       "key": "note.init",
+       "value": "Beasthide: temporary HP equal to your Constitution modifier each time you shift.",
+       "when": "",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     },
     {
      "name": "Suidae-Gorebrute",
@@ -78,7 +140,21 @@
       "str": 1,
       "cha": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "note.attack",
+       "value": "Gorebrute: move through an enemy's space; it makes a Fortitude save (Ancestry Save DC, Strength) or is knocked prone (once per creature per turn, up to one size larger).",
+       "when": "",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     },
     {
      "name": "Ophidian-Sslyth",
@@ -88,55 +164,26 @@
       "cha": 1,
       "int": -1
      },
-     "rules": []
+     "rules": [
+      {
+       "key": "note.attack",
+       "value": "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration.",
+       "when": "",
+       "label": ""
+      }
+     ],
+     "toggle": true,
+     "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day",
+      "formula": "max(1, ceil(@level/2))"
+     }
     }
    ]
   },
-  "rules": [
-   {
-    "key": "adv.attack.melee",
-    "value": "1",
-    "when": "Longtooth: first melee attack each round vs a creature an ally also threatens",
-    "label": ""
-   },
-   {
-    "key": "adv.skill",
-    "value": "1",
-    "when": "Wildhunt: Perception or Survival using scent or tracking",
-    "label": ""
-   },
-   {
-    "key": "speed",
-    "value": "15",
-    "when": "Swiftstride only",
-    "label": ""
-   },
-   {
-    "key": "note.attack",
-    "value": "Gorebrute: move through enemy space, Fortitude save or prone. Sslyth: bite poisons on a failed Fortitude save.",
-    "when": "",
-    "label": ""
-   },
-   {
-    "key": "resist",
-    "value": "bludgeoning 3",
-    "when": "Beasthide only, nonmagical",
-    "label": ""
-   },
-   {
-    "key": "resist",
-    "value": "piercing 3",
-    "when": "Beasthide only, nonmagical",
-    "label": ""
-   },
-   {
-    "key": "resist",
-    "value": "slashing 3",
-    "when": "Beasthide only, nonmagical",
-    "label": ""
-   }
-  ],
-  "toggle": true,
+  "rules": [],
+  "toggle": false,
   "active": false
  },
  "effects": [],

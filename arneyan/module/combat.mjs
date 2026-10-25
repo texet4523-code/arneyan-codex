@@ -831,7 +831,29 @@ const ownerActor = doc => {
   return p ?? null;
 };
 
+/**
+ * Turn Undead: a Turned creature stops being Turned when the one who turned it attacks it (the active GM removes it).
+ */
+export async function endTurnedOnAttack(message) {
+  const f = message?.flags?.arneyan;
+  if (f?.kind !== "attack" || !game.users?.activeGM?.isSelf) return 0;
+  const attacker = ChatMessage.getSpeakerActor?.(message.speaker);
+  if (!attacker) return 0;
+  let n = 0;
+  for (const t of f.targets ?? []) {
+    let target = null;
+    try { target = fromUuidSync(t.uuid); } catch { target = null; }
+    const gone = [...(target?.effects ?? [])].filter(e => [...(e.statuses ?? [])].includes("turned") && e.flags?.arneyan?.casterUuid === attacker.uuid);
+    if (!gone.length) continue;
+    await target.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));
+    n += 1;
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: attacker }), content: `<p>${foundry.utils.escapeHTML(target.name)} is no longer Turned: ${foundry.utils.escapeHTML(attacker.name)} attacked it.</p>` });
+  }
+  return n;
+}
+
 export function registerCombat() {
+  Hooks.on("createChatMessage", message => { endTurnedOnAttack(message).catch(err => console.warn("Arneyan | Turned", err)); });
   // Current HP never stays above the maximum (Kieran, 25 Oct 2026): checked after every change to the actor.
   Hooks.on("updateActor", (actor, changes, options, userId) => { if (!options?.arneyanHpClamp) checkHpMax(actor, userId); });
   for (const h of ["createItem", "updateItem", "deleteItem", "createActiveEffect", "updateActiveEffect", "deleteActiveEffect"]) {

@@ -41,6 +41,12 @@ def patch(system, entry):
     # the class level, "1:1, 13:2"); its rules scoped to "chosen" count with them. None picked in the compendium.
     if entry.get("weaponChoice"):
         system["weaponChoice"] = {"max": str(entry["weaponChoice"]), "value": []}
+    # Options of the player's choice, each with its own rules (Elemental Mastery's element, Eldritch Invocations).
+    if entry.get("optionChoice"):
+        oc = entry["optionChoice"]
+        system["optionChoice"] = {"label": str(oc.get("label", "")), "max": str(oc.get("max", "") or ""),
+                                  "options": [{"name": str(o["name"]), "text": str(o.get("text", "")), "rules": [rule(r) for r in o.get("rules", [])]} for o in oc.get("options", [])],
+                                  "value": []}
     if entry.get("applies"):
         # Keep applies the spell or feature already had; add the approved ones not there yet (by name).
         have = {a.get("name") for a in system.get("applies", []) or []}

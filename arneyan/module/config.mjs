@@ -281,7 +281,7 @@ ARNEYAN.ruleKeys = {
   "Numbers": ["ability.str", "ability.dex", "ability.con", "ability.int", "ability.wis", "ability.cha", "ac", "attack", "attack.melee", "attack.ranged",
     "damage", "damage.melee", "damage.ranged", "spell.damage", "cantrip.damage", "spell.dc", "class.dc", "save", "save.fort", "save.ref", "save.will",
     "check", "check.str", "check.dex", "check.con", "check.int", "check.wis", "check.cha", "skill", "init", "speed", "hp.max", "hp.level", "nwp", "inventory",
-    "slots.1", "slots.2", "slots.3", "slots.4", "slots.5", "slots.6", "slots.7", "slots.8", "slots.9",
+    "slots.1", "slots.2", "slots.3", "slots.4", "slots.5", "slots.6", "slots.7", "slots.8", "slots.9", "slots.highest",
     "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly",
     // The Monk's: AC with no Dexterity while unarmoured, and a base speed lost over the inventory limit.
     "ac.unarmoured", "speed.base",

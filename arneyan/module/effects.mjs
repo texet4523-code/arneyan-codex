@@ -117,9 +117,33 @@ export function statusesOf(actor) {
  * An item's rules with its attribute choice applied: Will of Iron's `ability.wis` counts for Intelligence when the
  * player picked Intelligence. Never throws; anything odd leaves the rules as they are.
  */
-export function chosenRules(sys) {
-  // The picked attribute first, then the 18 cap's move (a move to one of the item's own options still counts).
-  return movedRules(sys, pickedRules(sys));
+export function chosenRules(sys, cl = null) {
+  // The picked attribute first, then the 18 cap's move (a move to one of the item's own options still counts), then
+  // the rules of the options picked (Elemental Mastery's element, Eldritch Invocations).
+  return [...movedRules(sys, pickedRules(sys)), ...optionRules(sys, cl)];
+}
+
+/** How many options an item's choice allows at this class level (all of them when the level isn't known). */
+export function optionPickMax(sys, cl = null) {
+  const max = String(sys?.optionChoice?.max ?? "").trim();
+  if (!max) return (sys?.optionChoice?.options?.length ?? 0) ? 1 : 0;
+  return cl === null ? Infinity : usesMax(max, { cl, level: cl }, 1);
+}
+/** The options picked that count (in order, up to the number allowed at this level). */
+export function optionPicks(sys, cl = null) {
+  const names = new Set((sys?.optionChoice?.options ?? []).map(o => o?.name));
+  const picked = [...new Set((sys?.optionChoice?.value ?? []).filter(v => names.has(v)))];
+  return picked.slice(0, optionPickMax(sys, cl));
+}
+function optionRules(sys, cl) {
+  try {
+    const opts = sys?.optionChoice?.options ?? [];
+    if (!opts.length) return [];
+    const picks = optionPicks(sys, cl);
+    return picks.flatMap(name => (opts.find(o => o?.name === name)?.rules ?? []).map(r => ({ ...r, label: r.label || name })));
+  } catch {
+    return [];
+  }
 }
 
 function pickedRules(sys) {
@@ -296,7 +320,7 @@ export function collectRules(actor, baseData = {}) {
     const kit = cn ? actor.items.find(i => i.type === "kit" && i.name.toLowerCase() === cn) : null;
     const cls = cn ? (classNamed(cn) ?? (kit?.system?.className ? classNamed(String(kit.system.className).toLowerCase()) : null)) : null;
     const cl = cls?.system.levels ?? baseData.level ?? 1;
-    push(chosenRules(item.system), item.name, { cl }, weaponPicks(item.system, cl));
+    push(chosenRules(item.system, cl), item.name, { cl }, weaponPicks(item.system, cl));
   }
   // Active Effects on the actor (spells, abilities and conditions applied to it).
   const conditionsDone = new Set();

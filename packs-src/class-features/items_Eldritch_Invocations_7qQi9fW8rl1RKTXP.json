@@ -75,7 +75,79 @@
   ],
   "rules": [],
   "toggle": false,
-  "active": false
+  "active": false,
+  "optionChoice": {
+   "label": "Invocation",
+   "max": "1:1, 5:2, 9:3, 13:4, 17:5",
+   "options": [
+    {
+     "name": "Agonising Blast",
+     "text": "Add your Charisma modifier to Eldritch Blast damage.",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Agonising Blast: add your Charisma modifier to Eldritch Blast damage.",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Repelling Blast",
+     "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Repelling Blast: a Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Armour of Shadows",
+     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level).",
+     "rules": [
+      {
+       "key": "ac",
+       "value": "1:2, 10:3",
+       "when": "while you wear no armour and carry no shield (doesn't stack with other unarmoured bonuses)",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Fiendish Vigour",
+     "text": "Once per day, as part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+     "rules": [
+      {
+       "key": "note.init",
+       "value": "Fiendish Vigour: once a day, temporary HP equal to your Warlock level (until your next long rest).",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Mask of Many Faces",
+     "text": "Cast Change Self at will.",
+     "rules": []
+    },
+    {
+     "name": "Devil's Sight",
+     "text": "See normally in darkness, magical or otherwise, to 60ft.",
+     "rules": [
+      {
+       "key": "sense",
+       "value": "Devil's Sight 60ft",
+       "when": "",
+       "label": ""
+      }
+     ]
+    }
+   ],
+   "value": []
+  }
  },
  "effects": [],
  "folder": "T3ndcZaUyzMXclDX",

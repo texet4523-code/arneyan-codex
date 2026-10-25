@@ -128,6 +128,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemChoose: ArneyanActorSheet.#itemChoose,
       classInfo: ArneyanActorSheet.#classInfo,
       itemChooseWeapon: ArneyanActorSheet.#itemChooseWeapon,
+      itemChooseOption: ArneyanActorSheet.#itemChooseOption,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
       itemEquip: ArneyanActorSheet.#itemEquip,
@@ -700,6 +701,12 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     if (!item) return null;
     const { promptAbilityChoice } = await import("./documents.mjs");
     return promptAbilityChoice(item);
+  }
+  static async #itemChooseOption(event, target) {
+    const item = this._itemFrom(target);
+    if (!item) return null;
+    const { promptOptionChoice } = await import("./documents.mjs");
+    return promptOptionChoice(item);
   }
   static async #itemChooseWeapon(event, target) {
     const item = this._itemFrom(target);

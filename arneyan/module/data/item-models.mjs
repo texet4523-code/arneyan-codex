@@ -59,6 +59,17 @@ export function effectFields() {
     weaponChoice: new SchemaField({
       max: str(),
       value: new ArrayField(new StringField({ required: true, blank: false }))
+    }),
+    /**
+     * Options of the player's choice, each with its own rules (Elemental Mastery's element, a Warlock's Eldritch
+     * Invocations): `max` how many may be picked (a number or a level table on the class level, "1:1, 5:2"), `value`
+     * the names picked. Until one is picked the sheet shows "Choose" on the item.
+     */
+    optionChoice: new SchemaField({
+      label: str(),
+      max: str(),
+      options: new ArrayField(new ObjectField()),
+      value: new ArrayField(new StringField({ required: true, blank: false }))
     })
   };
 }
@@ -150,6 +161,8 @@ class BaseItemData extends foundry.abstract.TypeDataModel {
     if (this.abilityChoice) this.needsChoice = (this.abilityChoice.options?.length ?? 0) > 1 && !this.abilityChoice.options.includes(this.abilityChoice.value);
     // A weapon of the player's choice not picked yet (Weapon Specialisation): the sheet asks for it.
     if (this.weaponChoice) this.needsWeapon = !!String(this.weaponChoice.max ?? "").trim() && !(this.weaponChoice.value ?? []).some(v => String(v ?? "").trim());
+    // An option of the player's choice not picked yet (Elemental Mastery, Eldritch Invocations).
+    if (this.optionChoice) this.needsOption = (this.optionChoice.options?.length ?? 0) > 0 && !(this.optionChoice.value ?? []).length;
     if ("slots" in this) this.totalSlots = stackSlots(this);
     // Filled in by the actor: the slots of what's inside this container.
     if (this.container) this.contents = 0;

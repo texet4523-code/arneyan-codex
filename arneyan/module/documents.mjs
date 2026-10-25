@@ -5,7 +5,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText } from "./effects.mjs";
+import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -199,6 +199,37 @@ export async function promptWeaponChoice(item) {
   const value = [...new Set([...have, ...picked])].slice(0, max);
   await item.update({ "system.weaponChoice.value": value });
   return value;
+}
+
+/** An item whose options of the player's choice (Elemental Mastery, Eldritch Invocations) have room for a pick. */
+export function needsOptionChoice(item) {
+  const c = item?.system?.optionChoice;
+  if (!(c?.options?.length)) return false;
+  const max = optionPickMax(item.system, featureLevel(item.actor ?? null, item));
+  return optionPicks(item.system).length < Math.min(max, c.options.length);
+}
+
+/** Ask which options an item's choice takes (ticked up to the number allowed at this level), and store them. */
+export async function promptOptionChoice(item) {
+  const c = item?.system?.optionChoice;
+  if (!item?.isOwner || !(c?.options?.length)) return null;
+  const actor = item.actor ?? null;
+  const max = Math.min(optionPickMax(item.system, featureLevel(actor, item)), c.options.length);
+  const have = new Set(optionPicks(item.system));
+  const label = c.label || "option";
+  const text = o => String(o?.text ?? "");
+  const content = `<p>${esc(item.name)}${actor?.name ? ` (${esc(actor.name)})` : ""}: choose ${max === 1 ? `one ${esc(label.toLowerCase())}` : `up to ${max} (${esc(label.toLowerCase())}s)`}.</p>
+    <div class="arn-acts">${c.options.map((o, i) => `<label class="arn-act"><input type="${max === 1 ? "radio" : "checkbox"}" name="pick" value="${esc(o.name)}" ${have.has(o.name) || (max === 1 && !have.size && i === 0) ? "checked" : ""}> <strong>${esc(o.name)}</strong>${text(o) ? `<br><small>${esc(text(o))}</small>` : ""}</label>`).join("")}</div>`;
+  const picked = await DialogV2.wait({ window: { title: item.name, icon: "fa-solid fa-list-check" }, classes: ["arneyan"], position: { width: 460 }, content,
+    buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => [...btn.form.querySelectorAll("input[name=pick]:checked")].map(i => i.value) },
+      { action: "later", label: "Later" }], rejectClose: false }).catch(() => null);
+  if (!Array.isArray(picked) || !picked.length) return null;
+  if (picked.length > max) {
+    ui.notifications.warn(`${item.name}: choose at most ${max}.`);
+    return promptOptionChoice(item);
+  }
+  await item.update({ "system.optionChoice.value": picked });
+  return picked;
 }
 
 /** Slots a skill takes: one, two for a Master, none for a Knack (an ancestry's chosen skill). */
@@ -1100,6 +1131,8 @@ export class ArneyanItem extends Item {
     ask(needsAbilityChoice, promptAbilityChoice, "attribute");
     // The same for a weapon of the player's choice (Weapon Specialisation): Later leaves its rules as reminders.
     ask(needsWeaponChoice, promptWeaponChoice, "weapon");
+    // Options of the player's choice (Elemental Mastery's element, Eldritch Invocations).
+    ask(needsOptionChoice, promptOptionChoice, "option");
     // A creation feat's attribute bonus over 18 (Toughness's +1 Con on a Con 18 character): where it goes instead.
     ask(i => !!creationOverflow(i), promptCreationOverflow, "creation cap");
     // A feat that raises Luck (Fated Survivor), new to the sheet: its +1, once the 1st-level setup (which rolls

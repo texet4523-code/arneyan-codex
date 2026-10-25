@@ -193,6 +193,13 @@ export function setClassLevel(actor, cls, target) {
       // Luck from feats that step up with level (Fated Survivor at 5th, 10th, 15th and 20th), and from one taken
       // during this level change (its own sync waits for this one). Run even when the change was cancelled.
       await syncLuckFeats(actor, { fromLevel: before }).catch(err => console.warn("Arneyan | Luck feats", err));
+      // A new level that allows another option pick (Eldritch Invocations at 5th, 9th...): ask for it.
+      if ((actor.system?.level ?? 0) > (before ?? 0)) {
+        const { needsOptionChoice, promptOptionChoice } = await import("./documents.mjs");
+        for (const item of actor.items.filter(i => i.system?.optionChoice?.options?.length && needsOptionChoice(i))) {
+          await promptOptionChoice(item).catch(err => console.warn("Arneyan | option choice", err));
+        }
+      }
     }
   });
 }
@@ -997,13 +1004,15 @@ export async function ancestrySetup(actor, anc, { step = "", replacing = false }
   const label = short ? `${baseName} (${short})` : baseName;
 
   // Traits and the choice, as ancestry features that go when the ancestry does.
-  const grant = (name, text, rules = []) => ({
+  const grant = (name, text, rules = [], extra = {}) => ({
     name, type: "ability", img: anc.img,
-    system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules },
+    system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules, ...extra },
     flags: { [FLAG]: { grantedBy: anc.id, source: `${anc.id}.${name}` } }
   });
   const create = (s.traitList ?? []).filter(t => !(res.family && t.name === "Family")).map(t => grant(t.name, t.text));
-  if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short }))));
+  // A choice that only counts while switched on (a Shifter's lineage while shifted) comes as a switch, with its uses.
+  if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
+    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}) }));
   if (res.family) create.unshift(grant(`Family: ${res.family}`, `Born into a ${res.family} family: you speak its language, and its people treat you as one of their own once they look past the marks.`));
   if (create.length) await actor.createEmbeddedDocuments("Item", create, { arneyanGrant: true });
 
