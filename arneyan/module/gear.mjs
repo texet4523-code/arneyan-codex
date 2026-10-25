@@ -438,7 +438,7 @@ export async function writeScroll(spell) {
   const [made] = await actor.createEmbeddedDocuments("Item", [{
     name: `Scroll of ${spell.name}`, type: "equipment", img: SCROLL_IMG,
     system: {
-      description: spell.system.description, quantity: 1, slots: 1, price: lvl ? `${200 * lvl} gp` : "25 gp",
+      description: spell.system.description, quantity: 1, slots: 1, bundle: 5, price: lvl ? `${200 * lvl} gp` : "25 gp",
       consumable: { use: true, heal: "" }, scroll: { spell: spellData, cl, dc }, identified: true,
       source: { book: "phb", page: 0 }
     }

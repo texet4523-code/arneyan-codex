@@ -438,6 +438,11 @@ assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", flags: { arneya
   assert.equal(upd["system.bundle"], 5); assert.equal(upd["flags.arneyan.slotsSet"], true);
   assert.equal(fillFrom({ ...oldKnife, flags: { arneyan: { slotsSet: true } } }, knifeDoc)["system.bundle"], undefined, "only once");
   assert.equal(fillFrom({ type: "weapon", name: "Dagger", system: structuredClone(daggerDoc.system) }, daggerDoc)["system.bundle"], undefined);
+  // Scrolls bundle 5 a slot too; an inscribed copy of a blank Catalogue scroll changes once.
+  const scrollDoc = docOf("Scroll_1st_level");
+  assert.equal(scrollDoc.system.bundle, 5);
+  const oldScroll = { type: "equipment", name: "Scroll of Sleep", system: { ...structuredClone(scrollDoc.system), bundle: 0 } };
+  assert.equal(fillFrom(oldScroll, scrollDoc)["system.bundle"], 5);
 }
 const { packSlots, STARTING_PACKS } = await import("../arneyan/module/starting.mjs");
 {

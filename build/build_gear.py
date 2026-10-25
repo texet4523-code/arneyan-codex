@@ -155,7 +155,7 @@ def build():
         if re.search(r"bundles?\s*5\s*/\s*slot|bundle of 5", t, re.I) or d["name"].lower() in bundled or re.sub(r"\s*\(.*\)$", "", d["name"]).lower() in bundled or d["name"] in THROWN or fold in ("Iconic Rings",) \
                 or (fold == "Iconic Wands, Staffs & Rods" and d["name"].startswith("Wand")):
             s["bundle"] = 5
-        if d["name"] in EXTRA_BUNDLES:
+        if d["name"] in EXTRA_BUNDLES or re.match(r"^Scroll\b", d["name"]):  # scrolls bundle 5 a slot (Kieran, 25 Oct)
             s["bundle"] = 5
         if d["name"] in NO_SLOT:
             s["slots"] = 0
