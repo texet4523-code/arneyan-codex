@@ -27,6 +27,7 @@ import { registerCounters, drawTokenCounters } from "./counters.mjs";
 import { registerTransform, transformInto, revertTransform } from "./transform.mjs";
 import { registerCombat } from "./combat.mjs";
 import { registerStealth } from "./stealth.mjs";
+import { registerReload } from "./reload.mjs";
 import { registerIntegrations } from "./integrations.mjs";
 import { registerGmTools } from "./gmtools.mjs";
 import { registerWorld } from "./world.mjs";
@@ -87,6 +88,7 @@ Hooks.once("init", () => {
   registerCounters();
   registerCombat();
   registerStealth();
+  registerReload();
   registerIntegrations();
   registerGmTools();
   registerWorld();

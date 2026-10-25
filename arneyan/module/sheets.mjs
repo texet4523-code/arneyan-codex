@@ -1,3 +1,4 @@
+import { isReloadable, ammoOf, reloadRounds, startReload } from "./reload.mjs";
 import { hideState, rollHide, rollSearch } from "./stealth.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
@@ -129,6 +130,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       classInfo: ArneyanActorSheet.#classInfo,
       itemChooseWeapon: ArneyanActorSheet.#itemChooseWeapon,
       itemChooseOption: ArneyanActorSheet.#itemChooseOption,
+      itemReload: ArneyanActorSheet.#itemReload,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
       itemEquip: ArneyanActorSheet.#itemEquip,
@@ -232,7 +234,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       ammoChoices: w.system.ammoType ? ammoChoices(actor, w) : null,
       toHitTip: breakdown(actor.attackParts(w)),
       offhand: isLight(w),
-      damageType: ARNEYAN.damageTypes[w.system.damageType] ?? ""
+      damageType: ARNEYAN.damageTypes[w.system.damageType] ?? "",
+      // Guns and heavy crossbows: loaded shots, and the reload (Batch 8).
+      reload: isReloadable(w) ? { ...ammoOf(w), rounds: reloadRounds(w, actor) } : null
     })));
 
     // Gear: what's packed inside a container is listed under it; a weightless container's contents cost no slots.
@@ -701,6 +705,10 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     if (!item) return null;
     const { promptAbilityChoice } = await import("./documents.mjs");
     return promptAbilityChoice(item);
+  }
+  static async #itemReload(event, target) {
+    const item = this._itemFrom(target);
+    if (item) return startReload(item);
   }
   static async #itemChooseOption(event, target) {
     const item = this._itemFrom(target);

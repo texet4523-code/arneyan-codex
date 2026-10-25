@@ -292,8 +292,16 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
 
   // Firearms.
   const fire = firearmOf(item);
+  if (fire && !(await gunReady(item, fire))) { out.block = true; return out; }
+  // An empty gun or heavy crossbow has to be reloaded first (reload.mjs).
+  const { isReloadable, loadedReady, ammoOf } = await import("./reload.mjs");
+  if (isReloadable(item)) {
+    if (!(await loadedReady(item))) { out.block = true; return out; }
+    out.reloadable = true;
+    const a = ammoOf(item);
+    if (a.capacity > 1) out.notes.push(`${item.name}: ${a.loaded} of ${a.capacity} shots loaded.`);
+  }
   if (fire) {
-    if (!(await gunReady(item, fire))) { out.block = true; return out; }
     out.fire = fire;
     out.trained = firearmsTrained(actor);
     if (!out.trained) out.adv.push({ values: [-1], adv: [], dis: ["Untrained with firearms"] });
@@ -340,6 +348,8 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     return `<div class="arn-outcome failure arn-misfire"><i class="fa-solid fa-gun"></i> Misfire: ${esc(item.name)} jams. No damage. ${esc(why)} Clearing it takes ${esc(out.fire.reload || "its Reload time")}, then a normal reload.</div>`;
   };
   out.after = async msg => {
+    // A shot fired (a misfire still uses it).
+    if (msg && out.reloadable) await (await import("./reload.mjs")).spendShot(item).catch(err => console.warn("Arneyan | reload", err));
     if (!msg || !out.fire) return msg;
     const f = msg.flags?.[SYS] ?? {};
     const r = misfireResult(out.fire, f.natural, { trained: out.trained, crit: !!f.crit });
