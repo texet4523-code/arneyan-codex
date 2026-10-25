@@ -821,17 +821,16 @@ export class ArneyanActor extends Actor {
    * Rest. A long rest restores spell slots and 1/long rest abilities, ends temporary HP and removes
    * one level of Exhaustion. Healing depends on where: a safe haven heals the largest Hit Die + Con
    * (rolled once per stay, negative Con counts as 0) each night; outdoors heals 1 HP, or the Con
-   * modifier (minimum 1) with shelter. Medium or heavy armour gives no benefit. Luck never recovers.
+   * modifier (minimum 1) with shelter. Luck never recovers. Armour isn't checked: it's assumed to come off for the
+   * night, and the GM rules otherwise (Kieran, 25 Oct 2026).
    */
   async rest() {
     if (this.type !== "character") return;
     if (!(await confirmRestInFight(this))) return;
-    const armour = this.items.find(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category));
     const haven = this.system.rest.haven;
     const where = await DialogV2.wait({
       window: { title: `${this.name}: Rest` },
-      content: `${armour ? `<p class="arn-warn"><strong>${armour.name}</strong> is ${armour.system.category} armour: sleeping in it gives none of a long rest's benefits. Take it off first.</p>` : ""}
-        <p>Where are you resting?</p>
+      content: `<p>Where are you resting?</p>
         <ul class="arn-help-list">
           <li><strong>Safe haven</strong> (town, inn, stronghold): heal your largest Hit Die + Con each night, rolled once per stay${haven ? ` (this stay: ${haven} HP a night)` : ""}.</li>
           <li><strong>Camp with shelter</strong> (tent, bedroll): heal your Con modifier, minimum 1.</li>
@@ -856,14 +855,7 @@ export class ArneyanActor extends Actor {
     if (this.type !== "character") return "";
     // A long rest lets a slain pact servant be called again (Warlock, Pact Summons).
     if (this.getFlag(SYS, "pactSlain")) await this.unsetFlag(SYS, "pactSlain").catch(() => null);
-    const armour = this.items.find(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category));
     const haven = this.system.rest.haven;
-    if (armour) {
-      await rechargeAtDawn(this);
-      const line = `${this.name} sleeps in ${armour.name}: none of a long rest's benefits.`;
-      if (!quiet) ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<p><strong>${esc(this.name)}</strong> sleeps in ${esc(armour.name)} and gains none of a long rest's benefits.</p>` });
-      return line;
-    }
     const con = this.system.abilities.con.mod;
     let heal = 0;
     let note = "";

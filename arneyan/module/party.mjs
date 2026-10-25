@@ -282,11 +282,9 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const members = partyMembers();
     if (!members.length) return ui.notifications.warn("No party members to rest.");
     if (!(await confirmRestInFight(members))) return;
-    const inArmour = members.filter(m => m.items.some(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category)));
     const where = await foundry.applications.api.DialogV2.wait({
       window: { title: "Rest the party" },
-      content: `<p>Where is the party resting? Each member heals as on their own sheet (safe haven: largest Hit Die + Con a night; camp with shelter: Con modifier, minimum 1; in the open: 1 HP), and spell slots, daily abilities and staffs come back.</p>
-        ${inArmour.length ? `<p class="arn-warn">Still in medium or heavy armour, so no benefit: <strong>${inArmour.map(m => foundry.utils.escapeHTML(m.name)).join(", ")}</strong>.</p>` : ""}`,
+      content: `<p>Where is the party resting? Each member heals as on their own sheet (safe haven: largest Hit Die + Con a night; camp with shelter: Con modifier, minimum 1; in the open: 1 HP), and spell slots, daily abilities and staffs come back.</p>`,
       buttons: [
         { action: "haven", label: "Safe haven", icon: "fa-solid fa-house" },
         { action: "shelter", label: "Camp, shelter", icon: "fa-solid fa-campground", default: true },

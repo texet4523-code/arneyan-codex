@@ -13,6 +13,7 @@ Batch 7: player feedback (23 Oct). 0.10.51 (batch 6, below) wasn't released on i
 - **Max HP down, current HP down.** When a character's maximum HP drops below their current HP (Debilitated, a drain, a level or feature lost), current HP comes down to the new maximum, and stays there when the maximum comes back.
 - **Clearer buttons** in every Arneyan window: the main button is green, the others outlined, and one that can't be pressed yet (Set the scores before the scores are assigned) is greyed with a dashed edge.
 - **Gold in the Browser.** When the Browser adds to a character, it shows their coins and inventory slots, and keeps them up to date as they buy.
+- **Resting ignores armour** (Kieran, 25 Oct): characters are assumed to take it off for the night, so a rest no longer refuses its benefits to someone with medium or heavy armour still marked as worn. The GM rules otherwise when it matters.
 - **Who can move the party token.** A **Players** button on the party sheet (GM) shows which players can select and move the party token and why not (a player set lower than the Default, a locked or hidden token, the game paused), with a button to let every player move it.
 
 ## What's new in 0.10.51
@@ -465,7 +466,7 @@ The Equipment tab has the Catalogue's groups as tabs to flick through (All, Weap
 - **Roll bonuses** on the Effects tab add to every attack, weapon damage, spell damage or cantrip damage roll (numbers or dice).
 
 ## Resting and Exhaustion
-- The Rest button (sidebar) asks where you rest: Safe Haven (largest Hit Die + Con, once per stay), Camp with shelter (Con, minimum 1) or Camp in the open (1 HP). Medium or heavy armour worn means no recovery. A rest removes one level of Exhaustion and refreshes per-day, per-rest and per-encounter abilities and spell slots. Luck never comes back.
+- The Rest button (sidebar) asks where you rest: Safe Haven (largest Hit Die + Con, once per stay), Camp with shelter (Con, minimum 1) or Camp in the open (1 HP). Armour isn't checked: it's assumed to come off for the night, and the GM rules otherwise. A rest removes one level of Exhaustion and refreshes per-day, per-rest and per-encounter abilities and spell slots. Luck never comes back.
 - **Per-encounter uses** also come back when the GM ends the combat (deletes it from the tracker).
 - **Per-week, per-session and per-month uses** are yours to reset: set the uses back on the feature's sheet when the week (or session, or month) has passed.
 - Exhaustion 1-6 (the pips in the sidebar) applies automatically: Disadvantage on Initiative, halved speed, Disadvantage on checks and attacks, halved Max HP, no spellcasting, and death.
