@@ -213,7 +213,7 @@ export function watchMove(minuteOfDay, k, dir) {
 /** Camp activities (Kieran's list, 22 Oct): each a check the player rolls from its button. */
 export const CAMP_ACTIVITIES = [
   { id: "watch", label: "Keep watch", check: "Perception (a Wisdom check)", ability: "wis", skills: [], icon: "fa-eye",
-    text: "Spot trouble before it reaches the camp. The night's Encounter Check falls in one watch: the watch's passive awareness against the comers' Search DC decides surprise (books v0.10.10), or the watch actively Searches (a Wisdom check)." },
+    text: "Spot trouble before it reaches the camp. The night's Encounter Check falls in one watch: the watch's passive awareness against the comers' Search DC decides surprise (books v0.10.10); a watch that's actively searching rolls Search (a Wisdom check) instead." },
   { id: "forage", label: "Forage", check: "Survival, DC 12", skills: ["Survival"], dc: FORAGE_DC, icon: "fa-seedling",
     text: "1d4 Day's Rations on a success, +1 for every 5 over. Once a day." },
   { id: "hunt", label: "Hunt", check: "Hunting or Survival, DC 12", skills: ["Hunting", "Survival"], dc: FORAGE_DC, icon: "fa-crosshairs", needsGear: true,
@@ -327,8 +327,8 @@ export async function nightCheck(party, members) {
     const names = watchers.map(id => members.find(m => m.id === id)?.name).filter(Boolean);
     const aware = watchers.map(id => members.find(m => m.id === id)).filter(Boolean).map(m => `${esc(m.name)} ${m.system?.attributes?.awareness?.value ?? "?"}`);
     body += `<p>It comes during <strong>watch ${i + 1}</strong> (${hm(slots[i].start)} to ${hm(slots[i].end)}, d${slots.length}: ${pick.total}), on ${esc(names.join(" and ") || "nobody")}'s watch.</p>
-      ${aware.length ? `<p>Passive awareness: ${aware.join(", ")}. A watcher who meets the comers' lowest Search DC isn't surprised, and a comer who isn't hidden gives them all away (if they weren't hiding: Moderate 12 for a quiet approach, Hard 15 for a prepared one); the Surprise check in the token tools works it out. Or rule on it from the camp's precautions.</p>` : ""}
-      <div class="arn-card-buttons"><button type="button" class="arn-camp-askwatch" data-party="${esc(party.id)}" data-watchers="${esc(watchers.join(","))}" data-watch="${i + 1}"><i class="fa-solid fa-eye"></i> Ask the watch to Search</button></div>`;
+      ${aware.length ? `<p>Passive awareness: ${aware.join(", ")}. A watcher who meets the comers' lowest Search DC isn't surprised, and a comer who isn't hidden gives them all away (if they weren't hiding: Moderate 12 for a quiet approach, Hard 15 for a prepared one); the Surprise check in the token tools works it out. Or rule on it from the camp's precautions. Only a watch that's actively searching rolls (Kieran, 25 Oct).</p>` : ""}
+      <div class="arn-card-buttons"><button type="button" class="arn-camp-askwatch" data-party="${esc(party.id)}" data-watchers="${esc(watchers.join(","))}" data-watch="${i + 1}"><i class="fa-solid fa-eye"></i> The watch is actively searching: ask them to Search</button></div>`;
   }
   await party.update({ [`flags.${SYS}.camp`]: { ...c, checked: nightKey, log: [...(c.log ?? []), `Night Encounter Check: ${r.total}${what ? ` (${what})` : ""}.`].slice(-30) } });
   await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: party }), whisper: game.users.filter(u => u.isGM).map(u => u.id), rolls: [r],
