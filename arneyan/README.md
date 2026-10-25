@@ -9,7 +9,7 @@ Version 0.10.61 · Foundry v13 and v14 · **Playtest release**
 - **Capacity:** 16 slots at Strength 6 or less, 18 at 7 to 12, 20 at 13 to 15 and 22 at 16 or more. Over-the-limit penalties are unchanged.
 - Every character's limit updates by itself, including characters already in a world.
 - Nine pregens gain 2 slots: Brakka, Brenna, Gauthak, Sir Durgan and Big Wen (Strength 18), and Hulda Frostbraid, Ilyra, Marta and Rook (Strength 13 or 14). Everyone else is unchanged, and all 19 start inside their limit.
-- The Codex, Character Creation and Catalogue journals now print the new steps, plus the Knife and scroll bundling from books v0.10.14. The 0.10.60 stopgap for those two rows is no longer needed.
+- The Codex, Character Creation and Catalogue journals now print the new steps, plus the Knife and scroll bundling from books v0.10.14. The 0.10.60 stopgap for those two rows now has nothing left to change.
 
 ## What's new in 0.10.60
 

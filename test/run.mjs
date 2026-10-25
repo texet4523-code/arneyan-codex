@@ -37,6 +37,12 @@ assert.equal(s.saves.will.value, 0 + 2);
 assert.equal(s.attributes.deathAt, -12);   // -10 minus Con +2
 assert.equal(s.nwp.max, 4); assert.equal(s.nwp.used, 2);
 assert.equal(s.inventory.max, 22);         // Str 16+ (F16)
+{ // F16 at the use site: Str 12 +1 from a feat reaches the 13 to 15 step (20), and an "inventory" rule still adds on top.
+  const strFeat = makeItem(IM.FeatData, "feat", "Strong Back", { rules: [{ key: "ability.str", value: "1" }, { key: "inventory", value: "2" }] });
+  const mule = makeActor(CharacterData, "character", { abilities: { str: { value: 12 }, dex: { value: 10 }, con: { value: 10 }, int: { value: 10 }, wis: { value: 10 }, cha: { value: 10 } } }, [fighter, strFeat]);
+  assert.equal(mule.system.abilities.str.total, 13);
+  assert.equal(mule.system.inventory.max, 20 + 2);
+}
 assert.equal(s.inventory.used, 3 + 1 + 1 + 1 + 2); // armour, shield, sword, arrows, 150 coins
 assert.equal(s.xpRate, 10);
 assert.equal(s.classDC, 10 + 2 + 2);
