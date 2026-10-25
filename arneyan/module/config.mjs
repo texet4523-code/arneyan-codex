@@ -174,9 +174,10 @@ ARNEYAN.nwpSlots = function (level) {
   return 3 + [4, 8, 12, 16, 20, 24].filter(l => level >= l).length;
 };
 
-/** Inventory slots from Strength: 16 at 6 or less, 18 at 7 to 15, 20 at 16+. */
+/** Inventory slots from Strength (F16): 16 at 6 or less, 18 at 7 to 12, 20 at 13 to 15, 22 at 16+. */
 ARNEYAN.inventorySlots = function (str) {
-  if (str >= 16) return 20;
+  if (str >= 16) return 22;
+  if (str >= 13) return 20;
   if (str <= 6) return 16;
   return 18;
 };

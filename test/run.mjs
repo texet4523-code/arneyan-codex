@@ -13,6 +13,8 @@ for (const [s, m] of Object.entries(table)) assert.equal(ARNEYAN.abilityMod(Numb
 const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 2, arcane: 2 };
 const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 5, arcane: 4 };
 for (const k of Object.keys(bth12)) { assert.equal(ARNEYAN.bth(k, 12), bth12[k]); assert.equal(ARNEYAN.bth(k, 24), bth24[k]); assert.equal(ARNEYAN.bth(k, 1), 0); }
+// F16: inventory slots from Strength, at every step boundary.
+for (const [str, slots] of [[3, 16], [6, 16], [7, 18], [12, 18], [13, 20], [15, 20], [16, 22], [18, 22], [25, 22]]) assert.equal(ARNEYAN.inventorySlots(str), slots, `slots at Str ${str}`);
 
 // A 5th-level Fighter with Dex 14, Con 16, chain mail and a shield.
 const fighter = makeItem(IM.ClassData, "class", "Fighter", { levels: 5, hitDie: "d10", bthProgression: "martial", keyAbility: "str", xpRate: 10 });
@@ -34,7 +36,7 @@ assert.equal(s.saves.ref.value, 1 + 2);
 assert.equal(s.saves.will.value, 0 + 2);
 assert.equal(s.attributes.deathAt, -12);   // -10 minus Con +2
 assert.equal(s.nwp.max, 4); assert.equal(s.nwp.used, 2);
-assert.equal(s.inventory.max, 20);         // Str 16+
+assert.equal(s.inventory.max, 22);         // Str 16+ (F16)
 assert.equal(s.inventory.used, 3 + 1 + 1 + 1 + 2); // armour, shield, sword, arrows, 150 coins
 assert.equal(s.xpRate, 10);
 assert.equal(s.classDC, 10 + 2 + 2);
