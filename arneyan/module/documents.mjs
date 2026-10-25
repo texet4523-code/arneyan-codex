@@ -1423,7 +1423,8 @@ export class ArneyanItem extends Item {
     }
     if (act.kind === "check" && act.ability && actor?.rollAbility) {
       // A Rogue's or Assassin's Hide sets how hidden the creature is, as the sheet's Hide box does (K2).
-      if (/^hide$/i.test(String(act.name ?? "").trim())) return rollHide(actor, event, { text: act.text });
+      // (The Actions compendium's Hide, whose check is "Dexterity (Stealth)", too.)
+      if (/^hide$/i.test(String(act.name ?? "").trim()) || (/^hide$/i.test(String(this.name).trim()) && act.ability === "dex")) return rollHide(actor, event, { text: act.text });
       await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` });
       const bonus = byLevel(act.bonus, cl, rollData);
       return actor.rollAbility(act.ability, event, bonus ? { bonus, label: this.name } : {});

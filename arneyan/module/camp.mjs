@@ -327,7 +327,7 @@ export async function nightCheck(party, members) {
     const names = watchers.map(id => members.find(m => m.id === id)?.name).filter(Boolean);
     const aware = watchers.map(id => members.find(m => m.id === id)).filter(Boolean).map(m => `${esc(m.name)} ${m.system?.attributes?.awareness?.value ?? "?"}`);
     body += `<p>It comes during <strong>watch ${i + 1}</strong> (${hm(slots[i].start)} to ${hm(slots[i].end)}, d${slots.length}: ${pick.total}), on ${esc(names.join(" and ") || "nobody")}'s watch.</p>
-      ${aware.length ? `<p>Passive awareness: ${aware.join(", ")}. A watcher who meets the comers' lowest Search DC (or Moderate 12 / Hard 15 if they weren't hiding) isn't surprised; the Surprise check in the token tools works it out. Or rule on it from the camp's precautions.</p>` : ""}
+      ${aware.length ? `<p>Passive awareness: ${aware.join(", ")}. A watcher who meets the comers' lowest Search DC isn't surprised, and a comer who isn't hidden gives them all away (if they weren't hiding: Moderate 12 for a quiet approach, Hard 15 for a prepared one); the Surprise check in the token tools works it out. Or rule on it from the camp's precautions.</p>` : ""}
       <div class="arn-card-buttons"><button type="button" class="arn-camp-askwatch" data-party="${esc(party.id)}" data-watchers="${esc(watchers.join(","))}" data-watch="${i + 1}"><i class="fa-solid fa-eye"></i> Ask the watch to Search</button></div>`;
   }
   await party.update({ [`flags.${SYS}.camp`]: { ...c, checked: nightKey, log: [...(c.log ?? []), `Night Encounter Check: ${r.total}${what ? ` (${what})` : ""}.`].slice(-30) } });
@@ -421,7 +421,7 @@ export function registerCamp() {
       per.disabled = true;
       setTimeout(() => { per.disabled = false; }, 3000);
       const watchers = String(per.dataset.watchers || "").split(",").map(id => game.actors.get(id)).filter(Boolean);
-      const who = await pickMember(watchers, "Perception");
+      const who = await pickMember(watchers, "Search");
       if (who) await (await import("./stealth.mjs")).rollSearch(who, ev);
     });
   });

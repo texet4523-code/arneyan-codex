@@ -58,7 +58,7 @@ const skillNamed = (actor, re) => [...(actor?.items ?? [])].find(i => i.type ===
 export function hideNotes(actor, text = "") {
   const own = [...(actor?.items ?? [])].flatMap(i => (i.system?.activities ?? []).filter(a => /^hide$/i.test(String(a.name ?? "").trim())).map(a => a.text)).filter(Boolean);
   const mods = actor?.system?.mods ?? actor?.mods;
-  const features = (mods?.notesFor?.("check", "skill") ?? []).filter(n => /stealth|hid(e|ing)|rogue skills/i.test(n));
+  const features = (mods?.notesFor?.("check", "skill") ?? []).filter(n => /stealth|\bhid(e|ing)\b(?!\s+armou?r)|rogue skills/i.test(n));
   return [...new Set(["Hide only while unobserved, or in cover or concealment.", ...(text ? [text] : own), ...features])];
 }
 
@@ -169,14 +169,14 @@ export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulti
   const states = ambushers.map(a => hideState(a));
   const hiding = states.filter(Boolean);
   const givenAway = hiding.length && hiding.length < states.length ? ambushers.filter((a, i) => !states[i]).map(a => a.name) : [];
-  const dc = !ambushers.length ? null : givenAway.length ? 0 : hiding.length ? Math.min(...hiding.map(s => s.dc)) : fallback;
+  const dc = !ambushers.length || givenAway.length ? null : hiding.length ? Math.min(...hiding.map(s => s.dc)) : fallback;
   const against = Math.max(0, ...ambushers.map(a => Number(a.system?.mods?.sum?.("surprise.against") ?? a.mods?.sum?.("surprise.against")) || 0));
   const rows = unaware.map(a => {
     const aw = a.system?.attributes?.awareness;
     const mods = a.system?.mods ?? a.mods;
     const s = surpriseAwareness(aw ?? { value: 10, net: 0, adv: [], dis: [] }, mods, against);
     const cannot = (mods?.notesFor?.("init", "check", "skill") ?? []).filter(n => /cannot be surprised|can't be surprised/i.test(n));
-    return { actor: a, name: a.name, awareness: s.value, bonus: s.bonus, against: s.against, surprised: dc !== null && s.value < dc && !cannot.length, cannot };
+    return { actor: a, name: a.name, awareness: s.value, bonus: s.bonus, against: s.against, surprised: !givenAway.length && dc !== null && s.value < dc && !cannot.length, cannot };
   });
   return { dc, against, rows, givenAway };
 }
@@ -187,7 +187,9 @@ export async function surpriseDialog() {
   if (!tokens.length) return ui.notifications.warn("No creatures on this scene.");
   const hidden = new Set(tokens.filter(t => hideState(t.actor)).map(t => t.id));
   const hiddenDisp = new Set(tokens.filter(t => hidden.has(t.id)).map(t => t.document.disposition));
-  const guess = t => hidden.has(t.id) || hiddenDisp.has(t.document.disposition) ? "amb" : hiddenDisp.size ? "un" : "";
+  // Hidden tokens start as ambushers; the other side (a different disposition) as unaware; the hiders' unhidden
+  // companions as Neither (one who isn't hidden would give the group away: tick them only if they're in the ambush).
+  const guess = t => hidden.has(t.id) ? "amb" : hiddenDisp.size && !hiddenDisp.has(t.document.disposition) ? "un" : "";
   const row = t => `<tr><td>${esc(t.name)}${hidden.has(t.id) ? ` <span class="arn-chip">${esc(hideState(t.actor).label)}, DC ${hideState(t.actor).dc}</span>` : ""}</td>
     ${["amb", "un", ""].map(v => `<td><input type="radio" name="side-${t.id}" value="${v}" ${guess(t) === v ? "checked" : ""}></td>`).join("")}</tr>`;
   const content = `<p>Surprise happens only when one side has a real chance to catch the other unaware (your call). Each creature on the unaware side compares its passive awareness with the lowest Search DC among the hiding ambushers; an ambusher who isn't hidden gives the group away. If nobody was hiding, the DC below is used.</p>
