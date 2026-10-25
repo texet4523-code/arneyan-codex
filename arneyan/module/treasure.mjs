@@ -203,7 +203,7 @@ const enchanted = (what, plus, note = "") => ({
   slots: 1, bundle: 0, placeholder: true,
   note: note || `Choose the ${what} and give it +${plus}${what === "weapon" ? " to attack and damage" : " to AC"}.`
 });
-const scroll = level => ({ kind: "magic", name: `Scroll, ${ORD[level]} level`, find: `Scroll, ${ORD[level]} level`, qty: 1, slots: 1, bundle: 0, note: "Choose the spell." });
+const scroll = level => ({ kind: "magic", name: `Scroll, ${ORD[level]} level`, find: `Scroll, ${ORD[level]} level`, qty: 1, slots: 1, bundle: 5, note: "Choose the spell." });
 const named = (n, note = "") => ({ kind: "magic", name: n, find: n, qty: 1, slots: 1, bundle: 0, ...(note ? { note } : {}) });
 const gmChoice = (label, list) => ({ kind: "magic", name: `${label} (GM's choice)`, qty: 1, slots: 1, bundle: 0, placeholder: true, note: `Choose one: ${list.join(", ")}.` });
 

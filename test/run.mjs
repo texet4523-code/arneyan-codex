@@ -443,6 +443,9 @@ assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", flags: { arneya
   assert.equal(scrollDoc.system.bundle, 5);
   const oldScroll = { type: "equipment", name: "Scroll of Sleep", system: { ...structuredClone(scrollDoc.system), bundle: 0 } };
   assert.equal(fillFrom(oldScroll, scrollDoc)["system.bundle"], 5);
+  assert.equal(fillFrom({ ...oldScroll, flags: { arneyan: { slotsSet: true } } }, scrollDoc)["system.bundle"], undefined, "a scroll changes only once");
+  assert.equal(fillFrom({ ...oldKnife, system: { ...oldKnife.system, slots: 2 } }, knifeDoc)["system.bundle"], undefined, "a GM's slot value stays");
+  assert.equal(fillFrom({ ...oldKnife, system: { ...oldKnife.system, bundle: 3 } }, knifeDoc)["system.bundle"], undefined, "a GM's bundle stays");
 }
 const { packSlots, STARTING_PACKS } = await import("../arneyan/module/starting.mjs");
 {

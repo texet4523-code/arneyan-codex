@@ -42,6 +42,7 @@ print('books v0.10.0:', __import__('books_0100').build())
 # and running it on the new text would add a second copy of the Catalogue's light ranges.
 print('books v0.10.4:', __import__('books_0104').build())
 print('books v0.10.5:', __import__('books_0105').build())
+print('inventory rulings (F13, F15) in Book V:', __import__('rulings_inventory').build(), 'rows')
 _pg = build_pregens.build()
 print('pregens:', _pg['made'], 'made;', len(_pg['missing']), 'not in a compendium:', '; '.join(_pg['missing']))
 print('roll tables:', __import__('build_tables').build())

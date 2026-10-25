@@ -4,10 +4,14 @@ Version 0.10.60 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.60
 
-**Throwing knives and scrolls bundle 5 a slot** (Kieran, 25 Oct): a Knife is thinner and lighter than a Dagger, and it's Concealable. Daggers and Hand/Throwing Axes can still be thrown but take 1 slot each, whatever a pregen's older note says. **Scrolls bundle 5 a slot too**, like potions: the Catalogue's blank scrolls and every scroll written on a sheet. Knives and scrolls already in a world change once; a slot value the GM set by hand stays.
+**Knives and scrolls bundle 5 a slot** (Kieran, 25 Oct).
 
-- **Pip Thistlewick** carries two throwing knives (1d2+4) instead of two daggers, so she starts at 17 of 18 slots rather than right at her limit.
-- Tansy, Wren and Sir Durgan count their pair of daggers or axes at 2 slots now. All three stay well inside their limits.
+- **Knives** (throwing knives) are thinner and lighter than a Dagger, so up to five share a slot. Daggers and Hand/Throwing Axes can still be thrown but take 1 slot each, whatever a pregen's older note says.
+- **Scrolls** stack like potions: a stack of blank scrolls, or of the same written scroll, takes 1 slot per 5. Each different written scroll is still its own item.
+- The Book V Catalogue journal shows both ("1 (bundles 5/slot)") until the books catch up.
+- Knives and blank scrolls from the compendium that are already in a world change once; a slot value the GM set by hand stays.
+- **Pip Thistlewick** carries two Knives (1d2+4) instead of two daggers, so she starts at 17 of 18 slots rather than at her limit.
+- Tansy, Wren and Sir Durgan count their pair of daggers or axes at 2 slots now, and all three stay inside their limits. Pregens already in a world keep their old weapons and slots: drag a fresh copy from the compendium.
 
 ## What's new in 0.10.59
 
