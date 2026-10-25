@@ -1,0 +1,27 @@
+{
+  "packs": [
+    {
+      "name": "pregens",
+      "label": "Pregenerated Characters",
+      "path": "packs/pregens",
+      "type": "Actor",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Adventures",
+      "sorting": "m",
+      "color": "#5a2a1a",
+      "packs": [
+        "pregens"
+      ]
+    }
+  ],
+  "_note": "Held back by Kieran (25 Oct 2026) until the final playtest version: put these entries back into arneyan/system.json (packs, packFolders) and remove pregens from HELD_BACK in build/pack.mjs."
+}

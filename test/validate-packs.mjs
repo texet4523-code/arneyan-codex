@@ -68,13 +68,15 @@ const checkImg = (w, img) => {
   else if (img.startsWith("systems/arneyan/") && !fs.existsSync(path.join(sysRoot, img.replace("systems/arneyan/", "")))) err(w, `img missing ${img}`);
 };
 const sys = JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url)));
+const held = JSON.parse(fs.readFileSync(new URL("../build/held-back-packs.json", import.meta.url)));
 const sysRoot = new URL("../arneyan/", import.meta.url).pathname;
 const ID = /^[a-zA-Z0-9]{16}$/;
 
 const src = new URL("../packs-src/", import.meta.url).pathname;
 let count = 0;
 for (const pack of fs.readdirSync(src)) {
-  const decl = sys.packs.find(p => p.name === pack);
+  // A pack held back from release (build/held-back-packs.json, the pregens) is still checked against its own entry.
+  const decl = sys.packs.find(p => p.name === pack) ?? held.packs.find(p => p.name === pack);
   if (!decl) err(pack, "pack not declared in system.json");
   const docs = fs.readdirSync(path.join(src, pack)).map(f => JSON.parse(fs.readFileSync(path.join(src, pack, f))));
   const ids = new Set();

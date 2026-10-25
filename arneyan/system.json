@@ -255,18 +255,6 @@
       "flags": {}
     },
     {
-      "name": "pregens",
-      "label": "Pregenerated Characters",
-      "path": "packs/pregens",
-      "type": "Actor",
-      "system": "arneyan",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "flags": {}
-    },
-    {
       "name": "tables",
       "label": "Tables of Arneyan",
       "path": "packs/tables",
@@ -304,14 +292,6 @@
       "packs": [
         "monsters",
         "tables"
-      ]
-    },
-    {
-      "name": "Adventures",
-      "sorting": "m",
-      "color": "#5a2a1a",
-      "packs": [
-        "pregens"
       ]
     }
   ],

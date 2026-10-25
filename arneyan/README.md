@@ -12,6 +12,8 @@ Version 0.10.56 · Foundry v13 and v14 · **Playtest release**
 - **Rules journals:** Book I's Downtime pages (training, crafting, magic items, scribing), Traps, and the hiding and Search rules; Book II's Quick Roll option and Backpack line; Book IV's Spell Targeting and touch attacks.
 - **Catalogue:** two-handed weapons say so in their traits; spell components keep "(by quality)" in their price.
 
+- **Pregenerated Characters held back** until the final playtest version (Kieran); pregens already imported into a world stay.
+
 Characters' own copies of items keep their wording; their rules, saves and uses follow the update as usual. Drag an item in again from the compendium for the new text.
 
 ## What's new in 0.10.55
@@ -628,7 +630,7 @@ Polymorph, Wild Shape, Shapechange, Animal Shapes and Polymorph Any Object, foll
 The rest of the Codex's conditions table: **Confused** (a reminder to roll 1d10 each turn), **Shaken** (Disadvantage on the next attack), **Slowed** (half Speed, one attack a round) and **Weakened** (Disadvantage on attacks). The Bone Devil's Fear Aura now offers Shaken.
 
 ## Pregenerated characters
-The **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
+**Held back for now** (Kieran, 25 Oct 2026): the compendium returns with the final playtest version. Pregens already imported into a world stay there. When it returns, the **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
 - **The Broken Anvil:** 15 characters in three folders, Level 1 - The Apprentices, Level 5 - The Journeymen and Level 9 - The Veterans (five seats each, seat 5 being the spare).
 - **Jacob's Well:** the four 3rd-level Keepers.
 Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
