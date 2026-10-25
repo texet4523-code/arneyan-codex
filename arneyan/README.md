@@ -9,7 +9,7 @@ Version 0.10.61 · Foundry v13 and v14 · **Playtest release**
 - **Capacity:** 16 slots at Strength 6 or less, 18 at 7 to 12, 20 at 13 to 15 and 22 at 16 or more. Over-the-limit penalties are unchanged.
 - Every character's limit updates by itself, including characters already in a world.
 - Nine pregens gain 2 slots: Brakka, Brenna, Gauthak, Sir Durgan and Big Wen (Strength 18), and Hulda Frostbraid, Ilyra, Marta and Rook (Strength 13 or 14). Everyone else is unchanged, and all 19 start inside their limit.
-- The Codex, Character Creation and Catalogue journals now print the new steps and the books' bundling list: knives, darts, aclis, javelins, harpoons, bolas and scrolls 5 a slot; daggers, hand/throwing axes, spears and tridents take their listed slots. Foundry already counted them this way, so no item changes. The 0.10.60 stopgap for the Knife and scroll rows now has nothing left to change.
+- The Codex, Character Creation and Catalogue journals now print the new steps. Character Creation and the Catalogue also print the books' bundling list: knives, darts, aclis, javelins, harpoons, bolas and scrolls 5 a slot; daggers, hand/throwing axes, spears and tridents take their listed slots. Foundry already counted them this way, so no item changes. The 0.10.60 stopgap for the Knife and scroll rows now has nothing left to change.
 
 ## What's new in 0.10.60
 
@@ -253,7 +253,7 @@ The books v0.10.4 (21 October), mirrored:
 
 ## What's new in 0.10.34
 
-- **Monster art from folders too.** Game Settings, **Monster art** now also reads folders of images in your Foundry Data, not just art modules: a token pack you downloaded as plain images. Unzip it into Data (for example `art/dnd-tokens`), add the folder (type it, or **Pick a folder**), then **Scan**. Images named after a monster ("adult blue dragon.png", "goblin.png") are matched to the Bestiary; others are left alone. Nothing is copied, so leave the folder where it is.
+- **Monster art from folders too.** Game Settings, **Monster art** now also reads folders of images in your Foundry Data, not just art modules: a token pack you downloaded as plain images. Unzip it into Data (for example `art/monster-tokens`), add the folder (type it, or **Pick a folder**), then **Scan**. Images named after a monster ("adult blue dragon.png", "goblin.png") are matched to the Bestiary; others are left alone. Nothing is copied, so leave the folder where it is.
 
 ## What's new in 0.10.33
 
