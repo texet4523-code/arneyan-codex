@@ -14,12 +14,21 @@ const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 2, arcane: 2 };
 const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 5, arcane: 4 };
 for (const k of Object.keys(bth12)) { assert.equal(ARNEYAN.bth(k, 12), bth12[k]); assert.equal(ARNEYAN.bth(k, 24), bth24[k]); assert.equal(ARNEYAN.bth(k, 1), 0); }
 // F18: the bonus text beside the Max HP box.
-assert.equal(ARNEYAN.hpBonusText({ base: 6, max: 7, parts: [{ label: "Levels", value: 6 }, { label: "Toughness (x1)", value: 1 }] }), "+ 1 Toughness");
-assert.equal(ARNEYAN.hpBonusText({ base: 30, max: 30, parts: [{ label: "Levels", value: 30 }] }), "");
-assert.equal(ARNEYAN.hpBonusText({ base: 20, max: 13, halved: true, parts: [{ label: "Levels", value: 20 }, { label: "Toughness (x5)", value: 5 }, { label: "Cursed", value: -2 }] }), "+ 5 Toughness \u2212 2 Cursed then halved");
-assert.equal(ARNEYAN.hpBonusText({ base: 40, max: 45 }), "+ 5 bonuses");      // a monster: no breakdown kept
-assert.equal(ARNEYAN.hpBonusText({ base: 40, max: 20, halved: true }), "then halved");
-assert.equal(ARNEYAN.hpBonusText(undefined), "");
+const hbt = ARNEYAN.hpBonusText;
+assert.equal(hbt({ base: 6, raw: 7, mult: 1, max: 7, parts: [{ label: "Levels", value: 6 }, { label: "Toughness (x1)", value: 1 }] }), "+ 1 Toughness");
+assert.equal(hbt({ base: 30, raw: 30, mult: 1, max: 30, parts: [{ label: "Levels", value: 30 }] }), "");
+assert.equal(hbt({ base: 20, raw: 23, mult: 0.5, max: 11, halved: true, parts: [{ label: "Levels", value: 20 }, { label: "Toughness (x5)", value: 5 }, { label: "Cursed", value: -2 }] }), "+ 5 Toughness \u2212 2 Cursed then halved");
+assert.equal(hbt({ base: 30, raw: 30, mult: 2, max: 60, parts: [{ label: "Levels", value: 30 }] }), "then doubled");   // a character under Animal Growth
+assert.equal(hbt({ base: 40, raw: 45, mult: 1, max: 45 }), "+ 5 bonuses");                   // a monster: one total
+assert.equal(hbt({ base: 40, raw: 50, mult: 0.5, max: 25, halved: true }), "+ 10 bonuses then halved");
+assert.equal(hbt({ base: 40, raw: 40, mult: 2, max: 80 }), "then doubled");                  // a monster under Animal Growth
+assert.equal(hbt({ base: 0, raw: 0, mult: 1, max: 1 }), "(minimum 1)");
+assert.equal(hbt({ base: 2, raw: -3, mult: 1, max: 1, parts: [{ label: "Levels", value: 2 }, { label: "Curse", value: -5 }] }), "\u2212 5 Curse (minimum 1)");
+assert.equal(hbt(undefined), "");
+{ // and the models fill raw/mult for both actor types
+  const npc = makeActor(NpcData, "npc", { attributes: { hp: { value: 40, max: 40 } } }, []);
+  assert.equal(npc.system.attributes.hp.raw, 40); assert.equal(npc.system.attributes.hp.mult, 1); assert.equal(hbt(npc.system.attributes.hp), "");
+}
 // F16: inventory slots from Strength, at every step boundary.
 for (const [str, slots] of [[3, 16], [6, 16], [7, 18], [12, 18], [13, 20], [15, 20], [16, 22], [18, 22], [25, 22]]) assert.equal(ARNEYAN.inventorySlots(str), slots, `slots at Str ${str}`);
 

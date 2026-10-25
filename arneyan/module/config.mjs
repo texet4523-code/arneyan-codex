@@ -182,16 +182,20 @@ ARNEYAN.inventorySlots = function (str) {
   return 18;
 };
 
-/** F18: the bonuses on top of the Max HP box, as "+ 1 Toughness" ("" when none), so the box never reads as off by one. */
+/** F18: what the sheet adds on top of the Max HP box, as "+ 1 Toughness" ("" when nothing), so the box never reads as off by one.
+ *  Characters name each bonus (hp.parts, first part = the box); monsters show one total (hp.raw - hp.base). Then any multiplier and the minimum of 1. */
 ARNEYAN.hpBonusText = function (hp) {
   if (!hp) return "";
-  const parts = Array.isArray(hp.parts) ? hp.parts.slice(1) : [];
-  const words = parts.filter(p => Number(p.value)).map(p => `${p.value < 0 ? "\u2212" : "+"} ${Math.abs(p.value)} ${String(p.label ?? "").replace(/\s*\(x\d+\)$/, "")}`.trim());
-  if (!parts.length && Number.isFinite(hp.base) && Number.isFinite(hp.max) && !hp.halved) {
-    const diff = hp.max - hp.base;
-    if (diff) words.push(`${diff < 0 ? "\u2212" : "+"} ${Math.abs(diff)} bonuses`);
+  const sign = n => `${n < 0 ? "\u2212" : "+"} ${Math.abs(n)}`;
+  const words = [];
+  if (Array.isArray(hp.parts)) {
+    for (const p of hp.parts.slice(1)) if (Number(p?.value)) words.push(`${sign(Number(p.value))} ${String(p.label ?? "").replace(/\s*\(x\d+\)$/, "")}`.trim());
+  } else if (Number.isFinite(hp.raw) && Number.isFinite(hp.base) && hp.raw !== hp.base) {
+    words.push(`${sign(hp.raw - hp.base)} bonuses`);
   }
-  if (hp.halved) words.push("then halved");
+  const mult = Number.isFinite(hp.mult) ? hp.mult : (hp.halved ? 0.5 : 1);
+  if (mult !== 1) words.push(mult === 0.5 ? "then halved" : mult === 2 ? "then doubled" : `then \u00d7${Math.round(mult * 100) / 100}`);
+  if (Number.isFinite(hp.raw) && Number.isFinite(hp.max) && hp.max === 1 && Math.floor(hp.raw * mult) < 1) words.push("(minimum 1)");
   return words.join(" ");
 };
 

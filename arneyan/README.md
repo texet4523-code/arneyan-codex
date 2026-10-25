@@ -6,7 +6,7 @@ Version 0.10.62 · Foundry v13 and v14 · **Playtest release**
 
 **Max HP shows its bonuses** (Kieran, 25 Oct).
 
-- In Edit mode, the **Max** box under Hit Points is your maximum before bonuses. It now says what's added on top, for example "Max [6] + 1 Toughness", so a total of 7 no longer looks off by one. Monsters show the bonuses as one total, and a Debilitated character or monster shows "then halved".
+- In Edit mode, the **Max** box under Hit Points is your maximum before bonuses. It now says what's added on top, for example "Max [6] + 1 Toughness", so a total of 7 no longer looks off by one. Monsters show their bonuses as one total. Anything that halves or doubles HP (Debilitated, Animal Growth) adds "then halved" or "then doubled".
 - The Codex journal follows books v0.10.18: the inventory bullets bold only their labels.
 
 ## What's new in 0.10.61
