@@ -192,6 +192,7 @@ export class ArneyanPartySheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       askRoll: () => game.arneyan.askRoll?.(),
       awardXp: () => game.arneyan.awardXp?.(),
       restParty: ArneyanPartySheet.#restParty,
+      partyControl: () => partyControl(),
       ...WORLD_PARTY_ACTIONS
     }
   };
@@ -496,6 +497,61 @@ async function ensureFolder() {
   const f = await Folder.create({ name: FOLDER, type: "Actor", color: "#1A3320", sorting: "m" });
   await game.settings.set(SYS, "partyFolderId", f.id);
   return f;
+}
+
+/**
+ * Why players can or can't move the party token (player feedback, 23 Oct 2026), and a button to let them all.
+ * Ownership: an explicit level for a player (Observer, say) beats the Default, so Default: Owner alone isn't enough.
+ */
+export function partyControlReport(party = activeParty(), scene = globalThis.canvas?.scene ?? game.scenes?.viewed) {
+  const OWNER = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+  const players = [...(game.users ?? [])].filter(u => !u.isGM);
+  const lvl = id => party?.ownership?.[id];
+  const rows = players.map(u => {
+    const own = party?.testUserPermission?.(u, "OWNER");
+    const explicit = lvl(u.id);
+    return { name: u.name, own, why: own ? "Owner" : explicit !== undefined && explicit !== -1 && explicit < OWNER ? "set lower for this player, which beats the Default" : "not an Owner" };
+  });
+  const toks = scene?.tokens?.filter?.(t => t.actorId === party?.id) ?? [];
+  const issues = [];
+  if (!toks.length) issues.push("There's no party token on this scene (Gather puts one here).");
+  for (const tk of toks) {
+    if (!tk.actorLink) issues.push("The party token on this scene isn't linked to the party: drag a new one from the party, or use Gather.");
+    if (tk.locked) issues.push("The party token is locked (Token settings): nobody can drag it.");
+    if (tk.hidden) issues.push("The party token is hidden from players.");
+  }
+  if (game.paused) issues.push("The game is paused: players can't move tokens until it's unpaused.");
+  return { rows, issues, allOwn: rows.every(r => r.own) };
+}
+
+export async function letPlayersMoveParty(party = activeParty()) {
+  if (!game.user.isGM || !party) return;
+  const OWNER = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+  const upd = { "ownership.default": OWNER };
+  for (const u of game.users.filter(u => !u.isGM)) {
+    const l = party.ownership?.[u.id];
+    if (l !== undefined && l < OWNER) upd[`ownership.-=${u.id}`] = null;
+  }
+  await party.update(upd);
+}
+
+async function partyControl() {
+  const party = activeParty();
+  if (!game.user.isGM || !party) return;
+  const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
+  const r = partyControlReport(party);
+  const content = `<p>Players can select and move the party token when they're an Owner of the party.</p>
+    <ul>${r.rows.map(x => `<li><strong>${esc(x.name)}</strong>: ${x.own ? "can move it" : `can't (${esc(x.why)})`}</li>`).join("") || "<li>No players.</li>"}</ul>
+    ${r.issues.length ? `<p><strong>Also on this scene:</strong></p><ul>${r.issues.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : ""}`;
+  const go = await foundry.applications.api.DialogV2.wait({
+    window: { title: `${party.name}: who can move the token`, icon: "fa-solid fa-hand-pointer" }, classes: ["arneyan"], position: { width: 460 },
+    content,
+    buttons: [{ action: "all", label: "Let every player move it", icon: "fa-solid fa-users", default: !r.allOwn }, { action: "close", label: "Close", default: r.allOwn }],
+    rejectClose: false
+  });
+  if (go !== "all") return;
+  await letPlayersMoveParty(party);
+  ui.notifications.info(`Every player is now an Owner of ${party.name} and can move its token.`);
 }
 
 async function ensureAllies(folder) {

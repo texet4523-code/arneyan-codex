@@ -14,7 +14,7 @@
     <a class="arn-btn small ghost" data-action="clear"><i class="fa-solid fa-filter-circle-xmark"></i> Clear</a>
     {{#if isBestiary}}<a class="arn-btn small ghost" data-action="refreshAll" data-tooltip="Copy the current stat blocks onto monsters already in this world"><i class="fa-solid fa-rotate"></i> Update world monsters</a>{{/if}}
   </div>
-  <div class="arn-br-count">{{#if more}}Showing {{shown}} of {{total}}: narrow the search to see the rest{{else}}{{total}} found{{/if}}{{#if actorName}} · Add puts it on <strong>{{actorName}}</strong>{{#if canBuy}} free; Buy pays for it from their purse{{/if}} <a class="arn-br-unlink" data-action="unlink" data-tooltip="Stop adding to {{actorName}}: just browse (drag a row onto any sheet instead)"><i class="fa-solid fa-link-slash"></i> Just browse</a>{{else}} · {{dragHint}}{{/if}}</div>
+  <div class="arn-br-count">{{#if more}}Showing {{shown}} of {{total}}: narrow the search to see the rest{{else}}{{total}} found{{/if}}{{#if actorName}} · Add puts it on <strong>{{actorName}}</strong>{{#if canBuy}} free; Buy pays for it from their purse{{/if}} <a class="arn-br-unlink" data-action="unlink" data-tooltip="Stop adding to {{actorName}}: just browse (drag a row onto any sheet instead)"><i class="fa-solid fa-link-slash"></i> Just browse</a>{{else}} · {{dragHint}}{{/if}}{{#if purse}}<div class="arn-br-purse"><i class="fa-solid fa-coins"></i> <span>{{purse}}</span></div>{{/if}}</div>
   <ul class="arn-br-results">
     {{#each rows}}
     <li data-uuid="{{uuid}}" draggable="true">

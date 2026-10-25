@@ -1,6 +1,19 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.51 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.52 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.52
+
+Batch 7: player feedback (23 Oct). 0.10.51 (batch 6, below) wasn't released on its own, so it comes with this one.
+
+- **Lighter starting packs** (Kieran, 25 Oct): torches bundle 5 a slot, and the Backpack takes no slot, since it provides the grid itself. The Explorer's Pack is now 8 slots and the Dungeoneer's 11. The starting gear window shows each pack's slots and says when one would put you over your limit. Torches and Backpacks already on sheets change once when the world loads (a slot value you set yourself stays).
+- **Starting Luck isn't rolled for you.** The last new-character step asks: type in what you rolled at the table (the default), roll it here, or leave it for later. Starting gold has a box to type your table roll into as well.
+- **Donated sets** (Rule B): the Method V set you don't keep goes on the table's list of donated sets, and anyone making a character can take one under **Type in a set** (Use fills in the scores; the set leaves the list when you set your scores). The GM can take a set off the list there too. Adding and taking go through the GM, so a GM needs to be on.
+- **A Craft skill means a crafting Skill.** The Dwarf's Knack lists only the crafting Skills (those with an Artisan's toolkit: Alchemy, Armourer, Blacksmithing and the rest); the Automaton's adds Engineering. The Aasimar's still lists the Wisdom and Charisma skills.
+- **Max HP down, current HP down.** When a character's maximum HP drops below their current HP (Debilitated, a drain, a level or feature lost), current HP comes down to the new maximum, and stays there when the maximum comes back.
+- **Clearer buttons** in every Arneyan window: the main button is green, the others outlined, and one that can't be pressed yet (Set the scores before the scores are assigned) is greyed with a dashed edge.
+- **Gold in the Browser.** When the Browser adds to a character, it shows their coins and inventory slots, and keeps them up to date as they buy.
+- **Who can move the party token.** A **Players** button on the party sheet (GM) shows which players can select and move the party token and why not (a player set lower than the Default, a locked or hidden token, the game paused), with a button to let every player move it.
 
 ## What's new in 0.10.51
 

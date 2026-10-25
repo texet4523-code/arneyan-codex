@@ -632,7 +632,9 @@ export function ancestryExtras(actor) {
   if (kt) {
     const what = (kt.match(/Choose one (?:additional )?(.*?)\s*skill at creation/i)?.[1] ?? "").trim();
     const abilities = Object.entries(ARNEYAN.abilities).filter(([, label]) => new RegExp(`\\b${label}\\b`, "i").test(what)).map(([k]) => k);
-    knack = { what, abilities };
+    // Named kinds of skill (player feedback, 23 Oct 2026: the Dwarf saw every skill): Craft, and Engineering.
+    const names = [...(/\bcraft/i.test(what) ? ARNEYAN.craftSkills : []), ...(/\bengineering\b/i.test(what) ? ["Engineering"] : [])];
+    knack = { what, abilities, names };
   }
   return { bonusFeat, knack };
 }
@@ -684,13 +686,21 @@ async function setUpFirstLevel(actor, cls) {
       if (have) await have.update({ "flags.arneyan.knack": true });
       else await addFromUuid(actor, chosen.knack, { extra: { system: { tier: "knack" }, flags: { arneyan: { knack: true } } } });
     }
-    if (luck) {
+    // Starting Luck: rolled here, or typed in from a roll at the table (player feedback, 23 Oct 2026: no auto-roll).
+    let base = null;
+    if (luck === "roll") {
       const r = await new Roll("4d6dl").evaluate();
       await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: "Starting Luck (4d6, drop the lowest)" });
+      base = r.total;
+    } else if (typeof luck === "number") {
+      base = luck;
+      await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>Starting Luck (4d6, drop the lowest), rolled at the table: <strong>${luck}</strong>.</p>` });
+    }
+    if (base !== null) {
       // A Luck feat added before the roll (Fated Survivor dropped on early) keeps its +1 on top of it.
       const recs = actor.items.filter(i => i.type === "feat" && LUCK_FEATS[i.name]).map(i => i.flags?.[FLAG]?.luck).filter(Boolean);
       const plusS = recs.reduce((t, x) => t + (x.start || 0), 0), plusV = recs.reduce((t, x) => t + (x.value || 0), 0);
-      await actor.update({ "system.luck.start": Math.min(20, r.total + plusS), "system.luck.value": Math.min(20, r.total + plusV) });
+      await actor.update({ "system.luck.start": Math.min(20, base + plusS), "system.luck.value": Math.min(20, base + plusV) });
     }
     // Then starting gold and gear (after the kit, so an Artificer's toolkit matches it), once the lock is released.
     return "gold";
@@ -720,11 +730,12 @@ async function setUpFirstLevel(actor, cls) {
     }), set: v => { chosen.skills = Array.isArray(v) ? v : [v]; } },
     extras.knack && skills.length && { key: "knack", ask: () => {
       const k = extras.knack;
-      const fits = k.abilities.length ? skills.filter(e => k.abilities.some(a => e.group === ARNEYAN.abilities[a])) : skills;
+      const fits = skills.filter(e => k.abilities.some(a => e.group === ARNEYAN.abilities[a]) || k.names?.includes(e.name));
+      const narrowed = k.abilities.length || k.names?.length;
       const which = k.what ? `one ${esc(k.what)} skill` : "one skill";
       return pickFromList({
-        title: `${actor.name}: Knack`, step: stepOf("knack"), entries: fits.length ? fits : skills, takeLabel: "Take Knack", skipLabel: "Skip",
-        intro: intro(`<p>Your ancestry lets you choose ${which}: you have Advantage on checks with it. It isn't a Proficiency tier and takes no Skill slot. It can be one of the skills you just chose.${k.what && !k.abilities.length ? " The GM checks it counts as the kind your ancestry names." : ""}</p>`)
+        title: `${actor.name}: Knack`, step: stepOf("knack"), entries: narrowed && fits.length ? fits : skills, takeLabel: "Take Knack", skipLabel: "Skip",
+        intro: intro(`<p>Your ancestry lets you choose ${which}: you have Advantage on checks with it. It isn't a Proficiency tier and takes no Skill slot. It can be one of the skills you just chose.${k.what && !narrowed ? " The GM checks it counts as the kind your ancestry names." : ""}</p>`)
       });
     }, set: v => { chosen.knack = v; } }
   ].filter(Boolean);
@@ -741,21 +752,45 @@ async function setUpFirstLevel(actor, cls) {
     chosen.bonusFeat && `<li><strong>Ancestry Feat:</strong> ${esc(nameOf.get(chosen.bonusFeat) ?? "")}</li>`,
     chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`,
     chosen.knack && `<li><strong>Knack:</strong> ${esc(nameOf.get(chosen.knack) ?? "")} (Advantage, no slot)</li>`].filter(Boolean);
+  const askFinal = async () => {
   const res = await DialogV2.wait({
     window: { title: stepTitle(`${actor.name}: 1st-level ${cls.name}`, stepOf("finish")), icon: "fa-solid fa-flag-checkered" },
     classes: ["arneyan", "arn-step-final"], position: { width: 460 },
     content: `${intro("")}
       ${lines.length ? `<p>Added when you press Apply:</p><ul>${lines.join("")}</ul>` : `<p>Nothing chosen here: add a Kit, Feat or Skills later from the compendium.</p>`}
-      <div class="form-group"><label>Roll Starting Luck (4d6, drop lowest)</label><input type="checkbox" name="luck" checked></div>
-      <p class="hint">Apply adds them, rolls Luck if ticked, and goes on to starting gold. Skip adds them without rolling Luck. Closing this window adds nothing.</p>`,
+      <fieldset class="arn-luck-pick"><legend>Starting Luck (4d6, drop the lowest)</legend>
+        <label><input type="radio" name="luckHow" value="type" checked> I rolled it at the table: <input type="number" name="luckTyped" min="3" max="18" step="1" class="short"></label>
+        <label><input type="radio" name="luckHow" value="roll"> Roll it for me</label>
+        <label><input type="radio" name="luckHow" value="later"> Later (type it on the sheet)</label>
+      </fieldset>
+      <p class="hint">Apply adds them, sets Luck as chosen, and goes on to starting gold. Skip adds them and leaves Luck for later. Closing this window adds nothing.</p>`,
+    render: (ev, dialog) => {
+      // Typing a number picks "rolled at the table".
+      const el = dialog?.element ?? ev?.target?.element;
+      el?.querySelector("input[name=luckTyped]")?.addEventListener("focus", () => { const r = el.querySelector("input[name=luckHow][value=type]"); if (r) r.checked = true; });
+    },
     buttons: [
-      { action: "ok", label: "Apply", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => ({ luck: !!btn.form?.elements?.luck?.checked }) },
+      { action: "ok", label: "Apply", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => {
+        const f = btn.form?.elements;
+        const how = btn.form?.querySelector?.("input[name=luckHow]:checked")?.value ?? "later";
+        if (how !== "type") return { luck: how };
+        const raw = String(f?.luckTyped?.value ?? "").trim();
+        const n = Math.floor(Number(raw));
+        if (!raw || !Number.isFinite(n) || n < 3 || n > 18) {
+          ui.notifications.warn("Type the Luck you rolled (3 to 18), or choose Roll it for me or Later.");
+          return "retry";
+        }
+        return { luck: n };
+      } },
       { action: "skip", label: "Skip" }
     ],
     rejectClose: false
   });
   if (!res) return null;
-  return finish(res !== "skip" && !!res.luck);
+  if (res === "retry") return askFinal();
+  return finish(res === "skip" ? false : res.luck);
+  };
+  return askFinal();
 }
 
 /* -------------------------------------------- */

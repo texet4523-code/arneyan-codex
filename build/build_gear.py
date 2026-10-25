@@ -37,6 +37,10 @@ def text(d):
 CONSUMABLE_FOLDERS = {"Potions", "Weapon Oils", "Poisons", "Alchemical Weapons & Tools", "Spellbooks & Scrolls"}
 CONTAINERS = {"Backpack": 0, "Rucksack": 0, "Saddlebag": 0, "Sack, Small": 0, "Sack, Large": 0, "Belt Pouch, Small": 0, "Belt Pouch, Large": 0, "Quiver": 0, "Case, Map or Scroll": 0}
 THROWN = {"Dart", "Aclis", "Javelin", "Harpoon", "Bolas", "Knife (thrown)"}
+# Kieran, 25 Oct 2026 (player feedback: the starting packs over-filled the inventory): torches bundle 5 a slot, and
+# the Backpack takes no slot, since it "provides the grid itself".
+EXTRA_BUNDLES = {"Torch", "Torches"}  # build_tidy renames Torches to Torch later
+NO_SLOT = {"Backpack"}
 
 # Iconic weapon -> (base weapon, +N, extra damage [(formula, type, when)], extras)
 ICONIC = {
@@ -148,6 +152,10 @@ def build():
         if re.search(r"bundles?\s*5\s*/\s*slot|bundle of 5", t, re.I) or d["name"].lower() in bundled or re.sub(r"\s*\(.*\)$", "", d["name"]).lower() in bundled or d["name"] in THROWN or fold in ("Iconic Rings",) \
                 or (fold == "Iconic Wands, Staffs & Rods" and d["name"].startswith("Wand")):
             s["bundle"] = 5
+        if d["name"] in EXTRA_BUNDLES:
+            s["bundle"] = 5
+        if d["name"] in NO_SLOT:
+            s["slots"] = 0
         if d["type"] == "weapon":
             # The Catalogue marks two-handed weapons and polearms with a dagger sign and two slots; those melee weapons
             # get the Two-handed trait (Crushing Blow reads it), bar the Versatile, which can be wielded in one hand.

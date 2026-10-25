@@ -789,7 +789,47 @@ async function onSocket(msg, senderId) {
 /*  Registration                                */
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+/*  Max HP lowered: current HP comes down too     */
+/* -------------------------------------------- */
+
+/**
+ * Player feedback (23 Oct 2026): when a creature's maximum HP drops below its current HP (a level lost, a feature
+ * removed, Debilitated, a drain), its current HP drops to the new maximum, and stays there when the maximum comes
+ * back. One client writes it: the active GM, or with no GM on, whoever made the change.
+ */
+const HP_PENDING = new Set();
+export function hpOverMax(actor) {
+  const hp = actor?.system?.attributes?.hp;
+  if (!hp) return null;
+  const max = hp.effectiveMax ?? hp.max;
+  return Number.isFinite(max) && Number.isFinite(hp.value) && hp.value > max ? max : null;
+}
+export function checkHpMax(actor, userId) {
+  if (!actor || !["character", "npc"].includes(actor.type) || actor.pack) return;
+  const gm = game.users?.activeGM;
+  if (gm ? !gm.isSelf : userId !== game.user?.id) return;
+  const key = actor.uuid;
+  if (HP_PENDING.has(key)) return;
+  HP_PENDING.add(key);
+  // After the change has settled (an item and its effects arrive one after another).
+  setTimeout(() => {
+    HP_PENDING.delete(key);
+    const max = hpOverMax(actor);
+    if (max !== null) actor.update({ "system.attributes.hp.value": max }, { arneyanHpClamp: true }).catch(err => console.warn("Arneyan | HP to max", err));
+  }, 100);
+}
+const ownerActor = doc => {
+  let p = doc?.parent;
+  while (p && p.documentName !== "Actor") p = p.parent;
+  return p ?? null;
+};
+
 export function registerCombat() {
+  Hooks.on("updateActor", (actor, changes, options, userId) => { if (!options?.arneyanHpClamp) checkHpMax(actor, userId); });
+  for (const h of ["createItem", "updateItem", "deleteItem", "createActiveEffect", "updateActiveEffect", "deleteActiveEffect"]) {
+    Hooks.on(h, (doc, ...rest) => checkHpMax(ownerActor(doc), rest.at(-1)));
+  }
   foundry.applications.handlebars.loadTemplates(["systems/arneyan/templates/actor/combat-tools.hbs"]);
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "positionalCombat", {

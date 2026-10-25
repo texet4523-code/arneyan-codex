@@ -383,6 +383,8 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-br-bar input[type=search] { flex: 1 1 220px; height: 28px; }
 .arneyan .arn-br-bar select { height: 28px; max-width: 200px; }
 .arneyan .arn-br-count { font-size: 12px; color: var(--arn-muted); padding: 4px 12px; }
+.arneyan .arn-br-purse { margin-top: 2px; color: var(--arn-ink); font-weight: 600; }
+.arneyan .arn-br-purse i { color: var(--arn-gold); }
 .arneyan .arn-br-results { list-style: none; margin: 0; padding: 0 10px 10px; overflow-y: auto; flex: 1; min-height: 0; }
 .arneyan .arn-br-results li { display: flex; align-items: center; gap: 10px; padding: 5px 6px; border-bottom: 1px solid var(--arn-border); cursor: grab; }
 .arneyan .arn-br-results li:hover { background: var(--arn-surface-2); }
@@ -408,6 +410,24 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-lp-head { font-size: 15px; margin: 0 0 4px; color: var(--arn-accent); }
 .arneyan .arn-lp-q { font-weight: 700; margin: 8px 0 0; }
 .arneyan.arn-levelup-dialog .form-footer button, .arneyan.arn-levelup-dialog footer button { background: var(--arn-accent); color: #fff; border: none; }
+/* Dialog buttons in every Arneyan window (player feedback, 23 Oct 2026: Done and the like looked dim on parchment).
+   The main button is green; the others are outlined; a button that can't be pressed yet is clearly greyed. */
+.arneyan.application footer.form-footer button, .arneyan.application .dialog-buttons button {
+  background: var(--arn-surface); color: var(--arn-ink); border: 1px solid var(--arn-border); border-radius: 5px; font-weight: 600; opacity: 1;
+}
+.arneyan.application footer.form-footer button:hover:not([disabled]), .arneyan.application .dialog-buttons button:hover:not([disabled]) {
+  background: var(--arn-surface-2); border-color: var(--arn-accent); box-shadow: none;
+}
+.arneyan.application footer.form-footer button:is([autofocus], .default, [data-default]), .arneyan.application .dialog-buttons button.default {
+  background: var(--arn-accent); color: var(--arn-accent-ink); border-color: var(--arn-accent);
+}
+.arneyan.application footer.form-footer button:is([autofocus], .default, [data-default]):hover:not([disabled]) { background: var(--arn-accent-2); }
+.arneyan.application footer.form-footer button[disabled], .arneyan.application .dialog-buttons button[disabled] {
+  background: var(--arn-surface-2); color: var(--arn-muted); border-style: dashed; cursor: not-allowed; opacity: .8;
+}
+.arneyan .arn-luck-pick { border: 1px solid var(--arn-border); border-radius: 6px; padding: 6px 10px; margin: 8px 0; display: flex; flex-direction: column; gap: 4px; }
+.arneyan .arn-luck-pick legend { font-weight: 700; padding: 0 4px; }
+.arneyan .arn-luck-pick label { display: flex; align-items: center; gap: 6px; }
 
 /* Party sheet */
 .arneyan.party .arn-sheet { display: flex; flex-direction: column; height: 100%; min-height: 0; }
@@ -646,6 +666,11 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arn-scores-app .arn-scores-sets { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
 .arn-scores-app .arn-scores-set.low { opacity: .7; }
 .arn-scores-app .arn-scores-own { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 6px 0; }
+.arn-scores-app .arn-scores-donated { margin: 6px 0; display: flex; flex-direction: column; gap: 4px; }
+.arn-scores-app .arn-scores-don { display: flex; align-items: center; gap: 6px; padding: 2px 4px; border-radius: 4px; }
+.arn-scores-app .arn-scores-don.chosen { background: var(--arn-green-soft); }
+.arn-scores-app .arn-scores-don-remove { margin-left: auto; cursor: pointer; color: var(--arn-red); }
+.arn-scores-app .arn-scores-own[hidden], .arn-scores-app .arn-scores-donated[hidden] { display: none; }
 .arn-scores-app .arn-scores-assign { width: 100%; margin-top: 6px; }
 .arn-scores-app .arn-scores-assign th { text-align: left; font-weight: 600; }
 .arn-scores-app .arn-scores-mod { width: 3em; text-align: center; font-weight: 700; }

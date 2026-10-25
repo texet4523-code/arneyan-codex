@@ -140,6 +140,31 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     this.actor = null;
     this.filters = { q: "" };
     this._index = {};
+    // The purse and inventory line follows the character as they buy, add or spend (no full redraw, so the list
+    // keeps its place).
+    if (!ArneyanBrowser.#hooked) {
+      ArneyanBrowser.#hooked = true;
+      const follow = doc => {
+        const app = ArneyanBrowser.#instance;
+        const actor = doc?.documentName === "Actor" ? doc : doc?.parent;
+        if (app?.rendered && app.actor && actor?.id === app.actor.id) app.refreshPurse();
+      };
+      for (const h of ["updateActor", "createItem", "updateItem", "deleteItem"]) globalThis.Hooks?.on?.(h, follow);
+    }
+  }
+
+  static #hooked = false;
+
+  /** "Gold 12 gp, 5 sp · Inventory 9 of 18 slots" for the character the Browser adds to. */
+  static purseLine(actor) {
+    if (!actor || actor.type !== "character") return "";
+    const inv = actor.system.inventory ?? {};
+    return `${actor.name} has ${purseText(actor.system.currency, ALL_COINS)}${inv.max ? ` · Inventory ${inv.used ?? 0} of ${inv.max} slots${inv.over ? " (over the limit)" : ""}` : ""}`;
+  }
+
+  refreshPurse() {
+    const el = this.element?.querySelector?.(".arn-br-purse span");
+    if (el) el.textContent = ArneyanBrowser.purseLine(this.actor);
   }
 
   static DEFAULT_OPTIONS = {
@@ -247,6 +272,7 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         return { ...r, meta: this.#meta(r), forgeable: ["weapon", "armour"].includes(r.type), buyPrice: price?.text ?? "" };
       }),
       actorName: cfg.docType === "Actor" ? "" : this.actor?.name ?? "", canAdd, canBuy,
+      purse: cfg.docType === "Actor" || !canAdd ? "" : ArneyanBrowser.purseLine(this.actor),
       isBestiary: cfg.docType === "Actor", dragHint: cfg.docType === "Actor" ? "drag a row onto the map or into the Encounter Builder" : "drag a row onto a sheet"
     };
   }

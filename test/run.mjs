@@ -422,6 +422,21 @@ const { fillFrom } = await import("../arneyan/module/migrate.mjs");
 assert.deepEqual(Object.keys(fillFrom({ type: "equipment", system: { container: { holds: false }, light: { bright: 0, dim: 0 }, itemSpells: [] } }, packDoc)), ["system.container"]);
 assert.equal(fillFrom({ type: "equipment", system: { light: { bright: 0, dim: 0 }, itemSpells: [] } }, torchDoc)["system.light.dim"], 40);
 assert.deepEqual(fillFrom({ type: "equipment", system: { light: { bright: 10, dim: 10 }, itemSpells: [] } }, torchDoc), {}, "a light set by hand stays");
+// 0.10.52: torches bundle 5 a slot, the Backpack takes no slot (Kieran, 25 Oct); old copies change once, a GM's own value stays.
+assert.equal(torchDoc.system.bundle, 5); assert.equal(packDoc.system.slots, 0);
+assert.deepEqual(fillFrom({ type: "equipment", name: "Torch", system: { slots: 1, bundle: 0, light: { bright: 20, dim: 40 }, itemSpells: [] } }, torchDoc), { "system.bundle": 5, "flags.arneyan.slotsSet": true });
+assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", system: { slots: 1, container: { holds: true }, itemSpells: [] } }, packDoc), { "system.slots": 0, "flags.arneyan.slotsSet": true });
+assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", system: { slots: 2, container: { holds: true }, itemSpells: [] } }, packDoc), {}, "a GM's slot value stays");
+assert.deepEqual(fillFrom({ type: "equipment", name: "Backpack", flags: { arneyan: { slotsSet: true } }, system: { slots: 1, container: { holds: true }, itemSpells: [] } }, packDoc), {}, "only once");
+const { packSlots, STARTING_PACKS } = await import("../arneyan/module/starting.mjs");
+{
+  const info = new Map(fs.readdirSync(edir).filter(f => f.startsWith("items_")).map(f => JSON.parse(fs.readFileSync(edir + f))).map(d => [d.name, { slots: Number(d.system.slots) || 0, bundle: Number(d.system.bundle) || 0 }]));
+  const by = Object.fromEntries(STARTING_PACKS.map(p => [p.name, packSlots(p, info)]));
+  assert.equal(by["Explorer's Pack"], 8, "Explorer's Pack: 8 slots");
+  assert.equal(by["Dungeoneer's Pack"], 11, "Dungeoneer's Pack: 11 slots");
+  for (const [n, v] of Object.entries(by)) assert.ok(v <= 12, `${n} leaves room (${v} slots)`);
+  console.log("OK starting packs fit", JSON.stringify(by));
+}
 assert.ok(fillFrom({ type: "spell", system: { applies: [] } }, shieldSpell)["system.applies"]);
 // A monster's Shield has its effect too (effects are applied before monsters copy their spells).
 const mageMon = fs.readdirSync(mdir).map(f => JSON.parse(fs.readFileSync(mdir + f))).find(d => d.items?.some(i => i.name === "Shield" && i.type === "spell"));

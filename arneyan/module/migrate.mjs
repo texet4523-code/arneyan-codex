@@ -189,6 +189,14 @@ export function fillFrom(item, src) {
     if (s.traits !== o.traits && plainT(s.traits) === plainT(o.traits)) upd["system.traits"] = o.traits;
     upd[`flags.${SYS}.handsSet`] = true;
   }
+  // 0.10.52: torches bundle 5 a slot and the Backpack takes no slot (Kieran, 25 Oct). Copies from before change once
+  // (flags.arneyan.slotsSet), and only while they still have the old values: a GM's own change stays.
+  if (item.type === "equipment" && /^(Torch|Backpack)$/.test(srcName) && !item.flags?.[SYS]?.slotsSet) {
+    let set = false;
+    if (srcName === "Torch" && o.bundle === 5 && !(s.bundle > 0) && Number(s.slots) === 1) { upd["system.bundle"] = 5; set = true; }
+    if (srcName === "Backpack" && Number(o.slots) === 0 && Number(s.slots) === 1) { upd["system.slots"] = 0; set = true; }
+    if (set) upd[`flags.${SYS}.slotsSet`] = true;
+  }
   // A weapon that gained a mode (a Flame Tongue ignites, a Lance's Mounted switch): its mode, and the extra damage
   // tied to the mode; extra damage of its own (a forged Lance of Shocking) stays.
   if (item.type === "weapon" && o.toggle && o.modeLabel && !s.modeLabel) {

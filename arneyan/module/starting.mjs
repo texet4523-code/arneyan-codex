@@ -60,6 +60,24 @@ async function catalogueByName() {
   return new Map(index.map(e => [e.name, e.uuid]));
 }
 
+/** How many inventory slots a pack's items take (bundles counted), from the Catalogue. */
+export function packSlots(pack, info) {
+  let n = 0;
+  for (const [name, qty] of pack.items) {
+    const s = info.get(name);
+    if (!s) continue;
+    n += s.bundle > 0 ? Math.ceil(qty / s.bundle) * (s.slots || 1) : (s.slots || 0) * qty;
+  }
+  return Math.round(n * 100) / 100;
+}
+
+async function catalogueSlots() {
+  const pack = game.packs.get(`${SYS}.equipment`);
+  if (!pack) return new Map();
+  const index = await pack.getIndex({ fields: ["system.slots", "system.bundle"] });
+  return new Map(index.map(e => [e.name, { slots: Number(e.system?.slots) || 0, bundle: Number(e.system?.bundle) || 0 }]));
+}
+
 /** Copy Catalogue items onto the actor (quantities added to the item's own), linked back to the Catalogue. */
 export async function giveItems(actor, list, byName = null) {
   byName ??= await catalogueByName();
@@ -162,14 +180,26 @@ export async function startingWealth(actor, cls = null) {
   const go = await DialogV2.wait({
     window: { title: `${actor.name}: starting gold`, icon: "fa-solid fa-coins" }, classes: ["arneyan"], position: { width: 420 },
     content: `<p>Roll your starting gold for a ${esc(baseName(cls.name))}: <strong>${formulaLabel(formula)} gp</strong>. Then buy a starting pack with it, or keep it and shop in the Catalogue.</p>
+      <div class="form-group"><label>Rolled at the table? Type it in (gp)</label><input type="number" name="typed" min="0" step="1" placeholder="gp"></div>
       ${rolled != null ? `<p class="hint">Already rolled: ${rolled} gp in all. Rolling again adds more gold.${taken.length ? ` Free items already taken (${esc(taken.join(", "))}) aren't given again.` : ""}</p>` : ""}`,
-    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} gp`, icon: "fa-solid fa-dice", default: true }, { action: "skip", label: "Not now" }],
+    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} gp`, icon: "fa-solid fa-dice", default: true },
+      { action: "typed", label: "Use what I typed", icon: "fa-solid fa-keyboard", callback: (ev, btn) => ({ typed: btn.form?.elements?.typed?.value ?? "" }) },
+      { action: "skip", label: "Not now" }],
     rejectClose: false
   });
-  if (go !== "roll") return;
-  const roll = await new Roll(formula).evaluate();
-  await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `Starting gold (${esc(baseName(cls.name))}: ${formulaLabel(formula)} gp)` });
-  const gold = roll.total;
+  let gold;
+  if (go === "roll") {
+    const roll = await new Roll(formula).evaluate();
+    await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `Starting gold (${esc(baseName(cls.name))}: ${formulaLabel(formula)} gp)` });
+    gold = roll.total;
+  } else if (go && typeof go === "object") {
+    gold = Math.floor(Number(go.typed));
+    if (String(go.typed).trim() === "" || !Number.isFinite(gold) || gold < 0) {
+      ui.notifications.warn("Type in the gold you rolled, then press Use what I typed.");
+      return startingWealth(actor, cls);
+    }
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>Starting gold (${esc(baseName(cls.name))}: ${formulaLabel(formula)} gp), rolled at the table: <strong>${gold} gp</strong>.</p>` });
+  } else return;
   await actor.update({ "system.currency.gp": (actor.system.currency?.gp ?? 0) + gold, [`flags.${SYS}.startingGold`]: (Number(rolled) || 0) + gold });
   return spendStartingGold(actor, cls);
 }
@@ -180,13 +210,17 @@ export async function spendStartingGold(actor, cls) {
   const wealth = purseGp(cur);
   const base = baseName(cls?.name);
   const free = freebiesFor(actor, cls);
+  const info = await catalogueSlots();
+  const inv = actor.system.inventory ?? {};
   const packRows = STARTING_PACKS.map((p, i) => {
     const can = p.gp <= wealth;
+    const slots = packSlots(p, info);
+    const over = inv.max && (inv.used ?? 0) + slots > inv.max;
     return `<label class="arn-act"><input type="radio" name="pick" value="${i}" ${can ? "" : "disabled"}>
-      <strong>${esc(p.name)}</strong> · ${p.gp} gp${can ? "" : " <em>(not enough money)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
+      <strong>${esc(p.name)}</strong> · ${p.gp} gp · ${slots} slot${slots === 1 ? "" : "s"}${over ? " <em>(over your limit)</em>" : ""}${can ? "" : " <em>(not enough money)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
   }).join("");
   const already = free.taken.length ? `<p class="hint">Free items already taken: ${esc(free.taken.join(", "))}. They aren't given again.</p>` : "";
-  const content = `<p>${esc(actor.name)} has <strong>${esc(purseText(cur))}</strong>. A pack is paid from gold first, then platinum, then silver.</p>
+  const content = `<p>${esc(actor.name)} has <strong>${esc(purseText(cur))}</strong>. A pack is paid from gold first, then platinum, then silver.${inv.max ? ` Inventory: ${inv.used ?? 0} of ${inv.max} slots used.` : ""}</p>
     <div class="arn-acts">
       <label class="arn-act"><input type="radio" name="pick" value="shop" checked> <strong>Keep the money and shop</strong><br><small>Opens the Shopkeeper's Catalogue. Take what you buy off your coins yourself.</small></label>
       ${packRows}

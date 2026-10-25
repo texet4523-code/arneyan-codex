@@ -306,9 +306,18 @@ const score = (a, k) => a._source.system.abilities[k].value;
   };
   const human = P.ancestryExtras(anc("Human"));
   assert.equal(human.bonusFeat, true, "a Human's extra General Path Feat");
-  assert.deepEqual(human.knack, { what: "", abilities: [] }, "and a Knack of any skill");
+  assert.deepEqual(human.knack, { what: "", abilities: [], names: [] }, "and a Knack of any skill");
   assert.deepEqual(P.ancestryExtras(anc("Aasimar")).knack.abilities, ["wis", "cha"], "Aasimar: a Wisdom or Charisma skill");
-  assert.deepEqual(P.ancestryExtras(anc("Dwarf")).knack, { what: "Craft", abilities: [] }, "Dwarf: a Craft skill (the GM checks)");
+  // Player feedback (23 Oct 2026): a Craft skill means the crafting Skills only; the Automaton adds Engineering.
+  const dw = P.ancestryExtras(anc("Dwarf")).knack;
+  assert.equal(dw.what, "Craft");
+  assert.ok(dw.names.includes("Armourer") && dw.names.includes("Blacksmithing") && !dw.names.includes("Swimming") && !dw.names.includes("Engineering"), "Dwarf: the crafting Skills");
+  const au = P.ancestryExtras(anc("Automaton")).knack;
+  assert.ok(au.names.includes("Engineering") && au.names.includes("Carpentry"), "Automaton: Craft or Engineering");
+  assert.deepEqual(P.ancestryExtras(anc("Aasimar")).knack.names, [], "Aasimar goes by attribute");
+  // Every crafting Skill named is a real skill in the compendium.
+  const skillNames = fs.readdirSync(new URL("../packs-src/skills/", import.meta.url).pathname).filter(f => f.startsWith("items_")).map(f => JSON.parse(fs.readFileSync(new URL("../packs-src/skills/" + f, import.meta.url).pathname)).name);
+  for (const n of dw.names) assert.ok(skillNames.includes(n), `${n} is a skill`);
   assert.equal(P.ancestryExtras(anc("Dwarf")).bonusFeat, false);
   assert.equal(P.ancestryExtras(anc("Half-Elf")).knack.what, "", "'one additional skill': any");
   assert.deepEqual(P.ancestryExtras({ items: [] }), { bonusFeat: false, knack: null }, "no ancestry: nothing extra");

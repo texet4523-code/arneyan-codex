@@ -422,7 +422,7 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   let { cls, actor } = mk();
   let seen = [], atGold = -1;
   DialogV2.wait = async o => { seen.push(o); if (o.window.title.endsWith("starting gold")) atGold = actor.created.length; return answer(o, {
-    kit: o => take(o, [kit.uuid]), feat: "later", skills: o => take(o, sk.slice(0, 3).map(s => s.uuid)), finish: o => take(o, []) }); };
+    kit: o => take(o, [kit.uuid]), feat: "later", skills: o => take(o, sk.slice(0, 3).map(s => s.uuid)), finish: o => take(o, ["roll"]) }); };
   nextRoll = 13;
   assert.equal(await P.firstLevelSetup(actor, cls), "gold");
   assert.deepEqual(seen.map(o => o.window.title), ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)",

@@ -148,6 +148,10 @@ ARNEYAN.weaponTraits = {
 ARNEYAN.ruleWeaponScopes = { "two-handed": "Two-handed weapons", chosen: "The weapons picked on the item" };
 
 // A Knack (an ancestry's "choose one skill at creation"): Advantage on its checks, not a Proficiency tier, no slot.
+/** The crafting Skills: those with an Artisan's or Artificer toolkit (Handbook, Starting Packs). A "Craft skill" (the
+ *  Dwarf's and the Automaton's Knack) is one of these. */
+ARNEYAN.craftSkills = ["Alchemy", "Armourer", "Blacksmithing", "Bowyer/Fletcher", "Brewing", "Carpentry", "Cobbling", "Cooking",
+  "Gem Cutting", "Leatherworking", "Pottery", "Stonemasonry", "Weaponsmithing", "Weaving", "Winemaking"];
 ARNEYAN.skillTiers = { trained: "Trained", master: "Master", knack: "Knack" };
 
 /** Session and month uses are not given back by a rest: the GM resets them (the sheet's uses box). */
