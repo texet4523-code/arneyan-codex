@@ -12,9 +12,9 @@ Sources: /tmp/hb/src_v01013/HB_v0.10.13_*.md (md5s on the board, F10). Output: /
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01013"
+SRC = "/tmp/hb/src_v01014"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.13"
+VERSION = "0.10.14"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
