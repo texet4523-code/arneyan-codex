@@ -47,12 +47,22 @@ const CB = await import("../arneyan/module/combat.mjs");
   CB.checkHpMax({ ...actor, pack: "x" }, "p1");
   await new Promise(r => setTimeout(r, 350));
   assert.equal(updates.length, 2);
-  // Typing current HP by hand (value first, then the maximum) isn't clamped; anything else that can lower it is.
-  assert.equal(CB.hpMaxMayHaveFallen({ system: { attributes: { hp: { value: 30 } } } }), false);
-  assert.equal(CB.hpMaxMayHaveFallen({ _id: "a", system: { attributes: { hp: { temp: 5 } } } }), false);
-  assert.equal(CB.hpMaxMayHaveFallen({ system: { attributes: { hp: { max: 10 } } } }), true);
-  assert.equal(CB.hpMaxMayHaveFallen({ system: { abilities: { con: { value: 8 } } } }), true);
-  assert.equal(CB.hpMaxMayHaveFallen({ flags: { arneyan: { x: 1 } } }), true);
+  // HP typed in by hand above the maximum is kept until the maximum falls below what it was typed against.
+  {
+    game.users = { activeGM: { id: "gm", isSelf: true } };
+    const ups = [];
+    const npc = { type: "npc", uuid: "Actor.n", name: "Ogre", system: { attributes: { hp: { value: 30, max: 5, effectiveMax: 5 } } },
+      update: async u => { ups.push(u); npc.system.attributes.hp.value = u["system.attributes.hp.value"]; } };
+    assert.equal(CB.noteHandSetHp(npc, { system: { attributes: { hp: { value: 30 } } } }), true, "typed HP noted");
+    CB.checkHpMax(npc, "gm"); // an AC edit, a condition removed...
+    await new Promise(r => setTimeout(r, 350));
+    assert.equal(ups.length, 0, "typed HP kept");
+    npc.system.attributes.hp.max = npc.system.attributes.hp.effectiveMax = 4; // the maximum falls below it
+    CB.checkHpMax(npc, "gm");
+    await new Promise(r => setTimeout(r, 350));
+    assert.deepEqual(ups, [{ "system.attributes.hp.value": 4 }], "then brought down");
+    assert.equal(CB.noteHandSetHp(npc, { name: "x" }), false, "other changes aren't typed HP");
+  }
   console.log("OK max HP lowered takes current HP down, and it stays");
 }
 

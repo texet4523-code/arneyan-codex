@@ -72,7 +72,7 @@ function onSocket(msg, senderId) {
   if (!game.users.activeGM?.isSelf) return;
   // The player who sent it is named from their user, not from the message.
   const sender = game.users.get(senderId);
-  const tag = name => (sender ? `${String(name ?? "").slice(0, 40)} (${sender.name})` : String(name ?? ""));
+  const tag = name => { const n = String(name ?? "").slice(0, 40).trim(); return sender ? (n ? `${n} (${sender.name})` : sender.name) : n; };
   if (msg?.action === "chargen.donate") gmDonate(msg.set, tag(msg.from)).catch(err => console.warn("Arneyan | donated set", err));
   if (msg?.action === "chargen.take") gmTake(msg.id, tag(msg.by)).catch(err => console.warn("Arneyan | donated set", err));
 }
@@ -176,7 +176,7 @@ async function abilityScoresWindow(actor) {
       }));
       el.querySelectorAll("[data-remove]").forEach(a => a.addEventListener("click", async () => {
         const id = a.dataset.remove;
-        await gmTake(id);
+        try { await viaGm("take", { id, by: game.user.name }); } catch (err) { console.warn("Arneyan | donated set", err); return; }
         a.closest(".arn-scores-don")?.remove();
         const i = donated.findIndex(x => x.id === id);
         if (i >= 0) donated.splice(i, 1);

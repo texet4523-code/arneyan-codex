@@ -815,27 +815,31 @@ export function checkHpMax(actor, userId) {
   HP_PENDING.set(key, setTimeout(() => {
     HP_PENDING.delete(key);
     // The actor as it is now (a deleted one, or a token's actor that was replaced, is skipped).
-    const now = globalThis.fromUuidSync ? fromUuidSync(key) : actor;
+    let now;
+    try { now = globalThis.fromUuidSync ? fromUuidSync(key) : actor; } catch { return; }
     if (!now) return;
     const max = hpOverMax(now);
-    if (max === null) return;
+    if (max === null) { HAND_SET.delete(key); return; }
+    // Typed in by hand against this maximum or a lower one: left as it is.
+    if (HAND_SET.has(key) && max >= HAND_SET.get(key)) return;
+    HAND_SET.delete(key);
     console.log(`Arneyan | ${now.name}: current HP ${now.system.attributes.hp.value} down to the new maximum ${max}`);
     now.update({ "system.attributes.hp.value": max }, { arneyanHpClamp: true }).catch(err => console.warn("Arneyan | HP to max", err));
   }, 250));
 }
-/** An actor update that can lower the maximum: anything but a change to current or temporary HP alone. */
-export function hpMaxMayHaveFallen(changes = {}) {
-  const keys = [];
-  const walk = (o, pre) => {
-    for (const [k, v] of Object.entries(o ?? {})) {
-      const path = pre ? `${pre}.${k}` : k;
-      if (v && typeof v === "object" && !Array.isArray(v) && Object.keys(v).length) walk(v, path);
-      else keys.push(path);
-    }
-  };
-  walk(changes, "");
-  const real = keys.filter(k => k !== "_id" && !k.startsWith("_stats"));
-  return !real.every(k => /^system\.attributes\.hp\.(value|temp)$/.test(k)) || !real.length;
+/**
+ * HP typed in above the maximum by hand (an NPC built from the sheet, value first and maximum after; a GM's ruling)
+ * is kept: remembered with the maximum it was typed against, and only brought down if the maximum then falls below
+ * that.
+ */
+const HAND_SET = new Map();
+export function noteHandSetHp(actor, changes) {
+  if (foundry.utils.getProperty(changes, "system.attributes.hp.value") === undefined) return false;
+  const hp = actor?.system?.attributes?.hp;
+  const max = hp?.effectiveMax ?? hp?.max;
+  if (hp && Number.isFinite(max) && hp.value > max) HAND_SET.set(actor.uuid, max);
+  else HAND_SET.delete(actor?.uuid);
+  return true;
 }
 const ownerActor = doc => {
   let p = doc?.parent;
@@ -844,10 +848,11 @@ const ownerActor = doc => {
 };
 
 export function registerCombat() {
-  // Only when something that can lower the maximum changed: HP typed in by hand (an NPC built from the sheet, value
-  // first and maximum after) is left alone.
+  // Current HP set directly is noted (and kept, above: noteHandSetHp); anything else may have lowered the maximum.
   Hooks.on("updateActor", (actor, changes, options, userId) => {
-    if (options?.arneyanHpClamp || !hpMaxMayHaveFallen(changes)) return;
+    if (options?.arneyanHpClamp) return;
+    const typed = noteHandSetHp(actor, changes);
+    if (foundry.utils.getProperty(changes, "system.attributes.hp.max") === undefined && typed) return;
     checkHpMax(actor, userId);
   });
   for (const h of ["createItem", "updateItem", "deleteItem", "createActiveEffect", "updateActiveEffect", "deleteActiveEffect"]) {

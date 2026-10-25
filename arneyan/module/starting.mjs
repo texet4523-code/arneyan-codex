@@ -182,9 +182,16 @@ export async function startingWealth(actor, cls = null) {
     content: `<p>Roll your starting gold for a ${esc(baseName(cls.name))}: <strong>${formulaLabel(formula)} gp</strong>. Then buy a starting pack with it, or keep it and shop in the Catalogue.</p>
       <div class="form-group"><label>Rolled at the table? Type it in (gp)</label><input type="number" name="typed" min="0" step="1" placeholder="gp"></div>
       ${rolled != null ? `<p class="hint">Already rolled: ${rolled} gp in all. Rolling again adds more gold.${taken.length ? ` Free items already taken (${esc(taken.join(", "))}) aren't given again.` : ""}</p>` : ""}`,
-    // Enter in the box presses the first button (Roll): a typed amount still wins.
-    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} gp`, icon: "fa-solid fa-dice", default: true,
-      callback: (ev, btn) => { const v = String(btn.form?.elements?.typed?.value ?? "").trim(); return v !== "" ? { typed: v } : "roll"; } },
+    // Enter in the box uses the typed amount (it would otherwise press Roll, the first button).
+    render: (ev, dialog) => {
+      const el = dialog?.element ?? ev?.target?.element;
+      el?.querySelector("input[name=typed]")?.addEventListener("keydown", e => {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        el.querySelector("[data-action=typed]")?.click();
+      });
+    },
+    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} gp`, icon: "fa-solid fa-dice", default: true },
       { action: "typed", label: "Use what I typed", icon: "fa-solid fa-keyboard", callback: (ev, btn) => ({ typed: btn.form?.elements?.typed?.value ?? "" }) },
       { action: "skip", label: "Not now" }],
     rejectClose: false
@@ -196,9 +203,10 @@ export async function startingWealth(actor, cls = null) {
     gold = roll.total;
   } else if (go && typeof go === "object") {
     gold = Math.floor(Number(go.typed));
-    const most = (await new Roll(formula).evaluate({ maximize: true })).total;
-    if (String(go.typed).trim() === "" || !Number.isFinite(gold) || gold < 0 || gold > most) {
-      ui.notifications.warn(`Type in the gold you rolled (0 to ${most} gp for ${formulaLabel(formula)}), then press Use what I typed.`);
+    const most = (await new Roll(formula).evaluate({ maximize: true, allowInteractive: false })).total;
+    const least = (await new Roll(formula).evaluate({ minimize: true, allowInteractive: false })).total;
+    if (String(go.typed).trim() === "" || !Number.isFinite(gold) || gold < least || gold > most) {
+      ui.notifications.warn(`Type in the gold you rolled (${least} to ${most} gp for ${formulaLabel(formula)}), then press Use what I typed.`);
       return startingWealth(actor, cls);
     }
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>Starting gold (${esc(baseName(cls.name))}: ${formulaLabel(formula)} gp), rolled at the table: <strong>${gold} gp</strong>.</p>` });
