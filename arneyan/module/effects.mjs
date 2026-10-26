@@ -6,6 +6,7 @@
  * it behaves the same on Foundry v13 and v14 and never relies on core change application.
  */
 import { ARNEYAN } from "./config.mjs";
+import { servantOf, lostToForsaken } from "./favour.mjs";
 import { reapply } from "./counters.mjs";
 import { combatFor, combatOnScene } from "./fight.mjs";
 import { durationData } from "./duration.mjs";
@@ -313,8 +314,12 @@ export function collectRules(actor, baseData = {}) {
     }
   };
   // Items: feats, abilities, ancestry, equipped gear, switched-on toggles.
+  // A Forsaken servant loses every class ability their god grants (books v0.10.19, Divine Favour).
+  let forsaken = null;
+  try { forsaken = actor.type === "character" && actor.system?.details?.favour === "forsaken" ? servantOf(actor.items ?? []) : null; } catch { forsaken = null; }
   for (const item of actor.items ?? []) {
     if (!itemRulesActive(item)) continue;
+    if (forsaken && lostToForsaken(item, forsaken)) continue;
     const cn = String(item.system.className ?? "").toLowerCase();
     const classNamed = n => actor.items.find(i => i.type === "class" && i.name.toLowerCase().startsWith(n));
     // A kit's feature carries the kit's name: its level is the kit's class level.

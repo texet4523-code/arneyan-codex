@@ -1,4 +1,5 @@
 import { ARNEYAN } from "../config.mjs";
+import { servantOf, godOf, characterAllegiance, npcAllegiance } from "../favour.mjs";
 import { ModSet, collectRules, wordList, usesMax, featureLevel, optionPickMax, optionPicks } from "../effects.mjs";
 import { awarenessOf } from "../awareness.mjs";
 
@@ -118,7 +119,14 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       /** Extra Skill (NWP) slots the GM allowed ("Add it anyway"), on top of the level's. */
       nwpBonus: int(0, { min: 0 }),
       details: new SchemaField({
+        /** The Outlook (books v0.10.19): one of the nine alignments, for roleplay and Luck only. */
         alignment: str(),
+        /** One or two tenets in the player's own words. */
+        tenets: str(),
+        /** The GM's Allegiance for this character ("" = worked out: divine service, a pact, else Unaligned). */
+        allegiance: str(),
+        /** Divine Favour, for Clerics, Paladins and Battle Priests. */
+        favour: new StringField({ required: true, initial: "favoured", choices: ["favoured", "strained", "forsaken"] }),
         deity: str(),
         size: new StringField({ required: true, initial: "medium", choices: () => ARNEYAN.sizes }),
         age: str(),
@@ -241,6 +249,16 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     hp.max = Math.max(1, Math.floor(hp.raw * hpMult));
     hp.effectiveMax = hp.max;
     hp.halved = hpMult < 1;
+    // Allegiance and Divine Favour (books v0.10.19, B4).
+    try {
+      const servant = servantOf(actor?.items ?? []);
+      s.servant = servant ? { label: servant.label, key: servant.key, god: godOf(servant.kit), className: servant.className } : null;
+      s.favour = servant ? (s.details.favour || "favoured") : "";
+      s.allegiance = characterAllegiance({ override: s.details.allegiance, favour: s.favour, items: actor?.items ?? [] });
+    } catch (err) {
+      console.warn("Arneyan | Allegiance", err);
+      s.servant = null; s.favour = ""; s.allegiance = { value: "Unaligned", from: "" };
+    }
     // Codex, Death & Dying: −10 HP minus the Constitution modifier (−20 from 11th level); a negative modifier counts as 0.
     s.attributes.deathAt = -(s.level >= 11 ? 20 : 10) - Math.max(0, s.abilities.con.mod);
     s.attributes.state = hp.value <= s.attributes.deathAt ? "dead" : hp.value < 0 ? (s.attributes.stable ? "stable" : "dying") : hp.value === 0 ? "stable" : "";
@@ -403,6 +421,8 @@ export class NpcData extends foundry.abstract.TypeDataModel {
         type: str(),
         size: new StringField({ required: true, initial: "medium", choices: () => ARNEYAN.sizes }),
         alignment: str(),
+        /** The Allegiance its entry gives, or the GM's ("" = by its nature: fiends, celestials and undead hold one). */
+        allegiance: str(),
         xp: str(),
         numberAppearing: str(),
         resistances: str(),
@@ -454,6 +474,8 @@ export class NpcData extends foundry.abstract.TypeDataModel {
     hp.max = Math.max(1, Math.floor(hp.raw * hp.mult));
     hp.effectiveMax = hp.max;
     hp.halved = hp.mult < 1;
+    try { s.allegiance = npcAllegiance({ override: s.details.allegiance, type: s.details.type }); }
+    catch (err) { console.warn("Arneyan | Allegiance", err); s.allegiance = { value: "Unaligned", from: "" }; }
     s.attributes.state = hp.value <= 0 ? "dead" : "";
     s.attributes.speedMult = mods.mult("speed.mult");
     s.noCast = mods.has("no.cast");

@@ -229,6 +229,8 @@ export class KitData extends BaseItemData {
   static defineSchema() {
     return {
       ...base(), className: str(),
+      /** A deity's or patron's alignment (books v0.10.19): a servant's or a Warlock's Allegiance comes from it. */
+      alignment: str(),
       /** Kit features, each gained at a class level. */
       features: new ArrayField(new SchemaField({
         name: str(), level: int(1, { min: 0 }), description: new HTMLField({ required: true, blank: true }),

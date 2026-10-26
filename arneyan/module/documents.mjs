@@ -2,6 +2,7 @@ import { endHiding, rollHide } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
+import { servantOf, godOf, lostToForsaken, highestSlotLevel, isTurnUndead } from "./favour.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
@@ -1212,6 +1213,7 @@ export class ArneyanItem extends Item {
     // Contests, Unarmed Strike and reactions (combat.mjs).
     const handled = await combatUse(this, event);
     if (handled !== undefined) return handled;
+    if (["spell", "ability", "feat"].includes(this.type) && this._forsakenBlocked()) return null;
     switch (this.type) {
       case "weapon": return actor?.rollAttack(this, event);
       case "skill": return actor?.rollSkill(this, event);
@@ -1294,6 +1296,7 @@ export class ArneyanItem extends Item {
     let dc = null;
     let caster = null;
     if (actor?.system.noCast) return ui.notifications.warn(`${actor.name} cannot cast spells right now (${actor.mods.sources("no.cast").join(", ")}).`);
+    if (this._forsakenBlocked()) return null;
     if (actor && canvas?.scene) (await import("./qol.mjs")).warnSpellRange(actor, this);
     if (actor?.type === "character") {
       caster = this.caster;
@@ -1330,12 +1333,48 @@ export class ArneyanItem extends Item {
     const self = await this._applySelf(cl);
     const lines = [];
     if (caster) lines.push(`<p class="arn-card-meta">Cast as ${esc(caster.name)} ${caster.classLevel}${sys.level > 0 ? ` · ${ARNEYAN.spellLevels[sys.level]}-level slot spent` : ""}</p>`);
+    const strained = this._strainedLine();
+    if (strained) lines.push(strained);
     if (self.length) lines.push(`<p class="arn-card-meta">On ${esc(actor.name)}: ${self.map(e => esc(e.name)).join(", ")}</p>`);
     if (sys.concentration) lines.push(`<p class="arn-card-meta"><i class="fa-solid fa-brain"></i> Concentrating</p>`);
     const notes = actor?.mods?.notesFor("spell") ?? [];
     if (notes.length) lines.push(`<ul class="arn-notes">${notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`);
     lines.push(this._actionButtons({ dc, cl }));
     return this.toChat(lines.join(""));
+  }
+
+  /**
+   * Divine Favour (books v0.10.19): a Forsaken servant has lost every class ability their god grants. True (with a
+   * warning) when this item is one of them, so the use stops.
+   */
+  _forsakenBlocked() {
+    const actor = this.actor;
+    if (actor?.type !== "character" || actor.system?.favour !== "forsaken") return false;
+    const servant = servantOf(actor.items);
+    if (!lostToForsaken(this, servant)) return false;
+    const god = godOf(servant.kit) || "Their god";
+    ui.notifications.warn(`${actor.name} is Forsaken: ${god} no longer grants ${this.name}. Atonement moves them back towards Favoured.`);
+    return true;
+  }
+
+  /**
+   * Divine Favour, Strained: Turn Undead and the highest-level spells need a DC 12 check with the class's key attribute
+   * (Kieran's R6 call) as they are used; a failure spends the use or slot. The card carries the check as a button.
+   */
+  _strainedLine() {
+    const actor = this.actor;
+    if (actor?.type !== "character" || actor.system?.favour !== "strained") return "";
+    const servant = servantOf(actor.items);
+    if (!servant || !lostToForsaken(this, servant)) return "";
+    if (this.type === "spell") {
+      const caster = this.caster;
+      const top = highestSlotLevel(caster);
+      if (!(this.system.level > 0) || !top || this.system.level < top) return "";
+    } else if (!isTurnUndead(this.name)) return "";
+    const what = this.type === "spell" ? "the spell fails and the slot is spent" : "the use is spent and nothing happens";
+    const attr = ARNEYAN.abilities[servant.key] ?? servant.key;
+    return `<div class="arn-favour-strained"><p><i class="fa-solid fa-hand-holding-heart"></i> <strong>Strained:</strong> ${esc(godOf(servant.kit) || "their god")}'s favour is in doubt. Roll ${esc(attr)} (DC 12) first; on a failure ${what}.</p>`
+      + `<button type="button" class="arn-favour-check" data-actor-uuid="${actor.uuid}" data-ability="${servant.key}" data-source="${esc(this.name)}"><i class="fa-solid fa-dice-d20"></i> ${esc(attr)} check DC 12</button></div>`;
   }
 
   /** Roll data for this item's damage: the actor's data plus @cl (caster or class level) and @mod. */
@@ -1447,6 +1486,7 @@ export class ArneyanItem extends Item {
   async _useActivity(act, event) {
     const sys = this.system;
     const actor = this.actor;
+    if (this._forsakenBlocked()) return null;
     if (act.kind === "attacks") return this._useAttacks(act, event);
     if (!(await this._spendFor(act))) return null;
     await this._reacted(act);
@@ -1457,7 +1497,7 @@ export class ArneyanItem extends Item {
     const title = `${this.name}: ${act.name}`;
     const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
     const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
-    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : ""].join("");
+    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : "", this._strainedLine()].join("");
     if (act.removeConditions && actor?.isOwner) {
       const gone = actor.effects.filter(e => [...(e.statuses ?? [])].some(s => ARNEYAN.conditions[s] && !["dead", "concentrating"].includes(s)));
       if (gone.length) await actor.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));

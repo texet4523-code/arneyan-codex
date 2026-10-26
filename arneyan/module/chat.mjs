@@ -458,6 +458,14 @@ function onRender(message, html) {
     btn.hidden = true;
   });
 
+  // Divine Favour, Strained: the servant's check before Turn Undead or a highest-level spell (books v0.10.19, R6).
+  on(".arn-favour-check", async (ev, btn) => {
+    const actor = await fromUuid(btn.dataset.actorUuid ?? "");
+    if (!actor?.rollAbility) return;
+    if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner or the GM rolls this.`);
+    await actor.rollAbility(btn.dataset.ability || "wis", ev, { dc: 12, title: `Divine Favour (Strained): ${btn.dataset.source ?? ""}`.replace(/:\s*$/, ""), footer: "On a failure the use or slot is spent and nothing happens." });
+  });
+
   on(".arn-save-btn", async (ev, btn) => {
     const dc = btn.dataset.dc ? Number(btn.dataset.dc) : null;
     const concentration = !!btn.dataset.concentration;
