@@ -18,7 +18,10 @@ Version 0.10.63 · Foundry v13 and v14 · **Playtest release**
 ln -s "$HOME/Desktop/TTRPG/Foundry/Battle maps" "$HOME/.local/share/FoundryVTT/Data/maps"
 ```
 
-The browser shows `maps` by default; **Folder** in the browser (or the "Map folder" game setting) picks another folder inside Data. Nothing is copied: the maps stay where they are.
+- If Foundry's data lives somewhere else, **Setup, Configuration** shows the User Data Path: use that path's `Data` folder in place of the second one.
+- If a `maps` folder is already in Data, rename it first, or link to another name (`.../Data/battle-maps`) and pick that folder with **Folder** in the browser.
+
+The browser shows `maps` by default; **Folder** in the browser (or the "Map folder" game setting) picks another folder inside Data. Nothing is copied: the maps stay where they are. The first open scans the folder (big collections take a minute, with the count showing as it goes); after that it opens straight away, and **Rescan** looks again.
 
 ## What's new in 0.10.62
 

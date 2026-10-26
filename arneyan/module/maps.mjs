@@ -3,12 +3,12 @@
  * thumbnails, searchable and organised by name and type of map"). GM only, from the Scenes sidebar.
  *
  * Foundry can only show files inside its Data folder, so the maps folder is linked into Data once (README). The browser
- * scans that folder (the "Map folder" setting, "maps" by default), groups each pack folder's images into one map with
- * its variants (day, night, gridless...), reads the grid from a "[33x21]" in the name, and guesses each map's type from
+ * scans that folder (the "Map folder" setting, "maps" by default), groups each pack folder's pictures into one map with
+ * its versions (day, night, gridless...), reads the grid from a "[33x21]" in the name, and guesses each map's type from
  * its name. The GM can correct the types; that is saved per map. Small thumbnails are made the first time a map scrolls
  * into view and saved in Data/arneyan-maps/thumbs, so later visits are instant. The scan itself is saved there too.
  *
- * Everything up to the window class is plain functions of strings, so the tests can check it outside Foundry.
+ * Everything up to "Foundry side" is plain functions of strings, so the tests can check it outside Foundry.
  */
 
 const SYS = "arneyan";
@@ -16,23 +16,32 @@ const SYS = "arneyan";
 export const STORE = "arneyan-maps";
 export const THUMBS = `${STORE}/thumbs`;
 const THUMB_WIDTH = 360;
+/** How long one picture may take to load for its thumbnail before it's given up on. */
+const LOAD_TIMEOUT = 20000;
 
 export const IMAGE = /\.(webp|png|jpe?g|gif|avif)$/i;
 export const VIDEO = /\.(webm|mp4|m4v)$/i;
 const MEDIA = /\.(webp|png|jpe?g|gif|avif|webm|mp4|m4v)$/i;
-/** Folders that hold no maps of their own: Mac zip leftovers, token and asset packs. */
-export const SKIP_DIRS = /^(__macosx|\.[^/]*|assets?|tokens?|tiles?|props?|icons?|thumbs?|thumbnails?)$/i;
+/**
+ * Folders that hold no maps: Mac zip leftovers, hidden folders, and token, asset and prop packs wherever the word sits
+ * in the name ("Mine Tokens", "Tokens & Assets", "Assets [Free]").
+ */
+export const SKIP_DIRS = /^__macosx$|^\.|(^|[^a-z])(assets?|tokens?|props?|tiles?|icons?|thumbs?|thumbnails?|portraits?|handouts?)([^a-z]|$)/i;
+/** Files that are never maps: Mac "._x.jpg" leftovers and other hidden files. */
+const SKIP_FILE = /^\./;
+/** A pack's version folders fold into the pack: "Pack/Gridless/x.jpg" is the Gridless version of Pack. */
+export const VARIANT_DIR = /^(grid(ded|less)?|no[\s_-]?grid|with(out)?[\s_-]?grid|day|night|dusk|dawn|animated|animation|videos?|stills?|hd|4k|uhd|1080p|print|vtt|jpe?g|png|webp|webm|mp4|variants?|versions?|alt(ernate)?s?|extras?|bonus|original|clean|lights?|dark|winter|summer|autumn|spring|rain|fog)$/i;
 
 /** Map types, in the order the browser shows them, with the words in a name that suggest each. */
 export const MAP_TYPES = [
-  { key: "cave", label: "Caves & Mines", words: ["cave", "cavern", "mine", "mining", "grotto", "tunnel", "underdark", "stalactite", "chasm", "sinkhole"] },
-  { key: "dungeon", label: "Dungeons & Crypts", words: ["dungeon", "crypt", "tomb", "catacomb", "prison", "jail", "vault", "sewer", "labyrinth", "maze", "mausoleum", "ossuary", "treasury"] },
+  { key: "cave", label: "Caves & Mines", words: ["cave", "cavern", "mine", "mining", "grotto", "tunnel", "underdark", "stalactite", "chasm", "sinkhole", "lair", "nest", "den", "lava"] },
+  { key: "dungeon", label: "Dungeons & Crypts", words: ["dungeon", "crypt", "tomb", "catacomb", "prison", "jail", "vault", "sewer", "labyrinth", "maze", "mausoleum", "ossuary", "treasury", "graveyard", "cemetery"] },
   { key: "tavern", label: "Taverns & Inns", words: ["tavern", "inn", "pub", "alehouse", "brewery", "saloon"] },
   { key: "town", label: "Towns & Cities", words: ["town", "village", "city", "market", "bazaar", "street", "square", "harbour", "harbor", "port", "dock", "slum", "district", "hamlet", "plaza"] },
   { key: "building", label: "Buildings & Interiors", words: ["house", "manor", "mansion", "guildhall", "guild", "shop", "library", "lab", "laboratory", "workshop", "clocktower", "tower", "observatory", "academy", "estate", "hall", "forge", "smithy", "mill", "warehouse", "bathhouse", "theatre", "theater", "arena", "school"] },
   { key: "fort", label: "Castles & Forts", words: ["castle", "keep", "fort", "fortress", "citadel", "palace", "throne", "outpost", "garrison", "barracks", "stronghold", "watchtower", "gatehouse"] },
   { key: "temple", label: "Temples & Shrines", words: ["temple", "shrine", "church", "chapel", "monastery", "cathedral", "altar", "sanctum", "sanctuary", "abbey", "stepwell", "ziggurat", "obelisk"] },
-  { key: "wild", label: "Wilderness", words: ["forest", "wood", "woods", "grove", "glade", "jungle", "hill", "hills", "mountain", "canyon", "cliff", "valley", "meadow", "field", "fields", "plain", "plains", "river", "lake", "waterfall", "road", "camp", "campsite", "crossroads", "bridge", "pass", "farm", "orchard", "garden", "moor", "heath", "clearing", "trail", "ent", "tree", "pumpkin"] },
+  { key: "wild", label: "Wilderness", words: ["forest", "wood", "woods", "grove", "glade", "jungle", "hill", "hills", "mountain", "canyon", "cliff", "valley", "meadow", "field", "fields", "plain", "plains", "river", "lake", "waterfall", "road", "camp", "campsite", "crossroads", "bridge", "pass", "farm", "orchard", "garden", "moor", "heath", "clearing", "trail", "ent", "tree", "pumpkin", "volcano", "volcanic"] },
   { key: "water", label: "Coast & Sea", words: ["beach", "coast", "ship", "boat", "sea", "ocean", "island", "reef", "shipwreck", "wreck", "kraken", "pirate", "lighthouse", "bay", "airship", "lagoon", "underwater", "seaside", "beached"] },
   { key: "swamp", label: "Swamps & Marshes", words: ["swamp", "bog", "marsh", "fen", "mire", "bayou", "wetland"] },
   { key: "desert", label: "Deserts", words: ["desert", "dune", "dunes", "oasis", "sand", "pyramid", "badlands", "mesa", "antlion"] },
@@ -43,19 +52,22 @@ export const MAP_TYPES = [
 ];
 export const OTHER = { key: "other", label: "Other" };
 export const typeLabel = key => (MAP_TYPES.find(t => t.key === key) ?? (key === OTHER.key ? OTHER : null))?.label ?? key;
+const TYPE_KEYS = new Set([...MAP_TYPES.map(t => t.key), OTHER.key]);
 
 /** "Abandoned%20Mine" reads "Abandoned Mine"; a broken escape stays as it is. */
 export function decode(s) {
   try { return decodeURIComponent(String(s ?? "")); } catch { return String(s ?? ""); }
 }
 
-/** A folder as typed or picked ("maps/battle maps"), or "" if it isn't one the browser may read (Data itself, "..").*/
+/** A folder as typed or picked ("maps/battle maps"), or "" if it isn't one the browser may read (Data itself, ".."). */
 export function cleanFolder(f) {
   const s = decode(f).trim().replace(/\\/g, "/").replace(/^\/+|\/+$/g, "");
   return !s || s.split("/").some(part => part === ".." || part === ".") ? "" : s;
 }
 
 const GRID = /[[(]\s*(\d{1,3})\s*[x×]\s*(\d{1,3})\s*[\])]/i;
+/** Tags in brackets that say nothing about which map it is; anything else in brackets ("(Interior)") stays. */
+const TAG = /[[(]\s*(?:\d{1,3}\s*[x×]\s*\d{1,3}|various|varies|grid(?:ded|less)?|no\s*grid|4k|hd|uhd|\d+\s*(?:ppi|px|dpi)|\$\s*\d+[^\])]*)\s*[\])]/gi;
 
 /**
  * A map's name and grid from a pack folder or file name: "Abandoned Mine Entrance [33x21] - $1 Rewards" is
@@ -66,9 +78,9 @@ export function parseMapName(raw) {
   const g = s.match(GRID);
   const w = g ? Number(g[1]) : null, h = g ? Number(g[2]) : null;
   s = s
-    .replace(/[[(][^\])]*[\])]/g, " ")              // [33x21], [Various], (Gridless), (4K)
-    .replace(/\$\s*\d+\s*(rewards?|tier|patrons?)?/gi, " ")
-    .replace(/\b(rewards?|patreon|free|hd|4k|uhd)\b/gi, " ")
+    .replace(TAG, " ")
+    .replace(/\$\s*\d+\s*(?:free\s+)?(?:rewards?|tier|patrons?)?/gi, " ")
+    .replace(/\b(rewards?|patreon)\b/gi, " ")
     .replace(/\s+[-–—|]+(?=\s|$)/g, " ")          // " - " separators left between words
     .replace(/^\s*[-–—|]+\s*/g, "")
     .replace(/\s{2,}/g, " ")
@@ -78,26 +90,33 @@ export function parseMapName(raw) {
   return { name: s || decode(raw).replace(MEDIA, "").trim(), w: w || null, h: h || null };
 }
 
-const wordsOf = s => decode(s).toLowerCase().replace(MEDIA, "").replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
+/** The words of a name, lower case, apostrophes dropped ("Dragon's Lair" is "dragons lair"). */
+export const wordsOf = s => String(s ?? "").toLowerCase().replace(MEDIA, "").replace(/['’]/g, "").replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
 
-/** The types a name suggests, in the browser's order ([] when none). A word matches with or without a plural "s". */
+/** The types a name suggests, in the browser's order ([] when none). A word matches with or without a plural. */
 export function guessTypes(...texts) {
-  const words = new Set(texts.flatMap(wordsOf).flatMap(w => [w, w.replace(/s$/, ""), w.replace(/es$/, "")]));
+  const words = new Set(texts.flatMap(t => wordsOf(decode(t))).flatMap(w => [w, w.replace(/s$/, ""), w.replace(/es$/, "")]));
   return MAP_TYPES.filter(t => t.words.some(w => words.has(w))).map(t => t.key);
 }
 
-/** What makes one variant of a map differ from the others: "... [33x21] - Night.jpg" in "Abandoned Mine" is "Night". */
-export function variantLabel(file, mapName) {
+/**
+ * What makes one version of a map differ from the others: its version folders and the words of its file name that
+ * aren't the map's own. "Gridless/Abandoned Mine Entrance - Night.jpg" in "Abandoned Mine Entrance" is "Gridless Night".
+ */
+export function variantLabel(file, mapName, folders = []) {
   const own = new Set(wordsOf(mapName));
-  const stem = decode(String(file).split("/").pop()).replace(MEDIA, "").replace(GRID, " ").replace(/\$\s*\d+/g, " ");
-  const left = stem.replace(/[_]+/g, " ").split(/[^A-Za-z0-9']+/).filter(w => w && !own.has(w.toLowerCase()) && !/^\d+x\d+$/i.test(w) && !/^(rewards?|patreon|free)$/i.test(w));
-  return left.join(" ").trim();
+  const words = t => decode(t).replace(MEDIA, "").replace(GRID, " ").replace(/\$\s*\d+/g, " ").replace(/['’]/g, "").replace(/[_]+/g, " ")
+    .split(/[^A-Za-z0-9]+/).filter(w => w && !own.has(w.toLowerCase()) && !/^\d+x\d+$/i.test(w) && !/^(rewards?|patreon)$/i.test(w));
+  const seen = new Set();
+  return [...folders.flatMap(words), ...words(String(file).split("/").pop())]
+    .filter(w => { const k = w.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
+    .join(" ").trim();
 }
 
 /** Cover picture first: a daytime, gridded still before night, gridless or animated versions. */
-function coverScore(path) {
-  const w = new Set(wordsOf(path.split("/").pop()));
-  return (VIDEO.test(path) ? 8 : 0) + (w.has("night") || w.has("dark") ? 4 : 0) + (w.has("gridless") || w.has("nogrid") ? 1 : 0) - (w.has("day") || w.has("original") ? 1 : 0);
+function coverScore(v) {
+  const w = new Set(wordsOf(v.label));
+  return (v.video ? 8 : 0) + (w.has("night") || w.has("dark") ? 4 : 0) + (w.has("gridless") || w.has("nogrid") ? 1 : 0) - (w.has("day") || w.has("original") ? 1 : 0);
 }
 
 /** A short, stable id for a file (its thumbnail's name): FNV-1a of the path. */
@@ -110,59 +129,98 @@ export function hashPath(path) {
 export const thumbFor = path => `${THUMBS}/${hashPath(path)}.webp`;
 
 /**
- * The maps under a root folder from a list of file paths. A map is a pack folder: the folder right under a creator's
- * folder (root/Creator/Pack/...), with every image in it and below it as its variants. A picture lying loose in a
- * creator's folder, or in the root, is a map of its own. Returns maps sorted by name:
- * [{ key, name, creator, w, h, types, guessed, variants: [{ path, label, video }], cover }].
+ * The maps under a root folder from a list of file paths (as the scan keeps them: real names, not URL-encoded).
+ * - The first folder under the root is a creator (root/Creator/...).
+ * - A map is the folder its pictures sit in (root/Creator/Pack/x.jpg, or deeper: root/Creator/2023/Pack/x.jpg), with
+ *   version folders folded in (Pack/Gridless/x.jpg is a version of Pack).
+ * - A picture lying loose in a creator's folder is a map of its own, its versions in version folders beside it.
+ * - A folder right under the root whose pictures are named after it is a pack with no creator (when the GM picks one
+ *   creator's folder as the root).
+ * `overrides`: the GM's own types, by each map's path inside the root. Returns maps sorted by name:
+ * [{ key, rel, name, creator, w, h, types, guessed, variants: [{ path, label, video }], cover }].
  */
 export function buildIndex(paths, root, overrides = {}) {
   const base = cleanFolder(root);
   const prefix = base ? `${base}/` : "";
-  const groups = new Map();
+  const entries = [];
   for (const raw of paths ?? []) {
     const path = String(raw);
-    if (!MEDIA.test(path)) continue;
-    const rel = decode(path).startsWith(prefix) ? decode(path).slice(prefix.length) : path.startsWith(prefix) ? path.slice(prefix.length) : null;
-    if (rel === null) continue;
-    const parts = rel.split("/");
-    if (parts.slice(0, -1).some(p => SKIP_DIRS.test(p))) continue;
-    let creator = "", key, packName;
-    if (parts.length >= 3) { creator = parts[0]; packName = parts[1]; key = `${prefix}${parts[0]}/${parts[1]}`; }
-    else if (parts.length === 2) { creator = parts[0]; packName = parts[1]; key = `${prefix}${parts[0]}/${parts[1]}`; }
-    else { packName = parts[0]; key = `${prefix}${parts[0]}`; }
-    if (!groups.has(key)) groups.set(key, { key, creator, packName, files: [] });
-    groups.get(key).files.push(path);
+    if (!MEDIA.test(path) || !path.startsWith(prefix)) continue;
+    const dirs = path.slice(prefix.length).split("/");
+    const file = dirs.pop();
+    if (!file || SKIP_FILE.test(file) || dirs.some(p => SKIP_DIRS.test(p))) continue;
+    const sub = [];
+    while (dirs.length && VARIANT_DIR.test(dirs.at(-1).trim())) sub.unshift(dirs.pop());
+    entries.push({ path, dirs, sub, file });
+  }
+  // Folders right under the root that hold pictures and no packs: a pack when its pictures are named after it.
+  const top = new Map(), deeper = new Set();
+  for (const e of entries) {
+    if (e.dirs.length === 1) { if (!top.has(e.dirs[0])) top.set(e.dirs[0], []); top.get(e.dirs[0]).push(e); }
+    else if (e.dirs.length > 1) deeper.add(e.dirs[0]);
+  }
+  const packAtTop = new Set();
+  for (const [dir, list] of top) {
+    if (deeper.has(dir)) continue;
+    const own = new Set(wordsOf(parseMapName(dir).name).filter(w => w.length >= 3));
+    const named = list.filter(e => wordsOf(decode(e.file)).some(w => own.has(w))).length;
+    if (own.size && named * 2 >= list.length) packAtTop.add(dir);
+  }
+  const groups = new Map();
+  for (const e of entries) {
+    let creator = "", packName, rel;
+    if (!e.dirs.length) { packName = e.file.replace(MEDIA, ""); rel = packName; }
+    else if (e.dirs.length === 1 && packAtTop.has(e.dirs[0])) { packName = e.dirs[0]; rel = e.dirs[0]; }
+    else if (e.dirs.length === 1) { creator = e.dirs[0]; packName = e.file.replace(MEDIA, ""); rel = `${e.dirs[0]}/${packName}`; }
+    else { creator = e.dirs[0]; packName = e.dirs.at(-1); rel = e.dirs.join("/"); }
+    if (!groups.has(rel)) groups.set(rel, { rel, creator, packName, files: [] });
+    groups.get(rel).files.push(e);
   }
   const maps = [];
   for (const g of groups.values()) {
     const parsed = parseMapName(g.packName);
-    // A pack's grid can sit on its files instead of its folder ("Map 30x40.jpg").
+    // A pack's grid can sit on its files instead of its folder ("Map [30x40].jpg").
     let { w, h } = parsed;
-    if (!w) for (const f of g.files) { const p = parseMapName(f.split("/").pop()); if (p.w) { w = p.w; h = p.h; break; } }
-    const files = [...g.files].sort((a, b) => coverScore(a) - coverScore(b) || a.localeCompare(b));
-    const variants = files.map(path => ({ path, label: variantLabel(path, parsed.name) || (files.length > 1 ? "Main" : ""), video: VIDEO.test(path) }));
+    if (!w) for (const e of g.files) { const p = parseMapName(e.file); if (p.w) { w = p.w; h = p.h; break; } }
+    let variants = g.files.map(e => ({ path: e.path, label: variantLabel(e.file, parsed.name, e.sub), video: VIDEO.test(e.path) }));
+    variants.sort((a, b) => coverScore(a) - coverScore(b) || a.path.localeCompare(b.path));
+    // Every version gets a name, and no two the same: a clash takes its file's own name.
+    if (variants.length > 1) {
+      const count = new Map();
+      for (const v of variants) count.set(v.label || "Main", (count.get(v.label || "Main") ?? 0) + 1);
+      variants = variants.map(v => {
+        const label = v.label || "Main";
+        if (count.get(label) < 2) return { ...v, label };
+        const own = decode(v.path.split("/").pop()).replace(MEDIA, "");
+        return { ...v, label: label === "Main" ? own : `${label} (${own})` };
+      });
+    }
     const guessed = guessTypes(parsed.name, g.packName);
-    const set = Array.isArray(overrides[g.key]) ? overrides[g.key].filter(t => t === OTHER.key || MAP_TYPES.some(m => m.key === t)) : null;
-    const types = set ?? (guessed.length ? guessed : [OTHER.key]);
-    maps.push({ key: g.key, name: parsed.name, creator: g.creator, w, h, types, guessed: !set, variants, cover: variants[0]?.path ?? "" });
+    const fix = overrides?.[g.rel];
+    const set = Array.isArray(fix) ? fix.filter(t => TYPE_KEYS.has(t)) : null;
+    const types = set?.length ? set : (guessed.length ? guessed : [OTHER.key]);
+    maps.push({ key: `${prefix}${g.rel}`, rel: g.rel, name: parsed.name, creator: g.creator, w, h, types, guessed: !set?.length, variants, cover: variants[0]?.path ?? "" });
   }
-  return maps.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base", numeric: true }));
+  return maps.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base", numeric: true }) || a.key.localeCompare(b.key));
 }
 
-/** Does a map match the search box? Every word must appear in its name, creator, types or variant names. */
+/** The words a map is found by: its name, creator, types and version names. */
+export const searchText = map => wordsOf([map.name, map.creator, ...map.types.map(typeLabel), ...map.variants.map(v => v.label)].join(" ")).join(" ");
+
+/** Does a map match the search box? Every word must appear in its name, creator, types or version names. */
 export function matches(map, query) {
   const want = wordsOf(query);
   if (!want.length) return true;
-  const hay = [map.name, map.creator, ...map.types.map(typeLabel), ...map.variants.map(v => v.label)].join(" ").toLowerCase();
+  const hay = searchText(map);
   return want.every(w => hay.includes(w));
 }
 
 /**
  * The maps in groups for the window: by type (a map with two types shows under both), by creator, or one A to Z list.
- * Returns [{ label, maps }].
+ * Returns [{ key, label, maps }].
  */
 export function groupMaps(maps, by = "type") {
-  if (by === "name") return maps.length ? [{ label: "", maps }] : [];
+  if (by === "name") return maps.length ? [{ key: "", label: "", maps }] : [];
   const groups = new Map();
   const order = by === "type" ? [...MAP_TYPES.map(t => t.key), OTHER.key] : null;
   for (const m of maps) for (const k of by === "type" ? m.types : [m.creator || "Loose maps"]) {
@@ -178,7 +236,7 @@ export function groupMaps(maps, by = "type") {
  * has to agree within a square, or the name is ignored. null when it can't be told (Foundry's default then).
  */
 export function gridFor(width, height, w, h) {
-  if (!(width > 0 && height > 0 && w > 0)) return null;
+  if (!(width > 0 && height > 0 && w >= 4) || (h && h < 4)) return null;
   const size = Math.round(width / w);
   if (h > 0 && Math.abs(height / size - h) > 1.01) {
     // Some names give height x width.
@@ -196,8 +254,9 @@ export function gridFor(width, height, w, h) {
 const FP = () => foundry.applications.apps.FilePicker.implementation;
 const setting = (k, d) => { try { return game.settings.get(SYS, k) ?? d; } catch { return d; } };
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
-/** A Data path as a URL the browser can load (spaces, brackets and # escaped, slashes kept). */
-export const urlFor = path => String(path).split("/").map(p => encodeURIComponent(decode(p))).join("/");
+/** A Data path (real names, as the scan keeps them) as a URL: spaces, brackets, # and % escaped, slashes kept. */
+export const urlFor = path => String(path).split("/").map(encodeURIComponent).join("/");
+const withTimeout = (promise, ms, what) => Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error(`${what} took too long`)), ms))]);
 
 /** Every map file under a folder in Data, a few folders deep, six folders at a time. */
 async function scanFolder(root, onProgress = () => {}) {
@@ -229,13 +288,19 @@ async function scanFolder(root, onProgress = () => {}) {
   return { files, folders: seen, failed };
 }
 
-async function ensureDir(path) {
-  try { await FP().createDirectory("data", path, {}); } catch { /* already there */ }
+let dirsMade = false;
+/** The browser's folders in Data, made once a session. */
+async function ensureStore() {
+  if (dirsMade) return;
+  for (const d of [STORE, THUMBS]) { try { await FP().createDirectory("data", d, {}); } catch { /* already there */ } }
+  dirsMade = true;
 }
 
+/** Save a file in Data; true when Foundry says it was saved. */
 async function upload(dir, name, blob) {
   const file = new File([blob], name, { type: blob.type || "application/octet-stream" });
-  return FP().upload("data", dir, file, {}, { notify: false });
+  const res = await FP().upload("data", dir, file, {}, { notify: false });
+  return !!(res && (res.path || res.status === "success"));
 }
 
 /** The saved scan, if it is for this folder. */
@@ -249,8 +314,8 @@ async function loadScan(root) {
 }
 
 async function saveScan(data) {
-  await ensureDir(STORE);
-  await upload(STORE, "index.json", new Blob([JSON.stringify(data)], { type: "application/json" }));
+  await ensureStore();
+  return upload(STORE, "index.json", new Blob([JSON.stringify(data)], { type: "application/json" }));
 }
 
 /** The thumbnails already made. */
@@ -259,70 +324,98 @@ async function knownThumbs() {
   catch { return new Set(); }
 }
 
-/** Load a picture or the first second of a video, and return it with its size. */
-function loadMedia(path) {
-  const src = urlFor(path);
-  if (VIDEO.test(path)) return new Promise((resolve, reject) => {
-    const v = document.createElement("video");
-    v.muted = true; v.preload = "auto"; v.crossOrigin = "anonymous";
-    const done = () => resolve({ el: v, width: v.videoWidth, height: v.videoHeight });
-    v.addEventListener("loadeddata", () => { v.currentTime = Math.min(1, (v.duration || 2) / 2); }, { once: true });
-    v.addEventListener("seeked", done, { once: true });
+/** A video's size, and a frame to draw from it (a second in, or halfway through a short one). */
+function loadVideo(path) {
+  const v = document.createElement("video");
+  v.muted = true; v.preload = "metadata";
+  const release = () => { try { v.pause(); v.removeAttribute("src"); v.load(); } catch { /* gone */ } };
+  const ready = new Promise((resolve, reject) => {
+    v.addEventListener("loadedmetadata", () => { v.currentTime = Math.min(1, (v.duration || 2) / 2); }, { once: true });
+    v.addEventListener("seeked", () => resolve({ el: v, width: v.videoWidth, height: v.videoHeight, release }), { once: true });
     v.addEventListener("error", () => reject(new Error(`Couldn't load ${path}`)), { once: true });
-    v.src = src;
   });
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.decoding = "async";
-    img.onload = () => resolve({ el: img, width: img.naturalWidth, height: img.naturalHeight });
+  v.src = urlFor(path);
+  return withTimeout(ready, LOAD_TIMEOUT, path).catch(err => { release(); throw err; });
+}
+
+/** A picture's size. */
+function loadImage(path) {
+  const img = new Image();
+  img.decoding = "async";
+  const ready = new Promise((resolve, reject) => {
+    img.onload = () => resolve({ el: img, width: img.naturalWidth, height: img.naturalHeight, release: () => { img.src = ""; } });
     img.onerror = () => reject(new Error(`Couldn't load ${path}`));
-    img.src = src;
   });
+  img.src = urlFor(path);
+  return withTimeout(ready, LOAD_TIMEOUT, path);
 }
 
-/** Make a map's thumbnail, save it in Data, and return a URL to show straight away. */
-async function makeThumb(path) {
-  const { el, width, height } = await loadMedia(path);
-  const w = Math.min(THUMB_WIDTH, width || THUMB_WIDTH), h = Math.max(1, Math.round((height || w) * w / (width || w)));
-  const c = document.createElement("canvas");
-  c.width = w; c.height = h;
-  const g = c.getContext("2d");
-  g.imageSmoothingQuality = "high";
-  g.drawImage(el, 0, 0, w, h);
-  const blob = await new Promise(r => c.toBlob(r, "image/webp", 0.72));
-  if (!blob) throw new Error("No thumbnail");
-  await ensureDir(STORE); await ensureDir(THUMBS);
-  await upload(THUMBS, thumbFor(path).split("/").pop(), blob);
-  return URL.createObjectURL(blob);
+const loadMedia = path => VIDEO.test(path) ? loadVideo(path) : loadImage(path);
+
+/**
+ * A map's thumbnail as a webp blob. Stills are shrunk while they're decoded (a 10,000px map isn't held full size);
+ * videos give a frame.
+ */
+async function thumbBlob(path) {
+  let source, width, height, release = () => {};
+  if (!VIDEO.test(path) && typeof createImageBitmap === "function") {
+    const res = await withTimeout(fetch(urlFor(path)), LOAD_TIMEOUT, path);
+    if (!res.ok) throw new Error(`Couldn't load ${path} (${res.status})`);
+    const bmp = await withTimeout(createImageBitmap(await res.blob(), { resizeWidth: THUMB_WIDTH, resizeQuality: "high" }), LOAD_TIMEOUT, path);
+    source = bmp; width = bmp.width; height = bmp.height; release = () => bmp.close?.();
+  } else {
+    const m = await loadMedia(path);
+    source = m.el; release = m.release;
+    width = Math.min(THUMB_WIDTH, m.width || THUMB_WIDTH);
+    height = Math.max(1, Math.round((m.height || width) * width / (m.width || width)));
+  }
+  try {
+    const c = document.createElement("canvas");
+    c.width = width; c.height = height;
+    const g = c.getContext("2d");
+    g.imageSmoothingQuality = "high";
+    g.drawImage(source, 0, 0, width, height);
+    const blob = await new Promise(r => c.toBlob(r, "image/webp", 0.72));
+    if (!blob) throw new Error("No thumbnail");
+    return blob;
+  } finally { release(); }
 }
 
-/** The level a v14 scene draws its map on (the first), or null before levels. */
-function firstLevel(scene) {
+/** The level a v14 scene draws its map on: the one being looked at, else its first. null before levels. */
+function levelOf(scene) {
   const levels = scene?.levels;
   if (!levels?.size) return null;
-  return levels.get(scene.initialLevel) ?? levels.contents?.[0] ?? [...levels][0] ?? null;
+  const viewed = scene === canvas?.scene ? (canvas.level?.document ?? canvas.level) : null;
+  return (viewed?.id && levels.get(viewed.id)) || levels.get(scene.initialLevel) || levels.contents?.[0] || null;
 }
 
-/** Put a picture on a scene as its map: the scene's background and (Foundry 14) its first level's. */
+/** Put a picture on a scene as its map: the scene's background and (Foundry 14) its level's. */
 async function setSceneMap(scene, path) {
   const src = urlFor(path);
   await scene.update({ "background.src": src });
-  const level = firstLevel(scene);
+  const level = levelOf(scene);
   if (level) await scene.updateEmbeddedDocuments("Level", [{ _id: level.id, "background.src": src }]);
 }
 
-/** A new scene with this map, sized to the picture, its grid from the name, hidden from players until you show it. */
-export async function createMapScene(map, variant) {
+/**
+ * A new scene with this map, sized to the picture, its grid from the name, hidden from players until you show it.
+ * Returns { scene, size } (size null when the name gave no grid that fits).
+ */
+export async function createMapScene(map, variant, thumbs = null) {
   const v = variant ?? map.variants[0];
-  const { width, height } = await loadMedia(v.path);
+  const m = await loadMedia(v.path);
+  const { width, height } = m;
+  m.release?.();
   const size = gridFor(width, height, map.w, map.h);
   const name = v.label && map.variants.length > 1 ? `${map.name} (${v.label})` : map.name;
-  const data = { name, width, height, padding: 0, navigation: false, background: { src: urlFor(v.path) }, ...(size ? { grid: { size } } : {}), flags: { [SYS]: { map: map.key } } };
+  const thumb = thumbFor(v.path);
+  const data = {
+    name, width, height, padding: 0, navigation: false, background: { src: urlFor(v.path) }, ...(size ? { grid: { size } } : {}),
+    ...(thumbs?.has(thumb.split("/").pop()) ? { thumb } : {}), flags: { [SYS]: { map: map.key, grid: size } }
+  };
   const scene = await Scene.create(data);
   await setSceneMap(scene, v.path);
-  const thumb = thumbFor(v.path);
-  if (await knownThumbs().then(s => s.has(thumb.split("/").pop()))) await scene.update({ thumb }).catch(() => {});
-  return scene;
+  return { scene, size };
 }
 
 /* -------------------------------------------- */
@@ -337,10 +430,19 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     if (!game.user.isGM) return ui.notifications.warn("The Map Browser is for the GM.");
     return (ArneyanMapBrowser.#instance ??= new ArneyanMapBrowser()).render({ force: true });
   }
+  /** The map folder changed (in the game settings): start again from it. */
+  static reset() {
+    const app = ArneyanMapBrowser.#instance;
+    if (!app) return;
+    app.#setMaps(null);
+    app.scan = null;
+    if (app.rendered) app.render();
+  }
 
   constructor(options = {}) {
     super(options);
     this.maps = null;
+    this._byKey = new Map();
     this.scan = null;
     this.sort = "type";
     this.query = "";
@@ -349,8 +451,11 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     this.status = "";
     this._thumbs = null;
     this._urls = new Map();
+    this._making = new Map();
     this._queue = [];
     this._busy = 0;
+    this._loading = null;
+    this._uploadsOff = false;
   }
 
   static DEFAULT_OPTIONS = {
@@ -374,35 +479,54 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
 
   get root() { return cleanFolder(setting("mapRoot", "maps")) || "maps"; }
 
-  /** The saved scan, or a fresh one when there is none for this folder. */
-  async #load(force = false) {
-    const root = this.root;
-    let scan = force ? null : await loadScan(root);
-    if (!scan) {
-      this.status = `Scanning ${root}...`;
-      this.#setStatus();
-      const res = await scanFolder(root, (folders, files) => { this.status = `Scanning ${root}: ${folders} folders, ${files} pictures so far...`; this.#setStatus(); });
-      if (!res.folders) {
-        this.maps = [];
-        this.status = `Couldn't read the folder "${root}" in your Data. Link your maps folder there (see the README), or pick another folder.`;
-        return;
-      }
-      scan = { root, scanned: Date.now(), files: res.files };
-      try { await saveScan(scan); } catch (err) { console.warn("Arneyan | maps: couldn't save the scan", err); }
-    }
-    this.scan = scan;
-    this.maps = buildIndex(scan.files, root, setting("mapTypes", {}));
-    this._thumbs = await knownThumbs();
-    this.status = "";
+  #setMaps(maps) {
+    this.maps = maps;
+    this._byKey = new Map((maps ?? []).map(m => [m.key, m]));
   }
 
-  #setStatus() {
+  /**
+   * Load the saved scan, or scan the folder when there is none for it (or on Rescan). One at a time: the window
+   * draws straight away with the progress showing, then again when the maps are in.
+   */
+  #load(force = false) {
+    this._loading ??= (async () => {
+      const root = this.root;
+      try {
+        let scan = force ? null : await loadScan(root);
+        if (!scan) {
+          this.#status(`Scanning ${root}...`);
+          const res = await scanFolder(root, (folders, files) => this.#status(`Scanning ${root}: ${folders} folders, ${files} pictures so far...`));
+          if (!res.folders) {
+            this.scan = null;
+            this.#setMaps([]);
+            this.status = `Couldn't read the folder "${root}" in your Data. Link your maps folder there (see the README), or pick another folder with Folder.`;
+            return;
+          }
+          scan = { root, scanned: Date.now(), files: res.files };
+          try { if (!await saveScan(scan)) console.warn("Arneyan | maps: the scan wasn't saved"); } catch (err) { console.warn("Arneyan | maps: couldn't save the scan", err); }
+        }
+        this.scan = scan;
+        this.#setMaps(buildIndex(scan.files, root, setting("mapTypes", {})));
+        this._thumbs = await knownThumbs();
+        this.status = "";
+      } catch (err) {
+        console.error("Arneyan | maps", err);
+        this.#setMaps([]);
+        this.status = "The scan failed (the console has the error).";
+      } finally { this._loading = null; }
+    })();
+    return this._loading;
+  }
+
+  #status(text) {
+    this.status = text;
     const el = this.element?.querySelector(".arn-maps-status");
-    if (el) { el.textContent = this.status; el.hidden = !this.status; }
+    if (el) { el.textContent = text; el.hidden = !text; }
   }
 
   async _prepareContext() {
-    if (!this.maps) await this.#load();
+    // No maps yet: draw now with the progress line, and again when the scan is in.
+    if (!this.maps && !this._loading) this.#load().then(() => this.rendered && this.render());
     const maps = this.maps ?? [];
     const creators = [...new Set(maps.map(m => m.creator).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     const counts = {};
@@ -415,11 +539,12 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
         types: m.types.map(t => ({ key: t, label: typeLabel(t) })), guessed: m.guessed,
         variants: m.variants.map((v, i) => ({ i, label: v.label || "Main", video: v.video })),
         many: m.variants.length > 1, count: m.variants.length, video: m.variants[0]?.video,
-        search: [m.name, m.creator, ...m.types.map(typeLabel), ...m.variants.map(v => v.label)].join(" ").toLowerCase()
+        search: searchText(m)
       }))
     }));
     return {
-      root: this.root, status: this.status, total: maps.length, files: this.scan?.files?.length ?? 0,
+      root: this.root, status: this.maps ? this.status : (this.status || `Opening ${this.root}...`), loading: !this.maps,
+      total: maps.length, files: this.scan?.files?.length ?? 0,
       scanned: this.scan?.scanned ? new Date(this.scan.scanned).toLocaleString() : "",
       groups, types, creators: creators.map(c => ({ value: c, selected: c === this.creatorFilter })),
       sort: this.sort, sorts: [["type", "By type"], ["creator", "By creator"], ["name", "A to Z"]].map(([value, label]) => ({ value, label, active: value === this.sort })),
@@ -446,7 +571,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     for (const group of el.querySelectorAll(".arn-maps-group")) {
       let n = 0;
       for (const card of group.querySelectorAll(".arn-map-card")) {
-        const m = this.#map(card.dataset.key);
+        const m = this._byKey.get(card.dataset.key);
         const ok = !!m && (!q.length || q.every(w => card.dataset.search.includes(w))) && (!this.typeFilter || m.types.includes(this.typeFilter)) && (!this.creatorFilter || m.creator === this.creatorFilter);
         card.hidden = !ok;
         if (ok) { n++; if (!seen.has(m.key)) { seen.add(m.key); shown++; } }
@@ -459,12 +584,14 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     if (count) count.textContent = this.maps?.length ? `${shown} of ${this.maps.length} maps` : "";
   }
 
-  #map(key) { return this.maps?.find(m => m.key === key) ?? null; }
-
   /** Thumbnails load as cards scroll into view; missing ones are made two at a time. */
   #observe() {
     this._observer?.disconnect();
+    // Thumbnails still waiting their turn are dropped (their cards were redrawn); the new cards ask again.
+    for (const job of this._queue) { this._making.delete(job.path); job.done(undefined); }
+    this._queue = [];
     const box = this.element.querySelector(".arn-maps-results");
+    if (!box) return;
     this._observer = new IntersectionObserver(entries => {
       for (const e of entries) {
         if (!e.isIntersecting) continue;
@@ -476,38 +603,63 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
   }
 
   #thumb(img) {
-    const m = this.#map(img.dataset.thumb);
+    const m = this._byKey.get(img.dataset.thumb);
     if (!m?.cover) return;
-    const t = thumbFor(m.cover);
-    if (this._urls.has(m.cover)) { img.src = this._urls.get(m.cover); return; }
+    const path = m.cover;
+    const t = thumbFor(path);
+    if (this._urls.has(path)) { img.src = this._urls.get(path); return; }
     if (this._thumbs?.has(t.split("/").pop())) { img.src = t; return; }
-    this._queue.push({ img, path: m.cover });
+    // Being made already (the same map under two types, or a redraw): wait for that one.
+    const card = img.closest(".arn-map-card");
+    if (this._making.has(path)) {
+      card?.classList.add("loading");
+      // A string is the thumbnail; null, a picture that wouldn't load; undefined, a turn given up by a redraw.
+      this._making.get(path).then(url => { if (url && img.isConnected) img.src = url; else if (url === null) card?.classList.add("broken"); }).finally(() => card?.classList.remove("loading"));
+      return;
+    }
+    let done;
+    this._making.set(path, new Promise(r => { done = r; }));
+    this._queue.push({ img, path, done });
+    card?.classList.add("loading");
     this.#pump();
   }
 
   #pump() {
     while (this._busy < 2 && this._queue.length) {
-      const { img, path } = this._queue.shift();
-      if (!img.isConnected) continue;
+      const { img, path, done } = this._queue.shift();
       this._busy++;
-      img.closest(".arn-map-card")?.classList.add("loading");
-      makeThumb(path)
-        .then(url => { this._urls.set(path, url); this._thumbs?.add(thumbFor(path).split("/").pop()); if (img.isConnected) img.src = url; })
-        .catch(err => { console.warn(`Arneyan | maps: no thumbnail for ${path}`, err); img.closest(".arn-map-card")?.classList.add("broken"); })
-        .finally(() => { this._busy--; img.closest(".arn-map-card")?.classList.remove("loading"); this.#pump(); });
+      const card = () => img.closest(".arn-map-card");
+      thumbBlob(path)
+        .then(async blob => {
+          let url = URL.createObjectURL(blob);
+          const name = thumbFor(path).split("/").pop();
+          if (!this._uploadsOff) {
+            try {
+              await ensureStore();
+              if (await upload(THUMBS, name, blob)) { this._thumbs?.add(name); URL.revokeObjectURL(url); url = thumbFor(path); }
+              else this._uploadsOff = true;
+            } catch (err) { this._uploadsOff = true; console.warn("Arneyan | maps: couldn't save thumbnails; they'll be made again next time", err); }
+          }
+          this._urls.set(path, url);
+          if (img.isConnected) img.src = url;
+          done(url);
+        })
+        .catch(err => { console.warn(`Arneyan | maps: no thumbnail for ${path}`, err); card()?.classList.add("broken"); done(null); })
+        .finally(() => { this._busy--; this._making.delete(path); card()?.classList.remove("loading"); this.#pump(); });
     }
   }
 
   async close(options) {
     this._observer?.disconnect();
+    for (const job of this._queue) { this._making.delete(job.path); job.done(undefined); }
     this._queue = [];
     return super.close(options);
   }
 
-  /** The card's map and the variant chosen in its list. */
+  /** The card's map and the version chosen in its list. */
   #picked(target) {
     const card = target.closest(".arn-map-card");
-    const m = this.#map(card?.dataset.key);
+    const m = this._byKey.get(card?.dataset.key);
     if (!m) return {};
     const i = Number(card.querySelector("select[name=variant]")?.value ?? 0);
     return { map: m, variant: m.variants[i] ?? m.variants[0] };
@@ -518,8 +670,8 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     if (!map) return;
     target.disabled = true;
     try {
-      const scene = await createMapScene(map, variant);
-      ui.notifications.info(`Made the scene "${scene.name}"${scene.grid?.size ? ` (grid ${scene.grid.size}px)` : ""}. It's hidden from players until you show it.`);
+      const { scene, size } = await createMapScene(map, variant, this._thumbs);
+      ui.notifications.info(`Made the scene "${scene.name}" (${size ? `grid ${size}px from the name` : "grid not set: the name gives none that fits"}). It's hidden from players until you show it.`);
       scene.view();
     } catch (err) {
       console.error("Arneyan | maps", err);
@@ -533,7 +685,8 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     if (!map || !scene) return ui.notifications.warn("Open a scene first: this puts the map on the scene you're looking at.");
     const ok = await foundry.applications.api.DialogV2.confirm({
       window: { title: "Use this map here" },
-      content: `<p>Put <strong>${esc(map.name)}${variant?.label ? ` (${esc(variant.label)})` : ""}</strong> on <strong>${esc(scene.name)}</strong> as its map? Walls, tokens and the grid stay as they are.</p>`
+      content: `<p>Put <strong>${esc(map.name)}${variant?.label ? ` (${esc(variant.label)})` : ""}</strong> on <strong>${esc(scene.name)}</strong> as its map?</p><p>The scene's size, grid, walls and tokens stay as they are, so a map of another size is stretched to fit.</p>`,
+      rejectClose: false
     });
     if (!ok) return;
     try { await setSceneMap(scene, variant.path); ui.notifications.info(`${scene.name} now shows ${map.name}.`); }
@@ -560,18 +713,20 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     });
     if (!picked) return;
     const all = foundry.utils.deepClone(setting("mapTypes", {}));
-    const guessed = guessTypes(map.name, map.key.split("/").pop());
-    const same = picked.length && (guessed.length ? guessed : [OTHER.key]).join() === picked.join();
-    if (same || !picked.length) delete all[map.key]; else all[map.key] = picked;
+    const guessed = guessTypes(map.name, map.rel.split("/").pop());
+    const same = (guessed.length ? guessed : [OTHER.key]).join() === picked.join();
+    if (same || !picked.length) delete all[map.rel]; else all[map.rel] = picked;
     await game.settings.set(SYS, "mapTypes", all);
-    this.maps = buildIndex(this.scan?.files ?? [], this.root, all);
+    this.#setMaps(buildIndex(this.scan?.files ?? [], this.root, all));
     this.render();
   }
 
-  static async #onRescan(event, target) {
-    target.disabled = true;
-    this.maps = null;
-    try { await this.#load(true); } finally { this.render(); }
+  static async #onRescan() {
+    if (this._loading) return;
+    this.#setMaps(null);
+    this.render();
+    await this.#load(true);
+    if (this.rendered) this.render();
   }
 
   static #onPickFolder() {
@@ -582,8 +737,6 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
         const f = cleanFolder(path);
         if (!f) return ui.notifications.warn("Pick a folder inside Data, not Data itself.");
         await game.settings.set(SYS, "mapRoot", f);
-        this.maps = null;
-        this.render();
       }
     }).render(true);
   }
@@ -592,7 +745,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
 
   static #onType(event, target) {
     this.typeFilter = this.typeFilter === target.dataset.type ? "" : (target.dataset.type ?? "");
-    for (const chip of this.element.querySelectorAll(".arn-maps-types [data-type]")) chip.classList.toggle("active", chip.dataset.type === this.typeFilter);
+    for (const chip of this.element.querySelectorAll(".arn-maps-types [data-type]")) chip.classList.toggle("active", chip.dataset.type === this.typeFilter && !!this.typeFilter);
     this.element.querySelector(".arn-maps-types [data-all]")?.classList.toggle("active", !this.typeFilter);
     this.#filter();
   }
@@ -601,7 +754,8 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
 export function registerMaps() {
   game.settings.register(SYS, "mapRoot", {
     name: "Map folder", hint: "The folder inside your Data that the Map Browser shows (link your maps folder there; see the README).",
-    scope: "world", config: true, type: String, default: "maps", restricted: true
+    scope: "world", config: true, type: String, default: "maps", restricted: true,
+    onChange: () => ArneyanMapBrowser.reset()
   });
   game.settings.register(SYS, "mapTypes", { scope: "world", config: false, type: Object, default: {} });
   Hooks.on("renderSceneDirectory", (app, html) => {
