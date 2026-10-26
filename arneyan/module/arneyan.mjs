@@ -33,6 +33,7 @@ import { registerGmTools } from "./gmtools.mjs";
 import { registerWorld } from "./world.mjs";
 import { registerArt } from "./art.mjs";
 import { registerImport, importDialog } from "./import.mjs";
+import { registerMaps, ArneyanMapBrowser } from "./maps.mjs";
 import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
@@ -94,10 +95,11 @@ Hooks.once("init", () => {
   registerWorld();
   registerArt();
   registerImport();
+  registerMaps();
   registerCalendar();
   registerInitiative();
   registerLimits();
-  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open() });
+  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open(), maps: () => ArneyanMapBrowser.open() });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).
   const BaseToken = CONFIG.Token.objectClass;

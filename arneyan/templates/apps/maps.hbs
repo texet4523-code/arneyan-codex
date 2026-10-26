@@ -1,0 +1,50 @@
+<div class="arn-maps">
+  <div class="arn-maps-bar">
+    <input type="search" name="q" value="{{query}}" placeholder="Search maps: name, creator, type or version (night, gridless...)" autocomplete="off">
+    <select name="creator" aria-label="Creator">
+      <option value="">Every creator</option>
+      {{#each creators}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{value}}</option>{{/each}}
+    </select>
+    <nav class="arn-maps-sorts">{{#each sorts}}<a data-action="setSort" data-sort="{{value}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}</nav>
+  </div>
+  <nav class="arn-maps-types">
+    <a data-action="setType" data-type="" data-all class="{{#if allTypes}}active{{/if}}">All</a>
+    {{#each types}}<a data-action="setType" data-type="{{key}}" class="{{#if active}}active{{/if}}">{{label}} <span>{{count}}</span></a>{{/each}}
+  </nav>
+  <div class="arn-maps-info">
+    <span class="arn-maps-count"></span>
+    <span class="arn-maps-folder">Folder: <strong>{{root}}</strong>{{#if scanned}} · scanned {{scanned}}, {{files}} pictures{{/if}}</span>
+    <a class="arn-btn small ghost" data-action="pickFolder" data-tooltip="Choose the folder in your Data the browser shows"><i class="fa-solid fa-folder-open"></i> Folder</a>
+    <a class="arn-btn small ghost" data-action="rescan" data-tooltip="Look through the folder again for new or moved maps"><i class="fa-solid fa-rotate"></i> Rescan</a>
+  </div>
+  <p class="arn-maps-status" {{#unless status}}hidden{{/unless}}>{{status}}</p>
+  <div class="arn-maps-results">
+    {{#each groups}}
+    <section class="arn-maps-group">
+      {{#if label}}<h3>{{label}} <span class="arn-maps-group-count"></span></h3>{{/if}}
+      <ul class="arn-maps-grid">
+        {{#each maps}}
+        <li class="arn-map-card" data-key="{{key}}" data-search="{{search}}">
+          <a class="arn-map-thumb" data-action="preview" data-tooltip="See it full size">
+            <img data-thumb="{{key}}" alt="" loading="lazy">
+            {{#if video}}<span class="arn-map-badge"><i class="fa-solid fa-film"></i> Animated</span>{{/if}}
+          </a>
+          <div class="arn-map-body">
+            <strong class="arn-map-name">{{name}}</strong>
+            <span class="arn-map-meta">{{#if grid}}{{grid}} squares{{else}}Grid not given{{/if}}{{#if creator}} · {{creator}}{{/if}}</span>
+            <span class="arn-map-tags">{{#each types}}<em>{{label}}</em>{{/each}}<a data-action="editTypes" data-tooltip="{{#if guessed}}Guessed from the name: change{{else}}Change the types{{/if}}"><i class="fa-solid fa-pen"></i></a></span>
+            <div class="arn-map-actions">
+              {{#if many}}<select name="variant" aria-label="Version">{{#each variants}}<option value="{{i}}">{{label}}{{#if video}} (animated){{/if}}</option>{{/each}}</select>{{/if}}
+              <button type="button" class="arn-btn small" data-action="newScene" data-tooltip="Make a new scene with this map, its grid from the name"><i class="fa-solid fa-plus"></i> New scene</button>
+              <button type="button" class="arn-btn small ghost" data-action="useHere" data-tooltip="Put this map on the scene you're looking at"><i class="fa-solid fa-image"></i></button>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{else}}
+    <p class="arn-empty">{{#if status}}{{else}}No maps found in <strong>{{root}}</strong>. Link your maps folder into your Data (see the README), or pick another folder.{{/if}}</p>
+    {{/each}}
+  </div>
+</div>
