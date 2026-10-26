@@ -92,8 +92,8 @@
 .arneyan .arn-maps-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
 .arneyan .arn-map-card { display: flex; flex-direction: column; background: var(--arn-surface); border: 1px solid var(--arn-border); border-radius: 8px; overflow: hidden; box-shadow: var(--arn-shadow); }
 .arneyan .arn-map-card[hidden], .arneyan .arn-maps-group[hidden] { display: none; }
-.arneyan .arn-map-thumb { position: relative; display: block; aspect-ratio: 3 / 2; background: #2a2a24; cursor: zoom-in; }
-.arneyan .arn-map-thumb img { width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
+.arneyan .arn-map-thumb { position: relative; display: block; aspect-ratio: 3 / 2; min-height: 0; overflow: hidden; background: #2a2a24; cursor: zoom-in; }
+.arneyan .arn-map-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; border: 0; display: block; }
 .arneyan .arn-map-thumb img:not([src]) { visibility: hidden; }
 .arneyan .arn-map-card.loading .arn-map-thumb::after { content: "Making thumbnail..."; position: absolute; inset: 0; display: grid; place-items: center; color: #d8d2bf; font-size: 12px; }
 .arneyan .arn-map-card.broken .arn-map-thumb::after { content: "No preview"; position: absolute; inset: 0; display: grid; place-items: center; color: #d8d2bf; font-size: 12px; }
@@ -106,6 +106,7 @@
 .arneyan .arn-map-tags a { font-size: 10.5px; color: var(--arn-muted); cursor: pointer; margin-left: 2px; }
 .arneyan .arn-map-actions { display: flex; gap: 4px; align-items: center; margin-top: 4px; }
 .arneyan .arn-map-actions select { flex: 1 1 auto; min-width: 0; height: 26px; font-size: 12px; }
+.arneyan .arn-map-actions button { flex: 0 0 auto; white-space: nowrap; }
 .arneyan .arn-map-actions button:first-of-type { margin-left: auto; }
 .arn-maps-typegrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; margin: 8px 0; }
 .arn-maps-typebox { display: flex; gap: 6px; align-items: center; }

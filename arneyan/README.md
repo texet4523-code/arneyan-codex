@@ -1,6 +1,24 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.62 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.63 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.63
+
+**The Map Browser** (Kieran, 26 Oct): your battle maps as thumbnails, for the GM. Open it from the **Map Browser** button at the top of the Scenes sidebar.
+
+- **Search** by name, creator, type or version ("night", "gridless"), and filter by type or creator. Sort by type, by creator or A to Z.
+- **Packs are maps:** each pack folder (for example "Abandoned Mine Entrance [33x21] - $1 Rewards") is one card, with its day, night, gridless and animated versions in a list.
+- **Types** (Caves & Mines, Taverns & Inns, Wilderness and so on) are guessed from each map's name. Click the pencil on a card to change them; your choice is kept.
+- **New scene** makes a scene from the chosen version, sized to the picture, with the grid worked out from the "[33x21]" in the name, hidden from players until you show it. The picture button puts the map on the scene you're looking at instead.
+- **Thumbnails** are made the first time a map scrolls into view and saved in `Data/arneyan-maps`, so the next visit is instant. **Rescan** picks up new maps.
+
+**Setting it up once.** Foundry can only show files inside its Data folder, so link your maps folder into it. On Linux, in a terminal:
+
+```
+ln -s "$HOME/Desktop/TTRPG/Foundry/Battle maps" "$HOME/.local/share/FoundryVTT/Data/maps"
+```
+
+The browser shows `maps` by default; **Folder** in the browser (or the "Map folder" game setting) picks another folder inside Data. Nothing is copied: the maps stay where they are.
 
 ## What's new in 0.10.62
 
