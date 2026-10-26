@@ -66,6 +66,8 @@ export function cleanFolder(f) {
 }
 
 const GRID = /[[(]\s*(\d{1,3})\s*[x×]\s*(\d{1,3})\s*[\])]/i;
+/** A grid without brackets ("Swamp Hut 30x20", "Background_91x60"): one to three digits each side, standing alone. */
+const BARE_GRID = /(?:^|[^0-9a-z])(\d{1,3})\s?[x×]\s?(\d{1,3})(?=$|[^0-9a-z])/i;
 /** Tags in brackets that say nothing about which map it is; anything else in brackets ("(Interior)") stays. */
 const TAG = /[[(]\s*(?:\d{1,3}\s*[x×]\s*\d{1,3}|various|varies|grid(?:ded|less)?|no\s*grid|4k|hd|uhd|\d+\s*(?:ppi|px|dpi)|\$\s*\d+[^\])]*)\s*[\])]/gi;
 
@@ -75,10 +77,11 @@ const TAG = /[[(]\s*(?:\d{1,3}\s*[x×]\s*\d{1,3}|various|varies|grid(?:ded|less)
  */
 export function parseMapName(raw) {
   let s = decode(raw).replace(MEDIA, "").replace(/[_]+/g, " ");
-  const g = s.match(GRID);
+  const g = s.match(GRID) ?? s.match(BARE_GRID);
   const w = g ? Number(g[1]) : null, h = g ? Number(g[2]) : null;
   s = s
     .replace(TAG, " ")
+    .replace(new RegExp(BARE_GRID.source, "gi"), " ")
     .replace(/\$\s*\d+\s*(?:free\s+)?(?:rewards?|tier|patrons?)?/gi, " ")
     .replace(/\b(rewards?|patreon)\b/gi, " ")
     .replace(/\s+[-–—|]+(?=\s|$)/g, " ")          // " - " separators left between words
@@ -105,7 +108,7 @@ export function guessTypes(...texts) {
  */
 export function variantLabel(file, mapName, folders = []) {
   const own = new Set(wordsOf(mapName));
-  const words = t => decode(t).replace(MEDIA, "").replace(GRID, " ").replace(/\$\s*\d+/g, " ").replace(/['’]/g, "").replace(/[_]+/g, " ")
+  const words = t => decode(t).replace(MEDIA, "").replace(GRID, " ").replace(new RegExp(BARE_GRID.source, "gi"), " ").replace(/\$\s*\d+/g, " ").replace(/['’]/g, "").replace(/[_]+/g, " ")
     .split(/[^A-Za-z0-9]+/).filter(w => w && !own.has(w.toLowerCase()) && !/^\d+x\d+$/i.test(w) && !/^(rewards?|patreon)$/i.test(w));
   const seen = new Set();
   return [...folders.flatMap(words), ...words(String(file).split("/").pop())]

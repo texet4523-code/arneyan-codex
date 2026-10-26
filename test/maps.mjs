@@ -11,7 +11,10 @@ assert.deepEqual(M.parseMapName("Ancient Stepwell [57x95] - $5 Rewards (Gridless
 assert.deepEqual(M.parseMapName("Airships! [Various] - $1 Rewards"), { name: "Airships!", w: null, h: null });
 assert.deepEqual(M.parseMapName("Ancient Battlefield $1 Rewards"), { name: "Ancient Battlefield", w: null, h: null });
 assert.deepEqual(M.parseMapName("Howling Deep Tavern"), { name: "Howling Deep Tavern", w: null, h: null });
-assert.deepEqual(M.parseMapName("Background_91x60.png"), { name: "Background 91x60", w: null, h: null }, "a bare 91x60 isn't a grid tag");
+assert.deepEqual(M.parseMapName("Background_91x60.png"), { name: "Background", w: 91, h: 60 }, "a bare 91x60 is a grid too");
+assert.deepEqual(M.parseMapName("Swamp Hut 30x20"), { name: "Swamp Hut", w: 30, h: 20 });
+assert.deepEqual(M.parseMapName("Map 1080x1920"), { name: "Map 1080x1920", w: null, h: null }, "four digits is a screen size, not squares");
+assert.deepEqual(M.parseMapName("Room 2x4you"), { name: "Room 2x4you", w: null, h: null }, "only standing alone");
 assert.deepEqual(M.parseMapName("Beached%20Kraken%20%5B78x23%5D"), { name: "Beached Kraken", w: 78, h: 23 }, "encoded names read the same");
 assert.deepEqual(M.parseMapName("Cave (30×40).webp"), { name: "Cave", w: 30, h: 40 }, "the × sign and round brackets");
 assert.equal(M.parseMapName("$1 Fey Village Rewards").name, "Fey Village");
@@ -57,7 +60,7 @@ const files = [
   "art/elsewhere.png"
 ];
 const maps = M.buildIndex(files, "maps");
-assert.deepEqual(maps.map(m => m.name), ["Abandoned Mine Entrance", "Howling Deep Tavern", "Loose Crypt", "Swamp Hut 30x20"]);
+assert.deepEqual(maps.map(m => m.name), ["Abandoned Mine Entrance", "Howling Deep Tavern", "Loose Crypt", "Swamp Hut"]);
 const mine = maps[0];
 assert.equal(mine.creator, "Cze and Peku Maps");
 assert.equal(mine.key, "maps/Cze and Peku Maps/Abandoned Mine Entrance [33x21] - $1 Rewards");
