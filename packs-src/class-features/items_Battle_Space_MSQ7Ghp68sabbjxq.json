@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>Once per encounter, when you attack, you also gain the benefit of Dodge until your next turn</li><li>Flank Attacks have <strong>Advantage</strong> on the attack roll</li><li>13th level: +1 AC unless wielding a two-handed weapon, and Flank Attacks deal +2 damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
+  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>Once per encounter, when you attack, you also gain the benefit of Dodge until your next turn</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and Flank Attacks deal +2 damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -52,7 +52,7 @@
    {
     "key": "adv.attack",
     "value": "1",
-    "when": "Flank Attack",
+    "when": "Flank Attack (you flank whenever an ally is also in melee with the target)",
     "label": ""
    },
    {

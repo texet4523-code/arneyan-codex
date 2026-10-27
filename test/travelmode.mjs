@@ -104,3 +104,20 @@ console.log("OK 0.10.44 travel clock, encounter roll, scene daylight, Wild Shape
 assert.ok(tr.includes("while (today >= perDay && ended.length)") && tr.includes("rollMode: CONST.DICE_ROLL_MODES.PUBLIC") && tr.includes('"encounterDrawn"') && tr.includes("moveTime(-back * hexSeconds("));
 assert.ok(rt.includes('sc.getFlag(SYS, "darknessBefore") !== undefined && !sceneFollows(sc)'));
 console.log("OK 0.10.44 review fixes");
+
+// 0.10.68: travel mode's fog of war (Kieran, 27 Oct 2026): on a hex map the party token sees 2 hexes in colour by its
+// own light (1 at night) instead of its members' darkvision; a square or gridless map is left alone.
+{
+  globalThis.CONST ??= {};
+  CONST.GRID_TYPES ??= { GRIDLESS: 0, SQUARE: 1, HEXODDR: 2 };
+  const { travelSight, TRAVEL_SIGHT } = await import("../arneyan/module/tokens.mjs");
+  const tok = () => ({ sight: { range: 120, visionMode: "darkvision", saturation: -1 }, light: { dim: 0, bright: 0, animation: { type: "torch" } }, detectionModes: [{ id: "basicSight", range: 120 }] });
+  const hex = d => ({ grid: { type: 2, distance: 5 }, environment: { darknessLevel: d } });
+  const day = travelSight(tok(), hex(0));
+  assert.deepEqual([day.sight.visionMode, day.sight.range, day.sight.saturation, day.light.dim, day.light.bright, day.detectionModes[0].range], ["basic", 12.5, 0, 12.5, 12.5, 12.5]);
+  assert.equal(travelSight(tok(), hex(0.8)).sight.range, (TRAVEL_SIGHT.night + 0.5) * 5, "1 hex at night");
+  assert.equal(travelSight(tok(), { grid: { type: 1, distance: 5 }, environment: {} }).sight.visionMode, "darkvision", "a square map is left alone");
+  const tk = fs.readFileSync(`${root}module/tokens.mjs`, "utf8");
+  assert.ok(tk.includes("actor.flags?.[SYS]?.travel?.mode && this.parent) travelSight(this, this.parent)") && tk.includes("flags.${SYS}.travel.mode`)) schedule(actor)"));
+  console.log("OK 0.10.68 travel mode fog of war");
+}

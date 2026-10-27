@@ -141,9 +141,36 @@ export function visionTokenClass(Base) {
         const want = visionFor(actor);
         const defaults = CONFIG.Canvas?.visionModes?.[want.mode]?.vision?.defaults ?? {};
         applyVision(this, want, savedSight(this), defaults);
+        // Travel mode on a hex map: fog of war instead of the members' darkvision (Kieran, 27 Oct 2026).
+        if (actor.type === "party" && actor.flags?.[SYS]?.travel?.mode && this.parent) travelSight(this, this.parent);
       } catch (err) { console.warn("Arneyan | token vision", err); }
     }
   };
+}
+
+/** Travel mode's sight: hexes around the party token, by day and at night (darkness half or more). */
+export const TRAVEL_SIGHT = { day: 2, night: 1 };
+
+/**
+ * Travel mode (Kieran, 27 Oct 2026): on a hex map the party token sees in colour for a few hexes around it, by its
+ * own light, instead of its best member's darkvision (grey, and far too wide on a map whose hexes are miles).
+ * Foundry's fog exploration keeps what it has passed dimmed on the map and hides the rest. Its own prepared data
+ * only: nothing is saved. Needs the scene's Global Illumination off, or the whole map counts as lit.
+ */
+export function travelSight(token, scene) {
+  const grid = scene?.grid;
+  if (!grid || grid.type === CONST.GRID_TYPES?.SQUARE || grid.type === CONST.GRID_TYPES?.GRIDLESS || grid.type === 1 || grid.type === 0) return token;
+  const dist = Number(grid.distance) || 1;
+  const dark = Number(scene.environment?.darknessLevel ?? 0);
+  const hexes = dark >= 0.5 ? TRAVEL_SIGHT.night : TRAVEL_SIGHT.day;
+  const range = (hexes + 0.5) * dist;
+  Object.assign(token.sight, { enabled: true, visionMode: "basic", range, angle: 360, saturation: 0, brightness: 0, contrast: 0, attenuation: 0.1, color: null });
+  Object.assign(token.light, { dim: range, bright: range, angle: 360, color: null, alpha: 0.5, luminosity: 0.5, coloration: 1, attenuation: 0.5, negative: false });
+  if (token.light.animation) token.light.animation.type = null;
+  const dm = token.detectionModes;
+  const basic = Array.isArray(dm) ? dm.find(m => m.id === "basicSight") : dm?.basicSight;
+  if (basic) basic.range = range;
+  return token;
 }
 
 /** Prepare tokens on the scene in view again and redraw what they see ("all", an actor, or a token's actor). */
@@ -297,6 +324,8 @@ export function registerTokens() {
     if (userId === game.user.id && foundry.utils.hasProperty(changes, "system.details.size")) syncSize(actor).catch(err => console.warn("Arneyan | size", err));
     // Senses live in the details (and items and effects, below); HP changes in a fight don't redraw vision.
     if (foundry.utils.hasProperty(changes, "system.details") || "prototypeToken" in changes || "system" in changes && actor.type === "party") schedule(actor);
+    // Travel mode on or off: the party token's fog-of-war sight comes or goes.
+    if (actor.type === "party" && foundry.utils.hasProperty(changes, `flags.${SYS}.travel.mode`)) schedule(actor);
     // Joining or leaving the party folder changes the party's sight.
     if ("folder" in changes && actor.type === "character") { const p = activeParty(); if (p) schedule(p); }
   });
@@ -318,4 +347,8 @@ export function registerTokens() {
   // Tokens are first prepared before every actor is ready, and other scenes' tokens go stale: prepare the
   // tokens in view again each time a scene is drawn.
   Hooks.on("canvasReady", () => schedule("all"));
+  // Travel mode's sight shrinks at night: the scene's darkness moving (the clock) redraws the party token.
+  Hooks.on("updateScene", (scene, changes) => {
+    if (scene.id === canvas?.scene?.id && foundry.utils.hasProperty(changes, "environment.darknessLevel")) { const p = activeParty(); if (p) schedule(p); }
+  });
 }

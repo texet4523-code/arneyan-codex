@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.67 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.68 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.68
+
+- **Fog of war in travel mode** (Kieran, 27 Oct). On a hex map with travel mode on, the party token sees 2 hexes around it in full colour by its own light (1 hex at night), instead of its best member's darkvision (grey, and far too wide on a map of hexes). With the scene's fog exploration on, places the party has passed stay on the map, dimmed, and the rest stays hidden from players. The scene's **Global Illumination** has to be off for this (Configure Scene, Lighting), or the whole map counts as lit. Out of travel mode, and on battle maps, vision is as before.
+- **Battle Space** (books v0.10.24, Kieran's call B9): from 3rd level a Fighter counts as flanking a creature whenever an ally is also in melee with it, not only when directly opposite.
 
 ## What's new in 0.10.67
 
