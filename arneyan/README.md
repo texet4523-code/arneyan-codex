@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.63 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.64 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.64
+
+**Cosmic alignment** (books v0.10.19 and v0.10.20, Book II "Alignment in Arneyan"; Kieran, 26 Oct). Mortals aren't truly good or evil; gods, fiends, celestials and the undead are.
+
+- **Outlook and tenets:** the Biography tab's Alignment box is now **Outlook** (how your character behaves, for roleplay), with a **Tenets** box beside it for one or two in your own words. The GM's **+ Luck** button on the sheet is now for acting on a tenet at real cost (once a session).
+- **Allegiance:** your true side in the gods' war, shown under Outlook with where it comes from. Most mortals are **Unaligned**. Clerics, Paladins and Battle Priests hold their god's alignment while favoured, and Warlocks their patron's (a fiend pact makes you Evil). Profane acts pull a mortal towards Evil; the GM judges when they've made someone Evil and types it in the **GM sets** box (blank works it out again).
+- **Creatures:** devils are Lawful Evil, demons Chaotic Evil, other fiends Neutral Evil, celestials Good and undead Evil by nature; everything else is Unaligned unless the GM sets one on its Biography tab.
+- **Divine Favour** for Clerics, Paladins and Battle Priests (GM sets it on the Biography tab): **Strained** cards for Turn Undead and your highest-level spells carry a DC 12 check button (Wisdom, or Charisma for Paladins); on a failure the use or slot is spent. **Forsaken** stops every class ability your god grants, Divine Mount and the deity Kit included, until you atone.
+- **Spells and features that name an alignment** go by Allegiance: with tokens targeted, a reminder like "+1d6 vs evil creatures" says which targets count, and cards for Holy Word, Protection from Alignment, Dispel Alignment and the like list each target's Allegiance. Unaligned mortals never count.
+- **Gods and patrons:** every deity Kit carries its god's alignment from the World of Arneyan wiki and links the god's page for their tenets; patron Kits link their pages too. Archdevils and demon lords hold their kind's alignment. Kits already on characters pick these up with the update.
+- **Books v0.10.20:** Atonement moves a god's servant one step towards Favoured, and for anyone else ends an Evil Allegiance from profane acts; the Character Creation journal, Assassin, Bard (Change Alignment now shifts Outlook), Cleric, Paladin and Necromancer follow the books' new wording.
 
 ## What's new in 0.10.63
 

@@ -549,7 +549,9 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
 async function importCharacterStats(actor, data, notes) {
   const upd = { name: String(data.name).trim() };
   const d = "system.details";
-  if (data.alignment != null) upd[`${d}.alignment`] = String(data.alignment);
+  if ((data.outlook ?? data.alignment) != null) upd[`${d}.alignment`] = String(data.outlook ?? data.alignment);
+  if (data.tenets != null) upd[`${d}.tenets`] = Array.isArray(data.tenets) ? data.tenets.join("; ") : String(data.tenets);
+  if (data.allegiance != null) upd[`${d}.allegiance`] = String(data.allegiance);
   if (data.deity != null) upd[`${d}.deity`] = String(data.deity);
   if (data.age != null) upd[`${d}.age`] = String(data.age);
   if (data.languages != null) upd[`${d}.languages`] = words(data.languages).join(", ");
@@ -659,7 +661,7 @@ async function importNpcStats(actor, plan, notes) {
   const det = `${s}.details`;
   const size = norm(data.size);
   if (size && size in ARNEYAN.sizes) upd[`${det}.size`] = size;
-  for (const [from, to] of [["creature", "type"], ["creatureType", "type"], ["alignment", "alignment"], ["xp", "xp"], ["numberAppearing", "numberAppearing"],
+  for (const [from, to] of [["creature", "type"], ["creatureType", "type"], ["alignment", "alignment"], ["outlook", "alignment"], ["allegiance", "allegiance"], ["xp", "xp"], ["numberAppearing", "numberAppearing"],
     ["senses", "senses"], ["resistances", "resistances"], ["immunities", "immunities"], ["vulnerabilities", "vulnerabilities"]]) {
     if (data[from] != null) upd[`${det}.${to}`] = words(data[from]).join(", ");
   }
