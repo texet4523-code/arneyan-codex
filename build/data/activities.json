@@ -1072,7 +1072,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day (once per encounter from 24th: set the uses by hand)."
+  "why": "Once per day until 24th (the text's \"once per encounter\" is the 24th-level step: from then, reset its use after each encounter).",
+  "uses": {
+   "max": 1,
+   "per": "day"
+  }
  },
  "Called Shot|Gunslinger": {
   "activities": [
@@ -4111,6 +4115,41 @@
   "activities": [],
   "confidence": "high",
   "why": "Its second daily use is on Perfect Shot.",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Master Duelist (Improved)|Swashbuckler": {
+  "activities": [],
+  "confidence": "high",
+  "why": "From 24th Master Duelist is once per encounter: reset its use after each encounter (one tracker, on Master Duelist).",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Intelligence Bonus|Artificer": {
+  "activities": [],
+  "confidence": "high",
+  "why": "The weekly rate belongs to Lasting Work.",
+  "uses": {
+   "max": 0
+  }
+ },
+ "Lasting Work|Artificer": {
+  "activities": [
+   {
+    "name": "Lasting Work",
+    "kind": "note",
+    "text": "Make a permanent item as your Kit describes: {1:once a month, 15:once a week, 20:twice a week}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a month until 15th, once a week from 15th, twice a week from 20th: the rate changes, so it isn't tracked as uses.",
   "uses": {
    "max": 0
   }

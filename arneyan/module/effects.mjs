@@ -366,6 +366,19 @@ const NOTE_GROUP = key => {
   return "other";
 };
 
+/** Dice whose count is worked out ("+(min(3,floor(10/5)))d6", Steady Shot's) read as the number of dice ("+2d6"). */
+function diceCounts(term) {
+  let out = String(term ?? ""), guard = 0;
+  for (let i = out.search(/\)d\d/); i >= 0 && guard++ < 10; i = out.search(/\)d\d/)) {
+    let depth = 0, j = i;
+    for (; j >= 0; j--) { if (out[j] === ")") depth++; else if (out[j] === "(" && --depth === 0) break; }
+    if (j < 0) break;
+    const n = Math.max(0, Math.floor(evalNumber(out.slice(j + 1, i), {})));
+    out = out.slice(0, j) + n + out.slice(i + 1);
+  }
+  return out;
+}
+
 function describe(rule, n) {
   if (rule.key.startsWith("adv.")) return rule.value > 0 || n > 0 ? "Advantage" : "Disadvantage";
   if (rule.key.startsWith("note.")) return String(rule.value);
@@ -409,7 +422,8 @@ export class ModSet {
       const TRAIT_WORD = { resist: "Resistance", immune: "Immune", vuln: "Vulnerable", sense: "Sense" };
       // Damage in dice (Blessed Weapon's +1d6 vs evil) reads as its dice, not as a number ("+0").
       const dice = (/damage$/.test(key) || key.startsWith("damage")) && key !== "damage.reroll" ? evalTerm(r.value, r.data) : "";
-      const amount = /d\d/i.test(dice) ? (/^[+-]/.test(dice) ? dice : `+${dice}`) : describe(r, evalNumber(r.value, r.data));
+      const shown = diceCounts(dice);
+      const amount = /d\d/i.test(shown) ? (/^[+-]/.test(shown) ? shown : `+${shown}`) : describe(r, evalNumber(r.value, r.data));
       const what = Object.hasOwn(TRAIT_WORD, key) ? `${TRAIT_WORD[key]} ${String(r.value ?? "").replace(/^condition:/, "")}`
         : `${amount} ${r.key.startsWith("adv.") || r.key.startsWith("note.") ? "" : `(${r.key})`}`;
       const text = `${r.label}: ${what} ${r.when}`.replace(/\s+/g, " ").trim();

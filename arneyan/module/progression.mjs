@@ -19,7 +19,7 @@ function grantedBy(actor, sourceItem) {
 }
 
 /** The class a kit belongs to on this actor (by name), or the first class. */
-function classForKit(actor, kit) {
+export function classForKit(actor, kit) {
   const classes = actor.items.filter(i => i.type === "class");
   const name = (kit.system.className || "").toLowerCase();
   return classes.find(c => c.name.toLowerCase() === name || c.name.toLowerCase().startsWith(name + " ")) ?? classes[0] ?? null;
@@ -54,12 +54,13 @@ async function dropReplaced(actor, cls, options) {
 }
 
 /** Add the class's features up to its level and remove any above it. */
-export async function syncClassFeatures(actor, cls, options = { arneyanGrant: true }) {
+export async function syncClassFeatures(actor, cls, options = { arneyanGrant: true }, { only = null } = {}) {
   const level = cls.system.levels;
   const have = grantedBy(actor, cls);
   const haveSources = new Set(have.map(i => i.getFlag(FLAG, "source")));
-  const toDelete = have.filter(i => (i.system.level ?? 1) > level).map(i => i.id);
-  const wanted = (cls.system.features ?? []).filter(f => f.level <= level && f.uuid && !haveSources.has(f.uuid));
+  // `only` (the 0.10.65 update): add just these features, and take nothing away.
+  const toDelete = only ? [] : have.filter(i => (i.system.level ?? 1) > level).map(i => i.id);
+  const wanted = (cls.system.features ?? []).filter(f => f.level <= level && f.uuid && !haveSources.has(f.uuid) && (!only || only.has(f.uuid)));
   const replaced = replacedFor(actor, cls);
   const create = [];
   for (const f of wanted) {
@@ -80,16 +81,17 @@ export async function syncClassFeatures(actor, cls, options = { arneyanGrant: tr
 }
 
 /** Add a kit's features up to its class's level and remove any above it. */
-export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true }) {
+export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true }, { only = null } = {}) {
   const cls = classForKit(actor, kit);
   const level = cls?.system.levels ?? 1;
   const have = grantedBy(actor, kit);
   const haveSources = new Set(have.map(i => i.getFlag(FLAG, "source")));
-  const toDelete = have.filter(i => (i.system.level ?? 1) > level).map(i => i.id);
+  // `only` (the 0.10.65 update): add just these features (by "<kit id>.<index>"), and take nothing away.
+  const toDelete = only ? [] : have.filter(i => (i.system.level ?? 1) > level).map(i => i.id);
   const create = [];
   (kit.system.features ?? []).forEach((f, idx) => {
     const source = `${kit.id}.${idx}`;
-    if (f.level > level || haveSources.has(source)) return;
+    if (f.level > level || haveSources.has(source) || (only && !only.has(source))) return;
     create.push({
       name: f.name, type: "ability", img: kit.img,
       system: { description: f.description, kind: "class", level: f.level, className: kit.name,

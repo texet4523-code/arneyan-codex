@@ -118,8 +118,8 @@ export function companionStats(preset, master, base = {}, current = base) {
       const save = Math.max(1, Math.floor(lvl / 2));
       Object.assign(out, {
         "system.level": lvl, "system.hd": `${lvl}d8`, "system.attributes.hp.max": averageHp(`${lvl}d8`),
-        // Reinforced Plating (the Construct Engineer kit, 7th): AC +2.
-        "system.attributes.ac": 14 + Math.floor(lvl / 4) + ((master.items ?? []).some(i => i.name === "Reinforced Plating" || (i.type === "kit" && /construct engineer/i.test(i.name) && lvl >= 7)) ? 2 : 0), "system.attributes.attack": ARNEYAN.bth("martial", Math.min(lvl, 24)),
+        // Reinforced Plating (the Construct Engineer kit, 5th from books v0.10.22): AC +2.
+        "system.attributes.ac": 14 + Math.floor(lvl / 4) + ((master.items ?? []).some(i => i.name === "Reinforced Plating" || (i.type === "kit" && /construct engineer/i.test(i.name) && lvl >= 5)) ? 2 : 0), "system.attributes.attack": ARNEYAN.bth("martial", Math.min(lvl, 24)),
         "system.saves.fort": save, "system.saves.ref": save, "system.saves.will": save
       });
       break;

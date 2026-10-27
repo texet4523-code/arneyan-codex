@@ -685,29 +685,93 @@ export function newerThan(a, b) {
 /** A class feature list as a comparable key: each feature's level, name and compendium entry. */
 const featureKey = list => JSON.stringify((list ?? []).map(f => [Number(f?.level) || 0, String(f?.name ?? ""), String(f?.uuid ?? "")]));
 
+/** Class features the books dropped in v0.10.22 (B7): Battle Space (Improved), now part of Battle Space; the Artificer's
+ * 11th-level kit tier, now at 5th. A class's list loses these; anything else not in the compendium (homebrew) stays. */
+export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item.I2r5qtG2KwQTR6iK", "Compendium.arneyan.class-features.Item.Rn6ITCaMUuOEzKtD"]);
+
+/** The class a world or actor copy came from, if it's the system's compendium. */
+const classSource = cls => {
+  const uuid = cls?._stats?.compendiumSource ?? cls?.flags?.core?.sourceId ?? "";
+  return typeof uuid === "string" && uuid.startsWith(`Compendium.${SYS}.classes.`) ? uuid : "";
+};
+
+/** Each kit's feature levels before this update changes them (a kit's list is refreshed by the main pass). */
+export function kitLevelsOf(actors) {
+  const out = new Map();
+  for (const actor of actors ?? []) for (const k of actor?.items?.filter?.(i => i.type === "kit") ?? []) out.set(k.uuid ?? `${actor.id}.${k.id}`, (k.system?.features ?? []).map(f => Number(f?.level) || 1));
+  return out;
+}
+
 /**
- * 0.10.65: characters' classes take the books' new feature levels (B7: every core feature by 5th). A class on a sheet
- * keeps the feature list it was added with, so it gets the compendium's list, and the features the character's level
- * now reaches are added (a 6th-level Fighter gets Unbroken and Legend of Battle). Nothing is taken away: a feature the
- * books dropped (Battle Space (Improved), folded into Battle Space) is listed for the GM instead. A class marked "Keep
- * my edits", or not from the system's compendium, is left alone. `grant` adds the features (progression.mjs).
+ * 0.10.65: classes and kits on sheets take the books' new feature levels (B7: every core feature by 5th), once.
+ * - A class's feature list becomes the compendium's (homebrew entries kept, the two features the books dropped
+ *   removed); the list it had is kept in flags.arneyan.featuresBefore.
+ * - Only what the character's level newly reaches is added (a 6th-level Fighter gets Battle Space, Unbroken and Legend
+ *   of Battle); a feature the GM deleted earlier stays deleted, and nothing is taken away. Kits the same, from the
+ *   levels their features had before the update (`kitBefore`, from kitLevelsOf).
+ * - Features already on the sheet that now come earlier take their new level (levelling down then keeps them).
+ * - A dropped feature still on a sheet is listed for the GM. A class marked "Keep my edits", or not from the system's
+ *   compendium, is left alone. Classes in the Items directory get the new list too (nothing to grant there).
+ * `grant` = { cls(actor, cls, only), kit(actor, kit, only) } adds features (progression.mjs); `classOf(actor, kit)` is
+ * the class a kit belongs to.
  */
-export async function classRework(actors, fetch, grant, notes) {
+export async function classRework(actors, fetch, grant, notes, { kitBefore = new Map(), worldItems = [], classOf = null } = {}) {
+  const flag = (i, k) => i?.flags?.[SYS]?.[k];
+  for (const cls of worldItems ?? []) {
+    try {
+      const uuid = cls?.type === "class" ? classSource(cls) : "";
+      if (!uuid || flag(cls, "keepCustom") || flag(cls, "reworked") === CLASS_REWORK) continue;
+      const list = plain(await fetch(uuid))?.system?.features;
+      if (!Array.isArray(list)) continue;
+      const old = cls.system.features ?? [];
+      const merged = [...clone(list), ...old.filter(f => !list.some(x => x.uuid === f.uuid) && !DROPPED_FEATURES.has(f.uuid))];
+      await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old), [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
+    } catch (err) { console.warn(`Arneyan | class features: ${cls?.name}`, err); }
+  }
   for (const actor of actors) {
     if (actor?.type !== "character") continue;
     try {
       for (const cls of actor.items.filter(i => i.type === "class")) {
-        const uuid = cls._stats?.compendiumSource ?? cls.flags?.core?.sourceId ?? "";
-        if (cls.flags?.[SYS]?.keepCustom || typeof uuid !== "string" || !uuid.startsWith(`Compendium.${SYS}.classes.`)) continue;
-        const src = plain(await fetch(uuid));
-        const list = src?.system?.features;
-        if (!Array.isArray(list) || featureKey(list) === featureKey(cls.system.features)) continue;
-        await cls.update({ "system.features": clone(list) }, { arneyanMigration: true });
-        const added = await grant(actor, cls);
+        const uuid = classSource(cls);
+        if (!uuid || flag(cls, "keepCustom") || flag(cls, "reworked") === CLASS_REWORK) continue;
+        const list = plain(await fetch(uuid))?.system?.features;
+        if (!Array.isArray(list)) continue;
+        // The list before this update (kept from a try that stopped half-way).
+        const old = flag(cls, "featuresBefore") ?? cls.system.features ?? [];
+        const level = Number(cls.system.levels) || 1;
+        const reached = new Set(old.filter(f => (Number(f.level) || 1) <= level).map(f => f.uuid));
+        const only = new Set(list.filter(f => (Number(f.level) || 1) <= level && !reached.has(f.uuid)).map(f => f.uuid));
+        const merged = [...clone(list), ...old.filter(f => !list.some(x => x.uuid === f.uuid) && !DROPPED_FEATURES.has(f.uuid))];
+        await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old) }, { arneyanMigration: true });
+        const added = only.size ? await grant.cls(actor, cls, only) : [];
         if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
-        const now = new Set(list.map(f => f.uuid));
-        const gone = actor.items.filter(i => i.flags?.[SYS]?.grantedBy === cls.id && i.flags?.[SYS]?.source && !now.has(i.flags[SYS].source)).map(i => i.name);
+        // Features already here that now come earlier take their new level.
+        const at = new Map(list.map(f => [f.uuid, Number(f.level) || 1]));
+        const lower = actor.items.filter(i => flag(i, "grantedBy") === cls.id && at.has(flag(i, "source")) && at.get(flag(i, "source")) < (Number(i.system?.level) || 1))
+          .map(i => ({ _id: i.id, "system.level": at.get(flag(i, "source")) }));
+        if (lower.length) await actor.updateEmbeddedDocuments("Item", lower, { arneyanMigration: true });
+        const gone = actor.items.filter(i => flag(i, "grantedBy") === cls.id && DROPPED_FEATURES.has(flag(i, "source"))).map(i => i.name);
         if (gone.length) (notes.classGone[actor.name] ??= []).push(...gone);
+        await cls.update({ [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
+      }
+      for (const kit of actor.items.filter(i => i.type === "kit")) {
+        if (flag(kit, "reworked") === CLASS_REWORK) continue;
+        const before = kitBefore.get(kit.uuid ?? `${actor.id}.${kit.id}`);
+        const feats = kit.system?.features ?? [];
+        const cls = classOf ? classOf(actor, kit) : null;
+        if (before && cls) {
+          const level = Number(cls.system?.levels) || 1;
+          const only = new Set(feats.map((f, idx) => ((Number(f.level) || 1) <= level && (before[idx] ?? 99) > level ? `${kit.id}.${idx}` : null)).filter(Boolean));
+          const added = only.size ? await grant.kit(actor, kit, only) : [];
+          if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
+          const lower = actor.items.filter(i => flag(i, "grantedBy") === kit.id).map(i => {
+            const idx = Number(String(flag(i, "source") ?? "").split(".").pop());
+            const lv = Number(feats[idx]?.level) || 0;
+            return lv && feats[idx]?.name === i.name && lv < (Number(i.system?.level) || 1) ? { _id: i.id, "system.level": lv } : null;
+          }).filter(Boolean);
+          if (lower.length) await actor.updateEmbeddedDocuments("Item", lower, { arneyanMigration: true });
+        }
+        await kit.update({ [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
       }
     } catch (err) {
       console.warn(`Arneyan | class features: ${actor.name}`, err);
@@ -732,6 +796,9 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [], classAdded: {}, classGone: {} };
   const actorIds = new Set();
   const from = game.settings.get(SYS, "migratedTo") || "0";
+  // 0.10.65: class features at the books' new levels (once, coming from an earlier version, or for a retried actor).
+  const rework = (due && !newerThan(CLASS_REWORK, version) && newerThan(CLASS_REWORK, from)) || (!due && !!retry?.classes);
+  const kitBefore = rework ? kitLevelsOf(only ? game.actors.filter(a => only.actors.has(a.id)) : game.actors) : new Map();
   // First everything that's safe: unedited items, and older items already the same as the compendium.
   const res = await pass(fetch, { legacy: legacy ?? "skip", notes, actorIds, version, only });
   let legacyDone = 0;
@@ -744,16 +811,18 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       res.items += more.items; res.world += more.world; res.actors = actorIds.size; legacyDone = notes.unstamped;
     }
   }
-  // 0.10.65: class features at the books' new levels (once, coming from an earlier version).
-  if (due && !newerThan(CLASS_REWORK, version) && newerThan(CLASS_REWORK, from)) {
-    const { syncClassFeatures } = await import("./progression.mjs");
-    await classRework(game.actors, fetch, (actor, cls) => syncClassFeatures(actor, cls, { arneyanGrant: true, arneyanMigration: true }), notes);
+  if (rework) {
+    const P = await import("./progression.mjs");
+    const opts = { arneyanGrant: true };
+    await classRework(only ? game.actors.filter(a => only.actors.has(a.id)) : game.actors, fetch,
+      { cls: (actor, cls, ids) => P.syncClassFeatures(actor, cls, opts, { only: ids }), kit: (actor, kit, ids) => P.syncKitFeatures(actor, kit, opts, { only: ids }) },
+      notes, { kitBefore, worldItems: only ? [] : (game.items?.contents ?? []), classOf: P.classForKit });
   }
   if (due) await game.settings.set(SYS, "migratedTo", version);
   // Tried again on the next loads, three times in all (then at the next version).
   const tries = due ? 1 : (Number(retry?.tries) || 1) + 1;
   const giveUp = notes.failed.length > 0 && tries >= 3;
-  await writeRetry(notes.failed.length && !giveUp ? { version, actors: notes.failed.filter(f => f.id !== "items").map(f => f.id), items: notes.failed.some(f => f.id === "items"), tries } : null);
+  await writeRetry(notes.failed.length && !giveUp ? { version, actors: notes.failed.filter(f => f.id !== "items").map(f => f.id), items: notes.failed.some(f => f.id === "items"), tries, ...(rework ? { classes: true } : {}) } : null);
   const left = legacyDone ? 0 : (legacy === "update" ? 0 : notes.unstamped);
   const auto = Object.entries(notes.automatic);
   const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
@@ -771,7 +840,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (classAdded.length ? `<p><strong>Class features at their new levels</strong> (books v0.10.23: every class has its core features by 5th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (folded into another feature; delete them if you like):</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one). Delete them if you like:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

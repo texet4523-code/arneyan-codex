@@ -207,7 +207,8 @@ console.log("OK level scaling");
 {
   const { ModSet } = await import("../arneyan/module/effects.mjs");
   const notes = new ModSet([{ key: "damage", value: "+1d6", when: "vs evil creatures (radiant)", label: "Blessed Weapon", data: {} },
-    { key: "damage", value: 2, when: "Flank Attack", label: "Battle Space", data: {} }]).situational.map(x => x.text);
-  assert.deepEqual(notes, ["Blessed Weapon: +1d6 (damage) vs evil creatures (radiant)", "Battle Space: +2 (damage) Flank Attack"]);
+    { key: "damage", value: 2, when: "Flank Attack", label: "Battle Space", data: {} },
+    { key: "damage.ranged", value: "+(min(3,floor(@cl/5)))d6", when: "Dead Eye", label: "Steady Shot", data: { cl: 10 } }]).situational.map(x => x.text);
+  assert.deepEqual(notes, ["Blessed Weapon: +1d6 (damage) vs evil creatures (radiant)", "Battle Space: +2 (damage) Flank Attack", "Steady Shot: +2d6 (damage.ranged) Dead Eye"]);
   console.log("OK 0.10.65 dice in damage reminders");
 }
