@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.65 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.66 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.66
+
+**Elemental Mastery asks once** (Kieran, 27 Oct). The element picked on Elemental Mastery gives Resistance from 8th and immunity from 20th, so Elemental Mastery (Improved) no longer asks a question of its own. A character who got the Improved feature in 0.10.65 and hasn't answered it yet loses the question with this update; pick the element on Elemental Mastery if it's still blank. If you changed Elemental Mastery's element list by hand, your version stays, so mark its immunity at 20th yourself.
 
 ## What's new in 0.10.65
 
