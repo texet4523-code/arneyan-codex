@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.66 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.67 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.67
+
+**Weak monsters are free only up to the party's number** (Kieran, 27 Oct, R8). In the Encounter Builder and the combat tracker's budget, creatures 6 or more Levels below the party still cost nothing, but only one per character; any more cost ¼ each (a solo ¼ × party) and count for the crowd rule. Thirty kobolds against four 8th-level characters now cost 12, beyond Deadly, where before they cost nothing. Free places go to solos first, so the order you add foes in doesn't change the total. A foe's row says how many of it are free and how many pay, for example "free × 4, ¼ × 26 (far below)".
 
 ## What's new in 0.10.66
 

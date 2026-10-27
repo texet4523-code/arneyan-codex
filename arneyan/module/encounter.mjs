@@ -49,12 +49,19 @@ export function encounterBudget(partyLevels, foes) {
   let soloCost = 0;
   let free = 0;
   let pastFree = 0;
-  for (const f of foes) {
+  // Each foe row's far-below creatures: how many are free and how many pay ¼ (for the Encounter Builder's rows).
+  const rows = foes.map(() => ({ free: 0, paid: 0 }));
+  // Free slots (far below, up to the party's number) go to solos first, then in the list's order, so the total never
+  // depends on which order the foes were added in for the same mix.
+  const order = foes.map((f, i) => i).sort((a, b) => Number(!!foes[b].solo) - Number(!!foes[a].solo));
+  for (const idx of order) {
+    const f = foes[idx];
     const c = creatureCost(f.level, partyLevel, f.levelText);
     for (let i = 0; i < (f.count ?? 1); i++) {
       // Far below: free up to the party's number; past that, ¼ each (R8).
       const far = c === 0 && free >= n;
       if (far) pastFree += 1;
+      if (c === 0) rows[idx][far ? "paid" : "free"] += 1;
       if (f.solo) {
         const each = (far ? LADDER["-4"] : (c ?? LADDER["4"])) * n;
         soloCost += each;
@@ -81,9 +88,11 @@ export function encounterBudget(partyLevels, foes) {
   const label = !total ? (anyFoes ? "Easy (all far below)" : "No foes") : r <= 0.5 ? "Easy" : r < 1 ? "Between easy and hard" : r === 1 ? "Hard" : r < 2 ? "Between hard and deadly" : r === 2 ? "Deadly" : "Beyond deadly";
   const tier = !total ? (anyFoes ? "easy" : "none") : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
   if (free) warnings.push(`${free} creature${free === 1 ? " is" : "s are"} ${FAR_BELOW} or more Levels below the party: no cost, and not part of a crowd.`);
-  if (pastFree) warnings.push(`${pastFree} more creature${pastFree === 1 ? " is" : "s are"} ${FAR_BELOW} or more Levels below the party: free only up to the party's number, so ${pastFree === 1 ? "it costs" : "they cost"} ¼ each and count for crowds.`);
+  if (pastFree) warnings.push(pastFree === 1
+    ? `1 more creature is ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so it costs ¼ (a solo ¼ × party) and counts for crowds.`
+    : `${pastFree} more creatures are ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so these cost ¼ each (a solo ¼ × party) and count for crowds.`);
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
-  return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, costLabel: c => FRACTION(c) };
+  return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
 }
 
 /**
@@ -209,7 +218,11 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
       foes: foes.map((f, i) => {
         const c = creatureCost(f.level, b.partyLevel, f.levelText);
-        return { ...f, i, levelLabel: f.levelText || f.level, cost: c === 0 ? "free (far below, up to the party's number)" : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
+        // Far below: free up to the party's number, then ¼ (R8): the row says which.
+        const fr = b.rows?.[i] ?? { free: 0, paid: 0 };
+        const far = !fr.paid ? "free (far below)" : !fr.free ? (f.solo ? "¼ × party (far below, past the free ones)" : "¼ (far below, past the free ones)")
+          : `free × ${fr.free}, ${f.solo ? "¼ × party" : "¼"} × ${fr.paid} (far below)`;
+        return { ...f, i, levelLabel: f.levelText || f.level, cost: c === 0 ? far : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
       }),
       b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
       naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",

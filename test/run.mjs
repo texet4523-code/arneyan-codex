@@ -278,6 +278,11 @@ assert.equal(eb.total, 0.25 + 2 * 0.25, "one free; two at ¼, the second beyond 
 assert.ok(eb.warnings.some(w => w.includes("free only up to the party's number")));
 eb = encounterBudget([8, 8, 8, 8], [{ name: "Kobold", level: 2, count: 30 }]);
 assert.equal(eb.total, 26 * 0.25 + 22 * 0.25, "four free; 26 at ¼, and the 22 beyond the party's four of those double");
+assert.deepEqual(eb.rows, [{ free: 4, paid: 26 }]);
+// Free slots go to solos first, whatever order the foes are in.
+const mix = [{ name: "Goblin", level: 0, levelText: "¼", count: 4 }, { name: "Wyrmling", level: 1, solo: true, count: 1 }];
+assert.equal(encounterBudget([12, 12, 12, 12], mix).total, encounterBudget([12, 12, 12, 12], mix.slice().reverse()).total);
+assert.equal(encounterBudget([12, 12, 12, 12], mix).total, 0.25, "the wyrmling free, one goblin past the four at ¼");
 assert.equal(encounterBudget([12], []).label, "No foes");
 assert.ok(encounterBudget([12], [{ name: "Wyrmling", level: 1, solo: true, count: 1 }]).warnings.some(w => w.includes("no cost")), "a solo far below is free too");
 eb = encounterBudget([12, 12, 12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }, { name: "Ogre", level: 12, count: 4 }]);
