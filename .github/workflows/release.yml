@@ -1,19 +1,33 @@
 # Publish a release of The Arneyan Codex that Foundry can install from a link.
 #
-# Runs when a release is published on GitHub (tag "v0.10.0" or "0.10.0"). It compiles the compendiums from
-# packs-src/ (if they are committed), stamps the version and the download link into system.json, zips the
-# arneyan/ folder as arneyan.zip and attaches arneyan.zip and system.json to the release.
-# Foundry's manifest link then always points at the latest release's system.json:
+# Two ways in:
+# - A push to main that raises the version in arneyan/system.json (R-F2, 27 Oct 2026): when that version has no
+#   release yet, this makes the tag and the release itself (notes from the README's "What's new in X" section) and
+#   attaches the files. So the version-bump commit is the release: bump the version only in the final commit, after
+#   the tests and the independent review.
+# - A release published by hand on GitHub (tag "v0.10.0" or "0.10.0"): the files are attached to it, as before.
+#
+# Either way it compiles the compendiums from packs-src/, stamps the version and the download link into
+# system.json, zips the arneyan/ folder as arneyan.zip and attaches arneyan.zip and system.json. Foundry's manifest
+# link then always points at the latest release's system.json:
 #   https://github.com/<owner>/<repo>/releases/latest/download/system.json
-# See RELEASING.md.
+# (A release made with GITHUB_TOKEN doesn't start other workflows, which is why the push path builds and attaches
+# in the same job.) See RELEASING.md.
 name: Release
 
 on:
+  push:
+    branches: [main]
+    paths: [arneyan/system.json]
   release:
     types: [published]
 
 permissions:
   contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -25,13 +39,46 @@ jobs:
         with:
           node-version: 20
 
-      - name: Version from the tag
+      - name: Version and tag
         id: version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="${GITHUB_REF_NAME}"
-          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+          if [ "${GITHUB_EVENT_NAME}" = "release" ]; then
+            TAG="${GITHUB_REF_NAME}"
+            echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+            echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+            echo "create=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          VERSION="$(node -p 'require("./arneyan/system.json").version')"
+          TAG="v${VERSION}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          if gh release view "${TAG}" > /dev/null 2>&1 || git ls-remote --exit-code --tags origin "refs/tags/${TAG}" > /dev/null 2>&1; then
+            echo "${TAG} is already released: nothing to do."
+            echo "create=skip" >> "$GITHUB_OUTPUT"
+          else
+            echo "create=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Release notes from the README
+        if: steps.version.outputs.create == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          awk -v head="## What's new in ${VERSION}" '
+            $0 == head { on = 1; next }
+            on && /^## What.s new in / { exit }
+            on { print }
+          ' arneyan/README.md > notes.md
+          if [ ! -s notes.md ]; then
+            echo "::error::arneyan/README.md has no \"## What's new in ${VERSION}\" section for the release notes."
+            exit 1
+          fi
 
       - name: Compile the compendiums
+        if: steps.version.outputs.create != 'skip'
         run: |
           if [ -d packs-src ]; then
             npm ci
@@ -43,10 +90,11 @@ jobs:
           fi
 
       - name: Stamp system.json
+        if: steps.version.outputs.create != 'skip'
         env:
           VERSION: ${{ steps.version.outputs.version }}
           REPO: ${{ github.repository }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ steps.version.outputs.tag }}
         run: |
           node -e '
             const fs = require("fs");
@@ -61,13 +109,22 @@ jobs:
           '
 
       - name: Zip the system
+        if: steps.version.outputs.create != 'skip'
         run: |
           cd arneyan
           zip -r ../arneyan.zip . -x "*.DS_Store"
           cd ..
           cp arneyan/system.json system.json
 
-      - name: Attach to the release
+      - name: Make the release (a version bump on main)
+        if: steps.version.outputs.create == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: gh release create "${TAG}" arneyan.zip system.json --target "${GITHUB_SHA}" --title "${TAG}" --notes-file notes.md --latest
+
+      - name: Attach to the release (published by hand)
+        if: steps.version.outputs.create == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload "${GITHUB_REF_NAME}" arneyan.zip system.json --clobber
