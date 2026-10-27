@@ -15,7 +15,17 @@ assert.deepEqual(M.parseMapName("Background_91x60.png"), { name: "Background", w
 assert.deepEqual(M.parseMapName("Swamp Hut 30x20"), { name: "Swamp Hut", w: 30, h: 20 });
 assert.deepEqual(M.parseMapName("Map 1080x1920"), { name: "Map 1080x1920", w: null, h: null }, "four digits is a screen size, not squares");
 assert.deepEqual(M.parseMapName("Room 2x4you"), { name: "Room 2x4you", w: null, h: null }, "only standing alone");
-assert.deepEqual(M.parseMapName("Beached%20Kraken%20%5B78x23%5D"), { name: "Beached Kraken", w: 78, h: 23 }, "encoded names read the same");
+assert.deepEqual(M.parseMapName(M.decode("Beached%20Kraken%20%5B78x23%5D")), { name: "Beached Kraken", w: 78, h: 23 }, "the scan decodes once; names read the same");
+assert.equal(M.parseMapName("100% Dungeon [30x30]").name, "100% Dungeon", "a real % in a name isn't decoded again");
+// Review 2: a bare grid is 4 to 200 squares a side, and the 4-or-more rule holds for tagged ones too.
+assert.deepEqual(M.parseMapName("Level 3x3 Puzzle"), { name: "Level 3x3 Puzzle", w: null, h: null });
+assert.deepEqual(M.parseMapName("Hall 800x600"), { name: "Hall 800x600", w: null, h: null });
+assert.deepEqual(M.parseMapName("Token [1x1]"), { name: "Token", w: null, h: null }, "[1x1] is a tag, never 1 × 1 squares");
+assert.deepEqual(M.gridIn("Pit 20x30 [40x60]"), { w: 40, h: 60, tagged: true }, "a bracketed grid beats a bare one");
+// Rewards and Patreon only go beside a tier.
+assert.equal(M.parseMapName("Dragon's Rewards").name, "Dragon's Rewards");
+assert.equal(M.parseMapName("Fey Glade - Patreon Rewards").name, "Fey Glade");
+assert.equal(M.parseMapName("Patreonville Square").name, "Patreonville Square");
 assert.deepEqual(M.parseMapName("Cave (30×40).webp"), { name: "Cave", w: 30, h: 40 }, "the × sign and round brackets");
 assert.equal(M.parseMapName("$1 Fey Village Rewards").name, "Fey Village");
 // Review: only tags in brackets go, and "free" only as part of a tier.
@@ -147,5 +157,21 @@ assert.match(html, /33 × 21 squares/);
 assert.ok(!/—/.test(html), "no em dashes");
 const empty = render("templates/apps/maps.hbs", { root: "maps", groups: [], types: [], creators: [], sorts: [], status: "" });
 assert.match(empty, /No maps found in <strong>maps<\/strong>/);
+
+// Review 2: twins in two formats get different version names.
+{
+  const twins = M.buildIndex(["maps/C/Keep [30x30]/Keep.jpg", "maps/C/Keep [30x30]/Keep.webp", "maps/C/Keep [30x30]/Keep Night.jpg", "maps/C/Keep [30x30]/Night/Keep Night.jpg"], "maps");
+  assert.equal(twins.length, 1);
+  const labels = twins[0].variants.map(v => v.label);
+  assert.equal(new Set(labels).size, labels.length, labels.join(" | "));
+  // A creator folder whose files share only common words with it is not one pack.
+  const cze = M.buildIndex(["maps/The Maps of Cze/Cave of Maps.jpg", "maps/The Maps of Cze/Old Mill.jpg", "maps/The Maps of Cze/Fen Hut.jpg"], "maps");
+  assert.equal(cze.length, 3, cze.map(m => m.name).join(" | "));
+  // ...but a top folder of Day/Night versions is.
+  const top = M.buildIndex(["maps/Ruined Keep [30x30]/Day.jpg", "maps/Ruined Keep [30x30]/Night.jpg"], "maps");
+  assert.deepEqual(top.map(m => [m.name, m.variants.length]), [["Ruined Keep", 2]]);
+  // Tile packs aren't skipped any more.
+  assert.equal(M.buildIndex(["maps/C/Dungeon Tiles/Hall [20x20].jpg"], "maps").length, 1);
+}
 
 console.log("maps: all checks pass");

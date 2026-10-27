@@ -18,6 +18,8 @@ export const THUMBS = `${STORE}/thumbs`;
 const THUMB_WIDTH = 360;
 /** How long one picture may take to load for its thumbnail before it's given up on. */
 const LOAD_TIMEOUT = 20000;
+/** A full-size map for a new scene can be big (and the server slow): give it longer. */
+const SCENE_TIMEOUT = 120000;
 
 export const IMAGE = /\.(webp|png|jpe?g|gif|avif)$/i;
 export const VIDEO = /\.(webm|mp4|m4v)$/i;
@@ -26,11 +28,16 @@ const MEDIA = /\.(webp|png|jpe?g|gif|avif|webm|mp4|m4v)$/i;
  * Folders that hold no maps: Mac zip leftovers, hidden folders, and token, asset and prop packs wherever the word sits
  * in the name ("Mine Tokens", "Tokens & Assets", "Assets [Free]").
  */
-export const SKIP_DIRS = /^__macosx$|^\.|(^|[^a-z])(assets?|tokens?|props?|tiles?|icons?|thumbs?|thumbnails?|portraits?|handouts?)([^a-z]|$)/i;
+export const SKIP_DIRS = /^__macosx$|^\.|(^|[^a-z])(assets?|tokens?|props?|icons?|thumbs?|thumbnails?|portraits?|handouts?)([^a-z]|$)/i;
 /** Files that are never maps: Mac "._x.jpg" leftovers and other hidden files. */
 const SKIP_FILE = /^\./;
 /** A pack's version folders fold into the pack: "Pack/Gridless/x.jpg" is the Gridless version of Pack. */
 export const VARIANT_DIR = /^(grid(ded|less)?|no[\s_-]?grid|with(out)?[\s_-]?grid|day|night|dusk|dawn|animated|animation|videos?|stills?|hd|4k|uhd|1080p|print|vtt|jpe?g|png|webp|webm|mp4|variants?|versions?|alt(ernate)?s?|extras?|bonus|original|clean|lights?|dark|winter|summer|autumn|spring|rain|fog)$/i;
+
+/** Words too common to say a picture is named after its folder. */
+const COMMON = new Set(["the", "and", "of", "map", "maps", "battle", "battlemap", "battlemaps", "pack", "collection", "part", "free", "set", "vol", "volume"]);
+/** Words that only name a version of a picture. */
+const VARIANT_WORD = /^(day|night|dusk|dawn|grid|gridded|gridless|nogrid|animated|hd|4k|uhd|light|dark|original|clean|alt|v\d+|winter|summer|autumn|spring|rain|fog|snow|jpg|png|webp)$/i;
 
 /** Map types, in the order the browser shows them, with the words in a name that suggest each. */
 export const MAP_TYPES = [
@@ -66,31 +73,47 @@ export function cleanFolder(f) {
 }
 
 const GRID = /[[(]\s*(\d{1,3})\s*[x×]\s*(\d{1,3})\s*[\])]/i;
-/** A grid without brackets ("Swamp Hut 30x20", "Background_91x60"): one to three digits each side, standing alone. */
-const BARE_GRID = /(?:^|[^0-9a-z])(\d{1,3})\s?[x×]\s?(\d{1,3})(?=$|[^0-9a-z])/i;
+/** A grid without brackets ("Swamp Hut 30x20", "Background_91x60"): standing alone, 4 to 200 squares a side. */
+const BARE_GRID = /(^|[^0-9a-z])(\d{1,3})\s?[x×]\s?(\d{1,3})(?=$|[^0-9a-z])/gi;
+const squares = n => n >= 4 && n <= 200;
 /** Tags in brackets that say nothing about which map it is; anything else in brackets ("(Interior)") stays. */
 const TAG = /[[(]\s*(?:\d{1,3}\s*[x×]\s*\d{1,3}|various|varies|grid(?:ded|less)?|no\s*grid|4k|hd|uhd|\d+\s*(?:ppi|px|dpi)|\$\s*\d+[^\])]*)\s*[\])]/gi;
 
 /**
- * A map's name and grid from a pack folder or file name: "Abandoned Mine Entrance [33x21] - $1 Rewards" is
- * { name: "Abandoned Mine Entrance", w: 33, h: 21 }. Patreon tiers, "(Gridless)", "[Various]" and separators go.
+ * The grid squares a name gives, and how sure: "[33x21]" is tagged; a bare "30x20" only counts at 4 to 200 squares a
+ * side, so "800x600" (a picture size) and "Level 3x3 Puzzle" don't. { w, h, tagged } or null.
+ */
+export function gridIn(text) {
+  const s = String(text ?? "");
+  const g = s.match(GRID);
+  if (g) { const w = Number(g[1]), h = Number(g[2]); return squares(w) && squares(h) ? { w, h, tagged: true } : null; }
+  for (const m of s.matchAll(BARE_GRID)) { const w = Number(m[2]), h = Number(m[3]); if (squares(w) && squares(h)) return { w, h, tagged: false }; }
+  return null;
+}
+/** A name with its bare grid sizes taken out (only the ones that count as grids). */
+const dropBareGrid = s => String(s).replace(BARE_GRID, (all, pre, w, h) => squares(Number(w)) && squares(Number(h)) ? `${pre} ` : all);
+
+/**
+ * A map's name and grid from a pack folder or file name (real names, as the scan keeps them):
+ * "Abandoned Mine Entrance [33x21] - $1 Rewards" is { name: "Abandoned Mine Entrance", w: 33, h: 21 }.
+ * Patreon tiers, "(Gridless)", "[Various]", grid sizes and separators go.
  */
 export function parseMapName(raw) {
-  let s = decode(raw).replace(MEDIA, "").replace(/[_]+/g, " ");
-  const g = s.match(GRID) ?? s.match(BARE_GRID);
-  const w = g ? Number(g[1]) : null, h = g ? Number(g[2]) : null;
-  s = s
-    .replace(TAG, " ")
-    .replace(new RegExp(BARE_GRID.source, "gi"), " ")
+  const original = String(raw ?? "").replace(MEDIA, "");
+  let s = original.replace(/[_]+/g, " ");
+  const g = gridIn(s);
+  const tier = /\$\s*\d+/.test(s);
+  s = dropBareGrid(s.replace(TAG, " "))
     .replace(/\$\s*\d+\s*(?:free\s+)?(?:rewards?|tier|patrons?)?/gi, " ")
-    .replace(/\b(rewards?|patreon)\b/gi, " ")
+    .replace(/\bpatreon(?:\s+rewards?)?\b/gi, " ")
+    .replace(tier ? /\brewards?\b/gi : /$^/, " ")
     .replace(/\s+[-–—|]+(?=\s|$)/g, " ")          // " - " separators left between words
     .replace(/^\s*[-–—|]+\s*/g, "")
     .replace(/\s{2,}/g, " ")
     .trim()
     .replace(/[-–—|,.\s]+$/, "")
     .trim();
-  return { name: s || decode(raw).replace(MEDIA, "").trim(), w: w || null, h: h || null };
+  return { name: s || original.trim(), w: g?.w ?? null, h: g?.h ?? null };
 }
 
 /** The words of a name, lower case, apostrophes dropped ("Dragon's Lair" is "dragons lair"). */
@@ -98,7 +121,7 @@ export const wordsOf = s => String(s ?? "").toLowerCase().replace(MEDIA, "").rep
 
 /** The types a name suggests, in the browser's order ([] when none). A word matches with or without a plural. */
 export function guessTypes(...texts) {
-  const words = new Set(texts.flatMap(t => wordsOf(decode(t))).flatMap(w => [w, w.replace(/s$/, ""), w.replace(/es$/, "")]));
+  const words = new Set(texts.flatMap(wordsOf).flatMap(w => [w, w.replace(/s$/, ""), w.replace(/es$/, "")]));
   return MAP_TYPES.filter(t => t.words.some(w => words.has(w))).map(t => t.key);
 }
 
@@ -108,7 +131,7 @@ export function guessTypes(...texts) {
  */
 export function variantLabel(file, mapName, folders = []) {
   const own = new Set(wordsOf(mapName));
-  const words = t => decode(t).replace(MEDIA, "").replace(GRID, " ").replace(new RegExp(BARE_GRID.source, "gi"), " ").replace(/\$\s*\d+/g, " ").replace(/['’]/g, "").replace(/[_]+/g, " ")
+  const words = t => dropBareGrid(String(t).replace(MEDIA, "").replace(GRID, " ")).replace(/\$\s*\d+/g, " ").replace(/['’]/g, "").replace(/[_]+/g, " ")
     .split(/[^A-Za-z0-9]+/).filter(w => w && !own.has(w.toLowerCase()) && !/^\d+x\d+$/i.test(w) && !/^(rewards?|patreon)$/i.test(w));
   const seen = new Set();
   return [...folders.flatMap(words), ...words(String(file).split("/").pop())]
@@ -165,9 +188,14 @@ export function buildIndex(paths, root, overrides = {}) {
   const packAtTop = new Set();
   for (const [dir, list] of top) {
     if (deeper.has(dir)) continue;
-    const own = new Set(wordsOf(parseMapName(dir).name).filter(w => w.length >= 3));
-    const named = list.filter(e => wordsOf(decode(e.file)).some(w => own.has(w))).length;
-    if (own.size && named * 2 >= list.length) packAtTop.add(dir);
+    // Named after it: every word of the folder's name (bar the common ones) is in the file's, or the file is named
+    // only for its version ("Day.jpg", "Night.jpg").
+    const own = wordsOf(parseMapName(dir).name).filter(w => w.length >= 3 && !COMMON.has(w));
+    const named = list.filter(e => {
+      const words = wordsOf(e.file);
+      return words.every(w => VARIANT_WORD.test(w) || /^\d+$/.test(w)) || (own.length && own.every(w => words.includes(w)));
+    }).length;
+    if (named * 2 > list.length) packAtTop.add(dir);
   }
   const groups = new Map();
   for (const e of entries) {
@@ -182,21 +210,27 @@ export function buildIndex(paths, root, overrides = {}) {
   const maps = [];
   for (const g of groups.values()) {
     const parsed = parseMapName(g.packName);
-    // A pack's grid can sit on its files instead of its folder ("Map [30x40].jpg").
-    let { w, h } = parsed;
-    if (!w) for (const e of g.files) { const p = parseMapName(e.file); if (p.w) { w = p.w; h = p.h; break; } }
+    // A pack's grid can sit on its files instead of its folder ("Map [30x40].jpg"). A tag in brackets beats a bare size.
+    const grids = [gridIn(g.packName), ...g.files.map(e => gridIn(e.file))].filter(Boolean);
+    const grid = grids.find(x => x.tagged) ?? grids[0] ?? null;
+    const w = grid?.w ?? null, h = grid?.h ?? null;
     let variants = g.files.map(e => ({ path: e.path, label: variantLabel(e.file, parsed.name, e.sub), video: VIDEO.test(e.path) }));
     variants.sort((a, b) => coverScore(a) - coverScore(b) || a.path.localeCompare(b.path));
-    // Every version gets a name, and no two the same: a clash takes its file's own name.
+    // Every version gets a name, and no two the same: a clash adds the file's own name, then its type, then a number.
     if (variants.length > 1) {
-      const count = new Map();
-      for (const v of variants) count.set(v.label || "Main", (count.get(v.label || "Main") ?? 0) + 1);
-      variants = variants.map(v => {
-        const label = v.label || "Main";
-        if (count.get(label) < 2) return { ...v, label };
-        const own = decode(v.path.split("/").pop()).replace(MEDIA, "");
-        return { ...v, label: label === "Main" ? own : `${label} (${own})` };
+      const pick = (list, make) => {
+        const count = new Map();
+        for (const v of list) count.set(v.label, (count.get(v.label) ?? 0) + 1);
+        return list.map(v => count.get(v.label) > 1 ? { ...v, label: make(v) } : v);
+      };
+      variants = variants.map(v => ({ ...v, label: v.label || "Main" }));
+      variants = pick(variants, v => {
+        const own = v.path.split("/").pop().replace(MEDIA, "");
+        return own && !v.label.toLowerCase().includes(own.toLowerCase()) ? (v.label === "Main" ? own : `${v.label} (${own})`) : v.label;
       });
+      variants = pick(variants, v => `${v.label} ${(v.path.match(MEDIA)?.[1] ?? "").toUpperCase()}`.trim());
+      const n = new Map();
+      variants = pick(variants, v => { const k = (n.get(v.label) ?? 0) + 1; n.set(v.label, k); return `${v.label} ${k}`; });
     }
     const guessed = guessTypes(parsed.name, g.packName);
     const fix = overrides?.[g.rel];
@@ -259,7 +293,12 @@ const setting = (k, d) => { try { return game.settings.get(SYS, k) ?? d; } catch
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 /** A Data path (real names, as the scan keeps them) as a URL: spaces, brackets, # and % escaped, slashes kept. */
 export const urlFor = path => String(path).split("/").map(encodeURIComponent).join("/");
-const withTimeout = (promise, ms, what) => Promise.race([promise, new Promise((_, reject) => setTimeout(() => reject(new Error(`${what} took too long`)), ms))]);
+/** A promise that gives up after ms (and calls onTimeout, to let go of whatever it was loading). */
+function withTimeout(promise, ms, what, onTimeout = () => {}) {
+  let timer;
+  const late = new Promise((_, reject) => { timer = setTimeout(() => { onTimeout(); reject(new Error(`${what} took too long`)); }, ms); });
+  return Promise.race([promise, late]).finally(() => clearTimeout(timer));
+}
 
 /** Every map file under a folder in Data, a few folders deep, six folders at a time. */
 async function scanFolder(root, onProgress = () => {}) {
@@ -328,7 +367,7 @@ async function knownThumbs() {
 }
 
 /** A video's size, and a frame to draw from it (a second in, or halfway through a short one). */
-function loadVideo(path) {
+function loadVideo(path, ms = LOAD_TIMEOUT) {
   const v = document.createElement("video");
   v.muted = true; v.preload = "metadata";
   const release = () => { try { v.pause(); v.removeAttribute("src"); v.load(); } catch { /* gone */ } };
@@ -338,11 +377,11 @@ function loadVideo(path) {
     v.addEventListener("error", () => reject(new Error(`Couldn't load ${path}`)), { once: true });
   });
   v.src = urlFor(path);
-  return withTimeout(ready, LOAD_TIMEOUT, path).catch(err => { release(); throw err; });
+  return withTimeout(ready, ms, path).catch(err => { release(); throw err; });
 }
 
 /** A picture's size. */
-function loadImage(path) {
+function loadImage(path, ms = LOAD_TIMEOUT) {
   const img = new Image();
   img.decoding = "async";
   const ready = new Promise((resolve, reject) => {
@@ -350,10 +389,10 @@ function loadImage(path) {
     img.onerror = () => reject(new Error(`Couldn't load ${path}`));
   });
   img.src = urlFor(path);
-  return withTimeout(ready, LOAD_TIMEOUT, path);
+  return withTimeout(ready, ms, path, () => { img.onload = img.onerror = null; img.src = ""; });
 }
 
-const loadMedia = path => VIDEO.test(path) ? loadVideo(path) : loadImage(path);
+const loadMedia = (path, ms) => VIDEO.test(path) ? loadVideo(path, ms) : loadImage(path, ms);
 
 /**
  * A map's thumbnail as a webp blob. Stills are shrunk while they're decoded (a 10,000px map isn't held full size);
@@ -362,9 +401,18 @@ const loadMedia = path => VIDEO.test(path) ? loadVideo(path) : loadImage(path);
 async function thumbBlob(path) {
   let source, width, height, release = () => {};
   if (!VIDEO.test(path) && typeof createImageBitmap === "function") {
-    const res = await withTimeout(fetch(urlFor(path)), LOAD_TIMEOUT, path);
-    if (!res.ok) throw new Error(`Couldn't load ${path} (${res.status})`);
-    const bmp = await withTimeout(createImageBitmap(await res.blob(), { resizeWidth: THUMB_WIDTH, resizeQuality: "high" }), LOAD_TIMEOUT, path);
+    // One clock for the download, the read and the decode: a slow 40 MB map gives up rather than hanging the queue.
+    const abort = new AbortController();
+    let timedOut = false;
+    const work = (async () => {
+      const res = await fetch(urlFor(path), { signal: abort.signal });
+      if (!res.ok) throw new Error(`Couldn't load ${path} (${res.status})`);
+      const b = await createImageBitmap(await res.blob(), { resizeWidth: THUMB_WIDTH, resizeQuality: "high" });
+      if (timedOut) { b.close?.(); throw new Error(`${path} took too long`); }
+      return b;
+    })();
+    work.catch(() => {});
+    const bmp = await withTimeout(work, LOAD_TIMEOUT, path, () => { timedOut = true; abort.abort(); });
     source = bmp; width = bmp.width; height = bmp.height; release = () => bmp.close?.();
   } else {
     const m = await loadMedia(path);
@@ -406,7 +454,7 @@ async function setSceneMap(scene, path) {
  */
 export async function createMapScene(map, variant, thumbs = null) {
   const v = variant ?? map.variants[0];
-  const m = await loadMedia(v.path);
+  const m = await loadMedia(v.path, SCENE_TIMEOUT);
   const { width, height } = m;
   m.release?.();
   const size = gridFor(width, height, map.w, map.h);
@@ -437,8 +485,12 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
   static reset() {
     const app = ArneyanMapBrowser.#instance;
     if (!app) return;
+    app._gen++;
+    app._loading = null;
     app.#setMaps(null);
     app.scan = null;
+    app.query = app.typeFilter = app.creatorFilter = "";
+    app.status = "";
     if (app.rendered) app.render();
   }
 
@@ -458,6 +510,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     this._queue = [];
     this._busy = 0;
     this._loading = null;
+    this._gen = 0;
     this._uploadsOff = false;
   }
 
@@ -492,13 +545,18 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
    * draws straight away with the progress showing, then again when the maps are in.
    */
   #load(force = false) {
-    this._loading ??= (async () => {
-      const root = this.root;
+    if (this._loading) return this._loading;
+    const gen = this._gen, root = this.root;
+    // A scan the folder has since changed under (Folder, or the setting) is thrown away.
+    const stale = () => gen !== this._gen || root !== this.root;
+    const status = text => { if (!stale()) this.#status(text); };
+    const run = (async () => {
       try {
         let scan = force ? null : await loadScan(root);
         if (!scan) {
-          this.#status(`Scanning ${root}...`);
-          const res = await scanFolder(root, (folders, files) => this.#status(`Scanning ${root}: ${folders} folders, ${files} pictures so far...`));
+          status(`Scanning ${root}...`);
+          const res = await scanFolder(root, (folders, files) => status(`Scanning ${root}: ${folders} folders, ${files} pictures so far...`));
+          if (stale()) return;
           if (!res.folders) {
             this.scan = null;
             this.#setMaps([]);
@@ -508,17 +566,21 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
           scan = { root, scanned: Date.now(), files: res.files };
           try { if (!await saveScan(scan)) console.warn("Arneyan | maps: the scan wasn't saved"); } catch (err) { console.warn("Arneyan | maps: couldn't save the scan", err); }
         }
+        const thumbs = await knownThumbs();
+        if (stale()) return;
         this.scan = scan;
         this.#setMaps(buildIndex(scan.files, root, setting("mapTypes", {})));
-        this._thumbs = await knownThumbs();
+        this._thumbs = thumbs;
         this.status = "";
       } catch (err) {
         console.error("Arneyan | maps", err);
+        if (stale()) return;
         this.#setMaps([]);
         this.status = "The scan failed (the console has the error).";
-      } finally { this._loading = null; }
+      } finally { if (this._loading === run) this._loading = null; }
     })();
-    return this._loading;
+    this._loading = run;
+    return run;
   }
 
   #status(text) {
@@ -534,6 +596,9 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     const creators = [...new Set(maps.map(m => m.creator).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     const counts = {};
     for (const m of maps) for (const t of m.types) counts[t] = (counts[t] ?? 0) + 1;
+    // A filter for a creator or type that isn't in the folder any more would hide everything.
+    if (this.maps && this.creatorFilter && !creators.includes(this.creatorFilter)) this.creatorFilter = "";
+    if (this.maps && this.typeFilter && !counts[this.typeFilter]) this.typeFilter = "";
     const types = [...MAP_TYPES, OTHER].filter(t => counts[t.key]).map(t => ({ key: t.key, label: t.label, count: counts[t.key], active: this.typeFilter === t.key }));
     const groups = groupMaps(maps, this.sort).map(g => ({
       key: g.key ?? "", label: g.label,
@@ -727,8 +792,10 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
   static async #onRescan() {
     if (this._loading) return;
     this.#setMaps(null);
+    // Start the scan before drawing, so the draw shows its progress instead of loading the saved scan.
+    const scan = this.#load(true);
     this.render();
-    await this.#load(true);
+    await scan;
     if (this.rendered) this.render();
   }
 
