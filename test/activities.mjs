@@ -297,8 +297,8 @@ assert.equal(fl.uses.formula, "max(1, @dex.mod)");
 assert.equal(fl.uses.per, "day");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
 const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Turn Undead|Paladin": "3 + @cha.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
-  "Discord (Charisma)|Bard": "max(1, @cha.mod)", "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "5:1, 9:2, 13:3, 17:4",
-  "Smite Evil|Paladin": "1:1, 15:2, 20:3", "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)" };
+  "Discord (Charisma)|Bard": "max(1, @cha.mod)", "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
+  "Smite Evil|Paladin": "1:1, 5:2, 15:3", "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
 assert.equal(feat("Blood Magic").uses.formula, "max(1, @casting.mod)");
 for (const k of ["Turn Undead|Cleric", "Smite Evil|Paladin", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.every(a => a.cost === 1), `${k}: each use spends one`); }

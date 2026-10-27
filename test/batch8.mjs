@@ -14,7 +14,9 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(em.optionChoice.options.length, 6);
   assert.deepEqual(E.chosenRules(em), [], "nothing until the element is picked");
   const picked = { ...em, optionChoice: { ...em.optionChoice, value: ["Cold"] } };
-  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["immune", "cold"]]);
+  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"]], "Resistance from 8th (books v0.10.22)");
+  const emi = pack("class-features").find(d => d.name === "Elemental Mastery (Improved)").system;
+  assert.deepEqual(E.chosenRules({ ...emi, optionChoice: { ...emi.optionChoice, value: ["Cold"] } }).map(r => [r.key, r.value]), [["immune", "cold"]], "immunity from 20th");
   const inv = pack("class-features").find(d => d.name === "Eldritch Invocations").system;
   const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Agonising Blast", "Armour of Shadows"] } };
   assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 9), 3); assert.equal(E.optionPickMax(inv, 17), 5);
@@ -30,7 +32,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(E.itemRulesActive(invItem), true);
   assert.equal(E.itemRulesActive({ ...invItem, system: inv }), false, "nothing picked: nothing to apply");
   const rules = E.collectRules({ items: Object.assign([cls, invItem, emItem], { find: Array.prototype.find }), effects: [], system: { level: 9 } }, { level: 9 });
-  assert.ok(rules.some(r => r.key === "immune" && r.value === "cold"), "Elemental Mastery's pick applies");
+  assert.ok(rules.some(r => r.key === "resist" && r.value === "cold"), "Elemental Mastery's pick applies (Resistance, books v0.10.22)");
   assert.ok(rules.some(r => r.key === "sense" && /Devil's Sight/.test(r.value)), "an invocation applies");
   const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
   assert.ok(docs.includes("optionDialogs.has(item.uuid)") && docs.includes('"option", { atLevelEnd: true }'), "one option question at a time; a level up asks at its end");

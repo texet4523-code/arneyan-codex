@@ -388,3 +388,37 @@ assert.equal(M.fingerprint("rules", [{ when: "", label: "", value: "1", key: "ac
   assert.equal(await M.runMigration(), null);
 }
 console.log("OK safe world update");
+
+// 0.10.65: classes on sheets take the books' new feature levels, and the features now reached are added (B7).
+{
+  const CLS = "Compendium.arneyan.classes.Item.fighter";
+  const f = (level, name) => ({ level, name, uuid: `Compendium.arneyan.class-features.Item.${name.replace(/\W/g, "")}` });
+  const oldList = [f(1, "Weapon Specialisation"), f(13, "Battle Space"), f(17, "Battle Space (Improved)"), f(20, "Legend of Battle")];
+  const newList = [f(1, "Weapon Specialisation"), f(3, "Battle Space"), f(6, "Legend of Battle")];
+  const makeActor = (name, type, levels, list, flags = {}) => {
+    const cls = { id: "c1", type: "class", name: "Fighter", flags, _stats: { compendiumSource: CLS }, system: { levels, features: list } };
+    cls.update = async d => { cls.system.features = d["system.features"]; };
+    const items = [cls, { id: "g1", type: "ability", name: "Weapon Specialisation", flags: { arneyan: { grantedBy: "c1", source: newList[0].uuid } } },
+      ...(levels >= 17 ? [{ id: "g2", type: "ability", name: "Battle Space (Improved)", flags: { arneyan: { grantedBy: "c1", source: oldList[2].uuid } } }] : [])];
+    items.filter = Array.prototype.filter;
+    return { name, type, items };
+  };
+  const fetch = async u => (u === CLS ? { system: { features: newList } } : null);
+  const granted = [];
+  const grant = async (actor, cls) => { const got = cls.system.features.filter(x => x.level <= cls.system.levels && x.name !== "Weapon Specialisation").map(x => x.name); granted.push([actor.name, got]); return got; };
+  const notes = { failed: [], classAdded: {}, classGone: {} };
+  const six = makeActor("Brakka", "character", 6, oldList);
+  const vet = makeActor("Vet", "character", 18, oldList);
+  const mine = makeActor("Kept", "character", 6, oldList, { arneyan: { keepCustom: true } });
+  const done = makeActor("New", "character", 6, newList);
+  const npc = makeActor("Ogre", "npc", 6, oldList);
+  await M.classRework([six, vet, mine, done, npc], fetch, grant, notes);
+  assert.deepEqual(six.items[0].system.features, newList, "the class takes the new list");
+  assert.deepEqual(notes.classAdded, { Brakka: ["Battle Space", "Legend of Battle"], Vet: ["Battle Space", "Legend of Battle"] });
+  assert.deepEqual(notes.classGone, { Vet: ["Battle Space (Improved)"] }, "a dropped feature is listed, not deleted");
+  assert.deepEqual(mine.items[0].system.features, oldList, "Keep my edits: left alone");
+  assert.deepEqual(granted.map(g => g[0]), ["Brakka", "Vet"], "a class already on the new list and an NPC are skipped");
+  assert.equal(M.CLASS_REWORK, "0.10.65");
+  assert.ok(M.newerThan("0.10.65", "0.10.64") && M.newerThan("0.10.65", "0") && !M.newerThan("0.10.65", "0.10.65") && M.newerThan("0.10.100", "0.10.65") === true);
+  console.log("OK 0.10.65 class features at their new levels");
+}

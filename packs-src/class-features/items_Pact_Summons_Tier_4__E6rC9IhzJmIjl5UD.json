@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your patron's most powerful servant becomes available. Tier 4 summons expend a 5th level slot, whether ritual or combat.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your patron's most powerful servant becomes available. Tier 4 summons expend a 5th level slot, whether ritual or combat.</li><li><strong>Charisma Bonus:</strong> gain a permanent +1 to Charisma. This increases the DC of your spells and abilities, and all Charisma-based checks</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,11 +20,21 @@
   "dc": null,
   "damage": "",
   "level": 15,
-  "className": "Warlock"
+  "className": "Warlock",
+  "rules": [
+   {
+    "key": "ability.cha",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "T3ndcZaUyzMXclDX",
- "sort": 7,
+ "sort": 9,
  "ownership": {
   "default": 0
  },

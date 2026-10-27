@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7, 27 Oct 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10, 27 Oct 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,13 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01020/HB_v0.10.20_*.md (md5s on the board, B-F7; Books I, IV and V unchanged since v0.10.18). Output: /tmp/hb/v01011.
+Sources: /tmp/hb/src_v01023/HB_v0.10.23_*.md (md5s on the board, B-F10). Book III is the Builder's v0.10.23 Markdown and Book II
+its v0.10.21 (unchanged since); Books I, IV and V are the v0.10.20 copies under the new name, with the Codex patched
+below. Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01020"
+SRC = "/tmp/hb/src_v01023"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.20"
+VERSION = "0.10.23"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -47,6 +49,14 @@ SPELL_PATCHES = [(
 )]
 
 
+# Book I changed in v0.10.22 only in the Fighter's Manoeuvre Mastery tiers (B7; board B-F9 and B-F10): 2nd and 9th
+# level instead of 7th and 13th, as Book III says. No new Book I Markdown was sent, so the v0.10.20 copy gets it here.
+CODEX_PATCHES = [
+    ("- **Fighter Manoeuvre Mastery: Level 7** —", "- **Fighter Manoeuvre Mastery: Level 2** —"),
+    ("- Level 13 — contest-based manoeuvres", "- Level 9 — contest-based manoeuvres"),
+]
+
+
 def patched(part, patches):
     text = open(src(part), encoding="utf-8").read()
     for old, new in patches:
@@ -61,7 +71,9 @@ def patched(part, patches):
 
 def prepare():
     os.makedirs(CLASSES, exist_ok=True)
-    to_docx(src("I_Codex"), CODEX)
+    codex = patched("I_Codex", CODEX_PATCHES)
+    to_docx(codex, CODEX)
+    os.remove(codex)
     spells = patched("IV_Spellcasting", SPELL_PATCHES)
     to_docx(spells, SPELLS)
     os.remove(spells)

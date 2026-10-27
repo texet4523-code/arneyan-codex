@@ -1,0 +1,84 @@
+{
+ "_id": "waqGtTczSTgFSdmM",
+ "_key": "!items!waqGtTczSTgFSdmM",
+ "name": "Body of Iron",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>Once per day, at the start of your turn, end one condition affecting the Monk (stunned, paralysed, poisoned, frightened, charmed, etc.). It costs no action and works even while incapacitated.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 9,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Body of Iron",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "At the start of your turn, end one condition affecting you (stunned, paralysed, poisoned, frightened, charmed and the like), with no action needed, even while incapacitated.",
+    "minLevel": 0,
+    "maxLevel": 19,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Body of Iron Made Whole",
+    "kind": "heal",
+    "formula": "4d8",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "At the start of your turn, remove all conditions affecting you and heal 4d8 HP, with no action needed.",
+    "minLevel": 20,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": true,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 12,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

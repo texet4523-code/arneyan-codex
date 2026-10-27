@@ -5,32 +5,22 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-gears.svg",
  "system": {
-  "description": "<p>gain the permanent-item-creation ability from your chosen Kit — every Kit can now produce true, lasting magic items rather than only temporary or consumable effects</p><ul><li><strong>Intelligence Bonus:</strong> permanent +1 Intelligence</li></ul>",
+  "description": "<p>gain the permanent-item-creation ability from your chosen Kit — every Kit can now produce true, lasting magic items rather than only temporary or consumable effects. Until 15th level you can use it only once a month</p>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "month"
   },
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 15,
-  "className": "Artificer",
-  "rules": [
-   {
-    "key": "ability.int",
-    "value": "1",
-    "when": "",
-    "label": ""
-   }
-  ],
-  "toggle": false,
-  "active": false
+  "level": 10,
+  "className": "Artificer"
  },
  "effects": [],
  "folder": "ofiaDfJduV79XS9O",

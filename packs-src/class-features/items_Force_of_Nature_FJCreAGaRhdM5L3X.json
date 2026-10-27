@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Gain a +2 bonus to saving throws against spells and magical effects. Magic from the primeval world bends around the Barbarian's raw will.</li><li>Improves to +3 at 19th level</li><li>Improves to +4 at 22nd level</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Gain a +1 bonus to saving throws against spells and magical effects. Magic from the primeval world bends around the Barbarian's raw will.</li><li>Improves to +2 at 16th level</li><li>Improves to +3 at 19th level</li><li>Improves to +4 at 22nd level</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,12 +19,12 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 16,
+  "level": 6,
   "className": "Barbarian",
   "rules": [
    {
     "key": "save",
-    "value": "min(4,2+floor((@cl-16)/3))",
+    "value": "6:1, 16:2, 19:3, 22:4",
     "when": "vs spells and magical effects",
     "label": ""
    }
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "RN91L6Q7BHJcBlKX",
- "sort": 11,
+ "sort": 9,
  "ownership": {
   "default": 0
  },

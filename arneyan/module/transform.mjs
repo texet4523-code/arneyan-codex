@@ -357,7 +357,7 @@ async function onSocket(msg, senderId) {
           if (!canSee) return;
         }
       }
-      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells && (!wild || wild.level >= 15), keepEffects: !!o.keepEffects,
+      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells && (!wild || wild.level >= WILD_CASTING_LEVEL), keepEffects: !!o.keepEffects,
         wildShape: !!wild, tempHp: wild?.tempHp ?? 0 };
       if (!form) {
         if (!Object.hasOwn(ARNEYAN.objectForms, String(o.object))) return;
@@ -466,6 +466,9 @@ export async function chooseForm(original) {
   const form = await fromUuid(picked.uuid);
   if (form) return transformInto(original, form, picked.opts);
 }
+
+/** Wild Shape Casting: spells in a beast form from this Druid level (books v0.10.22, B7: 6th; it was 15th). */
+const WILD_CASTING_LEVEL = 6;
 
 /* -------------------------------------------- */
 /*  Wild Shape: pick a beast                    */
@@ -607,9 +610,9 @@ export async function wildShape(item) {
   const choice = await pickForm({
     title: `Wild Shape: ${actor.name}`, entries, cap,
     lockTip: e => `Level ${e.levelText}: needs Druid level ${druidLevelFor(e.level)}`,
-    defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= 15 },
-    // Casting in a form comes with Wild Shape Casting (15th level), and then only spells with no somatic component.
-    spellsLocked: level >= 15 || game.user.isGM ? "" : "from 15th level: Wild Shape Casting",
+    defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= WILD_CASTING_LEVEL },
+    // Casting in a form comes with Wild Shape Casting (6th level), and then only spells with no somatic component.
+    spellsLocked: level >= WILD_CASTING_LEVEL || game.user.isGM ? "" : `from ${WILD_CASTING_LEVEL}th level: Wild Shape Casting`,
     note: `A beast or beast-like monster of Level ${cap} or lower (${deepened ? "your Druid level: Deepened Shape" : "half your Druid level, at least 1"}). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? ` You gain ${2 * level} temporary HP.` : ""}`
   });
   if (!choice) return;

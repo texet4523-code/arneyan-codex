@@ -1388,20 +1388,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/2fzmXhUzzrxZsoeR": {
-  "name": "Lasting Work",
-  "from": "Artificer",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "ability.int",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Int (the Intelligence Bonus bundled with this feature).",
-  "manual": "Permanent item creation.",
-  "confidence": "high"
- },
  "class-features/g2VIagHD4agUcanm": {
   "name": "Killer's Precision",
   "from": "Assassin",
@@ -1675,11 +1661,11 @@
   "rules": [
    {
     "key": "save",
-    "value": "min(4,2+floor((@cl-16)/3))",
+    "value": "6:1, 16:2, 19:3, 22:4",
     "when": "vs spells and magical effects"
    }
   ],
-  "summary": "+2/+3/+4 (16th/19th/22nd) on saves vs magic, as a reminder.",
+  "summary": "+1/+2/+3/+4 (6th/16th/19th/22nd) on saves vs magic, as a reminder.",
   "manual": "",
   "confidence": "high"
  },
@@ -1759,7 +1745,7 @@
    {
     "name": "Exhorted",
     "target": "target",
-    "rounds": "@cl+1",
+    "rounds": "max(10, @cl+1)",
     "statuses": [],
     "rules": [
      {
@@ -1800,28 +1786,10 @@
      "deafened"
     ],
     "rules": []
-   },
-   {
-    "name": "Word of Power: Blinded",
-    "target": "target",
-    "rounds": "2d4",
-    "statuses": [
-     "blinded"
-    ],
-    "rules": []
-   },
-   {
-    "name": "Word of Power: Paralysed",
-    "target": "target",
-    "rounds": "1d10",
-    "statuses": [
-     "paralysed"
-    ],
-    "rules": []
    }
   ],
-  "summary": "Apply the conditions matching the target's Level on a failed Will save.",
-  "manual": "Which conditions apply (by Level); death at Level 4 or lower.",
+  "summary": "Deafened for 1d4 rounds on a failed Will save.",
+  "manual": "The Will save.",
   "confidence": "medium"
  },
  "class-features/LN7DNKycs5jrG5GK": {
@@ -1844,20 +1812,20 @@
   "container": "passive",
   "rules": [
    {
-    "key": "check",
-    "value": 2
+    "key": "save",
+    "value": "9:1, 22:2"
    },
    {
-    "key": "save",
-    "value": 2
+    "key": "check",
+    "value": "22:2"
    },
    {
     "key": "note.save",
-    "value": "Divine Monolith: creatures in the 20ft aura are immune to death attacks."
+    "value": "Divine Monolith: {22:creatures in the aura are immune to death attacks}."
    }
   ],
-  "summary": "+2 on your own checks and saves (you are always in your aura).",
-  "manual": "Allies in the aura; Turn Undead DC +3; text says \"all creatures\" so enemies inside may benefit too.",
+  "summary": "Your own bonus: +1 on saves from 9th; +2 on checks and saves and death-attack immunity from 22nd (Divine Monolith (Improved)).",
+  "manual": "Turn Undead DC +1 (+3 from 22nd).",
   "confidence": "medium"
  },
  "class-features/VZiNLypozvFgdJUL": {
@@ -1940,14 +1908,28 @@
   "container": "passive",
   "rules": [
    {
-    "key": "ac",
+    "key": "adv.attack",
     "value": 1,
+    "when": "Flank Attack"
+   },
+   {
+    "key": "ac",
+    "value": "13:1",
     "when": "unless wielding a two-handed weapon"
+   },
+   {
+    "key": "damage",
+    "value": "13:2",
+    "when": "Flank Attack"
+   },
+   {
+    "key": "note.damage",
+    "value": "Battle Space: {17:a Flank Attack also deals +1 damage die}."
    }
   ],
-  "summary": "+1 AC reminder unless two-handed.",
-  "manual": "",
-  "confidence": "high"
+  "summary": "Flank Attack Advantage; +1 AC unless two-handed and +2 Flank damage from 13th; +1 die reminder from 17th.",
+  "manual": "Once-per-encounter Dodge (its Use); the extra die.",
+  "confidence": "medium"
  },
  "class-features/njizDPGt1IitBFA5": {
   "name": "Strength Bonus",
@@ -1962,30 +1944,6 @@
   "summary": "+1 Str.",
   "manual": "",
   "confidence": "high"
- },
- "class-features/I2r5qtG2KwQTR6iK": {
-  "name": "Battle Space (Improved)",
-  "from": "Fighter",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.attack",
-    "value": 1,
-    "when": "Flank Attack"
-   },
-   {
-    "key": "damage",
-    "value": 2,
-    "when": "Flank Attack"
-   },
-   {
-    "key": "note.damage",
-    "value": "Battle Space (Improved): a Flank Attack also deals +1 damage die."
-   }
-  ],
-  "summary": "Flank Attack reminders: Advantage, +2 damage, +1 die.",
-  "manual": "Once-per-encounter Dodge; extra die.",
-  "confidence": "medium"
  },
  "class-features/jUGmQcUzb7bbfz48": {
   "name": "Attribute Bonus",
@@ -2019,8 +1977,8 @@
     "value": "Legend of Battle: every hit deals maximum damage."
    }
   ],
-  "summary": "Toggle for 1 minute: Advantage on all attacks; max-damage reminder.",
-  "manual": "Max damage; enemies' Will saves vs Frightened each turn.",
+  "summary": "Toggle for 1 round (1 minute from 20th): Advantage on all attacks; max-damage reminder.",
+  "manual": "Max damage; from 20th, enemies' Will saves vs Frightened each turn. Switch it off when it ends.",
   "confidence": "medium"
  },
  "class-features/2HlL0aqGs7bGEZof": {
@@ -2129,11 +2087,11 @@
    },
    {
     "key": "damage.ranged",
-    "value": "+2d6",
+    "value": "3:1d6, 13:2d6",
     "when": "next shot after 2 rounds of Dead Aim"
    }
   ],
-  "summary": "Advantage and +2d6 reminders after aiming.",
+  "summary": "Advantage and +1d6 (+2d6 from 13th) reminders after aiming.",
   "manual": "Tracking the 2 rounds of aiming.",
   "confidence": "high"
  },
@@ -2409,12 +2367,12 @@
     "rules": [
      {
       "key": "adv.attack.first",
-      "value": 1
+      "value": "24:1"
      }
     ]
    }
   ],
-  "summary": "Advantage on your first attack each round until the encounter ends; the temporary HP (Cha mod x Knight level) comes from its Use.",
+  "summary": "On its Use: Advantage on your first attack each round until the encounter ends, from 24th (the effect carries nothing before then). The temporary HP (Cha mod x half your Knight level, full level from 24th) come from its Use.",
   "manual": "Trigger (below half HP, witnessed); remove at encounter end.",
   "confidence": "high"
  },
@@ -2431,12 +2389,12 @@
     "rules": [
      {
       "key": "ac",
-      "value": 1
+      "value": "1:1, 9:2"
      }
     ]
    }
   ],
-  "summary": "+1 AC for 1 round after a Spellstrike hits.",
+  "summary": "+1 AC (+2 from 9th) for 1 round after a Spellstrike hits.",
   "manual": "",
   "confidence": "high"
  },
@@ -2624,15 +2582,15 @@
    {
     "key": "immune",
     "value": "condition:frightened",
-    "when": "from 6th level (Aura of Courage)"
+    "when": "from 2nd level (Aura of Courage)"
    },
    {
     "key": "note.save",
-    "value": "Aura of Courage: allies within {6:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear."
+    "value": "Aura of Courage: allies within {2:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear."
    }
   ],
-  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 6th.",
-  "manual": "Allies' +4 vs fear in the aura; evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 6th level.",
+  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 2nd.",
+  "manual": "Allies' +4 vs fear in the aura; evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 2nd level.",
   "confidence": "medium"
  },
  "class-features/7aWDedO6ICkfxNO3": {
@@ -2759,43 +2717,19 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/AMuyxBqZSO4IN6Qx": {
-  "name": "Find Passage",
-  "from": "Ranger",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "ac",
-    "value": 1,
-    "when": "vs your favoured enemy"
-   },
-   {
-    "key": "skill",
-    "value": 1,
-    "when": "tracking your favoured enemy"
-   }
-  ],
-  "summary": "Advanced Favoured Enemy: +1 more AC and tracking vs the favoured enemy (to +3).",
-  "manual": "Find Passage terrain benefit.",
-  "confidence": "medium"
- },
  "class-features/5py4wbBwsuYInq2k": {
   "name": "Survival Instincts (Wisdom)",
   "from": "Ranger",
   "container": "passive",
   "rules": [
    {
-    "key": "ability.dex",
-    "value": 1
-   },
-   {
     "key": "surprise",
-    "value": "15:2, 17:3, 19:4, 21:5, 23:6"
+    "value": "9:2, 17:3, 19:4, 21:5, 23:6"
    }
   ],
-  "summary": "+1 Dex; +2 to +6 to surprise checks (added to passive awareness for surprise).",
-  "manual": "Rises to +6 at 23rd via the progression table (steps not in the text).",
-  "confidence": "medium"
+  "summary": "+2 to +6 to surprise checks from 9th (added to passive awareness for surprise).",
+  "manual": "",
+  "confidence": "high"
  },
  "class-features/oOW5jdY7w7TBOs9C": {
   "name": "Advanced Favoured Enemy improves",
@@ -2898,10 +2832,10 @@
   "rules": [
    {
     "key": "surprise",
-    "value": "1+floor((@cl-14)/4)"
+    "value": "8:1, 18:2, 22:3"
    }
   ],
-  "summary": "+1/+2/+3 (14th/18th/22nd) to surprise checks (added to passive awareness for surprise).",
+  "summary": "+1/+2/+3 (8th/18th/22nd) to surprise checks (added to passive awareness for surprise).",
   "manual": "",
   "confidence": "high"
  },
@@ -2914,13 +2848,9 @@
     "key": "adv.check",
     "value": 1,
     "when": "to find secret or concealed doors"
-   },
-   {
-    "key": "ability.dex",
-    "value": 1
    }
   ],
-  "summary": "Secret door Advantage reminder; +1 Dex (bundled Dexterity Bonus).",
+  "summary": "Secret door Advantage reminder.",
   "manual": "Free check when passing nearby.",
   "confidence": "high"
  },
@@ -2945,10 +2875,10 @@
   "rules": [
    {
     "key": "ac",
-    "value": 4
+    "value": "1:2, 20:4"
    }
   ],
-  "summary": "Toggle: +4 AC for the round.",
+  "summary": "Toggle: +2 AC for the round (+4 from 20th).",
   "manual": "Text says \"in melee\": switch off vs ranged attacks; no ranged attacks or other rogue abilities that round; not when surprised.",
   "confidence": "medium"
  },
@@ -3057,20 +2987,6 @@
   ],
   "summary": "+1 Dex.",
   "manual": "",
-  "confidence": "high"
- },
- "class-features/QO3chTFHQJWEqYux": {
-  "name": "Dark Harvest",
-  "from": "Warlock",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "ability.cha",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Cha (bundled Charisma Bonus).",
-  "manual": "Slot recovery.",
   "confidence": "high"
  },
  "class-features/JuIQSx1fp9et1XBb": {
@@ -10629,8 +10545,8 @@
   "from": "Druid",
   "container": "passive",
   "rules": [],
-  "summary": "Choose the element: immune to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Spell reflection: a reminder.",
-  "manual": "Reflecting a spell of that element (a Wisdom check against its DC) stays with the table.",
+  "summary": "Choose the element: Resistance to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Immunity and spell reflection come with Elemental Mastery (Improved) at 20th.",
+  "manual": "Earth, water and air: the GM says which damage counts.",
   "confidence": "high",
   "optionChoice": {
    "label": "Element",
@@ -10638,61 +10554,61 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Immune to fire damage.",
+     "text": "Resistance to fire damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "fire"
       }
      ]
     },
     {
      "name": "Cold",
-     "text": "Immune to cold damage.",
+     "text": "Resistance to cold damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "cold"
       }
      ]
     },
     {
      "name": "Lightning",
-     "text": "Immune to lightning damage.",
+     "text": "Resistance to lightning damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "lightning"
       }
      ]
     },
     {
      "name": "Earth",
-     "text": "Immune to damage from earth (the GM says which damage that covers).",
+     "text": "Resistance to damage from earth (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is)."
+       "value": "Elemental Mastery (Earth): {1:resistance, 20:immunity} to earth damage (the GM's call which damage that is)."
       }
      ]
     },
     {
      "name": "Water",
-     "text": "Immune to damage from water (the GM says which damage that covers).",
+     "text": "Resistance to damage from water (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is)."
+       "value": "Elemental Mastery (Water): {1:resistance, 20:immunity} to water damage (the GM's call which damage that is)."
       }
      ]
     },
     {
      "name": "Air",
-     "text": "Immune to damage from air (the GM says which damage that covers).",
+     "text": "Resistance to damage from air (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is)."
+       "value": "Elemental Mastery (Air): {1:resistance, 20:immunity} to air damage (the GM's call which damage that is)."
       }
      ]
     }
@@ -10711,11 +10627,11 @@
    },
    {
     "key": "save",
-    "value": "9:3, 11:4, 14:5",
+    "value": "8:3, 11:4, 14:5",
     "when": "vs confusion, charm, fear and mind-affecting spells (Iron Mind)"
    }
   ],
-  "summary": "Iron Body and Iron Mind save bonuses from the Monk table (Iron Body +1 at 1st to +5 at 15th; Iron Mind +3 at 9th to +5 at 14th), as reminders on the matching saves.",
+  "summary": "Iron Body and Iron Mind save bonuses from the Monk table (Iron Body +1 at 1st to +5 at 15th; Iron Mind +3 at 8th to +5 at 14th), as reminders on the matching saves.",
   "manual": "",
   "confidence": "high"
  },
@@ -10880,6 +10796,185 @@
   ],
   "summary": "Targets' passive awareness is 1 lower (2 at 18th, 3 at 23rd) against the Assassin's ambush (books v0.10.10, K2).",
   "manual": "",
+  "confidence": "high"
+ },
+ "class-features/XPwab1AoaajYVUEt": {
+  "name": "Intelligence Bonus",
+  "from": "Artificer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.int",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Int.",
+  "manual": "Lasting Work once a week (the kit's own text).",
+  "confidence": "high"
+ },
+ "class-features/KIjoOntxPHcgFBFp": {
+  "name": "Words of Power (Improved)",
+  "from": "Bard",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Word of Power: Blinded",
+    "target": "target",
+    "rounds": "2d4",
+    "statuses": [
+     "blinded"
+    ],
+    "rules": []
+   },
+   {
+    "name": "Word of Power: Paralysed",
+    "target": "target",
+    "rounds": "1d10",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Apply the conditions matching the target's Level on a failed Will save (deafness comes from Words of Power).",
+  "manual": "Which conditions apply (by Level); death at Level 4 or lower.",
+  "confidence": "medium"
+ },
+ "class-features/VyDNqJme3aEMq9Yk": {
+  "name": "Elemental Mastery (Improved)",
+  "from": "Druid",
+  "container": "passive",
+  "rules": [],
+  "summary": "Pick the same element as on Elemental Mastery: immune to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Spell reflection: its Use.",
+  "manual": "Reflecting a spell of that element (a Wisdom check against its DC) stays with the table.",
+  "confidence": "high",
+  "optionChoice": {
+   "label": "Element",
+   "max": "1",
+   "options": [
+    {
+     "name": "Fire",
+     "text": "Now immune to fire damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "fire"
+      }
+     ]
+    },
+    {
+     "name": "Cold",
+     "text": "Now immune to cold damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "cold"
+      }
+     ]
+    },
+    {
+     "name": "Lightning",
+     "text": "Now immune to lightning damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "lightning"
+      }
+     ]
+    },
+    {
+     "name": "Earth",
+     "text": "Now immune to damage from earth (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is)."
+      }
+     ]
+    },
+    {
+     "name": "Water",
+     "text": "Now immune to damage from water (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is)."
+      }
+     ]
+    },
+    {
+     "name": "Air",
+     "text": "Now immune to damage from air (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is)."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "class-features/C4AlftJdL4MAUPN8": {
+  "name": "Advanced Favoured Enemy",
+  "from": "Ranger",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ac",
+    "value": 1,
+    "when": "vs your favoured enemy"
+   },
+   {
+    "key": "skill",
+    "value": 1,
+    "when": "tracking your favoured enemy"
+   }
+  ],
+  "summary": "Advanced Favoured Enemy: +1 more AC and tracking vs the favoured enemy (to +3).",
+  "manual": "Find Passage terrain benefit.",
+  "confidence": "medium"
+ },
+ "class-features/wKVfbVXtGrIcRcCi": {
+  "name": "Dexterity Bonus",
+  "from": "Ranger",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.dex",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Dex.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/HujGiQgXFA7cniaj": {
+  "name": "Dexterity Bonus",
+  "from": "Rogue",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.dex",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Dex.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/E6rC9IhzJmIjl5UD": {
+  "name": "Pact Summons (Tier 4)",
+  "from": "Warlock",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.cha",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Cha (the Charisma Bonus printed with this feature).",
+  "manual": "The summons themselves (Pact Summons' Use).",
   "confidence": "high"
  }
 }

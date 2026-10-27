@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, replaces the normal combat action. Make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, replaces the normal combat action. Make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li><li>13th level: the targets' Level may be up to your Level</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 4,
+  "level": 3,
   "className": "Barbarian",
   "activities": [
    {
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to half yours.",
+    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to {1:half yours, 13:yours}.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -51,7 +51,7 @@
  },
  "effects": [],
  "folder": "RN91L6Q7BHJcBlKX",
- "sort": 5,
+ "sort": 6,
  "ownership": {
   "default": 0
  },

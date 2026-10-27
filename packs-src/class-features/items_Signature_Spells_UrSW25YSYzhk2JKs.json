@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose two spells of 3rd level or lower from your spellbook. You can cast each <strong>once per day</strong> at its level without expending a slot.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one 1st-level spell from your spellbook. You can cast it <strong>once per day</strong> at its level without expending a slot.</li><li>18th level: two spells of 3rd level or lower instead</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 18,
+  "level": 9,
   "className": "Wizard",
   "activities": [
    {
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Cast your first signature spell at its level without expending a slot.",
+    "text": "Cast your first signature spell ({1:a 1st-level spell, 18:3rd level or lower}) at its level without expending a slot.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -55,7 +55,7 @@
     "ability": "",
     "save": "",
     "text": "Cast your second signature spell at its level without expending a slot.",
-    "minLevel": 0,
+    "minLevel": 18,
     "maxLevel": 0,
     "cost": 0,
     "per": "day",

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, send forth a word of power targeting one creature. Target makes a <strong>Will save</strong> or suffers an effect based on their Level.</li><li>Level 4 or lower: death</li><li>Level 5–7: paralysis, blindness, and deafness</li><li>Level 8–11: blindness and deafness</li><li>Level 12 or higher: deafness only</li><li><strong>Durations:</strong> deafness <strong>1d4</strong> rounds, blindness <strong>2d4</strong> rounds, paralysis <strong>1d10</strong> rounds</li><li>Bard must concentrate on the target — cannot take other actions or attack while using this ability</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, send forth a word of power targeting one creature. Target makes a <strong>Will save</strong> or is deafened for <strong>1d4</strong> rounds.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "will",
   "dc": null,
   "damage": "",
-  "level": 17,
+  "level": 10,
   "className": "Bard",
   "applies": [
    {
@@ -30,30 +30,12 @@
      "deafened"
     ],
     "rules": []
-   },
-   {
-    "name": "Word of Power: Blinded",
-    "target": "target",
-    "rounds": "2d4",
-    "statuses": [
-     "blinded"
-    ],
-    "rules": []
-   },
-   {
-    "name": "Word of Power: Paralysed",
-    "target": "target",
-    "rounds": "1d10",
-    "statuses": [
-     "paralysed"
-    ],
-    "rules": []
    }
   ]
  },
  "effects": [],
  "folder": "qcKyYEwYgLQLpEqg",
- "sort": 14,
+ "sort": 12,
  "ownership": {
   "default": 0
  },

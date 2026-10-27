@@ -669,6 +669,53 @@ async function askLegacy(n, actors, version) {
  * Run the update if this world hasn't had it for this version yet (the active GM only). `legacy` decides items added
  * before fingerprints without asking ("update" or "skip"). Returns { items, actors, world, kept, unstamped }.
  */
+/** The version whose books moved class features to new levels (books v0.10.22 and v0.10.23, B7). */
+export const CLASS_REWORK = "0.10.65";
+
+/** Is version `a` newer than `b` ("0.10.65" than "0.10.64")? Numbers compared part by part. */
+export function newerThan(a, b) {
+  const pa = String(a ?? "0").split(".").map(Number), pb = String(b ?? "0").split(".").map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const x = pa[i] || 0, y = pb[i] || 0;
+    if (x !== y) return x > y;
+  }
+  return false;
+}
+
+/** A class feature list as a comparable key: each feature's level, name and compendium entry. */
+const featureKey = list => JSON.stringify((list ?? []).map(f => [Number(f?.level) || 0, String(f?.name ?? ""), String(f?.uuid ?? "")]));
+
+/**
+ * 0.10.65: characters' classes take the books' new feature levels (B7: every core feature by 5th). A class on a sheet
+ * keeps the feature list it was added with, so it gets the compendium's list, and the features the character's level
+ * now reaches are added (a 6th-level Fighter gets Unbroken and Legend of Battle). Nothing is taken away: a feature the
+ * books dropped (Battle Space (Improved), folded into Battle Space) is listed for the GM instead. A class marked "Keep
+ * my edits", or not from the system's compendium, is left alone. `grant` adds the features (progression.mjs).
+ */
+export async function classRework(actors, fetch, grant, notes) {
+  for (const actor of actors) {
+    if (actor?.type !== "character") continue;
+    try {
+      for (const cls of actor.items.filter(i => i.type === "class")) {
+        const uuid = cls._stats?.compendiumSource ?? cls.flags?.core?.sourceId ?? "";
+        if (cls.flags?.[SYS]?.keepCustom || typeof uuid !== "string" || !uuid.startsWith(`Compendium.${SYS}.classes.`)) continue;
+        const src = plain(await fetch(uuid));
+        const list = src?.system?.features;
+        if (!Array.isArray(list) || featureKey(list) === featureKey(cls.system.features)) continue;
+        await cls.update({ "system.features": clone(list) }, { arneyanMigration: true });
+        const added = await grant(actor, cls);
+        if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
+        const now = new Set(list.map(f => f.uuid));
+        const gone = actor.items.filter(i => i.flags?.[SYS]?.grantedBy === cls.id && i.flags?.[SYS]?.source && !now.has(i.flags[SYS].source)).map(i => i.name);
+        if (gone.length) (notes.classGone[actor.name] ??= []).push(...gone);
+      }
+    } catch (err) {
+      console.warn(`Arneyan | class features: ${actor.name}`, err);
+      if (!notes.failed.some(f => f.id === actor.id)) notes.failed.push({ id: actor.id, name: actor.name });
+    }
+  }
+}
+
 export async function runMigration({ force = false, legacy = null } = {}) {
   if (!game.users.activeGM?.isSelf) return null;
   const version = currentVersion();
@@ -682,8 +729,9 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     if (!cache.has(uuid)) cache.set(uuid, await fromUuid(uuid).catch(() => null));
     return cache.get(uuid);
   };
-  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [] };
+  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [], classAdded: {}, classGone: {} };
   const actorIds = new Set();
+  const from = game.settings.get(SYS, "migratedTo") || "0";
   // First everything that's safe: unedited items, and older items already the same as the compendium.
   const res = await pass(fetch, { legacy: legacy ?? "skip", notes, actorIds, version, only });
   let legacyDone = 0;
@@ -696,6 +744,11 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       res.items += more.items; res.world += more.world; res.actors = actorIds.size; legacyDone = notes.unstamped;
     }
   }
+  // 0.10.65: class features at the books' new levels (once, coming from an earlier version).
+  if (due && !newerThan(CLASS_REWORK, version) && newerThan(CLASS_REWORK, from)) {
+    const { syncClassFeatures } = await import("./progression.mjs");
+    await classRework(game.actors, fetch, (actor, cls) => syncClassFeatures(actor, cls, { arneyanGrant: true, arneyanMigration: true }), notes);
+  }
   if (due) await game.settings.set(SYS, "migratedTo", version);
   // Tried again on the next loads, three times in all (then at the next version).
   const tries = due ? 1 : (Number(retry?.tries) || 1) + 1;
@@ -704,7 +757,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const left = legacyDone ? 0 : (legacy === "update" ? 0 : notes.unstamped);
   const auto = Object.entries(notes.automatic);
   const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length) {
+  const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone);
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -716,6 +770,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
+      + (classAdded.length ? `<p><strong>Class features at their new levels</strong> (books v0.10.23: every class has its core features by 5th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (folded into another feature; delete them if you like):</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

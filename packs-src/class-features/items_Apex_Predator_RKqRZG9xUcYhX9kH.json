@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, mark a creature as prey as part of your action — for the rest of the encounter, the Ranger's Combat Marauder bonus applies against it in full, regardless of creature type, and the Ranger gains advantage on all checks made to track, corner, or finish it.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, when you use Marked Prey, the mark lasts the whole encounter: you have <strong>Advantage</strong> on your first attack roll against that creature each round.</li><li>24th level: your Combat Marauder bonus applies against it in full, and you have <strong>Advantage</strong> on checks to track, corner or finish it</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 24,
+  "level": 6,
   "className": "Ranger",
   "activities": [
    {
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Mark a creature as prey: Combat Marauder applies in full and you have Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey, the mark lasts the whole encounter and you have Advantage on your first attack roll against that creature each round. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -51,7 +51,7 @@
  },
  "effects": [],
  "folder": "mTYolNxClYl3gPJt",
- "sort": 11,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

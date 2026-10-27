@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Permanent passive aura — +2 AC and +2 on all saves against evil creatures. Summoned and conjured evil creatures cannot make physical contact with the Paladin; their natural weapon attacks fail and they recoil.</li><li>Good elementals and outsiders are immune to this effect</li><li>Immune to all diseases of any origin.</li><li>Detect Evil: concentrate for <strong>one round</strong> while facing a target within <strong>60ft</strong> — innate ability, no spellcasting involved. Usable as often as desired.</li><li>Aura of Courage (6th level): immune to fear (magical or otherwise). Allies within the aura's range gain +4 on saves vs fear — see the Paladin Progression Table (<strong>10ft</strong> at 6th, <strong>30ft</strong> at 15th, <strong>50ft</strong> at 20th).</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Permanent passive aura — +2 AC and +2 on all saves against evil creatures. Summoned and conjured evil creatures cannot make physical contact with the Paladin; their natural weapon attacks fail and they recoil.</li><li>Good elementals and outsiders are immune to this effect</li><li>Immune to all diseases of any origin.</li><li>Detect Evil: concentrate for <strong>one round</strong> while facing a target within <strong>60ft</strong> — innate ability, no spellcasting involved. Usable as often as desired.</li><li>Aura of Courage (2nd level): immune to fear (magical or otherwise). Allies within the aura's range gain +4 on saves vs fear — see the Paladin Progression Table (<strong>10ft</strong> at 2nd, <strong>30ft</strong> at 15th, <strong>50ft</strong> at 20th).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -70,12 +70,12 @@
    {
     "key": "immune",
     "value": "condition:frightened",
-    "when": "from 6th level (Aura of Courage)",
+    "when": "from 2nd level (Aura of Courage)",
     "label": ""
    },
    {
     "key": "note.save",
-    "value": "Aura of Courage: allies within {6:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear.",
+    "value": "Aura of Courage: allies within {2:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear.",
     "when": "",
     "label": ""
    }
@@ -86,7 +86,7 @@
    {
     "key": "courage",
     "name": "Aura of Courage",
-    "minLevel": 6,
+    "minLevel": 2,
     "radius": [
      [
       1,

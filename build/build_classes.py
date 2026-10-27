@@ -1,5 +1,5 @@
 """Classes and kits from the Handbook's Book III, one Word file per class (books_md.CLASSES, v0.10.11)."""
-import glob, os, re
+import glob, json, os, re
 import docx
 from lib import *
 
@@ -24,6 +24,11 @@ for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "
 # Assassin's "GM rolls secretly" split Assassin's Skills in two (Handbook p. 55 prints it as a note under Disguise).
 # (class, paragraph text) -> (list level, text to print in its place).
 LIST_FIXES = {("Assassin", "GM rolls secretly"): (1, "GM rolls secretly.")}
+# A class feature keeps the id it was released with (data/feature_ids.json, by class and name), so one that moves to
+# another level (books v0.10.22, B7) is still the same compendium document for worlds that have it. A new feature's id
+# comes from its class, level, name and place, as before.
+_FEATURE_IDS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "feature_ids.json")
+FEATURE_IDS = json.load(open(_FEATURE_IDS, encoding="utf-8"))["features"] if os.path.exists(_FEATURE_IDS) else {}
 LEVEL_RE = re.compile(r"^(\d+)(?:st|nd|rd|th) Level(?:\s*[—-]\s*(.+))?$|^Level (\d+)$")
 
 def uses_of(text):
@@ -254,16 +259,20 @@ def build(icon_for_class):
             "features": []
         }
         ffol = folder("class-features", name)
+        seen = {}
         for i, f in enumerate(feats):
             body = f.buf.html()
             if not body.strip():
                 continue
+            n = seen[f.name] = seen.get(f.name, -1) + 1
+            known = FEATURE_IDS.get(f"{name}|{f.name}", [])
             fdoc = item("class-features", f.name, "ability", {
                 "description": body, "source": {"book": "phb", "page": 0}, "kind": "class",
                 "uses": uses_of(f.text), "save": save_of(f.text), "dc": None, "damage": feature_damage(name, f.name)[0],
                 **({"damageType": feature_damage(name, f.name)[1]} if feature_damage(name, f.name)[1] else {}),
                 "level": f.level, "className": name
-            }, icon_for_class(name, f.name), folder=ffol, sort=i, key=f"{name}|{f.level}|{f.name}|{i}")
+            }, icon_for_class(name, f.name), folder=ffol, sort=i, key=f"{name}|{f.level}|{f.name}|{i}",
+               _id=known[n] if n < len(known) else None)
             system["features"].append({"level": f.level, "name": f.name, "uuid": f"Compendium.arneyan.class-features.Item.{fdoc['_id']}"})
         item("classes", name, "class", system, f"systems/arneyan/assets/classes/{name}.webp")
         if name == "Cleric":

@@ -142,7 +142,7 @@
    {
     "name": "Hail of Arrows",
     "kind": "note",
-    "text": "As your action, make one bow attack roll against every creature in a 15ft radius within range, rolling damage separately for each.",
+    "text": "As your action, make one bow attack roll against every creature in a {1:10ft, 12:15ft} radius within range, rolling damage separately for each.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -158,7 +158,7 @@
    {
     "name": "Perfect Loose",
     "kind": "note",
-    "text": "Declared before rolling, your next shot deals maximum damage and gains Bent Path's improved effect if used.",
+    "text": "Declared before rolling, your next shot deals maximum damage. From 20th level it also gains Bent Path's improved effect if used, and covers every arrow of a Twin Nock.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -551,7 +551,7 @@
    {
     "name": "Whirlwind Attack",
     "kind": "note",
-    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to half yours.",
+    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to {1:half yours, 13:yours}.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -803,7 +803,7 @@
     "name": "Perfect Recall",
     "kind": "check",
     "ability": "wis",
-    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 13th) without spending a slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -882,8 +882,19 @@
    {
     "name": "Banish",
     "kind": "note",
-    "text": "Turn extraplanar creatures as you would undead, banishing 1d12 minor or 1d6 major demons or devils, or one lord, for 21+ days.",
+    "text": "Turn fiends and other extraplanar creatures as you would undead, as a Cleric 4 levels lower. One that fails is driven back to its own plane if its Level is no more than half your Cleric level; otherwise it is turned.",
     "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "maxLevel": 20
+   },
+   {
+    "name": "Banish",
+    "kind": "note",
+    "text": "Turn fiends and other extraplanar creatures as you would undead, at your full level, banishing 1d12 minor or 1d6 major demons or devils, or one lord, for 21+ days.",
+    "minLevel": 21,
     "cost": 0,
     "per": "",
     "target": "",
@@ -1015,23 +1026,6 @@
   "confidence": "high",
   "why": "Named Wisdom check."
  },
- "Elemental Mastery|Druid": {
-  "activities": [
-   {
-    "name": "Reflect Spell",
-    "kind": "check",
-    "ability": "wis",
-    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Reaction check vs spell DC. Checked against Handbook v0.10.10, 25 Oct."
- },
  "Perfect Recall|Druid": {
   "activities": [
    {
@@ -1064,28 +1058,12 @@
   "confidence": "high",
   "why": "Handbook: 2 attacks at 4th, 3 at 8th, 4 at 12th, all but the first with Disadvantage; warns on a target above half your Level."
  },
- "Battle Space (Improved)|Fighter": {
-  "activities": [
-   {
-    "name": "Battle Space (Improved)",
-    "kind": "note",
-    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter Dodge rider."
- },
  "Unbroken|Fighter": {
   "activities": [
    {
     "name": "Unbroken",
     "kind": "note",
-    "text": "When reduced to 0 HP or below, stand at 1 HP, immune to all damage for the next round, with +2 damage dice on your attacks.",
+    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level you are also immune to all damage for the next round, with +2 damage dice on your attacks.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1094,7 +1072,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter survival trigger."
+  "why": "Once per day (once per encounter from 24th: set the uses by hand)."
  },
  "Called Shot|Gunslinger": {
   "activities": [
@@ -1157,9 +1135,9 @@
    {
     "name": "Dead Aim",
     "kind": "damage",
-    "formula": "2d6",
+    "formula": "3:1d6, 13:2d6",
     "damageType": "",
-    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +2d6 damage.",
+    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +{1:1d6, 13:2d6} damage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1184,7 +1162,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day declared shot."
+  "why": "Once per day (twice from 20th, Perfect Shot (Improved)).",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 20:2"
+  }
  },
  "Disguise (Charisma)|Illusionist": {
   "activities": [
@@ -1388,7 +1371,7 @@
    {
     "name": "Honour Attack",
     "kind": "note",
-    "text": "Reduce the target's AC by your Charisma modifier, attack with Advantage and double the weapon's damage dice.",
+    "text": "Reduce the target's AC by your Charisma modifier and attack with Advantage. From 17th level, double the weapon's damage dice.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1404,8 +1387,8 @@
    {
     "name": "Undying Reputation",
     "kind": "temp",
-    "formula": "@cha.mod*@cl",
-    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times Knight level and Advantage on your first attack each round.",
+    "formula": "@cha.mod*{13:floor(@cl/2), 24:@cl}",
+    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times {13:half your Knight level, 24:your Knight level}. From 24th level you also have Advantage on your first attack each round.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1499,7 +1482,7 @@
    {
     "name": "Everstrike",
     "kind": "note",
-    "text": "Your next Levelled Spellstrike costs no slot.",
+    "text": "Your next Levelled Spellstrike of {1:2nd level or lower, 13:4th level or lower, 20:any level} costs no slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1603,23 +1586,6 @@
   ],
   "confidence": "high",
   "why": "Dexterity check vs attack roll, once per round."
- },
- "Body of Iron Made Whole|Monk": {
-  "activities": [
-   {
-    "name": "Body of Iron Made Whole",
-    "kind": "heal",
-    "formula": "4d8",
-    "text": "At the start of your turn, remove all conditions affecting you and heal 4d8 HP, with no action needed.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Explicit heal and condition removal."
  },
  "Quick Reaction (Improved)|Monk": {
   "activities": [
@@ -1739,7 +1705,7 @@
     "name": "Divine Healing",
     "kind": "note",
     "text": "Completely cure all diseases, blindness, deafness, HP damage, temporary ability damage, poison, feeblemind and mental disorders at once.",
-    "minLevel": 12,
+    "minLevel": 8,
     "cost": 0,
     "per": "week",
     "target": "one",
@@ -1769,7 +1735,7 @@
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "1:1, 15:2, 20:3"
+   "formula": "1:1, 5:2, 15:3"
   }
  },
  "Turn Undead|Paladin": {
@@ -1848,7 +1814,7 @@
   "uses": {
    "max": 1,
    "per": "week",
-   "formula": "13:1, 17:2, 22:3"
+   "formula": "5:1, 17:2, 22:3"
   }
  },
  "Cleanse Soul|Paladin": {
@@ -2000,7 +1966,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "Mark a creature as prey: Combat Marauder applies in full and you have Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey, the mark lasts the whole encounter and you have Advantage on your first attack roll against that creature each round. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2175,7 +2141,7 @@
    {
     "name": "Evasive Manoeuvre",
     "kind": "note",
-    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
+    "text": "Gain +{1:2, 20:4} AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -2332,7 +2298,7 @@
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "5:1, 9:2, 13:3, 17:4"
+   "formula": "2:1, 9:2, 13:3, 17:4"
   }
  },
  "Sorcerer's Spark|Sorcerer": {
@@ -2781,7 +2747,7 @@
    {
     "name": "First Signature Spell",
     "kind": "note",
-    "text": "Cast your first signature spell at its level without expending a slot.",
+    "text": "Cast your first signature spell ({1:a 1st-level spell, 18:3rd level or lower}) at its level without expending a slot.",
     "minLevel": 0,
     "cost": 0,
     "per": "day",
@@ -2792,7 +2758,7 @@
     "name": "Second Signature Spell",
     "kind": "note",
     "text": "Cast your second signature spell at its level without expending a slot.",
-    "minLevel": 0,
+    "minLevel": 18,
     "cost": 0,
     "per": "day",
     "target": "",
@@ -2800,7 +2766,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Two spells each once per day; item uses (1) would block the second. Checked against Handbook v0.10.10, 25 Oct."
+  "why": "One spell once per day from 9th, two (3rd level or lower) from 18th; item uses (1) would block the second."
  },
  "Perfect Recall|Wizard": {
   "activities": [
@@ -4079,5 +4045,74 @@
     "removeConditions": false
    }
   ]
+ },
+ "Elemental Mastery (Improved)|Druid": {
+  "activities": [
+   {
+    "name": "Reflect Spell",
+    "kind": "check",
+    "ability": "wis",
+    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Reaction check vs spell DC. Checked against Handbook v0.10.10, 25 Oct."
+ },
+ "Battle Space|Fighter": {
+  "activities": [
+   {
+    "name": "Battle Space",
+    "kind": "note",
+    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter Dodge rider."
+ },
+ "Body of Iron|Monk": {
+  "activities": [
+   {
+    "name": "Body of Iron",
+    "kind": "note",
+    "text": "At the start of your turn, end one condition affecting you (stunned, paralysed, poisoned, frightened, charmed and the like), with no action needed, even while incapacitated.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "maxLevel": 19
+   },
+   {
+    "name": "Body of Iron Made Whole",
+    "kind": "heal",
+    "formula": "4d8",
+    "text": "At the start of your turn, remove all conditions affecting you and heal 4d8 HP, with no action needed.",
+    "minLevel": 20,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": true
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per day; from 20th (Body of Iron Made Whole) it removes every condition and heals 4d8."
+ },
+ "Perfect Shot (Improved)|Gunslinger": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Its second daily use is on Perfect Shot.",
+  "uses": {
+   "max": 0
+  }
  }
 }

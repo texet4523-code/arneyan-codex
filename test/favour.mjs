@@ -44,6 +44,10 @@ assert.equal(F.npcAllegiance({ type: "fiend (demon, shapechanger)" }).value, "Ch
 assert.equal(F.npcAllegiance({ type: "fiend (yugoloth)" }).value, "Neutral Evil");
 assert.equal(F.npcAllegiance({ type: "celestial" }).value, "Good");
 assert.equal(F.npcAllegiance({ type: "undead (incorporeal)" }).value, "Evil");
+// 0.10.65: the tooltip names the kind that sets it (an Imp is Lawful Evil as a devil).
+assert.equal(F.npcAllegiance({ type: "fiend (devil)" }).from, "By its nature (devil)");
+assert.equal(F.npcAllegiance({ type: "fiend (yugoloth)" }).from, "By its nature (fiend)");
+assert.equal(F.npcAllegiance({ type: "undead (incorporeal)" }).from, "By its nature (undead)");
 assert.equal(F.npcAllegiance({ type: "humanoid (goblinoid)" }).value, "Unaligned");
 assert.equal(F.npcAllegiance({ type: "fey" }).value, "Unaligned", "other outsiders are Unaligned");
 assert.equal(F.npcAllegiance({ type: "humanoid", override: "Lawful Evil" }).value, "Lawful Evil", "its entry serves a power");

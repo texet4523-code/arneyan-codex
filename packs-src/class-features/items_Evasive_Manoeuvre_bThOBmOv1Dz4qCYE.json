@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> +4 AC in melee. Cannot combine with ranged attacks or other rogue abilities that round, and cannot be used if surprised.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> +2 AC in melee. Cannot combine with ranged attacks or other rogue abilities that round, and cannot be used if surprised.</li><li>20th level: +4 AC instead</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 20,
+  "level": 4,
   "className": "Rogue",
   "activities": [
    {
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Gain +4 AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
+    "text": "Gain +{1:2, 20:4} AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -51,7 +51,7 @@
   "rules": [
    {
     "key": "ac",
-    "value": "4",
+    "value": "1:2, 20:4",
     "when": "",
     "label": ""
    }
@@ -61,7 +61,7 @@
  },
  "effects": [],
  "folder": "mpjthAeSZRrS7A4C",
- "sort": 15,
+ "sort": 9,
  "ownership": {
   "default": 0
  },

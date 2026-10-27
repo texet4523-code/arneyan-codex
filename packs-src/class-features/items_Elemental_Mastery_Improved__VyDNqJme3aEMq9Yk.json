@@ -1,0 +1,141 @@
+{
+ "_id": "VyDNqJme3aEMq9Yk",
+ "_key": "!items!VyDNqJme3aEMq9Yk",
+ "name": "Elemental Mastery (Improved)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You are now immune to your chosen element's damage entirely.</li><li>When struck by a spell of that element, make a Wisdom check against the spell's save DC</li><li><strong>Succeed on the check:</strong> the spell is reflected back at a target of the Druid's choice for its original damage</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Druid",
+  "activities": [
+   {
+    "name": "Reflect Spell",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "wis",
+    "save": "",
+    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "optionChoice": {
+   "label": "Element",
+   "max": "1",
+   "options": [
+    {
+     "name": "Fire",
+     "text": "Now immune to fire damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "fire",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Cold",
+     "text": "Now immune to cold damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "cold",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Lightning",
+     "text": "Now immune to lightning damage.",
+     "rules": [
+      {
+       "key": "immune",
+       "value": "lightning",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Earth",
+     "text": "Now immune to damage from earth (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is).",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Water",
+     "text": "Now immune to damage from water (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is).",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Air",
+     "text": "Now immune to damage from air (the GM says which damage that covers).",
+     "rules": [
+      {
+       "key": "note.save",
+       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is).",
+       "when": "",
+       "label": ""
+      }
+     ]
+    }
+   ],
+   "value": []
+  }
+ },
+ "effects": [],
+ "folder": "ZG8DQdeeseEzUuh9",
+ "sort": 14,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

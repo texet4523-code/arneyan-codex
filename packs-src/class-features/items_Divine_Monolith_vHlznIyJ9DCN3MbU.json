@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Permanent <strong>20ft</strong> aura that radiates divine power. Cannot be dispelled.</li><li>All creatures within the aura are immune to death attacks</li><li>+3 to the Turn Undead DC</li><li>All creatures within the aura, you included, gain +2 to attribute checks and saves</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> A permanent <strong>10ft</strong> aura of divine power that cannot be dispelled. You and your allies within it gain +1 to saves, and your Turn Undead DC rises by 1.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,24 +19,24 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 22,
+  "level": 9,
   "className": "Cleric",
   "rules": [
    {
-    "key": "check",
-    "value": "2",
+    "key": "save",
+    "value": "9:1, 22:2",
     "when": "",
     "label": ""
    },
    {
-    "key": "save",
-    "value": "2",
+    "key": "check",
+    "value": "22:2",
     "when": "",
     "label": ""
    },
    {
     "key": "note.save",
-    "value": "Divine Monolith: creatures in the 20ft aura are immune to death attacks.",
+    "value": "Divine Monolith: {22:creatures in the aura are immune to death attacks}.",
     "when": "",
     "label": ""
    }
@@ -47,9 +47,43 @@
    {
     "key": "monolith",
     "name": "Divine Monolith",
+    "radius": [
+     [
+      1,
+      10
+     ],
+     [
+      22,
+      20
+     ]
+    ],
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "save",
+      "value": "1:1, 22:2",
+      "label": "Divine Monolith"
+     },
+     {
+      "key": "check",
+      "value": "22:2",
+      "label": "Divine Monolith"
+     },
+     {
+      "key": "note.save",
+      "value": "Divine Monolith: {22:immune to death attacks}.",
+      "label": "Divine Monolith"
+     }
+    ]
+   },
+   {
+    "key": "monolith-all",
+    "name": "Divine Monolith",
+    "minLevel": 22,
     "radius": 20,
-    "who": "all",
-    "includeSelf": true,
+    "who": "enemies",
+    "includeSelf": false,
     "rules": [
      {
       "key": "check",
@@ -72,7 +106,7 @@
  },
  "effects": [],
  "folder": "DB2nn2x2D5HVxzrP",
- "sort": 9,
+ "sort": 7,
  "ownership": {
   "default": 0
  },

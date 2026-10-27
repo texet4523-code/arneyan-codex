@@ -75,7 +75,7 @@ assert.deepEqual(hedge.applies[0].rules.map(r => `${r.key} ${r.value}`), ["save.
 const wall = one("kits", "Boldock Wall-Knights (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([wall.level, wall.replaces, wall.save], [5, "Demoralise", "will"]);
 assert.deepEqual(wall.applies.map(a => a.rules.map(r => `${r.key} ${r.value}`).join()), ["check.cha -6", "adv.attack -1"]);
-assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise replaces the usual one"));
+assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise is harsher"), "books v0.10.22 wording");
 assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep it");
 const prog = fs.readFileSync(path.join(root, "module/progression.mjs"), "utf8");
 assert.ok(prog.includes("replacedFor(actor, cls)") && prog.includes("dropReplaced"));

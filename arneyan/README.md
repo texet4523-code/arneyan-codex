@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.64 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.65 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.65
+
+**Every class has its core features by 5th level** (books v0.10.23, B7; Kieran, 27 Oct: "I never wanted the 5e problem of not feeling like your complete class until level 7").
+
+- **Class features at their new levels:** about 90 features across all 22 classes now come earlier, several as a core version with an improved one later (Battle Space at 3rd improving at 13th and 17th; Legend of Battle at 6th, a minute long from 20th; Banish at 5th; Divine Monolith at 9th; Everstrike at 5th; Perfect Loose at 3rd; Counterspell at 5th; Wild Shape Casting at 6th; and so on). New: **Rage Styles** (Barbarian 2nd), **Hunter's Tricks** (Ranger 2nd), **Hit and Run** (Rogue 2nd, Swashbuckler 4th, Assassin 5th) and **Dirty Fighting** (Rogue 9th).
+- **Their automation follows:** Smite Evil twice a day from 5th, Divine Intervention from 5th, Aura of Courage from 2nd, Aura of Devotion from 9th, Divine Monolith's aura (10ft from 9th, 20ft and every creature from 22nd), Iron Mind from 8th, Sixth Sense from 8th, Survival Instincts from 9th, Wild Surge from 2nd, Force of Nature from 6th, Evasive Manoeuvre +2 AC (+4 from 20th), Dead Aim +1d6 (+2d6 from 13th), Elemental Mastery Resistance (immunity from 20th), Arcane Cascade +2 AC from 9th, Signature Spells one from 9th and two from 18th. The +1 attribute bonuses that rode along with other features are their own features now.
+- **Kits:** Artificer tiers at 1st, 3rd, 5th, 7th and 10th; Witch Curse at 3rd and Physical Change at 7th; Warlock Patron's Mark at 4th and Patron Feature at 8th; Sorcerer Bloodline Awakening at 10th; Holfast's Triple Strike from 17th.
+- **Characters already made:** the update gives their classes the new levels and adds the features they've now reached (a 6th-level Fighter gets Unbroken and Legend of Battle). Nothing is taken away; the GM's report lists what was added, and any feature the books folded into another (Battle Space (Improved)) to delete by hand. Features on sheets keep their compendium links, so their rules and uses update as usual.
+- **Fixes:** a reminder for extra damage in dice reads as its dice (Blessed Weapon "+1d6 vs evil creatures", not "+0"); an Imp's Allegiance says it's Lawful Evil as a devil, not "fiend". The Codex has the Fighter's Manoeuvre Mastery at 2nd and 9th.
 
 ## What's new in 0.10.64
 

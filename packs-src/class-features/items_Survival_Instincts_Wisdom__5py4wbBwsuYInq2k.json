@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Bonus to surprise checks: +2 at 15th level, rising to +6 at 23rd (see the Ranger Progression Table) — the ranger senses something is wrong before being able to pinpoint it exactly.</li><li><strong>Dexterity Bonus: permanent +1 Dexterity</strong></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Bonus to surprise checks: +2 at 9th level, rising to +6 at 23rd (see the Ranger Progression Table) — the ranger senses something is wrong before being able to pinpoint it exactly.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,18 +19,12 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 15,
+  "level": 9,
   "className": "Ranger",
   "rules": [
    {
-    "key": "ability.dex",
-    "value": "1",
-    "when": "",
-    "label": ""
-   },
-   {
     "key": "surprise",
-    "value": "15:2, 17:3, 19:4, 21:5, 23:6",
+    "value": "9:2, 17:3, 19:4, 21:5, 23:6",
     "when": "",
     "label": ""
    }
@@ -40,7 +34,7 @@
  },
  "effects": [],
  "folder": "mTYolNxClYl3gPJt",
- "sort": 8,
+ "sort": 10,
  "ownership": {
   "default": 0
  },

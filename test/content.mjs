@@ -67,11 +67,11 @@ assert.equal(witch.length, 8, "eight Witch Patrons");
 assert.equal(art.length, 4, "four Artificer Kits");
 for (const k of witch) {
   assert.match(k.name, /^Patron: .+ \(Witch\)$/);
-  assert.deepEqual(k.system.features.map(f => [f.name, f.level]), [["Patron Buff", 1], ["Patron Curse", 6], ["Physical Change", 12]], k.name);
+  assert.deepEqual(k.system.features.map(f => [f.name, f.level]), [["Patron Buff", 1], ["Patron Curse", 3], ["Physical Change", 7]], k.name);
   for (const f of k.system.features) assert.ok(f.description.length > 20, `${k.name}: ${f.name} has no text`);
 }
 for (const k of art) {
-  assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 7, 11, 15, 24], k.name);
+  assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 5, 7, 10, 24], k.name); // books v0.10.22 tiers
   assert.ok(k.system.features[4].name.startsWith("Lasting Work: "), k.name);
   assert.ok(k.system.features[5].name.startsWith("Magnum Opus: "), k.name);
   assert.match(k.system.description, /<h3>Known /, `${k.name}: its Workshop list`);
@@ -90,10 +90,11 @@ const maud = pregens.find(p => p.name === "Maud Hollins");
 const tibbet = pregens.find(p => p.name === "Tibbet Quickfuse");
 assert.ok(maud.items.some(i => i.type === "kit" && i.name === "Patron: Mother Loretta (Witch)"), "Maud's patron");
 assert.ok(maud.items.some(i => i.type === "ability" && i.name === "Patron Buff"), "Maud's Patron Buff (1st)");
-assert.ok(!maud.items.some(i => i.name === "Patron Curse"), "Maud is 5th level: no 6th-level Curse yet");
+assert.ok(maud.items.some(i => i.name === "Patron Curse"), "Maud is 5th level: the Curse comes at 3rd (books v0.10.22)");
+assert.ok(!maud.items.some(i => i.name === "Physical Change"), "Maud is 5th level: no 7th-level Physical Change yet");
 for (const n of ["Hex of Stumbling", "Bind Wound"]) assert.ok(maud.items.some(i => i.type === "spell" && i.name === n && i.system.prepared), `Maud's ${n}`);
 assert.ok(tibbet.items.some(i => i.type === "kit" && i.name === "Alchemist (Artificer)"), "Tibbet's kit");
-assert.deepEqual(tibbet.items.filter(i => i.flags?.arneyan?.grantedBy && i.system.className === "Alchemist (Artificer)").map(i => i.name), ["Brew Formula", "Efficient Brewing"]);
+assert.deepEqual(tibbet.items.filter(i => i.flags?.arneyan?.grantedBy && i.system.className === "Alchemist (Artificer)").map(i => i.name), ["Brew Formula", "Efficient Brewing", "Combat Alchemy"], "Combat Alchemy at 5th (books v0.10.22)");
 
 // ---- 4. Dice So Nice: damage dice carry their type as flavour, without touching a flavour already set.
 const fakeRoll = () => ({ dice: [{ options: {} }, { options: { flavor: "fire" } }] });

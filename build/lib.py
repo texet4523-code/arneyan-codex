@@ -187,10 +187,10 @@ _KIT_IDS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "kit
 KIT_IDS = json.load(open(_KIT_IDS, encoding="utf-8")) if os.path.exists(_KIT_IDS) else {}
 
 
-def item(pack, name, type_, system, img, folder=None, sort=0, key=None):
+def item(pack, name, type_, system, img, folder=None, sort=0, key=None, _id=None):
     if pack == "kits" and key is None:
         key = KIT_IDS.get(name)
-    _id = fid(pack, type_, key or name)
+    _id = _id or fid(pack, type_, key or name)
     doc = {
         "_id": _id, "_key": f"!items!{_id}", "name": name, "type": type_, "img": img,
         "system": system, "effects": [], "folder": folder, "sort": sort,

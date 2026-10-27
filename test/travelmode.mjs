@@ -98,7 +98,7 @@ assert.equal(RT.sceneFollows({ getFlag: () => undefined, environment: {} }), fal
 assert.equal(RT.sceneFollows({ getFlag: () => true, environment: { darknessLock: true } }), false, "a locked darkness never follows");
 assert.equal(RT.sceneFollows({ getFlag: () => true, environment: {} }), true);
 const trf = fs.readFileSync(`${root}module/transform.mjs`, "utf8");
-assert.ok(trf.includes('spellsLocked: level >= 15 || game.user.isGM ? "" : "from 15th level: Wild Shape Casting"') && trf.includes("!!o.keepSpells && (!wild || wild.level >= 15)"));
+assert.ok(trf.includes("const WILD_CASTING_LEVEL = 6;") && trf.includes("spellsLocked: level >= WILD_CASTING_LEVEL || game.user.isGM") && trf.includes("!!o.keepSpells && (!wild || wild.level >= WILD_CASTING_LEVEL)"), "Wild Shape Casting from 6th (books v0.10.22)");
 console.log("OK 0.10.44 travel clock, encounter roll, scene daylight, Wild Shape spells");
 // Review fixes: the clock loop ends days as travelMove does; the check is rolled in public; drawn once; old darkness restored.
 assert.ok(tr.includes("while (today >= perDay && ended.length)") && tr.includes("rollMode: CONST.DICE_ROLL_MODES.PUBLIC") && tr.includes('"encounterDrawn"') && tr.includes("moveTime(-back * hexSeconds("));

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one element — fire, cold, lightning, earth, water, or air. The Druid is immune to its damage entirely.</li><li>When struck by a spell of that element, make a Wisdom check against the spell's save DC</li><li><strong>Succeed on the check:</strong> the spell is reflected back at a target of the Druid's choice for its original damage</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one element — fire, cold, lightning, earth, water, or air. You have Resistance to its damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,35 +19,8 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 20,
+  "level": 8,
   "className": "Druid",
-  "activities": [
-   {
-    "name": "Reflect Spell",
-    "kind": "check",
-    "formula": "",
-    "damageType": "",
-    "ability": "wis",
-    "save": "",
-    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
-    "minLevel": 0,
-    "maxLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
-   }
-  ],
   "rules": [],
   "toggle": false,
   "active": false,
@@ -57,10 +30,10 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Immune to fire damage.",
+     "text": "Resistance to fire damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "fire",
        "when": "",
        "label": ""
@@ -69,10 +42,10 @@
     },
     {
      "name": "Cold",
-     "text": "Immune to cold damage.",
+     "text": "Resistance to cold damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "cold",
        "when": "",
        "label": ""
@@ -81,10 +54,10 @@
     },
     {
      "name": "Lightning",
-     "text": "Immune to lightning damage.",
+     "text": "Resistance to lightning damage (immune from 20th level).",
      "rules": [
       {
-       "key": "immune",
+       "key": "resist",
        "value": "lightning",
        "when": "",
        "label": ""
@@ -93,11 +66,11 @@
     },
     {
      "name": "Earth",
-     "text": "Immune to damage from earth (the GM says which damage that covers).",
+     "text": "Resistance to damage from earth (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is).",
+       "value": "Elemental Mastery (Earth): {1:resistance, 20:immunity} to earth damage (the GM's call which damage that is).",
        "when": "",
        "label": ""
       }
@@ -105,11 +78,11 @@
     },
     {
      "name": "Water",
-     "text": "Immune to damage from water (the GM says which damage that covers).",
+     "text": "Resistance to damage from water (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is).",
+       "value": "Elemental Mastery (Water): {1:resistance, 20:immunity} to water damage (the GM's call which damage that is).",
        "when": "",
        "label": ""
       }
@@ -117,11 +90,11 @@
     },
     {
      "name": "Air",
-     "text": "Immune to damage from air (the GM says which damage that covers).",
+     "text": "Resistance to damage from air (immune from 20th level; the GM says which damage that covers).",
      "rules": [
       {
        "key": "note.save",
-       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is).",
+       "value": "Elemental Mastery (Air): {1:resistance, 20:immunity} to air damage (the GM's call which damage that is).",
        "when": "",
        "label": ""
       }
@@ -133,7 +106,7 @@
  },
  "effects": [],
  "folder": "ZG8DQdeeseEzUuh9",
- "sort": 12,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

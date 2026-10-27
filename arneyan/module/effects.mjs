@@ -407,8 +407,11 @@ export class ModSet {
     if (r.when) {
       // A resistance, immunity, weakness or sense only some of the time names what it is ("Resistance slashing 3").
       const TRAIT_WORD = { resist: "Resistance", immune: "Immune", vuln: "Vulnerable", sense: "Sense" };
+      // Damage in dice (Blessed Weapon's +1d6 vs evil) reads as its dice, not as a number ("+0").
+      const dice = (/damage$/.test(key) || key.startsWith("damage")) && key !== "damage.reroll" ? evalTerm(r.value, r.data) : "";
+      const amount = /d\d/i.test(dice) ? (/^[+-]/.test(dice) ? dice : `+${dice}`) : describe(r, evalNumber(r.value, r.data));
       const what = Object.hasOwn(TRAIT_WORD, key) ? `${TRAIT_WORD[key]} ${String(r.value ?? "").replace(/^condition:/, "")}`
-        : `${describe(r, evalNumber(r.value, r.data))} ${r.key.startsWith("adv.") || r.key.startsWith("note.") ? "" : `(${r.key})`}`;
+        : `${amount} ${r.key.startsWith("adv.") || r.key.startsWith("note.") ? "" : `(${r.key})`}`;
       const text = `${r.label}: ${what} ${r.when}`.replace(/\s+/g, " ").trim();
       const group = NOTE_GROUP(key);
       this.situational.push({ label: r.label, text, group });

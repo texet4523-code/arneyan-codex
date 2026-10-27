@@ -27,7 +27,7 @@ const item = (name, className, rules) => ({ type: "ability", name, system: { cla
 const cls = (name, levels) => ({ type: "class", name, system: { levels } });
 const rulesAt = (lvl, rules) => collectRules({ items: [cls("Monk", lvl), item("Iron Discipline", "Monk", rules)] }, { level: lvl });
 const iron = [{ key: "save", value: "1:1, 3:2, 6:3", when: "vs poison" }, { key: "save", value: "9:3, 11:4", when: "vs charm" }];
-assert.deepEqual(rulesAt(4, iron).map(r => r.value), ["2"], "Iron Mind isn't there before 9th");
+assert.deepEqual(rulesAt(4, iron).map(r => r.value), ["2"], "Iron Mind isn't there before 8th");
 assert.deepEqual(rulesAt(11, iron).map(r => r.value), ["3", "4"]);
 
 /* ModSet: the biggest dice for a .dice key. */
@@ -109,11 +109,12 @@ assert.equal(levelText("10:00 curfew: Disadvantage on Stealth", 5), "10:00 curfe
 assert.equal(levelText("3: roll on the table", 5), "3: roll on the table");
 assert.ok(isLevelTable("1:1d4, 7:1d10") && isLevelTable("1:-1, 18:-2") && !isLevelTable("6:Aura, 15:x"));
 assert.equal(collectRules({ items: [item("Curfew", "", [{ key: "note.check", value: "10:00 curfew: Disadvantage" }])] }, { level: 3 }).length, 1, "a homebrew note that starts with a time stays");
-// A reminder whose table starts later is left out until then (Aura of Courage from 6th).
+// A reminder whose table starts later is left out until then (Aura of Courage from 2nd, books v0.10.22).
 assert.ok(tableNotYet("allies within {6:10ft, 15:30ft}", 5) && !tableNotYet("allies within {6:10ft, 15:30ft}", 6));
 const aura = feature("Divine Protection")("Paladin").system.rules.find(r => /Aura of Courage/.test(String(r.value)) && r.key === "note.save");
 const pal = lvl => collectRules({ items: [cls("Paladin", lvl), item("Divine Protection", "Paladin", [aura])] }, { level: lvl });
-assert.equal(pal(5).length, 0);
+assert.equal(pal(1).length, 0);
+assert.equal(pal(2)[0].value, "Aura of Courage: allies within 10ft gain +4 on saves vs fear.");
 assert.equal(pal(15)[0].value, "Aura of Courage: allies within 30ft gain +4 on saves vs fear.");
 // A shield switches off the table AC ("Armour or a shield replaces the monk's table AC").
 const shield = { type: "armour", name: "Shield", system: { category: "shield", ac: 1, magic: 0, equipped: true } };
@@ -201,3 +202,12 @@ assert.ok(posted.some(t => /Fated Survivor: \+1 Luck/.test(t)));
 const wood = feature("Woodcraft")("Ranger").system.rules;
 assert.ok(wood.some(r => r.key === "adv.skill" && /wilderness traps/.test(r.when)) && wood.some(r => r.key === "skill" && /wilderness traps/.test(r.when) && /^1:2/.test(r.value)));
 console.log("OK level scaling");
+
+// 0.10.65: a situational damage reminder in dice reads as its dice (Blessed Weapon: "+1d6", not "+0").
+{
+  const { ModSet } = await import("../arneyan/module/effects.mjs");
+  const notes = new ModSet([{ key: "damage", value: "+1d6", when: "vs evil creatures (radiant)", label: "Blessed Weapon", data: {} },
+    { key: "damage", value: 2, when: "Flank Attack", label: "Battle Space", data: {} }]).situational.map(x => x.text);
+  assert.deepEqual(notes, ["Blessed Weapon: +1d6 (damage) vs evil creatures (radiant)", "Battle Space: +2 (damage) Flank Attack"]);
+  console.log("OK 0.10.65 dice in damage reminders");
+}

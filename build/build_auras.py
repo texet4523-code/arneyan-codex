@@ -12,16 +12,22 @@ import glob, json, os, re
 from lib import OUT
 
 COURAGE_RADIUS = [[1, 10], [15, 30], [20, 50]]  # 10ft, 30ft from 15th, 50ft from 20th
+# Books v0.10.22 (B7): Aura of Courage from 2nd, Aura of Devotion from 9th, Divine Monolith from 9th (10ft, +1 on saves
+# for you and allies) and improved at 22nd (20ft, every creature in it: +2 on checks and saves, immune to death
+# attacks). The Cleric's own Monolith bonus is on the feature (approved.json), so the aura leaves the Cleric out.
 
 BY_NAME = {
     ("class-features", "Divine Protection"): [{
-        "key": "courage", "name": "Aura of Courage", "minLevel": 6, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
+        "key": "courage", "name": "Aura of Courage", "minLevel": 2, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
         "rules": [{"key": "save", "value": "4", "when": "vs fear", "label": "Aura of Courage"}]}],
     ("class-features", "Aura of Devotion"): [{
-        "key": "devotion", "name": "Aura of Devotion", "minLevel": 18, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": True,
+        "key": "devotion", "name": "Aura of Devotion", "minLevel": 9, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": True,
         "rules": [{"key": "adv.save", "value": "1", "when": "vs charm", "label": "Aura of Devotion"}]}],
     ("class-features", "Divine Monolith"): [{
-        "key": "monolith", "name": "Divine Monolith", "radius": 20, "who": "all", "includeSelf": True,
+        "key": "monolith", "name": "Divine Monolith", "radius": [[1, 10], [22, 20]], "who": "allies", "includeSelf": False,
+        "rules": [{"key": "save", "value": "1:1, 22:2", "label": "Divine Monolith"}, {"key": "check", "value": "22:2", "label": "Divine Monolith"},
+                  {"key": "note.save", "value": "Divine Monolith: {22:immune to death attacks}.", "label": "Divine Monolith"}]}, {
+        "key": "monolith-all", "name": "Divine Monolith", "minLevel": 22, "radius": 20, "who": "enemies", "includeSelf": False,
         "rules": [{"key": "check", "value": "2", "label": "Divine Monolith"}, {"key": "save", "value": "2", "label": "Divine Monolith"},
                   {"key": "note.save", "value": "Divine Monolith: immune to death attacks.", "label": "Divine Monolith"}]}],
     ("spells", "Spirit Guardians"): [{

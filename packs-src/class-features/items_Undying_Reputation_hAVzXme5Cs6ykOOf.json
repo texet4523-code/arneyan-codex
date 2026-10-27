@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> The Knight's name alone precedes them. Once per week, when reduced below half HP in combat witnessed by at least one ally or enemy, immediately gain <strong>temporary HP</strong> equal to Charisma modifier × Knight level and <strong>Advantage</strong> on your first attack roll each round until the end of the encounter — legend refuses to let the Knight fall quietly.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per week, when reduced below half HP in combat witnessed by at least one ally or enemy, gain <strong>temporary HP</strong> equal to your Charisma modifier × half your Knight level.</li><li>24th level: the <strong>temporary HP</strong> equal your Charisma modifier × your full Knight level, and you have <strong>Advantage</strong> on your first attack roll each round until the encounter ends</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,17 +19,17 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 24,
+  "level": 13,
   "className": "Knight",
   "activities": [
    {
     "name": "Undying Reputation",
     "kind": "temp",
-    "formula": "@cha.mod*@cl",
+    "formula": "@cha.mod*{13:floor(@cl/2), 24:@cl}",
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times Knight level and Advantage on your first attack each round.",
+    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times {13:half your Knight level, 24:your Knight level}. From 24th level you also have Advantage on your first attack each round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -57,7 +57,7 @@
     "rules": [
      {
       "key": "adv.attack.first",
-      "value": "1",
+      "value": "24:1",
       "when": "",
       "label": ""
      }
@@ -67,7 +67,7 @@
  },
  "effects": [],
  "folder": "CGUojR3z1P04gXa2",
- "sort": 18,
+ "sort": 13,
  "ownership": {
   "default": 0
  },

@@ -125,10 +125,9 @@ KITS = {
     },
     "Boldock Wall-Knights (Knight)": {
         "name": "Wall-Forged Dread", "level": 5, "replaces": "Demoralise",
-        "description": "<p>Your Demoralise replaces the usual one. Once per day, enemies suffer −6 to Charisma checks and must make a Will "
-                       "save against your Class Save DC or have Disadvantage on all their attack rolls. It lasts rounds equal to your "
-                       "Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th and 5,000 at 16th. It "
-                       "cannot combine with Inspire or Embolden.</p>",
+        # Books v0.10.22 wording: as Demoralise, only harsher (the same rules as the v0.10.4 text).
+        "description": "<p>Your Demoralise is harsher: enemies suffer −6 to Charisma checks and, on a failed Will save, have "
+                       "Disadvantage on all their attack rolls. Otherwise it works as Demoralise.</p>",
         "uses": {"value": 1, "max": 1, "per": "day"}, "save": "will",
         "applies": [{"name": "Demoralised (Wall-Forged Dread)", "target": "target", "rounds": "@cl", "statuses": [],
                      "rules": [{"key": "check.cha", "value": "-6", "when": "", "label": ""}]},

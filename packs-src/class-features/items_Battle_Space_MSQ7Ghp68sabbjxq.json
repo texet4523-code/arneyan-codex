@@ -5,27 +5,72 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>+1 AC at 13th unless wielding a two-handed weapon</li></ul>",
+  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>Once per encounter, when you attack, you also gain the benefit of Dodge until your next turn</li><li>Flank Attacks have <strong>Advantage</strong> on the attack roll</li><li>13th level: +1 AC unless wielding a two-handed weapon, and Flank Attacks deal +2 damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
   },
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 13,
+  "level": 3,
   "className": "Fighter",
+  "activities": [
+   {
+    "name": "Battle Space",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ],
   "rules": [
    {
-    "key": "ac",
+    "key": "adv.attack",
     "value": "1",
+    "when": "Flank Attack",
+    "label": ""
+   },
+   {
+    "key": "ac",
+    "value": "13:1",
     "when": "unless wielding a two-handed weapon",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "13:2",
+    "when": "Flank Attack",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Battle Space: {17:a Flank Attack also deals +1 damage die}.",
+    "when": "",
     "label": ""
    }
   ],
@@ -34,7 +79,7 @@
  },
  "effects": [],
  "folder": "iosSCPSOMRgZoPgx",
- "sort": 5,
+ "sort": 3,
  "ownership": {
   "default": 0
  },

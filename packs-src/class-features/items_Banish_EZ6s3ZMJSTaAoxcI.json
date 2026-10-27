@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Turn-undead-equivalent ability used against extraplanar creatures.</li><li>Banishes for 21+ days</li><li>Affects <strong>1d12</strong> minor demons or devils</li><li>Affects <strong>1d6</strong> major demons or devils</li><li>Affects 1 demon lord or arch devil</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your Turn Undead also works on fiends and other extraplanar creatures, as if you were a Cleric 4 levels lower. A fiend or other extraplanar creature that fails is driven back to its own plane if its Level is no more than half your Cleric level; otherwise it is turned.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 21,
+  "level": 5,
   "className": "Cleric",
   "activities": [
    {
@@ -29,8 +29,33 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Turn extraplanar creatures as you would undead, banishing 1d12 minor or 1d6 major demons or devils, or one lord, for 21+ days.",
+    "text": "Turn fiends and other extraplanar creatures as you would undead, as a Cleric 4 levels lower. One that fails is driven back to its own plane if its Level is no more than half your Cleric level; otherwise it is turned.",
     "minLevel": 0,
+    "maxLevel": 20,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   },
+   {
+    "name": "Banish",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Turn fiends and other extraplanar creatures as you would undead, at your full level, banishing 1d12 minor or 1d6 major demons or devils, or one lord, for 21+ days.",
+    "minLevel": 21,
     "maxLevel": 0,
     "cost": 0,
     "per": "",
@@ -51,7 +76,7 @@
  },
  "effects": [],
  "folder": "DB2nn2x2D5HVxzrP",
- "sort": 8,
+ "sort": 5,
  "ownership": {
   "default": 0
  },

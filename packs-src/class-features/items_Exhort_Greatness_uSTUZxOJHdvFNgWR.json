@@ -20,7 +20,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 9,
+  "level": 5,
   "className": "Bard",
   "activities": [
    {
@@ -53,7 +53,7 @@
    {
     "name": "Exhorted",
     "target": "target",
-    "rounds": "@cl+1",
+    "rounds": "max(10, @cl+1)",
     "statuses": [],
     "rules": [
      {
@@ -68,7 +68,7 @@
  },
  "effects": [],
  "folder": "qcKyYEwYgLQLpEqg",
- "sort": 10,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

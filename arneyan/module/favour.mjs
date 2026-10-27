@@ -122,7 +122,11 @@ export function npcAllegiance({ override = "", type = "" } = {}) {
   const set = readAlignment(override) || String(override ?? "").trim();
   if (set) return { value: set, from: "Its entry, or set by the GM" };
   const t = String(type ?? "").trim();
-  for (const [re, al] of NATURE) if (re.test(t)) return { value: al, from: `By its nature (${t.split("(")[0].trim().toLowerCase()})` };
+  // Named by the kind that sets it: an Imp ("fiend (devil)") is Lawful Evil as a devil, not as a fiend.
+  for (const [re, al] of NATURE) {
+    const m = t.match(re);
+    if (m) return { value: al, from: `By its nature (${m[0].toLowerCase()})` };
+  }
   return { value: UNALIGNED, from: "Serves no power" };
 }
 
