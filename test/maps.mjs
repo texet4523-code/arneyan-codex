@@ -170,8 +170,34 @@ assert.match(empty, /No maps found in <strong>maps<\/strong>/);
   // ...but a top folder of Day/Night versions is.
   const top = M.buildIndex(["maps/Ruined Keep [30x30]/Day.jpg", "maps/Ruined Keep [30x30]/Night.jpg"], "maps");
   assert.deepEqual(top.map(m => [m.name, m.variants.length]), [["Ruined Keep", 2]]);
-  // Tile packs aren't skipped any more.
-  assert.equal(M.buildIndex(["maps/C/Dungeon Tiles/Hall [20x20].jpg"], "maps").length, 1);
+  // Review 3: versions with grids or tiers in their names, and folder names with words the files lack.
+  const one = (files, name) => {
+    const m = M.buildIndex(files, "maps");
+    assert.equal(m.length, 1, `${name}: ${m.map(x => `${x.creator}/${x.name}`).join(" | ")}`);
+    assert.equal(m[0].name, name);
+    assert.equal(new Set(m[0].variants.map(v => v.label)).size, files.length, m[0].variants.map(v => v.label).join(" | "));
+  };
+  one(["maps/Ruined Keep/Day [30x30].jpg", "maps/Ruined Keep/Night [30x30].jpg"], "Ruined Keep");
+  one(["maps/Ruined Keep/Day - $5 Rewards.jpg", "maps/Ruined Keep/Night - $5 Rewards.jpg"], "Ruined Keep");
+  one(["maps/Goblin Cave (Animated)/Goblin Cave.webm", "maps/Goblin Cave (Animated)/Goblin Cave Night.webm"], "Goblin Cave (Animated)");
+  one(["maps/Ancient Temple (Interior & Exterior)/Ancient Temple Interior.jpg", "maps/Ancient Temple (Interior & Exterior)/Ancient Temple Exterior.jpg"], "Ancient Temple (Interior & Exterior)");
+  one(["maps/Swamp Hut Gridless/Swamp Hut.jpg", "maps/Swamp Hut Gridless/Swamp Hut Night.jpg"], "Swamp Hut Gridless");
+  // ...but a creator's name on every file, or numbered files, are separate maps.
+  const many = files => M.buildIndex(files, "maps").length;
+  assert.equal(many(["maps/Czepeku/Czepeku - Swamp Hut [30x20].jpg", "maps/Czepeku/Czepeku - Old Mill [20x20].jpg", "maps/Czepeku/Czepeku - Fen [40x40].jpg"]), 3);
+  assert.equal(many(["maps/Cze/01.jpg", "maps/Cze/02.jpg", "maps/Cze/03.jpg"]), 3);
+  // Tile folders are still left out (they're pieces, not maps).
+  assert.equal(many(["maps/Forgotten Adventures/Tiles/Floor [20x20].jpg"]), 0);
+  // Format twins read as their format.
+  assert.deepEqual(M.buildIndex(["maps/C/Fort [30x30]/Fort.jpg", "maps/C/Fort [30x30]/Fort.webp"], "maps")[0].variants.map(v => v.label), ["JPG", "WEBP"]);
+}
+// Review 3: names and grids.
+assert.equal(M.parseMapName("Patreon Square").name, "Patreon Square");
+assert.equal(M.parseMapName("Rewards Hall [$5 Tier]").name, "Rewards Hall");
+assert.deepEqual(M.gridIn("Map [1x1] 30x20"), { w: 30, h: 20, tagged: false });
+assert.deepEqual(M.gridIn("Tavern [300x200] [30x20]"), { w: 30, h: 20, tagged: true });
+assert.deepEqual(M.gridIn("Keep 4x4 30x20"), { w: 30, h: 20, tagged: false });
+{
 }
 
 console.log("maps: all checks pass");

@@ -20,6 +20,8 @@ const THUMB_WIDTH = 360;
 const LOAD_TIMEOUT = 20000;
 /** A full-size map for a new scene can be big (and the server slow): give it longer. */
 const SCENE_TIMEOUT = 120000;
+/** A thumbnail's download, read and decode together: a 40 MB map on a slow line needs a minute or more. */
+const THUMB_TIMEOUT = 120000;
 
 export const IMAGE = /\.(webp|png|jpe?g|gif|avif)$/i;
 export const VIDEO = /\.(webm|mp4|m4v)$/i;
@@ -28,7 +30,7 @@ const MEDIA = /\.(webp|png|jpe?g|gif|avif|webm|mp4|m4v)$/i;
  * Folders that hold no maps: Mac zip leftovers, hidden folders, and token, asset and prop packs wherever the word sits
  * in the name ("Mine Tokens", "Tokens & Assets", "Assets [Free]").
  */
-export const SKIP_DIRS = /^__macosx$|^\.|(^|[^a-z])(assets?|tokens?|props?|icons?|thumbs?|thumbnails?|portraits?|handouts?)([^a-z]|$)/i;
+export const SKIP_DIRS = /^__macosx$|^\.|(^|[^a-z])(assets?|tokens?|props?|tiles?|icons?|thumbs?|thumbnails?|portraits?|handouts?)([^a-z]|$)/i;
 /** Files that are never maps: Mac "._x.jpg" leftovers and other hidden files. */
 const SKIP_FILE = /^\./;
 /** A pack's version folders fold into the pack: "Pack/Gridless/x.jpg" is the Gridless version of Pack. */
@@ -37,7 +39,7 @@ export const VARIANT_DIR = /^(grid(ded|less)?|no[\s_-]?grid|with(out)?[\s_-]?gri
 /** Words too common to say a picture is named after its folder. */
 const COMMON = new Set(["the", "and", "of", "map", "maps", "battle", "battlemap", "battlemaps", "pack", "collection", "part", "free", "set", "vol", "volume"]);
 /** Words that only name a version of a picture. */
-const VARIANT_WORD = /^(day|night|dusk|dawn|grid|gridded|gridless|nogrid|animated|hd|4k|uhd|light|dark|original|clean|alt|v\d+|winter|summer|autumn|spring|rain|fog|snow|jpg|png|webp)$/i;
+const VARIANT_WORD = /^(day|night|dusk|dawn|grid|gridded|gridless|nogrid|animated|static|hd|4k|uhd|light|dark|original|clean|alt|v\d+|winter|summer|autumn|spring|rain|fog|snow|interior|exterior|inside|outside|upper|lower|ground|floor|level|top|bottom|jpg|png|webp)$/i;
 
 /** Map types, in the order the browser shows them, with the words in a name that suggest each. */
 export const MAP_TYPES = [
@@ -85,10 +87,11 @@ const TAG = /[[(]\s*(?:\d{1,3}\s*[x×]\s*\d{1,3}|various|varies|grid(?:ded|less)
  */
 export function gridIn(text) {
   const s = String(text ?? "");
-  const g = s.match(GRID);
-  if (g) { const w = Number(g[1]), h = Number(g[2]); return squares(w) && squares(h) ? { w, h, tagged: true } : null; }
-  for (const m of s.matchAll(BARE_GRID)) { const w = Number(m[2]), h = Number(m[3]); if (squares(w) && squares(h)) return { w, h, tagged: false }; }
-  return null;
+  for (const m of s.matchAll(new RegExp(GRID.source, "gi"))) { const w = Number(m[1]), h = Number(m[2]); if (squares(w) && squares(h)) return { w, h, tagged: true }; }
+  // Bare sizes: the last one that counts ("Keep 4x4 30x20" is 30 × 20; a size usually ends the name).
+  let found = null;
+  for (const m of s.matchAll(BARE_GRID)) { const w = Number(m[2]), h = Number(m[3]); if (squares(w) && squares(h)) found = { w, h, tagged: false }; }
+  return found;
 }
 /** A name with its bare grid sizes taken out (only the ones that count as grids). */
 const dropBareGrid = s => String(s).replace(BARE_GRID, (all, pre, w, h) => squares(Number(w)) && squares(Number(h)) ? `${pre} ` : all);
@@ -105,14 +108,16 @@ export function parseMapName(raw) {
   const tier = /\$\s*\d+/.test(s);
   s = dropBareGrid(s.replace(TAG, " "))
     .replace(/\$\s*\d+\s*(?:free\s+)?(?:rewards?|tier|patrons?)?/gi, " ")
-    .replace(/\bpatreon(?:\s+rewards?)?\b/gi, " ")
-    .replace(tier ? /\brewards?\b/gi : /$^/, " ")
+    .replace(/\bpatreon\s+rewards?\b/gi, " ")
+    .replace(tier ? /\bpatreon\b/gi : /$^/, " ")
     .replace(/\s+[-–—|]+(?=\s|$)/g, " ")          // " - " separators left between words
     .replace(/^\s*[-–—|]+\s*/g, "")
     .replace(/\s{2,}/g, " ")
     .trim()
     .replace(/[-–—|,.\s]+$/, "")
     .trim();
+  // "$1 Fey Village Rewards": with a tier, a "Rewards" left at the very end is the tier's.
+  if (tier) s = s.replace(/[\s-–—|]*\brewards?$/i, "").trim();
   return { name: s || original.trim(), w: g?.w ?? null, h: g?.h ?? null };
 }
 
@@ -188,12 +193,14 @@ export function buildIndex(paths, root, overrides = {}) {
   const packAtTop = new Set();
   for (const [dir, list] of top) {
     if (deeper.has(dir)) continue;
-    // Named after it: every word of the folder's name (bar the common ones) is in the file's, or the file is named
-    // only for its version ("Day.jpg", "Night.jpg").
-    const own = wordsOf(parseMapName(dir).name).filter(w => w.length >= 3 && !COMMON.has(w));
+    // A version of one map: once the folder's own words, version words ("Night", "Gridless") and numbers are taken
+    // out, nothing is left of the file's name, and it had a folder or version word to begin with ("Day [30x30].jpg",
+    // "Goblin Cave Night.webm"). "Czepeku - Old Mill.jpg" leaves "old mill": a map of its own; so does "01.jpg".
+    const own = new Set(wordsOf(parseMapName(dir).name).filter(w => !COMMON.has(w)));
     const named = list.filter(e => {
-      const words = wordsOf(e.file);
-      return words.every(w => VARIANT_WORD.test(w) || /^\d+$/.test(w)) || (own.length && own.every(w => words.includes(w)));
+      const words = wordsOf(parseMapName(e.file).name);
+      const left = words.filter(w => !own.has(w) && !VARIANT_WORD.test(w) && !/^\d+$/.test(w) && !COMMON.has(w));
+      return !left.length && words.some(w => own.has(w) || VARIANT_WORD.test(w));
     }).length;
     if (named * 2 > list.length) packAtTop.add(dir);
   }
@@ -214,24 +221,32 @@ export function buildIndex(paths, root, overrides = {}) {
     const grids = [gridIn(g.packName), ...g.files.map(e => gridIn(e.file))].filter(Boolean);
     const grid = grids.find(x => x.tagged) ?? grids[0] ?? null;
     const w = grid?.w ?? null, h = grid?.h ?? null;
-    let variants = g.files.map(e => ({ path: e.path, label: variantLabel(e.file, parsed.name, e.sub), video: VIDEO.test(e.path) }));
+    let variants = g.files.map(e => ({ path: e.path, label: variantLabel(e.file, parsed.name, e.sub), video: VIDEO.test(e.path), dir: (e.sub ?? []).join("/") }));
     variants.sort((a, b) => coverScore(a) - coverScore(b) || a.path.localeCompare(b.path));
-    // Every version gets a name, and no two the same: a clash adds the file's own name, then its type, then a number.
+    // Every version gets a name, and no two the same. Where two clash, what tells them apart is added: the file's
+    // own name, then the folder it's in, then its type (JPG, WEBP), then a number.
     if (variants.length > 1) {
       const pick = (list, make) => {
-        const count = new Map();
-        for (const v of list) count.set(v.label, (count.get(v.label) ?? 0) + 1);
-        return list.map(v => count.get(v.label) > 1 ? { ...v, label: make(v) } : v);
+        const groups = new Map();
+        for (const v of list) groups.set(v.label, [...(groups.get(v.label) ?? []), v]);
+        return list.map(v => {
+          const group = groups.get(v.label);
+          if (group.length < 2) return v;
+          const label = make(v, group);
+          return label ? { ...v, label } : v;
+        });
       };
+      const differ = (group, f) => new Set(group.map(f)).size > 1;
+      const own = v => v.path.split("/").pop().replace(MEDIA, "");
+      const ext = v => (v.path.match(MEDIA)?.[1] ?? "").toUpperCase();
       variants = variants.map(v => ({ ...v, label: v.label || "Main" }));
-      variants = pick(variants, v => {
-        const own = v.path.split("/").pop().replace(MEDIA, "");
-        return own && !v.label.toLowerCase().includes(own.toLowerCase()) ? (v.label === "Main" ? own : `${v.label} (${own})`) : v.label;
-      });
-      variants = pick(variants, v => `${v.label} ${(v.path.match(MEDIA)?.[1] ?? "").toUpperCase()}`.trim());
+      variants = pick(variants, (v, group) => differ(group, own) ? (v.label === "Main" ? own(v) : `${v.label} (${own(v)})`) : null);
+      variants = pick(variants, (v, group) => differ(group, x => x.dir) && v.dir ? `${v.label} (${v.dir} folder)` : null);
+      variants = pick(variants, (v, group) => differ(group, ext) ? (v.label === "Main" ? ext(v) : `${v.label} ${ext(v)}`) : null);
       const n = new Map();
       variants = pick(variants, v => { const k = (n.get(v.label) ?? 0) + 1; n.set(v.label, k); return `${v.label} ${k}`; });
     }
+    variants = variants.map(({ dir, ...v }) => v);
     const guessed = guessTypes(parsed.name, g.packName);
     const fix = overrides?.[g.rel];
     const set = Array.isArray(fix) ? fix.filter(t => TYPE_KEYS.has(t)) : null;
@@ -412,7 +427,7 @@ async function thumbBlob(path) {
       return b;
     })();
     work.catch(() => {});
-    const bmp = await withTimeout(work, LOAD_TIMEOUT, path, () => { timedOut = true; abort.abort(); });
+    const bmp = await withTimeout(work, THUMB_TIMEOUT, path, () => { timedOut = true; abort.abort(); });
     source = bmp; width = bmp.width; height = bmp.height; release = () => bmp.close?.();
   } else {
     const m = await loadMedia(path);
