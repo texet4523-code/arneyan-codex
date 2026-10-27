@@ -135,17 +135,53 @@ export function visionTokenClass(Base) {
     _arnVision() {
       this._arnDone = true;
       try {
-        if (!autoOn()) return;
         const actor = this.actor;
         if (!actor || !["character", "npc", "party"].includes(actor.type)) return;
+        // A party token starts again from its saved light, sight and detection: an unlinked one is prepared again in
+        // place, which would otherwise keep travel mode's light after travel mode ends.
+        const party = actor.type === "party";
+        if (party) restoreSaved(this);
+        // Travel mode on a hex map: fog of war instead of the members' darkvision (Kieran, 27 Oct 2026). It doesn't
+        // depend on "Token vision follows senses", which is about the creatures' senses.
+        if (party && this.parent && travelOn(this)) { travelSight(this, this.parent); return; }
+        if (!autoOn()) return;
         const want = visionFor(actor);
         const defaults = CONFIG.Canvas?.visionModes?.[want.mode]?.vision?.defaults ?? {};
         applyVision(this, want, savedSight(this), defaults);
-        // Travel mode on a hex map: fog of war instead of the members' darkvision (Kieran, 27 Oct 2026).
-        if (actor.type === "party" && actor.flags?.[SYS]?.travel?.mode && this.parent) travelSight(this, this.parent);
       } catch (err) { console.warn("Arneyan | token vision", err); }
     }
   };
+}
+
+/**
+ * Is the party on this token in travel mode? An unlinked token reads the party itself: before 0.10.57 travel state was
+ * written onto the token's own copy, and that old copy would win over the party's current setting.
+ */
+export function travelOn(token) {
+  const actor = token.actorLink ? token.actor : (game.actors?.get?.(token.actorId) ?? token.actor);
+  return !!actor?.flags?.[SYS]?.travel?.mode;
+}
+
+/** A token's prepared light, sight and detection modes put back to its saved data (nothing is saved). */
+export function restoreSaved(token) {
+  const src = token._source ?? {};
+  const fields = token.schema?.fields ?? {};
+  const clone = v => foundry.utils.deepClone(v);
+  if (token.light && src.light) {
+    if (typeof token.light.reset === "function") token.light.reset();
+    else Object.assign(token.light, clone(src.light));
+  }
+  if (token.sight && src.sight) {
+    const init = fields.sight?.initialize ? fields.sight.initialize(clone(src.sight), token) : clone(src.sight);
+    Object.assign(token.sight, init);
+  }
+  if (src.detectionModes !== undefined && token.detectionModes) {
+    const init = fields.detectionModes?.initialize ? fields.detectionModes.initialize(clone(src.detectionModes), token) : clone(src.detectionModes);
+    const dm = token.detectionModes;
+    if (Array.isArray(dm)) dm.splice(0, dm.length, ...(Array.isArray(init) ? init : []));
+    else if (dm && typeof dm === "object") { for (const k of Object.keys(dm)) delete dm[k]; Object.assign(dm, init ?? {}); }
+  }
+  return token;
 }
 
 /** Travel mode's sight: hexes around the party token, by day and at night (darkness half or more). */
@@ -161,15 +197,24 @@ export function travelSight(token, scene) {
   const grid = scene?.grid;
   if (!grid || grid.type === CONST.GRID_TYPES?.SQUARE || grid.type === CONST.GRID_TYPES?.GRIDLESS || grid.type === 1 || grid.type === 0) return token;
   const dist = Number(grid.distance) || 1;
-  const dark = Number(scene.environment?.darknessLevel ?? 0);
+  // The saved darkness: the prepared value lags while a jump fades in.
+  const dark = Number(scene._source?.environment?.darknessLevel ?? scene.environment?.darknessLevel ?? 0);
   const hexes = dark >= 0.5 ? TRAVEL_SIGHT.night : TRAVEL_SIGHT.day;
-  const range = (hexes + 0.5) * dist;
+  // Foundry adds half the token's width to sight and light, so N hexes reach the far edge of the Nth ring.
+  const range = hexes * dist;
   Object.assign(token.sight, { enabled: true, visionMode: "basic", range, angle: 360, saturation: 0, brightness: 0, contrast: 0, attenuation: 0.1, color: null });
   Object.assign(token.light, { dim: range, bright: range, angle: 360, color: null, alpha: 0.5, luminosity: 0.5, coloration: 1, attenuation: 0.5, negative: false });
   if (token.light.animation) token.light.animation.type = null;
   const dm = token.detectionModes;
-  const basic = Array.isArray(dm) ? dm.find(m => m.id === "basicSight") : dm?.basicSight;
-  if (basic) basic.range = range;
+  // Only sight in the travel range: the members' other senses (feet read as miles here) are off.
+  if (Array.isArray(dm)) {
+    for (const m of dm) if (m.id !== "basicSight") m.enabled = false;
+    const basic = dm.find(m => m.id === "basicSight");
+    if (basic) basic.range = range;
+  } else if (dm && typeof dm === "object") {
+    for (const [k, m] of Object.entries(dm)) if (k !== "basicSight" && m) m.enabled = false;
+    if (dm.basicSight) dm.basicSight.range = range;
+  }
   return token;
 }
 
@@ -349,6 +394,8 @@ export function registerTokens() {
   Hooks.on("canvasReady", () => schedule("all"));
   // Travel mode's sight shrinks at night: the scene's darkness moving (the clock) redraws the party token.
   Hooks.on("updateScene", (scene, changes) => {
-    if (scene.id === canvas?.scene?.id && foundry.utils.hasProperty(changes, "environment.darknessLevel")) { const p = activeParty(); if (p) schedule(p); }
+    if (scene.id !== canvas?.scene?.id || !foundry.utils.hasProperty(changes, "environment.darknessLevel")) return;
+    const p = activeParty();
+    if (p?.flags?.[SYS]?.travel?.mode && ![0, 1].includes(scene.grid?.type)) schedule(p);
   });
 }

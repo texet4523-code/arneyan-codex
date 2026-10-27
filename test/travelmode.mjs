@@ -110,14 +110,35 @@ console.log("OK 0.10.44 review fixes");
 {
   globalThis.CONST ??= {};
   CONST.GRID_TYPES ??= { GRIDLESS: 0, SQUARE: 1, HEXODDR: 2 };
-  const { travelSight, TRAVEL_SIGHT } = await import("../arneyan/module/tokens.mjs");
-  const tok = () => ({ sight: { range: 120, visionMode: "darkvision", saturation: -1 }, light: { dim: 0, bright: 0, animation: { type: "torch" } }, detectionModes: [{ id: "basicSight", range: 120 }] });
+  globalThis.foundry ??= {};
+  foundry.utils ??= {};
+  foundry.utils.deepClone ??= v => structuredClone(v);
+  globalThis.game ??= {};
+  const { travelSight, TRAVEL_SIGHT, travelOn, restoreSaved } = await import("../arneyan/module/tokens.mjs");
+  const tok = () => ({ sight: { range: 120, visionMode: "darkvision", saturation: -1 }, light: { dim: 0, bright: 0, animation: { type: "torch" } }, detectionModes: [{ id: "basicSight", range: 120 }, { id: "seeAll", enabled: true, range: 60 }] });
   const hex = d => ({ grid: { type: 2, distance: 5 }, environment: { darknessLevel: d } });
   const day = travelSight(tok(), hex(0));
-  assert.deepEqual([day.sight.visionMode, day.sight.range, day.sight.saturation, day.light.dim, day.light.bright, day.detectionModes[0].range], ["basic", 12.5, 0, 12.5, 12.5, 12.5]);
-  assert.equal(travelSight(tok(), hex(0.8)).sight.range, (TRAVEL_SIGHT.night + 0.5) * 5, "1 hex at night");
+  // Foundry adds half the token's width, so 2 hexes of range reach the far edge of the 2nd ring.
+  assert.deepEqual([day.sight.visionMode, day.sight.range, day.sight.saturation, day.light.dim, day.light.bright, day.detectionModes[0].range], ["basic", 10, 0, 10, 10, 10]);
+  assert.equal(day.detectionModes[1].enabled, false, "members' other senses are off in travel mode");
+  assert.equal(travelSight(tok(), hex(0.8)).sight.range, TRAVEL_SIGHT.night * 5, "1 hex at night");
+  // The saved darkness wins over the prepared value while a jump fades in.
+  assert.equal(travelSight(tok(), { ...hex(0.1), _source: { environment: { darknessLevel: 0.9 } } }).sight.range, 5, "night as soon as it's saved");
   assert.equal(travelSight(tok(), { grid: { type: 1, distance: 5 }, environment: {} }).sight.visionMode, "darkvision", "a square map is left alone");
+  // Keyed detection modes (v14).
+  const keyed = travelSight({ sight: {}, light: {}, detectionModes: { basicSight: { range: 120 }, seeAll: { enabled: true, range: 60 } } }, hex(0));
+  assert.deepEqual([keyed.detectionModes.basicSight.range, keyed.detectionModes.seeAll.enabled], [10, false]);
+  // An unlinked token reads travel mode from the party, not its own old copy.
+  game.actors = { get: id => (id === "P" ? { flags: { arneyan: { travel: { mode: false } } } } : null) };
+  assert.equal(travelOn({ actorLink: false, actorId: "P", actor: { flags: { arneyan: { travel: { mode: true } } } } }), false);
+  assert.equal(travelOn({ actorLink: true, actor: { flags: { arneyan: { travel: { mode: true } } } } }), true);
+  // A party token prepared again in place gets its saved light, sight and detection back.
+  const lit = travelSight({ ...tok(), _source: { light: { dim: 0, bright: 0 }, sight: { range: 0, visionMode: "basic", saturation: 0 }, detectionModes: [] } }, hex(0));
+  restoreSaved(lit);
+  assert.deepEqual([lit.light.dim, lit.light.bright, lit.sight.range, lit.detectionModes.length], [0, 0, 0, 0]);
   const tk = fs.readFileSync(`${root}module/tokens.mjs`, "utf8");
-  assert.ok(tk.includes("actor.flags?.[SYS]?.travel?.mode && this.parent) travelSight(this, this.parent)") && tk.includes("flags.${SYS}.travel.mode`)) schedule(actor)"));
+  assert.ok(tk.includes("if (party) restoreSaved(this);") && tk.includes("if (party && this.parent && travelOn(this)) { travelSight(this, this.parent); return; }"));
+  assert.ok(tk.indexOf("travelOn(this)) {") < tk.indexOf("if (!autoOn()) return;"), "travel fog doesn't depend on the senses setting");
+  assert.ok(tk.includes("flags.${SYS}.travel.mode`)) schedule(actor)"));
   console.log("OK 0.10.68 travel mode fog of war");
 }
