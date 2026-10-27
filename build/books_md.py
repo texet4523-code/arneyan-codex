@@ -39,10 +39,32 @@ def to_docx(md_path, docx_path):
     os.remove(html)
 
 
+# Book IV changed in v0.10.20 only in Atonement (m28, HB p.154). The Builder sent the new text on the board (B-F7)
+# rather than a new Book IV Markdown, so the v0.10.18 copy gets it here.
+SPELL_PATCHES = [(
+    "Ends any alignment penalty or loss of class features and spellcasting caused by its wilful acts, and restores an alignment changed by magic.",
+    "A god's servant moves one step towards Favoured (see Divine Favour in Book II); anyone else loses an Evil Allegiance from profane acts. It also restores an Outlook changed by magic.",
+)]
+
+
+def patched(part, patches):
+    text = open(src(part), encoding="utf-8").read()
+    for old, new in patches:
+        if new in text:
+            continue
+        assert text.count(old) == 1, f"{part}: expected the text to patch once: {old[:60]}"
+        text = text.replace(old, new)
+    out = os.path.join(OUT, f"{part}.patched.md")
+    open(out, "w", encoding="utf-8").write(text)
+    return out
+
+
 def prepare():
     os.makedirs(CLASSES, exist_ok=True)
     to_docx(src("I_Codex"), CODEX)
-    to_docx(src("IV_Spellcasting"), SPELLS)
+    spells = patched("IV_Spellcasting", SPELL_PATCHES)
+    to_docx(spells, SPELLS)
+    os.remove(spells)
     shutil.copyfile(src("II_Character_Creation"), CC)
     shutil.copyfile(src("V_Catalogue"), SHOP)
     for f in glob.glob(os.path.join(CLASSES, "*")):
