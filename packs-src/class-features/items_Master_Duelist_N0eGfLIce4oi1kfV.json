@@ -14,13 +14,41 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "day",
+   "formula": ""
   },
   "save": "will",
   "dc": null,
   "damage": "",
   "level": 10,
-  "className": "Swashbuckler"
+  "className": "Swashbuckler",
+  "activities": [
+   {
+    "name": "Master Duelist",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Declare a decisive strike: one melee attack that deals maximum damage if it hits (a miss still uses it). Lower-Level witnesses save or have Disadvantage on their first attack against you in later fights. From 24th level it's once per encounter: reset its use after each encounter.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false
+   }
+  ]
  },
  "effects": [],
  "folder": "izulQ2PeBRinttAY",

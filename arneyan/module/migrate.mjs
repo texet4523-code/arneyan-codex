@@ -756,10 +756,23 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
       }
       for (const kit of actor.items.filter(i => i.type === "kit")) {
         if (flag(kit, "reworked") === CLASS_REWORK) continue;
-        const before = kitBefore.get(kit.uuid ?? `${actor.id}.${kit.id}`);
+        // Its levels before this update: kept on the kit while the update hasn't reached it yet (a retry), else the
+        // snapshot taken before the main pass.
+        const before = flag(kit, "featureLevelsBefore") ?? kitBefore.get(kit.uuid ?? `${actor.id}.${kit.id}`);
         const feats = kit.system?.features ?? [];
+        const levels = feats.map(f => Number(f?.level) || 1);
+        const ksrc = compendiumSourceOf(kit);
+        const want = ksrc ? (plain(await fetch(ksrc))?.system?.features ?? []).map(f => Number(f?.level) || 1) : null;
+        // The books didn't move this kit's features: nothing to do.
+        if (!before || !want || JSON.stringify(want) === JSON.stringify(before)) continue;
+        // The main pass hasn't given it the new levels yet (it failed, or the GM keeps the kit's own list): keep the
+        // old levels on it and look again on the next try.
+        if (JSON.stringify(levels) === JSON.stringify(before)) {
+          if (!flag(kit, "featureLevelsBefore")) await kit.update({ [`flags.${SYS}.featureLevelsBefore`]: before }, { arneyanMigration: true });
+          continue;
+        }
         const cls = classOf ? classOf(actor, kit) : null;
-        if (before && cls) {
+        if (cls) {
           const level = Number(cls.system?.levels) || 1;
           const only = new Set(feats.map((f, idx) => ((Number(f.level) || 1) <= level && (before[idx] ?? 99) > level ? `${kit.id}.${idx}` : null)).filter(Boolean));
           const added = only.size ? await grant.kit(actor, kit, only) : [];

@@ -397,12 +397,13 @@ console.log("OK safe world update");
   const BSI = [...M.DROPPED_FEATURES].find(u => u.endsWith("I2r5qtG2KwQTR6iK"));
   const oldList = [f(1, "Weapon Specialisation"), f(1, "Quick Draw"), f(13, "Battle Space"), { level: 17, name: "Battle Space (Improved)", uuid: BSI }, f(20, "Legend of Battle"), { level: 4, name: "House Rule", uuid: "Compendium.world.homebrew.Item.x" }];
   const newList = [f(1, "Weapon Specialisation"), f(1, "Quick Draw"), f(3, "Battle Space"), f(6, "Legend of Battle")];
-  const makeActor = (name, type, levels, list, { flags = {}, deleted = [] } = {}) => {
+  const KIT = "Compendium.arneyan.kits.Item.witchx";
+  const makeActor = (name, type, levels, list, { flags = {}, deleted = [], kitLevels = [1, 3, 7] } = {}) => {
     const cls = { id: "c1", uuid: `${name}.c1`, type: "class", name: "Fighter", flags: { ...flags }, _stats: { compendiumSource: CLS }, system: { levels, features: list } };
     cls.update = async d => { if (d["system.features"]) cls.system.features = d["system.features"]; for (const [k, v] of Object.entries(d)) if (k.startsWith("flags.arneyan.")) (cls.flags.arneyan ??= {})[k.slice(14)] = v; };
     const g = (id, n, lv, src) => ({ id, type: "ability", name: n, system: { level: lv }, flags: { arneyan: { grantedBy: "c1", source: src } } });
-    const kit = { id: "k1", uuid: `${name}.k1`, type: "kit", name: "Patron: X (Witch)", flags: {}, system: { features: [{ name: "Patron Buff", level: 1 }, { name: "Patron Curse", level: 3 }, { name: "Physical Change", level: 7 }] } };
-    kit.update = async d => { (kit.flags.arneyan ??= {}).reworked = d["flags.arneyan.reworked"]; };
+    const kit = { id: "k1", uuid: `${name}.k1`, type: "kit", name: "Patron: X (Witch)", flags: {}, _stats: { compendiumSource: KIT }, system: { features: kitLevels.map((level, i) => ({ name: ["Patron Buff", "Patron Curse", "Physical Change"][i], level })) } };
+    kit.update = async d => { for (const [k, v] of Object.entries(d)) if (k.startsWith("flags.arneyan.")) (kit.flags.arneyan ??= {})[k.slice(14)] = v; };
     const items = [cls, kit, g("g1", "Weapon Specialisation", 1, newList[0].uuid),
       ...(deleted.includes("Quick Draw") ? [] : [g("g0", "Quick Draw", 1, newList[1].uuid)]),
       ...(levels >= 13 ? [g("g3", "Battle Space", 13, newList[2].uuid)] : []),
@@ -411,7 +412,7 @@ console.log("OK safe world update");
     const lowered = [];
     return { id: name, name, type, items, lowered, updateEmbeddedDocuments: async (t, ups) => { lowered.push(...ups); } };
   };
-  const fetch = async u => (u === CLS ? { system: { features: newList } } : null);
+  const fetch = async u => (u === CLS ? { system: { features: newList } } : u === KIT ? { system: { features: [{ level: 1 }, { level: 3 }, { level: 7 }] } } : null);
   const granted = [];
   const grant = {
     cls: async (actor, cls, only) => { const got = cls.system.features.filter(x => only.has(x.uuid)).map(x => x.name); granted.push([actor.name, got]); return got; },
@@ -436,6 +437,17 @@ console.log("OK safe world update");
   assert.equal(six.items[0].flags.arneyan.reworked, "0.10.65");
   assert.deepEqual(mine.items[0].system.features, oldList, "Keep my edits: left alone");
   assert.deepEqual([...new Set(granted.map(g => g[0]))], ["Brakka", "Vet"], "a class already done, a kept one and an NPC are skipped");
+  // A kit the main pass didn't refresh (it failed for that actor): its old levels are kept on it, and the next try
+  // grants from them once the list has the new levels.
+  const late = makeActor("Late", "character", 5, newList, { kitLevels: [1, 8, 12], flags: { arneyan: { reworked: "0.10.65" } } });
+  granted.length = 0;
+  await M.classRework([late], fetch, grant, notes, { kitBefore: new Map([["Late.k1", [1, 8, 12]]]), classOf });
+  assert.equal(granted.length, 0);
+  assert.deepEqual(late.items[1].flags.arneyan.featureLevelsBefore, [1, 8, 12]);
+  late.items[1].system.features = [{ name: "Patron Buff", level: 1 }, { name: "Patron Curse", level: 3 }, { name: "Physical Change", level: 7 }];
+  await M.classRework([late], fetch, grant, notes, { kitBefore: new Map([["Late.k1", [1, 3, 7]]]), classOf });
+  assert.deepEqual(granted, [["Late", ["Patron Curse"]]], "the retry grants from the kept levels");
+  assert.equal(late.items[1].flags.arneyan.reworked, "0.10.65");
   // Run again: nothing more.
   granted.length = 0;
   await M.classRework([six, vet], fetch, grant, notes, { kitBefore, classOf });
