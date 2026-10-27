@@ -14,9 +14,14 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.equal(em.optionChoice.options.length, 6);
   assert.deepEqual(E.chosenRules(em), [], "nothing until the element is picked");
   const picked = { ...em, optionChoice: { ...em.optionChoice, value: ["Cold"] } };
-  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"]], "Resistance from 8th (books v0.10.22)");
+  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"], ["immune", "{20:cold}"]], "Resistance from 8th, immunity from 20th (books v0.10.22)");
+  // 0.10.66: one pick covers Elemental Mastery (Improved), which asks nothing of its own.
   const emi = pack("class-features").find(d => d.name === "Elemental Mastery (Improved)").system;
-  assert.deepEqual(E.chosenRules({ ...emi, optionChoice: { ...emi.optionChoice, value: ["Cold"] } }).map(r => [r.key, r.value]), [["immune", "cold"]], "immunity from 20th");
+  assert.ok(!emi.optionChoice?.options?.length, "Improved asks no question");
+  const druid = lvl => E.collectRules({ items: Object.assign([{ type: "class", name: "Druid", system: { levels: lvl } }, { type: "ability", name: "Elemental Mastery", system: { ...picked, className: "Druid" } }], { find: Array.prototype.find }), effects: [], system: { level: lvl } }, { level: lvl })
+    .filter(r => ["resist", "immune"].includes(r.key)).map(r => `${r.key} ${r.value}`);
+  assert.deepEqual(druid(8), ["resist cold"]);
+  assert.deepEqual(druid(20), ["resist cold", "immune cold"]);
   const inv = pack("class-features").find(d => d.name === "Eldritch Invocations").system;
   const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Agonising Blast", "Armour of Shadows"] } };
   assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 9), 3); assert.equal(E.optionPickMax(inv, 17), 5);

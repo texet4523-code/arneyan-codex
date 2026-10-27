@@ -30,11 +30,17 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage (immune from 20th level).",
+     "text": "Resistance to fire damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "fire",
+       "when": "",
+       "label": ""
+      },
+      {
+       "key": "immune",
+       "value": "{20:fire}",
        "when": "",
        "label": ""
       }
@@ -42,11 +48,17 @@
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage (immune from 20th level).",
+     "text": "Resistance to cold damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "cold",
+       "when": "",
+       "label": ""
+      },
+      {
+       "key": "immune",
+       "value": "{20:cold}",
        "when": "",
        "label": ""
       }
@@ -54,11 +66,17 @@
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage (immune from 20th level).",
+     "text": "Resistance to lightning damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "lightning",
+       "when": "",
+       "label": ""
+      },
+      {
+       "key": "immune",
+       "value": "{20:lightning}",
        "when": "",
        "label": ""
       }

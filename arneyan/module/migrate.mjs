@@ -292,6 +292,9 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
     const names = new Set(o.optionChoice.options.map(x => x?.name));
     set("optionChoice", { ...clone(o.optionChoice), value: (s.optionChoice?.value ?? []).filter(v => names.has(v)) });
   }
+  // A choice the compendium no longer asks on this item (0.10.66: Elemental Mastery (Improved) follows Elemental
+  // Mastery's pick): cleared while nothing is picked on it, so the sheet stops asking.
+  if (!o.optionChoice?.options?.length && s.optionChoice?.options?.length && !(s.optionChoice.value ?? []).length) set("optionChoice", { label: "", max: "", options: [], value: [] });
   if (o.uses !== undefined && "uses" in s) set("uses", usesFrom(s.uses, o.uses, maxNow));
   if (item.type === "kit" && Array.isArray(o.features)) set("features", kitFeaturesFrom(s.features, o.features));
   if (report && kept.length) report.kept = kept;

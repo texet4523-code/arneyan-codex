@@ -10545,7 +10545,7 @@
   "from": "Druid",
   "container": "passive",
   "rules": [],
-  "summary": "Choose the element: Resistance to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Immunity and spell reflection come with Elemental Mastery (Improved) at 20th.",
+  "summary": "Choose the element: Resistance to its damage, immunity from 20th (fire, cold or lightning automatic; earth, water or air a reminder). One pick covers Elemental Mastery (Improved) too.",
   "manual": "Earth, water and air: the GM says which damage counts.",
   "confidence": "high",
   "optionChoice": {
@@ -10554,31 +10554,43 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage (immune from 20th level).",
+     "text": "Resistance to fire damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "fire"
+      },
+      {
+       "key": "immune",
+       "value": "{20:fire}"
       }
      ]
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage (immune from 20th level).",
+     "text": "Resistance to cold damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "cold"
+      },
+      {
+       "key": "immune",
+       "value": "{20:cold}"
       }
      ]
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage (immune from 20th level).",
+     "text": "Resistance to lightning damage; immune from 20th level (Elemental Mastery (Improved)).",
      "rules": [
       {
        "key": "resist",
        "value": "lightning"
+      },
+      {
+       "key": "immune",
+       "value": "{20:lightning}"
       }
      ]
     },
@@ -10845,75 +10857,9 @@
   "from": "Druid",
   "container": "passive",
   "rules": [],
-  "summary": "Pick the same element as on Elemental Mastery: immune to its damage (fire, cold or lightning automatic; earth, water or air a reminder). Spell reflection: its Use.",
+  "summary": "Immunity to the element picked on Elemental Mastery (that pick carries it from 20th). Spell reflection: its Use.",
   "manual": "Reflecting a spell of that element (a Wisdom check against its DC) stays with the table.",
-  "confidence": "high",
-  "optionChoice": {
-   "label": "Element",
-   "max": "1",
-   "options": [
-    {
-     "name": "Fire",
-     "text": "Now immune to fire damage.",
-     "rules": [
-      {
-       "key": "immune",
-       "value": "fire"
-      }
-     ]
-    },
-    {
-     "name": "Cold",
-     "text": "Now immune to cold damage.",
-     "rules": [
-      {
-       "key": "immune",
-       "value": "cold"
-      }
-     ]
-    },
-    {
-     "name": "Lightning",
-     "text": "Now immune to lightning damage.",
-     "rules": [
-      {
-       "key": "immune",
-       "value": "lightning"
-      }
-     ]
-    },
-    {
-     "name": "Earth",
-     "text": "Now immune to damage from earth (the GM says which damage that covers).",
-     "rules": [
-      {
-       "key": "note.save",
-       "value": "Elemental Mastery (Earth): immune to earth damage (the GM's call which damage that is)."
-      }
-     ]
-    },
-    {
-     "name": "Water",
-     "text": "Now immune to damage from water (the GM says which damage that covers).",
-     "rules": [
-      {
-       "key": "note.save",
-       "value": "Elemental Mastery (Water): immune to water damage (the GM's call which damage that is)."
-      }
-     ]
-    },
-    {
-     "name": "Air",
-     "text": "Now immune to damage from air (the GM says which damage that covers).",
-     "rules": [
-      {
-       "key": "note.save",
-       "value": "Elemental Mastery (Air): immune to air damage (the GM's call which damage that is)."
-      }
-     ]
-    }
-   ]
-  }
+  "confidence": "high"
  },
  "class-features/C4AlftJdL4MAUPN8": {
   "name": "Advanced Favoured Enemy",

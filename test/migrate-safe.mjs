@@ -460,3 +460,16 @@ console.log("OK safe world update");
   assert.ok(M.newerThan("0.10.65", "0.10.64") && M.newerThan("0.10.65", "0") && !M.newerThan("0.10.65", "0.10.65") && M.newerThan("0.10.100", "0.10.65"));
   console.log("OK 0.10.65 class features at their new levels");
 }
+
+// 0.10.66: a choice the compendium dropped from an item (Elemental Mastery (Improved)) is cleared while nothing's picked.
+{
+  const oc = { label: "Element", max: "1", options: [{ name: "Fire", text: "", rules: [] }], value: [] };
+  const sys = { rules: [], optionChoice: oc };
+  const it = { id: "e1", type: "ability", name: "Elemental Mastery (Improved)", system: sys, flags: { arneyan: { synced: M.stampOf("ability", sys) } }, _stats: { compendiumSource: "Compendium.arneyan.class-features.Item.VyDNqJme3aEMq9Yk" }, _source: { system: sys, flags: { arneyan: { synced: M.stampOf("ability", sys) } } } };
+  const upd = M.refreshFrom(it, { type: "ability", system: { rules: [] } });
+  assert.deepEqual(upd["system.optionChoice"]?.options, [], "cleared");
+  const pickedSys = { rules: [], optionChoice: { ...oc, value: ["Fire"] } };
+  const kept = M.refreshFrom({ ...it, system: pickedSys, _source: { system: pickedSys, flags: it.flags } }, { type: "ability", system: { rules: [] } });
+  assert.ok(!("system.optionChoice" in kept), "a pick already made stays");
+  console.log("OK 0.10.66 dropped choice cleared");
+}
