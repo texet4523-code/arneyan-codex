@@ -64,6 +64,14 @@ for (const n of ["Holy Word", "Protection from Alignment", "Dispel Alignment", "
   assert.ok(F.itemNamesAlignment(spells.find(s => s.name === n)), n);
 }
 assert.ok(!F.itemNamesAlignment(spells.find(s => s.name === "Fireball")));
+const feats = pack("class-features");
+for (const n of ["Smite Evil", "Change Alignment", "Mark of the Saint"]) assert.ok(!F.itemNamesAlignment(feats.find(x => x.name === n)), `${n}: alignment doesn't matter`);
+assert.ok(F.itemNamesAlignment(feats.find(x => x.name === "Divine Protection")));
+assert.equal(F.allegianceMatches("vs chaotic evil creatures", "Lawful Evil"), false, "both words");
+assert.equal(F.allegianceMatches("vs chaotic evil creatures", "Chaotic Evil"), true);
+assert.equal(F.allegianceMatches("vs non-evil creatures", "Lawful Good"), true);
+assert.equal(F.allegianceMatches("vs non-evil creatures", "Neutral Evil"), false);
+assert.equal(F.allegianceMatches("vs non-evil creatures", "Unaligned"), false, "Unaligned never registers");
 
 /* Forsaken: the servant's class abilities and deity kit; other classes' stay. Strained: the highest slots. */
 const s = F.servantOf([cls("Cleric"), kit("Deity: Bane (Cleric)", "Cleric", "Lawful Evil")]);
@@ -71,6 +79,21 @@ assert.ok(F.lostToForsaken({ system: { className: "Cleric" } }, s));
 assert.ok(F.lostToForsaken(s.kit, s));
 assert.ok(!F.lostToForsaken({ system: { className: "Fighter" } }, s));
 assert.ok(F.lostToForsaken({ system: { className: "Deity: Bane (Cleric)" } }, s), "the kit's own features");
+/* A Forsaken Cleric keeps what the god doesn't grant (Kieran, 27 Oct); a Paladin loses every class ability. */
+assert.ok(!F.lostToForsaken({ type: "ability", name: "Extra Attack (Battle Priest only)", system: { className: "Cleric" } }, s));
+assert.ok(!F.lostToForsaken({ type: "ability", name: "Wisdom Bonus", system: { className: "Cleric" } }, s));
+assert.ok(F.lostToForsaken({ type: "ability", name: "Turn Undead", system: { className: "Cleric" } }, s));
+const ps = F.servantOf([cls("Paladin"), torm]);
+assert.ok(F.lostToForsaken({ type: "ability", name: "Extra Attack", system: { className: "Paladin" } }, ps), "Paladins lose all");
+assert.ok(F.lostToForsaken({ type: "spell", name: "Bless", system: { className: "" } }, s, "Cleric"), "a spell with no class goes by its caster");
+/* A Cleric/Paladin serving one god. */
+const multi = F.servantOf([cls("Cleric"), cls("Paladin"), torm]);
+assert.equal(multi.label, "Paladin", "the kit says which");
+assert.ok(F.lostToForsaken({ type: "ability", name: "Lay on Hands", system: { className: "Paladin" } }, multi));
+assert.ok(F.lostToForsaken({ type: "ability", name: "Turn Undead", system: { className: "Cleric" } }, multi));
+assert.equal(F.characterAllegiance({ items: [cls("Cleric"), cls("Paladin"), torm] }).value, "Lawful Good");
+assert.equal(F.strainedKey({ system: { className: "Paladin" } }, multi), "cha");
+assert.equal(F.strainedKey({ system: { className: "Cleric" } }, multi), "wis");
 assert.equal(F.highestSlotLevel({ slots: [null, { total: 3 }, { total: 2 }, { total: 0 }] }), 2);
 assert.ok(F.isTurnUndead("Turn Undead") && F.isTurnUndead("Control Undead") && !F.isTurnUndead("Undead Bane"));
 
@@ -120,7 +143,11 @@ const patrons = kits.filter(k => /warlock/i.test(k.system.className));
 assert.equal(byName("Zariel (Warlock)").system.alignment, "Lawful Evil", "an archdevil by nature");
 assert.equal(byName("Orcus (Warlock)").system.alignment, "Chaotic Evil", "a demon lord by nature");
 assert.equal(byName("Belial & Fierna (Warlock)").system.alignment, "Lawful Evil");
-assert.deepEqual(patrons.filter(k => !k.system.alignment).map(k => k.name).sort(), ["Bolothamogg (Warlock)", "The Queen of Air and Darkness (Warlock)", "Tiandra (Warlock)", "Verenestra (Warlock)"], "Kieran to decide");
+assert.deepEqual(patrons.filter(k => !k.system.alignment).map(k => k.name), [], "every patron has one");
+assert.equal(byName("Bolothamogg (Warlock)").system.alignment, "Chaotic Evil", "Kieran, 27 Oct");
+assert.equal(byName("The Queen of Air and Darkness (Warlock)").system.alignment, "Chaotic Evil");
+assert.equal(byName("Tiandra (Warlock)").system.alignment, "Chaotic Good");
+assert.equal(byName("Verenestra (Warlock)").system.alignment, "Chaotic Neutral");
 assert.ok(patrons.every(k => k.flags?.arneyan?.wiki), "every patron links its wiki page");
 
 /* Books v0.10.20. */
@@ -139,10 +166,16 @@ assert.match(bard.system.description, /their Outlook shifts one step/);
 /* Worlds: a kit copy from before gets the alignment and wiki page; a GM's own alignment stays. */
 const old = { type: "kit", name: "Deity: Abadar (Cleric)", system: { className: "Cleric", alignment: "", features: [] }, flags: {} };
 const src = { type: "kit", name: "Deity: Abadar (Cleric)", system: { className: "Cleric", alignment: "Lawful Neutral", features: [] }, flags: { arneyan: { wiki: "https://app.kanka.io/w/198952/entities/7508951" } } };
-const upd = M.refreshFrom(old, src);
+const upd = M.kitFill(old, src);
 assert.equal(upd["system.alignment"], "Lawful Neutral");
 assert.equal(upd["flags.arneyan.wiki"], src.flags.arneyan.wiki);
-const own = M.refreshFrom({ ...old, system: { ...old.system, alignment: "Lawful Evil" } }, src);
+const own = M.kitFill({ ...old, system: { ...old.system, alignment: "Lawful Evil" } }, src);
 assert.ok(!("system.alignment" in own), "a GM's own alignment stays");
+assert.deepEqual(M.kitFill({ ...old, flags: { arneyan: { keepCustom: true } } }, src), {}, "Keep my edits");
+{ const r = {}; const u = M.refreshFrom(old, src, { legacy: "skip", report: r });
+  assert.ok(!r.unstamped && !Object.keys(u).some(k => k.startsWith("system.")), "an unstamped kit that matches isn't held back by the fill"); }
+const mig = fs.readFileSync(`${root}module/migrate.mjs`, "utf8");
+assert.match(mig, /if \(i\.type === "kit"\) Object\.assign\(upd, kitFill\(i, src\)\);/, "the fill runs beside the refresh");
+assert.match(fs.readFileSync(`${root}templates/item/item-sheet.hbs`, "utf8"), /name="system.alignment"/, "a kit's alignment can be typed");
 
 console.log("favour: all checks pass");

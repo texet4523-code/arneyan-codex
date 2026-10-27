@@ -42,6 +42,7 @@
 
     {{#if (eq type "kit")}}
       <label class="wide">Class <input type="text" name="system.className" value="{{source.className}}"></label>
+      <label data-tooltip="A deity's or patron's alignment: a servant holds it as their Allegiance while favoured, a Warlock always.">Alignment <input type="text" name="system.alignment" value="{{source.alignment}}" placeholder="e.g. Lawful Good"></label>
     {{/if}}
 
     {{#if (eq type "feat")}}

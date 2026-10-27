@@ -10,6 +10,7 @@
     <span class="arn-muted">{{alignment.allegiance.from}}</span>
     {{#if isGM}}<label class="arn-allegiance-set" data-tooltip="Set by the GM: profane acts, a curse or a story. Leave blank to work it out from divine service or a pact.">GM sets <input type="text" name="system.details.allegiance" value="{{source.details.allegiance}}" list="arn-allegiances" placeholder="worked out"></label>{{/if}}
   </div>
+  {{#if alignment.pact}}{{#if alignment.pact.wiki}}<p class="arn-muted">Patron: <a href="{{alignment.pact.wiki}}" target="_blank" rel="noopener" data-tooltip="The patron on the World of Arneyan wiki">{{alignment.pact.name}}</a></p>{{/if}}{{/if}}
   {{#if alignment.servant}}
   <div class="arn-favour-row {{alignment.favour}}">
     <span class="arn-allegiance-label" data-tooltip="Favoured is the normal state. Strained after a flagrant breach: Turn Undead and your highest-level spells need a DC 12 {{alignment.servant.attr}} check as you use them. Forsaken after a second breach while Strained, or on abandoning the god: every class ability your god grants is lost until you atone. Atonement moves one step back.">Divine Favour</span>

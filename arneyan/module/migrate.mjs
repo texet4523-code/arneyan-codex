@@ -294,15 +294,24 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   }
   if (o.uses !== undefined && "uses" in s) set("uses", usesFrom(s.uses, o.uses, maxNow));
   if (item.type === "kit" && Array.isArray(o.features)) set("features", kitFeaturesFrom(s.features, o.features));
-  // 0.10.64 (B-F6): a deity's or patron's alignment and wiki page, filled in where the copy has none (a GM's own stays).
-  if (item.type === "kit") {
-    if (o.alignment && !String(s.alignment ?? "").trim() && "alignment" in s) upd["system.alignment"] = o.alignment;
-    const wiki = src.flags?.[SYS]?.wiki;
-    if (wiki && !(item._source?.flags?.[SYS]?.wiki ?? item.flags?.[SYS]?.wiki)) upd[`flags.${SYS}.wiki`] = wiki;
-  }
   if (report && kept.length) report.kept = kept;
   // Record the fingerprints when they change (a first stamp, or a field updated), not on every run.
   if (!same(stamps, next)) upd[`flags.${SYS}.synced`] = next;
+  return upd;
+}
+
+/**
+ * 0.10.64 (B-F6): a deity's or patron's alignment and wiki page, filled in where the kit copy has none. Only blanks are
+ * filled, so it runs beside the fingerprinted refresh (even for older items the GM chose to leave), and a GM's own
+ * alignment stays. Not for a kit with "Keep my edits".
+ */
+export function kitFill(item, src) {
+  const upd = {};
+  if (item?.type !== "kit" || src?.type !== "kit" || item.flags?.[SYS]?.keepCustom) return upd;
+  const s = item._source?.system ?? item.system ?? {}, o = src.system ?? {};
+  if (o.alignment && !String(s.alignment ?? "").trim()) upd["system.alignment"] = o.alignment;
+  const wiki = src.flags?.[SYS]?.wiki;
+  if (wiki && !(item._source?.flags?.[SYS]?.wiki ?? item.flags?.[SYS]?.wiki)) upd[`flags.${SYS}.wiki`] = wiki;
   return upd;
 }
 
@@ -384,6 +393,7 @@ async function updatesFor(items, actor, fetch, { legacy, force = false, forceIds
       // GM cleared stays cleared); gear gets its empty fields filled, unless Keep my edits is ticked.
       if (REFRESH.has(i.type)) upd = refreshFrom(i, src, { maxNow: maxOn(actor, i, src.system?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
       else if (!i.flags?.[SYS]?.keepCustom) upd = fillFrom(i, src);
+      if (i.type === "kit") Object.assign(upd, kitFill(i, src));
       // The features a kit granted follow the kit as it will be: the compendium's list if the kit takes it, or the
       // kit's own list if it keeps an edit (or is left as it was).
       if (i.type === "kit") kitFeatures.set(i.id, clone(upd["system.features"] ?? (i._source?.system ?? i.system)?.features ?? []));

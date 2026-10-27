@@ -53,17 +53,30 @@ export function readAlignment(text) {
   return "";
 }
 
-/** The servant class on a character (Cleric, Battle Priest or Paladin) and its deity kit, or null. */
+/**
+ * The servant on a character (Cleric, Battle Priest or Paladin, or a Cleric/Paladin multiclass serving one god) and
+ * the deity kit, or null. `bases` and `classNames` list every servant class, so Forsaken and Strained cover each.
+ */
 export function servantOf(items = []) {
   const list = [...(items ?? [])];
+  const found = [];
   for (const s of SERVANTS) {
-    const cls = list.find(i => i.type === "class" && s.match.test(String(i.name ?? "")));
-    if (!cls) continue;
-    const base = s.label === "Paladin" ? "paladin" : "cleric";
-    const kit = list.find(i => i.type === "kit" && /^deity\b/i.test(String(i.name ?? "")) && String(i.system?.className ?? "").toLowerCase() === base) ?? null;
-    return { cls, kit, label: s.label, key: s.key, className: String(cls.name) };
+    const cls = list.find(i => i.type === "class" && s.match.test(String(i.name ?? "")) && !found.some(f => f.cls === i));
+    if (cls) found.push({ ...s, cls, base: s.label === "Paladin" ? "paladin" : "cleric" });
   }
-  return null;
+  if (!found.length) return null;
+  const bases = [...new Set(found.map(f => f.base))];
+  const kit = list.find(i => i.type === "kit" && /^deity\b/i.test(String(i.name ?? "")) && bases.includes(String(i.system?.className ?? "").toLowerCase())) ?? null;
+  const primary = (kit && found.find(f => f.base === String(kit.system?.className ?? "").toLowerCase())) || found[0];
+  return { cls: primary.cls, kit, label: primary.label, key: primary.key, className: String(primary.cls.name), bases, classNames: found.map(f => String(f.cls.name).toLowerCase()) };
+}
+
+/** The attribute a Strained check uses for this item: Charisma for a Paladin's, else the servant's (R6). */
+export function strainedKey(item, servant, className = null) {
+  const cn = String(className ?? item?.system?.className ?? "").toLowerCase();
+  if (cn.startsWith("paladin")) return "cha";
+  if (cn.startsWith("cleric")) return "wis";
+  return servant?.key ?? "wis";
 }
 
 /** The god's name from a deity kit ("Deity: Kossuth (Cleric)" reads "Kossuth"). */
@@ -117,17 +130,20 @@ const NAMES_ALIGNMENT = /\balignment\b|\b(?:good|evil|lawful|chaotic)\s+(?:creat
 export const namesAlignment = text => NAMES_ALIGNMENT.test(String(text ?? ""));
 
 /**
- * Does an alignment-keyed rule ("vs evil creatures", "against good") count against this Allegiance?
- * Returns true, false, or null when the text names no alignment. Unaligned never registers.
+ * Does an alignment-keyed rule ("vs evil creatures", "against chaotic evil", "non-good") count against this Allegiance?
+ * Returns true, false, or null when the text names no alignment. A two-word alignment needs both words; "non-" turns
+ * it round. Unaligned never registers.
  */
 export function allegianceMatches(when, allegiance) {
   const w = String(when ?? "").toLowerCase();
   if (!namesAlignment(w)) return null;
-  const wants = ["good", "evil", "lawful", "chaotic"].filter(k => new RegExp(`\\b${k}\\b`).test(w));
-  if (!wants.length) return null;
+  const terms = [...w.matchAll(/\b(non-?\s?)?((?:lawful|chaotic|neutral)\s+(?:good|evil)|good|evil|lawful|chaotic)\b/g)]
+    .map(m => ({ not: !!m[1], words: m[2].split(/\s+/) }));
+  if (!terms.length) return null;
   const a = String(allegiance ?? "").toLowerCase();
   if (!a || a === "unaligned") return false;
-  return wants.some(k => a.includes(k));
+  const has = word => new RegExp(`\\b${word}\\b`).test(a);
+  return terms.some(t => (t.not ? !t.words.every(has) : t.words.every(has)));
 }
 
 /**
@@ -145,26 +161,38 @@ export function annotateAllegiance(notes = [], targets = []) {
 
 /** Does a spell or feature name an alignment (Holy Word, Protection from Alignment, Dispel Alignment...)? */
 export function itemNamesAlignment(item) {
-  return namesAlignment(item?.name) || namesAlignment(String(item?.system?.description ?? "").replace(/<[^>]+>/g, " "));
+  const name = String(item?.name ?? "");
+  // Change Alignment shifts an Outlook; "regardless of alignment" (Smite Evil, Mark of the Saint) says it doesn't matter.
+  if (/^change alignment\b/i.test(name)) return false;
+  const desc = String(item?.system?.description ?? "").replace(/<[^>]+>/g, " ").replace(/\b(?:regardless of|whatever their|any) alignment\b/gi, " ");
+  return namesAlignment(name) || namesAlignment(desc);
 }
 
 /** The class a feature, kit or spell belongs to, as the item records it ("" when none). */
 const classOfItem = item => String(item?.system?.className ?? "").toLowerCase();
 
+/** Cleric and Battle Priest features the god doesn't grant (Kieran, 27 Oct): kept when Forsaken. */
+const CLERIC_KEEPS = /^(extra attack|wisdom bonus|weapon selection|battle priest)\b/i;
+
 /**
- * Is this item one of the god-granted abilities a Forsaken servant loses? The servant class's features and spells,
- * its deity kit, and the kit's features. A Paladin loses every class ability (Divine Mount included); a Cleric or a
- * Battle Priest their class's. Other classes (a Fighter's features on a multiclass Cleric) stay.
+ * Is this item one of the god-granted abilities a Forsaken servant loses? The servant classes' spells and divine
+ * features, the deity kit, and the kit's features. A Paladin loses every class ability (Divine Mount included, Book
+ * III); a Cleric or Battle Priest keeps the ones the god doesn't grant (Extra Attack, Wisdom Bonus, Weapon Selection).
+ * Other classes (a Fighter's features on a multiclass Cleric) stay. `className`: a spell's class when the spell has
+ * none of its own (its caster's).
  */
-export function lostToForsaken(item, servant) {
+export function lostToForsaken(item, servant, className = null) {
   if (!servant || !item) return false;
   if (servant.kit && item === servant.kit) return true;
-  const cn = classOfItem(item);
+  const cn = String(className || classOfItem(item)).toLowerCase();
   if (!cn) return false;
-  const own = String(servant.className ?? "").toLowerCase();
-  const base = servant.label === "Paladin" ? "paladin" : "cleric";
-  if (cn === own || cn === base) return true;
-  return !!servant.kit && cn === String(servant.kit.name ?? "").toLowerCase();
+  if (servant.kit && cn === String(servant.kit.name ?? "").toLowerCase()) return true;
+  const bases = servant.bases ?? [servant.label === "Paladin" ? "paladin" : "cleric"];
+  const names = servant.classNames ?? [String(servant.className ?? "").toLowerCase()];
+  const base = bases.find(b => cn === b || cn.startsWith(`${b} `)) ?? (names.includes(cn) ? (cn.startsWith("paladin") ? "paladin" : "cleric") : null);
+  if (!base) return false;
+  if (base === "cleric" && item.type !== "spell" && CLERIC_KEEPS.test(String(item.name ?? ""))) return false;
+  return true;
 }
 
 /** The highest spell level a caster has slots for (0 when none). */
@@ -202,6 +230,10 @@ export function alignmentContext(actor) {
     favour,
     favourLabel: FAVOUR[favour] ?? FAVOUR.favoured,
     favours: FAVOUR,
-    wiki: String(servant?.kit?.flags?.arneyan?.wiki ?? "")
+    wiki: String(servant?.kit?.flags?.arneyan?.wiki ?? ""),
+    pact: (() => {
+      const p = servant ? null : patronOf(actor.items ?? []);
+      return p ? { name: String(p.name ?? "").replace(/\s*\(warlock\)\s*$/i, ""), wiki: String(p.flags?.arneyan?.wiki ?? "") } : null;
+    })()
   };
 }

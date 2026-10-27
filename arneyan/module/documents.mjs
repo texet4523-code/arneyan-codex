@@ -2,7 +2,7 @@ import { endHiding, rollHide } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
-import { servantOf, godOf, lostToForsaken, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
+import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
@@ -1366,10 +1366,16 @@ export class ArneyanItem extends Item {
     const actor = this.actor;
     if (actor?.type !== "character" || actor.system?.favour !== "forsaken") return false;
     const servant = servantOf(actor.items);
-    if (!lostToForsaken(this, servant)) return false;
+    if (!lostToForsaken(this, servant, this._favourClass())) return false;
     const god = godOf(servant.kit) || "Their god";
     ui.notifications.warn(`${actor.name} is Forsaken: ${god} no longer grants ${this.name}. Atonement moves them back towards Favoured.`);
     return true;
+  }
+
+  /** The class this spell is cast as (its own, or its caster's when it has none), for Divine Favour. */
+  _favourClass() {
+    if (this.type !== "spell") return null;
+    return this.system.className || this.caster?.name || null;
   }
 
   /**
@@ -1380,16 +1386,17 @@ export class ArneyanItem extends Item {
     const actor = this.actor;
     if (actor?.type !== "character" || actor.system?.favour !== "strained") return "";
     const servant = servantOf(actor.items);
-    if (!servant || !lostToForsaken(this, servant)) return "";
+    if (!servant || !lostToForsaken(this, servant, this._favourClass())) return "";
     if (this.type === "spell") {
       const caster = this.caster;
       const top = highestSlotLevel(caster);
       if (!(this.system.level > 0) || !top || this.system.level < top) return "";
     } else if (!isTurnUndead(this.name)) return "";
     const what = this.type === "spell" ? "the spell fails and the slot is spent" : "the use is spent and nothing happens";
-    const attr = ARNEYAN.abilities[servant.key] ?? servant.key;
+    const key = strainedKey(this, servant, this._favourClass());
+    const attr = ARNEYAN.abilities[key] ?? key;
     return `<div class="arn-favour-strained"><p><i class="fa-solid fa-hand-holding-heart"></i> <strong>Strained:</strong> ${esc(godOf(servant.kit) || "their god")}'s favour is in doubt. Roll ${esc(attr)} (DC 12) first; on a failure ${what}.</p>`
-      + `<button type="button" class="arn-favour-check" data-actor-uuid="${actor.uuid}" data-ability="${servant.key}" data-source="${esc(this.name)}"><i class="fa-solid fa-dice-d20"></i> ${esc(attr)} check DC 12</button></div>`;
+      + `<button type="button" class="arn-favour-check" data-actor-uuid="${actor.uuid}" data-ability="${key}" data-source="${esc(this.name)}"><i class="fa-solid fa-dice-d20"></i> ${esc(attr)} check DC 12</button></div>`;
   }
 
   /** Roll data for this item's damage: the actor's data plus @cl (caster or class level) and @mod. */
