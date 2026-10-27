@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Dagger</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Stealth in darkness. Once/day: snuff all nonmagical light within <strong>30ft</strong>.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Dagger</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Stealth in darkness. Once/day: snuff all nonmagical light within <strong>30ft</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508904\">Shar</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Chaotic Evil"
  },
  "effects": [],
  "folder": "BvV6hkqX5gKg1kym",
@@ -41,5 +42,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7508904"
+  }
+ }
 }

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Mace, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on your first attack roll each round against undead. Once/day: emit a <strong>20ft</strong> burst of dawn light, and undead in it make a <strong>Will save</strong> or flee for <strong>1 minute</strong>.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Mace, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on your first attack roll each round against undead. Once/day: emit a <strong>20ft</strong> burst of dawn light, and undead in it make a <strong>Will save</strong> or flee for <strong>1 minute</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Neutral Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7527450\">Lathander</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Neutral Good"
  },
  "effects": [],
  "folder": "BvV6hkqX5gKg1kym",
@@ -41,5 +42,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7527450"
+  }
+ }
 }

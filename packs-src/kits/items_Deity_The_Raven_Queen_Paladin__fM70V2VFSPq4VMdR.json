@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to <strong>1 hour</strong>.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to <strong>1 hour</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508945\">The Raven Queen</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Lawful Neutral"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -41,5 +42,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7508945"
+  }
+ }
 }

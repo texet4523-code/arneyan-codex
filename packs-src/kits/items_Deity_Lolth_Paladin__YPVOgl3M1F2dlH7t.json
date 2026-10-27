@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Stealth underground.</p><ul><li>Once/day: webs fill a <strong>20ft radius</strong> within <strong>60ft</strong>; each creature there makes a <strong>Reflex save</strong> or is <strong>Restrained</strong> for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</li><li>Your Smite against a <strong>Restrained</strong> creature deals +<strong>1d6</strong> poison damage.</li></ul>",
+  "description": "<p><strong>Favoured weapon:</strong> Cat-O-Nine-Tails</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Stealth underground.</p><ul><li>Once/day: webs fill a <strong>20ft radius</strong> within <strong>60ft</strong>; each creature there makes a <strong>Reflex save</strong> or is <strong>Restrained</strong> for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</li><li>Your Smite against a <strong>Restrained</strong> creature deals +<strong>1d6</strong> poison damage.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6364831\">Lolth</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -66,7 +66,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Chaotic Evil"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -74,5 +75,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/6364831"
+  }
+ }
 }

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Six-fingered prince of pleasure and betrayal. His court is built entirely on seduction.</p><ul><li><strong>Dark Gift (1st):</strong> Once per day, after failing a Charisma check, reroll and take either result.</li><li><strong>Advantage</strong> on Cha checks against creatures that find you appealing.</li><li>A creature that fails a save against one of your enchantment spells has <strong>Disadvantage</strong> on attack rolls against you until the end of your next turn.</li><li><strong>Patron's Mark</strong> (6th): Once per day, reroll any failed Charisma-based check and take the higher result. Additionally you always know instinctively what a creature finds most attractive or desirable about you.</li><li><strong>Patron Feature</strong> (12th): Once per day, cast a heightened Charm Monster — target has disadvantage on the save, and on failure believes you are their closest friend for the duration.</li></ul>",
+  "description": "<p>Six-fingered prince of pleasure and betrayal. His court is built entirely on seduction.</p><ul><li><strong>Dark Gift (1st):</strong> Once per day, after failing a Charisma check, reroll and take either result.</li><li><strong>Advantage</strong> on Cha checks against creatures that find you appealing.</li><li>A creature that fails a save against one of your enchantment spells has <strong>Disadvantage</strong> on attack rolls against you until the end of your next turn.</li><li><strong>Patron's Mark</strong> (6th): Once per day, reroll any failed Charisma-based check and take the higher result. Additionally you always know instinctively what a creature finds most attractive or desirable about you.</li><li><strong>Patron Feature</strong> (12th): Once per day, cast a heightened Charm Monster — target has disadvantage on the save, and on failure believes you are their closest friend for the duration.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/6364980\">Graz'zt</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -55,7 +55,8 @@
     },
     "save": ""
    }
-  ]
+  ],
+  "alignment": "Chaotic Evil"
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -63,5 +64,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/6364980"
+  }
+ }
 }

@@ -2,7 +2,7 @@ import { endHiding, rollHide } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
-import { servantOf, godOf, lostToForsaken, highestSlotLevel, isTurnUndead } from "./favour.mjs";
+import { servantOf, godOf, lostToForsaken, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
@@ -19,6 +19,19 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
 /** The user's current targets as actors with names. */
 export function targetActors() {
   return Array.from(game.user.targets ?? []).map(t => t.actor ? { token: t, actor: t.actor, name: t.name ?? t.actor.name } : null).filter(Boolean);
+}
+
+/** Targets with their Allegiance (books v0.10.19: anything that names an alignment goes by it). */
+export function allegianceTargets(list = targetActors()) {
+  return list.map(t => ({ name: t.name, allegiance: t.actor?.system?.allegiance?.value || "Unaligned" }));
+}
+
+/** A card line giving the targets' Allegiance, for spells and features that name an alignment. */
+function allegianceLine(item) {
+  if (!itemNamesAlignment(item)) return "";
+  const targets = allegianceTargets();
+  if (!targets.length) return "";
+  return `<p class="arn-card-meta arn-allegiance-notes" data-tooltip="Anything that names an alignment affects only creatures with that Allegiance; Unaligned mortals don't register."><i class="fa-solid fa-scale-balanced"></i> Allegiance: ${targets.map(t => `${esc(t.name)}, ${esc(t.allegiance)}`).join("; ")}</p>`;
 }
 
 /** Merge several advantage sources into a mode and an explanation. */
@@ -567,7 +580,7 @@ export class ArneyanActor extends Actor {
     let against = NONE;
     // Rules scoped to weapons that fit this one apply; their reminders leave the card.
     const fw = m?.forWeapon(item) ?? null;
-    const notes = [...more, ...(m?.notesFor("attack") ?? []).filter(t => !fw?.drop.has(t))];
+    const notes = annotateAllegiance([...more, ...(m?.notesFor("attack") ?? []).filter(t => !fw?.drop.has(t))], allegianceTargets(targets));
     if (targets.length === 1) {
       const tm = targets[0].actor.system.mods;
       if (tm) {
@@ -700,7 +713,7 @@ export class ArneyanActor extends Actor {
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
     // The weapon's dice (rerolls worked in) and the card's notes; the damage terms count rules scoped to this weapon.
     const own = this.weaponDice(item, { include, dice });
-    const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), own.notes, bonus);
+    const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), annotateAllegiance(own.notes, allegianceTargets()), bonus);
     return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus, weaponDice: dice || "",
       actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: own.formula, mod, crit, damageType: sys.damageType,
       terms, notes, extras, include, hits, misses
@@ -1335,6 +1348,8 @@ export class ArneyanItem extends Item {
     if (caster) lines.push(`<p class="arn-card-meta">Cast as ${esc(caster.name)} ${caster.classLevel}${sys.level > 0 ? ` · ${ARNEYAN.spellLevels[sys.level]}-level slot spent` : ""}</p>`);
     const strained = this._strainedLine();
     if (strained) lines.push(strained);
+    const sides = allegianceLine(this);
+    if (sides) lines.push(sides);
     if (self.length) lines.push(`<p class="arn-card-meta">On ${esc(actor.name)}: ${self.map(e => esc(e.name)).join(", ")}</p>`);
     if (sys.concentration) lines.push(`<p class="arn-card-meta"><i class="fa-solid fa-brain"></i> Concentrating</p>`);
     const notes = actor?.mods?.notesFor("spell") ?? [];
@@ -1497,7 +1512,7 @@ export class ArneyanItem extends Item {
     const title = `${this.name}: ${act.name}`;
     const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
     const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
-    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : "", this._strainedLine()].join("");
+    const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : "", this._strainedLine(), allegianceLine(this)].join("");
     if (act.removeConditions && actor?.isOwner) {
       const gone = actor.effects.filter(e => [...(e.statuses ?? [])].some(s => ARNEYAN.conditions[s] && !["dead", "concentrating"].includes(s)));
       if (gone.length) await actor.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));

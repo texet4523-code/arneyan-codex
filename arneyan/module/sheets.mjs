@@ -4,6 +4,7 @@ import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
 import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, weaponPickMax, featureLevel } from "./effects.mjs";
 import { ArneyanBrowser } from "./browser.mjs";
+import { alignmentContext } from "./favour.mjs";
 import { startingWealth, canRunStartingWealth } from "./starting.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
@@ -467,6 +468,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       traits: prettyTraits(system.traits),
       levelLabel: system.details?.levelText || system.level,
       isGM: game.user.isGM,
+      alignment: alignmentContext(actor),
       fromBestiary: game.user.isGM && !!bestiarySource(actor) && !actor.isToken,
       transformed: actor.getFlag?.("arneyan", "transform") ?? null,
       // This creature is out in another form: its token is the form's until it returns.

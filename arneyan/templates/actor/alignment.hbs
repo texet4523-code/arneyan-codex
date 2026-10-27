@@ -1,0 +1,21 @@
+{{!-- Outlook, Allegiance and Divine Favour (Book II, Alignment in Arneyan; books v0.10.20). --}}
+<div class="arn-alignment">
+  <div class="arn-fields two">
+    <label data-tooltip="How your character behaves, for roleplay. The GM doesn't police it, and spells don't read it.">Outlook <input type="text" name="system.details.alignment" value="{{source.details.alignment}}" list="arn-alignments" placeholder="e.g. Neutral Good"></label>
+    <label class="wide" data-tooltip="One or two tenets in your own words. Acting on one at real cost may earn +1 Luck (GM, once a session).{{#if alignment.servant}} A Paladin's oath is the god's tenets plus one personal vow.{{/if}}">Tenets <input type="text" name="system.details.tenets" value="{{source.details.tenets}}" placeholder="e.g. Never leave a companion behind"></label>
+  </div>
+  <div class="arn-allegiance-row">
+    <span class="arn-allegiance-label" data-tooltip="Your true side in the gods' war. Spells, items and features that name an alignment affect only creatures with that Allegiance; Unaligned mortals don't register.">Allegiance</span>
+    <strong class="arn-allegiance-value{{#if alignment.allegiance.unset}} unset{{/if}}">{{#if alignment.allegiance.value}}{{alignment.allegiance.value}}{{else}}Not set{{/if}}</strong>
+    <span class="arn-muted">{{alignment.allegiance.from}}</span>
+    {{#if isGM}}<label class="arn-allegiance-set" data-tooltip="Set by the GM: profane acts, a curse or a story. Leave blank to work it out from divine service or a pact.">GM sets <input type="text" name="system.details.allegiance" value="{{source.details.allegiance}}" list="arn-allegiances" placeholder="worked out"></label>{{/if}}
+  </div>
+  {{#if alignment.servant}}
+  <div class="arn-favour-row {{alignment.favour}}">
+    <span class="arn-allegiance-label" data-tooltip="Favoured is the normal state. Strained after a flagrant breach: Turn Undead and your highest-level spells need a DC 12 {{alignment.servant.attr}} check as you use them. Forsaken after a second breach while Strained, or on abandoning the god: every class ability your god grants is lost until you atone. Atonement moves one step back.">Divine Favour</span>
+    {{#if isGM}}<select name="system.details.favour">{{selectOptions alignment.favours selected=source.details.favour}}</select>
+    {{else}}<strong>{{alignment.favourLabel}}</strong>{{/if}}
+    <span class="arn-muted">{{alignment.servant.label}} of {{#if alignment.servant.god}}{{#if alignment.wiki}}<a href="{{alignment.wiki}}" target="_blank" rel="noopener" data-tooltip="The god's tenets on the World of Arneyan wiki">{{alignment.servant.god}}</a>{{else}}{{alignment.servant.god}}{{/if}}{{else}}no god yet (add a deity Kit){{/if}}</span>
+  </div>
+  {{/if}}
+</div>

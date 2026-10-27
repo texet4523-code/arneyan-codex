@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</li><li><strong>Patron's Mark (6th):</strong> Once per day, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature</strong> (12th): Once per day, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</li></ul>",
+  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</li><li><strong>Patron's Mark (6th):</strong> Once per day, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature</strong> (12th): Once per day, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -134,7 +134,8 @@
      }
     ]
    }
-  ]
+  ],
+  "alignment": "Lawful Evil"
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -142,5 +143,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7241548"
+  }
+ }
 }

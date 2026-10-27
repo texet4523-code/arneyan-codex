@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Cestus</p><p><strong>Granted power:</strong> Lay on Hands heals an additional +<strong>2 HP</strong> per Paladin level. Once/day: use Divine Healing on a target without expending the weekly use.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Cestus</p><p><strong>Granted power:</strong> Lay on Hands heals an additional +<strong>2 HP</strong> per Paladin level. Once/day: use Divine Healing on a target without expending the weekly use.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7453614\">Ilmater</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,7 +23,8 @@
     },
     "save": ""
    }
-  ]
+  ],
+  "alignment": "Lawful Good"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -31,5 +32,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7453614"
+  }
+ }
 }

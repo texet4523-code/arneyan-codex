@@ -294,6 +294,12 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   }
   if (o.uses !== undefined && "uses" in s) set("uses", usesFrom(s.uses, o.uses, maxNow));
   if (item.type === "kit" && Array.isArray(o.features)) set("features", kitFeaturesFrom(s.features, o.features));
+  // 0.10.64 (B-F6): a deity's or patron's alignment and wiki page, filled in where the copy has none (a GM's own stays).
+  if (item.type === "kit") {
+    if (o.alignment && !String(s.alignment ?? "").trim() && "alignment" in s) upd["system.alignment"] = o.alignment;
+    const wiki = src.flags?.[SYS]?.wiki;
+    if (wiki && !(item._source?.flags?.[SYS]?.wiki ?? item.flags?.[SYS]?.wiki)) upd[`flags.${SYS}.wiki`] = wiki;
+  }
   if (report && kept.length) report.kept = kept;
   // Record the fingerprints when they change (a first stamp, or a field updated), not on every run.
   if (!same(stamps, next)) upd[`flags.${SYS}.synced`] = next;

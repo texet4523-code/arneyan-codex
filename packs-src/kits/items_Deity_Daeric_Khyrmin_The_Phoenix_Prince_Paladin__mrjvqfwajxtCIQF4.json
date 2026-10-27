@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Sword, Long</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Performance. Once/day: for <strong>1 minute</strong>, while you wear light or no armour and wield a one-handed blade, add your Charisma modifier to your AC.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Long</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Performance. Once/day: for <strong>1 minute</strong>, while you wear light or no armour and wield a one-handed blade, add your Charisma modifier to your AC.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6213299\">Daeric Khyrmin</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Chaotic Good"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -41,5 +42,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/6213299"
+  }
+ }
 }

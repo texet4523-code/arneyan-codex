@@ -1,14 +1,16 @@
 /**
- * Cosmic alignment (books v0.10.19, B4; board B-F6). Book II, Alignment in Arneyan:
+ * Cosmic alignment (books v0.10.19, B4, and the v0.10.20 fix build; board B-F6, B-F7). Book II, Alignment in Arneyan:
  * - Outlook: every character's nine-label alignment plus one or two tenets. Roleplay only (details.alignment, details.tenets).
- * - Allegiance: a real side in the gods' war. Gods, outsiders and the undead hold one by nature; a mortal is Unaligned
- *   unless they take a side: divine service (their god's alignment while favoured), a pact (the patron's; a fiend pact
- *   makes them Evil) or profane acts (the GM marks them; Kieran's W1 and R5 calls make that a drift the GM judges).
- *   Spells, items and features that name an alignment affect only creatures with that Allegiance.
+ * - Allegiance: a real side in the gods' war. Gods, fiends, celestials and the undead hold one by nature; a mortal is
+ *   Unaligned unless they take a side: divine service (their god's alignment while favoured), a pact (the patron's; a
+ *   fiend pact makes them Evil) or profane acts, which pull a mortal towards Evil and, repeated or sustained, make them
+ *   Evil (W1, R5: the GM judges it and sets the Allegiance). Spells, items and features that name an alignment affect
+ *   only creatures with that Allegiance; Unaligned mortals don't register.
  * - Divine Favour for Clerics, Paladins and Battle Priests: Favoured, Strained (Turn Undead and the highest-level spells
- *   need a DC 12 check with the class's key attribute, Kieran's R6 call; a failure spends the use or slot), Forsaken
- *   (every class ability the god grants is lost until atonement).
- * Everything here is a pure function of plain data, so the data models and the tests can share it.
+ *   need a DC 12 check with the key attribute, Wisdom or Charisma for Paladins, R6; a failure spends the use or slot),
+ *   Forsaken (every class ability the god grants is lost until atonement). Atonement moves one step back.
+ * - M&T p.4 (m30): devils Lawful Evil, demons Chaotic Evil, other fiends Neutral Evil, celestials Good, undead Evil.
+ * Everything here bar alignmentContext is a pure function of plain data, so the data models and the tests can share it.
  */
 
 /** The nine alignments, in the books' order. */
@@ -110,17 +112,40 @@ export function npcAllegiance({ override = "", type = "" } = {}) {
   return { value: UNALIGNED, from: "Serves no power" };
 }
 
+/** Text that names an alignment the way a rule does: "vs evil creatures", "against good", "creatures that are Evil". */
+const NAMES_ALIGNMENT = /\balignment\b|\b(?:good|evil|lawful|chaotic)\s+(?:creatures?|outsiders?|beings?|foes?|enemies|targets?|spirits?)\b|\bthat (?:are|is) (?:good|evil|lawful|chaotic)\b|\b(?:vs\.?|versus|against)\s+(?:an?\s+)?(?:good|evil|lawful|chaotic)\b/i;
+export const namesAlignment = text => NAMES_ALIGNMENT.test(String(text ?? ""));
+
 /**
  * Does an alignment-keyed rule ("vs evil creatures", "against good") count against this Allegiance?
  * Returns true, false, or null when the text names no alignment. Unaligned never registers.
  */
 export function allegianceMatches(when, allegiance) {
   const w = String(when ?? "").toLowerCase();
+  if (!namesAlignment(w)) return null;
   const wants = ["good", "evil", "lawful", "chaotic"].filter(k => new RegExp(`\\b${k}\\b`).test(w));
   if (!wants.length) return null;
   const a = String(allegiance ?? "").toLowerCase();
   if (!a || a === "unaligned") return false;
   return wants.some(k => a.includes(k));
+}
+
+/**
+ * Reminders that name an alignment ("Blessed Weapon: +1d6 vs evil creatures") get each target's answer, by Allegiance:
+ * "Imp counts (Lawful Evil); Goblin doesn't (Unaligned)". targets: [{ name, allegiance }]. Others pass through.
+ */
+export function annotateAllegiance(notes = [], targets = []) {
+  if (!targets?.length) return notes;
+  return notes.map(n => {
+    if (allegianceMatches(n, "x") === null) return n;
+    const parts = targets.map(t => `${t.name} ${allegianceMatches(n, t.allegiance) ? "counts" : "doesn't"} (${t.allegiance || UNALIGNED})`);
+    return `${n}. By Allegiance: ${parts.join("; ")}`;
+  });
+}
+
+/** Does a spell or feature name an alignment (Holy Word, Protection from Alignment, Dispel Alignment...)? */
+export function itemNamesAlignment(item) {
+  return namesAlignment(item?.name) || namesAlignment(String(item?.system?.description ?? "").replace(/<[^>]+>/g, " "));
 }
 
 /** The class a feature, kit or spell belongs to, as the item records it ("" when none). */
@@ -152,3 +177,31 @@ export function highestSlotLevel(caster) {
 
 /** Turn Undead (and Control Undead, the same channel) by name. */
 export const isTurnUndead = name => /^(turn|control) undead\b/i.test(String(name ?? "").trim());
+
+/** The key attribute's name for a servant's Strained check. */
+const ATTR = { wis: "Wisdom", cha: "Charisma" };
+
+/**
+ * What the sheets show: the nine choices, the Allegiance and where it comes from, and Divine Favour for a servant.
+ * Characters: Outlook, tenets, Allegiance (worked out unless the GM sets one), Favour. Creatures: Outlook and Allegiance.
+ */
+export function alignmentContext(actor) {
+  const s = actor?.system ?? {};
+  const allegiance = s.allegiance ?? { value: UNALIGNED, from: "" };
+  const base = { choices: ALIGNMENTS, allegiance };
+  if (actor?.type === "npc") {
+    const natural = npcAllegiance({ type: s.details?.type }).value;
+    return { ...base, natural };
+  }
+  if (actor?.type !== "character") return base;
+  const servant = servantOf(actor.items ?? []);
+  const favour = s.favour || "favoured";
+  return {
+    ...base,
+    servant: servant ? { label: servant.label, god: godOf(servant.kit), attr: ATTR[servant.key] ?? servant.key } : null,
+    favour,
+    favourLabel: FAVOUR[favour] ?? FAVOUR.favoured,
+    favours: FAVOUR,
+    wiki: String(servant?.kit?.flags?.arneyan?.wiki ?? "")
+  };
+}

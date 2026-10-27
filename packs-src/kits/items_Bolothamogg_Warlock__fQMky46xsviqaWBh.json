@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Him Who Watches From Below. Associated with eyes, deep places, and truths that destroy the mind that holds them.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, gain true-sight for <strong>1 minute</strong> — see through illusions, polymorph, invisibility, and the true forms of all things.</li><li><strong>Patron's Mark</strong> (6th): Once per day, place an invisible eye anywhere within <strong>60ft</strong> — it lasts <strong>10 minutes</strong> and relays everything it sees and hears directly to your mind. One active at a time.</li><li><strong>Patron Feature</strong> (12th): Once per day, place an immobile Eye of Bolothamogg within <strong>60ft</strong> (AC 15, <strong>30 HP</strong>) for <strong>3 rounds</strong>. On each of your turns it fires one ray: <strong>6d6</strong> force, <strong>Reflex save</strong> against your Class Save DC for half; a creature reduced to <strong>0 HP</strong> or below by it is disintegrated.</li></ul>",
+  "description": "<p>Him Who Watches From Below. Associated with eyes, deep places, and truths that destroy the mind that holds them.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, gain true-sight for <strong>1 minute</strong> — see through illusions, polymorph, invisibility, and the true forms of all things.</li><li><strong>Patron's Mark</strong> (6th): Once per day, place an invisible eye anywhere within <strong>60ft</strong> — it lasts <strong>10 minutes</strong> and relays everything it sees and hears directly to your mind. One active at a time.</li><li><strong>Patron Feature</strong> (12th): Once per day, place an immobile Eye of Bolothamogg within <strong>60ft</strong> (AC 15, <strong>30 HP</strong>) for <strong>3 rounds</strong>. On each of your turns it fires one ray: <strong>6d6</strong> force, <strong>Reflex save</strong> against your Class Save DC for half; a creature reduced to <strong>0 HP</strong> or below by it is disintegrated.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/8468132\">Bolothamogg</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -57,7 +57,8 @@
     "damage": "6d6",
     "damageType": "force"
    }
-  ]
+  ],
+  "alignment": ""
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -65,5 +66,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/8468132"
+  }
+ }
 }

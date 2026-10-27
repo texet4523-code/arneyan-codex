@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Sword, Rapier</p><p><strong>Granted power:</strong> Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>Once per encounter, as part of your action, offer terms to a creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul>",
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Rapier</p><p><strong>Granted power:</strong> Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>Once per encounter, as part of your action, offer terms to a creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,7 +23,8 @@
     },
     "save": "will"
    }
-  ]
+  ],
+  "alignment": "Lawful Evil"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -31,5 +32,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7241541"
+  }
+ }
 }

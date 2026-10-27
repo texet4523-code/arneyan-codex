@@ -1,6 +1,6 @@
 /**
  * Gear that does things (Drop 1): ammunition, consumables, wand and staff charges, light sources,
- * spell scrolls, and Luck for alignment deeds. Rules from the Codex (Carrying), the Catalogue
+ * spell scrolls, and Luck for acting on a tenet. Rules from the Codex (Carrying), the Catalogue
  * (magic item rules, Illuminations), Spellcasting in Arneyan (Spellbooks & Scrolls) and Character
  * Creation (Recovering Luck).
  */
@@ -683,8 +683,8 @@ async function onScrollSocket(msg, senderId) {
 /* -------------------------------------------- */
 
 /**
- * A significant deed for the character's Alignment: +1 Luck at the GM's discretion, at most once a session,
- * never above 20 (Character Creation, Recovering Luck). Levelling up already gives its +1.
+ * Acting on a tenet at real cost: +1 Luck at the GM's discretion, at most once a session, never above 20
+ * (Book II, Alignment in Arneyan, books v0.10.19). Levelling up already gives its +1.
  */
 export async function luckForDeed(actor) {
   if (!game.user.isGM || actor?.type !== "character") return;
@@ -692,11 +692,11 @@ export async function luckForDeed(actor) {
   if (luck >= 20) return ui.notifications.info(`${actor.name}'s Luck is already 20, the maximum.`);
   const today = new Date().toISOString().slice(0, 10);
   if (actor.getFlag(SYS, "luckDeed") === today) {
-    const again = await DialogV2.confirm({ window: { title: "Luck for a deed" }, content: `<p>${esc(actor.name)} already had Luck for a deed today. The rule is once a session. Give it anyway?</p>`, rejectClose: false });
+    const again = await DialogV2.confirm({ window: { title: "Luck for a tenet" }, content: `<p>${esc(actor.name)} already had Luck for a tenet today. The rule is once a session. Give it anyway?</p>`, rejectClose: false });
     if (!again) return;
   }
   await actor.update({ "system.luck.value": luck + 1, [`flags.${SYS}.luckDeed`]: today });
-  say(actor, `<p>${esc(actor.name)} earns <strong>+1 Luck</strong> for a deed true to their Alignment (now ${luck + 1}).</p>`);
+  say(actor, `<p>${esc(actor.name)} earns <strong>+1 Luck</strong> for acting on a tenet at real cost (now ${luck + 1}).</p>`);
 }
 
 /* -------------------------------------------- */

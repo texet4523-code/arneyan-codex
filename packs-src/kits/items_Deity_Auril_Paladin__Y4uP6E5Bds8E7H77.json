@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Neutral Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7758470\">Auril</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -66,7 +66,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Neutral Evil"
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
@@ -74,5 +75,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7758470"
+  }
+ }
 }

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it. Once/day: exhale a <strong>15ft cone</strong> of that type (<strong>2d6</strong>, <strong>Reflex save</strong> for half).</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it. Once/day: exhale a <strong>15ft cone</strong> of that type (<strong>2d6</strong>, <strong>Reflex save</strong> for half).</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6459539\">Tiamat</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -34,7 +34,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Lawful Evil"
  },
  "effects": [],
  "folder": "BvV6hkqX5gKg1kym",
@@ -42,5 +43,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/6459539"
+  }
+ }
 }

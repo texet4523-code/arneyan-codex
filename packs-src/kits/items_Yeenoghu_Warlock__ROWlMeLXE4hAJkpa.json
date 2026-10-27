@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>The kill that feeds the next kill. The more you destroy, the stronger you become.</p><ul><li><strong>Dark Gift</strong> (1st): When you reduce a creature to <strong>0 HP</strong> or below, your next damaging cantrip or spell gains +1 damage die. Stacks up to 3 times per encounter.</li><li><strong>Patron's Mark</strong> (6th): Once per day, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</li><li><strong>Patron Feature</strong> (12th): Once per day, declare a Hunt on one creature within <strong>120ft</strong> — you always know its location, your spells deal +<strong>2d6</strong> against it, and if it drops you to <strong>0 HP</strong> or below first, make a <strong>Will save</strong> against your Class Save DC to stay at <strong>1 HP</strong> instead.</li></ul>",
+  "description": "<p>The kill that feeds the next kill. The more you destroy, the stronger you become.</p><ul><li><strong>Dark Gift</strong> (1st): When you reduce a creature to <strong>0 HP</strong> or below, your next damaging cantrip or spell gains +1 damage die. Stacks up to 3 times per encounter.</li><li><strong>Patron's Mark</strong> (6th): Once per day, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</li><li><strong>Patron Feature</strong> (12th): Once per day, declare a Hunt on one creature within <strong>120ft</strong> — you always know its location, your spells deal +<strong>2d6</strong> against it, and if it drops you to <strong>0 HP</strong> or below first, make a <strong>Will save</strong> against your Class Save DC to stay at <strong>1 HP</strong> instead.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7527337\">Yeenoghu</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -65,7 +65,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "Chaotic Evil"
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -73,5 +74,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7527337"
+  }
+ }
 }

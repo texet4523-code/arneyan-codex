@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>The strategist and the seducer. Ruthless calculation wearing a beautiful face.</p><ul><li><strong>Dark Gift</strong> (1st): Fire damage ignores resistance (not immunity). Creatures you deal fire damage to make a <strong>Will save</strong> against your Class Save DC or have disadvantage on their next attack roll.</li><li><strong>Patron's Mark</strong> (6th): Once per day, make one creature within <strong>30ft</strong> forget that you said something offensive, threatening, or incriminating in the last minute. They retain the emotional impression of the conversation but not the specific words.</li><li><strong>Patron Feature</strong> (12th): Once per day, create a <strong>20ft radius</strong> hellfire zone within <strong>60ft</strong> — <strong>4d8</strong> fire on entry or start of turn (<strong>Reflex save</strong> against your Class Save DC, for half). Lasts <strong>1 minute</strong>.</li></ul>",
+  "description": "<p>The strategist and the seducer. Ruthless calculation wearing a beautiful face.</p><ul><li><strong>Dark Gift</strong> (1st): Fire damage ignores resistance (not immunity). Creatures you deal fire damage to make a <strong>Will save</strong> against your Class Save DC or have disadvantage on their next attack roll.</li><li><strong>Patron's Mark</strong> (6th): Once per day, make one creature within <strong>30ft</strong> forget that you said something offensive, threatening, or incriminating in the last minute. They retain the emotional impression of the conversation but not the specific words.</li><li><strong>Patron Feature</strong> (12th): Once per day, create a <strong>20ft radius</strong> hellfire zone within <strong>60ft</strong> — <strong>4d8</strong> fire on entry or start of turn (<strong>Reflex save</strong> against your Class Save DC, for half). Lasts <strong>1 minute</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7469024\">Belial</a> and <a href=\"https://app.kanka.io/w/198952/entities/7469025\">Fierna</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -57,7 +57,8 @@
     "damage": "4d8",
     "damageType": "fire"
    }
-  ]
+  ],
+  "alignment": "Lawful Evil"
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -65,5 +66,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7469024"
+  }
+ }
 }

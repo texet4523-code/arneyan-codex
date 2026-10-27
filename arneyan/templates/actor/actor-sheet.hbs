@@ -194,7 +194,7 @@
         <input class="arn-luck-value" type="number" name="system.luck.value" value="{{source.luck.value}}" min="0" max="20">
         {{#if editMode}}<label class="arn-luck-start">start <input type="number" name="system.luck.start" value="{{source.luck.start}}" min="0" max="20"></label>
         {{else}}<span class="arn-ability-score">of {{source.luck.start}}</span>{{/if}}
-        {{#if isGM}}<a class="arn-luck-deed" data-action="luckDeed" data-tooltip="+1 Luck for a deed true to their Alignment (GM, once a session, never above 20)"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        {{#if isGM}}<a class="arn-luck-deed" data-action="luckDeed" data-tooltip="+1 Luck for acting on a tenet at real cost (GM, once a session, never above 20)"><i class="fa-solid fa-plus"></i></a>{{/if}}
       </div>
       {{/if}}
       {{#if isCharacter}}{{#if editMode}}<a class="arn-scores-link" data-action="abilityScores" data-tooltip="Roll Method V or type in a set, then assign the six scores"><i class="fa-solid fa-dice"></i></a>{{/if}}{{/if}}
@@ -536,9 +536,11 @@
 
       {{!-- ============ BIOGRAPHY / DESCRIPTION ============ --}}
       <div class="arn-tab" data-tab="bio" {{#unless (eq @root.activeTab "bio")}}hidden{{/unless}}>
+        <datalist id="arn-alignments">{{#each alignment.choices}}<option value="{{this}}"></option>{{/each}}</datalist>
+        <datalist id="arn-allegiances"><option value="Unaligned"></option>{{#each alignment.choices}}<option value="{{this}}"></option>{{/each}}<option value="Good"></option><option value="Evil"></option></datalist>
         {{#if isCharacter}}
+          {{> "systems/arneyan/templates/actor/alignment.hbs"}}
           <div class="arn-fields two">
-            <label>Alignment <input type="text" name="system.details.alignment" value="{{source.details.alignment}}"></label>
             <label>Deity <input type="text" name="system.details.deity" value="{{source.details.deity}}"></label>
             <label>Size <select name="system.details.size">{{selectOptions sizes selected=source.details.size}}</select></label>
             <label>Age <input type="text" name="system.details.age" value="{{source.details.age}}"></label>
@@ -555,7 +557,8 @@
         {{else}}
           <div class="arn-fields two">
             <label>Size <select name="system.details.size">{{selectOptions sizes selected=source.details.size}}</select></label>
-            <label>Alignment <input type="text" name="system.details.alignment" value="{{source.details.alignment}}"></label>
+            <label data-tooltip="How it behaves, for roleplay. Spells and features that name an alignment go by its Allegiance.">Outlook <input type="text" name="system.details.alignment" value="{{source.details.alignment}}" list="arn-alignments"></label>
+            <label data-tooltip="{{alignment.allegiance.from}}">Allegiance {{#if isGM}}<input type="text" name="system.details.allegiance" value="{{source.details.allegiance}}" placeholder="{{alignment.natural}}" list="arn-allegiances">{{else}}<strong>{{alignment.allegiance.value}}</strong>{{/if}}</label>
             <label>No. appearing <input type="text" name="system.details.numberAppearing" value="{{source.details.numberAppearing}}"></label>
             <label>XP <input type="text" name="system.details.xp" value="{{source.details.xp}}"></label>
             <label>Senses <input type="text" name="system.details.senses" value="{{source.details.senses}}"></label>

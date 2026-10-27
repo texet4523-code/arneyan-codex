@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Club</p><p><strong>Granted power:</strong> +1 AC while standing on natural stone or earth. Once per encounter, as part of your action, the ground within <strong>20ft</strong> becomes difficult terrain for your enemies until your next turn.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Club</p><p><strong>Granted power:</strong> +1 AC while standing on natural stone or earth. Once per encounter, as part of your action, the ground within <strong>20ft</strong> becomes difficult terrain for your enemies until your next turn.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7455719\">Grumbar</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,7 +33,8 @@
     "toggle": false,
     "active": false
    }
-  ]
+  ],
+  "alignment": "True Neutral"
  },
  "effects": [],
  "folder": "BvV6hkqX5gKg1kym",
@@ -41,5 +42,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7455719"
+  }
+ }
 }

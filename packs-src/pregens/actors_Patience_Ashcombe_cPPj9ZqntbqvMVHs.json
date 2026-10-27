@@ -829,7 +829,7 @@
    "type": "kit",
    "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
    "system": {
-    "description": "<p>She escaped her father through cleverness. The best move is always the one nobody sees coming.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, become invisible for <strong>1 minute</strong>. Ends only if you attack or cast offensively — not when interacting with objects.</li><li><strong>Patron's Mark</strong> (6th): Once per day, perfectly forge any document, signature, or official seal you have examined for at least <strong>1 minute</strong>. The forgery is undetectable without magical means.</li><li><strong>Patron Feature</strong> (12th): Once per day, perfectly impersonate anyone studied for <strong>1 minute</strong> — face, voice, mannerisms. Indistinguishable without magic. Lasts <strong>8 hours</strong>.</li></ul>",
+    "description": "<p>She escaped her father through cleverness. The best move is always the one nobody sees coming.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, become invisible for <strong>1 minute</strong>. Ends only if you attack or cast offensively — not when interacting with objects.</li><li><strong>Patron's Mark</strong> (6th): Once per day, perfectly forge any document, signature, or official seal you have examined for at least <strong>1 minute</strong>. The forgery is undetectable without magical means.</li><li><strong>Patron Feature</strong> (12th): Once per day, perfectly impersonate anyone studied for <strong>1 minute</strong> — face, voice, mannerisms. Indistinguishable without magic. Lasts <strong>8 hours</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7466866\">Glasya</a> in the World of Arneyan wiki.</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -880,13 +880,18 @@
       },
       "save": ""
      }
-    ]
+    ],
+    "alignment": "Lawful Evil"
    },
    "effects": [],
    "ownership": {
     "default": 0
    },
-   "flags": {},
+   "flags": {
+    "arneyan": {
+     "wiki": "https://app.kanka.io/w/198952/entities/7466866"
+    }
+   },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.kits.Item.sAHtivaRJjh74wSe"
    }

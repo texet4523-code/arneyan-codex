@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Paranoid ruler of an iron city where every wall hides a listener.</p><ul><li><strong>Dark Gift</strong> (1st): Always know when you are being observed or followed, magical or mundane. <strong>Advantage</strong> on saves vs divination. Once per day, when you detect you are being watched or followed, gain advantage on your next initiative roll or saving throw.</li><li><strong>Patron's Mark</strong> (6th): Once per day, listen through any iron or steel surface as if your ear were pressed against the other side for up to <strong>10 minutes</strong> — you hear everything clearly regardless of thickness.</li><li><strong>Patron Feature</strong> (12th): Once per day, learn a creature's allegiances, fears, and one secret without them knowing (no save, <strong>60ft</strong> range).</li></ul>",
+  "description": "<p>Paranoid ruler of an iron city where every wall hides a listener.</p><ul><li><strong>Dark Gift</strong> (1st): Always know when you are being observed or followed, magical or mundane. <strong>Advantage</strong> on saves vs divination. Once per day, when you detect you are being watched or followed, gain advantage on your next initiative roll or saving throw.</li><li><strong>Patron's Mark</strong> (6th): Once per day, listen through any iron or steel surface as if your ear were pressed against the other side for up to <strong>10 minutes</strong> — you hear everything clearly regardless of thickness.</li><li><strong>Patron Feature</strong> (12th): Once per day, learn a creature's allegiances, fears, and one secret without them knowing (no save, <strong>60ft</strong> range).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7468911\">Dispater</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -55,7 +55,8 @@
     },
     "save": ""
    }
-  ]
+  ],
+  "alignment": "Lawful Evil"
  },
  "effects": [],
  "folder": "rAyJCFFTFsAcPyvj",
@@ -63,5 +64,9 @@
  "ownership": {
   "default": 0
  },
- "flags": {}
+ "flags": {
+  "arneyan": {
+   "wiki": "https://app.kanka.io/w/198952/entities/7468911"
+  }
+ }
 }
