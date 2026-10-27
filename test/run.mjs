@@ -269,13 +269,19 @@ assert.equal(creatureCost(0, 1, "½"), 0.5); assert.equal(creatureCost(0, 1, "¼
 // example: three goblins (¼, so Level −3) against a 12th-level character cost 0, not 1¼.
 assert.equal(creatureCost(6, 12), 0, "6 below: free"); assert.equal(creatureCost(7, 12), 0.25, "5 below: ¼");
 assert.equal(creatureCost(0, 3, "¼"), 0, "Level ¼ counts as −3: 6 below a 3rd-level party");
-eb = encounterBudget([12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }]);
+eb = encounterBudget([12, 12, 12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }]);
 assert.equal(eb.total, 0); assert.ok(eb.warnings.some(w => w.includes("no cost")));
 assert.equal(eb.label, "Easy (all far below)"); assert.equal(eb.tier, "easy");
+// R8 (Kieran, 27 Oct 2026): free only up to the party's number; past that ¼ each, counting for crowds.
+eb = encounterBudget([12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }]);
+assert.equal(eb.total, 0.25 + 2 * 0.25, "one free; two at ¼, the second beyond the party of one doubled");
+assert.ok(eb.warnings.some(w => w.includes("free only up to the party's number")));
+eb = encounterBudget([8, 8, 8, 8], [{ name: "Kobold", level: 2, count: 30 }]);
+assert.equal(eb.total, 26 * 0.25 + 22 * 0.25, "four free; 26 at ¼, and the 22 beyond the party's four of those double");
 assert.equal(encounterBudget([12], []).label, "No foes");
 assert.ok(encounterBudget([12], [{ name: "Wyrmling", level: 1, solo: true, count: 1 }]).warnings.some(w => w.includes("no cost")), "a solo far below is free too");
-eb = encounterBudget([12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }, { name: "Ogre", level: 12, count: 2 }]);
-assert.equal(eb.total, 3, "the goblins don't make a crowd: only the second ogre doubles");
+eb = encounterBudget([12, 12, 12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }, { name: "Ogre", level: 12, count: 4 }]);
+assert.equal(eb.total, 5, "the free goblins don't make a crowd: only the fourth ogre doubles");
 // A real monster from the pack: data model, traits, spell DC and every sheet tab.
 const mdir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const lichDoc = JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith("actors_Lich_"))));

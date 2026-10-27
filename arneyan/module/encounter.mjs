@@ -4,7 +4,8 @@
  *
  * Budget: 1 point per character. Cost by Level against the party:
  *   4+ lower ¼, 3 lower ⅓, 2 lower ½, 1 lower ¾, equal 1, 1 higher 1½, 2 higher 2, 3 higher 3, 4 higher 4.
- * Far below: a creature 6 or more Levels below the party costs nothing and is never part of a crowd.
+ * Far below: a creature 6 or more Levels below the party costs nothing and is never part of a crowd, but only up to the
+ * party's number; any more cost ¼ each and count for the crowd rule (R8, Kieran 27 Oct 2026).
  * Crowds: creatures beyond the party's number (the cheapest) cost double. Level 0 and ¼ count as Level −3, ½ as Level −1.
  * More than 4 Levels above the party: solo rules only. A solo of the party's Level costs the whole budget.
  * Difficulty: half the budget easy, the full budget hard, double deadly.
@@ -47,23 +48,27 @@ export function encounterBudget(partyLevels, foes) {
   const singles = [];
   let soloCost = 0;
   let free = 0;
+  let pastFree = 0;
   for (const f of foes) {
     const c = creatureCost(f.level, partyLevel, f.levelText);
     for (let i = 0; i < (f.count ?? 1); i++) {
+      // Far below: free up to the party's number; past that, ¼ each (R8).
+      const far = c === 0 && free >= n;
+      if (far) pastFree += 1;
       if (f.solo) {
-        const each = (c ?? LADDER["4"]) * n;
+        const each = (far ? LADDER["-4"] : (c ?? LADDER["4"])) * n;
         soloCost += each;
-        if (c === 0) free += 1;
+        if (c === 0 && !far) free += 1;
         if (c === null) warnings.push(`${f.name} is more than 4 Levels above the party: cost shown as 4 Levels higher.`);
       } else if (c === null) {
         warnings.push(`${f.name} is more than 4 Levels above the party: run it under the solo rules.`);
         singles.push({ name: f.name, cost: LADDER["4"] });
-      } else if (c === 0) free += 1;
-      else singles.push({ name: f.name, cost: c });
+      } else if (c === 0 && !far) free += 1;
+      else singles.push({ name: f.name, cost: far ? LADDER["-4"] : c });
     }
   }
   // Crowds: each creature beyond the party's number, the cheapest ones, costs double. Free creatures (far below the
-  // party) are never part of one.
+  // party, up to its number) are never part of one; far-below creatures past that are.
   const sorted = singles.slice().sort((a, b) => b.cost - a.cost);
   const crowd = Math.max(0, sorted.length - n);
   const doubled = crowd ? sorted.slice(sorted.length - crowd) : [];
@@ -76,6 +81,7 @@ export function encounterBudget(partyLevels, foes) {
   const label = !total ? (anyFoes ? "Easy (all far below)" : "No foes") : r <= 0.5 ? "Easy" : r < 1 ? "Between easy and hard" : r === 1 ? "Hard" : r < 2 ? "Between hard and deadly" : r === 2 ? "Deadly" : "Beyond deadly";
   const tier = !total ? (anyFoes ? "easy" : "none") : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
   if (free) warnings.push(`${free} creature${free === 1 ? " is" : "s are"} ${FAR_BELOW} or more Levels below the party: no cost, and not part of a crowd.`);
+  if (pastFree) warnings.push(`${pastFree} more creature${pastFree === 1 ? " is" : "s are"} ${FAR_BELOW} or more Levels below the party: free only up to the party's number, so ${pastFree === 1 ? "it costs" : "they cost"} ¼ each and count for crowds.`);
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
   return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, costLabel: c => FRACTION(c) };
 }
@@ -203,7 +209,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
       foes: foes.map((f, i) => {
         const c = creatureCost(f.level, b.partyLevel, f.levelText);
-        return { ...f, i, levelLabel: f.levelText || f.level, cost: c === 0 ? "free (far below)" : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
+        return { ...f, i, levelLabel: f.levelText || f.level, cost: c === 0 ? "free (far below, up to the party's number)" : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
       }),
       b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
       naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",
