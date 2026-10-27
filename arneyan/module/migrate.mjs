@@ -309,9 +309,15 @@ export function kitFill(item, src) {
   const upd = {};
   if (item?.type !== "kit" || src?.type !== "kit" || item.flags?.[SYS]?.keepCustom) return upd;
   const s = item._source?.system ?? item.system ?? {}, o = src.system ?? {};
-  if (o.alignment && !String(s.alignment ?? "").trim()) upd["system.alignment"] = o.alignment;
+  const f = item._source?.flags?.[SYS] ?? item.flags?.[SYS] ?? {};
+  // Once only (flags.arneyan.alignFilled), and never over what the GM put back: a GM who clears it later keeps it clear.
+  const back = f.putBack ?? [];
+  if (o.alignment && !String(s.alignment ?? "").trim() && !f.alignFilled && !back.includes("system.alignment")) {
+    upd["system.alignment"] = o.alignment;
+    upd[`flags.${SYS}.alignFilled`] = true;
+  }
   const wiki = src.flags?.[SYS]?.wiki;
-  if (wiki && !(item._source?.flags?.[SYS]?.wiki ?? item.flags?.[SYS]?.wiki)) upd[`flags.${SYS}.wiki`] = wiki;
+  if (wiki && !f.wiki) upd[`flags.${SYS}.wiki`] = wiki;
   return upd;
 }
 

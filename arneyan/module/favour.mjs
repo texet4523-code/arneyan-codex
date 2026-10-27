@@ -66,9 +66,10 @@ export function servantOf(items = []) {
   }
   if (!found.length) return null;
   const bases = [...new Set(found.map(f => f.base))];
-  const kit = list.find(i => i.type === "kit" && /^deity\b/i.test(String(i.name ?? "")) && bases.includes(String(i.system?.className ?? "").toLowerCase())) ?? null;
+  const kits = list.filter(i => i.type === "kit" && /^deity\b/i.test(String(i.name ?? "")) && bases.includes(String(i.system?.className ?? "").toLowerCase()));
+  const kit = kits[0] ?? null;
   const primary = (kit && found.find(f => f.base === String(kit.system?.className ?? "").toLowerCase())) || found[0];
-  return { cls: primary.cls, kit, label: primary.label, key: primary.key, className: String(primary.cls.name), bases, classNames: found.map(f => String(f.cls.name).toLowerCase()) };
+  return { cls: primary.cls, kit, kits, label: primary.label, key: primary.key, className: String(primary.cls.name), bases, classNames: found.map(f => String(f.cls.name).toLowerCase()) };
 }
 
 /** The attribute a Strained check uses for this item: Charisma for a Paladin's, else the servant's (R6). */
@@ -137,13 +138,15 @@ export const namesAlignment = text => NAMES_ALIGNMENT.test(String(text ?? ""));
 export function allegianceMatches(when, allegiance) {
   const w = String(when ?? "").toLowerCase();
   if (!namesAlignment(w)) return null;
-  const terms = [...w.matchAll(/\b(non-?\s?)?((?:lawful|chaotic|neutral)\s+(?:good|evil)|good|evil|lawful|chaotic)\b/g)]
+  const terms = [...w.matchAll(/\b(non-?\s?)?((?:lawful|chaotic|neutral|true)\s+(?:good|evil|neutral)|good|evil|lawful|chaotic)\b/g)]
     .map(m => ({ not: !!m[1], words: m[2].split(/\s+/) }));
   if (!terms.length) return null;
   const a = String(allegiance ?? "").toLowerCase();
   if (!a || a === "unaligned") return false;
-  const has = word => new RegExp(`\\b${word}\\b`).test(a);
-  return terms.some(t => (t.not ? !t.words.every(has) : t.words.every(has)));
+  const mine = a.split(/\s+/);
+  // Two words need both; a one-word Allegiance by nature (undead "Evil", celestials "Good") counts when its word is there.
+  const fits = t => (mine.length === 1 ? t.words.includes(mine[0]) : t.words.every(x => mine.includes(x)));
+  return terms.some(t => (t.not ? !fits(t) : fits(t)));
 }
 
 /**
@@ -183,10 +186,12 @@ const CLERIC_KEEPS = /^(extra attack|wisdom bonus|weapon selection|battle priest
  */
 export function lostToForsaken(item, servant, className = null) {
   if (!servant || !item) return false;
-  if (servant.kit && item === servant.kit) return true;
+  const kits = servant.kits ?? (servant.kit ? [servant.kit] : []);
+  if (kits.includes(item)) return true;
   const cn = String(className || classOfItem(item)).toLowerCase();
   if (!cn) return false;
-  if (servant.kit && cn === String(servant.kit.name ?? "").toLowerCase()) return true;
+  // A deity kit's own features carry the kit's name (a Cleric/Paladin may have both of the god's kits).
+  if (kits.some(k => cn === String(k.name ?? "").toLowerCase())) return true;
   const bases = servant.bases ?? [servant.label === "Paladin" ? "paladin" : "cleric"];
   const names = servant.classNames ?? [String(servant.className ?? "").toLowerCase()];
   const base = bases.find(b => cn === b || cn.startsWith(`${b} `)) ?? (names.includes(cn) ? (cn.startsWith("paladin") ? "paladin" : "cleric") : null);

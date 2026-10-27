@@ -72,6 +72,14 @@ assert.equal(F.allegianceMatches("vs chaotic evil creatures", "Chaotic Evil"), t
 assert.equal(F.allegianceMatches("vs non-evil creatures", "Lawful Good"), true);
 assert.equal(F.allegianceMatches("vs non-evil creatures", "Neutral Evil"), false);
 assert.equal(F.allegianceMatches("vs non-evil creatures", "Unaligned"), false, "Unaligned never registers");
+assert.equal(F.allegianceMatches("vs chaotic evil creatures", "Evil"), true, "undead by nature");
+assert.equal(F.allegianceMatches("vs lawful neutral creatures", "Lawful Good"), false);
+assert.equal(F.allegianceMatches("vs lawful neutral creatures", "Lawful Neutral"), true);
+/* Both of the god's kits on a Cleric/Paladin, and their features. */
+const tormC = kit("Deity: Torm (The Enduring Duty) (Cleric)", "Cleric", "Lawful Good");
+const both = F.servantOf([cls("Cleric"), cls("Paladin"), tormC, torm]);
+assert.ok(F.lostToForsaken(torm, both) && F.lostToForsaken(tormC, both));
+assert.ok(F.lostToForsaken({ type: "ability", name: "Granted Power", system: { className: torm.name } }, both), "the second kit's features");
 
 /* Forsaken: the servant's class abilities and deity kit; other classes' stay. Strained: the highest slots. */
 const s = F.servantOf([cls("Cleric"), kit("Deity: Bane (Cleric)", "Cleric", "Lawful Evil")]);
@@ -172,6 +180,9 @@ assert.equal(upd["flags.arneyan.wiki"], src.flags.arneyan.wiki);
 const own = M.kitFill({ ...old, system: { ...old.system, alignment: "Lawful Evil" } }, src);
 assert.ok(!("system.alignment" in own), "a GM's own alignment stays");
 assert.deepEqual(M.kitFill({ ...old, flags: { arneyan: { keepCustom: true } } }, src), {}, "Keep my edits");
+assert.equal(upd["flags.arneyan.alignFilled"], true);
+assert.ok(!("system.alignment" in M.kitFill({ ...old, flags: { arneyan: { alignFilled: true } } }, src)), "a GM who clears it later keeps it clear");
+assert.ok(!("system.alignment" in M.kitFill({ ...old, flags: { arneyan: { putBack: ["system.alignment"] } } }, src)), "put back stays put back");
 { const r = {}; const u = M.refreshFrom(old, src, { legacy: "skip", report: r });
   assert.ok(!r.unstamped && !Object.keys(u).some(k => k.startsWith("system.")), "an unstamped kit that matches isn't held back by the fill"); }
 const mig = fs.readFileSync(`${root}module/migrate.mjs`, "utf8");
