@@ -1,5 +1,5 @@
 // Content gaps and optional modules (branch "content"): class-only spells, Witch and Artificer kits, a pregen's kit
-// and spells (Patience Ashcombe since the Journeymen were cut), Dice So Nice tagging, Item Piles config, the Token Action HUD adapter, and the release files.
+// and spells (Ilvaeth Duskwhisper since the pregens were rebuilt), Dice So Nice tagging, Item Piles config, the Token Action HUD adapter, and the release files.
 // Run after a build (python3 build/build.py && node build/pack.mjs).
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -86,15 +86,15 @@ for (const d of [...witch, ...art, ...sp]) for (const f of d.system.features ?? 
 
 // ---- 3. The pregens find them.
 const pregens = pack("pregens").filter(d => d.type === "character");
-// The Journeymen (Maud the Witch, Tibbet the Alchemist) were cut with The Broken Anvil's second act (K26, 28 Oct 2026);
-// Patience Ashcombe (Warlock 1, Glasya) checks the same things: her kit, its features up to her level only, and her
+// The Journeymen (Maud the Witch, Tibbet the Alchemist) were cut (K26), and the Recruits rebuilt around the class art
+// (28 Oct 2026): Ilvaeth Duskwhisper (Warlock 1) checks a pregen's kit, its features up to her level only, and her
 // class-only spells as real prepared spells from the compendium.
 assert.ok(pregens.length >= 14 && !pregens.some(p => ["Maud Hollins", "Tibbet Quickfuse"].includes(p.name)));
-const patience = pregens.find(p => p.name === "Patience Ashcombe");
-assert.ok(patience.items.some(i => i.type === "kit" && i.name === "Glasya (Warlock)"), "Patience's patron kit");
-const kitFeats = patience.items.filter(i => i.type === "ability" && i.system.className === "Glasya (Warlock)").map(i => i.name);
+const ilvaeth = pregens.find(p => p.name === "Ilvaeth Duskwhisper");
+assert.ok(ilvaeth.items.some(i => i.type === "kit" && i.name === "The Queen of Air and Darkness (Warlock)"), "her patron kit");
+const kitFeats = ilvaeth.items.filter(i => i.type === "ability" && i.system.className === "The Queen of Air and Darkness (Warlock)").map(i => i.name);
 assert.ok(kitFeats.includes("Dark Gift") && !kitFeats.includes("Patron's Mark"), "the kit's 1st-level feature, not its 4th-level one");
-const blast = patience.items.find(i => i.type === "spell" && i.name === "Eldritch Blast");
+const blast = ilvaeth.items.find(i => i.type === "spell" && i.name === "Eldritch Blast");
 assert.ok(blast?.system.prepared && blast._stats?.compendiumSource?.startsWith("Compendium.arneyan.spells."), "Eldritch Blast is a real prepared spell");
 
 // ---- 4. Dice So Nice: damage dice carry their type as flavour, without touching a flavour already set.

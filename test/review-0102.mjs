@@ -72,9 +72,10 @@ function doc(type, name, system = {}, parent = null, id = null) {
   // Pregens: the level from the book where it's given, else 0.
   const pregens = packDocs("pregens").filter(d => d.type === "character");
   const featOf = (who, f) => pregens.find(p => p.name === who)?.items.find(i => i.type === "feat" && i.name === f)?.system.levelTaken;
-  assert.equal(featOf("Marta Holloway", "Critical Strike"), 6);
-  assert.equal(featOf("Marta Holloway", "Swift Reflexes"), 1, "a Human's bonus feat: 1st level");
-  assert.equal(featOf("Wendel \"Big Wen\" Harrow", "Critical Strike"), 1, "a 1st-level pregen took everything at 1st");
+  assert.equal(featOf("Marten Halloway", "Point-Blank Terror"), 2);
+  assert.equal(featOf("Marten Halloway", "Swift Reflexes"), 6);
+  assert.equal(featOf("Marten Halloway", "Toughness"), 1, "a Human's bonus feat: 1st level");
+  assert.equal(featOf("Haldor Brassbeard", "Toughness"), 1, "a 1st-level pregen took everything at 1st");
   // A feat note naming a level that isn't when it was taken ("One extra 2nd-level slot", Maud's Expanded Mind before the
   // Journeymen were cut) stays 0: build_pregens.py's feat_level, checked directly.
   {

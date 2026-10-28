@@ -45,6 +45,9 @@ THROWN = {"Dart", "Aclis", "Javelin", "Harpoon", "Bolas", "Knife (thrown)"}
 EXTRA_BUNDLES = {"Torch", "Torches", "Knife"}  # build_tidy renames Torches to Torch later
 NO_SLOT = {"Backpack"}
 
+# Worn items: "+1 AC while worn" (Catalogue).
+WORN_RULES = {"Ring of Protection": [{"key": "ac", "value": "1", "when": "", "label": ""}]}
+
 # Iconic weapon -> (base weapon, +N, extra damage [(formula, type, when)], extras)
 ICONIC = {
     # Ignited on a command word: +1d6 fire on every hit and light 20ft (Catalogue) while on.
@@ -260,6 +263,16 @@ def build():
         }
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
+
+    # Worn magic items whose Catalogue line is a plain number (28 Oct 2026, the Veterans' Monk wears a Ring of
+    # Protection): the number as a rule, counted while the item is equipped.
+    for wname, wrules in WORN_RULES.items():
+        if wname in by_name:
+            f, d = by_name[wname]
+            if d["system"].get("rules") != wrules:
+                d["system"]["rules"] = wrules
+                json.dump(d, open(f, "w"), ensure_ascii=False, indent=1)
+                changed += 1
 
     # Toolkits. Tools & Trades doesn't exist yet on a clean build: build_tidy puts them in it.
     tools = next((i for i, n in folder_names.items() if n == "Tools & Trades"), None)

@@ -1,0 +1,2276 @@
+{
+ "_id": "aDdHCau2dSb5T1ZW",
+ "_key": "!actors!aDdHCau2dSb5T1ZW",
+ "name": "Fenna Thornmantle",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Druid.webp",
+ "folder": "fsNI6p9KcER9QjRL",
+ "sort": 300,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 11
+   },
+   "dex": {
+    "value": 17
+   },
+   "con": {
+    "value": 13
+   },
+   "int": {
+    "value": 13
+   },
+   "wis": {
+    "value": 17
+   },
+   "cha": {
+    "value": 9
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 9,
+    "max": 9,
+    "temp": 0
+   },
+   "speed": 35
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 8,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Neutral Good",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Elvish, Druidic, Sylvan",
+   "biography": "<p><em>The Broken Anvil · Level 1 - The Recruits · Seat 3, Healer</em></p><p>A red-haired wood elf in a crown of antlers and leaves, never far from Bramble, the bad-tempered boar who adopted her. Warm, blunt and fiercely protective; she patches up anyone who stands still long enough, then tells them off for getting hurt. She trained with the Nalwood circle, and joined the Keepers because hurt people rarely come to the forest.</p><p><strong>Tonight:</strong> If anyone down there is hurt, goblin or not, she means to bring them out.</p><h3>In a fight</h3><p>Keep everyone standing with Cure Light Wounds and First Aid. Open with Faerie Fire on a crowd so the others hit with Advantage, Thunderwave anything that gets too close, and let Bramble charge.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Spell Use.</strong> Nature caster, Wisdom-based, save DC 13. Three cantrips at will. Two 1st-level slots a day (1, +1 for Wisdom 13+), back after a long rest. Each morning prepare three spells (level 1 + Wisdom +2) from the whole Druid list. Her oak staff is her focus.</p><p><strong>Wild Shape.</strong> Once a day, become a beast of Level 1 or lower (a boar like Bramble) for up to an hour, using its whole stat block. You keep your mind and cannot cast in a form that cannot speak; when the form drops to 0 HP you return with the HP you had.</p><p><strong>Nature Lore (Wisdom).</strong> In your home region, identify plants and animals perfectly, tell whether water is safe, and find shelter and food for one person; elsewhere it needs a Wisdom check.</p><p><strong>Bonus Language.</strong> You speak Druidic, the circle&#x27;s secret tongue.</p><p><strong>Forest Vigour (kit).</strong> Healing you cast restores +1 HP per die.</p><p><strong>Ancient Lore (kit).</strong> Advantage on Nature Lore checks in old-growth forest.</p><p><strong>Healer (1st, Arcane &amp; Devout).</strong> Healing spells and brewed potions restore +1 HP per die, and once a day you cast a healing spell of 3rd level or lower without a slot.</p><p><strong>Bramble.</strong> A wild boar she befriended with Animal Friendship. She renews it each evening before she rests, so it costs no slot on the day; harm him and the friendship ends. He follows her and the GM runs him: Level 1, AC 16, 9 HP, speed 40ft, Tusk +4 (1d8+2), Charge (+1d8 and Fortitude DC 12 or Prone after a 20ft straight run), Relentless once a day.</p><p><strong>Elf (Saevren).</strong> Speed 35ft, low-light vision. Immune to magical sleep. Advantage on saves against charm, on concentration saves, and on Perception by sight or hearing; Advantage on Stealth and Perception in natural surroundings. Trance: 4 hours&#x27; rest instead of 8.</p><p><strong>Camouflage.</strong> Once a day, as part of your movement in natural terrain, become undetectable to passive notice until you move or act.</p><p><strong>No forged metal.</strong> Her weapons and armour are wood, leather and stone, as a druid&#x27;s must be.</p><h3>Casting</h3><p>First Aid (cantrip): touch, a dying creature is stabilised at its current HP with no roll; it stays unconscious until healed or for 1 hour.</p><p>Thorn Whip (cantrip): 30ft, one creature takes 1d4 piercing and is pulled 10ft towards you; Reflex negates both.</p><p>Poison Spray (cantrip): 10ft, one creature takes 1d6 poison; Fortitude negates.</p><p>Cure Light Wounds (1st): touch, heals 1d8+3 (+1 for level, +1 Forest Vigour, +1 Healer); one free cast a day from Healer.</p><p>Faerie Fire (1st): 60ft, 20ft radius, 1 minute; creatures are outlined, lose Invisible and concealment, and attacks against them have Advantage; Reflex negates.</p><p>Thunderwave (1st): 15ft cone, 1d6 thunder and pushed 10ft; Fortitude halves the damage and stops the push. Heard 300ft away.</p><p><strong>Armour Class on the sheet:</strong> 10 + 4 (Cuir Bouille, Medium) + 2 (Dex, Medium max +2) = 16</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "7uko4PW2OJIBICcU",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.7uko4PW2OJIBICcU",
+   "name": "Druid",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Druid.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Wisdom</td></tr><tr><td>Hit Die</td><td><strong>d8</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>2 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★★☆ Complex</td></tr><tr><td>Weapons</td><td>Bows, club, dagger, dart, hand axe, hammers, scythe, sling, sickle, spears, staff — nature-sourced materials only, no forged steel or bronze</td></tr><tr><td>Armour</td><td>Cuir bouille, laminar leather, padded, leather, leather coat, hide</td></tr><tr><td>BtH</td><td>+1 per 3 levels (+4 at 12th, +8 at 24th)</td></tr><tr><td>Spellcasting</td><td>Nature (a divine tradition). Wisdom is the casting stat. DC = 10 + half your Druid level (minimum 1) + Wisdom modifier — see Spellcasting in Arneyan for the full formula.</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Spell Use, Bonus Language, Nature Lore, Wild Shape</td></tr><tr><td>2</td><td>Resist Elements</td></tr><tr><td>3</td><td>Woodland Stride, Wild Shape <strong>twice a day</strong></td></tr><tr><td>5</td><td>Perfect Recall</td></tr><tr><td>6</td><td>Wild Shape Casting, Wild Shape <strong>three times a day</strong></td></tr><tr><td>8</td><td>Elemental Mastery</td></tr><tr><td>9</td><td>Language of the Wilderlands, Wild Shape <strong>four times a day</strong></td></tr><tr><td>12</td><td>Deepened Shape</td></tr><tr><td>13</td><td>Advanced Nature Lore</td></tr><tr><td>15</td><td>+1 Wisdom, Wild Shape <strong>five times a day</strong></td></tr><tr><td>18</td><td>Dismiss Woodland Creatures</td></tr><tr><td>20</td><td>Elemental Mastery improves</td></tr><tr><td>21</td><td>Language of the Wilderlands improves</td></tr><tr><td>24</td><td>Awaken Woodland Spirit, Perfect Recall extends to 2nd-level spells, Wild Shape <strong>six times a day</strong></td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Spell Use</h4><ul><li><strong>Effect:</strong> Cast divine spells per the Spells Per Day table. Bonus slots from high Wisdom (see Spellcasting in Arneyan, II).</li></ul><h4>Bonus Language</h4><ul><li><strong>Effect:</strong> Gain the secret druidic tongue — forbidden to teach to non-druids.</li><li><strong>High Intelligence also unlocks:</strong> Elvish, Giant, Gnomish, Primordial, Sylvan</li></ul><h4>Nature Lore (Wisdom)</h4><ul><li><strong>Effect:</strong> Identify plants and animals perfectly within the Druid's trained region.</li><li>Determine if water is safe to drink</li><li>Find basic shelter and enough food for one person automatically</li><li>Feeding additional people takes <strong>6 hours</strong> of foraging and a Moderate Wisdom (Survival) check, and feeds an extra <strong>2d4</strong> people</li><li>Unfamiliar regions require a Wisdom check for all of the above</li></ul><h4>Wild Shape</h4><ul><li><strong>Effect:</strong> Shapeshift into any beast or beast-like monster of Level no greater than half your Druid level, rounded down (minimum Level 1), <strong>once per day</strong> (more often as you rise in level, below), choosing the form fresh each time (any beast in Monsters &amp; Treasure, or one of these beast-like monsters: Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Hydra, Piercer and Rust Monster; others at the GM's call, but never a solo, an intelligent or a magical creature).</li><li>Lasts up to <strong>1 hour</strong> or until you choose to revert.</li><li>You take the form's whole stat block from Monsters &amp; Treasure: its HP, AC, attacks, saves and movement.</li><li>You keep your own mind, personality and Wisdom-based abilities, and you cannot cast spells in a form that cannot speak.</li><li>When the form drops to <strong>0 HP</strong> you return to your own form with the HP you had when you changed (see Changing Shape in Spellcasting in Arneyan).</li><li>3rd level: usable <strong>twice per day</strong></li><li>6th level: usable <strong>three times per day</strong></li><li>9th level: usable <strong>four times per day</strong></li><li>15th level: usable <strong>five times per day</strong></li><li>24th level: usable <strong>six times per day</strong></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Resist Elements</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves vs fire, water, earth, air, cold, and lightning attacks.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Woodland Stride</h4><ul><li><strong>Effect:</strong> Move through natural difficult terrain — thorns, briars, overgrowth — at full speed with no damage or impairment, leaving no trail.</li><li>Magically manipulated terrain still impedes normally</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Perfect Recall</h4><ul><li><strong>Effect:</strong> Recall a previously cast 1st-level spell <strong>once per day</strong> via a Wisdom check (<strong>DC 10</strong>, the Easy tier), casting it again without expending a slot.</li><li><strong>Scales at 24th level: now works for previously cast 2nd-level spells</strong></li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Wild Shape Casting</h4><ul><li><strong>Effect:</strong> While in Wild Shape, you may cast spells from your prepared list that have only verbal or no components.</li><li>Spells requiring somatic components cannot be cast while shifted</li><li>Your Wisdom modifier applies normally to all spells cast in this way</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Elemental Mastery</h4><ul><li><strong>Effect:</strong> Choose one element — fire, cold, lightning, earth, water, or air. You have Resistance to its damage.</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Language of the Wilderlands</h4><ul><li><strong>Effect:</strong> Communicate with the beasts native to your Nature Lore regions through their natural sounds and motions.</li></ul><h3 class=\"arn-level\">12th Level</h3><h4>Deepened Shape</h4><ul><li><strong>Effect:</strong> Your Wild Shape Level cap rises to your full Druid level instead of half (so a 12th-level Druid can become any beast or monster of Level 12 or lower). Shifting also now grants <strong>temporary HP</strong> equal to twice your Druid level, lasting until the shift ends or the temp HP is depleted.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Advanced Nature Lore</h4><ul><li><strong>Effect:</strong> Nature Lore now extends to a second region or regional type, fully functional including foraging.</li><li>Extends to a third region at 21st level</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Wisdom Bonus:</strong> permanent +1 Wisdom</li></ul><h3 class=\"arn-level\">18th Level</h3><h4>Dismiss Woodland Creatures (Wisdom)</h4><ul><li><strong>Effect:</strong> Dismiss any animal, beast, plant, or vermin native to one of the Druid's Nature Lore regions.</li><li>Wisdom check, DC = 10 + total Levels of the creatures being dismissed</li><li>Each day the Druid can dismiss Levels worth of creatures equal to 10 + Wisdom modifier without penalty</li><li>Dismissed creatures flee and don't return until the Druid departs</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Elemental Mastery (Improved)</h4><ul><li><strong>Effect:</strong> You are now immune to your chosen element's damage entirely.</li><li>When struck by a spell of that element, make a Wisdom check against the spell's save DC</li><li><strong>Succeed on the check:</strong> the spell is reflected back at a target of the Druid's choice for its original damage</li></ul><h3 class=\"arn-level\">21st Level</h3><h4>Language of the Wilderlands (Improved)</h4><ul><li><strong>Effect:</strong> You can now communicate with any bird, beast, tree, or growing thing via their natural method — sound, motion, communion.</li><li>Most creatures have limited understanding — expect simple impressions, not tactical reports</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Awaken Woodland Spirit</h4><ul><li><strong>Effect:</strong> Spend several days with a plant or animal to fully awaken it — grants human-level consciousness, speech in the Druid's tongue, two extra HD, maximum HP, and +2 to AC, damage, and saves.</li><li>The awakened creature remains loyal to the Druid for life</li><li>Maximum awakened HD at any time = twice your Druid level</li></ul><h2>Kits: Druidic Circles</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Druid folder. Drag one onto your character.</p><ul><li>Druid Kits represent which circle a Druid was trained in. The Cabal is an overarching druidic organisation with multiple regional circles, each led by a Hierophant. Mournas has its own independent circle separate from the Cabal's structure.</li></ul><h2>Druid Spell List</h2><p>Spells available to the Druid, by level. * = reversible spell. ‡ = needs a costed material component (see Rare Spell Components in the Shopkeeper's Catalogue). Full descriptions, saves and components are in Spellcasting in Arneyan.</p><h3>Spells Per Day</h3><ul><li><strong>Bonus Spells:</strong> Wisdom 13–15 grants an extra 1st level spell, 16–17 an extra 2nd level spell, 18+ an extra 3rd level spell. Cumulative, and only acquired once the Druid is high enough level to cast that tier.</li></ul><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>0</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th>9th</th></tr></thead><tbody><tr><td>1</td><td>3</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2</td><td>4</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>3</td><td>4</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>4</td><td>4</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>6</td><td>5</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>8</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>9</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>10</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>11</td><td>6</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td></tr><tr><td>12</td><td>6</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td><td>—</td></tr><tr><td>13</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td><td>—</td></tr><tr><td>14</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td><td>—</td></tr><tr><td>15</td><td>6</td><td>5</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>—</td></tr><tr><td>16</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td><td>—</td></tr><tr><td>17</td><td>7</td><td>6</td><td>5</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td></tr><tr><td>18</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td>2</td></tr><tr><td>19</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>2</td></tr><tr><td>20</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td></tr><tr><td>21</td><td>7</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td></tr><tr><td>22</td><td>7</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td></tr><tr><td>23</td><td>8</td><td>8</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>4</td><td>4</td><td>4</td></tr><tr><td>24</td><td>8</td><td>8</td><td>7</td><td>7</td><td>6</td><td>6</td><td>5</td><td>5</td><td>4</td><td>4</td></tr></tbody></table><h3>0 Level (Cantrips)</h3><p>Create Water · Detect Neutrality · Detect Poison · Endure Elements · First Aid · Know Direction · Light · Poison Spray · Purify Food and Drink · Thorn Whip</p><h3>1st Level</h3><p>Alarm · Animal Friendship · Calm Animals · Cure Light Wounds* · Detect Snares and Pits · Entangle · Faerie Fire · Goodberry · Invisibility to Animals · Magic Stones · Shillelagh · Thunderwave</p><h3>2nd Level</h3><p>Animal Messenger · Barkskin · Charm Person or Mammal · Delay Poison · Heat Metal* · Hold Animal · Obscuring Mist · Produce Flame · Pyrotechnics · Speak with Animals · Summon Swarm · Warp Wood* · Web</p><h3>3rd Level</h3><p>Call Lightning · Control Plants · Cure Serious Wounds* · Daylight · Meld into Stone · Plant Growth · Protection from Elements · Remove Disease* · Shape Stone or Wood · Snare · Speak with Plants · Spike Growth · Wall of Wind · Water Breathing</p><h3>4th Level</h3><p>Anti-Plant Shell · Blight · Death Ward · Fire Trap‡ · Freedom of Movement · Ice Storm · Neutralise Poison · Reincarnate‡ · Repel Vermin · Scrying‡ · Sleet Storm · Spike Stones · Summon Animals · Wall of Fire</p><h3>5th Level</h3><p>Animal Growth · Awaken · Commune with Nature · Control Winds · Cure Critical Wounds* · Insect Plague · Summon Beasts or Plants · Transmute Mud and Rock · Wall of Stone · Wall of Thorns</p><h3>6th Level</h3><p>Animate Objects · Control Weather · Fire Seeds · Heal* · Ironwood · Repel Wood · Stone Tell · Summon Elemental · Sunbeam · Transport via Plants · Wind Walk · Word of Recall</p><h3>7th Level</h3><p>Changestaff · Creeping Doom · Finger of Death · Fire Storm · Regenerate · Transmute Metal to Wood</p><h3>8th Level</h3><p>Animal Shapes · Antipathy* · Command Plants · Earthquake · Prismatic Wall · Repel Metal or Stone · Sunburst · Whirlwind</p><h3>9th Level</h3><p>Astral Projection‡ · Shapechange‡ · Storm of Vengeance · Summon Elemental Swarm</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 1,
+    "hitDie": "d8",
+    "hpBeyond10": 2,
+    "bthProgression": "divine",
+    "keyAbility": "wis",
+    "castingAbility": "wis",
+    "xpRate": 10,
+    "weapons": "Bows, club, dagger, dart, hand axe, hammers, scythe, sling, sickle, spears, staff — nature-sourced materials only, no forged steel or bronze",
+    "armour": "Cuir bouille, laminar leather, padded, leather, leather coat, hide",
+    "slotTable": [
+     [
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0
+     ],
+     [
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1,
+      0
+     ],
+     [
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      0
+     ],
+     [
+      7,
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2,
+      1
+     ],
+     [
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2
+     ],
+     [
+      7,
+      6,
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      3,
+      2
+     ],
+     [
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3
+     ],
+     [
+      7,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3
+     ],
+     [
+      7,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3
+     ],
+     [
+      8,
+      8,
+      7,
+      7,
+      6,
+      6,
+      5,
+      4,
+      4,
+      4
+     ],
+     [
+      8,
+      8,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      4,
+      4
+     ]
+    ],
+    "featLevels": [
+     1,
+     4,
+     8,
+     12,
+     16,
+     20
+    ],
+    "featPaths": [
+     "General Path",
+     "Arcane & Devout Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Spell Use",
+      "uuid": "Compendium.arneyan.class-features.Item.c7tI9NyQtiFF1HZO"
+     },
+     {
+      "level": 1,
+      "name": "Bonus Language",
+      "uuid": "Compendium.arneyan.class-features.Item.IRNXHWWsAbQV9oh9"
+     },
+     {
+      "level": 1,
+      "name": "Nature Lore (Wisdom)",
+      "uuid": "Compendium.arneyan.class-features.Item.oVcNFveBEtqCtqPb"
+     },
+     {
+      "level": 1,
+      "name": "Wild Shape",
+      "uuid": "Compendium.arneyan.class-features.Item.wr56AFhjZo09d4iV"
+     },
+     {
+      "level": 2,
+      "name": "Resist Elements",
+      "uuid": "Compendium.arneyan.class-features.Item.VZiNLypozvFgdJUL"
+     },
+     {
+      "level": 3,
+      "name": "Woodland Stride",
+      "uuid": "Compendium.arneyan.class-features.Item.zMAQY4Uyak7KqY70"
+     },
+     {
+      "level": 5,
+      "name": "Perfect Recall",
+      "uuid": "Compendium.arneyan.class-features.Item.YdQb4ZVbriq05QYc"
+     },
+     {
+      "level": 6,
+      "name": "Wild Shape Casting",
+      "uuid": "Compendium.arneyan.class-features.Item.MucfZi6JImLUYJCh"
+     },
+     {
+      "level": 8,
+      "name": "Elemental Mastery",
+      "uuid": "Compendium.arneyan.class-features.Item.ffPDHq8BhWN1inpF"
+     },
+     {
+      "level": 9,
+      "name": "Language of the Wilderlands",
+      "uuid": "Compendium.arneyan.class-features.Item.QIcD2J9uMn4MYDnQ"
+     },
+     {
+      "level": 12,
+      "name": "Deepened Shape",
+      "uuid": "Compendium.arneyan.class-features.Item.lks3nolNNh8o534F"
+     },
+     {
+      "level": 13,
+      "name": "Advanced Nature Lore",
+      "uuid": "Compendium.arneyan.class-features.Item.TkjyeXYuj9r4ud4q"
+     },
+     {
+      "level": 15,
+      "name": "Wisdom Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.KI9JbZTbTzlq6SXN"
+     },
+     {
+      "level": 18,
+      "name": "Dismiss Woodland Creatures (Wisdom)",
+      "uuid": "Compendium.arneyan.class-features.Item.FUij9aQcV4itlZxV"
+     },
+     {
+      "level": 20,
+      "name": "Elemental Mastery (Improved)",
+      "uuid": "Compendium.arneyan.class-features.Item.VyDNqJme3aEMq9Yk"
+     },
+     {
+      "level": 21,
+      "name": "Language of the Wilderlands (Improved)",
+      "uuid": "Compendium.arneyan.class-features.Item.evoDIAWIrF8yRPxi"
+     },
+     {
+      "level": 24,
+      "name": "Awaken Woodland Spirit",
+      "uuid": "Compendium.arneyan.class-features.Item.MNYAdbLrAC9B6ENZ"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.pDRhjXyLcGVzKJTW"
+   }
+  },
+  {
+   "_id": "30n9MzcmXYUs2dBs",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.30n9MzcmXYUs2dBs",
+   "name": "Spell Use",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Cast divine spells per the Spells Per Day table. Bonus slots from high Wisdom (see Spellcasting in Arneyan, II).</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Druid"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "7uko4PW2OJIBICcU",
+     "source": "Compendium.arneyan.class-features.Item.c7tI9NyQtiFF1HZO"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.c7tI9NyQtiFF1HZO"
+   }
+  },
+  {
+   "_id": "1e9yK4QEv4WlqNy1",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.1e9yK4QEv4WlqNy1",
+   "name": "Bonus Language",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Gain the secret druidic tongue — forbidden to teach to non-druids.</li><li><strong>High Intelligence also unlocks:</strong> Elvish, Giant, Gnomish, Primordial, Sylvan</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Druid"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "7uko4PW2OJIBICcU",
+     "source": "Compendium.arneyan.class-features.Item.IRNXHWWsAbQV9oh9"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.IRNXHWWsAbQV9oh9"
+   }
+  },
+  {
+   "_id": "DwVwAKdVJIcB7926",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.DwVwAKdVJIcB7926",
+   "name": "Nature Lore (Wisdom)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Identify plants and animals perfectly within the Druid's trained region.</li><li>Determine if water is safe to drink</li><li>Find basic shelter and enough food for one person automatically</li><li>Feeding additional people takes <strong>6 hours</strong> of foraging and a Moderate Wisdom (Survival) check, and feeds an extra <strong>2d4</strong> people</li><li>Unfamiliar regions require a Wisdom check for all of the above</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Druid",
+    "activities": [
+     {
+      "name": "Nature Lore",
+      "kind": "check",
+      "formula": "",
+      "damageType": "",
+      "ability": "wis",
+      "save": "",
+      "text": "Identify plants and animals, judge water, or forage; automatic in your trained region, a Wisdom check elsewhere or to feed extra people.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "7uko4PW2OJIBICcU",
+     "source": "Compendium.arneyan.class-features.Item.oVcNFveBEtqCtqPb"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.oVcNFveBEtqCtqPb"
+   }
+  },
+  {
+   "_id": "RN525IAOH9AYsOyV",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.RN525IAOH9AYsOyV",
+   "name": "Wild Shape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Shapeshift into any beast or beast-like monster of Level no greater than half your Druid level, rounded down (minimum Level 1), <strong>once per day</strong> (more often as you rise in level, below), choosing the form fresh each time (any beast in Monsters &amp; Treasure, or one of these beast-like monsters: Owlbear, Death Dog, Hippogriff, Griffon, Ankheg, Bulette, Carrion Crawler, Grick, Grick Alpha, Hook Horror, Young Remorhaz, Hydra, Piercer and Rust Monster; others at the GM's call, but never a solo, an intelligent or a magical creature).</li><li>Lasts up to <strong>1 hour</strong> or until you choose to revert.</li><li>You take the form's whole stat block from Monsters &amp; Treasure: its HP, AC, attacks, saves and movement.</li><li>You keep your own mind, personality and Wisdom-based abilities, and you cannot cast spells in a form that cannot speak.</li><li>When the form drops to <strong>0 HP</strong> you return to your own form with the HP you had when you changed (see Changing Shape in Spellcasting in Arneyan).</li><li>3rd level: usable <strong>twice per day</strong></li><li>6th level: usable <strong>three times per day</strong></li><li>9th level: usable <strong>four times per day</strong></li><li>15th level: usable <strong>five times per day</strong></li><li>24th level: usable <strong>six times per day</strong></li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day",
+     "formula": "1:1, 3:2, 6:3, 9:4, 15:5, 24:6"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Druid",
+    "activities": [
+     {
+      "name": "Wild Shape",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Shapeshift into a beast of Level up to half your Druid level for up to 1 hour, taking its whole stat block.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     },
+     {
+      "name": "Wild Shape (Deepened)",
+      "kind": "temp",
+      "formula": "2*@cl",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Shapeshift into a beast of Level up to your Druid level and gain temporary HP equal to twice your Druid level.",
+      "minLevel": 12,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "7uko4PW2OJIBICcU",
+     "source": "Compendium.arneyan.class-features.Item.wr56AFhjZo09d4iV"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.wr56AFhjZo09d4iV"
+   }
+  },
+  {
+   "_id": "jjEtkfVjubx6tpIX",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.jjEtkfVjubx6tpIX",
+   "name": "Elf (Saevren)",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p>Size Medium • Speed <strong>30ft</strong> • Low-Light Vision (not true darkvision) • +2 Dex / +1 Int, −1 Con</p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Trance</strong> (4hr rest instead of 8hr sleep).</li><li><strong>Keen Senses:</strong> <strong>Advantage</strong> on Perception checks (sight or hearing) and on concentration saves to maintain spells.</li><li><strong>Armour training:</strong> light.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>High Elf:</strong> weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within <strong>60ft</strong>, no check required).</li><li><strong>Saevren (Wood Elf):</strong> weapon training (longbow/shortbow/shortsword/handaxe), +<strong>5ft</strong> speed, <strong>Advantage</strong> on Stealth/Perception in natural environments, Camouflage (<strong>once per day</strong>, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</li><li><strong>Iiria Elf (Jinia coastal):</strong> weapon training (shortsword/longbow/spear/net), <strong>Advantage</strong> on checks/saves involving navigation/sailing/coastal environments, <strong>Advantage</strong> on Perception at sea or on coastlines, Sea Legs (<strong>once per day</strong>: reroll a failed <strong>Reflex save</strong> while aboard a vessel or in open water).</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "Low-Light",
+    "attributes": "+2 Dex / +1 Int, −1 Con",
+    "bonuses": {
+     "dex": 2,
+     "int": 1,
+     "con": -1
+    },
+    "pickTwo": false,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Immune to magical sleep",
+      "text": "Immune to magical sleep."
+     },
+     {
+      "name": "Advantage on saves vs charm",
+      "text": "Advantage on saves vs charm."
+     },
+     {
+      "name": "Trance",
+      "text": "Trance (4hr rest instead of 8hr sleep)."
+     },
+     {
+      "name": "Keen Senses",
+      "text": "Advantage on Perception checks (sight or hearing) and on concentration saves to maintain spells."
+     },
+     {
+      "name": "Armour training",
+      "text": "light."
+     }
+    ],
+    "choice": {
+     "label": "Subtype",
+     "options": [
+      {
+       "name": "High Elf",
+       "text": "weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).",
+       "bonuses": {},
+       "rules": []
+      },
+      {
+       "name": "Saevren (Wood Elf)",
+       "text": "weapon training (longbow/shortbow/shortsword/handaxe), +5ft speed, Advantage on Stealth/Perception in natural environments, Camouflage (once per day, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).",
+       "bonuses": {},
+       "rules": [
+        {
+         "key": "speed",
+         "value": "5",
+         "when": "",
+         "label": ""
+        }
+       ]
+      },
+      {
+       "name": "Iiria Elf (Jinia coastal)",
+       "text": "weapon training (shortsword/longbow/spear/net), Advantage on checks/saves involving navigation/sailing/coastal environments, Advantage on Perception at sea or on coastlines, Sea Legs (once per day: reroll a failed Reflex save while aboard a vessel or in open water).",
+       "bonuses": {},
+       "rules": []
+      }
+     ]
+    },
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Immune to magical sleep.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception (sight or hearing)",
+      "label": ""
+     },
+     {
+      "key": "adv.concentration",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "Saevren (Wood Elf)",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.0V3PZxgPYRhoZKrK"
+   }
+  },
+  {
+   "_id": "ZdbVCZRPWhi8cobh",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.ZdbVCZRPWhi8cobh",
+   "name": "Subtype: Saevren (Wood Elf)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>weapon training (longbow/shortbow/shortsword/handaxe), +<strong>5ft</strong> speed, <strong>Advantage</strong> on Stealth/Perception in natural environments, Camouflage (<strong>once per day</strong>, as part of your movement while in natural terrain: become undetectable to passive notice until you move or act).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Subtype: Saevren (Wood Elf)"
+    }
+   }
+  },
+  {
+   "_id": "PWLj58ybZEvwirOb",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.PWLj58ybZEvwirOb",
+   "name": "Immune to magical sleep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Immune to magical sleep.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Immune to magical sleep"
+    }
+   }
+  },
+  {
+   "_id": "39blZoUrIK6OZ4Qr",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.39blZoUrIK6OZ4Qr",
+   "name": "Advantage on saves vs charm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves vs charm.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Advantage on saves vs charm"
+    }
+   }
+  },
+  {
+   "_id": "eQhURdB78DawOeTf",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.eQhURdB78DawOeTf",
+   "name": "Trance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Trance (4hr rest instead of 8hr sleep).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Trance"
+    }
+   }
+  },
+  {
+   "_id": "7aX0uxtKLZaEuBqz",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.7aX0uxtKLZaEuBqz",
+   "name": "Keen Senses",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on Perception checks (sight or hearing) and on concentration saves to maintain spells.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Keen Senses"
+    }
+   }
+  },
+  {
+   "_id": "ws5Rk6qkTDeFTPuu",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.ws5Rk6qkTDeFTPuu",
+   "name": "Armour training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>light.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Elf (Saevren)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "jjEtkfVjubx6tpIX",
+     "source": "jjEtkfVjubx6tpIX.Armour training"
+    }
+   }
+  },
+  {
+   "_id": "YPTbmVlMmsibVfdP",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.YPTbmVlMmsibVfdP",
+   "name": "Nalwood Cabal (Druid)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "system": {
+    "description": "<p>Trained under Arikh Evergreen, Elder of the Nalwood Forest and Hierophant of the Cabal. The Nalwood circle is one of the Cabal's oldest seats, deep in old-growth woodland.</p><ul><li><strong>Forest Vigour: Healing you cast restores +1 HP per die.</strong></li><li><strong>Ancient Lore:</strong> <strong>Advantage</strong> on Nature Lore checks in old-growth forest environments without designating them as a trained region.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Druid",
+    "features": [
+     {
+      "name": "Forest Vigour",
+      "level": 1,
+      "description": "<p>Healing you cast restores +<strong>1 HP</strong> per die.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "heal.perdie",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     },
+     {
+      "name": "Ancient Lore",
+      "level": 1,
+      "description": "<p><strong>Advantage</strong> on Nature Lore checks in old-growth forest environments without designating them as a trained region.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.check",
+        "value": "1",
+        "when": "Nature Lore in old-growth forest",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.DEtRTFISH0l358nI"
+   }
+  },
+  {
+   "_id": "WkDzmNifx4IaOMyh",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.WkDzmNifx4IaOMyh",
+   "name": "Forest Vigour",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Healing you cast restores +<strong>1 HP</strong> per die.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Nalwood Cabal (Druid)",
+    "rules": [
+     {
+      "key": "heal.perdie",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "YPTbmVlMmsibVfdP",
+     "source": "YPTbmVlMmsibVfdP.0"
+    }
+   }
+  },
+  {
+   "_id": "jo4H9ngZr0mXfRiF",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.jo4H9ngZr0mXfRiF",
+   "name": "Ancient Lore",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on Nature Lore checks in old-growth forest environments without designating them as a trained region.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Nalwood Cabal (Druid)",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Nature Lore in old-growth forest",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "YPTbmVlMmsibVfdP",
+     "source": "YPTbmVlMmsibVfdP.1"
+    }
+   }
+  },
+  {
+   "_id": "HbredG5XY7NYj7Z8",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.HbredG5XY7NYj7Z8",
+   "name": "Healer",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
+   "system": {
+    "description": "<p>Your hands know exactly where to press, what to whisper, what the wound actually needs — every restorative working you cast or brew does that much more. Healing spells and brewed potions restore an additional +<strong>1 HP</strong> per die, and <strong>once per day</strong> you may cast a healing spell of 3rd level or lower without expending a slot.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Arcane & Devout Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "rules": [
+     {
+      "key": "heal.perdie",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.14UyqrAbMuaJc4Mr"
+   }
+  },
+  {
+   "_id": "FEDWPIi0TWVCkmKT",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.FEDWPIi0TWVCkmKT",
+   "name": "First Aid/Healing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Treating wounds and stabilising the injured</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.uHU3VeDjXNFWESGx"
+   }
+  },
+  {
+   "_id": "lIEi2KpPGrbdkNM0",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.lIEi2KpPGrbdkNM0",
+   "name": "Herbalism",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying and preparing plants and herbs</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.9Iae3wO2zsgq7dy2"
+   }
+  },
+  {
+   "_id": "eOysB8IMltZ7ZmJp",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.eOysB8IMltZ7ZmJp",
+   "name": "Animal Handling",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Calming or controlling animals</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.ddStbM6LiWWGOhtY"
+   }
+  },
+  {
+   "_id": "gcOeW73B3UsEklMh",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.gcOeW73B3UsEklMh",
+   "name": "Staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-wizard-staff.svg",
+   "system": {
+    "description": "<p>Versatile, Reach</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "—",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Versatile, Reach",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.tFKFmIJDLlgx3NSK"
+   }
+  },
+  {
+   "_id": "NRQtzEqsMD9rt3Vy",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.NRQtzEqsMD9rt3Vy",
+   "name": "Sling",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-sling.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "—",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "bludgeoning",
+    "ability": "dex",
+    "ranged": true,
+    "range": "50 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bundle": 0,
+    "ammoType": "stone",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.732Noi3Rvn8j2aP0"
+   }
+  },
+  {
+   "_id": "U9WsjovJWXXh3BeS",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.U9WsjovJWXXh3BeS",
+   "name": "Cuir Bouille",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-leather-armor.svg",
+   "system": {
+    "description": "<p><strong>Medium armour.</strong> Flexible</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "45 gp",
+    "equipped": true,
+    "category": "medium",
+    "ac": 4,
+    "magic": 0,
+    "traits": "Flexible",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.d2A5KRjDygQe7oNo"
+   }
+  },
+  {
+   "_id": "YdMKk2YxWIxeV93c",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.YdMKk2YxWIxeV93c",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "Z3unJShpofQ34lLo",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.Z3unJShpofQ34lLo",
+   "name": "Sling Stones",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/ammo-stone-pile.svg",
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "effects": [],
+   "system": {
+    "description": "<p>Ammunition, 30 to a slot. free (found).</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 20,
+    "slots": 1,
+    "bundle": 30,
+    "price": "free (found)",
+    "equipped": false,
+    "inside": "",
+    "identified": true,
+    "unidentifiedName": "",
+    "unidentifiedDescription": "",
+    "ammoType": "stone",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0,
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.N6AM312D7xXcsTWS"
+   }
+  },
+  {
+   "_id": "8fNNuIGAGDNqpmjd",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.8fNNuIGAGDNqpmjd",
+   "name": "Herbal Medications Case",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-holy-symbol.svg",
+   "system": {
+    "description": "<p>9-item box — witch hazel, marshmallow-comfrey oil, dandelion juice, horehound tea, garlic powder snuff, rose hip marmalade, marshmallow roots, red clover, conserve of cowslips (10 gp); grants <strong>Advantage</strong> on the check to treat a dying or poisoned creature</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.z8WAyb3OHzkHECxY"
+   }
+  },
+  {
+   "_id": "tGMjSdb2bFqLJm8Y",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.tGMjSdb2bFqLJm8Y",
+   "name": "Potion of Cure Minor Wounds",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/magic-potion-ball.svg",
+   "system": {
+    "description": "<p>Heals <strong>1d4</strong> HP. Half the price of a regular Healing Potion.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "25 gp",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": "1d4"
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.iSa8ry4MaXO0cQLL"
+   }
+  },
+  {
+   "_id": "PM2yF75leiBvCbxm",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.PM2yF75leiBvCbxm",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "vVIt7xAHD9FiAkoJ",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.vVIt7xAHD9FiAkoJ",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "PDScqhsL6zmUogkg",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.PDScqhsL6zmUogkg",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "4mJNxRk0sDc3QPcq",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.4mJNxRk0sDc3QPcq",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "jeftCDHRRsP8YieN",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.jeftCDHRRsP8YieN",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "1AwZcHwUljfFbZcc",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.1AwZcHwUljfFbZcc",
+   "name": "Iron spikes, 5 (Keepers' kit)",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "r6Bz6BhB8dNo2Zp3",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.r6Bz6BhB8dNo2Zp3",
+   "name": "First Aid",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one dying creature is stabilised at its current HP (no roll). It stays <strong>Unconscious</strong> until healed or until <strong>1 hour</strong> passes. Restores no HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Druid",
+    "classes": [
+     "Illusionist",
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.VWVWdR2yWnDfbMl2"
+   }
+  },
+  {
+   "_id": "MOFIypSHtjtkNTQF",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.MOFIypSHtjtkNTQF",
+   "name": "Thorn Whip",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range <strong>30ft</strong>; one creature. Deals <strong>1d4</strong> piercing damage (+1 die at 5th, 11th and 17th level) and pulls a Large or smaller target up to <strong>10ft</strong> in a straight line towards you; <strong>Reflex negates</strong> both.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d4",
+    "damageType": "piercing",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.sCwqRfBFAPfBGAWP"
+   }
+  },
+  {
+   "_id": "AjVbhuv5vFArS5Ji",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.AjVbhuv5vFArS5Ji",
+   "name": "Poison Spray",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range <strong>10ft</strong>; one creature. Deals <strong>1d6</strong> poison damage (+1 die at 5th, 11th and 17th level); <strong>Fortitude negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Wizard, Sorcerer, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 0,
+    "className": "Druid",
+    "classes": [
+     "Druid",
+     "Wizard",
+     "Sorcerer",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 10ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "fort",
+    "saveEffect": "Negates",
+    "damage": "(1 + floor((@cl + 1) / 6))d6",
+    "damageType": "poison",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.r2vR3PKImxaOBr87"
+   }
+  },
+  {
+   "_id": "5fTgKiGzKn2PXOXa",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.5fTgKiGzKn2PXOXa",
+   "name": "Cure Light Wounds",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Heals <strong>1d8</strong> HP plus 1 per level (max +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (max +5).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Druid",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Paladin",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "",
+    "saveEffect": "",
+    "damage": "1d8 + min(@cl, 5)",
+    "damageType": "healing",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.UQlLkustRg8BIKev"
+   }
+  },
+  {
+   "_id": "eRrG0k4JLuQyPfUa",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.eRrG0k4JLuQyPfUa",
+   "name": "Faerie Fire",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft radius</strong>; <strong>1 minute</strong>. Creatures and objects in the area are outlined in light, losing <strong>Invisible</strong> and concealment, and attack rolls against them have <strong>Advantage</strong>. <strong>Reflex negates</strong> (creatures only). The light sheds dim light in <strong>10ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Druid",
+    "classes": [
+     "Druid",
+     "Witch",
+     "Warlock"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Faerie Fire",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.dC9uQ8JSEjw0WByI"
+   }
+  },
+  {
+   "_id": "tBYn7KzOoUzJ4uBp",
+   "_key": "!actors.items!aDdHCau2dSb5T1ZW.tBYn7KzOoUzJ4uBp",
+   "name": "Thunderwave",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p><strong>15ft cone</strong> from you. Creatures take <strong>1d6</strong> thunder damage plus 1 per two levels (max +5) and are pushed <strong>10ft</strong> away; <strong>Fortitude halves</strong> the damage and negates the push. The blast is audible for <strong>300ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Druid, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Druid",
+    "classes": [
+     "Wizard",
+     "Sorcerer",
+     "Druid",
+     "Magus"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "",
+    "duration": "",
+    "area": "15ft cone",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": true,
+    "save": "fort",
+    "saveEffect": "Half damage and no push",
+    "damage": "1d6 + min(floor(@cl/2), 5)",
+    "damageType": "thunder",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.v704NB8QQqiey8ip"
+   }
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Fenna Thornmantle",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Druid.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "The Broken Anvil",
+    "seat": 3,
+    "role": "Healer",
+    "sheet": {
+     "ac": 16,
+     "saves": {
+      "fort": 2,
+      "ref": 3,
+      "will": 3
+     },
+     "bth": 0,
+     "hp": 9
+    }
+   }
+  }
+ }
+}

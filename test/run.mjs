@@ -661,10 +661,15 @@ assert.equal(pa.length, 14);
 const byName = n => pf.find(f => f.name === n);
 assert.deepEqual(pf.filter(f => f.folder === byName("The Broken Anvil")._id).map(f => f.name).sort(), ["Level 1 - The Recruits", "Level 9 - The Veterans"]);
 assert.equal(pa.filter(a => a.folder === byName("Jacob's Well")._id).length, 4);
-const wen = pa.find(a => a.name.includes("Big Wen"));
-assert.deepEqual([wen.type, wen.system.attributes.hp.max, wen.prototypeToken.actorLink], ["character", 12, true]);
-assert.ok(["Fighter", "Human", "The Heavy Hand (Fighter)", "Greatsword", "Critical Strike"].every(n => wen.items.some(i => i.name === n)), "class, ancestry, kit, weapon and feat come from the compendiums");
+// Haldor (the Recruits' Fighter, rebuilt 28 Oct 2026 around the class art): 14 HP on the sheet, 13 stored + Toughness.
+const wen = pa.find(a => a.name === "Haldor Brassbeard");
+assert.deepEqual([wen.type, wen.system.attributes.hp.max, wen.prototypeToken.actorLink], ["character", 13, true]);
+assert.ok(["Fighter", "Dwarf (Tenor Hold)", "Dul Khagul Shieldbearer (Fighter)", "Sword, Long", "Toughness"].every(n => wen.items.some(i => i.name === n)), "class, ancestry, kit, weapon and feat come from the compendiums");
 assert.ok(wen.items.some(i => i.flags?.arneyan?.grantedBy && i.type === "ability"), "class features are granted like on the sheet");
+// Every Broken Anvil pregen has a different class, so each shows its own class art (Kieran, 28 Oct 2026).
+const anvil = pa.filter(a => [byName("Level 1 - The Recruits")._id, byName("Level 9 - The Veterans")._id].includes(a.folder));
+assert.equal(anvil.length, 10);
+assert.equal(new Set(anvil.map(a => a.img)).size, 10, "ten different pictures");
 }
 {
 // Ancestry setup data: Tiefling bloodlines (with their resistance), Genasi castes (with their attributes), Human's two +1s.
@@ -678,8 +683,9 @@ assert.equal(anc("Human").system.pickTwo, true);
 assert.ok(anc("Elf").system.choice.options.some(o => o.name.startsWith("Saevren") && o.rules.some(r => r.key === "speed" && r.value === "5")));
 assert.ok(anc("Dwarf").system.rules.some(r => r.key === "resist" && r.value === "poison 5"), "approved ancestry traits apply");
 const pdir2 = new URL("../packs-src/pregens/", import.meta.url).pathname;
-const pat = fs.readdirSync(pdir2).map(f => JSON.parse(fs.readFileSync(pdir2 + f))).find(d => d.name === "Patience Ashcombe");
-assert.ok(pat.items.some(i => i.name === "Tiefling (Infernal)") && pat.items.some(i => i.name.startsWith("Bloodline: Infernal") && i.system.rules[0].value === "fire 5"));
+// A pregen's ancestry subtype, as the drop-in setup adds it (Fenna, the Recruits' wood elf, since 28 Oct 2026).
+const fenna = fs.readdirSync(pdir2).map(f => JSON.parse(fs.readFileSync(pdir2 + f))).find(d => d.name === "Fenna Thornmantle");
+assert.ok(fenna.items.some(i => i.name === "Elf (Saevren)") && fenna.items.some(i => /: Saevren/.test(i.name) && i.system.kind === "ancestry"));
 }
 {
 // QoL: how hurt a monster looks, identical monsters sharing one initiative roll, Method V's threshold.

@@ -46,15 +46,13 @@ for (const n of ["Burning Hands", "Scorching Ray", "Fireball", "Bind Elemental",
 assert.equal(one("monsters", "Warpony").system.hd, "2d8+2");
 assert.ok(docs("equipment").filter(d => /\(by quality\)/.test(d.system.price ?? "")).length >= 10);
 assert.ok(strip(one("actions", "Attack of Opportunity").system.description).includes("Only a creature with a feature that grants one"));
-// Big Wen: Steady Hand's point moved to Wisdom by the starting cap (Strength 18, Wisdom 14).
-const wen = docs("pregens").find(d => d.name.includes("Big Wen"));
-assert.deepEqual(wen.items.find(i => i.name === "Steady Hand").system.abilityChoice, { options: ["str", "dex"], value: "str", moved: "wis" });
-// Stored scores leave out the moved point, which lands on the attribute it moved to: Strength 18, Wisdom 13 + 1.
-assert.equal(wen.system.abilities.str.value, 18);
-assert.equal(wen.system.abilities.wis.value, 13);
-const rook = docs("pregens").find(d => d.name === "Rook Halloway");
-assert.equal(rook.system.abilities.dex.value, 18, "Rook keeps his printed Dexterity 18");
-assert.equal(rook.system.abilities.str.value, 13, "Rook: Strength 13 + the moved point = 14 (books v0.10.1)");
+// A creation feat's point moved by the starting cap (the Recruits rebuilt 28 Oct 2026; Big Wen was the old example):
+// Wick Tallow's Swift Reflexes would take Dexterity past 18, so its point goes to Wisdom.
+const wick = docs("pregens").find(d => d.name === "Wick Tallow");
+assert.equal(wick.items.find(i => i.name === "Swift Reflexes").system.abilityChoice.moved, "wis");
+// Stored scores leave out the moved point, which lands on the attribute it moved to: Dexterity 18, Wisdom 12 + 1.
+assert.equal(wick.system.abilities.dex.value, 18);
+assert.equal(wick.system.abilities.wis.value, 12);
 
 // A creation feat's bonus moved by the 18 cap counts where it went.
 assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.con", value: "1" }, { key: "hp.level", value: "1" }], abilityChoice: { options: [], value: "", moved: "dex" } }).map(r => r.key), ["ability.dex", "hp.level"]);

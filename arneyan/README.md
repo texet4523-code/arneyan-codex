@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.72 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.73 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.73
+
+- **The Broken Anvil's pregens, rebuilt** (Kieran, 28 Oct). All ten are rebuilt from books v0.10.31, and each is a different class so every one shows its own picture, with name, ancestry and look built around that class's art. The Recruits (level 1): Haldor Brassbeard (dwarf Fighter of Tenor Hold), Wick Tallow (human Rogue), Fenna Thornmantle (wood elf Druid, the healer), Ilvaeth Duskwhisper (drow Warlock) and Rook Halloway (human Archer). The Veterans (level 9): Gauthak Skyhewn (goliath Barbarian), Liriel Vance (half-elf Swashbuckler), Sister Aurelle Dawnward (aasimar Cleric of Lathander), Marten Halloway (human Gunslinger, Rook's uncle) and Sarrix Stormscale (dragonborn Monk). Pregens already in a world stay as they are: drag the new ones in from the compendium.
+- **Ring of Protection** adds its +1 AC while worn.
 
 ## What's new in 0.10.72
 
@@ -760,7 +765,7 @@ The rest of the Codex's conditions table: **Confused** (a reminder to roll 1d10 
 
 ## Pregenerated characters
 The **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
-- **The Broken Anvil:** 10 characters in two folders, Level 1 - The Recruits and Level 9 - The Veterans (five seats each, seat 5 being the spare).
+- **The Broken Anvil:** 10 characters in two folders, Level 1 - The Recruits and Level 9 - The Veterans (five seats each, seat 5 being the spare; every one a different class, built around its class art).
 - **Jacob's Well:** the four 3rd-level Keepers.
 Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
 
