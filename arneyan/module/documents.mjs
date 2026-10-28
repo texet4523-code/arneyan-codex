@@ -1542,11 +1542,14 @@ export class ArneyanItem extends Item {
     return c ? `${Math.max(0, c.value - cost)} of ${c.max} ${c.label} left` : "";
   }
 
-  /** Are there `cost` uses to spend (its own or its pool's)? Warns when not. */
+  /**
+   * Are there `cost` uses to spend (its own or its pool's)? Warns when not. A pool the character doesn't have (a class
+   * the GM keeps as edited, so the update didn't add Patron Favour) doesn't block the power: it's used, uncounted.
+   */
   _canSpend(cost = 1) {
     if (!(cost > 0)) return true;
     const pool = String(this.system.uses?.pool ?? "").trim();
-    if (pool && !this.usesStore) { ui.notifications.warn(`${this.name} spends ${pool}, which ${this.actor?.name ?? "this character"} doesn't have.`); return false; }
+    if (pool && !this.usesStore) { ui.notifications.warn(`${this.name} spends ${pool}, which ${this.actor?.name ?? "this character"} doesn't have: not counted. Add the ${pool} feature to track it.`); return true; }
     const c = this.usesCount;
     if (c && c.value < cost) { ui.notifications.warn(c.item === this ? `${this.name} has no uses left.` : `No ${c.label} left for ${this.name}.`); return false; }
     return true;

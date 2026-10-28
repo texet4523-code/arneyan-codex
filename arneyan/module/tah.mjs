@@ -102,9 +102,11 @@ export function arneyanHudActions(actor, { statusEffects = [], manoeuvres = [] }
   const abilities = items.filter(i => (i.type === "ability" && i.system.kind !== "action" && usable(i)) || (i.type === "feat" && usable(i))).sort(byName);
   for (const a of abilities) {
     const u = a.system.uses;
+    // A power that spends a pool (Patron Favour) shows what's left of the pool.
+    const c = u?.pool ? a.usesCount : null;
     out.abilities.push(action(`item-${a.id}`, a.name, "item", a.id, { prefix: "Ability: ", img: a.img,
       cssClass: a.system.toggle ? `toggle${a.system.active ? " active" : ""}` : undefined,
-      info1: u?.max > 0 ? { text: `${u.value}/${u.max}`, title: `Uses per ${u.per || "day"}` } : undefined }));
+      info1: c ? { text: `${c.value}/${c.max}`, title: `${c.label} left` } : u?.max > 0 ? { text: `${u.value}/${u.max}`, title: `Uses per ${u.per || "day"}` } : undefined }));
   }
 
   // Manoeuvres: the ones on the sheet, then the rest of the compendium's.

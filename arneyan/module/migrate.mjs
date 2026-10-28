@@ -69,7 +69,8 @@ function mechView(field, v, legacy = false, raw = false) {
   if (field === "optionChoice") return (v.options?.length ? { label: v.label ?? "", max: String(v.max ?? ""), options: plainRules(v.options) } : null);
   if (field === "features" && Array.isArray(v)) return plainRules(v.map(f => {
     const c = clone(f) ?? {};
-    if (c.uses) delete c.uses.value;
+    // A blank pool (0.10.75) reads as no field: the schema fills it in on every stored kit feature.
+    if (c.uses) { delete c.uses.value; if (!c.uses.pool) delete c.uses.pool; }
     if (c.abilityChoice) { delete c.abilityChoice.value; delete c.abilityChoice.moved; }
     if (c.weaponChoice) delete c.weaponChoice.value;
     if (!legacy && c.weaponChoice && !String(c.weaponChoice.max ?? "")) delete c.weaponChoice;
@@ -278,7 +279,9 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   const next = { ...(unstamped ? {} : stamps) };
   const kept = [];
   // A blank weapon scope on one side only is no difference (stored rules have it, an older entry may not).
-  const plainIf = (k, v) => (k === "features" ? mechView("features", v) : ["rules", "applies", "auras"].includes(k) ? plainRules(v) : v);
+  // A blank uses pool (0.10.75) is no difference either: the schema fills it in on every stored item.
+  const plainIf = (k, v) => (k === "features" ? mechView("features", v) : ["rules", "applies", "auras"].includes(k) ? plainRules(v)
+    : k === "uses" && v && typeof v === "object" && !v.pool ? (({ pool, ...rest }) => rest)(v) : v);
   const set = (k, v) => {
     if (same(plainIf(k, s[k]), plainIf(k, v))) { next[k] = fingerprint(k, v); return; }
     // Changed by hand since it arrived (or since the last update): keep it, and its old fingerprint.

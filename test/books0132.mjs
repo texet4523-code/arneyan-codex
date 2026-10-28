@@ -133,12 +133,13 @@ function warlockWith(favourLeft, powers) {
   assert.equal(f2.system.uses.value, 0);
   assert.ok(await burst._spendFor({ cost: 0 }), "a free option needs no Favour");
   assert.equal(await burst._spendFor({ cost: 1 }), false);
-  // No Patron Favour on the sheet (an older character before the update): a warning, nothing spent.
+  // No Patron Favour on the sheet (a class the GM keeps as edited, so the update didn't add it): the power still
+  // works, uncounted, with a warning.
   const { items: [lost] } = warlockWith(null, [{ name: "Dark Gift", uses: pool }]);
   warnings.length = 0;
   assert.equal(lost.usesStore, null);
-  assert.equal(await lost._spendUses(1), false);
-  assert.ok(warnings[0].includes("spends Patron Favour"), warnings[0]);
+  assert.equal(await lost._spendUses(1), true);
+  assert.ok(warnings[0].includes("spends Patron Favour") && warnings[0].includes("not counted"), warnings[0]);
   // A feature with its own uses is unchanged.
   const { items: [own] } = warlockWith(3, [{ name: "Eldritch Master", uses: { value: 1, max: 1, per: "day" } }]);
   assert.equal(own.usesStore, own);
@@ -153,6 +154,25 @@ function warlockWith(favourLeft, powers) {
   assert.ok(!("pool" in M.usesFrom({ value: 1, max: 1, per: "day" }, { max: 1, per: "day", formula: "" })), "no pool on either side: no field");
   assert.equal(M.usesFrom({ value: 0, max: 0, pool: "Patron Favour" }, { max: 0, per: "" }).pool, "", "a pool the books dropped goes");
   assert.equal(M.CLASS_REWORK, "0.10.75", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
+  // The schema fills a blank pool into every stored item and kit feature: that is no edit and no change (review
+  // 0.10.75: unedited kits read as edited, and every item with uses was rewritten).
+  const SRC = "Compendium.arneyan.class-features.Item.x";
+  const oldUses = { value: 1, max: 1, per: "day", formula: "" };
+  const stored = (system, synced) => ({ id: "i1", type: system.features ? "kit" : "ability", name: "T", system, flags: { arneyan: { synced } }, _stats: { compendiumSource: SRC }, _source: { system, flags: { arneyan: { synced } } } });
+  const ability = { uses: oldUses, rules: [] };
+  const stamp = M.stampOf("ability", ability);
+  const loaded = { uses: { ...oldUses, pool: "" }, rules: [] };
+  const same = M.refreshFrom(stored(loaded, stamp), { type: "ability", system: ability });
+  assert.ok(!Object.keys(same).some(k => k.startsWith("system.")), `an unchanged item stays unchanged: ${JSON.stringify(same)}`);
+  const feature = (uses, extra = {}) => ({ name: "Dark Gift", level: 1, description: "<p>x</p>", uses, save: "", damage: "", activities: [], replaces: "", rules: [], ...extra });
+  const kitOld = { features: [feature(oldUses)] };
+  const kitStamp = M.stampOf("kit", kitOld);
+  const kitLoaded = { features: [feature({ ...oldUses, pool: "" })] };
+  const kitNew = { features: [feature({ value: 0, max: 0, per: "", formula: "", pool: "Patron Favour" })] };
+  const r = {};
+  const upd = M.refreshFrom(stored(kitLoaded, kitStamp), { type: "kit", system: kitNew }, { report: r });
+  assert.ok(!r.kept, "an unedited kit isn't taken for the GM's edit");
+  assert.equal(upd["system.features"]?.[0]?.uses?.pool, "Patron Favour", "the pool reaches the kit");
 }
 
 /* Pact summons: a power the Bestiary gives once per 3 rounds is once per encounter on a Warlock's servant. */

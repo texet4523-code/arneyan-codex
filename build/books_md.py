@@ -79,7 +79,8 @@ def prepare():
     for f in glob.glob(os.path.join(CLASSES, "*")):
         os.remove(f)
     # v0.10.32 wraps long list items with "> " continuation lines straight after the item's line: they are the item's
-    # own words, not a quote. The older nested sub-points ("    > " after a blank line) stay as they were.
+    # own words, not a quote. A nested sub-point's first line ("    > " after a blank line) keeps its marker; its later
+    # lines are joined to it (pandoc reads them as the same paragraph either way).
     lines = open(src("III_Classes"), encoding="utf-8").read().split("\n")
     for i in range(1, len(lines)):
         m = re.match(r"^( +)> (.*)$", lines[i])
