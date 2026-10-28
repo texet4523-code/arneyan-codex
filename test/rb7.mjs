@@ -229,4 +229,9 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   assert.deepEqual(marilith.items.find(i => i.name === "Parry").system.rules, [], "the Marilith's negating Parry isn't the same");
 }
 
+{
+  const mig = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
+  assert.ok(mig.includes('"system.rules": o.system.rules, "system.description": o.system.description') && mig.includes("rulesFilled"), "monsters already in a world get Parry's rule, once");
+}
+
 console.log("OK 0.10.68 books v0.10.30 (R-B7 and follow-ups)");

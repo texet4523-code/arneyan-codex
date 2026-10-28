@@ -624,6 +624,9 @@ async function pass(fetch, opts) {
           const o = m?.items?.find(x => x.name === i.name && x.type === i.type);
           // Once (a monster added before auras existed); one the GM took the aura off, or marked Keep my edits, stays.
           if (o?.system?.auras?.length && !i.system.auras?.length && !i.flags?.[SYS]?.aurasFilled && !i.flags?.[SYS]?.keepCustom && !updates.some(u => u._id === i.id)) updates.push({ _id: i.id, "system.auras": o.system.auras, [`flags.${SYS}.aurasFilled`]: true });
+          // An ability that has gained a rule (0.10.68, M&T v0.10.30: Parry is the first melee attack against it each
+          // round at Disadvantage): the rule and the book's new wording for it, once; edits and put-back as above.
+          else if (o?.system?.rules?.length && !(i.system.rules ?? []).length && !i.flags?.[SYS]?.rulesFilled && !i.flags?.[SYS]?.keepCustom && !updates.some(u => u._id === i.id)) updates.push({ _id: i.id, "system.rules": o.system.rules, "system.description": o.system.description ?? i.system.description, [`flags.${SYS}.rulesFilled`]: true });
         }
         const sc = scoresFrom(actor, m);
         if (sc) {
@@ -683,7 +686,7 @@ async function askLegacy(n, actors, version) {
  */
 /**
  * The latest version whose books changed class feature lists: 0.10.65 (books v0.10.22 and v0.10.23, B7: new levels),
- * then 0.10.68 (books v0.10.25 to v0.10.27, R-B7: Commands, Performance and Channel Divinity pools, renamed and
+ * then 0.10.68 (books v0.10.25 to v0.10.30, R-B7 and K19 to K24: Commands, Performance and Channel Divinity pools, renamed and
  * always-on features). A world coming from before it runs `classRework` once.
  */
 export const CLASS_REWORK = "0.10.68";
