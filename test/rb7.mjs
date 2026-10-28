@@ -46,6 +46,19 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   const n = await E.endEncounterEffects({ id: "c1", combatants: [{ actor }, { actor }] });
   assert.equal(n, 2);
   assert.deepEqual(gone, ["e1", "e3"], "this encounter's and the 'next' ones; not Bless, not another encounter's");
+  // An ally outside the tracker keeps nothing of this encounter's (but a "next" one waits for its own fight).
+  const gone2 = [];
+  const ally = { uuid: "Actor.c", name: "Ally", effects: [{ id: "x1", name: "Inspired", flags: { arneyan: { encounter: "c1" } } }, { id: "x2", name: "Exalted", flags: { arneyan: { encounter: "next" } } }], deleteEmbeddedDocuments: async (t, ids) => gone2.push(...ids) };
+  ally.effects.has = id => ally.effects.some(e => e.id === id);
+  game.actors = { contents: [ally] };
+  await E.endEncounterEffects({ id: "c1", combatants: [] });
+  assert.deepEqual(gone2, ["x1"]);
+  game.actors = { contents: [] };
+  // Arcane Ward's temporary HP go with the encounter, unless more came from elsewhere.
+  const ups = [];
+  const wiz = { uuid: "Actor.w", name: "Wiz", flags: { arneyan: { wardTemp: 6 } }, system: { attributes: { hp: { temp: 4 } } }, effects: Object.assign([], { has: () => false }), update: async u => ups.push(u) };
+  await E.endEncounterEffects({ id: "c2", combatants: [{ actor: wiz }] });
+  assert.equal(ups[0]["system.attributes.hp.temp"], 0);
 }
 
 /* A switch that lasts the encounter (Rage: rule toggle.ends) goes off when the encounter ends. */
@@ -74,7 +87,32 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   const cascade = feat("Arcane Cascade", "Magus");
   assert.ok(cascade.system.applies[0].rules.some(r => r.key === "adv.against.first"));
   const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
-  assert.ok(docs.includes('tm.adv(...firstKeys)') && docs.includes('tm.sum("against.first.count")'), "rollAttack reads it");
+  assert.ok(docs.includes("firstAgainst(targets[0].actor, { ranged, name: targets[0].name })") && docs.includes("firstAgainst(targets[0].actor, { ranged: false, name: targets[0].name })"), "weapon and touch attacks read it");
+  // firstAgainst: an effect counts the attacks since it was put on; a feature's own rule counts this round's; each
+  // source its own count.
+  {
+    const fight2 = { id: "f2", round: 3, started: true, combatants: [] };
+    const t = { uuid: "Actor.s", name: "Shieldy" };
+    fight2.combatants.push({ actor: t });
+    game.combats = { contents: [fight2] }; game.combat = fight2;
+    const shield = { name: "Fighting defensively (Shield)", disabled: false, _stats: { createdTime: 1000 }, flags: { arneyan: { rules: [{ key: "adv.against.first", value: "-1" }] } } };
+    t.effects = [shield];
+    t.system = { mods: new E.ModSet([{ key: "adv.against.first", value: -1, when: "", label: shield.name },
+      { key: "adv.against.first.melee", value: -1, when: "", label: "Evasive Manoeuvre" }, { key: "against.first.count", value: 2, when: "", label: "Evasive Manoeuvre" }]) };
+    const atk = (time, melee = true, stamp = "f2.3") => ({ timestamp: time, flags: { arneyan: { kind: "attack", melee, stamp, targets: [{ uuid: "Actor.s" }] } } });
+    game.messages = { contents: [atk(900)] };
+    let r = C.firstAgainst(t, { ranged: false });
+    assert.equal(r.dis.length, 2, "an attack before the shield went up doesn't use it up; Evasive's 2 has 1 left");
+    game.messages = { contents: [atk(900), atk(1100)] };
+    r = C.firstAgainst(t, { ranged: false });
+    assert.deepEqual(r.dis.map(l => l.split(":")[1].trim().split(" (")[0]), [], "shield used; Evasive's two this round used");
+    game.messages = { contents: [atk(1100, true, "f2.2"), atk(1200, false, "f2.3")] };
+    r = C.firstAgainst(t, { ranged: true });
+    assert.equal(r.dis.length, 0, "the shield covered last round's attack, which came after it went up");
+    r = C.firstAgainst(t, { ranged: false });
+    assert.equal(r.dis.length, 1, "Evasive (melee only, this round's): none melee yet");
+    game.messages = { contents: [] }; game.combat = null; game.combats = { contents: [] };
+  }
   const combat = fs.readFileSync(new URL("../arneyan/module/combat.mjs", import.meta.url), "utf8");
   assert.ok(combat.includes('finesse: { label: "Light Finesse off-hand weapon", rules: [R("adv.against.first.melee", -1)]'), "Fighting Defensively, Light Finesse (K15)");
   assert.ok(combat.includes('shield: { label: "Shield", rules: [R("adv.against.first", -1)'), "Fighting Defensively, shield (K15)");
@@ -93,6 +131,9 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   const wiz = makeItem(IM.ClassData, "class", "Wizard", { levels: 4, keyAbility: "int" });
   const w = makeActor(CharacterData, "character", { abilities: { int: { value: 15 }, str: { value: 18 } } }, [wiz]);
   assert.equal(w.system.classDC, 10 + 2 + w.system.abilities.int.mod, "one key attribute: that one");
+  const ranger = makeItem(IM.ClassData, "class", "Ranger", { levels: 4, keyAbility: "str" });
+  const r = makeActor(CharacterData, "character", { abilities: { str: { value: 14 }, dex: { value: 18 }, wis: { value: 10 } } }, [ranger]);
+  assert.equal(r.system.classDC, 10 + 2 + r.system.abilities.str.mod, "a class's own key attribute (a kit's swap) replaces the book's first");
 }
 
 /* Arcane Ward: a passive "cast.temp" rule; the cast gives the temporary HP. */

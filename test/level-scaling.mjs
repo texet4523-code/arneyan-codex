@@ -115,11 +115,12 @@ assert.ok(isLevelTable("1:1d4, 7:1d10") && isLevelTable("1:-1, 18:-2") && !isLev
 assert.equal(collectRules({ items: [item("Curfew", "", [{ key: "note.check", value: "10:00 curfew: Disadvantage" }])] }, { level: 3 }).length, 1, "a homebrew note that starts with a time stays");
 // A reminder whose table starts later is left out until then (Aura of Courage from 2nd, books v0.10.22).
 assert.ok(tableNotYet("allies within {6:10ft, 15:30ft}", 5) && !tableNotYet("allies within {6:10ft, 15:30ft}", 6));
-const aura = feature("Divine Protection")("Paladin").system.rules.find(r => /Aura of Courage/.test(String(r.value)) && r.key === "note.save");
+// (Divine Protection's own Aura of Courage note went in 0.10.68: the aura gives the allies their Advantage.)
+const aura = { key: "note.save", value: "Aura of Courage: allies within {2:10ft, 15:30ft, 20:50ft} have Advantage on saves vs fear.", when: "", label: "" };
 const pal = lvl => collectRules({ items: [cls("Paladin", lvl), item("Divine Protection", "Paladin", [aura])] }, { level: lvl });
 assert.equal(pal(1).length, 0);
-assert.equal(pal(2)[0].value, "Aura of Courage: allies within 10ft gain +4 on saves vs fear.");
-assert.equal(pal(15)[0].value, "Aura of Courage: allies within 30ft gain +4 on saves vs fear.");
+assert.equal(pal(2)[0].value, "Aura of Courage: allies within 10ft have Advantage on saves vs fear.");
+assert.equal(pal(15)[0].value, "Aura of Courage: allies within 30ft have Advantage on saves vs fear.");
 // A shield switches off the table AC ("Armour or a shield replaces the monk's table AC").
 const shield = { type: "armour", name: "Shield", system: { category: "shield", ac: 1, magic: 0, equipped: true } };
 const shielded = monkAt(7, 14, [shield]);

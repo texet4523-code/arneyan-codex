@@ -372,6 +372,9 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   assert.equal(item.system.uses.value, 2, "one use spent");
   await item._useActivity(item.availableActivities.find(a => a.name === "Demoralise"), {});
   assert.ok(posted.at(-1).content.includes("Apply Demoralised to targets") && posted.at(-1).content.includes("Apply Demoralised (failed save) to targets"));
+  const perfItem = feature({ ...dataOf("Performance (Charisma)", "Bard"), name: "Performance (Charisma)", uses: { value: 9, max: 9, per: "day", formula: "" } }, { level: 5, cls: "Bard" }).item;
+  await perfItem._useActivity(perfItem.availableActivities.find(a => a.name === "Rally"), {});
+  assert.ok(!posted.at(-1).content.includes("Apply "), "an option naming no effect offers none on a pool (Rally)");
   const low = feature({ ...cmd, name: "Command (Charisma)" }, { level: 3, cls: "Knight" }).item;
   assert.ok(!low.availableActivities[0].text.includes("Rallying Cry") && !/ 0\s*$/.test(low.availableActivities[0].text), "before 4th: no Rallying Cry line, and no stray 0");
 

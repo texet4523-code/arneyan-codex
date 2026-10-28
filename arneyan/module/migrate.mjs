@@ -727,7 +727,8 @@ export function kitLevelsOf(actors) {
 /**
  * 0.10.65: classes and kits on sheets take the books' new feature levels (B7: every core feature by 5th), once.
  * - A class's feature list becomes the compendium's (homebrew entries kept, the two features the books dropped
- *   removed); the list it had is kept in flags.arneyan.featuresBefore.
+ *   removed); the list it had is kept in flags.arneyan.featuresBefore, marked with the rework's version
+ *   (featuresBeforeFor) so a later rework never reads an earlier one's list.
  * - Only what the character's level newly reaches is added (a 6th-level Fighter gets Battle Space, Unbroken and Legend
  *   of Battle); a feature the GM deleted earlier stays deleted, and nothing is taken away. Kits the same, from the
  *   levels their features had before the update (`kitBefore`, from kitLevelsOf).
@@ -747,7 +748,7 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
       if (!Array.isArray(list)) continue;
       const old = cls.system.features ?? [];
       const merged = [...clone(list), ...old.filter(f => !list.some(x => x.uuid === f.uuid) && !DROPPED_FEATURES.has(f.uuid))];
-      await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old), [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
+      await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old), [`flags.${SYS}.featuresBeforeFor`]: CLASS_REWORK, [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
     } catch (err) { console.warn(`Arneyan | class features: ${cls?.name}`, err); }
   }
   for (const actor of actors) {
@@ -759,12 +760,14 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         const list = plain(await fetch(uuid))?.system?.features;
         if (!Array.isArray(list)) continue;
         // The list before this update (kept from a try that stopped half-way).
-        const old = flag(cls, "featuresBefore") ?? cls.system.features ?? [];
+        // Only this rework's own copy: an earlier rework (0.10.65) left its list behind, which is older than the sheet.
+        const kept = flag(cls, "featuresBeforeFor") === CLASS_REWORK ? flag(cls, "featuresBefore") : null;
+        const old = kept ?? cls.system.features ?? [];
         const level = Number(cls.system.levels) || 1;
         const reached = new Set(old.filter(f => (Number(f.level) || 1) <= level).map(f => f.uuid));
         const only = new Set(list.filter(f => (Number(f.level) || 1) <= level && !reached.has(f.uuid)).map(f => f.uuid));
         const merged = [...clone(list), ...old.filter(f => !list.some(x => x.uuid === f.uuid) && !DROPPED_FEATURES.has(f.uuid))];
-        await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old) }, { arneyanMigration: true });
+        await cls.update({ "system.features": merged, [`flags.${SYS}.featuresBefore`]: clone(old), [`flags.${SYS}.featuresBeforeFor`]: CLASS_REWORK }, { arneyanMigration: true });
         const added = only.size ? await grant.cls(actor, cls, only) : [];
         if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
         // Features already here that now come earlier take their new level.
@@ -780,7 +783,7 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         if (flag(kit, "reworked") === CLASS_REWORK) continue;
         // Its levels before this update: kept on the kit while the update hasn't reached it yet (a retry), else the
         // snapshot taken before the main pass.
-        const before = flag(kit, "featureLevelsBefore") ?? kitBefore.get(kit.uuid ?? `${actor.id}.${kit.id}`);
+        const before = (flag(kit, "featureLevelsBeforeFor") === CLASS_REWORK ? flag(kit, "featureLevelsBefore") : null) ?? kitBefore.get(kit.uuid ?? `${actor.id}.${kit.id}`);
         const feats = kit.system?.features ?? [];
         const levels = feats.map(f => Number(f?.level) || 1);
         const ksrc = compendiumSourceOf(kit);
@@ -790,7 +793,7 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         // The main pass hasn't given it the new levels yet (it failed, or the GM keeps the kit's own list): keep the
         // old levels on it and look again on the next try.
         if (JSON.stringify(levels) === JSON.stringify(before)) {
-          if (!flag(kit, "featureLevelsBefore")) await kit.update({ [`flags.${SYS}.featureLevelsBefore`]: before }, { arneyanMigration: true });
+          if (flag(kit, "featureLevelsBeforeFor") !== CLASS_REWORK) await kit.update({ [`flags.${SYS}.featureLevelsBefore`]: before, [`flags.${SYS}.featureLevelsBeforeFor`]: CLASS_REWORK }, { arneyanMigration: true });
           continue;
         }
         const cls = classOf ? classOf(actor, kit) : null;

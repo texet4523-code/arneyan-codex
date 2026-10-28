@@ -739,26 +739,36 @@ export async function onConcentrationDeleted(effect) {
 
 /**
  * An encounter ended: effects that last the encounter (`flags.arneyan.encounter`, its id, or "next" when applied out of
- * combat) leave every creature in it. Called by the active GM. Returns how many went.
+ * combat) leave every creature in it, and Arcane Ward's temporary HP go. An ally given one who isn't in the tracker (a
+ * Command, Exalt) loses it too: the world's actors and the scene's tokens are swept for this encounter's. Called by the
+ * active GM. Returns how many effects went.
  */
 export async function endEncounterEffects(combat) {
   let n = 0;
   const seen = new Set();
-  for (const c of combat?.combatants ?? []) {
-    const actor = c.actor;
-    if (!actor || seen.has(actor.uuid ?? actor)) continue;
+  const sweep = async (actor, inIt) => {
+    if (!actor || seen.has(actor.uuid ?? actor)) return;
     seen.add(actor.uuid ?? actor);
+    // Arcane Ward's temporary HP end with the encounter: whatever is left of them (none if more came from elsewhere).
+    const ward = inIt ? Number(actor.flags?.[SYS]?.wardTemp) || 0 : 0;
+    if (ward && actor.update) {
+      const temp = Number(actor.system?.attributes?.hp?.temp) || 0;
+      await actor.update({ ...(temp <= ward ? { "system.attributes.hp.temp": 0 } : {}), [`flags.${SYS}.-=wardTemp`]: null }).catch(() => null);
+    }
     const gone = (actor.effects ?? []).filter(e => {
       const x = e.flags?.[SYS]?.encounter;
-      return x && (x === combat.id || x === "next");
+      return x && (x === combat.id || (inIt && x === "next"));
     });
-    if (!gone.length) continue;
+    if (!gone.length) return;
     try {
       await actor.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id).filter(id => actor.effects.has(id)));
       n += gone.length;
       ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), whisper: game.users.filter(u => u.isGM).map(u => u.id), content: `<p><strong>${esc(actor.name)}</strong>: ${gone.map(e => esc(e.name)).join(", ")} ended with the encounter.</p>` });
     } catch (err) { console.warn(`Arneyan | encounter effects: ${actor.name}`, err); }
-  }
+  };
+  for (const c of combat?.combatants ?? []) await sweep(c.actor, true);
+  const others = [...(game.actors?.contents ?? []), ...((globalThis.canvas?.tokens?.placeables ?? []).map(t => t.actor))];
+  for (const a of others) await sweep(a, false);
   return n;
 }
 

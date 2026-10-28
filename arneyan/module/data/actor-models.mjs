@@ -305,7 +305,11 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // v0.10.25). A manoeuvre or martial feature or feat that forces a save uses Strength or Dexterity, whichever is
     // higher, instead (martialDC).
     const first = classes[0];
-    const keys = first ? (ARNEYAN.classKeys?.[first.name] ?? [first.system.keyAbility || "str"]).filter(k => s.abilities[k]) : [];
+    // The class's own key attribute, where it differs from the book's first (set on the class, or a kit's swap such as
+    // the Frontier Vanguard's Strength for Dexterity), takes the first one's place.
+    const book = first ? (ARNEYAN.classKeys?.[first.name] ?? []) : [];
+    const own = first?.system?.keyAbility || "";
+    const keys = (first ? (book.length ? (own && own !== book[0] ? [own, ...book.slice(1)] : book) : [own || "str"]) : []).filter(k => s.abilities[k]);
     const best = keys.length ? Math.max(...keys.map(k => s.abilities[k].mod)) : 0;
     s.classDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + best + mods.sum("class.dc") : null;
     s.martialDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + Math.max(s.abilities.str.mod, s.abilities.dex.mod) + mods.sum("class.dc") : null;

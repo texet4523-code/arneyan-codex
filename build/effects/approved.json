@@ -2338,14 +2338,10 @@
     "key": "immune",
     "value": "condition:frightened",
     "when": "from 2nd level (Aura of Courage)"
-   },
-   {
-    "key": "note.save",
-    "value": "Aura of Courage: allies within {2:10ft, 15:30ft, 20:50ft} gain +4 on saves vs fear."
    }
   ],
-  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 2nd.",
-  "manual": "Allies' +4 vs fear in the aura; evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 2nd level.",
+  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 2nd. Allies' Advantage vs fear is the Aura of Courage aura.",
+  "manual": "Evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 2nd level.",
   "confidence": "medium"
  },
  "class-features/fAbmGByYrE4Mwp6V": {
@@ -3144,6 +3140,10 @@
    {
     "key": "adv.against.first",
     "value": -1
+   },
+   {
+    "key": "toggle.ends",
+    "value": "encounter"
    }
   ],
   "summary": "Toggle while you rage in medium or heavy armour: the first attack against you each round has Disadvantage.",
@@ -11163,6 +11163,20 @@
   ],
   "summary": "After you cast a spell of 1st level or higher: Advantage on your next weapon attack.",
   "manual": "Should end after one weapon attack (remove it then); the engine runs it out at the start of your next turn, not the end, and also counts touch spell attacks. Use it only after a spell of 1st level or higher.",
+  "confidence": "medium"
+ },
+ "kits/AUrBO8Zubm2Sk41v#0": {
+  "name": "Granted Power (Ilmater)",
+  "from": "Deity: Ilmater (The Winter's Solace) (Paladin)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "uses.extra.lay-on-hands",
+    "value": "2*@cl"
+   }
+  ],
+  "summary": "Lay on Hands' pool holds 2 more HP per Paladin level (4 a level in all).",
+  "manual": "The once-a-day Divine Healing without spending Channel Divinity: its Use.",
   "confidence": "medium"
  }
 }

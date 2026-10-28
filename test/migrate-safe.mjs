@@ -456,6 +456,18 @@ console.log("OK safe world update");
   const world = makeActor("W", "character", 1, oldList).items[0];
   await M.classRework([], fetch, grant, notes, { worldItems: [world] });
   assert.equal(world.system.features.length, 5);
+  // A class reworked in 0.10.65 still carries that run's featuresBefore (the 0.10.64 list). The 0.10.68 rework must
+  // start from the sheet as it is now: a homebrew entry added since stays, and a feature granted in 0.10.65 and
+  // deleted by the GM since isn't granted again.
+  {
+    const since = [...newList, { level: 2, name: "House Rule 2", uuid: "Compendium.world.homebrew.Item.y" }];
+    const prev = makeActor("Prev", "character", 6, since, { deleted: ["Quick Draw"], flags: { arneyan: { reworked: "0.10.65", featuresBefore: oldList } } });
+    granted.length = 0;
+    await M.classRework([prev], fetch, grant, notes, { kitBefore: new Map(), classOf });
+    assert.ok(prev.items[0].system.features.some(f => f.name === "House Rule 2"), "the homebrew entry added since 0.10.65 stays");
+    assert.deepEqual(granted, [], "nothing re-granted (Quick Draw was reached before and deleted)");
+    assert.equal(prev.items[0].flags.arneyan.featuresBeforeFor, M.CLASS_REWORK);
+  }
   assert.equal(M.CLASS_REWORK, "0.10.68");
   assert.ok(M.newerThan("0.10.65", "0.10.64") && M.newerThan("0.10.65", "0") && !M.newerThan("0.10.65", "0.10.65") && M.newerThan("0.10.100", "0.10.65"));
   console.log("OK 0.10.65 class features at their new levels");

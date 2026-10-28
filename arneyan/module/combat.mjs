@@ -242,18 +242,49 @@ async function gunReady(item, fire) {
 }
 
 /**
- * Attacks already rolled against that creature this round (in the encounter it's in), from the chat: all of them, or
- * melee ones only. 0 out of combat.
+ * Attacks already rolled against that creature, from the chat, in the encounter it's in: this round's, or with `since`
+ * (a time) every one after it. All of them, or melee ones only. 0 out of combat.
  */
-export function attacksAgainst(actor, { melee = false } = {}) {
+export function attacksAgainst(actor, { melee = false, since = null } = {}) {
   const uuid = actor?.uuid;
   const combat = combatFor(actor);
   if (!combat?.started) return 0;
   const stamp = `${combat.id}.${combat.round}`;
-  return game.messages.contents.slice(-80).filter(m => {
+  return game.messages.contents.slice(-120).filter(m => {
     const f = m.flags?.[SYS];
-    return f?.kind === "attack" && (!melee || f.melee) && f.stamp === stamp && (f.targets ?? []).some(t => t.uuid === uuid);
+    if (f?.kind !== "attack" || (melee && !f.melee) || !(f.targets ?? []).some(t => t.uuid === uuid)) return false;
+    if (since === null) return f.stamp === stamp;
+    return String(f.stamp ?? "").startsWith(`${combat.id}.`) && (Number(m.timestamp) || 0) > since;
   }).length;
+}
+
+/**
+ * "The first attack against it has Disadvantage" (K15: a shield used defensively, Evasive Manoeuvre, Arcane Cascade,
+ * Tempered Armour): the target's `adv.against.first` (and, for a melee attack, `adv.against.first.melee`) rules that
+ * still apply to this attack. Each counts its own `against.first.count` (same source; 1 if none). An effect on the
+ * creature counts the attacks made since it was put on (so earlier ones this round don't use it up, and one lasting
+ * into the next round still covers one attack); a feature's own rule counts this round's.
+ * Returns { values, adv, dis } as ModSet.adv does, labels prefixed with the target's name.
+ */
+export function firstAgainst(target, { ranged = false, name = "" } = {}) {
+  const out = { values: [], adv: [], dis: [] };
+  const tm = target?.system?.mods;
+  if (!tm?.flags) return out;
+  const keys = ["adv.against.first", ...(ranged ? [] : ["adv.against.first.melee"])];
+  for (const key of keys) {
+    for (const e of tm.flags.get(key) ?? []) {
+      if (!e.value) continue;
+      const count = Math.max(1, Math.floor((tm.numbers?.get("against.first.count") ?? []).filter(x => x.label === e.label).reduce((t, x) => t + x.value, 0) || 1));
+      const fx = (target.effects?.contents ?? target.effects ?? []).find?.(x => !x.disabled && (x.name === e.label) && (x.flags?.[SYS]?.rules ?? []).some(r => r.key === key));
+      const since = fx ? Number(fx._stats?.createdTime) || null : null;
+      const done = attacksAgainst(target, { melee: key.endsWith(".melee"), since });
+      if (done >= count) continue;
+      const label = `${name || target.name}: ${e.label} (first attack${count > 1 ? `s, ${done + 1} of ${count}` : ""})`;
+      out.values.push(Math.sign(e.value));
+      (e.value > 0 ? out.adv : out.dis).push(label);
+    }
+  }
+  return out;
 }
 
 /** Rolls already made this round: is this the first melee attack against that creature (in the encounter it's in)? */

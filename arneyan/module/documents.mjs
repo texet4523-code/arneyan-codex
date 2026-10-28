@@ -8,7 +8,7 @@ import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLev
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
-import { attackSituation, attacksAgainst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
+import { attackSituation, firstAgainst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 
@@ -586,15 +586,9 @@ export class ArneyanActor extends Actor {
       if (tm) {
         const a = tm.adv("adv.against", ranged ? "adv.against.ranged" : "adv.against.melee");
         against = { values: a.values, adv: a.adv.map(l => `${targets[0].name}: ${l}`), dis: a.dis.map(l => `${targets[0].name}: ${l}`) };
-        // The first attack (or first few: "against.first.count") against it each round (K15: Shield, Evasive
-        // Manoeuvre, Arcane Cascade), counted from this round's attacks in the chat.
-        const firstKeys = ["adv.against.first", ...(ranged ? [] : ["adv.against.first.melee"])];
-        const fa = tm.adv(...firstKeys);
-        if (fa.values.length) {
-          const count = Math.max(1, Math.floor(tm.sum("against.first.count") || 1));
-          const done = attacksAgainst(targets[0].actor, { melee: !tm.adv("adv.against.first").values.length });
-          if (done < count) against = { values: [...against.values, ...fa.values], adv: [...against.adv, ...fa.adv.map(l => `${targets[0].name}: ${l} (first attack)`)], dis: [...against.dis, ...fa.dis.map(l => `${targets[0].name}: ${l} (first attack)`)] };
-        }
+        // The first attack (or first few) against it (K15: Shield, Evasive Manoeuvre, Arcane Cascade), from the chat.
+        const fa = firstAgainst(targets[0].actor, { ranged, name: targets[0].name });
+        against = { values: [...against.values, ...fa.values], adv: [...against.adv, ...fa.adv], dis: [...against.dis, ...fa.dis] };
         if (!ranged && tm.has("crit.against.close")) notes.push(`${targets[0].name} (${tm.sources("crit.against.close").join(", ")}): a melee hit from within 5ft is a critical hit`);
       }
     }
@@ -680,7 +674,8 @@ export class ArneyanActor extends Actor {
     const tm = targets.length === 1 ? targets[0].actor.system.mods : null;
     if (tm) {
       const a = tm.adv("adv.against", "adv.against.melee");
-      against = { values: a.values, adv: a.adv.map(l => `${targets[0].name}: ${l}`), dis: a.dis.map(l => `${targets[0].name}: ${l}`) };
+      const fa = firstAgainst(targets[0].actor, { ranged: false, name: targets[0].name });
+      against = { values: [...a.values, ...fa.values], adv: [...a.adv.map(l => `${targets[0].name}: ${l}`), ...fa.adv], dis: [...a.dis.map(l => `${targets[0].name}: ${l}`), ...fa.dis] };
     }
     const { mode, why } = advFrom(event, own, against);
     const sys = item.system;
@@ -690,7 +685,8 @@ export class ArneyanActor extends Actor {
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged: false }), uuid: t.actor.uuid })),
       title: `${item.name}: Touch attack`, parts: touchParts(this, item),
       notes: [...(this.system.noAct ? [`${this.name} cannot take actions right now.`] : []), "A touch spell: the attack replaces the save. On a hit it takes full effect; on a miss, none."],
-      extra: { itemId: item.id, actorUuid: this.uuid, touchSpell: item.uuid, cl },
+      // Counted as a melee attack against the target this round ("the first attack against it", firstAgainst).
+      extra: { itemId: item.id, actorUuid: this.uuid, touchSpell: item.uuid, cl, melee: true, ...(combatFor(this)?.started ? { stamp: `${combatFor(this).id}.${combatFor(this).round}` } : {}) },
       footer: ({ natural }) => {
         if (natural === 1) return "";
         const b = [];
@@ -1360,7 +1356,8 @@ export class ArneyanItem extends Item {
     const ward = actor?.type === "character" && sys.level > 0 ? Math.floor(Number(actor.system.mods?.sum?.("cast.temp")) || 0) * sys.level : 0;
     if (ward > 0) {
       const now = Number(actor.system.attributes?.hp?.temp) || 0;
-      if (ward > now) await actor.update({ "system.attributes.hp.temp": ward }).catch(() => null);
+      // The amount is kept on the creature so the end of the encounter takes it away (effects.mjs endEncounterEffects).
+      if (ward > now) await actor.update({ "system.attributes.hp.temp": ward, [`flags.${SYS}.wardTemp`]: ward }).catch(() => null);
       const label = (actor.system.mods?.numbers?.get?.("cast.temp") ?? [])[0]?.label || "Arcane Ward";
       lines.push(`<p class="arn-card-meta"><i class="fa-solid fa-shield-heart"></i> ${esc(label)}: ${ward > now ? `${ward} temporary HP` : `${now} temporary HP kept (it doesn't stack)`} until the encounter ends.</p>`);
     }
@@ -1518,15 +1515,20 @@ export class ArneyanItem extends Item {
     return true;
   }
 
-  /** The effects an activity names (its `effect`: "Inspired, Emboldened"), or null for all of the item's. */
-  static effectsOf(act) {
-    const names = String(act?.effect ?? "").split(",").map(x => x.trim()).filter(Boolean);
-    return names.length ? new Set(names) : null;
+  /**
+   * The effects an activity offers (its `effect`: "Inspired, Emboldened"). null: all of the item's. On an item where
+   * some option names its effects (a pool), an option that names none offers none (Rally, Divine Intervention).
+   */
+  _effectsFor(act) {
+    if (!act) return null;
+    const names = String(act.effect ?? "").split(",").map(x => x.trim()).filter(Boolean);
+    if (names.length) return new Set(names);
+    return (this.system.activities ?? []).some(a => String(a?.effect ?? "").trim()) ? new Set() : null;
   }
 
   /** The "Apply ... to targets" buttons for effects this item puts on others (kept on an activity's card). */
   _applyButtons(cl, act = null) {
-    const only = ArneyanItem.effectsOf(act);
+    const only = this._effectsFor(act);
     return (this.system.applies ?? []).map((e, i) => (e.target === "self" || (only && !only.has(e.name || this.name)) ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
   }
 
@@ -1541,7 +1543,7 @@ export class ArneyanItem extends Item {
   /** The item's own effects on its user, once per use of an activity (Storm Form, Undying Reputation's Advantage). */
   async _selfForActivity(cl, act = null) {
     if (!(this.system.applies ?? []).some(e => e.target === "self")) return [];
-    try { return await this._applySelf(cl, { fresh: true, only: ArneyanItem.effectsOf(act) }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
+    try { return await this._applySelf(cl, { fresh: true, only: this._effectsFor(act) }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
   }
 
   /** Use one of a feature's activities: spend its use, then roll or post what it does. */
@@ -1594,7 +1596,7 @@ export class ArneyanItem extends Item {
     if (act.kind === "save" && act.save) {
       // A DC of its own where the text gives one (Intimidating Presence: 10 + half your level + Charisma), else the Class Save DC.
       const own = act.formula ? Math.round(byLevel(act.formula, cl, rollData)) : 0;
-      const dc = own || sys.dc || (actor?.type === "character" ? actor.system.classDC : actor?.system?.spellDC) || "";
+      const dc = own || sys.dc || (actor?.type === "character" ? ((sys.kind === "action" ? actor.system.martialDC : null) || actor.system.classDC) : actor?.system?.spellDC) || "";
       buttons = `<button type="button" class="arn-save-btn" data-save="${esc(act.save)}" data-dc="${dc}" data-source="${esc(this.name)}"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[act.save] ?? act.save} save${dc ? ` DC ${dc}` : ""}</button>`;
     }
     // A reminder with a number worked out for you (Parry: half your Level, minimum 1, + Dexterity).
@@ -1729,7 +1731,8 @@ export class ArneyanItem extends Item {
     }
     await this._reacted();
     let dc = sys.dc;
-    if (!dc && sys.save && actor?.type === "character") dc = actor.system.classDC;
+    // A manoeuvre that forces a save (Shield Blow) uses Strength or Dexterity, whichever is higher (books v0.10.25).
+    if (!dc && sys.save && actor?.type === "character") dc = (sys.kind === "action" ? actor.system.martialDC : null) || actor.system.classDC;
     if (!dc && sys.save && actor?.type === "npc") dc = actor.system.spellDC;
     // A feature's effects scale with its class level (Stun Attack: 1d4 rounds from Monk 10th).
     const cl = actor?.type === "character" ? this.featureLevel : (actor?.system.level ?? 1);
