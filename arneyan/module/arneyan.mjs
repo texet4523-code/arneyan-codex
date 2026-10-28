@@ -159,6 +159,11 @@ Hooks.once("init", () => {
   pdfSetting("phbJournal", "Player's Handbook journal (PDF Pager)", "Optional. If the PDF Pager module is active, the name of the journal entry holding the handbook PDF. Links then open inside Foundry.");
   pdfSetting("mtJournal", "Monsters & Treasure journal (PDF Pager)", "Optional. As above, for Monsters & Treasure.");
   game.settings.register(SYS, "migratedLinks", { scope: "world", config: false, type: Boolean, default: false });
+  // Kieran, 28 Oct 2026: 1s on a Hit Die rolled for a level are rerolled, as an option the table can switch off.
+  game.settings.register(SYS, "rerollHitDieOnes", {
+    name: "Reroll 1s on Hit Dice", hint: "When a level's Hit Die is rolled (2nd to 10th level), a 1 is rolled again once (the second roll stands). Off: a 1 stands. 1st level is always the full Hit Die + Con.",
+    scope: "world", config: true, type: Boolean, default: true
+  });
 
   // Text enricher: @PHB[123] and @MT[45] become page links in any description or journal.
   CONFIG.TextEditor.enrichers.push({

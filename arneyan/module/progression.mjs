@@ -351,7 +351,7 @@ async function changeClassLevel(actor, cls, target) {
     } else if (method === "average") {
       base = die / 2 + 1; how = `average ${base}`;
     } else {
-      const r = await new Roll(`1d${die}r1`).evaluate();
+      const r = await new Roll(hitDieFormula(die)).evaluate();
       hpRolls.push(r);
       base = r.total; how = `rolled ${base}`;
     }
@@ -399,6 +399,13 @@ async function changeClassLevel(actor, cls, target) {
 }
 
 /** What a level up brings, shown before HP is rolled. */
+/** Whether 1s on a level's Hit Die are rerolled (the world setting, on unless switched off). */
+export function rerollsHitDieOnes() {
+  try { return game.settings.get("arneyan", "rerollHitDieOnes") !== false; } catch { return true; }
+}
+/** One Hit Die for a level: 1d10, with a 1 rolled again once (r1) if the setting is on. */
+export function hitDieFormula(die) { return `1d${die}${rerollsHitDieOnes() ? "r1" : ""}`; }
+
 export function levelPreview(actor, cls, from, target, otherLevels, needsChoice, avg) {
   const sys = cls.system;
   const charFrom = otherLevels + from;
@@ -410,7 +417,7 @@ export function levelPreview(actor, cls, from, target, otherLevels, needsChoice,
   const early = Array.from({ length: target - from }, (_, i) => charFrom + i + 1).filter(l => l <= 10).length;
   const late = target - from - early;
   const hp = [];
-  if (early) hp.push(`${early} level${early === 1 ? "" : "s"}: roll ${sys.hitDie} (1s rerolled once) or take ${avg}, ${signed(con)} Con, minimum 1`);
+  if (early) hp.push(`${early} level${early === 1 ? "" : "s"}: roll ${sys.hitDie}${rerollsHitDieOnes() ? " (1s rerolled once)" : ""} or take ${avg}, ${signed(con)} Con, minimum 1`);
   if (late) hp.push(`${late} level${late === 1 ? "" : "s"} past 10th: ${signed(sys.hpBeyond10)} ${signed(con)} Con each`);
   li.push(`<li><strong>Hit points:</strong> ${hp.join("; ")}</li>`);
   li.push(`<li><strong>Luck:</strong> +${target - from} (to a maximum of 20)</li>`);

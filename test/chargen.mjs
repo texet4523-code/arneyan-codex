@@ -449,6 +449,18 @@ const score = (a, k) => a._source.system.abilities[k].value;
   assert.ok(sh.includes("if (levels <= 1) return ui.notifications.info("), "and the handler doesn't roll either");
   const pr = fs.readFileSync(new URL("../arneyan/module/progression.mjs", import.meta.url), "utf8");
   assert.ok(pr.includes('const hp = Math.max(1, Number(cls.system.hitDie.slice(1)) + con);'), "1st level: the full Hit Die + Con");
+  // Kieran, 28 Oct 2026: 1s rerolled (once) on a level's Hit Die, as a world setting the GM can switch off.
+  const keepSettings = game.settings;
+  game.settings = { get: () => true };
+  assert.equal(P.hitDieFormula(10), "1d10r1");
+  game.settings = { get: () => false };
+  assert.equal(P.hitDieFormula(8), "1d8");
+  game.settings = { get: () => { throw new Error("not registered"); } };
+  assert.equal(P.hitDieFormula(6), "1d6r1", "on unless switched off");
+  game.settings = keepSettings;
+  const main = fs.readFileSync(new URL("../arneyan/module/arneyan.mjs", import.meta.url), "utf8");
+  assert.ok(/"rerollHitDieOnes", \{[^}]*scope: "world", config: true, type: Boolean, default: true/s.test(main), "a world setting, on by default");
+  assert.ok(!pr.includes("r1`).evaluate()") && sh.includes("hitDieFormula("), "level up and the chip both use it");
 }
 
 DialogV2.wait = saved;

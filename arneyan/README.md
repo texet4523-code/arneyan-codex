@@ -6,6 +6,7 @@ Version 0.10.69 · Foundry v13 and v14 · **Playtest release**
 
 - **Making a character, step by step** (Kieran, 27 Oct). A new character goes from its ability scores straight to a list of the classes (each with its Hit Die and key attribute, and its description when clicked), then the same steps as dropping a class on the sheet: ancestry, Kit, Feats, skills, Starting Luck and starting gold. Nothing needs dragging. **Later** on the scores or the class list leaves the rest for now: the sheet's **Set up** button (where the class would be) picks up from where it stopped, and dragging a class onto the sheet still works.
 - **1st-level Hit Points** (Kieran, 28 Oct): a 1st-level character's HP is the full Hit Die + Con, set when the class goes on, so the Hit Die chip under HP no longer offers a roll at 1st level (its tooltip says so). From 2nd level, levelling up rolls the Hit Die or takes the average, as before; the chip still rolls one by hand.
+- **Reroll 1s on Hit Dice** is now a world setting (Kieran, 28 Oct; on by default, as before): a 1 on a level's Hit Die is rolled again once. Switch it off and a 1 stands. The Hit Die chip follows it too.
 
 ## What's new in 0.10.68
 
@@ -586,7 +587,7 @@ Drag anything onto a sheet. You can still make your own items from the Items sid
 ## Levelling up
 - Type the new level into the box next to the class name in the sheet header, or press the up or down arrow next to it (or drop the same class again).
 - The level-up window lists what the new level brings before you roll: HP, Luck, Base to Hit, saves and DCs, new class and kit abilities, new or unlocked spell slots, and any feat or skill choice coming.
-- Hit Points: roll the Hit Die (1s rerolled once) or take the average, + Con, minimum 1. From 11th level it is the class's flat amount. +1 Luck each level.
+- Hit Points: roll the Hit Die (1s rerolled once, a world setting the GM can switch off) or take the average, + Con, minimum 1. From 11th level it is the class's flat amount. +1 Luck each level.
 - Class abilities and kit features for the new level are added; a Feat prompt appears at your class's feat levels and a Skill prompt at 4th, 8th, 12th, 16th, 20th and 24th.
 - Typing a lower number levels down, taking away the HP, Luck and features from those levels.
 

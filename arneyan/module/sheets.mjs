@@ -6,7 +6,7 @@ import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, we
 import { ArneyanBrowser } from "./browser.mjs";
 import { alignmentContext } from "./favour.mjs";
 import { startingWealth, canRunStartingWealth } from "./starting.mjs";
-import { setUpCharacter } from "./progression.mjs";
+import { setUpCharacter, hitDieFormula } from "./progression.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
@@ -836,7 +836,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     // 1st level is the full Hit Die + Con: no roll.
     const levels = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0);
     if (levels <= 1) return ui.notifications.info(`${actor.name}: 1st level is the full ${cls.system.hitDie} + Con (${Math.max(1, Number(cls.system.hitDie.slice(1)) + con)} HP), no roll. From 2nd level, levelling up rolls or takes the average.`);
-    const roll = await new Roll(`1${cls.system.hitDie} + ${con}`).evaluate();
+    const roll = await new Roll(`${hitDieFormula(Number(cls.system.hitDie.slice(1)))} + ${con}`).evaluate();
     const hp = Math.max(1, roll.total);
     return roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }),
       flavor: `Hit Die: ${cls.name} ${cls.system.hitDie} + Con (${con >= 0 ? "+" : ""}${con}) = ${hp} HP${roll.total < 1 ? " (minimum 1)" : ""}. Add it to Max HP on the sheet if it's for a level.` });
