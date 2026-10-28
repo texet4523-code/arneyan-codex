@@ -417,6 +417,11 @@ const score = (a, k) => a._source.system.abilities[k].value;
   assert.ok(opts.content.includes("Hit Die d10 · Strength / Dexterity") && opts.content.includes("Hit Die d4 · Intelligence"), "class details in the list (both key attributes)");
   // Kieran, 28 Oct 2026 ("neat and proper", "with pics"): each row has its picture, as in the browser.
   assert.ok(opts.classes.includes("arn-pick-art") && /<img class="arn-pick-img" src="[^"]*"/.test(opts.content), "pictures on the rows, class art");
+  // Review: rows all sharing one picture (the ancestries' one icon) leave it out; a long detail line has the full text on hover.
+  DialogV2.wait = async o => { opts = o; return "later"; };
+  const pk = await import("../arneyan/module/picker.mjs");
+  await pk.pickFromList({ title: "x", entries: [{ value: "a", name: "A", img: "i.svg", meta: "+1 / +1 to any two attributes of choice" }, { value: "b", name: "B", img: "i.svg" }] });
+  assert.ok(!opts.content.includes("arn-pick-img") && opts.content.includes('title="+1 / +1 to any two attributes of choice"'), "one shared picture: none on the rows; full detail on hover");
   assert.ok(!opts.content.includes("—"), "no em dashes");
   // Review (0.10.69): Set up pressed while the scores window is open, or twice, opens one class list, not two.
   seen.length = 0;

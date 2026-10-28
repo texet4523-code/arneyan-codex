@@ -14,7 +14,7 @@ export const stepTitle = (title, step) => (step ? `${title} (${step})` : title);
 const descHead = (name, img, meta = "") => `<header class="arn-pick-head">${img ? `<img src="${esc(img)}" alt="">` : ""}<div><h3>${esc(name ?? "")}</h3>${meta ? `<p class="arn-pick-meta">${meta}</p>` : ""}</div></header>`;
 
 /** Enriched description of a compendium entry or an owned item (by uuid), cached per call site. */
-async function descriptionOf(uuid, cache) {
+async function descriptionOf(uuid, cache, meta = "") {
   if (cache.has(uuid)) return cache.get(uuid);
   let html = "";
   try {
@@ -25,7 +25,8 @@ async function descriptionOf(uuid, cache) {
     if (sys.ability && CONFIG.ARNEYAN?.abilities?.[sys.ability]) bits.push(esc(CONFIG.ARNEYAN.abilities[sys.ability]));
     if (sys.uses?.max) bits.push(`${sys.uses.max}/${esc(CONFIG.ARNEYAN?.usesPer?.[sys.uses.per] ?? sys.uses.per ?? "")}`);
     const body = await TE().enrichHTML(sys.description ?? "", { relativeTo: doc });
-    html = `${descHead(doc?.name, doc?.img, bits.join(" · "))}${body || "<p class=\"arn-muted\">No description.</p>"}`;
+    // The document's own details, or the row's line (a class: its Hit Die and key attributes).
+    html = `${descHead(doc?.name, doc?.img, bits.length ? bits.join(" · ") : esc(meta))}${body || "<p class=\"arn-muted\">No description.</p>"}`;
   } catch (err) {
     html = `<p class="arn-muted">Couldn't load the description.</p>`;
   }
@@ -60,8 +61,10 @@ export async function pickFromList(opts = {}) {
   const groups = new Map();
   for (const e of entries) (groups.get(e.group ?? "") ?? groups.set(e.group ?? "", []).get(e.group ?? "")).push(e);
   const pic = e => e.img || img;
-  const text = e => `<span class="arn-pick-text"><span class="arn-pick-name">${esc(e.name)}</span>${e.meta ? `<span class="arn-pick-sub">${esc(e.meta)}</span>` : ""}</span>`;
-  const picture = e => (pic(e) ? `<img class="arn-pick-img" src="${esc(pic(e))}" alt="">` : "");
+  // Every row the same picture (the ancestries share one icon): it says nothing, so the rows leave it out.
+  const rowPics = new Set(entries.map(pic)).size > 1;
+  const text = e => `<span class="arn-pick-text"><span class="arn-pick-name">${esc(e.name)}</span>${e.meta ? `<span class="arn-pick-sub" title="${esc(e.meta)}">${esc(e.meta)}</span>` : ""}</span>`;
+  const picture = e => (rowPics && pic(e) ? `<img class="arn-pick-img" src="${esc(pic(e))}" alt="">` : "");
   const row = e => {
     const v = String(e.value);
     const on = pre.has(v) ? " checked" : "";
@@ -92,7 +95,7 @@ export async function pickFromList(opts = {}) {
         const e = byValue.get(row.dataset.value);
         // Given text: its own heading becomes the browser-style head, with the row's picture.
         if (e?.html) desc.innerHTML = /^<h3>/.test(e.html) ? e.html.replace(/^<h3>(.*?)<\/h3>(?:<p class="arn-pick-meta">(.*?)<\/p>)?/, (m, n, meta) => `<header class="arn-pick-head">${pic(e) ? `<img src="${esc(pic(e))}" alt="">` : ""}<div><h3>${n}</h3>${meta ? `<p class="arn-pick-meta">${meta}</p>` : ""}</div></header>`) : e.html;
-        else desc.innerHTML = row.dataset.uuid ? await descriptionOf(row.dataset.uuid, cache) : descHead(e?.name, pic(e), esc(e?.meta ?? ""));
+        else desc.innerHTML = row.dataset.uuid ? await descriptionOf(row.dataset.uuid, cache, e?.meta ?? "") : descHead(e?.name, pic(e), esc(e?.meta ?? ""));
       };
       // The count, the boxes past the limit, and Take only when the count allows it.
       const sync = () => {
