@@ -18,13 +18,13 @@
     "value": 14
    },
    "int": {
-    "value": 16
+    "value": 15
    },
    "wis": {
     "value": 12
    },
    "cha": {
-    "value": 11
+    "value": 13
    }
   },
   "luck": {
@@ -50,9 +50,9 @@
    "alignment": "Chaotic Neutral",
    "deity": "",
    "size": "medium",
-   "languages": "Common, Goblin, Elvish, Halfling, Thieves' Cant",
-   "biography": "<p><em>The Broken Anvil · Level 1 - The Recruits · Seat 2, Skirmisher</em></p><p>A hooded lock-picker in a dark cloak; nobody in the Keepers has seen their face, and Wick likes it that way. Quiet, wry and unhurried, they answer questions with questions and pocket anything shiny out of habit, then give most of it back. Trained by the Guild, lent to the Keepers, and paid by the lock.</p><p><strong>Tonight:</strong> Wick has bet the quartermaster a silver piece per lock that they can open every one in the mine.</p><h3>In a fight</h3><p>Roll Initiative with Advantage, then stab or shoot a goblin that has not acted yet for Sneak Attack (Advantage, +2d6). Later, slip behind a busy goblin for a Back Attack.</p>",
-   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Sneak Attack.</strong> Once per round, against an aware but unsuspecting target within 30ft: Advantage on the attack and +2d6 damage (1d6, +1d6 from Predator). Unsuspecting means it cannot see you, has not yet acted this encounter, or is in melee with an ally and not with you. No stealth check needed. It cannot combine with Back Attack.</p><p><strong>Back Attack.</strong> Once per round, after a successful Hide or Move Silently check, attack a target from behind with a melee weapon shorter than your arm: Advantage, and double the weapon&#x27;s damage dice (short sword 2d6+4).</p><p><strong>Precise Strikes.</strong> +1 damage on every weapon hit (included).</p><p><strong>Hide and Move Silently.</strong> Normal roll at half speed or less, Disadvantage above it, impossible while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14. Listening through a solid barrier has Disadvantage.</p><p><strong>Rogue Skills.</strong> Climb (Dex), Open Locks (Dex; one try per lock until you gain a level), Pick Pocket (Dex; DC 10 + the target&#x27;s Level), Find/Disable/Set Trap (Int) and Decipher Script (Int). You know Cant. Your Lockpicks give Advantage on checks to pick locks.</p><p><strong>Guild Contract (kit).</strong> When your Sneak Attack hits, the next ally to attack that target before your next turn has Advantage. Advantage on Pick Pocket and Open Locks on a Guild-assigned contract.</p><p><strong>Guild Signal (kit).</strong> Advantage on checks to identify Guild members by their signals and methods, and to gather information for a Crow or Raven.</p><p><strong>Human.</strong> Speed 30ft, no darkvision. Knack: Climb, with Advantage on Climb checks (not an NWP slot).</p><p><strong>Predator (1st, Specialist).</strong> Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).</p><p><strong>Swift Reflexes (1st, General, Human bonus feat).</strong> +1 Dexterity, moved to Wisdom by the starting cap (included). Advantage on Initiative rolls.</p><p><strong>Armour Class on the sheet:</strong> 10 + 2 (Leather Armour, Light) + 3 (Dex, full) = 15</p>"
+   "languages": "Common, Elvish, Goblin, Thieves' Cant",
+   "biography": "<p><em>The Broken Anvil · Level 1 - The Recruits · Seat 2, Skirmisher</em></p><p>A half-elf lock-picker in a dark cloak, hood always up; nobody in the Keepers has seen their face, and Wick likes it that way. Quiet, wry and unhurried, they answer questions with questions and pocket anything shiny out of habit, then give most of it back. Trained by the Guild, lent to the Keepers, and paid by the lock.</p><p><strong>Tonight:</strong> Wick has bet the quartermaster a silver piece per lock that they can open every one in the mine.</p><h3>In a fight</h3><p>Roll Initiative with Advantage, then stab or shoot a goblin that has not acted yet for Sneak Attack (Advantage, +2d6). Later, slip behind a busy goblin for a Back Attack.</p>",
+   "backgroundStory": "<h3>Abilities (from the printed sheet)</h3><p><strong>Sneak Attack.</strong> Once per round, against an aware but unsuspecting target within 30ft: Advantage on the attack and +2d6 damage (1d6, +1d6 from Predator). Unsuspecting means it cannot see you, has not yet acted this encounter, or is in melee with an ally and not with you. No stealth check needed. It cannot combine with Back Attack.</p><p><strong>Back Attack.</strong> Once per round, after a successful Hide or Move Silently check, attack a target from behind with a melee weapon shorter than your arm: Advantage, and double the weapon&#x27;s damage dice (short sword 2d6+4).</p><p><strong>Precise Strikes.</strong> +1 damage on every weapon hit (included).</p><p><strong>Hide and Move Silently.</strong> Normal roll at half speed or less, Disadvantage above it, impossible while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14. Listening through a solid barrier has Disadvantage.</p><p><strong>Rogue Skills.</strong> Climb (Dex), Open Locks (Dex; one try per lock until you gain a level), Pick Pocket (Dex; DC 10 + the target&#x27;s Level), Find/Disable/Set Trap (Int) and Decipher Script (Int). You know Cant. Your Lockpicks give Advantage on checks to pick locks.</p><p><strong>Guild Contract (kit).</strong> When your Sneak Attack hits, the next ally to attack that target before your next turn has Advantage. Advantage on Pick Pocket and Open Locks on a Guild-assigned contract.</p><p><strong>Guild Signal (kit).</strong> Advantage on checks to identify Guild members by their signals and methods, and to gather information for a Crow or Raven.</p><p><strong>Half-Elf.</strong> Speed 30ft. Immune to magical sleep; Advantage on saves against charm. Fully rested from a 4-hour trance or 8 hours&#x27; sleep. Advantage on social checks with humans and elves. Dual Heritage: once a day, reroll one failed save or check (1 Luck for a second use). Knack: Climb, with Advantage on Climb checks (not an NWP slot).</p><p><strong>Predator (1st, Specialist).</strong> Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).</p><p><strong>Armour Class on the sheet:</strong> 10 + 2 (Leather Armour, Light) + 3 (Dex, full) = 15</p>"
   }
  },
  "items": [
@@ -748,46 +748,83 @@
   {
    "_id": "JtubcGdfckmikBQy",
    "_key": "!actors.items!AqDCNUpIn8MlJnqr.JtubcGdfckmikBQy",
-   "name": "Human",
+   "name": "Half-Elf",
    "type": "ancestry",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "system": {
-    "description": "<p>Size Medium • Speed <strong>30ft</strong> • Darkvision None • +1 / +1 to any two attributes of choice, no penalty</p><p><strong><em>Traits</em></strong></p><ul><li>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot. It keeps its <strong>Advantage</strong> if you later train or master the skill.</li><li><strong>Gains an additional Feat from the General Path</strong> (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can't be a Feat you already have.</li><li><strong>Weapon training:</strong> any two martial weapons of choice.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+    "description": "<p>Size Medium • Speed <strong>30ft</strong> • Low-Light Vision (not true darkvision) • +2 Cha / +1 Dex, no penalty</p><p><strong><em>Traits</em></strong></p><ul><li><strong>Immune</strong> to magical sleep.</li><li><strong>Advantage</strong> on saves vs charm.</li><li><strong>Flexible Rest:</strong> fully rested from either a 4hr trance or 8hr sleep.</li><li>Choose one additional skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot.</li><li><strong>Advantage on social checks with both humans and elves</strong>.</li><li><strong>Dual Heritage:</strong> Once per day, reroll any one failed save or check (1 Luck for a second use).</li><li><strong>Weapon training:</strong> longsword, shortsword, longbow, plus one martial weapon of choice.</li><li><strong>Armour training:</strong> light.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
     },
     "size": "medium",
     "speed": 30,
-    "vision": "",
-    "attributes": "+1 / +1 to any two attributes of choice, no penalty",
-    "bonuses": {},
-    "pickTwo": true,
+    "vision": "Low-Light",
+    "attributes": "+2 Cha / +1 Dex, no penalty",
+    "bonuses": {
+     "cha": 2,
+     "dex": 1
+    },
+    "pickTwo": false,
     "family": false,
     "traitList": [
      {
-      "name": "Choose one skill at creation",
-      "text": "Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot. It keeps its Advantage if you later train or master the skill."
+      "name": "Immune to magical sleep",
+      "text": "Immune to magical sleep."
      },
      {
-      "name": "Gains an additional Feat from the General Path",
-      "text": "Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can't be a Feat you already have."
+      "name": "Advantage on saves vs charm",
+      "text": "Advantage on saves vs charm."
+     },
+     {
+      "name": "Flexible Rest",
+      "text": "fully rested from either a 4hr trance or 8hr sleep."
+     },
+     {
+      "name": "Choose one additional skill at creation",
+      "text": "Choose one additional skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and does not take an NWP slot."
+     },
+     {
+      "name": "Advantage on social checks with both humans…",
+      "text": "Advantage on social checks with both humans and elves."
+     },
+     {
+      "name": "Dual Heritage",
+      "text": "Once per day, reroll any one failed save or check (1 Luck for a second use)."
      },
      {
       "name": "Weapon training",
-      "text": "any two martial weapons of choice."
+      "text": "longsword, shortsword, longbow, plus one martial weapon of choice."
      },
      {
       "name": "Armour training",
-      "text": "light, medium."
+      "text": "light."
      }
     ],
     "choice": null,
     "rules": [
      {
+      "key": "note.save",
+      "value": "Immune to magical sleep.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs charm",
+      "label": ""
+     },
+     {
       "key": "adv.skill",
       "value": "1",
       "when": "skill chosen at creation",
+      "label": ""
+     },
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "social checks with humans and elves",
       "label": ""
      }
     ],
@@ -808,63 +845,147 @@
     }
    },
    "_stats": {
-    "compendiumSource": "Compendium.arneyan.ancestries.Item.qtFpPzacRGlVohYi"
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.1u8tHJf03sojPQAl"
    }
   },
   {
    "_id": "J6GdSUwSwlpEA1LN",
    "_key": "!actors.items!AqDCNUpIn8MlJnqr.J6GdSUwSwlpEA1LN",
-   "name": "Choose one skill at creation",
+   "name": "Immune to magical sleep",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "effects": [],
    "system": {
-    "description": "<p>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot. It keeps its <strong>Advantage</strong> if you later train or master the skill.</p>",
+    "description": "<p>Immune to magical sleep.</p>",
     "kind": "ancestry",
     "level": 1,
-    "className": "Human",
+    "className": "Half-Elf",
     "rules": []
    },
    "flags": {
     "arneyan": {
      "grantedBy": "JtubcGdfckmikBQy",
-     "source": "JtubcGdfckmikBQy.Choose one skill at creation"
+     "source": "JtubcGdfckmikBQy.Immune to magical sleep"
     }
    }
   },
   {
    "_id": "B7r6Nqs8xu88SWuA",
    "_key": "!actors.items!AqDCNUpIn8MlJnqr.B7r6Nqs8xu88SWuA",
-   "name": "Gains an additional Feat from the General Path",
+   "name": "Advantage on saves vs charm",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "effects": [],
    "system": {
-    "description": "<p>Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can&#x27;t be a Feat you already have.</p>",
+    "description": "<p><strong>Advantage</strong> on saves vs charm.</p>",
     "kind": "ancestry",
     "level": 1,
-    "className": "Human",
+    "className": "Half-Elf",
     "rules": []
    },
    "flags": {
     "arneyan": {
      "grantedBy": "JtubcGdfckmikBQy",
-     "source": "JtubcGdfckmikBQy.Gains an additional Feat from the General Path"
+     "source": "JtubcGdfckmikBQy.Advantage on saves vs charm"
     }
    }
   },
   {
    "_id": "bvSo7w7yNP9gdJBO",
    "_key": "!actors.items!AqDCNUpIn8MlJnqr.bvSo7w7yNP9gdJBO",
+   "name": "Flexible Rest",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>fully rested from either a 4hr trance or 8hr sleep.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Half-Elf",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "JtubcGdfckmikBQy",
+     "source": "JtubcGdfckmikBQy.Flexible Rest"
+    }
+   }
+  },
+  {
+   "_id": "hpQ3qil6G2jNvPAY",
+   "_key": "!actors.items!AqDCNUpIn8MlJnqr.hpQ3qil6G2jNvPAY",
+   "name": "Choose one additional skill at creation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Choose one additional skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Half-Elf",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "JtubcGdfckmikBQy",
+     "source": "JtubcGdfckmikBQy.Choose one additional skill at creation"
+    }
+   }
+  },
+  {
+   "_id": "GLqDt2IeFiJVuzBR",
+   "_key": "!actors.items!AqDCNUpIn8MlJnqr.GLqDt2IeFiJVuzBR",
+   "name": "Advantage on social checks with both humans…",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on social checks with both humans and elves.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Half-Elf",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "JtubcGdfckmikBQy",
+     "source": "JtubcGdfckmikBQy.Advantage on social checks with both humans…"
+    }
+   }
+  },
+  {
+   "_id": "4lxA6T2JsGeVxoJv",
+   "_key": "!actors.items!AqDCNUpIn8MlJnqr.4lxA6T2JsGeVxoJv",
+   "name": "Dual Heritage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Once per day, reroll any one failed save or check (1 Luck for a second use).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Half-Elf",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "JtubcGdfckmikBQy",
+     "source": "JtubcGdfckmikBQy.Dual Heritage"
+    }
+   }
+  },
+  {
+   "_id": "2tLMEOLSmcKnxqPQ",
+   "_key": "!actors.items!AqDCNUpIn8MlJnqr.2tLMEOLSmcKnxqPQ",
    "name": "Weapon training",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "effects": [],
    "system": {
-    "description": "<p>any two martial weapons of choice.</p>",
+    "description": "<p>longsword, shortsword, longbow, plus one martial weapon of choice.</p>",
     "kind": "ancestry",
     "level": 1,
-    "className": "Human",
+    "className": "Half-Elf",
     "rules": []
    },
    "flags": {
@@ -875,17 +996,17 @@
    }
   },
   {
-   "_id": "hpQ3qil6G2jNvPAY",
-   "_key": "!actors.items!AqDCNUpIn8MlJnqr.hpQ3qil6G2jNvPAY",
+   "_id": "Q9QtFytVN8oSTkeV",
+   "_key": "!actors.items!AqDCNUpIn8MlJnqr.Q9QtFytVN8oSTkeV",
    "name": "Armour training",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "effects": [],
    "system": {
-    "description": "<p>light, medium.</p>",
+    "description": "<p>light.</p>",
     "kind": "ancestry",
     "level": 1,
-    "className": "Human",
+    "className": "Half-Elf",
     "rules": []
    },
    "flags": {
@@ -1108,56 +1229,6 @@
    "flags": {},
    "_stats": {
     "compendiumSource": "Compendium.arneyan.feats.Item.m3WsthD1o620CKXN"
-   }
-  },
-  {
-   "_id": "BnNrX6EEUa9GTLfn",
-   "_key": "!actors.items!AqDCNUpIn8MlJnqr.BnNrX6EEUa9GTLfn",
-   "name": "Swift Reflexes",
-   "type": "feat",
-   "img": "systems/arneyan/assets/icons/feat-laurels.svg",
-   "system": {
-    "description": "<p><em>(Dexterity)</em>  <strong>Advantage</strong> on Initiative rolls. Gain +1 to Dexterity (once, on taking this feat).</p><p class=\"arn-note\">Open to all classes by default.</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "path": "General Path",
-    "levelTaken": 1,
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "rules": [
-     {
-      "key": "ability.dex",
-      "value": "1",
-      "when": "",
-      "label": ""
-     },
-     {
-      "key": "adv.init",
-      "value": "1",
-      "when": "",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "abilityChoice": {
-     "options": [],
-     "value": "",
-     "moved": "wis"
-    }
-   },
-   "effects": [],
-   "ownership": {
-    "default": 0
-   },
-   "flags": {},
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.feats.Item.X6wcwRDe8NhbcNhb"
    }
   },
   {
@@ -1980,7 +2051,7 @@
      "saves": {
       "fort": 2,
       "ref": 4,
-      "will": 2
+      "will": 1
      },
      "bth": 0,
      "hp": 7

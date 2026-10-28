@@ -1,10 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.73 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.74 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.74
+
+- **Two Broken Anvil pregens changed** (Kieran, 28 Oct): Wick Tallow is a half-elf Rogue (Charisma 13, Intelligence 15, Elvish; no Human bonus feat), and the Veterans' Barbarian is Kavra Skyhewn, a goliath woman (same numbers as before).
 
 ## What's new in 0.10.73
 
-- **The Broken Anvil's pregens, rebuilt** (Kieran, 28 Oct). All ten are rebuilt from books v0.10.31, and each is a different class so every one shows its own picture, with name, ancestry and look built around that class's art. The Recruits (level 1): Haldor Brassbeard (dwarf Fighter of Tenor Hold), Wick Tallow (human Rogue), Fenna Thornmantle (wood elf Druid, the healer), Ilvaeth Duskwhisper (drow Warlock) and Rook Halloway (human Archer). The Veterans (level 9): Gauthak Skyhewn (goliath Barbarian), Liriel Vance (half-elf Swashbuckler), Sister Aurelle Dawnward (aasimar Cleric of Lathander), Marten Halloway (human Gunslinger, Rook's uncle) and Sarrix Stormscale (dragonborn Monk). Pregens already in a world stay as they are: drag the new ones in from the compendium.
+- **The Broken Anvil's pregens, rebuilt** (Kieran, 28 Oct). All ten are rebuilt from books v0.10.31, and each is a different class so every one shows its own picture, with name, ancestry and look built around that class's art. The Recruits (level 1): Haldor Brassbeard (dwarf Fighter of Tenor Hold), Wick Tallow (half-elf Rogue), Fenna Thornmantle (wood elf Druid, the healer), Ilvaeth Duskwhisper (drow Warlock) and Rook Halloway (human Archer). The Veterans (level 9): Kavra Skyhewn (goliath Barbarian), Liriel Vance (half-elf Swashbuckler), Sister Aurelle Dawnward (aasimar Cleric of Lathander), Marten Halloway (human Gunslinger, Rook's uncle) and Sarrix Stormscale (dragonborn Monk). Pregens already in a world stay as they are: drag the new ones in from the compendium.
 - **Ring of Protection** adds its +1 AC while worn.
 
 ## What's new in 0.10.72

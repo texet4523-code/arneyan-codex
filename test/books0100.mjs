@@ -46,13 +46,12 @@ for (const n of ["Burning Hands", "Scorching Ray", "Fireball", "Bind Elemental",
 assert.equal(one("monsters", "Warpony").system.hd, "2d8+2");
 assert.ok(docs("equipment").filter(d => /\(by quality\)/.test(d.system.price ?? "")).length >= 10);
 assert.ok(strip(one("actions", "Attack of Opportunity").system.description).includes("Only a creature with a feature that grants one"));
-// A creation feat's point moved by the starting cap (the Recruits rebuilt 28 Oct 2026; Big Wen was the old example):
-// Wick Tallow's Swift Reflexes would take Dexterity past 18, so its point goes to Wisdom.
+// A creation feat's point moved by the starting cap: no pregen needs one since Wick became a half-elf (28 Oct 2026),
+// so the rule is checked through chosenRules below. Wick's scores are stored as listed (no feat point to take out).
 const wick = docs("pregens").find(d => d.name === "Wick Tallow");
-assert.equal(wick.items.find(i => i.name === "Swift Reflexes").system.abilityChoice.moved, "wis");
-// Stored scores leave out the moved point, which lands on the attribute it moved to: Dexterity 18, Wisdom 12 + 1.
+assert.ok(wick.items.some(i => i.type === "ancestry" && i.name === "Half-Elf"), "Wick is a half-elf");
 assert.equal(wick.system.abilities.dex.value, 18);
-assert.equal(wick.system.abilities.wis.value, 12);
+assert.equal(wick.system.abilities.cha.value, 13);
 
 // A creation feat's bonus moved by the 18 cap counts where it went.
 assert.deepEqual(E.chosenRules({ rules: [{ key: "ability.con", value: "1" }, { key: "hp.level", value: "1" }], abilityChoice: { options: [], value: "", moved: "dex" } }).map(r => r.key), ["ability.dex", "hp.level"]);

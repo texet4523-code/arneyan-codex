@@ -169,7 +169,7 @@
   "seat": 2,
   "role": "Skirmisher",
   "name": "Wick Tallow",
-  "ancestry": "Human",
+  "ancestry": "Half-Elf",
   "ancestryNote": "",
   "class": "Rogue",
   "classNote": "",
@@ -180,9 +180,9 @@
    "str": 9,
    "dex": 18,
    "con": 14,
-   "int": 16,
-   "wis": 13,
-   "cha": 11
+   "int": 15,
+   "wis": 12,
+   "cha": 13
   },
   "luck": 12,
   "hpMax": 7,
@@ -191,7 +191,7 @@
   "saves": {
    "fort": 2,
    "ref": 4,
-   "will": 2
+   "will": 1
   },
   "bth": 0,
   "initiative": 3,
@@ -213,19 +213,14 @@
   ],
   "languages": [
    "Common",
-   "Goblin",
    "Elvish",
-   "Halfling",
+   "Goblin",
    "Thieves' Cant"
   ],
   "feats": [
    {
     "name": "Predator",
     "note": "1st, Specialist"
-   },
-   {
-    "name": "Swift Reflexes",
-    "note": "1st, General (Human bonus feat)"
    }
   ],
   "classFeatures": [
@@ -335,9 +330,9 @@
    "cp": 0
   },
   "spells": null,
-  "personality": "A hooded lock-picker in a dark cloak; nobody in the Keepers has seen their face, and Wick likes it that way. Quiet, wry and unhurried, they answer questions with questions and pocket anything shiny out of habit, then give most of it back. Trained by the Guild, lent to the Keepers, and paid by the lock.",
+  "personality": "A half-elf lock-picker in a dark cloak, hood always up; nobody in the Keepers has seen their face, and Wick likes it that way. Quiet, wry and unhurried, they answer questions with questions and pocket anything shiny out of habit, then give most of it back. Trained by the Guild, lent to the Keepers, and paid by the lock.",
   "inAFight": "Roll Initiative with Advantage, then stab or shoot a goblin that has not acted yet for Sneak Attack (Advantage, +2d6). Later, slip behind a busy goblin for a Back Attack.",
-  "abilitiesText": "**Sneak Attack.** Once per round, against an aware but unsuspecting target within 30ft: Advantage on the attack and +2d6 damage (1d6, +1d6 from Predator). Unsuspecting means it cannot see you, has not yet acted this encounter, or is in melee with an ally and not with you. No stealth check needed. It cannot combine with Back Attack.\n\n**Back Attack.** Once per round, after a successful Hide or Move Silently check, attack a target from behind with a melee weapon shorter than your arm: Advantage, and double the weapon's damage dice (short sword 2d6+4).\n\n**Precise Strikes.** +1 damage on every weapon hit (included).\n\n**Hide and Move Silently.** Normal roll at half speed or less, Disadvantage above it, impossible while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14. Listening through a solid barrier has Disadvantage.\n\n**Rogue Skills.** Climb (Dex), Open Locks (Dex; one try per lock until you gain a level), Pick Pocket (Dex; DC 10 + the target's Level), Find/Disable/Set Trap (Int) and Decipher Script (Int). You know Cant. Your Lockpicks give Advantage on checks to pick locks.\n\n**Guild Contract (kit).** When your Sneak Attack hits, the next ally to attack that target before your next turn has Advantage. Advantage on Pick Pocket and Open Locks on a Guild-assigned contract.\n\n**Guild Signal (kit).** Advantage on checks to identify Guild members by their signals and methods, and to gather information for a Crow or Raven.\n\n**Human.** Speed 30ft, no darkvision. Knack: Climb, with Advantage on Climb checks (not an NWP slot).\n\n**Predator (1st, Specialist).** Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).\n\n**Swift Reflexes (1st, General, Human bonus feat).** +1 Dexterity, moved to Wisdom by the starting cap (included). Advantage on Initiative rolls.",
+  "abilitiesText": "**Sneak Attack.** Once per round, against an aware but unsuspecting target within 30ft: Advantage on the attack and +2d6 damage (1d6, +1d6 from Predator). Unsuspecting means it cannot see you, has not yet acted this encounter, or is in melee with an ally and not with you. No stealth check needed. It cannot combine with Back Attack.\n\n**Back Attack.** Once per round, after a successful Hide or Move Silently check, attack a target from behind with a melee weapon shorter than your arm: Advantage, and double the weapon's damage dice (short sword 2d6+4).\n\n**Precise Strikes.** +1 damage on every weapon hit (included).\n\n**Hide and Move Silently.** Normal roll at half speed or less, Disadvantage above it, impossible while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14. Listening through a solid barrier has Disadvantage.\n\n**Rogue Skills.** Climb (Dex), Open Locks (Dex; one try per lock until you gain a level), Pick Pocket (Dex; DC 10 + the target's Level), Find/Disable/Set Trap (Int) and Decipher Script (Int). You know Cant. Your Lockpicks give Advantage on checks to pick locks.\n\n**Guild Contract (kit).** When your Sneak Attack hits, the next ally to attack that target before your next turn has Advantage. Advantage on Pick Pocket and Open Locks on a Guild-assigned contract.\n\n**Guild Signal (kit).** Advantage on checks to identify Guild members by their signals and methods, and to gather information for a Crow or Raven.\n\n**Half-Elf.** Speed 30ft. Immune to magical sleep; Advantage on saves against charm. Fully rested from a 4-hour trance or 8 hours' sleep. Advantage on social checks with humans and elves. Dual Heritage: once a day, reroll one failed save or check (1 Luck for a second use). Knack: Climb, with Advantage on Climb checks (not an NWP slot).\n\n**Predator (1st, Specialist).** Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).",
   "hook": "Wick has bet the quartermaster a silver piece per lock that they can open every one in the mine.",
   "unsure": []
  },
