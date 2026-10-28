@@ -152,7 +152,11 @@ export const activityField = () => new ArrayField(new SchemaField({
   /** Using it takes the creature's reaction for the round (Attack of Opportunity, Riposte, Parry). */
   reaction: new BooleanField({ initial: false }),
   /** attacks: a hit does something "instead of dealing damage" (Push): no damage buttons. */
-  noDamage: new BooleanField({ initial: false })
+  noDamage: new BooleanField({ initial: false }),
+  /** The item's effects this option offers (names, comma-separated): a pool's options each apply their own. "" = all. */
+  effect: str(),
+  /** Spends any number of the feature's uses, asked when used (Lay on Hands' healing points); @spent in the formula. */
+  spendAny: new BooleanField({ initial: false })
 }));
 
 class BaseItemData extends foundry.abstract.TypeDataModel {

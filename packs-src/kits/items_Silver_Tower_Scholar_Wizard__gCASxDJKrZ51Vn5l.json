@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Trained in the Aldorethi tradition out of the Silver Tower, with its branch in Kyla'naes since the War of Tariel.</p><ul><li><strong>Elemental Precision:</strong> Once per encounter, a spell you cast that deals elemental damage imposes <strong>Disadvantage</strong> on the target's saving throw against it.</li><li><strong>Aldorethi Theory:</strong> <strong>Advantage</strong> on Intelligence checks recalling Aldorethi magical theory or history.</li></ul>",
+  "description": "<p>Trained in the Aldorethi tradition out of the Silver Tower, with its branch in Kyla'naes since the War of Tariel.</p><ul><li><strong>Elemental Precision:</strong> Reroll any 1s on the damage dice of your spells that deal elemental damage (once per die).</li><li><strong>Aldorethi Theory:</strong> <strong>Advantage</strong> on Intelligence checks recalling Aldorethi magical theory or history.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,17 +15,17 @@
    {
     "name": "Elemental Precision",
     "level": 1,
-    "description": "<p>Once per encounter, a spell you cast that deals elemental damage imposes <strong>Disadvantage</strong> on the target's saving throw against it.</p>",
+    "description": "<p>Reroll any 1s on the damage dice of your spells that deal elemental damage (once per die).</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
      {
       "key": "note.spell",
-      "value": "Elemental Precision: once per encounter, an elemental-damage spell imposes Disadvantage on the target's save.",
+      "value": "Elemental Precision: reroll any 1s on the damage dice of your spells that deal elemental damage (once per die).",
       "when": "",
       "label": ""
      }

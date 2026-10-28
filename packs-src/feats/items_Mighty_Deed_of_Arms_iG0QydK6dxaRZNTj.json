@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
  "system": {
-  "description": "<p>Once per round, call your shot before you swing.</p><ul><li>Roll a <strong>d4</strong> alongside your attack; if the hit lands and the <strong>d4</strong> comes up 3 or better, choose one: knock the target <strong>Prone</strong>, disarm it, push it <strong>10ft</strong>, blind it until the end of its next turn, or give it <strong>Disadvantage</strong> on its next attack.</li><li>The target resists with a save against 10 + half your level (minimum 1) + your Strength modifier: Fortitude against <strong>Prone</strong>, a push or a disarm, Reflex against blinding, Will against the attack penalty.</li><li>A creature that saves is immune to your Deeds for the rest of the fight.</li><li>A creature more than one size larger than you ignores the deed.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "description": "<p>Once per round, call your shot before you swing.</p><ul><li>Roll a <strong>d4</strong> alongside your attack; if the hit lands and the <strong>d4</strong> comes up 3 or better, choose one: knock the target <strong>Prone</strong>, disarm it, push it <strong>10ft</strong>, blind it until the end of its next turn, or give it <strong>Disadvantage</strong> on its next attack.</li><li>The target resists with a save against your Class Save DC, using Strength or Dexterity, whichever is higher: Fortitude against <strong>Prone</strong>, a push or a disarm, Reflex against blinding, Will against the attack penalty.</li><li>A creature more than one size larger than you ignores the deed.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -41,16 +41,18 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Prone, push or disarm",
     "kind": "save",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "damageType": "",
     "ability": "",
     "save": "fort",
-    "text": "Knock it Prone, push it 10ft or disarm it, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "text": "Knock it Prone, push it 10ft or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -66,16 +68,18 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "Deed: Prone",
+    "spendAny": false
    },
    {
     "name": "Blind",
     "kind": "save",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "damageType": "",
     "ability": "",
     "save": "ref",
-    "text": "Blind it until the end of its next turn, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "text": "Blind it until the end of its next turn, unless it passes a Reflex save. A creature more than one size larger than you ignores the deed.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -91,16 +95,18 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "Deed: Blinded",
+    "spendAny": false
    },
    {
     "name": "Attack penalty",
     "kind": "save",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "Disadvantage on its next attack, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them.",
+    "text": "Disadvantage on its next attack, unless it passes a Will save. A creature more than one size larger than you ignores the deed.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -116,7 +122,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "Deed: Off-balance",
+    "spendAny": false
    }
   ],
   "applies": [

@@ -1,0 +1,49 @@
+{
+ "_id": "QO7LTE0fY8vA1LxD",
+ "_key": "!items!QO7LTE0fY8vA1LxD",
+ "name": "Steady Voice",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Allies within <strong>30ft</strong> who can hear you have <strong>Advantage</strong> on saves against fear and charm. Always on.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Bard",
+  "auras": [
+   {
+    "key": "steady-voice",
+    "name": "Steady Voice",
+    "radius": 30,
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fear and charm (if they can hear you)",
+      "label": "Steady Voice"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

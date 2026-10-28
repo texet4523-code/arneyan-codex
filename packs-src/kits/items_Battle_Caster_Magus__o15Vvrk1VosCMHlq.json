@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
  "system": {
-  "description": "<p>You lean into the \"caster\" half of the hybrid — less committed to the blade, more willing to cast outright when the moment calls for it.</p><ul><li><strong>Broader Study:</strong> Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Magus list (not Polymorph; Haste on yourself only).</li><li>You still use the Magus's slot progression and DC.</li><li>Once per encounter, you may use your action to cast a prepared spell normally and, as part of that same action, make one attack with your bonded weapon, which can carry a Cantrip Spellstrike (not a Levelled one).</li></ul>",
+  "description": "<p>You lean into the \"caster\" half of the hybrid — less committed to the blade, more willing to cast outright when the moment calls for it.</p><ul><li><strong>Broader Study:</strong> Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Magus list (not Polymorph; Haste on yourself only).</li><li>You still use the Magus's slot progression and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,29 @@
    {
     "name": "Broader Study",
     "level": 1,
-    "description": "<p>Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Magus list (not Polymorph; Haste on yourself only).</p><ul><li>You still use the Magus's slot progression and DC.</li><li>Once per encounter, you may use your action to cast a prepared spell normally and, as part of that same action, make one attack with your bonded weapon, which can carry a Cantrip Spellstrike (not a Levelled one).</li></ul>",
+    "description": "<p>Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Magus list (not Polymorph; Haste on yourself only).</p><ul><li>You still use the Magus's slot progression and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li></ul>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": ""
+    "save": "",
+    "applies": [
+     {
+      "name": "Broader Study",
+      "target": "self",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
    }
   ]
  },

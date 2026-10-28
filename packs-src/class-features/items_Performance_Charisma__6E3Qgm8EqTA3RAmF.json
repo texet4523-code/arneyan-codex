@@ -1,0 +1,229 @@
+{
+ "_id": "6E3Qgm8EqTA3RAmF",
+ "_key": "!items!6E3Qgm8EqTA3RAmF",
+ "name": "Performance (Charisma)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Song, oration, battle cry or demeanour. Uses per day equal to your Bard level + your Charisma modifier (minimum 2). Spend a use as part of your action, <strong>once per round</strong>, so you can still cast or attack. Your Performance options:</li><li><strong>Exalt</strong> (the default): one ally within <strong>60ft</strong> who can see and hear you has <strong>Advantage</strong> on attribute checks and saves, including class ability checks but not attack rolls, for the encounter. Exalt reaches 2 allies at 6th level, 3 at 12th and 4 at 18th</li><li><strong>Discord:</strong> a sharp jeer or discordant note. A target within <strong>30ft</strong> makes a <strong>Will save</strong> or has <strong>Disadvantage</strong> on its next attack roll</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 2,
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, @cl + @cha.mod)"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Bard",
+  "activities": [
+   {
+    "name": "Exalt",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "The default Performance, as part of your action: {1:one ally, 6:2 allies, 12:3 allies, 18:4 allies} within 60ft who can see and hear you have Advantage on attribute checks and saves (including class ability checks, not attack rolls) for the encounter.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Exalted",
+    "spendAny": false
+   },
+   {
+    "name": "Discord",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or has Disadvantage on its next attack roll.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Discord",
+    "spendAny": false
+   },
+   {
+    "name": "Rally",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "All creatures within earshot re-save against any fear or morale effect affecting them, even if they failed before; those who succeed ignore that fear source for the rest of the encounter.",
+    "minLevel": 3,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Exhort Greatness",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you have Advantage on their first attack roll each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
+    "minLevel": 5,
+    "maxLevel": 0,
+    "cost": 2,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Exhorted",
+    "spendAny": false
+   },
+   {
+    "name": "Words of Power",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Costs 2 uses. One creature makes a Will save (your Class Save DC) or is deafened until the end of its next turn. {10:, 17:From 17th Words of Power (Improved) adds more by the target's Level.}",
+    "minLevel": 10,
+    "maxLevel": 0,
+    "cost": 2,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Word of Power: Deafened",
+    "spendAny": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Exalted",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Discord",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "-1",
+      "when": "its next attack roll",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Exhorted",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Word of Power: Deafened",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>A seafaring thief built around cargo and quick exits.</p><ul><li><strong>Cargo Sense:</strong> <strong>Advantage</strong> on Open Locks against ship or cargo locks, or Climb checks involving rigging. Once per encounter, after your Sneak Attack hits, you may move half your speed as part of the same action without provoking Attacks of Opportunity.</li><li><strong>Dockside Charm:</strong> <strong>Advantage</strong> on checks bribing or negotiating with port officials.</li></ul>",
+  "description": "<p>A seafaring thief built around cargo and quick exits.</p><ul><li><strong>Cargo Sense:</strong> <strong>Advantage</strong> on Open Locks against ship or cargo locks, or Climb checks involving rigging. After your Sneak Attack hits, you can move <strong>10ft</strong> as part of the same action without provoking Attacks of Opportunity.</li><li><strong>Dockside Charm:</strong> <strong>Advantage</strong> on checks bribing or negotiating with port officials.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Cargo Sense",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Open Locks against ship or cargo locks, or Climb checks involving rigging. Once per encounter, after your Sneak Attack hits, you may move half your speed as part of the same action without provoking Attacks of Opportunity.</p>",
+    "description": "<p><strong>Advantage</strong> on Open Locks against ship or cargo locks, or Climb checks involving rigging. After your Sneak Attack hits, you can move <strong>10ft</strong> as part of the same action without provoking Attacks of Opportunity.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [

@@ -8,7 +8,7 @@ import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLev
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
-import { attackSituation, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
+import { attackSituation, attacksAgainst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 
@@ -586,6 +586,15 @@ export class ArneyanActor extends Actor {
       if (tm) {
         const a = tm.adv("adv.against", ranged ? "adv.against.ranged" : "adv.against.melee");
         against = { values: a.values, adv: a.adv.map(l => `${targets[0].name}: ${l}`), dis: a.dis.map(l => `${targets[0].name}: ${l}`) };
+        // The first attack (or first few: "against.first.count") against it each round (K15: Shield, Evasive
+        // Manoeuvre, Arcane Cascade), counted from this round's attacks in the chat.
+        const firstKeys = ["adv.against.first", ...(ranged ? [] : ["adv.against.first.melee"])];
+        const fa = tm.adv(...firstKeys);
+        if (fa.values.length) {
+          const count = Math.max(1, Math.floor(tm.sum("against.first.count") || 1));
+          const done = attacksAgainst(targets[0].actor, { melee: !tm.adv("adv.against.first").values.length });
+          if (done < count) against = { values: [...against.values, ...fa.values], adv: [...against.adv, ...fa.adv.map(l => `${targets[0].name}: ${l} (first attack)`)], dis: [...against.dis, ...fa.dis.map(l => `${targets[0].name}: ${l} (first attack)`)] };
+        }
         if (!ranged && tm.has("crit.against.close")) notes.push(`${targets[0].name} (${tm.sources("crit.against.close").join(", ")}): a melee hit from within 5ft is a critical hit`);
       }
     }
@@ -1223,7 +1232,7 @@ export class ArneyanItem extends Item {
   /** Post the item to chat, or roll it where that makes sense. */
   async use(event) {
     const actor = this.actor;
-    // Contests, Unarmed Strike and reactions (combat.mjs).
+    // Contests, Unarmed Strike and features used out of turn (combat.mjs).
     const handled = await combatUse(this, event);
     if (handled !== undefined) return handled;
     if (["spell", "ability", "feat"].includes(this.type) && this._forsakenBlocked()) return null;
@@ -1279,11 +1288,11 @@ export class ArneyanItem extends Item {
    * Put this item's self effects on its owner; start concentration if needed. `fresh`: skip an effect of this item's
    * that is still on (a feature used again through another of its options doesn't stack a second copy).
    */
-  async _applySelf(cl, { fresh = false } = {}) {
+  async _applySelf(cl, { fresh = false, only = null } = {}) {
     const actor = this.actor;
     if (!actor) return [];
     const created = [];
-    for (const e of (this.system.applies ?? []).filter(x => x.target === "self")) {
+    for (const e of (this.system.applies ?? []).filter(x => x.target === "self" && (!only || only.has(x.name || this.name)))) {
       const name = e.name || this.name;
       if (fresh && (actor.effects ?? []).some?.(x => x.origin === this.uuid && x.name === name && !x.disabled)) continue;
       created.push(...await applyEffectTo([actor], await effectDataFor(e, this, { cl, caster: actor })));
@@ -1346,6 +1355,15 @@ export class ArneyanItem extends Item {
     const self = await this._applySelf(cl);
     const lines = [];
     if (caster) lines.push(`<p class="arn-card-meta">Cast as ${esc(caster.name)} ${caster.classLevel}${sys.level > 0 ? ` · ${ARNEYAN.spellLevels[sys.level]}-level slot spent` : ""}</p>`);
+    // Arcane Ward (Wizard 5th, books v0.10.25): a levelled spell gives temporary HP of (rule "cast.temp") x its level,
+    // keeping the higher amount (it doesn't stack). It lasts until the encounter ends: the card says so.
+    const ward = actor?.type === "character" && sys.level > 0 ? Math.floor(Number(actor.system.mods?.sum?.("cast.temp")) || 0) * sys.level : 0;
+    if (ward > 0) {
+      const now = Number(actor.system.attributes?.hp?.temp) || 0;
+      if (ward > now) await actor.update({ "system.attributes.hp.temp": ward }).catch(() => null);
+      const label = (actor.system.mods?.numbers?.get?.("cast.temp") ?? [])[0]?.label || "Arcane Ward";
+      lines.push(`<p class="arn-card-meta"><i class="fa-solid fa-shield-heart"></i> ${esc(label)}: ${ward > now ? `${ward} temporary HP` : `${now} temporary HP kept (it doesn't stack)`} until the encounter ends.</p>`);
+    }
     const strained = this._strainedLine();
     if (strained) lines.push(strained);
     const sides = allegianceLine(this);
@@ -1474,6 +1492,21 @@ export class ArneyanItem extends Item {
     return open.filter(a => best.get(base(a)) === a).map(a => ({ ...a, text: levelText(a.text ?? "", lvl), formula: levelText(a.formula ?? "", lvl) }));
   }
 
+  /**
+   * How many uses an activity that spends any number (`spendAny`: Lay on Hands' healing points) takes: asked, from 1 to
+   * what's left. null when cancelled or there are none.
+   */
+  async _askSpend(act) {
+    const left = Number(this.system.uses?.value) || 0;
+    if (left <= 0) { ui.notifications.warn(`${this.name} has no uses left.`); return null; }
+    const res = await DialogV2.wait({ window: { title: `${this.name}: ${act.name}`, icon: "fa-solid fa-hand-holding-heart" }, classes: ["arneyan"], position: { width: 340 },
+      content: `<p>${esc(act.text || act.name)}</p><label class="arn-field">How many (${left} left) <input type="number" name="n" value="${Math.min(left, Math.max(1, Number(act.cost) || 1))}" min="1" max="${left}" step="1" autofocus></label>`,
+      buttons: [{ action: "ok", label: "Spend", default: true, callback: (ev, btn) => Number(btn.form.querySelector("input[name=n]")?.value) }, { action: "cancel", label: "Cancel" }],
+      rejectClose: false }).catch(() => null);
+    const n = Math.floor(Number(res));
+    return Number.isFinite(n) && n >= 1 ? Math.min(n, left) : null;
+  }
+
   /** Spend an activity's cost from the feature's uses; false (with a warning) when there aren't enough. */
   async _spendFor(act) {
     const sys = this.system;
@@ -1485,23 +1518,30 @@ export class ArneyanItem extends Item {
     return true;
   }
 
-  /** The "Apply ... to targets" buttons for effects this item puts on others (kept on an activity's card). */
-  _applyButtons(cl) {
-    return (this.system.applies ?? []).map((e, i) => (e.target === "self" ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
+  /** The effects an activity names (its `effect`: "Inspired, Emboldened"), or null for all of the item's. */
+  static effectsOf(act) {
+    const names = String(act?.effect ?? "").split(",").map(x => x.trim()).filter(Boolean);
+    return names.length ? new Set(names) : null;
   }
 
-  /** A class feature, kit feature or feat that is a reaction (Riposte, Combat Reflexes): say so in chat. Nothing is tracked. */
+  /** The "Apply ... to targets" buttons for effects this item puts on others (kept on an activity's card). */
+  _applyButtons(cl, act = null) {
+    const only = ArneyanItem.effectsOf(act);
+    return (this.system.applies ?? []).map((e, i) => (e.target === "self" || (only && !only.has(e.name || this.name)) ? "" : `<button type="button" class="arn-apply-effect" data-item-uuid="${this.uuid}" data-index="${i}" data-cl="${cl}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || this.name)} to targets</button>`)).join("");
+  }
+
+  /** A class feature, kit feature or feat used out of turn (Riposte, Combat Reflexes): say so in chat. Nothing is tracked. */
   async _reacted(act) {
     if (!this.actor || !isReactionFeature(this, act)) return;
     const what = act?.name && act.name !== this.name ? `${this.name}: ${act.name}` : this.name;
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: `<div class="arn-card arn-report arn-reaction-note"><p><i class="fa-solid fa-bolt"></i> <strong>${esc(what)}</strong> is a reaction.</p></div>` }).catch(() => null);
+      content: `<div class="arn-card arn-report arn-reaction-note"><p><i class="fa-solid fa-bolt"></i> <strong>${esc(what)}</strong> is used out of turn: once per round, regained at the start of your turn.</p></div>` }).catch(() => null);
   }
 
   /** The item's own effects on its user, once per use of an activity (Storm Form, Undying Reputation's Advantage). */
-  async _selfForActivity(cl) {
+  async _selfForActivity(cl, act = null) {
     if (!(this.system.applies ?? []).some(e => e.target === "self")) return [];
-    try { return await this._applySelf(cl, { fresh: true }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
+    try { return await this._applySelf(cl, { fresh: true, only: ArneyanItem.effectsOf(act) }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
   }
 
   /** Use one of a feature's activities: spend its use, then roll or post what it does. */
@@ -1510,12 +1550,19 @@ export class ArneyanItem extends Item {
     const actor = this.actor;
     if (this._forsakenBlocked()) return null;
     if (act.kind === "attacks") return this._useAttacks(act, event);
+    // Any number of uses (Lay on Hands' points): asked, then spent as the activity's cost; @spent in its formula.
+    let spent = null;
+    if (act.spendAny && sys.uses?.max > 0) {
+      spent = await this._askSpend(act);
+      if (spent === null) return null;
+      act = { ...act, cost: spent };
+    }
     if (!(await this._spendFor(act))) return null;
     await this._reacted(act);
     const cost = Number(act.cost ?? 1);
     const cl = this.featureLevel;
-    const self = await this._selfForActivity(cl);
-    const rollData = { ...(actor?.getRollData?.() ?? {}), cl };
+    const self = await this._selfForActivity(cl, act);
+    const rollData = { ...(actor?.getRollData?.() ?? {}), cl, spent: spent ?? cost };
     const title = `${this.name}: ${act.name}`;
     const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
     const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
@@ -1553,7 +1600,7 @@ export class ArneyanItem extends Item {
     // A reminder with a number worked out for you (Parry: half your Level, minimum 1, + Dexterity).
     const value = act.kind === "note" && act.formula ? (/d\d/i.test(act.formula) ? resolveFormula(act.formula, rollData) : String(byLevel(act.formula, cl, rollData))) : "";
     const shown = value ? `<p class="arn-card-meta"><strong>${esc(value)}</strong></p>` : "";
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}${shown}${buttons}${this._applyButtons(cl)}</div>`, flags: { arneyan: { itemUuid: this.uuid } } });
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}${shown}${buttons}${this._applyButtons(cl, act)}</div>`, flags: { arneyan: { itemUuid: this.uuid } } });
   }
 
   /**
@@ -1628,11 +1675,11 @@ export class ArneyanItem extends Item {
         if ((weapon.system.ammoType && actor.type === "character" && !ammoFor(actor, weapon)) || firearmOf(weapon)) break;
         continue;
       }
-      // The first attack that rolls spends the use (and notes a reaction feature in chat), once.
+      // The first attack that rolls spends the use (and notes a feature used out of turn in chat), once.
       if (!out.length) {
         if (cost > 0 && this.system.uses?.max > 0) await this.update({ "system.uses.value": Math.max(0, this.system.uses.value - cost) });
         await this._reacted(act);
-        await this._selfForActivity(lvl);
+        await this._selfForActivity(lvl, act);
       }
       out.push(msg);
     }

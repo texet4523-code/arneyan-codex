@@ -13,7 +13,7 @@ const root = new URL("../arneyan/", import.meta.url).pathname;
 
 // Dragonborn: the draconic type sets the breath weapon and the resistance.
 const db = one("ancestries", "Dragonborn");
-assert.ok(strip(db.system.description).includes("Draconic type: choose fire, cold, lightning, poison or acid at creation. 1/long rest breath weapon of that type"));
+assert.ok(strip(db.system.description).includes("Draconic type: choose fire, cold, lightning, poison or acid at creation. Once per day breath weapon of that type"));
 assert.ok(strip(db.system.description).includes("Resistance 5 to your draconic type"));
 assert.ok(!strip(db.system.description).includes("a chosen damage type"));
 assert.deepEqual(db.system.traitList.slice(0, 2).map(t => t.name), ["Draconic type", "Resistance 5"]);
@@ -67,19 +67,20 @@ const classOnly = spells.filter(d => ["Necromancer", "Warlock", "Witch"].include
 assert.equal(classOnly.length, 33);
 assert.ok(classOnly.every(d => d.system.school && d.system.components), classOnly.filter(d => !d.system.school).map(d => d.name).join());
 
-// Knight kits: written out, automated, replacing Embolden or Demoralise.
+// Knight kits: written out and automated. v0.10.4 to v0.10.24 they replaced Embolden or Demoralise; books v0.10.25
+// (R-B7) make them stronger versions of the Command options, with no uses and no replacing (test/rb7.mjs too).
 const hedge = one("kits", "Hedge Knights (Knight)").system.features.find(f => f.name === "Steadfast Courage");
-assert.deepEqual([hedge.level, hedge.replaces, hedge.uses.max, hedge.uses.per], [3, "Embolden", 1, "day"]);
-assert.equal(hedge.applies[0].rounds, "@cl * 2");
-assert.deepEqual(hedge.applies[0].rules.map(r => `${r.key} ${r.value}`), ["save.fort 2", "save.ref 2", "save.will 3"]);
+assert.deepEqual([hedge.level, hedge.replaces, hedge.uses.max], [3, "", 0]);
+assert.equal(hedge.applies[0].rounds, "encounter");
+assert.deepEqual(hedge.applies[0].rules.map(r => `${r.key} ${r.value}`), ["adv.save 1"]);
 const wall = one("kits", "Boldock Wall-Knights (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
-assert.deepEqual([wall.level, wall.replaces, wall.save], [5, "Demoralise", "will"]);
-assert.deepEqual(wall.applies.map(a => a.rules.map(r => `${r.key} ${r.value}`).join()), ["check.cha -6", "adv.attack -1"]);
-assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise is harsher"), "books v0.10.22 wording");
-assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep it");
+assert.deepEqual([wall.level, wall.replaces, wall.save], [5, "", "will"]);
+assert.deepEqual(wall.applies.map(a => a.rules.map(r => `${r.key} ${r.value}`).join()), ["adv.attack -1"]);
+assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise option is harsher"), "books v0.10.25 wording");
+assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep the field");
 const prog = fs.readFileSync(path.join(root, "module/progression.mjs"), "utf8");
 assert.ok(prog.includes("replacedFor(actor, cls)") && prog.includes("dropReplaced"));
 const durgan = docs("pregens").find(d => d.name === "Sir Durgan Holdfast");
-assert.ok(durgan.items.some(i => i.name === "Wall-Forged Dread" && i.flags.arneyan.replaces === "Demoralise"));
-assert.ok(!durgan.items.some(i => i.name === "Demoralise"), "the pregen Wall-Knight has the kit's, not the class's");
+assert.ok(durgan.items.some(i => i.name === "Wall-Forged Dread" && !i.flags.arneyan.replaces));
+assert.ok(durgan.items.some(i => i.name === "Command (Charisma)") && durgan.items.some(i => i.name === "Command: Demoralise"), "the pregen keeps the class's Demoralise option");
 console.log("OK books v0.10.4");

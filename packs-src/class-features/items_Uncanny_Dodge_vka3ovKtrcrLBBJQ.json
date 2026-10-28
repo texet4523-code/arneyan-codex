@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When an attacker you can see hits you, halve the damage.",
+    "text": "Out of turn, when an attacker you can see hits you, halve the damage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -44,8 +44,10 @@
     "damageBonus": "",
     "noStack": "",
     "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },

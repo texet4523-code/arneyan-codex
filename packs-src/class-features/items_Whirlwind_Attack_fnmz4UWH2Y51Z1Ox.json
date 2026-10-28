@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, replaces the normal combat action. Make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li><li>13th level: the targets' Level may be up to your Level</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per rage, while raging, replace your action: make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li><li>13th level: the targets' Level may be up to your Level</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "encounter"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,
@@ -29,10 +29,10 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to {1:half yours, 13:yours}.",
+    "text": "Once per rage, while raging: replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} foes within 5ft of Level up to {1:half yours, 13:yours}.",
     "minLevel": 0,
     "maxLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "",
     "removeConditions": false,
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },

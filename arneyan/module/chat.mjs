@@ -6,7 +6,7 @@ import { ARNEYAN } from "./config.mjs";
 import { spellTargets } from "./targeting.mjs";
 import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
 import { turnReminder } from "./qol.mjs";
-import { tickCounters, turnDamageFor, advancePoison } from "./counters.mjs";
+import { tickCounters, turnDamageFor } from "./counters.mjs";
 import { effectDataFor, applyEffectTo, endConcentration, onConcentrationDeleted, expireEffects, toggleCondition, statusesOf } from "./effects.mjs";
 
 const SYS = "arneyan";
@@ -617,7 +617,6 @@ async function onTurnChange(combat, changed, options = {}) {
     });
   }
   const st = statusesOf(actor);
-  let poisonNext = false;
   for (const id of Object.keys(ARNEYAN.conditions)) {
     if (!st.has(id)) continue;
     const d = turnDamageFor(actor, id);
@@ -625,14 +624,11 @@ async function onTurnChange(combat, changed, options = {}) {
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor }),
       content: `<div class="arn-card"><header class="arn-card-title">${esc(actor.name)}: ${esc(d.label)}</header>
-        <button type="button" class="arn-inline arn-inline-damage" data-formula="${d.formula}" data-type="${d.type}"><i class="fa-solid fa-${d.type === "poison" ? "skull-crossbones" : "fire"}"></i> ${d.formula} ${d.type} damage</button>${d.nextStage ? `<p class="arn-card-meta">Next turn: ${["1d4", "1d6", "1d8", "1d10"][d.nextStage - 1]}, unless the Fortitude save at the end of this turn ends it.</p>` : ""}</div>`
+        <button type="button" class="arn-inline arn-inline-damage" data-formula="${d.formula}" data-type="${d.type}"><i class="fa-solid fa-${d.type === "poison" ? "skull-crossbones" : "fire"}"></i> ${d.formula} ${d.type} damage</button>${d.note ? `<p class="arn-card-meta">${esc(d.note)}</p>` : ""}</div>`
     });
-    if (d.nextStage) poisonNext = true;
   }
   // The reminder card comes last, after the expired effects are gone and the bleeding and burning cards.
   if (options.direction !== -1) await turnReminder(combat).catch(err => console.warn("Arneyan | reminder", err));
-  // The venom moves to its next die only after this turn's card and reminder have shown this one.
-  if (poisonNext) await advancePoison(actor).catch(() => null);
 }
 
 /* -------------------------------------------- */

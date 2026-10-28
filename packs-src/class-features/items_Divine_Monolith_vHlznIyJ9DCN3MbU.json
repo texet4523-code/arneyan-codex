@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> A permanent <strong>10ft</strong> aura of divine power that cannot be dispelled. You and your allies within it gain +1 to saves, and your Turn Undead DC rises by 1.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> A permanent <strong>10ft</strong> aura of divine power that cannot be dispelled. You and your allies within it have <strong>Advantage</strong> on <strong>Will saves</strong>, and undead have <strong>Disadvantage</strong> on their saves against your Turn Undead.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,14 +23,20 @@
   "className": "Cleric",
   "rules": [
    {
-    "key": "save",
-    "value": "9:1, 22:2",
+    "key": "adv.save.will",
+    "value": "1",
     "when": "",
     "label": ""
    },
    {
-    "key": "check",
-    "value": "22:2",
+    "key": "adv.save",
+    "value": "22:1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "22:1",
     "when": "",
     "label": ""
    },
@@ -61,18 +67,23 @@
     "includeSelf": false,
     "rules": [
      {
-      "key": "save",
-      "value": "1:1, 22:2",
+      "key": "adv.save.will",
+      "value": "1",
       "label": "Divine Monolith"
      },
      {
-      "key": "check",
-      "value": "22:2",
+      "key": "adv.save",
+      "value": "22:1",
+      "label": "Divine Monolith"
+     },
+     {
+      "key": "adv.check",
+      "value": "22:1",
       "label": "Divine Monolith"
      },
      {
       "key": "note.save",
-      "value": "Divine Monolith: {22:immune to death attacks}.",
+      "value": "Divine Monolith: {1:, 22:immune to death attacks.}",
       "label": "Divine Monolith"
      }
     ]
@@ -86,13 +97,13 @@
     "includeSelf": false,
     "rules": [
      {
-      "key": "check",
-      "value": "2",
+      "key": "adv.check",
+      "value": "1",
       "label": "Divine Monolith"
      },
      {
-      "key": "save",
-      "value": "2",
+      "key": "adv.save",
+      "value": "1",
       "label": "Divine Monolith"
      },
      {

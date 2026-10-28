@@ -5,49 +5,22 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>Once per encounter, when you attack, you also gain the benefit of Dodge until your next turn</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and Flank Attacks deal +2 damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
+  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and you reroll 1s on Flank Attack damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "encounter"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,
   "damage": "",
   "level": 3,
   "className": "Fighter",
-  "activities": [
-   {
-    "name": "Battle Space",
-    "kind": "note",
-    "formula": "",
-    "damageType": "",
-    "ability": "",
-    "save": "",
-    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
-    "minLevel": 0,
-    "maxLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
-   }
-  ],
   "rules": [
    {
     "key": "adv.attack",
@@ -62,9 +35,9 @@
     "label": ""
    },
    {
-    "key": "damage",
-    "value": "13:2",
-    "when": "Flank Attack",
+    "key": "note.damage",
+    "value": "Battle Space: {13:reroll 1s on Flank Attack damage}.",
+    "when": "",
     "label": ""
    },
    {

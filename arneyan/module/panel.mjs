@@ -27,7 +27,7 @@ function entries(actor) {
     const cond = status ? ARNEYAN.conditions[status] : null;
     const badge = badgeOf(e);
     const counted = !!cond && counterKind(status) !== "none";
-    const what = status === "burning" ? "stacks (1d6 each)" : status === "poisoned" ? "venom stage" : "rounds left";
+    const what = status === "burning" ? "stacks (1d6 each)" : status === "poisoned" ? "venom (1d6 a turn)" : "rounds left";
     const rules = (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", ");
     out.push({
       kind: "effect", id: e.uuid, img: e.img || (status ? `systems/${SYS}/assets/conditions/${status}.svg` : "icons/svg/aura.svg"),
@@ -101,7 +101,7 @@ async function onContext(event) {
   if (kind === "light") { const i = actor.items.get(node.dataset.id); if (i) return (await import("./gear.mjs")).toggleLight(i); }
 }
 
-/** Left-click a numbered condition: one more round (or stack, or venom stage). */
+/** Left-click a numbered condition: one more round (or stack; a venom: deals damage). */
 async function onClick(event) {
   const node = event.target.closest(".arn-ep-item[data-status]");
   if (!node?.dataset.status) return;

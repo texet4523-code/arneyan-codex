@@ -58,8 +58,8 @@ USE_NOTES = {
     "Unarmed Strike": "Press Use to attack: it adds an Unarmed Strike weapon to the sheet the first time.",
     "Hide": "Press Use to roll the Dexterity check.",
     "Search": "Press Use to roll the Wisdom check.",
-    "Attack of Opportunity": "Press Use to spend your reaction for the round, then attack with your weapon.",
-    "Fighting Defensively": "The Actions tab's Defend buttons apply the bonus.",
+    "Attack of Opportunity": "Press Use to attack with your weapon, out of turn (once per round).",
+    "Fighting Defensively": "The Actions tab's Defend buttons apply it.",
 }
 
 

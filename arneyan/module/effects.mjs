@@ -553,7 +553,8 @@ export function byLevelTable(value, level) {
   if (!/^\d+\s*:/.test(s)) return value;
   let out = "0";
   for (const part of s.split(",")) {
-    const m = part.match(/^\s*(\d+)\s*:\s*(.+?)\s*$/);
+    // An empty step ("{1:, 4:also ends Frightened}") is nothing until the next one.
+    const m = part.match(/^\s*(\d+)\s*:\s*(.*?)\s*$/);
     if (m && Number(level) >= Number(m[1])) out = m[2];
   }
   return out;
@@ -610,7 +611,9 @@ export async function effectDataFor(entry, item, { cl = 1, caster = null } = {})
     if (!/\d*d\d/i.test(s)) return v;
     try { return (await new Roll(s.replace(/@([\w.]+)/g, (_, p) => String(Number(getPath(data0, p)) || 0))).evaluate()).total; } catch { return 0; }
   };
-  const roundsRaw = await rollIf(byLevelTable(entry.rounds ?? 0, cl));
+  // "encounter": it lasts until the encounter ends (books v0.10.25: buffs last the encounter, not rounds by level).
+  const encounter = String(entry.rounds ?? "").trim().toLowerCase() === "encounter";
+  const roundsRaw = encounter ? 0 : await rollIf(byLevelTable(entry.rounds ?? 0, cl));
   const rounds = Math.max(0, Math.floor(evalNumber(roundsRaw, data0)));
   const DAMAGEISH = /damage/;
   const rules = [];
@@ -623,6 +626,11 @@ export async function effectDataFor(entry, item, { cl = 1, caster = null } = {})
     description: item.system.description ?? "",
     flags: { [SYS]: { rules, cl, sourceName: item.name, casterUuid: caster?.uuid ?? null, rounds } }
   };
+  if (encounter) {
+    // Ended by the end of the encounter the caster (or this creature) is in; out of combat, by the next one to end.
+    const combat = combatFor(caster) ?? combatFor(item?.actor) ?? combatOnScene(globalThis.canvas?.scene?.id);
+    data.flags[SYS].encounter = combat?.id ?? "next";
+  }
   if (rounds) {
     // Foundry's own duration too, in the shape this Foundry stores (v13 { rounds }, v14 { value, units }).
     data.duration = durationData({ rounds });
@@ -727,6 +735,31 @@ export async function onConcentrationDeleted(effect) {
 /* -------------------------------------------- */
 /*  Durations in combat                         */
 /* -------------------------------------------- */
+
+/**
+ * An encounter ended: effects that last the encounter (`flags.arneyan.encounter`, its id, or "next" when applied out of
+ * combat) leave every creature in it. Called by the active GM. Returns how many went.
+ */
+export async function endEncounterEffects(combat) {
+  let n = 0;
+  const seen = new Set();
+  for (const c of combat?.combatants ?? []) {
+    const actor = c.actor;
+    if (!actor || seen.has(actor.uuid ?? actor)) continue;
+    seen.add(actor.uuid ?? actor);
+    const gone = (actor.effects ?? []).filter(e => {
+      const x = e.flags?.[SYS]?.encounter;
+      return x && (x === combat.id || x === "next");
+    });
+    if (!gone.length) continue;
+    try {
+      await actor.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id).filter(id => actor.effects.has(id)));
+      n += gone.length;
+      ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), whisper: game.users.filter(u => u.isGM).map(u => u.id), content: `<p><strong>${esc(actor.name)}</strong>: ${gone.map(e => esc(e.name)).join(", ")} ended with the encounter.</p>` });
+    } catch (err) { console.warn(`Arneyan | encounter effects: ${actor.name}`, err); }
+  }
+  return n;
+}
 
 /** Remove effects whose rounds have run out. Called by the GM when the turn changes. */
 export async function expireEffects(combat) {

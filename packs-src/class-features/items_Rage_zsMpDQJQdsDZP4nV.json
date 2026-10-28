@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> As part of an attack or your movement, enter a rage for up to 3 + Constitution modifier rounds (minimum <strong>3 rounds</strong>), usable 1 + Constitution modifier times per day (minimum <strong>2/day</strong>).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li><li>Stacks normally with Primeval Will and Whirlwind Attack.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> As part of an attack or your movement, enter a rage that lasts for the encounter, usable 1 + Constitution modifier times per day (minimum <strong>2/day</strong>).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li><li>Stacks normally with Primeval Will and Whirlwind Attack.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Enter a rage for 3 + Constitution modifier rounds (minimum 3), gaining +2 melee damage (+4 from 10th, +6 from 20th).",
+    "text": "Enter a rage that lasts the encounter: +{1:2, 10:4, 20:6} melee weapon damage. It ends early if a full round passes without you attacking or taking damage. Switch on the Rage toggle.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -46,13 +46,21 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "rules": [
    {
     "key": "damage.melee",
     "value": "+2*(1+floor(@cl/10))",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "toggle.ends",
+    "value": "encounter",
     "when": "",
     "label": ""
    }

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Declare before rolling, and take <strong>Disadvantage</strong> on the attack roll to aim for a specific location. Only one arrow a round can be a called shot, and its save is against your Class Save DC.</li><li><strong>Head:</strong> <strong>Fortitude save</strong> or stunned <strong>1 round</strong>. A creature that saves against, or recovers from, your Head shot is immune to your Head shots for <strong>1 minute</strong></li><li><strong>Arm:</strong> <strong>Fortitude save</strong> or drops what's held</li><li><strong>Leg:</strong> <strong>Fortitude save</strong> or movement halved <strong>1 round</strong></li><li>From 10th level: no longer requires disadvantage.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Declare before rolling, and take <strong>Disadvantage</strong> on the attack roll to aim for a specific location. Only one arrow a round can be a called shot, and its save is against your Class Save DC.</li><li><strong>Head:</strong> <strong>Fortitude save</strong> or stunned <strong>1 round</strong>. A creature that recovers from your Head shot is also immune to your Head shots for the rest of the encounter</li><li><strong>Arm:</strong> <strong>Fortitude save</strong> or drops what's held</li><li><strong>Leg:</strong> <strong>Fortitude save</strong> or movement halved <strong>1 round</strong></li><li>From 10th level: no longer requires disadvantage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "fort",
-    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "text": "On a hit the target saves or is stunned for 1 round. Once it recovers it is immune to your Head shots for the rest of the encounter.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Arm",
@@ -70,7 +72,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Leg",
@@ -95,7 +99,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "applies": [

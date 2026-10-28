@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li>The fighting tradition that emerged from the slave pits of the Red Waste — not taught, not codified, discovered through survival. The body adapts when the alternative is death. What comes out of the pits is not elegant, but it is devastating.</li><li><strong>Pit-Forged Fury:</strong> Whirlwind-style: once per encounter, make a primary unarmed attack against up to 3 creatures within <strong>5ft</strong> (one roll vs each). Replaces normal attack action.</li><li><strong>Survivor's Instinct:</strong> <strong>Advantage</strong> on Constitution checks to resist exhaustion, extreme temperatures, and starvation. <strong>Advantage</strong> on checks to recognise the signs of someone else who survived the pits.</li></ul>",
+  "description": "<ul><li>The fighting tradition that emerged from the slave pits of the Red Waste — not taught, not codified, discovered through survival. The body adapts when the alternative is death. What comes out of the pits is not elegant, but it is devastating.</li><li><strong>Pit-Forged Fury:</strong> When you use your action to attack, your primary unarmed attack can target up to 2 creatures within <strong>5ft</strong> (one roll against each).</li><li><strong>Survivor's Instinct:</strong> <strong>Advantage</strong> on Constitution checks to resist exhaustion, extreme temperatures, and starvation. <strong>Advantage</strong> on checks to recognise the signs of someone else who survived the pits.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Pit-Forged Fury",
     "level": 1,
-    "description": "<p>Whirlwind-style: once per encounter, make a primary unarmed attack against up to 3 creatures within <strong>5ft</strong> (one roll vs each). Replaces normal attack action.</p>",
+    "description": "<p>When you use your action to attack, your primary unarmed attack can target up to 2 creatures within <strong>5ft</strong> (one roll against each).</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": ""
    },

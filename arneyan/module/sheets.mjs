@@ -382,7 +382,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       return {
         id: e.id, name: e.name, img: e.img, disabled: e.disabled, concentration: !!f.concentration,
         source: f.sourceName ?? "", summary: (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", "),
-        duration: rounds !== null ? `${rounds} round${rounds === 1 ? "" : "s"} left` : timeLeftLabel(e) || (f.rounds ? `${f.rounds} rounds` : "")
+        duration: rounds !== null ? `${rounds} round${rounds === 1 ? "" : "s"} left` : timeLeftLabel(e) || (f.rounds ? `${f.rounds} rounds` : f.encounter ? "Until the encounter ends" : "")
       };
     });
     const toggles = actor.items.filter(i => i.system.toggle).map(i => ({ id: i.id, name: i.name, img: i.img, active: i.system.active }));

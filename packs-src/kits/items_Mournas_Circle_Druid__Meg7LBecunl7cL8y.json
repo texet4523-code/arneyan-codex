@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<ul><li>Trained within the independent Mournas druidic tradition — Farood (Gold Rank) and Harmen (Druid of the Mournas Woods) are the two known figures of this circle, which operates separately from the Cabal.</li><li><strong>Urban Dismissal:</strong> <strong>Advantage</strong> on Dismiss Woodland Creatures checks used against creatures in or beneath a city. Once per encounter in a town or city, as part of casting a spell, set the rats and pigeons on one creature within <strong>30ft</strong>: it has <strong>Disadvantage</strong> on its next attack roll.</li><li><strong>City's Wild:</strong> <strong>Advantage</strong> finding shelter, safe passage, or allies in Mournas using urban nature — the rats in the walls, the moss on the stones, the gardens between buildings.</li></ul>",
+  "description": "<ul><li>Trained within the independent Mournas druidic tradition — Farood (Gold Rank) and Harmen (Druid of the Mournas Woods) are the two known figures of this circle, which operates separately from the Cabal.</li><li><strong>Urban Dismissal:</strong> <strong>Advantage</strong> on Dismiss Woodland Creatures checks used against creatures in or beneath a city. In a town or city, the first creature you hit with a spell each round has <strong>Disadvantage</strong> on its next attack roll, as the rats and pigeons swarm it.</li><li><strong>City's Wild:</strong> <strong>Advantage</strong> finding shelter, safe passage, or allies in Mournas using urban nature — the rats in the walls, the moss on the stones, the gardens between buildings.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Urban Dismissal",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Dismiss Woodland Creatures checks used against creatures in or beneath a city. Once per encounter in a town or city, as part of casting a spell, set the rats and pigeons on one creature within <strong>30ft</strong>: it has <strong>Disadvantage</strong> on its next attack roll.</p>",
+    "description": "<p><strong>Advantage</strong> on Dismiss Woodland Creatures checks used against creatures in or beneath a city. In a town or city, the first creature you hit with a spell each round has <strong>Disadvantage</strong> on its next attack roll, as the rats and pigeons swarm it.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
@@ -31,7 +31,23 @@
      }
     ],
     "toggle": false,
-    "active": false
+    "active": false,
+    "applies": [
+     {
+      "name": "Rats and Pigeons",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
    },
    {
     "name": "City's Wild",

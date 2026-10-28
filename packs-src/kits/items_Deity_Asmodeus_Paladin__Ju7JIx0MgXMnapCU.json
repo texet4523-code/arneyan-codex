@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Sword, Rapier</p><p><strong>Granted power:</strong> Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>Once per encounter, as part of your action, offer terms to a creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Rapier</p><p><strong>Granted power:</strong> Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>On your first hit each round, offer terms to the creature: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,69 @@
    {
     "name": "Granted Power (Asmodeus)",
     "level": 1,
-    "description": "<p>Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>Once per encounter, as part of your action, offer terms to a creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul><p><strong>Favoured weapon:</strong> Sword, Rapier</p>",
+    "description": "<p>Once/day: force a bargain to be honoured (<strong>Will save</strong> negates).</p><ul><li>Any creature that breaks a contract made in the Paladin's presence suffers disadvantage on all rolls for <strong>24 hours</strong>.</li><li>On your first hit each round, offer terms to the creature: it makes a <strong>Will save</strong> or cannot attack you until your next turn.</li></ul><p><strong>Favoured weapon:</strong> Sword, Rapier</p>",
     "uses": {
      "value": 1,
      "max": 1,
-     "per": "encounter"
+     "per": "day"
     },
-    "save": "will"
+    "save": "will",
+    "activities": [
+     {
+      "name": "Bargain",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "will",
+      "text": "Once a day: force a bargain to be honoured. A Will save negates.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 1,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     },
+     {
+      "name": "Offer terms",
+      "kind": "save",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "will",
+      "text": "On your first hit each round: the creature makes a Will save or cannot attack you until your next turn.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
    }
   ],
   "alignment": "Lawful Evil"

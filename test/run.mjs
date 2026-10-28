@@ -89,8 +89,8 @@ const light = makeItem(IM.SpellData, "spell", "Light", { level: 0, className: "W
 wiz5.system.extraSlots = [0, 1]; wiz5.system.slotsUsed = [0, 2];
 const mage = makeActor(CharacterData, "character", { abilities: { int: { value: 16 } } }, [wiz5, fireball, light]);
 const cst = mage.system.casters[0];
-assert.equal(cst.slots[1].total, 4 + 1 + 1); // table 4, Int 13+ bonus, 1 extra by hand
-assert.equal(cst.slots[1].left, 4);          // 2 spent
+assert.equal(cst.slots[1].total, 5 + 1 + 1); // table 5 (Arcane Reserve's slot from 3rd, books v0.10.25), Int 13+ bonus, 1 extra by hand
+assert.equal(cst.slots[1].left, 5);          // 2 spent
 assert.equal(cst.slots[2].total, 2 + 1);     // Int 16+ bonus
 assert.equal(cst.slots[3].total, 1);         // needs Int 18 for the bonus
 assert.equal(cst.slots[4].total, 0);
@@ -155,7 +155,7 @@ for (const t of ["main", "combat", "spells", "skills", "gear", "bio"]) {
 const mctx = await sheetContext(ArneyanActorSheet, mage);
 const mhtml = render("templates/actor/actor-sheet.hbs", mctx);
 assert.equal(mctx.spellSections.length, 1);
-assert.equal((mhtml.match(/class="arn-pip /g) || []).length, 6 + 3 + 1, "one pip per slot");
+assert.equal((mhtml.match(/class="arn-pip /g) || []).length, 7 + 3 + 1, "one pip per slot");
 assert.equal((mhtml.match(/class="arn-pip used"/g) || []).length, 2);
 assert.ok(mhtml.includes(`data-class-id="${wiz5.id}"`) && mhtml.includes("Fireball") && mhtml.includes("Cantrips"));
 for (const t of ["actions", "spells", "features", "skills", "gear", "effects", "bio"]) {
@@ -726,7 +726,7 @@ assert.ok(hitCard.includes("Goes to the ones hit") && hitCard.includes("Goblin")
 assert.ok(render("templates/chat/damage-card.hbs", { title: "Fireball", total: 30, formula: "9d6", diceGroups: [], parts: [], split: [], offers: [], notes: [], bySaves: true }).includes("arn-apply-saves"));
 }
 {
-// Numbered conditions: Burning stacks, timers keep the longer and tick down, a venom's stage climbs.
+// Numbered conditions: Burning stacks, timers keep the longer and tick down, a venom deals 1d6 a turn.
 const C = await import("../arneyan/module/counters.mjs");
 let nid = 0;
 const mkActor = () => {
@@ -769,9 +769,10 @@ assert.ok(!a.effects.some(e => e.statuses.has("burning")), "right-clicking to 0 
 await C.adjustCondition(a, "poisoned", 1);
 assert.equal(C.turnDamageFor(a, "poisoned"), null, "first click: plain Poisoned");
 await C.adjustCondition(a, "poisoned", 1);
-assert.equal(C.turnDamageFor(a, "poisoned").formula, "1d4", "second click: a venom, stage 1");
-await C.advancePoison(a); await C.advancePoison(a); await C.advancePoison(a); await C.advancePoison(a);
-assert.equal(C.turnDamageFor(a, "poisoned").formula, "1d10", "venom climbs to 1d10 and stays");
+assert.equal(C.turnDamageFor(a, "poisoned").formula, "1d6", "second click: a venom, 1d6 a turn");
+await C.adjustCondition(a, "poisoned", 1); await C.adjustCondition(a, "poisoned", 1);
+assert.equal(C.conditionValue(a, "poisoned"), 1, "books v0.10.25: a venom doesn't climb");
+assert.equal(C.turnDamageFor(a, "poisoned").formula, "1d6", "the same every turn");
 const b = mkActor();
 await C.adjustCondition(b, "poisoned", 1); await C.adjustCondition(b, "poisoned", 1); await C.adjustCondition(b, "poisoned", -1); await C.adjustCondition(b, "poisoned", -1);
 assert.ok(!b.effects.length);

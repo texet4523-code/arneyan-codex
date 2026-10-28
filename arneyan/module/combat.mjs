@@ -8,12 +8,12 @@
  *   for creatures the player doesn't own.
  * - Non-Lethal (Subdual) Damage: its own track; Unconscious, not dying, when it reaches current HP.
  * - Morale Checks: 2d6 against the Morale Score, bonuses move the score.
- * - Reactions: no tracker (Kieran, 20 Oct: only some classes have them); their features say so in chat.
+ * - Acting out of turn (books v0.10.25; "reactions" before): no tracker (Kieran, 20 Oct); the features say so in chat.
  * - Firearms: Misfire Threshold, the natural 1 catastrophe, Reliable, Silent Mechanism and training.
  */
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, damageRoll, modeFromEvent } from "./rolls.mjs";
-import { statusesOf, toggleCondition } from "./effects.mjs";
+import { endEncounterEffects, statusesOf, toggleCondition } from "./effects.mjs";
 import { feetBetween, rangeOf } from "./qol.mjs";
 import { combatFor } from "./fight.mjs";
 
@@ -241,16 +241,24 @@ async function gunReady(item, fire) {
   return true;
 }
 
-/** Rolls already made this round: is this the first melee attack against that creature (in the encounter it's in)? */
-function firstMeleeAgainst(actor) {
+/**
+ * Attacks already rolled against that creature this round (in the encounter it's in), from the chat: all of them, or
+ * melee ones only. 0 out of combat.
+ */
+export function attacksAgainst(actor, { melee = false } = {}) {
   const uuid = actor?.uuid;
   const combat = combatFor(actor);
-  if (!combat?.started) return true;
+  if (!combat?.started) return 0;
   const stamp = `${combat.id}.${combat.round}`;
-  return !game.messages.contents.slice(-80).some(m => {
+  return game.messages.contents.slice(-80).filter(m => {
     const f = m.flags?.[SYS];
-    return f?.kind === "attack" && f.melee && f.stamp === stamp && (f.targets ?? []).some(t => t.uuid === uuid);
-  });
+    return f?.kind === "attack" && (!melee || f.melee) && f.stamp === stamp && (f.targets ?? []).some(t => t.uuid === uuid);
+  }).length;
+}
+
+/** Rolls already made this round: is this the first melee attack against that creature (in the encounter it's in)? */
+function firstMeleeAgainst(actor) {
+  return attacksAgainst(actor, { melee: true }) === 0;
 }
 
 /** A target's AC against this attack: fighting defensively adds to it against melee (Codex, Dual Wielding & Shields). */
@@ -397,9 +405,10 @@ async function catastrophe(actor, item) {
 
 const DEFEND = {
   light: { label: "Light off-hand weapon", rules: [R("ac.melee", 1)], text: "+1 AC against the first melee attack this round (none against ranged attacks)." },
-  finesse: { label: "Light Finesse off-hand weapon", rules: [R("ac.melee", 1)], text: "+1 AC against every melee attack this round (none against ranged attacks)." },
-  shield: { label: "Shield", rules: [R("ac", 1), R("note.attack", "Fighting defensively with your shield: no extra attacks this turn, and if you have none, this attack has Disadvantage")],
-    text: "+1 to the shield's AC bonus until your next turn, against melee and ranged attacks. It costs your extra attacks this turn; if you have none, your attack has Disadvantage." }
+  // Books v0.10.26 (K15): the Light Finesse weapon and the shield make the first attack against you have Disadvantage.
+  finesse: { label: "Light Finesse off-hand weapon", rules: [R("adv.against.first.melee", -1)], text: "The first melee attack against you this round has Disadvantage (not ranged attacks)." },
+  shield: { label: "Shield", rules: [R("adv.against.first", -1), R("note.attack", "Fighting defensively with your shield: no extra attacks this turn, and if you have none, this attack has Disadvantage")],
+    text: "The first attack against you before your next turn has Disadvantage. It costs your extra attacks this turn; if you have none, your attack has Disadvantage." }
 };
 
 /** The defensive options this creature's gear allows. */
@@ -632,28 +641,31 @@ export async function rollMorale(actor, { group = [] } = {}) {
 }
 
 /* -------------------------------------------- */
-/*  Reactions                                   */
+/*  Acting out of turn (once called reactions)  */
 /* -------------------------------------------- */
 
 
 /**
- * Items that answer a trigger with the creature's reaction. With an activity (`act`): that option is one (its data
- * says so: Combat Reflexes' Attack of Opportunity, a Swashbuckler's Riposte), or the whole item is.
+ * Items used out of turn, answering a trigger (books v0.10.25, Codex "Out of turn": once per round, regained at the
+ * start of your turn; "reactions" before). With an activity (`act`): that option is one (its data says so: Combat
+ * Reflexes' Attack of Opportunity, a Swashbuckler's Riposte), or the whole item is.
  */
 export function isReactionItem(item, act = null) {
   if (!item || !["ability", "feat"].includes(item.type)) return false;
   if (act?.reaction) return true;
   if (item.flags?.[SYS]?.reaction) return true;
-  // Every option it has is a reaction (Flourish Manoeuvres: Parry, Riposte, Acrobatic Escape).
+  // Every option it has is used out of turn (Flourish Manoeuvres: Parry, Riposte, Acrobatic Escape).
   const acts = item.system?.activities ?? [];
   if (acts.length && acts.every(a => a.reaction)) return true;
   if (/^(opportunity attack|attack of opportunity|parry)$/i.test(item.name)) return true;
-  return /^\s*(<p>)?\s*reaction\b/i.test(item.system?.description ?? "");
+  const text = String(item.system?.description ?? "");
+  return /^\s*(<p>)?\s*reaction\b/i.test(text) || /^\s*(<p>)?\s*(<strong>\s*Effect:\s*<\/strong>\s*)?once per round,\s*out of turn\b/i.test(text);
 }
 
 /**
- * An encounter ended: every combatant's "per encounter" uses (feats, features, kit features) are full again. One
- * update per creature. Returns how many items were reset. Week uses are left to the players (see the README).
+ * An encounter ended: every combatant's "per encounter" uses (feats, features, kit features) are full again, and
+ * switches that last the encounter (Rage) go off. One update per creature. Returns how many items were reset. Week
+ * uses are left to the players (see the README).
  */
 export async function resetEncounterUses(combat) {
   const seen = new Set();
@@ -664,6 +676,12 @@ export async function resetEncounterUses(combat) {
     seen.add(actor.uuid ?? actor);
     const updates = (actor.items ?? []).filter(i => ["ability", "feat"].includes(i.type) && i.system?.uses?.per === "encounter" && i.system.uses.max > 0 && i.system.uses.value < i.system.uses.max)
       .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
+    // A switch that lasts the encounter (a rule "toggle.ends" = "encounter": Rage) switches off with it.
+    for (const i of actor.items ?? []) {
+      if (!i.system?.toggle || !i.system.active || !(i.system.rules ?? []).some(r => r.key === "toggle.ends" && String(r.value).trim() === "encounter")) continue;
+      const u = updates.find(x => x._id === i.id);
+      if (u) u["system.active"] = false; else updates.push({ _id: i.id, "system.active": false });
+    }
     if (!updates.length) continue;
     try { await actor.updateEmbeddedDocuments("Item", updates); n += updates.length; } catch (err) { console.warn(`Arneyan | encounter uses: ${actor.name}`, err); }
   }
@@ -671,7 +689,7 @@ export async function resetEncounterUses(combat) {
 }
 
 /**
- * A class or kit feature, or a feat, that is a reaction (a Swashbuckler's Riposte, Combat Reflexes): its use says so in
+ * A class or kit feature, or a feat, used out of turn (a Swashbuckler's Riposte, Combat Reflexes): its use says so in
  * chat. General manoeuvres (Attack of Opportunity, Parry) and monster abilities don't, and nothing is tracked
  * (Kieran, 20 Oct 2026).
  */
@@ -882,6 +900,11 @@ export function registerCombat() {
   });
   Hooks.on("getCombatantContextOptions", trackerOptions);
   // The fight is over: "per encounter" uses come back (the active GM does it, once).
-  Hooks.on("deleteCombat", combat => { if (game.users.activeGM?.isSelf) resetEncounterUses(combat).catch(err => console.warn("Arneyan | encounter uses", err)); });
+  Hooks.on("deleteCombat", combat => {
+    if (!game.users.activeGM?.isSelf) return;
+    resetEncounterUses(combat).catch(err => console.warn("Arneyan | encounter uses", err));
+    // Effects that last the encounter (Commands, Exalt, a rage's) end with it.
+    endEncounterEffects(combat).catch(err => console.warn("Arneyan | encounter effects", err));
+  });
   Hooks.once("ready", () => game.socket.on(SOCKET, onSocket));
 }

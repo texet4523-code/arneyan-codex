@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/action-sword-wound.svg",
  "system": {
-  "description": "<p>Only a creature with a feature that grants one (Combat Reflexes, or a monster ability that says so) makes Attacks of Opportunity; the feature says what provokes it, and Disengaging always prevents it. Being moved by someone else (a shove, a push, a throw) or teleporting never provokes one, unless the ability causing it says so.</p><p>Only a feature that says it is a reaction (a class, kit or feat feature, or a monster ability) can be used out of turn: <strong>once per round</strong> unless it says otherwise, regained at the start of your turn.</p><ul><li>Anything that stops reactions (Surprised, <strong>Incapacitated</strong>) stops these.</li><li>A feature that gives extra reactions says so, and those extras can only be used for that feature (the Swashbuckler's Second Flourish).</li></ul><p class=\"arn-note\">Press Use to spend your reaction for the round, then attack with your weapon.</p>",
+  "description": "<p>Only a creature with a feature that grants one (Combat Reflexes, or a monster ability that says so) makes Attacks of Opportunity; the feature says what provokes it, and Disengaging always prevents it. Being moved by someone else (a shove, a push, a throw) or teleporting never provokes one, unless the ability causing it says so.</p><p></p><p class=\"arn-note\">Press Use to attack with your weapon, out of turn (<strong>once per round</strong>).</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -33,11 +33,11 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging.",
+    "text": "Once per round, out of turn: one melee attack against a creature that provokes it (the feature that grants it says what does; Disengaging always prevents it).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
-    "per": "",
+    "per": "round",
     "target": "",
     "removeConditions": false,
     "bonus": "",
@@ -49,7 +49,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": true,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },

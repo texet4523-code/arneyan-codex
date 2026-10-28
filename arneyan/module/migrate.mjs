@@ -72,11 +72,20 @@ function mechView(field, v, legacy = false, raw = false) {
     if (c.abilityChoice) { delete c.abilityChoice.value; delete c.abilityChoice.moved; }
     if (c.weaponChoice) delete c.weaponChoice.value;
     if (!legacy && c.weaponChoice && !String(c.weaponChoice.max ?? "")) delete c.weaponChoice;
+    if (Array.isArray(c.activities)) c.activities = mechView("activities", c.activities);
     // 0.10.43: a feature's text counts by its words, so a new layout (short points, bold terms) isn't a change.
     if (!legacy && !raw && typeof c.description === "string") c.description = wordsOf(c.description);
     return c;
   }));
   if (["rules", "applies", "auras"].includes(field)) return plainRules(v);
+  // 0.10.68: activities gained `effect` and `spendAny`; blank ones read as no field, so older stamps still match.
+  if (field === "activities" && Array.isArray(v)) return v.map(a => {
+    if (!a || typeof a !== "object") return a;
+    const c = { ...a };
+    if (c.effect === "") delete c.effect;
+    if (c.spendAny === false) delete c.spendAny;
+    return c;
+  });
   return v;
 }
 function hash(view) {
@@ -672,8 +681,12 @@ async function askLegacy(n, actors, version) {
  * Run the update if this world hasn't had it for this version yet (the active GM only). `legacy` decides items added
  * before fingerprints without asking ("update" or "skip"). Returns { items, actors, world, kept, unstamped }.
  */
-/** The version whose books moved class features to new levels (books v0.10.22 and v0.10.23, B7). */
-export const CLASS_REWORK = "0.10.65";
+/**
+ * The latest version whose books changed class feature lists: 0.10.65 (books v0.10.22 and v0.10.23, B7: new levels),
+ * then 0.10.68 (books v0.10.25 to v0.10.27, R-B7: Commands, Performance and Channel Divinity pools, renamed and
+ * always-on features). A world coming from before it runs `classRework` once.
+ */
+export const CLASS_REWORK = "0.10.68";
 
 /** Is version `a` newer than `b` ("0.10.65" than "0.10.64")? Numbers compared part by part. */
 export function newerThan(a, b) {
@@ -688,9 +701,15 @@ export function newerThan(a, b) {
 /** A class feature list as a comparable key: each feature's level, name and compendium entry. */
 const featureKey = list => JSON.stringify((list ?? []).map(f => [Number(f?.level) || 0, String(f?.name ?? ""), String(f?.uuid ?? "")]));
 
-/** Class features the books dropped in v0.10.22 (B7): Battle Space (Improved), now part of Battle Space; the Artificer's
- * 11th-level kit tier, now at 5th. A class's list loses these; anything else not in the compendium (homebrew) stays. */
-export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item.I2r5qtG2KwQTR6iK", "Compendium.arneyan.class-features.Item.Rn6ITCaMUuOEzKtD"]);
+/** Class features the books dropped: in v0.10.22 (B7), Battle Space (Improved), now part of Battle Space, and the
+ * Artificer's 11th-level kit tier, now at 5th; in v0.10.25 to v0.10.27 (R-B7), the features the pools replaced (the
+ * Knight's Inspire, Embolden, Demoralise and Expert in Arms, now Command options; the Bard's Exalt, Discord, Rally,
+ * Exhort Greatness and Words of Power, now Performance options; the Paladin's Smite Evil, Turn Undead and Divine
+ * Intervention, now Channel Divinity options), the Wizard's Scribe's Insight, Perfect Recall, Counterspell and
+ * Signature Spells and the Illusionist's Perfect Recall, and Quick Reaction, renamed Quick Reflexes. A class's list
+ * loses these; anything else not in the compendium (homebrew) stays. */
+export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item.I2r5qtG2KwQTR6iK", "Compendium.arneyan.class-features.Item.Rn6ITCaMUuOEzKtD",
+  ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {
@@ -855,8 +874,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
-      + (classAdded.length ? `<p><strong>Class features at their new levels</strong> (books v0.10.23: every class has its core features by 5th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one). Delete them if you like:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

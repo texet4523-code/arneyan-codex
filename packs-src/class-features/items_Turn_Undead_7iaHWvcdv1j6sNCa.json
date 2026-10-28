@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> As an action, up to 3 + your Wisdom modifier times per day, present your holy symbol — every undead within <strong>30ft</strong> that can see or hear you rolls a <strong>Will save</strong>.</li><li>Turn DC = 10 + half your Cleric level (rounded down, minimum 1) + Wisdom modifier</li><li><strong>Below 8th level:</strong> failed save = turned — undead flees and cannot approach within <strong>30ft</strong> for <strong>1 minute</strong></li><li>8th level and above: failed save = destroyed outright if its Level is no more than half your Cleric level, otherwise turned</li><li>Evil Clerics may turn OR control undead under the same DC — controlling requires your Cleric level to be 5 or more above the undead's Level. Controlled undead obey for <strong>1 hour</strong> per Cleric level, and you can control at most your Cleric level in total Levels of undead at once</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> As an action, up to 3 + your Wisdom modifier times per day, present your holy symbol — every undead within <strong>30ft</strong> that can see or hear you rolls a <strong>Will save</strong>.</li><li>Turn DC = your Class Save DC</li><li><strong>Below 8th level:</strong> failed save = turned — undead flees and cannot approach within <strong>30ft</strong> for <strong>1 minute</strong></li><li>8th level and above: failed save = destroyed outright if its Level is no more than half your Cleric level, otherwise turned</li><li>Evil Clerics may turn OR control undead under the same DC — controlling requires your Cleric level to be 5 or more above the undead's Level. Controlled undead obey for <strong>1 hour</strong> per Cleric level, and you can control at most your Cleric level in total Levels of undead at once</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "Undead within 30ft save against your Turn DC or are turned (destroyed from 8th level if their Level is no more than half yours).",
+    "text": "Undead within 30ft that can see or hear you save against your Class Save DC or are turned (destroyed from 8th level if their Level is no more than half your Cleric level).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -46,7 +46,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Control Undead",
@@ -55,7 +57,7 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Turn DC or obey you for 1 hour per Cleric level.",
+    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Class Save DC or obey you for 1 hour per Cleric level (at most your Cleric level in total Levels of undead).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -71,7 +73,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "applies": [

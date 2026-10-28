@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li>Drake of the Last Watch is a name everyone knows — his feats of strength and his connection to the natural world are legend across Arneyan.</li><li>Some barbarians don't just admire the stories; they train to fight like him, study his recorded deeds, and try to embody what he stood for.</li><li>Less a school, more a devotion.</li><li><strong>Drake's Fury:</strong> Primeval Instincts bonus increases from +4 to +6 on checks made in natural wilderness environments. While raging in natural wilderness, you have <strong>Advantage</strong> on your rolls in Trip and Grapple contests.</li><li><strong>Legend's Path:</strong> <strong>Advantage</strong> on checks to identify, track, or commune with natural creatures and environments. Being recognised as a Follower of Drake opens doors — his name carries weight everywhere.</li></ul>",
+  "description": "<ul><li>Drake of the Last Watch is a name everyone knows — his feats of strength and his connection to the natural world are legend across Arneyan.</li><li>Some barbarians don't just admire the stories; they train to fight like him, study his recorded deeds, and try to embody what he stood for.</li><li>Less a school, more a devotion.</li><li><strong>Drake's Fury:</strong> in natural wilderness, Primeval Instincts covers every physical check, not only those in extreme circumstances. While raging in natural wilderness, you have <strong>Advantage</strong> on your rolls in Trip and Grapple contests.</li><li><strong>Legend's Path:</strong> <strong>Advantage</strong> on checks to identify, track, or commune with natural creatures and environments. Being recognised as a Follower of Drake opens doors — his name carries weight everywhere.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,95 +15,30 @@
    {
     "name": "Drake's Fury",
     "level": 1,
-    "description": "<p>Primeval Instincts bonus increases from +4 to +6 on checks made in natural wilderness environments. While raging in natural wilderness, you have <strong>Advantage</strong> on your rolls in Trip and Grapple contests.</p>",
+    "description": "<p>In natural wilderness, Primeval Instincts covers every physical check, not only those in extreme circumstances. While raging in natural wilderness, you have <strong>Advantage</strong> on your rolls in Trip and Grapple contests.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
     "save": "",
-    "activities": [
-     {
-      "name": "Strength (+6)",
-      "kind": "check",
-      "formula": "",
-      "damageType": "",
-      "ability": "str",
-      "save": "",
-      "text": "Primeval Instincts in natural wilderness: +6 to this Strength check instead of +4.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "round",
-      "target": "self",
-      "removeConditions": false,
-      "bonus": "6",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false
-     },
-     {
-      "name": "Dexterity (+6)",
-      "kind": "check",
-      "formula": "",
-      "damageType": "",
-      "ability": "dex",
-      "save": "",
-      "text": "Primeval Instincts in natural wilderness: +6 to this Dexterity check instead of +4.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "round",
-      "target": "self",
-      "removeConditions": false,
-      "bonus": "6",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false
-     },
-     {
-      "name": "Constitution (+6)",
-      "kind": "check",
-      "formula": "",
-      "damageType": "",
-      "ability": "con",
-      "save": "",
-      "text": "Primeval Instincts in natural wilderness: +6 to this Constitution check instead of +4.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "round",
-      "target": "self",
-      "removeConditions": false,
-      "bonus": "6",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false
-     }
-    ],
     "rules": [
      {
-      "key": "note.check",
-      "value": "Drake's Fury: Primeval Instincts is +6 instead of +4 in natural wilderness.",
-      "when": "",
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.dex",
+      "value": "1",
+      "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)",
       "label": ""
      },
      {

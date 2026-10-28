@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Up to the attempts per round shown in the Monk Progression Table (these are not reactions and leave your reaction free, but you cannot deflect while you cannot take reactions, such as when surprised or <strong>Incapacitated</strong>), when hit by a nonmagical ranged weapon (arrows, axes, bolas, bolts, clubs, daggers, darts, hammers, javelins, nets, rocks, spears), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll to deflect it entirely (no damage). Must have at least one free hand.</li><li><strong>Scales:</strong> <strong>once per round</strong> at 2nd level, up to <strong>five times per round</strong> at 20th — see the Monk Progression Table</li><li>Cannot use against siege weapons</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Up to the attempts per round shown in the Monk Progression Table (these happen out of turn; you cannot deflect while surprised or <strong>Incapacitated</strong>), when hit by a nonmagical ranged weapon (arrows, axes, bolas, bolts, clubs, daggers, darts, hammers, javelins, nets, rocks, spears), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll to deflect it entirely (no damage). Must have at least one free hand.</li><li><strong>Scales:</strong> <strong>once per round</strong> at 2nd level, up to <strong>five times per round</strong> at 20th — see the Monk Progression Table</li><li>Cannot use against siege weapons</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round.",
+    "text": "Out of turn: against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Not while surprised or Incapacitated.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -44,8 +44,10 @@
     "damageBonus": "",
     "noStack": "",
     "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },

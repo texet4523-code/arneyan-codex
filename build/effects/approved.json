@@ -333,7 +333,7 @@
    {
     "key": "damage",
     "value": "+@level",
-    "when": "once per long rest, damaging a larger creature"
+    "when": "once per day, damaging a larger creature"
    },
    {
     "key": "adv.skill",
@@ -367,7 +367,7 @@
    }
   ],
   "summary": "Resistance 5 to cold; Advantage reminders on Str feats and Fortitude vs exhaustion.",
-  "manual": "Damage-reduction reaction; subtype benefits.",
+  "manual": "Once a day, when hit: reduce the damage by 1d12 + Constitution modifier (1 Luck for an extra use); subtype benefits.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -637,7 +637,7 @@
    }
   ],
   "summary": "Intimidation Advantage reminder; two-handed reroll reminder.",
-  "manual": "Relentless Endurance; 1/long rest Advantage.",
+  "manual": "Relentless Endurance; once a day, before you roll: Advantage on an attack roll or Strength check (1 Luck for an extra use).",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -765,7 +765,7 @@
    }
   ],
   "summary": "+1 Cha.",
-  "manual": "Once-per-session ally Advantage.",
+  "manual": "Once a day, as part of your action: one ally within earshot has Advantage on their next attack roll or ability check.",
   "confidence": "high"
  },
  "feats/be3UP5Ftq9WSrUre": {
@@ -808,7 +808,7 @@
    }
   ],
   "summary": "Advantage reminder on Luck Checks vs traps.",
-  "manual": "Once-per-session forced reroll when hit.",
+  "manual": "Spending 2 Luck when hit to force a reroll (lower result used).",
   "confidence": "high"
  },
  "feats/oUf51A1TIhwgIV8R": {
@@ -928,7 +928,7 @@
    }
   ],
   "summary": "Pick the deed applied on a 3+ on the d4: Prone, Blinded until end of its next turn, or Disadvantage on its next attack.",
-  "manual": "d4 roll, save, push and disarm, per-fight immunity, size limit; Off-balance should end after one attack.",
+  "manual": "d4 roll, save, push and disarm, size limit; Off-balance should end after one attack.",
   "confidence": "medium"
  },
  "feats/FK9Xn52C198iW8ca": {
@@ -984,11 +984,11 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Potent Casting: once per encounter, targets have Disadvantage on their save against this spell."
+    "value": "Potent Casting: your spells ignore damage resistance (but not immunity)."
    }
   ],
   "summary": "Reminder on spell cards.",
-  "manual": "Once-per-encounter use and the target's Disadvantage.",
+  "manual": "Damage is not yet applied past resistance for you.",
   "confidence": "medium"
  },
  "feats/5oQyDZyH8ZGdEct3": {
@@ -1105,9 +1105,9 @@
     "value": 1
    }
   ],
-  "summary": "Advantage on concentration saves.",
-  "manual": "Once-per-encounter auto-success; also covers being shoved mid-cast.",
-  "confidence": "medium"
+  "summary": "Advantage on concentration saves (keeping a spell you are casting, or concentration, when damaged, shoved or forced to react mid-cast).",
+  "manual": "You can't lose a spell to damage of 5 or less: not checked for you.",
+  "confidence": "high"
  },
  "feats/w41GnapEYyHpDcCk": {
   "name": "Steady Hand",
@@ -1314,8 +1314,8 @@
     ]
    }
   ],
-  "summary": "Pick Head (Stunned 1 round) or Leg (speed halved 1 round) after a failed Fortitude save.",
-  "manual": "Disadvantage on the called shot (until 10th), the save, Arm (drop item), 1-minute Head immunity.",
+  "summary": "Pick Head (Stunned 1 round) or Leg (speed halved 1 round) after a failed Fortitude save against your Class Save DC.",
+  "manual": "Disadvantage on the called shot (until 10th), the save, Arm (drop what it holds); once a creature recovers from your Head shot it is immune to your Head shots for the rest of the encounter.",
   "confidence": "medium"
  },
  "class-features/sBA3qJpckkKsn6C5": {
@@ -1366,10 +1366,10 @@
    },
    {
     "key": "note.attack",
-    "value": "Seeker: arrows ignore Disadvantage from Half Cover and 1 point of a shield's AC bonus."
+    "value": "Seeker: Bent Path applies to every shot you make, not just the first each round."
    }
   ],
-  "summary": "Wisdom modifier damage reminder with bows; cover reminder.",
+  "summary": "Wisdom modifier damage reminder with bows; Bent Path on every shot.",
   "manual": "Cover and shield adjustments.",
   "confidence": "medium"
  },
@@ -1508,46 +1508,18 @@
   "manual": "Resistance bypass.",
   "confidence": "medium"
  },
- "class-features/PGT74NWPoMAAKgp7": {
-  "name": "Quick Reaction",
-  "from": "Assassin",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "init",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Initiative.",
-  "manual": "",
-  "confidence": "high"
- },
- "class-features/9LMT5x0O4r7fkocP": {
-  "name": "Quick Reaction (Improved)",
-  "from": "Assassin",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "init",
-    "value": 1
-   }
-  ],
-  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reaction).",
-  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; once-per-encounter extra action.",
-  "confidence": "medium"
- },
  "class-features/zEXHGiACkTeX73yo": {
   "name": "Combat Sense",
   "from": "Barbarian",
   "container": "passive",
   "rules": [
    {
-    "key": "surprise",
-    "value": 2
+    "key": "adv.surprise",
+    "value": 1
    }
   ],
-  "summary": "+2 to surprise checks (added to passive awareness when the party could be surprised).",
-  "manual": "Attackers gaining no Advantage from flanking/Unseen and no Back Attack against you.",
+  "summary": "Advantage on checks to avoid being surprised (folded into passive awareness against an ambush).",
+  "manual": "Attackers gaining no Advantage from flanking or being Unseen, and no Back Attack against you.",
   "confidence": "medium"
  },
  "class-features/hi6cvVDyEDasF9CW": {
@@ -1578,19 +1550,19 @@
   "container": "passive",
   "rules": [
    {
-    "key": "check.str",
-    "value": 4,
-    "when": "extreme circumstances, no medium/heavy armour, once per round"
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)"
    },
    {
-    "key": "check.dex",
-    "value": 4,
-    "when": "extreme circumstances, no medium/heavy armour, once per round"
+    "key": "adv.check.dex",
+    "value": 1,
+    "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)"
    },
    {
-    "key": "check.con",
-    "value": 4,
-    "when": "extreme circumstances, no medium/heavy armour, once per round"
+    "key": "adv.check.con",
+    "value": 1,
+    "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)"
    },
    {
     "key": "adv.save.fort",
@@ -1598,8 +1570,8 @@
     "when": "to force march"
    }
   ],
-  "summary": "+4 reminders on physical checks in extreme circumstances; Advantage reminder on force-march saves.",
-  "manual": "Wilderness survival abilities.",
+  "summary": "Advantage reminders on Strength, Dexterity and Constitution checks in extreme circumstances, and on Fortitude saves to force march.",
+  "manual": "Roll with Advantage (Shift-click) when the circumstances apply; wilderness survival abilities.",
   "confidence": "medium"
  },
  "class-features/zsMpDQJQdsDZP4nV": {
@@ -1610,10 +1582,14 @@
    {
     "key": "damage.melee",
     "value": "+2*(1+floor(@cl/10))"
+   },
+   {
+    "key": "toggle.ends",
+    "value": "encounter"
    }
   ],
-  "summary": "Toggle Rage: +2/+4/+6 melee weapon damage (1st/10th/20th).",
-  "manual": "Duration (3 + Con mod rounds), uses per day, early end.",
+  "summary": "Toggle Rage: lasts the encounter (switches off when it ends); +2/+4/+6 melee weapon damage (1st/10th/20th).",
+  "manual": "Uses per day (1 + Con mod, minimum 2); switch it off early if a full round passes without you attacking or taking damage.",
   "confidence": "high"
  },
  "class-features/l1z0ltlq8BBhCAFg": {
@@ -1669,54 +1645,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/UuTSGIvWzg5QslOT": {
-  "name": "Discord (Charisma)",
-  "from": "Bard",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Discord",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack",
-      "value": -1
-     }
-    ]
-   }
-  ],
-  "summary": "Disadvantage on the target's next attack on a failed Will save.",
-  "manual": "The save; remove after one attack.",
-  "confidence": "medium"
- },
- "class-features/vjHmF66KtVOxZDDU": {
-  "name": "Exalt (Charisma)",
-  "from": "Bard",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Exalted",
-    "target": "target",
-    "rounds": "@cl",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "check",
-      "value": "min(5,2+floor(@cl/6))"
-     },
-     {
-      "key": "save",
-      "value": "min(5,2+floor(@cl/6))"
-     }
-    ]
-   }
-  ],
-  "summary": "Ally gains +2/+3/+4/+5 (1st/6th/12th/18th) on checks and saves for rounds equal to Bard level.",
-  "manual": "Not attack rolls.",
-  "confidence": "medium"
- },
  "class-features/LsWKxgs0ZtOLLPCd": {
   "name": "Fascinate (Charisma)",
   "from": "Bard",
@@ -1725,7 +1653,7 @@
    {
     "name": "Fascinated",
     "target": "target",
-    "rounds": "@cl",
+    "rounds": 0,
     "statuses": [
      "prone",
      "incapacitated"
@@ -1733,31 +1661,9 @@
     "rules": []
    }
   ],
-  "summary": "Fascinated targets are Prone and Incapacitated for rounds equal to Bard level.",
-  "manual": "Will save; any threat breaks it.",
-  "confidence": "medium"
- },
- "class-features/uSTUZxOJHdvFNgWR": {
-  "name": "Exhort Greatness",
-  "from": "Bard",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Exhorted",
-    "target": "target",
-    "rounds": "max(10, @cl+1)",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack.first",
-      "value": 1
-     }
-    ]
-   }
-  ],
-  "summary": "Ally gets Advantage on its first attack each round for 1 minute + 1 round per level beyond 9th.",
-  "manual": "Temporary HP (two Hit Die rolls + Con); text says \"for the encounter\" and \"1 minute plus...\", duration used here.",
-  "confidence": "medium"
+  "summary": "Fascinated targets are Prone and Incapacitated until the scene ends or something breaks it.",
+  "manual": "Will save; any obvious threat breaks it: remove the effect.",
+  "confidence": "high"
  },
  "class-features/Lk8EDkeh1GhMEihm": {
   "name": "Charisma Bonus",
@@ -1772,25 +1678,6 @@
   "summary": "+1 Cha.",
   "manual": "",
   "confidence": "high"
- },
- "class-features/kRQIqmxGqZ793v4R": {
-  "name": "Words of Power",
-  "from": "Bard",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Word of Power: Deafened",
-    "target": "target",
-    "rounds": "1d4",
-    "statuses": [
-     "deafened"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Deafened for 1d4 rounds on a failed Will save.",
-  "manual": "The Will save.",
-  "confidence": "medium"
  },
  "class-features/LN7DNKycs5jrG5GK": {
   "name": "Wisdom Bonus",
@@ -1812,20 +1699,24 @@
   "container": "passive",
   "rules": [
    {
-    "key": "save",
-    "value": "9:1, 22:2"
+    "key": "adv.save.will",
+    "value": 1
    },
    {
-    "key": "check",
-    "value": "22:2"
+    "key": "adv.save",
+    "value": "22:1"
+   },
+   {
+    "key": "adv.check",
+    "value": "22:1"
    },
    {
     "key": "note.save",
     "value": "Divine Monolith: {22:creatures in the aura are immune to death attacks}."
    }
   ],
-  "summary": "Your own bonus: +1 on saves from 9th; +2 on checks and saves and death-attack immunity from 22nd (Divine Monolith (Improved)).",
-  "manual": "Turn Undead DC +1 (+3 from 22nd).",
+  "summary": "Your own: Advantage on Will saves from 9th; Advantage on all saves and attribute checks, and death-attack immunity, from 22nd (Divine Monolith (Improved)).",
+  "manual": "Undead have Disadvantage on their saves against your Turn Undead (call it on the save); the aura's effect on allies comes from the aura.",
   "confidence": "medium"
  },
  "class-features/VZiNLypozvFgdJUL": {
@@ -1918,17 +1809,16 @@
     "when": "unless wielding a two-handed weapon"
    },
    {
-    "key": "damage",
-    "value": "13:2",
-    "when": "Flank Attack"
+    "key": "note.damage",
+    "value": "Battle Space: {13:reroll 1s on Flank Attack damage}."
    },
    {
     "key": "note.damage",
     "value": "Battle Space: {17:a Flank Attack also deals +1 damage die}."
    }
   ],
-  "summary": "Flank Attack reminder (Battle Space: you flank whenever an ally is also in melee with the target); +1 AC unless two-handed and +2 Flank damage from 13th; +1 die reminder from 17th.",
-  "manual": "Once-per-encounter Dodge (its Use); the extra die.",
+  "summary": "Flank Attack reminder (you flank whenever an ally is also in melee with the target); +1 AC unless two-handed and reroll 1s on Flank Attack damage from 13th; +1 die reminder from 17th.",
+  "manual": "The reroll of 1s and the extra die.",
   "confidence": "medium"
  },
  "class-features/njizDPGt1IitBFA5": {
@@ -1988,17 +1878,16 @@
   "rules": [
    {
     "key": "adv.save.ref",
-    "value": 1,
-    "when": "while your Dodge lasts"
+    "value": 1
    },
    {
     "key": "note.damage",
-    "value": "Battle Space (Master): a Flank Attack deals +2 damage dice instead of +1."
+    "value": "Battle Space (Master): a Flank Attack deals +2 damage dice instead of +1, and the target cannot make Attacks of Opportunity against you until the start of your next turn."
    }
   ],
-  "summary": "Reflex Advantage reminder while Dodging; Flank damage reminder.",
-  "manual": "Disengage; AoO denial.",
-  "confidence": "medium"
+  "summary": "Advantage on Reflex saves; Flank damage reminder.",
+  "manual": "Disengage as part of an attack; Attack of Opportunity denial.",
+  "confidence": "high"
  },
  "class-features/HwgpWOY3VGn3xcC5": {
   "name": "Dead Eye",
@@ -2042,8 +1931,8 @@
     ]
    }
   ],
-  "summary": "Pick Head (Stunned 1 round) or Leg (speed halved 1 round) after a failed Fortitude save.",
-  "manual": "Disadvantage on the called shot (until 10th), the save, Arm (drop item), 1-minute Head immunity.",
+  "summary": "Pick Head (Stunned 1 round) or Leg (speed halved 1 round) after a failed Fortitude save against your Class Save DC.",
+  "manual": "Disadvantage on the called shot (until 10th), the save, Arm (drop what it holds); once a creature recovers from your Head shot it is immune to your Head shots for the rest of the encounter.",
   "confidence": "medium"
  },
  "class-features/Av9H8OcAsX6lI7iX": {
@@ -2153,28 +2042,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/ZE561JAXiWa2pFqL": {
-  "name": "Inspire (Charisma)",
-  "from": "Knight",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Inspired",
-    "target": "target",
-    "rounds": "@cl",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack.first",
-      "value": 1
-     }
-    ]
-   }
-  ],
-  "summary": "Allies get Advantage on their first attack each round for rounds equal to Knight level.",
-  "manual": "Number of creatures; not with Embolden/Demoralise.",
-  "confidence": "high"
- },
  "class-features/XRbLOuQcgrFklMz5": {
   "name": "Challenge",
   "from": "Knight",
@@ -2211,93 +2078,6 @@
   "manual": "The save (the self effect applies either way).",
   "confidence": "high"
  },
- "class-features/s1yZv1dE0bEj5BOv": {
-  "name": "Embolden",
-  "from": "Knight",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Emboldened",
-    "target": "target",
-    "rounds": "@cl",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "save.fort",
-      "value": 1
-     },
-     {
-      "key": "save.ref",
-      "value": 1
-     },
-     {
-      "key": "save.will",
-      "value": 2
-     }
-    ]
-   }
-  ],
-  "summary": "Allies within 30ft: +1 Fortitude, +1 Reflex, +2 Will for rounds equal to Knight level.",
-  "manual": "",
-  "confidence": "high"
- },
- "class-features/dRkz1FNkc0dlZnex": {
-  "name": "Demoralise",
-  "from": "Knight",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Demoralised",
-    "target": "target",
-    "rounds": "@cl",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "check.cha",
-      "value": -4
-     }
-    ]
-   },
-   {
-    "name": "Demoralised (failed save)",
-    "target": "target",
-    "rounds": "@cl",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack.first",
-      "value": -1
-     }
-    ]
-   }
-  ],
-  "summary": "Enemies: -4 Cha checks; on a failed Will save, Disadvantage on their first attack each round. Lasts rounds equal to Knight level.",
-  "manual": "Number of creatures; the save.",
-  "confidence": "medium"
- },
- "class-features/xG5wRGsRMzXivujQ": {
-  "name": "Expert in Arms",
-  "from": "Knight",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Expert in Arms",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.check",
-      "value": 1,
-      "when": "contested manoeuvre checks"
-     }
-    ]
-   }
-  ],
-  "summary": "Allies within 40ft get Advantage on contested manoeuvre checks for 1 round.",
-  "manual": "Only allies following orders.",
-  "confidence": "medium"
- },
  "class-features/YO3ZayeCanwmuax2": {
   "name": "Charisma Bonus",
   "from": "Knight",
@@ -2324,16 +2104,15 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack",
-      "value": -1,
-      "when": "attacks against the knight"
+      "key": "note.save",
+      "value": "Cowed: it can't willingly move away from the Knight unless it succeeds on a Wisdom check each round."
      }
     ]
    }
   ],
-  "summary": "Cowed for 1 minute on a failed Will save: Disadvantage reminder on attacks against you.",
-  "manual": "Cannot move away without a Wisdom check; fear-immune creatures are immune.",
-  "confidence": "medium"
+  "summary": "A foe that fails its save against your Challenge is also Cowed for the Challenge's minute: it can't willingly move away without a Wisdom check each round.",
+  "manual": "A creature immune to fear is immune; apply it with the Challenged effect on a failed save.",
+  "confidence": "high"
  },
  "class-features/LiDVh9PAIbGeug36": {
   "name": "Path of Greatness",
@@ -2362,7 +2141,7 @@
    {
     "name": "Undying Reputation",
     "target": "self",
-    "rounds": 0,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2372,8 +2151,8 @@
     ]
    }
   ],
-  "summary": "On its Use: Advantage on your first attack each round until the encounter ends, from 24th (the effect carries nothing before then). The temporary HP (Cha mod x half your Knight level, full level from 24th) come from its Use.",
-  "manual": "Trigger (below half HP, witnessed); remove at encounter end.",
+  "summary": "On its Use: from 24th, Advantage on your first attack each round until the encounter ends (the effect carries nothing before then). The temporary HP come from its Use.",
+  "manual": "The trigger (below half HP, witnessed).",
   "confidence": "high"
  },
  "class-features/IzQH2uRnpjINWuGg": {
@@ -2388,14 +2167,18 @@
     "statuses": [],
     "rules": [
      {
-      "key": "ac",
+      "key": "adv.against.first",
+      "value": -1
+     },
+     {
+      "key": "against.first.count",
       "value": "1:1, 9:2"
      }
     ]
    }
   ],
-  "summary": "+1 AC (+2 from 9th) for 1 round after a Spellstrike hits.",
-  "manual": "",
+  "summary": "After a Spellstrike hits: until your next turn, the first attack against you has Disadvantage (the first two from 9th).",
+  "manual": "Apply it after a Spellstrike that hits.",
   "confidence": "high"
  },
  "class-features/c8cIjNbSP58apy0Z": {
@@ -2433,8 +2216,8 @@
     "rules": []
    }
   ],
-  "summary": "Stunned for 1 round (1d4 rounds from 10th level) on a failed Fortitude save.",
-  "manual": "Daily limit (uses: once per Monk level a day); per-encounter immunity.",
+  "summary": "Stunned for 1 round (1d4 rounds from 10th level) on a failed Fortitude save against your Class Save DC.",
+  "manual": "Daily limit (uses: once per Monk level a day); a creature that saves is immune for the rest of the encounter (the general rule).",
   "confidence": "medium"
  },
  "class-features/nBePPFAKRD3DlY3k": {
@@ -2448,20 +2231,6 @@
    }
   ],
   "summary": "+1 Wis.",
-  "manual": "",
-  "confidence": "high"
- },
- "class-features/rvBtNNIjxzyJA17V": {
-  "name": "Quick Reaction",
-  "from": "Monk",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "init",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Initiative.",
   "manual": "",
   "confidence": "high"
  },
@@ -2484,20 +2253,6 @@
   "summary": "+1 attack and +1 damage reminders with the mastered weapon.",
   "manual": "Reroll; could live on the weapon item.",
   "confidence": "high"
- },
- "class-features/FNO70JvfLoZanKqm": {
-  "name": "Quick Reaction (Improved)",
-  "from": "Monk",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "init",
-    "value": 1
-   }
-  ],
-  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reaction).",
-  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; once-per-encounter extra action.",
-  "confidence": "medium"
  },
  "class-features/wUDfID3GbQaDq2OG": {
   "name": "Animate Dead",
@@ -2535,11 +2290,11 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Necrotic Aura: death-effect spells you cast have +1 save DC while you control undead within 30ft."
+    "value": "Necrotic Aura: while you control undead within 30ft, creatures have Disadvantage on their saves against your death-effect spells."
    }
   ],
   "summary": "Reminder on spell cards.",
-  "manual": "Controlled undead bonuses (+1 damage, +2 HP per level).",
+  "manual": "The Disadvantage on the target's save; controlled undead bonuses (+1 damage, +2 HP per level).",
   "confidence": "medium"
  },
  "class-features/ygZKe7rX7DTQIjI1": {
@@ -2592,26 +2347,6 @@
   "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 2nd.",
   "manual": "Allies' +4 vs fear in the aura; evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 2nd level.",
   "confidence": "medium"
- },
- "class-features/7aWDedO6ICkfxNO3": {
-  "name": "Smite Evil",
-  "from": "Paladin",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.attack",
-    "value": 1,
-    "when": "Smite"
-   },
-   {
-    "key": "damage",
-    "value": "+@cl",
-    "when": "Smite"
-   }
-  ],
-  "summary": "Smite reminders: Advantage and +1 damage per Paladin level.",
-  "manual": "Uses per day from the progression table.",
-  "confidence": "high"
  },
  "class-features/fAbmGByYrE4Mwp6V": {
   "name": "Blessed Weapon",
@@ -2831,11 +2566,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "surprise",
-    "value": "8:1, 18:2, 22:3"
+    "key": "adv.surprise",
+    "value": 1
    }
   ],
-  "summary": "+1/+2/+3 (8th/18th/22nd) to surprise checks (added to passive awareness for surprise).",
+  "summary": "Advantage on checks to avoid being surprised (folded into passive awareness against an ambush).",
   "manual": "",
   "confidence": "high"
  },
@@ -2854,47 +2589,23 @@
   "manual": "Free check when passing nearby.",
   "confidence": "high"
  },
- "class-features/gKVwolNGBNNiLG6q": {
-  "name": "Quick Reaction",
-  "from": "Rogue",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "init",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Initiative.",
-  "manual": "",
-  "confidence": "high"
- },
  "class-features/bThOBmOv1Dz4qCYE": {
   "name": "Evasive Manoeuvre",
   "from": "Rogue",
   "container": "toggle",
   "rules": [
    {
-    "key": "ac",
-    "value": "1:2, 20:4"
-   }
-  ],
-  "summary": "Toggle: +2 AC for the round (+4 from 20th).",
-  "manual": "Text says \"in melee\": switch off vs ranged attacks; no ranged attacks or other rogue abilities that round; not when surprised.",
-  "confidence": "medium"
- },
- "class-features/H3neu8yzLSGCe5yL": {
-  "name": "Quick Reaction (Improved)",
-  "from": "Rogue",
-  "container": "passive",
-  "rules": [
+    "key": "adv.against.first.melee",
+    "value": -1
+   },
    {
-    "key": "init",
-    "value": 1
+    "key": "against.first.count",
+    "value": "1:1, 20:2"
    }
   ],
-  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reaction).",
-  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; once-per-encounter extra action.",
-  "confidence": "medium"
+  "summary": "Toggle: the first melee attack against you each round has Disadvantage (the first two from 20th).",
+  "manual": "Switch off in a round you make a ranged attack or use another rogue ability, or while surprised.",
+  "confidence": "high"
  },
  "class-features/bqEF33vO4Q00syjA": {
   "name": "Agile Defence",
@@ -2919,10 +2630,10 @@
    {
     "key": "damage",
     "value": "+@abilities.cha.mod",
-    "when": "first attack of combat"
+    "when": "on your first hit in each encounter"
    }
   ],
-  "summary": "Charisma modifier damage reminder on the first attack of combat.",
+  "summary": "Always on: Charisma modifier damage reminder on your first hit in each encounter.",
   "manual": "",
   "confidence": "high"
  },
@@ -3174,11 +2885,11 @@
    {
     "key": "adv.attack.ranged",
     "value": 1,
-    "when": "once per encounter: bow attack this round vs a creature an ally just hit with a ranged attack"
+    "when": "first bow attack each round, vs a creature an ally hit with a ranged attack since your last turn"
    }
   ],
-  "summary": "Advantage on ranged attacks (once per encounter: bow attack this round vs a creature an ally just hit with a ranged attack). Shown as reminders.",
-  "manual": "Once-per-encounter use.",
+  "summary": "Advantage on ranged attacks (first bow attack each round, vs a creature an ally hit with a ranged attack since your last turn). Shown as reminders.",
+  "manual": "",
   "confidence": "high"
  },
  "kits/hxKu3MfhoHTQ9l30#1": {
@@ -3198,7 +2909,7 @@
  },
  "kits/Qc8GsQhcP4KgH0F8#1": {
   "name": "Clean Hands",
-  "from": "The Veiled Ones — Shadow Operative (Assassin)",
+  "from": "The Veiled Ones, Shadow Operative (Assassin)",
   "container": "passive",
   "rules": [
    {
@@ -3208,12 +2919,12 @@
    }
   ],
   "summary": "Advantage on checks (to pass as someone with a legitimate reason to be somewhere, or to extract, verify or pass intelligence untraced). Shown as reminders.",
-  "manual": "Hide after a Sneak Attack.",
+  "manual": "Hide as part of the same action after a Sneak Attack, if cover or a crowd is within 10ft (the Hide check still applies).",
   "confidence": "high"
  },
  "kits/n97HrctQdnq2MXNf#1": {
   "name": "Dossier",
-  "from": "The Guild — Crow Track (Assassin)",
+  "from": "The Guild, Crow Track (Assassin)",
   "container": "passive",
   "rules": [
    {
@@ -3228,7 +2939,7 @@
  },
  "kits/S9ukVEZRfWR68UCh#0": {
   "name": "Ghost Step",
-  "from": "Ashes of the Phoenix — Zaun (Assassin)",
+  "from": "Ashes of the Phoenix, Zaun (Assassin)",
   "container": "passive",
   "rules": [
    {
@@ -3272,7 +2983,7 @@
  },
  "kits/S9ukVEZRfWR68UCh#1": {
   "name": "Reconstructed Identity",
-  "from": "Ashes of the Phoenix — Zaun (Assassin)",
+  "from": "Ashes of the Phoenix, Zaun (Assassin)",
   "container": "passive",
   "rules": [
    {
@@ -3302,7 +3013,7 @@
  },
  "kits/Qc8GsQhcP4KgH0F8#0": {
   "name": "Surveillance",
-  "from": "The Veiled Ones — Shadow Operative (Assassin)",
+  "from": "The Veiled Ones, Shadow Operative (Assassin)",
   "container": "passive",
   "rules": [
    {
@@ -3386,8 +3097,19 @@
   "container": "passive",
   "rules": [
    {
-    "key": "note.check",
-    "value": "Drake's Fury: Primeval Instincts is +6 instead of +4 in natural wilderness."
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)"
+   },
+   {
+    "key": "adv.check.dex",
+    "value": 1,
+    "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)"
+   },
+   {
+    "key": "adv.check.con",
+    "value": 1,
+    "when": "in natural wilderness, without medium or heavy armour (Primeval Instincts covers every physical check)"
    },
    {
     "key": "adv.check",
@@ -3395,9 +3117,9 @@
     "when": "Trip and Grapple contests while raging in natural wilderness"
    }
   ],
-  "summary": "A reminder note on the matching card; Advantage on checks (Trip and Grapple contests while raging in natural wilderness). Shown as reminders.",
-  "manual": "The +2 extra on Primeval Instincts.",
-  "confidence": "medium"
+  "summary": "Advantage on Str, Dex and Con checks in natural wilderness (Primeval Instincts, every physical check); Advantage on Trip and Grapple contests while raging there. Shown as reminders.",
+  "manual": "Primeval Instincts' own conditions (not having fled the challenge).",
+  "confidence": "high"
  },
  "kits/ioMzfnluzghImDnW#1": {
   "name": "Dwarf-Bound",
@@ -3417,17 +3139,16 @@
  "kits/iagNVJGoktjp6JX7#1": {
   "name": "Iron Rage",
   "from": "War Barbarian (Barbarian)",
-  "container": "passive",
+  "container": "toggle",
   "rules": [
    {
-    "key": "ac",
-    "value": 1,
-    "when": "while raging in medium or heavy armour"
+    "key": "adv.against.first",
+    "value": -1
    }
   ],
-  "summary": "+1 AC (while raging in medium or heavy armour). Shown as reminders.",
-  "manual": "Could be merged into the Rage toggle for armoured barbarians.",
-  "confidence": "high"
+  "summary": "Toggle while you rage in medium or heavy armour: the first attack against you each round has Disadvantage.",
+  "manual": "Switch it on with Rage when you wear medium or heavy armour, and off when the rage ends.",
+  "confidence": "medium"
  },
  "kits/Ehk2rOsrPogqG06P#1": {
   "name": "Legend's Path",
@@ -3518,16 +3239,25 @@
     "key": "adv.check",
     "value": 1,
     "when": "Legend Lore on subjects you have formally researched or published on"
-   },
-   {
-    "key": "attack",
-    "value": 1,
-    "when": "vs a creature you lectured on, until the end of your next turn"
    }
   ],
-  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on); +1 to attack (vs a creature you lectured on, until the end of your next turn). Shown as reminders.",
-  "manual": "Never fails on a natural 1; allies' +1 from the lecture.",
-  "confidence": "medium"
+  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on). Shown as reminders. Lectured on a creature: the first attack roll against it each round has Advantage.",
+  "manual": "Never fails on a natural 1. Lectured is meant for an ally's attack (the engine also counts yours if you attack it first); only one creature can be under your lecture at a time, so remove it from the last one.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Lectured",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first",
+      "value": 1
+     }
+    ]
+   }
+  ]
  },
  "kits/GARmKRgAYwPXPANC#1": {
   "name": "Maritime Voice",
@@ -3656,7 +3386,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Deception). Shown as reminders.",
-  "manual": "Bargain compulsion; once-per-encounter terms (target cannot attack you).",
+  "manual": "Bargain compulsion (once a day, Will save negates); on your first hit each round, the creature makes a Will save or cannot attack you until your next turn.",
   "confidence": "high"
  },
  "kits/QsmJDYZSuAF7dLWR#0": {
@@ -3729,9 +3459,35 @@
     "when": "Craft and Smith"
    }
   ],
-  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders.",
-  "manual": "Tempering an ally (+1 to hit or +1 AC for 1 minute) and repairs.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (Advantage on its next attack roll) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
+  "manual": "Tempered Weapon should end after the ally's next attack roll (remove it then); the daily repair.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Tempered Weapon",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Tempered Armour",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/thU8s3OOLqLzyreE#0": {
   "name": "Granted Power (Chauntea)",
@@ -3849,7 +3605,7 @@
    }
   ],
   "summary": "+1 AC (while standing on natural stone or earth). Shown as reminders.",
-  "manual": "Difficult terrain for enemies.",
+  "manual": "On your first hit each round, the ground within 20ft of you becomes difficult terrain for your enemies until your next turn.",
   "confidence": "high"
  },
  "kits/uYb9pzVrQ2X1wJQs#0": {
@@ -3878,9 +3634,23 @@
     "when": "while using a shield"
    }
   ],
-  "summary": "+1 AC (while using a shield). Shown as reminders.",
-  "manual": "Once/day +4 AC to a touched creature for 1 minute.",
-  "confidence": "high"
+  "summary": "+1 AC (while using a shield). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for 1 minute.",
+  "manual": "",
+  "confidence": "high",
+  "applies": [
+   {
+    "name": "Helm's Guard",
+    "target": "target",
+    "rounds": 10,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/pxBMLAoiGMfgxUMg#0": {
   "name": "Granted Power (Ilmater)",
@@ -4049,7 +3819,7 @@
    }
   ],
   "summary": "Advantage on checks (Knowledge and Lore checks). Shown as reminders.",
-  "manual": "Yes/no question; learning a defence.",
+  "manual": "Yes/no question (once a day); on your first hit each round against a creature, you learn one of its resistances, vulnerabilities or immunities.",
   "confidence": "high"
  },
  "kits/d6AxCNxdHA37h0q2#0": {
@@ -4078,9 +3848,23 @@
     "when": "Insight"
    }
   ],
-  "summary": "Advantage on skill checks (Insight). Shown as reminders.",
-  "manual": "Dream walking; morningstar no-reactions hit.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Insight). Shown as reminders. Moonlit Veil marks a creature hit with your morningstar that fails its Will save: it cannot act out of turn until the end of its next turn.",
+  "manual": "Dream walking (once a day); the engine does not stop the creature acting out of turn, the mark is a reminder.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Moonlit Veil",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "no.reactions",
+      "value": 1
+     }
+    ]
+   }
+  ]
  },
  "kits/Zi5kBGoBwuDPRGWq#0": {
   "name": "Granted Power (Shar)",
@@ -4127,9 +3911,23 @@
     "when": "Tracking"
    }
   ],
-  "summary": "Advantage on skill checks (Tracking). Shown as reminders.",
-  "manual": "Speak with plants and animals; maul speed-halving hit.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Tracking). Shown as reminders. Slowed halves the speed of a creature hit with your maul that fails its Reflex save, until its next turn.",
+  "manual": "Speak with plants and animals (once a day).",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Silvanus: Slowed",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": 0.5
+     }
+    ]
+   }
+  ]
  },
  "kits/OJBrlsNlHVA2CrMl#0": {
   "name": "Granted Power (Sune)",
@@ -4273,13 +4071,13 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+1d8",
-    "when": "once per encounter: next spell or attack while in Wild Shape (any type)"
+    "value": "+1d4",
+    "when": "first hit each round while in Wild Shape (a type you choose)"
    }
   ],
-  "summary": "+1d8 damage (once per encounter: next spell or attack while in Wild Shape (any type)). Shown as reminders.",
-  "manual": "Once-per-encounter use; also applies to spells.",
-  "confidence": "medium"
+  "summary": "+1d4 damage (first hit each round while in Wild Shape, a type you choose). Shown as reminders.",
+  "manual": "",
+  "confidence": "high"
  },
  "kits/pABZPl5YBwZFN2ju#1": {
   "name": "Ancient Communion",
@@ -4397,7 +4195,7 @@
    }
   ],
   "summary": "Advantage on checks (to perceive, communicate with or identify spirits, ancestors and natural extraplanar entities). Shown as reminders.",
-  "manual": "Daily question.",
+  "manual": "The yes/no question to the spirits during a long rest.",
   "confidence": "high"
  },
  "kits/Meg7LBecunl7cL8y#0": {
@@ -4411,9 +4209,23 @@
     "when": "Dismiss Woodland Creatures vs creatures in or beneath a city"
    }
   ],
-  "summary": "Advantage on checks (Dismiss Woodland Creatures vs creatures in or beneath a city). Shown as reminders.",
-  "manual": "Once-per-encounter rats (target Disadvantage on next attack).",
-  "confidence": "high"
+  "summary": "Advantage on checks (Dismiss Woodland Creatures vs creatures in or beneath a city). Shown as reminders. In a town or city, Rats and Pigeons on the first creature you hit with a spell each round: Disadvantage on its next attack roll.",
+  "manual": "Rats and Pigeons should end after its next attack roll (remove it then); only in a town or city.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Rats and Pigeons",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/oOHPFuyAtytbfykh#0": {
   "name": "Verdant Power",
@@ -4466,7 +4278,7 @@
  },
  "kits/AVBy314CbBUdzNTB#1": {
   "name": "Arena Presence",
-  "from": "Gladiator — The Pit-Forged (Fighter)",
+  "from": "Gladiator, The Pit-Forged (Fighter)",
   "container": "passive",
   "rules": [
    {
@@ -4496,7 +4308,7 @@
  },
  "kits/jGVbG6ezuKWLMVAk#0": {
   "name": "Cavalry Strike",
-  "from": "Mercenary — Blade for Hire (Fighter)",
+  "from": "Mercenary, Blade for Hire (Fighter)",
   "container": "passive",
   "rules": [
    {
@@ -4511,7 +4323,7 @@
  },
  "kits/gCvz9fRgu84Qy71E#1": {
   "name": "Connoisseur",
-  "from": "Swordmaster — The Eltor Duelist (Fighter)",
+  "from": "Swordmaster, The Eltor Duelist (Fighter)",
   "container": "passive",
   "rules": [
    {
@@ -4526,7 +4338,7 @@
  },
  "kits/AVBy314CbBUdzNTB#0": {
   "name": "Crowd's Favourite",
-  "from": "Gladiator — The Pit-Forged (Fighter)",
+  "from": "Gladiator, The Pit-Forged (Fighter)",
   "container": "passive",
   "rules": [
    {
@@ -4674,7 +4486,7 @@
  },
  "kits/jGVbG6ezuKWLMVAk#1": {
   "name": "Soldier's Rep",
-  "from": "Mercenary — Blade for Hire (Fighter)",
+  "from": "Mercenary, Blade for Hire (Fighter)",
   "container": "passive",
   "rules": [
    {
@@ -4916,9 +4728,23 @@
     "when": "Disguise to impersonate a specific person"
    }
   ],
-  "summary": "Advantage on checks (Disguise to impersonate a specific person). Shown as reminders.",
-  "manual": "-2 on a target's next Will save after it fails one against your spell.",
-  "confidence": "high"
+  "summary": "Advantage on checks (Disguise to impersonate a specific person). Shown as reminders. Veilweaver's Mark on a creature that failed a Will save against your spell: Disadvantage on its next Will save against you this encounter.",
+  "manual": "The mark should end after its next Will save against you (remove it then); the engine counts any Will save.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Veilweaver's Mark",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.save.will",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/kulEToLobrTmUlBy#0": {
   "name": "Precise Focus",
@@ -4964,10 +4790,15 @@
     "key": "adv.check",
     "value": 1,
     "when": "to establish a false identity in a new town; Legend Lore on travelling performers and carnivals"
+   },
+   {
+    "key": "adv.against.first",
+    "value": -1,
+    "when": "while you maintain an illusion"
    }
   ],
-  "summary": "Advantage on Cha checks (to hold an audience while maintaining an illusion); Advantage on checks (to establish a false identity in a new town; Legend Lore on travelling performers and carnivals). Shown as reminders.",
-  "manual": "Once-per-encounter stage-trick double (attack misses).",
+  "summary": "Advantage on Cha checks (to hold an audience while maintaining an illusion); Advantage on checks (to establish a false identity in a new town; Legend Lore on travelling performers and carnivals); Disadvantage on the first attack against you each round while you maintain an illusion. Shown as reminders.",
+  "manual": "The first attack against you is not given Disadvantage for you.",
   "confidence": "high"
  },
  "kits/7SipgwkVCMcbQFBC#1": {
@@ -5275,7 +5106,7 @@
    }
   ],
   "summary": "Advantage on checks (Speak with Dead; checks involving souls, spirits or planar entities). Shown as reminders.",
-  "manual": "Daily question.",
+  "manual": "Asking a recently dead creature one yes/no question (each corpse only once).",
   "confidence": "high"
  },
  "kits/v0oqDyruUCAoCI1c#0": {
@@ -5412,9 +5243,35 @@
     "when": "Craft and Smith"
    }
   ],
-  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders.",
-  "manual": "Tempering an ally; repairs.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (Advantage on its next attack roll) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
+  "manual": "Tempered Weapon should end after the ally's next attack roll (remove it then); the daily repair.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Tempered Weapon",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Tempered Armour",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/r1BQaijAu1X5ZUcp#0": {
   "name": "Granted Power (Chauntea)",
@@ -5533,7 +5390,7 @@
    }
   ],
   "summary": "+1 AC (while standing on natural stone or earth). Shown as reminders.",
-  "manual": "Difficult terrain.",
+  "manual": "On your first hit each round, difficult terrain for your enemies within 20ft until your next turn.",
   "confidence": "high"
  },
  "kits/j2vlIyX0RRyxW9Fs#0": {
@@ -5562,9 +5419,23 @@
     "when": "vs evil creatures (Divine Protection becomes +4)"
    }
   ],
-  "summary": "+2 AC (vs evil creatures (Divine Protection becomes +4)). Shown as reminders.",
-  "manual": "Once/day +4 AC to a touched creature.",
-  "confidence": "high"
+  "summary": "+2 AC (vs evil creatures (Divine Protection becomes +4)). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for 1 minute.",
+  "manual": "",
+  "confidence": "high",
+  "applies": [
+   {
+    "name": "Helm's Guard",
+    "target": "target",
+    "rounds": 10,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": -1
+     }
+    ]
+   }
+  ]
  },
  "kits/rGkOgbMDAzkfSPiw#0": {
   "name": "Granted Power (Istishia)",
@@ -5697,7 +5568,7 @@
    }
   ],
   "summary": "Advantage on checks (Knowledge and Lore checks). Shown as reminders.",
-  "manual": "Free reroll.",
+  "manual": "Once a day, Divine Intervention's reroll without spending Channel Divinity uses.",
   "confidence": "high"
  },
  "kits/dV9St4evB2XsHgoO#0": {
@@ -5726,9 +5597,23 @@
     "when": "Insight"
    }
   ],
-  "summary": "Advantage on skill checks (Insight). Shown as reminders.",
-  "manual": "Dreams; morningstar no-reactions hit.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Insight). Shown as reminders. Moonlit Veil marks a creature hit with your morningstar that fails its Will save: it cannot act out of turn until the end of its next turn.",
+  "manual": "Dreams (once a day); the engine does not stop the creature acting out of turn, the mark is a reminder.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Moonlit Veil",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "no.reactions",
+      "value": 1
+     }
+    ]
+   }
+  ]
  },
  "kits/LOETtVhyOe8B9nJu#0": {
   "name": "Granted Power (Shar)",
@@ -5775,9 +5660,23 @@
     "when": "Tracking"
    }
   ],
-  "summary": "Advantage on skill checks (Tracking). Shown as reminders.",
-  "manual": "Speak with animals; maul speed halving.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Tracking). Shown as reminders. Slowed halves the speed of a creature hit with your maul that fails its Reflex save, until its next turn.",
+  "manual": "Speak with plants and animals (once a day).",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Silvanus: Slowed",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "speed.mult",
+      "value": 0.5
+     }
+    ]
+   }
+  ]
  },
  "kits/fiHWktsMEo1dzYY5#0": {
   "name": "Granted Power (Sune)",
@@ -6157,7 +6056,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Open Locks on ship or cargo locks; Climb on rigging). Shown as reminders.",
-  "manual": "Post-Sneak Attack move.",
+  "manual": "After your Sneak Attack hits, move 10ft as part of the same action without provoking Attacks of Opportunity.",
   "confidence": "high"
  },
  "kits/LGxAbADMr1tfUcIr#0": {
@@ -6177,7 +6076,7 @@
  },
  "kits/2DIdlFH7tFNIipm9#1": {
   "name": "Discreet Channels",
-  "from": "The Veiled Ones — Information Gatherer (Rogue)",
+  "from": "The Veiled Ones, Information Gatherer (Rogue)",
   "container": "passive",
   "rules": [
    {
@@ -6222,7 +6121,7 @@
  },
  "kits/Fi2yWZ5a0hSU3mwp#0": {
   "name": "Guild Contract",
-  "from": "The Guild — Robin Track (Rogue)",
+  "from": "The Guild, Robin Track (Rogue)",
   "container": "passive",
   "rules": [
    {
@@ -6231,13 +6130,27 @@
     "when": "Pick Pocket and Open Locks on a Guild-assigned contract"
    }
   ],
-  "summary": "Advantage on skill checks (Pick Pocket and Open Locks on a Guild-assigned contract). Shown as reminders.",
-  "manual": "Ally Advantage after Sneak Attack.",
-  "confidence": "high"
+  "summary": "Advantage on skill checks (Pick Pocket and Open Locks on a Guild-assigned contract). Shown as reminders. Guild Mark on a target your Sneak Attack hit: the next ally to attack it before your next turn has Advantage.",
+  "manual": "Guild Mark is meant for an ally's attack: the engine also counts yours if you attack it first.",
+  "confidence": "medium",
+  "applies": [
+   {
+    "name": "Guild Mark",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first",
+      "value": 1
+     }
+    ]
+   }
+  ]
  },
  "kits/Fi2yWZ5a0hSU3mwp#1": {
   "name": "Guild Signal",
-  "from": "The Guild — Robin Track (Rogue)",
+  "from": "The Guild, Robin Track (Rogue)",
   "container": "passive",
   "rules": [
    {
@@ -6252,7 +6165,7 @@
  },
  "kits/2DIdlFH7tFNIipm9#0": {
   "name": "Silent Tail",
-  "from": "The Veiled Ones — Information Gatherer (Rogue)",
+  "from": "The Veiled Ones, Information Gatherer (Rogue)",
   "container": "passive",
   "rules": [
    {
@@ -6389,7 +6302,7 @@
    }
   ],
   "summary": "Sense: See perfectly in magical and mundane darkness; Advantage on saves (vs psychic damage, fear and madness).",
-  "manual": "Thought reading; daily question.",
+  "manual": "Thought reading (once a day, Will save to resist); sensing the emotional state of a creature you can see.",
   "confidence": "high"
  },
  "kits/aJDUT0wMuZ6zmmxQ#0": {
@@ -6422,7 +6335,7 @@
  "kits/pKqgl0RgApjf1WsV#1": {
   "name": "Bloodline Awakening",
   "from": "Awakened (Sorcerer)",
-  "container": "applies",
+  "container": "passive",
   "applies": [
    {
     "name": "Awakening: Stunned",
@@ -6434,9 +6347,16 @@
     "rules": []
    }
   ],
-  "summary": "Creatures failing the Will save are Stunned for 1 round.",
-  "manual": "Psychic damage; attacking allies on a fail by 5+; once/day ignore a failed save.",
-  "confidence": "medium"
+  "summary": "Creatures failing the Will save are Stunned for 1 round; Advantage on your saves against being stunned or paralysed (shown as a reminder).",
+  "manual": "Psychic damage; attacking allies on a fail by 5 or more.",
+  "confidence": "medium",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs being stunned or paralysed"
+   }
+  ]
  },
  "kits/R09IYIsqfJ613bmw#1": {
   "name": "Bloodline Awakening",
@@ -6578,10 +6498,10 @@
    {
     "key": "damage",
     "value": "+@abilities.cha.mod",
-    "when": "second attack in the first round of combat (Opening Flourish)"
+    "when": "second hit in each encounter (Opening Flourish)"
    }
   ],
-  "summary": "+Cha modifier damage (second attack in the first round of combat (Opening Flourish)). Shown as reminders.",
+  "summary": "+Cha modifier damage (second hit in each encounter (Opening Flourish)). Shown as reminders.",
   "manual": "",
   "confidence": "high"
  },
@@ -6672,7 +6592,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Deception). Shown as reminders.",
-  "manual": "Stacking -1 save penalty on targets.",
+  "manual": "A creature that fails a save against your spell has Disadvantage on its next save against your spells (doesn't stack).",
   "confidence": "high"
  },
  "kits/SiL3mqTRES9HBPgd#0": {
@@ -6999,8 +6919,8 @@
   "container": "toggle",
   "rules": [
    {
-    "key": "ac",
-    "value": 4
+    "key": "adv.against",
+    "value": -1
    },
    {
     "key": "adv.attack.first",
@@ -7019,7 +6939,7 @@
     "value": 1
    }
   ],
-  "summary": "Toggle Bestial Fury (1 minute): +4 AC, Advantage on the first attack each round, immune to charm and fear, no spellcasting.",
+  "summary": "Toggle Bestial Fury (1 minute): attacks against you have Disadvantage, Advantage on your first attack each round, immune to charm and fear, no spellcasting.",
   "manual": "Once per day. Text says first melee attack; the engine will also apply it to a first ranged attack.",
   "confidence": "medium"
  },
@@ -7069,11 +6989,11 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Coordinated Casting: once per encounter, if an ally is in melee with your target, it saves against your harmful spell at Disadvantage."
+    "value": "Coordinated Casting: while an ally is in melee with your target, it has Disadvantage on its save against your harmful spells."
    }
   ],
   "summary": "A reminder note on the matching card.",
-  "manual": "The target's Disadvantage.",
+  "manual": "The target's Disadvantage is not rolled for it.",
   "confidence": "medium"
  },
  "kits/gCASxDJKrZ51Vn5l#0": {
@@ -7083,11 +7003,11 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Elemental Precision: once per encounter, an elemental-damage spell imposes Disadvantage on the target's save."
+    "value": "Elemental Precision: reroll any 1s on the damage dice of your spells that deal elemental damage (once per die)."
    }
   ],
   "summary": "A reminder note on the matching card.",
-  "manual": "The target's Disadvantage.",
+  "manual": "The rerolls are not made for you.",
   "confidence": "medium"
  },
  "kits/ihmjokGtIE5hAHR6#1": {
@@ -7167,7 +7087,7 @@
    }
   ],
   "summary": "Advantage on saves (vs your own spells' backlash or unintended effects). Shown as reminders.",
-  "manual": "Once-per-encounter concentration reroll.",
+  "manual": "Keeping the slot when you fail to keep a spell after being damaged while casting.",
   "confidence": "high"
  },
  "kits/t2bu2fvJjsIad1Gb#1": {
@@ -10647,25 +10567,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/hjEk4CMWD5TSmD3U": {
-  "name": "Turn Undead",
-  "from": "Paladin",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Turned",
-    "target": "target",
-    "rounds": 10,
-    "statuses": [
-     "turned"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Turned undead are Turned for 1 minute (Frightened of the turner and moving away); it comes off when the turner attacks it.",
-  "manual": "Destruction and control stay manual.",
-  "confidence": "high"
- },
  "class-features/7qQi9fW8rl1RKTXP": {
   "name": "Eldritch Invocations",
   "from": "Warlock",
@@ -10742,7 +10643,7 @@
   "from": "Hedge Knights (Knight)",
   "container": "passive",
   "rules": [],
-  "summary": "The kit's own Embolden (+2 Fortitude and Reflex, +3 Will, twice your Knight level in rounds, 60ft), once a day; it replaces the usual one.",
+  "summary": "Your Embolden reaches 60ft and gives Advantage on all saves: the kit feature carries Emboldened (Steadfast Courage), applied in place of the usual Emboldened.",
   "manual": "",
   "confidence": "high"
  },
@@ -10751,8 +10652,8 @@
   "from": "Boldock Wall-Knights (Knight)",
   "container": "passive",
   "rules": [],
-  "summary": "The kit's own Demoralise (-6 Charisma checks; on a failed Will save, Disadvantage on all attacks), once a day; it replaces the usual one.",
-  "manual": "Number of creatures affected.",
+  "summary": "Your Demoralise is harsher: on a failed Will save, Disadvantage on all attack rolls. The kit feature carries that effect, applied in place of the usual failed-save one.",
+  "manual": "",
   "confidence": "high"
  },
  "spells/ebwPab5a9IwqYPl9": {
@@ -10830,6 +10731,15 @@
   "container": "applies",
   "applies": [
    {
+    "name": "Word of Power: Deafened (1d4 rounds)",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   },
+   {
     "name": "Word of Power: Blinded",
     "target": "target",
     "rounds": "2d4",
@@ -10848,9 +10758,9 @@
     "rules": []
    }
   ],
-  "summary": "Apply the conditions matching the target's Level on a failed Will save (deafness comes from Words of Power).",
-  "manual": "Which conditions apply (by Level); death at Level 4 or lower.",
-  "confidence": "medium"
+  "summary": "On a failed Will save, by the target's Level: 4 or lower dies; 5-7 paralysed (1d10 rounds), blinded (2d4) and deafened (1d4); 8-11 blinded and deafened; 12 or higher deafened until the end of its next turn (Words of Power's own effect).",
+  "manual": "Which effects apply (by Level); death at Level 4 or lower.",
+  "confidence": "high"
  },
  "class-features/VyDNqJme3aEMq9Yk": {
   "name": "Elemental Mastery (Improved)",
@@ -10922,5 +10832,337 @@
   "summary": "+1 Cha (the Charisma Bonus printed with this feature).",
   "manual": "The summons themselves (Pact Summons' Use).",
   "confidence": "high"
+ },
+ "class-features/HsaRmK1vFPmnyMmS": {
+  "name": "Command (Charisma)",
+  "from": "Knight",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Inspired",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Emboldened",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.save.will",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Demoralised",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": -1
+     }
+    ]
+   },
+   {
+    "name": "Demoralised (failed save)",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": -1
+     }
+    ]
+   },
+   {
+    "name": "Expert in Arms",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": 1,
+      "when": "contested manoeuvre checks"
+     }
+    ]
+   }
+  ],
+  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on the first attack each round), Emboldened (Advantage on Will saves), Demoralised (Disadvantage on Charisma checks; on a failed Will save also on the first attack each round), all for the encounter; Expert in Arms (Advantage on contested manoeuvre checks) until the start of your next turn.",
+  "manual": "Who is in range and how many creatures; only one Command at a time (two from 8th, Battlefield Dominance); a new one ends the last: remove its effects.",
+  "confidence": "high"
+ },
+ "class-features/8DY1NmlAZleWk9St": {
+  "name": "Martial Bearing",
+  "from": "Knight",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "damage.melee",
+    "value": "+max(1,floor(@cl/3))"
+   }
+  ],
+  "summary": "+1 melee weapon damage per three Knight levels (minimum +1).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/bcTCPHpEtswl4Ktg": {
+  "name": "Honour Attack",
+  "from": "Knight",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "attack",
+    "value": "+@abilities.cha.mod",
+    "when": "your first attack roll each round against your Challenged foe (its AC counts as lower by your Charisma modifier)"
+   },
+   {
+    "key": "note.damage",
+    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers).}"
+   }
+  ],
+  "summary": "Reminder: first attack each round against your Challenged foe gets your Charisma modifier (its AC counts as that much lower). From 17th, the once-per-encounter doubled dice (its Use).",
+  "manual": "Whether this is the first attack this round against the Challenged foe.",
+  "confidence": "high"
+ },
+ "class-features/6E3Qgm8EqTA3RAmF": {
+  "name": "Performance (Charisma)",
+  "from": "Bard",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Exalted",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": 1
+     },
+     {
+      "key": "adv.save",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Discord",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": -1,
+      "when": "its next attack roll"
+     }
+    ]
+   },
+   {
+    "name": "Exhorted",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "name": "Word of Power: Deafened",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [
+     "deafened"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "The Performance pool. Each option offers only its own effect: Exalted (Advantage on checks and saves, not attacks, for the encounter), Discord (Disadvantage on the next attack, failed Will save), Exhorted (Advantage on the first attack each round for the encounter), Words of Power (Deafened until the end of its next turn, failed Will save).",
+  "manual": "Exhort Greatness' temporary HP (two rolls of the creature's Hit Die, each + Constitution modifier); Rally's re-saves; one Performance a round.",
+  "confidence": "high"
+ },
+ "class-features/SITkRcsV0orjWqI4": {
+  "name": "Channel Divinity (Charisma)",
+  "from": "Paladin",
+  "container": "applies",
+  "rules": [],
+  "applies": [
+   {
+    "name": "Turned",
+    "target": "target",
+    "rounds": 10,
+    "statuses": [
+     "turned"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "The Channel pool. Smite rolls its +1 damage per Paladin level (Advantage on that attack); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
+  "manual": "Smite's Advantage: roll the attack with Advantage. Turn Undead's destruction and the number turned.",
+  "confidence": "high"
+ },
+ "class-features/TgGJDs1KneKENxXD": {
+  "name": "Arcane Ward",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "cast.temp",
+    "value": "2"
+   }
+  ],
+  "summary": "Casting a spell of 1st level or higher gives temporary HP equal to twice its level (the higher amount stays; no stacking).",
+  "manual": "It lasts until the encounter ends: clear the temporary HP then if any is left.",
+  "confidence": "high"
+ },
+ "class-features/aCkIJ1icpAoYLVXf": {
+  "name": "Bent Path",
+  "from": "Archer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.attack",
+    "value": "Bent Path: your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks it)."
+   }
+  ],
+  "summary": "Always on: a reminder on attack cards for your first shot each round.",
+  "manual": "Ignoring the cover Disadvantage and the shield's bonus is done by hand.",
+  "confidence": "medium"
+ },
+ "class-features/wMiux84hUnuI9iMG": {
+  "name": "Bent Path (Improved)",
+  "from": "Archer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.attack",
+    "value": "Bent Path (Improved): if Running Shot's movement trigger was met this turn, your Bent Path shot treats Full Cover as Half Cover (you can target it with Disadvantage) and ignores a shield's AC bonus, including magical bonuses."
+   }
+  ],
+  "summary": "Always on: a reminder on attack cards.",
+  "manual": "The cover and shield adjustments are done by hand.",
+  "confidence": "medium"
+ },
+ "class-features/12r60eED90uq58Pr": {
+  "name": "Quick Reflexes",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Initiative.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/VkVLCNJ3it9jWN1i": {
+  "name": "Quick Reflexes (Improved)",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reflexes).",
+  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; on a natural 11+ initiative result, one extra action at the end of the round (an attack or half movement only).",
+  "confidence": "medium"
+ },
+ "class-features/Hf4NJtXTzPZminn3": {
+  "name": "Quick Reflexes",
+  "from": "Monk",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Initiative.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/Zm8c8FOKZGsdneoK": {
+  "name": "Quick Reflexes (Improved)",
+  "from": "Monk",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reflexes).",
+  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; the once-per-encounter extra action and the improved Untouchable are on its Use.",
+  "confidence": "medium"
+ },
+ "class-features/e8xjs8uHxKKAnpui": {
+  "name": "Quick Reflexes",
+  "from": "Rogue",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Initiative.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/mUljAWFviDMM2z02": {
+  "name": "Quick Reflexes (Improved)",
+  "from": "Rogue",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "init",
+    "value": 1
+   }
+  ],
+  "summary": "+1 more Initiative (+2 in total with the earlier Quick Reflexes).",
+  "manual": "Assumes this replaces the earlier +1 rather than stacking to +3; the once-per-encounter extra action is on its Use.",
+  "confidence": "medium"
+ },
+ "kits/o15Vvrk1VosCMHlq#0": {
+  "name": "Broader Study",
+  "from": "Battle Caster (Magus)",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Broader Study",
+    "target": "self",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": 1
+     }
+    ]
+   }
+  ],
+  "summary": "After you cast a spell of 1st level or higher: Advantage on your next weapon attack.",
+  "manual": "Should end after one weapon attack (remove it then); the engine runs it out at the start of your next turn, not the end, and also counts touch spell attacks. Use it only after a spell of 1st level or higher.",
+  "confidence": "medium"
  }
 }

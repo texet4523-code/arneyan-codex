@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, call upon noble spirit: the target's AC is reduced by the knight's Charisma modifier, and the knight has <strong>Advantage</strong> on the attack.</li><li>17th level: also doubles the weapon's damage dice</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your first attack roll each round against your Challenged foe treats its AC as lower by your Charisma modifier. Always on.</li><li>17th level: once per encounter, your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled)</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "encounter"
+   "per": "encounter",
+   "formula": "17:1"
   },
   "save": "",
   "dc": null,
@@ -23,14 +24,14 @@
   "className": "Knight",
   "activities": [
    {
-    "name": "Honour Attack",
+    "name": "Doubled dice",
     "kind": "note",
     "formula": "",
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Reduce the target's AC by your Charisma modifier and attack with Advantage. From 17th level, double the weapon's damage dice.",
-    "minLevel": 0,
+    "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled).",
+    "minLevel": 17,
     "maxLevel": 0,
     "cost": 1,
     "per": "",
@@ -45,13 +46,31 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
-  ]
+  ],
+  "rules": [
+   {
+    "key": "attack",
+    "value": "+@abilities.cha.mod",
+    "when": "your first attack roll each round against your Challenged foe (its AC counts as lower by your Charisma modifier)",
+    "label": ""
+   },
+   {
+    "key": "note.damage",
+    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers).}",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "CGUojR3z1P04gXa2",
- "sort": 7,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

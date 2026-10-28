@@ -1,0 +1,215 @@
+{
+ "_id": "HsaRmK1vFPmnyMmS",
+ "_key": "!items!HsaRmK1vFPmnyMmS",
+ "name": "Command (Charisma)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Uses per day equal to 1 + your Charisma modifier (minimum 2), +1 more at 6th level and again at 12th. Spend a use as your action to give a Command; it lasts for the encounter. Only one Command is active at a time: a new one ends the last.</li><li><strong>Inspire</strong> (the default Command): friendly creatures within your presence have <strong>Advantage</strong> on their first attack roll each round</li><li>Inspire affects up to 12 creatures at 1st level, 25 at 3rd, 50 at 5th, 250 at 7th, 1,000 at 9th, 5,000 at 12th, 20,000 at 16th</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 2,
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Inspire",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "The default Command, for the encounter: friendly creatures within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) have Advantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Inspired",
+    "spendAny": false
+   },
+   {
+    "name": "Embolden",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "For the encounter, companions and followers within {3:30ft, 19:60ft} have Advantage on Will saves. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 3,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Emboldened",
+    "spendAny": false
+   },
+   {
+    "name": "Demoralise",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also have Disadvantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 5,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Demoralised, Demoralised (failed save)",
+    "spendAny": false
+   },
+   {
+    "name": "Expert in Arms",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Until the start of your next turn, allies within {9:40ft, 19:80ft} who follow your orders have Advantage on contested manoeuvre checks. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 9,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Expert in Arms",
+    "spendAny": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Inspired",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Emboldened",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.save.will",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Demoralised",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Demoralised (failed save)",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ]
+   },
+   {
+    "name": "Expert in Arms",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "contested manoeuvre checks",
+      "label": ""
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

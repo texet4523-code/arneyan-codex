@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "wis",
     "save": "",
-    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "text": "Out of turn, when struck by a spell of your chosen element: beat its save DC to reflect it at a target of your choice for its original damage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -44,8 +44,10 @@
     "damageBonus": "",
     "noStack": "",
     "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "rules": [],

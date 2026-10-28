@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>Barbarians who learned the discipline of the shield wall and the weight of mail, and carry their fury into armour.</p><ul><li><strong>Armoured Fury:</strong> You are trained in heavy armour. Primeval Instincts and the wilderness abilities work in medium armour; only heavy armour switches them off.</li><li><strong>Iron Rage:</strong> While you rage in medium or heavy armour, you gain +1 AC.</li></ul>",
+  "description": "<p>Barbarians who learned the discipline of the shield wall and the weight of mail, and carry their fury into armour.</p><ul><li><strong>Armoured Fury:</strong> You are trained in heavy armour. Primeval Instincts and the wilderness abilities work in medium armour; only heavy armour switches them off.</li><li><strong>Iron Rage:</strong> While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,7 +26,7 @@
    {
     "name": "Iron Rage",
     "level": 1,
-    "description": "<p>While you rage in medium or heavy armour, you gain +1 AC.</p>",
+    "description": "<p>While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -35,13 +35,13 @@
     "save": "",
     "rules": [
      {
-      "key": "ac",
-      "value": "1",
-      "when": "while raging in medium or heavy armour",
+      "key": "adv.against.first",
+      "value": "-1",
+      "when": "",
       "label": ""
      }
     ],
-    "toggle": false,
+    "toggle": true,
     "active": false
    }
   ]

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<p>The refined court-fencing tradition of Eltor — every fight a performance, every wound a statement.</p><ul><li><strong>Every Move a Statement:</strong> Opening Flourish applies to your first two attacks in the first round of combat, not just the first attack.</li><li><strong>Court Bearing:</strong> <strong>Advantage</strong> on Persuasion and Performance checks in formal social settings, and on checks impressing nobles or attending court functions.</li></ul>",
+  "description": "<p>The refined court-fencing tradition of Eltor — every fight a performance, every wound a statement.</p><ul><li><strong>Every Move a Statement:</strong> Opening Flourish applies to your first two hits in each encounter, not just the first.</li><li><strong>Court Bearing:</strong> <strong>Advantage</strong> on Persuasion and Performance checks in formal social settings, and on checks impressing nobles or attending court functions.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Every Move a Statement",
     "level": 1,
-    "description": "<p>Opening Flourish applies to your first two attacks in the first round of combat, not just the first attack.</p>",
+    "description": "<p>Opening Flourish applies to your first two hits in each encounter, not just the first.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -26,7 +26,7 @@
      {
       "key": "damage",
       "value": "+@abilities.cha.mod",
-      "when": "second attack in the first round of combat (Opening Flourish)",
+      "when": "second hit in each encounter (Opening Flourish)",
       "label": ""
      }
     ],

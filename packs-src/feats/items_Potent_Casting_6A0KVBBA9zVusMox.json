@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
  "system": {
-  "description": "<p>Once a fight, you can put real weight behind a casting — enough that whoever's on the receiving end finds their usual resistance isn't there when they need it most. Once per encounter, when you cast a spell, the target(s) have <strong>Disadvantage</strong> on their saving throw against it.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "description": "<p>You put real weight behind every casting, enough that whatever usually shrugs off that kind of harm finds it gets through. Your spells ignore damage resistance (but not immunity).</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,14 +13,14 @@
   "path": "Arcane & Devout Path",
   "levelTaken": 0,
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "encounter"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "rules": [
    {
     "key": "note.spell",
-    "value": "Potent Casting: once per encounter, targets have Disadvantage on their save against this spell.",
+    "value": "Potent Casting: your spells ignore damage resistance (but not immunity).",
     "when": "",
     "label": ""
    }

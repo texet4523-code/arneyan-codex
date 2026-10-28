@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Permanent passive aura — +2 AC and +2 on all saves against evil creatures. Summoned and conjured evil creatures cannot make physical contact with the Paladin; their natural weapon attacks fail and they recoil.</li><li>Good elementals and outsiders are immune to this effect</li><li>Immune to all diseases of any origin.</li><li>Detect Evil: concentrate for <strong>one round</strong> while facing a target within <strong>60ft</strong> — innate ability, no spellcasting involved. Usable as often as desired.</li><li>Aura of Courage (2nd level): immune to fear (magical or otherwise). Allies within the aura's range gain +4 on saves vs fear — see the Paladin Progression Table (<strong>10ft</strong> at 2nd, <strong>30ft</strong> at 15th, <strong>50ft</strong> at 20th).</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Permanent passive aura — +2 AC and +2 on all saves against evil creatures. Summoned and conjured evil creatures cannot make physical contact with the Paladin; their natural weapon attacks fail and they recoil.</li><li>Good elementals and outsiders are immune to this effect</li><li>Immune to all diseases of any origin.</li><li>Detect Evil: concentrate for <strong>one round</strong> while facing a target within <strong>60ft</strong> — innate ability, no spellcasting involved. Usable as often as desired.</li><li>Aura of Courage (2nd level): immune to fear (magical or otherwise). Allies within the aura's range have <strong>Advantage</strong> on saves vs fear — see the Paladin Progression Table (<strong>10ft</strong> at 2nd, <strong>30ft</strong> at 15th, <strong>50ft</strong> at 20th).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "rules": [
@@ -105,8 +107,8 @@
     "includeSelf": false,
     "rules": [
      {
-      "key": "save",
-      "value": "4",
+      "key": "adv.save",
+      "value": "1",
       "when": "vs fear",
       "label": "Aura of Courage"
      }

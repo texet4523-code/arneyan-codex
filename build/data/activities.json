@@ -48,76 +48,44 @@
   "confidence": "high",
   "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th."
  },
- "Bent Path|Archer": {
-  "activities": [
-   {
-    "name": "Bent Path",
-    "kind": "note",
-    "text": "This shot ignores Disadvantage from Half Cover and reduces a shield's AC bonus by 2.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter shot modifier."
- },
- "Bent Path (Improved)|Archer": {
-  "activities": [
-   {
-    "name": "Bent Path (Improved)",
-    "kind": "note",
-    "text": "This shot treats Full Cover as Half Cover and ignores a shield's AC bonus, including magic; requires Running Shot's movement this turn.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter shot modifier."
- },
  "Called Shot (Archer)|Archer": {
   "activities": [
    {
     "name": "Head",
     "kind": "save",
-    "save": "fort",
-    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "text": "On a hit the target saves or is stunned for 1 round. Once it recovers it is immune to your Head shots for the rest of the encounter.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    },
    {
     "name": "Arm",
     "kind": "save",
-    "save": "fort",
     "text": "On a hit the target saves or drops what it is holding.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    },
    {
     "name": "Leg",
     "kind": "save",
-    "save": "fort",
     "text": "On a hit the target saves or has its movement halved for 1 round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    }
   ],
   "confidence": "high",
-  "why": "Three called-shot locations chosen at use; one a round."
+  "why": "Three called-shot locations chosen at use; one a round. Checked against Handbook v0.10.27."
  },
  "Twin Nock|Archer": {
   "activities": [
@@ -494,7 +462,7 @@
    {
     "name": "Rage",
     "kind": "note",
-    "text": "Enter a rage for 3 + Constitution modifier rounds (minimum 3), gaining +2 melee damage (+4 from 10th, +6 from 20th).",
+    "text": "Enter a rage that lasts the encounter: +{1:2, 10:4, 20:6} melee weapon damage. It ends early if a full round passes without you attacking or taking damage. Switch on the Rage toggle.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -503,64 +471,28 @@
    }
   ],
   "confidence": "high",
-  "why": "1 + Con mod per day; uses not tracked on the item.",
+  "why": "1 + Con mod a day (minimum 2); the Rage toggle carries the damage and switches off when the encounter ends. Checked against Handbook v0.10.27.",
   "uses": {
    "max": 2,
    "per": "day",
    "formula": "max(2, 1 + @con.mod)"
   }
  },
- "Primeval Instincts|Barbarian": {
-  "activities": [
-   {
-    "name": "Strength (+4)",
-    "kind": "check",
-    "ability": "str",
-    "bonus": "4",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "+4 to this Strength check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
-   },
-   {
-    "name": "Dexterity (+4)",
-    "kind": "check",
-    "ability": "dex",
-    "bonus": "4",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "+4 to this Dexterity check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
-   },
-   {
-    "name": "Constitution (+4)",
-    "kind": "check",
-    "ability": "con",
-    "bonus": "4",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "+4 to this Constitution check in extreme circumstances, once per round, when not wearing medium or heavy armour and not having fled the challenge."
-   }
-  ],
-  "confidence": "high",
-  "why": "Handbook: +4 to a physical attribute check in extreme circumstances once per round; the roll now adds it."
- },
  "Whirlwind Attack|Barbarian": {
   "activities": [
    {
     "name": "Whirlwind Attack",
     "kind": "note",
-    "text": "Replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} adjacent foes of Level up to {1:half yours, 13:yours}.",
+    "text": "Once per rage, while raging: replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} foes within 5ft of Level up to {1:half yours, 13:yours}.",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "",
     "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter attack."
+  "why": "Once per rage (not tracked: one use each time you rage). Checked against Handbook v0.10.27."
  },
  "Primeval Will|Barbarian": {
   "activities": [
@@ -583,17 +515,18 @@
   "activities": [
    {
     "name": "Ancestral Calling",
-    "kind": "note",
-    "text": "Nearby allies of Level up to twice yours gain temporary HP equal to the maximum roll of one extra Hit Die of their type.",
+    "kind": "temp",
+    "text": "The first time you rage each day, allies within 30ft gain temporary HP equal to your Barbarian level, lasting until the end of the day. Not with another Barbarian's Ancestral Calling.",
     "minLevel": 0,
-    "cost": 1,
-    "per": "",
+    "cost": 0,
+    "per": "day",
     "target": "allies",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "@cl"
    }
   ],
   "confidence": "high",
-  "why": "Weekly ally buff; amount depends on each ally's Hit Die."
+  "why": "Always on: comes with the first rage each day (untracked daily). Checked against Handbook v0.10.27."
  },
  "Warlord|Barbarian": {
   "activities": [
@@ -645,152 +578,105 @@
   "confidence": "high",
   "why": "Named Charisma skill check."
  },
- "Exalt (Charisma)|Bard": {
-  "activities": [
-   {
-    "name": "Exalt",
-    "kind": "note",
-    "text": "One ally within 60ft gains +{1:2, 6:3, 12:4, 18:5} on attribute checks and saves (not attack rolls) for rounds equal to your Bard level.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily ally buff; text says once per day per level.; 0.10.48: steps up with level (Progression Table)",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "@cl"
-  }
- },
  "Fascinate (Charisma)|Bard": {
   "activities": [
    {
     "name": "Fascinate",
     "kind": "save",
-    "save": "will",
-    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you save or fall into a trance for rounds equal to your Bard level.",
+    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you, and aren't in immediate combat, save or fall into a trance until the scene ends or something breaks it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    },
    {
     "name": "Charm Person",
     "kind": "save",
-    "save": "will",
     "text": "A currently fascinated creature saves or is affected as by Charm Person.",
     "minLevel": 5,
     "cost": 0,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    },
    {
     "name": "Suggestion",
     "kind": "save",
-    "save": "will",
     "text": "A currently fascinated creature saves or receives a Suggestion.",
     "minLevel": 8,
     "cost": 0,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    },
    {
     "name": "Antipathy/Sympathy",
     "kind": "save",
-    "save": "will",
     "text": "A currently fascinated creature saves or is affected as by Antipathy/Sympathy.",
     "minLevel": 12,
     "cost": 0,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Sway Crowd",
+    "kind": "save",
+    "text": "While performing, all listeners save or are held in rapture, unable to leave while you perform and for rounds equal to your Bard level after: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language.",
+    "minLevel": 13,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "save": "will"
    },
    {
     "name": "Mass Suggestion",
     "kind": "save",
-    "save": "will",
     "text": "Currently fascinated creatures save or receive a Mass Suggestion.",
     "minLevel": 18,
     "cost": 0,
     "per": "",
     "target": "",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    }
   ],
   "confidence": "high",
-  "why": "Follow-up options come from the Bard 5th/8th/12th/18th-level feature items. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Exhort Greatness|Bard": {
-  "activities": [
-   {
-    "name": "Exhort Greatness",
-    "kind": "note",
-    "text": "Up to {1:1, 11:2, 13:3, 15:4, 17:5, 19:6, 21:7, 23:8} creatures within 30ft gain Advantage on their first attack each round and temporary HP equal to two rolls of their Hit Die plus their Constitution modifier on each.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily buff; temp HP depends on the target's Hit Die.; 0.10.48: steps up with level (Progression Table)",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "1:1, 15:2"
-  }
- },
- "Rally|Bard": {
-  "activities": [
-   {
-    "name": "Rally",
-    "kind": "note",
-    "text": "While performing, all creatures within earshot may re-save against any fear or morale effect affecting them.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily ally re-save."
+  "why": "3 a day; lasts until the scene ends (books v0.10.25). Follow-up options come from the Bard 5th/8th/12th/18th-level features; Sway Crowd (13th) now spends a Fascinate use."
  },
  "Turn Undead|Cleric": {
   "activities": [
    {
     "name": "Turn Undead",
     "kind": "save",
-    "save": "will",
-    "text": "Undead within 30ft save against your Turn DC or are turned (destroyed from 8th level if their Level is no more than half yours).",
+    "text": "Undead within 30ft that can see or hear you save against your Class Save DC or are turned (destroyed from 8th level if their Level is no more than half your Cleric level).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    },
    {
     "name": "Control Undead",
     "kind": "save",
-    "save": "will",
-    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Turn DC or obey you for 1 hour per Cleric level.",
+    "text": "Evil Clerics only: undead at least 5 Levels below you save against your Class Save DC or obey you for 1 hour per Cleric level (at most your Cleric level in total Levels of undead).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    }
   ],
   "confidence": "high",
-  "why": "Turn vs control chosen at use; 3 + Wis mod per day and Turn DC differs from class DC. Checked against Handbook v0.10.10, 25 Oct.",
+  "why": "Turn vs control chosen at use; 3 + Wis mod per day. Turn DC is now the Class Save DC. Checked against Handbook v0.10.27.",
   "uses": {
    "max": 3,
    "per": "day",
@@ -1083,39 +969,39 @@
    {
     "name": "Head",
     "kind": "save",
-    "save": "fort",
-    "text": "On a hit the target saves or is stunned for 1 round, and is then immune to your Head shots for 1 minute.",
+    "text": "On a hit the target saves or is stunned for 1 round. Once it recovers it is immune to your Head shots for the rest of the encounter.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    },
    {
     "name": "Arm",
     "kind": "save",
-    "save": "fort",
     "text": "On a hit the target saves or drops what it is holding.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    },
    {
     "name": "Leg",
     "kind": "save",
-    "save": "fort",
     "text": "On a hit the target saves or has its movement halved for 1 round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "fort"
    }
   ],
   "confidence": "high",
-  "why": "Three called-shot locations chosen at use; one a round."
+  "why": "Three called-shot locations chosen at use; one a round. Checked against Handbook v0.10.27."
  },
  "Trick Shot (Dexterity)|Gunslinger": {
   "activities": [
@@ -1220,7 +1106,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per long rest."
+  "why": "Once per day (books v0.10.25: was once per long rest)."
  },
  "See Invisible (Intelligence)|Illusionist": {
   "activities": [
@@ -1272,23 +1158,6 @@
   "confidence": "high",
   "why": "Once per day."
  },
- "Perfect Recall|Illusionist": {
-  "activities": [
-   {
-    "name": "Perfect Recall",
-    "kind": "check",
-    "ability": "int",
-    "text": "Make a DC 10 Intelligence check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily Intelligence check."
- },
  "Magnum Opus|Illusionist": {
   "activities": [
    {
@@ -1322,86 +1191,43 @@
   "confidence": "high",
   "why": "Named Dexterity check for mount manoeuvres."
  },
- "Inspire (Charisma)|Knight": {
-  "activities": [
-   {
-    "name": "Inspire",
-    "kind": "note",
-    "text": "All friendly creatures in your presence have Advantage on their first attack roll each round for rounds equal to your Knight level.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily ally buff."
- },
- "Rallying Cry|Knight": {
-  "activities": [
-   {
-    "name": "Rallying Cry",
-    "kind": "note",
-    "text": "Allies within 30ft that can hear you end the Frightened or Charmed condition.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily; clears specific conditions on allies, so removeConditions left false."
- },
- "Expert in Arms|Knight": {
-  "activities": [
-   {
-    "name": "Expert in Arms",
-    "kind": "note",
-    "text": "For one round, allies within 40ft who follow your orders have Advantage on contested manoeuvre checks.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Command action; frequency not stated. Checked against Handbook v0.10.10, 25 Oct."
- },
  "Honour Attack|Knight": {
   "activities": [
    {
-    "name": "Honour Attack",
+    "name": "Doubled dice",
     "kind": "note",
-    "text": "Reduce the target's AC by your Charisma modifier and attack with Advantage. From 17th level, double the weapon's damage dice.",
-    "minLevel": 0,
+    "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled).",
+    "minLevel": 17,
     "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false
    }
   ],
+  "uses": {
+   "max": 1,
+   "per": "encounter",
+   "formula": "17:1"
+  },
   "confidence": "high",
-  "why": "Once per encounter attack."
+  "why": "Books v0.10.25: always on (first attack each round against the Challenged foe treats its AC as lower by your Charisma modifier); the once-per-encounter part is the 17th-level doubled dice only."
  },
  "Undying Reputation|Knight": {
   "activities": [
    {
     "name": "Undying Reputation",
     "kind": "temp",
-    "formula": "@cha.mod*{13:floor(@cl/2), 24:@cl}",
-    "text": "When reduced below half HP in witnessed combat, gain temporary HP equal to Charisma modifier times {13:half your Knight level, 24:your Knight level}. From 24th level you also have Advantage on your first attack each round.",
+    "text": "Once per day, when reduced below half HP in combat witnessed by at least one ally or enemy, gain temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "{13:@cl, 24:2*@cl} + @abilities.cha.mod"
    }
   ],
   "confidence": "high",
-  "why": "Weekly; formula stated."
+  "why": "Books v0.10.25: once per day (was weekly); Knight level + Charisma modifier, twice the level from 24th."
  },
  "Spellstrike|Magus": {
   "activities": [
@@ -1518,17 +1344,18 @@
    {
     "name": "Deflect Missiles",
     "kind": "check",
-    "ability": "dex",
-    "text": "Against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round.",
+    "text": "Out of turn: against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Not while surprised or Incapacitated.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "ability": "dex",
+    "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Dexterity check vs attack roll; attempts per round from the table."
+  "why": "Dexterity check vs attack roll, out of turn; attempts per round from the table. Checked against Handbook v0.10.27."
  },
  "Ascetic Recovery|Monk": {
   "activities": [
@@ -1579,43 +1406,18 @@
    {
     "name": "Catch Weapon",
     "kind": "check",
-    "ability": "dex",
-    "text": "Against the attacker's melee attack roll; on success you hold the weapon the opponent was wielding.",
+    "text": "Out of turn, when struck in melee: against the attacker's attack roll; on success you hold the weapon the opponent was wielding. Not while surprised or Incapacitated.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "ability": "dex",
+    "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Dexterity check vs attack roll, once per round."
- },
- "Quick Reaction (Improved)|Monk": {
-  "activities": [
-   {
-    "name": "Extra Action",
-    "kind": "note",
-    "text": "In the first round, take one extra action: one additional attack or half movement.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   },
-   {
-    "name": "Untouchable",
-    "kind": "note",
-    "text": "When an attack you can perceive would hit you, negate it as a miss; usable Wisdom modifier times per day (minimum 1).",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Two distinct uses with separate frequencies."
+  "why": "Dexterity check vs attack roll, once per round out of turn. Checked against Handbook v0.10.27."
  },
  "Animate Dead|Necromancer": {
   "activities": [
@@ -1687,82 +1489,33 @@
    {
     "name": "Heal",
     "kind": "heal",
-    "formula": "2*@cl",
-    "text": "Heal 2 HP per Paladin level on yourself or one other; the total cannot be split.",
+    "text": "As an action, touch a creature and spend any number of points from the pool to heal it that much.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "@spent",
+    "spendAny": true
    },
    {
     "name": "Cure Disease",
     "kind": "note",
-    "text": "Cure any disease by touch, no check required: {1:1, 6:2, 12:3} times a week.",
+    "text": "Spend 5 points to cure any disease by touch, no check required.",
     "minLevel": 0,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Divine Healing",
-    "kind": "note",
-    "text": "Completely cure all diseases, blindness, deafness, HP damage, temporary ability damage, poison, feeblemind and mental disorders at once.",
-    "minLevel": 8,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "As specified; three named options."
- },
- "Smite Evil|Paladin": {
-  "activities": [
-   {
-    "name": "Smite",
-    "kind": "damage",
-    "formula": "@cl",
-    "damageType": "",
-    "text": "Gain Advantage on one attack roll and add +1 damage per Paladin level.",
-    "minLevel": 0,
-    "cost": 1,
+    "cost": 5,
     "per": "",
     "target": "one",
     "removeConditions": false
    }
   ],
-  "confidence": "high",
-  "why": "Bonus damage stated; daily uses come from the table. Checked against Handbook v0.10.10, 25 Oct.",
   "uses": {
-   "max": 1,
+   "max": 2,
    "per": "day",
-   "formula": "1:1, 5:2, 15:3"
-  }
- },
- "Turn Undead|Paladin": {
-  "activities": [
-   {
-    "name": "Turn Undead",
-    "kind": "save",
-    "save": "will",
-    "text": "Undead within 30ft save against your Turn DC (as a Cleric 2 levels lower) or are turned.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
+   "formula": "2 * @cl"
+  },
   "confidence": "high",
-  "why": "3 + Cha mod per day; Turn DC differs from class DC. Checked against Handbook v0.10.10, 25 Oct.",
-  "uses": {
-   "max": 3,
-   "per": "day",
-   "formula": "3 + @cha.mod"
-  }
+  "why": "Books v0.10.25: a daily pool of 2 HP per Paladin level, spent in any amounts; Cure Disease costs 5 points. Divine Healing is now a Divine Intervention option (Channel Divinity)."
  },
  "Bequeath Virtue|Paladin": {
   "activities": [
@@ -1779,47 +1532,6 @@
   ],
   "confidence": "high",
   "why": "One item per day. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Divine Intervention|Paladin": {
-  "activities": [
-   {
-    "name": "Reroll",
-    "kind": "note",
-    "text": "Reroll any one die result: attack, damage, save, turn undead or attribute check.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   },
-   {
-    "name": "Divine Might",
-    "kind": "note",
-    "text": "Gain Advantage on all your attack rolls and double weapon damage dice for 1 round.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   },
-   {
-    "name": "Halve Damage",
-    "kind": "note",
-    "text": "Halve all damage you suffer this round.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Three listed options; uses per week from the table.; 0.10.48: steps up with level (Progression Table)",
-  "uses": {
-   "max": 1,
-   "per": "week",
-   "formula": "5:1, 17:2, 22:3"
-  }
  },
  "Cleanse Soul|Paladin": {
   "activities": [
@@ -2129,23 +1841,24 @@
    {
     "name": "Uncanny Dodge",
     "kind": "note",
-    "text": "When an attacker you can see hits you, halve the damage.",
+    "text": "Out of turn, when an attacker you can see hits you, halve the damage.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Once per round reaction."
+  "why": "Once per round, out of turn."
  },
  "Evasive Manoeuvre|Rogue": {
   "activities": [
    {
     "name": "Evasive Manoeuvre",
     "kind": "note",
-    "text": "Gain +{1:2, 20:4} AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
+    "text": "The first melee attack against you this round has Disadvantage (the first two from 20th). Not in a round you make a ranged attack or use another rogue ability, or while surprised. Switch on the Evasive Manoeuvre toggle.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -2154,30 +1867,14 @@
    }
   ],
   "confidence": "high",
-  "why": "Per-round stance choice. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Quick Reaction (Improved)|Rogue": {
-  "activities": [
-   {
-    "name": "Extra Action",
-    "kind": "note",
-    "text": "In the first round, take one extra action: one additional attack or half movement.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter extra action."
+  "why": "Always on in a round it works; the toggle carries the Disadvantage. Checked against Handbook v0.10.27."
  },
  "Spellburn|Sorcerer": {
   "activities": [
    {
     "name": "Spellburn",
     "kind": "note",
-    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn since a long rest, doubling each time.",
+    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double). Burned points return at 1 per attribute each day; never below 1.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2186,7 +1883,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.10, 25 Oct."
+  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27."
  },
  "Metamagic Options|Sorcerer": {
   "activities": [
@@ -2326,16 +2023,16 @@
    {
     "name": "Overchannel",
     "kind": "note",
-    "text": "Cast a spell with no slots of its level left, taking 1d6 unavoidable damage per spell level.",
+    "text": "Cast a spell with no slots of its level left by paying with Spellburn: burn attribute points equal to twice the spell's level (a flat cost that doesn't double). You also take 1d6 unavoidable damage per spell level.",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "self",
     "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "Once per day; self-damage depends on spell level."
+  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27."
  },
  "Chaos Incarnate|Sorcerer": {
   "activities": [
@@ -2394,24 +2091,6 @@
   ],
   "confidence": "high",
   "why": "As specified; Riposte and Acrobatic Escape from the 3rd/9th-level items. Riposte rolls its free attack."
- },
- "Opening Flourish|Swashbuckler": {
-  "activities": [
-   {
-    "name": "Opening Flourish",
-    "kind": "damage",
-    "formula": "@cha.mod",
-    "damageType": "",
-    "text": "On the first attack of combat, add your Charisma modifier as flat bonus damage.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter; formula stated."
  },
  "Flèche|Swashbuckler": {
   "activities": [
@@ -2520,22 +2199,6 @@
   ],
   "confidence": "high",
   "why": "7d6 stated for 20th; general rule is 1d6 per surge level. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Patron's Whisper|Warlock": {
-  "activities": [
-   {
-    "name": "Patron's Whisper",
-    "kind": "note",
-    "text": "Commune with your patron to ask one yes/no question, answered truthfully by its lights.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per day."
  },
  "Eldritch Master|Warlock": {
   "activities": [
@@ -2679,22 +2342,6 @@
   "confidence": "high",
   "why": "Handbook: a story-level event, not a daily resource; once every several months on the GM's conditions, monthly from 24th."
  },
- "Scribe's Insight|Wizard": {
-  "activities": [
-   {
-    "name": "Scribe's Insight",
-    "kind": "note",
-    "text": "As part of casting, swap one prepared spell for another of the same level from your spellbook.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per day."
- },
  "Arcane Recovery|Wizard": {
   "activities": [
    {
@@ -2727,67 +2374,6 @@
   ],
   "confidence": "high",
   "why": "Intelligence check stated."
- },
- "Counterspell|Wizard": {
-  "activities": [
-   {
-    "name": "Counterspell",
-    "kind": "check",
-    "ability": "int",
-    "text": "Against the spell's save DC as a reaction; on success a spell of up to half your Wizard level fizzles.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "reaction": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter Intelligence check."
- },
- "Signature Spells|Wizard": {
-  "activities": [
-   {
-    "name": "First Signature Spell",
-    "kind": "note",
-    "text": "Cast your first signature spell ({1:a 1st-level spell, 18:3rd level or lower}) at its level without expending a slot.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "",
-    "removeConditions": false
-   },
-   {
-    "name": "Second Signature Spell",
-    "kind": "note",
-    "text": "Cast your second signature spell at its level without expending a slot.",
-    "minLevel": 18,
-    "cost": 0,
-    "per": "day",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "One spell once per day from 9th, two (3rd level or lower) from 18th; item uses (1) would block the second."
- },
- "Perfect Recall|Wizard": {
-  "activities": [
-   {
-    "name": "Perfect Recall",
-    "kind": "check",
-    "ability": "int",
-    "text": "Make a DC 10 Intelligence check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Daily Intelligence check."
  },
  "Cauldron of the Ninth Moon improves|Witch": {
   "activities": [],
@@ -3186,11 +2772,11 @@
     "kind": "save",
     "save": "will",
     "formula": "10 + @half + @cha.mod",
-    "text": "One enemy within 10ft: unless it passes, it fights the rest of the round at Disadvantage."
+    "text": "One enemy within 10ft makes a Will save against your Class Save DC (using Charisma): unless it passes, it fights the rest of the round at Disadvantage."
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter, Will save against 10 + half your level (minimum 1) + Charisma modifier."
+  "why": "Once per encounter, Will save against your Class Save DC using Charisma: 10 + half your level + Charisma modifier."
  },
  "Shield Bash|Feat": {
   "activities": [
@@ -3198,14 +2784,14 @@
     "name": "Shield Bash",
     "kind": "save",
     "save": "fort",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "cost": 0,
     "per": "round",
-    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save or knocked Prone."
+    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save against your Class Save DC (Strength or Dexterity, whichever is higher) or knocked Prone."
    }
   ],
   "confidence": "high",
-  "why": "Once per round, Fortitude save against 10 + half your level (minimum 1) + Strength modifier."
+  "why": "Once per round, Fortitude save against your Class Save DC using Strength or Dexterity, whichever is higher."
  },
  "Mighty Deed of Arms|Feat": {
   "activities": [
@@ -3221,32 +2807,35 @@
     "name": "Prone, push or disarm",
     "kind": "save",
     "save": "fort",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "cost": 0,
     "per": "round",
-    "text": "Knock it Prone, push it 10ft or disarm it, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+    "effect": "Deed: Prone",
+    "text": "Knock it Prone, push it 10ft or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed."
    },
    {
     "name": "Blind",
     "kind": "save",
     "save": "ref",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "cost": 0,
     "per": "round",
-    "text": "Blind it until the end of its next turn, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+    "effect": "Deed: Blinded",
+    "text": "Blind it until the end of its next turn, unless it passes a Reflex save. A creature more than one size larger than you ignores the deed."
    },
    {
     "name": "Attack penalty",
     "kind": "save",
     "save": "will",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "cost": 0,
     "per": "round",
-    "text": "Disadvantage on its next attack, unless it saves. A creature that saves is immune to your Deeds for the rest of the fight; one more than a size larger than you ignores them."
+    "effect": "Deed: Off-balance",
+    "text": "Disadvantage on its next attack, unless it passes a Will save. A creature more than one size larger than you ignores the deed."
    }
   ],
   "confidence": "high",
-  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, DC 10 + half your level (minimum 1) + Strength modifier."
+  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, against your Class Save DC using Strength or Dexterity, whichever is higher."
  },
  "Ritual Caster|Feat": {
   "activities": [],
@@ -3255,42 +2844,6 @@
   "uses": {
    "max": 0
   }
- },
- "Drake's Fury|Followers of Drake (Barbarian)": {
-  "activities": [
-   {
-    "name": "Strength (+6)",
-    "kind": "check",
-    "ability": "str",
-    "bonus": "6",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "Primeval Instincts in natural wilderness: +6 to this Strength check instead of +4."
-   },
-   {
-    "name": "Dexterity (+6)",
-    "kind": "check",
-    "ability": "dex",
-    "bonus": "6",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "Primeval Instincts in natural wilderness: +6 to this Dexterity check instead of +4."
-   },
-   {
-    "name": "Constitution (+6)",
-    "kind": "check",
-    "ability": "con",
-    "bonus": "6",
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "text": "Primeval Instincts in natural wilderness: +6 to this Constitution check instead of +4."
-   }
-  ],
-  "confidence": "high",
-  "why": "Handbook: Primeval Instincts rises from +4 to +6 on checks in natural wilderness."
  },
  "Granted Power (Ilmater)|Deity: Ilmater (The Winter's Solace) (Cleric)": {
   "activities": [
@@ -3605,7 +3158,8 @@
     "name": "Blood answers",
     "kind": "save",
     "save": "will",
-    "text": "Once per day, as a reaction when struck in melee: the attacker makes a Will save or has Disadvantage on its next attack roll."
+    "text": "Once per day, out of turn, when struck in melee: the attacker makes a Will save or has Disadvantage on its next attack roll.",
+    "reaction": true
    }
   ],
   "confidence": "high",
@@ -3785,7 +3339,7 @@
  "Bloodline Ability|Infernal (Sorcerer)": {
   "activities": [],
   "confidence": "high",
-  "why": "Once/day reaction: fire damage equal to your Charisma modifier, no save.",
+  "why": "Once a day, when a creature damages you: fire damage equal to your Charisma modifier, no save.",
   "damage": "@cha.mod",
   "damageType": "fire",
   "save": ""
@@ -3921,14 +3475,16 @@
  "Ancestor's Fury|Shaman (Druid)": {
   "activities": [
    {
-    "name": "Ancestor's Fury (1d8)",
+    "name": "Ancestor's Fury (1d4)",
     "kind": "damage",
-    "formula": "1d8",
-    "text": "Your next spell or attack made while in Wild Shape deals this extra, of any type you choose."
+    "formula": "1d4",
+    "cost": 0,
+    "per": "round",
+    "text": "While you are in Wild Shape, your first hit each round deals this extra, of a type you choose."
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter, +1d8 of a chosen type."
+  "why": "Always on in Wild Shape: +1d4 of a chosen type on the first hit each round."
  },
  "Undead Resilience|Necromancer": {
   "activities": [
@@ -3951,20 +3507,13 @@
     "count": "1",
     "weapons": "melee",
     "cost": 0,
-    "text": "Your reaction: one melee attack against a creature leaving your melee reach without Disengaging.",
+    "per": "round",
+    "text": "Once per round, out of turn: one melee attack against a creature that provokes it (the feature that grants it says what does; Disengaging always prevents it).",
     "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Handbook: a creature leaving your reach provokes one melee attack."
- },
- "Discord (Charisma)|Bard": {
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "max(1, @cha.mod)"
-  },
-  "why": "\"usable a number of times per day equal to your Charisma modifier (minimum 1)\""
+  "why": "Handbook: only a feature that grants it (Combat Reflexes, a monster ability) allows one melee attack, out of turn."
  },
  "Stun Attack|Monk": {
   "uses": {
@@ -3981,14 +3530,6 @@
    "formula": "max(1, @int.mod + @cl)"
   },
   "why": "\"A daily pool equal to Intelligence modifier + Artificer level (minimum 1)\""
- },
- "Blood Magic|Feat": {
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "max(1, @casting.mod)"
-  },
-  "why": "\"a number of times per day equal to your casting-stat modifier (minimum 1)\" (the best casting class's)"
  },
  "Grit|Gunslinger": {
   "confidence": "high",
@@ -4055,33 +3596,18 @@
    {
     "name": "Reflect Spell",
     "kind": "check",
-    "ability": "wis",
-    "text": "When struck by a spell of your chosen element, beat its save DC to reflect it at a target of your choice.",
+    "text": "Out of turn, when struck by a spell of your chosen element: beat its save DC to reflect it at a target of your choice for its original damage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "ability": "wis",
+    "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Reaction check vs spell DC. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Battle Space|Fighter": {
-  "activities": [
-   {
-    "name": "Battle Space",
-    "kind": "note",
-    "text": "When you attack, also gain the benefit of Dodge until your next turn.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter Dodge rider."
+  "why": "Out-of-turn Wisdom check vs the spell's save DC. Checked against Handbook v0.10.27."
  },
  "Body of Iron|Monk": {
   "activities": [
@@ -4173,5 +3699,428 @@
    "max": 1,
    "per": "day"
   }
+ },
+ "Command (Charisma)|Knight": {
+  "activities": [
+   {
+    "name": "Inspire",
+    "kind": "note",
+    "text": "The default Command, for the encounter: friendly creatures within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) have Advantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "effect": "Inspired"
+   },
+   {
+    "name": "Embolden",
+    "kind": "note",
+    "text": "For the encounter, companions and followers within {3:30ft, 19:60ft} have Advantage on Will saves. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 3,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "effect": "Emboldened"
+   },
+   {
+    "name": "Demoralise",
+    "kind": "save",
+    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also have Disadvantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 5,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "save": "will",
+    "effect": "Demoralised, Demoralised (failed save)"
+   },
+   {
+    "name": "Expert in Arms",
+    "kind": "note",
+    "text": "Until the start of your next turn, allies within {9:40ft, 19:80ft} who follow your orders have Advantage on contested manoeuvre checks. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "minLevel": 9,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "effect": "Expert in Arms"
+   }
+  ],
+  "uses": {
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.25 (R-B7): one Command pool, 1 + Charisma modifier a day (minimum 2), +1 at 6th and 12th; each option spends one use and lasts the encounter (Expert in Arms until your next turn). Rallying Cry (4th) and Banner Bearer (19th, range doubles) ride on every Command."
+ },
+ "Performance (Charisma)|Bard": {
+  "activities": [
+   {
+    "name": "Exalt",
+    "kind": "note",
+    "text": "The default Performance, as part of your action: {1:one ally, 6:2 allies, 12:3 allies, 18:4 allies} within 60ft who can see and hear you have Advantage on attribute checks and saves (including class ability checks, not attack rolls) for the encounter.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "effect": "Exalted"
+   },
+   {
+    "name": "Discord",
+    "kind": "save",
+    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or has Disadvantage on its next attack roll.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will",
+    "effect": "Discord"
+   },
+   {
+    "name": "Rally",
+    "kind": "note",
+    "text": "All creatures within earshot re-save against any fear or morale effect affecting them, even if they failed before; those who succeed ignore that fear source for the rest of the encounter.",
+    "minLevel": 3,
+    "cost": 1,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false
+   },
+   {
+    "name": "Exhort Greatness",
+    "kind": "note",
+    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you have Advantage on their first attack roll each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
+    "minLevel": 5,
+    "cost": 2,
+    "per": "",
+    "target": "allies",
+    "removeConditions": false,
+    "effect": "Exhorted"
+   },
+   {
+    "name": "Words of Power",
+    "kind": "save",
+    "text": "Costs 2 uses. One creature makes a Will save (your Class Save DC) or is deafened until the end of its next turn. {10:, 17:From 17th Words of Power (Improved) adds more by the target's Level.}",
+    "minLevel": 10,
+    "cost": 2,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will",
+    "effect": "Word of Power: Deafened"
+   }
+  ],
+  "uses": {
+   "max": 2,
+   "per": "day",
+   "formula": "max(2, @cl + @cha.mod)"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26)."
+ },
+ "Channel Divinity (Charisma)|Paladin": {
+  "activities": [
+   {
+    "name": "Smite",
+    "kind": "damage",
+    "text": "The default Channel, spent as you attack: Advantage on that attack roll, plus +1 damage per Paladin level, against any foe regardless of alignment.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "@cl"
+   },
+   {
+    "name": "Turn Undead",
+    "kind": "save",
+    "text": "As your action: turn undead as a Cleric 2 levels lower than your Paladin level; the Turn DC is your Class Save DC, using Charisma. Destruction from 8th effective turning level, if the undead's Level is no more than half that level.",
+    "minLevel": 3,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "save": "will",
+    "formula": "10 + max(1, floor(@cl / 2)) + @abilities.cha.mod",
+    "effect": "Turned"
+   },
+   {
+    "name": "Divine Intervention: reroll",
+    "kind": "note",
+    "text": "Costs 2 uses. Reroll any one die result (attack, damage, save, turn undead or attribute check).",
+    "minLevel": 5,
+    "cost": 2,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Divine Intervention: divine might",
+    "kind": "note",
+    "text": "Costs 2 uses. Advantage on all your attack rolls and double weapon damage dice for 1 round (flat modifiers are not doubled).",
+    "minLevel": 5,
+    "cost": 2,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Divine Intervention: halve damage",
+    "kind": "note",
+    "text": "Costs 2 uses. Halve all damage you suffer this round.",
+    "minLevel": 5,
+    "cost": 2,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Divine Intervention: Divine Healing",
+    "kind": "note",
+    "text": "Costs 2 uses. Completely cure all diseases, blindness, deafness, poison and mental effects caused by spells on one creature.",
+    "minLevel": 8,
+    "cost": 2,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "uses": {
+   "max": 3,
+   "per": "day",
+   "formula": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th."
+ },
+ "Quick Reflexes (Improved)|Monk": {
+  "activities": [
+   {
+    "name": "Extra Action",
+    "kind": "note",
+    "text": "In the first round, take one extra action: one additional attack or half movement.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Untouchable",
+    "kind": "note",
+    "text": "Out of turn, when an attack you can perceive would hit you, negate it as a miss. Usable Wisdom modifier times a day (minimum 1), once per round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "self",
+    "removeConditions": false,
+    "reaction": true
+   }
+  ],
+  "confidence": "high",
+  "why": "Extra action once per encounter (the feature's use); Untouchable's improved count is untracked here."
+ },
+ "Quick Reflexes (Improved)|Rogue": {
+  "activities": [
+   {
+    "name": "Extra Action",
+    "kind": "note",
+    "text": "In the first round, take one extra action: one additional attack or half movement.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per encounter extra action."
+ },
+ "Granted Power (Asmodeus)|Deity: Asmodeus (Cleric)": {
+  "activities": [
+   {
+    "name": "Bargain",
+    "kind": "save",
+    "save": "will",
+    "cost": 1,
+    "text": "Once a day: force a bargain to be honoured. A Will save negates."
+   },
+   {
+    "name": "Offer terms",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "per": "round",
+    "text": "On your first hit each round: the creature makes a Will save or cannot attack you until your next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day bargain (Will negates); on the first hit each round, Will save or it cannot attack you."
+ },
+ "Granted Power (Asmodeus)|Deity: Asmodeus (Paladin)": {
+  "activities": [
+   {
+    "name": "Bargain",
+    "kind": "save",
+    "save": "will",
+    "cost": 1,
+    "text": "Once a day: force a bargain to be honoured. A Will save negates."
+   },
+   {
+    "name": "Offer terms",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "per": "round",
+    "text": "On your first hit each round: the creature makes a Will save or cannot attack you until your next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day bargain (Will negates); on the first hit each round, Will save or it cannot attack you."
+ },
+ "Granted Power (Brigh)|Deity: Brigh (The Crafted Turn) (Cleric)": {
+  "activities": [
+   {
+    "name": "Repair",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: repair a broken weapon or armour to full functionality instantly."
+   },
+   {
+    "name": "Temper weapon",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "effect": "Tempered Weapon",
+    "text": "Once per round, as part of your action, by touch: the ally's next attack roll before your next turn has Advantage."
+   },
+   {
+    "name": "Temper armour",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "effect": "Tempered Armour",
+    "text": "Once per round, as part of your action, by touch: the next attack against the ally has Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day repair; tempering once per round (Advantage on the ally's next attack, or Disadvantage on the next attack against it)."
+ },
+ "Granted Power (Brigh)|Deity: Brigh (The Crafted Turn) (Paladin)": {
+  "activities": [
+   {
+    "name": "Repair",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: repair a broken weapon or armour to full functionality instantly."
+   },
+   {
+    "name": "Temper weapon",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "effect": "Tempered Weapon",
+    "text": "Once per round, as part of your action, by touch: the ally's next attack roll before your next turn has Advantage."
+   },
+   {
+    "name": "Temper armour",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "effect": "Tempered Armour",
+    "text": "Once per round, as part of your action, by touch: the next attack against the ally has Disadvantage."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day repair; tempering once per round (Advantage on the ally's next attack, or Disadvantage on the next attack against it)."
+ },
+ "Granted Power (Selûne)|Deity: Selûne (The Moonlit Veils) (Cleric)": {
+  "activities": [
+   {
+    "name": "Dream walk",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: enter a willing creature's dream during a long rest and communicate freely within it."
+   },
+   {
+    "name": "Morningstar hit",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "per": "round",
+    "effect": "Moonlit Veil",
+    "text": "On your first hit each round with your morningstar: the creature makes a Will save or cannot act out of turn until the end of its next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day dream walk; on the first morningstar hit each round, Will save or no acting out of turn."
+ },
+ "Granted Power (Selûne)|Deity: Selûne (The Moonlit Veils) (Paladin)": {
+  "activities": [
+   {
+    "name": "Dream walk",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: enter a willing creature's dream during a long rest and communicate freely within it."
+   },
+   {
+    "name": "Morningstar hit",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "per": "round",
+    "effect": "Moonlit Veil",
+    "text": "On your first hit each round with your morningstar: the creature makes a Will save or cannot act out of turn until the end of its next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day dream walk; on the first morningstar hit each round, Will save or no acting out of turn."
+ },
+ "Granted Power (Silvanus)|Deity: Silvanus (Cleric)": {
+  "activities": [
+   {
+    "name": "Speak with plants and animals",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: speak with plants and animals for 10 minutes."
+   },
+   {
+    "name": "Maul hit",
+    "kind": "save",
+    "save": "ref",
+    "cost": 0,
+    "per": "round",
+    "effect": "Silvanus: Slowed",
+    "text": "On your first hit each round with your maul: the creature makes a Reflex save or its speed is halved until its next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day speech with plants and animals; on the first maul hit each round, Reflex save or speed halved."
+ },
+ "Granted Power (Silvanus)|Deity: Silvanus (Paladin)": {
+  "activities": [
+   {
+    "name": "Speak with plants and animals",
+    "kind": "note",
+    "cost": 1,
+    "text": "Once a day: speak with plants and animals for 10 minutes."
+   },
+   {
+    "name": "Maul hit",
+    "kind": "save",
+    "save": "ref",
+    "cost": 0,
+    "per": "round",
+    "effect": "Silvanus: Slowed",
+    "text": "On your first hit each round with your maul: the creature makes a Reflex save or its speed is halved until its next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Once a day speech with plants and animals; on the first maul hit each round, Reflex save or speed halved."
  }
 }

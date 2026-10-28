@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<p>Jungle/island guerrilla tradition, hit and vanish.</p><ul><li><strong>Vanishing Shot:</strong> Once per encounter, after making a ranged attack while moving, become hidden (see Disengage &amp; Hide in The Arneyan Codex) until the start of your next turn, if any cover or foliage is within reach.</li><li><strong>Island Craft:</strong> <strong>Advantage</strong> on Fletcher's Craft checks using improvised/natural materials rather than proper tools.</li></ul>",
+  "description": "<p>Jungle/island guerrilla tradition, hit and vanish.</p><ul><li><strong>Vanishing Shot:</strong> After making a ranged attack while moving, you can Hide as part of your movement (see Disengage &amp; Hide in The Arneyan Codex) if any cover or foliage is within reach. The Hide check still applies.</li><li><strong>Island Craft:</strong> <strong>Advantage</strong> on Fletcher's Craft checks using improvised/natural materials rather than proper tools.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Vanishing Shot",
     "level": 1,
-    "description": "<p>Once per encounter, after making a ranged attack while moving, become hidden (see Disengage &amp; Hide in The Arneyan Codex) until the start of your next turn, if any cover or foliage is within reach.</p>",
+    "description": "<p>After making a ranged attack while moving, you can Hide as part of your movement (see Disengage &amp; Hide in The Arneyan Codex) if any cover or foliage is within reach. The Hide check still applies.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": ""
    },

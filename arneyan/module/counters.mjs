@@ -6,8 +6,8 @@
  *           condition ends at 0. Applying it again keeps the longer of the two.
  *   stack   Burning: each application adds 1d6 to the fire damage at the start of its turn (Burning 2 = 2d6).
  *           Dousing ends it all.
- *   stage   Poisoned by a venom: the start-of-turn poison die (1d4, then 1d6, 1d8 and 1d10, Codex Conditions).
- *           Applying it again keeps the higher stage.
+ *   stage   Poisoned by a venom: 1 means the poison deals damage, 1d6 at the start of each turn, the same every turn
+ *           until the save ends it (Codex Conditions, books v0.10.25; it used to rise 1d4 to 1d10).
  *   none    Prone, Unconscious, Petrified, Dead, Concentrating: on or off.
  * A condition with no number simply lasts until it is removed (or a spell's own duration ends it).
  * Left-click a condition on the token HUD or the effects panel: +1. Right-click: −1, and it goes at 0.
@@ -16,7 +16,8 @@ import { ARNEYAN } from "./config.mjs";
 import { combatById } from "./fight.mjs";
 
 const SYS = "arneyan";
-const POISON_DICE = ["1d4", "1d6", "1d8", "1d10"];
+/** A damaging poison's start-of-turn damage (Codex Conditions, books v0.10.25: flat, no longer rising). */
+export const POISON_DIE = "1d6";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 export const counterKind = id => ARNEYAN.conditions[id]?.counter ?? (ARNEYAN.conditions[id] ? "rounds" : "none");
@@ -89,7 +90,7 @@ export async function adjustCondition(actor, id, delta) {
   if (!list.length) {
     if (delta <= 0) return;
     const e = await create(actor, id);
-    if (e && kind !== "none" && delta > 1) await setValue(e, Math.min(delta, kind === "stage" ? 4 : 99));
+    if (e && kind !== "none" && delta > 1) await setValue(e, Math.min(delta, kind === "stage" ? 1 : 99));
     return;
   }
   if (kind === "none") return delta < 0 ? removeCondition(actor, id) : undefined;
@@ -104,7 +105,7 @@ export async function adjustCondition(actor, id, delta) {
   }
   if (!cur && delta < 0) return removeCondition(actor, id);
   // Burning with no number counts as 1 stack; a timer or venom stage with no number starts from 0.
-  const next = Math.min((kind === "stack" ? (cur || 1) : cur) + delta, kind === "stage" ? 4 : 99);
+  const next = Math.min((kind === "stack" ? (cur || 1) : cur) + delta, kind === "stage" ? 1 : 99);
   if (next <= 0) return removeCondition(actor, id);
   return setValue(e, next);
 }
@@ -122,7 +123,7 @@ export async function reapply(actor, id, value = 1) {
   const cur = valueOf(e) || (kind === "stack" || kind === "stage" ? 1 : 0);
   const v = Math.max(1, Number(value) || 1);
   const next = kind === "stack" ? cur + v : Math.max(cur, v);
-  if (next !== valueOf(e)) await setValue(e, Math.min(next, kind === "stage" ? 4 : 99));
+  if (next !== valueOf(e)) await setValue(e, Math.min(next, kind === "stage" ? 1 : 99));
   return true;
 }
 
@@ -146,7 +147,7 @@ export async function tickCounters(actor) {
   }
 }
 
-/** The start-of-turn damage for Burning (stacks of 1d6) and a venom's Poisoned stage (and the next stage). */
+/** The start-of-turn damage for Burning (stacks of 1d6) and a damaging poison (1d6, the same every turn). */
 export function turnDamageFor(actor, id) {
   const c = ARNEYAN.conditions[id];
   if (id === "burning") {
@@ -156,16 +157,9 @@ export function turnDamageFor(actor, id) {
   if (id === "poisoned") {
     const stage = conditionValue(actor, id);
     if (!stage) return null; // Poisoned or Sickened by something that isn't a venom: no damage
-    return { formula: POISON_DICE[Math.min(stage, 4) - 1], type: "poison", label: `Poisoned (stage ${stage})`, nextStage: Math.min(stage + 1, 4) };
+    return { formula: POISON_DIE, type: "poison", label: "Poisoned (venom)", note: "The same each turn until the Fortitude save at the end of a turn ends it." };
   }
   return c?.turnDamage ? { ...c.turnDamage, label: c.name } : null;
-}
-
-/** After the poison damage card, the venom moves to its next die. */
-export async function advancePoison(actor) {
-  const e = carriers(actor, "poisoned")[0];
-  const v = valueOf(e);
-  if (e && v && v < 4) await setValue(e, v + 1);
 }
 
 /* -------------------------------------------- */

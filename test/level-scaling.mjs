@@ -68,9 +68,13 @@ assert.equal(m7.system.mods.dice("unarmed.dice").value, "1d10");
 const usesAt = (name, cls, lvl) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl }, 1);
 assert.deepEqual([1, 2, 3, 6, 9, 14, 15, 24].map(l => usesAt("Wild Shape", "Druid", l)), [1, 1, 2, 3, 4, 4, 5, 6], "Wild Shape: 1 a day, 2 from 3rd ... 6 from 24th");
 assert.deepEqual([1, 10, 20].map(l => usesAt("Grit", "Gunslinger", l)), [1, 2, 3]);
-assert.deepEqual([1, 14, 15].map(l => usesAt("Exhort Greatness", "Bard", l)), [1, 1, 2]);
-assert.deepEqual([13, 17, 22].map(l => usesAt("Divine Intervention", "Paladin", l)), [1, 2, 3]);
-assert.equal(usesAt("Exalt (Charisma)", "Bard", 7), 7, "Exalt: once a day per level");
+// Books v0.10.25 (R-B7): the pools. Performance: Bard level + Charisma (minimum 2); Command: 1 + Charisma (minimum 2),
+// +1 at 6th and 12th; Channel Divinity: Charisma + 2 (minimum 3), +1 at 5th and 15th; Lay on Hands: 2 HP a level.
+const poolAt = (name, cls, lvl, cha) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl, cha: { mod: cha } }, 1);
+assert.deepEqual([[1, 0], [1, 3], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 9]);
+assert.deepEqual([[1, 0], [1, 3], [6, 3], [12, 3]].map(([l, c]) => poolAt("Command (Charisma)", "Knight", l, c)), [2, 4, 5, 6]);
+assert.deepEqual([[1, 0], [1, 2], [5, 2], [15, 2]].map(([l, c]) => poolAt("Channel Divinity (Charisma)", "Paladin", l, c)), [3, 4, 5, 6]);
+assert.equal(poolAt("Lay on Hands", "Paladin", 7, 0), 14);
 
 /* Text and rules with tables in the data. */
 const ruleText = (name, cls, key) => feature(name)(cls).system.rules.find(r => r.key === key).value;
@@ -79,7 +83,7 @@ assert.equal(levelText(ruleText("Sneak Attack", "Assassin", "note.damage"), 24),
 assert.match(levelText(ruleText("Back Attack", "Rogue", "note.damage"), 9), /by 4\./);
 const sneak = feature("Sneak Attack")("Rogue").system.activities.find(a => a.name === "Sneak Attack damage");
 assert.equal(levelText(sneak.formula, 18), "3d6");
-assert.match(levelText(feature("Whirlwind Attack")("Barbarian").system.activities[0].text, 10), /up to 4 adjacent/);
+assert.match(levelText(feature("Whirlwind Attack")("Barbarian").system.activities[0].text, 10), /up to 4 foes/);
 // No braces left unread anywhere: every table in text is a well-formed level table.
 for (const f of fs.readdirSync(new URL("../packs-src/class-features/", import.meta.url))) {
   const d = JSON.parse(fs.readFileSync(new URL(`../packs-src/class-features/${f}`, import.meta.url), "utf8"));

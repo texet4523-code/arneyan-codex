@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<p>You are an army commander. The dead are your soldiers, your shield, and your instrument. You do not fight — you direct.</p><ul><li>Legion's Command</li><li>Undead you control gain an extra attack per round when within <strong>30ft</strong> of you, up to a number of undead equal to your Intelligence modifier.</li><li>Once per encounter, as part of your action, direct all controlled undead to focus on a single target — they all gain advantage on their next attack roll against that target</li><li>Endless Ranks</li><li>Your Undead Mastery cap increases by your Intelligence modifier (stacking with the base 10 cap)</li><li>During downtime, permanently bind one undead per Necromancer level — these are maintained free, in addition to your Soul Tax allowance, but they do count towards your Undead Mastery cap</li></ul>",
+  "description": "<p>You are an army commander. The dead are your soldiers, your shield, and your instrument. You do not fight — you direct.</p><ul><li>Legion's Command</li><li>Undead you control gain an extra attack per round when within <strong>30ft</strong> of you, up to a number of undead equal to your Intelligence modifier.</li><li>As part of your action, direct all controlled undead to focus on a single target: the first of them to attack it each round has <strong>Advantage</strong></li><li>Endless Ranks</li><li>Your Undead Mastery cap increases by your Intelligence modifier (stacking with the base 10 cap)</li><li>During downtime, permanently bind one undead per Necromancer level — these are maintained free, in addition to your Soul Tax allowance, but they do count towards your Undead Mastery cap</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Legion's Command",
     "level": 1,
-    "description": "<p>Undead you control gain an extra attack per round when within <strong>30ft</strong> of you, up to a number of undead equal to your Intelligence modifier.</p><p>Once per encounter, as part of your action, direct all controlled undead to focus on a single target — they all gain advantage on their next attack roll against that target</p>",
+    "description": "<p>Undead you control gain an extra attack per round when within <strong>30ft</strong> of you, up to a number of undead equal to your Intelligence modifier.</p><p>As part of your action, direct all controlled undead to focus on a single target: the first of them to attack it each round has <strong>Advantage</strong></p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": ""
    },

@@ -3,7 +3,7 @@
  *
  * - Sources: items with system.auras (a Paladin's Divine Protection, a Balor's Fire Aura), and active effects
  *   carrying flags.arneyan.aura (Spirit Guardians once cast).
- * - Rules: a creature inside gets an effect with the aura's rules while it's inside (Aura of Courage +4 on saves
+ * - Rules: a creature inside gets an effect with the aura's rules while it's inside (Aura of Courage: Advantage on saves
  *   vs fear), and loses it when it leaves.
  * - Turns: a creature that starts its turn inside gets a card with the aura's save, damage and condition buttons.
  * - A faint ring shows each aura's reach on the map.

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> +2 AC in melee. Cannot combine with ranged attacks or other rogue abilities that round, and cannot be used if surprised.</li><li>20th level: +4 AC instead</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> The first melee attack against you each round has <strong>Disadvantage</strong>. It doesn't work in a round you make a ranged attack or use another rogue ability, or while you are surprised.</li><li>20th level: the first two melee attacks against you each round have <strong>Disadvantage</strong></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Gain +{1:2, 20:4} AC in melee this round, with no ranged attacks or other rogue abilities. Not when surprised.",
+    "text": "The first melee attack against you this round has Disadvantage (the first two from 20th). Not in a round you make a ranged attack or use another rogue ability, or while surprised. Switch on the Evasive Manoeuvre toggle.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -45,13 +45,21 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "rules": [
    {
-    "key": "ac",
-    "value": "1:2, 20:4",
+    "key": "adv.against.first.melee",
+    "value": "-1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "against.first.count",
+    "value": "1:1, 20:2",
     "when": "",
     "label": ""
    }

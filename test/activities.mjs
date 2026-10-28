@@ -132,15 +132,13 @@ for (const d of built.filter(i => /^Extra Attack/.test(i.name))) {
   assert.equal(d.system.activities[0].disadvantage, "rest");
 }
 
-/* Primeval Instincts: the check adds its +4. */
+/* Primeval Instincts: books v0.10.26 (K15) give Advantage on physical checks in extreme circumstances, not +4: no
+   check buttons, Advantage reminders instead. */
 const prim = dataOf("Primeval Instincts", "Barbarian");
 assert.equal(prim.save, "", "no stray Fortitude save from 'Advantage on Fortitude saves'");
-{
-  const { item, actor } = feature({ ...prim, name: "Primeval Instincts" }, { level: 3, cls: "Barbarian" });
-  await item._useActivity(item.availableActivities.find(a => a.ability === "dex"), {});
-  assert.deepEqual(actor.checks[0], { k: "dex", bonus: 4, label: "Primeval Instincts" });
-}
-/* ...and rollAbility puts the bonus in the roll. */
+assert.ok(!(prim.activities ?? []).some(a => a.bonus === "4"), "the +4 check options are gone");
+assert.ok(prim.rules.some(r => r.key === "adv.check.str" && Number(r.value) > 0), "Advantage on Strength checks (reminder)");
+/* A check option's bonus goes in the roll (rollAbility). */
 {
   const a = Object.create(ArneyanActor.prototype);
   Object.defineProperty(a, "system", { value: { abilities: { dex: { mod: 2 } }, mods: null } });
@@ -186,7 +184,7 @@ assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "
   const { item } = feature({ ...eb, name: "Eldritch Blast" }, { level: 9, cls: "Warlock" });
   assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
 }
-assert.equal(dataOf("Embolden", "Knight").save, "");
+assert.equal(dataOf("Command: Embolden", "Knight").save, "");
 for (const [n, c] of [["Evasion", "Rogue"], ["Battle Space (Master)", "Fighter"], ["Signature Style", "Assassin"]]) assert.equal(dataOf(n, c).save, "", `${n}: no save of its own`);
 assert.equal(dataOf("Pinning Shot", "Archer").save, "ref", "a save the feature calls for stays");
 
@@ -231,7 +229,8 @@ assert.deepEqual(ilmater.uses, { value: 1, max: 1, per: "day" });
 assert.equal(ilmater.activities[0].formula, "2d8 + @wis.mod");
 const akadi = kitFeat("Deity: Akadi (Cleric)", "Granted Power (Akadi)");
 assert.deepEqual([akadi.damage, akadi.damageType, akadi.save, akadi.uses.max], ["3d6", "lightning", "ref", 1]);
-assert.equal(kitFeat("Followers of Drake (Barbarian)", "Drake's Fury").activities[0].bonus, "6");
+// Books v0.10.26 (K15): Drake's Fury is Advantage on physical checks in natural wilderness, not +6 check buttons.
+assert.ok(!(kitFeat("Followers of Drake (Barbarian)", "Drake's Fury").activities ?? []).length, "Drake's Fury: no +6 check buttons");
 {
   const { syncKitFeatures } = await import("../arneyan/module/progression.mjs");
   const created = [];
@@ -296,12 +295,16 @@ const fl = dataOf("Flèche", "Swashbuckler");
 assert.equal(fl.uses.formula, "max(1, @dex.mod)");
 assert.equal(fl.uses.per, "day");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
-const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Turn Undead|Paladin": "3 + @cha.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
-  "Discord (Charisma)|Bard": "max(1, @cha.mod)", "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
-  "Smite Evil|Paladin": "1:1, 5:2, 15:3", "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)" };
+const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
+  "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
+  "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
+  // Books v0.10.25 (R-B7): the pools.
+  "Performance (Charisma)|Bard": "max(2, @cl + @cha.mod)", "Lay on Hands|Paladin": "2 * @cl",
+  "Command (Charisma)|Knight": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))",
+  "Channel Divinity (Charisma)|Paladin": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
-assert.equal(feat("Blood Magic").uses.formula, "max(1, @casting.mod)");
-for (const k of ["Turn Undead|Cleric", "Smite Evil|Paladin", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.every(a => a.cost === 1), `${k}: each use spends one`); }
+assert.equal(feat("Blood Magic").uses.max, 0, "Blood Magic: the HP cost is the only limit (books v0.10.25)");
+for (const k of ["Turn Undead|Cleric", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.every(a => a.cost === 1), `${k}: each use spends one`); }
 assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "save").every(a => a.cost === 1) && dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "damage").every(a => a.cost === 0), "a Hex spends one; its damage each turn doesn't");
 
 /* Several attacks: a blocked target (Full Cover) is skipped and the rest still roll; the use is spent once, after an
@@ -327,7 +330,7 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
    not on a cancel; a general manoeuvre (Attack of Opportunity) says nothing, and no combatant is marked. */
 {
   const aoo = byName(actions, "Attack of Opportunity").system;
-  const notes = () => posted.filter(p => String(p.content ?? "").includes("is a reaction"));
+  const notes = () => posted.filter(p => String(p.content ?? "").includes("is used out of turn"));
   for (const [kind, expect] of [["action", 0], ["class", 1]]) {
     const { item, actor } = feature({ ...aoo, kind, name: "Attack of Opportunity" }, { level: 3, items: [sword, makeItem(IM.WeaponData, "weapon", "Axe", { damage: "1d6" })], type: "ability" });
     const flags = [];
@@ -351,6 +354,51 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   const { item, actor } = feature({ ...push, name: "Push" }, { level: 3, items: [sword], type: "ability" });
   await item._useActivity(item.availableActivities[0], {});
   assert.ok(actor.attacks[0].noDamage.startsWith("push a creature"), actor.attacks[0].noDamage);
+}
+
+/* Books v0.10.25 to v0.10.27 (R-B7): the pools. Each option offers only its own effect (activity `effect`); a pool
+   spends one use per option (two for the big ones); Lay on Hands spends any number of points (`spendAny`). */
+{
+  const cmd = dataOf("Command (Charisma)", "Knight");
+  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 3, 1], ["Demoralise", 5, 1], ["Expert in Arms", 9, 1]]);
+  assert.ok(cmd.applies.every(e => e.name === "Expert in Arms" ? e.rounds === "1" : e.rounds === "encounter"), "Commands last the encounter");
+  const { item } = feature({ ...cmd, name: "Command (Charisma)", uses: { value: 3, max: 3, per: "day", formula: "" } }, { level: 5, cls: "Knight" });
+  assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Embolden", "Demoralise"], "Expert in Arms from 9th");
+  assert.ok(item.availableActivities[0].text.includes("Rallying Cry"), "Rallying Cry rides on every Command from 4th");
+  posted.length = 0;
+  await item._useActivity(item.availableActivities.find(a => a.name === "Inspire"), {});
+  const card = posted.at(-1).content;
+  assert.ok(card.includes("Apply Inspired to targets") && !card.includes("Emboldened") && !card.includes("Demoralised"), "Inspire offers only Inspired");
+  assert.equal(item.system.uses.value, 2, "one use spent");
+  await item._useActivity(item.availableActivities.find(a => a.name === "Demoralise"), {});
+  assert.ok(posted.at(-1).content.includes("Apply Demoralised to targets") && posted.at(-1).content.includes("Apply Demoralised (failed save) to targets"));
+  const low = feature({ ...cmd, name: "Command (Charisma)" }, { level: 3, cls: "Knight" }).item;
+  assert.ok(!low.availableActivities[0].text.includes("Rallying Cry") && !/ 0\s*$/.test(low.availableActivities[0].text), "before 4th: no Rallying Cry line, and no stray 0");
+
+  const perf = dataOf("Performance (Charisma)", "Bard");
+  assert.deepEqual(perf.activities.map(a => [a.name, a.minLevel, a.cost]), [["Exalt", 0, 1], ["Discord", 0, 1], ["Rally", 3, 1], ["Exhort Greatness", 5, 2], ["Words of Power", 10, 2]]);
+  const bard = feature({ ...perf, name: "Performance (Charisma)" }, { level: 12, cls: "Bard" }).item;
+  assert.ok(bard.availableActivities[0].text.includes("3 allies"), "Exalt reaches 3 allies at 12th");
+
+  const ch = dataOf("Channel Divinity (Charisma)", "Paladin");
+  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
+
+  const loh = dataOf("Lay on Hands", "Paladin");
+  const { item: lay } = feature({ ...loh, name: "Lay on Hands", uses: { value: 10, max: 10, per: "day", formula: "" } }, { level: 5, cls: "Paladin" });
+  const DialogV2 = foundry.applications.api.DialogV2;
+  const was = DialogV2.wait;
+  DialogV2.wait = async () => 4;
+  const heal = lay.availableActivities.find(a => a.name === "Heal");
+  assert.ok(heal.spendAny && heal.formula === "@spent");
+  // damageRoll posts a card; here we only check the points spent and the formula's data.
+  posted.length = 0;
+  await lay._useActivity(heal, {}).catch(() => null);
+  assert.equal(lay.system.uses.value, 6, "4 points spent");
+  DialogV2.wait = async () => null;
+  await lay._useActivity(heal, {});
+  assert.equal(lay.system.uses.value, 6, "cancelled: nothing spent");
+  DialogV2.wait = was;
+  assert.equal(lay.availableActivities.find(a => a.name === "Cure Disease").cost, 5);
 }
 
 console.log("OK activities");

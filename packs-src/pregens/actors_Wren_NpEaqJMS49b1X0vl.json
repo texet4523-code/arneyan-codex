@@ -63,7 +63,7 @@
    "type": "class",
    "img": "systems/arneyan/assets/classes/Assassin.webp",
    "system": {
-    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Intelligence</td></tr><tr><td>Hit Die</td><td><strong>d6</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>2 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★☆☆☆ Easy</td></tr><tr><td>Weapons</td><td>Any</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>About +1 per 4 levels (+2 at 12th, +5 at 24th)</td></tr><tr><td>Identity</td><td>A patient killer who studies a target, picks the moment and ends the fight before it starts, with poison, disguise and one perfect strike.</td></tr></tbody></table><h2>Assassin Progression Table</h2><p><em>These values apply from the listed level until the next row.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Sneak Attack damage</th><th>Surprise (target's passive awareness)</th></tr></thead><tbody><tr><td>1</td><td><strong>1d6</strong></td><td>—</td></tr><tr><td>5</td><td><strong>2d6</strong></td><td>—</td></tr><tr><td>9</td><td><strong>3d6</strong></td><td>—</td></tr><tr><td>13</td><td><strong>4d6</strong></td><td>-1</td></tr><tr><td>17</td><td><strong>5d6</strong></td><td>-1</td></tr><tr><td>18</td><td><strong>5d6</strong></td><td>-2</td></tr><tr><td>21</td><td><strong>6d6</strong></td><td>-2</td></tr><tr><td>23</td><td><strong>6d6</strong></td><td>-3</td></tr><tr><td>24</td><td><strong>7d6</strong></td><td>-3</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Death Attack, Sneak Attack, Killer's Precision, Assassin's Skills</td></tr><tr><td>2</td><td>Quiet Kill</td></tr><tr><td>3</td><td>Ambush Predator</td></tr><tr><td>4</td><td>Poisoner's Edge</td></tr><tr><td>5</td><td>Hit and Run</td></tr><tr><td>6</td><td>Marked Prey</td></tr><tr><td>7</td><td>Lethal Dose, Extra Attack</td></tr><tr><td>8</td><td>Many Faces</td></tr><tr><td>9</td><td>Shadow Step</td></tr><tr><td>10</td><td>Venom Tolerance</td></tr><tr><td>12</td><td>Finishing Blow</td></tr><tr><td>13</td><td>Surprise</td></tr><tr><td>14</td><td>Reaper's Reach</td></tr><tr><td>15</td><td>Signature Style, +1 Dexterity</td></tr><tr><td>17</td><td>Unerring Edge</td></tr><tr><td>18</td><td>Quick Reaction (+1 initiative)</td></tr><tr><td>19</td><td>Perfect Study</td></tr><tr><td>20</td><td>Slow Kill</td></tr><tr><td>21</td><td>Marked for Death</td></tr><tr><td>24</td><td>Quick Reaction (Improved), Slow Kill (Improved)</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level — Class Skills</h3><p>All of the following abilities are gained at 1st level. Each uses the associated attribute for checks.</p><h4>Death Attack</h4><ul><li><strong>Effect:</strong> Study a target for 3 full rounds without being detected; studying is your action each round, and it ends if the target can see you or you attack. Must attack within <strong>3 rounds</strong> of completing study, and a Death Attack can only be delivered by a Sneak Attack against a target that cannot see you.</li><li><strong>On a successful Sneak Attack that deals damage:</strong> target makes a <strong>Fortitude save</strong> against your Class Save DC, or dies instantly. Death Attack works only on a target whose Level does not exceed your Assassin level plus 2</li><li><strong>Save succeeds: attack deals the maximum on its Sneak Attack dice instead</strong></li><li>If the Assassin is detected while studying, the study is voided and must begin again</li><li>A missed attack resets the 3-round study requirement</li></ul><h4>Sneak Attack</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (see the Assassin Progression Table) against an aware-but-unsuspecting target.</li><li>Usable <strong>once per round</strong>.</li><li>A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you.</li><li>Usable at range within <strong>30ft</strong></li><li>No prior stealth check required</li><li>A Death Attack is delivered by a Sneak Attack; if the target saves, it takes maximum Sneak Attack dice damage</li></ul><h4>Killer's Precision</h4><ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage per three Assassin levels (minimum +1). This applies to every hit, not only Sneak Attacks.</li></ul><h4>Assassin's Skills</h4><ul><li><strong>Effect:</strong> Each skill below is a check using its associated attribute, with the notes listed. Hide and Move Silently count as Stealth, and Listen as Perception, for kits, feats and other features.</li><li><strong>Case Target (Wisdom):</strong> Spend <strong>1d3</strong>×<strong>10 minutes</strong> observing a target. On a successful check:<ul><li><strong>Learn its approximate Level</strong></li><li>Learn its Allegiance (most mortals are Unaligned)</li><li>Identify hidden weapons or unusual items</li><li>Note distinguishing habits and mannerisms</li><li>GM adjusts for target's power</li></ul></li><li><strong>Climb (Dexterity):</strong> Scale any surface — walls, ceilings, unusual angles, man-made or natural — at half speed.<ul><li><strong>Failed check:</strong> no progress</li><li>Failed by 5+: fall</li><li>Cannot carry anything in hand while climbing</li></ul></li><li><strong>Disguise (Charisma):</strong> Disguise self or impersonate others (<strong>1d3</strong>×<strong>10 minutes</strong> for a general disguise; 1 month for a specific individual).<ul><li>Apparent height/weight change limited to one-tenth of original</li><li>GM rolls secretly.</li></ul></li><li><strong>GM adjusts:</strong> the more your disguise differs from your own build, age and ancestry, and the more suspicious the observer, the harder the check.</li><li><strong>Hide (Dexterity):</strong> Conceal yourself from observers; you count as Hidden while lightly obscured even on a result of 12 to 14.<ul><li><strong>Half speed or slower:</strong> no penalty</li><li><strong>Above half speed:</strong> disadvantage</li><li><strong>Running:</strong> impossible</li><li>Cannot hide if being casually observed</li><li><strong>If an observer is momentarily distracted:</strong> attempt at disadvantage — must move quickly to hiding spot</li><li><strong>Nothing to hide behind:</strong> cannot attempt</li></ul></li><li><strong>Identify Poison (Intelligence):</strong> Identify any poison or antitoxin on a successful check.<ul><li>Create poisons or antitoxins with alchemical equipment and raw materials — cost equals one-third of street value</li><li>Assassins never risk accidental poisoning when applying poison to a blade</li><li>Gains +1 to poison saves at 3rd level</li></ul></li><li><strong>Listen (Wisdom):</strong> Hear sounds others might miss.<ul><li>Whispers or soft movement up to <strong>30ft</strong> in open air, or through an adjacent door</li><li><strong>Through stone wall:</strong> disadvantage</li><li>Other materials vary — GM discretion</li><li>Retryable <strong>once per round</strong></li></ul></li><li><strong>Move Silently (Dexterity):</strong> Move without sound indoors or outdoors.<ul><li><strong>Half speed or slower:</strong> no penalty</li><li><strong>Above half speed:</strong> disadvantage</li><li><strong>Running:</strong> impossible</li><li>From 3rd level: attempt both at disadvantage on both checks, at quarter speed.</li></ul></li><li><strong>Traps (Intelligence):</strong> Find, disable, or set traps.<ul><li><strong>Find:</strong> <strong>1 round</strong> for a specific area, <strong>1 minute</strong> for a 10×<strong>10ft</strong> area</li><li><strong>Disable: 1 minute; failing by 5 or more, or rolling a natural 1, sets it off (see Traps)</strong></li><li><strong>Set or reset:</strong> <strong>1d4</strong> rounds — resetting a previously disabled trap gains +5</li><li>Can find magical traps — GM determines penalty</li></ul></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Quiet Kill</h4><ul><li><strong>Effect:</strong> A creature you reduce to <strong>0 HP</strong> or below with a Sneak Attack makes no sound as it falls. Nearby creatures get no check to notice the kill by sound alone.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Ambush Predator</h4><ul><li><strong>Effect:</strong> In the first round of combat, creatures that have not yet acted count as unsuspecting for your Sneak Attack.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Poisoner's Edge</h4><ul><li><strong>Effect:</strong> A poison you apply to a weapon lasts for 3 hits instead of 1, and its save DC is 2 higher.</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Hit and Run</h4><ul><li><strong>Effect:</strong> On a turn you make an attack, your speed increases by <strong>10ft</strong> (<strong>20ft</strong> from 13th level). Once per round, you can move through one enemy's space. Moving through that space doesn't provoke Attacks of Opportunity.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Marked Prey</h4><ul><li><strong>Effect:</strong> After a successful Case Target check, you have <strong>Advantage</strong> on checks to track or tail that target for <strong>24 hours</strong>, and Death Attack study against it takes only <strong>2 rounds</strong>.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Lethal Dose</h4><ul><li><strong>Effect:</strong> The first hit each fight with a poisoned weapon also deals +<strong>1d6</strong> poison damage. The target makes a <strong>Fortitude save</strong> against your Class Save DC to negate the extra damage.</li></ul><h4>Extra Attack</h4><ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex). Sneak Attack still applies to only one attack per round.</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Many Faces</h4><ul><li><strong>Effect:</strong> A general disguise takes <strong>5 minutes</strong>, and a disguise as a specific individual takes <strong>1 week</strong> instead of a month.</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Shadow Step</h4><ul><li><strong>Effect:</strong> When you reduce a creature to <strong>0 HP</strong> or below with a Sneak Attack, you may move up to <strong>15ft</strong> without provoking opportunity attacks.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Venom Tolerance</h4><ul><li><strong>Effect:</strong> You have <strong>Advantage</strong> on saves against poison.</li></ul><h3 class=\"arn-level\">12th Level</h3><h4>Finishing Blow</h4><ul><li><strong>Effect:</strong> A Sneak Attack against a creature at half its HP or less deals maximum damage on its damage dice.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Surprise</h4><ul><li><strong>Effect:</strong> Targets suffer -1 to their passive awareness against the assassin's ambush. Improves to -2 at 18th and -3 at 23rd.</li></ul><h3 class=\"arn-level\">14th Level</h3><h4>Reaper's Reach</h4><ul><li><strong>Effect:</strong> You can Cleave with any attack, not only a melee weapon, and a Cleave attack can be a Sneak Attack.</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Dexterity Bonus</h4><ul><li><strong>Effect:</strong> Gain a permanent +1 to Dexterity.</li></ul><h4>Signature Style</h4><ul><li><strong>Effect:</strong> Choose one type of attack, poison, or tactic used throughout your career.</li><li>When executing a Death Attack using this signature style, the target's <strong>Fortitude save</strong> DC is 2 higher than the standard Death Attack DC.</li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Unerring Edge</h4><ul><li><strong>Effect:</strong> Your Sneak Attack ignores resistance to physical damage (not immunity).</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Quick Reaction:</strong> gain +1 to all initiative rolls</li></ul><h3 class=\"arn-level\">19th Level</h3><h4>Perfect Study</h4><ul><li><strong>Effect:</strong> Death Attack study takes only <strong>1 round</strong>, and a missed attack no longer resets it.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Slow Kill</h4><ul><li><strong>Effect:</strong> On a successful hit, the target takes normal weapon damage. Each subsequent round they lose <strong>1d6</strong> HP from blood loss unless healed or bandaged.</li><li>Bleeding is cumulative</li><li>Only usable before the target has acted this encounter</li><li>Maximum four Slow Kill strikes on a single target per encounter — after four hits all vulnerable areas have been struck</li><li>Works with Sneak Attack simultaneously</li></ul><h3 class=\"arn-level\">21st Level</h3><h4>Marked for Death</h4><ul><li><strong>Effect:</strong> A target you have marked with Marked Prey makes its Death Attack save with <strong>Disadvantage</strong>.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Quick Reaction (Improved)</h4><ul><li><strong>Effect:</strong> +2 to all initiative rolls.</li><li>On a natural 11+ initiative result, gain one extra action at end of round — attack or half-movement only</li></ul><h4>Slow Kill (Improved)</h4><ul><li><strong>Effect:</strong> Wounds caused by Slow Kill heal at half rate — even magical healing is halved.</li><li>A successful Slow Kill blow may incapacitate a limb — assassin's choice</li><li>Target makes a <strong>Fortitude save</strong> against your Class Save DC, or loses use of that limb until healed</li><li>Does not work on non-bleeding creatures</li></ul><h2>Kits: Assassin Guilds and Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Assassin folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Your kit defines your guild, tradition, and the network you belong to — or fled from.</p>",
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Intelligence</td></tr><tr><td>Hit Die</td><td><strong>d6</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>2 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★☆☆☆ Easy</td></tr><tr><td>Weapons</td><td>Any</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>About +1 per 4 levels (+2 at 12th, +5 at 24th)</td></tr><tr><td>Identity</td><td>A patient killer who studies a target, picks the moment and ends the fight before it starts, with poison, disguise and one perfect strike.</td></tr></tbody></table><h2>Assassin Progression Table</h2><p><em>These values apply from the listed level until the next row.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Sneak Attack damage</th><th>Surprise (target's passive awareness)</th></tr></thead><tbody><tr><td>1</td><td><strong>1d6</strong></td><td>—</td></tr><tr><td>5</td><td><strong>2d6</strong></td><td>—</td></tr><tr><td>9</td><td><strong>3d6</strong></td><td>—</td></tr><tr><td>13</td><td><strong>4d6</strong></td><td>-1</td></tr><tr><td>17</td><td><strong>5d6</strong></td><td>-1</td></tr><tr><td>18</td><td><strong>5d6</strong></td><td>-2</td></tr><tr><td>21</td><td><strong>6d6</strong></td><td>-2</td></tr><tr><td>23</td><td><strong>6d6</strong></td><td>-3</td></tr><tr><td>24</td><td><strong>7d6</strong></td><td>-3</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Death Attack, Sneak Attack, Killer's Precision, Assassin's Skills</td></tr><tr><td>2</td><td>Quiet Kill</td></tr><tr><td>3</td><td>Ambush Predator</td></tr><tr><td>4</td><td>Poisoner's Edge</td></tr><tr><td>5</td><td>Hit and Run</td></tr><tr><td>6</td><td>Marked Prey</td></tr><tr><td>7</td><td>Lethal Dose, Extra Attack</td></tr><tr><td>8</td><td>Many Faces</td></tr><tr><td>9</td><td>Shadow Step</td></tr><tr><td>10</td><td>Venom Tolerance</td></tr><tr><td>12</td><td>Finishing Blow</td></tr><tr><td>13</td><td>Surprise</td></tr><tr><td>14</td><td>Reaper's Reach</td></tr><tr><td>15</td><td>Signature Style, +1 Dexterity</td></tr><tr><td>17</td><td>Unerring Edge</td></tr><tr><td>18</td><td>Quick Reflexes (+1 initiative)</td></tr><tr><td>19</td><td>Perfect Study</td></tr><tr><td>20</td><td>Slow Kill</td></tr><tr><td>21</td><td>Marked for Death</td></tr><tr><td>24</td><td>Quick Reflexes (Improved), Slow Kill (Improved)</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level — Class Skills</h3><p>All of the following abilities are gained at 1st level. Each uses the associated attribute for checks.</p><h4>Death Attack</h4><ul><li><strong>Effect:</strong> Study a target for 3 full rounds without being detected; studying is your action each round, and it ends if the target can see you or you attack. Must attack within <strong>3 rounds</strong> of completing study, and a Death Attack can only be delivered by a Sneak Attack against a target that cannot see you.</li><li><strong>On a successful Sneak Attack that deals damage:</strong> target makes a <strong>Fortitude save</strong> against your Class Save DC, or dies instantly. Death Attack works only on a target whose Level does not exceed your Assassin level plus 2</li><li><strong>Save succeeds: attack deals the maximum on its Sneak Attack dice instead</strong></li><li>If the Assassin is detected while studying, the study is voided and must begin again</li><li>A missed attack resets the 3-round study requirement</li></ul><h4>Sneak Attack</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (see the Assassin Progression Table) against an aware-but-unsuspecting target.</li><li>Usable <strong>once per round</strong>.</li><li>A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you.</li><li>Usable at range within <strong>30ft</strong></li><li>No prior stealth check required</li><li>A Death Attack is delivered by a Sneak Attack; if the target saves, it takes maximum Sneak Attack dice damage</li></ul><h4>Killer's Precision</h4><ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage per three Assassin levels (minimum +1). This applies to every hit, not only Sneak Attacks.</li></ul><h4>Assassin's Skills</h4><ul><li><strong>Effect:</strong> Each skill below is a check using its associated attribute, with the notes listed. Hide and Move Silently count as Stealth, and Listen as Perception, for kits, feats and other features.</li><li><strong>Case Target (Wisdom):</strong> Spend <strong>1d3</strong>×<strong>10 minutes</strong> observing a target. On a successful check:<ul><li><strong>Learn its approximate Level</strong></li><li>Learn its Allegiance (most mortals are Unaligned)</li><li>Identify hidden weapons or unusual items</li><li>Note distinguishing habits and mannerisms</li><li>GM adjusts for target's power</li></ul></li><li><strong>Climb (Dexterity):</strong> Scale any surface — walls, ceilings, unusual angles, man-made or natural — at half speed.<ul><li><strong>Failed check:</strong> no progress</li><li>Failed by 5+: fall</li><li>Cannot carry anything in hand while climbing</li></ul></li><li><strong>Disguise (Charisma):</strong> Disguise self or impersonate others (<strong>1d3</strong>×<strong>10 minutes</strong> for a general disguise; 1 month for a specific individual).<ul><li>Apparent height/weight change limited to one-tenth of original</li><li>GM rolls secretly.</li></ul></li><li><strong>GM adjusts:</strong> the more your disguise differs from your own build, age and ancestry, and the more suspicious the observer, the harder the check.</li><li><strong>Hide (Dexterity):</strong> Conceal yourself from observers; you count as Hidden while lightly obscured even on a result of 12 to 14.<ul><li><strong>Half speed or slower:</strong> no penalty</li><li><strong>Above half speed:</strong> disadvantage</li><li><strong>Running:</strong> impossible</li><li>Cannot hide if being casually observed</li><li><strong>If an observer is momentarily distracted:</strong> attempt at disadvantage — must move quickly to hiding spot</li><li><strong>Nothing to hide behind:</strong> cannot attempt</li></ul></li><li><strong>Identify Poison (Intelligence):</strong> Identify any poison or antitoxin on a successful check.<ul><li>Create poisons or antitoxins with alchemical equipment and raw materials — cost equals one-third of street value</li><li>Assassins never risk accidental poisoning when applying poison to a blade</li><li>Gains +1 to poison saves at 3rd level</li></ul></li><li><strong>Listen (Wisdom):</strong> Hear sounds others might miss.<ul><li>Whispers or soft movement up to <strong>30ft</strong> in open air, or through an adjacent door</li><li><strong>Through stone wall:</strong> disadvantage</li><li>Other materials vary — GM discretion</li><li>Retryable <strong>once per round</strong></li></ul></li><li><strong>Move Silently (Dexterity):</strong> Move without sound indoors or outdoors.<ul><li><strong>Half speed or slower:</strong> no penalty</li><li><strong>Above half speed:</strong> disadvantage</li><li><strong>Running:</strong> impossible</li><li>From 3rd level: attempt both at disadvantage on both checks, at quarter speed.</li></ul></li><li><strong>Traps (Intelligence):</strong> Find, disable, or set traps.<ul><li><strong>Find:</strong> <strong>1 round</strong> for a specific area, <strong>1 minute</strong> for a 10×<strong>10ft</strong> area</li><li><strong>Disable: 1 minute; failing by 5 or more, or rolling a natural 1, sets it off (see Traps)</strong></li><li><strong>Set or reset:</strong> <strong>1d4</strong> rounds — resetting a previously disabled trap gains +5</li><li>Can find magical traps — GM determines penalty</li></ul></li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Quiet Kill</h4><ul><li><strong>Effect:</strong> A creature you reduce to <strong>0 HP</strong> or below with a Sneak Attack makes no sound as it falls. Nearby creatures get no check to notice the kill by sound alone.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Ambush Predator</h4><ul><li><strong>Effect:</strong> In the first round of combat, creatures that have not yet acted count as unsuspecting for your Sneak Attack.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Poisoner's Edge</h4><ul><li><strong>Effect:</strong> A poison you apply to a weapon lasts for 3 hits instead of 1, and its save DC is 2 higher.</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Hit and Run</h4><ul><li><strong>Effect:</strong> On a turn you make an attack, your speed increases by <strong>10ft</strong> (<strong>20ft</strong> from 13th level). Once per round, you can move through one enemy's space. Moving through that space doesn't provoke Attacks of Opportunity.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Marked Prey</h4><ul><li><strong>Effect:</strong> After a successful Case Target check, you have <strong>Advantage</strong> on checks to track or tail that target for <strong>24 hours</strong>, and Death Attack study against it takes only <strong>2 rounds</strong>.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Lethal Dose</h4><ul><li><strong>Effect:</strong> The first hit each fight with a poisoned weapon also deals +<strong>1d6</strong> poison damage. The target makes a <strong>Fortitude save</strong> against your Class Save DC to negate the extra damage.</li></ul><h4>Extra Attack</h4><ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex). Sneak Attack still applies to only one attack per round.</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Many Faces</h4><ul><li><strong>Effect:</strong> A general disguise takes <strong>5 minutes</strong>, and a disguise as a specific individual takes <strong>1 week</strong> instead of a month.</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Shadow Step</h4><ul><li><strong>Effect:</strong> When you reduce a creature to <strong>0 HP</strong> or below with a Sneak Attack, you may move up to <strong>15ft</strong> without provoking opportunity attacks.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Venom Tolerance</h4><ul><li><strong>Effect:</strong> You have <strong>Advantage</strong> on saves against poison.</li></ul><h3 class=\"arn-level\">12th Level</h3><h4>Finishing Blow</h4><ul><li><strong>Effect:</strong> A Sneak Attack against a creature at half its HP or less deals maximum damage on its damage dice.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Surprise</h4><ul><li><strong>Effect:</strong> Targets suffer -1 to their passive awareness against the assassin's ambush. Improves to -2 at 18th and -3 at 23rd.</li></ul><h3 class=\"arn-level\">14th Level</h3><h4>Reaper's Reach</h4><ul><li><strong>Effect:</strong> You can Cleave with any attack, not only a melee weapon, and a Cleave attack can be a Sneak Attack.</li></ul><h3 class=\"arn-level\">15th Level</h3><h4>Dexterity Bonus</h4><ul><li><strong>Effect:</strong> Gain a permanent +1 to Dexterity.</li></ul><h4>Signature Style</h4><ul><li><strong>Effect:</strong> Choose one type of attack, poison, or tactic used throughout your career.</li><li>When executing a Death Attack using this signature style, the target's <strong>Fortitude save</strong> DC is 2 higher than the standard Death Attack DC.</li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Unerring Edge</h4><ul><li><strong>Effect:</strong> Your Sneak Attack ignores resistance to physical damage (not immunity).</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Quick Reflexes:</strong> gain +1 to all initiative rolls</li></ul><h3 class=\"arn-level\">19th Level</h3><h4>Perfect Study</h4><ul><li><strong>Effect:</strong> Death Attack study takes only <strong>1 round</strong>, and a missed attack no longer resets it.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Slow Kill</h4><ul><li><strong>Effect:</strong> On a successful hit, the target takes normal weapon damage. Each subsequent round they lose <strong>1d6</strong> HP from blood loss unless healed or bandaged.</li><li>Bleeding is cumulative</li><li>Only usable before the target has acted this encounter</li><li>Maximum four Slow Kill strikes on a single target per encounter — after four hits all vulnerable areas have been struck</li><li>Works with Sneak Attack simultaneously</li></ul><h3 class=\"arn-level\">21st Level</h3><h4>Marked for Death</h4><ul><li><strong>Effect:</strong> A target you have marked with Marked Prey makes its Death Attack save with <strong>Disadvantage</strong>.</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>Quick Reflexes (Improved)</h4><ul><li><strong>Effect:</strong> +2 to all initiative rolls.</li><li>On a natural 11+ initiative result, gain one extra action at end of round — attack or half-movement only</li></ul><h4>Slow Kill (Improved)</h4><ul><li><strong>Effect:</strong> Wounds caused by Slow Kill heal at half rate — even magical healing is halved.</li><li>A successful Slow Kill blow may incapacitate a limb — assassin's choice</li><li>Target makes a <strong>Fortitude save</strong> against your Class Save DC, or loses use of that limb until healed</li><li>Does not work on non-bleeding creatures</li></ul><h2>Kits: Assassin Guilds and Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Assassin folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Your kit defines your guild, tradition, and the network you belong to — or fled from.</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -199,8 +199,8 @@
      },
      {
       "level": 18,
-      "name": "Quick Reaction",
-      "uuid": "Compendium.arneyan.class-features.Item.PGT74NWPoMAAKgp7"
+      "name": "Quick Reflexes",
+      "uuid": "Compendium.arneyan.class-features.Item.12r60eED90uq58Pr"
      },
      {
       "level": 19,
@@ -219,8 +219,8 @@
      },
      {
       "level": 24,
-      "name": "Quick Reaction (Improved)",
-      "uuid": "Compendium.arneyan.class-features.Item.9LMT5x0O4r7fkocP"
+      "name": "Quick Reflexes (Improved)",
+      "uuid": "Compendium.arneyan.class-features.Item.VkVLCNJ3it9jWN1i"
      },
      {
       "level": 24,
@@ -361,7 +361,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Sneak Attack damage",
@@ -386,7 +388,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      }
     ],
     "rules": [
@@ -515,7 +519,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Climb",
@@ -540,7 +546,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Disguise",
@@ -565,7 +573,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Hide",
@@ -590,7 +600,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Identify Poison",
@@ -615,7 +627,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Listen",
@@ -640,7 +654,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Move Silently",
@@ -665,7 +681,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      },
      {
       "name": "Traps",
@@ -690,7 +708,9 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      }
     ],
     "rules": [
@@ -877,7 +897,7 @@
    "type": "ancestry",
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "system": {
-    "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Cha / +1 Dex, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Shapechanger:</strong> alter appearance to any similar-size humanoid as an action (clothing/gear unaffected).</li><li><strong>Advantage</strong> on checks to imitate a specific voice/mannerism once observed.</li><li><strong>Advantage</strong> on saves vs charmed.</li><li><strong>Advantage</strong> on Insight checks to detect deception aimed at them.</li><li><strong>Perfect Mask:</strong> 1/long rest, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use).</li></ul>",
+    "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Cha / +1 Dex, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Shapechanger:</strong> alter appearance to any similar-size humanoid as an action (clothing/gear unaffected).</li><li><strong>Advantage</strong> on checks to imitate a specific voice/mannerism once observed.</li><li><strong>Advantage</strong> on saves vs charmed.</li><li><strong>Advantage</strong> on Insight checks to detect deception aimed at them.</li><li><strong>Perfect Mask:</strong> Once per day, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use).</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -912,7 +932,7 @@
      },
      {
       "name": "Perfect Mask",
-      "text": "1/long rest, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use)."
+      "text": "Once per day, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use)."
      }
     ],
     "choice": null,
@@ -1048,7 +1068,7 @@
    "img": "systems/arneyan/assets/icons/ancestry-person.svg",
    "effects": [],
    "system": {
-    "description": "<p>1/long rest, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use).</p>",
+    "description": "<p>Once per day, your assumed disguise becomes undetectable for one scene, resisting even magical discernment (1 Luck for a second use).</p>",
     "kind": "ancestry",
     "level": 1,
     "className": "Changeling",
@@ -1068,7 +1088,7 @@
    "type": "kit",
    "img": "systems/arneyan/assets/icons/kit-hood.svg",
    "system": {
-    "description": "<ul><li>An assassin embedded in the outer ring of the Veiled Ones' intelligence network — not a full member, but trusted with contracts that require discretion over dramatics.</li><li>Your marks aren't always meant to die; sometimes they're meant to disappear, recant, or simply never know you were there.</li><li>Identity compartmentalisation is doctrine.</li><li><strong>Surveillance:</strong> <strong>Advantage</strong> on checks when surveilling or tailing a target without being noticed — following at distance, mapping routine, identifying vulnerabilities before acting.</li><li><strong>Clean Hands:</strong> <strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement. Once per encounter, after a Sneak Attack, you may Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</li></ul>",
+    "description": "<ul><li>An assassin embedded in the outer ring of the Veiled Ones' intelligence network — not a full member, but trusted with contracts that require discretion over dramatics.</li><li>Your marks aren't always meant to die; sometimes they're meant to disappear, recant, or simply never know you were there.</li><li>Identity compartmentalisation is doctrine.</li><li><strong>Surveillance:</strong> <strong>Advantage</strong> on checks when surveilling or tailing a target without being noticed — following at distance, mapping routine, identifying vulnerabilities before acting.</li><li><strong>Clean Hands:</strong> <strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement.</li><li>After a Sneak Attack, you can Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</li><li>The Hide check still applies.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1099,11 +1119,11 @@
      {
       "name": "Clean Hands",
       "level": 1,
-      "description": "<p><strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement. Once per encounter, after a Sneak Attack, you may Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</p>",
+      "description": "<p><strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement.</p><ul><li>After a Sneak Attack, you can Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</li><li>The Hide check still applies.</li></ul>",
       "uses": {
-       "value": 1,
-       "max": 1,
-       "per": "encounter"
+       "value": 0,
+       "max": 0,
+       "per": ""
       },
       "save": "",
       "rules": [
@@ -1172,7 +1192,7 @@
    "img": "systems/arneyan/assets/icons/kit-hood.svg",
    "effects": [],
    "system": {
-    "description": "<p><strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement. Once per encounter, after a Sneak Attack, you may Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to pass as someone with legitimate reason to be somewhere, and on checks to extract, verify, or pass intelligence without leaving a trace of your involvement.</p><ul><li>After a Sneak Attack, you can Hide as part of the same action if cover or a crowd is within <strong>10ft</strong>.</li><li>The Hide check still applies.</li></ul>",
     "kind": "class",
     "level": 1,
     "className": "The Veiled Ones, Shadow Operative (Assassin)",
@@ -1188,9 +1208,9 @@
     "active": false,
     "applies": [],
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     }
    },
    "flags": {

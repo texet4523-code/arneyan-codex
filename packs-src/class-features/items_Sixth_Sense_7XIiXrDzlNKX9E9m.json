@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>+1 to surprise checks (scales to +2 at 18th, +3 at 22nd)</p>",
+  "description": "<p><strong>Advantage</strong> on checks to avoid being surprised</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,8 +23,8 @@
   "className": "Rogue",
   "rules": [
    {
-    "key": "surprise",
-    "value": "8:1, 18:2, 22:3",
+    "key": "adv.surprise",
+    "value": "1",
     "when": "",
     "label": ""
    }

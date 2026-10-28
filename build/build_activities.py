@@ -25,11 +25,11 @@ HERE = os.path.dirname(__file__)
 FIELDS = {"name": "", "kind": "note", "formula": "", "damageType": "", "ability": "", "save": "", "text": "",
           "minLevel": 0, "maxLevel": 0, "cost": 1, "per": "", "target": "", "removeConditions": False,
           "bonus": "", "count": "", "weapons": "", "disadvantage": "", "disUntil": 0, "damageBonus": "",
-          "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False}
+          "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False, "effect": "", "spendAny": False}
 KINDS = {"heal", "temp", "damage", "check", "save", "note", "roll", "attacks"}
 INTS = ("minLevel", "maxLevel", "disUntil")
 STRS = ("formula", "damageType", "ability", "save", "per", "target", "name", "bonus", "count", "weapons",
-        "disadvantage", "damageBonus", "noStack", "targetLevel")
+        "disadvantage", "damageBonus", "noStack", "targetLevel", "effect")
 
 
 def clean(a):
@@ -42,6 +42,7 @@ def clean(a):
     out["removeConditions"] = bool(out["removeConditions"])
     out["reaction"] = bool(out["reaction"])
     out["noDamage"] = bool(out["noDamage"])
+    out["spendAny"] = bool(out["spendAny"])
     for k in STRS:
         out[k] = str(out[k] if out[k] is not None else "")
     if out["disadvantage"] not in ("", "rest", "all"):

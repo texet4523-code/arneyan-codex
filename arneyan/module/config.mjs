@@ -199,6 +199,18 @@ ARNEYAN.hpBonusText = function (hp) {
   return words.join(" ");
 };
 
+/**
+ * Each class's key attributes (Book III, the Core Chassis; books v0.10.25): the Class Save DC uses the higher where a
+ * class lists two. A class not listed (homebrew) uses its own keyAbility.
+ */
+ARNEYAN.classKeys = {
+  Archer: ["dex", "wis"], Artificer: ["int"], Assassin: ["dex", "int"], Barbarian: ["str", "con"], Bard: ["cha", "dex"],
+  Cleric: ["wis"], "Cleric (Battle Priest)": ["wis"], Druid: ["wis"], Fighter: ["str", "dex"], Gunslinger: ["dex", "wis"],
+  Illusionist: ["int"], Knight: ["cha", "str"], Magus: ["int", "str"], Monk: ["wis", "dex"], Necromancer: ["int"],
+  Paladin: ["cha", "str"], Ranger: ["dex", "wis"], Rogue: ["dex", "int"], Sorcerer: ["cha"], Swashbuckler: ["dex", "cha"],
+  Warlock: ["cha"], Witch: ["wis"], Wizard: ["int"]
+};
+
 /** Half level, minimum 1, rounded down. */
 ARNEYAN.halfLevel = function (level) {
   return Math.max(1, Math.floor((Number(level) || 0) / 2));
@@ -243,7 +255,7 @@ ARNEYAN.conditions = {
   turned: { name: "Turned", icon: "holy-symbol", rules: [R("adv.attack", -1, "while it can see the turner"), R("adv.check", -1, "while it can see the turner"), R("note.attack", "Turned: Frightened of the turner, and spends its turns moving away from it")],
     text: "Turn Undead: Frightened of the turner, and must also spend its turns moving away from it. Lasts 1 minute or until the turner attacks it." },
   incapacitated: { name: "Incapacitated", icon: "knocked-out-stars", rules: [...INCAP],
-    text: "Cannot take actions or reactions. It can still move unless another condition says otherwise, and it cannot cast spells or maintain concentration." },
+    text: "Cannot take actions or act out of turn. It can still move unless another condition says otherwise, and it cannot cast spells or maintain concentration." },
   invisible: { name: "Invisible", icon: "invisible", rules: [R("adv.attack", 1), R("adv.against", -1)],
     text: "Cannot be seen without magic or special senses. Attacks against it have Disadvantage; its own attacks have Advantage. Ends the moment it attacks or casts a spell." },
   paralysed: { name: "Paralysed", icon: "frozen-body", rules: [...HELPLESS, R("crit.against.close", 1)],
@@ -251,7 +263,7 @@ ARNEYAN.conditions = {
   petrified: { name: "Petrified", icon: "stone-bust", counter: "none", rules: [...HELPLESS, R("crit.against.close", 1), R("immune", "poison")],
     text: "Turned to stone. Treated as Paralysed and unaware of its surroundings. It does not age or need food, and is immune to poison and disease." },
   poisoned: { name: "Poisoned / Sickened", icon: "poison-bottle", counter: "stage", rules: [R("adv.attack", -1), R("adv.check", -1), R("note.save", "Poisoned: repeat the Fortitude save at the end of each turn")],
-    text: "Disadvantage on attack rolls and attribute checks. If the source is a poison, it takes poison damage at the start of each turn (1d4, then 1d6, 1d8 and 1d10) and repeats the Fortitude save at the end of each turn." },
+    text: "Disadvantage on attack rolls and attribute checks. If the source is a poison, it takes 1d6 poison damage at the start of each turn, the same every turn, and repeats the Fortitude save at the end of each turn; a success ends it." },
   prone: { name: "Prone", icon: "fall-down", counter: "none", rules: [R("adv.against.melee", 1), R("adv.against.ranged", -1)],
     text: "Melee attacks against it have Advantage; ranged attacks against it have Disadvantage. Standing up costs half its movement." },
   restrained: { name: "Restrained", icon: "manacles", rules: [R("speed.mult", 0), R("adv.attack", -1), R("adv.save.ref", -1), R("adv.against", 1)],
@@ -277,7 +289,7 @@ ARNEYAN.conditions = {
   hiddenComplete: { name: "Completely Hidden", icon: "cowled", counter: "none", rules: [],
     text: "Hide 20+: Search DC 20. As Hidden, and blindsight and truesight don't find it either. Attacking, casting a spell or a loud noise ends it." },
   surprised: { name: "Surprised", icon: "surprised", counter: "none", rules: [...INCAP, R("speed.mult", 0), R("no.reactions", 1)],
-    text: "Caught unaware: in the surprise round it can't move, take actions or take reactions. Comes off when the next round begins." },
+    text: "Caught unaware: in the surprise round it can't move, take actions or act out of turn. Comes off when the next round begins." },
   concentrating: { name: "Concentrating", icon: "concentration-orb", counter: "none", rules: [], system: true,
     text: "Maintaining a concentration effect. Taking damage calls for a Fortitude save, DC 10 or half the damage, whichever is higher." },
   dead: { name: "Dead", icon: "skull-crossed-bones", rules: [...HELPLESS], system: true, counter: "none", text: "Dead." }
@@ -316,7 +328,7 @@ ARNEYAN.ruleKeys = {
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration",
     "adv.awareness", "adv.surprise"],
-  "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "crit.against.close"],
+  "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "adv.against.first", "adv.against.first.melee", "crit.against.close"],
   "Automatic failure": ["fail.save.fort", "fail.save.ref", "fail.save.will", "fail.check.str", "fail.check.dex", "fail.check.con", "fail.check.int", "fail.check.wis", "fail.check.cha"],
   "Traits": ["resist", "immune", "vuln", "sense"],
   "Reminders": ["note.attack", "note.damage", "note.save", "note.check", "note.skill", "note.spell", "note.init"]

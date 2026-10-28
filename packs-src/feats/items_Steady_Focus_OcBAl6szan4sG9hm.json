@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
  "system": {
-  "description": "<p>A blow lands, the ground shifts, someone grabs at you mid-casting — and the working holds anyway.</p><ul><li>You have <strong>Advantage</strong> on saves made to keep a spell you are casting, or to maintain concentration on one, when you take damage, are shoved or are otherwise forced to react mid-cast.</li><li>Once per encounter, you may turn one such failed save into a success.</li></ul><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "description": "<p>A blow lands, the ground shifts, someone grabs at you mid-casting — and the working holds anyway. You have <strong>Advantage</strong> on saves made to keep a spell you are casting, or to maintain concentration on one, when you take damage, are shoved or are otherwise forced to react mid-cast, and you can't lose a spell to damage of 5 or less.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Magi, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,9 @@
   "path": "Arcane & Devout Path",
   "levelTaken": 0,
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "encounter"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "rules": [
    {

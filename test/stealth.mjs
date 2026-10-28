@@ -90,7 +90,7 @@ assert.ok(ST.tierText(AW.hideTier(13), { items: [{ type: "class", name: "Rogue" 
 
 // Rules: the surprise features use the new keys; the sheets show Aware and Hide.
 const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.json", import.meta.url), "utf8"));
-assert.equal(approved["class-features/zEXHGiACkTeX73yo"].rules[0].key, "surprise");
+assert.equal(approved["class-features/zEXHGiACkTeX73yo"].rules[0].key, "adv.surprise", "Combat Sense: Advantage (books v0.10.26, K15)");
 assert.equal(approved["class-features/Sqxt8w1xDKWpnqaM"].rules[0].key, "surprise.against");
 for (const k of ["awareness", "surprise", "surprise.against", "adv.awareness", "adv.surprise"]) assert.ok(ARNEYAN.allRuleKeys.has(k), k);
 const sheets = fs.readFileSync(new URL("../arneyan/module/sheets.mjs", import.meta.url), "utf8");

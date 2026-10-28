@@ -5,7 +5,7 @@
  "type": "ancestry",
  "img": "systems/arneyan/assets/icons/ancestry-person.svg",
  "system": {
-  "description": "<p><strong>Size Small • Speed 30ft • Darkvision 60ft • +2 Dex / +1 Con, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Mob Tactics:</strong> <strong>Advantage</strong> on your first attack roll each round against a creature that has two or more of your allies adjacent to it. 1/long rest, bonus damage = character level when damaging a larger creature (1 Luck for extra use).</li><li>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot.</li><li><strong>Weapon training:</strong> shortsword, shortbow, sling, dagger.</li><li><strong>Armour training:</strong> light.</li></ul>",
+  "description": "<p><strong>Size Small • Speed 30ft • Darkvision 60ft • +2 Dex / +1 Con, −1 Wis</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Mob Tactics:</strong> <strong>Advantage</strong> on your first attack roll each round against a creature that has two or more of your allies adjacent to it. Once per day, bonus damage = character level when damaging a larger creature (1 Luck for extra use).</li><li>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and does not take an NWP slot.</li><li><strong>Weapon training:</strong> shortsword, shortbow, sling, dagger.</li><li><strong>Armour training:</strong> light.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "traitList": [
    {
     "name": "Mob Tactics",
-    "text": "Advantage on your first attack roll each round against a creature that has two or more of your allies adjacent to it. 1/long rest, bonus damage = character level when damaging a larger creature (1 Luck for extra use)."
+    "text": "Advantage on your first attack roll each round against a creature that has two or more of your allies adjacent to it. Once per day, bonus damage = character level when damaging a larger creature (1 Luck for extra use)."
    },
    {
     "name": "Choose one skill at creation",
@@ -50,7 +50,7 @@
    {
     "key": "damage",
     "value": "+@level",
-    "when": "once per long rest, damaging a larger creature",
+    "when": "once per day, damaging a larger creature",
     "label": ""
    },
    {

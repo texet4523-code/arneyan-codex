@@ -1,7 +1,7 @@
 {
- "_id": "FNO70JvfLoZanKqm",
- "_key": "!items!FNO70JvfLoZanKqm",
- "name": "Quick Reaction (Improved)",
+ "_id": "Zm8c8FOKZGsdneoK",
+ "_key": "!items!Zm8c8FOKZGsdneoK",
+ "name": "Quick Reflexes (Improved)",
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Untouchable",
@@ -54,7 +56,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When an attack you can perceive would hit you, negate it as a miss; usable Wisdom modifier times per day (minimum 1).",
+    "text": "Out of turn, when an attack you can perceive would hit you, negate it as a miss. Usable Wisdom modifier times a day (minimum 1), once per round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -69,8 +71,10 @@
     "damageBonus": "",
     "noStack": "",
     "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "rules": [

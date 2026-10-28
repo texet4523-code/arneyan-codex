@@ -301,9 +301,14 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     s.exhaustionLabel = ARNEYAN.exhaustion[s.attributes.exhaustion] ?? "";
     s.attributes.exhaustionLabel = s.exhaustionLabel;
 
-    // Class Save DC: 10 + half class level + key attribute of the first class.
+    // Class Save DC: 10 + half class level + the first class's key attribute, the higher where it lists two (books
+    // v0.10.25). A manoeuvre or martial feature or feat that forces a save uses Strength or Dexterity, whichever is
+    // higher, instead (martialDC).
     const first = classes[0];
-    s.classDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + s.abilities[first.system.keyAbility || "str"].mod + mods.sum("class.dc") : null;
+    const keys = first ? (ARNEYAN.classKeys?.[first.name] ?? [first.system.keyAbility || "str"]).filter(k => s.abilities[k]) : [];
+    const best = keys.length ? Math.max(...keys.map(k => s.abilities[k].mod)) : 0;
+    s.classDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + best + mods.sum("class.dc") : null;
+    s.martialDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + Math.max(s.abilities.str.mod, s.abilities.dex.mod) + mods.sum("class.dc") : null;
 
     // NWP slots.
     s.nwp = {
@@ -386,7 +391,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
   getRollData() {
     const ab = {};
     for (const [k, v] of Object.entries(this.abilities)) ab[k] = { value: v.total ?? v.value, mod: v.mod };
-    return { ...ab, abilities: ab, level: this.level, half: ARNEYAN.halfLevel(this.level), bth: this.bth, luck: this.luck.value, cl: this.level };
+    return { ...ab, abilities: ab, level: this.level, half: ARNEYAN.halfLevel(this.level), bth: this.bth, luck: this.luck.value, cl: this.level,
+      classDC: this.classDC ?? 0, martialDC: this.martialDC ?? 0 };
   }
 }
 

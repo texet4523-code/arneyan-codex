@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
  "system": {
-  "description": "<p>Snap your shield forward, a solid crack to the ribs or jaw.</p><ul><li>Once per round, when you hit a creature no more than one size larger than you with a melee attack while holding a shield, slam the shield in as part of the same attack.</li><li>The target makes a <strong>Fortitude save</strong> (DC = 10 + half your level (minimum 1) + your Strength modifier) or is knocked <strong>Prone</strong>.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "description": "<p>Snap your shield forward, a solid crack to the ribs or jaw.</p><ul><li>Once per round, when you hit a creature no more than one size larger than you with a melee attack while holding a shield, slam the shield in as part of the same attack.</li><li>The target makes a <strong>Fortitude save</strong> against your Class Save DC, using Strength or Dexterity, whichever is higher, or is knocked <strong>Prone</strong>.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -21,11 +21,11 @@
    {
     "name": "Shield Bash",
     "kind": "save",
-    "formula": "10 + @half + @str.mod",
+    "formula": "@martialDC",
     "damageType": "",
     "ability": "",
     "save": "fort",
-    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save or knocked Prone.",
+    "text": "After a melee hit while holding a shield, on a creature no more than one size larger: Fortitude save against your Class Save DC (Strength or Dexterity, whichever is higher) or knocked Prone.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -41,7 +41,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "applies": [

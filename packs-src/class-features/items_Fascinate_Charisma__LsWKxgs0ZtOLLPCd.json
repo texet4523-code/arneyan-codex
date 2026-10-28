@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Place up to 2 creatures into a trance. Targets must be able to see and hear the Bard and must not be in immediate combat.</li><li><strong>Will save</strong> to resist</li><li>A fascinated target sits quietly and listens — treated as prone and <strong>Incapacitated</strong> until the effect ends</li><li>Usable 3 times per day — lasts rounds equal to Bard's level</li><li>Any obvious threat, including an attack on the target or its allies, automatically breaks the effect</li><li>Creatures who succeed the save cannot be targeted again for <strong>24 hours</strong></li><li><strong>Targets scale:</strong> 2 creatures (4th), 4 (6th), 10 (12th)</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Place up to 2 creatures into a trance. Targets must be able to see and hear the Bard and must not be in immediate combat.</li><li><strong>Will save</strong> to resist</li><li>A fascinated target sits quietly and listens — treated as prone and <strong>Incapacitated</strong> until the effect ends</li><li>Usable 3 times per day. Lasts until the scene ends or something breaks it</li><li>Any obvious threat, including an attack on the target or its allies, automatically breaks the effect</li><li><strong>Targets scale:</strong> 2 creatures (4th), 4 (6th), 10 (12th)</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you save or fall into a trance for rounds equal to your Bard level.",
+    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you, and aren't in immediate combat, save or fall into a trance until the scene ends or something breaks it.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Charm Person",
@@ -70,7 +72,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Suggestion",
@@ -95,7 +99,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Antipathy/Sympathy",
@@ -120,7 +126,36 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Sway Crowd",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "While performing, all listeners save or are held in rapture, unable to leave while you perform and for rounds equal to your Bard level after: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language.",
+    "minLevel": 13,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    },
    {
     "name": "Mass Suggestion",
@@ -145,14 +180,16 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ],
   "applies": [
    {
     "name": "Fascinated",
     "target": "target",
-    "rounds": "@cl",
+    "rounds": "0",
     "statuses": [
      "prone",
      "incapacitated"

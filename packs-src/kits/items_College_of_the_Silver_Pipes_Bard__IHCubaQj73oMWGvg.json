@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<ul><li>Founded in Eltor by Colby Barr and now spread across Arneyan, the College is the continent's foremost bardic institution. Members represent the College wherever they travel, advancing through Apprentice, Journeyman, Professor, Master, and Head Master ranks.</li><li><strong>Formal Research:</strong> Legend Lore checks on subjects the Bard has formally researched or published on are made with advantage and never fail on a natural 1. Once per encounter, as part of your action, lecture on a creature you can see: you and allies who hear you gain +1 to attack rolls against it until the end of your next turn.</li><li><strong>College Reputation:</strong> <strong>Advantage</strong> on all Charisma-based checks when invoking the College's name or reputation, and on Decipher Script checks on any written work.</li></ul>",
+  "description": "<ul><li>Founded in Eltor by Colby Barr and now spread across Arneyan, the College is the continent's foremost bardic institution. Members represent the College wherever they travel, advancing through Apprentice, Journeyman, Professor, Master, and Head Master ranks.</li><li><strong>Formal Research:</strong> Legend Lore checks on subjects the Bard has formally researched or published on are made with advantage and never fail on a natural 1.</li><li>Once per round, as part of your action, you can lecture on a creature you can see: the first attack roll an ally makes against it each round has <strong>Advantage</strong>.</li><li>Only one creature can be under your lecture at a time.</li><li><strong>College Reputation:</strong> <strong>Advantage</strong> on all Charisma-based checks when invoking the College's name or reputation, and on Decipher Script checks on any written work.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Formal Research",
     "level": 1,
-    "description": "<p>Legend Lore checks on subjects the Bard has formally researched or published on are made with advantage and never fail on a natural 1. Once per encounter, as part of your action, lecture on a creature you can see: you and allies who hear you gain +1 to attack rolls against it until the end of your next turn.</p>",
+    "description": "<p>Legend Lore checks on subjects the Bard has formally researched or published on are made with advantage and never fail on a natural 1.</p><ul><li>Once per round, as part of your action, you can lecture on a creature you can see: the first attack roll an ally makes against it each round has <strong>Advantage</strong>.</li><li>Only one creature can be under your lecture at a time.</li></ul>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
@@ -28,16 +28,26 @@
       "value": "1",
       "when": "Legend Lore on subjects you have formally researched or published on",
       "label": ""
-     },
-     {
-      "key": "attack",
-      "value": "1",
-      "when": "vs a creature you lectured on, until the end of your next turn",
-      "label": ""
      }
     ],
     "toggle": false,
-    "active": false
+    "active": false,
+    "applies": [
+     {
+      "name": "Lectured",
+      "target": "target",
+      "rounds": "encounter",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against.first",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
    },
    {
     "name": "College Reputation",

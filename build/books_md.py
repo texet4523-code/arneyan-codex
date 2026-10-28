@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14, 28 Oct 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,15 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01024/HB_v0.10.24_*.md (md5s on the board, B-F10 and B-F11). Book III is the Builder's v0.10.24 Markdown and
-Book II its v0.10.21 (unchanged since); Books I, IV and V are the v0.10.20 copies under the new name, with the Codex patched
-below. Output: /tmp/hb/v01011.
+Sources: /tmp/hb/src_v01027/HB_v0.10.27_*.md and MT_v0.10.27_sources.txt (md5s on the board, B-F12 to B-F14). Book III is
+the Builder's v0.10.27 Markdown, Book I its v0.10.26, Book II and the M&T sources its v0.10.25; Books IV and V are the v0.10.20
+copies under the new name (Atonement patched below). Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01024"
+SRC = "/tmp/hb/src_v01027"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.24"
+VERSION = "0.10.27"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -49,12 +49,9 @@ SPELL_PATCHES = [(
 )]
 
 
-# Book I changed in v0.10.22 only in the Fighter's Manoeuvre Mastery tiers (B7; board B-F9 and B-F10): 2nd and 9th
-# level instead of 7th and 13th, as Book III says. No new Book I Markdown was sent, so the v0.10.20 copy gets it here.
-CODEX_PATCHES = [
-    ("- **Fighter Manoeuvre Mastery: Level 7** —", "- **Fighter Manoeuvre Mastery: Level 2** —"),
-    ("- Level 13 — contest-based manoeuvres", "- Level 9 — contest-based manoeuvres"),
-]
+# Book I's Fighter Manoeuvre Mastery tiers (2nd and 9th, B7) were patched here until the Builder sent a new Codex
+# (v0.10.26, B-F13), which has them.
+CODEX_PATCHES = []
 
 
 def patched(part, patches):

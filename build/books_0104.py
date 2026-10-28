@@ -32,7 +32,8 @@ DRAGONBORN_OLD = [
     ("<li><strong>Resistance 5 to a chosen damage type</strong>.</li>", "<li><strong>Resistance 5</strong> to your draconic type.</li>"),
 ]
 DRAGONBORN_TRAITS = [
-    {"name": "Draconic type", "text": "Choose fire, cold, lightning, poison or acid at creation. 1/long rest breath weapon of that type: line or cone, "
+    # Books v0.10.25: "Once per day" (was "1/long rest"); Book II now has this wording itself.
+    {"name": "Draconic type", "text": "Choose fire, cold, lightning, poison or acid at creation. Once per day breath weapon of that type: line or cone, "
      "damage = character level, Reflex save for half (Ancestry Save DC, Constitution; 1 Luck for an extra use)."},
     {"name": "Resistance 5", "text": "Resistance 5 to your draconic type."},
 ]
@@ -105,40 +106,29 @@ SPELLS = {
 }
 CLASS_ONLY_FOLDERS = {"Necromancer", "Warlock", "Witch"}
 
-# Knight kits (PHB v0.10.4, Knight): each replaces the class's own feature of that name.
+# Knight kits. PHB v0.10.4: each replaced the class's own feature of that name. Books v0.10.25 (R-B7, board B-F12): the
+# Knight's Commands are one pool, and these two now change a Command option instead of replacing a feature: they keep
+# no uses of their own and carry the stronger version of the option's effect, applied in its place.
 KITS = {
     "Hedge Knights (Knight)": {
-        "name": "Steadfast Courage", "level": 3, "replaces": "Embolden",
-        "description": "<p>Your Embolden replaces the usual one. Once per day, companions and followers within 60ft gain +2 to Fortitude "
-                       "and Reflex saves and +3 to Will saves, for rounds equal to twice your Knight level. It cannot combine with "
-                       "Inspire or Demoralise.</p>",
-        "uses": {"value": 1, "max": 1, "per": "day"}, "save": "",
-        "applies": [{"name": "Emboldened (Steadfast Courage)", "target": "target", "rounds": "@cl * 2", "statuses": [],
-                     "rules": [{"key": "save.fort", "value": "2", "when": "", "label": ""},
-                               {"key": "save.ref", "value": "2", "when": "", "label": ""},
-                               {"key": "save.will", "value": "3", "when": "", "label": ""}]}],
-        "kit_text": ("<li><strong>Steadfast Courage: </strong>Embolden range increases to 60ft and lasts twice as many rounds, and the save "
-                     "bonuses improve to +2 Fortitude/Reflex and +3 Will.</li>",
-                     "<li><strong>Steadfast Courage: </strong>your Embolden replaces the usual one. Once per day, companions and followers "
-                     "within 60ft gain +2 to Fortitude and Reflex saves and +3 to Will saves, for rounds equal to twice your Knight level. "
-                     "It cannot combine with Inspire or Demoralise.</li>"),
+        "name": "Steadfast Courage", "level": 3, "replaces": "",
+        "description": "<p>Your Embolden option reaches <strong>60ft</strong>, and companions and followers in range have "
+                       "<strong>Advantage on all saves</strong>. When you give Embolden, apply this in place of the usual "
+                       "Emboldened.</p>",
+        "uses": {"value": 0, "max": 0, "per": ""}, "save": "",
+        "applies": [{"name": "Emboldened (Steadfast Courage)", "target": "target", "rounds": "encounter", "statuses": [],
+                     "rules": [{"key": "adv.save", "value": "1", "when": "", "label": ""}]}],
+        "kit_text": None,
     },
     "Boldock Wall-Knights (Knight)": {
-        "name": "Wall-Forged Dread", "level": 5, "replaces": "Demoralise",
-        # Books v0.10.22 wording: as Demoralise, only harsher (the same rules as the v0.10.4 text).
-        "description": "<p>Your Demoralise is harsher: enemies suffer −6 to Charisma checks and, on a failed Will save, have "
-                       "Disadvantage on all their attack rolls. Otherwise it works as Demoralise.</p>",
-        "uses": {"value": 1, "max": 1, "per": "day"}, "save": "will",
-        "applies": [{"name": "Demoralised (Wall-Forged Dread)", "target": "target", "rounds": "@cl", "statuses": [],
-                     "rules": [{"key": "check.cha", "value": "-6", "when": "", "label": ""}]},
-                    {"name": "Demoralised (Wall-Forged Dread, failed save)", "target": "target", "rounds": "@cl", "statuses": [],
+        "name": "Wall-Forged Dread", "level": 5, "replaces": "",
+        "description": "<p>Your Demoralise option is harsher: on a failed Will save, enemies have <strong>Disadvantage on all "
+                       "their attack rolls</strong>. Otherwise it works as Demoralise. When you give Demoralise, apply this in "
+                       "place of the usual failed-save effect.</p>",
+        "uses": {"value": 0, "max": 0, "per": ""}, "save": "will",
+        "applies": [{"name": "Demoralised (Wall-Forged Dread, failed save)", "target": "target", "rounds": "encounter", "statuses": [],
                      "rules": [{"key": "adv.attack", "value": "-1", "when": "", "label": ""}]}],
-        "kit_text": ("<li><strong>Wall-Forged Dread: </strong>Demoralise penalty increases to -6 to Charisma checks, and affected enemies have "
-                     "Disadvantage on all their attack rolls (instead of only their first each round).</li>",
-                     "<li><strong>Wall-Forged Dread: </strong>your Demoralise replaces the usual one. Once per day, enemies suffer −6 to "
-                     "Charisma checks and must make a Will save against your Class Save DC or have Disadvantage on all their attack rolls. "
-                     "It lasts rounds equal to your Knight level and affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at "
-                     "12th and 5,000 at 16th. It cannot combine with Inspire or Embolden.</li>"),
+        "kit_text": None,
     },
 }
 
@@ -207,8 +197,9 @@ def build():
             continue
         s = d["system"]
         before = json.dumps(s)
-        old, new = k["kit_text"]
-        s["description"] = s["description"].replace(old, new)
+        if k["kit_text"]:
+            old, new = k["kit_text"]
+            s["description"] = s["description"].replace(old, new)
         feat = next((x for x in s.get("features", []) if x.get("name") == k["name"]), None)
         if feat is None:
             n["misses"].append(f"kit feature {k['name']}")

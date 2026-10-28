@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
  "system": {
-  "description": "<p>Once per session, give up to 3 of your Current Luck points to an ally; they are not returned. Recover 2 Luck points instead of 1 upon levelling. If Lucky also applies, use the higher.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+  "description": "<p>As part of your action, give up to 3 of your Current Luck points to an ally; they are not returned. Recover 2 Luck points instead of 1 upon levelling. If Lucky also applies, use the higher.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,9 @@
   "path": "Specialist Path",
   "levelTaken": 0,
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "session"
+   "value": 0,
+   "max": 0,
+   "per": ""
   }
  },
  "effects": [],

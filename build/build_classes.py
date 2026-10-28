@@ -198,8 +198,12 @@ def build(icon_for_class):
                 lab, rest = label_of(p)
                 if info["list"] and lab and info["lvl"] == 0:
                     lm = re.search(r"\((\d+)(?:st|nd|rd|th)\)", lab)
+                    # A line the book sets all in bold ("**Sea Shanty: aboard a ship...**") leaves its text starting
+                    # lower case once the name is taken off: capitalise it.
+                    body = md_inline(rest)
+                    body = re.sub(r"^((?:<[^>]+>)*)([a-z])", lambda m: m.group(1) + m.group(2).upper(), body)
                     cur_kit[2].append({"name": re.sub(r"\s*\(\d+(?:st|nd|rd|th)\)", "", lab).strip(), "level": int(lm.group(1)) if lm else 1,
-                                       "description": f"<p>{md_inline(rest)}</p>"})
+                                       "description": f"<p>{body}</p>"})
                 elif info["list"] and info["lvl"] == 0 and not lab and len(t) <= 40 and not t.endswith("."):
                     cur_kit[2].append({"name": t.strip(), "level": 1, "description": ""})
                 elif info["list"] and cur_kit[2]:

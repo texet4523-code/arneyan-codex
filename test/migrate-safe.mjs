@@ -422,7 +422,7 @@ console.log("OK safe world update");
   const six = makeActor("Brakka", "character", 6, oldList, { deleted: ["Quick Draw"] });
   const vet = makeActor("Vet", "character", 18, oldList);
   const mine = makeActor("Kept", "character", 6, oldList, { flags: { arneyan: { keepCustom: true } } });
-  const done = makeActor("Done", "character", 6, newList, { flags: { arneyan: { reworked: "0.10.65" } } });
+  const done = makeActor("Done", "character", 6, newList, { flags: { arneyan: { reworked: M.CLASS_REWORK } } });
   const npc = makeActor("Ogre", "npc", 6, oldList);
   // The kits' levels before the main pass refreshed them (here the Curse came at 8th, Physical Change at 12th; now 3rd
   // and 7th): a 6th-level owner newly reaches the Curse, an 18th-level one nothing.
@@ -434,12 +434,12 @@ console.log("OK safe world update");
   assert.deepEqual(notes.classAdded, { Brakka: ["Battle Space", "Legend of Battle", "Patron Curse"], Vet: ["Legend of Battle"] }, "only what's newly reached; Quick Draw, deleted by the GM, stays deleted");
   assert.deepEqual(notes.classGone, { Vet: ["Battle Space (Improved)"] }, "a dropped feature is listed, not deleted");
   assert.deepEqual(vet.lowered, [{ _id: "g3", "system.level": 3 }], "a feature already there takes its new, earlier level");
-  assert.equal(six.items[0].flags.arneyan.reworked, "0.10.65");
+  assert.equal(six.items[0].flags.arneyan.reworked, M.CLASS_REWORK);
   assert.deepEqual(mine.items[0].system.features, oldList, "Keep my edits: left alone");
   assert.deepEqual([...new Set(granted.map(g => g[0]))], ["Brakka", "Vet"], "a class already done, a kept one and an NPC are skipped");
   // A kit the main pass didn't refresh (it failed for that actor): its old levels are kept on it, and the next try
   // grants from them once the list has the new levels.
-  const late = makeActor("Late", "character", 5, newList, { kitLevels: [1, 8, 12], flags: { arneyan: { reworked: "0.10.65" } } });
+  const late = makeActor("Late", "character", 5, newList, { kitLevels: [1, 8, 12], flags: { arneyan: { reworked: M.CLASS_REWORK } } });
   granted.length = 0;
   await M.classRework([late], fetch, grant, notes, { kitBefore: new Map([["Late.k1", [1, 8, 12]]]), classOf });
   assert.equal(granted.length, 0);
@@ -447,7 +447,7 @@ console.log("OK safe world update");
   late.items[1].system.features = [{ name: "Patron Buff", level: 1 }, { name: "Patron Curse", level: 3 }, { name: "Physical Change", level: 7 }];
   await M.classRework([late], fetch, grant, notes, { kitBefore: new Map([["Late.k1", [1, 3, 7]]]), classOf });
   assert.deepEqual(granted, [["Late", ["Patron Curse"]]], "the retry grants from the kept levels");
-  assert.equal(late.items[1].flags.arneyan.reworked, "0.10.65");
+  assert.equal(late.items[1].flags.arneyan.reworked, M.CLASS_REWORK);
   // Run again: nothing more.
   granted.length = 0;
   await M.classRework([six, vet], fetch, grant, notes, { kitBefore, classOf });
@@ -456,7 +456,7 @@ console.log("OK safe world update");
   const world = makeActor("W", "character", 1, oldList).items[0];
   await M.classRework([], fetch, grant, notes, { worldItems: [world] });
   assert.equal(world.system.features.length, 5);
-  assert.equal(M.CLASS_REWORK, "0.10.65");
+  assert.equal(M.CLASS_REWORK, "0.10.68");
   assert.ok(M.newerThan("0.10.65", "0.10.64") && M.newerThan("0.10.65", "0") && !M.newerThan("0.10.65", "0.10.65") && M.newerThan("0.10.100", "0.10.65"));
   console.log("OK 0.10.65 class features at their new levels");
 }

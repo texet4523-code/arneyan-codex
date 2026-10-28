@@ -55,6 +55,8 @@ Advantage (+1) / Disadvantage (-1), on the creature's own rolls:
 
 Against this creature (when it is the target):
 - `adv.against` (+1: attacks against it have Advantage; -1: Disadvantage), `adv.against.melee`, `adv.against.ranged`
+- `adv.against.first` (-1: the first attack against it each round has Disadvantage; books v0.10.26, K15), `adv.against.first.melee`
+  (the first melee attack); with a number rule `against.first.count` (2: the first two attacks)
 - `crit.against.close` (1: melee hits from within 5ft are critical)
 
 Automatic failure (value 1):
@@ -64,6 +66,10 @@ Traits (value is a word):
 - `resist`, `immune`, `vuln` (damage type: fire, cold, poison, slashing ... or `all`; `resist` may carry an amount, "fire 5", which takes 5 off instead of halving; `immune` may be `condition:<id>` for immunity to a condition)
 - `sense` (e.g. "Darkvision 60ft")
 
+Other numbers:
+- `cast.temp` (Arcane Ward): casting a spell of 1st level or higher gives temporary HP of this times the spell's level,
+  keeping the higher amount
+
 Notes (value is reminder text shown on the matching chat card):
 - `note.attack`, `note.damage`, `note.save`, `note.check`, `note.skill`, `note.spell`, `note.init`
 
@@ -72,8 +78,11 @@ Notes (value is reminder text shown on the matching chat card):
 - **passive**: the item's `rules` apply all the time while the item is on the character
   (gear only when equipped).
 - **toggle**: the item has `toggle: true`; its rules apply only while switched on (Rage, a stance, Defensive Fighting).
+  A rule `{"key": "toggle.ends", "value": "encounter"}` among them switches it off when the encounter ends (Rage,
+  books v0.10.25).
 - **applies**: a spell or ability puts an effect on `self` or `target`(s) when used:
-  `{ "name", "target": "self"|"target", "rounds": number|formula (0 = until removed; 10 rounds = 1 minute),
+  `{ "name", "target": "self"|"target", "rounds": number|formula (0 = until removed; 10 rounds = 1 minute;
+     "encounter" = until the encounter ends, books v0.10.25),
      "statuses": [condition ids], "rules": [...] }`.
   Concentration spells are linked to the caster automatically.
 

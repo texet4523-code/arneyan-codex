@@ -1,0 +1,42 @@
+{
+ "_id": "8DY1NmlAZleWk9St",
+ "_key": "!items!8DY1NmlAZleWk9St",
+ "name": "Martial Bearing",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your melee weapon hits deal +1 damage per three Knight levels (minimum +1). Always on.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Knight",
+  "rules": [
+   {
+    "key": "damage.melee",
+    "value": "+max(1,floor(@cl/3))",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

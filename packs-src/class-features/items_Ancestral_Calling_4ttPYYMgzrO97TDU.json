@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per week, inspire nearby allies — each affected creature gains <strong>temporary HP</strong> equal to the maximum roll of one extra HD appropriate to their type (a Fighter gains +<strong>10 HP</strong>, etc.).</li><li>Affects creatures of Level up to twice the Barbarian's level</li><li>Lasts until the end of the day or completion of the current task</li><li>Cannot combine with another Barbarian's use of the same ability</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> The first time you rage each day, allies within <strong>30ft</strong> gain <strong>temporary HP</strong> equal to your Barbarian level, lasting until the end of the day. Always on.</li><li>Cannot combine with another Barbarian's Ancestral Calling</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "week"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,
@@ -24,16 +24,16 @@
   "activities": [
    {
     "name": "Ancestral Calling",
-    "kind": "note",
-    "formula": "",
+    "kind": "temp",
+    "formula": "@cl",
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Nearby allies of Level up to twice yours gain temporary HP equal to the maximum roll of one extra Hit Die of their type.",
+    "text": "The first time you rage each day, allies within 30ft gain temporary HP equal to your Barbarian level, lasting until the end of the day. Not with another Barbarian's Ancestral Calling.",
     "minLevel": 0,
     "maxLevel": 0,
-    "cost": 1,
-    "per": "",
+    "cost": 0,
+    "per": "day",
     "target": "allies",
     "removeConditions": false,
     "bonus": "",
@@ -45,7 +45,9 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li>The continent-wide network originating from Opal, working closely with Opal's government. Many worship Mask.</li><li>Robins are the Guild's main force — versatile, reliable, and trusted with most day-to-day jobs.</li><li>The Guild deals in theft and information as much as assassination; at the Robin level, the work is mostly the former.</li><li><strong>Guild Contract:</strong> <strong>Advantage</strong> on Pick Pocket and Open Locks checks when operating on a Guild-assigned contract. Once per encounter, when your Sneak Attack hits, one ally has <strong>Advantage</strong> on their next attack roll against that target.</li><li><strong>Guild Signal:</strong> <strong>Advantage</strong> on checks gathering information for a Crow or Raven superior, and on checks identifying other Guild members by their signals and methods.</li></ul>",
+  "description": "<ul><li>The continent-wide network originating from Opal, working closely with Opal's government. Many worship Mask.</li><li>Robins are the Guild's main force — versatile, reliable, and trusted with most day-to-day jobs.</li><li>The Guild deals in theft and information as much as assassination; at the Robin level, the work is mostly the former.</li><li><strong>Guild Contract:</strong> <strong>Advantage</strong> on Pick Pocket and Open Locks checks when operating on a Guild-assigned contract. When your Sneak Attack hits, the next ally to attack that target before your next turn has <strong>Advantage</strong>.</li><li><strong>Guild Signal:</strong> <strong>Advantage</strong> on checks gathering information for a Crow or Raven superior, and on checks identifying other Guild members by their signals and methods.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Guild Contract",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Pick Pocket and Open Locks checks when operating on a Guild-assigned contract. Once per encounter, when your Sneak Attack hits, one ally has <strong>Advantage</strong> on their next attack roll against that target.</p>",
+    "description": "<p><strong>Advantage</strong> on Pick Pocket and Open Locks checks when operating on a Guild-assigned contract. When your Sneak Attack hits, the next ally to attack that target before your next turn has <strong>Advantage</strong>.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
@@ -31,7 +31,23 @@
      }
     ],
     "toggle": false,
-    "active": false
+    "active": false,
+    "applies": [
+     {
+      "name": "Guild Mark",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against.first",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
    },
    {
     "name": "Guild Signal",

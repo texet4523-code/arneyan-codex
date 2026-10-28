@@ -5,49 +5,22 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, commune directly with your patron to ask one yes/no question. The answer is always truthful — though the patron's understanding of truth may not align with yours.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> During a long rest, commune directly with your patron to ask one yes/no question. The answer is always truthful — though the patron's understanding of truth may not align with yours.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "day"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,
   "damage": "",
   "level": 10,
-  "className": "Warlock",
-  "activities": [
-   {
-    "name": "Patron's Whisper",
-    "kind": "note",
-    "formula": "",
-    "damageType": "",
-    "ability": "",
-    "save": "",
-    "text": "Commune with your patron to ask one yes/no question, answered truthfully by its lights.",
-    "minLevel": 0,
-    "maxLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": false,
-    "noDamage": false
-   }
-  ]
+  "className": "Warlock"
  },
  "effects": [],
  "folder": "T3ndcZaUyzMXclDX",

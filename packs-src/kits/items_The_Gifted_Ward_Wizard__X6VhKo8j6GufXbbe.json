@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<ul><li>Personally tutored by a single master wizard rather than enrolled in any institution: no lecture hall, no cohort, just a master's direct attention and very high expectations.</li><li><strong>Steady Hand:</strong> <strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. Once per encounter, you may reroll a failed <strong>Fortitude save</strong> to keep a spell when damaged while casting.</li><li><strong>Myllnoris Standing:</strong> <strong>Advantage</strong> on checks navigating Myllnoris's arcane bureaucracy or identifying Myllnoris-made magic items.</li></ul>",
+  "description": "<ul><li>Personally tutored by a single master wizard rather than enrolled in any institution: no lecture hall, no cohort, just a master's direct attention and very high expectations.</li><li><strong>Steady Hand:</strong> <strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. When you fail to keep a spell after being damaged while casting, you keep its slot.</li><li><strong>Myllnoris Standing:</strong> <strong>Advantage</strong> on checks navigating Myllnoris's arcane bureaucracy or identifying Myllnoris-made magic items.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,13 @@
    {
     "name": "Steady Hand",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. Once per encounter, you may reroll a failed <strong>Fortitude save</strong> to keep a spell when damaged while casting.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. When you fail to keep a spell after being damaged while casting, you keep its slot.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": "fort",
+    "save": "",
     "rules": [
      {
       "key": "adv.save",

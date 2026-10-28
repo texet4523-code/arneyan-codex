@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<ul><li>Trained within the Opal Mages Guild Association — founded by Jorhim Shadowstitch, training the magically gifted in exchange for their loyalty, now led by Archmage Elnora Myrill since the War of Tariel finally legitimised it in Myllnoris's eyes.</li><li><strong>Coordinated Casting:</strong> Once per encounter, if an ally is already engaged with your target in melee, a harmful spell you cast against that target imposes <strong>Disadvantage</strong> on their saving throw.</li><li><strong>Guild Standing:</strong> Recognised Guild standing — advantage on Persuasion invoking O.M.G.A.'s name with Opal's government or military, and advantage recalling the Guild's rank structure or current leadership.</li></ul>",
+  "description": "<ul><li>Trained within the Opal Mages Guild Association — founded by Jorhim Shadowstitch, training the magically gifted in exchange for their loyalty, now led by Archmage Elnora Myrill since the War of Tariel finally legitimised it in Myllnoris's eyes.</li><li><strong>Coordinated Casting:</strong> While an ally is in melee with your target, it has <strong>Disadvantage</strong> on its save against your harmful spells.</li><li><strong>Guild Standing:</strong> Recognised Guild standing — advantage on Persuasion invoking O.M.G.A.'s name with Opal's government or military, and advantage recalling the Guild's rank structure or current leadership.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,17 +15,17 @@
    {
     "name": "Coordinated Casting",
     "level": 1,
-    "description": "<p>Once per encounter, if an ally is already engaged with your target in melee, a harmful spell you cast against that target imposes <strong>Disadvantage</strong> on their saving throw.</p>",
+    "description": "<p>While an ally is in melee with your target, it has <strong>Disadvantage</strong> on its save against your harmful spells.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
      {
       "key": "note.spell",
-      "value": "Coordinated Casting: once per encounter, if an ally is in melee with your target, it saves against your harmful spell at Disadvantage.",
+      "value": "Coordinated Casting: while an ally is in melee with your target, it has Disadvantage on its save against your harmful spells.",
       "when": "",
       "label": ""
      }

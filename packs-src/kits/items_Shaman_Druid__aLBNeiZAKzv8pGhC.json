@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>You walk between worlds — the living and the spirit, the present and the ancestral. Where Druids tend the natural world, Shamans negotiate with what lies beneath and beyond it.</p><ul><li><strong>Spirit Sight:</strong> <strong>Advantage</strong> on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. Once per day, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</li><li><strong>Ancestor's Fury:</strong> Once per encounter, call on ancestral power — your next spell or attack made while in Wild Shape deals an additional <strong>1d8</strong> damage of any type you choose.</li></ul>",
+  "description": "<p>You walk between worlds — the living and the spirit, the present and the ancestral. Where Druids tend the natural world, Shamans negotiate with what lies beneath and beyond it.</p><ul><li><strong>Spirit Sight:</strong> <strong>Advantage</strong> on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. During a long rest, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</li><li><strong>Ancestor's Fury:</strong> While you are in Wild Shape, your first hit each round deals an additional <strong>1d4</strong> damage of a type you choose.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Spirit Sight",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. Once per day, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to perceive, communicate with, or identify spirits, ancestors, and extraplanar entities of natural origin. During a long rest, ask the spirits one yes/no question about the immediate area or a creature nearby — the answer comes as an impression, not words.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "rules": [
@@ -36,26 +36,26 @@
    {
     "name": "Ancestor's Fury",
     "level": 1,
-    "description": "<p>Once per encounter, call on ancestral power — your next spell or attack made while in Wild Shape deals an additional <strong>1d8</strong> damage of any type you choose.</p>",
+    "description": "<p>While you are in Wild Shape, your first hit each round deals an additional <strong>1d4</strong> damage of a type you choose.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "",
     "activities": [
      {
-      "name": "Ancestor's Fury (1d8)",
+      "name": "Ancestor's Fury (1d4)",
       "kind": "damage",
-      "formula": "1d8",
+      "formula": "1d4",
       "damageType": "",
       "ability": "",
       "save": "",
-      "text": "Your next spell or attack made while in Wild Shape deals this extra, of any type you choose.",
+      "text": "While you are in Wild Shape, your first hit each round deals this extra, of a type you choose.",
       "minLevel": 0,
       "maxLevel": 0,
-      "cost": 1,
-      "per": "",
+      "cost": 0,
+      "per": "round",
       "target": "",
       "removeConditions": false,
       "bonus": "",
@@ -67,14 +67,16 @@
       "noStack": "",
       "targetLevel": "",
       "reaction": false,
-      "noDamage": false
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      }
     ],
     "rules": [
      {
       "key": "damage",
-      "value": "+1d8",
-      "when": "once per encounter: next spell or attack while in Wild Shape (any type)",
+      "value": "+1d4",
+      "when": "first hit each round while in Wild Shape (a type you choose)",
       "label": ""
      }
     ],

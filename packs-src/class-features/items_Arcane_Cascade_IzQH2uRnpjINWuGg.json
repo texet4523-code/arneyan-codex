@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> After a Spellstrike (cantrip or levelled) that hits, gain +1 AC for <strong>1 round</strong> — the backwash of channelling a spell through a weapon rather than letting it go cleanly keeps your guard up.</li><li>9th level: +2 AC instead</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> After a Spellstrike (cantrip or levelled) that hits, the first attack against you before your next turn has <strong>Disadvantage</strong>: the backwash of channelling a spell through a weapon rather than letting it go cleanly keeps your guard up.</li><li>9th level: the first two attacks against you before your next turn have <strong>Disadvantage</strong></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,13 @@
     "statuses": [],
     "rules": [
      {
-      "key": "ac",
+      "key": "adv.against.first",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "against.first.count",
       "value": "1:1, 9:2",
       "when": "",
       "label": ""
