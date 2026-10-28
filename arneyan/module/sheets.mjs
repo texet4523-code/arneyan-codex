@@ -6,6 +6,7 @@ import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, we
 import { ArneyanBrowser } from "./browser.mjs";
 import { alignmentContext } from "./favour.mjs";
 import { startingWealth, canRunStartingWealth } from "./starting.mjs";
+import { setUpCharacter } from "./progression.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
@@ -146,6 +147,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       openPage: ArneyanActorSheet.#openPage,
       rest: ArneyanActorSheet.#rest,
       abilityScores: ArneyanActorSheet.#abilityScores,
+      setUpCharacter: ArneyanActorSheet.#setUpCharacter,
       rollHitDie: ArneyanActorSheet.#rollHitDie,
       changeTab: ArneyanActorSheet.#changeTab,
       levelUp: ArneyanActorSheet.#levelUp,
@@ -818,6 +820,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
   static #rest() { return this.document.rest(); }
   static #abilityScores() { return game.arneyan.abilityScores(this.document); }
+  static #setUpCharacter() { return setUpCharacter(this.document); }
   /** Roll one Hit Die + Con by hand (a level's HP rolled at the table, or just to check): the result goes to chat. */
   static async #rollHitDie(event, target) {
     const actor = this.document;

@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.68 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.69 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.69
+
+- **Making a character, step by step** (Kieran, 27 Oct). A new character goes from its ability scores straight to a list of the classes (each with its Hit Die and key attribute, and its description when clicked), then the same steps as dropping a class on the sheet: ancestry, Kit, Feats, skills, Starting Luck and starting gold. Nothing needs dragging. **Later** on the scores or the class list leaves the rest for now: the sheet's **Set up** button (where the class would be) picks up from where it stopped, and dragging a class onto the sheet still works.
 
 ## What's new in 0.10.68
 
@@ -753,7 +757,7 @@ Each is built from the system's own class, ancestry, kit, features, feats, skill
 
 ## New characters
 - **A new character asks for its ability scores first:** roll Method V (Set Alpha and Set Beta, each six pools: 8d6, 5d6 and 4d6 keeping the highest 3, then 3d6 three times; the roll goes to chat), keep a whole set (the window flags a set without two scores of 14 or higher, the Gygaxian Threshold, and lets you roll both again if neither has them), or type in a donated set. Then put each number on an attribute, with its modifier shown. The dice button by the attributes (in Edit mode) opens it again.
-- Then drop an ancestry and a class: the ancestry steps add its changes, the class steps do HP, kit, feat, skills and Luck.
+- Then it asks for the class, and the class steps follow: the ancestry (with its changes), HP, Kit, Feats, skills, Luck and starting gold. **Later** leaves it; **Set up** on the sheet starts again, or drop a class (and an ancestry) on the sheet yourself.
 
 ## Table conveniences
 - **Initiative:** starting combat rolls every monster's initiative privately; monsters of the same kind share one roll and act together (switch off in the settings).

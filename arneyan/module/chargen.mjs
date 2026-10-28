@@ -9,6 +9,7 @@
  * changes come after (dropping the ancestry), where no score starts above 18.
  */
 import { ARNEYAN } from "./config.mjs";
+import { pickClass } from "./progression.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYSFLAG = "arneyan";
@@ -383,7 +384,7 @@ async function abilityScoresWindow(actor) {
     ],
     rejectClose: false
   });
-  if (!res || res === "skip") return;
+  if (!res || res === "skip") return false;
   // Remembered so a first ancestry above 1st level knows its bonuses still need adding (progression.mjs).
   await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true, "flags.arneyan.-=needsScores": null });
   if (res.took) {
@@ -396,7 +397,8 @@ async function abilityScoresWindow(actor) {
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), flags: { [SYSFLAG]: { donation: { set: [...res.spare.set], from: actor.name } } },
       content: `<p>${esc(actor.name)} kept Set ${res.spare.name === "Alpha" ? "Beta" : "Alpha"}. Set ${res.spare.name} (${res.spare.set.join(", ")}) goes on the table's donated sets (Rule B, the ${JOURNAL_NAME} journal): anyone making a character can take it under Type in a set.</p>` });
   }
-  ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}. Next, drop an ancestry and a class on the sheet.`);
+  ui.notifications.info(`${actor.name}: ${KEYS.map(k => `${ARNEYAN.abilityAbbr[k]} ${res.scores[k]}`).join(", ")}.`);
+  return true;
 }
 
 /** A player owner of this actor (not a GM), if it has one. */
@@ -410,11 +412,22 @@ const blank = actor => KEYS.every(k => actor.system.abilities[k].value === 10) &
 /** Characters whose scores window this client has already opened from the sheet (once per session, never a loop). */
 const ASKED = new Set();
 
-/** Open the scores window as the setup's first step (other steps wait for it: see scoresWindowFor). */
+/**
+ * Open the scores window as the setup's first step (other steps wait for it: see scoresWindowFor). Scores kept: the
+ * class list comes next, and its 1st-level steps after it (pickClass). Later on either stops there; the sheet's Set
+ * up button starts again.
+ */
 function startScores(actor) {
   let go;
   OPEN.set(actor.id, new Promise(r => { go = r; }));
-  setTimeout(() => { OPEN.delete(actor.id); abilityScores(actor).finally(() => go()); }, 400);
+  setTimeout(() => {
+    OPEN.delete(actor.id);
+    abilityScores(actor).then(done => {
+      go();
+      if (done === true && !actor.items.some(i => i.type === "class")) return pickClass(actor);
+      if (done !== true && !actor.items.some(i => i.type === "class")) ui.notifications.info(`${actor.name}: set up later with Set up on the sheet.`);
+    }, () => go()).catch(err => console.warn("Arneyan | character setup", err));
+  }, 400);
 }
 
 export function registerChargen() {

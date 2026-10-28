@@ -347,5 +347,77 @@ const score = (a, k) => a._source.system.abilities[k].value;
   globalThis.fromUuid = keep;
 }
 
+// 0.10.69 (Kieran, 27 Oct 2026): making a character goes straight on to choosing its class (and the 1st-level steps
+// that follow a class), with Later to leave it; the sheet's Set up button starts it again.
+{
+  const handlers = {};
+  const keepHooks = globalThis.Hooks, keepPacks = game.packs, keepUuid = globalThis.fromUuid;
+  globalThis.Hooks = { on: (n, f) => { handlers[n] = f; }, once: () => {}, call: () => {}, callAll: () => {} };
+  G.registerChargen();
+  const index = [
+    { uuid: "Compendium.arneyan.classes.Item.f", name: "Fighter", system: { hitDie: "d10", keyAbility: "str" } },
+    { uuid: "Compendium.arneyan.classes.Item.w", name: "Wizard", system: { hitDie: "d4", keyAbility: "int" } }
+  ];
+  game.packs = { get: id => (id === "arneyan.classes" ? { getIndex: async () => index } : null) };
+  globalThis.fromUuid = async u => ({ uuid: u, toObject: () => ({ _id: "x", name: index.find(e => e.uuid === u).name, type: "class", folder: "f", system: {} }) });
+  const gm = { id: "gm", isGM: true };
+  game.users = [gm]; game.user = gm;
+  const mk = id => {
+    const flags = {};
+    const a = { id, type: "character", name: id, flags, made: [], items: Object.assign([], { size: 0 }), _stats: {},
+      system: { abilities: Object.fromEntries(["str", "dex", "con", "int", "wis", "cha"].map(k => [k, { value: 10 }])) },
+      isOwner: true, getFlag: (s, k) => flags[k], setFlag: async (s, k, v) => { flags[k] = v; },
+      testUserPermission: u => u.id === "gm",
+      update: async d => { for (const [k, v] of Object.entries(d)) { const m = k.match(/^system\.abilities\.(\w+)\.value$/); if (m) a.system.abilities[m[1]].value = v; if (k === "flags.arneyan.-=needsScores") delete flags.needsScores; } },
+      createEmbeddedDocuments: async (t, docs) => { a.made.push(...docs); const made = docs.map(d => ({ ...d, type: d.type })); a.items.push(...made); return made; } };
+    return a;
+  };
+  const scores = { scores: { str: 15, dex: 14, con: 13, int: 12, wis: 10, cha: 8 }, spare: null };
+  const wait = () => new Promise(r => setTimeout(r, 500));
+  const seen = [];
+  // Scores kept, then the class list: Fighter taken goes on as a dropped class would (its own setup runs from there).
+  DialogV2.wait = async o => { seen.push(o.window.title); return /class/.test(o.window.title) ? "Compendium.arneyan.classes.Item.f" : scores; };
+  const a = mk("New1");
+  handlers.createActor(a, {}, "gm");
+  await wait();
+  assert.deepEqual(seen, ["New1: ability scores", "New1: class"], "the scores, then the class list");
+  assert.equal(a.made.length, 1, "the class is added");
+  assert.equal(a.made[0].name, "Fighter");
+  assert.equal(a.made[0].folder, null);
+  assert.equal(a.made[0]._id, undefined, "a new copy");
+  assert.equal(a.made[0]._stats.compendiumSource, "Compendium.arneyan.classes.Item.f", "linked to the compendium");
+  // Later on the scores: no class list (Set up on the sheet starts again).
+  seen.length = 0;
+  DialogV2.wait = async o => { seen.push(o.window.title); return "skip"; };
+  const b = mk("New2");
+  handlers.createActor(b, {}, "gm");
+  await wait();
+  assert.equal(seen.length, 1, "Later on the scores stops there");
+  assert.equal(b.made.length, 0);
+  // Set up from the sheet: scores still to do, so they come first; Later on the class list adds nothing.
+  seen.length = 0;
+  DialogV2.wait = async o => { seen.push(o.window.title); return /class/.test(o.window.title) ? "later" : scores; };
+  assert.equal(await P.setUpCharacter(b), "later");
+  assert.equal(seen.length, 2, "scores, then the class list");
+  assert.equal(b.made.length, 0, "Later: no class");
+  // Set up again: the scores are done now, straight to the class list.
+  seen.length = 0;
+  DialogV2.wait = async o => { seen.push(o.window.title); return "Compendium.arneyan.classes.Item.w"; };
+  await P.setUpCharacter(b);
+  assert.equal(seen.length, 1, "no scores window the second time");
+  assert.equal(b.made[0]?.name, "Wizard");
+  // A character with a class already: nothing to set up.
+  seen.length = 0;
+  assert.equal(await P.setUpCharacter(b), "has");
+  assert.equal(seen.length, 0);
+  // The class list shows each class's Hit Die and key attribute.
+  let opts = null;
+  DialogV2.wait = async o => { opts = o; return "later"; };
+  await P.pickClass(mk("New3"));
+  assert.ok(opts.content.includes("Hit Die d10 · Strength") && opts.content.includes("Hit Die d4 · Intelligence"), "class details in the list");
+  assert.ok(!opts.content.includes("—"), "no em dashes");
+  globalThis.Hooks = keepHooks; game.packs = keepPacks; globalThis.fromUuid = keepUuid;
+}
+
 DialogV2.wait = saved;
 console.log("OK chargen");

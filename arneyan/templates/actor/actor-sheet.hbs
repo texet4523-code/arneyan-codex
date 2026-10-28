@@ -143,7 +143,7 @@
           {{#if @root.editable}}<a class="arn-leveldown" data-action="levelDown" data-tooltip="Level down"><i class="fa-solid fa-circle-down"></i></a><a class="arn-levelup" data-action="levelUp" data-tooltip="Level up"><i class="fa-solid fa-circle-up"></i></a>{{/if}}
         </span>
         {{else}}
-        <span class="arn-hint">Drag a class onto the sheet to start {{#if editable}}<a data-action="browse" data-pack="classes"><i class="fa-solid fa-book-atlas"></i> Classes</a>{{/if}}</span>
+        <span class="arn-hint">{{#if editable}}<a class="arn-btn small" data-action="setUpCharacter" data-tooltip="Make this character step by step: ability scores (if not done), class, ancestry, Kit, Feats, skills, Starting Luck and gold"><i class="fa-solid fa-wand-magic-sparkles"></i> Set up</a> or drag a class onto the sheet <a data-action="browse" data-pack="classes"><i class="fa-solid fa-book-atlas"></i> Classes</a>{{else}}No class yet{{/if}}</span>
         {{/each}}
         {{#each ancestry}}<span class="arn-chip" data-item-id="{{id}}"><a data-action="itemEdit">{{name}}</a></span>{{/each}}
         {{#each kits}}<span class="arn-chip" data-item-id="{{id}}"><a data-action="itemEdit">{{name}}</a></span>{{/each}}

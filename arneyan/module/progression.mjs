@@ -882,6 +882,58 @@ async function ancestryEntries(filter = () => true) {
     .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: ARNEYAN.sizes[e.system?.size] ?? "Other", meta: e.system?.attributes ?? "" }));
 }
 
+/** The classes to choose from when making a character (the Classes compendium), with each one's Hit Die and key attribute. */
+async function classEntries() {
+  return (await packOptions("classes", () => true, ["system.hitDie", "system.keyAbility"]))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name,
+      meta: [e.system?.hitDie ? `Hit Die ${e.system.hitDie}` : "", ARNEYAN.abilities[e.system?.keyAbility] ?? ""].filter(Boolean).join(" · ") }));
+}
+
+/**
+ * Making a character without dragging anything (Kieran, 27 Oct 2026: "jump straight into picking a class, race and
+ * everything else ... with the option to do it later"): its class from a list, then the same 1st-level steps as a
+ * class dropped on the sheet (ancestry, Kit, Feats, skills, Starting Luck, starting gold). Later leaves it for now;
+ * the sheet's Set up button (or dragging a class on) starts it again.
+ * Returns the class item, "later", "has" (it has a class already) or null (closed).
+ */
+export async function pickClass(actor) {
+  if (!actor?.isOwner || actor.type !== "character") return null;
+  if (actor.items.some(i => i.type === "class")) return "has";
+  const entries = await classEntries();
+  if (!entries.length) return "later";
+  const uuid = await pickFromList({
+    title: `${actor.name}: class`, entries, takeLabel: "Choose class", laterLabel: "Later", width: 760,
+    intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ancestry, Kit, Feats, skills and Starting Luck, then starting gold. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
+  });
+  if (uuid === null || uuid === "later") return uuid;
+  // Chosen while the window was open: a class dropped on the sheet meanwhile has already started the setup.
+  if (actor.items.some(i => i.type === "class")) return "has";
+  const doc = await fromUuid(uuid);
+  if (!doc) return "later";
+  const data = doc.toObject();
+  delete data._id;
+  data.folder = null;
+  foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
+  // Added as a drop is: the class's own creation runs the 1st-level setup (documents.mjs, a first class).
+  const [cls] = await actor.createEmbeddedDocuments("Item", [data]);
+  return cls ?? "later";
+}
+
+/**
+ * The sheet's Set up button: the ability scores first if they're still to do, then the class (and the steps after
+ * it). Later on the scores stops there.
+ */
+export async function setUpCharacter(actor) {
+  if (!actor?.isOwner || actor.type !== "character") return null;
+  if (actor.items.some(i => i.type === "class")) return "has";
+  const blank = ABILITY_KEYS.every(k => actor.system.abilities[k].value === 10);
+  if (actor.getFlag?.(FLAG, "needsScores") && blank) {
+    const done = await abilityScores(actor);
+    if (done !== true) return "later";
+  }
+  return pickClass(actor);
+}
+
 /**
  * Pick an ancestry for a character that has none (the first class dropped on a blank sheet), then set it up.
  * Returns the ancestry, "later" (none picked, or none to pick), "skip" (Skip pressed, when `skip` is set) or null
