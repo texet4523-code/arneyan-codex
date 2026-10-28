@@ -1,5 +1,6 @@
 """Pregenerated characters (Kieran, 19 Oct 2026): the one-shots' pregens as ready characters in their own
-compendium, one folder per adventure (and per act for The Broken Anvil).
+compendium, one folder per adventure (and per act for The Broken Anvil: two acts since 28 Oct 2026, K26; the
+Journeymen were cut).
 
 Each character in build/pregens/*.json (see the schema in that folder's README) becomes a character actor with
 its class, ancestry, kit, class and kit features, feats, skills, spells and gear copied from the system's own
@@ -16,8 +17,7 @@ SYS = "arneyan"
 
 FOLDERS = [  # (adventure, sub-folder, colour); order is the sidebar order
     ("The Broken Anvil", "", "#5a2a1a"),
-    ("The Broken Anvil", "Level 1 - The Apprentices", "#5a2a1a"),
-    ("The Broken Anvil", "Level 5 - The Journeymen", "#5a2a1a"),
+    ("The Broken Anvil", "Level 1 - The Recruits", "#5a2a1a"),
     ("The Broken Anvil", "Level 9 - The Veterans", "#5a2a1a"),
     ("Jacob's Well", "", "#2a3a4a"),
 ]

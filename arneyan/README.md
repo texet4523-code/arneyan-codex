@@ -4,6 +4,7 @@ Version 0.10.72 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.72
 
+- **The Broken Anvil is two acts** (Kieran, 28 Oct, K26): the Pregens compendium has the Recruits (level 1) and the Veterans (level 9); the five Journeymen are gone.
 - **Rules journals: books v0.10.31** (board B-F18). The Codex and Book II journals now say Last Chance works once each time a character is dying, as the sheet has since 0.10.71.
 
 ## What's new in 0.10.71
@@ -759,7 +760,7 @@ The rest of the Codex's conditions table: **Confused** (a reminder to roll 1d10 
 
 ## Pregenerated characters
 The **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
-- **The Broken Anvil:** 15 characters in three folders, Level 1 - The Apprentices, Level 5 - The Journeymen and Level 9 - The Veterans (five seats each, seat 5 being the spare).
+- **The Broken Anvil:** 10 characters in two folders, Level 1 - The Recruits and Level 9 - The Veterans (five seats each, seat 5 being the spare).
 - **Jacob's Well:** the four 3rd-level Keepers.
 Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
 

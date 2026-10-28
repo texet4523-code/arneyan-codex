@@ -651,14 +651,15 @@ const fxs = [{ name: "Aura of Courage", disabled: false, flags: { arneyan: { rul
 assert.equal(mk(16, [cls("Fighter", 5)], [], fxs).system.saves.fort.value, 6);  // 2 + 2 + Monolith 2; Courage only vs fear
 }
 {
-// Pregens: 15 Broken Anvil characters in three level folders, 4 for Jacob's Well, built from the system's own items.
+// Pregens: 10 Broken Anvil characters in two level folders (K26, 28 Oct 2026: the Journeymen are cut), 4 for Jacob's Well,
+// built from the system's own items.
 const pdir = new URL("../packs-src/pregens/", import.meta.url).pathname;
 const pdocs = fs.readdirSync(pdir).map(f => JSON.parse(fs.readFileSync(pdir + f)));
 const pf = pdocs.filter(d => d._key.startsWith("!folders!"));
 const pa = pdocs.filter(d => d._key.startsWith("!actors!"));
-assert.equal(pa.length, 19);
+assert.equal(pa.length, 14);
 const byName = n => pf.find(f => f.name === n);
-assert.deepEqual(pf.filter(f => f.folder === byName("The Broken Anvil")._id).map(f => f.name).sort(), ["Level 1 - The Apprentices", "Level 5 - The Journeymen", "Level 9 - The Veterans"]);
+assert.deepEqual(pf.filter(f => f.folder === byName("The Broken Anvil")._id).map(f => f.name).sort(), ["Level 1 - The Recruits", "Level 9 - The Veterans"]);
 assert.equal(pa.filter(a => a.folder === byName("Jacob's Well")._id).length, 4);
 const wen = pa.find(a => a.name.includes("Big Wen"));
 assert.deepEqual([wen.type, wen.system.attributes.hp.max, wen.prototypeToken.actorLink], ["character", 12, true]);

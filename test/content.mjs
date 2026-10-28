@@ -86,15 +86,9 @@ for (const d of [...witch, ...art, ...sp]) for (const f of d.system.features ?? 
 
 // ---- 3. The pregens find them.
 const pregens = pack("pregens").filter(d => d.type === "character");
-const maud = pregens.find(p => p.name === "Maud Hollins");
-const tibbet = pregens.find(p => p.name === "Tibbet Quickfuse");
-assert.ok(maud.items.some(i => i.type === "kit" && i.name === "Patron: Mother Loretta (Witch)"), "Maud's patron");
-assert.ok(maud.items.some(i => i.type === "ability" && i.name === "Patron Buff"), "Maud's Patron Buff (1st)");
-assert.ok(maud.items.some(i => i.name === "Patron Curse"), "Maud is 5th level: the Curse comes at 3rd (books v0.10.22)");
-assert.ok(!maud.items.some(i => i.name === "Physical Change"), "Maud is 5th level: no 7th-level Physical Change yet");
-for (const n of ["Hex of Stumbling", "Bind Wound"]) assert.ok(maud.items.some(i => i.type === "spell" && i.name === n && i.system.prepared), `Maud's ${n}`);
-assert.ok(tibbet.items.some(i => i.type === "kit" && i.name === "Alchemist (Artificer)"), "Tibbet's kit");
-assert.deepEqual(tibbet.items.filter(i => i.flags?.arneyan?.grantedBy && i.system.className === "Alchemist (Artificer)").map(i => i.name), ["Brew Formula", "Efficient Brewing", "Combat Alchemy"], "Combat Alchemy at 5th (books v0.10.22)");
+// The Journeymen (Maud the Witch, Tibbet the Alchemist) were cut with The Broken Anvil's second act (K26, 28 Oct 2026):
+// the Recruits and the Veterans still check that pregens are built from the books.
+assert.ok(pregens.length >= 14 && !pregens.some(p => ["Maud Hollins", "Tibbet Quickfuse"].includes(p.name)));
 
 // ---- 4. Dice So Nice: damage dice carry their type as flavour, without touching a flavour already set.
 const fakeRoll = () => ({ dice: [{ options: {} }, { options: { flavor: "fire" } }] });

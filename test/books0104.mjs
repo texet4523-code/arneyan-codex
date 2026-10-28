@@ -80,7 +80,5 @@ assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description)
 assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep the field");
 const prog = fs.readFileSync(path.join(root, "module/progression.mjs"), "utf8");
 assert.ok(prog.includes("replacedFor(actor, cls)") && prog.includes("dropReplaced"));
-const durgan = docs("pregens").find(d => d.name === "Sir Durgan Holdfast");
-assert.ok(durgan.items.some(i => i.name === "Wall-Forged Dread" && !i.flags.arneyan.replaces));
-assert.ok(durgan.items.some(i => i.name === "Command (Charisma)") && durgan.items.some(i => i.name === "Command: Demoralise"), "the pregen keeps the class's Demoralise option");
+// Sir Durgan (the Knight pregen these lines checked) was cut with the Journeymen (K26, 28 Oct 2026).
 console.log("OK books v0.10.4");

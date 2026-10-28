@@ -74,7 +74,6 @@ function doc(type, name, system = {}, parent = null, id = null) {
   const featOf = (who, f) => pregens.find(p => p.name === who)?.items.find(i => i.type === "feat" && i.name === f)?.system.levelTaken;
   assert.equal(featOf("Marta Holloway", "Critical Strike"), 6);
   assert.equal(featOf("Marta Holloway", "Swift Reflexes"), 1, "a Human's bonus feat: 1st level");
-  assert.equal(featOf("Maud Hollins", "Expanded Mind"), 0, "'One extra 2nd-level slot' isn't the level taken");
   assert.equal(featOf("Wendel \"Big Wen\" Harrow", "Critical Strike"), 1, "a 1st-level pregen took everything at 1st");
   // Stamped with the character's level when it's new to the character.
   const actor = pc({ level: 5 });
