@@ -398,14 +398,14 @@ async function changeClassLevel(actor, cls, target) {
   }
 }
 
-/** What a level up brings, shown before HP is rolled. */
 /** Whether 1s on a level's Hit Die are rerolled (the world setting, on unless switched off). */
 export function rerollsHitDieOnes() {
   try { return game.settings.get("arneyan", "rerollHitDieOnes") !== false; } catch { return true; }
 }
-/** One Hit Die for a level: 1d10, with a 1 rolled again once (r1) if the setting is on. */
+/** One Hit Die for a level (1d4 to 1d12), with a 1 rolled again once (r1) if the setting is on. */
 export function hitDieFormula(die) { return `1d${die}${rerollsHitDieOnes() ? "r1" : ""}`; }
 
+/** What a level up brings, shown before HP is rolled. */
 export function levelPreview(actor, cls, from, target, otherLevels, needsChoice, avg) {
   const sys = cls.system;
   const charFrom = otherLevels + from;

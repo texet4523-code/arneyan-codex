@@ -28,7 +28,7 @@
       {{#if combat.subdual}}<div class="arn-subdual-chip"><span class="arn-chip" data-tooltip="Non-lethal (subdual) damage, tracked apart from HP: at or above current HP it knocks the creature out rather than down. It comes from damage cards.">Non-lethal {{combat.subdual}}</span>{{#if isGM}}<a data-action="clearSubdual" data-tooltip="Clear the non-lethal damage"><i class="fa-solid fa-xmark"></i></a>{{/if}}</div>{{/if}}
       {{#if hitDice.length}}<div class="arn-hd-row">
         <span class="arn-muted">Hit Dice</span>
-        {{#each hitDice}}<a class="arn-chip arn-hd" {{#if @root.editable}}{{#if @root.hitDieRolls}}data-action="rollHitDie"{{/if}}{{/if}} data-class-id="{{id}}" data-tooltip="{{tip}}"><i class="fa-solid fa-dice-d20"></i> {{die}} × {{levels}}{{#if ../multi}} {{name}}{{/if}}</a>{{/each}}
+        {{#each hitDice}}<a class="arn-chip arn-hd{{#unless @root.hitDieRolls}} no-roll{{/unless}}" {{#if @root.editable}}{{#if @root.hitDieRolls}}data-action="rollHitDie"{{/if}}{{/if}} data-class-id="{{id}}" data-tooltip="{{tip}}"><i class="fa-solid fa-dice-d20"></i> {{die}} × {{levels}}{{#if ../multi}} {{name}}{{/if}}</a>{{/each}}
       </div>{{/if}}
       {{#if isCharacter}}<div class="arn-tiny arn-muted">Dies at {{system.attributes.deathAt}}{{#if system.attributes.hp.halved}} · Max HP halved{{/if}}</div>{{/if}}
     </section>

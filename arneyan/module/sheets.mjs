@@ -466,7 +466,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         id: c.id, name: c.name, die: c.system.hitDie, levels: c.system.levels,
         tip: `${c.name}: ${c.system.hitDie} a level. ${(c.system.hpRolls ?? []).length ? `HP gained by level: ${(c.system.hpRolls ?? []).map((n, i) => `${i + 1}${["st", "nd", "rd"][i] ?? "th"} ${n}`).join(", ")}. ` : ""}${firstOnly
           ? "1st level is the full Hit Die + Con, no roll (Kieran, 28 Oct 2026). From 2nd level, levelling up rolls the Hit Die or takes the average."
-          : `Levelling up rolls the Hit Die or takes the average for you. Click to roll one ${c.system.hitDie} + Con by hand.`}`
+          : `Levelling up rolls the Hit Die or takes the average for you up to 10th level, then gives the flat amount (+${c.system.hpBeyond10}). Click to roll one ${c.system.hitDie} + Con by hand.`}`
       })) : [],
       hitDieRolls: !firstOnly,
       multi: actor.items.filter(i => i.type === "class").length > 1,
