@@ -447,6 +447,11 @@ NOTES = {
     "Legendary Resistance": [{"key": "note.save", "value": "Legendary Resistance: may turn a failed save into a success"}],
     "Sunlight Sensitivity": [{"key": "note.attack", "value": "Sunlight Sensitivity: Disadvantage in sunlight"}],
 }
+# Rules read from an ability's text, whatever its name (M&T v0.10.30, B16/K24: Parry is the first melee attack against it
+# each round at Disadvantage; the system counts the attacks).
+TEXT_RULES = [
+    (re.compile(r"^The first melee attack against it each round has (?:\*\*)?Disadvantage", re.I), [{"key": "adv.against.first.melee", "value": "-1"}]),
+]
 
 
 def sp_items(s, img):
@@ -457,6 +462,9 @@ def sp_items(s, img):
     if mm:
         it = ability_item(mm.group(1).strip(), mm.group(2).strip(), img)
         it["system"]["rules"] = [dict(r) for r in NOTES.get(it["name"], [])]
+        for rx, rules in TEXT_RULES:
+            if rx.search(mm.group(2).strip()):
+                it["system"]["rules"] += [dict(r) for r in rules]
         return [it]
     sentences = [x.strip() for x in re.split(r"(?<=\.)\s+", rest) if x.strip()]
     if all(DEFENCE.match(x) for x in sentences):

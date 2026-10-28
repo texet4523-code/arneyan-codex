@@ -2074,8 +2074,8 @@
     ]
    }
   ],
-  "summary": "Foe: Disadvantage reminder on attacks not aimed at you for 1 minute (failed Will save). You: first-attack Advantage reminder against it.",
-  "manual": "The save (the self effect applies either way).",
+  "summary": "Foe: Disadvantage reminder on attacks not aimed at you for 1 minute (failed Will save). You: first-attack Advantage reminder against it. Your first attack in each encounter Challenges its target automatically, unless you choose another foe (books v0.10.28, K21).",
+  "manual": "The save (the self effect applies either way); apply it on your first attack of the encounter unless you Challenge another foe.",
   "confidence": "high"
  },
  "class-features/YO3ZayeCanwmuax2": {
@@ -11175,8 +11175,51 @@
     "value": "2*@cl"
    }
   ],
-  "summary": "Lay on Hands' pool holds 2 more HP per Paladin level (4 a level in all).",
+  "summary": "Your Lay on Hands pool is 4 HP per Paladin level instead of 2 (books v0.10.28, K20).",
   "manual": "The once-a-day Divine Healing without spending Channel Divinity: its Use.",
-  "confidence": "medium"
+  "confidence": "high"
+ },
+ "class-features/Ja7qAxQyHV2Ut5db": {
+  "name": "Arcane Resilience",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "against spells and magical effects"
+   }
+  ],
+  "summary": "Advantage on saves against spells and magical effects (reminder on save cards).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/e7qUJzgQ8uw86nGO": {
+  "name": "Convincing Illusions",
+  "from": "Illusionist",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Convincing Illusions: a creature makes its first save to disbelieve each of your illusions with Disadvantage."
+   }
+  ],
+  "summary": "Reminder on spell cards: the first save to disbelieve each of your illusions is at Disadvantage.",
+  "manual": "Roll that save with Disadvantage.",
+  "confidence": "high"
+ },
+ "class-features/cVJOC5PNKdh7FG7X": {
+  "name": "Potent Cantrips",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Potent Cantrips: a creature that saves against your damaging cantrip still takes half damage."
+   }
+  ],
+  "summary": "Reminder on spell cards: a damaging cantrip still deals half damage on a successful save.",
+  "manual": "Apply half the damage on a save.",
+  "confidence": "high"
  }
 }

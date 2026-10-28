@@ -89,8 +89,8 @@ const light = makeItem(IM.SpellData, "spell", "Light", { level: 0, className: "W
 wiz5.system.extraSlots = [0, 1]; wiz5.system.slotsUsed = [0, 2];
 const mage = makeActor(CharacterData, "character", { abilities: { int: { value: 16 } } }, [wiz5, fireball, light]);
 const cst = mage.system.casters[0];
-assert.equal(cst.slots[1].total, 5 + 1 + 1); // table 5 (Arcane Reserve's slot from 3rd, books v0.10.25), Int 13+ bonus, 1 extra by hand
-assert.equal(cst.slots[1].left, 5);          // 2 spent
+assert.equal(cst.slots[1].total, 4 + 1 + 1); // table 4 (books v0.10.28, K19: Arcane Reserve gone), Int 13+ bonus, 1 extra by hand
+assert.equal(cst.slots[1].left, 4);          // 2 spent
 assert.equal(cst.slots[2].total, 2 + 1);     // Int 16+ bonus
 assert.equal(cst.slots[3].total, 1);         // needs Int 18 for the bonus
 assert.equal(cst.slots[4].total, 0);
@@ -155,7 +155,7 @@ for (const t of ["main", "combat", "spells", "skills", "gear", "bio"]) {
 const mctx = await sheetContext(ArneyanActorSheet, mage);
 const mhtml = render("templates/actor/actor-sheet.hbs", mctx);
 assert.equal(mctx.spellSections.length, 1);
-assert.equal((mhtml.match(/class="arn-pip /g) || []).length, 7 + 3 + 1, "one pip per slot");
+assert.equal((mhtml.match(/class="arn-pip /g) || []).length, 6 + 3 + 1, "one pip per slot");
 assert.equal((mhtml.match(/class="arn-pip used"/g) || []).length, 2);
 assert.ok(mhtml.includes(`data-class-id="${wiz5.id}"`) && mhtml.includes("Fireball") && mhtml.includes("Cantrips"));
 for (const t of ["actions", "spells", "features", "skills", "gear", "effects", "bio"]) {

@@ -706,10 +706,11 @@ const featureKey = list => JSON.stringify((list ?? []).map(f => [Number(f?.level
  * Knight's Inspire, Embolden, Demoralise and Expert in Arms, now Command options; the Bard's Exalt, Discord, Rally,
  * Exhort Greatness and Words of Power, now Performance options; the Paladin's Smite Evil, Turn Undead and Divine
  * Intervention, now Channel Divinity options), the Wizard's Scribe's Insight, Perfect Recall, Counterspell and
- * Signature Spells and the Illusionist's Perfect Recall, and Quick Reaction, renamed Quick Reflexes. A class's list
+ * Signature Spells and the Illusionist's Perfect Recall, Quick Reaction, renamed Quick Reflexes, and Arcane Reserve
+ * (books v0.10.25, gone again in v0.10.28, K19). A class's list
  * loses these; anything else not in the compendium (homebrew) stays. */
 export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item.I2r5qtG2KwQTR6iK", "Compendium.arneyan.class-features.Item.Rn6ITCaMUuOEzKtD",
-  ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+  ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs", "OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {

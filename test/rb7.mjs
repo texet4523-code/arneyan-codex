@@ -210,4 +210,23 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   assert.notEqual(M.fingerprint("activities", older), M.fingerprint("activities", [{ ...older[0], effect: "Inspired" }]));
 }
 
-console.log("OK 0.10.68 books v0.10.27 (R-B7)");
+/* Books v0.10.28 to v0.10.30 (K19 to K24): no Arcane Reserve, the old slot table for everyone, the three new always-on
+   features, and monster Parry as first-attack Disadvantage. */
+{
+  assert.ok(!features.some(f => f.name === "Arcane Reserve"), "Arcane Reserve is gone (K19)");
+  const wizard = packItems("classes").find(c => c.name === "Wizard");
+  assert.deepEqual(wizard.system.slotTable[2].slice(0, 3), [4, 3, 1], "3rd-level Wizard: the v0.10.24 row");
+  assert.deepEqual(feat("Arcane Resilience", "Wizard").system.rules.map(r => r.key), ["adv.save"]);
+  assert.ok(feat("Potent Cantrips", "Wizard").system.rules[0].value.includes("half damage"));
+  assert.ok(feat("Convincing Illusions", "Illusionist").system.rules[0].value.includes("Disadvantage"));
+  for (const id of ["OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9"]) assert.ok(M.DROPPED_FEATURES.has(`Compendium.arneyan.class-features.Item.${id}`));
+  const monsters = fs.readdirSync(new URL("../packs-src/monsters/", import.meta.url)).filter(f => f.startsWith("actors_")).map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/monsters/${f}`, import.meta.url), "utf8")));
+  const mage = monsters.find(m => m.name === "Mage");
+  assert.equal(mage.system.spellcasting.slots[1], 5, "a Mage's 1st-level slots: the old table");
+  const knight = monsters.find(m => m.name === "Knight");
+  assert.deepEqual(knight.items.find(i => i.name === "Parry").system.rules.map(r => [r.key, r.value]), [["adv.against.first.melee", "-1"]]);
+  const marilith = monsters.find(m => m.name === "Marilith");
+  assert.deepEqual(marilith.items.find(i => i.name === "Parry").system.rules, [], "the Marilith's negating Parry isn't the same");
+}
+
+console.log("OK 0.10.68 books v0.10.30 (R-B7 and follow-ups)");

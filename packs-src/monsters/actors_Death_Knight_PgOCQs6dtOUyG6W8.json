@@ -265,7 +265,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>Once per round, out of turn, when a creature hits it with a melee attack, it may add +3 to its AC against that attack.</p>",
+    "description": "<p>The first melee attack against it each round has <strong>Disadvantage</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -282,7 +282,12 @@
     "damageType": "",
     "level": 0,
     "className": "",
-    "rules": [],
+    "rules": [
+     {
+      "key": "adv.against.first.melee",
+      "value": "-1"
+     }
+    ],
     "toggle": false,
     "active": false,
     "applies": []
