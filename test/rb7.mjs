@@ -25,6 +25,10 @@ const feat = (name, cls) => features.find(i => i.name === name && i.system.class
 /* Level tables in text: an empty step reads as nothing (not "0"). */
 assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 3), "Go. ");
 assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
+{
+  const ms = new E.ModSet([{ key: "note.damage", value: E.levelText("{1:, 17:doubled dice.}", 6), when: "", label: "Honour Attack" }]);
+  assert.deepEqual(ms.notesFor("damage"), [], "an empty note isn't shown (Honour Attack before 17th)");
+}
 
 /* "rounds": "encounter": the effect carries the encounter it ends with, and goes when that encounter is deleted. */
 {

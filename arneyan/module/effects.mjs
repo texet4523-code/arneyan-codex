@@ -435,7 +435,8 @@ export class ModSet {
       return;
     }
     if (scoped) return;
-    if (key.startsWith("note.")) return this.#push(this.notes, key.slice(5), `${r.label}: ${r.value}`);
+    // A note that is nothing at this level (a level table's empty step, "{1:, 17:...}") isn't shown.
+    if (key.startsWith("note.")) return String(r.value ?? "").trim() ? this.#push(this.notes, key.slice(5), `${r.label}: ${r.value}`) : undefined;
     // Dice that replace a weapon's own (the Monk's unarmed strike: 1d4 at 1st up to 1d10): the biggest wins.
     if (key.endsWith(".dice")) {
       const v = String(r.value ?? "").trim();
