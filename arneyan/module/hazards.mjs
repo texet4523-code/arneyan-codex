@@ -384,7 +384,7 @@ export async function advanceTimer(id) {
         lines.push(`${a.name} drops to 0 HP and falls unconscious.`);
       }
       if (event === "dying") {
-        if (a.type === "character" && (a.system.attributes?.hp?.value ?? 0) >= 0) await a.update({ "system.attributes.hp.value": -1, "system.attributes.stable": false });
+        if (a.type === "character" && (a.system.attributes?.hp?.value ?? 0) >= 0) await a.update({ "system.attributes.hp.value": -1, "system.attributes.stable": false, "flags.arneyan.-=lastChance": null });
         lines.push(a.type === "character" ? `${a.name} is dying (see Death & Dying).` : `${a.name} dies.`);
       }
     }

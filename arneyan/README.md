@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.70 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.71 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.71
+
+- **Last Chance is once per dying episode** (Kieran, 28 Oct). A dying character burns 1 Luck for one Fortitude save (DC 10). If it fails, that was their chance: the banner shows **Last Chance used**, and only an ally (a Wisdom check, DC 10) or First Aid can stabilise them. Once they're stabilised, healed to 0 HP or more, or dead, the next time they're dying is a new chance (a stable character hurt again gets one). The rules journals still say once per turn until the books catch up.
 
 ## What's new in 0.10.70
 
@@ -653,7 +657,7 @@ The Equipment tab has the Catalogue's groups as tabs to flick through (All, Weap
 Following Death & Dying in the Codex:
 - **Monsters** die at 0 HP: the Dead condition goes on (skull on the token, defeated in the combat tracker).
 - **Characters** at 0 HP fall **Unconscious** but stable. Below 0 they are **dying** and lose 1 HP at the start of each of their turns in combat (posted in chat) until stabilised. At −10 HP minus their Constitution modifier (−20 from 11th level; a negative modifier counts as 0) they are **Dead**; the sheet shows the number.
-- The sheet's banner has **Last Chance** (burn 1 Luck for a Fortitude save, DC 10; a success stabilises them, still unconscious at their current HP) and, for the GM, **Stabilised** (an ally's Wisdom check, DC 10, or First Aid). Taking damage while stable starts the bleeding again.
+- The sheet's banner has **Last Chance** (once each time they're dying: burn 1 Luck for a Fortitude save, DC 10; a success stabilises them, still unconscious at their current HP; a failure leaves it to an ally) and, for the GM, **Stabilised** (an ally's Wisdom check, DC 10, or First Aid). Taking damage while stable starts the bleeding again.
 - **Healing** a creature below 0 HP first sets it to 0, then adds the rest. Back above 0 they wake up.
 - This works however HP changes: damage buttons, healing, or a number typed on the sheet.
 

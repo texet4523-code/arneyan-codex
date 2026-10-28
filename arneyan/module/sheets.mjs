@@ -489,6 +489,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       noCast: system.noCast ? mods.sources("no.cast").join(", ") : "",
       noAct: system.noAct ? mods.sources("no.act").join(", ") : "",
       concentrating: actor.effects.find(e => e.flags?.[SYS]?.concentration)?.flags[SYS].sourceName ?? "",
+      lastChanceUsed: !!actor.getFlag?.("arneyan", "lastChance"),
       stateLabel: { stable: "Unconscious but stable", dying: `Dying: losing 1 HP a turn, dies at ${system.attributes.deathAt}`, dead: "Dead" }[system.attributes.state] ?? ""
     });
     // A monster's Skills block: shown when it has skills, or while editing (to add some).

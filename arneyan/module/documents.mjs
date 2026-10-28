@@ -870,6 +870,10 @@ export class ArneyanActor extends Actor {
       if (defeated) return on("dead");
       return off("dead");
     }
+    // No longer dying (stable, at 0 or more, or dead): the next time they're dying brings a new Last Chance.
+    if (this.getFlag?.(SYS, "lastChance") && (hp >= 0 || hp <= this.system.attributes.deathAt || this.system.attributes.stable)) {
+      await this.update({ [`flags.${SYS}.-=lastChance`]: null }).catch(() => null);
+    }
     const deathAt = this.system.attributes.deathAt;
     if (hp <= deathAt) {
       await off("unconscious");
@@ -890,22 +894,27 @@ export class ArneyanActor extends Actor {
     if (this.system.attributes.stable) await this.update({ "system.attributes.stable": false });
   }
 
-  /** Last Chance: burn 1 Luck for a Fortitude save, DC 10. A success stabilises the character. */
+  /**
+   * Last Chance: burn 1 Luck for a Fortitude save, DC 10. A success stabilises the character. Once each time they're
+   * dying (Kieran, 28 Oct 2026: "once per dying episode"): after a failure only an ally (or First Aid) can stabilise
+   * them. Stabilised, healed to 0 or more, or dead, the next time they're dying is a new chance.
+   */
   async lastChance(event) {
     if (this.type !== "character" || this.system.attributes.state !== "dying") return ui.notifications.warn(`${this.name} isn't dying.`);
+    if (this.getFlag(SYS, "lastChance")) return ui.notifications.warn(`${this.name} has had their Last Chance this time: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now.`);
     if ((this.system.luck?.value ?? 0) < 1) return ui.notifications.warn(`${this.name} has no Luck left to burn.`);
-    await this.update({ "system.luck.value": this.system.luck.value - 1 });
+    await this.update({ "system.luck.value": this.system.luck.value - 1, [`flags.${SYS}.lastChance`]: true });
     const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)" });
     const f = msg?.flags?.[SYS] ?? {};
     const ok = !f.autoFail && (f.natural === 20 || (f.natural !== 1 && f.total >= 10));
-    if (ok) await this.update({ "system.attributes.stable": true });
-    ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} ${ok ? "is stabilised and stops bleeding." : "is still dying."}</p></div>` });
+    if (ok) await this.update({ "system.attributes.stable": true, [`flags.${SYS}.-=lastChance`]: null });
+    ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} ${ok ? "is stabilised and stops bleeding." : "is still dying. That was their Last Chance this time: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now."}</p></div>` });
   }
 
   /** An ally's successful Wisdom check (DC 10), First Aid, or the GM's say-so. */
   async stabilise() {
     if (this.type !== "character" || !game.user.isGM) return;
-    await this.update({ "system.attributes.stable": true });
+    await this.update({ "system.attributes.stable": true, [`flags.${SYS}.-=lastChance`]: null });
     ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} is stabilised and stops bleeding.</p></div>` });
   }
 

@@ -613,7 +613,7 @@ async function onTurnChange(combat, changed, options = {}) {
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor }),
       content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is bleeding out</span></header>
-        <p>${dead ? `${esc(actor.name)} dies.` : `HP ${hp}; death at ${actor.system.attributes.deathAt}. An ally can spend an action on a Wisdom check (DC 10) to stabilise them, or they can burn 1 Luck for Last Chance.`}</p></div>`
+        <p>${dead ? `${esc(actor.name)} dies.` : `HP ${hp}; death at ${actor.system.attributes.deathAt}. An ally can spend an action on a Wisdom check (DC 10) to stabilise them, or they can burn 1 Luck for Last Chance (once while dying).`}</p></div>`
     });
   }
   const st = statusesOf(actor);
