@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Hardened on the Wall against the Red Waste, or walked away from it. You know what it costs to hold a line.</p><ul><li><strong>Waste-Hardened:</strong> <strong>Advantage</strong> on your first attack roll each round against creatures with the Orc ancestry tag.</li><li><strong>Wall Authority:</strong> <strong>Advantage</strong> on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</li></ul>",
+  "description": "<p>Hardened on the Wall against the Red Waste, or walked away from it. You know what it costs to hold a line.</p><ul><li><strong>Waste-Hardened:</strong> creatures with the Orc ancestry tag have <strong>Disadvantage</strong> on their first attack roll against you each round, and can't make you <strong>Frightened</strong>.</li><li><strong>Wall Authority:</strong> <strong>Advantage</strong> on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Waste-Hardened",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on your first attack roll each round against creatures with the Orc ancestry tag.</p>",
+    "description": "<p>Creatures with the Orc ancestry tag have <strong>Disadvantage</strong> on their first attack roll against you each round, and can't make you <strong>Frightened</strong>.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,9 +24,9 @@
     "save": "",
     "rules": [
      {
-      "key": "adv.attack.first",
-      "value": "1",
-      "when": "vs creatures with the Orc ancestry tag",
+      "key": "adv.against.first",
+      "value": "-1",
+      "when": "by creatures with the Orc ancestry tag",
       "label": ""
      }
     ],

@@ -1,0 +1,33 @@
+{
+ "_id": "cuNIKT8NLN96dpfN",
+ "_key": "!items!cuNIKT8NLN96dpfN",
+ "name": "Patron Favour",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your patron's powers share one pool of favour: 1 use a day at 1st level, 2 at 4th and 3 at 8th. Spend a use on any Dark Gift, Patron's Mark or Patron Feature you have unlocked that costs Patron Favour; a power that is always on or passive costs nothing.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 4:2, 8:3"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Warlock"
+ },
+ "effects": [],
+ "folder": "T3ndcZaUyzMXclDX",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

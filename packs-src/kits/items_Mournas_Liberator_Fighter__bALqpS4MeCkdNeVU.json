@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Forged in or inspired by the Rebellion. You fight to protect, not to avenge.</p><ul><li><strong>Guardian's Reach:</strong> <strong>Advantage</strong> on your first attack roll each round and on interposition checks when an ally within reach drops below half HP — you move to cover them.</li><li><strong>Rebellion's Name:</strong> <strong>Advantage</strong> on checks involving civic structures, the Wayfinders, or anyone who answers to the Rebellion's memory — including invoking Zindel's name to open doors, call in debts, or establish standing.</li></ul>",
+  "description": "<p>Forged in or inspired by the Rebellion. You fight to protect, not to avenge.</p><ul><li><strong>Guardian's Reach:</strong> when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.</li><li><strong>Rebellion's Name:</strong> <strong>Advantage</strong> on checks involving civic structures, the Wayfinders, or anyone who answers to the Rebellion's memory — including invoking Zindel's name to open doors, call in debts, or establish standing.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,29 +15,29 @@
    {
     "name": "Guardian's Reach",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on your first attack roll each round and on interposition checks when an ally within reach drops below half HP — you move to cover them.</p>",
+    "description": "<p>When an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
     "save": "",
-    "rules": [
+    "applies": [
      {
-      "key": "adv.attack.first",
-      "value": "1",
-      "when": "when an ally within reach is below half HP",
-      "label": ""
-     },
-     {
-      "key": "adv.check",
-      "value": "1",
-      "when": "interposition checks when an ally within reach is below half HP",
-      "label": ""
+      "name": "Guardian's Reach",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
      }
-    ],
-    "toggle": false,
-    "active": false
+    ]
    },
    {
     "name": "Rebellion's Name",

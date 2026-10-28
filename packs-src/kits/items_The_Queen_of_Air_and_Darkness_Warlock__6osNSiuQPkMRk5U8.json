@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Ruler of the Unseelie Court. She has no face — only the dark behind it. Her Warlocks carry her cold and her silence wherever they go.</p><ul><li><strong>Dark Gift</strong> (1st): Darkness you create is impenetrable to all sight, including darkvision. You see perfectly within any darkness, magical or mundane.</li><li><strong>Patron's Mark (4th)</strong>: Once per day, step into a shadow within <strong>10ft</strong> and emerge from any other shadow within <strong>60ft</strong> as part of your movement. Requires existing shadows — distinct from Fey Step.</li><li><strong>Patron Feature (8th)</strong>: Once per day, wrap one creature within <strong>60ft</strong> in Unseelie shadow for <strong>1 minute</strong> — blinded, speed halved, all saves at disadvantage. <strong>Will save</strong> against your Class Save DC, to resist; repeat check each turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7361635\">Queen of Air and Darkness</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Ruler of the Unseelie Court. She has no face — only the dark behind it. Her Warlocks carry her cold and her silence wherever they go.</p><ul><li><strong>Dark Gift</strong> (1st): Darkness you create is impenetrable to all sight, including darkvision. You see perfectly within any darkness, magical or mundane.</li><li><strong>Patron's Mark (4th)</strong>: For 1 Patron Favour, step into a shadow within <strong>10ft</strong> and emerge from any other shadow within <strong>60ft</strong> as part of your movement. Requires existing shadows — distinct from Fey Step.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, wrap one creature within <strong>60ft</strong> in Unseelie shadow for <strong>1 minute</strong> — blinded, speed halved, all saves at disadvantage. <strong>Will save</strong> against your Class Save DC, to resist; repeat check each turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7361635\">Queen of Air and Darkness</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -36,22 +36,26 @@
    {
     "name": "Patron's Mark",
     "level": 4,
-    "description": "<p>Once per day, step into a shadow within <strong>10ft</strong> and emerge from any other shadow within <strong>60ft</strong> as part of your movement. Requires existing shadows — distinct from Fey Step.</p>",
+    "description": "<p>For 1 Patron Favour, step into a shadow within <strong>10ft</strong> and emerge from any other shadow within <strong>60ft</strong> as part of your movement. Requires existing shadows — distinct from Fey Step.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": ""
    },
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>Once per day, wrap one creature within <strong>60ft</strong> in Unseelie shadow for <strong>1 minute</strong> — blinded, speed halved, all saves at disadvantage. <strong>Will save</strong> against your Class Save DC, to resist; repeat check each turn.</p>",
+    "description": "<p>For 1 Patron Favour, wrap one creature within <strong>60ft</strong> in Unseelie shadow for <strong>1 minute</strong> — blinded, speed halved, all saves at disadvantage. <strong>Will save</strong> against your Class Save DC, to resist; repeat check each turn.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": "will",
     "applies": [

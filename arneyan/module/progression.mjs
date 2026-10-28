@@ -96,7 +96,7 @@ export async function syncKitFeatures(actor, kit, options = { arneyanGrant: true
       name: f.name, type: "ability", img: kit.img,
       system: { description: f.description, kind: "class", level: f.level, className: kit.name,
         // Uses, save and activities set at build time (build_activities.py); older kits fall back to reading the text.
-        uses: f.uses?.max || f.uses?.formula ? foundry.utils.deepClone(f.uses) : usesOf(f.description), save: f.save || saveOf(f.description),
+        uses: f.uses?.max || f.uses?.formula || f.uses?.pool ? foundry.utils.deepClone(f.uses) : usesOf(f.description), save: f.save || saveOf(f.description),
         damage: f.damage ?? "", ...(f.damageType ? { damageType: f.damageType } : {}),
         activities: foundry.utils.deepClone(f.activities ?? []),
         rules: foundry.utils.deepClone(f.rules ?? []), toggle: !!f.toggle, active: false, applies: foundry.utils.deepClone(f.applies ?? []),

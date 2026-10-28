@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>The rarest pact — granted only when he sees something worth possessing.</p><ul><li><strong>Dark Gift</strong> (1st): Once per day, force one creature within <strong>60ft</strong> to answer one question truthfully unless it beats a <strong>Will save</strong> against your Class Save DC. A creature that fails this save also suffers disadvantage on its next attack roll or save.</li><li><strong>Patron's Mark (4th)</strong>: Once per day, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</li><li><strong>Patron Feature (8th):</strong> Once per day, issue a Geas with no saving throw against a creature of Level up to half your level.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>The rarest pact — granted only when he sees something worth possessing.</p><ul><li><strong>Dark Gift</strong> (1st): For 1 Patron Favour, force one creature within <strong>60ft</strong> to answer one question truthfully unless it beats a <strong>Will save</strong> against your Class Save DC. A creature that fails this save also suffers disadvantage on its next attack roll or save.</li><li><strong>Patron's Mark (4th)</strong>: For 1 Patron Favour, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, issue a Geas with no saving throw against a creature of Level up to half your level.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,33 +15,39 @@
    {
     "name": "Dark Gift",
     "level": 1,
-    "description": "<p>Once per day, force one creature within <strong>60ft</strong> to answer one question truthfully unless it beats a <strong>Will save</strong> against your Class Save DC. A creature that fails this save also suffers disadvantage on its next attack roll or save.</p>",
+    "description": "<p>For 1 Patron Favour, force one creature within <strong>60ft</strong> to answer one question truthfully unless it beats a <strong>Will save</strong> against your Class Save DC. A creature that fails this save also suffers disadvantage on its next attack roll or save.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": "will"
    },
    {
     "name": "Patron's Mark",
     "level": 4,
-    "description": "<p>Once per day, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</p>",
+    "description": "<p>For 1 Patron Favour, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": ""
    },
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>Once per day, issue a Geas with no saving throw against a creature of Level up to half your level.</p>",
+    "description": "<p>For 1 Patron Favour, issue a Geas with no saving throw against a creature of Level up to half your level.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": ""
    }

@@ -200,7 +200,7 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
 
 /* The class rework runs again for 0.10.68: the features the pools replaced leave a class's list and are listed. */
 {
-  assert.equal(M.CLASS_REWORK, "0.10.68");
+  assert.equal(M.CLASS_REWORK, "0.10.75");
   const inspire = features.find(i => i.name === "Command (Charisma)");
   assert.ok(inspire, "Command is built");
   for (const id of ["ZE561JAXiWa2pFqL", "vjHmF66KtVOxZDDU", "7aWDedO6ICkfxNO3", "v5Af6iwBOG6WQMBU", "rvBtNNIjxzyJA17V"]) assert.ok(M.DROPPED_FEATURES.has(`Compendium.arneyan.class-features.Item.${id}`), id);

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Minotaur-headed lord of beasts and the endless maze. More dangerous when cornered.</p><ul><li><strong>Dark Gift</strong> (1st): <strong>Advantage</strong> on all Strength checks and <strong>Fortitude saves</strong>. When below half HP, your damaging cantrips and spells increase by one damage die.</li><li><strong>Patron's Mark (4th)</strong>: Passive: you cannot become lost by any means, magical or mundane. You always know the layout of any structure you have entered and can retrace any path you have walked.</li><li><strong>Patron Feature (8th)</strong>: Once per day, enter Bestial Fury for <strong>1 minute</strong>: attacks against you have <strong>Disadvantage</strong>, and you have <strong>Advantage</strong> on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7453621\">Baphomet</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Minotaur-headed lord of beasts and the endless maze. More dangerous when cornered.</p><ul><li><strong>Dark Gift</strong> (1st): <strong>Advantage</strong> on all Strength checks and <strong>Fortitude saves</strong>. When below half HP, your damaging cantrips and spells increase by one damage die.</li><li><strong>Patron's Mark (4th)</strong>: Passive: you cannot become lost by any means, magical or mundane. You always know the layout of any structure you have entered and can retrace any path you have walked.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, enter Bestial Fury for the encounter: attacks against you have <strong>Disadvantage</strong>, and you have <strong>Advantage</strong> on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7453621\">Baphomet</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -59,11 +59,13 @@
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>Once per day, enter Bestial Fury for <strong>1 minute</strong>: attacks against you have <strong>Disadvantage</strong>, and you have <strong>Advantage</strong> on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</p>",
+    "description": "<p>For 1 Patron Favour, enter Bestial Fury for the encounter: attacks against you have <strong>Disadvantage</strong>, and you have <strong>Advantage</strong> on your first melee attack roll each round, immunity to charm and fear. Spellcasting impossible while active.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": "",
     "rules": [

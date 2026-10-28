@@ -1530,7 +1530,7 @@
    {
     "name": "Intimidated",
     "target": "target",
-    "rounds": "1d4",
+    "rounds": 1,
     "statuses": [],
     "rules": [
      {
@@ -1540,8 +1540,8 @@
     ]
    }
   ],
-  "summary": "Disadvantage on attack rolls for 1d4 rounds on a failed Will save.",
-  "manual": "The save; the 1d4 duration is rolled when applied.",
+  "summary": "Disadvantage on attack rolls until the end of its next turn on a failed Will save.",
+  "manual": "The save.",
   "confidence": "medium"
  },
  "class-features/iPaqIvlgNRuHF60y": {
@@ -1867,7 +1867,7 @@
     "value": "Legend of Battle: every hit deals maximum damage."
    }
   ],
-  "summary": "Toggle for 1 round (1 minute from 20th): Advantage on all attacks; max-damage reminder.",
+  "summary": "Toggle as part of the action you use to attack, until the end of your turn (1 minute from 20th): Advantage on all attacks; max-damage reminder.",
   "manual": "Max damage; from 20th, enemies' Will saves vs Frightened each turn. Switch it off when it ends.",
   "confidence": "medium"
  },
@@ -2050,7 +2050,7 @@
    {
     "name": "Challenged",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2063,7 +2063,7 @@
    {
     "name": "Challenger",
     "target": "self",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2074,7 +2074,7 @@
     ]
    }
   ],
-  "summary": "Foe: Disadvantage reminder on attacks not aimed at you for 1 minute (failed Will save). You: first-attack Advantage reminder against it. Your first attack in each encounter Challenges its target automatically, unless you choose another foe (books v0.10.28, K21).",
+  "summary": "Foe: Disadvantage reminder on attacks not aimed at you for the encounter (failed Will save). You: first-attack Advantage reminder against it. Your first attack in each encounter Challenges its target automatically, unless you choose another foe (books v0.10.28, K21).",
   "manual": "The save (the self effect applies either way); apply it on your first attack of the encounter unless you Challenge another foe.",
   "confidence": "high"
  },
@@ -2718,7 +2718,7 @@
    {
     "name": "Hexed: attacks",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2730,7 +2730,7 @@
    {
     "name": "Hexed: saves",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2742,7 +2742,7 @@
    {
     "name": "Hexed: checks",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2752,7 +2752,7 @@
     ]
    }
   ],
-  "summary": "Pick one: Disadvantage on attacks, saves or checks for 1 minute on a failed Will save.",
+  "summary": "Pick one: Disadvantage on attacks, saves or checks for the encounter on a failed Will save.",
   "manual": "Start-of-turn necrotic damage, repeat saves, no Disadvantage on saves vs the Hex itself, 10 minutes at 24th level.",
   "confidence": "medium"
  },
@@ -3241,7 +3241,7 @@
     "when": "Legend Lore on subjects you have formally researched or published on"
    }
   ],
-  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on). Shown as reminders. Lectured on a creature: the first attack roll against it each round has Advantage.",
+  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on). Shown as reminders. Lectured on a creature: the first attack roll any ally makes against it each round has Advantage.",
   "manual": "Never fails on a natural 1. Lectured is meant for an ally's attack (the engine also counts yours if you attack it first); only one creature can be under your lecture at a time, so remove it from the last one.",
   "confidence": "medium",
   "applies": [
@@ -3546,7 +3546,7 @@
    }
   ],
   "summary": "Advantage on saves (vs charm). Shown as reminders.",
-  "manual": "Once/day 1-minute Wisdom-to-AC buff.",
+  "manual": "Once/day Wisdom-to-AC buff for the encounter.",
   "confidence": "high"
  },
  "kits/gVctLUciS9lfb2E4#0": {
@@ -3634,14 +3634,14 @@
     "when": "while using a shield"
    }
   ],
-  "summary": "+1 AC (while using a shield). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for 1 minute.",
+  "summary": "+1 AC (while using a shield). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for the encounter.",
   "manual": "",
   "confidence": "high",
   "applies": [
    {
     "name": "Helm's Guard",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -4312,13 +4312,12 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "melee attack, while mounted"
+    "key": "note.attack",
+    "value": "Cavalry Strike: while mounted, split your mount's movement before and after this attack; the target can't make an Attack of Opportunity against you or your mount for that movement."
    }
   ],
-  "summary": "First-attack Advantage reminder while mounted (melee).",
-  "manual": "Mount's Advantage vs fear.",
+  "summary": "A reminder note on your attack cards.",
+  "manual": "Your mount's Advantage on saves against fear while you ride it.",
   "confidence": "high"
  },
  "kits/gCvz9fRgu84Qy71E#1": {
@@ -4339,17 +4338,22 @@
  "kits/AVBy314CbBUdzNTB#0": {
   "name": "Crowd's Favourite",
   "from": "Gladiator, The Pit-Forged (Fighter)",
-  "container": "passive",
-  "rules": [
+  "container": "applies",
+  "rules": [],
+  "summary": "The first time each round you hit a creature you have already struck this combat: Apply Crowd's Favourite (Shaken: Disadvantage on its next attack roll, until the end of its next turn).",
+  "manual": "Whether you have struck it before this combat.",
+  "confidence": "high",
+  "applies": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs a creature you already struck this combat"
+    "name": "Crowd's Favourite",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [
+     "shaken"
+    ],
+    "rules": []
    }
-  ],
-  "summary": "Advantage on the first attack each round (vs a creature you already struck this combat). Shown as reminders.",
-  "manual": "",
-  "confidence": "high"
+  ]
  },
  "kits/lvYelQDWVK3pLHAq#0": {
   "name": "Crushing Blow",
@@ -4418,22 +4422,25 @@
  "kits/bALqpS4MeCkdNeVU#0": {
   "name": "Guardian's Reach",
   "from": "Mournas Liberator (Fighter)",
-  "container": "passive",
-  "rules": [
+  "container": "applies",
+  "rules": [],
+  "summary": "When an ally within your reach drops below half HP, move up to half your speed to stand beside them (out of turn, without provoking) and Apply Guardian's Reach to them: attacks against them have Disadvantage until the start of your next turn.",
+  "manual": "The move.",
+  "confidence": "high",
+  "applies": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "when an ally within reach is below half HP"
-   },
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "interposition checks when an ally within reach is below half HP"
+    "name": "Guardian's Reach",
+    "target": "target",
+    "rounds": 1,
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against",
+      "value": -1
+     }
+    ]
    }
-  ],
-  "summary": "Advantage on the first attack each round (when an ally within reach is below half HP); Advantage on checks (interposition checks when an ally within reach is below half HP). Shown as reminders.",
-  "manual": "",
-  "confidence": "high"
+  ]
  },
  "kits/pIDvLs80I6qozfyW#1": {
   "name": "Read the Room",
@@ -4535,13 +4542,13 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs creatures with the Orc ancestry tag"
+    "key": "adv.against.first",
+    "value": -1,
+    "when": "by creatures with the Orc ancestry tag"
    }
   ],
-  "summary": "Advantage on the first attack each round (vs creatures with the Orc ancestry tag). Shown as reminders.",
-  "manual": "",
+  "summary": "Creatures with the Orc ancestry tag have Disadvantage on their first attack roll against you each round. Shown as a reminder.",
+  "manual": "They can't make you Frightened.",
   "confidence": "high"
  },
  "kits/j7eZxpvFKIZmwacA#1": {
@@ -4565,12 +4572,12 @@
   "container": "passive",
   "rules": [
    {
-    "key": "note.damage",
-    "value": "Clockwork Precision: repeating crossbow bolts at the same target this round deal +1 damage per bolt after the first."
+    "key": "note.attack",
+    "value": "Clockwork Precision: a repeating crossbow can be used with Extra Attack (the second shot has Disadvantage, as normal)."
    }
   ],
   "summary": "A reminder note on the matching card.",
-  "manual": "Per-bolt bonus; no Disadvantage on Called Shot with a repeating crossbow.",
+  "manual": "No Disadvantage on Called Shot with a repeating crossbow.",
   "confidence": "medium"
  },
  "kits/OPZ41afbze95Ivu3#0": {
@@ -5330,7 +5337,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Performance). Shown as reminders.",
-  "manual": "Once/day Cha-to-AC buff.",
+  "manual": "Once/day Cha-to-AC buff for the encounter.",
   "confidence": "high"
  },
  "kits/nieNxcvLISjlQuhW#0": {
@@ -5419,14 +5426,14 @@
     "when": "vs evil creatures (Divine Protection becomes +4)"
    }
   ],
-  "summary": "+2 AC (vs evil creatures (Divine Protection becomes +4)). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for 1 minute.",
+  "summary": "+2 AC (vs evil creatures (Divine Protection becomes +4)). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for the encounter.",
   "manual": "",
   "confidence": "high",
   "applies": [
    {
     "name": "Helm's Guard",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -6642,7 +6649,7 @@
    }
   ],
   "summary": "Toggle for 1 minute: Truesight.",
-  "manual": "Once per day.",
+  "manual": "Costs 1 Patron Favour. Switch it off after 1 minute.",
   "confidence": "high"
  },
  "kits/vkKeRhiInE0VBmaX#0": {
@@ -6939,8 +6946,8 @@
     "value": 1
    }
   ],
-  "summary": "Toggle Bestial Fury (1 minute): attacks against you have Disadvantage, Advantage on your first attack each round, immune to charm and fear, no spellcasting.",
-  "manual": "Once per day. Text says first melee attack; the engine will also apply it to a first ranged attack.",
+  "summary": "Toggle Bestial Fury (the encounter, 1 Patron Favour): attacks against you have Disadvantage, Advantage on your first attack each round, immune to charm and fear, no spellcasting.",
+  "manual": "Text says first melee attack; the engine will also apply it to a first ranged attack. Switch it off when the encounter ends.",
   "confidence": "medium"
  },
  "kits/IgPqTiB8rLSabfY3#2": {
@@ -11220,6 +11227,20 @@
   ],
   "summary": "Reminder on spell cards: a damaging cantrip still deals half damage on a successful save.",
   "manual": "Apply half the damage on a save.",
+  "confidence": "high"
+ },
+ "class-features/PJ5MK5QelQ5bm4Se": {
+  "name": "Ambush Predator",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.init",
+    "value": 1
+   }
+  ],
+  "summary": "Advantage on initiative.",
+  "manual": "",
   "confidence": "high"
  }
 }

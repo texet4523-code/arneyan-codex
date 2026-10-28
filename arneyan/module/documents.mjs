@@ -1519,15 +1519,50 @@ export class ArneyanItem extends Item {
     return Number.isFinite(n) && n >= 1 ? Math.min(n, left) : null;
   }
 
-  /** Spend an activity's cost from the feature's uses; false (with a warning) when there aren't enough. */
-  async _spendFor(act) {
-    const sys = this.system;
-    const cost = Number(act.cost ?? 1);
-    if (cost > 0 && sys.uses?.max > 0) {
-      if (sys.uses.value < cost) { ui.notifications.warn(`${this.name} has no uses left.`); return false; }
-      await this.update({ "system.uses.value": sys.uses.value - cost });
-    }
+  /**
+   * The item whose uses this one spends: itself, or the feature its uses name as a pool (books v0.10.32: a Warlock's
+   * Dark Gift, Patron's Mark and Patron Feature spend Patron Favour). null when the pool isn't on the character.
+   */
+  get usesStore() {
+    const pool = String(this.system.uses?.pool ?? "").trim();
+    if (!pool) return this;
+    return this.actor?.items.find(i => i !== this && ["ability", "feat"].includes(i.type) && i.name === pool) ?? null;
+  }
+
+  /** The uses counted for this feature, its own or its pool's: { item, value, max, label }, or null when none are. */
+  get usesCount() {
+    const store = this.usesStore;
+    const u = store?.system.uses;
+    if (!store || !(Number(u?.max) > 0)) return null;
+    return { item: store, value: Number(u.value) || 0, max: Number(u.max) || 0, label: store === this ? "uses" : store.name };
+  }
+
+  /** "2 of 3 uses left" ("2 of 3 Patron Favour left"), after spending `cost`. */
+  static usesLeftText(c, cost = 0) {
+    return c ? `${Math.max(0, c.value - cost)} of ${c.max} ${c.label} left` : "";
+  }
+
+  /** Are there `cost` uses to spend (its own or its pool's)? Warns when not. */
+  _canSpend(cost = 1) {
+    if (!(cost > 0)) return true;
+    const pool = String(this.system.uses?.pool ?? "").trim();
+    if (pool && !this.usesStore) { ui.notifications.warn(`${this.name} spends ${pool}, which ${this.actor?.name ?? "this character"} doesn't have.`); return false; }
+    const c = this.usesCount;
+    if (c && c.value < cost) { ui.notifications.warn(c.item === this ? `${this.name} has no uses left.` : `No ${c.label} left for ${this.name}.`); return false; }
     return true;
+  }
+
+  /** Spend `cost` uses from this feature or its pool; false (with a warning) when there aren't enough. */
+  async _spendUses(cost = 1) {
+    if (!this._canSpend(cost)) return false;
+    const c = this.usesCount;
+    if (cost > 0 && c) await c.item.update({ "system.uses.value": Math.max(0, c.value - cost) });
+    return true;
+  }
+
+  /** Spend an activity's cost from the feature's uses (or its pool's); false (with a warning) when there aren't enough. */
+  async _spendFor(act) {
+    return this._spendUses(Number(act.cost ?? 1));
   }
 
   /**
@@ -1581,7 +1616,8 @@ export class ArneyanItem extends Item {
     const self = await this._selfForActivity(cl, act);
     const rollData = { ...(actor?.getRollData?.() ?? {}), cl, spent: spent ?? cost };
     const title = `${this.name}: ${act.name}`;
-    const left = cost > 0 && sys.uses?.max > 0 ? `${this.system.uses.value} of ${sys.uses.max} uses left` : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
+    const counted = this.usesCount;
+    const left = cost > 0 && counted ? ArneyanItem.usesLeftText(counted) : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
     const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
     const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : "", this._strainedLine(), allegianceLine(this)].join("");
     if (act.removeConditions && actor?.isOwner) {
@@ -1659,10 +1695,10 @@ export class ArneyanItem extends Item {
     }
     // Enough uses for it? Spent only once an attack has actually rolled.
     const cost = Number(act.cost ?? 1);
-    if (cost > 0 && this.system.uses?.max > 0 && this.system.uses.value < cost) { ui.notifications.warn(`${this.name} has no uses left.`); return null; }
+    if (!this._canSpend(cost)) return null;
     const notes = [];
     if (act.text) notes.push(`${this.name}: ${act.text}`);
-    if (cost > 0 && this.system.uses?.max > 0) notes.push(`${this.system.uses.value - cost} of ${this.system.uses.max} uses left`);
+    if (cost > 0 && this.usesCount) notes.push(ArneyanItem.usesLeftText(this.usesCount, cost));
     // Combat Dominance: only against creatures of Level up to half yours.
     if (act.targetLevel === "half") {
       const cap = Math.floor((actor.system.level ?? lvl) / 2);
@@ -1694,7 +1730,7 @@ export class ArneyanItem extends Item {
       }
       // The first attack that rolls spends the use (and notes a feature used out of turn in chat), once.
       if (!out.length) {
-        if (cost > 0 && this.system.uses?.max > 0) await this.update({ "system.uses.value": Math.max(0, this.system.uses.value - cost) });
+        await this._spendUses(cost);
         await this._reacted(act);
         await this._selfForActivity(lvl, act);
       }
@@ -1716,8 +1752,9 @@ export class ArneyanItem extends Item {
     if (acts.length && !sys.toggle) {
       let act = acts[0];
       if (acts.length > 1) {
-        const usesLeft = sys.uses.max > 0 ? sys.uses.value : null;
-        const content = `<p>${esc(this.name)}${usesLeft !== null ? ` (${usesLeft} of ${sys.uses.max} uses left)` : ""}: pick one.</p>
+        const counted = this.usesCount;
+        const usesLeft = counted ? counted.value : null;
+        const content = `<p>${esc(this.name)}${counted ? ` (${esc(ArneyanItem.usesLeftText(counted))})` : ""}: pick one.</p>
           <div class="arn-acts">${acts.map((a, i) => `<label class="arn-act"><input type="radio" name="act" value="${i}" ${i === 0 ? "checked" : ""} ${(a.cost ?? 1) > 0 && usesLeft !== null && usesLeft < (a.cost ?? 1) ? "disabled" : ""}>
             <strong>${esc(a.name)}</strong>${(a.cost ?? 1) === 0 ? ` <em>(${a.per ? `per ${esc(a.per)}` : "no use spent"})</em>` : ""}<br><small>${esc(a.text)}</small></label>`).join("")}</div>`;
         const pick = await DialogV2.wait({ window: { title: this.name, icon: "fa-solid fa-hand-sparkles" }, classes: ["arneyan"], position: { width: 420 }, content,
@@ -1731,19 +1768,17 @@ export class ArneyanItem extends Item {
     // Switchable abilities (Rage, a stance): using one flips it.
     if (sys.toggle) {
       const on = !sys.active;
-      if (on && sys.uses.max > 0) {
-        if (sys.uses.value <= 0) return ui.notifications.warn(`${this.name} has no uses left.`);
-        await this.update({ "system.uses.value": sys.uses.value - 1, "system.active": true });
+      if (on && (this.usesCount || sys.uses?.pool)) {
+        if (!(await this._spendUses(1))) return;
+        await this.update({ "system.active": true });
       } else {
         await this.update({ "system.active": on });
       }
       if (on) await this._reacted();
       return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(this.name)}</span></header><p>${on ? "Switched on" : "Switched off"}.</p></div>` });
     }
-    if (sys.uses.max > 0) {
-      if (sys.uses.value <= 0) return ui.notifications.warn(`${this.name} has no uses left.`);
-      await this.update({ "system.uses.value": sys.uses.value - 1 });
-    }
+    const counted = this.usesCount;
+    if (!(await this._spendUses(1))) return;
     await this._reacted();
     let dc = sys.dc;
     // A manoeuvre that forces a save (Shield Blow) uses Strength or Dexterity, whichever is higher (books v0.10.25).
@@ -1753,7 +1788,7 @@ export class ArneyanItem extends Item {
     const cl = actor?.type === "character" ? this.featureLevel : (actor?.system.level ?? 1);
     const self = await this._applySelf(cl);
     const lines = [];
-    if (sys.uses.max > 0) lines.push(`<p class="arn-card-meta">${sys.uses.value - 1} of ${sys.uses.max} uses left</p>`);
+    if (counted) lines.push(`<p class="arn-card-meta">${esc(ArneyanItem.usesLeftText(counted, 1))}</p>`);
     if (self.length) lines.push(`<p class="arn-card-meta">On ${esc(actor.name)}: ${self.map(e => esc(e.name)).join(", ")}</p>`);
     lines.push(this._actionButtons({ dc, cl }));
     return this.toChat(lines.join(""));

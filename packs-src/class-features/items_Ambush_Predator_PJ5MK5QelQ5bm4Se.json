@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> In the first round of combat, creatures that have not yet acted count as unsuspecting for your Sneak Attack.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You have <strong>Advantage</strong> on initiative.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,7 +20,17 @@
   "dc": null,
   "damage": "",
   "level": 3,
-  "className": "Assassin"
+  "className": "Assassin",
+  "rules": [
+   {
+    "key": "adv.init",
+    "value": "1",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "b3fiHSAW8zySsJZt",

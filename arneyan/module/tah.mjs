@@ -47,7 +47,7 @@ const action = (id, name, actionType, actionId, { prefix = "", ...extra } = {}) 
 const fa = icon => `<i class="fa-solid fa-${icon}"></i>`;
 
 /** Something the sheet treats as usable in a fight (Abilities & Actions on the sheet). */
-const usable = i => (i.system.uses?.max > 0) || !!i.system.save || !!i.system.damage || !!i.system.toggle || (i.system.applies?.length > 0) || (i.system.activities?.length > 0);
+const usable = i => (i.system.uses?.max > 0) || !!i.system.uses?.pool || !!i.system.save || !!i.system.damage || !!i.system.toggle || (i.system.applies?.length > 0) || (i.system.activities?.length > 0);
 
 /**
  * The HUD's actions for an actor (or for several selected tokens, when `actor` is null), by group id.

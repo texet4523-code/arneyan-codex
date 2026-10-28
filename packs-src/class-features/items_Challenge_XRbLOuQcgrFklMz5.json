@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack, name one foe within <strong>30ft</strong> that can hear you.</li><li>It makes a <strong>Will save</strong> against your Class Save DC, or has <strong>Disadvantage</strong> on attack rolls against anyone but you for <strong>1 minute</strong>.</li><li>Whether or not it saves, you have <strong>Advantage</strong> on your first attack roll each round against it for that minute.</li><li>Your first attack in each encounter Challenges its target automatically, unless you choose another foe.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack, name one foe within <strong>30ft</strong> that can hear you.</li><li>It makes a <strong>Will save</strong> against your Class Save DC, or has <strong>Disadvantage</strong> on attack rolls against anyone but you for the encounter.</li><li>Whether or not it saves, you have <strong>Advantage</strong> on your first attack roll each round against it for the encounter.</li><li>Your first attack in each encounter Challenges its target automatically, unless you choose another foe.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,7 @@
    {
     "name": "Challenged",
     "target": "target",
-    "rounds": "10",
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -39,7 +39,7 @@
    {
     "name": "Challenger",
     "target": "self",
-    "rounds": "10",
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {

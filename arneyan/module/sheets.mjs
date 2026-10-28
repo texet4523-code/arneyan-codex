@@ -229,7 +229,14 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       return per ? `${Math.max(0, Number(per[1]) - (i.getFlag("arneyan", "used") ?? 0))} of ${per[1]} left today` : "";
     };
     const open = i => this._expanded.has(i.id);
-    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), usesLabel: i.type === "spell" ? innateLeft(i) : "", expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
+    // A feature that spends another's uses (a Warlock's patron powers: Patron Favour) shows what's left of that pool.
+    const poolLabel = i => {
+      const pool = String(i.system?.uses?.pool ?? "").trim();
+      if (!pool) return "";
+      const c = i.usesCount;
+      return c ? `${pool} ${c.value}/${c.max}` : pool;
+    };
+    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), usesLabel: i.type === "spell" ? innateLeft(i) : "", pool: poolLabel(i), expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
     const rows = async list => Promise.all(list.map(row));
 
     // Weapons with their attack bonus and damage worked out.
@@ -307,7 +314,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     }
     const groups = [];
     for (const [name, list] of Object.entries(abilityGroups)) groups.push({ name, rows: await rows(list) });
-    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length || i.system.activities?.length;
+    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || !!i.system.uses?.pool || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length || i.system.activities?.length;
     const combatAbilities = await rows([...byType("ability"), ...byType("feat")].filter(actionable));
 
     // Spells: one section per casting class, PF2e style, with slot pips per level.

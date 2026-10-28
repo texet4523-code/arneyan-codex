@@ -235,7 +235,7 @@
             <img src="{{item.img}}" alt="">
             <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
             <span class="arn-muted arn-meta">
-              {{#if item.levelLabel}}{{item.levelLabel}}{{#if item.system.uses.max}} · {{/if}}{{/if}}{{#if item.system.uses.max}}{{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}
+              {{#if item.levelLabel}}{{item.levelLabel}}{{#if item.system.uses.max}} · {{else if pool}} · {{/if}}{{/if}}{{#if item.system.uses.max}}{{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{else if pool}}<span data-tooltip="Spends {{item.system.uses.pool}}">{{pool}}</span>{{/if}}
               {{#if item.system.save}} · {{lookup @root.config.saveTypes item.system.save}}{{/if}}
             </span>
             {{#if item.system.toggle}}

@@ -414,6 +414,22 @@ export async function doSummonRequest(msg, senderId) {
   return placeSummon(caster, token, plan, now);
 }
 
+/**
+ * A Warlock's servant uses a power the Bestiary gives "once per 3 rounds" once per encounter (books v0.10.32, m47:
+ * the Hell Hound's breath, the Pixie's dust, the Redcap's charge, the Vrock's spores, the Star Spawn Hulk's
+ * discharge), tracked as one use. Changes the actor data in place.
+ */
+export function pactPowers(data) {
+  const every3 = /once per (?:<strong>)?3 rounds(?:<\/strong>)?/i;
+  for (const it of data?.items ?? []) {
+    const d = String(it.system?.description ?? "");
+    if (it.type !== "ability" || !every3.test(d)) continue;
+    it.system.description = d.replace(every3, m => (m[0] === "O" ? "Once per encounter" : "once per encounter"));
+    it.system.uses = { ...(it.system.uses ?? {}), value: 1, max: 1, per: "encounter" };
+  }
+  return data;
+}
+
 /** Make the creatures, put them on the map and in the combat, and remember them on the caster. */
 async function placeSummon(caster, token, plan, now) {
   await endSummon(caster, "replaced");
@@ -435,6 +451,7 @@ async function placeSummon(caster, token, plan, now) {
     data.prototypeToken = { ...(data.prototypeToken ?? {}), actorLink: false, disposition: token.disposition ?? 1 };
     foundry.utils.setProperty(data, `flags.${SYS}.summoned`, { casterUuid: caster.uuid, source: plan.name });
     foundry.utils.setProperty(data, `flags.${SYS}.bestiary`, p.entry.uuid);
+    if (plan.kind === "pact") pactPowers(data);
     if (plan.double) {
       const hp = data.system.attributes.hp;
       hp.max = (hp.max || 1) * 2; hp.value = hp.max;

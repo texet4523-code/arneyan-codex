@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</li><li><strong>Patron's Mark (4th):</strong> Once per day, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature (8th)</strong>: Once per day, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -65,22 +65,26 @@
    {
     "name": "Patron's Mark",
     "level": 4,
-    "description": "<p>Once per day, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</p>",
+    "description": "<p>For 1 Patron Favour, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": ""
    },
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>Once per day, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</p>",
+    "description": "<p>For 1 Patron Favour, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": "ref",
     "activities": [

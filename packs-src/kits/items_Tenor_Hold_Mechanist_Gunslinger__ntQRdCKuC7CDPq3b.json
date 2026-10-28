@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<p>The dwarves of Tenor Hold didn't wait for blackpowder to solve the problem of killing things at range. They solved it decades earlier with springs, gears, and spite.</p><ul><li><strong>Clockwork Precision:</strong> Repeating crossbow bolts fired in the same round against the same target deal +1 damage per bolt after the first — they find the gaps. No disadvantage on Called Shot when using a repeating crossbow.</li><li><strong>Engineer's Eye:</strong> <strong>Advantage</strong> on checks to identify, maintain, repair, or modify mechanical ranged weapons. Can perform field repairs on any crossbow or firearm during a rest.</li></ul>",
+  "description": "<p>The dwarves of Tenor Hold didn't wait for blackpowder to solve the problem of killing things at range. They solved it decades earlier with springs, gears, and spite.</p><ul><li><strong>Clockwork Precision:</strong> Unlike other crossbows, a repeating crossbow can be used with Extra Attack (the second shot has <strong>Disadvantage</strong>, as normal). No disadvantage on Called Shot when using a repeating crossbow.</li><li><strong>Engineer's Eye:</strong> <strong>Advantage</strong> on checks to identify, maintain, repair, or modify mechanical ranged weapons. Can perform field repairs on any crossbow or firearm during a rest.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Clockwork Precision",
     "level": 1,
-    "description": "<p>Repeating crossbow bolts fired in the same round against the same target deal +1 damage per bolt after the first — they find the gaps. No disadvantage on Called Shot when using a repeating crossbow.</p>",
+    "description": "<p>Unlike other crossbows, a repeating crossbow can be used with Extra Attack (the second shot has <strong>Disadvantage</strong>, as normal). No disadvantage on Called Shot when using a repeating crossbow.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,8 +24,8 @@
     "save": "",
     "rules": [
      {
-      "key": "note.damage",
-      "value": "Clockwork Precision: repeating crossbow bolts at the same target this round deal +1 damage per bolt after the first.",
+      "key": "note.attack",
+      "value": "Clockwork Precision: a repeating crossbow can be used with Extra Attack (the second shot has Disadvantage, as normal).",
       "when": "",
       "label": ""
      }

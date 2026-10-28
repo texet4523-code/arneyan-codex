@@ -102,13 +102,15 @@ export function stackSlots(sys) {
 /**
  * Uses of a feature, feat or kit feature: so many per encounter, day, rest, week, session or month. `formula`, when
  * set, works out the maximum on a character instead ("max(1, @dex.mod)", "3 + @wis.mod", "@cl" for the class level,
- * or a level table "5:1, 9:2"); `max` is kept as the fallback.
+ * or a level table "5:1, 9:2"); `max` is kept as the fallback. `pool` names another feature on the same character
+ * whose uses this one spends instead of its own (books v0.10.32: a Warlock's patron powers spend Patron Favour).
  */
 export const usesField = () => new SchemaField({
   value: int(0, { min: 0 }),
   max: int(0, { min: 0 }),
   per: new StringField({ required: true, blank: true, initial: "", choices: () => ARNEYAN.usesPer }),
-  formula: str()
+  formula: str(),
+  pool: str()
 });
 
 /**

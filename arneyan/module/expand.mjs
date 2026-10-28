@@ -70,6 +70,7 @@ export function itemFacts(item, { gm = globalThis.game?.user?.isGM ?? false } = 
       break;
   }
   if (s.uses?.max) push(`${s.uses.value}/${s.uses.max} ${ARNEYAN.usesPer?.[s.uses.per] ?? ""}`.trim());
+  else if (s.uses?.pool) push(`Spends ${s.uses.pool}`);
   if (["weapon", "armour", "equipment"].includes(item?.type)) {
     if ((s.quantity ?? 1) !== 1) push(`× ${s.quantity}`);
     if (Number.isFinite(slots)) push(slotsText(slots));

@@ -153,84 +153,6 @@
   "confidence": "high",
   "why": "Once per encounter shot."
  },
- "Spark Caster|Artificer": {
-  "activities": [
-   {
-    "name": "Spark Caster (1d6)",
-    "kind": "damage",
-    "formula": "1d6",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Spark Caster (1d8)",
-    "kind": "damage",
-    "formula": "1d8",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 5,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Spark Caster (2d6)",
-    "kind": "damage",
-    "formula": "2d6",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 9,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Spark Caster (2d8)",
-    "kind": "damage",
-    "formula": "2d8",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 13,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Spark Caster (3d6)",
-    "kind": "damage",
-    "formula": "3d6",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 17,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Spark Caster (3d8)",
-    "kind": "damage",
-    "formula": "3d8",
-    "damageType": "force",
-    "text": "A ranged attack out to 60ft with Base to Hit plus Intelligence modifier, dealing force damage as a magic weapon.",
-    "minLevel": 24,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Damage tiers stated in text; only the highest unlocked tier should be used. Checked against Handbook v0.10.10, 25 Oct."
- },
  "Tinker's Craft (Intelligence)|Artificer": {
   "activities": [
    {
@@ -1566,7 +1488,7 @@
    {
     "name": "Marked Prey",
     "kind": "note",
-    "text": "As part of an attack, mark a visible creature to gain Advantage on your next attack against it, or your next Track check if it flees.",
+    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): Advantage on your next attack roll against it, hit or miss, or on your next Track check to follow it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1682,7 +1604,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "When you use Marked Prey, the mark lasts the whole encounter and you have Advantage on your first attack roll against that creature each round. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey, you also have Advantage on your first attack roll against that creature each round for the encounter. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2007,7 +1929,7 @@
    {
     "name": "Sorcerer's Spark",
     "kind": "note",
-    "text": "For 1 minute, Wild Surges carry no Corruption risk and you may apply two Metamagic options to one spell.",
+    "text": "For the encounter, Wild Surges carry no Corruption risk and you may apply two Metamagic options to one spell.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2222,7 +2144,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2233,7 +2155,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on saving throws for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within 30ft saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2244,7 +2166,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on ability checks for 1 minute, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within 30ft saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3852,17 +3774,18 @@
    {
     "name": "Divine Intervention: reroll",
     "kind": "note",
-    "text": "Costs 2 uses. Reroll any one die result (attack, damage, save, turn undead or attribute check).",
+    "text": "Costs 2 uses. Right after the roll, reroll any one die result (attack, damage, save, turn undead or attribute check). You can do this out of turn.",
     "minLevel": 5,
     "cost": 2,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    },
    {
     "name": "Divine Intervention: divine might",
     "kind": "note",
-    "text": "Costs 2 uses. Advantage on all your attack rolls and double weapon damage dice for 1 round (flat modifiers are not doubled).",
+    "text": "Costs 2 uses, as part of the action you use to attack: Advantage on all your attack rolls and double weapon damage dice until the end of your turn (flat modifiers are not doubled).",
     "minLevel": 5,
     "cost": 2,
     "per": "",
@@ -3872,12 +3795,13 @@
    {
     "name": "Divine Intervention: halve damage",
     "kind": "note",
-    "text": "Costs 2 uses. Halve all damage you suffer this round.",
+    "text": "Costs 2 uses, when you take damage: halve it, and all further damage you take until the start of your next turn. You can do this out of turn.",
     "minLevel": 5,
     "cost": 2,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "reaction": true
    },
    {
     "name": "Divine Intervention: Divine Healing",
@@ -4122,5 +4046,15 @@
   ],
   "confidence": "high",
   "why": "Once a day speech with plants and animals; on the first maul hit each round, Reflex save or speed halved."
+ },
+ "Patron Favour|Warlock": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Books v0.10.32 (K29): one pool for the patron's powers, 1 use a day at 1st, 2 at 4th, 3 at 8th. The Dark Gift, Patron's Mark and Patron Feature that cost 1 Patron Favour spend it (uses.pool).",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 4:2, 8:3"
+  }
  }
 }

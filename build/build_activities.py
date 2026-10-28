@@ -16,6 +16,8 @@ text reading found, where a frequency in the text isn't a pool ("each target onl
 "damage" and "damageType" set the item's own (Use then offers the save and the damage roll together). A "uses" entry
 may carry a "formula" (Flèche: "max(1, @dex.mod)"; Wild Surge: the level table "5:1, 9:2, 13:3, 17:4"), worked out on
 the character from its attribute modifiers, @cl (the class level), @level and @casting.mod (best casting attribute).
+A kit feature that costs "1 Patron Favour" (books v0.10.32) spends the Warlock's Patron Favour feature instead
+(uses.pool, item-models.mjs usesField), and its options keep their costs.
 """
 import glob, html, json, os, re
 from lib import OUT
@@ -69,8 +71,8 @@ def apply(system, entry, text):
     acts = [clean(a) for a in (entry or {}).get("activities", []) if a.get("name")]
     if not acts:
         return False
-    # A feature with no uses can't spend one: its options are free.
-    if not (system.get("uses") or {}).get("max"):
+    # A feature with no uses can't spend one: its options are free. One that spends a pool (Patron Favour) keeps its costs.
+    if not (system.get("uses") or {}).get("max") and not (system.get("uses") or {}).get("pool"):
         for a in acts:
             a["cost"] = 0
     system["activities"] = acts
@@ -104,6 +106,10 @@ def build():
         for ft in d["system"].get("features", []):
             text = plain(ft.get("description", ""))
             ft["uses"] = uses_of(text)
+            # Books v0.10.32 (K29): a Warlock's Dark Gift, Patron's Mark and Patron Feature cost "1 Patron Favour", a pool
+            # on the Warlock's Patron Favour feature (1, 2 and 3 a day at 1st, 4th and 8th) instead of a use of their own.
+            if re.search(r"\bFor 1 Patron Favour\b", text):
+                ft["uses"] = {"value": 0, "max": 0, "per": "", "formula": "", "pool": "Patron Favour"}
             ft["save"] = save_of(text)
             key = f"{ft['name']}|{d['name']}"
             entry = data.get(key)

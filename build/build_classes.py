@@ -61,6 +61,11 @@ def feature_damage(cls, name):
     if (cls, name) == ("Warlock", "Eldritch Blast"):
         from build_class_spells import ELDRITCH_BLAST
         return ELDRITCH_BLAST, "force"
+    # Books v0.10.32 (K28): the Artificer's Spark Caster is a Reflex save against the Class Save DC, half on a success,
+    # for Eldritch Blast's damage at the Artificer's level plus the Intelligence modifier.
+    if (cls, name) == ("Artificer", "Spark Caster"):
+        from build_class_spells import ELDRITCH_BLAST
+        return f"{ELDRITCH_BLAST} + @int.mod", "force"
     return "", ""
 
 def ordinal(n):

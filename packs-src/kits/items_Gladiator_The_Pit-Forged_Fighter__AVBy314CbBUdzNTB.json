@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Flexible origin — the Red Waste pits, the Depsopteron slave pits, the Fight Club of Mournas, or the lighter tournament circuit. You learned to fight in front of a crowd.</p><ul><li><strong>Crowd's Favourite:</strong> <strong>Advantage</strong> on your first attack roll each round against a creature you have already struck this combat.</li><li><strong>Arena Presence:</strong> <strong>Advantage</strong> on Performance and Persuasion checks when addressing a crowd.</li></ul>",
+  "description": "<p>Flexible origin — the Red Waste pits, the Depsopteron slave pits, the Fight Club of Mournas, or the lighter tournament circuit. You learned to fight in front of a crowd.</p><ul><li><strong>Crowd's Favourite:</strong> the first time each round you hit a creature you have already struck this combat, it has <strong>Disadvantage</strong> on its next attack roll before the end of its next turn.</li><li><strong>Arena Presence:</strong> <strong>Advantage</strong> on Performance and Persuasion checks when addressing a crowd.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,23 +15,24 @@
    {
     "name": "Crowd's Favourite",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on your first attack roll each round against a creature you have already struck this combat.</p>",
+    "description": "<p>The first time each round you hit a creature you have already struck this combat, it has <strong>Disadvantage</strong> on its next attack roll before the end of its next turn.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
     "save": "",
-    "rules": [
+    "applies": [
      {
-      "key": "adv.attack.first",
-      "value": "1",
-      "when": "vs a creature you already struck this combat",
-      "label": ""
+      "name": "Crowd's Favourite",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "shaken"
+      ],
+      "rules": []
      }
-    ],
-    "toggle": false,
-    "active": false
+    ]
    },
    {
     "name": "Arena Presence",

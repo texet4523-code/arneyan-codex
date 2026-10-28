@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance), 28 Oct 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance); v0.10.32, board B-F19 (K28, K29), 28 Oct 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,15 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01031/HB_v0.10.31_*.md and MT_v0.10.31_sources.txt (md5s on the board, B-F12 to B-F18). Book III is
-the Builder's v0.10.29 Markdown, Book I and Book II its v0.10.31 and the M&T sources its v0.10.30; Books IV and V
+Sources: /tmp/hb/src_v01032/HB_v0.10.32_*.md and MT_v0.10.32_sources.txt (md5s on the board, B-F12 to B-F19). Book I, Book III
+and the M&T sources are the Builder's v0.10.32, Book II its v0.10.31; Books IV and V
 are the v0.10.20 copies under the new name (Atonement patched below). Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01031"
+SRC = "/tmp/hb/src_v01032"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.31"
+VERSION = "0.10.32"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -78,7 +78,15 @@ def prepare():
     shutil.copyfile(src("V_Catalogue"), SHOP)
     for f in glob.glob(os.path.join(CLASSES, "*")):
         os.remove(f)
-    parts = re.split(r"^<!-- CLASS: (.+?) -->\s*$", open(src("III_Classes"), encoding="utf-8").read(), flags=re.M)
+    # v0.10.32 wraps long list items with "> " continuation lines straight after the item's line: they are the item's
+    # own words, not a quote. The older nested sub-points ("    > " after a blank line) stay as they were.
+    lines = open(src("III_Classes"), encoding="utf-8").read().split("\n")
+    for i in range(1, len(lines)):
+        m = re.match(r"^( +)> (.*)$", lines[i])
+        if m and lines[i - 1].strip():
+            lines[i] = m.group(1) + m.group(2)
+    classes_md = "\n".join(lines)
+    parts = re.split(r"^<!-- CLASS: (.+?) -->\s*$", classes_md, flags=re.M)
     names = []
     for name, body in zip(parts[1::2], parts[2::2]):
         name = name.strip()

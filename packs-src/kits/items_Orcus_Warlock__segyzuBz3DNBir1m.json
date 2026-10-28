@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>He wants a world of silence. No life — only undead servitude.</p><ul><li><strong>Dark Gift</strong> (1st): When you kill a creature with a damaging cantrip or spell, it rises as a zombie under your control at the start of your next turn. One at a time; it lasts <strong>1 hour</strong> per Warlock level and counts as your summon.</li><li><strong>Patron's Mark (4th)</strong>: Passive: you always know the location of corpses, undead, and dying creatures within <strong>60ft</strong>, even through walls. You can sense the approximate time of death of any corpse you touch.</li><li><strong>Patron Feature (8th)</strong>: Once per day, touch a corpse dead no longer than <strong>1 day</strong> per Warlock level — it rises as a wight under your control for <strong>1 hour</strong> per Warlock level.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/6364951\">Orcus</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>He wants a world of silence. No life — only undead servitude.</p><ul><li><strong>Dark Gift</strong> (1st): When you kill a creature with a damaging cantrip or spell, it rises as a zombie under your control at the start of your next turn. One at a time; it lasts <strong>1 hour</strong> per Warlock level and counts as your summon.</li><li><strong>Patron's Mark (4th)</strong>: Passive: you always know the location of corpses, undead, and dying creatures within <strong>60ft</strong>, even through walls. You can sense the approximate time of death of any corpse you touch.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, touch a corpse dead no longer than <strong>1 day</strong> per Warlock level — it rises as a wight under your control for <strong>1 hour</strong> per Warlock level.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/6364951\">Orcus</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -37,11 +37,13 @@
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>Once per day, touch a corpse dead no longer than <strong>1 day</strong> per Warlock level — it rises as a wight under your control for <strong>1 hour</strong> per Warlock level.</p>",
+    "description": "<p>For 1 Patron Favour, touch a corpse dead no longer than <strong>1 day</strong> per Warlock level — it rises as a wight under your control for <strong>1 hour</strong> per Warlock level.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": "",
+     "formula": "",
+     "pool": "Patron Favour"
     },
     "save": ""
    }

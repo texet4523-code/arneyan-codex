@@ -468,7 +468,7 @@ console.log("OK safe world update");
     assert.deepEqual(granted, [], "nothing re-granted (Quick Draw was reached before and deleted)");
     assert.equal(prev.items[0].flags.arneyan.featuresBeforeFor, M.CLASS_REWORK);
   }
-  assert.equal(M.CLASS_REWORK, "0.10.68");
+  assert.equal(M.CLASS_REWORK, "0.10.75");
   assert.ok(M.newerThan("0.10.65", "0.10.64") && M.newerThan("0.10.65", "0") && !M.newerThan("0.10.65", "0.10.65") && M.newerThan("0.10.100", "0.10.65"));
   console.log("OK 0.10.65 class features at their new levels");
 }

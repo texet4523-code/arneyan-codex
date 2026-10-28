@@ -1,6 +1,19 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.74 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.75 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.75
+
+- **Books v0.10.32** (K28 and K29, the independent review fixes; board B-F19 and R-F9). The compendiums and rules journals follow the new books:
+  - **Warlock: Patron Favour.** A Warlock's patron powers share one pool: 1 use a day at 1st, 2 at 4th and 3 at 8th, on a new Patron Favour feature. A Dark Gift, Patron's Mark or Patron Feature that costs 1 Patron Favour spends it when used (the sheet shows what's left beside it); passive ones cost nothing.
+  - **Artificer: Spark Caster** is a Reflex save against your Class Save DC for Eldritch Blast's dice plus your Intelligence modifier, half on a success. Use it for the save button and the damage roll; Apply by saves halves for those who saved. Quick Hands can fire it.
+  - **Encounter durations:** Challenge and Hex last the encounter; Intimidate lasts until the end of the target's next turn; Sorcerer's Spark and the deity powers of Helm, Lliira and Daeric Khyrmin last the encounter. Ranger: Marked Prey lasts the encounter (one creature at a time), Hunter's Tricks work on the first hit each round, Pin until the end of its next turn.
+  - **Timing:** Legend of Battle is used as part of an attack, until the end of your turn. Divine Intervention's reroll comes right after the roll and halving damage comes when you take it, both out of turn; divine might lasts until the end of your turn.
+  - **Assassin: Ambush Predator** gives Advantage on initiative. **Monk: Iron Mind** (8th) is its own feature; its save bonus was already on Iron Discipline. **Sorcerer: Metamagic** options come at 1st.
+  - **Kits:** the four new Fighter benefits (Crowd's Favourite makes the creature Shaken; Waste-Hardened gives Orcs Disadvantage on their first attack each round; Cavalry Strike and Guardian's Reach as written, Guardian's Reach as an effect to put on the ally), the Tenor Hold repeating crossbow with Extra Attack, the Gadgeteer's Reusable Chassis at 1 Ingenuity per use, the Infuser's infusions until the next full rest, and the Deadweight, Hollow Mountain and Mossmaw changes.
+  - **Pact Summons:** a Warlock's servant uses a power the Bestiary gives "once per 3 rounds" (the Hell Hound's breath, the Pixie's dust, the Redcap's charge) once per encounter, tracked on its sheet.
+  - **Saves against monsters:** a creature that saves against a monster's non-damaging effect is immune to it for the encounter; damage always applies. The system tracks no such immunity, so nothing changes in play.
+- **Updating a world:** characters get the new features their level reaches (Patron Favour, Iron Mind, Metamagic Options at 1st) once, and the changes above where nobody has edited the item.
 
 ## What's new in 0.10.74
 
