@@ -5,6 +5,7 @@ Version 0.10.69 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.69
 
 - **Making a character, step by step** (Kieran, 27 Oct). A new character goes from its ability scores straight to a list of the classes (each with its Hit Die and key attribute, and its description when clicked), then the same steps as dropping a class on the sheet: ancestry, Kit, Feats, skills, Starting Luck and starting gold. Nothing needs dragging. **Later** on the scores or the class list leaves the rest for now: the sheet's **Set up** button (where the class would be) picks up from where it stopped, and dragging a class onto the sheet still works.
+- **1st-level Hit Points** (Kieran, 28 Oct): a 1st-level character's HP is the full Hit Die + Con, set when the class goes on, so the Hit Die chip under HP no longer offers a roll at 1st level (its tooltip says so). From 2nd level, levelling up rolls the Hit Die or takes the average, as before; the chip still rolls one by hand.
 
 ## What's new in 0.10.68
 

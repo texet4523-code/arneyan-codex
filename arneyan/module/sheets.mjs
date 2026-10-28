@@ -219,6 +219,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const isCharacter = actor.type === "character";
     const sort = (a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name);
     const byType = t => actor.items.filter(i => i.type === t).sort(sort);
+    // Only the 1st level so far (one class at 1st): its HP is the full Hit Die + Con, with no roll to make.
+    const firstOnly = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0) <= 1;
     const enrich = html => TextEditorImpl().enrichHTML(html ?? "", { rollData: actor.getRollData(), relativeTo: actor, secrets: actor.isOwner });
 
     // Rows with an expandable description.
@@ -458,11 +460,15 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       sideStats, saves,
       hpPct: Math.clamp(Math.round((Math.max(0, hp.value) / Math.max(1, hp.max)) * 100), 0, 100),
       hpTip: breakdown(hp.parts ?? []),
+      // A 1st-level character takes the full Hit Die + Con: nothing to roll yet, so the chip doesn't offer one.
       // Each class's Hit Die, how many, and what each level gave (click to roll one by hand).
       hitDice: actor.type === "character" ? actor.items.filter(i => i.type === "class").map(c => ({
         id: c.id, name: c.name, die: c.system.hitDie, levels: c.system.levels,
-        tip: `${c.name}: ${c.system.hitDie} a level. ${(c.system.hpRolls ?? []).length ? `HP gained by level: ${(c.system.hpRolls ?? []).map((n, i) => `${i + 1}${["st", "nd", "rd"][i] ?? "th"} ${n}`).join(", ")}. ` : ""}Click to roll one ${c.system.hitDie} + Con.`
+        tip: `${c.name}: ${c.system.hitDie} a level. ${(c.system.hpRolls ?? []).length ? `HP gained by level: ${(c.system.hpRolls ?? []).map((n, i) => `${i + 1}${["st", "nd", "rd"][i] ?? "th"} ${n}`).join(", ")}. ` : ""}${firstOnly
+          ? "1st level is the full Hit Die + Con, no roll (Kieran, 28 Oct 2026). From 2nd level, levelling up rolls the Hit Die or takes the average."
+          : `Levelling up rolls the Hit Die or takes the average for you. Click to roll one ${c.system.hitDie} + Con by hand.`}`
       })) : [],
+      hitDieRolls: !firstOnly,
       multi: actor.items.filter(i => i.type === "class").length > 1,
       conditions, activeConditions: conditions.filter(c => c.active), effects, toggles, activeRules,
       combat: combatSheetContext(actor),
@@ -827,6 +833,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const cls = actor.items.get(target.dataset.classId);
     if (!cls) return;
     const con = actor.system.abilities.con.mod;
+    // 1st level is the full Hit Die + Con: no roll.
+    const levels = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0);
+    if (levels <= 1) return ui.notifications.info(`${actor.name}: 1st level is the full ${cls.system.hitDie} + Con (${Math.max(1, Number(cls.system.hitDie.slice(1)) + con)} HP), no roll. From 2nd level, levelling up rolls or takes the average.`);
     const roll = await new Roll(`1${cls.system.hitDie} + ${con}`).evaluate();
     const hp = Math.max(1, roll.total);
     return roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }),

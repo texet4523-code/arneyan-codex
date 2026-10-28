@@ -440,5 +440,16 @@ const score = (a, k) => a._source.system.abilities[k].value;
   globalThis.Hooks = keepHooks; game.packs = keepPacks; globalThis.fromUuid = keepUuid;
 }
 
+// 0.10.69 (Kieran, 28 Oct 2026): 1st level is the full Hit Die + Con; rolling or the average is for later levels, so
+// the sheet's Hit Die chip doesn't offer a roll at 1st level.
+{
+  const sh = fs.readFileSync(new URL("../arneyan/module/sheets.mjs", import.meta.url), "utf8");
+  const hbs = fs.readFileSync(new URL("../arneyan/templates/actor/actor-sheet.hbs", import.meta.url), "utf8");
+  assert.ok(sh.includes("hitDieRolls: !firstOnly") && hbs.includes('{{#if @root.hitDieRolls}}data-action="rollHitDie"'), "no roll on the chip at 1st level");
+  assert.ok(sh.includes("if (levels <= 1) return ui.notifications.info("), "and the handler doesn't roll either");
+  const pr = fs.readFileSync(new URL("../arneyan/module/progression.mjs", import.meta.url), "utf8");
+  assert.ok(pr.includes('const hp = Math.max(1, Number(cls.system.hitDie.slice(1)) + con);'), "1st level: the full Hit Die + Con");
+}
+
 DialogV2.wait = saved;
 console.log("OK chargen");
