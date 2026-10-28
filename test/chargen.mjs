@@ -355,8 +355,8 @@ const score = (a, k) => a._source.system.abilities[k].value;
   globalThis.Hooks = { on: (n, f) => { handlers[n] = f; }, once: () => {}, call: () => {}, callAll: () => {} };
   G.registerChargen();
   const index = [
-    { uuid: "Compendium.arneyan.classes.Item.f", name: "Fighter", system: { hitDie: "d10", keyAbility: "str" } },
-    { uuid: "Compendium.arneyan.classes.Item.w", name: "Wizard", system: { hitDie: "d4", keyAbility: "int" } }
+    { uuid: "Compendium.arneyan.classes.Item.f", name: "Fighter", img: "systems/arneyan/assets/classes/Fighter.webp", system: { hitDie: "d10", keyAbility: "str" } },
+    { uuid: "Compendium.arneyan.classes.Item.w", name: "Wizard", img: "systems/arneyan/assets/classes/Wizard.webp", system: { hitDie: "d4", keyAbility: "int" } }
   ];
   game.packs = { get: id => (id === "arneyan.classes" ? { getIndex: async () => index } : null) };
   globalThis.fromUuid = async u => ({ uuid: u, toObject: () => ({ _id: "x", name: index.find(e => e.uuid === u).name, type: "class", folder: "f", system: {} }) });
@@ -414,7 +414,9 @@ const score = (a, k) => a._source.system.abilities[k].value;
   let opts = null;
   DialogV2.wait = async o => { opts = o; return "later"; };
   await P.pickClass(mk("New3"));
-  assert.ok(opts.content.includes("Hit Die d10 · Strength") && opts.content.includes("Hit Die d4 · Intelligence"), "class details in the list");
+  assert.ok(opts.content.includes("Hit Die d10 · Strength / Dexterity") && opts.content.includes("Hit Die d4 · Intelligence"), "class details in the list (both key attributes)");
+  // Kieran, 28 Oct 2026 ("neat and proper", "with pics"): each row has its picture, as in the browser.
+  assert.ok(opts.classes.includes("arn-pick-art") && /<img class="arn-pick-img" src="[^"]*"/.test(opts.content), "pictures on the rows, class art");
   assert.ok(!opts.content.includes("—"), "no em dashes");
   // Review (0.10.69): Set up pressed while the scores window is open, or twice, opens one class list, not two.
   seen.length = 0;

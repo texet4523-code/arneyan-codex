@@ -10,6 +10,9 @@ const TE = () => foundry.applications.ux.TextEditor.implementation;
 /** A window title with its step, if any: "Tess: Fighter Kit (Step 2 of 4)". */
 export const stepTitle = (title, step) => (step ? `${title} (${step})` : title);
 
+/** The top of the description pane, as in the browser: the picture beside the name and a line of detail. */
+const descHead = (name, img, meta = "") => `<header class="arn-pick-head">${img ? `<img src="${esc(img)}" alt="">` : ""}<div><h3>${esc(name ?? "")}</h3>${meta ? `<p class="arn-pick-meta">${meta}</p>` : ""}</div></header>`;
+
 /** Enriched description of a compendium entry or an owned item (by uuid), cached per call site. */
 async function descriptionOf(uuid, cache) {
   if (cache.has(uuid)) return cache.get(uuid);
@@ -22,7 +25,7 @@ async function descriptionOf(uuid, cache) {
     if (sys.ability && CONFIG.ARNEYAN?.abilities?.[sys.ability]) bits.push(esc(CONFIG.ARNEYAN.abilities[sys.ability]));
     if (sys.uses?.max) bits.push(`${sys.uses.max}/${esc(CONFIG.ARNEYAN?.usesPer?.[sys.uses.per] ?? sys.uses.per ?? "")}`);
     const body = await TE().enrichHTML(sys.description ?? "", { relativeTo: doc });
-    html = `<h3>${esc(doc?.name ?? "")}</h3>${bits.length ? `<p class="arn-pick-meta">${bits.join(" · ")}</p>` : ""}${body || "<p class=\"arn-muted\">No description.</p>"}`;
+    html = `${descHead(doc?.name, doc?.img, bits.join(" · "))}${body || "<p class=\"arn-muted\">No description.</p>"}`;
   } catch (err) {
     html = `<p class="arn-muted">Couldn't load the description.</p>`;
   }
@@ -31,8 +34,10 @@ async function descriptionOf(uuid, cache) {
 }
 
 /**
- * Ask the user to pick from a list. entries: [{ value, uuid, name, group, meta, html }]: `uuid` shows that document's
- * description, `html` shows the given text instead (an ancestry's subtype has no document of its own).
+ * Ask the user to pick from a list. entries: [{ value, uuid, name, group, meta, img, html }]: `uuid` shows that
+ * document's description, `html` shows the given text instead (an ancestry's subtype has no document of its own).
+ * Each row shows its picture (`img`, or the window's own `img` option), as the browser's rows do; `art` shows
+ * portrait pictures (the classes' art) taller, and large beside the description.
  *
  * Options: `intro` (HTML above the list), `takeLabel` (the main button), `laterLabel`, `step` ("Step 2 of 4", added
  * to the title), `preselect` (a value, or values when picking several), `skipLabel` (adds a "skip" button), `buttons`
@@ -44,7 +49,7 @@ async function descriptionOf(uuid, cache) {
  */
 export async function pickFromList(opts = {}) {
   const { title, intro = "", entries = [], takeLabel = "Take", laterLabel = "Choose later", width = 760,
-    max = 1, exact = false, preselect = null, skipLabel = "", buttons = [], step = "" } = opts;
+    max = 1, exact = false, preselect = null, skipLabel = "", buttons = [], step = "", img = "", art = false } = opts;
   if (!entries.length) return null;
   const many = Math.max(1, Math.floor(Number(max) || 1));
   const multi = many > 1;
@@ -54,25 +59,27 @@ export async function pickFromList(opts = {}) {
     .map(String).filter(v => byValue.has(v)).slice(0, many));
   const groups = new Map();
   for (const e of entries) (groups.get(e.group ?? "") ?? groups.set(e.group ?? "", []).get(e.group ?? "")).push(e);
-  const text = e => `<span class="arn-pick-name">${esc(e.name)}</span>${e.meta ? `<span class="arn-pick-sub">${esc(e.meta)}</span>` : ""}`;
+  const pic = e => e.img || img;
+  const text = e => `<span class="arn-pick-text"><span class="arn-pick-name">${esc(e.name)}</span>${e.meta ? `<span class="arn-pick-sub">${esc(e.meta)}</span>` : ""}</span>`;
+  const picture = e => (pic(e) ? `<img class="arn-pick-img" src="${esc(pic(e))}" alt="">` : "");
   const row = e => {
     const v = String(e.value);
     const on = pre.has(v) ? " checked" : "";
     const attrs = `data-value="${esc(v)}" data-uuid="${esc(e.uuid ?? "")}" data-name="${esc((e.name ?? "").toLowerCase())}"`;
     // Several: the box ticks it, the name only shows what it does (so reading one doesn't choose it).
     return multi
-      ? `<li class="arn-pick-row${on ? " picked" : ""}" ${attrs}><input type="checkbox" name="pick" value="${esc(v)}" aria-label="Choose ${esc(e.name)}"${on}><span class="arn-pick-text">${text(e)}</span></li>`
-      : `<li class="arn-pick-row" ${attrs}><label><input type="radio" name="pick" value="${esc(v)}"${on}>${text(e)}</label></li>`;
+      ? `<li class="arn-pick-row${on ? " picked" : ""}" ${attrs}><input type="checkbox" name="pick" value="${esc(v)}" aria-label="Choose ${esc(e.name)}"${on}>${picture(e)}${text(e)}</li>`
+      : `<li class="arn-pick-row" ${attrs}><label><input type="radio" name="pick" value="${esc(v)}"${on}>${picture(e)}${text(e)}</label></li>`;
   };
   const list = [...groups.entries()].map(([g, rows]) => `${g ? `<li class="arn-pick-group">${esc(g)}</li>` : ""}${rows.map(row).join("")}`).join("");
   const counter = multi ? `<p class="arn-pick-count" aria-live="polite">${pre.size} of ${many} chosen</p><p class="arn-pick-tip">Tick a box to choose it; click a name to read it.</p>` : "";
   const content = `${intro}<div class="arn-pick${multi ? " arn-pick-multi" : ""}">
       <div class="arn-pick-left"><input type="search" class="arn-pick-search" placeholder="Search" aria-label="Search">${counter}<ul class="arn-pick-list">${list}</ul></div>
-      <div class="arn-pick-desc"><p class="arn-muted">Click one to read what it does.</p></div>
+      <div class="arn-pick-desc"><p class="arn-pick-empty">Click one to read what it does.</p></div>
     </div>`;
   const res = await DialogV2.wait({
     window: { title: stepTitle(title, step), icon: "fa-solid fa-book-atlas", resizable: true },
-    classes: ["arneyan", "arn-picker"], position: { width, height: "auto" },
+    classes: ["arneyan", "arn-picker", ...(art ? ["arn-pick-art"] : [])], position: { width, height: "auto" },
     content,
     render: (ev, dialog) => {
       const root = dialog.element ?? dialog;
@@ -83,8 +90,9 @@ export async function pickFromList(opts = {}) {
         row.classList.add("active");
         if (!multi) { const radio = row.querySelector("input[type=radio]"); if (radio) radio.checked = true; }
         const e = byValue.get(row.dataset.value);
-        if (e?.html) desc.innerHTML = e.html;
-        else desc.innerHTML = row.dataset.uuid ? await descriptionOf(row.dataset.uuid, cache) : `<h3>${esc(e?.name ?? "")}</h3>`;
+        // Given text: its own heading becomes the browser-style head, with the row's picture.
+        if (e?.html) desc.innerHTML = /^<h3>/.test(e.html) ? e.html.replace(/^<h3>(.*?)<\/h3>(?:<p class="arn-pick-meta">(.*?)<\/p>)?/, (m, n, meta) => `<header class="arn-pick-head">${pic(e) ? `<img src="${esc(pic(e))}" alt="">` : ""}<div><h3>${n}</h3>${meta ? `<p class="arn-pick-meta">${meta}</p>` : ""}</div></header>`) : e.html;
+        else desc.innerHTML = row.dataset.uuid ? await descriptionOf(row.dataset.uuid, cache) : descHead(e?.name, pic(e), esc(e?.meta ?? ""));
       };
       // The count, the boxes past the limit, and Take only when the count allows it.
       const sync = () => {

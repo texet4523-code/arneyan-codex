@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.69 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.70 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.70
+
+- **Character choices look like the browser** (Kieran, 28 Oct: "neat and proper", "with pics"). The windows that ask for a class, ancestry, Kit, Feat, skills or Knack show each entry's picture beside its name, as the browser's rows do, and the description on the right opens with the picture, the name and its details. The class list shows the classes' art, large beside the description, with each class's Hit Die and both key attributes.
 
 ## What's new in 0.10.69
 

@@ -542,7 +542,7 @@ export async function promptFeat(actor, charLevel) {
   const uuid = await pickFromList({
     title: `${actor.name}: choose a Feat (level ${charLevel})`,
     intro: `<p>You gain a Feat at level ${charLevel}. Open to you: ${[...paths].map(esc).join(", ")}. Click one to read it.</p>`,
-    entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
+    entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
   if (uuid && uuid !== "later") await addFromUuid(actor, uuid, { levelTaken: charLevel });
@@ -556,9 +556,9 @@ export async function promptSkill(actor, charLevel) {
   const knacks = owned.filter(i => i.system.tier === "knack");
   // One slot: a new skill, a Master, or training a Knack (it keeps its Advantage), never two; each shows what it does.
   const entries = [
-    ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
-    ...upgrade.map(i => ({ value: `master:${i.id}`, uuid: i.uuid, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
-    ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
+    ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
+    ...upgrade.map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
+    ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
       .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name))
   ];
   const pick = await pickFromList({
@@ -616,19 +616,19 @@ async function firstLevelLists(actor, cls) {
   const tail = new RegExp(`\\s*\\(${reEsc(base)}\\)$`);
   const kits = (await packOptions("kits", e => (e.system?.className ?? "") === base)).map(e => {
     const m = e.name.match(/^([^:()]+):\s*(.+)$/);
-    return { value: e.uuid, uuid: e.uuid, name: (m ? m[2] : e.name).replace(tail, ""), group: m ? m[1] : `${base} Kits` };
+    return { value: e.uuid, uuid: e.uuid, img: e.img, name: (m ? m[2] : e.name).replace(tail, ""), group: m ? m[1] : `${base} Kits` };
   }).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
   const paths = featPaths(actor);
   const ownedFeats = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
   const feats = (await packOptions("feats", e => paths.has(e.system?.path) && !ownedFeats.has(e.name)))
-    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: e.system?.path ?? "" }))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" }))
     .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
   // Skills by attribute, in sheet order.
   const ownedSkills = new Set(actor.items.filter(i => i.type === "skill").map(i => i.name));
   const order = k => { const n = ABILITY_KEYS.indexOf(k); return n < 0 ? 99 : n; };
   const skills = (await packOptions("skills", e => !ownedSkills.has(e.name)))
     .sort((x, y) => order(x.system?.ability) - order(y.system?.ability) || x.name.localeCompare(y.name))
-    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: ARNEYAN.abilities[e.system?.ability] ?? "Other" }));
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: ARNEYAN.abilities[e.system?.ability] ?? "Other" }));
   const ancestries = actor.items.some(i => i.type === "ancestry") ? [] : await ancestryEntries();
   return { base, kits, feats, skills, ancestries };
 }
@@ -886,14 +886,14 @@ async function ancestryEntries(filter = () => true) {
   const rank = s => { const n = sizes.indexOf(s); return n < 0 ? 99 : n; };
   return (await packOptions("ancestries", filter, ["system.size", "system.attributes"]))
     .sort((a, b) => rank(a.system?.size) - rank(b.system?.size) || a.name.localeCompare(b.name))
-    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, group: ARNEYAN.sizes[e.system?.size] ?? "Other", meta: e.system?.attributes ?? "" }));
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: ARNEYAN.sizes[e.system?.size] ?? "Other", meta: e.system?.attributes ?? "" }));
 }
 
 /** The classes to choose from when making a character (the Classes compendium), with each one's Hit Die and key attribute. */
 async function classEntries() {
   return (await packOptions("classes", () => true, ["system.hitDie", "system.keyAbility"]))
-    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name,
-      meta: [e.system?.hitDie ? `Hit Die ${e.system.hitDie}` : "", ARNEYAN.abilities[e.system?.keyAbility] ?? ""].filter(Boolean).join(" · ") }));
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img,
+      meta: [e.system?.hitDie ? `Hit Die ${e.system.hitDie}` : "", (ARNEYAN.classKeys?.[e.name] ?? [e.system?.keyAbility]).map(k => ARNEYAN.abilities[k]).filter(Boolean).join(" / ")].filter(Boolean).join(" · ") }));
 }
 
 /**
@@ -918,7 +918,7 @@ async function pickClassOnce(actor) {
   const entries = await classEntries();
   if (!entries.length) return "later";
   const uuid = await pickFromList({
-    title: `${actor.name}: class`, entries, takeLabel: "Choose class", laterLabel: "Later", width: 760,
+    title: `${actor.name}: class`, entries, takeLabel: "Choose class", laterLabel: "Later", width: 820, art: true,
     intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ${actor.items.some(i => i.type === "ancestry") ? "" : "ancestry, "}Kit, Feats, skills and Starting Luck, then starting gold. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
   });
   if (uuid === null || uuid === "later") return uuid;
@@ -1006,7 +1006,7 @@ export async function ancestrySetup(actor, anc, { step = "", replacing = false }
   if (opts.length) {
     const what = esc(s.choice.label.toLowerCase());
     const pick = await pickFromList({
-      title: `${actor.name}: ${baseName} ${s.choice.label.toLowerCase()}`, step, width: 680,
+      title: `${actor.name}: ${baseName} ${s.choice.label.toLowerCase()}`, step, width: 680, img: anc.img,
       intro: `${head} Choose your ${what}: click one to read what it gives.</p>`,
       entries: opts.map((o, i) => {
         const b = bonusText(o.bonuses);

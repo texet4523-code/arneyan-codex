@@ -710,20 +710,35 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arn-picker .window-content { display: flex; flex-direction: column; }
 .arn-picker .arn-pick { display: grid; grid-template-columns: minmax(220px, 38%) 1fr; gap: 10px; flex: 1; min-height: 0; }
 .arn-picker .arn-pick-left { display: flex; flex-direction: column; gap: 6px; min-height: 0; }
-.arn-picker .arn-pick-search { width: 100%; }
+.arn-picker .arn-pick-search { width: 100%; height: 30px; }
 .arn-picker .arn-pick-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; border: 1px solid var(--arn-border); border-radius: 6px; background: var(--arn-surface); flex: 1; max-height: min(380px, 55vh); }
 .arn-picker .arn-pick-group { padding: 4px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--arn-muted); background: var(--arn-surface-2); position: sticky; top: 0; }
-.arn-picker .arn-pick-row label { display: flex; flex-direction: column; padding: 4px 8px; cursor: pointer; }
+/* Rows as in the browser: the picture, the name in bold, a line of detail (Kieran, 28 Oct 2026: "neat and proper", "with pics"). */
+.arn-picker .arn-pick-row { border-bottom: 1px solid var(--arn-border); }
+.arn-picker .arn-pick-row:last-child { border-bottom: none; }
+.arn-picker .arn-pick-row label { display: flex; align-items: center; gap: 10px; padding: 5px 8px; cursor: pointer; }
+.arn-picker .arn-pick-img { width: 32px; height: 32px; border: none; border-radius: 4px; flex: none; object-fit: cover; }
+.arn-picker .arn-pick-text { display: flex; flex-direction: column; min-width: 0; }
 .arn-picker .arn-pick-row input[type=radio] { display: none; }
 .arn-picker .arn-pick-row:hover { background: color-mix(in srgb, var(--arn-accent) 8%, transparent); }
-.arn-picker .arn-pick-row.active { background: color-mix(in srgb, var(--arn-accent) 18%, transparent); }
-.arn-picker .arn-pick-name { font-weight: 600; }
-.arn-picker .arn-pick-sub { font-size: 11px; color: var(--arn-muted); }
+.arn-picker .arn-pick-row.active { background: color-mix(in srgb, var(--arn-accent) 18%, transparent); box-shadow: inset 3px 0 0 var(--arn-accent); }
+.arn-picker .arn-pick-name { font-weight: 700; }
+.arn-picker .arn-pick-sub { font-size: 12px; color: var(--arn-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .arn-picker .arn-pick-desc { overflow-y: auto; max-height: min(420px, 60vh); padding: 0 8px; border-left: 1px solid var(--arn-border); }
 .arn-picker .arn-pick-desc h3 { margin: 0 0 4px; }
+.arn-picker .arn-pick-head { display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 1; padding: 6px 0 8px; margin-bottom: 8px; background: var(--arn-bg); border-bottom: 1px solid var(--arn-border); }
+.arn-picker .arn-pick-head img { width: 56px; height: 56px; border: none; border-radius: 6px; flex: none; object-fit: cover; }
+.arn-picker .arn-pick-head h3 { margin: 0; border: none; }
+.arn-picker .arn-pick-head .arn-pick-meta { margin: 2px 0 0; }
+.arn-picker .arn-pick-empty { color: var(--arn-muted); text-align: center; margin-top: 40%; }
+/* Portrait art (the classes): taller rows' pictures, and the picture large beside the name. */
+.arn-picker.arn-pick-art .arn-pick-img { width: 34px; height: 48px; object-position: top; }
+.arn-picker.arn-pick-art .arn-pick-head { align-items: flex-end; position: static; }
+.arn-picker.arn-pick-art .arn-pick-head img { width: 104px; height: 152px; object-position: top; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+.arn-picker.arn-pick-art .arn-pick-head h3 { font-size: 1.6em; }
 .arn-picker .arn-pick-meta { font-size: 12px; color: var(--arn-muted); margin: 0 0 6px; }
-.arn-picker .arn-pick-multi .arn-pick-row { display: flex; align-items: flex-start; gap: 6px; padding: 4px 8px; cursor: pointer; }
-.arn-picker .arn-pick-multi .arn-pick-row input[type=checkbox] { flex: none; margin: 2px 0 0; cursor: pointer; }
+.arn-picker .arn-pick-multi .arn-pick-row { display: flex; align-items: center; gap: 8px; padding: 5px 8px; cursor: pointer; }
+.arn-picker .arn-pick-multi .arn-pick-row input[type=checkbox] { flex: none; margin: 0; cursor: pointer; }
 .arn-picker .arn-pick-multi .arn-pick-text { display: flex; flex-direction: column; min-width: 0; }
 .arn-picker .arn-pick-multi .arn-pick-row.picked { box-shadow: inset 3px 0 0 var(--arn-accent); }
 .arn-picker .arn-pick-count { margin: 0; font-weight: 700; font-size: 12px; }
