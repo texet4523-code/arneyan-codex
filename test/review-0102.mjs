@@ -75,6 +75,13 @@ function doc(type, name, system = {}, parent = null, id = null) {
   assert.equal(featOf("Marta Holloway", "Critical Strike"), 6);
   assert.equal(featOf("Marta Holloway", "Swift Reflexes"), 1, "a Human's bonus feat: 1st level");
   assert.equal(featOf("Wendel \"Big Wen\" Harrow", "Critical Strike"), 1, "a 1st-level pregen took everything at 1st");
+  // A feat note naming a level that isn't when it was taken ("One extra 2nd-level slot", Maud's Expanded Mind before the
+  // Journeymen were cut) stays 0: build_pregens.py's feat_level, checked directly.
+  {
+    const { execFileSync } = await import("node:child_process");
+    const out = execFileSync("python3", ["-c", "import sys; sys.path.insert(0, 'build'); import build_pregens as b; print(b.feat_level({'note': 'One extra 2nd-level slot'}, 5), b.feat_level({'note': 'Martial, 2nd'}, 5), b.feat_level({'note': 'Human bonus feat'}, 5))"], { cwd: new URL("..", import.meta.url).pathname }).toString().trim();
+    assert.equal(out, "0 2 1", "feat levels from notes");
+  }
   // Stamped with the character's level when it's new to the character.
   const actor = pc({ level: 5 });
   const feat = doc("feat", "Toughness", { levelTaken: 0 }, actor);

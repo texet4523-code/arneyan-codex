@@ -154,7 +154,7 @@ radius". Drag Eldritch Blast onto a 9th-level Warlock: damage reads 2d6 force, R
 Level to 6: Patron Curse arrives. Drop "Alchemist (Artificer)" on a 3rd-level Artificer: Brew Formula and
 Efficient Brewing. The kit's description lists the Known Formulas.
 
-**Pregens.** Import Maud Hollins from Pregenerated Characters: Kits shows her Patron, Spells shows Hex of
+**Pregens.** (Maud and Tibbet were cut with the Journeymen, 28 Oct 2026; check Patience Ashcombe's kit and spells instead.) Import Maud Hollins from Pregenerated Characters: Kits shows her Patron, Spells shows Hex of
 Stumbling and Bind Wound (prepared) as real spells.
 
 **Dice So Nice.** With the module on: roll an attack and a save (3D dice), a fire spell's damage (fire dice),

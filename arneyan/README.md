@@ -4,7 +4,7 @@ Version 0.10.72 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.72
 
-- **The Broken Anvil is two acts** (Kieran, 28 Oct, K26): the Pregens compendium has the Recruits (level 1) and the Veterans (level 9); the five Journeymen are gone.
+- **The Broken Anvil is two acts** (Kieran, 28 Oct, K26): the Pregens compendium has the Recruits (level 1) and the Veterans (level 9); the five Journeymen are gone. Pregens already in a world stay as they are: drag fresh copies from the compendium.
 - **Rules journals: books v0.10.31** (board B-F18). The Codex and Book II journals now say Last Chance works once each time a character is dying, as the sheet has since 0.10.71.
 
 ## What's new in 0.10.71
