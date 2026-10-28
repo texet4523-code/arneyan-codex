@@ -416,6 +416,27 @@ const score = (a, k) => a._source.system.abilities[k].value;
   await P.pickClass(mk("New3"));
   assert.ok(opts.content.includes("Hit Die d10 · Strength") && opts.content.includes("Hit Die d4 · Intelligence"), "class details in the list");
   assert.ok(!opts.content.includes("—"), "no em dashes");
+  // Review (0.10.69): Set up pressed while the scores window is open, or twice, opens one class list, not two.
+  seen.length = 0;
+  let release;
+  DialogV2.wait = o => { seen.push(o.window.title); return /class/.test(o.window.title) ? new Promise(r => { release = r; }) : Promise.resolve(scores); };
+  const c = mk("New4");
+  handlers.createActor(c, {}, "gm");
+  await new Promise(r => setTimeout(r, 450));
+  const pressed = P.setUpCharacter(c);
+  await wait();
+  const again = P.setUpCharacter(c);
+  await wait();
+  assert.deepEqual(seen, ["New4: ability scores", "New4: class"], "one class list");
+  release("Compendium.arneyan.classes.Item.f");
+  await pressed; await again;
+  assert.equal(c.made.length, 1, "one class added");
+  // A character that has an ancestry isn't told it's still to choose.
+  const d = mk("New5");
+  d.items.push({ type: "ancestry" });
+  DialogV2.wait = async o => { opts = o; return "later"; };
+  await P.pickClass(d);
+  assert.ok(opts.content.includes("follow: Kit,"), "no ancestry step listed");
   globalThis.Hooks = keepHooks; game.packs = keepPacks; globalThis.fromUuid = keepUuid;
 }
 

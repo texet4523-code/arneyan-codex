@@ -896,20 +896,30 @@ async function classEntries() {
  * the sheet's Set up button (or dragging a class on) starts it again.
  * Returns the class item, "later", "has" (it has a class already) or null (closed).
  */
-export async function pickClass(actor) {
+export function pickClass(actor) {
+  // One class list per character at a time: Set up pressed while the scores window (which goes on to the list) is
+  // open, or pressed twice, shares the list already coming rather than opening another.
+  if (classPicks.has(actor?.id)) return classPicks.get(actor.id);
+  const run = pickClassOnce(actor).finally(() => classPicks.delete(actor?.id));
+  classPicks.set(actor?.id, run);
+  return run;
+}
+const classPicks = new Map();
+async function pickClassOnce(actor) {
   if (!actor?.isOwner || actor.type !== "character") return null;
   if (actor.items.some(i => i.type === "class")) return "has";
   const entries = await classEntries();
   if (!entries.length) return "later";
   const uuid = await pickFromList({
     title: `${actor.name}: class`, entries, takeLabel: "Choose class", laterLabel: "Later", width: 760,
-    intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ancestry, Kit, Feats, skills and Starting Luck, then starting gold. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
+    intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ${actor.items.some(i => i.type === "ancestry") ? "" : "ancestry, "}Kit, Feats, skills and Starting Luck, then starting gold. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
   });
   if (uuid === null || uuid === "later") return uuid;
   // Chosen while the window was open: a class dropped on the sheet meanwhile has already started the setup.
   if (actor.items.some(i => i.type === "class")) return "has";
   const doc = await fromUuid(uuid);
   if (!doc) return "later";
+  if (actor.items.some(i => i.type === "class")) return "has";
   const data = doc.toObject();
   delete data._id;
   data.folder = null;
