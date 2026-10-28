@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.71 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.72 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.72
+
+- **Rules journals: books v0.10.31** (board B-F18). The Codex and Book II journals now say Last Chance works once each time a character is dying, as the sheet has since 0.10.71.
 
 ## What's new in 0.10.71
 
