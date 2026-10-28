@@ -901,8 +901,14 @@ export class ArneyanActor extends Actor {
    */
   async lastChance(event) {
     if (this.type !== "character" || this.system.attributes.state !== "dying") return ui.notifications.warn(`${this.name} isn't dying.`);
+    // A second click while the first is still on its way: one roll per Luck.
+    if (this._lastChanceBusy) return;
     if (this.getFlag(SYS, "lastChance")) return ui.notifications.warn(`${this.name} has had their Last Chance this time: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now.`);
     if ((this.system.luck?.value ?? 0) < 1) return ui.notifications.warn(`${this.name} has no Luck left to burn.`);
+    this._lastChanceBusy = true;
+    try { await this._lastChanceRoll(event); } finally { this._lastChanceBusy = false; }
+  }
+  async _lastChanceRoll(event) {
     await this.update({ "system.luck.value": this.system.luck.value - 1, [`flags.${SYS}.lastChance`]: true });
     const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)" });
     const f = msg?.flags?.[SYS] ?? {};

@@ -500,6 +500,7 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 /* ---------------- Dying, damage types, crits ---------------- */
 .arneyan .arn-state-actions { display: flex; gap: 6px; justify-content: center; margin-top: 4px; }
 .arneyan .arn-state-actions a { background: rgba(255,255,255,.85); color: var(--arn-ink); border-radius: 999px; padding: 1px 8px; font-size: 11px; cursor: pointer; }
+.arneyan .arn-state-actions .arn-used { background: rgba(255,255,255,.45); color: var(--arn-ink); border-radius: 999px; padding: 1px 8px; font-size: 11px; font-weight: 400; cursor: help; }
 .arn-card .arn-dmg-split { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin: 2px 0 4px; }
 .arn-card .arn-dmg-buttons { display: flex; gap: 4px; }
 .arn-card .arn-dmg-buttons button { flex: 1; }

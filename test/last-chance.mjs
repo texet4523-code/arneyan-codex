@@ -80,6 +80,23 @@ const roll = natural => async function () { return { flags: { arneyan: { natural
   await a._syncDowned(-3).catch(() => {});
   assert.equal(a.getFlag("arneyan", "lastChance"), true, "bleeding doesn't bring it back");
 }
+// Review: a double click while the first is still on its way gets one roll, not two for one Luck.
+{
+  const a = mk();
+  let rolls = 0;
+  a.rollSave = async () => { rolls++; await new Promise(r => setTimeout(r, 20)); return { flags: { arneyan: { natural: 2, total: 4 } } }; };
+  const realUpdate = a.update;
+  a.update = async d => { await new Promise(r => setTimeout(r, 10)); return realUpdate(d); };
+  await Promise.all([a.lastChance(), a.lastChance()]);
+  assert.equal(rolls, 1, "one roll");
+  assert.equal(a.system.luck.value, 4, "one Luck");
+}
+// The bleed card doesn't offer it once used.
+{
+  const fs = await import("node:fs");
+  const src = fs.readFileSync(new URL("../arneyan/module/chat.mjs", import.meta.url), "utf8");
+  assert.ok(src.includes('actor.getFlag?.("arneyan", "lastChance") ? " They have had their Last Chance this time."'), "bleed card");
+}
 // The sheet and the help text.
 {
   const fs = await import("node:fs");

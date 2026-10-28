@@ -7,7 +7,7 @@
       {{#if stateLabel}}<div class="arn-state-banner {{system.attributes.state}}">{{stateLabel}}
         {{#if (eq system.attributes.state "dying")}}{{#if editable}}<span class="arn-state-actions">
           {{#if isGM}}<a data-action="stabilise" data-tooltip="An ally stabilised them (an action and a Wisdom check, DC 10) or First Aid did"><i class="fa-solid fa-kit-medical"></i> Stabilised</a>{{/if}}
-          {{#if lastChanceUsed}}<span class="arn-muted" data-tooltip="Last Chance is once each time a character is dying: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now"><i class="fa-solid fa-clover"></i> Last Chance used</span>{{else}}<a data-action="lastChance" data-tooltip="Once while dying, at the start of their turn: burn 1 Luck for a Fortitude save, DC 10, to stabilise. A failure is final: then only an ally or First Aid can"><i class="fa-solid fa-clover"></i> Last Chance</a>{{/if}}
+          {{#if lastChanceUsed}}<span class="arn-used" data-tooltip="Last Chance is once each time a character is dying: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now"><i class="fa-solid fa-clover"></i> Last Chance used</span>{{else}}<a data-action="lastChance" data-tooltip="Once while dying, at the start of their turn: burn 1 Luck for a Fortitude save, DC 10, to stabilise. A failure is final: then only an ally or First Aid can"><i class="fa-solid fa-clover"></i> Last Chance</a>{{/if}}
         </span>{{/if}}{{/if}}</div>{{/if}}
     </div>
 
