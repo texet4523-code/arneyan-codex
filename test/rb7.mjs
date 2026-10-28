@@ -56,9 +56,13 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   game.actors = { contents: [] };
   // Arcane Ward's temporary HP go with the encounter, unless more came from elsewhere.
   const ups = [];
-  const wiz = { uuid: "Actor.w", name: "Wiz", flags: { arneyan: { wardTemp: 6 } }, system: { attributes: { hp: { temp: 4 } } }, effects: Object.assign([], { has: () => false }), update: async u => ups.push(u) };
+  const wiz = { uuid: "Actor.w", name: "Wiz", flags: { arneyan: { wardTemp: { amount: 6, combat: "c2" } } }, system: { attributes: { hp: { temp: 4 } } }, effects: Object.assign([], { has: () => false }), update: async u => ups.push(u) };
   await E.endEncounterEffects({ id: "c2", combatants: [{ actor: wiz }] });
   assert.equal(ups[0]["system.attributes.hp.temp"], 0);
+  ups.length = 0;
+  const other = { ...wiz, flags: { arneyan: { wardTemp: { amount: 6, combat: "c9" } } } };
+  await E.endEncounterEffects({ id: "c2", combatants: [{ actor: other }] });
+  assert.equal(ups.length, 0, "another encounter's ward stays");
 }
 
 /* A switch that lasts the encounter (Rage: rule toggle.ends) goes off when the encounter ends. */
@@ -95,11 +99,11 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
     const t = { uuid: "Actor.s", name: "Shieldy" };
     fight2.combatants.push({ actor: t });
     game.combats = { contents: [fight2] }; game.combat = fight2;
-    const shield = { name: "Fighting defensively (Shield)", disabled: false, _stats: { createdTime: 1000 }, flags: { arneyan: { rules: [{ key: "adv.against.first", value: "-1" }] } } };
+    const shield = { name: "Fighting defensively (Shield)", disabled: false, _stats: { createdTime: 1000 }, flags: { arneyan: { expires: { combat: "f2", round: 4, turn: 0 }, rules: [{ key: "adv.against.first", value: "-1" }] } } };
     t.effects = [shield];
     t.system = { mods: new E.ModSet([{ key: "adv.against.first", value: -1, when: "", label: shield.name },
       { key: "adv.against.first.melee", value: -1, when: "", label: "Evasive Manoeuvre" }, { key: "against.first.count", value: 2, when: "", label: "Evasive Manoeuvre" }]) };
-    const atk = (time, melee = true, stamp = "f2.3") => ({ timestamp: time, flags: { arneyan: { kind: "attack", melee, stamp, targets: [{ uuid: "Actor.s" }] } } });
+    const atk = (time, melee = true, stamp = "f2.3") => ({ timestamp: time, _stats: { createdTime: time }, flags: { arneyan: { kind: "attack", melee, stamp, targets: [{ uuid: "Actor.s" }] } } });
     game.messages = { contents: [atk(900)] };
     let r = C.firstAgainst(t, { ranged: false });
     assert.equal(r.dis.length, 2, "an attack before the shield went up doesn't use it up; Evasive's 2 has 1 left");
@@ -111,6 +115,17 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
     assert.equal(r.dis.length, 0, "the shield covered last round's attack, which came after it went up");
     r = C.firstAgainst(t, { ranged: false });
     assert.equal(r.dis.length, 1, "Evasive (melee only, this round's): none melee yet");
+    // One lasting the encounter covers the first attack each round, from the newest copy.
+    const lect = { name: "Lectured", disabled: false, _stats: { createdTime: 500 }, flags: { arneyan: { encounter: "f2", rules: [{ key: "adv.against.first", value: "1" }] } } };
+    t.effects = [lect];
+    t.system = { mods: new E.ModSet([{ key: "adv.against.first", value: 1, when: "", label: "Lectured" }]) };
+    game.messages = { contents: [atk(600, true, "f2.2"), atk(700, true, "f2.2")] };
+    assert.equal(C.firstAgainst(t).adv.length, 1, "a new round: Lectured again");
+    game.messages = { contents: [atk(600, true, "f2.2"), atk(800, true, "f2.3")] };
+    assert.equal(C.firstAgainst(t).adv.length, 0, "used this round");
+    // The server's times: a message's own (client) timestamp doesn't count when the server's is there.
+    game.messages = { contents: [{ ...atk(400, true, "f2.3"), timestamp: 9999 }] };
+    assert.equal(C.firstAgainst(t).adv.length, 1, "made before Lectured by the server's clock");
     game.messages = { contents: [] }; game.combat = null; game.combats = { contents: [] };
   }
   const combat = fs.readFileSync(new URL("../arneyan/module/combat.mjs", import.meta.url), "utf8");
@@ -134,6 +149,8 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   const ranger = makeItem(IM.ClassData, "class", "Ranger", { levels: 4, keyAbility: "str" });
   const r = makeActor(CharacterData, "character", { abilities: { str: { value: 14 }, dex: { value: 18 }, wis: { value: 10 } } }, [ranger]);
   assert.equal(r.system.classDC, 10 + 2 + r.system.abilities.str.mod, "a class's own key attribute (a kit's swap) replaces the book's first");
+  const fd = makeActor(CharacterData, "character", { abilities: { str: { value: 18 }, dex: { value: 12 } } }, [makeItem(IM.ClassData, "class", "Fighter", { levels: 4, keyAbility: "dex" })]);
+  assert.equal(fd.system.classDC, 10 + 2 + fd.system.abilities.str.mod, "set to the book's second key: both still count");
 }
 
 /* Arcane Ward: a passive "cast.temp" rule; the cast gives the temporary HP. */

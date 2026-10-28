@@ -1357,7 +1357,7 @@ export class ArneyanItem extends Item {
     if (ward > 0) {
       const now = Number(actor.system.attributes?.hp?.temp) || 0;
       // The amount is kept on the creature so the end of the encounter takes it away (effects.mjs endEncounterEffects).
-      if (ward > now) await actor.update({ "system.attributes.hp.temp": ward, [`flags.${SYS}.wardTemp`]: ward }).catch(() => null);
+      if (ward > now) await actor.update({ "system.attributes.hp.temp": ward, [`flags.${SYS}.wardTemp`]: { amount: ward, combat: combatFor(actor)?.started ? combatFor(actor).id : "next" } }).catch(() => null);
       const label = (actor.system.mods?.numbers?.get?.("cast.temp") ?? [])[0]?.label || "Arcane Ward";
       lines.push(`<p class="arn-card-meta"><i class="fa-solid fa-shield-heart"></i> ${esc(label)}: ${ward > now ? `${ward} temporary HP` : `${now} temporary HP kept (it doesn't stack)`} until the encounter ends.</p>`);
     }

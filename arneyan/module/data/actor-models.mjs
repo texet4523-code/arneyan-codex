@@ -309,7 +309,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // the Frontier Vanguard's Strength for Dexterity), takes the first one's place.
     const book = first ? (ARNEYAN.classKeys?.[first.name] ?? []) : [];
     const own = first?.system?.keyAbility || "";
-    const keys = (first ? (book.length ? (own && own !== book[0] ? [own, ...book.slice(1)] : book) : [own || "str"]) : []).filter(k => s.abilities[k]);
+    const keys = (first ? (book.length ? (own && !book.includes(own) ? [own, ...book.slice(1)] : book) : [own || "str"]) : []).filter(k => s.abilities[k]);
     const best = keys.length ? Math.max(...keys.map(k => s.abilities[k].mod)) : 0;
     s.classDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + best + mods.sum("class.dc") : null;
     s.martialDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + Math.max(s.abilities.str.mod, s.abilities.dex.mod) + mods.sum("class.dc") : null;

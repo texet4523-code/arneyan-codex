@@ -750,7 +750,9 @@ export async function endEncounterEffects(combat) {
     if (!actor || seen.has(actor.uuid ?? actor)) return;
     seen.add(actor.uuid ?? actor);
     // Arcane Ward's temporary HP end with the encounter: whatever is left of them (none if more came from elsewhere).
-    const ward = inIt ? Number(actor.flags?.[SYS]?.wardTemp) || 0 : 0;
+    // (Its own encounter, or "next" when cast out of combat; a flag from before 0.10.68's fix is a bare number.)
+    const w = actor.flags?.[SYS]?.wardTemp;
+    const ward = inIt && w && (typeof w !== "object" || w.combat === combat.id || w.combat === "next") ? Number(typeof w === "object" ? w.amount : w) || 0 : 0;
     if (ward && actor.update) {
       const temp = Number(actor.system?.attributes?.hp?.temp) || 0;
       await actor.update({ ...(temp <= ward ? { "system.attributes.hp.temp": 0 } : {}), [`flags.${SYS}.-=wardTemp`]: null }).catch(() => null);
@@ -767,7 +769,7 @@ export async function endEncounterEffects(combat) {
     } catch (err) { console.warn(`Arneyan | encounter effects: ${actor.name}`, err); }
   };
   for (const c of combat?.combatants ?? []) await sweep(c.actor, true);
-  const others = [...(game.actors?.contents ?? []), ...((globalThis.canvas?.tokens?.placeables ?? []).map(t => t.actor))];
+  const others = [...(game.actors?.contents ?? []), ...((combat?.scene?.tokens?.contents ?? combat?.scene?.tokens ?? []).map?.(t => t.actor) ?? [])];
   for (const a of others) await sweep(a, false);
   return n;
 }
