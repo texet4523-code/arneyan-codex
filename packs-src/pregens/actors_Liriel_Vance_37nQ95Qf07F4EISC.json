@@ -1644,11 +1644,11 @@
   {
    "_id": "Q3Yz7Rtqyr1V78ml",
    "_key": "!actors.items!37nQ95Qf07F4EISC.Q3Yz7Rtqyr1V78ml",
-   "name": "Sword, Rapier",
+   "name": "Opal Hush",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/weapon-sparkling-sabre.svg",
    "system": {
-    "description": "<p>Finesse, Light</p>",
+    "description": "<p><em>A duellist&#x27;s blade of the Opal Way, its guard set with a milky opal that drinks sound.</em></p><p><strong>Opal Hush.</strong> It makes no noise, drawn or striking: <strong>Advantage</strong> on Stealth checks while it&#x27;s your only drawn weapon.</p><p>Finesse, Light</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1667,7 +1667,15 @@
     "traits": "Finesse, Light",
     "bundle": 0,
     "ammoType": "",
-    "ammoId": ""
+    "ammoId": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Stealth, while Opal Hush is your only drawn weapon",
+      "label": "Opal Hush"
+     }
+    ]
    },
    "effects": [],
    "ownership": {

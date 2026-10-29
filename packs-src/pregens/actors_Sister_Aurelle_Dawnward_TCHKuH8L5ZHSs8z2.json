@@ -1546,11 +1546,11 @@
   {
    "_id": "UE2hFx1Q5R22DnQm",
    "_key": "!actors.items!TCHKuH8L5ZHSs8z2.UE2hFx1Q5R22DnQm",
-   "name": "Hammer, War",
+   "name": "Dawnmercy",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/weapon-warhammer.svg",
    "system": {
-    "description": "<p>Sunder</p>",
+    "description": "<p><em>A temple hammer of Lathander, a rising sun etched into its face. The dead do not like the look of it.</em></p><p><strong>Dawnmercy.</strong> Against undead it deals an extra <strong>1d6</strong> radiant damage.</p><p>Sunder</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1569,7 +1569,15 @@
     "traits": "Sunder",
     "bundle": 0,
     "ammoType": "",
-    "ammoId": ""
+    "ammoId": "",
+    "bonusDamage": [
+     {
+      "formula": "1d6",
+      "type": "radiant",
+      "when": "against undead",
+      "mode": false
+     }
+    ]
    },
    "effects": [],
    "ownership": {

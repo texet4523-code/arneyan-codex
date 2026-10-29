@@ -1594,11 +1594,11 @@
   {
    "_id": "oMkl4dHp1W6GVdXf",
    "_key": "!actors.items!E4aqeRHNTIhbSQ3x.oMkl4dHp1W6GVdXf",
-   "name": "Pistol",
+   "name": "Halloway's Oath",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/weapon-pistol-gun.svg",
    "system": {
-    "description": "<p>Light</p><p>Reload 1 rd, misfire on 1-2.</p><p>Rarity: Uncommon</p>",
+    "description": "<p><em>A Fort Dunwell sidearm, handed down through three Halloways on the Wall. It has never let one of them down.</em></p><p><strong>Halloway&#x27;s Oath.</strong> It misfires only on a natural 1.</p><p>Light</p><p>Reload 1 rd, misfire on 1-2.</p><p>Rarity: Uncommon</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1623,7 +1623,11 @@
    "ownership": {
     "default": 0
    },
-   "flags": {},
+   "flags": {
+    "arneyan": {
+     "misfire": 1
+    }
+   },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.equipment.Item.788Dzqzy3zm3PGHT"
    }

@@ -166,6 +166,25 @@ def copy(pack, d, actor_id, salt, **system):
     return item
 
 
+def named_weapon(item, named):
+    """A magic weapon with its own name, a line of who it belongs to and one thing of its own beyond its bonus
+    (Kieran 29 Oct, K31: no generic +1 weapons). It keeps its link to the Catalogue entry it's made from, so weapon
+    picks and traits still know it ("Thunderbite" is still a two-handed axe)."""
+    if not named:
+        return item
+    item["name"] = named["name"]
+    sys_ = item["system"]
+    lead = f"<p><em>{html.escape(named['text'])}</em></p><p><strong>{html.escape(named['name'])}.</strong> {html.escape(named['property'])}</p>"
+    sys_["description"] = lead + (sys_.get("description") or "")
+    if named.get("bonusDamage"):
+        sys_["bonusDamage"] = list(sys_.get("bonusDamage") or []) + named["bonusDamage"]
+    if named.get("rules"):
+        sys_["rules"] = list(sys_.get("rules") or []) + named["rules"]
+    if "misfire" in named:
+        item.setdefault("flags", {}).setdefault(SYS, {})["misfire"] = int(named["misfire"])
+    return item
+
+
 def picked_weapons(feature, c, gear):
     """A weapon pick from the printed sheet: "Weapon Specialisation (Greatsword)" in its class features or its
     abilities text names it.
@@ -432,7 +451,7 @@ def build():
                 if w.get("magic"):
                     extra["magic"] = int(w["magic"])
                 if d and d["type"] == "weapon":
-                    items.append(fit_slots(copy("equipment", d, actor_id, f"w-{i}", **extra), w))
+                    items.append(fit_slots(named_weapon(copy("equipment", d, actor_id, f"w-{i}", **extra), w.get("named")), w))
                 elif d:  # Alchemist's Fire and the like: thrown gear, not a weapon
                     items.append(fit_slots(copy("equipment", d, actor_id, f"w-{i}", quantity=extra["quantity"]), w))
                 else:

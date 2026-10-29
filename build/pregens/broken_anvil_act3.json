@@ -97,7 +97,20 @@
     "attack": "+10",
     "damage": "1d12+4 slashing (1d12+6 raging)",
     "range": "Melee, 10ft reach (Large); thrown 20ft",
-    "notes": "Two-handed, Heavy, Cleaving: Cleave up to twice a turn. Crits on a natural 19 that hits, or a 20. Extra Attack: one more swing with Disadvantage when you attack. Flowing Strikes: once a round after a hit, one more swing (Disadvantage against the same foe, a normal roll against another in reach)."
+    "notes": "Two-handed, Heavy, Cleaving: Cleave up to twice a turn. Crits on a natural 19 that hits, or a 20. Extra Attack: one more swing with Disadvantage when you attack. Flowing Strikes: once a round after a hit, one more swing (Disadvantage against the same foe, a normal roll against another in reach).",
+    "named": {
+     "name": "Thunderbite",
+     "text": "A goliath war-axe, its head beaten out on a storm-struck anvil. Thunder follows its swing.",
+     "property": "On a critical hit it deals an extra 1d6 thunder damage.",
+     "bonusDamage": [
+      {
+       "formula": "1d6",
+       "type": "thunder",
+       "when": "on a critical hit",
+       "mode": false
+      }
+     ]
+    }
    },
    {
     "name": "Alchemist's Fire (flask)",
@@ -296,7 +309,20 @@
     "attack": "+11",
     "damage": "1d6+5 piercing",
     "range": "Melee",
-    "notes": "Finesse, Light. Opening Flourish: +2 on your first hit each encounter. Extra Attack and Flèche: one more thrust each, with Disadvantage. Relentless Assault: +1d4 on each hit after the first on the same foe in a round."
+    "notes": "Finesse, Light. Opening Flourish: +2 on your first hit each encounter. Extra Attack and Flèche: one more thrust each, with Disadvantage. Relentless Assault: +1d4 on each hit after the first on the same foe in a round.",
+    "named": {
+     "name": "Opal Hush",
+     "text": "A duellist's blade of the Opal Way, its guard set with a milky opal that drinks sound.",
+     "property": "It makes no noise, drawn or striking: Advantage on Stealth checks while it's your only drawn weapon.",
+     "rules": [
+      {
+       "key": "adv.skill",
+       "value": "1",
+       "when": "Stealth, while Opal Hush is your only drawn weapon",
+       "label": "Opal Hush"
+      }
+     ]
+    }
    },
    {
     "name": "Main Gauche",
@@ -490,7 +516,20 @@
     "attack": "+5",
     "damage": "1d8+2 bludgeoning",
     "range": "Melee",
-    "notes": "Sunder: Advantage on Disarm attempts and on checks to break objects. Lathander: Advantage on your first attack roll each round against undead."
+    "notes": "Sunder: Advantage on Disarm attempts and on checks to break objects. Lathander: Advantage on your first attack roll each round against undead.",
+    "named": {
+     "name": "Dawnmercy",
+     "text": "A temple hammer of Lathander, a rising sun etched into its face. The dead do not like the look of it.",
+     "property": "Against undead it deals an extra 1d6 radiant damage.",
+     "bonusDamage": [
+      {
+       "formula": "1d6",
+       "type": "radiant",
+       "when": "against undead",
+       "mode": false
+      }
+     ]
+    }
    },
    {
     "name": "Alchemist's Fire (flask)",
@@ -730,7 +769,13 @@
     "attack": "+11",
     "damage": "2d6+5 piercing, exploding",
     "range": "20ft (40ft with Disadvantage)",
-    "notes": "Light. Misfires on a natural 1 or 2. Lightning Reload: reloads as part of the attack that fired it, once a round. Quick Draw: drawing it loaded costs nothing. Steady Shot: +1d6 on your first hit each round while Dead Eye applies."
+    "notes": "Light. Misfires on a natural 1 or 2. Lightning Reload: reloads as part of the attack that fired it, once a round. Quick Draw: drawing it loaded costs nothing. Steady Shot: +1d6 on your first hit each round while Dead Eye applies.",
+    "named": {
+     "name": "Halloway's Oath",
+     "text": "A Fort Dunwell sidearm, handed down through three Halloways on the Wall. It has never let one of them down.",
+     "property": "It misfires only on a natural 1.",
+     "misfire": 1
+    }
    },
    {
     "name": "Long Rifle",
@@ -924,7 +969,20 @@
     "attack": "+11",
     "damage": "1d8+5 bludgeoning (two hands)",
     "range": "Melee, 10ft reach",
-    "notes": "Versatile, Reach. Weapon Mastery: +1 attack and damage (included), and once a round reroll one missed attack with it; Stun Attack and Deflect Missiles work through it. When you attack, add your second unarmed strike (+9, 1d6+3). Flowing Strikes: once a round after a hit, one more melee attack."
+    "notes": "Versatile, Reach. Weapon Mastery: +1 attack and damage (included), and once a round reroll one missed attack with it; Stun Attack and Deflect Missiles work through it. When you attack, add your second unarmed strike (+9, 1d6+3). Flowing Strikes: once a round after a hit, one more melee attack.",
+    "named": {
+     "name": "Ascendant's Spine",
+     "text": "Black ironwood bound in rings of shed dragon scale. Static crawls along it when Sarrix breathes deep.",
+     "property": "Your first hit with it each encounter deals an extra 1d6 lightning damage.",
+     "bonusDamage": [
+      {
+       "formula": "1d6",
+       "type": "lightning",
+       "when": "your first hit with it each encounter",
+       "mode": false
+      }
+     ]
+    }
    },
    {
     "name": "Fist",

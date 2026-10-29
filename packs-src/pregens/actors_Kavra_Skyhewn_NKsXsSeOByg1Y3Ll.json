@@ -1524,11 +1524,11 @@
   {
    "_id": "cXjcZaMCUDKApt9L",
    "_key": "!actors.items!NKsXsSeOByg1Y3Ll.cXjcZaMCUDKApt9L",
-   "name": "Axe, Two-Handed",
+   "name": "Thunderbite",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/weapon-battle-axe.svg",
    "system": {
-    "description": "<p>Two-handed, Heavy, Thrown, Cleaving</p>",
+    "description": "<p><em>A goliath war-axe, its head beaten out on a storm-struck anvil. Thunder follows its swing.</em></p><p><strong>Thunderbite.</strong> On a critical hit it deals an extra <strong>1d6</strong> thunder damage.</p><p>Two-handed, Heavy, Thrown, Cleaving</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1547,7 +1547,15 @@
     "traits": "Two-handed, Heavy, Thrown, Cleaving",
     "bundle": 0,
     "ammoType": "",
-    "ammoId": ""
+    "ammoId": "",
+    "bonusDamage": [
+     {
+      "formula": "1d6",
+      "type": "thunder",
+      "when": "on a critical hit",
+      "mode": false
+     }
+    ]
    },
    "effects": [],
    "ownership": {

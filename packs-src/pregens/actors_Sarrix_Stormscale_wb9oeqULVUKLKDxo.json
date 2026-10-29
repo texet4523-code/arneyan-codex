@@ -1768,11 +1768,11 @@
   {
    "_id": "k4ekrVkZvErxvCh4",
    "_key": "!actors.items!wb9oeqULVUKLKDxo.k4ekrVkZvErxvCh4",
-   "name": "Staff",
+   "name": "Ascendant's Spine",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/weapon-wizard-staff.svg",
    "system": {
-    "description": "<p>Versatile, Reach</p>",
+    "description": "<p><em>Black ironwood bound in rings of shed dragon scale. Static crawls along it when Sarrix breathes deep.</em></p><p><strong>Ascendant&#x27;s Spine.</strong> Your first hit with it each encounter deals an extra <strong>1d6</strong> lightning damage.</p><p>Versatile, Reach</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1791,7 +1791,15 @@
     "traits": "Versatile, Reach",
     "bundle": 0,
     "ammoType": "",
-    "ammoId": ""
+    "ammoId": "",
+    "bonusDamage": [
+     {
+      "formula": "1d6",
+      "type": "lightning",
+      "when": "your first hit with it each encounter",
+      "mode": false
+     }
+    ]
    },
    "effects": [],
    "ownership": {

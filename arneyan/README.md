@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.76 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.77 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.77
+
+- **The Veterans' magic weapons have names** (Kieran, 29 Oct, K31: no generic +1 weapons; every magic weapon belongs to someone and has something of its own). Kavra's axe is **Thunderbite** (an extra 1d6 thunder on a critical hit), Liriel's rapier **Opal Hush** (silent: Advantage on Stealth while it's her only drawn weapon), Sister Aurelle's warhammer **Dawnmercy** (an extra 1d6 radiant against undead), Marten's pistol **Halloway's Oath** (misfires only on a natural 1) and Sarrix's staff **Ascendant's Spine** (an extra 1d6 lightning on his first hit with it each encounter). Each keeps its +1. The extra damage is a button on the damage card, as other "against undead" damage is. Veterans already in a world keep their old weapons: drag fresh copies from the Pregens compendium.
 
 ## What's new in 0.10.76
 
