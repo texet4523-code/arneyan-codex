@@ -3501,15 +3501,15 @@
  },
  "Hand-to-Hand Combat|Monk": {
   "confidence": "high",
-  "why": "0.10.48: steps up with level (Progression Table)",
+  "why": "0.10.48: steps up with level (Progression Table) Books v0.10.34 (K31): the second attack from 5th.",
   "activities": [
    {
     "name": "Unarmed attacks",
     "kind": "attacks",
     "weapons": "unarmed",
-    "count": "1:1, 6:2, 16:3",
-    "formula": "; {6:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
-    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 6th) and third (from 16th) with the Secondary and Tertiary dice.",
+    "count": "1:1, 5:2, 16:3",
+    "formula": "; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
+    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 5th) and third (from 16th) with the Secondary and Tertiary dice.",
     "minLevel": 0,
     "cost": 0,
     "per": "",

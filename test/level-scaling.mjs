@@ -91,12 +91,14 @@ for (const f of fs.readdirSync(new URL("../packs-src/class-features/", import.me
   const texts = [...(d.system.activities ?? []).flatMap(a => [a.text, a.formula]), ...(d.system.rules ?? []).map(r => String(r.value))];
   for (const t of texts.filter(Boolean)) assert.ok(!/\{|\}/.test(levelText(t, 24)), `${d.name}: ${t}`);
 }
-// The Monk's unarmed attacks: one button, 1 attack (2 from 6th, 3 from 16th) through the weapon pipeline; the second
+// The Monk's unarmed attacks: one button, 1 attack (2 from 5th since books v0.10.34, K31; 3 from 16th) through the weapon pipeline; the second
 // and third with the Secondary and Tertiary dice.
 const ua = h2h.system.activities.find(a => a.name === "Unarmed attacks");
 assert.equal(ua.kind, "attacks");
 assert.equal(ua.weapons, "unarmed");
-assert.deepEqual([1, 6, 16].map(l => levelText(ua.count, l)), ["1", "2", "3"]);
+assert.deepEqual([1, 4, 5, 16].map(l => levelText(ua.count, l)), ["1", "1", "2", "3"]);
+assert.deepEqual(diceAtFirst(ua, 5), "1d4", "the second at 5th has the Secondary 1d4");
+function diceAtFirst(a, l) { return levelText(a.formula, l).split(";").map(d => d.trim())[1]; }
 const diceAt = l => levelText(ua.formula, l).split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
 assert.deepEqual(diceAt(1), ["", "", ""]);
 assert.deepEqual(diceAt(9), ["", "1d6", ""]);

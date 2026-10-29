@@ -168,7 +168,7 @@ def copy(pack, d, actor_id, salt, **system):
 
 def named_weapon(item, named):
     """A magic weapon with its own name, a line of who it belongs to and one thing of its own beyond its bonus
-    (Kieran 29 Oct, K31: no generic +1 weapons). It keeps its link to the Catalogue entry it's made from, so weapon
+    (Kieran 29 Oct, K32: no generic +1 weapons). It keeps its link to the Catalogue entry it's made from, so weapon
     picks and traits still know it ("Thunderbite" is still a two-handed axe)."""
     if not named:
         return item

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> See the table above for unarmed damage by level.</li><li>Your unarmed attacks use Strength or Dexterity (your choice).</li><li>At 6th level you gain a second unarmed attack, and at 16th a third, whenever you use your action to attack (the Secondary and Tertiary columns).</li><li>They are rolled normally, are not off-hand attacks, and stack with Flowing Strikes and Haste.</li><li>A Monk never gains Extra Attack.</li><li>The monk has <strong>Advantage</strong> on all overbearing and grappling attacks</li><li>The monk may choose whether a successful strike deals normal damage or subdual damage</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> See the table above for unarmed damage by level.</li><li>Your unarmed attacks use Strength or Dexterity (your choice).</li><li>At 5th level you gain a second unarmed attack, and at 16th a third, whenever you use your action to attack (the Secondary and Tertiary columns).</li><li>They are rolled normally, are not off-hand attacks, and stack with Flowing Strikes and Haste.</li><li>A Monk never gains Extra Attack.</li><li>The monk has <strong>Advantage</strong> on all overbearing and grappling attacks</li><li>The monk may choose whether a successful strike deals normal damage or subdual damage</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,11 +25,11 @@
    {
     "name": "Unarmed attacks",
     "kind": "attacks",
-    "formula": "; {6:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
+    "formula": "; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 6th) and third (from 16th) with the Secondary and Tertiary dice.",
+    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 5th) and third (from 16th) with the Secondary and Tertiary dice.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -37,7 +37,7 @@
     "target": "one",
     "removeConditions": false,
     "bonus": "",
-    "count": "1:1, 6:2, 16:3",
+    "count": "1:1, 5:2, 16:3",
     "weapons": "unarmed",
     "disadvantage": "",
     "disUntil": 0,

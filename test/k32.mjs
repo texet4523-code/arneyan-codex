@@ -1,4 +1,4 @@
-// K31 (Kieran, 29 Oct 2026): no generic +1 weapons. The Broken Anvil Veterans' magic weapons each have a name, a line
+// K32 (Kieran, 29 Oct 2026): no generic +1 weapons. The Broken Anvil Veterans' magic weapons each have a name, a line
 // of who they belong to and one thing of their own, and still answer to the Catalogue weapon they're made from.
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -17,4 +17,4 @@ for (const a of actors) {
 }
 const oath = actors.find(a => a.name === "Marten Halloway").items.find(i => i.name === "Halloway's Oath");
 assert.equal(oath.flags.arneyan.misfire, 1);
-console.log("OK K31 named weapons");
+console.log("OK K32 named weapons");
