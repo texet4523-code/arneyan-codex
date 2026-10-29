@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-imp.svg",
    "system": {
-    "description": "<p>A creature stung makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[poisoned]{Poisoned} (@Damage[1d6 poison]{1d6 poison damage} a turn until the save).</p>",
+    "description": "<p>A creature stung makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[poisoned|1]{Poisoned} (@Damage[1d6 poison]{1d6 poison damage} a turn until the save).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -162,8 +162,8 @@
     },
     "save": "fort",
     "dc": 12,
-    "damage": "1d6",
-    "damageType": "poison",
+    "damage": "",
+    "damageType": "",
     "level": 0,
     "className": "",
     "rules": [],

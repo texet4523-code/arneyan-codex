@@ -255,6 +255,9 @@ def enrich(text):
     t = re.sub(r"\b(\d+d\d+(?:\s*[+-]\s*\d+)?) (" + "|".join(DAMAGE) + r")( damage)?",
                lambda m: f"@Damage[{m.group(1).replace(' ', '')} {m.group(2)}]{{{m.group(1)} {m.group(2)}{m.group(3) or ''}}}", t)
     t = re.sub(r"\b(" + "|".join(CONDITIONS) + r")\b", lambda m: f"@Condition[{CONDITIONS[m.group(1)]}]{{{m.group(1)}}}", t)
+    # A venom whose damage is Poisoned's own each turn (the Imp's sting, books v0.10.33): the link puts Poisoned on with
+    # its venom number, so the 1d6 comes at the start of each turn (counters.mjs turnDamageFor).
+    t = re.sub(r"@Condition\[poisoned\](\{[^}]*\} \(@Damage\[1d6 poison\]\{[^}]*\} a turn)", r"@Condition[poisoned|1]\1", t)
     return t
 
 
@@ -293,6 +296,9 @@ def ability_item(name, text, img):
     # Damage only where the text says so: "2d6 fire", "2d6 fire damage" or "2d6 damage" (not "1d4 rounds" or "1d4 Strength").
     dmg = re.search(r"\b(\d+d\d+(?:\s*[+-]\s*\d+)?)\s+(?:(" + "|".join(DAMAGE) + r")\b|(?=damage\b))", text)
     dtype = dmg.group(2) if dmg and dmg.group(2) else ""
+    # Poisoned's own 1d6 a turn (the Imp's sting) isn't damage the card should roll: the condition deals it each turn.
+    if dmg and re.search(r"\bis Poisoned \(\d*d\d+ poison damage a turn", text):
+        dmg, dtype = None, ""
     if not dmg:
         half = re.search(r"half of (\d+d\d+(?:\s*[+-]\s*\d+)?)", text)
         if half:

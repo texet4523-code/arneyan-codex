@@ -6,7 +6,7 @@ import { ARNEYAN } from "./config.mjs";
 import { spellTargets } from "./targeting.mjs";
 import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
 import { turnReminder } from "./qol.mjs";
-import { tickCounters, turnDamageFor } from "./counters.mjs";
+import { tickCounters, turnDamageFor, reapply } from "./counters.mjs";
 import { effectDataFor, applyEffectTo, endConcentration, onConcentrationDeleted, expireEffects, toggleCondition, statusesOf } from "./effects.mjs";
 
 const SYS = "arneyan";
@@ -557,12 +557,13 @@ function registerEnrichers() {
   });
   // @Condition[prone]{label}: click to put it on targeted or selected tokens.
   CONFIG.TextEditor.enrichers.push({
-    pattern: /@Condition\[(\w+)\](?:\{([^}]+)\})?/g,
+    // @Condition[poisoned|1]: with its number (a venom's Poisoned deals 1d6 at the start of each turn).
+    pattern: /@Condition\[(\w+)(?:\|(\d+))?\](?:\{([^}]+)\})?/g,
     enricher: async match => {
-      const [, id, label] = match;
+      const [, id, value, label] = match;
       const c = ARNEYAN.conditions[id.toLowerCase()];
       if (!c) return null;
-      const a = link("arn-inline-condition", { condition: id.toLowerCase() }, "fa-circle-exclamation", label ?? c.name);
+      const a = link("arn-inline-condition", { condition: id.toLowerCase(), ...(value ? { value } : {}) }, "fa-circle-exclamation", label ?? c.name);
       a.dataset.tooltip = c.text;
       return a;
     }
@@ -586,7 +587,8 @@ function onBodyClick(event) {
     if (!actors.length) return ui.notifications.warn("Target or select the tokens first.");
     for (const a of actors) {
       if (!a.isOwner) { ui.notifications.warn(`You don't control ${a.name}.`); continue; }
-      toggleCondition(a, el.dataset.condition, true);
+      const value = Number(el.dataset.value) || 0;
+      Promise.resolve(toggleCondition(a, el.dataset.condition, true, { value: value || 1 })).then(() => (value ? reapply(a, el.dataset.condition, value) : null));
     }
   }
 }
