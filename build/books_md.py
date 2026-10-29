@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance); v0.10.32, board B-F19 (K28, K29), 28 Oct 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance); v0.10.32, board B-F19 (K28, K29), 28 Oct 2026; v0.10.33, board B-F20 (R-B14, K30), 29 Oct 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,15 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01032/HB_v0.10.32_*.md and MT_v0.10.32_sources.txt (md5s on the board, B-F12 to B-F19). Book I, Book III
-and the M&T sources are the Builder's v0.10.32, Book II its v0.10.31; Books IV and V
+Sources: /tmp/hb/src_v01033/HB_v0.10.33_*.md and MT_v0.10.33_sources.txt (md5s on the board, B-F12 to B-F20). Book III and
+the M&T sources are the Builder's v0.10.33, Book I its v0.10.32 (unchanged), Book II its v0.10.31; Books IV and V
 are the v0.10.20 copies under the new name (Atonement patched below). Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01032"
+SRC = "/tmp/hb/src_v01033"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.32"
+VERSION = "0.10.33"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")

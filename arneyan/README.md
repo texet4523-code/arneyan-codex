@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.75 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.76 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.76
+
+- **Books v0.10.33** (board B-F20). Guardian's Reach (Mournas Liberator) works once per round. Sorcerer's Spark is twice a day from 20th level (Sorcerer's Spark (Improved)), with no 10-minute limit. The Bestiary Imp's Poison Sting makes its target Poisoned (1d6 poison a turn until the save), as the Warlock's Imp already did. The rules journals follow the books, and Monsters & Treasure's new guide to magic items by level is in the books themselves.
 
 ## What's new in 0.10.75
 
