@@ -182,6 +182,9 @@ def named_weapon(item, named):
         sys_["rules"] = list(sys_.get("rules") or []) + named["rules"]
     if "misfire" in named:
         item.setdefault("flags", {}).setdefault(SYS, {})["misfire"] = int(named["misfire"])
+        # The Catalogue's line under it says the same, so the sheet doesn't contradict itself.
+        n = int(named["misfire"])
+        sys_["description"] = re.sub(r"misfire on \d+(?:\s*[-–]\s*\d+)?", f"misfire on {n}" if n else "misfire on never", sys_["description"], flags=re.I)
     return item
 
 

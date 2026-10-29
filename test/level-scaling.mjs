@@ -97,8 +97,8 @@ const ua = h2h.system.activities.find(a => a.name === "Unarmed attacks");
 assert.equal(ua.kind, "attacks");
 assert.equal(ua.weapons, "unarmed");
 assert.deepEqual([1, 4, 5, 16].map(l => levelText(ua.count, l)), ["1", "1", "2", "3"]);
-assert.deepEqual(diceAtFirst(ua, 5), "1d4", "the second at 5th has the Secondary 1d4");
-function diceAtFirst(a, l) { return levelText(a.formula, l).split(";").map(d => d.trim())[1]; }
+assert.deepEqual(secondDiceAt(ua, 5), "1d4", "the second at 5th has the Secondary 1d4");
+function secondDiceAt(a, l) { return levelText(a.formula, l).split(";").map(d => d.trim())[1]; }
 const diceAt = l => levelText(ua.formula, l).split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
 assert.deepEqual(diceAt(1), ["", "", ""]);
 assert.deepEqual(diceAt(9), ["", "1d6", ""]);
