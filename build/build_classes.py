@@ -46,10 +46,12 @@ def uses_of(text):
 def save_of(text):
     """The save a feature calls for. Not a bonus to the owner's own saves ("+1 to Fortitude and Reflex saves",
     "Advantage on Reflex saves"), the owner's own save ("When you succeed on a Reflex save"), or a change to another
-    feature's save ("the first Will save against it", "Fortitude save DC is 2 higher")."""
+    feature's save ("the first Will save against it", "Fortitude save DC is 2 higher", "makes its Fortitude save with
+    Disadvantage")."""
     for m in re.finditer(r"\b(Fortitude|Reflex|Will) save(?!s)", text):
         before = text[max(0, m.start() - 24):m.start()]
-        if re.search(r"(succeed on|advantage on|first) (an? |the )?$", before, re.I) or text[m.end():m.end() + 7] == " DC is ":
+        if (re.search(r"(succeed on|advantage on|first) (an? |the )?$", before, re.I) or text[m.end():m.end() + 7] == " DC is "
+                or re.match(r"\s+with Disadvantage", text[m.end():], re.I)):
             continue
         return {"Fortitude": "fort", "Reflex": "ref", "Will": "will"}[m.group(1)]
     return ""
