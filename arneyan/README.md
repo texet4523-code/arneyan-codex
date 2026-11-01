@@ -5,9 +5,9 @@ Version 0.10.78 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.78
 
 - **Books v0.10.35** (Kieran's K33 and K34; board B-F22).
-  - **Saving again:** the Codex journal replaces "One try per encounter": a spell gets a fresh save every time it is cast, and so does any ability someone chooses to use; a save makes a creature immune only where the entry (or, for monsters, its shared trait in Monsters & Treasure) says so. The system never tracked immunity, so play is unchanged.
-  - **Knight: Undying Reputation** works the first time each encounter you drop below half HP in view of an ally or enemy (no daily use): Use it then for the temporary HP; it comes back with the next encounter.
-  - **Monk: Untouchable** turns the first hit each encounter into a miss (no daily use). Use it to mark it spent; from 24th it covers up to your Wisdom modifier hits each encounter, one a round.
+  - **Saving again:** the Codex journal replaces "One try per encounter": a spell gets a fresh save every time it is cast, and so does any ability someone chooses to use; a save makes a creature immune only where the entry says so (for monsters, Monsters & Treasure now lists shared traits that say it). The system never tracked immunity, so play is unchanged.
+  - **Knight: Undying Reputation** works the first time each encounter you drop below half HP in view of an ally or enemy (no daily use). Use it then for the temporary HP; it comes back with the next encounter.
+  - **Monk: Untouchable** turns the first hit each encounter into a miss (no daily use). Use it to mark it spent. From 24th, it covers a number of hits each encounter equal to your Wisdom modifier (minimum 1), one a round. A character who spent the old daily use before updating gets it back after the next encounter ends or a long rest.
   - **Assassin: Surprise** counts your Hide one tier higher against creatures you ambush: the Surprise check uses that tier's Search DC (Partially Hidden as Hidden, Hidden as Completely Hidden). Signature Style gives Disadvantage on the Death Attack save, and the Witch's improved Curse Disadvantage on its save, in their text.
 
 ## What's new in 0.10.77

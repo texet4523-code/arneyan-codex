@@ -10,8 +10,7 @@
  * - A hidden creature stops being hidden when it attacks or casts a spell (documents.mjs calls endHiding).
  * - Surprise (GM, token tools): before initiative, each creature on the unaware side compares its passive awareness
  *   (with surprise bonuses) with the lowest Search DC among the hiding ambushers (an Assassin's Surprise counts its
- *   Hide one tier higher, books v0.10.35), or a
- *   Difficulty Tiers DC (Moderate 12 for a quiet approach, Hard 15 for a prepared ambush). The GM can mark the
+ *   Hide one tier higher, books v0.10.35), or, when nobody hid, a Difficulty Tiers DC (Moderate 12 for a quiet approach, Hard 15 for a prepared ambush). The GM can mark the
  *   surprised, who lose the surprise round (round 1; the condition comes off when round 2 begins).
  */
 import { ARNEYAN } from "./config.mjs";
@@ -172,7 +171,7 @@ export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulti
   const givenAway = hiding.length && hiding.length < states.length ? ambushers.filter((a, i) => !states[i]).map(a => a.name) : [];
   // An ambusher whose Hide counts tiers higher against those it ambushes (books v0.10.35: the Assassin's Surprise):
   // its Search DC is the higher tier's (Partially Hidden counts as Hidden, Hidden as Completely Hidden).
-  const tierUp = a => Math.max(0, Number(a.system?.mods?.sum?.("surprise.tier") ?? a.mods?.sum?.("surprise.tier")) || 0);
+  const tierUp = a => Math.max(0, Math.floor(Number(a.system?.mods?.sum?.("surprise.tier") ?? a.mods?.sum?.("surprise.tier")) || 0));
   const dcOf = (a, s) => {
     const up = tierUp(a);
     if (!up) return s.dc;

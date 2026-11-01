@@ -6,7 +6,7 @@
  *   Perception, or a feature: `adv.awareness`), -5 with Disadvantage (a condition such as Poisoned). Advantage and
  *   Disadvantage cancel, as for any roll. `awareness` rules add a flat bonus.
  * - For surprise only: `surprise` rules add (Combat Sense, Survival Instincts, Sixth Sense) and `adv.surprise` counts as
- *   Advantage; an ambusher's `surprise.against` (the Assassin's Surprise) lowers the targets' awareness.
+ *   Advantage; an ambusher's `surprise.against` lowers the targets' awareness (the Assassin's Surprise now raises its Hide tier instead: stealth.mjs `surprise.tier`).
  * - Hide: a Dexterity (Stealth) check. 12-14 Partially Hidden (Search DC 12), 15-19 Hidden (DC 15), 20+ Completely
  *   Hidden (DC 20); under 12 not hidden.
  */
