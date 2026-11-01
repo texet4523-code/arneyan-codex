@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> +2 to initiative. Once per encounter, take one extra action in the first round — one additional attack or half movement.</li><li><strong>Untouchable improves:</strong> usable a number of times per day equal to your Wisdom modifier (minimum 1), <strong>once per round</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> +2 to initiative. Once per encounter, take one extra action in the first round — one additional attack or half movement.</li><li><strong>Untouchable improves:</strong> up to a number of hits each encounter equal to your Wisdom modifier (minimum 1) miss instead, no more than one each round.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -45,33 +45,6 @@
     "noStack": "",
     "targetLevel": "",
     "reaction": false,
-    "noDamage": false,
-    "effect": "",
-    "spendAny": false
-   },
-   {
-    "name": "Untouchable",
-    "kind": "note",
-    "formula": "",
-    "damageType": "",
-    "ability": "",
-    "save": "",
-    "text": "Out of turn, when an attack you can perceive would hit you, negate it as a miss. Usable Wisdom modifier times a day (minimum 1), once per round.",
-    "minLevel": 0,
-    "maxLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "self",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": true,
     "noDamage": false,
     "effect": "",
     "spendAny": false

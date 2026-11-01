@@ -1139,7 +1139,7 @@
    {
     "name": "Undying Reputation",
     "kind": "temp",
-    "text": "Once per day, when reduced below half HP in combat witnessed by at least one ally or enemy, gain temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
+    "text": "The first time each encounter you drop below half HP in view of at least one ally or enemy: temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1149,7 +1149,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Books v0.10.25: once per day (was weekly); Knight level + Charisma modifier, twice the level from 24th."
+  "why": "Books v0.10.35 (K34): automatic, the first time each encounter (was once a day); Knight level + Charisma modifier, twice the level from 24th. The encounter use tracks that it happened.",
+  "uses": {
+   "max": 1,
+   "per": "encounter",
+   "formula": ""
+  }
  },
  "Spellstrike|Magus": {
   "activities": [
@@ -3469,12 +3474,12 @@
  },
  "Surprise|Assassin": {
   "confidence": "high",
-  "why": "0.10.48: steps up with level (Progression Table)",
+  "why": "0.10.48: steps up with level (Progression Table) Books v0.10.35 (m58): one tier higher, no 18th or 23rd steps.",
   "activities": [
    {
     "name": "Surprise",
     "kind": "note",
-    "text": "Targets take {1:-1, 18:-2, 23:-3} on their Wisdom check to spot your ambush.",
+    "text": "Your Hide result counts one tier higher against creatures you ambush: the Surprise check (token tools) uses that tier's Search DC.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -3838,21 +3843,10 @@
     "per": "",
     "target": "self",
     "removeConditions": false
-   },
-   {
-    "name": "Untouchable",
-    "kind": "note",
-    "text": "Out of turn, when an attack you can perceive would hit you, negate it as a miss. Usable Wisdom modifier times a day (minimum 1), once per round.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "self",
-    "removeConditions": false,
-    "reaction": true
    }
   ],
   "confidence": "high",
-  "why": "Extra action once per encounter (the feature's use); Untouchable's improved count is untracked here."
+  "why": "Extra action once per encounter (the feature's use). Untouchable's improvement (Wisdom modifier hits each encounter) is on Untouchable's own uses from 24th (books v0.10.35)."
  },
  "Quick Reflexes (Improved)|Rogue": {
   "activities": [
@@ -4060,6 +4054,27 @@
    "max": 1,
    "per": "day",
    "formula": "1:1, 4:2, 8:3"
+  }
+ },
+ "Untouchable|Monk": {
+  "activities": [
+   {
+    "name": "Untouchable",
+    "kind": "note",
+    "text": "The first attack you can perceive that would hit you each encounter misses instead, no roll needed. {13:, 24:From 24th, up to your Wisdom modifier (minimum 1) hits each encounter, no more than one a round.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.35 (K34): automatic, the first hit each encounter (was once a day); from 24th (Quick Reflexes (Improved)) Wisdom modifier hits each encounter, one a round. Use marks it spent.",
+  "uses": {
+   "max": 1,
+   "per": "encounter",
+   "formula": "max(1, @wis.mod * min(1, floor(@cl / 24)))"
   }
  }
 }

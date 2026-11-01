@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<p>Once per day, when an attack would hit the Monk, negate it entirely as if the attack had missed, with no roll required. Does not work against attacks the Monk cannot perceive (invisible, surprise, etc.).</p>",
+  "description": "<p>The first attack that would hit the Monk each encounter misses instead, with no roll required. Does not work against attacks the Monk cannot perceive (invisible, surprise, etc.).</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,13 +14,43 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "encounter",
+   "formula": "max(1, @wis.mod * min(1, floor(@cl / 24)))"
   },
   "save": "",
   "dc": null,
   "damage": "",
   "level": 13,
-  "className": "Monk"
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Untouchable",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "The first attack you can perceive that would hit you each encounter misses instead, no roll needed. {13:, 24:From 24th, up to your Wisdom modifier (minimum 1) hits each encounter, no more than one a round.}",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
  },
  "effects": [],
  "folder": "F4ugkKNsZhwE5mHp",

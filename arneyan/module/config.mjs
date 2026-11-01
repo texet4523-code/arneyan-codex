@@ -318,8 +318,9 @@ ARNEYAN.ruleKeys = {
     // One more use a day of the named feature (Voice of the Grove: uses.extra.wild-shape).
     "uses.extra.wild-shape",
     // Passive awareness (books v0.10.10, K2): a flat bonus; surprise: added to it only to notice an ambush;
-    // surprise.against: taken off the targets' passive awareness when this creature is among the ambushers (Assassin).
-    "awareness", "surprise", "surprise.against"],
+    // surprise.against: taken off the targets' passive awareness when this creature is among the ambushers;
+    // surprise.tier: its Hide counts that many tiers higher against creatures it ambushes (the Assassin's Surprise).
+    "awareness", "surprise", "surprise.against", "surprise.tier"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, when reduced below half HP in combat witnessed by at least one ally or enemy, gain <strong>temporary HP</strong> equal to your Knight level + your Charisma modifier.</li><li>24th level: the <strong>temporary HP</strong> equals twice your Knight level + your Charisma modifier, and you have <strong>Advantage</strong> on your first attack roll each round until the encounter ends</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> The first time each encounter you drop below half HP in view of at least one ally or enemy, you gain <strong>temporary HP</strong> equal to your Knight level + your Charisma modifier.</li><li>24th level: the <strong>temporary HP</strong> equals twice your Knight level + your Charisma modifier, and you have <strong>Advantage</strong> on your first attack roll each round until the encounter ends</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "encounter",
+   "formula": ""
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Once per day, when reduced below half HP in combat witnessed by at least one ally or enemy, gain temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
+    "text": "The first time each encounter you drop below half HP in view of at least one ally or enemy: temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

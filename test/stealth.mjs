@@ -91,8 +91,16 @@ assert.ok(ST.tierText(AW.hideTier(13), { items: [{ type: "class", name: "Rogue" 
 // Rules: the surprise features use the new keys; the sheets show Aware and Hide.
 const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.json", import.meta.url), "utf8"));
 assert.equal(approved["class-features/zEXHGiACkTeX73yo"].rules[0].key, "adv.surprise", "Combat Sense: Advantage (books v0.10.26, K15)");
-assert.equal(approved["class-features/Sqxt8w1xDKWpnqaM"].rules[0].key, "surprise.against");
-for (const k of ["awareness", "surprise", "surprise.against", "adv.awareness", "adv.surprise"]) assert.ok(ARNEYAN.allRuleKeys.has(k), k);
+// Books v0.10.35 (m58): the Assassin's Surprise counts its Hide one tier higher against those it ambushes.
+assert.deepEqual(approved["class-features/Sqxt8w1xDKWpnqaM"].rules.map(r => [r.key, r.value]), [["surprise.tier", 1]]);
+for (const k of ["awareness", "surprise", "surprise.against", "surprise.tier", "adv.awareness", "adv.surprise"]) assert.ok(ARNEYAN.allRuleKeys.has(k), k);
+{
+  const stalker = tier => mk("Stalker", 0, { hidden: tier, mods: new ModSet([{ key: "surprise.tier", value: 1, label: "Surprise" }]) });
+  assert.equal(ST.surpriseResults([stalker("hiddenPartial")], [guard]).dc, 15, "Partially Hidden counts as Hidden");
+  assert.equal(ST.surpriseResults([stalker("hiddenFull")], [guard]).dc, 20, "Hidden counts as Completely Hidden");
+  assert.equal(ST.surpriseResults([stalker("hiddenComplete")], [guard]).dc, 20, "no tier above Completely Hidden");
+  assert.equal(ST.surpriseResults([stalker("hiddenComplete"), lurker], [guard]).dc, 15, "the group is still found at its lowest DC");
+}
 const sheets = fs.readFileSync(new URL("../arneyan/module/sheets.mjs", import.meta.url), "utf8");
 assert.ok(sheets.includes('key: "awareness"') && sheets.includes('key: "hide"'));
 // Monsters with Master Perception come out 5 higher.

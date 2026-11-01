@@ -9,7 +9,8 @@
  *   or a feature, as for passive awareness). On a success the card offers to end the hiding.
  * - A hidden creature stops being hidden when it attacks or casts a spell (documents.mjs calls endHiding).
  * - Surprise (GM, token tools): before initiative, each creature on the unaware side compares its passive awareness
- *   (with surprise bonuses, less an Assassin's Surprise) with the lowest Search DC among the hiding ambushers, or a
+ *   (with surprise bonuses) with the lowest Search DC among the hiding ambushers (an Assassin's Surprise counts its
+ *   Hide one tier higher, books v0.10.35), or a
  *   Difficulty Tiers DC (Moderate 12 for a quiet approach, Hard 15 for a prepared ambush). The GM can mark the
  *   surprised, who lose the surprise round (round 1; the condition comes off when round 2 begins).
  */
@@ -169,7 +170,16 @@ export function surpriseResults(ambushers, unaware, fixedDc = ARNEYAN.difficulti
   const states = ambushers.map(a => hideState(a));
   const hiding = states.filter(Boolean);
   const givenAway = hiding.length && hiding.length < states.length ? ambushers.filter((a, i) => !states[i]).map(a => a.name) : [];
-  const dc = !ambushers.length || givenAway.length ? null : hiding.length ? Math.min(...hiding.map(s => s.dc)) : fallback;
+  // An ambusher whose Hide counts tiers higher against those it ambushes (books v0.10.35: the Assassin's Surprise):
+  // its Search DC is the higher tier's (Partially Hidden counts as Hidden, Hidden as Completely Hidden).
+  const tierUp = a => Math.max(0, Number(a.system?.mods?.sum?.("surprise.tier") ?? a.mods?.sum?.("surprise.tier")) || 0);
+  const dcOf = (a, s) => {
+    const up = tierUp(a);
+    if (!up) return s.dc;
+    const i = HIDE_TIERS.findIndex(t => t.id === s.id);
+    return i < 0 ? s.dc : HIDE_TIERS[Math.max(0, i - up)].dc;
+  };
+  const dc = !ambushers.length || givenAway.length ? null : hiding.length ? Math.min(...ambushers.map((a, i) => (states[i] ? dcOf(a, states[i]) : Infinity))) : fallback;
   const against = Math.max(0, ...ambushers.map(a => Number(a.system?.mods?.sum?.("surprise.against") ?? a.mods?.sum?.("surprise.against")) || 0));
   const rows = unaware.map(a => {
     const aw = a.system?.attributes?.awareness;

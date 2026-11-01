@@ -10710,11 +10710,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "surprise.against",
-    "value": "13:1, 18:2, 23:3"
+    "key": "surprise.tier",
+    "value": 1
    }
   ],
-  "summary": "Targets' passive awareness is 1 lower (2 at 18th, 3 at 23rd) against the Assassin's ambush (books v0.10.10, K2).",
+  "summary": "Your Hide result counts one tier higher against creatures you ambush (books v0.10.35, m58): the Surprise check uses the higher tier's Search DC (Partially Hidden as Hidden, Hidden as Completely Hidden).",
   "manual": "",
   "confidence": "high"
  },
