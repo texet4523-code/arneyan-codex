@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.79 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.80 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.80
+
+- **Books v0.10.39** (Kieran's K46 and m73; board B-F26): Prismatic Spray is now Evocation, Prismatic Wall Abjuration, and Major Creation and Limited Wish Conjuration, on the same class lists as before. Limited Wish leaves the Sorcerer's exclusion line (no spell gained or lost). The Codex's Extra attacks wording now names Flèche and Flowing Strikes, which 0.10.79 already plays. The Necromancer's Death Magic text has its "+1" back.
+- **Pregens start full:** features whose uses come from a stat or level (Sarrix's Ki, Kavra's Rage, Liriel's Flèche, Aurelle's and Hulda's Turn Undead) now start with all their uses. Copies already in a world keep what they have until a long rest.
 
 ## What's new in 0.10.79
 
