@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack, mark a creature you can see. The mark lasts the encounter, on one creature at a time. You have <strong>Advantage</strong> on your next attack roll against it, hit or miss, or on your next Track check to follow it.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack, mark a creature you can see.</li><li>The mark lasts the encounter, on one creature at a time.</li><li>While it is your marked prey, you have <strong>Advantage</strong> on your first attack roll each round against it and on Track checks to follow it.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): Advantage on your next attack roll against it, hit or miss, or on your next Track check to follow it.",
+    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): while it is your marked prey, Advantage on your first attack roll each round against it and on Track checks to follow it.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -46,8 +46,24 @@
     "targetLevel": "",
     "reaction": false,
     "noDamage": false,
-    "effect": "",
+    "effect": "Marked Prey",
     "spendAny": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Marked Prey",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first.mine",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ]
    }
   ]
  },

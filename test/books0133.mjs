@@ -6,10 +6,10 @@ import fs from "node:fs";
 const packDocs = (dir, prefix = "items_") => fs.readdirSync(new URL(`../packs-src/${dir}/`, import.meta.url)).filter(f => f.startsWith(prefix))
   .map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/${dir}/${f}`, import.meta.url), "utf8")));
 const features = packDocs("class-features");
-const spark = features.find(f => f.name === "Sorcerer's Spark" && f.system.className === "Sorcerer").system;
-assert.deepEqual([spark.uses.per, spark.uses.formula], ["day", "1:1, 20:2"], "twice a day from 20th");
-const improved = features.find(f => f.name === "Sorcerer's Spark (Improved)").system;
-assert.ok(/twice per day/.test(improved.description) && !/10 minutes/.test(improved.description));
+// Books v0.10.38 (Fable M5): Sorcerer's Spark gave way to Wild Surge improves (5th and 20th), keeping its ids.
+const surge = features.filter(f => f.name === "Wild Surge improves" && f.system.className === "Sorcerer");
+assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "oJxxsvpo4WgI1u92"]);
+assert.ok(!features.some(f => /^Sorcerer's Spark/.test(f.name)));
 const guard = packDocs("kits").find(k => k.name === "Mournas Liberator (Fighter)").system.features[0];
 assert.ok(/^<p>Once per round/.test(guard.description), guard.description);
 assert.equal(guard.applies[0].rules[0].key, "adv.against");

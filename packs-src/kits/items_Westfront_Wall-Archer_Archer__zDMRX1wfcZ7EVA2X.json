@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<p>Wall-defence tradition, volleys and coordinated fire.</p><ul><li><strong>Volley Timing:</strong> Your first bow attack each round has <strong>Advantage</strong> against a creature an ally hit with a ranged attack since your last turn.</li><li><strong>Sentry's Patience:</strong> <strong>Advantage</strong> on Perception checks made during watch or sentry duty.</li></ul>",
+  "description": "<p>Wall-defence tradition, volleys and coordinated fire.</p><ul><li><strong>Volley Timing:</strong> your first bow hit each round on a creature an ally hit with a ranged attack since your last turn ignores its resistances.</li><li><strong>Sentry's Patience:</strong> <strong>Advantage</strong> on Perception checks made during watch or sentry duty.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Volley Timing",
     "level": 1,
-    "description": "<p>Your first bow attack each round has <strong>Advantage</strong> against a creature an ally hit with a ranged attack since your last turn.</p>",
+    "description": "<p>Your first bow hit each round on a creature an ally hit with a ranged attack since your last turn ignores its resistances.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,9 +24,9 @@
     "save": "",
     "rules": [
      {
-      "key": "adv.attack.ranged",
-      "value": "1",
-      "when": "first bow attack each round, vs a creature an ally hit with a ranged attack since your last turn",
+      "key": "note.damage",
+      "value": "Volley Timing: your first bow hit each round on a creature an ally hit with a ranged attack since your last turn ignores its resistances.",
+      "when": "",
       "label": ""
      }
     ],

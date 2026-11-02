@@ -4,6 +4,35 @@ Version 0.10.79 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.79
 
+- **Books v0.10.38** (Fable Review 2 fixes, Kieran's K44 and K45; board B-F25).
+  - **Extra attacks:** the Extra Attack's second swing and the off-hand attack always roll with Disadvantage. Advantage from any source (or a shift-click) no longer cancels it, and the card says so. Other features' Disadvantage still cancels as before.
+  - **Monk: Ki.** Stun Attack becomes the **Ki** pool: ki points equal to your Monk level + Wisdom modifier (minimum 1), all back after a long rest.
+    - Stun Attack spends 1 ki once the attack hits.
+    - **Ki: Body of Iron** (9th) spends 2 and **Ki: Death Strike** (10th) spends 4, from the same pool.
+    - **Fast Healing** is always on: every long rest heals 1 HP per Monk level on top of the usual, with no use to spend.
+    - Primary unarmed dice: 1d6 at 1st, 1d8 at 3rd.
+    - Existing Monks' Stun Attack, Body of Iron and Death Strike are renamed Ki, Ki: Body of Iron and Ki: Death Strike on the update (one you renamed by hand keeps your name, but then the Ki options can't find their pool: rename it Ki).
+  - **Bard:** **Performance: Fascinate** is a Performance option costing 1 use (it has no uses of its own any more). Performance gains 3 uses from 4th level. Sway Crowd holds its listeners until the end of their next turn after you stop.
+  - **Paladin Smite:** your first hit each encounter Smites unless you save the use. Every attack card shows a **Smite** button until you Smite in that encounter; leave it alone to keep the use.
+  - **Ranger Marked Prey** puts Marked Prey on the creature for the encounter. Your own first attack roll against it each round has Advantage; nobody else's does.
+  - **Sorcerer:** Sorcerer's Spark is gone. **Wild Surge improves** at 5th (your second Wild Surge each day has no Corruption risk) and at 20th (your first two, and two Metamagic options on one spell once a day), as reminders. Existing Sorcerers' Spark features become Wild Surge improves, and an existing Bard's Fascinate becomes Performance: Fascinate.
+  - **Assassin: First Blood** (1st, new; existing Assassins get it on the update) rolls one extra Sneak Attack die against a creature that hasn't acted yet this encounter.
+  - **Illusionist:** **Change Self** is at will, and once a day it also fools touch, smell and True Seeing.
+  - **Gunslinger:** Steady Shot is a flat +1d6.
+  - **Necromancer:** **Ghoul Touch** paralyses for 1 round per three levels (minimum 1), Fortitude negates. **Phantasmal Jab** is a new Illusionist cantrip: 1d4 psychic (+1 die at 5th, 11th and 17th), Will negates.
+  - **Shifter: Ursidae-Beasthide** resists one nonmagical weapon type, chosen when you take the lineage: Resistance 5 to bludgeoning, piercing or slashing while shifted. Existing Beasthide Shifters get the choice on their sheet ("Choose option").
+  - **Kits:**
+    - Brigh's tempered weapon adds +1d6 fire to the ally's next hit.
+    - College of the Silver Pipes' lecture gives the creature Disadvantage on its first attack each round.
+    - The Opportunist crits on a 19 or 20 against a creature you've set up.
+    - Silver Serpent has Advantage on Parry checks.
+    - Westfront Wall-Archer's Volley Timing ignores resistances.
+    - Depsopteron Ironhide's Primeval Will gives three times your level.
+    - Most of these are reminders.
+  - **Text only:** Champion's Reckoning's Wisdom check is against your Class Save DC. Other text-only changes: Fighter 9th-level manoeuvres as part of a hit, Quick Hands, Wild Shape as your action, the Codex's Hide line and Ancestry Save DC.
+  - **Fixes from the 0.10.79 review:**
+    - The Shifter update now also reaches Shifters made from 0.10.54 on, not only older ones.
+    - An immune target shows as immune in the effect's chat report.
 - **Books v0.10.36 and v0.10.37** (Kieran's K35 to K43; board B-F23 and B-F24).
   - **Fewer attack Advantages, more of each class's own flavour** (K35 to K37). Knight Inspire: allies can't be Frightened, and their first hit each round on the creature you Challenged deals an extra weapon die; Demoralise stops a creature that fails its save moving closer to you (Boldock Wall-Knights: Frightened instead). Paladin Smite is spent when you hit: extra radiant damage equal to your Paladin level, and a second option heals an ally within 10ft by your Charisma modifier. Barbarian Intimidate makes the target Frightened until the end of its next turn. Bard Discord halves its next hit; Exhort Greatness gives a reroll of one attack or save each round. Ranger Favoured Enemy: the first hit each round deals an extra weapon die and ignores resistance; Apex Predator stops the prey disengaging, hiding or turning invisible. Swashbuckler Duel's Rhythm: move 10ft after each attack, and your opponent can't Disengage. Gunslinger Dead Eye: on a turn you don't move, your first ranged attack's dice explode on their two highest numbers. Inspire's "can't be Frightened" also stops the condition being put on from an aura, a chat link or the token HUD. Kits, deities and patrons change as the books say (Red Waste Marauder's Ambush Strike knocks Prone, Lathander's +1d6 radiant on undead, Akadi's storm push, Annam, Torm, Sharpshooter, Grave Warden, Frontier Vanguard, Skalds, Mournas Street Poet, Asmodeus, Belial & Fierna, Graz'zt, Vashtira, the Drowned Widow, Baba Yaga). Most of these are reminders on the cards rather than rolled for you.
   - **Witch: Cauldron Brews** (1st level, new; existing Witches get it on the update): 2 draughts a day at 1st, rising to 6 at 17th, and the 14 recipes as options on the feature, each tier read at your level. Hex Oil rolls its necrotic damage, Hearthfire Broth its temporary HP and Hag's Remedy (from 9th) its healing; the rest are reminders.

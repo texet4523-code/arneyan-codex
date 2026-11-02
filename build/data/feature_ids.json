@@ -1,5 +1,5 @@
 {
- "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids.",
+ "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document.",
  "features": {
   "Archer|Running Shot": [
    "vcBhJLUgua28MVqR"
@@ -234,9 +234,6 @@
   ],
   "Bard|Spell Use": [
    "YEKPzCLaqsjPvLkc"
-  ],
-  "Bard|Fascinate (Charisma)": [
-   "LsWKxgs0ZtOLLPCd"
   ],
   "Bard|5th-Level Features": [
    "sM4aMdsdJwwJlNMt"
@@ -577,9 +574,6 @@
   "Monk|Iron Discipline": [
    "GOKLoYXjDzcYgpad"
   ],
-  "Monk|Stun Attack": [
-   "EEd86TSRn8QJQNK3"
-  ],
   "Monk|Parrying Stance": [
    "aYIbwLQ1PRplV0iz"
   ],
@@ -597,9 +591,6 @@
   ],
   "Monk|Ascetic Recovery": [
    "CLPxYJacpBOiXkr8"
-  ],
-  "Monk|Death Strike": [
-   "gH5YblxxKBxOtKQK"
   ],
   "Monk|Deflect Blow (Dexterity)": [
    "lg2m2jTRaAPPs8ii"
@@ -793,17 +784,11 @@
   "Sorcerer|Metamagic Options": [
    "VxU4uWTexp58ssbF"
   ],
-  "Sorcerer|Sorcerer's Spark": [
-   "UTIrytRZu4fYc46O"
-  ],
   "Sorcerer|Overchannel": [
    "BnpCGU9KMetxKMDo"
   ],
   "Sorcerer|Bloodline Awakening": [
    "fcWDAg12dbtEMPXF"
-  ],
-  "Sorcerer|Sorcerer's Spark (Improved)": [
-   "oJxxsvpo4WgI1u92"
   ],
   "Sorcerer|Chaos Incarnate": [
    "MBtD2JrOap153txM"
@@ -961,9 +946,6 @@
   "Witch|7th-Level Features": [
    "86ZftZ9zHtUjJ2lv"
   ],
-  "Monk|Body of Iron": [
-   "waqGtTczSTgFSdmM"
-  ],
   "Monk|Quick Reflexes (Improved)": [
    "Zm8c8FOKZGsdneoK"
   ],
@@ -978,6 +960,31 @@
   ],
   "Monk|Iron Mind": [
    "LqOxYGmu2kk4H0hr"
+  ],
+  "Assassin|Quick Reflexes": [
+   "12r60eED90uq58Pr"
+  ],
+  "Assassin|Quick Reflexes (Improved)": [
+   "VkVLCNJ3it9jWN1i"
+  ],
+  "Assassin|Hit and Run": [
+   "ImomMrYnSQza53HJ"
+  ],
+  "Monk|Ki": [
+   "EEd86TSRn8QJQNK3"
+  ],
+  "Monk|Ki: Body of Iron": [
+   "waqGtTczSTgFSdmM"
+  ],
+  "Monk|Ki: Death Strike": [
+   "gH5YblxxKBxOtKQK"
+  ],
+  "Bard|Performance: Fascinate": [
+   "LsWKxgs0ZtOLLPCd"
+  ],
+  "Sorcerer|Wild Surge improves": [
+   "UTIrytRZu4fYc46O",
+   "oJxxsvpo4WgI1u92"
   ]
  }
 }

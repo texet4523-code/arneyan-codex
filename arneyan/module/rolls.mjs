@@ -9,6 +9,8 @@ const SYS = "arneyan";
  */
 export function modeFromEvent(event, builtIn = 0) {
   const sources = Array.isArray(builtIn) ? builtIn : [builtIn];
+  // -2: a Disadvantage that no Advantage cancels (the Extra Attack and the off-hand attack, books v0.10.38, K44).
+  if (sources.some(v => v <= -2)) return -1;
   let adv = sources.some(v => v > 0) || event?.shiftKey;
   let dis = sources.some(v => v < 0) || event?.ctrlKey || event?.metaKey;
   if (adv && dis) return 0;

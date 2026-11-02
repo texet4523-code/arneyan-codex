@@ -500,78 +500,6 @@
   "confidence": "high",
   "why": "Named Charisma skill check."
  },
- "Fascinate (Charisma)|Bard": {
-  "activities": [
-   {
-    "name": "Fascinate",
-    "kind": "save",
-    "text": "Up to {1:2, 6:4, 12:10} creatures that can see and hear you, and aren't in immediate combat, save or fall into a trance until the scene ends or something breaks it.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Charm Person",
-    "kind": "save",
-    "text": "A currently fascinated creature saves or is affected as by Charm Person.",
-    "minLevel": 5,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Suggestion",
-    "kind": "save",
-    "text": "A currently fascinated creature saves or receives a Suggestion.",
-    "minLevel": 8,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Antipathy/Sympathy",
-    "kind": "save",
-    "text": "A currently fascinated creature saves or is affected as by Antipathy/Sympathy.",
-    "minLevel": 12,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Sway Crowd",
-    "kind": "save",
-    "text": "While performing, all listeners save or are held in rapture, unable to leave while you perform and for rounds equal to your Bard level after: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language.",
-    "minLevel": 13,
-    "cost": 1,
-    "per": "",
-    "target": "",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Mass Suggestion",
-    "kind": "save",
-    "text": "Currently fascinated creatures save or receive a Mass Suggestion.",
-    "minLevel": 18,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false,
-    "save": "will"
-   }
-  ],
-  "confidence": "high",
-  "why": "3 a day; lasts until the scene ends (books v0.10.25). Follow-up options come from the Bard 5th/8th/12th/18th-level features; Sway Crowd (13th) now spends a Fascinate use."
- },
  "Turn Undead|Cleric": {
   "activities": [
    {
@@ -1069,16 +997,20 @@
    {
     "name": "Change Self",
     "kind": "note",
-    "text": "Alter your appearance, features, smell, sound and feel, lasting until you dispel it.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
+    "cost": 0,
     "target": "self",
-    "removeConditions": false
+    "text": "At will, as the spell: alter your appearance."
+   },
+   {
+    "name": "Change Self (fools touch)",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "Once per day: the change also fools touch, smell and True Seeing until you dispel it."
    }
   ],
   "confidence": "high",
-  "why": "Once per day."
+  "why": "Books v0.10.38 (Fable M13): at will as the spell; once a day the change also fools touch, smell and True Seeing."
  },
  "Magnum Opus|Illusionist": {
   "activities": [
@@ -1287,17 +1219,6 @@
  "Ascetic Recovery|Monk": {
   "activities": [
    {
-    "name": "Fast Healing",
-    "kind": "heal",
-    "formula": "@cl",
-    "text": "After a long rest, regain 1 HP per Monk level.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   },
-   {
     "name": "Feign Death",
     "kind": "note",
     "text": "Slow your vital functions until you appear dead, for minutes equal to your character level.",
@@ -1309,7 +1230,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Two named options; only Fast Healing is daily."
+  "why": "Feign Death only; books v0.10.38 (Fable M5): Fast Healing is always on, a rest.heal rule (approved.json) added to every long rest."
  },
  "Deflect Blow (Dexterity)|Monk": {
   "activities": [
@@ -1493,16 +1414,17 @@
    {
     "name": "Marked Prey",
     "kind": "note",
-    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): Advantage on your next attack roll against it, hit or miss, or on your next Track check to follow it.",
+    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): while it is your marked prey, Advantage on your first attack roll each round against it and on Track checks to follow it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "effect": "Marked Prey"
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter mark."
+  "why": "Once per encounter mark; books v0.10.38 (K44 S3): Advantage on the first attack each round against it."
  },
  "Woodcraft|Ranger": {
   "activities": [
@@ -1913,7 +1835,7 @@
    {
     "name": "Wild Surge",
     "kind": "note",
-    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table.",
+    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, and from 20th your first two (Wild Surge improves).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1922,32 +1844,11 @@
    }
   ],
   "confidence": "high",
-  "why": "1 to 4 uses per day by level (5th, 9th, 13th, 17th), tracked on the item. Checked against Handbook v0.10.10, 25 Oct.",
+  "why": "1 to 4 uses per day by level (5th, 9th, 13th, 17th), tracked on the item. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.38 (Fable M5): Sorcerer's Spark is gone; Wild Surge improves at 5th and 20th.",
   "uses": {
    "max": 1,
    "per": "day",
    "formula": "2:1, 9:2, 13:3, 17:4"
-  }
- },
- "Sorcerer's Spark|Sorcerer": {
-  "activities": [
-   {
-    "name": "Sorcerer's Spark",
-    "kind": "note",
-    "text": "For the encounter, Wild Surges carry no Corruption risk and you may apply two Metamagic options to one spell.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per day. Twice a day from Sorcerer's Spark (Improved) (books v0.10.33, m56).",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "1:1, 20:2"
   }
  },
  "Overchannel|Sorcerer": {
@@ -2321,13 +2222,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Paladin": {
   "activities": [
@@ -2335,13 +2236,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Ranger": {
   "activities": [
@@ -2349,13 +2250,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Swashbuckler": {
   "activities": [
@@ -2363,13 +2264,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Barbarian": {
   "activities": [
@@ -2377,13 +2278,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Knight": {
   "activities": [
@@ -2391,13 +2292,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Fighter": {
   "activities": [
@@ -2405,13 +2306,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Does not stack with Combat Dominance: choose one or the other each round."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Does not stack with Combat Dominance: choose one or the other each round."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Gunslinger": {
   "activities": [
@@ -2419,13 +2320,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage. A firearm still has to be loaded for each shot."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. A firearm still has to be loaded for each shot."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Assassin": {
   "activities": [
@@ -2433,13 +2334,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Sneak Attack still applies to only one attack per round."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Sneak Attack still applies to only one attack per round."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Rogue": {
   "activities": [
@@ -2447,13 +2348,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Sneak Attack still applies to only one attack per round."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Sneak Attack still applies to only one attack per round."
    }
   ],
   "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8)."
+  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack (Battle Priest only)|Cleric": {
   "activities": [
@@ -2461,13 +2362,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage. Battle Priests only."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Battle Priests only."
    }
   ],
   "confidence": "high",
-  "why": "As every Extra Attack; only a Battle Priest has it."
+  "why": "As every Extra Attack; only a Battle Priest has it. Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "Extra Attack|Magus": {
   "activities": [
@@ -2475,13 +2376,13 @@
     "name": "Extra Attack",
     "kind": "attacks",
     "count": "2",
-    "disadvantage": "rest",
+    "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional attack with your bonded weapon type, with Disadvantage. Spellstrike may be delivered through either attack, still once per round."
+    "text": "One additional attack with your bonded weapon type, with Disadvantage that no Advantage cancels. Spellstrike may be delivered through either attack, still once per round."
    }
   ],
   "confidence": "high",
-  "why": "Two attacks with the bonded weapon type, the second with Disadvantage."
+  "why": "Two attacks with the bonded weapon type, the second with Disadvantage. Books v0.10.38 (K44): Advantage from any source never cancels it."
  },
  "War Magic|Magus": {
   "activities": [
@@ -2505,28 +2406,10 @@
     "cost": 0,
     "per": "round",
     "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
-   },
-   {
-    "name": "Steady Shot (2d6)",
-    "kind": "damage",
-    "formula": "2d6",
-    "minLevel": 10,
-    "cost": 0,
-    "per": "round",
-    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
-   },
-   {
-    "name": "Steady Shot (3d6)",
-    "kind": "damage",
-    "formula": "3d6",
-    "minLevel": 15,
-    "cost": 0,
-    "per": "round",
-    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim."
    }
   ],
   "confidence": "high",
-  "why": "Handbook: +1d6 (+2d6 at 10th, +3d6 at 15th) on the first hit each round while Dead Eye applies."
+  "why": "Books v0.10.38 (K44 S5): a flat +1d6 on the first hit each round while Dead Eye applies (no 10th or 15th step)."
  },
  "Relentless Assault|Swashbuckler": {
   "activities": [
@@ -2563,7 +2446,7 @@
     "formula": "1d20",
     "target": "gm",
     "cost": 0,
-    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll. 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, or your first two from 20th). 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
    }
   ],
   "confidence": "high",
@@ -3448,14 +3331,6 @@
   "confidence": "high",
   "why": "Handbook: only a feature that grants it (Combat Reflexes, a monster ability) allows one melee attack, out of turn."
  },
- "Stun Attack|Monk": {
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "@cl"
-  },
-  "why": "\"limited to once per level per day\" (Monk level)"
- },
  "Ingenuity Points|Artificer": {
   "uses": {
    "max": 1,
@@ -3541,34 +3416,6 @@
   ],
   "confidence": "high",
   "why": "Out-of-turn Wisdom check vs the spell's save DC. Checked against Handbook v0.10.27."
- },
- "Body of Iron|Monk": {
-  "activities": [
-   {
-    "name": "Body of Iron",
-    "kind": "note",
-    "text": "At the start of your turn, end one condition affecting you (stunned, paralysed, poisoned, frightened, charmed and the like), with no action needed, even while incapacitated.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "maxLevel": 19
-   },
-   {
-    "name": "Body of Iron Made Whole",
-    "kind": "heal",
-    "formula": "4d8",
-    "text": "At the start of your turn, remove all conditions affecting you and heal 4d8 HP, with no action needed.",
-    "minLevel": 20,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per day; from 20th (Body of Iron Made Whole) it removes every condition and heals 4d8."
  },
  "Perfect Shot (Improved)|Gunslinger": {
   "activities": [],
@@ -3751,17 +3598,17 @@
   "uses": {
    "max": 2,
    "per": "day",
-   "formula": "max(2, @cl + @cha.mod)"
+   "formula": "max(2, @cl + @cha.mod) + 3 * min(1, floor(@cl / 4))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26)."
+  "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26). Books v0.10.38 (K45): 3 more from 4th level."
  },
  "Channel Divinity (Charisma)|Paladin": {
   "activities": [
    {
     "name": "Smite",
     "kind": "damage",
-    "text": "The default Channel, spent when you hit (not before rolling): the hit deals extra radiant damage equal to your Paladin level, against any foe regardless of alignment. Then roll the ally's healing below (no use spent).",
+    "text": "The default Channel, spent when you hit (not before rolling): the hit deals extra radiant damage equal to your Paladin level, against any foe regardless of alignment. Your first hit each encounter Smites automatically unless you choose to save the use (the attack card's Smite button). Then roll the ally's healing below (no use spent).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3933,7 +3780,7 @@
     "cost": 0,
     "per": "round",
     "effect": "Tempered Weapon",
-    "text": "Once per round, as part of your action, by touch: the ally's next attack roll before your next turn has Advantage."
+    "text": "Once per round, as part of your action, by touch: the ally's next hit before your next turn deals +1d6 fire damage."
    },
    {
     "name": "Temper armour",
@@ -3945,7 +3792,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once a day repair; tempering once per round (Advantage on the ally's next attack, or Disadvantage on the next attack against it)."
+  "why": "Once a day repair; tempering once per round (+1d6 fire on the ally's next hit, books v0.10.38 M2, or Disadvantage on the next attack against it)."
  },
  "Granted Power (Brigh)|Deity: Brigh (The Crafted Turn) (Paladin)": {
   "activities": [
@@ -3961,7 +3808,7 @@
     "cost": 0,
     "per": "round",
     "effect": "Tempered Weapon",
-    "text": "Once per round, as part of your action, by touch: the ally's next attack roll before your next turn has Advantage."
+    "text": "Once per round, as part of your action, by touch: the ally's next hit before your next turn deals +1d6 fire damage."
    },
    {
     "name": "Temper armour",
@@ -3973,7 +3820,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once a day repair; tempering once per round (Advantage on the ally's next attack, or Disadvantage on the next attack against it)."
+  "why": "Once a day repair; tempering once per round (+1d6 fire on the ally's next hit, books v0.10.38 M2, or Disadvantage on the next attack against it)."
  },
  "Granted Power (Selûne)|Deity: Selûne (The Moonlit Veils) (Cleric)": {
   "activities": [
@@ -4255,5 +4102,162 @@
    "per": "day",
    "formula": "1:2, 5:3, 9:4, 13:5, 17:6"
   }
+ },
+ "Ki|Monk": {
+  "activities": [
+   {
+    "name": "Stun Attack",
+    "kind": "save",
+    "save": "fort",
+    "cost": 1,
+    "target": "one",
+    "effect": "Stunned",
+    "text": "The default. Declare before the attack roll; use it once the attack hits (a miss costs nothing): 1 ki, and the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). Once per round; your first stun attempt must be a primary attack."
+   }
+  ],
+  "uses": {
+   "max": 1,
+   "per": "rest",
+   "formula": "max(1, @cl + @wis.mod)"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.38 (K45): ki points equal to Monk level + Wisdom modifier (minimum 1), all back after a long rest; Stun Attack spends 1 on a hit. Body of Iron (2) and Death Strike (4) spend the same pool."
+ },
+ "Ki: Body of Iron|Monk": {
+  "activities": [
+   {
+    "name": "Body of Iron",
+    "kind": "note",
+    "cost": 2,
+    "target": "self",
+    "maxLevel": 19,
+    "text": "At the start of your turn, spend 2 ki to end one condition affecting you (stunned, paralysed, poisoned, frightened, charmed and the like), with no action needed, even while incapacitated."
+   },
+   {
+    "name": "Body of Iron Made Whole",
+    "kind": "heal",
+    "formula": "4d8",
+    "cost": 2,
+    "target": "self",
+    "minLevel": 20,
+    "removeConditions": true,
+    "text": "At the start of your turn, spend 2 ki to remove all conditions affecting you and heal 4d8 HP, with no action needed."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Ki"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.38 (K45): 2 ki from the Ki pool; from 20th (Body of Iron Made Whole) it removes every condition and heals 4d8."
+ },
+ "Ki: Death Strike|Monk": {
+  "activities": [
+   {
+    "name": "Death Strike",
+    "kind": "save",
+    "save": "fort",
+    "cost": 4,
+    "target": "one",
+    "text": "Declare before the attack roll; use it once a hit deals damage: 4 ki, and the target (Level no more than half your Monk level) makes a Fortitude save against your Class Save DC or dies. From 12th you may delay the death up to rounds equal to your Monk level. No effect on undead, oozes, elementals or creatures only magic weapons can harm."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Ki"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.38 (K45): 4 ki from the Ki pool on a hit that deals damage."
+ },
+ "Performance: Fascinate|Bard": {
+  "activities": [
+   {
+    "name": "Fascinate",
+    "kind": "save",
+    "text": "A Performance option (1 use): up to {1:2, 6:4, 12:10} creatures that can see and hear you, and aren't in immediate combat, save or fall into a trance until the scene ends or something breaks it.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Charm Person",
+    "kind": "save",
+    "text": "A currently fascinated creature saves or is affected as by Charm Person.",
+    "minLevel": 5,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Suggestion",
+    "kind": "save",
+    "text": "A currently fascinated creature saves or receives a Suggestion.",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Antipathy/Sympathy",
+    "kind": "save",
+    "text": "A currently fascinated creature saves or is affected as by Antipathy/Sympathy.",
+    "minLevel": 12,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Sway Crowd",
+    "kind": "save",
+    "text": "Use Fascinate while performing (1 Performance use): all listeners save or are held in rapture, unable to leave while you perform and until the end of their next turn after you stop: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language.",
+    "minLevel": 13,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Mass Suggestion",
+    "kind": "save",
+    "text": "Currently fascinated creatures save or receive a Mass Suggestion.",
+    "minLevel": 18,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "save": "will"
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.38 (K45): a Performance option costing 1 use of the Performance pool (no uses of its own); its later options are unchanged, and Sway Crowd (13th) spends a use too (until the end of their next turn after you stop, m71).",
+  "uses": {
+   "max": 0,
+   "pool": "Performance (Charisma)"
+  }
+ },
+ "First Blood|Assassin": {
+  "activities": [
+   {
+    "name": "First Blood (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "text": "With your Sneak Attack against a creature that has not yet acted this encounter: one extra die."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.38 (Fable M6): one extra Sneak Attack die against a creature that has not acted yet this encounter."
  }
 }

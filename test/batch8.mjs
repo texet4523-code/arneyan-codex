@@ -61,7 +61,10 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   const swift = sh.choice.options.find(o => o.name.endsWith("Swiftstride"));
   assert.equal(swift.toggle, true); assert.deepEqual([swift.uses.max, swift.uses.per], [1, "encounter"], "books v0.10.37 (K39): once per encounter");
   assert.deepEqual(swift.rules.map(r => [r.key, r.value]), [["speed", "15"], ["toggle.ends", "encounter"]]);
-  assert.ok(sh.choice.options.find(o => o.name.endsWith("Beasthide")).rules.some(r => r.value === "non-magical 3"));
+  // Books v0.10.38 (K45): Resistance 5 to the one nonmagical weapon type picked for it.
+  const bh = sh.choice.options.find(o => o.name.endsWith("Beasthide"));
+  assert.ok(!bh.rules.some(r => r.key === "resist"));
+  assert.deepEqual(bh.optionChoice.options.map(o => o.rules[0].value), ["non-magical-bludgeoning 5", "non-magical-piercing 5", "non-magical-slashing 5"]);
   // Turned comes off when its turner attacks it.
   const CB = await import("../arneyan/module/combat.mjs");
   const deleted = [];

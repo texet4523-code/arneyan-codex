@@ -8,7 +8,7 @@ import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLev
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
-import { attackSituation, firstAgainst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
+import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 
@@ -88,13 +88,17 @@ export function featureBonusTerms(terms, notes, bonus) {
 /** Weapon resistances: which weapons each trait word covers (physical damage only). */
 export const WEAPON_TRAITS = {
   "weapons": "weapons", "non-magical": "non-magical weapons",
-  "non-silvered": "non-magical, non-silvered weapons", "non-adamantine": "non-magical, non-adamantine weapons"
+  "non-silvered": "non-magical, non-silvered weapons", "non-adamantine": "non-magical, non-adamantine weapons",
+  // One type only (a Shifter's Beasthide, books v0.10.38): "non-magical-slashing 5".
+  "non-magical-bludgeoning": "non-magical bludgeoning", "non-magical-piercing": "non-magical piercing", "non-magical-slashing": "non-magical slashing"
 };
 export function weaponTrait(word, type, weapon) {
   if (!weapon || !["slashing", "piercing", "bludgeoning"].includes(type)) return false;
   if (word === "weapons") return true;
   if (weapon === "magic") return false;
   if (word === "non-magical") return true;
+  const one = /^non-magical-(slashing|piercing|bludgeoning)$/.exec(word);
+  if (one) return one[1] === type;
   if (word === "non-silvered") return weapon !== "silver";
   if (word === "non-adamantine") return weapon !== "adamantine";
   return false;
@@ -588,7 +592,8 @@ export class ArneyanActor extends Actor {
         against = { values: a.values, adv: a.adv.map(l => `${targets[0].name}: ${l}`), dis: a.dis.map(l => `${targets[0].name}: ${l}`) };
         // The first attack (or first few) against it (K15: Shield, Evasive Manoeuvre, Arcane Cascade), from the chat.
         const fa = firstAgainst(targets[0].actor, { ranged, name: targets[0].name });
-        against = { values: [...against.values, ...fa.values], adv: [...against.adv, ...fa.adv], dis: [...against.dis, ...fa.dis] };
+        const mk = markedFirst(this, targets[0].actor, { name: targets[0].name });
+        against = { values: [...against.values, ...fa.values, ...mk.values], adv: [...against.adv, ...fa.adv, ...mk.adv], dis: [...against.dis, ...fa.dis, ...mk.dis] };
         if (!ranged && tm.has("crit.against.close")) notes.push(`${targets[0].name} (${tm.sources("crit.against.close").join(", ")}): a melee hit from within 5ft is a critical hit`);
       }
     }
@@ -641,6 +646,9 @@ export class ArneyanActor extends Actor {
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
     const { mode, why } = advFrom(event, own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
     notes.push(...sit.notes);
+    // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
+    const smite = this.firstSmite();
+    if (smite) notes.push(`Smite: your first hit this encounter Smites automatically unless you choose to save the use (${ArneyanItem.usesLeftText(smite.item.usesCount)}).`);
     if (this.system.noAct) notes.unshift(`${this.name} cannot take actions right now.`);
     return sit.after(await d20Roll({
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
@@ -655,9 +663,27 @@ export class ArneyanActor extends Actor {
         if (noDamage) return `<p class="arn-card-meta"><i class="fa-solid fa-hand"></i> On a hit: ${esc(noDamage)}. No damage.</p>`;
         const normal = `<button type="button" class="arn-damage" data-item-id="${item.id}" data-crit="0"><i class="fa-solid fa-burst"></i> ${crit ? "Normal damage" : "Roll damage"}</button>`;
         const critical = `<button type="button" class="arn-damage ${crit ? "" : "ghost"}" data-item-id="${item.id}" data-crit="1"><i class="fa-solid fa-star"></i> Critical${crit ? " damage" : ""}</button>`;
-        return `<div class="arn-dmg-buttons">${crit ? critical + normal : normal + critical}</div>`;
+        const smiteBtn = smite ? `<button type="button" class="arn-smite" data-item-id="${smite.item.id}"><i class="fa-solid fa-sun"></i> Smite (first hit this encounter)</button>` : "";
+        return `<div class="arn-dmg-buttons">${crit ? critical + normal : normal + critical}</div>${smiteBtn}`;
       })
     }));
+  }
+
+  /**
+   * The Smite a Paladin's first hit this encounter makes (books v0.10.38, K44 S4): the feature with a Smite option and a
+   * use left, while a combat is running and no Smite was used in it yet. null otherwise.
+   */
+  firstSmite() {
+    if (this.type !== "character") return null;
+    const c = combatFor(this);
+    if (!c?.started || this.getFlag?.(SYS, "smote") === c.id) return null;
+    for (const item of this.items) {
+      if (!["ability", "feat"].includes(item.type)) continue;
+      const act = (item.availableActivities ?? []).find(a => a.name === "Smite");
+      const count = act ? item.usesCount : null;
+      if (act && count && count.value >= Number(act.cost ?? 1)) return { item, act };
+    }
+    return null;
   }
 
   /**
@@ -994,6 +1020,10 @@ export class ArneyanActor extends Actor {
       updates["system.rest.haven"] = 0;
       heal = where === "shelter" ? Math.max(1, con) : 1;
     }
+    // On top of the usual (the Monk's Fast Healing: 1 HP per Monk level, books v0.10.38).
+    const more = this.mods?.parts?.("rest.heal") ?? [];
+    const plus = Math.max(0, Math.floor(more.reduce((t, p) => t + (Number(p.value) || 0), 0)));
+    if (plus) { heal += plus; note += ` (${more.map(p => `${p.label || "a feature"} +${Math.floor(Number(p.value) || 0)}`).join(", ")})`; }
     const hp = this.system.attributes.hp;
     const max = hp.effectiveMax ?? hp.max;
     updates["system.attributes.hp.value"] = Math.min(max, Math.max(hp.value, 0) + heal);
@@ -1614,6 +1644,11 @@ export class ArneyanItem extends Item {
     }
     if (!(await this._spendFor(act))) return null;
     await this._reacted(act);
+    // A Smite used this encounter: the first-hit Smite button stops offering it (books v0.10.38, K44 S4).
+    if (act.name === "Smite" && actor?.isOwner) {
+      const c = combatFor(actor);
+      if (c?.started) await actor.setFlag(SYS, "smote", c.id).catch(() => null);
+    }
     const cost = Number(act.cost ?? 1);
     const cl = this.featureLevel;
     const self = await this._selfForActivity(cl, act);
@@ -1719,9 +1754,11 @@ export class ArneyanItem extends Item {
     const diceFor = String(act.formula ?? "").split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
     const out = [];
     for (let i = 0; i < n; i++) {
-      const dis = disOn && (act.disadvantage === "all" || (act.disadvantage === "rest" && i > 0));
+      const dis = disOn && (act.disadvantage === "all" || (["rest", "extra"].includes(act.disadvantage) && i > 0));
+      // "extra": the Extra Attack's Disadvantage, which Advantage from any source never cancels (books v0.10.38, K44).
+      const fixed = act.disadvantage === "extra";
       const msg = await actor.rollAttack(weapon, event, {
-        adv: dis ? { values: [-1], adv: [], dis: [`${this.name}: attack ${i + 1}`] } : null,
+        adv: dis ? { values: [fixed ? -2 : -1], adv: [], dis: [`${this.name}: attack ${i + 1}${fixed ? " (no Advantage cancels it)" : ""}`] } : null,
         targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}${diceFor[i] ? ` (${diceFor[i]})` : ""}`, notes: out.length ? [] : notes, bonus, dice: diceFor[i] || "",
         noDamage: act.noDamage ? (act.text || act.name || this.name).replace(/^On a hit,?\s*/i, "").replace(/\s*instead of dealing damage\.?$/i, "").replace(/\.$/, "") : ""
       });

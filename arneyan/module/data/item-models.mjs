@@ -141,7 +141,8 @@ export const activityField = () => new ArrayField(new SchemaField({
   count: str(),
   /** attacks: which weapons: "" any, "melee", "ranged", or an ammunition type ("arrow"). */
   weapons: str(),
-  /** attacks: "" none, "rest" (every attack after the first) or "all" roll with Disadvantage... */
+  /** attacks: "" none, "rest" (every attack after the first) or "all" roll with Disadvantage, or "extra" (every attack
+   *  after the first, a Disadvantage no Advantage cancels: the Extra Attack, books v0.10.38)... */
   disadvantage: str(),
   /** ...until this level (0: at every level). */
   disUntil: int(0, { min: 0 }),

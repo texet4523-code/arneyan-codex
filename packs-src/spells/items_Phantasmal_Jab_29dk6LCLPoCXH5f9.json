@@ -1,0 +1,51 @@
+{
+ "_id": "29dk6LCLPoCXH5f9",
+ "_key": "!items!29dk6LCLPoCXH5f9",
+ "name": "Phantasmal Jab",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
+ "system": {
+  "description": "<p>Range <strong>60ft</strong>; one creature. A flicker of something sharp: <strong>1d4</strong> psychic damage (+1 die at 5th, 11th and 17th level); <strong>Will negates</strong>. A creature that cannot see is unaffected. Counts as an Illusion spell for Master of Illusion.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "Illusionist",
+  "classes": [
+   "Illusionist"
+  ],
+  "school": "Illusion",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "will",
+  "saveEffect": "Negates",
+  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damageType": "psychic",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 21,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

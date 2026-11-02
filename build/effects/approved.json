@@ -1651,7 +1651,7 @@
   "confidence": "high"
  },
  "class-features/LsWKxgs0ZtOLLPCd": {
-  "name": "Fascinate (Charisma)",
+  "name": "Performance: Fascinate",
   "from": "Bard",
   "container": "applies",
   "applies": [
@@ -1946,11 +1946,11 @@
   "rules": [
    {
     "key": "damage.ranged",
-    "value": "+(min(3,floor(@cl/5)))d6",
+    "value": "+1d6",
     "when": "first hit each round while Dead Eye applies"
    }
   ],
-  "summary": "+1d6/+2d6/+3d6 (5th/10th/15th) damage reminder while Dead Eye applies.",
+  "summary": "+1d6 damage reminder on the first hit each round while Dead Eye applies.",
   "manual": "",
   "confidence": "high"
  },
@@ -2109,12 +2109,12 @@
     "rules": [
      {
       "key": "note.save",
-      "value": "Cowed: it can't willingly move away from the Knight unless it succeeds on a Wisdom check each round."
+      "value": "Cowed: it can't willingly move away from the Knight unless it succeeds on a Wisdom check against the Knight's Class Save DC each round."
      }
     ]
    }
   ],
-  "summary": "A foe that fails its save against your Challenge is also Cowed for the Challenge's minute: it can't willingly move away without a Wisdom check each round.",
+  "summary": "A foe that fails its save against your Challenge is also Cowed for the Challenge's minute: it can't willingly move away without a Wisdom check against your Class Save DC each round.",
   "manual": "A creature immune to fear is immune; apply it with the Challenged effect on a failed save.",
   "confidence": "high"
  },
@@ -2197,7 +2197,7 @@
    },
    {
     "key": "unarmed.dice",
-    "value": "1:1d4, 2:1d6, 4:1d8, 7:1d10",
+    "value": "1:1d6, 3:1d8, 7:1d10",
     "label": "Monk Progression Table"
    }
   ],
@@ -2206,7 +2206,7 @@
   "confidence": "high"
  },
  "class-features/EEd86TSRn8QJQNK3": {
-  "name": "Stun Attack",
+  "name": "Ki",
   "from": "Monk",
   "container": "applies",
   "applies": [
@@ -2220,7 +2220,7 @@
     "rules": []
    }
   ],
-  "summary": "Use it once the attack hits (books v0.10.34: only a hit counts against the daily limit): Stunned for 1 round (1d4 rounds from 10th level) on a failed Fortitude save against your Class Save DC.",
+  "summary": "The Ki pool (Monk level + Wisdom modifier, minimum 1, back after a long rest). Stun Attack, used once the attack hits, spends 1 ki: Stunned for 1 round (1d4 rounds from 10th level) on a failed Fortitude save against your Class Save DC.",
   "manual": "Declare it before the roll; use it on the sheet only when the attack hits, so a miss costs nothing. A creature that saves is immune to it for the rest of the encounter (the general rule for non-damaging effects).",
   "confidence": "medium"
  },
@@ -2881,14 +2881,14 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.ranged",
-    "value": 1,
-    "when": "first bow attack each round, vs a creature an ally hit with a ranged attack since your last turn"
+    "key": "note.damage",
+    "value": "Volley Timing: your first bow hit each round on a creature an ally hit with a ranged attack since your last turn ignores its resistances."
    }
   ],
-  "summary": "Advantage on ranged attacks (first bow attack each round, vs a creature an ally hit with a ranged attack since your last turn). Shown as reminders.",
-  "manual": "",
-  "confidence": "high"
+  "summary": "A reminder on damage cards: the first bow hit each round on a creature an ally hit with a ranged attack since your last turn ignores its resistances.",
+  "manual": "Apply that hit's damage ignoring resistance.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/hxKu3MfhoHTQ9l30#1": {
   "name": "Waste-Born Patience",
@@ -3091,7 +3091,7 @@
    }
   ],
   "summary": "Advantage on saves (vs fire damage). Shown as reminders.",
-  "manual": "+2 bonus HP on Primeval Will.",
+  "manual": "Primeval Will gives bonus HP equal to three times your level (its Use gives twice: add your level more by hand).",
   "confidence": "high"
  },
  "kits/Ehk2rOsrPogqG06P#0": {
@@ -3248,8 +3248,8 @@
     "when": "Legend Lore on subjects you have formally researched or published on"
    }
   ],
-  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on). Shown as reminders. Lectured on a creature: the first attack roll any ally makes against it each round has Advantage.",
-  "manual": "Never fails on a natural 1. Lectured is meant for an ally's attack (the engine also counts yours if you attack it first); only one creature can be under your lecture at a time, so remove it from the last one.",
+  "summary": "Advantage on checks (Legend Lore on subjects you have formally researched or published on). Shown as reminders. Lectured on a creature: its first attack each round has Disadvantage.",
+  "manual": "Never fails on a natural 1. Allies' Advantage on checks to identify, recall or research it is a reminder. Lectured's Disadvantage is meant only against an ally who can hear you; only one creature can be under your lecture at a time, so remove it from the last one.",
   "confidence": "medium",
   "applies": [
    {
@@ -3259,12 +3259,17 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.against.first",
-      "value": 1
+      "key": "adv.attack.first",
+      "value": -1
+     },
+     {
+      "key": "note.check",
+      "value": "Lectured: allies of the lecturing Bard have Advantage on checks to identify, recall or research this creature."
      }
     ]
    }
-  ]
+  ],
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/GARmKRgAYwPXPANC#1": {
   "name": "Maritime Voice",
@@ -3464,8 +3469,8 @@
     "when": "Craft and Smith"
    }
   ],
-  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (Advantage on its next attack roll) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
-  "manual": "Tempered Weapon should end after the ally's next attack roll (remove it then); the daily repair.",
+  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (its next hit before your next turn deals +1d6 fire) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
+  "manual": "Remove Tempered Weapon after the ally's next hit; the daily repair.",
   "confidence": "medium",
   "applies": [
    {
@@ -3475,8 +3480,9 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack",
-      "value": 1
+      "key": "damage",
+      "value": "+1d6",
+      "when": "next hit before the tempering priest's next turn (fire)"
      }
     ]
    },
@@ -3492,7 +3498,8 @@
      }
     ]
    }
-  ]
+  ],
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/thU8s3OOLqLzyreE#0": {
   "name": "Granted Power (Chauntea)",
@@ -4409,14 +4416,14 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack",
-    "value": 1,
-    "when": "vs a creature distracted, deceived or at Disadvantage from something set up this combat"
+    "key": "note.attack",
+    "value": "Exploit Opening: a critical hit on a 19 or 20 against a creature distracted, deceived or at Disadvantage from something set up this combat."
    }
   ],
-  "summary": "Advantage on attacks (vs a creature distracted, deceived or at Disadvantage from something set up this combat). Shown as reminders.",
-  "manual": "",
-  "confidence": "medium"
+  "summary": "A reminder on attack cards: a critical hit on 19 or 20 against a creature distracted, deceived or at Disadvantage from something you set up this combat.",
+  "manual": "Count a 19 as a critical hit against such a creature.",
+  "confidence": "medium",
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/bALqpS4MeCkdNeVU#0": {
   "name": "Guardian's Reach",
@@ -5246,8 +5253,8 @@
     "when": "Craft and Smith"
    }
   ],
-  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (Advantage on its next attack roll) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
-  "manual": "Tempered Weapon should end after the ally's next attack roll (remove it then); the daily repair.",
+  "summary": "Advantage on skill checks (Craft and Smith). Shown as reminders. Tempering puts Tempered Weapon (its next hit before your next turn deals +1d6 fire) or Tempered Armour (the next attack against it has Disadvantage) on the ally.",
+  "manual": "Remove Tempered Weapon after the ally's next hit; the daily repair.",
   "confidence": "medium",
   "applies": [
    {
@@ -5257,8 +5264,9 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack",
-      "value": 1
+      "key": "damage",
+      "value": "+1d6",
+      "when": "next hit before the tempering priest's next turn (fire)"
      }
     ]
    },
@@ -5274,7 +5282,8 @@
      }
     ]
    }
-  ]
+  ],
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/r1BQaijAu1X5ZUcp#0": {
   "name": "Granted Power (Chauntea)",
@@ -6553,14 +6562,15 @@
   "container": "passive",
   "rules": [
    {
-    "key": "check.dex",
-    "value": 2,
+    "key": "adv.check.dex",
+    "value": 1,
     "when": "Parry checks"
    }
   ],
-  "summary": "+2 to Dex checks (Parry checks). Shown as reminders.",
+  "summary": "Advantage on Parry checks (meeting the attack roll already succeeds). Shown as a reminder.",
   "manual": "",
-  "confidence": "high"
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25)"
  },
  "kits/VzoYyTKhNgBr58NG#1": {
   "name": "Underclass Instinct",
@@ -10430,8 +10440,8 @@
   "from": "Ancestry",
   "container": "passive",
   "rules": [],
-  "summary": "The lineage picked when the ancestry is added becomes a feature with a Shifted switch (once per encounter, lasting the encounter): its benefit counts only while it's on (Swiftstride +15ft, Beasthide Resistance 3 to non-magical weapons; the others reminders).",
-  "manual": "Switch it off when the encounter ends; Beasthide's temporary HP by hand.",
+  "summary": "The lineage picked when the ancestry is added becomes a feature with a Shifted switch (once per encounter, lasting the encounter): its benefit counts only while it's on (Swiftstride +15ft, Beasthide Resistance 5 to the nonmagical weapon type picked for it; the others reminders).",
+  "manual": "Beasthide's temporary HP by hand.",
   "confidence": "high"
  },
  "ancestries/llnGaa0xA8flx67x": {
@@ -11018,7 +11028,7 @@
     "rules": []
    }
   ],
-  "summary": "The Channel pool. Smite is spent when you hit: extra radiant damage equal to your Paladin level, and an ally within 10ft heals your Charisma modifier (minimum 1); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
+  "summary": "The Channel pool. Smite is spent when you hit (the first hit each encounter offers it on the attack card, books v0.10.38): extra radiant damage equal to your Paladin level, and an ally within 10ft heals your Charisma modifier (minimum 1); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
   "manual": "Turn Undead's destruction and the number turned.",
   "confidence": "high"
  },
@@ -11240,5 +11250,109 @@
   "summary": "Advantage on initiative.",
   "manual": "",
   "confidence": "high"
+ },
+ "class-features/4WQMpHN5adDKtK5M": {
+  "name": "Marked Prey",
+  "from": "Ranger",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Marked Prey",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "adv.against.first.mine",
+      "value": 1
+     }
+    ]
+   }
+  ],
+  "summary": "Puts Marked Prey on the creature for the encounter: your first attack roll against it each round has Advantage (yours only).",
+  "manual": "Advantage on Track checks to follow it; one marked creature at a time, so remove it from the last one.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, K44 S3)"
+ },
+ "class-features/CLPxYJacpBOiXkr8": {
+  "name": "Ascetic Recovery",
+  "from": "Monk",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "rest.heal",
+    "value": "@cl",
+    "label": "Fast Healing"
+   }
+  ],
+  "summary": "Fast Healing: every long rest heals 1 HP per Monk level on top of the usual.",
+  "manual": "Feign Death.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, Fable M5)"
+ },
+ "class-features/UTIrytRZu4fYc46O": {
+  "name": "Wild Surge improves",
+  "from": "Sorcerer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Wild Surge improves: your second Wild Surge each day carries no Corruption risk."
+   }
+  ],
+  "summary": "A reminder on spell cards: the second Wild Surge each day has no Corruption roll.",
+  "manual": "Skip the GM's Corruption roll for it.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, Fable M5)"
+ },
+ "class-features/oJxxsvpo4WgI1u92": {
+  "name": "Wild Surge improves",
+  "from": "Sorcerer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Wild Surge improves (20th): your first two Wild Surges each day carry no Corruption risk, and once per day you may apply two Metamagic options to one spell."
+   }
+  ],
+  "summary": "A reminder on spell cards: the first two Wild Surges each day have no Corruption roll; two Metamagic options on one spell once a day (its use).",
+  "manual": "Skip the GM's Corruption roll for them.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, Fable M5)"
+ },
+ "class-features/AGdLY2eRBPdnVVg2": {
+  "name": "First Blood",
+  "from": "Assassin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "First Blood: Sneak Attack against a creature that has not yet acted this encounter deals one extra die."
+   }
+  ],
+  "summary": "A reminder on damage cards; its Use rolls the extra die.",
+  "manual": "Only against a creature that hasn't acted yet this encounter.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, Fable M6)"
+ },
+ "spells/98vGde8GGcuLwfDT": {
+  "name": "Ghoul Touch",
+  "from": "Spell L2",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Ghoul Touch",
+    "target": "target",
+    "rounds": "max(1, floor(@cl / 3))",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Paralysed for 1 round per three levels (minimum 1), on a touch attack hit and a failed Fortitude save.",
+  "manual": "It repeats the save at the end of each of its turns, ending the spell on a success (remove the effect then); the stench's Sickened.",
+  "confidence": "high",
+  "approved": "Books v0.10.38 (B-F25, K44 S6)"
  }
 }

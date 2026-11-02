@@ -21,11 +21,15 @@ SHIFTED = {
     "Longtooth": [{"key": "note.attack", "value": "Longtooth: once per round, when you hit a creature an ally also threatens, it falls Prone if it is no larger than you (Fortitude save, Ancestry Save DC, Strength, negates).", "when": "", "label": ""}],
     "Wildhunt": [{"key": "adv.skill", "value": "1", "when": "Perception or Survival involving scent or tracking", "label": ""}],
     "Swiftstride": [{"key": "speed", "value": "15", "when": "", "label": ""}],
-    "Beasthide": [{"key": "resist", "value": "non-magical 3", "when": "", "label": ""},
-                  {"key": "note.init", "value": "Beasthide: temporary HP equal to your Constitution modifier each time you shift.", "when": "", "label": ""}],
+    # Books v0.10.38 (K45): Resistance 5 to one nonmagical weapon type, chosen when the lineage is taken (BEASTHIDE).
+    "Beasthide": [{"key": "note.init", "value": "Beasthide: temporary HP equal to your Constitution modifier each time you shift.", "when": "", "label": ""}],
     "Gorebrute": [{"key": "note.attack", "value": "Gorebrute: move through an enemy's space; it makes a Fortitude save (Ancestry Save DC, Strength) or is knocked prone (once per creature per turn, up to one size larger).", "when": "", "label": ""}],
     "Sslyth": [{"key": "note.attack", "value": "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned.", "when": "", "label": ""}],
 }
+# The type Beasthide resists, picked when the lineage is taken (the feature's own choice, item-models.mjs optionChoice).
+BEASTHIDE = {"label": "Resistance", "max": "", "value": [], "options": [
+    {"name": t.capitalize(), "text": f"Resistance 5 to nonmagical {t} while shifted.", "rules": [{"key": "resist", "value": f"non-magical-{t} 5", "when": "", "label": ""}]}
+    for t in ("bludgeoning", "piercing", "slashing")]}
 LABELS = {"Subtypes": "Subtype", "Bloodlines": "Bloodline", "Castes": "Caste", "Lineages": "Lineage"}
 DAMAGE = "fire|cold|lightning|thunder|acid|poison|necrotic|radiant|psychic|force"
 
@@ -117,6 +121,8 @@ def build():
                 o["rules"] = SHIFTED.get(key, []) + [{"key": "toggle.ends", "value": "encounter", "when": "", "label": ""}]
                 o["toggle"] = True
                 o["uses"] = {"value": 1, "max": 1, "per": "encounter", "formula": ""}
+                if key == "Beasthide":
+                    o["optionChoice"] = BEASTHIDE
         s["choice"] = choice
         json.dump(d, open(f, "w"), ensure_ascii=False, indent=1)
         n += 1

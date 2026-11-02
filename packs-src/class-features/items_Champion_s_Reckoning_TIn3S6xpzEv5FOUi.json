@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> A foe that fails its save against your Challenge is also Cowed: it cannot willingly move away from you unless it succeeds on a Wisdom check each round.</li><li>A creature immune to fear is immune to this effect</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> A foe that fails its save against your Challenge is also Cowed: it cannot willingly move away from you unless it succeeds on a Wisdom check against your Class Save DC each round.</li><li>A creature immune to fear is immune to this effect</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "rules": [
      {
       "key": "note.save",
-      "value": "Cowed: it can't willingly move away from the Knight unless it succeeds on a Wisdom check each round.",
+      "value": "Cowed: it can't willingly move away from the Knight unless it succeeds on a Wisdom check against the Knight's Class Save DC each round.",
       "when": "",
       "label": ""
      }

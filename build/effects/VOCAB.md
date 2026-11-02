@@ -53,10 +53,15 @@ Advantage (+1) / Disadvantage (-1), on the creature's own rolls:
 - `adv.check`, `adv.check.str` … `adv.check.cha`, `adv.skill`
 - `adv.init`, `adv.luck`, `adv.concentration`
 
+After a long rest:
+- `rest.heal` (number or @-formula: HP regained on top of the usual; the Monk's Fast Healing, `@cl`; books v0.10.38)
+
 Against this creature (when it is the target):
 - `adv.against` (+1: attacks against it have Advantage; -1: Disadvantage), `adv.against.melee`, `adv.against.ranged`
 - `adv.against.first` (-1: the first attack against it each round has Disadvantage; books v0.10.26, K15), `adv.against.first.melee`
   (the first melee attack); with a number rule `against.first.count` (2: the first two attacks)
+- `adv.against.first.mine` (+1: the first attack each round against it by the creature whose feature put the effect
+  there has Advantage; nobody else's; books v0.10.38, the Ranger's Marked Prey)
 - `crit.against.close` (1: melee hits from within 5ft are critical)
 
 Automatic failure (value 1):

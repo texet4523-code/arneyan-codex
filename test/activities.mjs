@@ -125,11 +125,11 @@ assert.equal((await fire(dom, 12, { name: "Combat Dominance", cls: "Fighter", it
 assert.equal((await fire(dom, 4, { name: "Combat Dominance", cls: "Fighter", items: [sword] })).length, 2);
 game.user.targets = new Set();
 
-/* Extra Attack: two attacks, the second at Disadvantage, every class that has it. */
+/* Extra Attack: two attacks, the second at Disadvantage that no Advantage cancels (books v0.10.38), every class that has it. */
 for (const d of built.filter(i => /^Extra Attack/.test(i.name))) {
   assert.equal(d.system.activities?.[0]?.kind, "attacks", `${d.name} (${d.system.className}) attacks`);
   assert.equal(d.system.activities[0].count, "2");
-  assert.equal(d.system.activities[0].disadvantage, "rest");
+  assert.equal(d.system.activities[0].disadvantage, "extra");
 }
 
 /* Primeval Instincts: books v0.10.26 (K15) give Advantage on physical checks in extreme circumstances, not +4: no
@@ -297,9 +297,9 @@ assert.equal(fl.uses.per, "day");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
 const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
   "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
-  "Stun Attack|Monk": "@cl", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
-  // Books v0.10.25 (R-B7): the pools.
-  "Performance (Charisma)|Bard": "max(2, @cl + @cha.mod)", "Lay on Hands|Paladin": "2 * @cl",
+  "Ki|Monk": "max(1, @cl + @wis.mod)", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
+  // Books v0.10.25 (R-B7): the pools (books v0.10.38, K45: Performance 3 more from 4th; the Monk's Ki).
+  "Performance (Charisma)|Bard": "max(2, @cl + @cha.mod) + 3 * min(1, floor(@cl / 4))", "Lay on Hands|Paladin": "2 * @cl",
   "Command (Charisma)|Knight": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))",
   "Channel Divinity (Charisma)|Paladin": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }

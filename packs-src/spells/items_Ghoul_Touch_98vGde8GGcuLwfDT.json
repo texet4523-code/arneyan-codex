@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one living creature is <strong>Paralysed</strong> for <strong>1d6+2</strong> rounds (touch attack). While <strong>Paralysed</strong> it gives off a stench: any other living creature that starts its turn within <strong>10ft</strong> makes a <strong>Fortitude save</strong> or is <strong>Sickened</strong> until it starts a turn outside the stench.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "description": "<p>Touch; one living creature is <strong>Paralysed</strong> for <strong>1 round</strong> per three levels (minimum 1); <strong>Fortitude negates</strong>, and it repeats the save at the end of each of its turns, ending the spell on a success (touch attack, then the save). While <strong>Paralysed</strong> it gives off a stench: any other living creature that starts its turn within <strong>10ft</strong> makes a <strong>Fortitude save</strong> or is <strong>Sickened</strong> until it starts a turn outside the stench.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,8 +24,8 @@
   "concentration": false,
   "ritual": false,
   "prepared": false,
-  "save": "",
-  "saveEffect": "",
+  "save": "fort",
+  "saveEffect": "Negates",
   "damage": "",
   "damageType": "",
   "reversible": false,
@@ -39,7 +39,18 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Ghoul Touch",
+    "target": "target",
+    "rounds": "max(1, floor(@cl / 3))",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ]
  },
  "effects": [],
  "folder": "bOqH8dr0GIRGNGw4",

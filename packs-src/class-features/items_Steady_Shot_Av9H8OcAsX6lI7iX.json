@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> While Dead Eye applies, the first attack that hits each round deals +<strong>1d6</strong> bonus damage (+<strong>2d6</strong> at 10th level, +<strong>3d6</strong> at 15th level).</li><li><strong>Stacks with Dead Aim; both bonuses are added on the same shot</strong></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> While Dead Eye applies, the first attack that hits each round deals +<strong>1d6</strong> bonus damage.</li><li><strong>Stacks with Dead Aim; both bonuses are added on the same shot</strong></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -48,66 +48,12 @@
     "noDamage": false,
     "effect": "",
     "spendAny": false
-   },
-   {
-    "name": "Steady Shot (2d6)",
-    "kind": "damage",
-    "formula": "2d6",
-    "damageType": "",
-    "ability": "",
-    "save": "",
-    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
-    "minLevel": 10,
-    "maxLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": false,
-    "noDamage": false,
-    "effect": "",
-    "spendAny": false
-   },
-   {
-    "name": "Steady Shot (3d6)",
-    "kind": "damage",
-    "formula": "3d6",
-    "damageType": "",
-    "ability": "",
-    "save": "",
-    "text": "While Dead Eye applies: the first attack that hits each round. Stacks with Dead Aim.",
-    "minLevel": 15,
-    "maxLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "",
-    "removeConditions": false,
-    "bonus": "",
-    "count": "",
-    "weapons": "",
-    "disadvantage": "",
-    "disUntil": 0,
-    "damageBonus": "",
-    "noStack": "",
-    "targetLevel": "",
-    "reaction": false,
-    "noDamage": false,
-    "effect": "",
-    "spendAny": false
    }
   ],
   "rules": [
    {
     "key": "damage.ranged",
-    "value": "+(min(3,floor(@cl/5)))d6",
+    "value": "+1d6",
     "when": "first hit each round while Dead Eye applies",
     "label": ""
    }

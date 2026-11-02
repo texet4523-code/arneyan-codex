@@ -136,7 +136,7 @@ export async function applyItemEffect(item, index, cl, actors) {
   if (others.length) game.socket.emit(SOCKET, { action: "effect", actorUuids: others.map(a => a.uuid), itemUuid: item.uuid, index, cl, casterUuid: caster?.uuid });
   const rounds = data.flags?.[SYS]?.rounds;
   if (mine.length) report({ source: caster?.name ?? game.user.name, what: item.name, speaker: ChatMessage.getSpeaker({ actor: caster }) },
-    mine.map(a => `${data.name} on ${a.name}${rounds ? ` for ${rounds} round${rounds === 1 ? "" : "s"}` : ""}${data.statuses?.length ? ` (${data.statuses.map(s => ARNEYAN.conditions[s]?.name ?? s).join(", ")})` : ""}`), "wand-sparkles");
+    mine.map(a => (data.statuses?.length && !created.some(e => e.parent?.uuid === a.uuid)) ? `${a.name} is immune to ${data.name}` : `${data.name} on ${a.name}${rounds ? ` for ${rounds} round${rounds === 1 ? "" : "s"}` : ""}${data.statuses?.length ? ` (${data.statuses.map(s => ARNEYAN.conditions[s]?.name ?? s).join(", ")})` : ""}`), "wand-sparkles");
 }
 
 async function linkToConcentration(caster, item, uuids) {
@@ -340,6 +340,17 @@ function onRender(message, html) {
       misses = res.filter(r => !r.hit).map(({ name, uuid }) => ({ name, uuid }));
     }
     return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "" });
+  });
+
+  // Smite on the first hit of the encounter (books v0.10.38, K44 S4): the Paladin's Channel, spent now.
+  on(".arn-smite", async (ev, btn) => {
+    const actor = flags.actorUuid ? await fromUuid(flags.actorUuid) : ChatMessage.getSpeakerActor(message.speaker);
+    const item = actor?.items.get(btn.dataset.itemId);
+    if (!item) return ui.notifications.warn("That feature is no longer on the sheet.");
+    if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner can Smite.`);
+    const act = item.availableActivities.find(a => a.name === "Smite");
+    if (!act) return ui.notifications.warn(`${item.name} has no Smite.`);
+    return item._useActivity(act, ev);
   });
 
   // A damage roll that should have been a critical, or that needs its conditional extra damage: roll it again.

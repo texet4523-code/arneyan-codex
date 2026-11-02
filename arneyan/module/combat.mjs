@@ -294,6 +294,27 @@ export function firstAgainst(target, { ranged = false, name = "" } = {}) {
   return out;
 }
 
+/**
+ * Advantage on the attacker's own first attack each round against a creature it marked (`adv.against.first.mine` on
+ * an effect the attacker's feature put there: the Ranger's Marked Prey, books v0.10.38). Other attackers get nothing.
+ */
+export function markedFirst(attacker, target, { name = "" } = {}) {
+  const out = { values: [], adv: [], dis: [] };
+  if (!attacker?.uuid || !target) return out;
+  const fx = [...(target.effects?.contents ?? target.effects ?? [])].filter(e => !e.disabled && String(e.origin ?? "").startsWith(`${attacker.uuid}.`)
+    && (e.flags?.[SYS]?.rules ?? []).some(r => r.key === "adv.against.first.mine" && Number(r.value)));
+  if (!fx.length) return out;
+  const combat = combatFor(attacker);
+  const stamp = combat?.started ? `${combat.id}.${combat.round}` : null;
+  const seen = attacker.getFlag?.(SYS, "firstOn");
+  const used = stamp && seen?.stamp === stamp ? (seen.uuids ?? []) : [];
+  if (stamp && used.includes(target.uuid)) return out;
+  if (stamp && attacker.isOwner) attacker.setFlag(SYS, "firstOn", { stamp, uuids: [...used, target.uuid] });
+  out.values.push(1);
+  out.adv.push(`${name || target.name}: ${fx[0].name} (your first attack on it this round)`);
+  return out;
+}
+
 /** Rolls already made this round: is this the first melee attack against that creature (in the encounter it's in)? */
 function firstMeleeAgainst(actor) {
   return attacksAgainst(actor, { melee: true }) === 0;
@@ -359,7 +380,7 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   if (offhand) {
     if (!isLight(item)) ui.notifications.warn(`${item.name} isn't Light: only a Light weapon can be used in the off-hand.`);
     if (actor.items?.some?.(i => i.type === "armour" && i.system.category === "shield" && i.system.equipped)) out.notes.push("Dual wielding needs a free hand for each weapon: not while holding a shield.");
-    if (!actor.system?.mods?.has?.("no.offhand.dis")) out.adv.push({ values: [-1], adv: [], dis: ["Off-hand"] });
+    if (!actor.system?.mods?.has?.("no.offhand.dis")) out.adv.push({ values: [-2], adv: [], dis: ["Off-hand (no Advantage cancels it)"] });
     out.notes.push("Off-hand attack: adds no attribute modifier to damage.");
     if (actor.effects?.some?.(e => !e.disabled && ["light", "finesse"].includes(e.flags?.[SYS]?.defensive))) out.notes.push("Fighting defensively with the off-hand weapon: it can't also attack this round.");
   }

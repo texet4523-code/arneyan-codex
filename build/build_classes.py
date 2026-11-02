@@ -94,7 +94,8 @@ def label_of(p):
             lead += r.text
         else:
             break
-    m = re.match(r"^\s*([^:]{1,60}?)\s*:\s*$", lead) or re.match(r"^\s*([^:]{1,60}?):", p.text)
+    # A bold lead that ends with a colon is the whole name, colons and all ("Ki: Body of Iron:", books v0.10.38).
+    m = re.match(r"^\s*(.{1,60}?)\s*:\s*$", lead) or re.match(r"^\s*([^:]{1,60}?):", p.text)
     if not m:
         return None, None
     rest = p.text.strip()[len(m.group(0).strip()):].strip() if p.text.strip().startswith(m.group(0).strip()) else p.text.split(":", 1)[1].strip()

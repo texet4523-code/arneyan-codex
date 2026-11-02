@@ -1,4 +1,4 @@
-"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance); v0.10.32, board B-F19 (K28, K29), 28 Oct 2026; v0.10.33, board B-F20 (R-B14, K30); v0.10.34, board B-F21 (K31 Monk), 29 Oct 2026; v0.10.35, board B-F22 (K33, K34), 1 Nov 2026; v0.10.37, board B-F23 and B-F24 (K35 to K43), 2 Nov 2026).
+"""The Handbook from the Builder's Markdown sources (books v0.10.11, board F5; v0.10.13, board F10; v0.10.15, board B-F5; v0.10.16, board F-B9; v0.10.18, board F-B10; v0.10.20, board B-F7; v0.10.23, board B-F10; v0.10.24, board B-F11, 27 Oct 2026; v0.10.27, board B-F12 to B-F14; v0.10.30, board B-F15 to B-F17; v0.10.31, board B-F18 (K25 Last Chance); v0.10.32, board B-F19 (K28, K29), 28 Oct 2026; v0.10.33, board B-F20 (R-B14, K30); v0.10.34, board B-F21 (K31 Monk), 29 Oct 2026; v0.10.35, board B-F22 (K33, K34), 1 Nov 2026; v0.10.37, board B-F23 and B-F24 (K35 to K43); v0.10.38, board B-F25 (K44, K45), 2 Nov 2026).
 
 The Builder sends each Handbook book as Markdown converted by pandoc, with the tables as HTML. The readers here were
 written for the older Word and Markdown copies, so each book is turned back into the shape they read:
@@ -8,15 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01037/HB_v0.10.37_*.md and MT_v0.10.37_sources.txt (md5s on the board, B-F12 to B-F24). Book II
-and Book III are the Builder's v0.10.37, Book I and the M&T sources (split into /tmp/hb/mm) its v0.10.36; Books IV and V
-are the v0.10.20 copies under the new name (Atonement patched below). Output: /tmp/hb/v01011.
+Sources: /tmp/hb/src_v01038/HB_v0.10.38_*.md (md5s on the board, B-F12 to B-F25). Books I to IV are the Builder's
+v0.10.38, the M&T sources (split into /tmp/hb/mm) its v0.10.36; Book V is the v0.10.20 copy under the new name.
+Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01037"
+SRC = "/tmp/hb/src_v01038"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.37"
+VERSION = "0.10.38"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -41,12 +41,8 @@ def to_docx(md_path, docx_path):
     os.remove(html)
 
 
-# Book IV changed in v0.10.20 only in Atonement (m28, HB p.154). The Builder sent the new text on the board (B-F7)
-# rather than a new Book IV Markdown, so the v0.10.18 copy gets it here.
-SPELL_PATCHES = [(
-    "Ends any alignment penalty or loss of class features and spellcasting caused by its wilful acts, and restores an alignment changed by magic.",
-    "A god's servant moves one step towards Favoured (see Divine Favour in Book II); anyone else loses an Evil Allegiance from profane acts. It also restores an Outlook changed by magic.",
-)]
+# Book IV's Atonement (m28) was patched here until the Builder sent a new Book IV (v0.10.38, B-F25), which has it.
+SPELL_PATCHES = []
 
 
 # Book I's Fighter Manoeuvre Mastery tiers (2nd and 9th, B7) were patched here until the Builder sent a new Codex
@@ -54,8 +50,20 @@ SPELL_PATCHES = [(
 CODEX_PATCHES = []
 
 
+def joined(text):
+    """Pandoc's "> " continuation lines straight after a list item's line are the item's own words, not a quote
+    (Book III since v0.10.32, Book IV since v0.10.38). A nested sub-point's first line ("    > " after a blank line)
+    keeps its marker; its later lines are joined to it (pandoc reads them as the same paragraph either way)."""
+    lines = text.split("\n")
+    for i in range(1, len(lines)):
+        m = re.match(r"^( +)> (.*)$", lines[i])
+        if m and lines[i - 1].strip():
+            lines[i] = m.group(1) + m.group(2)
+    return "\n".join(lines)
+
+
 def patched(part, patches):
-    text = open(src(part), encoding="utf-8").read()
+    text = joined(open(src(part), encoding="utf-8").read())
     for old, new in patches:
         if new in text:
             continue
@@ -78,15 +86,7 @@ def prepare():
     shutil.copyfile(src("V_Catalogue"), SHOP)
     for f in glob.glob(os.path.join(CLASSES, "*")):
         os.remove(f)
-    # v0.10.32 wraps long list items with "> " continuation lines straight after the item's line: they are the item's
-    # own words, not a quote. A nested sub-point's first line ("    > " after a blank line) keeps its marker; its later
-    # lines are joined to it (pandoc reads them as the same paragraph either way).
-    lines = open(src("III_Classes"), encoding="utf-8").read().split("\n")
-    for i in range(1, len(lines)):
-        m = re.match(r"^( +)> (.*)$", lines[i])
-        if m and lines[i - 1].strip():
-            lines[i] = m.group(1) + m.group(2)
-    classes_md = "\n".join(lines)
+    classes_md = joined(open(src("III_Classes"), encoding="utf-8").read())
     parts = re.split(r"^<!-- CLASS: (.+?) -->\s*$", classes_md, flags=re.M)
     names = []
     for name, body in zip(parts[1::2], parts[2::2]):

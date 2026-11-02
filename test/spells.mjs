@@ -77,7 +77,7 @@ for (const w of ["Case Target (Wisdom)", "Climb (Dexterity)", "Disguise (Charism
   assert.ok(sk.includes(w), `Assassin's Skills: ${w}`);
 }
 const assassin = pack("classes").find(d => d.name === "Assassin");
-assert.deepEqual(assassin.system.features.filter(f => f.level === 1).map(f => f.name), ["Class Skills", "Death Attack", "Sneak Attack", "Killer's Precision", "Assassin's Skills"]);
+assert.deepEqual(assassin.system.features.filter(f => f.level === 1).map(f => f.name), ["Class Skills", "Death Attack", "Sneak Attack", "First Blood", "Killer's Precision", "Assassin's Skills"]);
 assert.ok(!assassin.system.description.includes("<h4>GM rolls secretly</h4>"));
 
 console.log("OK spells");

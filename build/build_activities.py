@@ -47,7 +47,7 @@ def clean(a):
     out["spendAny"] = bool(out["spendAny"])
     for k in STRS:
         out[k] = str(out[k] if out[k] is not None else "")
-    if out["disadvantage"] not in ("", "rest", "all"):
+    if out["disadvantage"] not in ("", "rest", "all", "extra"):
         out["disadvantage"] = ""
     return out
 
@@ -66,7 +66,7 @@ def apply(system, entry, text):
         n = int(entry["uses"].get("max", 0))
         # A count the text works out ("Dexterity modifier times per day, minimum 1"): the formula sets the maximum on a
         # character (item-models.mjs usesField); `max` is the fallback shown in the compendium.
-        pool = (system.get("uses") or {}).get("pool", "")
+        pool = entry["uses"].get("pool", "") or (system.get("uses") or {}).get("pool", "")
         system["uses"] = {"value": n, "max": n, "per": entry["uses"].get("per", "") if n else "",
                           "formula": str(entry["uses"].get("formula", "") or ""), **({"pool": pool} if pool else {})}
     acts = [clean(a) for a in (entry or {}).get("activities", []) if a.get("name")]

@@ -1083,7 +1083,9 @@ export async function ancestrySetup(actor, anc, { step = "", replacing = false }
   const create = (s.traitList ?? []).filter(t => !(res.family && t.name === "Family")).map(t => grant(t.name, t.text));
   // A choice that only counts while switched on (a Shifter's lineage while shifted) comes as a switch, with its uses.
   if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
-    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}) }));
+    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}),
+      // Its own pick (Beasthide's resisted type, books v0.10.38): asked when it arrives.
+      ...(o.optionChoice ? { optionChoice: foundry.utils.deepClone(o.optionChoice) } : {}) }));
   if (res.family) create.unshift(grant(`Family: ${res.family}`, `Born into a ${res.family} family: you speak its language, and its people treat you as one of their own once they look past the marks.`));
   if (create.length) await actor.createEmbeddedDocuments("Item", create, { arneyanGrant: true });
 

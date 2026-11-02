@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Uses per day equal to your Charisma modifier + 2 (minimum 3), +1 at 5th level and again at 15th (see the Paladin Progression Table). Your Channel options:</li><li><strong>Smite (the default):</strong> spend a use when you hit (not before rolling). The hit deals extra radiant damage equal to your Paladin level, and one ally within <strong>10ft</strong> regains HP equal to your Charisma modifier (minimum 1). Smite can be used against any foe, regardless of alignment</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Uses per day equal to your Charisma modifier + 2 (minimum 3), +1 at 5th level and again at 15th (see the Paladin Progression Table). Your Channel options:</li><li><strong>Smite (the default):</strong> spend a use when you hit (not before rolling).</li><li>The hit deals extra radiant damage equal to your Paladin level, and one ally within <strong>10ft</strong> regains HP equal to your Charisma modifier (minimum 1).</li><li>Your first hit each encounter Smites automatically unless you choose to save the use.</li><li>Smite can be used against any foe, regardless of alignment</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "radiant",
     "ability": "",
     "save": "",
-    "text": "The default Channel, spent when you hit (not before rolling): the hit deals extra radiant damage equal to your Paladin level, against any foe regardless of alignment. Then roll the ally's healing below (no use spent).",
+    "text": "The default Channel, spent when you hit (not before rolling): the hit deals extra radiant damage equal to your Paladin level, against any foe regardless of alignment. Your first hit each encounter Smites automatically unless you choose to save the use (the attack card's Smite button). Then roll the ally's healing below (no use spent).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

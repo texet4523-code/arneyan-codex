@@ -59,9 +59,10 @@ const mail = { type: "armour", name: "Chain Mail", system: { category: "medium",
 const armoured = monkAt(7, 14, [mail]);
 assert.equal(armoured.system.attributes.ac.value, 10 + 5 + Math.min(2, armoured.system.abilities.dex.mod), "in armour: the armour's AC, not the table");
 // Unarmed dice from the table (the actor document picks them; here, the ModSet).
-assert.equal(m1.system.mods.dice("unarmed.dice").value, "1d4");
+// Books v0.10.38 (Fable M8): 1d6 at 1st and 2nd, 1d8 at 3rd to 6th.
+assert.equal(m1.system.mods.dice("unarmed.dice").value, "1d6");
 assert.equal(monkAt(2).system.mods.dice("unarmed.dice").value, "1d6");
-assert.equal(monkAt(4).system.mods.dice("unarmed.dice").value, "1d8");
+assert.equal(monkAt(3).system.mods.dice("unarmed.dice").value, "1d8");
 assert.equal(m7.system.mods.dice("unarmed.dice").value, "1d10");
 
 /* Uses that step up with level. */
@@ -71,7 +72,8 @@ assert.deepEqual([1, 10, 20].map(l => usesAt("Grit", "Gunslinger", l)), [1, 2, 3
 // Books v0.10.25 (R-B7): the pools. Performance: Bard level + Charisma (minimum 2); Command: 1 + Charisma (minimum 2),
 // +1 at 6th and 12th; Channel Divinity: Charisma + 2 (minimum 3), +1 at 5th and 15th; Lay on Hands: 2 HP a level.
 const poolAt = (name, cls, lvl, cha) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl, cha: { mod: cha } }, 1);
-assert.deepEqual([[1, 0], [1, 3], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 9]);
+// Books v0.10.38 (K45): 3 more from 4th level.
+assert.deepEqual([[1, 0], [1, 3], [3, 2], [4, 2], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 5, 9, 12]);
 assert.deepEqual([[1, 0], [1, 3], [6, 3], [12, 3]].map(([l, c]) => poolAt("Command (Charisma)", "Knight", l, c)), [2, 4, 5, 6]);
 assert.deepEqual([[1, 0], [1, 2], [5, 2], [15, 2]].map(([l, c]) => poolAt("Channel Divinity (Charisma)", "Paladin", l, c)), [3, 4, 5, 6]);
 assert.equal(poolAt("Lay on Hands", "Paladin", 7, 0), 14);

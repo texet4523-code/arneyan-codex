@@ -401,7 +401,9 @@ async function ancestryGrants(actor, anc, { choice = "", family = "" } = {}) {
   const create = (s.traitList ?? []).filter(t => !(family && t.name === "Family")).map(t => grant(t.name, t.text));
   // A choice that only counts while switched on (a Shifter's lineage while shifted): a switch with its uses, as the ancestry window gives it.
   if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
-    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}) }));
+    { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}),
+      // Its own pick (Beasthide's resisted type, books v0.10.38): asked when it arrives.
+      ...(o.optionChoice ? { optionChoice: foundry.utils.deepClone(o.optionChoice) } : {}) }));
   if (family && s.family) create.unshift(grant(`Family: ${family}`, `Born into a ${family} family: you speak its language, and its people treat you as one of their own once they look past the marks.`));
   if (create.length) await actor.createEmbeddedDocuments("Item", create, quiet());
   await anc.update({ name: label, [`flags.${SYS}.ancestry`]: { choice: o?.name ?? "", family: s.family ? family : "", applied: {}, moved: {} } }, quiet());

@@ -205,10 +205,10 @@ const druid = makeActor(CharacterData, "character", { abilities: { wis: { value:
 assert.equal(druid.system.mods.damage("spell.damage").length, 0, "no bonus on the roll");
 assert.ok(druid.system.mods.notesFor("damage").some(n => n.includes("Verdant Power") && n.includes("one target")), "a note on the damage card");
 
-/* ---------------- 9. Stun Attack: 1 round, 1d4 from 10th ---------------- */
-const stun = byName(packItems("class-features"), "Stun Attack", "Monk").system;
+/* ---------------- 9. Stun Attack: 1 round, 1d4 from 10th (the Ki pool's default from books v0.10.38) ---------------- */
+const stun = byName(packItems("class-features"), "Ki", "Monk").system;
 assert.equal(stun.applies[0].rounds, "1:1, 10:1d4");
-assert.equal(stun.uses.formula, "@cl", "once per Monk level a day");
+assert.equal(stun.uses.formula, "max(1, @cl + @wis.mod)", "ki: Monk level + Wisdom modifier");
 assert.equal(E.byLevelTable("1:1, 10:1d4", 9), "1");
 assert.equal(E.byLevelTable("1:1, 10:1d4", 10), "1d4");
 assert.equal(E.byLevelTable(3, 10), 3, "not a table: as it is");

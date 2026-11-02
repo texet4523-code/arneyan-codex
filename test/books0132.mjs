@@ -66,7 +66,8 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
   assert.ok(di.find(a => a.name.endsWith("divine might")).text.includes("until the end of your turn"));
   assert.ok(di.find(a => a.name.endsWith("halve damage")).text.includes("until the start of your next turn") && di.find(a => a.name.endsWith("halve damage")).reaction);
   assert.ok(!di.some(a => /for 1 round|this round/.test(a.text)));
-  assert.ok(feat("Sorcerer's Spark", "Sorcerer").system.activities[0].text.startsWith("For the encounter"));
+  // Books v0.10.38: Sorcerer's Spark is gone (Wild Surge improves); Marked Prey still lasts the encounter.
+  assert.ok(!features.some(f => f.name === "Sorcerer's Spark"));
   assert.ok(feat("Marked Prey", "Ranger").system.activities[0].text.includes("for the encounter"));
   for (const k of ["Deity: Helm (The Vigilant End) (Cleric)", "Deity: Helm (The Vigilant End) (Paladin)"]) assert.equal(kit(k).system.features[0].applies[0].rounds, "encounter");
 }

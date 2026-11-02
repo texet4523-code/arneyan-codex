@@ -320,7 +320,9 @@ ARNEYAN.ruleKeys = {
     // Passive awareness (books v0.10.10, K2): a flat bonus; surprise: added to it only to notice an ambush;
     // surprise.against: taken off the targets' passive awareness when this creature is among the ambushers;
     // surprise.tier: its Hide counts that many tiers higher against creatures it ambushes (the Assassin's Surprise).
-    "awareness", "surprise", "surprise.against", "surprise.tier"],
+    "awareness", "surprise", "surprise.against", "surprise.tier",
+    // HP regained on top of the usual after a long rest (the Monk's Fast Healing, books v0.10.38).
+    "rest.heal"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).
@@ -329,7 +331,7 @@ ARNEYAN.ruleKeys = {
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration",
     "adv.awareness", "adv.surprise"],
-  "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "adv.against.first", "adv.against.first.melee", "crit.against.close"],
+  "Against this creature": ["adv.against", "adv.against.melee", "adv.against.ranged", "adv.against.first", "adv.against.first.melee", "adv.against.first.mine", "crit.against.close"],
   "Automatic failure": ["fail.save.fort", "fail.save.ref", "fail.save.will", "fail.check.str", "fail.check.dex", "fail.check.con", "fail.check.int", "fail.check.wis", "fail.check.cha"],
   "Traits": ["resist", "immune", "vuln", "sense"],
   "Reminders": ["note.attack", "note.damage", "note.save", "note.check", "note.skill", "note.spell", "note.init"]

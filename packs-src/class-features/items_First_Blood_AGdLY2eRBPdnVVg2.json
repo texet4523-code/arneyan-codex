@@ -1,0 +1,71 @@
+{
+ "_id": "AGdLY2eRBPdnVVg2",
+ "_key": "!items!AGdLY2eRBPdnVVg2",
+ "name": "First Blood",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your Sneak Attack against a creature that has not yet acted this encounter deals one extra die.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Assassin",
+  "activities": [
+   {
+    "name": "First Blood (1d6)",
+    "kind": "damage",
+    "formula": "1d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "With your Sneak Attack against a creature that has not yet acted this encounter: one extra die.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "First Blood: Sneak Attack against a creature that has not yet acted this encounter deals one extra die.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

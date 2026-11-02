@@ -40,7 +40,8 @@ function prettyTraits(t) {
     const s = String(v);
     if (s.startsWith("condition:")) return ARNEYAN.conditions[s.slice(10)]?.name ?? s.slice(10);
     const [w, ...rest] = s.split(/\s+/);
-    const names = { "weapons": "weapons", "non-magical": "non-magical weapons", "non-silvered": "non-magical, non-silvered weapons", "non-adamantine": "non-magical, non-adamantine weapons" };
+    const names = { "weapons": "weapons", "non-magical": "non-magical weapons", "non-silvered": "non-magical, non-silvered weapons", "non-adamantine": "non-magical, non-adamantine weapons",
+      "non-magical-bludgeoning": "non-magical bludgeoning", "non-magical-piercing": "non-magical piercing", "non-magical-slashing": "non-magical slashing" };
     return names[w] ? [names[w], ...rest].join(" ") : s;
   };
   return { ...t, resist: t.resist.map(word), immune: t.immune.map(word), vuln: t.vuln.map(word) };

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Craft and Smith checks.</p><ul><li>Once/day: repair a broken weapon or armour to full functionality instantly.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next attack roll before your next turn has <strong>Advantage</strong>, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508957\">Brigh</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Craft and Smith checks.</p><ul><li>Once/day: repair a broken weapon or armour to full functionality instantly.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next hit before your next turn deals +<strong>1d6</strong> fire damage, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508957\">Brigh</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Brigh)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Craft and Smith checks.</p><ul><li>Once/day: repair a broken weapon or armour to full functionality instantly.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next attack roll before your next turn has <strong>Advantage</strong>, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
+    "description": "<p><strong>Advantage</strong> on Craft and Smith checks.</p><ul><li>Once/day: repair a broken weapon or armour to full functionality instantly.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next hit before your next turn deals +<strong>1d6</strong> fire damage, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -57,7 +57,7 @@
       "damageType": "",
       "ability": "",
       "save": "",
-      "text": "Once per round, as part of your action, by touch: the ally's next attack roll before your next turn has Advantage.",
+      "text": "Once per round, as part of your action, by touch: the ally's next hit before your next turn deals +1d6 fire damage.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -123,9 +123,9 @@
       "statuses": [],
       "rules": [
        {
-        "key": "adv.attack",
-        "value": "1",
-        "when": "",
+        "key": "damage",
+        "value": "+1d6",
+        "when": "next hit before the tempering priest's next turn (fire)",
         "label": ""
        }
       ]
