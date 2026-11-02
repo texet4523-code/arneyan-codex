@@ -1756,9 +1756,10 @@ export class ArneyanItem extends Item {
     const diceFor = String(act.formula ?? "").split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
     const out = [];
     for (let i = 0; i < n; i++) {
-      const dis = disOn && (act.disadvantage === "all" || (["rest", "extra"].includes(act.disadvantage) && i > 0));
-      // "extra": the Extra Attack's Disadvantage, which Advantage from any source never cancels (books v0.10.38, K44).
-      const fixed = act.disadvantage === "extra";
+      const dis = disOn && (["all", "fixed"].includes(act.disadvantage) || (["rest", "extra"].includes(act.disadvantage) && i > 0));
+      // "extra" (after the first) and "fixed" (every one): an extra attack's Disadvantage, which Advantage from any
+      // source never cancels (books v0.10.38, K44; F-R4: Flèche and Flowing Strikes against the creature just hit too).
+      const fixed = ["extra", "fixed"].includes(act.disadvantage);
       const msg = await actor.rollAttack(weapon, event, {
         adv: dis ? { values: [fixed ? -2 : -1], adv: [], dis: [`${this.name}: attack ${i + 1}${fixed ? " (no Advantage cancels it)" : ""}`] } : null,
         targets: aim[i], label: `${act.name || this.name} ${i + 1} of ${n}${diceFor[i] ? ` (${diceFor[i]})` : ""}`, notes: out.length ? [] : notes, bonus, dice: diceFor[i] || "",

@@ -142,7 +142,8 @@ export const activityField = () => new ArrayField(new SchemaField({
   /** attacks: which weapons: "" any, "melee", "ranged", or an ammunition type ("arrow"). */
   weapons: str(),
   /** attacks: "" none, "rest" (every attack after the first) or "all" roll with Disadvantage, or "extra" (every attack
-   *  after the first, a Disadvantage no Advantage cancels: the Extra Attack, books v0.10.38)... */
+   *  after the first, a Disadvantage no Advantage cancels: the Extra Attack, books v0.10.38) or "fixed" (every one, the
+   *  same: Flèche, Flowing Strikes against the creature just hit; F-R4)... */
   disadvantage: str(),
   /** ...until this level (0: at every level). */
   disUntil: int(0, { min: 0 }),

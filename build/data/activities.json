@@ -1932,14 +1932,14 @@
     "kind": "attacks",
     "count": "1",
     "weapons": "melee",
-    "disadvantage": "all",
+    "disadvantage": "fixed",
     "cost": 1,
     "per": "",
-    "text": "One additional melee attack this round as part of your action, with Disadvantage (an extra attack)."
+    "text": "One additional melee attack this round as part of your action, with Disadvantage that no Advantage cancels (an extra attack)."
    }
   ],
   "confidence": "high",
-  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here.",
+  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here. Books v0.10.38 (K44, F-R4): its Disadvantage is never cancelled.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -2501,10 +2501,10 @@
     "kind": "attacks",
     "count": "1",
     "weapons": "melee",
-    "disadvantage": "all",
+    "disadvantage": "fixed",
     "cost": 0,
     "per": "round",
-    "text": "Once per round, after hitting a creature with a melee attack. The extra attack cannot trigger Flowing Strikes again."
+    "text": "Once per round, after hitting a creature with a melee attack, against that same creature, with Disadvantage that no Advantage cancels. The extra attack cannot trigger Flowing Strikes again."
    },
    {
     "name": "Against a different creature",
@@ -2517,7 +2517,7 @@
    }
   ],
   "confidence": "high",
-  "why": "One extra melee attack: Disadvantage against the creature just hit, a normal roll against another."
+  "why": "One extra melee attack: Disadvantage against the creature just hit, a normal roll against another. Books v0.10.38 (K44, F-R4): against the creature just hit, Advantage never cancels it."
  },
  "Combat Reflexes|Feat": {
   "activities": [

@@ -47,7 +47,7 @@ def clean(a):
     out["spendAny"] = bool(out["spendAny"])
     for k in STRS:
         out[k] = str(out[k] if out[k] is not None else "")
-    if out["disadvantage"] not in ("", "rest", "all", "extra"):
+    if out["disadvantage"] not in ("", "rest", "all", "extra", "fixed"):
         out["disadvantage"] = ""
     return out
 

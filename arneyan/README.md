@@ -5,7 +5,7 @@ Version 0.10.79 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.79
 
 - **Books v0.10.38** (Fable Review 2 fixes, Kieran's K44 and K45; board B-F25).
-  - **Extra attacks:** the Extra Attack's second swing and the off-hand attack always roll with Disadvantage. Advantage from any source (or a shift-click) no longer cancels it, and the card says so. Other features' Disadvantage still cancels as before.
+  - **Extra attacks:** an extra attack rolled with Disadvantage keeps it: Advantage from any source (or a shift-click) no longer cancels it, and the card says so. That covers the Extra Attack's second swing, the off-hand attack, the Swashbuckler's Flèche and Flowing Strikes against the creature you just hit (Review's reading, F-R4). Other features' Disadvantage (Twin Nock, Combat Dominance) still cancels as before.
   - **Monk: Ki.** Stun Attack becomes the **Ki** pool: ki points equal to your Monk level + Wisdom modifier (minimum 1), all back after a long rest.
     - Stun Attack spends 1 ki once the attack hits.
     - **Ki: Body of Iron** (9th) spends 2 and **Ki: Death Strike** (10th) spends 4, from the same pool.

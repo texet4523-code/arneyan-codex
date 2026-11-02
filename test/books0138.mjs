@@ -24,6 +24,10 @@ assert.equal(modeFromEvent(null, [-1, 1]), 0, "an ordinary Disadvantage still ca
 for (const f of features.filter(x => /^Extra Attack/.test(x.name))) assert.equal(f.system.activities[0].disadvantage, "extra", `${f.name} (${f.system.className})`);
 assert.ok(src("combat.mjs").includes('out.adv.push({ values: [-2], adv: [], dis: ["Off-hand (no Advantage cancels it)"] })'));
 assert.ok(src("documents.mjs").includes('values: [fixed ? -2 : -1]'));
+// F-R4 (Review, 2 Nov): Flèche and Flowing Strikes against the creature just hit are extra attacks too.
+assert.equal(feat("Flèche", "Swashbuckler").system.activities[0].disadvantage, "fixed");
+assert.deepEqual(read("feats").find(f => f.name === "Flowing Strikes").system.activities.map(a => a.disadvantage), ["fixed", ""]);
+assert.ok(src("documents.mjs").includes('const fixed = ["extra", "fixed"].includes(act.disadvantage)'));
 // Twin Nock and Combat Dominance are not Extra Attacks: their Disadvantage still cancels.
 assert.equal(feat("Combat Dominance", "Fighter").system.activities[0].disadvantage, "rest");
 
