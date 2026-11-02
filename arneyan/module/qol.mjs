@@ -18,7 +18,8 @@ const isGM = () => !!game.users?.activeGM?.isSelf;
 const groupKey = c => `${c.actorId ?? ""}|${c.token?.name ?? c.name}`;
 
 export async function rollMonsterInitiative(combat) {
-  const todo = combat.combatants.filter(c => c.initiative === null && c.actor?.type === "npc" && !c.isDefeated);
+  // A solo's second turn (solo.mjs) isn't rolled: it follows the first's, set below.
+  const todo = combat.combatants.filter(c => c.initiative === null && c.actor?.type === "npc" && !c.isDefeated && !c.flags?.[SYS]?.soloOf);
   if (!todo.length) return;
   const share = game.settings.get(SYS, "groupInitiative");
   const groups = new Map();
@@ -34,7 +35,14 @@ export async function rollMonsterInitiative(combat) {
     const init = combat.combatants.get(g[0].id)?.initiative;
     for (const c of g.slice(1)) updates.push({ _id: c.id, initiative: init });
   }
-  if (updates.length) await combat.updateEmbeddedDocuments("Combatant", updates);
+  // Each solo's second turn, from its first, before the fight's first turn is worked out.
+  const { secondInitiative } = await import("./solo.mjs");
+  for (const t of combat.combatants.filter(c => c.flags?.[SYS]?.soloOf && c.initiative === null)) {
+    const first = combat.combatants.get(t.flags[SYS].soloOf);
+    const init = updates.find(u => u._id === first?.id)?.initiative ?? first?.initiative;
+    if (Number.isFinite(init)) updates.push({ _id: t.id, initiative: secondInitiative(init, combat.combatants.filter(c => c.id !== t.id && c.id !== first.id).map(c => updates.find(u => u._id === c.id)?.initiative ?? c.initiative)) });
+  }
+  if (updates.length) await combat.updateEmbeddedDocuments("Combatant", updates, { arneyanSolo: true });
 }
 
 /* -------------------------------------------- */

@@ -919,7 +919,9 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   }
   // 0.10.81 (books v0.10.40, K47): Legendary Resistance leaves the game; the Bestiary's line comes off solos in the world.
   if (due && newerThan(SOLO_REWORK, from) && !newerThan(SOLO_REWORK, version)) {
-    for (const actor of game.actors.filter(a => a.type === "npc")) {
+    // World monsters, then unlinked tokens on scenes (a token whose copy changed keeps its own items).
+    const npcs = [...game.actors.filter(a => a.type === "npc"), ...(game.scenes ?? []).flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor?.type === "npc").map(t => t.actor))];
+    for (const actor of npcs) {
       const lr = dropLegendary(actor.items);
       if (lr.length) await actor.deleteEmbeddedDocuments("Item", lr, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
     }

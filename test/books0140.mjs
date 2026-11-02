@@ -29,25 +29,34 @@ assert.equal(S.secondInitiative(9, [12, 5]), 0, "below 1: last (0, under everyon
 assert.equal(S.secondInitiative(6, [12, -2]), -3, "under a negative initiative too");
 
 /* Shaking it off: two of its turns under it. */
+// Every key written (a flag update merges: a key left out would keep its old count).
+const zero = S.noCounts();
 let r = S.shakeOff({}, ["stunned", "prone"]);
-assert.deepEqual([r.counts, r.off], [{ stunned: 1 }, []], "prone isn't one of them");
+assert.deepEqual([r.counts, r.off], [{ ...zero, stunned: 1 }, []], "prone isn't one of them");
 r = S.shakeOff(r.counts, ["stunned", "charmed"]);
-assert.deepEqual([r.counts, r.off], [{ charmed: 1 }, ["stunned"]]);
+assert.deepEqual([r.counts, r.off], [{ ...zero, charmed: 1 }, ["stunned"]], "shaken off: its count back to 0");
 r = S.shakeOff(r.counts, []);
-assert.deepEqual(r.counts, {}, "a condition gone resets its count");
+assert.deepEqual(r.counts, zero, "a condition gone resets its count");
+assert.equal(S.shakeOff({ ...zero }, ["stunned"]).counts.stunned, 1, "stunned again later: two more turns");
 assert.ok(S.CONTROL.includes("petrified") && S.CONTROL.includes("dominated") && !S.CONTROL.includes("frightened"));
 
-/* Bloodied ends conditions and others' effects, not its own buffs or concentration. */
+/* Bloodied ends conditions and foes' effects; not its own buffs, area or aura, allies' buffs, or concentration. */
 {
   const actor = { uuid: "Actor.troll", effects: [
     { id: "a", name: "Held", statuses: new Set(["paralysed"]), origin: "Actor.wiz.Item.hold" },
     { id: "b", name: "Bane", statuses: new Set(), origin: "Actor.cleric.Item.bane" },
     { id: "c", name: "Its own rage", statuses: new Set(), origin: "Actor.troll.Item.rage" },
     { id: "d", name: "Prone", statuses: new Set(["prone"]), origin: null },
-    { id: "e", name: "Concentrating", statuses: new Set(["concentrating"]), origin: "Actor.troll.Item.x", flags: { arneyan: { concentration: true } } }
+    { id: "e", name: "Concentrating", statuses: new Set(["concentrating"]), origin: "Actor.troll.Item.x", flags: { arneyan: { concentration: true } } },
+    { id: "f", name: "Its own Darkness area", statuses: new Set(), origin: null },
+    { id: "g", name: "Bless from the hag", statuses: new Set(), origin: "Actor.hag.Item.bless" },
+    { id: "h", name: "Shook off Stunned", statuses: new Set(), origin: "Actor.troll", flags: { arneyan: { shookOff: { id: "stunned", turns: 1 } } } },
+    { id: "i", name: "Its own invisibility", statuses: new Set(["invisible"]), origin: "Actor.troll.Item.inv" }
   ] };
-  assert.deepEqual(S.bloodiedEnds(actor).map(e => e.id), ["a", "b", "d"]);
+  const side = o => (o.startsWith("Actor.hag.") ? "ally" : "foe");
+  assert.deepEqual(S.bloodiedEnds(actor, side).map(e => e.id), ["a", "b", "d"]);
 }
+assert.ok(fs.readFileSync(new URL("../arneyan/module/solo.mjs", import.meta.url), "utf8").includes("encounter: combat?.id"), "the immunity ends with the fight");
 
 /* The migration takes the Bestiary's Legendary Resistance off world solos, not a GM's own ability of that name. */
 assert.equal(M.SOLO_REWORK, "0.10.81");
@@ -62,4 +71,7 @@ const src = p => fs.readFileSync(new URL(`../arneyan/module/${p}`, import.meta.u
 assert.ok(src("encounter.mjs").includes("!c.flags?.arneyan?.soloOf"));
 assert.ok(src("combat.mjs").includes("!o.flags?.arneyan?.soloOf"));
 assert.ok(src("arneyan.mjs").includes("registerSolo();"));
+assert.ok(src("qol.mjs").includes("!c.flags?.[SYS]?.soloOf") && src("qol.mjs").includes("secondInitiative(init"), "the second turn isn't rolled: it follows");
+assert.ok(src("migrate.mjs").includes("!t.actorLink"), "unlinked tokens too");
+assert.ok(src("solo.mjs").includes("done.has(key)"), "a re-sent turn isn't counted twice");
 console.log("OK books v0.10.40");
