@@ -450,7 +450,6 @@ DEFENCE = re.compile(r"^(?:Immune to|Resistance \d+|Cannot be|Takes double damag
 NOTES = {
     "Magic Resistance": [{"key": "adv.save", "value": "1", "when": "against spells and magical effects"}],
     "Pack Tactics": [{"key": "adv.attack", "value": "1", "when": "an ally is within 5ft of the target"}],
-    "Legendary Resistance": [{"key": "note.save", "value": "Legendary Resistance: may turn a failed save into a success"}],
     "Sunlight Sensitivity": [{"key": "note.attack", "value": "Sunlight Sensitivity: Disadvantage in sunlight"}],
 }
 # Rules read from an ability's text, whatever its name (M&T v0.10.30, B16/K24: Parry is the first melee attack against it
@@ -606,6 +605,14 @@ def build():
             desc = f"<p><em>{html.escape(m['type'])}</em></p>"
             if m["gm"]:
                 desc += f"<p><strong>GM:</strong> {enrich(m['gm'])}</p>"
+            if solo:
+                # Books v0.10.40 (K47): no Legendary Resistance; the system gives the second turn, Shaking it off and
+                # Bloodied (solo.mjs). Fight-ending effects are the GM's.
+                desc += ("<p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second "
+                         "turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops "
+                         "to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). "
+                         "An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead "
+                         "(petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>")
             system = {
                 "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),

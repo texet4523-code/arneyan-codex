@@ -841,7 +841,7 @@ export const combatSheetActions = {
 /* -------------------------------------------- */
 
 /** Monsters of one kind share a Morale Score: the same stat block and name. */
-const groupOf = (combat, c) => combat.combatants.filter(o => o.actor?.type === "npc" && !o.isDefeated && (o.actorId === c.actorId) && (o.token?.name ?? o.name) === (c.token?.name ?? c.name));
+const groupOf = (combat, c) => combat.combatants.filter(o => o.actor?.type === "npc" && !o.isDefeated && !o.flags?.arneyan?.soloOf && (o.actorId === c.actorId) && (o.token?.name ?? o.name) === (c.token?.name ?? c.name));
 
 function trackerOptions(app, options) {
   const combatantOf = li => {

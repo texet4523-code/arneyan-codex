@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge dragon (metallic)</em></p><p><strong>GM:</strong> Wise and noble; it will parley, and takes offence at a lie. An adult is a lair-master whose hoard is its life.</p>",
+   "description": "<p><em>Huge dragon (metallic)</em></p><p><strong>GM:</strong> Wise and noble; it will parley, and takes offence at a lie. An adult is a lair-master whose hoard is its life.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -293,48 +293,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "GwOSBoa5J2YXjdrS",
-   "_key": "!actors.items!ytlzqS2Doco0khd4.GwOSBoa5J2YXjdrS",
-   "effects": [],
-   "flags": {},
-   "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -347,11 +305,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "blfrZ7YuQSQtO7bb",
-   "_key": "!actors.items!ytlzqS2Doco0khd4.blfrZ7YuQSQtO7bb",
+   "_id": "kUrkhq8tdGTTW9Kv",
+   "_key": "!actors.items!ytlzqS2Doco0khd4.kUrkhq8tdGTTW9Kv",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -370,11 +328,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "NmmAMQi1qYHeo2Z1",
-   "_key": "!actors.items!ytlzqS2Doco0khd4.NmmAMQi1qYHeo2Z1",
+   "_id": "Juxeb3D6a7Ilhvne",
+   "_key": "!actors.items!ytlzqS2Doco0khd4.Juxeb3D6a7Ilhvne",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -393,11 +351,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "RUfuF4hBOcYZ0UyW",
-   "_key": "!actors.items!ytlzqS2Doco0khd4.RUfuF4hBOcYZ0UyW",
+   "_id": "oNk4nDRcJkEFfuW8",
+   "_key": "!actors.items!ytlzqS2Doco0khd4.oNk4nDRcJkEFfuW8",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -416,11 +374,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "v0jNPRNggT7V1uVm",
-   "_key": "!actors.items!ytlzqS2Doco0khd4.v0jNPRNggT7V1uVm",
+   "_id": "7aWDd2tTsjm4sV5G",
+   "_key": "!actors.items!ytlzqS2Doco0khd4.7aWDd2tTsjm4sV5G",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },

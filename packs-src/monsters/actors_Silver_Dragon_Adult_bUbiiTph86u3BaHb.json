@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge dragon (metallic)</em></p><p><strong>GM:</strong> Friendly to humankind and fond of festivals; it fights only when given no choice. An adult is a lair-master whose hoard is its life.</p>",
+   "description": "<p><em>Huge dragon (metallic)</em></p><p><strong>GM:</strong> Friendly to humankind and fond of festivals; it fights only when given no choice. An adult is a lair-master whose hoard is its life.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -293,48 +293,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "NqY3N59HhWefxKdd",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.NqY3N59HhWefxKdd",
-   "effects": [],
-   "flags": {},
-   "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -347,11 +305,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "NZrjiLnAqGJSXUFv",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.NZrjiLnAqGJSXUFv",
+   "_id": "pYisqZYE1mauJPF1",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.pYisqZYE1mauJPF1",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -370,11 +328,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "idjfd6xT7pRuhGEF",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.idjfd6xT7pRuhGEF",
+   "_id": "d7Ex9IHWM373AtTn",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.d7Ex9IHWM373AtTn",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -397,10 +355,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "KulWmwA3lvjlwEBP",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.KulWmwA3lvjlwEBP",
+   "_id": "O2eUqt3hEWLtxI4f",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.O2eUqt3hEWLtxI4f",
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -423,10 +381,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "EOpgif4ZyJFQu7Bg",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.EOpgif4ZyJFQu7Bg",
+   "_id": "VoWMQuleughu15nV",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.VoWMQuleughu15nV",
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },

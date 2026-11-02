@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium fiend (yugoloth)</em></p><p><strong>GM:</strong> A faceless general of the mercenary hosts, eyes swirling with colour. It commands armies for the lords of every hell at once, and despises them all equally.</p>",
+   "description": "<p><em>Medium fiend (yugoloth)</em></p><p><strong>GM:</strong> A faceless general of the mercenary hosts, eyes swirling with colour. It commands armies for the lords of every hell at once, and despises them all equally.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -1062,48 +1062,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "E3OdCOF0nLIeHan4",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.E3OdCOF0nLIeHan4",
-   "effects": [],
-   "flags": {},
-   "sort": 1700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -1116,11 +1074,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "zyXAnLXUPDIVX4up",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.zyXAnLXUPDIVX4up",
+   "_id": "k12z6ZmFKUFpbSE8",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.k12z6ZmFKUFpbSE8",
    "effects": [],
    "flags": {},
-   "sort": 1800,
+   "sort": 1700,
    "ownership": {
     "default": 0
    },
@@ -1139,11 +1097,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "lGGfg3D7nYkHdX6j",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.lGGfg3D7nYkHdX6j",
+   "_id": "gVO0CpYuQgWOGITG",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.gVO0CpYuQgWOGITG",
    "effects": [],
    "flags": {},
-   "sort": 1900,
+   "sort": 1800,
    "ownership": {
     "default": 0
    },
@@ -1162,11 +1120,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "QYXtuJAxRoQvDNhV",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.QYXtuJAxRoQvDNhV",
+   "_id": "NR2VWI1Y4U1aBVGS",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.NR2VWI1Y4U1aBVGS",
    "effects": [],
    "flags": {},
-   "sort": 2000,
+   "sort": 1900,
    "ownership": {
     "default": 0
    },

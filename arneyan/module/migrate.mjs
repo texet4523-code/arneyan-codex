@@ -728,6 +728,13 @@ export const CLASS_REWORK = "0.10.79";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
+/** 0.10.81 (books v0.10.40, K47): solos lose Legendary Resistance (solo.mjs gives the new rules). */
+export const SOLO_REWORK = "0.10.81";
+/** The Bestiary's own Legendary Resistance abilities among these items (ids): name and its old words, not a GM's own. */
+export function dropLegendary(items) {
+  return [...(items ?? [])].filter(i => i.type === "ability" && i.name === "Legendary Resistance"
+    && /when it fails a save it may succeed instead/i.test(String(i.system?.description ?? "").replace(/<[^>]+>/g, ""))).map(i => i.id);
+}
 /** Class features books v0.10.38 renamed in place (B-F25, K45 and Fable M5): compendium entry -> [old name, new name]. */
 export const RENAMED_FEATURES = Object.fromEntries([
   ["EEd86TSRn8QJQNK3", "Stun Attack", "Ki"], ["waqGtTczSTgFSdmM", "Body of Iron", "Ki: Body of Iron"], ["gH5YblxxKBxOtKQK", "Death Strike", "Ki: Death Strike"],
@@ -909,6 +916,13 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     await classRework(only ? game.actors.filter(a => only.actors.has(a.id)) : game.actors, fetch,
       { cls: (actor, cls, ids) => P.syncClassFeatures(actor, cls, opts, { only: ids }), kit: (actor, kit, ids) => P.syncKitFeatures(actor, kit, opts, { only: ids }) },
       notes, { kitBefore, worldItems: only ? [] : (game.items?.contents ?? []), classOf: P.classForKit });
+  }
+  // 0.10.81 (books v0.10.40, K47): Legendary Resistance leaves the game; the Bestiary's line comes off solos in the world.
+  if (due && newerThan(SOLO_REWORK, from) && !newerThan(SOLO_REWORK, version)) {
+    for (const actor of game.actors.filter(a => a.type === "npc")) {
+      const lr = dropLegendary(actor.items);
+      if (lr.length) await actor.deleteEmbeddedDocuments("Item", lr, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+    }
   }
   if (due) await game.settings.set(SYS, "migratedTo", version);
   // Tried again on the next loads, three times in all (then at the next version).

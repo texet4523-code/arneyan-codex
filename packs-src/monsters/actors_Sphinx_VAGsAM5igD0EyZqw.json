@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> Bound by honour and guarding knowledge. It is generous to the wise, and fatal to the arrogant.</p>",
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> Bound by honour and guarding knowledge. It is generous to the wise, and fatal to the arrogant.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -480,48 +480,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "0NKAuZvDYRXn95YY",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.0NKAuZvDYRXn95YY",
-   "effects": [],
-   "flags": {},
-   "sort": 800,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -534,11 +492,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "cUFb3WM1jxkGMG4w",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.cUFb3WM1jxkGMG4w",
+   "_id": "ELdy9Ag5BbO37qml",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.ELdy9Ag5BbO37qml",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -561,10 +519,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "dLryhHfmJvRXSZ1W",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.dLryhHfmJvRXSZ1W",
+   "_id": "Fs2FrbLINv8wHG8r",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.Fs2FrbLINv8wHG8r",
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -587,10 +545,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "bqap4rpibTE2EpYH",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.bqap4rpibTE2EpYH",
+   "_id": "Cko7H6OoHz1xI2xA",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.Cko7H6OoHz1xI2xA",
    "flags": {},
-   "sort": 1100,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -613,10 +571,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "xzzk0PV5957veMmp",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.xzzk0PV5957veMmp",
+   "_id": "YrlNGD2rEbnnsMBB",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.YrlNGD2rEbnnsMBB",
    "flags": {},
-   "sort": 1200,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

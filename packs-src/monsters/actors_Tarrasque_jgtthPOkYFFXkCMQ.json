@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "Mythic",
    "page": 0,
-   "description": "<p><em>Gargantuan monstrosity (titan)</em></p><p><strong>GM:</strong> The world's last argument. It wakes once in a generation and walks until something stops it or it is sated. The only creature in this book beyond the 24th-level scale.</p>",
+   "description": "<p><em>Gargantuan monstrosity (titan)</em></p><p><strong>GM:</strong> The world's last argument. It wakes once in a generation and walks until something stops it or it is sated. The only creature in this book beyond the 24th-level scale.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -400,48 +400,6 @@
    "effects": [],
    "flags": {},
    "sort": 800,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "4skLtu23NrCk7wXF",
-   "_key": "!actors.items!jgtthPOkYFFXkCMQ.4skLtu23NrCk7wXF",
-   "effects": [],
-   "flags": {},
-   "sort": 900,
    "ownership": {
     "default": 0
    },

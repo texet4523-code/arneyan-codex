@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> Wrecks fleets. A sea voyage becomes a fight for the stern.</p>",
+   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> Wrecks fleets. A sea voyage becomes a fight for the stern.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -324,48 +324,6 @@
    "effects": [],
    "flags": {},
    "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "XgfsAmjLzlk7ixUY",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.XgfsAmjLzlk7ixUY",
-   "effects": [],
-   "flags": {},
-   "sort": 700,
    "ownership": {
     "default": 0
    },

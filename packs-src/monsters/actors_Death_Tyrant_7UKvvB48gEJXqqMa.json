@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> An eye-tyrant that refused to stop existing. Its dead lair is still guarded by the zombies of everyone who came for its hoard.</p>",
+   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> An eye-tyrant that refused to stop existing. Its dead lair is still guarded by the zombies of everyone who came for its hoard.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -218,48 +218,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-ant.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "VuXOP1hK76fNGfgU",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.VuXOP1hK76fNGfgU",
-   "effects": [],
-   "flags": {},
-   "sort": 400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -272,11 +230,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "PddrBtXSov0Dnp00",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.PddrBtXSov0Dnp00",
+   "_id": "j5kLBOLFEsRN1AYj",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.j5kLBOLFEsRN1AYj",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 400,
    "ownership": {
     "default": 0
    },

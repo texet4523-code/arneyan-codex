@@ -8,15 +8,15 @@ written for the older Word and Markdown copies, so each book is turned back into
 - Book III (Classes): split at each "<!-- CLASS: Name -->" into one Word file per class, as cls/clean2 was.
 - Book II (Character Creation) and Book V (Catalogue): already in the old Markdown form; copied as they are.
 
-Sources: /tmp/hb/src_v01039/HB_v0.10.39_*.md (md5s on the board, B-F12 to B-F26). Books I to IV are the Builder's
-v0.10.39, the M&T sources (split into /tmp/hb/mm) its v0.10.36; Book V is the v0.10.20 copy under the new name.
+Sources: /tmp/hb/src_v01040/HB_v0.10.40_*.md (md5s on the board, B-F12 to B-F27). Books I to IV are the Builder's
+v0.10.40, the M&T sources (split into /tmp/hb/mm) its v0.10.40; Book V is the v0.10.20 copy under the new name.
 Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01039"
+SRC = "/tmp/hb/src_v01040"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.39"
+VERSION = "0.10.40"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")

@@ -125,7 +125,8 @@ function trackerBudget(combat) {
   const pcs = combat.combatants.filter(c => c.actor?.type === "character").map(c => c.actor);
   const party = pcs.length ? pcs : partyMembers();
   // A trap in a fight costs the same as a creature of its Level (Codex, Traps).
-  const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY())
+  // A solo's second turn (solo.mjs) is the same creature: counted once.
+  const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY() && !c.flags?.arneyan?.soloOf)
     .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: !!c.actor.system.details?.isSolo, count: 1 }));
   return encounterBudget(party.map(a => a.system.level ?? 1), foes);
 }

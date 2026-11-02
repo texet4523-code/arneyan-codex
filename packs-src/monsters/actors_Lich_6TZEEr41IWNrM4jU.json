@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>S, lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -890,48 +890,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "LM1wGE9drSswM5yo",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.LM1wGE9drSswM5yo",
-   "effects": [],
-   "flags": {},
-   "sort": 1500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -944,11 +902,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "ItEsTO5UTb0QwrRJ",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.ItEsTO5UTb0QwrRJ",
+   "_id": "IJDdLcANolTYBxKU",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.IJDdLcANolTYBxKU",
    "effects": [],
    "flags": {},
-   "sort": 1600,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -967,11 +925,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "4mQhUy3erQ3cIZ5K",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.4mQhUy3erQ3cIZ5K",
+   "_id": "7nTgx08vf9toBDuy",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.7nTgx08vf9toBDuy",
    "effects": [],
    "flags": {},
-   "sort": 1700,
+   "sort": 1600,
    "ownership": {
     "default": 0
    },
@@ -994,10 +952,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "t44m5yBTAlXvEGnY",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.t44m5yBTAlXvEGnY",
+   "_id": "nvsFsnMvQ2CoOCTj",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.nvsFsnMvQ2CoOCTj",
    "flags": {},
-   "sort": 1800,
+   "sort": 1700,
    "ownership": {
     "default": 0
    },
@@ -1020,10 +978,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "6tK7cNWj3JirdLCE",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.6tK7cNWj3JirdLCE",
+   "_id": "o77cxWvebpVPzMeK",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.o77cxWvebpVPzMeK",
    "flags": {},
-   "sort": 1900,
+   "sort": 1800,
    "ownership": {
     "default": 0
    },

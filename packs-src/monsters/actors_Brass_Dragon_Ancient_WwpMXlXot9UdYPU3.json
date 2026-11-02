@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> Talkative and bored; it will talk for hours rather than fight, and sulks when ignored. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p>",
+   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> Talkative and bored; it will talk for hours rather than fight, and sulks when ignored. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -330,48 +330,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "dAwhhZurErlduqCj",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.dAwhhZurErlduqCj",
-   "effects": [],
-   "flags": {},
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -384,11 +342,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "xZTn4SIm2yv0D8dw",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.xZTn4SIm2yv0D8dw",
+   "_id": "rU1Nb8T0A84qxsBy",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.rU1Nb8T0A84qxsBy",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -407,11 +365,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "KqGMcZeCAjIXTHON",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.KqGMcZeCAjIXTHON",
+   "_id": "lLJnXEd4yRgLLls2",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.lLJnXEd4yRgLLls2",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -430,11 +388,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "uXgkWVzknjDMaWEW",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.uXgkWVzknjDMaWEW",
+   "_id": "ZuFVa0SZpRJi0dUk",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.ZuFVa0SZpRJi0dUk",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -457,10 +415,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "lGPNjQm0sRtrUjs1",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.lGPNjQm0sRtrUjs1",
+   "_id": "WyVRX5MhEklnNCkC",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.WyVRX5MhEklnNCkC",
    "flags": {},
-   "sort": 1100,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },

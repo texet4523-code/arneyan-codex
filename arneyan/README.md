@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.80 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.81 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.81
+
+- **Books v0.10.40: solo creatures without Legendary Resistance** (Kieran's K47; board B-F27). The 53 solos in the Bestiary (and the Rakshasa) lose Legendary Resistance; the Update takes the Bestiary's line off monsters already in your world (a Legendary Resistance you wrote yourself stays). Spells always work on solos now, but they don't stay out of the fight for long:
+  - **Two turns a round:** add a solo to a fight and it gets a second entry in the tracker, "(second turn)", 10 lower in the initiative order (or last, if that would be below 1). It follows the first entry's initiative and goes when the first is removed. Each is one of its turns: numbered conditions tick, reminders come up, and timed effects on it count down twice as fast.
+  - **Shaking it off:** Incapacitated, Paralysed, Stunned, Unconscious, Charmed, Dominated, Confused or Petrified ends by itself once the solo has spent two of its turns under it. A card says so, and the same condition can't be put on it again until the end of its next turn.
+  - **Bloodied:** the first time it drops to half its HP or lower, every condition and hostile effect on it ends and its limited-use abilities recover (not spell slots), with a card. Once, until it's back to full HP.
+  - **Yours to run:** an effect that would kill it outright, banish or imprison it costs it its next two turns instead; each solo's description says so. Damage to 0 HP still kills it.
+  - Maze loses its Legendary Resistance escape, and Book IV's page is now Solo Creatures (the same page, so links still work).
 
 ## What's new in 0.10.80
 

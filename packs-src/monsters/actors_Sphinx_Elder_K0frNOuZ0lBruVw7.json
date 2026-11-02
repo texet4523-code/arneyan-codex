@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p>",
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -796,48 +796,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "UUzJmFnIMnHzm9lt",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.UUzJmFnIMnHzm9lt",
-   "effects": [],
-   "flags": {},
-   "sort": 1300,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -850,11 +808,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "3iTKfXFqwzEyX6wY",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.3iTKfXFqwzEyX6wY",
+   "_id": "Fda8cmo2IBDm9PDi",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.Fda8cmo2IBDm9PDi",
    "effects": [],
    "flags": {},
-   "sort": 1400,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -877,10 +835,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "efLAStv3DAUnOSMO",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.efLAStv3DAUnOSMO",
+   "_id": "3aPxK1I850cWeVFJ",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.3aPxK1I850cWeVFJ",
    "flags": {},
-   "sort": 1500,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -903,10 +861,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "wSfYRRsylUQF2lCI",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.wSfYRRsylUQF2lCI",
+   "_id": "mCCn0EOoPZriHGur",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.mCCn0EOoPZriHGur",
    "flags": {},
-   "sort": 1600,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

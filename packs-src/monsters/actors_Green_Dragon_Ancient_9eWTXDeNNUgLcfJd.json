@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan dragon (chromatic)</em></p><p><strong>GM:</strong> A cruel manipulator of the deep forest; it would rather turn you against each other than fight. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p>",
+   "description": "<p><em>Gargantuan dragon (chromatic)</em></p><p><strong>GM:</strong> A cruel manipulator of the deep forest; it would rather turn you against each other than fight. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -330,48 +330,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "6AubxiBltZGTwbeZ",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.6AubxiBltZGTwbeZ",
-   "effects": [],
-   "flags": {},
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -384,11 +342,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "yQcv1jIR1MpdFNbC",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.yQcv1jIR1MpdFNbC",
+   "_id": "1UXcmTiZxpDW4eZX",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.1UXcmTiZxpDW4eZX",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -407,11 +365,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "EqMkA0JFNKtJNVqG",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.EqMkA0JFNKtJNVqG",
+   "_id": "Kzk7eX7vecslIdUi",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.Kzk7eX7vecslIdUi",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -430,11 +388,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "ibT1hBuSVBAZNniH",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.ibT1hBuSVBAZNniH",
+   "_id": "PM9RYh47iyxviXyf",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.PM9RYh47iyxviXyf",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -453,11 +411,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "y1P8zyBytnBBzRWj",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.y1P8zyBytnBBzRWj",
+   "_id": "qIdFXiyQHwA2w64x",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.qIdFXiyQHwA2w64x",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -476,11 +434,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "SDj3vFlO2ftRwH3N",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.SDj3vFlO2ftRwH3N",
+   "_id": "FBogDR5AoIVQNfzY",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.FBogDR5AoIVQNfzY",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

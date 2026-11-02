@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> A warlike coastal guardian that loves ships, battle and a worthy cause. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p>",
+   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> A warlike coastal guardian that loves ships, battle and a worthy cause. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -367,48 +367,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "xxwHuhaLcDM69N05",
-   "_key": "!actors.items!0FoSzZpbU8KP1xgz.xxwHuhaLcDM69N05",
-   "effects": [],
-   "flags": {},
-   "sort": 800,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -421,11 +379,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "buAB4TuLekh1zH5N",
-   "_key": "!actors.items!0FoSzZpbU8KP1xgz.buAB4TuLekh1zH5N",
+   "_id": "kO2bXtX8ayqIloDg",
+   "_key": "!actors.items!0FoSzZpbU8KP1xgz.kO2bXtX8ayqIloDg",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -444,11 +402,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "3O53QFT1v89Mkrq6",
-   "_key": "!actors.items!0FoSzZpbU8KP1xgz.3O53QFT1v89Mkrq6",
+   "_id": "MeEmnR8ridhAEFIN",
+   "_key": "!actors.items!0FoSzZpbU8KP1xgz.MeEmnR8ridhAEFIN",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -467,11 +425,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "nuwGA81cUOzg9BVq",
-   "_key": "!actors.items!0FoSzZpbU8KP1xgz.nuwGA81cUOzg9BVq",
+   "_id": "CNOJ43jlhoT0Zo0G",
+   "_key": "!actors.items!0FoSzZpbU8KP1xgz.CNOJ43jlhoT0Zo0G",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },

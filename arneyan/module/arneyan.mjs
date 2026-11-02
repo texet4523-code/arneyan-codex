@@ -37,6 +37,7 @@ import { registerMaps, ArneyanMapBrowser } from "./maps.mjs";
 import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
+import { registerSolo } from "./solo.mjs";
 
 const SYS = "arneyan";
 
@@ -99,6 +100,7 @@ Hooks.once("init", () => {
   registerCalendar();
   registerInitiative();
   registerLimits();
+  registerSolo();
   Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open(), maps: () => ArneyanMapBrowser.open() });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).

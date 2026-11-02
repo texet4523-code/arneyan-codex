@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A master of the art who answers to no one. If it is fighting you fairly, something has gone badly wrong for it.</p>",
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A master of the art who answers to no one. If it is fighting you fairly, something has gone badly wrong for it.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
   }
  },
@@ -979,48 +979,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "EYXyvgEzcNxNfk8D",
-   "_key": "!actors.items!X7TXoG4jVKxGhQXM.EYXyvgEzcNxNfk8D",
-   "effects": [],
-   "flags": {},
-   "sort": 1500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Spellcraft",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-brain.svg",
@@ -1037,10 +995,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "ZLHiRcqJ19dvtc0x",
-   "_key": "!actors.items!X7TXoG4jVKxGhQXM.ZLHiRcqJ19dvtc0x",
+   "_id": "J5xFoolGBLX9qREJ",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.J5xFoolGBLX9qREJ",
    "flags": {},
-   "sort": 1600,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -1063,10 +1021,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "GmtfQK8r9VLsOgNh",
-   "_key": "!actors.items!X7TXoG4jVKxGhQXM.GmtfQK8r9VLsOgNh",
+   "_id": "DWqqBjA6He8T6zdO",
+   "_key": "!actors.items!X7TXoG4jVKxGhQXM.DWqqBjA6He8T6zdO",
    "flags": {},
-   "sort": 1700,
+   "sort": 1600,
    "ownership": {
     "default": 0
    },

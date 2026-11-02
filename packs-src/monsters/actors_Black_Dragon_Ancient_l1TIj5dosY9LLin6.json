@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan dragon (chromatic)</em></p><p><strong>GM:</strong> A spiteful swamp-dweller that hates light, travellers and being seen. It fights from the water's edge. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p>",
+   "description": "<p><em>Gargantuan dragon (chromatic)</em></p><p><strong>GM:</strong> A spiteful swamp-dweller that hates light, travellers and being seen. It fights from the water's edge. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -330,48 +330,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "F4BTeEwsW2jdTIvG",
-   "_key": "!actors.items!l1TIj5dosY9LLin6.F4BTeEwsW2jdTIvG",
-   "effects": [],
-   "flags": {},
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -384,11 +342,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "UBdyc8dpe7GT9Uog",
-   "_key": "!actors.items!l1TIj5dosY9LLin6.UBdyc8dpe7GT9Uog",
+   "_id": "IpnunMFtpoL83lcQ",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.IpnunMFtpoL83lcQ",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -407,11 +365,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "VtBY2HOAYTnUW2qV",
-   "_key": "!actors.items!l1TIj5dosY9LLin6.VtBY2HOAYTnUW2qV",
+   "_id": "6ToiLLsOOT332wqJ",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.6ToiLLsOOT332wqJ",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

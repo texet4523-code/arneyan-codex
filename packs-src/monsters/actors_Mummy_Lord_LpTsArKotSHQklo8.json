@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A priest-king bound to guard his tomb and curse those who enter. His spells make him much more dangerous than any common mummy.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A priest-king bound to guard his tomb and curse those who enter. His spells make him much more dangerous than any common mummy.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair F</strong> (see the Treasure tables).</p>"
   }
  },
@@ -756,48 +756,6 @@
    "folder": null
   },
   {
-   "name": "Legendary Resistance",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
-   "system": {
-    "description": "<p>3 times per encounter, when it fails a save it may succeed instead.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 3,
-     "max": 3,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [
-     {
-      "key": "note.save",
-      "value": "Legendary Resistance: may turn a failed save into a success"
-     }
-    ],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "uzichchwWnQSJnuH",
-   "_key": "!actors.items!LpTsArKotSHQklo8.uzichchwWnQSJnuH",
-   "effects": [],
-   "flags": {},
-   "sort": 1300,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Ancient History",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-brain.svg",
@@ -814,10 +772,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "oCm9LhjbwUrj3CZg",
-   "_key": "!actors.items!LpTsArKotSHQklo8.oCm9LhjbwUrj3CZg",
+   "_id": "tb327JAMK7mrX9UW",
+   "_key": "!actors.items!LpTsArKotSHQklo8.tb327JAMK7mrX9UW",
    "flags": {},
-   "sort": 1400,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -840,10 +798,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "zjh00rluUX9fHm0a",
-   "_key": "!actors.items!LpTsArKotSHQklo8.zjh00rluUX9fHm0a",
+   "_id": "vuYnxshqOXwBmXc5",
+   "_key": "!actors.items!LpTsArKotSHQklo8.vuYnxshqOXwBmXc5",
    "flags": {},
-   "sort": 1500,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
