@@ -75,7 +75,7 @@ assert.equal(hedge.applies[0].rounds, "encounter");
 assert.deepEqual(hedge.applies[0].rules.map(r => `${r.key} ${r.value}`), ["adv.save 1"]);
 const wall = one("kits", "Boldock Wall-Knights (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([wall.level, wall.replaces, wall.save], [5, "", "will"]);
-assert.deepEqual(wall.applies.map(a => a.rules.map(r => `${r.key} ${r.value}`).join()), ["adv.attack -1"]);
+assert.deepEqual(wall.applies.map(a => a.statuses), [["frightened"]], "books v0.10.36 (K43): Frightened while the Command lasts");
 assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise option is harsher"), "books v0.10.25 wording");
 assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep the field");
 const prog = fs.readFileSync(path.join(root, "module/progression.mjs"), "utf8");

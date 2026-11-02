@@ -60,6 +60,12 @@ assert.ok(a("Orc").rules.some(r => /Orcish Charge/.test(String(r.value))));
 const longtooth = a("Shifter").choice.options.find(o => o.name.endsWith("Longtooth"));
 assert.ok(!advFirst(longtooth.rules) && /Prone/.test(longtooth.rules[0].value));
 assert.deepEqual([longtooth.uses.max, longtooth.uses.per], [1, "encounter"]);
+assert.ok(a("Shifter").choice.options.every(o => o.rules.some(r => r.key === "toggle.ends" && r.value === "encounter")), "the shift ends with the encounter");
+const dread = kit("Boldock Wall-Knights (Knight)").find(f => f.name === "Wall-Forged Dread");
+assert.deepEqual([dread.applies[0].statuses, dread.applies[0].rules.length], [["frightened"], 0]);
+const M = await import("../arneyan/module/migrate.mjs");
+assert.equal(M.CLASS_REWORK, "0.10.79", "the class rework runs again for Cauldron Brews");
+assert.equal(M.SHIFT_REWORK, "0.10.79");
 assert.ok(/Celestial Wings/.test(a("Aasimar").description) && !/Lay on Hands heal/.test(a("Aasimar").description));
 
 /* The Star Spawn Grue's aura: Disadvantage on Will saves. */

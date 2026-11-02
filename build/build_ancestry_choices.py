@@ -114,7 +114,7 @@ def build():
             # its rules apply while it's on.
             for o in choice["options"]:
                 key = o["name"].split("-")[-1].strip()
-                o["rules"] = SHIFTED.get(key, [])
+                o["rules"] = SHIFTED.get(key, []) + [{"key": "toggle.ends", "value": "encounter", "when": "", "label": ""}]
                 o["toggle"] = True
                 o["uses"] = {"value": 1, "max": 1, "per": "encounter", "formula": ""}
         s["choice"] = choice

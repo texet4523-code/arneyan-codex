@@ -15,7 +15,7 @@
    {
     "name": "Wall-Forged Dread",
     "level": 5,
-    "description": "<p>Your Demoralise option is harsher: on a failed <strong>Will save</strong>, enemies have <strong>Disadvantage on all their attack rolls</strong>. Otherwise it works as Demoralise. When you give Demoralise, apply this in place of the usual failed-save effect.</p>",
+    "description": "<p>Your Demoralise option is harsher: on a failed <strong>Will save</strong>, enemies are <strong>Frightened</strong> of you while the Command lasts. Otherwise it works as Demoralise. When you give Demoralise, apply this in place of the usual failed-save effect.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -30,15 +30,10 @@
       "name": "Demoralised (Wall-Forged Dread, failed save)",
       "target": "target",
       "rounds": "encounter",
-      "statuses": [],
-      "rules": [
-       {
-        "key": "adv.attack",
-        "value": "-1",
-        "when": "",
-        "label": ""
-       }
-      ]
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
      }
     ],
     "replaces": ""

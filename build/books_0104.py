@@ -122,12 +122,12 @@ KITS = {
     },
     "Boldock Wall-Knights (Knight)": {
         "name": "Wall-Forged Dread", "level": 5, "replaces": "",
-        "description": "<p>Your Demoralise option is harsher: on a failed Will save, enemies have <strong>Disadvantage on all "
-                       "their attack rolls</strong>. Otherwise it works as Demoralise. When you give Demoralise, apply this in "
+        "description": "<p>Your Demoralise option is harsher: on a failed Will save, enemies are <strong>Frightened</strong> of "
+                       "you while the Command lasts. Otherwise it works as Demoralise. When you give Demoralise, apply this in "
                        "place of the usual failed-save effect.</p>",
         "uses": {"value": 0, "max": 0, "per": ""}, "save": "will",
-        "applies": [{"name": "Demoralised (Wall-Forged Dread, failed save)", "target": "target", "rounds": "encounter", "statuses": [],
-                     "rules": [{"key": "adv.attack", "value": "-1", "when": "", "label": ""}]}],
+        "applies": [{"name": "Demoralised (Wall-Forged Dread, failed save)", "target": "target", "rounds": "encounter", "statuses": ["frightened"],
+                     "rules": []}],
         "kit_text": None,
     },
 }

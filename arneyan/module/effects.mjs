@@ -669,6 +669,8 @@ export async function applyEffectTo(actors, data) {
     }
     if (Object.keys(upd).length) await actor.update(upd);
     if (!keep.length && !statuses.length && !data.flags?.[SYS]?.rounds && once.length) continue;
+    // Its only status was one the creature is immune to, and it carries nothing else: no empty effect.
+    if (!keep.length && !statuses.length && (data.statuses ?? []).length && !once.length) continue;
     const [effect] = await actor.createEmbeddedDocuments("ActiveEffect", [effData]);
     if (effect) done.push(effect);
   }
@@ -683,6 +685,12 @@ export async function toggleCondition(actor, id, active, { overlay = false, valu
   // Already on: Burning stacks, a timed one keeps the longer (counters.mjs).
   if (existing.length && active === true) return reapply(actor, id, value);
   if (existing.length || active === false) return;
+  // Immune to it (a trait, or an effect such as a Knight's Inspire against Frightened): nothing goes on.
+  const immune = actor.system?.mods?.traits?.immune?.map?.(t => t.value) ?? [];
+  if (immune.includes(`condition:${id}`) || immune.includes(id)) {
+    globalThis.ui?.notifications?.info?.(`${actor.name} is immune to ${ARNEYAN.conditions[id]?.name ?? id}.`);
+    return;
+  }
   if (typeof actor.toggleStatusEffect === "function") return actor.toggleStatusEffect(id, { active: true, overlay });
   {
     const c = ARNEYAN.conditions[id];
