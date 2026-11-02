@@ -147,4 +147,14 @@ assert.equal(bh.optionChoice.options.length, 3);
   assert.deepEqual(M.RENAMED_FEATURES["Compendium.arneyan.class-features.Item.UTIrytRZu4fYc46O"], ["Sorcerer's Spark", "Wild Surge improves"]);
 }
 
+/* Pregens start with formula uses full (Ki 11 of 11 at 9th, not the compendium's fallback 1). */
+{
+  const pregens = read("pregens", "actors_");
+  const uses = (who, what) => pregens.find(p => p.name.startsWith(who)).items.find(i => i.name === what).system.uses;
+  assert.deepEqual([uses("Sarrix", "Ki").value, uses("Sarrix", "Ki").max], [11, 11]);
+  assert.equal(uses("Kavra", "Rage").value, 4);
+  assert.equal(uses("Liriel", "Flèche").value, 4);
+  assert.equal(uses("Sister Aurelle", "Turn Undead").value, 6);
+}
+
 console.log("OK 0.10.79 books v0.10.38");

@@ -121,6 +121,35 @@ def rule_number(value, level, cl):
         return 0
 
 
+def ability_mod(score):
+    """The modifier for a score (config.mjs ARNEYAN.abilityMod)."""
+    s = int(score)
+    for top, m in ((0, -5), (2, -4), (3, -3), (5, -2), (8, -1), (12, 0), (15, 1), (17, 2), (18, 3), (20, 4), (22, 5), (25, 6), (27, 7), (29, 8)):
+        if s <= top:
+            return m
+    return 9
+
+
+def fill_uses(items, level, scores):
+    """Features whose uses come from a formula ("max(1, @cl + @wis.mod)", "1:2, 5:3") start full: the sheet works out
+    the maximum, but the stored value would otherwise stay at the compendium's fallback (Ki 1 of 11, Rage 2 of 4)."""
+    for it in items:
+        u = (it.get("system") or {}).get("uses") or {}
+        f = str(u.get("formula") or "").strip()
+        if not f:
+            continue
+        if re.fullmatch(r"\d+\s*:\s*\d+(\s*,\s*\d+\s*:\s*\d+)*", f):
+            n = 0
+            for at, v in re.findall(r"(\d+)\s*:\s*(\d+)", f):
+                if level >= int(at):
+                    n = int(v)
+        else:
+            expr = re.sub(r"@(str|dex|con|int|wis|cha)\.mod", lambda m: f"({ability_mod(scores[m.group(1)])})", f)
+            n = int(rule_number(expr, level, level))
+        if n > 0:
+            u["value"] = u["max"] = n
+
+
 def hp_from_rules(items, level):
     """Max HP the sheet adds from rules (actor-models.mjs): hp.max as it is, hp.level times the character level. Only
     rules that count all the time: no `when`, gear equipped, switches on."""
@@ -533,6 +562,7 @@ def build():
             # The same for HP: the printed maximum already counts Toughness (+1 per level) and Hag's Vigour (+class level),
             # and the sheet adds those rules to the stored maximum, so the stored one leaves them out.
             hp_max = int(c["hpMax"]) - hp_from_rules(items, int(c["level"]))
+            fill_uses(items, int(c["level"]), c["attributes"])
             size = (anc or {}).get("system", {}).get("size", "medium")
             img = cls_doc.get("img") or "icons/svg/mystery-man.svg"
             actor = {
