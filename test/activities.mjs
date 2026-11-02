@@ -384,7 +384,7 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   assert.ok(bard.availableActivities[0].text.includes("3 allies"), "Exalt reaches 3 allies at 12th");
 
   const ch = dataOf("Channel Divinity (Charisma)", "Paladin");
-  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
+  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Smite", 0, 0], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
 
   const loh = dataOf("Lay on Hands", "Paladin");
   const { item: lay } = feature({ ...loh, name: "Lay on Hands", uses: { value: 10, max: 10, per: "day", formula: "" } }, { level: 5, cls: "Paladin" });

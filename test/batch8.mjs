@@ -59,7 +59,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   const sh = pack("ancestries").find(d => d.name === "Shifter").system;
   assert.equal(sh.toggle, false); assert.deepEqual(sh.rules, []);
   const swift = sh.choice.options.find(o => o.name.endsWith("Swiftstride"));
-  assert.equal(swift.toggle, true); assert.equal(swift.uses.formula, "max(1, ceil(@level/2))");
+  assert.equal(swift.toggle, true); assert.deepEqual([swift.uses.max, swift.uses.per], [1, "encounter"], "books v0.10.37 (K39): once per encounter");
   assert.deepEqual(swift.rules.map(r => [r.key, r.value]), [["speed", "15"]]);
   assert.ok(sh.choice.options.find(o => o.name.endsWith("Beasthide")).rules.some(r => r.value === "non-magical 3"));
   // Turned comes off when its turner attacks it.

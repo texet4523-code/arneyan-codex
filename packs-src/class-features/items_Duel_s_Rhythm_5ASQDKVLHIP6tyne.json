@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> While engaged with a single opponent in melee (no other creatures in melee reach), gain advantage on your first attack roll each round and on saves.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> While engaged with a single opponent in melee (no other creatures in melee reach), after each of your attacks you may move <strong>10ft</strong> without provoking, that opponent can't Disengage from you, and you have <strong>Advantage</strong> on saves.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,9 +23,9 @@
   "className": "Swashbuckler",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": "1",
-    "when": "while in melee with a single opponent",
+    "key": "note.attack",
+    "value": "Duel's Rhythm: after each of your attacks you may move 10ft without provoking, and your opponent can't Disengage from you.",
+    "when": "",
     "label": ""
    },
    {

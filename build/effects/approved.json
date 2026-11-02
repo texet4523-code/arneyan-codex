@@ -56,7 +56,7 @@
    }
   ],
   "summary": "Resistance 5 to necrotic and radiant; Advantage reminders vs frightened and on the chosen skill.",
-  "manual": "Light and Lay on Hands.",
+  "manual": "Celestial Wings (glide; a fly speed equal to your walking speed from 3rd), Ascension (5th) and the flight guard: by hand on the token. The light is at will.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -153,7 +153,7 @@
    }
   ],
   "summary": "Advantage reminders: Stealth in rocky terrain, Will saves vs magic.",
-  "manual": "Innate spells.",
+  "manual": "Innate Blindness/Deafness once a day; Nondetection is always on (nothing to roll).",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -326,9 +326,8 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs a creature with two or more of your allies adjacent"
+    "key": "note.attack",
+    "value": "Mob Tactics: a creature with two or more of your allies adjacent to it can't make Attacks of Opportunity against you, and you can move through its space."
    },
    {
     "key": "damage",
@@ -341,7 +340,7 @@
     "when": "skill chosen at creation"
    }
   ],
-  "summary": "Mob Tactics Advantage reminder; +level damage reminder vs larger creatures; chosen skill.",
+  "summary": "Mob Tactics reminder (no Attacks of Opportunity from a mobbed creature, move through its space); +level damage reminder vs larger creatures; chosen skill.",
   "manual": "Luck for extra use.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
@@ -417,7 +416,7 @@
    }
   ],
   "summary": "Chosen-skill Advantage reminder; crit damage reminder.",
-  "manual": "Relentless Endurance; Onslaught; extra crit die is not rolled automatically.",
+  "manual": "Relentless Endurance (once a day); Onslaught costs 1 Luck each time, no daily limit; the extra crit die is not rolled automatically.",
   "confidence": "medium",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -430,10 +429,15 @@
     "key": "adv.check",
     "value": 1,
     "when": "farming, foraging or identifying plants"
+   },
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs fear (Brave Heart)"
    }
   ],
-  "summary": "Advantage reminder on farming and foraging checks.",
-  "manual": "Lucky rerolls; Brave Heart; Nimble.",
+  "summary": "Advantage reminders on farming and foraging checks and on saves against fear (Brave Heart, always on).",
+  "manual": "Lucky rerolls; Nimble.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -459,7 +463,7 @@
    }
   ],
   "summary": "Advantage reminders vs frightened and on tactics checks.",
-  "manual": "Fortune's Favour.",
+  "manual": "Fortune's Favour: once a day, out of turn, you or an ally within 30ft rerolls a missed attack roll or failed save (1 Luck for a second use).",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -634,10 +638,14 @@
    {
     "key": "note.damage",
     "value": "Orc: wielding two-handed, reroll 1s on the damage dice once."
+   },
+   {
+    "key": "note.attack",
+    "value": "Orcish Charge: when you Charge and hit, the target is pushed 5ft."
    }
   ],
-  "summary": "Intimidation Advantage reminder; two-handed reroll reminder.",
-  "manual": "Relentless Endurance; once a day, before you roll: Advantage on an attack roll or Strength check (1 Luck for an extra use).",
+  "summary": "Intimidation Advantage reminder; two-handed reroll reminder; Orcish Charge reminder.",
+  "manual": "Relentless Endurance.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
  },
@@ -1531,16 +1539,13 @@
     "name": "Intimidated",
     "target": "target",
     "rounds": 1,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack",
-      "value": -1
-     }
-    ]
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
    }
   ],
-  "summary": "Disadvantage on attack rolls until the end of its next turn on a failed Will save.",
+  "summary": "Frightened until the end of its next turn on a failed Will save.",
   "manual": "The save.",
   "confidence": "medium"
  },
@@ -1895,13 +1900,12 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "ranged attack, on a turn you have not moved"
+    "key": "note.damage",
+    "value": "Dead Eye: on a turn you don't move, your first ranged attack's damage dice explode on either of their two highest numbers."
    }
   ],
-  "summary": "Dead Eye first-attack Advantage reminder (ranged, no movement this turn).",
-  "manual": "Rooting until end of turn.",
+  "summary": "Dead Eye reminder on your damage cards (on a turn you don't move: the first ranged attack's dice explode on their two highest numbers).",
+  "manual": "Roll the explosions on the two highest faces by hand; rooting until the end of your turn.",
   "confidence": "high"
  },
  "class-features/Q8emeWd2tFKeF4gE": {
@@ -2429,9 +2433,8 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs your favoured enemy"
+    "key": "note.damage",
+    "value": "Favoured Enemy: your first hit each round deals an extra weapon damage die and ignores its resistance."
    },
    {
     "key": "ac",
@@ -2444,7 +2447,7 @@
     "when": "tracking your favoured enemy"
    }
   ],
-  "summary": "Favoured enemy reminders: first-attack Advantage, +2 AC, +2 tracking.",
+  "summary": "Favoured enemy reminders: the first hit each round's extra weapon die (ignoring resistance), +2 AC, +2 tracking; it can't hide from you.",
   "manual": "",
   "confidence": "high"
  },
@@ -2470,7 +2473,7 @@
    {
     "name": "Intimidated by the Ranger",
     "target": "target",
-    "rounds": 10,
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
@@ -2486,7 +2489,7 @@
     ]
    }
   ],
-  "summary": "Up to 15 favoured enemies: Disadvantage reminders on attacks and checks while engaged with you, up to 1 minute.",
+  "summary": "Up to 15 favoured enemies: Disadvantage reminders on attacks and checks while engaged with you, for the encounter.",
   "manual": "The Will save.",
   "confidence": "medium"
  },
@@ -2653,9 +2656,8 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "while in melee with a single opponent"
+    "key": "note.attack",
+    "value": "Duel's Rhythm: after each of your attacks you may move 10ft without provoking, and your opponent can't Disengage from you."
    },
    {
     "key": "adv.save",
@@ -2663,7 +2665,7 @@
     "when": "while in melee with a single opponent"
    }
   ],
-  "summary": "Duel's Rhythm Advantage reminders.",
+  "summary": "Duel's Rhythm reminders: move 10ft after each attack without provoking, your opponent can't Disengage; Advantage on saves.",
   "manual": "",
   "confidence": "high"
  },
@@ -3025,17 +3027,22 @@
  "kits/aWVs4Wj6e5DswX5g#0": {
   "name": "Ambush Strike",
   "from": "Red Waste Marauder (Barbarian)",
-  "container": "passive",
-  "rules": [
+  "container": "applies",
+  "rules": [],
+  "summary": "Your first hit on a creature that hasn't yet acted this combat: Apply Prone unless it makes a Fortitude save.",
+  "manual": "The Fortitude save, and whether it has acted.",
+  "confidence": "high",
+  "applies": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs a target that hasn't acted yet"
+    "name": "Ambush Strike: Prone",
+    "target": "target",
+    "rounds": 0,
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
    }
-  ],
-  "summary": "Advantage on the first attack each round (vs a target that hasn't acted yet). Shown as reminders.",
-  "manual": "",
-  "confidence": "high"
+  ]
  },
  "kits/aWVs4Wj6e5DswX5g#1": {
   "name": "Desert Born",
@@ -3345,12 +3352,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "during a storm or rain"
+    "key": "note.attack",
+    "value": "Akadi: during a storm or rain, the first creature you hit each round (weapon or spell) is pushed 10ft and makes a Reflex save against your Class Save DC or falls Prone."
    }
   ],
-  "summary": "Advantage on the first attack each round (during a storm or rain). Shown as reminders.",
+  "summary": "Storm reminder on your attack cards (push 10ft, Reflex save or Prone).",
   "manual": "Once/day lightning strike.",
   "confidence": "high"
  },
@@ -3365,12 +3371,11 @@
     "when": "to recall or find historical information"
    },
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs a creature you fought in an earlier encounter"
+    "key": "note.damage",
+    "value": "Annam: against a creature you fought in an earlier encounter, your first hit each round ignores its resistances."
    }
   ],
-  "summary": "Advantage on checks (to recall or find historical information); Advantage on the first attack each round (vs a creature you fought in an earlier encounter). Shown as reminders.",
+  "summary": "Advantage on checks (to recall or find historical information); a reminder that your first hit each round ignores the resistances of a creature you fought before. Shown as reminders.",
   "manual": "Perfect recall.",
   "confidence": "high"
  },
@@ -3703,12 +3708,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs undead"
+    "key": "note.damage",
+    "value": "Lathander: your first hit each round on undead deals +1d6 radiant damage, and it can't regain HP until the end of its next turn."
    }
   ],
-  "summary": "Advantage on the first attack each round (vs undead). Shown as reminders.",
+  "summary": "Lathander's reminder on your damage cards: +1d6 radiant on your first hit each round on undead; it can't regain HP until the end of its next turn.",
   "manual": "Dawn burst.",
   "confidence": "high"
  },
@@ -4001,7 +4005,7 @@
    }
   ],
   "summary": "Advantage on saves (vs fear). Shown as reminders.",
-  "manual": "Once/day ally Advantage.",
+  "manual": "Once/day: all allies within 30ft can't be Frightened for the encounter and regain HP equal to your Wisdom modifier.",
   "confidence": "high"
  },
  "kits/ww473RWPcUdEG6ky#0": {
@@ -4377,16 +4381,11 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Dead Reckoning: no Disadvantage on ranged attacks within 5ft."
-   },
-   {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "bow attack, vs a stationary or unaware target"
+    "value": "Dead Reckoning: no Disadvantage on ranged attacks within 5ft; your bow attacks ignore half and three-quarters cover, and score a critical hit on a 19 or 20 against a stationary or unaware target."
    }
   ],
-  "summary": "A reminder note on the matching card; Advantage on the first attack each round (bow attack, vs a stationary or unaware target). Shown as reminders.",
-  "manual": "Cancelling the point-blank Disadvantage.",
+  "summary": "A reminder note on your attack cards.",
+  "manual": "Cover and the 19 critical against a stationary or unaware target.",
   "confidence": "medium"
  },
  "kits/a9c6Lt8lNOCQtAZq#1": {
@@ -5087,17 +5086,15 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs undead you did not create"
+    "key": "note.attack",
+    "value": "Warden's Strike: an undead you hit that you did not create can't use its auras, drains or frightful presence until the end of its next turn; undead you destroy can't rise again."
    },
    {
-    "key": "spell.dc",
-    "value": 2,
-    "when": "death magic vs undead you did not create"
+    "key": "note.spell",
+    "value": "Warden's Strike: undead you did not create make their saves against your death magic with Disadvantage."
    }
   ],
-  "summary": "Advantage on the first attack each round (vs undead you did not create); +2 spell DC (death magic vs undead you did not create). Shown as reminders.",
+  "summary": "Reminders on your attack and spell cards.",
   "manual": "Healing your undead.",
   "confidence": "high"
  },
@@ -5162,12 +5159,11 @@
     "when": "to research or recall historical information"
    },
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "vs a creature you fought in an earlier encounter"
+    "key": "note.damage",
+    "value": "Annam: against a creature you fought in an earlier encounter, your first hit each round ignores its resistances."
    }
   ],
-  "summary": "Advantage on checks (to research or recall historical information); Advantage on the first attack each round (vs a creature you fought in an earlier encounter). Shown as reminders.",
+  "summary": "Advantage on checks (to research or recall historical information); a reminder that your first hit each round ignores the resistances of a creature you fought before. Shown as reminders.",
   "manual": "Perfect recall.",
   "confidence": "high"
  },
@@ -5491,7 +5487,7 @@
    }
   ],
   "summary": "Advantage on saves (vs necromantic effects). Shown as reminders.",
-  "manual": "Once/day destroying Smite.",
+  "manual": "Once/day, when your Smite hits an undead creature: its Will save or destroyed.",
   "confidence": "high"
  },
  "kits/TFun1wpBtWHg7n2K#0": {
@@ -5759,7 +5755,7 @@
    }
   ],
   "summary": "Immune to Frightened from 1st level (early Aura of Courage).",
-  "manual": "Aura of Courage from 1st level: fear immunity (the Paladin's own Aura of Courage benefit) and allies' +4 vs fear within 30ft; once/day ally Advantage.",
+  "manual": "Aura of Courage from 1st level: fear immunity (the Paladin's own Aura of Courage benefit) and allies' +4 vs fear within 30ft; once/day all allies within 30ft can't be Frightened for the encounter and regain HP equal to your Charisma modifier.",
   "confidence": "medium"
  },
  "kits/yt7c9uA4taSn0Y6Z#0": {
@@ -5812,12 +5808,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "with a hand axe, battle axe or spear while carrying a shield"
+    "key": "note.attack",
+    "value": "Axe and Shield: on a hit with a hand axe, battle axe or spear while you carry a shield, you may shove the target 5ft (Strength contest)."
    }
   ],
-  "summary": "Advantage on the first attack each round (with a hand axe, battle axe or spear while carrying a shield). Shown as reminders.",
+  "summary": "A reminder note on your attack cards.",
   "manual": "",
   "confidence": "high"
  },
@@ -6631,11 +6626,11 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Belial & Fierna: your fire damage ignores resistance; targets make a Will save or have Disadvantage on their next attack."
+    "value": "Belial & Fierna: your fire damage ignores resistance; a creature you burn makes a Will save or can't act out of turn and has its speed halved until the end of its next turn."
    }
   ],
   "summary": "A reminder note on the matching card.",
-  "manual": "Resistance bypass; target Disadvantage. Dark Gift damage/defence only works while Warlock level is at least half character level.",
+  "manual": "Resistance bypass; the target's save. Dark Gift damage/defence only works while Warlock level is at least half character level.",
   "confidence": "medium"
  },
  "kits/fQMky46xsviqaWBh#0": {
@@ -6717,7 +6712,7 @@
    }
   ],
   "summary": "Advantage on Cha checks (vs creatures that find you appealing). Shown as reminders.",
-  "manual": "Cha reroll; enchantment victims' Disadvantage vs you.",
+  "manual": "Cha reroll; a creature that fails a save against your enchantment spell can't attack you until the end of your next turn.",
   "confidence": "high"
  },
  "kits/IgPqTiB8rLSabfY3#0": {
@@ -10435,8 +10430,8 @@
   "from": "Ancestry",
   "container": "passive",
   "rules": [],
-  "summary": "The lineage picked when the ancestry is added becomes a feature with a Shifted switch (half your level a day, rounded up): its benefit counts only while it's on (Swiftstride +15ft, Beasthide Resistance 3 to non-magical weapons; the others reminders).",
-  "manual": "Duration (Constitution modifier rounds) and Beasthide's temporary HP by hand.",
+  "summary": "The lineage picked when the ancestry is added becomes a feature with a Shifted switch (once per encounter, lasting the encounter): its benefit counts only while it's on (Swiftstride +15ft, Beasthide Resistance 3 to non-magical weapons; the others reminders).",
+  "manual": "Switch it off when the encounter ends; Beasthide's temporary HP by hand.",
   "confidence": "high"
  },
  "ancestries/llnGaa0xA8flx67x": {
@@ -10659,7 +10654,7 @@
   "from": "Boldock Wall-Knights (Knight)",
   "container": "passive",
   "rules": [],
-  "summary": "Your Demoralise is harsher: on a failed Will save, Disadvantage on all attack rolls. The kit feature carries that effect, applied in place of the usual failed-save one.",
+  "summary": "Your Demoralise is harsher: on a failed Will save, enemies are Frightened of you while the Command lasts (Apply Frightened in place of the usual failed-save effect).",
   "manual": "",
   "confidence": "high"
  },
@@ -10852,8 +10847,12 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
-      "value": 1
+      "key": "immune",
+      "value": "condition:frightened"
+     },
+     {
+      "key": "note.damage",
+      "value": "Inspired: your first hit each round on a creature the Knight has Challenged deals an extra weapon damage die."
      }
     ]
    },
@@ -10888,8 +10887,8 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
-      "value": -1
+      "key": "note.attack",
+      "value": "Demoralised: it can't move closer to the Knight while the Command lasts."
      }
     ]
    },
@@ -10907,7 +10906,7 @@
     ]
    }
   ],
-  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on the first attack each round), Emboldened (Advantage on Will saves), Demoralised (Disadvantage on Charisma checks; on a failed Will save also on the first attack each round), all for the encounter; Expert in Arms (Advantage on contested manoeuvre checks) until the start of your next turn.",
+  "summary": "The Command pool. Each option offers only its own effect: Inspired (can't be Frightened; the first hit each round on the Challenged foe deals an extra weapon die), Emboldened (Advantage on Will saves), Demoralised (Disadvantage on Charisma checks; on a failed Will save it can't move closer to you), all for the encounter; Expert in Arms (Advantage on contested manoeuvre checks) until the start of your next turn.",
   "manual": "Who is in range and how many creatures; only one Command at a time (two from 8th, Battlefield Dominance); a new one ends the last: remove its effects.",
   "confidence": "high"
  },
@@ -10972,9 +10971,8 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack",
-      "value": -1,
-      "when": "its next attack roll"
+      "key": "note.damage",
+      "value": "Discord: its next hit before the end of its next turn deals half damage."
      }
     ]
    },
@@ -10985,8 +10983,8 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
-      "value": 1
+      "key": "note.attack",
+      "value": "Exhorted: once each round, reroll one attack roll or save."
      }
     ]
    },
@@ -11000,7 +10998,7 @@
     "rules": []
    }
   ],
-  "summary": "The Performance pool. Each option offers only its own effect: Exalted (Advantage on checks and saves, not attacks, for the encounter), Discord (Disadvantage on the next attack, failed Will save), Exhorted (Advantage on the first attack each round for the encounter), Words of Power (Deafened until the end of its next turn, failed Will save).",
+  "summary": "The Performance pool. Each option offers only its own effect: Exalted (Advantage on checks and saves, not attacks, for the encounter), Discord (its next hit deals half damage, failed Will save), Exhorted (one reroll of an attack or save each round, for the encounter), Words of Power (Deafened until the end of its next turn, failed Will save).",
   "manual": "Exhort Greatness' temporary HP (two rolls of the creature's Hit Die, each + Constitution modifier); Rally's re-saves; one Performance a round.",
   "confidence": "high"
  },
@@ -11020,8 +11018,8 @@
     "rules": []
    }
   ],
-  "summary": "The Channel pool. Smite rolls its +1 damage per Paladin level (Advantage on that attack); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
-  "manual": "Smite's Advantage: roll the attack with Advantage. Turn Undead's destruction and the number turned.",
+  "summary": "The Channel pool. Smite is spent when you hit: extra radiant damage equal to your Paladin level, and an ally within 10ft heals your Charisma modifier (minimum 1); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
+  "manual": "Turn Undead's destruction and the number turned.",
   "confidence": "high"
  },
  "class-features/TgGJDs1KneKENxXD": {

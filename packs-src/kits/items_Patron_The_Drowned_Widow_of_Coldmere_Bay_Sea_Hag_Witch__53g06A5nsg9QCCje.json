@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>Fishermen along the Jinia coast leave offerings at low tide so she doesn't come looking herself. She was beautiful once, or so the stories insist, right before the sea decided otherwise.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) a swim speed equal to their normal move speed and the ability to hold their breath for <strong>1 hour</strong>. Their first melee hit within that hour also forces a <strong>Fortitude save</strong> or the target is knocked prone, coughing seawater.</li><li><strong>Patron Curse</strong> (3rd): Once per day, force a creature within <strong>30ft</strong> to make a <strong>Will save</strong> or be wracked by the Drowned Widow's Gaze — disadvantage on all rolls for <strong>1 minute</strong> as the ocean's weight presses on their mind.</li><li><strong>Physical Change</strong> (7th): Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat.</li><li>You can breathe underwater and gain a swim speed of <strong>20ft</strong>.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — the target makes a <strong>Fortitude save</strong> or their lungs seize with phantom water, staggered (half speed, disadvantage on attack rolls) for <strong>1 minute</strong>.</li></ul>",
+  "description": "<p>Fishermen along the Jinia coast leave offerings at low tide so she doesn't come looking herself. She was beautiful once, or so the stories insist, right before the sea decided otherwise.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) a swim speed equal to their normal move speed and the ability to hold their breath for <strong>1 hour</strong>. Their first melee hit within that hour also forces a <strong>Fortitude save</strong> or the target is knocked prone, coughing seawater.</li><li><strong>Patron Curse</strong> (3rd): Once per day, force a creature within <strong>30ft</strong> to make a <strong>Will save</strong> or be wracked by the Drowned Widow's Gaze: its speed is halved and it can't speak (no verbal spells) for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</li><li><strong>Physical Change</strong> (7th): Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat.</li><li>You can breathe underwater and gain a swim speed of <strong>20ft</strong>.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — the target makes a <strong>Fortitude save</strong> or its lungs seize with phantom water: it falls <strong>Prone</strong> and loses its next action.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,7 +26,7 @@
    {
     "name": "Patron Curse",
     "level": 3,
-    "description": "<p>Once per day, force a creature within <strong>30ft</strong> to make a <strong>Will save</strong> or be wracked by the Drowned Widow's Gaze — disadvantage on all rolls for <strong>1 minute</strong> as the ocean's weight presses on their mind.</p>",
+    "description": "<p>Once per day, force a creature within <strong>30ft</strong> to make a <strong>Will save</strong> or be wracked by the Drowned Widow's Gaze: its speed is halved and it can't speak (no verbal spells) for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -37,7 +37,7 @@
    {
     "name": "Physical Change",
     "level": 7,
-    "description": "<p>Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat.</p><ul><li>You can breathe underwater and gain a swim speed of <strong>20ft</strong>.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — the target makes a <strong>Fortitude save</strong> or their lungs seize with phantom water, staggered (half speed, disadvantage on attack rolls) for <strong>1 minute</strong>.</li></ul>",
+    "description": "<p>Your skin turns faintly grey and clammy, and thin gill-like slits appear at your throat.</p><ul><li>You can breathe underwater and gain a swim speed of <strong>20ft</strong>.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — the target makes a <strong>Fortitude save</strong> or its lungs seize with phantom water: it falls <strong>Prone</strong> and loses its next action.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -79,7 +79,7 @@
       "damageType": "",
       "ability": "",
       "save": "fort",
-      "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or is staggered (half speed, Disadvantage on attack rolls) for 1 minute.",
+      "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or falls Prone and loses its next action.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 1,

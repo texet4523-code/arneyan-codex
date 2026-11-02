@@ -1609,7 +1609,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "When you use Marked Prey, you also have Advantage on your first attack roll against that creature each round for the encounter. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3088,10 +3088,11 @@
    },
    {
     "name": "Blood answers",
-    "kind": "save",
-    "save": "will",
-    "text": "Once per day, out of turn, when struck in melee: the attacker makes a Will save or has Disadvantage on its next attack roll.",
-    "reaction": true
+    "kind": "damage",
+    "text": "Once per day, out of turn, when struck in melee: the attacker takes this piercing damage (Will save halves).",
+    "reaction": true,
+    "formula": "2d6",
+    "damageType": "piercing"
    }
   ],
   "confidence": "high",
@@ -3129,7 +3130,7 @@
     "name": "Phantom water",
     "kind": "save",
     "save": "fort",
-    "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or is staggered (half speed, Disadvantage on attack rolls) for 1 minute."
+    "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or falls Prone and loses its next action."
    }
   ],
   "confidence": "high",
@@ -3168,7 +3169,7 @@
     "name": "Locked gaze",
     "kind": "save",
     "save": "will",
-    "text": "Once per day, without spending your action: a creature within 30ft makes a Will save or is Frightened for 1 round and then Shaken (Disadvantage on its next attack roll) for 1 minute."
+    "text": "Once per day, without spending your action: a creature within 30ft makes a Will save or is Frightened of you until the end of its next turn."
    }
   ],
   "confidence": "high",
@@ -3637,7 +3638,7 @@
    {
     "name": "Inspire",
     "kind": "note",
-    "text": "The default Command, for the encounter: friendly creatures within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) have Advantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "text": "The default Command, for the encounter: allies within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) can't be Frightened, and an ally's first hit each round on a creature you have Challenged deals an extra weapon damage die. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3659,7 +3660,7 @@
    {
     "name": "Demoralise",
     "kind": "save",
-    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also have Disadvantage on their first attack roll each round. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also can't move closer to you while the Command lasts. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
     "minLevel": 5,
     "cost": 1,
     "per": "",
@@ -3704,7 +3705,7 @@
    {
     "name": "Discord",
     "kind": "save",
-    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or has Disadvantage on its next attack roll.",
+    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or its next hit before the end of its next turn deals half damage.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3726,7 +3727,7 @@
    {
     "name": "Exhort Greatness",
     "kind": "note",
-    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you have Advantage on their first attack roll each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
+    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you may reroll one attack roll or save each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
     "minLevel": 5,
     "cost": 2,
     "per": "",
@@ -3760,13 +3761,25 @@
    {
     "name": "Smite",
     "kind": "damage",
-    "text": "The default Channel, spent as you attack: Advantage on that attack roll, plus +1 damage per Paladin level, against any foe regardless of alignment.",
+    "text": "The default Channel, spent when you hit (not before rolling): the hit deals extra radiant damage equal to your Paladin level, against any foe regardless of alignment. Then roll the ally's healing below (no use spent).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false,
-    "formula": "@cl"
+    "formula": "@cl",
+    "damageType": "radiant"
+   },
+   {
+    "name": "Smite: an ally heals",
+    "kind": "heal",
+    "formula": "max(1, @abilities.cha.mod)",
+    "text": "With your Smite: one ally within 10ft regains HP equal to your Charisma modifier (minimum 1).",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
    },
    {
     "name": "Turn Undead",
@@ -3830,7 +3843,7 @@
    "formula": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th."
+  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th. Books v0.10.36 (K36): Smite is spent on a hit, radiant, and heals an ally."
  },
  "Quick Reflexes (Improved)|Monk": {
   "activities": [
@@ -4075,6 +4088,172 @@
    "max": 1,
    "per": "encounter",
    "formula": "max(1, @wis.mod * min(1, floor(@cl / 24)))"
+  }
+ },
+ "Cauldron Brews|Witch": {
+  "activities": [
+   {
+    "name": "Witch Bottle",
+    "kind": "note",
+    "text": "{1:Advantage on saves of one kind (Fortitude, Reflex or Will, the drinker's choice) for an hour., 5:Advantage on saves of one kind for an hour; also ends lesser curses and one disease., 9:Advantage on all three saves for an hour, and temporary HP equal to your Witch level + Wisdom modifier; also ends lesser curses and one disease., 13:Advantage on all three saves, and can't be Frightened or Charmed, for an hour; temporary HP equal to your Witch level + Wisdom modifier; ends lesser curses and one disease., 17:Advantage on all three saves, and can't be Frightened or Charmed, for an hour; temporary HP equal to twice your Witch level + Wisdom modifier; ends any curse and one disease.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Seer's Draught",
+    "kind": "note",
+    "text": "{1:An omen about a place or person., 5:An omen and one yes-or-no answer., 9:An omen, one yes-or-no answer and a short vision., 13:An omen, a vision, and one question answered truthfully in a sentence., 17:An omen, a vision and one question answered truthfully; also can't be surprised for a day.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Threshold Salt",
+    "kind": "note",
+    "text": "{1:Poured on a doorway: you know when anything crosses it., 5:Poured on a doorway: you know when anything crosses it, and hostile spirits and fey can't cross., 9:Covers a whole building: you know when anything crosses, and hostile spirits and fey can't cross., 13:Covers a whole building: you know when anything crosses, and hostile spirits, fey, undead and fiends can't cross., 17:Covers a castle or a village quarter: you know when anything crosses, and the kinds of creature you name can't cross.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Familiar's Broth",
+    "kind": "note",
+    "text": "{1:Fed to the familiar: it scouts or carries a message up to 1 mile., 5:Fed to the familiar: it scouts or carries a message up to 5 miles., 9:Fed to the familiar: it scouts or carries a message up to 20 miles, and you see through its eyes., 13:Fed to the familiar: it travels anywhere on the same plane you have been, and you see through its eyes., 17:Fed to the familiar: it travels anywhere you have been on this plane, or into the Feywild or the Shadowfell and back, and you see through its eyes.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Hag's Remedy",
+    "kind": "note",
+    "text": "{1:Stabilises a dying creature and ends Poisoned., 5:Stabilises a dying creature, ends Poisoned and one disease.}",
+    "minLevel": 0,
+    "maxLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Hag's Remedy",
+    "kind": "heal",
+    "text": "{9:Stabilises a dying creature, ends Poisoned and one disease, and restores this many HP., 13:Stabilises, ends Poisoned, one disease, Paralysed or Petrified, and restores this many HP., 17:Stabilises, ends Poisoned, one disease, Paralysed or Petrified, and restores this many HP; a creature that died within the last round returns at 1 HP.}",
+    "minLevel": 9,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "{9:2d8, 13:4d8, 17:6d8}"
+   },
+   {
+    "name": "Nightsight Tea",
+    "kind": "note",
+    "text": "{1:Darkvision 60ft for an hour., 5:Darkvision 60ft for an hour, seeing through magical darkness., 9:Darkvision 60ft for an hour, seeing through magical darkness; sees invisible creatures for one encounter., 13:Darkvision 60ft for an hour, seeing through magical darkness; Truesight 30ft for one encounter., 17:Darkvision and Truesight 60ft for an hour.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Hearthfire Broth",
+    "kind": "temp",
+    "text": "{1:Temporary HP for an hour., 5:Temporary HP for an hour., 9:Temporary HP for an hour., 13:Temporary HP for an hour, and Resistance 5 to cold and fire., 17:Temporary HP for an hour, and immune to cold (Resistance 5 to fire).}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "{1:1, 5:2, 9:3, 13:4, 17:5}d8 + @cl"
+   },
+   {
+    "name": "Hex Oil",
+    "kind": "damage",
+    "text": "{1:On a weapon, for the encounter: its first hit each round deals this extra necrotic damage., 5:On a weapon, for the encounter: its first hit each round deals this extra necrotic damage., 9:On a weapon, for the encounter: its first hit each round deals this extra necrotic damage, and the target can't regain HP until the end of its next turn., 13:On a weapon, for the encounter: its first hit each round deals this extra necrotic damage, and the target can't regain HP until the end of its next turn., 17:On a weapon, for the encounter: its first hit each round deals this extra necrotic damage, the target can't regain HP until the end of its next turn, and a creature it kills can't be raised by anything less than Wish.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "{1:1, 5:2, 9:2, 13:3, 17:4}d6",
+    "damageType": "necrotic"
+   },
+   {
+    "name": "Murk Brew",
+    "kind": "note",
+    "text": "{1:Splash: a 10ft cloud of fog (heavily obscured) for the encounter., 5:Splash: a 20ft cloud of fog for the encounter; creatures inside make a Fortitude save or are Poisoned., 9:Splash: a 20ft cloud of fog for the encounter; creatures inside make a Fortitude save or are Poisoned; you and your allies see through it., 13:Splash: a 30ft cloud for the encounter; Fortitude save or Poisoned; a Poisoned creature inside takes 2d6 poison damage at the start of its turn; you and your allies see through it., 17:Splash: a 30ft cloud for the encounter (Fortitude save or Poisoned; 2d6 poison a turn to the Poisoned inside); you and your allies see through it, and you can move it 20ft each round as part of your action.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Toad's Leap",
+    "kind": "note",
+    "text": "{1:Triple jump distance and no damage from falls, for an hour., 5:Triple jump distance, no damage from falls, and climb walls as if they were floors, for an hour., 9:Triple jump, no falling damage and wall-climbing for an hour; a fly speed of 30ft for 10 minutes., 13:Triple jump, no falling damage, wall-climbing and a fly speed of 60ft, for an hour., 17:Triple jump, no falling damage, wall-climbing and a fly speed of 60ft for an hour; can't be Grappled or Restrained.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Silver Tongue Syrup",
+    "kind": "note",
+    "text": "{1:The drinker's lies can't be detected by magic for an hour., 5:For an hour, the drinker's lies can't be detected by magic, and they speak and understand any language., 9:For an hour, undetectable lies and any language; one creature that talks with them treats them as a friend (Will negates)., 13:For an hour, undetectable lies, any language and one creature's friendship (Will negates); once, a one-sentence suggestion the creature follows (Will negates)., 17:For an hour, undetectable lies and any language; once, a one-sentence suggestion (Will negates); everyone listening for a minute treats them as a friend (Will negates).}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Grave Dust Tea",
+    "kind": "note",
+    "text": "{1:Ask a corpse one question., 5:Ask a corpse three questions., 9:Ask a corpse three questions and see its last memory., 13:Talk with the dead for 10 minutes as if alive, and see its last memory., 17:Talk with the dead for 10 minutes and see its last memory, even if only dust or bones remain, however old.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Sleepwell Draught",
+    "kind": "note",
+    "text": "{1:The drinker's next rest counts as sheltered (regain Constitution modifier HP)., 5:The next rest counts as sheltered, and removes one level of Exhaustion., 9:The next rest regains HP as for two nights' rest, and removes one level of Exhaustion., 13:The next rest regains HP as for two nights' rest and removes all Exhaustion., 17:One hour of sleep counts as a full rest; it regains HP as for two nights' rest and removes all Exhaustion.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Beast Tongue",
+    "kind": "note",
+    "text": "{1:Speak with animals for an hour., 5:Speak with animals for an hour; animals start friendly towards the drinker., 9:Speak with friendly animals for an hour, and call a local beast of Level up to half your Witch level to help for an hour., 13:Speak with friendly animals; call a local beast of Level up to two-thirds your Witch level to help for an hour., 17:Speak with friendly animals; call a beast up to your Witch level, or a swarm of lesser beasts, to help for a day.}",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.36 (K36, claude/Witch_Cauldron_Brews_Approved.md): draughts brewed at a full rest, 2/3/4/5/6 at 1st/5th/9th/13th/17th, each kept until the next full rest; the 14 recipes with their tiers (the four known at 1st, +2 at 5th, 9th, 13th and 17th, are the player's pick). Each draught used spends one.",
+  "uses": {
+   "max": 2,
+   "per": "day",
+   "formula": "1:2, 5:3, 9:4, 13:5, 17:6"
   }
  }
 }

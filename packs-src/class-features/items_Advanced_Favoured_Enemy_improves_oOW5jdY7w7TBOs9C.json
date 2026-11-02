@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<p>once per encounter, intimidate up to 15 of the favoured enemy simultaneously (<strong>Will save</strong> against your Class Save DC). Intimidated enemies suffer disadvantage on all attack rolls and attribute checks while engaged with the ranger, for up to <strong>1 minute</strong></p>",
+  "description": "<p>once per encounter, intimidate up to 15 of the favoured enemy simultaneously (<strong>Will save</strong> against your Class Save DC). Intimidated enemies suffer disadvantage on all attack rolls and attribute checks while engaged with the ranger, for the encounter</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,7 @@
    {
     "name": "Intimidated by the Ranger",
     "target": "target",
-    "rounds": "10",
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {

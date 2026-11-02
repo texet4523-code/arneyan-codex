@@ -553,7 +553,8 @@ export function byLevelTable(value, level) {
   const s = String(value ?? "").trim();
   if (!/^\d+\s*:/.test(s)) return value;
   let out = "0";
-  for (const part of s.split(",")) {
+  // Steps split only where the next "N:" starts, so a step's own text can hold commas (a Witch's brew tiers).
+  for (const part of s.split(/,(?=\s*\d+\s*:)/)) {
     // An empty step ("{1:, 4:also ends Frightened}") is nothing until the next one.
     const m = part.match(/^\s*(\d+)\s*:\s*(.*?)\s*$/);
     if (m && Number(level) >= Number(m[1])) out = m[2];

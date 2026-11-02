@@ -18,13 +18,13 @@ ABBR = {"str": "str", "dex": "dex", "con": "con", "int": "int", "wis": "wis", "c
         "constitution": "con", "intelligence": "int", "wisdom": "wis", "charisma": "cha"}
 # Each Shifter lineage while shifted (only what its text gives as a number counts on its own; the rest are reminders).
 SHIFTED = {
-    "Longtooth": [{"key": "adv.attack.first.melee", "value": "1", "when": "against a creature an ally also threatens", "label": ""}],
+    "Longtooth": [{"key": "note.attack", "value": "Longtooth: once per round, when you hit a creature an ally also threatens, it falls Prone if it is no larger than you (Fortitude save, Ancestry Save DC, Strength, negates).", "when": "", "label": ""}],
     "Wildhunt": [{"key": "adv.skill", "value": "1", "when": "Perception or Survival involving scent or tracking", "label": ""}],
     "Swiftstride": [{"key": "speed", "value": "15", "when": "", "label": ""}],
     "Beasthide": [{"key": "resist", "value": "non-magical 3", "when": "", "label": ""},
                   {"key": "note.init", "value": "Beasthide: temporary HP equal to your Constitution modifier each time you shift.", "when": "", "label": ""}],
     "Gorebrute": [{"key": "note.attack", "value": "Gorebrute: move through an enemy's space; it makes a Fortitude save (Ancestry Save DC, Strength) or is knocked prone (once per creature per turn, up to one size larger).", "when": "", "label": ""}],
-    "Sslyth": [{"key": "note.attack", "value": "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration.", "when": "", "label": ""}],
+    "Sslyth": [{"key": "note.attack", "value": "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned.", "when": "", "label": ""}],
 }
 LABELS = {"Subtypes": "Subtype", "Bloodlines": "Bloodline", "Castes": "Caste", "Lineages": "Lineage"}
 DAMAGE = "fire|cold|lightning|thunder|acid|poison|necrotic|radiant|psychic|force"
@@ -110,12 +110,13 @@ def build():
                                                             "bonuses": {}, "rules": [{"key": "resist", "value": f"{t} 5", "when": "", "label": ""}]} for t in types]}
         if d["name"] == "Shifter" and choice:
             # Lineage benefits count only while shifted (Batch 8, 25 Oct 2026): the lineage's feature gets a Shifted
-            # switch with The Beast Within's uses (half level a day, rounded up), and its rules apply while it's on.
+            # switch with The Beast Within's use (books v0.10.37, K39: once per encounter, lasting the encounter), and
+            # its rules apply while it's on.
             for o in choice["options"]:
                 key = o["name"].split("-")[-1].strip()
                 o["rules"] = SHIFTED.get(key, [])
                 o["toggle"] = True
-                o["uses"] = {"value": 1, "max": 1, "per": "day", "formula": "max(1, ceil(@level/2))"}
+                o["uses"] = {"value": 1, "max": 1, "per": "encounter", "formula": ""}
         s["choice"] = choice
         json.dump(d, open(f, "w"), ensure_ascii=False, indent=1)
         n += 1

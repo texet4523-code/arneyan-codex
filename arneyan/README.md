@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.78 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.79 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.79
+
+- **Books v0.10.36 and v0.10.37** (Kieran's K35 to K43; board B-F23 and B-F24).
+  - **Fewer attack Advantages, more of each class's own flavour** (K35 to K37). Knight Inspire: allies can't be Frightened, and their first hit each round on the creature you Challenged deals an extra weapon die; Demoralise stops a creature that fails its save moving closer to you (Boldock Wall-Knights: Frightened instead). Paladin Smite is spent when you hit: extra radiant damage equal to your Paladin level, and a second option heals an ally within 10ft by your Charisma modifier. Barbarian Intimidate makes the target Frightened until the end of its next turn. Bard Discord halves its next hit; Exhort Greatness gives a reroll of one attack or save each round. Ranger Favoured Enemy: the first hit each round deals an extra weapon die and ignores resistance; Apex Predator stops the prey disengaging, hiding or turning invisible. Swashbuckler Duel's Rhythm: move 10ft after each attack, and your opponent can't Disengage. Gunslinger Dead Eye: on a turn you don't move, your first ranged attack's dice explode on their two highest numbers. Kits, deities and patrons change as the books say (Red Waste Marauder's Ambush Strike knocks Prone, Lathander's +1d6 radiant on undead, Akadi's storm push, Annam, Torm, Sharpshooter, Grave Warden, Frontier Vanguard, Skalds, Mournas Street Poet, Asmodeus, Belial & Fierna, Graz'zt, Vashtira, the Drowned Widow, Baba Yaga). Most of these are reminders on the cards rather than rolled for you.
+  - **Witch: Cauldron Brews** (1st level, new): 2 draughts a day at 1st, rising to 6 at 17th, and the 14 recipes as options on the feature, each tier read at your level. Hex Oil rolls its necrotic damage, Hearthfire Broth its temporary HP and Hag's Remedy (from 9th) its healing; the rest are reminders.
+  - **Barbarian Rage Styles:** one style each rage, each improving at 8th, in the feature's text.
+  - **Ancestries** (K39 to K41): Aasimar wings (glide at 1st, fly from 3rd, Ascension at 5th; flying is by hand on the token), Deep Gnome Nondetection always on, Goblin Mob Tactics, Half-Orc Onslaught for 1 Luck each time, Halfling Brave Heart always on, Hobgoblin Fortune's Favour reroll, Orcish Charge, and the Shifter's shift once each encounter, lasting it (Longtooth knocks Prone; the Ophidian bite Poisons).
+  - **The Wall's forts:** the Fort Dunwell kits are now **Westfront Wall-Archer** and **Westfront Defender** (same compendium entries; characters who have them keep the old name until it's changed by hand). The Star Spawn Grue's Aura of Unease gives Disadvantage on Will saves.
 
 ## What's new in 0.10.78
 

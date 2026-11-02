@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>Hardened in the brutal tribal warfare of Tariel's desert wastelands — raids, ambushes, endurance.</p><ul><li><strong>Ambush Strike:</strong> <strong>Advantage</strong> on your first attack roll each round against a target that hasn't yet acted in combat.</li><li><strong>Desert Born:</strong> <strong>Advantage</strong> on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</li></ul>",
+  "description": "<p>Hardened in the brutal tribal warfare of Tariel's desert wastelands — raids, ambushes, endurance.</p><ul><li><strong>Ambush Strike:</strong> your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</li><li><strong>Desert Born:</strong> <strong>Advantage</strong> on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,23 +15,24 @@
    {
     "name": "Ambush Strike",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on your first attack roll each round against a target that hasn't yet acted in combat.</p>",
+    "description": "<p>Your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "",
-    "rules": [
+    "save": "fort",
+    "applies": [
      {
-      "key": "adv.attack.first",
-      "value": "1",
-      "when": "vs a target that hasn't acted yet",
-      "label": ""
+      "name": "Ambush Strike: Prone",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
      }
-    ],
-    "toggle": false,
-    "active": false
+    ]
    },
    {
     "name": "Desert Born",

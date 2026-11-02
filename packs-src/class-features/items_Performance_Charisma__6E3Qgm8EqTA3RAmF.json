@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Song, oration, battle cry or demeanour. Uses per day equal to your Bard level + your Charisma modifier (minimum 2). Spend a use as part of your action, <strong>once per round</strong>, so you can still cast or attack. Your Performance options:</li><li><strong>Exalt</strong> (the default): one ally within <strong>60ft</strong> who can see and hear you has <strong>Advantage</strong> on attribute checks and saves, including class ability checks but not attack rolls, for the encounter. Exalt reaches 2 allies at 6th level, 3 at 12th and 4 at 18th</li><li><strong>Discord:</strong> a sharp jeer or discordant note. A target within <strong>30ft</strong> makes a <strong>Will save</strong> or has <strong>Disadvantage</strong> on its next attack roll</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Song, oration, battle cry or demeanour. Uses per day equal to your Bard level + your Charisma modifier (minimum 2). Spend a use as part of your action, <strong>once per round</strong>, so you can still cast or attack. Your Performance options:</li><li><strong>Exalt</strong> (the default): one ally within <strong>60ft</strong> who can see and hear you has <strong>Advantage</strong> on attribute checks and saves, including class ability checks but not attack rolls, for the encounter. Exalt reaches 2 allies at 6th level, 3 at 12th and 4 at 18th</li><li><strong>Discord:</strong> a sharp jeer or discordant note. A target within <strong>30ft</strong> makes a <strong>Will save</strong> or its next hit before the end of its next turn deals half damage</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -57,7 +57,7 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or has Disadvantage on its next attack roll.",
+    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or its next hit before the end of its next turn deals half damage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -111,7 +111,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you have Advantage on their first attack roll each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
+    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you may reroll one attack roll or save each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
     "minLevel": 5,
     "maxLevel": 0,
     "cost": 2,
@@ -187,9 +187,9 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack",
-      "value": "-1",
-      "when": "its next attack roll",
+      "key": "note.damage",
+      "value": "Discord: its next hit before the end of its next turn deals half damage.",
+      "when": "",
       "label": ""
      }
     ]
@@ -201,8 +201,8 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
-      "value": "1",
+      "key": "note.attack",
+      "value": "Exhorted: once each round, reroll one attack roll or save.",
       "when": "",
       "label": ""
      }

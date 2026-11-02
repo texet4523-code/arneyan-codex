@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Uses your action. One creature of equal or lower Level within <strong>15ft</strong> makes a <strong>Will save</strong> (against your Class Save DC) or has <strong>Disadvantage</strong> on attack rolls until the end of its next turn.</li><li>No daily limit</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Uses your action. One creature of equal or lower Level within <strong>15ft</strong> makes a <strong>Will save</strong> (against your Class Save DC) or is <strong>Frightened</strong> until the end of its next turn.</li><li>No daily limit</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,15 +26,10 @@
     "name": "Intimidated",
     "target": "target",
     "rounds": "1",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack",
-      "value": "-1",
-      "when": "",
-      "label": ""
-     }
-    ]
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
    }
   ]
  },

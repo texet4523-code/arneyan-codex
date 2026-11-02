@@ -82,6 +82,10 @@ def monster_aura(name, html_text):
     a = {"key": re.sub(r"\W+", "-", name.lower()), "name": name, "radius": int(m.group(1)), "who": "all", "includeSelf": False, "rules": []}
     if re.search(r"-1 to all saves", t, re.I):
         a["rules"] = [{"key": "save", "value": "-1", "label": name}]
+    # Books v0.10.36 (K36): the Star Spawn Grue's Aura of Unease is Disadvantage on Will saves.
+    dis = re.search(r"Disadvantage on (Fortitude|Reflex|Will) saves", t)
+    if dis:
+        a["rules"] = [{"key": f"adv.save.{SAVE[dis.group(1).lower()]}", "value": "-1", "label": name}]
     turn = {}
     if re.search(r"starts its turn|within \d+\s*ft that sees it", t, re.I):
         dmg = re.search(r"takes (\d+d\d+(?:\s*[+-]\s*\d+)?) (\w+) damage", t)
