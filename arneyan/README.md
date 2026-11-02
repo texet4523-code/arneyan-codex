@@ -13,7 +13,7 @@ Version 0.10.79 · Foundry v13 and v14 · **Playtest release**
     - Primary unarmed dice: 1d6 at 1st, 1d8 at 3rd.
     - Existing Monks' Stun Attack, Body of Iron and Death Strike are renamed Ki, Ki: Body of Iron and Ki: Death Strike on the update (one you renamed by hand keeps your name, but then the Ki options can't find their pool: rename it Ki).
   - **Bard:** **Performance: Fascinate** is a Performance option costing 1 use (it has no uses of its own any more). Performance gains 3 uses from 4th level. Sway Crowd holds its listeners until the end of their next turn after you stop.
-  - **Paladin Smite:** your first hit each encounter Smites unless you save the use. Every attack card shows a **Smite** button until you Smite in that encounter; leave it alone to keep the use.
+  - **Paladin Smite:** your first hit each encounter Smites unless you save the use. An attack card that hits shows a **Smite** button until you Smite in that encounter (it works once: a second click or an older card spends nothing); leave it alone to keep the use.
   - **Ranger Marked Prey** puts Marked Prey on the creature for the encounter. Your own first attack roll against it each round has Advantage; nobody else's does.
   - **Sorcerer:** Sorcerer's Spark is gone. **Wild Surge improves** at 5th (your second Wild Surge each day has no Corruption risk) and at 20th (your first two, and two Metamagic options on one spell once a day), as reminders. Existing Sorcerers' Spark features become Wild Surge improves, and an existing Bard's Fascinate becomes Performance: Fascinate.
   - **Assassin: First Blood** (1st, new; existing Assassins get it on the update) rolls one extra Sneak Attack die against a creature that hasn't acted yet this encounter.

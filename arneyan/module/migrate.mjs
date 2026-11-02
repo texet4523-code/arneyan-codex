@@ -642,7 +642,7 @@ export function scoresFrom(actor, src) {
 async function pass(fetch, opts) {
   let items = 0, world = 0, stamped = 0;
   const actors = opts.actorIds ?? new Set();
-  const count = ups => ups.filter(u => Object.keys(u).some(k => k.startsWith("system."))).length;
+  const count = ups => ups.filter(u => Object.keys(u).some(k => k.startsWith("system.") || k === "name")).length;
   const only = opts.only ?? null;
   for (const actor of game.actors) {
     if (only && !only.actors.has(actor.id)) continue;

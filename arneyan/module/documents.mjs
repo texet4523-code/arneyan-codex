@@ -657,13 +657,14 @@ export class ArneyanActor extends Actor {
       extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
-      footer: sit.footer(({ natural, crit }) => {
+      footer: sit.footer(({ natural, crit, outcome }) => {
         if (natural === 1 && !crit) return "";
         // A manoeuvre that hits "instead of dealing damage" (Push): no damage buttons.
         if (noDamage) return `<p class="arn-card-meta"><i class="fa-solid fa-hand"></i> On a hit: ${esc(noDamage)}. No damage.</p>`;
         const normal = `<button type="button" class="arn-damage" data-item-id="${item.id}" data-crit="0"><i class="fa-solid fa-burst"></i> ${crit ? "Normal damage" : "Roll damage"}</button>`;
         const critical = `<button type="button" class="arn-damage ${crit ? "" : "ghost"}" data-item-id="${item.id}" data-crit="1"><i class="fa-solid fa-star"></i> Critical${crit ? " damage" : ""}</button>`;
-        const smiteBtn = smite ? `<button type="button" class="arn-smite" data-item-id="${smite.item.id}"><i class="fa-solid fa-sun"></i> Smite (first hit this encounter)</button>` : "";
+        // Not on an attack that missed its one target's AC (several targets: shown, the Paladin judges).
+        const smiteBtn = smite && !["failure", "nat1"].includes(outcome) ? `<button type="button" class="arn-smite" data-item-id="${smite.item.id}"><i class="fa-solid fa-sun"></i> Smite (first hit this encounter)</button>` : "";
         return `<div class="arn-dmg-buttons">${crit ? critical + normal : normal + critical}</div>${smiteBtn}`;
       })
     }));
@@ -701,7 +702,8 @@ export class ArneyanActor extends Actor {
     if (tm) {
       const a = tm.adv("adv.against", "adv.against.melee");
       const fa = firstAgainst(targets[0].actor, { ranged: false, name: targets[0].name });
-      against = { values: [...a.values, ...fa.values], adv: [...a.adv.map(l => `${targets[0].name}: ${l}`), ...fa.adv], dis: [...a.dis.map(l => `${targets[0].name}: ${l}`), ...fa.dis] };
+      const mk = markedFirst(this, targets[0].actor, { name: targets[0].name });
+      against = { values: [...a.values, ...fa.values, ...mk.values], adv: [...a.adv.map(l => `${targets[0].name}: ${l}`), ...fa.adv, ...mk.adv], dis: [...a.dis.map(l => `${targets[0].name}: ${l}`), ...fa.dis, ...mk.dis] };
     }
     const { mode, why } = advFrom(event, own, against);
     const sys = item.system;

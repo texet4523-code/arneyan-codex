@@ -43,6 +43,8 @@ assert.equal(mp.activities[0].effect, "Marked Prey");
 /* K44 S4: the first hit each encounter offers the Smite. */
 assert.ok(feat("Channel Divinity (Charisma)", "Paladin").system.activities.find(a => a.name === "Smite").text.includes("first hit each encounter"));
 assert.ok(src("documents.mjs").includes("firstSmite()") && src("chat.mjs").includes('on(".arn-smite"'));
+assert.ok(src("chat.mjs").includes("actor.firstSmite?.()?.item?.id !== item.id"), "a second click or an old card spends nothing");
+assert.ok(src("documents.mjs").includes('smite && !["failure", "nat1"].includes(outcome)'), "no Smite button on a miss");
 
 /* K44 S5: Steady Shot is a flat +1d6. */
 assert.deepEqual(feat("Steady Shot", "Gunslinger").system.activities.map(a => a.formula), ["1d6"]);

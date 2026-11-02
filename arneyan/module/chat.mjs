@@ -348,6 +348,8 @@ function onRender(message, html) {
     const item = actor?.items.get(btn.dataset.itemId);
     if (!item) return ui.notifications.warn("That feature is no longer on the sheet.");
     if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner can Smite.`);
+    // Only while it is still the first Smite of the running encounter (not a second click, an older card or last fight's).
+    if (actor.firstSmite?.()?.item?.id !== item.id) return ui.notifications.info(`${actor.name} has already Smitten this encounter (or has no use left): Smite again from ${item.name} on the sheet.`);
     const act = item.availableActivities.find(a => a.name === "Smite");
     if (!act) return ui.notifications.warn(`${item.name} has no Smite.`);
     return item._useActivity(act, ev);
