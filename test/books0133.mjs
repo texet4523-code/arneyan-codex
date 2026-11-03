@@ -8,7 +8,8 @@ const packDocs = (dir, prefix = "items_") => fs.readdirSync(new URL(`../packs-sr
 const features = packDocs("class-features");
 // Books v0.10.38 (Fable M5): Sorcerer's Spark gave way to Wild Surge improves (5th and 20th), keeping its ids.
 const surge = features.filter(f => f.name === "Wild Surge improves" && f.system.className === "Sorcerer");
-assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "oJxxsvpo4WgI1u92"]);
+// Books v0.10.41 adds a third at 13th (a new id); the 5th and 20th keep the Spark's.
+assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY", "oJxxsvpo4WgI1u92"]);
 assert.ok(!features.some(f => /^Sorcerer's Spark/.test(f.name)));
 const guard = packDocs("kits").find(k => k.name === "Mournas Liberator (Fighter)").system.features[0];
 assert.ok(/^<p>Once per round/.test(guard.description), guard.description);

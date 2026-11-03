@@ -226,11 +226,13 @@ export function isTwoHanded(item, { include = [] } = {}) {
   return !item.system?.ranged && Number(item.system?.slots) >= 2 && !/\blight\b/i.test(traits);
 }
 
-/** Does a rule scoped to some weapons (`weapon`: "two-handed" or "chosen") count for this weapon? */
+/** Does a rule scoped to some weapons (`weapon`: "two-handed", "chosen" or "unarmed") count for this weapon? */
 export function weaponMatches(rule, item, opts = {}) {
   if (item?.type !== "weapon") return false;
   const scope = String(rule?.weapon ?? "").trim().toLowerCase();
   if (scope === "two-handed") return isTwoHanded(item, opts);
+  // Unarmed strikes (the Monk's Iron Fists, books v0.10.41).
+  if (scope === "unarmed") return /^unarmed strike$/i.test(item._source?.name ?? item.name ?? "");
   if (scope === "chosen") {
     const want = new Set((rule.names ?? []).map(weaponKey).filter(Boolean));
     return want.size > 0 && weaponKeys(item).some(k => want.has(k));

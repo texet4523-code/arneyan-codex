@@ -24,7 +24,8 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.deepEqual(druid(20), ["resist cold", "immune cold"]);
   const inv = pack("class-features").find(d => d.name === "Eldritch Invocations").system;
   const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Agonising Blast", "Armour of Shadows"] } };
-  assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 9), 3); assert.equal(E.optionPickMax(inv, 17), 5);
+  // Books v0.10.42 (K51): one more at 6th.
+  assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 6), 3); assert.equal(E.optionPickMax(inv, 9), 4); assert.equal(E.optionPickMax(inv, 17), 6);
   assert.deepEqual(E.optionPicks(three, 4), ["Devil's Sight"], "only one counts at 4th");
   assert.equal(E.optionPicks(three, 9).length, 3);
   assert.ok(E.chosenRules(three, 9).some(r => r.key === "sense" && /Devil's Sight 60ft/.test(r.value)));

@@ -505,13 +505,23 @@
    {
     "name": "Turn Undead",
     "kind": "save",
-    "text": "Undead within 30ft that can see or hear you save against your Class Save DC or are turned (destroyed from 8th level if their Level is no more than half your Cleric level).",
+    "text": "Undead within {1:30ft, 10:60ft} that can see or hear you save against your Class Save DC or are turned (destroyed from 8th level if their Level is no more than half your Cleric level).{1:, 10: A turned undead can't regain HP until the turning ends (Turn Undead improves).}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "",
     "removeConditions": false,
     "save": "will"
+   },
+   {
+    "name": "Turning Radiance",
+    "kind": "damage",
+    "formula": "@cl",
+    "damageType": "radiant",
+    "cost": 0,
+    "minLevel": 6,
+    "target": "",
+    "text": "Undead that fail their save against your Turn Undead also take radiant damage equal to your Cleric level."
    },
    {
     "name": "Control Undead",
@@ -526,7 +536,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Turn vs control chosen at use; 3 + Wis mod per day. Turn DC is now the Class Save DC. Checked against Handbook v0.10.27.",
+  "why": "Turn vs control chosen at use; 3 + Wis mod per day. Turn DC is now the Class Save DC. Checked against Handbook v0.10.27. Books v0.10.42 (K51): Turning Radiance (6th) and Turn Undead improves (10th, 60ft, no regaining HP).",
   "uses": {
    "max": 3,
    "per": "day",
@@ -1095,7 +1105,7 @@
     "kind": "damage",
     "formula": "1d4",
     "damageType": "force",
-    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -1107,7 +1117,7 @@
     "kind": "damage",
     "formula": "2d4",
     "damageType": "force",
-    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 5,
     "cost": 0,
     "per": "round",
@@ -1115,11 +1125,11 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (3d4)",
+    "name": "Cantrip Spellstrike (3d6)",
     "kind": "damage",
-    "formula": "3d4",
+    "formula": "3d6",
     "damageType": "force",
-    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 11,
     "cost": 0,
     "per": "round",
@@ -1127,12 +1137,24 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (4d4)",
+    "name": "Cantrip Spellstrike (4d6)",
     "kind": "damage",
-    "formula": "4d4",
+    "formula": "4d6",
     "damageType": "force",
-    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost.",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 17,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Cantrip Spellstrike (5d6)",
+    "kind": "damage",
+    "formula": "5d6",
+    "damageType": "force",
+    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
+    "minLevel": 21,
     "cost": 0,
     "per": "round",
     "target": "one",
@@ -1164,7 +1186,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Cantrip tiers plus levelled options; once per round."
+  "why": "Cantrip tiers (1d4, 2d4 at 5th, 3d6 at 11th, 4d6 at 17th, 5d6 at 21st: books v0.10.41, K48 B-S3) plus levelled options; once per round, twice from 7th with the Extra Attack."
  },
  "Everstrike|Magus": {
   "activities": [
@@ -1290,10 +1312,19 @@
     "per": "day",
     "target": "one",
     "removeConditions": false
+   },
+   {
+    "name": "Command Undead (no save)",
+    "kind": "note",
+    "cost": 1,
+    "per": "day",
+    "minLevel": 18,
+    "target": "one",
+    "text": "An undead of Level 5 or lower gets no save against your Command Undead (Command Undead improves): it obeys you, counting towards your Undead Mastery cap (15 from 13th, 20 at 24th)."
    }
   ],
   "confidence": "high",
-  "why": "Animate Dead's free uses a day scale by level (its own table); Command Undead uses the feature's uses (1 + half Necromancer level a day). Checked 25 Oct.",
+  "why": "Animate Dead's free uses a day scale by level (its own table); Command Undead uses the feature's uses (1 + half Necromancer level a day). Checked 25 Oct. Books v0.10.41 (K48 B-M1): Undead Mastery cap 15 from 13th; no save for Level 5 or lower from 18th.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -1531,7 +1562,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level you may use it twice per day, with Advantage on checks to track, corner or finish your marked prey.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1540,7 +1571,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day mark."
+  "why": "Once per day mark; twice per day from 24th (books v0.10.42, K51).",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 24:2"
+  }
  },
  "1st-Level Features|Rogue": {
   "activities": [
@@ -1723,7 +1759,7 @@
    {
     "name": "Spellburn",
     "kind": "note",
-    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double). Burned points return at 1 per attribute each day; never below 1.",
+    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double). Burned points return at {1:1, 6:2} per attribute each day; never below 1.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1835,7 +1871,7 @@
    {
     "name": "Wild Surge",
     "kind": "note",
-    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, and from 20th your first two (Wild Surge improves).",
+    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, from 13th your third too, and from 20th your first two (Wild Surge improves).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2055,7 +2091,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2066,7 +2102,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2077,7 +2113,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within 30ft saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot.",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2146,7 +2182,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct.",
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.42 (K51): Passing Hex (2nd) and Evil Eye (10th: 60ft, or through the familiar).",
   "uses": {
    "max": 1,
    "per": "day",
@@ -2446,7 +2482,7 @@
     "formula": "1d20",
     "target": "gm",
     "cost": 0,
-    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, or your first two from 20th). 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
    }
   ],
   "confidence": "high",
@@ -3629,6 +3665,16 @@
     "removeConditions": false
    },
    {
+    "name": "Smite improves (1d8 radiant)",
+    "kind": "damage",
+    "formula": "1d8",
+    "damageType": "radiant",
+    "cost": 0,
+    "minLevel": 13,
+    "target": "one",
+    "text": "With your Smite: +1d8 radiant damage (Smite improves, 13th)."
+   },
+   {
     "name": "Turn Undead",
     "kind": "save",
     "text": "As your action: turn undead as a Cleric 2 levels lower than your Paladin level; the Turn DC is your Class Save DC, using Charisma. Destruction from 8th effective turning level, if the undead's Level is no more than half that level.",
@@ -3690,7 +3736,7 @@
    "formula": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th. Books v0.10.36 (K36): Smite is spent on a hit, radiant, and heals an ally."
+  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th. Books v0.10.36 (K36): Smite is spent on a hit, radiant, and heals an ally. Books v0.10.41 (K48 B-M1): Smite improves at 13th, +1d8 radiant."
  },
  "Quick Reflexes (Improved)|Monk": {
   "activities": [
@@ -4259,5 +4305,23 @@
   ],
   "confidence": "high",
   "why": "Books v0.10.38 (Fable M6): one extra Sneak Attack die against a creature that has not acted yet this encounter."
+ },
+ "Overchannel improves|Sorcerer": {
+  "activities": [
+   {
+    "name": "Overchannel without damage",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "Once per day, Overchannel without taking its damage (you still burn the attribute points)."
+   }
+  ],
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": ""
+  },
+  "confidence": "high",
+  "why": "Books v0.10.41 (K48 B-M1): once per day from 18th."
  }
 }

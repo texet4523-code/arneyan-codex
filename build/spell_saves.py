@@ -62,7 +62,7 @@ EFFECT = {
     "Tongues": "Negates (Babble only)",
     "Find the Path": "Negates (Lose the Path only)",
     "Heal": "Negates (Harm only)",
-    "Mass Heal": "Loses half its current HP instead (Mass Harm only)",
+    "Mass Heal": "Necrotic damage equal to a quarter of its current HP instead (Mass Harm only)",
     "Animate Dead": "Negates (Rest the Dead only)",
     "Restoration": "Negates (Withering Touch only)",
     "Enhance Attribute": "Negates (Diminish Attribute only)",

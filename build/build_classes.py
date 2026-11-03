@@ -58,16 +58,18 @@ def save_of(text):
 
 
 # Damage the feature text states, as a formula (Kieran, 20 Oct 2026). Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at
-# 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th (the same progression as the class-only spell, build_class_spells.py).
+# 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (books v0.10.41; the same progression as the class-only spell,
+# build_class_spells.py).
 def feature_damage(cls, name):
     if (cls, name) == ("Warlock", "Eldritch Blast"):
         from build_class_spells import ELDRITCH_BLAST
         return ELDRITCH_BLAST, "force"
     # Books v0.10.32 (K28): the Artificer's Spark Caster is a Reflex save against the Class Save DC, half on a success,
     # for Eldritch Blast's damage at the Artificer's level plus the Intelligence modifier.
+    # Books v0.10.41: the Spark Caster states its own dice, the old Eldritch Blast progression (1d6 to 3d8 at 24th).
     if (cls, name) == ("Artificer", "Spark Caster"):
-        from build_class_spells import ELDRITCH_BLAST
-        return f"{ELDRITCH_BLAST} + @int.mod", "force"
+        from build_class_spells import SPARK_CASTER
+        return f"{SPARK_CASTER} + @int.mod", "force"
     return "", ""
 
 def ordinal(n):

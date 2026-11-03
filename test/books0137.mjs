@@ -31,7 +31,8 @@ assert.ok(features.some(f => f.system.className === "Witch" && f.name === "Cauld
 
 /* The Advantage pass (K35 to K37). */
 const smite = feat("Channel Divinity (Charisma)", "Paladin").activities.filter(a => a.name.startsWith("Smite"));
-assert.deepEqual(smite.map(a => [a.kind, a.cost, a.damageType ?? ""]), [["damage", 1, "radiant"], ["heal", 0, ""]]);
+// Books v0.10.41 (K48): Smite improves at 13th adds a 1d8 radiant rider.
+assert.deepEqual(smite.map(a => [a.kind, a.cost, a.damageType ?? ""]), [["damage", 1, "radiant"], ["heal", 0, ""], ["damage", 0, "radiant"]]);
 assert.ok(/when you hit/.test(smite[0].text) && !/Advantage/.test(smite[0].text));
 const cmd = feat("Command (Charisma)", "Knight");
 const inspired = cmd.applies.find(a => a.name === "Inspired");

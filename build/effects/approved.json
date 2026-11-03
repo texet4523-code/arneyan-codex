@@ -2519,10 +2519,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+max(1,floor(@cl/3))"
+    "value": "+max(max(1, floor(@cl/3)), floor(@cl/2) * min(1, floor(@cl/13)))"
    }
   ],
-  "summary": "+1 weapon damage per three Rogue levels (min +1).",
+  "summary": "+1 weapon damage per three Rogue levels (min +1); from 13th, +1 per two Rogue levels (books v0.10.41).",
   "manual": "",
   "confidence": "high"
  },
@@ -7547,12 +7547,12 @@
   "confidence": "medium"
  },
  "spells/0zqPnCOdDm0Tb4IW": {
-  "name": "Hex",
+  "name": "Malediction",
   "from": "Spell L1",
   "container": "applies",
   "applies": [
    {
-    "name": "Hexed",
+    "name": "Maledicted",
     "target": "target",
     "rounds": 600,
     "statuses": [],
@@ -7565,7 +7565,7 @@
     ]
    }
   ],
-  "summary": "Disadvantage reminder on checks with the chosen attribute for 1 hour.",
+  "summary": "Disadvantage reminder on checks with the chosen attribute for 1 hour (Malediction, the Warlock's spell; books v0.10.41, K49).",
   "manual": "The caster's +1d4 necrotic per hit; choice of attribute (could be a specific adv.check.<ability> key).",
   "confidence": "medium"
  },
@@ -8838,7 +8838,7 @@
     "rules": [
      {
       "key": "note.save",
-      "value": "Death Ward: immune to instant-death effects, energy drain and necrotic ability drain."
+      "value": "Death Ward: immune to instant-death effects, effects that would set its HP to 0 or a fixed number, energy drain and necrotic ability drain."
      }
     ]
    }
@@ -10584,12 +10584,12 @@
   "from": "Warlock",
   "container": "passive",
   "rules": [],
-  "summary": "Choose invocations (one at 1st, another at 5th, 9th, 13th and 17th): Devil's Sight gives the sense; the others are reminders on the right cards.",
+  "summary": "Choose invocations (one at 1st, another at 5th, 6th, 9th, 13th and 17th): Devil's Sight gives the sense; the others are reminders on the right cards.",
   "manual": "Agonising Blast's and Armour of Shadows' numbers are reminders; Fiendish Vigour's temporary HP by hand.",
   "confidence": "high",
   "optionChoice": {
    "label": "Invocation",
-   "max": "1:1, 5:2, 9:3, 13:4, 17:5",
+   "max": "1:1, 5:2, 6:3, 9:4, 13:5, 17:6",
    "options": [
     {
      "name": "Agonising Blast",
@@ -11354,5 +11354,270 @@
   "manual": "It repeats the save at the end of each of its turns, ending the spell on a success (remove the effect then); the stench's Sickened.",
   "confidence": "high",
   "approved": "Books v0.10.38 (B-F25, K44 S6)"
+ },
+ "class-features/LmPa3baYEBdC5tcR": {
+  "name": "Arcane Ward improves",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "cast.temp",
+    "value": "1",
+    "label": "Arcane Ward improves"
+   }
+  ],
+  "summary": "Adds one more spell level to Arcane Ward's temporary HP: three times the spell's level from 8th (the cast.temp rules add up).",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/6KnvsKVmfEMQyXjz": {
+  "name": "Aura of Resolve",
+  "from": "Paladin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)"
+   }
+  ],
+  "summary": "Advantage reminder on saves against Paralysis and Stunning.",
+  "manual": "Allies in the Aura of Courage get the same: call it on their saves.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/OMo4CxLfLGHqH7We": {
+  "name": "Cleansing Prayer",
+  "from": "Cleric",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Cleansing Prayer: when this spell restores HP to a creature, it also ends one of Poisoned, Frightened or Sickened on it."
+   }
+  ],
+  "summary": "A reminder on spell cards.",
+  "manual": "End the condition on the healed creature.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/K94HkoZdVJgTl4hh": {
+  "name": "Displacement",
+  "from": "Illusionist",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.against.first",
+    "value": -1,
+    "label": "Displacement"
+   }
+  ],
+  "summary": "The first attack against you each round has Disadvantage (rolled in).",
+  "manual": "A creature that sees through illusions (True Seeing, blindsight) ignores it: shift-click its attack.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/YFtHbgQ9trfsootu": {
+  "name": "Hag's Vigour improves",
+  "from": "Witch",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "hp.max",
+    "value": "@cl",
+    "label": "Hag's Vigour improves"
+   }
+  ],
+  "summary": "+1 more Max HP per Witch level from 8th (+2 per level with Hag's Vigour).",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/EAb2JsGDv46nJOyE": {
+  "name": "Half-Real",
+  "from": "Illusionist",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "Half-Real: your Illusion spells' damage to a creature that believes them is real (it can drop it to 0 HP and doesn't fade); half-damage illusions (Shadow Monsters) deal full."
+   }
+  ],
+  "summary": "A reminder on damage cards.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/XVX41a4B1WLKgBWa": {
+  "name": "Jack of All Trades",
+  "from": "Bard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.skill",
+    "value": "Jack of All Trades: an NWP check you aren't trained in adds the skill's attribute modifier as if you were trained."
+   }
+  ],
+  "summary": "A reminder on skill cards.",
+  "manual": "Add the attribute modifier to an untrained check.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/nUuAeT23uSK44SOL": {
+  "name": "Lingering Death",
+  "from": "Necromancer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "Lingering Death: a creature that takes necrotic damage from your spell can't regain HP until the start of your next turn."
+   }
+  ],
+  "summary": "A reminder on damage cards.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/3DjLvO7ZvSdfAB1e": {
+  "name": "Lore Master",
+  "from": "Bard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Legend Lore and Decipher Script"
+   }
+  ],
+  "summary": "Advantage reminder on Legend Lore and Decipher Script.",
+  "manual": "Handling a magic item for 10 minutes reveals one of its properties.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/HBDyC9c5LRv73aRw": {
+  "name": "Relentless Hunter",
+  "from": "Ranger",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "Relentless Hunter: every hit on your marked prey deals the Favoured Enemy extra weapon die and ignores its resistance (one die per hit against a marked favoured enemy), and Combat Marauder applies in full."
+   }
+  ],
+  "summary": "A reminder on damage cards.",
+  "manual": "When your marked prey drops to 0 HP, mark another creature with your next attack without spending a use of Marked Prey.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/nror4Z9IqFHyyH3r": {
+  "name": "Sculpt Spells",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Sculpt Spells: an area spell may leave out creatures you can see, up to your Intelligence modifier (minimum 1)."
+   }
+  ],
+  "summary": "A reminder on spell cards.",
+  "manual": "Leave those creatures out of the template's targets.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/5pf4di3y2OSw81O5": {
+  "name": "Second School",
+  "from": "Wizard",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "spell.dc",
+    "value": 1,
+    "when": "spells of your second chosen school"
+   }
+  ],
+  "summary": "+1 save DC reminder on the second school.",
+  "manual": "School choice.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/pqi1fqyRJ1EGdnnE": {
+  "name": "Smite improves",
+  "from": "Paladin",
+  "container": "passive",
+  "rules": [],
+  "summary": "Its Use: none. Channel Divinity's Smite improves option rolls the +1d8 radiant with your Smite.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/LIjmB0McSWGHgq6X": {
+  "name": "Steadfast Faith",
+  "from": "Cleric",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "against the abilities of undead (drains, paralysis, fear, possession)"
+   }
+  ],
+  "summary": "Advantage reminder on saves against undead abilities.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/htfHPooYPhlXxkWY": {
+  "name": "Wild Surge improves",
+  "from": "Sorcerer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Wild Surge improves (13th): your third Wild Surge each day also carries no Corruption risk."
+   }
+  ],
+  "summary": "A reminder on spell cards: the third Wild Surge each day has no Corruption roll.",
+  "manual": "Skip the GM's Corruption roll for it.",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/Q6ihjzt6YWOU1sh7": {
+  "name": "Figment Mastery",
+  "from": "Illusionist",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Figment Mastery: Minor Figment can be made as part of any action you take, once per round, at 60ft."
+   }
+  ],
+  "summary": "A reminder on spell cards.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/f1kxBRYRFg1tQ5WI": {
+  "name": "Iron Fists",
+  "from": "Monk",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "attack",
+    "value": "7:1, 13:2, 19:3",
+    "when": "unarmed strikes",
+    "weapon": "unarmed"
+   },
+   {
+    "key": "damage",
+    "value": "7:1, 13:2, 19:3",
+    "when": "unarmed strikes",
+    "weapon": "unarmed"
+   }
+  ],
+  "summary": "Unarmed strikes count as magic; +1 to hit and damage from 7th, +2 from 13th, +3 from 19th, added to Unarmed Strike's rolls.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
  }
 }

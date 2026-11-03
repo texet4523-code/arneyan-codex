@@ -52,11 +52,11 @@ assert.equal(s("Ill Omen").level, 0); assert.equal(s("Withering Curse").level, 8
 assert.equal(s("Create Greater Undead").costly, true);
 assert.equal(s("Disrupt Undead").damage, "1d6");
 
-// Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th.
+// Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (books v0.10.41).
 const eb = s("Eldritch Blast");
 assert.equal(eb.save, "ref"); assert.equal(eb.damageType, "force"); assert.equal(eb.level, 0);
 const tidy = f => f.replace(/\s*\+?\s*0d\d+/g, "").replace(/^\s*\+\s*/, "").replace(/\s+/g, "").trim();
-const want = { 1: "1d6", 4: "1d6", 5: "1d8", 8: "1d8", 9: "2d6", 12: "2d6", 13: "2d8", 16: "2d8", 17: "3d6", 20: "3d6", 21: "3d6", 23: "3d6", 24: "3d8" };
+const want = { 1: "1d6", 4: "1d6", 5: "1d8", 8: "1d8", 9: "2d6", 12: "2d6", 13: "3d8", 16: "3d8", 17: "4d8", 20: "4d8", 21: "5d8", 23: "5d8", 24: "5d8" };
 for (const [cl, w] of Object.entries(want)) assert.equal(tidy(resolveFormula(eb.damage, { cl: Number(cl) })), w, `Eldritch Blast at ${cl}`);
 
 // ---- 2. Witch Patrons and Artificer Kits.

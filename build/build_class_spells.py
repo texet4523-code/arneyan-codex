@@ -15,14 +15,19 @@ LEVEL_WORD = {"Cantrip": 0, "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, "5th": 5, "6
 ICON = {"Witch": "enchantment", "Necromancer": "necromancy", "Warlock": "evocation"}
 FOLDER_SORT = {"Necromancer": 10, "Warlock": 11, "Witch": 12}
 
-# Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6 at 17th, 3d8 at 24th (Warlock, Class Abilities).
-# Dice count N = 1 + floor((L-1)/8); the die is a d8 when floor((min(L,20)-1)/4) is odd, or at 24th. A d6 term and a
-# d8 term, one of them always 0 dice (the roll card drops "0d8").
+# The Artificer's Spark Caster keeps the old Eldritch Blast dice: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at 13th, 3d6
+# at 17th, 3d8 at 24th. Dice count N = 1 + floor((L-1)/8); the die is a d8 when floor((min(L,20)-1)/4) is odd, or at
+# 24th. A d6 term and a d8 term, one of them always 0 dice (the roll card drops "0d8").
 _L = "min(@cl, 24)"
 _N = f"(1 + floor(({_L} - 1) / 8))"
 _U = "floor((min(@cl, 20) - 1) / 4)"
 _D8 = f"({_U} - 2 * floor({_U} / 2) + floor({_L} / 24))"
-ELDRITCH_BLAST = f"({_N} * (1 - {_D8}))d6 + ({_N} * {_D8})d8"
+SPARK_CASTER = f"({_N} * (1 - {_D8}))d6 + ({_N} * {_D8})d8"
+# Eldritch Blast from books v0.10.41 (K48, B-S3): 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at
+# 21st (Warlock, Class Abilities). Steps A to E are 1 from 5th, 9th, 13th, 17th and 21st: d6s 1 - A + 2B - 2C, d8s
+# A - B + 3C + D + E (one term is always 0 dice).
+_S = {n: f"min(1, floor(@cl / {n}))" for n in (5, 9, 13, 17, 21)}
+ELDRITCH_BLAST = f"(1 - {_S[5]} + 2 * {_S[9]} - 2 * {_S[13]})d6 + ({_S[5]} - {_S[9]} + 3 * {_S[13]} + {_S[17]} + {_S[21]})d8"
 
 # Wording spell_damage.py doesn't read: Slay Living's "1d6/level" (no maximum stated, so none applied).
 DAMAGE = {"Slay Living": ("(@cl)d6", "necrotic")}

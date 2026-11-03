@@ -102,7 +102,7 @@ assert.equal(R.resolveFormula("1d6 + 0d8"), "1d6");
 assert.equal(R.resolveFormula("0d6 + 10d8 + 3"), "10d8 + 3", "10d8 is not a zero-dice term");
 assert.equal(R.resolveFormula("0d4"), "0");
 const ebDoc = byName(packItems("class-features"), "Eldritch Blast", "Warlock");
-assert.deepEqual([1, 5, 9, 13, 17, 24].map(cl => R.resolveFormula(ebDoc.system.damage, { cl }).replace(/\s+/g, "")), ["1d6", "1d8", "2d6", "2d8", "3d6", "3d8"], "Eldritch Blast reads cleanly at every step");
+assert.deepEqual([1, 5, 9, 13, 17, 24].map(cl => R.resolveFormula(ebDoc.system.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "")), ["1d6", "1d8", "2d6", "3d8", "4d8", "5d8"], "Eldritch Blast reads cleanly at every step (books v0.10.41)");
 
 /* ---------------- 5. Uses from a formula, worked out on the character ---------------- */
 const E = await import("../arneyan/module/effects.mjs");

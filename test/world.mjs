@@ -149,6 +149,9 @@ st = C.companionStats("witchFamiliar", makeActor(CharacterData, "character", {},
 assert.equal(st["system.attributes.hp.max"], 1, "minimum 1");
 st = C.companionStats("witchFamiliar", makeActor(CharacterData, "character", {}, [cls("Witch", 9)]), {}, { attributes: { hp: { value: 1, max: 3 } } });
 assert.equal(st["system.attributes.hp.value"], 1, "hurt stays hurt");
+// Bonded Familiar (books v0.10.42): from 6th, 1 HP per Witch level and AC 16.
+st = C.companionStats("witchFamiliar", makeActor(CharacterData, "character", {}, [cls("Witch", 6)]), {}, { attributes: { hp: { value: 3, max: 3 } } });
+assert.deepEqual([st["system.attributes.hp.max"], st["system.attributes.ac"]], [6, 16]);
 assert.equal(C.companionStats("wizardFamiliar", witch)["system.attributes.hp.max"], 10, "half the caster's maximum HP");
 const ranger = makeActor(CharacterData, "character", {}, [cls("Ranger", 5), ab("Bonded Companion")]);
 assert.ok(C.presetsFor(ranger).some(p => p.key === "rangerCompanion") && !C.presetsFor(ranger).some(p => p.key === "witchFamiliar"));

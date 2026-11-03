@@ -3,7 +3,7 @@
  * master by flags.arneyan.companion = { master, preset, kind }, kept in the Allies, Mounts & Pets folder with the
  * master's owners. The master's sheet shows it (portrait, HP, AC) with buttons to open it, put it on the map, or
  * let it go. Its stats follow the class text, and follow the master's level as it changes:
- *   Witch, Familiar            1 HP per two Witch levels (minimum 1), AC 14
+ *   Witch, Familiar            1 HP per two Witch levels (minimum 1), AC 14; from 6th (Bonded Familiar) 1 HP per level, AC 16
  *   Wizard, Summon Familiar    half the caster's maximum HP
  *   Ranger (Beast Master)      Hit Dice equal to half the Ranger level, rounded up
  *   Paladin, Divine Mount      Warhorse, Light (or Warpony), with maximum HP
@@ -31,7 +31,7 @@ export const CHASSIS = {
 export const COMPANION_PRESETS = {
   witchFamiliar: { label: "Familiar (Witch)", kind: "familiar", feature: "Familiar", className: "Witch",
     suggest: ["Black Cat", "Raven", "Toad", "Moth", "Bat", "Owl", "Rat", "Weasel"],
-    text: "1 HP per two Witch levels (minimum 1), AC 14. It acts on its own each round and can deliver a Hex or touch spell for you, as your action, if adjacent to the target. It understands you within 1 mile." },
+    text: "1 HP per two Witch levels (minimum 1), AC 14; from 6th (Bonded Familiar) 1 HP per Witch level and AC 16. It acts on its own each round and can deliver a Hex or touch spell for you, as your action, if adjacent to the target. It understands you within 1 mile." },
   wizardFamiliar: { label: "Familiar (Summon Familiar)", kind: "familiar", spell: "Summon Familiar",
     suggest: ["Bat", "Black Cat", "Owl", "Rat", "Raven", "Toad", "Weasel"],
     text: "Half your maximum HP. It acts on your turn; you can see through its eyes and speak to it within 1 mile while you concentrate. If it dies, you can summon another after 1 week." },
@@ -94,10 +94,13 @@ export function companionStats(preset, master, base = {}, current = base) {
   const out = {};
   const ms = master?.system ?? {};
   switch (preset) {
-    case "witchFamiliar":
-      out["system.attributes.hp.max"] = Math.max(1, Math.floor(classLevel(master, "Witch") / 2));
-      out["system.attributes.ac"] = 14;
+    case "witchFamiliar": {
+      // Bonded Familiar (books v0.10.42, 6th): 1 HP per Witch level and AC 16.
+      const wl = classLevel(master, "Witch");
+      out["system.attributes.hp.max"] = wl >= 6 ? wl : Math.max(1, Math.floor(wl / 2));
+      out["system.attributes.ac"] = wl >= 6 ? 16 : 14;
       break;
+    }
     case "wizardFamiliar":
       out["system.attributes.hp.max"] = Math.max(1, Math.floor((ms.attributes?.hp?.max ?? 2) / 2));
       break;

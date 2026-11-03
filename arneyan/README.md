@@ -15,7 +15,14 @@ Version 0.10.81 · Foundry v13 and v14 · **Playtest release**
 - **Monsters & Treasure:** 53 monsters re-statted (re-levelled casters, outliers fixed), Frightful Presence and fear auras last until the end of the creature's next turn with a save each turn, natural attacks of Level 11+ count as magic. Monsters already in your world keep their old stat blocks: drag a fresh copy from the Bestiary for the new numbers.
 - **Hoard weapons are never a plain +N** (K48): a hoard's weapon +1, +2 or +3 is made as a Unique, and its card lists the Named Uniques with that bonus (Soulthief, Wyrmsbane, Gravebane and the rest, in Monsters & Treasure).
 - **Spells:** the Warlock's Hex is now **Malediction** (renamed on sheets that have it; the Witch's Hex is unchanged). Harm, Mass Harm and Death Ward as the books now word them. A Druid's Wild Shape form can't have more HP than the druid's own Max HP.
-CLASSES_PLACEHOLDER
+- **Classes** (K48, K51; always on unless it says otherwise). Existing characters get the new features on the update as they reach their levels.
+  - **Rogue and Assassin:** the Knight's Base to Hit from 13th (+7 at 13th, +15 at 24th); Precise Strikes +1 per two levels from 13th.
+  - **Monk:** Iron Fists add +1 to unarmed attack and damage rolls from 7th, +2 from 13th, +3 from 19th (rolled in).
+  - **Warlock:** Eldritch Blast 3d8 at 13th, 4d8 at 17th, 5d8 at 21st; an invocation at 6th. **Magus:** Spellstrike 3d6, 4d6, 5d6, and from 7th the Extra Attack can carry one too.
+  - **Paladin:** Smite improves (+1d8 radiant, 13th), Aura of Resolve (18th). **Sorcerer:** Shifting Blood (4th), Blood Burn (6th), Wild Surge improves (13th), Overchannel improves (18th, once a day). **Necromancer:** Lingering Death (2nd), Bone Shield (4th), Undead Mastery improves (13th), Command Undead improves (18th).
+  - **Ranger:** Relentless Hunter (13th), Apex Predator twice a day at 24th. **Wizard:** Arcane Ward improves (8th), Second School (10th), Spell Mastery (13th), Sculpt Spells (18th). **Illusionist:** Figment Mastery (9th), Half-Real (13th), Displacement (18th: the first attack against you each round has Disadvantage).
+  - **Cleric:** Steadfast Faith (2nd), Cleansing Prayer (4th), Turning Radiance (6th), Turn Undead improves (10th). **Druid:** Beast Kin (4th), Primal Strikes (7th), Wild Shape Casting improves (10th); a Wild Shape form's HP can't exceed your own Max HP. **Witch:** Passing Hex (2nd), Bonded Familiar (6th: the familiar has 1 HP per Witch level and AC 16), Hag's Vigour improves (8th), Evil Eye (10th). **Bard:** Jack of All Trades (2nd), Lore Master (9th).
+  - Most are reminders on the right cards; numbers the system can roll in (Iron Fists, Displacement, Hag's Vigour, the Arcane Ward's temporary HP, Smite's extra die, Eldritch Blast) are rolled in.
 
 ## What's new in 0.10.80
 

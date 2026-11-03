@@ -89,4 +89,16 @@ assert.ok(src("arneyan.mjs").includes("registerSolo();"));
 assert.ok(src("qol.mjs").includes("!c.flags?.[SYS]?.soloOf") && src("qol.mjs").includes("secondInitiative(init"), "the second turn isn't rolled: it follows");
 assert.ok(src("migrate.mjs").includes("!t.actorLink"), "unlinked tokens too");
 assert.ok(src("solo.mjs").includes("done.has(key)"), "a re-sent turn isn't counted twice");
+/* Books v0.10.41 to v0.10.43, module side. */
+{
+  const { ARNEYAN } = await import("../arneyan/module/config.mjs");
+  assert.deepEqual([12, 13, 24].map(l => ARNEYAN.bth("rogue", l)), [2, 7, 15], "the Rogue and the Assassin join the Knight track from 13th");
+  const E = await import("../arneyan/module/effects.mjs");
+  assert.ok(E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Unarmed Strike" }) && !E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Quarterstaff" }), "Iron Fists counts on Unarmed Strike only");
+  assert.ok(src("transform.mjs").includes("form's HP can't exceed the druid's own Max HP"));
+  assert.deepEqual(M.RENAMED_FEATURES["Compendium.arneyan.spells.Item.0zqPnCOdDm0Tb4IW"], ["Hex", "Malediction"]);
+  const T = await import("../arneyan/module/treasure.mjs");
+  assert.deepEqual(Object.values(T.NAMED_UNIQUES).map(l => l.length), [8, 8, 4], "the 20 Named Uniques by bonus");
+}
+
 console.log("OK books v0.10.40");

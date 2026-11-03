@@ -11,7 +11,8 @@ A **rule** is `{ "key": string, "value": string|number, "label": string (optiona
 - `label`: optional override of the source name shown in breakdowns.
 - `weapon`: the rule counts only on attack and damage rolls with weapons that fit; on any other roll it does nothing,
   or shows its `when` as a reminder. Values: `two-handed` (the Two-handed trait, or a Versatile weapon when its
-  two-handed die is rolled) and `chosen` (the weapons picked on the item: see `weaponChoice` below). A scoped rule's
+  two-handed die is rolled), `chosen` (the weapons picked on the item: see `weaponChoice` below) and `unarmed`
+  (Unarmed Strike: the Monk's Iron Fists, books v0.10.41). A scoped rule's
   `when` is the reminder shown with other weapons; it is dropped from the card when the weapon fits.
 - An entry may carry `"weaponChoice": "1:1, 13:2"` (how many weapons may be picked, by class level): the player picks
   them when the item is added, and its `chosen` rules count with those weapons (Weapon Specialisation).

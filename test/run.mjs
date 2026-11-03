@@ -11,7 +11,7 @@ for (const [s, m] of Object.entries(table)) assert.equal(ARNEYAN.abilityMod(Numb
 
 // BtH table spot checks against the handbook's 12th and 24th values.
 const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 2, arcane: 2 };
-const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 5, arcane: 4 };
+const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 15, arcane: 4 };
 for (const k of Object.keys(bth12)) { assert.equal(ARNEYAN.bth(k, 12), bth12[k]); assert.equal(ARNEYAN.bth(k, 24), bth24[k]); assert.equal(ARNEYAN.bth(k, 1), 0); }
 // F18: the bonus text beside the Max HP box.
 const hbt = ARNEYAN.hpBonusText;

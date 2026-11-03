@@ -179,7 +179,8 @@ assert.equal(eb.save, "ref");
 assert.equal(eb.damageType, "force");
 const { resolveFormula } = await import("../arneyan/module/rolls.mjs");
 const ebAt = cl => resolveFormula(eb.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "");
-assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d6", "2d8", "3d6", "3d6", "3d8"]);
+// Books v0.10.41 (K48, B-S3): 3d8 at 13th, 4d8 at 17th, 5d8 at 21st.
+assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d6", "3d8", "4d8", "4d8", "5d8"]);
 {
   const { item } = feature({ ...eb, name: "Eldritch Blast" }, { level: 9, cls: "Warlock" });
   assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
@@ -304,7 +305,8 @@ const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(
   "Channel Divinity (Charisma)|Paladin": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
 assert.equal(feat("Blood Magic").uses.max, 0, "Blood Magic: the HP cost is the only limit (books v0.10.25)");
-for (const k of ["Turn Undead|Cleric", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.every(a => a.cost === 1), `${k}: each use spends one`); }
+// (Turning Radiance, books v0.10.42, is Turn Undead's damage roll: no use of its own.)
+for (const k of ["Turn Undead|Cleric", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.filter(a => a.kind !== "damage").every(a => a.cost === 1), `${k}: each use spends one`); }
 assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "save").every(a => a.cost === 1) && dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "damage").every(a => a.cost === 0), "a Hex spends one; its damage each turn doesn't");
 
 /* Several attacks: a blocked target (Full Cover) is skipped and the rest still roll; the use is spent once, after an
@@ -384,7 +386,7 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
   assert.ok(bard.availableActivities[0].text.includes("3 allies"), "Exalt reaches 3 allies at 12th");
 
   const ch = dataOf("Channel Divinity (Charisma)", "Paladin");
-  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Smite", 0, 0], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
+  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Smite", 0, 0], ["Smite improves (1d8 radiant)", 13, 0], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
 
   const loh = dataOf("Lay on Hands", "Paladin");
   const { item: lay } = feature({ ...loh, name: "Lay on Hands", uses: { value: 10, max: 10, per: "day", formula: "" } }, { level: 5, cls: "Paladin" });
