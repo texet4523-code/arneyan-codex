@@ -6,7 +6,7 @@ import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurn
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
+import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -406,6 +406,12 @@ export class ArneyanActor extends Actor {
       return false;
     }
     if (existing.length && options.active === true) return true;
+    // Switching one on from the token HUD respects immunity too (a solo that Shook it off, a Knight's Inspire against
+    // Frightened), as the sheet and chat buttons already do (effects.mjs toggleCondition).
+    if (!existing.length && options.active !== false && immuneTo(this, statusId)) {
+      globalThis.ui?.notifications?.info?.(`${this.name} is immune to ${ARNEYAN.conditions[statusId]?.name ?? statusId}.`);
+      return false;
+    }
     return super.toggleStatusEffect(statusId, options);
   }
 

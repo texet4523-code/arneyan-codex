@@ -682,6 +682,12 @@ export async function applyEffectTo(actors, data) {
   return done;
 }
 
+/** Is the actor immune to this condition (a trait, or an effect such as Shook it off)? */
+export function immuneTo(actor, id) {
+  const immune = actor?.system?.mods?.traits?.immune?.map?.(t => t?.value ?? t) ?? [];
+  return immune.includes(`condition:${id}`) || immune.includes(id);
+}
+
 /** Toggle a condition on an actor (used by the sheet and chat buttons). */
 export async function toggleCondition(actor, id, active, { overlay = false, value = 1 } = {}) {
   // Remove every effect carrying the status (spells create their own effects with random ids).
@@ -691,8 +697,7 @@ export async function toggleCondition(actor, id, active, { overlay = false, valu
   if (existing.length && active === true) return reapply(actor, id, value);
   if (existing.length || active === false) return;
   // Immune to it (a trait, or an effect such as a Knight's Inspire against Frightened): nothing goes on.
-  const immune = actor.system?.mods?.traits?.immune?.map?.(t => t.value) ?? [];
-  if (immune.includes(`condition:${id}`) || immune.includes(id)) {
+  if (immuneTo(actor, id)) {
     globalThis.ui?.notifications?.info?.(`${actor.name} is immune to ${ARNEYAN.conditions[id]?.name ?? id}.`);
     return;
   }

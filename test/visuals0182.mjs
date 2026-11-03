@@ -68,4 +68,9 @@ assert.equal(K.showIconFor({ statuses: ["bloodied"] }, undefined), null, "v13: n
 const read = p => fs.readFileSync(root(`arneyan/module/${p}`), "utf8");
 assert.ok(/Hooks\.on\("preCreateActiveEffect", \(effect, data\) => \{\s*const v = showIconFor\(data\)/.test(read("counters.mjs")), "the hook is wired");
 assert.ok(/showIcon: CONST\.ACTIVE_EFFECT_SHOW_ICON\.ALWAYS/.test(read("transform.mjs")), "a form's Paralysed, made inside the new actor");
+/* R-F13 (TAC, 3 Nov): the token HUD switched Stunned back on a solo that had just Shaken it off. */
+assert.equal(E.immuneTo({ system: { mods: { traits: { immune: [{ label: "Shook it off", value: "condition:stunned" }] } } } }, "stunned"), true);
+assert.equal(E.immuneTo({ system: { mods: { traits: { immune: [{ value: "condition:stunned" }] } } } }, "prone"), false);
+assert.equal(E.immuneTo({ system: {} }, "stunned"), false);
+assert.ok(/options\.active !== false && immuneTo\(this, statusId\)/.test(read("documents.mjs")), "the HUD toggle checks immunity");
 console.log("visuals0182: ok");
