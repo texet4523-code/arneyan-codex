@@ -70,5 +70,6 @@ assert.ok(M.OPHIDIAN.test("Lineage: Ophidian-Sslyth") && !M.OPHIDIAN.test("Linea
 }
 /* 0.10.85: the solo update read game.scenes (a Collection, no flatMap) as an array and threw, so no world update finished. */
 assert.ok(/\.\.\.\[\.\.\.\(game\.scenes \?\? \[\]\)\]\.flatMap/.test(src("migrate.mjs")));
-assert.ok(!/\(game\.(scenes|actors|items|combats|messages) \?\? \[\]\)\.flatMap/.test(fs.readdirSync(new URL("../arneyan/module/", import.meta.url)).filter(f => f.endsWith(".mjs")).map(f => src(f)).join("\n")), "no Collection read as an array");
+assert.ok(/console\.warn\("Arneyan \| Legendary Resistance step", err\)/.test(src("migrate.mjs")), "the step can't block the update");
+assert.ok(!/(\(game\.(scenes|actors|items|combats|messages|users|folders|journal) \?\? \[\]\)|\bgame\.(scenes|actors|items|combats|messages|users|folders|journal))\.(flatMap|at|includes|slice|indexOf|concat|every)\(/.test(fs.readdirSync(new URL("../arneyan/module/", import.meta.url)).filter(f => f.endsWith(".mjs")).map(f => src(f)).join("\n")), "no Collection read as an array");
 console.log("books0146: ok");

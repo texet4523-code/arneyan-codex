@@ -944,10 +944,15 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   if (due && newerThan(SOLO_REWORK, from) && !newerThan(SOLO_REWORK, version)) {
     // World monsters, then unlinked tokens on scenes (a token whose copy changed keeps its own items). game.scenes is
     // a Collection, not an array: spread it first (0.10.85: its missing flatMap stopped every world update since 0.10.81).
-    const npcs = [...game.actors.filter(a => a.type === "npc"), ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor?.type === "npc").map(t => t.actor))];
-    for (const actor of npcs) {
-      const lr = dropLegendary(actor.items);
-      if (lr.length) await actor.deleteEmbeddedDocuments("Item", lr, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+    // One step can't stop the whole update again: an error here is logged and the update still finishes.
+    try {
+      const npcs = [...game.actors.filter(a => a.type === "npc"), ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor?.type === "npc").map(t => t.actor))];
+      for (const actor of npcs) {
+        const lr = dropLegendary(actor.items);
+        if (lr.length) await actor.deleteEmbeddedDocuments("Item", lr, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+      }
+    } catch (err) {
+      console.warn("Arneyan | Legendary Resistance step", err);
     }
   }
   if (due) await game.settings.set(SYS, "migratedTo", version);
