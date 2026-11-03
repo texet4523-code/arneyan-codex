@@ -197,9 +197,10 @@ export function weaponKey(name) {
   return s.replace(/[^a-z]/g, "");
 }
 
-/** The names a weapon answers to: its own, its name before any renaming, and the compendium entry it came from. */
+/** The names a weapon answers to: its own, its name before any renaming, the compendium entry it came from, and the
+ * weapon it is made from (a Named Unique: Wyrmsbane is a long sword). */
 function weaponKeys(item) {
-  const names = [item?.name, item?._source?.name];
+  const names = [item?.name, item?._source?.name, item?.flags?.arneyan?.baseWeapon];
   try {
     const uuid = item?._stats?.compendiumSource ?? item?.flags?.core?.sourceId;
     // A synchronous lookup only: the compendium index has the name without loading the entry.

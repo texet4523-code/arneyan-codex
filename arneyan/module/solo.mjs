@@ -164,6 +164,12 @@ async function turnEnded(actor, combat, { form = false } = {}) {
     <p>A solo throws off what stops it acting after two of its turns${before >= 1 ? " (one, the second time in a fight)" : ""}. Nothing of the kind can affect it until the end of the following round${before >= 1 ? "" : "; the next one it shakes off after one of its turns"}.</p>`);
 }
 
+/** Take the Bloodied marker off, whether the system or the GM put it on. */
+async function removeBloodied(actor) {
+  const marks = actor.effects.filter(e => e.statuses?.has?.("bloodied")).map(e => e.id);
+  if (marks.length) await actor.deleteEmbeddedDocuments("ActiveEffect", marks);
+}
+
 /** Bloodied: the first time it drops to half its HP or lower. */
 const bleeding = new Set();
 export async function bloodied(actor) {
@@ -190,6 +196,8 @@ async function bloodiedNow(actor) {
       name: "Bloodied", img: `systems/${SYS}/assets/conditions/bloodied.svg`, statuses: ["bloodied"], origin: actor.uuid, flags: { [SYS]: { bloodied: true } }
     }]));
   }
+  // Healed to full while this ran: the reset found no marker to take off, so take it off here.
+  if (!actor.getFlag(SYS, "bloodied")) await removeBloodied(actor);
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is Bloodied</span></header>
     <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spell slots don't. A good moment for a new phase.</p>`);
 }
@@ -263,8 +271,7 @@ export function registerSolo() {
     const max = Number(hp.max) || 0;
     if (max && hp.value >= max && actor.getFlag(SYS, "bloodied")) {
       actor.unsetFlag(SYS, "bloodied").catch(() => null);
-      const marks = actor.effects.filter(e => e.flags?.[SYS]?.bloodied).map(e => e.id);
-      if (marks.length) actor.deleteEmbeddedDocuments("ActiveEffect", marks).catch(() => null);
+      removeBloodied(actor).catch(() => null);
       return;
     }
     if (max && hp.value > 0 && hp.value <= max / 2 && !actor.getFlag(SYS, "bloodied")) bloodied(actor).catch(err => console.warn("Arneyan | bloodied", err));

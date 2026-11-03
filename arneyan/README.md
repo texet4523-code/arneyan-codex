@@ -1,11 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.81 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.82 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.82
 
 - **The Bloodied marker.** When a solo drops to half its HP or lower, it gets a Bloodied marker on its token (a bleeding heart), so the table can see it has started its new phase. The marker has no rules of its own; it comes off when the solo is back to full HP.
-- **The Named Uniques as weapons** (Monsters & Treasure v0.10.41). All 20 are in the Equipment compendium beside the other magic weapons, each with its own icon, its base weapon's damage and traits, its bonus, its power and its quirk. Extra damage against a kind of creature (Wyrmsbane against dragons, Gravebane against undead, for example) comes up as an option when you roll damage. A hoard's "Weapon +N, made as a Unique" now links each Named Unique with that bonus, so you can open one or drag it to a sheet straight from the card.
+- **The Named Uniques as weapons** (Monsters & Treasure v0.10.41). All 20 are in the Equipment compendium beside the other magic weapons, each with its own icon, its base weapon's damage and traits, its bonus, its power and its quirk. Extra damage against a kind of creature (Wyrmsbane against dragons, Gravebane against undead, for example) comes up as an option when you roll damage. A hoard's "Weapon +N, made as a Unique" now links each Named Unique with that bonus, so you can open one or drag it to a sheet straight from the card. A feature that works with a chosen weapon counts for a Named Unique made from that weapon (a long sword pick works with Wyrmsbane).
 
 ## What's new in 0.10.81
 

@@ -21,7 +21,7 @@ const solo = { uuid: "Actor.s", effects: [
 ] };
 assert.deepEqual(S.bloodiedEnds(solo, () => "foe").map(e => e.name), ["Frightened"], "Bloodied stays, the foe's condition ends");
 const solo_src = fs.readFileSync(root("arneyan/module/solo.mjs"), "utf8");
-assert.ok(/statuses: \["bloodied"\]/.test(solo_src) && /flags\?\.\[SYS\]\?\.bloodied/.test(solo_src), "put on at half HP, taken off at full");
+assert.ok(/statuses: \["bloodied"\]/.test(solo_src), "put on at half HP");
 
 /* The Named Uniques as items. */
 const dir = root("packs-src/equipment/");
@@ -37,7 +37,8 @@ for (const [name, plus] of all) {
   assert.ok(it.system.damage, `${name} has its base weapon's damage`);
   assert.match(it.img, /assets\/icons\/unique-[a-z-]+\.svg$/, name);
   assert.ok(fs.existsSync(root(it.img.replace(/^systems\//, ""))), `${name}'s icon is built`);
-  assert.ok(/<em>Quirk|Quirk/.test(it.system.description), `${name} has its quirk`);
+  assert.ok(/<strong>Quirk \(/.test(it.system.description), `${name} has its quirk`);
+  assert.ok(it.flags.arneyan.baseWeapon, `${name} knows its base weapon`);
 }
 assert.equal(new Set(all.map(([n]) => items.find(i => i.name === n).img)).size, 20, "each its own icon");
 const wyrm = items.find(i => i.name === "Wyrmsbane");
@@ -45,5 +46,16 @@ assert.deepEqual(wyrm.system.bonusDamage.map(x => [x.formula, x.when]), [["2d6",
 assert.equal(items.find(i => i.name === "Gravebane").system.bonusDamage[0].type, "radiant");
 assert.ok(!items.find(i => i.name === "Adder's Kiss").system.bonusDamage.length, "a once-a-day rider is not an always-on extra");
 // Retort shares its name with the alchemist's glassware: the card links the weapon.
-assert.ok(/NAMED_UNIQUES\).flat\(\).includes\(n\) && all.find\(x => x.type === "weapon"\)/.test(fs.readFileSync(root("arneyan/module/treasure.mjs"), "utf8")));
+assert.ok(/weapons\.includes\(n\) && all\.find\(x => x\.type === "weapon"\)/.test(fs.readFileSync(root("arneyan/module/treasure.mjs"), "utf8")));
+/* Review fixes: a Named Unique answers to its base weapon; Stonefather's quirk; the save line only where there's a save. */
+const E = await import("../arneyan/module/effects.mjs");
+const tide = items.find(i => i.name === "Tidecaller");
+assert.equal(E.isTwoHanded(tide), false, "Tidecaller is a trident: one-handed (Kieran, 20 Oct)");
+assert.equal(E.isTwoHanded(items.find(i => i.name === "Soulthief")), true, "Soulthief is a greatsword");
+assert.equal(E.weaponMatches({ weapon: "chosen", names: ["Sword, Long"] }, wyrm), true, "a long sword pick counts for Wyrmsbane");
+assert.equal(items.find(i => i.name === "Stonefather").system.slots, items.find(i => i.name === "Maul" && i.type === "weapon").system.slots + 1, "Heavy: 1 more slot");
+assert.ok(!/Saves use/.test(items.find(i => i.name === "Retort").system.description), "no save, no save line");
+assert.ok(/Saves use/.test(items.find(i => i.name === "Hillfeller").system.description));
+/* The marker comes off by its status, whoever put it on, and after a heal that beat the marker. */
+assert.ok(/statuses\?\.has\?\.\("bloodied"\)\)\.map/.test(solo_src) && /if \(!actor\.getFlag\(SYS, "bloodied"\)\) await removeBloodied/.test(solo_src));
 console.log("visuals0182: ok");

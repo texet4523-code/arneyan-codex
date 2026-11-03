@@ -84,9 +84,11 @@ def named_uniques():
     try:
         t = open(NAMED_UNIQUE_SRC, encoding="utf-8").read()
     except OSError:
+        print(f"gear: WARNING no {NAMED_UNIQUE_SRC}: the Named Uniques are not built")
         return []
     i = t.find("### Named Uniques")
     if i < 0:
+        print("gear: WARNING no Named Uniques section in the treasure chapter")
         return []
     block = t[i:].split("\n#", 1)[0]
     out = []
@@ -308,16 +310,19 @@ def build():
         _id = fid("equipment", "item", f"unique|{uname}")
         power, _, quirk = utext.partition("*Quirk")
         quirk = ("Quirk" + quirk).replace("*", "").strip() if quirk else ""
+        # "Quirk (Heavy): it takes 1 more slot" (Stonefather).
+        slots = bs.get("slots", 1) + (1 if re.search(r"takes 1 more slot", quirk, re.I) else 0)
         extra = [{"formula": a, "type": (b or "").lower(), "when": f"against {c.strip()}", "mode": False} for a, b, c in UNIQUE_EXTRA.findall(power)]
         desc = (f"<p><em>Named Unique ({base_phrase} +{plus}).</em> {html.escape(power.strip())}</p>"
                 + (f"<p><strong>{html.escape(quirk.split(':', 1)[0])}:</strong> {html.escape(quirk.split(':', 1)[1].strip()) if ':' in quirk else ''}</p>" if quirk else "")
-                + "<p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques. Saves use DC 10 + half your level + the attribute named.</p>")
+                + "<p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques."
+                + (" Saves use DC 10 + half your level + the attribute named." if re.search(r"\bsave\b", utext, re.I) and "DC)" in utext else "") + "</p>")
         doc = {
             "_id": _id, "_key": f"!items!{_id}", "name": uname, "type": "weapon", "img": icon("unique", UNIQUE_GLYPH.get(uname, "crossed-swords")),
-            "folder": home, "sort": 0, "ownership": {"default": 0}, "flags": {}, "effects": [],
+            "folder": home, "sort": 0, "ownership": {"default": 0}, "flags": {"arneyan": {"baseWeapon": base}}, "effects": [],
             "system": {
                 "description": desc, "source": {"book": "mt", "page": 0},
-                "quantity": 1, "slots": bs.get("slots", 1), "bundle": 0, "price": "Unique (never for sale)", "equipped": False,
+                "quantity": 1, "slots": slots, "bundle": 0, "price": "Unique (never for sale)", "equipped": False,
                 "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
                 "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged")),
                 "range": bs.get("range", ""), "magic": plus, "attackBonus": 0, "traits": bs.get("traits", ""),
