@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.84 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.85 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.85
+
+- **The world update finishes again.** Since 0.10.81 the update that runs when the GM loads the world stopped partway through (it read the scene list the wrong way), so it never recorded itself as done and never took the Bestiary's Legendary Resistance off monsters already in the world. Item updates still went through each time. It now runs to the end.
 
 ## What's new in 0.10.84
 

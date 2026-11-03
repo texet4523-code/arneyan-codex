@@ -68,4 +68,7 @@ assert.ok(M.OPHIDIAN.test("Lineage: Ophidian-Sslyth") && !M.OPHIDIAN.test("Linea
   assert.ok(b["flags.arneyan.shiftSet"] && b["system.uses"]?.per === "encounter", "the shift rework in the same pass");
   assert.ok(/^Ophidian: a successful unarmed bite/.test(b["system.rules"][0].value) && /Poisoned\.$/.test(b["system.rules"][0].value));
 }
+/* 0.10.85: the solo update read game.scenes (a Collection, no flatMap) as an array and threw, so no world update finished. */
+assert.ok(/\.\.\.\[\.\.\.\(game\.scenes \?\? \[\]\)\]\.flatMap/.test(src("migrate.mjs")));
+assert.ok(!/\(game\.(scenes|actors|items|combats|messages) \?\? \[\]\)\.flatMap/.test(fs.readdirSync(new URL("../arneyan/module/", import.meta.url)).filter(f => f.endsWith(".mjs")).map(f => src(f)).join("\n")), "no Collection read as an array");
 console.log("books0146: ok");
