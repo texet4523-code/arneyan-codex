@@ -51,4 +51,21 @@ assert.ok(oph.rules.some(r => r.key === "note.attack" && /^Ophidian: a successfu
 assert.ok(!JSON.stringify(shifter).includes("Sslyth"));
 assert.equal(M.renameOphidian("Lineage: Ophidian-Sslyth"), "Lineage: Ophidian");
 assert.ok(M.OPHIDIAN.test("Lineage: Ophidian-Sslyth") && !M.OPHIDIAN.test("Lineage: Ophidian"));
+{
+  // A pre-0.10.79 Ophidian-Sslyth: renamed, and the shift rework still reaches it in the same pass (review, 3 Nov).
+  const ancUuid = `Compendium.arneyan.ancestries.Item.${shifter._id}`;
+  const anc = { id: "anc1", type: "ancestry", name: "Shifter (Ophidian-Sslyth)", flags: { core: { sourceId: ancUuid }, arneyan: { ancestry: { choice: "Ophidian-Sslyth" } } }, _stats: { compendiumSource: ancUuid }, system: shifter.system };
+  const old = "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration.";
+  const ab = { id: "ab1", type: "ability", name: "Lineage: Ophidian-Sslyth", flags: { arneyan: { grantedBy: "anc1", toggleSet: true } },
+    system: { toggle: true, rules: [{ key: "note.attack", value: old, when: "", label: "Ophidian-Sslyth" }], description: "<p>Ophidian-Sslyth bite</p>" } };
+  const items = [anc, ab];
+  const actor = { name: "Test", items: { get: id => items.find(i => i.id === id), find: f => items.find(f) } };
+  const ups = await M.updatesFor(items, actor, async u => (u === ancUuid ? shifter : null), { legacy: "skip", notes: { kept: [], unstamped: 0, unstampedActors: new Set() } });
+  const a = ups.find(u => u._id === "anc1"), b = ups.find(u => u._id === "ab1");
+  assert.equal(a.name, "Shifter (Ophidian)");
+  assert.equal(a["flags.arneyan.ancestry.choice"], "Ophidian");
+  assert.equal(b.name, "Lineage: Ophidian");
+  assert.ok(b["flags.arneyan.shiftSet"] && b["system.uses"]?.per === "encounter", "the shift rework in the same pass");
+  assert.ok(/^Ophidian: a successful unarmed bite/.test(b["system.rules"][0].value) && /Poisoned\.$/.test(b["system.rules"][0].value));
+}
 console.log("books0146: ok");

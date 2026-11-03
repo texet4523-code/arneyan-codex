@@ -456,7 +456,7 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
       const ancUuid = anc?.type === "ancestry" ? sourceOf(anc) : null;
       const ancSrc = ancUuid ? plain(await fetch(ancUuid)) : null;
       const ch = ancSrc?.system?.choice;
-      const o = (ch?.options ?? []).find(x => x?.toggle && `${ch.label}: ${x.name}` === i.name);
+      const o = (ch?.options ?? []).find(x => x?.toggle && `${ch.label}: ${x.name}` === renameOphidian(i.name));
       if (o && !(i._source?.system ?? i.system)?.toggle) {
         const short = String(o.name).replace(/\s*\(.*\)$/, "");
         upd["system.toggle"] = true;
@@ -470,6 +470,9 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
     }
     // Books v0.10.46 (W4, L72): the Shifter lineage Ophidian-Sslyth is "Ophidian", same rules. Renamed in place (a
     // GM's own wording of its bite note stays; the system's own takes the new name).
+    // The lineage's feature, and the Shifter ancestry item ("Shifter (Ophidian-Sslyth)", its choice flag).
+    if (actor && i.type === "ancestry" && OPHIDIAN.test(String(i.flags?.[SYS]?.ancestry?.choice ?? ""))) upd[`flags.${SYS}.ancestry.choice`] = renameOphidian(i.flags[SYS].ancestry.choice);
+    if (actor && i.type === "ancestry" && OPHIDIAN.test(i.name)) upd.name = renameOphidian(i.name);
     if (i.type === "ability" && actor && OPHIDIAN.test(i.name) && !i.flags?.[SYS]?.keepCustom) {
       upd.name = renameOphidian(i.name);
       const cur = (i._source?.system ?? i.system)?.rules ?? [];
@@ -486,7 +489,7 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
       const ancUuid = anc?.type === "ancestry" ? sourceOf(anc) : null;
       const ancSrc = ancUuid ? plain(await fetch(ancUuid)) : null;
       const ch = ancSrc?.system?.choice;
-      const o = (ch?.options ?? []).find(x => x?.toggle && `${ch.label}: ${x.name}` === i.name);
+      const o = (ch?.options ?? []).find(x => x?.toggle && `${ch.label}: ${x.name}` === renameOphidian(i.name));
       if (o) {
         const short = String(o.name).replace(/\s*\(.*\)$/, "");
         const cur = (i._source?.system ?? i.system)?.rules ?? [];

@@ -673,9 +673,10 @@ export class ArneyanActor extends Actor {
     const combatNow = combatFor(this);
     const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
     const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
-    if (roundStamp && this.isOwner && firstThisRound) this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
+    // Only tracked for someone with Power Attack on (no write on every monster's attack).
+    if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
     const pa = powerAttackFor(own, others, { first: firstThisRound });
-    if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage and no extra damage die.`);
+    if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
     const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
