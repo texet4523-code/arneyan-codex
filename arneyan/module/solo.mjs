@@ -28,7 +28,7 @@ const activeGM = () => {
 export const CONTROL = ["incapacitated", "paralysed", "stunned", "unconscious", "charmed", "dominated", "confused", "petrified",
   "slowed", "restrained", "blinded", "frightened"];
 /** Effects shaken off the same way, by name (they carry no condition of their own). */
-export const CONTROL_EFFECTS = { feeblemind: /^Feeblemind\b/i, polymorph: /^Polymorph\b/i };
+export const CONTROL_EFFECTS = { feeblemind: /^Feeblemind/i, polymorph: /^Polymorph/i };
 const KEYS = [...CONTROL, ...Object.keys(CONTROL_EFFECTS)];
 
 export const isSolo = actor => actor?.type === "npc" && !!actor.system?.details?.isSolo;
@@ -61,10 +61,23 @@ export function shakeOff(counts = {}, on = [], turns = 2) {
 export const noCounts = () => Object.fromEntries(KEYS.map(id => [id, 0]));
 
 /** The control keys on a solo now: its conditions and its Feeblemind or Polymorph effects. */
-export function controlOn(actor) {
-  const st = statusesOf(actor);
+export function controlOn(actor, { combat = null, form = false } = {}) {
   const fx = [...(actor.effects?.contents ?? actor.effects ?? [])].filter(e => !e.disabled);
-  return [...CONTROL.filter(id => st.has(id)), ...Object.entries(CONTROL_EFFECTS).filter(([, re]) => fx.some(e => re.test(e.name ?? ""))).map(([k]) => k)];
+  // A condition running out at this very turn change (a numbered one at 1 that ticks off, or its rounds reached)
+  // ends by itself: that isn't shaking it off.
+  const now = combat ? { round: Number(combat.round) || 0, turn: Number(combat.turn) || 0 } : null;
+  const ending = e => {
+    const v = Number(e.flags?.[SYS]?.value) || 0;
+    if (v === 1) return true;
+    const x = e.flags?.[SYS]?.expires;
+    return !!(now && x && x.combat === combat.id && (now.round > x.round || (now.round === x.round && now.turn >= x.turn)));
+  };
+  const has = id => fx.some(e => (e.statuses?.has?.(id) || e.statuses?.includes?.(id)) && !ending(e));
+  const st = statusesOf(actor);
+  return [...CONTROL.filter(id => st.has(id) && (has(id) || !fx.some(e => e.statuses?.has?.(id) || e.statuses?.includes?.(id)))),
+    ...Object.entries(CONTROL_EFFECTS).filter(([, re]) => fx.some(e => re.test(e.name ?? "") && !ending(e))).map(([k]) => k),
+    // Turned into another creature (Polymorph, Change Shape: transform.mjs): the form is a creature of its own.
+    ...(form ? ["polymorph"] : [])].filter((x, i, a) => a.indexOf(x) === i);
 }
 
 /**
@@ -111,17 +124,24 @@ async function card(actor, html) {
 const tryIt = async (what, fn) => { try { return await fn(); } catch (err) { console.warn(`Arneyan | solo ${what}`, err); return null; } };
 
 /** One of a solo's turns has ended. */
-async function turnEnded(actor, combat) {
+async function turnEnded(actor, combat, { form = false } = {}) {
   // A dead or downed solo has nothing to shake off.
   if (statusesOf(actor).has("dead") || (Number(actor.system?.attributes?.hp?.value) || 0) <= 0) return;
   // The second time in a fight it shakes one off after one turn.
   const shakes = actor.getFlag(SYS, "soloShakes");
   const before = shakes?.combat === combat?.id ? Number(shakes.n) || 0 : 0;
-  const { counts, off } = shakeOff(actor.getFlag(SYS, "soloControl") ?? {}, controlOn(actor), before >= 1 ? 1 : 2);
+  const { counts, off } = shakeOff(actor.getFlag(SYS, "soloControl") ?? {}, controlOn(actor, { combat, form }), before >= 1 ? 1 : 2);
   await tryIt("counts", () => actor.setFlag(SYS, "soloControl", counts));
   if (!off.length) return;
   const names = [];
   for (const id of off) {
+    // A solo turned into another creature goes back to its own form.
+    if (id === "polymorph" && form) {
+      const { revertTransform } = await import("./transform.mjs");
+      await tryIt("polymorph", () => revertTransform(actor));
+      names.push("its new form");
+      continue;
+    }
     const re = CONTROL_EFFECTS[id];
     const carriers = actor.effects.filter(e => (re ? re.test(e.name ?? "") : (e.statuses?.has?.(id) || e.statuses?.includes?.(id)))).map(e => e.id);
     if (!carriers.length) continue;
@@ -211,12 +231,19 @@ export function registerSolo() {
   Hooks.on("updateCombat", (combat, changed, options = {}) => {
     if (!activeGM() || options.direction === -1 || (!("turn" in changed) && !("round" in changed))) return;
     const prev = combat.combatants.get(combat.previous?.combatantId);
-    if (!prev || prev.id === combat.combatant?.id || !isSolo(prev.actor)) return;
+    if (!prev || prev.id === combat.combatant?.id || !prev.actor) return;
+    // A solo, or a solo turned into another creature (its form keeps the original's uuid).
+    const orig = prev.actor.flags?.[SYS]?.transform?.originalUuid;
+    let form = false;
+    if (!isSolo(prev.actor)) {
+      try { form = !!orig && isSolo(fromUuidSync(orig)); } catch { form = false; }
+      if (!form) return;
+    }
     const key = `${combat.id}:${combat.previous?.round}:${combat.previous?.turn}:${prev.id}`;
     if (done.has(key)) return;
     done.add(key);
     if (done.size > 500) done.delete(done.values().next().value);
-    turnEnded(prev.actor, combat).catch(err => console.warn("Arneyan | solo turn", err));
+    turnEnded(prev.actor, combat, { form }).catch(err => console.warn("Arneyan | solo turn", err));
   });
   // A fight's end: its turn counts start again next time.
   Hooks.on("deleteCombat", combat => {

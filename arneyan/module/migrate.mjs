@@ -721,10 +721,11 @@ async function askLegacy(n, actors, version) {
  * The latest version whose books changed class feature lists: 0.10.65 (books v0.10.22 and v0.10.23, B7: new levels),
  * then 0.10.68 (books v0.10.25 to v0.10.30, R-B7 and K19 to K24: Commands, Performance and Channel Divinity pools, renamed and
  * always-on features), then 0.10.75 (books v0.10.32, K28 and K29: the Warlock's Patron Favour, the Monk's Iron Mind,
- * Sorcerer Metamagic at 1st), then 0.10.79 (books v0.10.36, K36: the Witch's Cauldron Brews; v0.10.38: First Blood). A world coming from
+ * Sorcerer Metamagic at 1st), then 0.10.79 (books v0.10.36, K36: the Witch's Cauldron Brews; v0.10.38: First Blood), then 0.10.81
+ * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
  * before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.79";
+export const CLASS_REWORK = "0.10.81";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
@@ -949,7 +950,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
-      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")

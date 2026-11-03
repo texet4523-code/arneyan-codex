@@ -45,6 +45,21 @@ assert.deepEqual(S.shakeOff({}, ["feeblemind"], 1).off, ["feeblemind"], "the sec
 assert.deepEqual(S.shakeOff({}, ["stunned"], 2).off, [], "the first time: two turns");
 assert.ok("polymorph" in S.noCounts() && "feeblemind" in S.noCounts());
 {
+  // The Feeblemind spell's effect is "Feebleminded"; a solo turned into another creature counts as Polymorph.
+  const fm = { effects: [{ name: "Feebleminded", disabled: false, statuses: new Set(), flags: {} }] };
+  assert.deepEqual(S.controlOn(fm), ["feeblemind"]);
+  assert.deepEqual(S.controlOn({ effects: [] }, { form: true }), ["polymorph"]);
+  // A condition running out at this turn change isn't shaken off: Stunned 1 ticking off, or its rounds reached.
+  const combat = { id: "c1", round: 3, turn: 2 };
+  const ticking = { effects: [{ name: "Stunned", disabled: false, statuses: new Set(["stunned"]), flags: { arneyan: { value: 1 } } }] };
+  assert.deepEqual(S.controlOn(ticking, { combat }), []);
+  const timed = { effects: [{ name: "Held", disabled: false, statuses: new Set(["paralysed"]), flags: { arneyan: { expires: { combat: "c1", round: 3, turn: 1 } } } }] };
+  assert.deepEqual(S.controlOn(timed, { combat }), []);
+  const lasting = { effects: [{ name: "Held", disabled: false, statuses: new Set(["paralysed"]), flags: { arneyan: { expires: { combat: "c1", round: 5, turn: 1 } } } }] };
+  assert.deepEqual(S.controlOn(lasting, { combat }), ["paralysed"]);
+}
+assert.equal(M.CLASS_REWORK, "0.10.81", "worlds at 0.10.79 and 0.10.80 take the new class features");
+{
   const actor = { effects: [{ name: "Feeblemind", disabled: false, statuses: new Set() }, { name: "Prone", disabled: false, statuses: new Set(["prone"]) }, { name: "Slow", disabled: false, statuses: new Set(["slowed"]) }] };
   assert.deepEqual(S.controlOn(actor).sort(), ["feeblemind", "slowed"]);
 }
