@@ -69,6 +69,8 @@ export function formData(original, form, o = {}) {
     data.items = merged(src.items ?? []);
     data.effects = merged(carriedEffects(original), [{
       name: `Turned into ${obj.label}`, img: obj.img, statuses: ["paralysed"], disabled: false,
+      // Foundry v14 shows an icon without a duration only when set to (an embedded effect skips the create hook in counters.mjs).
+      ...(globalThis.CONST?.ACTIVE_EFFECT_SHOW_ICON ? { showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS } : {}),
       description: "Helpless while in this form (Polymorph Any Object).",
       flags: { [SYS]: { rules: [{ key: "speed.mult", value: "0" }, { key: "no.cast", value: "1" }] } }
     }]);

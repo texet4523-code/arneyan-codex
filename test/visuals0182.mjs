@@ -65,4 +65,7 @@ assert.equal(K.showIconFor({ name: "Bloodied", statuses: ["bloodied"] }, SHOW), 
 assert.equal(K.showIconFor({ name: "Bless" }, SHOW), null, "no status: Foundry's own rule");
 assert.equal(K.showIconFor({ statuses: ["frightened"], showIcon: 1 }, SHOW), null, "its own setting stays");
 assert.equal(K.showIconFor({ statuses: ["bloodied"] }, undefined), null, "v13: no such field");
+const read = p => fs.readFileSync(root(`arneyan/module/${p}`), "utf8");
+assert.ok(/Hooks\.on\("preCreateActiveEffect", \(effect, data\) => \{\s*const v = showIconFor\(data\)/.test(read("counters.mjs")), "the hook is wired");
+assert.ok(/showIcon: CONST\.ACTIVE_EFFECT_SHOW_ICON\.ALWAYS/.test(read("transform.mjs")), "a form's Paralysed, made inside the new actor");
 console.log("visuals0182: ok");

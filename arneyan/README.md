@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.82 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.83 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.83
+
+- **Condition icons on tokens in Foundry v14.** Conditions the system puts on by itself (Bloodied, Grappled, Dirty Trick, Knocked out, Concentrating, and Paralysed in a Polymorph Any Object form) now show their icon on the token. Foundry v14 only drew them when they had a duration. One already on a token from before the update stays hidden until it goes on again.
 
 ## What's new in 0.10.82
 
