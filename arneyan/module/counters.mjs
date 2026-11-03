@@ -210,7 +210,23 @@ export function drawTokenCounters(token) {
 /*  Token HUD clicks                            */
 /* -------------------------------------------- */
 
+/**
+ * Foundry v14 draws an effect's icon on the token only when it is set to show always, or when it has a duration.
+ * A condition the system puts on by hand (Bloodied, Grappled, Knocked out, Concentrating, a form's Paralysed) has no
+ * duration, so it would be invisible on the token: an effect with a status and no icon setting of its own shows always.
+ * Returns the showIcon value to set, or null to leave it (v13 has no such field).
+ */
+export function showIconFor(data, SHOW = globalThis.CONST?.ACTIVE_EFFECT_SHOW_ICON) {
+  if (!SHOW || SHOW.ALWAYS === undefined) return null;
+  if (data?.showIcon !== undefined && data?.showIcon !== null) return null;
+  return [...(data?.statuses ?? [])].length ? SHOW.ALWAYS : null;
+}
+
 export function registerCounters() {
+  Hooks.on("preCreateActiveEffect", (effect, data) => {
+    const v = showIconFor(data);
+    if (v !== null) effect.updateSource({ showIcon: v });
+  });
   // A spell's clock on an icon changes with the round: redraw those tokens' icons.
   Hooks.on("updateCombat", (combat, changed) => {
     if (!("round" in changed) || !canvas?.tokens) return;

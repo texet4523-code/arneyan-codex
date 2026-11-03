@@ -58,4 +58,11 @@ assert.ok(!/Saves use/.test(items.find(i => i.name === "Retort").system.descript
 assert.ok(/Saves use/.test(items.find(i => i.name === "Hillfeller").system.description));
 /* The marker comes off by its status, whoever put it on, and after a heal that beat the marker. */
 assert.ok(/statuses\?\.has\?\.\("bloodied"\)\)\.map/.test(solo_src) && /if \(!actor\.getFlag\(SYS, "bloodied"\)\) await removeBloodied/.test(solo_src));
+/* Foundry v14 hides an icon without a duration unless it shows always: a status effect made by hand shows always. */
+const K = await import("../arneyan/module/counters.mjs");
+const SHOW = { NONE: 0, CONDITIONAL: 1, ALWAYS: 2 };
+assert.equal(K.showIconFor({ name: "Bloodied", statuses: ["bloodied"] }, SHOW), 2);
+assert.equal(K.showIconFor({ name: "Bless" }, SHOW), null, "no status: Foundry's own rule");
+assert.equal(K.showIconFor({ statuses: ["frightened"], showIcon: 1 }, SHOW), null, "its own setting stays");
+assert.equal(K.showIconFor({ statuses: ["bloodied"] }, undefined), null, "v13: no such field");
 console.log("visuals0182: ok");
