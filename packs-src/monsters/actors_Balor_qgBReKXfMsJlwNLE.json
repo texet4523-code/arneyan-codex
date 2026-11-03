@@ -29,13 +29,13 @@
   "hd": "20d8",
   "attributes": {
    "hp": {
-    "value": 200,
-    "max": 200,
+    "value": 485,
+    "max": 485,
     "temp": 0
    },
-   "ac": 19,
+   "ac": 22,
    "speed": "40ft, fly 90ft",
-   "attack": 26,
+   "attack": 22,
    "spellDC": 0,
    "morale": 12
   },
@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge fiend (demon)</em></p><p><strong>GM:</strong> A towering engine of fury. Its death throes can finish off any survivor who closes in to claim the kill.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge fiend (demon)</em></p><p><strong>GM:</strong> A towering engine of fury. Its death throes can finish off any survivor who closes in to claim the kill.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -161,7 +161,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature that starts its turn within <strong>5ft</strong> takes @Damage[3d6 fire]{3d6 fire damage}. A creature that hits it with a melee weapon takes @Damage[3d6 fire]{3d6 fire damage}.</p>",
+    "description": "<p>A creature that starts its turn within <strong>5ft</strong> takes @Damage[3d6 fire]{3d6 fire damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -213,7 +213,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>When it dies, it explodes. Creatures within <strong>30ft</strong> make a @Check[ref|dc:24]{Reflex save DC 24} or take @Damage[20d6 fire]{20d6 fire damage}, half on a success.</p>",
+    "description": "<p>When it dies, it explodes. Creatures within <strong>30ft</strong> make a @Check[ref|dc:24]{Reflex save DC 24} or take @Damage[10d6 fire]{10d6 fire damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -226,7 +226,7 @@
     },
     "save": "ref",
     "dc": 24,
-    "damage": "20d6",
+    "damage": "10d6",
     "damageType": "fire",
     "level": 0,
     "className": "",

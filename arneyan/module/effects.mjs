@@ -231,8 +231,8 @@ export function weaponMatches(rule, item, opts = {}) {
   if (item?.type !== "weapon") return false;
   const scope = String(rule?.weapon ?? "").trim().toLowerCase();
   if (scope === "two-handed") return isTwoHanded(item, opts);
-  // Unarmed strikes (the Monk's Iron Fists, books v0.10.41).
-  if (scope === "unarmed") return /^unarmed strike$/i.test(item._source?.name ?? item.name ?? "");
+  // Unarmed strikes (the Monk's Iron Fists, books v0.10.41): Unarmed Strike, or the Catalogue's Fist (the pregens carry it).
+  if (scope === "unarmed") return /^(unarmed strike|fist)$/i.test(item._source?.name ?? item.name ?? "");
   if (scope === "chosen") {
     const want = new Set((rule.names ?? []).map(weaponKey).filter(Boolean));
     return want.size > 0 && weaponKeys(item).some(k => want.has(k));

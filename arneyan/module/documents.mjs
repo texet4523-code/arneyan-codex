@@ -66,7 +66,7 @@ export function byLevel(spec, level, data = {}) {
 export function weaponFits(w, want) {
   const k = String(want ?? "").toLowerCase();
   if (!k) return true;
-  if (k === "unarmed") return /^unarmed strike$/i.test(w._source?.name ?? w.name);
+  if (k === "unarmed") return /^(unarmed strike|fist)$/i.test(w._source?.name ?? w.name);
   if (k === "melee") return !w.system.ranged;
   if (k === "ranged") return !!w.system.ranged;
   return String(w.system.ammoType ?? "").toLowerCase() === k;
@@ -526,7 +526,7 @@ export class ArneyanActor extends Actor {
    */
   ownDice(item) {
     const own = item?.system?.damage;
-    if (item?.type !== "weapon" || !/^unarmed strike$/i.test(item._source?.name ?? item.name)) return own;
+    if (item?.type !== "weapon" || !/^(unarmed strike|fist)$/i.test(item._source?.name ?? item.name)) return own;
     const best = this.mods?.dice?.("unarmed.dice");
     if (!best) return own;
     // The weapon's leading dice ("1d2+1" counts as 1d2; its "+1" is kept only if its own dice win).
@@ -765,7 +765,7 @@ export class ArneyanActor extends Actor {
     // The Finesse trait: the better of Strength and Dexterity, whatever the attribute box says.
     if (a === "str" && /\bfinesse\b/i.test(item.system.traits ?? "")) a = "finesse";
     // A Monk's unarmed strikes use Strength or Dexterity, the player's choice: the better one.
-    if (a === "str" && item.type === "weapon" && /^unarmed strike$/i.test(item._source?.name ?? item.name) && this.mods?.dice?.("unarmed.dice")) a = "finesse";
+    if (a === "str" && item.type === "weapon" && /^(unarmed strike|fist)$/i.test(item._source?.name ?? item.name) && this.mods?.dice?.("unarmed.dice")) a = "finesse";
     if (a === "finesse") return this.system.abilities.dex.mod >= this.system.abilities.str.mod ? "dex" : "str";
     return a;
   }

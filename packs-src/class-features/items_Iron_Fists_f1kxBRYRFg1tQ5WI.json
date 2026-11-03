@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. They gain no bonus to hit or damage.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. From 7th level they gain +1 to hit and damage, +2 from 13th and +3 from 19th.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,7 +20,25 @@
   "dc": null,
   "damage": "",
   "level": 3,
-  "className": "Monk"
+  "className": "Monk",
+  "rules": [
+   {
+    "key": "attack",
+    "value": "7:1, 13:2, 19:3",
+    "when": "unarmed strikes",
+    "label": "",
+    "weapon": "unarmed"
+   },
+   {
+    "key": "damage",
+    "value": "7:1, 13:2, 19:3",
+    "when": "unarmed strikes",
+    "label": "",
+    "weapon": "unarmed"
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "F4ugkKNsZhwE5mHp",

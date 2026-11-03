@@ -1,0 +1,42 @@
+{
+ "_id": "YFtHbgQ9trfsootu",
+ "_key": "!items!YFtHbgQ9trfsootu",
+ "name": "Hag's Vigour improves",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> From 8th level, +2 maximum HP per Witch level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 8,
+  "className": "Witch",
+  "rules": [
+   {
+    "key": "hp.max",
+    "value": "@cl",
+    "when": "",
+    "label": "Hag's Vigour improves"
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "1dlV9nfuiRwL22Wo",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

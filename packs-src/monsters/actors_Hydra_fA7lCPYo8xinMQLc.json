@@ -25,24 +25,24 @@
     "value": 7
    }
   },
-  "level": 10,
-  "hd": "11d8",
+  "level": 12,
+  "hd": "12d10+9",
   "attributes": {
    "hp": {
-    "value": 49,
-    "max": 49,
+    "value": 75,
+    "max": 75,
     "temp": 0
    },
    "ac": 15,
    "speed": "30ft, swim 30ft",
-   "attack": 7,
+   "attack": 12,
    "spellDC": 0,
    "morale": 11
   },
   "saves": {
-   "fort": 9,
-   "ref": 5,
-   "will": 5
+   "fort": 10,
+   "ref": 6,
+   "will": 6
   },
   "spellcasting": {
    "className": "",
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hydra.svg",
    "system": {
-    "description": "<p>Has five heads. Each head has <strong>10 HP</strong> of its own (counting toward the hydra's total). When a head is reduced to <strong>0 HP</strong> it is severed.</p>",
+    "description": "<p>Has five heads. Each head has <strong>15 HP</strong> of its own (counting toward the hydra's total). When a head is reduced to <strong>0 HP</strong> it is severed.</p>",
     "source": {
      "book": "mt",
      "page": 0

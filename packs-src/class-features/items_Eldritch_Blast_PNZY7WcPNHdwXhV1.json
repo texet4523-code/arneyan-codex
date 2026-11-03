@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> At-will ranged cantrip (<strong>60ft</strong> range). The target makes a <strong>Reflex save</strong> (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales:</strong> <strong>1d6</strong> at 1st, <strong>1d8</strong> at 5th, <strong>2d6</strong> at 9th, <strong>2d8</strong> at 13th, <strong>3d6</strong> at 17th, <strong>3d8</strong> at 24th</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> At-will ranged cantrip (<strong>60ft</strong> range). The target makes a <strong>Reflex save</strong> (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales:</strong> <strong>1d6</strong> at 1st, <strong>1d8</strong> at 5th, <strong>2d6</strong> at 9th, <strong>3d8</strong> at 13th, <strong>4d8</strong> at 17th, <strong>5d8</strong> at 21st</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -18,7 +18,7 @@
   },
   "save": "ref",
   "dc": null,
-  "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+  "damage": "(1 - min(1, floor(@cl / 5)) + 2 * min(1, floor(@cl / 9)) - 2 * min(1, floor(@cl / 13)))d6 + (min(1, floor(@cl / 5)) - min(1, floor(@cl / 9)) + 3 * min(1, floor(@cl / 13)) + min(1, floor(@cl / 17)) + min(1, floor(@cl / 21)))d8",
   "damageType": "force",
   "level": 1,
   "className": "Warlock"

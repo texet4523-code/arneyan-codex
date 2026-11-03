@@ -26,11 +26,11 @@
    }
   },
   "level": 4,
-  "hd": "2d8+2",
+  "hd": "4d8",
   "attributes": {
    "hp": {
-    "value": 11,
-    "max": 11,
+    "value": 18,
+    "max": 18,
     "temp": 0
    },
    "ac": 14,
@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1d6",
-   "resistances": "non-silvered 10",
+   "resistances": "non-silvered 5",
    "immunities": "",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
@@ -69,7 +69,7 @@
  },
  "items": [
   {
-   "name": "Tentacles ×4",
+   "name": "Tentacles ×2",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
@@ -89,15 +89,15 @@
     "range": "",
     "magic": 0,
     "attackBonus": 0,
-    "traits": "4 attacks",
+    "traits": "2 attacks",
     "bonusDamage": [],
     "rules": [],
     "toggle": false,
     "active": false,
     "applies": []
    },
-   "_id": "3ykMcu65oBaCkxzK",
-   "_key": "!actors.items!ZlBt4M0nrvW04ieG.3ykMcu65oBaCkxzK",
+   "_id": "f11qZdux3wxAunxJ",
+   "_key": "!actors.items!ZlBt4M0nrvW04ieG.f11qZdux3wxAunxJ",
    "effects": [],
    "flags": {},
    "sort": 0,
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>Has Resistance 10 against non-magical weapons that are not silvered.</p>",
+    "description": "<p>Has Resistance 5 against non-magical weapons that are not silvered.</p>",
     "source": {
      "book": "mt",
      "page": 0

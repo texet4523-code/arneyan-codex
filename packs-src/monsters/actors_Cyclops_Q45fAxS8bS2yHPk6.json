@@ -25,7 +25,7 @@
     "value": 10
    }
   },
-  "level": 10,
+  "level": 8,
   "hd": "13d12",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 9,
-   "ref": 5,
-   "will": 4
+   "fort": 8,
+   "ref": 4,
+   "will": 3
   },
   "spellcasting": {
    "className": "",
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
    "system": {
-    "description": "<p>Once per day, as an action, curses a creature within <strong>60ft</strong>; @Check[will|dc:15]{Will DC 15} or <strong>Disadvantage</strong> on its attack rolls for <strong>1 minute</strong>.</p>",
+    "description": "<p>Once per day, as an action, curses a creature within <strong>60ft</strong>; @Check[will|dc:14]{Will DC 14} or <strong>Disadvantage</strong> on its attack rolls for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": "day"
     },
     "save": "will",
-    "dc": 15,
+    "dc": 14,
     "damage": "",
     "damageType": "",
     "level": 0,

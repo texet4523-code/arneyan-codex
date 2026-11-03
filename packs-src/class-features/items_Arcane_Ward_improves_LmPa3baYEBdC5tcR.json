@@ -1,0 +1,42 @@
+{
+ "_id": "LmPa3baYEBdC5tcR",
+ "_key": "!items!LmPa3baYEBdC5tcR",
+ "name": "Arcane Ward improves",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> From 8th level, the <strong>temporary HP</strong> equal three times the spell's level.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 8,
+  "className": "Wizard",
+  "rules": [
+   {
+    "key": "cast.temp",
+    "value": "1",
+    "when": "",
+    "label": "Arcane Ward improves"
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "ZIH0gIdHjvUp1Jp5",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

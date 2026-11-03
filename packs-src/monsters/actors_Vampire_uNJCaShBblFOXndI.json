@@ -35,7 +35,7 @@
    },
    "ac": 20,
    "speed": "30ft",
-   "attack": 14,
+   "attack": 12,
    "spellDC": 0,
    "morale": 11
   },
@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A cold and patient predator. The fight begins long before the dinner invitation.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A cold and patient predator. The fight begins long before the dinner invitation.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
   }
  },
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
    "system": {
-    "description": "<p>Regains <strong>10 HP</strong> at the start of its turn. When reduced to <strong>0 HP</strong> it becomes mist and flees to its coffin, unless it was in sunlight or running water.</p>",
+    "description": "<p>Regains <strong>10 HP</strong> at the start of its first turn each round. When reduced to <strong>0 HP</strong> it becomes mist and flees to its coffin, unless it was in sunlight or running water.</p>",
     "source": {
      "book": "mt",
      "page": 0

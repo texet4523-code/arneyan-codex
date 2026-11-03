@@ -1,0 +1,42 @@
+{
+ "_id": "OMo4CxLfLGHqH7We",
+ "_key": "!items!OMo4CxLfLGHqH7We",
+ "name": "Cleansing Prayer",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> When a spell you cast restores HP to a creature, it also ends one of these conditions on that creature: <strong>Poisoned</strong>, <strong>Frightened</strong> or <strong>Sickened</strong>.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 4,
+  "className": "Cleric",
+  "rules": [
+   {
+    "key": "note.spell",
+    "value": "Cleansing Prayer: when this spell restores HP to a creature, it also ends one of Poisoned, Frightened or Sickened on it.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "DB2nn2x2D5HVxzrP",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

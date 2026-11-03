@@ -1,0 +1,42 @@
+{
+ "_id": "6KnvsKVmfEMQyXjz",
+ "_key": "!items!6KnvsKVmfEMQyXjz",
+ "name": "Aura of Resolve",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You and allies in your Aura of Courage have <strong>Advantage</strong> on saves against <strong>Paralysed</strong> and <strong>Stunned</strong>.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 18,
+  "className": "Paladin",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 14,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

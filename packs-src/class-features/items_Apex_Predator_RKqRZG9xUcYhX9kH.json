@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, when you use Marked Prey, for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is.</li><li>24th level: your Combat Marauder bonus applies against it in full, and you have <strong>Advantage</strong> on checks to track, corner or finish it</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, when you use Marked Prey, for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is.</li><li>24th level: you may use Apex Predator <strong>twice per day</strong>, and you have <strong>Advantage</strong> on checks to track, corner or finish your marked prey</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "day"
+   "per": "day",
+   "formula": "1:1, 24:2"
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level your Combat Marauder bonus applies against it in full, with Advantage on checks to track, corner or finish it.",
+    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level you may use it twice per day, with Advantage on checks to track, corner or finish your marked prey.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

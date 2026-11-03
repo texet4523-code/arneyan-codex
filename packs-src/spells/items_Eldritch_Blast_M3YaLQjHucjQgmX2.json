@@ -26,7 +26,7 @@
   "prepared": false,
   "save": "ref",
   "saveEffect": "Half",
-  "damage": "((1 + floor((min(@cl, 24) - 1) / 8)) * (1 - (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24))))d6 + ((1 + floor((min(@cl, 24) - 1) / 8)) * (floor((min(@cl, 20) - 1) / 4) - 2 * floor(floor((min(@cl, 20) - 1) / 4) / 2) + floor(min(@cl, 24) / 24)))d8",
+  "damage": "(1 - min(1, floor(@cl / 5)) + 2 * min(1, floor(@cl / 9)) - 2 * min(1, floor(@cl / 13)))d6 + (min(1, floor(@cl / 5)) - min(1, floor(@cl / 9)) + 3 * min(1, floor(@cl / 13)) + min(1, floor(@cl / 17)) + min(1, floor(@cl / 21)))d8",
   "damageType": "force",
   "reversible": false,
   "costly": false,

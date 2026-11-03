@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Range <strong>30ft</strong>; up to 1 creature per two levels (max 10).</p><ul><li>Each is restored to its maximum HP minus <strong>1d4</strong>, and its <strong>Blinded</strong>, <strong>Deafened</strong> and <strong>Stunned</strong> conditions and diseases end.</li><li>Cast reversed (Mass Harm): each target makes a <strong>Fortitude save</strong> or is reduced to <strong>1d4</strong> HP; on a success it loses half its current HP.</li><li>Undead are healed by Mass Harm, harmed by Mass Heal.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Witch</p>",
+  "description": "<p>Range <strong>30ft</strong>; up to 1 creature per two levels (max 10).</p><ul><li>Each is restored to its maximum HP minus <strong>1d4</strong>, and its <strong>Blinded</strong>, <strong>Deafened</strong> and <strong>Stunned</strong> conditions and diseases end.</li><li>Cast reversed (Mass Harm): each target makes a <strong>Fortitude save</strong>: on a failure it takes necrotic damage equal to half its current HP, on a success a quarter.</li><li>Undead are healed by Mass Harm, harmed by Mass Heal.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,7 +26,7 @@
   "ritual": false,
   "prepared": false,
   "save": "fort",
-  "saveEffect": "Loses half its current HP instead (Mass Harm only)",
+  "saveEffect": "Necrotic damage equal to a quarter of its current HP instead (Mass Harm only)",
   "damage": "",
   "damageType": "",
   "reversible": true,

@@ -29,8 +29,8 @@
   "hd": "14d12",
   "attributes": {
    "hp": {
-    "value": 190,
-    "max": 190,
+    "value": 375,
+    "max": 375,
     "temp": 0
    },
    "ac": 22,
@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge dragon (chromatic)</em></p><p><strong>GM:</strong> A cruel manipulator of the deep forest; it would rather turn you against each other than fight. An adult is a lair-master whose hoard is its life.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge dragon (chromatic)</em></p><p><strong>GM:</strong> A cruel manipulator of the deep forest; it would rather turn you against each other than fight. An adult is a lair-master whose hoard is its life.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>90ft</strong> that sees the dragon makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>.</p>",
+    "description": "<p>A creature within <strong>90ft</strong> that sees the dragon makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -29,13 +29,13 @@
   "hd": "19d10",
   "attributes": {
    "hp": {
-    "value": 190,
-    "max": 190,
+    "value": 375,
+    "max": 375,
     "temp": 0
    },
    "ac": 22,
    "speed": "40ft, fly 60ft",
-   "attack": 23,
+   "attack": 19,
    "spellDC": 19,
    "morale": 12
   },
@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead (petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -703,7 +703,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature reduces it to <strong>1d4</strong> HP (no effect if it already has fewer).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
+    "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature deals necrotic damage equal to half its current HP, or sets it to <strong>1d4</strong> HP if it has <strong>50 HP</strong> or fewer.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0

@@ -95,6 +95,7 @@ assert.ok(src("solo.mjs").includes("done.has(key)"), "a re-sent turn isn't count
   assert.deepEqual([12, 13, 24].map(l => ARNEYAN.bth("rogue", l)), [2, 7, 15], "the Rogue and the Assassin join the Knight track from 13th");
   const E = await import("../arneyan/module/effects.mjs");
   assert.ok(E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Unarmed Strike" }) && !E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Quarterstaff" }), "Iron Fists counts on Unarmed Strike only");
+  assert.ok(E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Fist" }), "and on the Catalogue's Fist (Sarrix carries it)");
   assert.ok(src("transform.mjs").includes("form's HP can't exceed the druid's own Max HP"));
   assert.deepEqual(M.RENAMED_FEATURES["Compendium.arneyan.spells.Item.0zqPnCOdDm0Tb4IW"], ["Hex", "Malediction"]);
   const T = await import("../arneyan/module/treasure.mjs");

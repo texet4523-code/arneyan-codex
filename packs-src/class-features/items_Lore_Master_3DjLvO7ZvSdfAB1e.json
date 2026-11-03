@@ -1,0 +1,42 @@
+{
+ "_id": "3DjLvO7ZvSdfAB1e",
+ "_key": "!items!3DjLvO7ZvSdfAB1e",
+ "name": "Lore Master",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on Legend Lore and Decipher Script checks. Handling a magic item for <strong>10 minutes</strong> reveals one of its properties.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 9,
+  "className": "Bard",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": "1",
+    "when": "Legend Lore and Decipher Script",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "qcKyYEwYgLQLpEqg",
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

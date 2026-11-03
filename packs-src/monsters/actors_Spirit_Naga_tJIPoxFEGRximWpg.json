@@ -25,12 +25,12 @@
     "value": 16
    }
   },
-  "level": 9,
-  "hd": "12d10+24",
+  "level": 10,
+  "hd": "8d10+11",
   "attributes": {
    "hp": {
-    "value": 90,
-    "max": 90,
+    "value": 55,
+    "max": 55,
     "temp": 0
    },
    "ac": 15,
@@ -40,9 +40,9 @@
    "morale": 10
   },
   "saves": {
-   "fort": 5,
-   "ref": 6,
-   "will": 5
+   "fort": 6,
+   "ref": 7,
+   "will": 6
   },
   "spellcasting": {
    "className": "Wizard",
@@ -122,7 +122,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-snake.svg",
    "system": {
-    "description": "<p>A creature bitten makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[7d8 poison]{7d8 poison damage}, half on a success.</p>",
+    "description": "<p>A creature bitten makes a @Check[fort|dc:16]{Fortitude save DC 16} or takes @Damage[7d8 poison]{7d8 poison damage}, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -134,7 +134,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 15,
+    "dc": 16,
     "damage": "7d8",
     "damageType": "poison",
     "level": 0,

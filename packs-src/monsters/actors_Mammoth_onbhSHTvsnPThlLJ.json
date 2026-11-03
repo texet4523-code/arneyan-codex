@@ -25,7 +25,7 @@
     "value": 6
    }
   },
-  "level": 11,
+  "level": 9,
   "hd": "10d12+50",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 10,
-   "ref": 5,
-   "will": 5
+   "fort": 9,
+   "ref": 4,
+   "will": 4
   },
   "spellcasting": {
    "className": "",
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-elephant-head.svg",
    "system": {
-    "description": "<p>If it moves at least <strong>20ft</strong> straight towards a target and hits, the target makes a @Check[fort|dc:21]{Fortitude save DC 21} or is knocked prone, and the mammoth may stomp it as part of the same action (<strong>4d10+7</strong>).</p>",
+    "description": "<p>If it moves at least <strong>20ft</strong> straight towards a target and hits, the target makes a @Check[fort|dc:20]{Fortitude save DC 20} or is knocked prone, and the mammoth may stomp it as part of the same action (<strong>4d10+7</strong>).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -123,7 +123,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 21,
+    "dc": 20,
     "damage": "",
     "damageType": "",
     "level": 0,

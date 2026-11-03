@@ -1,0 +1,42 @@
+{
+ "_id": "K94HkoZdVJgTl4hh",
+ "_key": "!items!K94HkoZdVJgTl4hh",
+ "name": "Displacement",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You are never quite where you seem. The first attack against you each round has <strong>Disadvantage</strong>. A creature that can see through illusions (True Seeing, blindsight and similar) ignores it. Always on.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 18,
+  "className": "Illusionist",
+  "rules": [
+   {
+    "key": "adv.against.first",
+    "value": "-1",
+    "when": "",
+    "label": "Displacement"
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}
