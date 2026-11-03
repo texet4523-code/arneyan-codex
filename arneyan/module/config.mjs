@@ -291,6 +291,9 @@ ARNEYAN.conditions = {
     text: "Hide 20+: Search DC 20. As Hidden, and blindsight and truesight don't find it either. Attacking, casting a spell or a loud noise ends it." },
   surprised: { name: "Surprised", icon: "surprised", counter: "none", rules: [...INCAP, R("speed.mult", 0), R("no.reactions", 1)],
     text: "Caught unaware: in the surprise round it can't move, take actions or act out of turn. Comes off when the next round begins." },
+  // A solo's phase marker (M&T v0.10.41, Solos and control: Bloodied), put on by solo.mjs. No rules of its own.
+  bloodied: { name: "Bloodied", icon: "bleeding-heart", counter: "none", rules: [],
+    text: "A solo at half its HP or lower: its conditions and hostile effects ended and its limited-use abilities came back. A marker of its new phase; it has no effect of its own." },
   concentrating: { name: "Concentrating", icon: "concentration-orb", counter: "none", rules: [], system: true,
     text: "Maintaining a concentration effect. Taking damage calls for a Fortitude save, DC 10 or half the damage, whichever is higher." },
   dead: { name: "Dead", icon: "skull-crossed-bones", rules: [...HELPLESS], system: true, counter: "none", text: "Dead." }

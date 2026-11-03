@@ -11,7 +11,7 @@
 - The Iconic Weapons as real weapons on their base weapon, with +N and their extra damage.
 - The Two-handed trait on the Catalogue's two-slot melee weapons that aren't Versatile.
 """
-import copy, glob, json, os, re
+import copy, glob, html, json, os, re
 from lib import OUT, fid
 import books_md
 from icons import icon
@@ -61,6 +61,38 @@ ICONIC = {
     "Mace of Delving": ("Mace, Heavy", 2, [("2d8", "radiant", "against undead")], {}),
     "Javelin of Lightning": ("Javelin", 1, [], {"range": "30 ft"}),
 }
+
+# Monsters & Treasure v0.10.41 (K48 A-S2, K51): the Named Uniques, read from the M&T treasure chapter, as weapons on
+# their base weapon. Their base (from the line's "(greatsword +3)") -> the Catalogue's name, and a glyph each.
+NAMED_UNIQUE_SRC = "/tmp/hb/mm/treasure.md"
+UNIQUE_BASE = {"greatsword": "Greatsword", "long sword": "Sword, Long", "maul": "Maul", "trident": "Trident",
+               "war hammer": "Hammer, War", "scimitar": "Sword, Scimitar", "long bow": "Bow, Long", "heavy flail": "Flail, Heavy",
+               "rapier": "Sword, Rapier", "glaive": "Glaive", "heavy mace": "Mace, Heavy", "battle axe": "Axe, Battle",
+               "dagger": "Dagger", "wolf spear": "Spear, Wolf", "short sword": "Sword, Short", "heavy crossbow": "Crossbow, Heavy",
+               "morningstar": "Morningstar"}
+UNIQUE_GLYPH = {"Soulthief": "bloody-sword", "Wyrmsbane": "dragon-head", "Wallguard": "stone-wall", "Stonefather": "warhammer",
+                "Tidecaller": "trident", "Groundbreaker": "hammer-drop", "Hairsplitter": "saber-slash", "Phoenix Oath": "winged-arrow",
+                "Wardenbreaker": "flail", "Dreadknell": "ringing-bell", "Retort": "fencer", "Veilcutter": "glaive",
+                "Gravebane": "mace-head", "Hillfeller": "battle-axe", "Adder's Kiss": "snake-bite", "Stormcall": "lightning-trio",
+                "Weeping Edge": "bleeding-wound", "Greenmantle": "vine-whip", "Quickwind": "crossbow", "Wakeful": "awareness"}
+# Extra damage the system can add when the GM ticks it on the damage card: "+2d6 damage against dragons".
+UNIQUE_EXTRA = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)?\s*(?:damage\s*)?against ([a-z ]+?)(?=[,.;]| and )", re.I)
+
+
+def named_uniques():
+    """The Named Uniques list: [(name, base phrase, bonus, text)] from the M&T treasure chapter (empty if not there)."""
+    try:
+        t = open(NAMED_UNIQUE_SRC, encoding="utf-8").read()
+    except OSError:
+        return []
+    i = t.find("### Named Uniques")
+    if i < 0:
+        return []
+    block = t[i:].split("\n#", 1)[0]
+    out = []
+    for m in re.finditer(r"^- \*\*(.+?)\*\* \[Unique\] \(([a-z ]+?) \+(\d)\)\.\s*(.+)$", block, re.M):
+        out.append((m.group(1), m.group(2).strip(), int(m.group(3)), m.group(4).strip()))
+    return out
 
 # Light sources. The Catalogue and Codex give no radius except the Sunrod's; Kieran chose 5e's (19 Oct 2026).
 # (bright ft, total ft incl. dim, hours, cone angle)
@@ -262,6 +294,38 @@ def build():
             }
         }
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
+        changed += 1
+
+    # Named Uniques (M&T v0.10.41): one weapon each, beside the iconic weapons, with its own icon. The GM places them.
+    uniques = named_uniques()
+    home = by_name.get("Vorpal Sword", (None, {}))[1].get("folder")
+    for uname, base_phrase, plus, utext in uniques:
+        base = UNIQUE_BASE.get(base_phrase.lower())
+        if not base or base not in by_name:
+            print(f"gear: skipped {uname} (no base weapon for {base_phrase})")
+            continue
+        bs = by_name[base][1]["system"]
+        _id = fid("equipment", "item", f"unique|{uname}")
+        power, _, quirk = utext.partition("*Quirk")
+        quirk = ("Quirk" + quirk).replace("*", "").strip() if quirk else ""
+        extra = [{"formula": a, "type": (b or "").lower(), "when": f"against {c.strip()}", "mode": False} for a, b, c in UNIQUE_EXTRA.findall(power)]
+        desc = (f"<p><em>Named Unique ({base_phrase} +{plus}).</em> {html.escape(power.strip())}</p>"
+                + (f"<p><strong>{html.escape(quirk.split(':', 1)[0])}:</strong> {html.escape(quirk.split(':', 1)[1].strip()) if ':' in quirk else ''}</p>" if quirk else "")
+                + "<p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques. Saves use DC 10 + half your level + the attribute named.</p>")
+        doc = {
+            "_id": _id, "_key": f"!items!{_id}", "name": uname, "type": "weapon", "img": icon("unique", UNIQUE_GLYPH.get(uname, "crossed-swords")),
+            "folder": home, "sort": 0, "ownership": {"default": 0}, "flags": {}, "effects": [],
+            "system": {
+                "description": desc, "source": {"book": "mt", "page": 0},
+                "quantity": 1, "slots": bs.get("slots", 1), "bundle": 0, "price": "Unique (never for sale)", "equipped": False,
+                "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
+                "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged")),
+                "range": bs.get("range", ""), "magic": plus, "attackBonus": 0, "traits": bs.get("traits", ""),
+                "ammoType": bs.get("ammoType", ""), "ammoId": "", "bonusDamage": extra, "modeLabel": "", "modeLight": 0,
+                "rules": [], "toggle": False, "active": False, "applies": []
+            }
+        }
+        json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', uname)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
 
     # Worn magic items whose Catalogue line is a plain number (28 Oct 2026, the Veterans' Monk wears a Ring of

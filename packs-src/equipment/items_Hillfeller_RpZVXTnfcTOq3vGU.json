@@ -1,0 +1,54 @@
+{
+ "_id": "RpZVXTnfcTOq3vGU",
+ "_key": "!items!RpZVXTnfcTOq3vGU",
+ "name": "Hillfeller",
+ "type": "weapon",
+ "img": "systems/arneyan/assets/icons/unique-battle-axe.svg",
+ "folder": "DE9jDVajBrUWwqU4",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {},
+ "effects": [],
+ "system": {
+  "description": "<p><em>Named Unique (battle axe +1).</em> +<strong>2d6</strong> damage against giants, and a giant it hits makes a <strong>Fortitude save</strong> (Str DC) or is knocked <strong>Prone</strong>.</p><p><strong>Quirk (Haunted):</strong> you dream of the giant whose axe-head this once was. A relic of the Never-ending War, cut down from a giant&#x27;s own axe and rehafted for a dwarf.</p><p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques. Saves use <strong>DC 10</strong> + half your level + the attribute named.</p>",
+  "source": {
+   "book": "mt",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 1.0,
+  "bundle": 0,
+  "price": "Unique (never for sale)",
+  "equipped": false,
+  "inside": "",
+  "identified": true,
+  "unidentifiedName": "",
+  "unidentifiedDescription": "",
+  "damage": "1d8",
+  "damageType": "slashing",
+  "ability": "str",
+  "ranged": false,
+  "range": "",
+  "magic": 1,
+  "attackBonus": 0,
+  "traits": "Cleaving",
+  "ammoType": "",
+  "ammoId": "",
+  "bonusDamage": [
+   {
+    "formula": "2d6",
+    "type": "",
+    "when": "against giants",
+    "mode": false
+   }
+  ],
+  "modeLabel": "",
+  "modeLight": 0,
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": []
+ }
+}

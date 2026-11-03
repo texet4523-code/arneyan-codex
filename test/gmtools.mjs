@@ -87,6 +87,14 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
   assert.equal(r.items[0].name, "Azurite (Ornamental gem)");
 }
 {
+  // 0.10.82: the card links each Named Unique the weapon could be, from the equipment compendium.
+  const r = await T.rollTreasure(T.parseTreasureCode("C"), { roll: minRoll });
+  assert.deepEqual(r.items[1].pick, T.NAMED_UNIQUES[1]);
+  const html = T.treasureCardHtml(r, { uuids: { Gravebane: "Compendium.arneyan.equipment.Item.g1" } });
+  assert.ok(html.includes("@UUID[Compendium.arneyan.equipment.Item.g1]{Gravebane}"), "Gravebane linked");
+  assert.ok(html.includes("Hillfeller,") && html.includes("give it a name"), "the rest named plainly");
+}
+{
   // Individual treasure is rolled for each creature; lair hoards can be left out.
   const r = await T.rollTreasure(T.parseTreasureCode("P, lair B"), { roll: maxRoll, count: 4, lair: false });
   assert.equal(r.coins.sp, 48);

@@ -90,7 +90,7 @@ export function bloodiedEnds(actor, sideOf = () => "") {
   const own = `${actor.uuid}.`;
   return [...(actor.effects?.contents ?? actor.effects ?? [])].filter(e => {
     if (e.flags?.[SYS]?.concentration || e.flags?.[SYS]?.shookOff) return false;
-    const st = [...(e.statuses ?? [])].filter(s => !["dead", "concentrating"].includes(s));
+    const st = [...(e.statuses ?? [])].filter(s => !["dead", "concentrating", "bloodied"].includes(s));
     if ([...(e.statuses ?? [])].includes("dead")) return false;
     const origin = String(e.origin ?? "");
     const side = origin && (origin === actor.uuid || origin.startsWith(own)) ? "own" : origin ? sideOf(origin) : "";
@@ -184,6 +184,12 @@ async function bloodiedNow(actor) {
     .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
   if (uses.length) await tryIt("bloodied", () => actor.updateEmbeddedDocuments("Item", uses));
   await tryIt("bloodied", () => actor.setFlag(SYS, "soloControl", noCounts()));
+  // The Bloodied marker on its token, so the table sees the new phase.
+  if (!actor.effects.some(e => e.statuses?.has?.("bloodied"))) {
+    await tryIt("bloodied", () => actor.createEmbeddedDocuments("ActiveEffect", [{
+      name: "Bloodied", img: `systems/${SYS}/assets/conditions/bloodied.svg`, statuses: ["bloodied"], origin: actor.uuid, flags: { [SYS]: { bloodied: true } }
+    }]));
+  }
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is Bloodied</span></header>
     <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spell slots don't. A good moment for a new phase.</p>`);
 }
@@ -255,7 +261,12 @@ export function registerSolo() {
     if (!activeGM() || !isSolo(actor) || !foundry.utils.hasProperty(changes, "system.attributes.hp.value")) return;
     const hp = actor.system.attributes.hp;
     const max = Number(hp.max) || 0;
-    if (max && hp.value >= max && actor.getFlag(SYS, "bloodied")) { actor.unsetFlag(SYS, "bloodied").catch(() => null); return; }
+    if (max && hp.value >= max && actor.getFlag(SYS, "bloodied")) {
+      actor.unsetFlag(SYS, "bloodied").catch(() => null);
+      const marks = actor.effects.filter(e => e.flags?.[SYS]?.bloodied).map(e => e.id);
+      if (marks.length) actor.deleteEmbeddedDocuments("ActiveEffect", marks).catch(() => null);
+      return;
+    }
     if (max && hp.value > 0 && hp.value <= max / 2 && !actor.getFlag(SYS, "bloodied")) bloodied(actor).catch(err => console.warn("Arneyan | bloodied", err));
   });
 }

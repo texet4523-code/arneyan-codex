@@ -210,7 +210,7 @@ export const NAMED_UNIQUES = {
   3: ["Soulthief", "Wyrmsbane", "Wallguard", "Stonefather"]
 };
 /** A hoard's weapon +N (K48: never a plain +N): made as a Unique, or a Named Unique with that bonus. */
-const uniqueWeapon = plus => ({ ...enchanted("weapon", plus), name: `Weapon +${plus}, made as a Unique`,
+const uniqueWeapon = plus => ({ ...enchanted("weapon", plus), name: `Weapon +${plus}, made as a Unique`, pick: NAMED_UNIQUES[plus],
   note: `Roll its power and quirk and give it a name (Uniques, Monsters & Treasure), or use a Named Unique with that bonus: ${NAMED_UNIQUES[plus].join(", ")}.` });
 const scroll = level => ({ kind: "magic", name: `Scroll, ${ORD[level]} level`, find: `Scroll, ${ORD[level]} level`, qty: 1, slots: 1, bundle: 5, note: "Choose the spell." });
 const named = (n, note = "") => ({ kind: "magic", name: n, find: n, qty: 1, slots: 1, bundle: 0, ...(note ? { note } : {}) });
@@ -269,7 +269,10 @@ export function treasureCardHtml(result, { title = "Treasure", code = "", uuids 
     const name = uuid ? `@UUID[${uuid}]{${esc(i.name)}}` : esc(i.name);
     const qty = i.qty > 1 ? `${i.qty} × ` : "";
     const each = i.kind !== "magic" && i.value ? ` <span class="arn-muted">(${i.value.toLocaleString("en-GB")} gp${i.qty > 1 ? " each" : ""})</span>` : "";
-    const note = i.note ? ` <span class="arn-muted">${esc(i.note)}</span>` : "";
+    // A Unique's line links each Named Unique it could be (their items in the equipment compendium).
+    const note = i.pick?.length
+      ? ` <span class="arn-muted">${esc(i.note.slice(0, i.note.indexOf(": ") + 2))}${i.pick.map(n => uuids[n] ? `@UUID[${uuids[n]}]{${esc(n)}}` : esc(n)).join(", ")}.</span>`
+      : i.note ? ` <span class="arn-muted">${esc(i.note)}</span>` : "";
     return `<li class="arn-tr-${i.kind}">${qty}${name}${each}${note}</li>`;
   };
   const secs = result.sections.map(s => {
@@ -332,7 +335,7 @@ export async function treasureOptions({ parts, count = 1, askCount = true, name 
 export async function postTreasure({ title, parts, count = 1, lair = true, tradeLots = 0, speaker = null }) {
   if (!game.user.isGM) return ui.notifications.warn("The GM rolls treasure.");
   const result = await rollTreasure(parts, { roll: foundryRoll, count, lair, tradeLots, name: title });
-  const uuids = await itemUuids(result.items.map(i => i.find));
+  const uuids = await itemUuids(result.items.flatMap(i => [i.find, ...(i.pick ?? [])]));
   for (const i of result.items) if (i.find && uuids[i.find]) i.uuid = uuids[i.find];
   for (const s of result.sections) for (const i of s.items) if (i.find && uuids[i.find]) i.uuid = uuids[i.find];
   const code = parts.map(p => `${p.lair ? "lair " : ""}${p.code}`).join(", ");
@@ -380,7 +383,7 @@ export async function treasureForFoes(foes) {
     merged.value += r.value;
   }
   merged.items = mergeItems(merged.items);
-  const uuids = await itemUuids(merged.items.map(i => i.find));
+  const uuids = await itemUuids(merged.items.flatMap(i => [i.find, ...(i.pick ?? [])]));
   for (const i of merged.items) if (i.find && uuids[i.find]) i.uuid = uuids[i.find];
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ alias: "Treasure" }),
