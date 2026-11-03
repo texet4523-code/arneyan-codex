@@ -44,4 +44,6 @@ const wyrm = items.find(i => i.name === "Wyrmsbane");
 assert.deepEqual(wyrm.system.bonusDamage.map(x => [x.formula, x.when]), [["2d6", "against dragons"]]);
 assert.equal(items.find(i => i.name === "Gravebane").system.bonusDamage[0].type, "radiant");
 assert.ok(!items.find(i => i.name === "Adder's Kiss").system.bonusDamage.length, "a once-a-day rider is not an always-on extra");
+// Retort shares its name with the alchemist's glassware: the card links the weapon.
+assert.ok(/NAMED_UNIQUES\).flat\(\).includes\(n\) && all.find\(x => x.type === "weapon"\)/.test(fs.readFileSync(root("arneyan/module/treasure.mjs"), "utf8")));
 console.log("visuals0182: ok");

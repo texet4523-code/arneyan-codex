@@ -301,7 +301,9 @@ async function itemUuids(names) {
   const index = await pack.getIndex();
   const out = {};
   for (const n of new Set(names.filter(Boolean))) {
-    const e = index.find(x => x.name.toLowerCase() === n.toLowerCase());
+    const all = index.filter(x => x.name.toLowerCase() === n.toLowerCase());
+    // "Retort" is alchemist's glassware too: a Named Unique links its weapon.
+    const e = (Object.values(NAMED_UNIQUES).flat().includes(n) && all.find(x => x.type === "weapon")) || all[0];
     if (e) out[n] = e.uuid ?? `Compendium.${pack.collection}.Item.${e._id}`;
   }
   return out;
