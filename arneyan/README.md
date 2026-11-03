@@ -4,12 +4,18 @@ Version 0.10.81 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.81
 
-- **Books v0.10.40: solo creatures without Legendary Resistance** (Kieran's K47; board B-F27). The 53 solos in the Bestiary (and the Rakshasa) lose Legendary Resistance; the Update takes the Bestiary's line off monsters already in your world (a Legendary Resistance you wrote yourself stays). Spells always work on solos now, but they don't stay out of the fight for long:
-  - **Two turns a round:** add a solo to a fight and it gets a second entry in the tracker, "(second turn)", 10 lower in the initiative order (or last, if that would be below 1). It follows the first entry's initiative and goes when the first is removed. Each is one of its turns: numbered conditions tick, reminders come up, and timed effects on it count down twice as fast.
-  - **Shaking it off:** Incapacitated, Paralysed, Stunned, Unconscious, Charmed, Dominated, Confused or Petrified ends by itself once the solo has spent two of its turns under it. A card says so, and the same condition can't be put on it again until the end of its next turn.
-  - **Bloodied:** the first time it drops to half its HP or lower, every condition and hostile effect on it ends and its limited-use abilities recover (not spell slots), with a card. Once, until it's back to full HP.
-  - **Yours to run:** an effect that would kill it outright, banish or imprison it costs it its next two turns instead; each solo's description says so. Damage to 0 HP still kills it.
-  - Maze loses its Legendary Resistance escape, and Book IV's page is now Solo Creatures (the same page, so links still work).
+- **Books v0.10.40 to v0.10.43 and Monsters & Treasure v0.10.42** (Kieran's K47 to K51; board B-F27 to B-F31). One update for all four builds.
+- **Solo creatures without Legendary Resistance** (K47, K48). The Bestiary's solos lose Legendary Resistance; the update takes the Bestiary's line off monsters already in your world, tokens on scenes included (a Legendary Resistance you wrote yourself stays). Spells always work on solos now, but they don't stay out of the fight for long:
+  - **Two turns a round:** add a solo to a fight and it gets a second entry in the tracker, "(second turn)", 10 lower in the initiative order (or last, if that would be below 1). It follows the first entry's initiative, hides and shows with it, and goes when the first is removed. Numbered conditions tick and end-of-turn reminders come up on both turns; durations in rounds, and anything timed by the caster's turns, run as normal.
+  - **Shaking it off:** anything that stops it acting, attacking, moving or casting (Incapacitated, Paralysed, Stunned, Unconscious, Charmed, Dominated, Confused, Petrified, Slowed, Restrained, Blinded, Frightened, and Feeblemind and Polymorph effects) ends by itself once the solo has spent two of its turns under it, or one the second time in a fight. A card says so, and nothing of the kind can be put on it until the end of the following round.
+  - **Once a round:** Burning and poison damage, aura and lingering area damage, and its regeneration reminder come only at the start of its first turn. It ignores Exhaustion's Max HP loss.
+  - **Bloodied:** the first time it drops to half its HP or lower, every condition and every effect from its enemies ends and its limited-use abilities recover (not spell slots), with a card. Its own effects and its allies' buffs stay. Once, until it's back to full HP.
+  - **Yours to run:** an effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead; Harm and Mass Harm affect it once a fight. Each solo's description says so. Damage to 0 HP still kills it.
+  - Solos from 13th have five times their Level's HP, six times from 19th; Maze loses its Legendary Resistance escape, and Book IV's page is now Solo Creatures (the same page, so links still work).
+- **Monsters & Treasure:** 53 monsters re-statted (re-levelled casters, outliers fixed), Frightful Presence and fear auras last until the end of the creature's next turn with a save each turn, natural attacks of Level 11+ count as magic. Monsters already in your world keep their old stat blocks: drag a fresh copy from the Bestiary for the new numbers.
+- **Hoard weapons are never a plain +N** (K48): a hoard's weapon +1, +2 or +3 is made as a Unique, and its card lists the Named Uniques with that bonus (Soulthief, Wyrmsbane, Gravebane and the rest, in Monsters & Treasure).
+- **Spells:** the Warlock's Hex is now **Malediction** (renamed on sheets that have it; the Witch's Hex is unchanged). Harm, Mass Harm and Death Ward as the books now word them. A Druid's Wild Shape form can't have more HP than the druid's own Max HP.
+CLASSES_PLACEHOLDER
 
 ## What's new in 0.10.80
 

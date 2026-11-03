@@ -632,8 +632,10 @@ async function onTurnChange(combat, changed, options = {}) {
     });
   }
   const st = statusesOf(actor);
+  // A solo takes ongoing damage once a round, at the start of its first turn (M&T v0.10.41, Once a round).
+  const secondTurn = !!combat.combatant?.flags?.[SYS]?.soloOf;
   for (const id of Object.keys(ARNEYAN.conditions)) {
-    if (!st.has(id)) continue;
+    if (!st.has(id) || secondTurn) continue;
     const d = turnDamageFor(actor, id);
     if (!d || options.direction === -1) continue;
     ChatMessage.create({

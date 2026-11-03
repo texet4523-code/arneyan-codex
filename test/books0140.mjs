@@ -10,10 +10,11 @@ const M = await import("../arneyan/module/migrate.mjs");
 const read = (dir, prefix) => fs.readdirSync(new URL(`../packs-src/${dir}/`, import.meta.url)).filter(f => f.startsWith(prefix))
   .map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/${dir}/${f}`, import.meta.url), "utf8")));
 const monsters = read("monsters", "actors_");
+const src = p => fs.readFileSync(new URL(`../arneyan/module/${p}`, import.meta.url), "utf8");
 const solos = monsters.filter(m => m.system.details.isSolo);
 
 /* The Bestiary: no Legendary Resistance anywhere; each solo's description has the solo rules. */
-assert.equal(solos.length, 53, "53 marked solo; the Rakshasa had Legendary Resistance but no solo tag");
+assert.ok(solos.length >= 53, "53 solos in v0.10.40; v0.10.41 re-levels the Archmage as a solo");
 assert.ok(!monsters.some(m => m.items.some(i => i.name === "Legendary Resistance")));
 assert.ok(solos.every(m => m.system.details.description.includes("<strong>Solo:</strong>")));
 assert.ok(!monsters.filter(m => !m.system.details.isSolo).some(m => m.system.details.description.includes("<strong>Solo:</strong>")));
@@ -38,7 +39,15 @@ assert.deepEqual([r.counts, r.off], [{ ...zero, charmed: 1 }, ["stunned"]], "sha
 r = S.shakeOff(r.counts, []);
 assert.deepEqual(r.counts, zero, "a condition gone resets its count");
 assert.equal(S.shakeOff({ ...zero }, ["stunned"]).counts.stunned, 1, "stunned again later: two more turns");
-assert.ok(S.CONTROL.includes("petrified") && S.CONTROL.includes("dominated") && !S.CONTROL.includes("frightened"));
+// M&T v0.10.41 (K48): the wider list, Feeblemind and Polymorph effects by name, and one turn the second time.
+assert.ok(["petrified", "dominated", "frightened", "slowed", "restrained", "blinded"].every(id => S.CONTROL.includes(id)) && !S.CONTROL.includes("prone"));
+assert.deepEqual(S.shakeOff({}, ["feeblemind"], 1).off, ["feeblemind"], "the second time in a fight: after one turn");
+assert.deepEqual(S.shakeOff({}, ["stunned"], 2).off, [], "the first time: two turns");
+assert.ok("polymorph" in S.noCounts() && "feeblemind" in S.noCounts());
+{
+  const actor = { effects: [{ name: "Feeblemind", disabled: false, statuses: new Set() }, { name: "Prone", disabled: false, statuses: new Set(["prone"]) }, { name: "Slow", disabled: false, statuses: new Set(["slowed"]) }] };
+  assert.deepEqual(S.controlOn(actor).sort(), ["feeblemind", "slowed"]);
+}
 
 /* Bloodied ends conditions and foes' effects; not its own buffs, area or aura, allies' buffs, or concentration. */
 {
@@ -56,7 +65,14 @@ assert.ok(S.CONTROL.includes("petrified") && S.CONTROL.includes("dominated") && 
   const side = o => (o.startsWith("Actor.hag.") ? "ally" : "foe");
   assert.deepEqual(S.bloodiedEnds(actor, side).map(e => e.id), ["a", "b", "d"]);
 }
-assert.ok(fs.readFileSync(new URL("../arneyan/module/solo.mjs", import.meta.url), "utf8").includes("encounter: combat?.id"), "the immunity ends with the fight");
+{
+  const solo = fs.readFileSync(new URL("../arneyan/module/solo.mjs", import.meta.url), "utf8");
+  assert.ok(solo.includes("encounter: combat?.id") && solo.includes("round: round + 2, turn: 0"), "the immunity ends at the end of the following round, or with the fight");
+  assert.ok(!/expires\.round`\]: Number/.test(solo), "durations in rounds run as normal on a solo (F-R5)");
+}
+// Once a round (M&T v0.10.41): ongoing, aura and area damage and regeneration only on its first turn; no Exhaustion Max HP loss.
+for (const f of ["chat.mjs", "auras.mjs", "areas.mjs", "qol.mjs"]) assert.ok(src(f).includes("soloOf"), f);
+assert.ok(src("effects.mjs").includes('filter(r => r.key !== "hp.mult")'));
 
 /* The migration takes the Bestiary's Legendary Resistance off world solos, not a GM's own ability of that name. */
 assert.equal(M.SOLO_REWORK, "0.10.81");
@@ -67,7 +83,6 @@ assert.deepEqual(M.dropLegendary([
 ]), ["x"]);
 
 /* The tracker counts a solo once, and its morale group leaves the second turn out. */
-const src = p => fs.readFileSync(new URL(`../arneyan/module/${p}`, import.meta.url), "utf8");
 assert.ok(src("encounter.mjs").includes("!c.flags?.arneyan?.soloOf"));
 assert.ok(src("combat.mjs").includes("!o.flags?.arneyan?.soloOf"));
 assert.ok(src("arneyan.mjs").includes("registerSolo();"));

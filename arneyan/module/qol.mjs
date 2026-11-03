@@ -228,9 +228,11 @@ export async function turnReminder(combat) {
     const left = x.round - combat.round;
     if (left === 1) lines.push(`${e.name} ends at the start of its next turn.`);
   }
-  const regen = actor.items.find(i => /regenerat/i.test(i.name));
+  // A solo's regeneration and ongoing damage come at the start of its first turn only (M&T v0.10.41).
+  const secondTurn = !!c.flags?.[SYS]?.soloOf;
+  const regen = secondTurn ? null : actor.items.find(i => /regenerat/i.test(i.name));
   if (regen) lines.push(`${regen.name}: ${String(regen.system.description ?? "").replace(/<[^>]+>/g, "").slice(0, 160)}`);
-  const ongoing = [...(actor.statuses ?? [])].filter(id => ["burning", "poisoned", "confused"].includes(id));
+  const ongoing = [...(actor.statuses ?? [])].filter(id => (secondTurn ? ["confused"] : ["burning", "poisoned", "confused"]).includes(id));
   for (const id of ongoing) {
     const d = turnDamageFor(actor, id);
     lines.push(`${({ burning: `${d?.label ?? "Burning"}: ${d?.formula ?? "1d6"} fire (card above)`, poisoned: d ? `${d.label}: ${d.formula} poison (card above), then a Fortitude save at the end of the turn` : "Poisoned: a Fortitude save at the end of the turn", confused: "Confused: roll 1d10 for what it does" })[id]}.`);

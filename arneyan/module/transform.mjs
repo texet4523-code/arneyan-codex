@@ -110,6 +110,13 @@ export function formData(original, form, o = {}) {
     flags: { [SYS]: { wildShape: true, endsAt: (game.time?.worldTime ?? 0) + 3600 } }
   }] : [];
   if (opts.tempHp > 0) foundry.utils.setProperty(data, "system.attributes.hp.temp", Math.round(opts.tempHp));
+  // Wild Shape (books v0.10.41, K48 B-S4): the form's HP can't exceed the druid's own Max HP (temporary HP kept).
+  const ownMax = Number(original.system?.attributes?.hp?.effectiveMax ?? original.system?.attributes?.hp?.max) || 0;
+  if (opts.wildShape && ownMax > 0) {
+    const hp = foundry.utils.getProperty(data, "system.attributes.hp") ?? {};
+    if (Number(hp.max) > ownMax) foundry.utils.setProperty(data, "system.attributes.hp.max", ownMax);
+    if (Number(hp.value) > ownMax) foundry.utils.setProperty(data, "system.attributes.hp.value", ownMax);
+  }
   info.wildShape = !!opts.wildShape;
   data.effects = merged(f.effects ?? [], opts.keepEffects ? carriedEffects(original) : [], wild);
   data.flags = { ...(data.flags ?? {}), [SYS]: { ...(data.flags?.[SYS] ?? {}), transform: info } };

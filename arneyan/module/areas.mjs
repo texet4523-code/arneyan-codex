@@ -300,9 +300,9 @@ async function onTurn(combat) {
     return f.lingering && e && f.combat === combat.id && (combat.round > e.round || (combat.round === e.round && combat.turn >= e.turn));
   });
   for (const a of [...mine, ...done]) await a.delete().catch(() => null);
-  // Starting a turn in a lingering area.
+  // Starting a turn in a lingering area (a solo: only its first turn each round, M&T v0.10.41 Once a round).
   const tok = c.token;
-  if (!tok?.actor) return;
+  if (!tok?.actor || c.flags?.[SYS]?.soloOf) return;
   for (const a of areasOn(scene)) {
     const f = a.flags[SYS].area;
     if (!f.lingering || !(f.save || f.formula) || !tokenInside(a, tok)) continue;

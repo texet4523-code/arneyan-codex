@@ -1,14 +1,16 @@
 /**
- * Solo creatures (books v0.10.40, K47; Monsters & Treasure, Building Encounters: Solo creatures, Solos and control).
- * Legendary Resistance is gone; instead:
+ * Solo creatures (books v0.10.40 to v0.10.43, K47 and K48; Monsters & Treasure, Building Encounters: Solo creatures,
+ * Solos and control). There is no Legendary Resistance; instead:
  * - Two turns a round: a solo acts on its initiative and again 10 lower (or last in the round, if that would be below
  *   1). Added to a fight, it gets a second combatant for the same token (flags.arneyan.soloOf), whose initiative
- *   follows the first's. Each is one of its turns: numbered conditions tick, end-of-turn reminders come up on both,
- *   and timed effects on it count down twice a round (each round its second turn ends, they move a round closer).
- * - Shaking it off: a condition that takes it out of the fight (Incapacitated, Paralysed, Stunned, Unconscious,
- *   Charmed, Dominated, Confused, and Petrified) ends once it has spent two of its turns under it; then the same
- *   condition can't affect it until the end of its next turn. Kill, banish and imprison effects are the GM's (a
- *   reminder on the card).
+ *   follows the first's. Each is one of its turns: numbered conditions tick and end-of-turn reminders and saves come
+ *   up on both. Durations in rounds, and anything timed by the caster's turns, run as normal (F-R5).
+ * - Shaking it off: an effect that stops it acting, attacking, moving or casting as it normally would (CONTROL, plus
+ *   Feeblemind and Polymorph effects) ends once it has spent two of its turns under it, one turn the second time in a
+ *   fight. Then nothing of the kind can affect it until the end of the following round. Kill, banish, imprison and
+ *   spell Exhaustion are the GM's (the solo's description says so).
+ * - Once a round: area, aura and ongoing damage and regeneration only at the start of its first turn (chat.mjs,
+ *   auras.mjs, areas.mjs, qol.mjs check the second turn's flag). It ignores Exhaustion's Max HP loss (effects.mjs).
  * - Bloodied: the first time it drops to half its HP or lower, every condition and hostile effect on it ends and its
  *   limited-use abilities recover (not spell slots). Once, until it is back to full HP.
  */
@@ -22,8 +24,12 @@ const activeGM = () => {
   return !!(gm?.isSelf ?? (gm?.id === game.user.id));
 };
 
-/** The conditions a solo shakes off after two of its turns. */
-export const CONTROL = ["incapacitated", "paralysed", "stunned", "unconscious", "charmed", "dominated", "confused", "petrified"];
+/** The conditions a solo shakes off (M&T v0.10.41): anything that stops it acting, attacking, moving or casting. */
+export const CONTROL = ["incapacitated", "paralysed", "stunned", "unconscious", "charmed", "dominated", "confused", "petrified",
+  "slowed", "restrained", "blinded", "frightened"];
+/** Effects shaken off the same way, by name (they carry no condition of their own). */
+export const CONTROL_EFFECTS = { feeblemind: /^Feeblemind\b/i, polymorph: /^Polymorph\b/i };
+const KEYS = [...CONTROL, ...Object.keys(CONTROL_EFFECTS)];
 
 export const isSolo = actor => actor?.type === "npc" && !!actor.system?.details?.isSolo;
 /** A solo's second-turn combatant (the first's id), or "". */
@@ -38,21 +44,28 @@ export function secondInitiative(init, others = []) {
 }
 
 /**
- * What a solo's turn ending does (pure, for tests): `counts` the turns each control condition has been on it, `on`
- * the statuses on it now. Returns the new counts and the conditions it shakes off now.
+ * What a solo's turn ending does (pure, for tests): `counts` the turns each control effect has been on it, `on` the
+ * control conditions and effect keys on it now, `turns` how many of its turns shake one off (2, or 1 the second time in
+ * a fight). Returns the new counts (every key, so a flag update can't keep an old one) and what it shakes off now.
  */
-export function shakeOff(counts = {}, on = []) {
-  // Every key written (0 when it isn't on): a flag update merges, so a key left out would keep its old count.
-  const next = Object.fromEntries(CONTROL.map(id => [id, 0])), off = [];
-  for (const id of CONTROL) {
+export function shakeOff(counts = {}, on = [], turns = 2) {
+  const next = noCounts(), off = [];
+  for (const id of KEYS) {
     if (!on.includes(id)) continue;
     const n = (Number(counts[id]) || 0) + 1;
-    if (n >= 2) off.push(id); else next[id] = n;
+    if (n >= turns) off.push(id); else next[id] = n;
   }
   return { counts: next, off };
 }
 /** No counts: every key 0. */
-export const noCounts = () => Object.fromEntries(CONTROL.map(id => [id, 0]));
+export const noCounts = () => Object.fromEntries(KEYS.map(id => [id, 0]));
+
+/** The control keys on a solo now: its conditions and its Feeblemind or Polymorph effects. */
+export function controlOn(actor) {
+  const st = statusesOf(actor);
+  const fx = [...(actor.effects?.contents ?? actor.effects ?? [])].filter(e => !e.disabled);
+  return [...CONTROL.filter(id => st.has(id)), ...Object.entries(CONTROL_EFFECTS).filter(([, re]) => fx.some(e => re.test(e.name ?? ""))).map(([k]) => k)];
+}
 
 /**
  * Effects a solo's Bloodied ends: every condition put on it (Prone, a Stun, a spell's Paralysis), and every spell or
@@ -98,38 +111,37 @@ async function card(actor, html) {
 const tryIt = async (what, fn) => { try { return await fn(); } catch (err) { console.warn(`Arneyan | solo ${what}`, err); return null; } };
 
 /** One of a solo's turns has ended. */
-async function turnEnded(actor, combat, { second = false } = {}) {
+async function turnEnded(actor, combat) {
   // A dead or downed solo has nothing to shake off.
   if (statusesOf(actor).has("dead") || (Number(actor.system?.attributes?.hp?.value) || 0) <= 0) return;
-  // The immunity from shaking something off lasts until the end of its next turn.
-  const imm = actor.effects.filter(e => e.flags?.[SYS]?.shookOff);
-  const drop = imm.filter(e => (Number(e.flags[SYS].shookOff.turns) || 0) <= 1).map(e => e.id);
-  const keep = imm.filter(e => !drop.includes(e.id)).map(e => ({ _id: e.id, [`flags.${SYS}.shookOff.turns`]: Number(e.flags[SYS].shookOff.turns) - 1 }));
-  if (drop.length) await tryIt("immunity", () => actor.deleteEmbeddedDocuments("ActiveEffect", drop.filter(id => actor.effects.has(id))));
-  if (keep.length) await tryIt("immunity", () => actor.updateEmbeddedDocuments("ActiveEffect", keep));
-  // Shaking it off: two of its turns under a condition that takes it out of the fight.
-  const { counts, off } = shakeOff(actor.getFlag(SYS, "soloControl") ?? {}, [...statusesOf(actor)]);
+  // The second time in a fight it shakes one off after one turn.
+  const shakes = actor.getFlag(SYS, "soloShakes");
+  const before = shakes?.combat === combat?.id ? Number(shakes.n) || 0 : 0;
+  const { counts, off } = shakeOff(actor.getFlag(SYS, "soloControl") ?? {}, controlOn(actor), before >= 1 ? 1 : 2);
   await tryIt("counts", () => actor.setFlag(SYS, "soloControl", counts));
+  if (!off.length) return;
+  const names = [];
   for (const id of off) {
-    // Its own effects carrying it (a condition a passive item gives can't be shaken off here: left alone).
-    const carriers = actor.effects.filter(e => (e.statuses?.has?.(id) || e.statuses?.includes?.(id))).map(e => e.id);
+    const re = CONTROL_EFFECTS[id];
+    const carriers = actor.effects.filter(e => (re ? re.test(e.name ?? "") : (e.statuses?.has?.(id) || e.statuses?.includes?.(id)))).map(e => e.id);
     if (!carriers.length) continue;
     await tryIt("shake off", () => actor.deleteEmbeddedDocuments("ActiveEffect", carriers.filter(x => actor.effects.has(x))));
-    const name = ARNEYAN.conditions[id]?.name ?? id;
-    await tryIt("immunity", () => actor.createEmbeddedDocuments("ActiveEffect", [{
-      name: `Shook off ${name}`, img: `systems/${SYS}/assets/conditions/${id}.svg`, origin: actor.uuid,
-      // Gone with the encounter too, if the fight ends before its next turn does.
-      flags: { [SYS]: { shookOff: { id, turns: 1 }, encounter: combat?.id ?? "", rules: [{ key: "immune", value: `condition:${id}`, when: "", label: `Shook off ${name}` }] } }
-    }]));
-    await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-person-rays"></i> <span>${esc(actor.name)} shakes off ${esc(name)}</span></header>
-      <p>A solo throws off a condition that takes it out of the fight after two of its turns. It can't be ${esc(name)} again until the end of its next turn.</p>`);
+    names.push(ARNEYAN.conditions[id]?.name ?? (id === "feeblemind" ? "Feeblemind" : id === "polymorph" ? "Polymorph" : id));
   }
-  // Its second turn of the round: timed effects on it come a round closer, so each of its turns counts.
-  if (second && combat) {
-    const ups = actor.effects.filter(e => e.flags?.[SYS]?.expires?.combat === combat.id && !e.flags?.[SYS]?.shookOff)
-      .map(e => ({ _id: e.id, [`flags.${SYS}.expires.round`]: Number(e.flags[SYS].expires.round) - 1 }));
-    if (ups.length) await tryIt("timers", () => actor.updateEmbeddedDocuments("ActiveEffect", ups.filter(u => actor.effects.has(u._id))));
-  }
+  if (!names.length) return;
+  await tryIt("shakes", () => actor.setFlag(SYS, "soloShakes", { combat: combat?.id ?? "", n: before + 1 }));
+  // Nothing of the kind affects it until the end of the following round: immune to every control condition until
+  // the round after next starts (expireEffects), or the fight ends.
+  const round = Number(combat?.previous?.round ?? combat?.round) || 0;
+  const old = actor.effects.filter(e => e.flags?.[SYS]?.shookOff).map(e => e.id);
+  if (old.length) await tryIt("immunity", () => actor.deleteEmbeddedDocuments("ActiveEffect", old.filter(x => actor.effects.has(x))));
+  await tryIt("immunity", () => actor.createEmbeddedDocuments("ActiveEffect", [{
+    name: "Shook it off", img: `systems/${SYS}/assets/conditions/${off.find(id => CONTROL.includes(id)) ?? "stunned"}.svg`, origin: actor.uuid,
+    flags: { [SYS]: { shookOff: { ids: off }, encounter: combat?.id ?? "", ...(combat ? { expires: { combat: combat.id, round: round + 2, turn: 0 } } : {}),
+      rules: CONTROL.map(id => ({ key: "immune", value: `condition:${id}`, when: "", label: "Shook it off" })) } }
+  }]));
+  await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-person-rays"></i> <span>${esc(actor.name)} shakes off ${esc(names.join(", "))}</span></header>
+    <p>A solo throws off what stops it acting after two of its turns${before >= 1 ? " (one, the second time in a fight)" : ""}. Nothing of the kind can affect it until the end of the following round${before >= 1 ? "" : "; the next one it shakes off after one of its turns"}.</p>`);
 }
 
 /** Bloodied: the first time it drops to half its HP or lower. */
@@ -204,12 +216,12 @@ export function registerSolo() {
     if (done.has(key)) return;
     done.add(key);
     if (done.size > 500) done.delete(done.values().next().value);
-    turnEnded(prev.actor, combat, { second: !!soloOf(prev) }).catch(err => console.warn("Arneyan | solo turn", err));
+    turnEnded(prev.actor, combat).catch(err => console.warn("Arneyan | solo turn", err));
   });
   // A fight's end: its turn counts start again next time.
   Hooks.on("deleteCombat", combat => {
     if (!activeGM()) return;
-    for (const c of combat.combatants ?? []) if (soloOf(c) && c.actor) c.actor.setFlag(SYS, "soloControl", noCounts()).catch(() => null);
+    for (const c of combat.combatants ?? []) if (soloOf(c) && c.actor) c.actor.update({ [`flags.${SYS}.soloControl`]: noCounts(), [`flags.${SYS}.-=soloShakes`]: null }).catch(() => null);
   });
   // Bloodied, once until it's back to full HP.
   Hooks.on("updateActor", (actor, changes) => {

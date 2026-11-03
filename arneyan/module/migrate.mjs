@@ -741,6 +741,8 @@ export const RENAMED_FEATURES = Object.fromEntries([
   ["LsWKxgs0ZtOLLPCd", "Fascinate (Charisma)", "Performance: Fascinate"],
   ["UTIrytRZu4fYc46O", "Sorcerer's Spark", "Wild Surge improves"], ["oJxxsvpo4WgI1u92", "Sorcerer's Spark (Improved)", "Wild Surge improves"]
 ].map(([id, from, to]) => [`Compendium.${SYS}.class-features.Item.${id}`, [from, to]]));
+// Books v0.10.41 (K49): the Warlock's Hex spell is Malediction (the Witch's Hex feature keeps its name).
+RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
 const LEGACY_SHIFT_RULES = new Set([
   "adv.attack.first.melee|1",
   // Beasthide before books v0.10.38 (K45): Resistance 3 to every nonmagical weapon; now 5 to one chosen type.

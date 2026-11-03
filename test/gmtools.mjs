@@ -81,7 +81,9 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
   const r = await T.rollTreasure(T.parseTreasureCode("C"), { roll: minRoll });
   assert.equal(r.coins.gp, 200);
   assert.deepEqual(r.items.map(i => [i.kind, i.qty, i.value]), [["gem", 1, 10], ["magic", 1, 450]]);
-  assert.equal(r.items[1].name, "Weapon +1");
+  // M&T v0.10.41 (K48): never a plain +1: made as a Unique, or a Named Unique with that bonus.
+  assert.equal(r.items[1].name, "Weapon +1, made as a Unique");
+  assert.ok(r.items[1].note.includes("Gravebane") && !r.items[1].note.includes("Soulthief"));
   assert.equal(r.items[0].name, "Azurite (Ornamental gem)");
 }
 {

@@ -188,6 +188,8 @@ async function turnCards(combat) {
   const scene = combat.scene ?? canvas?.scene;
   const tgt = combat.combatant?.token;
   if (!scene || !tgt?.actor) return;
+  // A solo takes aura damage once a round, at the start of its first turn (M&T v0.10.41, Once a round).
+  if (combat.combatant?.flags?.[SYS]?.soloOf) return;
   const size = scene.grid.size, distance = scene.grid.distance || 5;
   for (const src of tokensOf(scene)) {
     for (const aura of aurasOf(src.actor)) {

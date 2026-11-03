@@ -4,6 +4,8 @@ import docx
 from lib import *
 import books_md
 import spell_damage, spell_saves
+# Spells renamed in the books keep their compendium id (books v0.10.41, K49: the Warlock's Hex is Malediction).
+RENAMED = {"Malediction": "Hex"}
 
 CLASSES = {"Wiz": "Wizard", "Cle": "Cleric", "Ill": "Illusionist", "Dru": "Druid", "Sor": "Sorcerer", "Wit": "Witch",
            "Bar": "Bard", "War": "Warlock", "Mag": "Magus", "Nec": "Necromancer", "Pal": "Paladin"}
@@ -47,7 +49,7 @@ def build(icon):
                 "concentration": conc, "ritual": "Ritual" in comps, "prepared": False,
                 "save": save, "saveEffect": spell_saves.save_effect(name, text, save), "damage": dmg, "damageType": dtype,
                 "reversible": "*" in marks, "costly": "‡" in marks
-            }, icon("spell", school.strip()), folder=fol, sort=count)
+            }, icon("spell", school.strip()), folder=fol, sort=count, key=RENAMED.get(name, name))
             count += 1
 
     # Journal: the rules text, with the spell tables left to the compendium.

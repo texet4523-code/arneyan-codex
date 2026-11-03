@@ -203,6 +203,15 @@ const enchanted = (what, plus, note = "") => ({
   slots: 1, bundle: 0, placeholder: true,
   note: note || `Choose the ${what} and give it +${plus}${what === "weapon" ? " to attack and damage" : " to AC"}.`
 });
+/** Monsters & Treasure v0.10.41 (K48 A-S2): the Named Uniques, by bonus. */
+export const NAMED_UNIQUES = {
+  1: ["Gravebane", "Hillfeller", "Adder's Kiss", "Stormcall", "Weeping Edge", "Greenmantle", "Quickwind", "Wakeful"],
+  2: ["Tidecaller", "Groundbreaker", "Hairsplitter", "Phoenix Oath", "Wardenbreaker", "Dreadknell", "Retort", "Veilcutter"],
+  3: ["Soulthief", "Wyrmsbane", "Wallguard", "Stonefather"]
+};
+/** A hoard's weapon +N (K48: never a plain +N): made as a Unique, or a Named Unique with that bonus. */
+const uniqueWeapon = plus => ({ ...enchanted("weapon", plus), name: `Weapon +${plus}, made as a Unique`,
+  note: `Roll its power and quirk and give it a name (Uniques, Monsters & Treasure), or use a Named Unique with that bonus: ${NAMED_UNIQUES[plus].join(", ")}.` });
 const scroll = level => ({ kind: "magic", name: `Scroll, ${ORD[level]} level`, find: `Scroll, ${ORD[level]} level`, qty: 1, slots: 1, bundle: 5, note: "Choose the spell." });
 const named = (n, note = "") => ({ kind: "magic", name: n, find: n, qty: 1, slots: 1, bundle: 0, ...(note ? { note } : {}) });
 const gmChoice = (label, list) => ({ kind: "magic", name: `${label} (GM's choice)`, qty: 1, slots: 1, bundle: 0, placeholder: true, note: `Choose one: ${list.join(", ")}.` });
@@ -211,7 +220,7 @@ const gmChoice = (label, list) => ({ kind: "magic", name: `${label} (GM's choice
 export async function magicItem(rarity, roll) {
   const d = await roll("1d10");
   if (rarity === "uncommon") {
-    if (d <= 3) return [enchanted("weapon", 1, "The GM picks the weapon. Give it +1 to attack and damage.")];
+    if (d <= 3) return [uniqueWeapon(1)];
     if (d === 4) return [enchanted("armour", 1)];
     if (d === 5) return [enchanted("shield", 1)];
     if (d === 6) return [named("Ring of Protection")];
@@ -226,7 +235,7 @@ export async function magicItem(rarity, roll) {
     return [named(ICONIC_UNCOMMON[(await roll("1d4")) - 1])];
   }
   if (rarity === "rare") {
-    if (d <= 2) return [enchanted("weapon", 2)];
+    if (d <= 2) return [uniqueWeapon(2)];
     if (d === 3) return [{ ...enchanted("armour", 2), name: "Armour +2, or a shield +2", note: "The GM chooses: armour +2 or a shield +2." }];
     if (d === 4) {
       const n = await roll("1d2");
@@ -238,7 +247,7 @@ export async function magicItem(rarity, roll) {
     return [r <= ICONIC_RARE.length ? named(ICONIC_RARE[r - 1]) : gmChoice("Iconic Rare item", ICONIC_RARE)];
   }
   // Very rare.
-  if (d <= 2) return [enchanted("weapon", 3)];
+  if (d <= 2) return [uniqueWeapon(3)];
   if (d === 3) return [{ ...enchanted("armour", 3), name: "Armour +3, or a shield +3", note: "The GM chooses: armour +3 or a shield +3." }];
   if (d === 4) return [scroll(4 + await roll("1d2"))];
   const r = await roll("1d12");

@@ -608,11 +608,15 @@ def build():
             if solo:
                 # Books v0.10.40 (K47): no Legendary Resistance; the system gives the second turn, Shaking it off and
                 # Bloodied (solo.mjs). Fight-ending effects are the GM's.
+                # M&T v0.10.41 (K48): the wider Shaking it off, the window, Once a round.
                 desc += ("<p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second "
-                         "turn). A condition that takes it out of the fight ends after two of its turns, and the first time it drops "
-                         "to half HP every condition and hostile effect ends and its limited-use abilities recover (both automatic). "
-                         "An effect that would kill it outright, banish, imprison or petrify it costs it its next two turns instead "
-                         "(petrified is shaken off automatically; the rest is yours). Damage to 0 HP still kills it.</p>")
+                         "turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, "
+                         "attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing "
+                         "of the kind affects it until the end of the following round; the first time it drops to half HP every "
+                         "condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage "
+                         "and regeneration come once a round, at the start of its first turn (all automatic). An effect that would "
+                         "kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead "
+                         "(yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>")
             system = {
                 "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),
