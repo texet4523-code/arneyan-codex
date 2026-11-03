@@ -106,7 +106,7 @@ assert.deepEqual(diceAt(1), ["", "", ""]);
 assert.deepEqual(diceAt(9), ["", "1d6", ""]);
 assert.deepEqual(diceAt(22), ["", "1d10", "1d8"]);
 const docsSrc = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
-assert.ok(docsSrc.includes('if (k === "unarmed") return /^unarmed strike$/i'), "attacks can pick the Unarmed Strike");
+assert.ok(docsSrc.includes('if (k === "unarmed") return /^(unarmed strike|fist)$/i'), "attacks can pick the Unarmed Strike (or the Fist)");
 assert.ok(docsSrc.includes("weaponDice: dice") && docsSrc.includes('String(dice ?? "").trim() || this.ownDice(item)'), "an attack's own dice reach its damage");
 const chatSrc = fs.readFileSync(new URL("../arneyan/module/chat.mjs", import.meta.url), "utf8");
 assert.equal((chatSrc.match(/dice: flags\.weaponDice/g) ?? []).length, 3, "damage, crit and reroll buttons keep the attack's dice");
