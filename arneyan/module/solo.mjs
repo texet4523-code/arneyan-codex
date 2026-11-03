@@ -12,7 +12,8 @@
  * - Once a round: area, aura and ongoing damage and regeneration only at the start of its first turn (chat.mjs,
  *   auras.mjs, areas.mjs, qol.mjs check the second turn's flag). It ignores Exhaustion's Max HP loss (effects.mjs).
  * - Bloodied: the first time it drops to half its HP or lower, every condition and hostile effect on it ends and its
- *   limited-use abilities recover (not spell slots). Once, until it is back to full HP.
+ *   breath weapons and other limited-use abilities recover, never spells (M&T v0.10.44, K53: innate spells and slots
+ *   neither). Once, until it is back to full HP.
  */
 import { ARNEYAN } from "./config.mjs";
 import { statusesOf } from "./effects.mjs";
@@ -186,7 +187,8 @@ export async function bloodied(actor) {
 async function bloodiedNow(actor) {
   const ends = bloodiedEnds(actor, sideFinder(actor));
   if (ends.length) await tryIt("bloodied", () => actor.deleteEmbeddedDocuments("ActiveEffect", ends.map(e => e.id).filter(id => actor.effects.has(id))));
-  const uses = actor.items.filter(i => ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
+  // Breath weapons and other limited abilities; no spells, innate (3/day) or slotted (M&T v0.10.44, K53).
+  const uses = actor.items.filter(i => i.type !== "spell" && ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
     .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
   if (uses.length) await tryIt("bloodied", () => actor.updateEmbeddedDocuments("Item", uses));
   await tryIt("bloodied", () => actor.setFlag(SYS, "soloControl", noCounts()));
@@ -199,7 +201,7 @@ async function bloodiedNow(actor) {
   // Healed to full while this ran: the reset found no marker to take off, so take it off here.
   if (!actor.getFlag(SYS, "bloodied")) await removeBloodied(actor);
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is Bloodied</span></header>
-    <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spell slots don't. A good moment for a new phase.</p>`);
+    <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its breath weapons and other limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spells don't, including innate spells and spell slots. A good moment for a new phase.</p>`);
 }
 
 export function registerSolo() {

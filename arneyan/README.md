@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.83 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.84 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.84
+
+- **Books HB v0.10.46 and Monsters & Treasure v0.10.44** (Kieran's K53 and W4; board B-F32 to B-F34).
+  - **Power Attack** only counts on your first attack each round, and never on an attack that already has Disadvantage (the Extra Attack, Prone and the like). Otherwise the attack card says so, rolls without Power Attack's Disadvantage, and the damage card leaves out its extra die.
+  - **Solos:** Bloodied recharges breath weapons and other limited-use abilities but no spells, innate or slotted. Only one of Harm and Mass Harm can affect a given solo in a fight (in each solo's description; the GM's to run). The Elder Sphinx no longer casts Heal.
+  - **Warlock:** from 17th level Eldritch Blast fires two blasts, each with its own save; Agonising Blast and Cantrip Mastery add to only one of them, and Repelling Blast pushes 10ft for each blast that hits.
+  - **Ophidian:** the Shifter lineage Ophidian-Sslyth is now Ophidian (yuan-ti blood), with the same rules. Characters who have it are renamed in place.
+- **Token HUD and immunity.** Switching a condition on from the token HUD now respects immunity, as the sheet and chat buttons do: a solo that has just Shaken something off can't be Stunned again from the HUD until its window ends.
 
 ## What's new in 0.10.83
 

@@ -74,7 +74,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its limited-use abilities recover; area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); Harm and Mass Harm affect it once a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
    "system": {
-    "description": "<p>Casts as a 12th-level cleric (spell <strong>DC 19</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:19]{Reflex DC 19}), @UUID[Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj]{restoration}, @UUID[Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2]{heal}.</p>",
+    "description": "<p>Casts as a 12th-level cleric (spell <strong>DC 19</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM]{detect alignment}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.dSRD84MqXap8YkEs]{tongues}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}, @UUID[Compendium.arneyan.spells.Item.aT6raQpidW7Zt9cG]{freedom of movement}, @UUID[Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS]{flame strike} (@Check[ref|dc:19]{Reflex DC 19}), @UUID[Compendium.arneyan.spells.Item.8hJxEfQUsiaMYjfj]{restoration}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -699,66 +699,6 @@
    "folder": null
   },
   {
-   "name": "Heal",
-   "type": "spell",
-   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
-   "system": {
-    "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature deals necrotic damage equal to half its current HP, or sets it to <strong>1d4</strong> HP if it has <strong>50 HP</strong> or fewer.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "level": 6,
-    "className": "",
-    "classes": [
-     "Cleric",
-     "Druid",
-     "Witch"
-    ],
-    "school": "Necromancy",
-    "castingTime": "1 action",
-    "range": "Touch",
-    "duration": "",
-    "area": "",
-    "components": "V, S",
-    "concentration": false,
-    "ritual": false,
-    "prepared": false,
-    "save": "",
-    "saveEffect": "",
-    "damage": "",
-    "damageType": "",
-    "reversible": true,
-    "costly": false,
-    "template": {
-     "type": "",
-     "size": 0,
-     "width": 0,
-     "attached": false,
-     "fromSelf": false,
-     "lingering": false,
-     "rounds": "",
-     "sizeFormula": ""
-    }
-   },
-   "effects": [],
-   "flags": {
-    "arneyan": {
-     "frequency": ""
-    }
-   },
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2"
-   },
-   "_id": "OBNEh0Xo7bIOL0uo",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.OBNEh0Xo7bIOL0uo",
-   "sort": 1100,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Roar",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
@@ -785,11 +725,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "TRg6S3amHPuo6phm",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.TRg6S3amHPuo6phm",
+   "_id": "jVOQdgwlsejnlHpL",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.jVOQdgwlsejnlHpL",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -808,11 +748,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "Fda8cmo2IBDm9PDi",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.Fda8cmo2IBDm9PDi",
+   "_id": "XGnlNDaW53YaWAyK",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.XGnlNDaW53YaWAyK",
    "effects": [],
    "flags": {},
-   "sort": 1300,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -835,10 +775,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "3aPxK1I850cWeVFJ",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.3aPxK1I850cWeVFJ",
+   "_id": "1JsVpGQAyWZXp4Pp",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.1JsVpGQAyWZXp4Pp",
    "flags": {},
-   "sort": 1400,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -861,10 +801,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "mCCn0EOoPZriHGur",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.mCCn0EOoPZriHGur",
+   "_id": "NiXDq3VaxlgnRtyy",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.NiXDq3VaxlgnRtyy",
    "flags": {},
-   "sort": 1500,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },

@@ -468,6 +468,15 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
         upd[`flags.${SYS}.shiftSet`] = SHIFT_REWORK;
       }
     }
+    // Books v0.10.46 (W4, L72): the Shifter lineage Ophidian-Sslyth is "Ophidian", same rules. Renamed in place (a
+    // GM's own wording of its bite note stays; the system's own takes the new name).
+    if (i.type === "ability" && actor && OPHIDIAN.test(i.name) && !i.flags?.[SYS]?.keepCustom) {
+      upd.name = renameOphidian(i.name);
+      const cur = (i._source?.system ?? i.system)?.rules ?? [];
+      if (cur.some(r => OLD_SSLYTH_RULES.has(`${r.key}|${r.value}`))) upd["system.rules"] = cur.map(r => (OLD_SSLYTH_RULES.has(`${r.key}|${r.value}`) ? { ...r, value: renameOphidian(r.value).replace(/^Sslyth:/, "Ophidian:"), label: r.label ? renameOphidian(r.label) : r.label } : (r.label ? { ...r, label: renameOphidian(r.label) } : r)));
+      const desc = (i._source?.system ?? i.system)?.description;
+      if (typeof desc === "string" && OPHIDIAN.test(desc)) upd["system.description"] = renameOphidian(desc);
+    }
     // 0.10.79 (books v0.10.37, K39): a Shifter's shift is once per encounter and lasts it; Longtooth knocks Prone and
     // the Ophidian bite Poisons. A lineage feature switched over in 0.10.54 takes the new uses and rules once
     // (flags.arneyan.shiftSet), where its rules are still the system's own. A Shifter granted as a switch from 0.10.54 on
@@ -744,11 +753,19 @@ export const RENAMED_FEATURES = Object.fromEntries([
 ].map(([id, from, to]) => [`Compendium.${SYS}.class-features.Item.${id}`, [from, to]]));
 // Books v0.10.41 (K49): the Warlock's Hex spell is Malediction (the Witch's Hex feature keeps its name).
 RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
+/** Books v0.10.46 (W4): "Ophidian-Sslyth" becomes "Ophidian". */
+export const OPHIDIAN = /Ophidian-Sslyth/;
+export const renameOphidian = s => String(s ?? "").replace(/Ophidian-Sslyth/g, "Ophidian");
+const OLD_SSLYTH_RULES = new Set([
+  "note.attack|Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned.",
+  "note.attack|Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration."
+]);
 const LEGACY_SHIFT_RULES = new Set([
   "adv.attack.first.melee|1",
   // Beasthide before books v0.10.38 (K45): Resistance 3 to every nonmagical weapon; now 5 to one chosen type.
   "resist|non-magical 3",
-  "note.attack|Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration."
+  "note.attack|Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is poisoned for the shift's duration.",
+  "note.attack|Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned."
 ]);
 
 /** Is version `a` newer than `b` ("0.10.65" than "0.10.64")? Numbers compared part by part. */

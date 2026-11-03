@@ -46,6 +46,24 @@ function advFrom(event, ...sources) {
 const NONE = { values: [], adv: [], dis: [] };
 
 /**
+ * Power Attack (books v0.10.44, K53): "It can only be your first attack each round, and never an attack that already
+ * has Disadvantage." `own` is the attacker's own Advantage sources (Power Attack's Disadvantage among them, labelled
+ * with its name); `others` every other source of this attack. Returns { own, off }: `own` without Power Attack and the
+ * reason when it doesn't count (off: "" when it does, or when it isn't on).
+ */
+export function powerAttackFor(own, others, { first = true, label = "Power Attack" } = {}) {
+  const i = (own?.dis ?? []).indexOf(label);
+  if (i < 0) return { own, off: "" };
+  const values = [...own.values];
+  const at = values.indexOf(-1);
+  if (at >= 0) values.splice(at, 1);
+  const without = { values, adv: [...own.adv], dis: own.dis.filter((_, k) => k !== i) };
+  const hasDis = [without, ...others].some(s => (s?.values ?? []).some(v => v < 0));
+  const off = !first ? "only your first attack each round" : hasDis ? "not on an attack that already has Disadvantage" : "";
+  return off ? { own: without, off } : { own, off: "" };
+}
+
+/**
  * A number that grows with level: a level table ("4:1, 9:2, 13:3": +1 from 4th, +2 from 9th...; 0 below the first
  * step), or a number or formula (@cl is the feature's class level).
  */
@@ -650,7 +668,15 @@ export class ArneyanActor extends Actor {
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
-    const { mode, why } = advFrom(event, own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
+    // Power Attack only on your first attack each round, never on one that already has Disadvantage (K53).
+    const others = [against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
+    const combatNow = combatFor(this);
+    const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
+    const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
+    if (roundStamp && this.isOwner && firstThisRound) this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
+    const pa = powerAttackFor(own, others, { first: firstThisRound });
+    if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage and no extra damage die.`);
+    const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();
@@ -660,7 +686,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit, outcome }) => {
@@ -740,7 +766,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Damage: weapon dice + the same attribute modifier as the attack (+ magic and rules). */
-  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null, dice = "" } = {}) {
+  rollDamage(item, { crit = false, include = [], ammo = "", hits = null, misses = [], offhand = false, bonus = null, dice = "", noPowerAttack = false } = {}) {
     const sys = item.system;
     const ammoPlus = Number(String(ammo).match(/\+(\d)/)?.[1] ?? 0);
     // Extra damage with a condition ("against undead", Versatile two-handed) joins the roll only when asked for.
@@ -752,6 +778,8 @@ export class ArneyanActor extends Actor {
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
     // The weapon's dice (rerolls worked in) and the card's notes; the damage terms count rules scoped to this weapon.
     const own = this.weaponDice(item, { include, dice });
+    // The attack didn't count as a Power Attack (not the first this round, or already at Disadvantage): no extra die.
+    if (noPowerAttack) own.notes = own.notes.filter(n => !/^Power Attack\b/.test(n));
     const { terms, notes } = featureBonusTerms(this.damageTerms(item, { include }), annotateAllegiance(own.notes, allegianceTargets()), bonus);
     return damageRoll({ ammo, offhand, subdual: isSubdualWeapon(item), featureBonus: bonus, weaponDice: dice || "",
       actor: this, item, title: `${item.name}: ${offhand ? "Off-hand " : ""}${crit ? "Critical Damage" : "Damage"}`, formula: own.formula, mod, crit, damageType: sys.damageType,

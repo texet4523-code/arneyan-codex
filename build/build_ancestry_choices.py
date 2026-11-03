@@ -24,7 +24,8 @@ SHIFTED = {
     # Books v0.10.38 (K45): Resistance 5 to one nonmagical weapon type, chosen when the lineage is taken (BEASTHIDE).
     "Beasthide": [{"key": "note.init", "value": "Beasthide: temporary HP equal to your Constitution modifier each time you shift.", "when": "", "label": ""}],
     "Gorebrute": [{"key": "note.attack", "value": "Gorebrute: move through an enemy's space; it makes a Fortitude save (Ancestry Save DC, Strength) or is knocked prone (once per creature per turn, up to one size larger).", "when": "", "label": ""}],
-    "Sslyth": [{"key": "note.attack", "value": "Sslyth: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned.", "when": "", "label": ""}],
+    # Books v0.10.46 (W4, L72): Ophidian-Sslyth is "Ophidian" (yuan-ti blood); same rules.
+    "Ophidian": [{"key": "note.attack", "value": "Ophidian: a successful unarmed bite forces a Fortitude save (Ancestry Save DC, Constitution) or the target is Poisoned.", "when": "", "label": ""}],
 }
 # The type Beasthide resists, picked when the lineage is taken (the feature's own choice, item-models.mjs optionChoice).
 BEASTHIDE = {"label": "Resistance", "max": "", "value": [], "options": [

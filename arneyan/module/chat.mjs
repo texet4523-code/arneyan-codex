@@ -339,7 +339,7 @@ function onRender(message, html) {
       hits = res.filter(r => r.hit).map(({ name, uuid }) => ({ name, uuid }));
       misses = res.filter(r => !r.hit).map(({ name, uuid }) => ({ name, uuid }));
     }
-    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "" });
+    return actor.rollDamage(item, { crit, ammo: flags.ammoName ?? "", hits, misses, offhand: !!flags.offhand, bonus: flags.featureBonus ?? null, dice: flags.weaponDice ?? "", noPowerAttack: !!flags.noPowerAttack });
   });
 
   // Smite on the first hit of the encounter (books v0.10.38, K44 S4): the Paladin's Channel, spent now.
