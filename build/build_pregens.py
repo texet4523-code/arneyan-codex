@@ -473,6 +473,21 @@ def build():
                     items.append(copy("skills", d, actor_id, f"skill-{i}", tier=s.get("tier", "trained")))
                 else:
                     miss("skill", s["name"])
+            # Books v0.10.49 (K57): a Rogue's Thief Skills (Master from 5th, Climb with Dexterity); an Assassin's Traps (Master from 7th).
+            thief = {"Rogue": (["Lockpicking", "Traps", "Pick Pocket", "Climb"], 5), "Assassin": (["Traps"], 7)}.get(c.get("class"))
+            have = {s["name"] for s in c.get("skills", [])}
+            for j, name in enumerate(thief[0] if thief else []):
+                if name in have:
+                    continue
+                d = skills.find(name)
+                if not d:
+                    miss("skill", name)
+                    continue
+                it = copy("skills", d, actor_id, f"thief-{j}", tier="master" if int(c.get("level", 1)) >= thief[1] else "trained")
+                if c.get("class") == "Rogue" and name == "Climb":
+                    it["system"]["ability"] = "dex"
+                it.setdefault("flags", {}).setdefault("arneyan", {})["thiefSkill"] = True
+                items.append(it)
 
             # Weapons and armour, worn and ready.
             for i, w in enumerate(c.get("weapons", [])):

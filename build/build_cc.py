@@ -69,10 +69,11 @@ def build(icon):
         for row in re.findall(r"^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", body, re.M):
             if row[0] in ("Skill",) or set(row[0]) <= set("-: "):
                 continue
+            # Books v0.10.49 (K57): Mountaineering is now Climb; it keeps its id.
             item("skills", plain(row[0]), "skill", {
                 "description": f"<p>{md_inline(row[1])}</p>", "source": {"book": "phb", "page": 0},
                 "ability": key, "tier": "trained"
-            }, icon("skill", key), folder=fol)
+            }, icon("skill", key), folder=fol, key={"Climb": "Mountaineering"}.get(plain(row[0])))
 
     # ---------------- Journal: everything in Character Creation, one page per top-level section
     pages = []

@@ -196,6 +196,9 @@ export function planDowntime(key, v, actor) {
       if (v.training === "feat") {
         // Trained Feats (books v0.10.47, K54): gold by Tier, a DC 15 check with the feat's attribute; 2 more weeks on a failure.
         const gp = trainedFeatGold(actor?.system?.level);
+        // Weapon Master (books v0.10.49, K57): no check at the end; you're already trained in the weapon.
+        if (/^weapon master\b/i.test(String(v.what ?? "").trim())) return { title: `Trained Feat: Weapon Master`, days: t.weeks * WEEK, costCp: gp * 100,
+          offerFeat: "Weapon Master", check: null, warn: [...warn, "Weapon Master needs training in the weapon (never a Fighter's specialised one); no check at the end."] };
         return { title: `Trained Feat${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: gp * 100, offerFeat: String(v.what ?? "").trim(),
           check: { type: "ability", ability: v.ability || "str", dc: 15 }, retry: { days: 2 * WEEK, costCp: Math.round(gp * 100 / t.weeks) * 2 },
           warn: [...warn, "One Trained Feat per Tier, from a Path open to you; the master also names a price (d6)."] };
@@ -281,7 +284,8 @@ async function addTrainedFeat(actor, typed) {
   if (!pack) return;
   const index = [...(await pack.getIndex({ fields: ["system.path"] }))].filter(e => e.type === "feat" && !UNTEACHABLE.includes(e.name) && e.system?.path)
     .sort((a, b) => a.name.localeCompare(b.name));
-  const owned = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
+  // Weapon Master can be taken again for another weapon (K57), so it stays on the list.
+  const owned = new Set(actor.items.filter(i => i.type === "feat" && i.name !== "Weapon Master").map(i => i.name));
   // The typed feat, if it's teachable and not already on the sheet (else the player picks; never a silent first entry).
   const open = index.filter(e => !owned.has(e.name));
   const match = open.find(e => e.name.toLowerCase() === String(typed).toLowerCase());
@@ -386,6 +390,11 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     const r = sideQuestResult(a, b);
     roll = `${a} and ${b}`;
     result = `Best roll ${r.best}: ${r.text} (the GM decides what).`;
+  }
+  // A Trained Feat with no end check (Weapon Master, K57): learned when the weeks are done.
+  if (!c && plan.offerFeat !== undefined) {
+    result ||= `Learned: ${plan.title}.`;
+    addTrainedFeat(actor, plan.offerFeat).catch(err => console.warn("Arneyan | trained feat", err));
   }
   if (refund || earn) purse = addCoins(purse, refund + earn);
   const entry = {

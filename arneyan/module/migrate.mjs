@@ -743,6 +743,8 @@ export const CLASS_REWORK = "0.10.81";
 export const SHIFT_REWORK = "0.10.79";
 /** 0.10.81 (books v0.10.40, K47): solos lose Legendary Resistance (solo.mjs gives the new rules). */
 export const SOLO_REWORK = "0.10.81";
+/** Books v0.10.49 (K57): the Thief Skills reach existing Rogues and Assassins. */
+export const THIEF_REWORK = "0.10.88";
 /** The Bestiary's own Legendary Resistance abilities among these items (ids): name and its old words, not a GM's own. */
 export function dropLegendary(items) {
   return [...(items ?? [])].filter(i => i.type === "ability" && i.name === "Legendary Resistance"
@@ -756,6 +758,8 @@ export const RENAMED_FEATURES = Object.fromEntries([
 ].map(([id, from, to]) => [`Compendium.${SYS}.class-features.Item.${id}`, [from, to]]));
 // Books v0.10.41 (K49): the Warlock's Hex spell is Malediction (the Witch's Hex feature keeps its name).
 RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
+// Books v0.10.49 (K57): the Mountaineering skill is Climb.
+RENAMED_FEATURES[`Compendium.${SYS}.skills.Item.QwBrDsUjGQiCN3qz`] = ["Mountaineering", "Climb"];
 /** Books v0.10.46 (W4): "Ophidian-Sslyth" becomes "Ophidian". */
 export const OPHIDIAN = /Ophidian-Sslyth/;
 export const renameOphidian = s => String(s ?? "").replace(/Ophidian-Sslyth/g, "Ophidian");
@@ -955,6 +959,19 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       console.warn("Arneyan | Legendary Resistance step", err);
     }
   }
+  // Books v0.10.49 (K57): Rogues and Assassins get their Thief Skills (Lockpicking, Traps, Pick Pocket, Climb).
+  if (due && newerThan(THIEF_REWORK, from) && !newerThan(THIEF_REWORK, version)) {
+    try {
+      const { syncThiefSkills } = await import("./progression.mjs");
+      for (const actor of game.actors.filter(a => a.type === "character" && a.items.some(i => i.type === "class" && ["Rogue", "Assassin"].includes(i.name)))) {
+        const before = actor.items.filter(i => i.type === "skill").length;
+        await syncThiefSkills(actor).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+        if (actor.items.filter(i => i.type === "skill").length !== before) (notes.thief ??= []).push(actor.name);
+      }
+    } catch (err) {
+      console.warn("Arneyan | Thief Skills step", err);
+    }
+  }
   if (due) await game.settings.set(SYS, "migratedTo", version);
   // Tried again on the next loads, three times in all (then at the next version).
   const tries = due ? 1 : (Number(retry?.tries) || 1) + 1;
@@ -964,7 +981,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const auto = Object.entries(notes.automatic);
   const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
   const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone);
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length) {
+  const thief = notes.thief ?? [];
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || thief.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -977,6 +995,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): Lockpicking, Traps, Pick Pocket and Climb added to ${esc(nameList(thief))}. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")

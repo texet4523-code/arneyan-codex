@@ -45,6 +45,11 @@ function advFrom(event, ...sources) {
 
 const NONE = { values: [], adv: [], dis: [] };
 
+/** Does a spell's components line ("V, S, M (a pearl)") include a somatic component? */
+export function hasSomatic(components) {
+  return /(^|[\s,(])S($|[\s,)])/.test(String(components ?? "").replace(/\([^)]*\)/g, ""));
+}
+
 /**
  * Power Attack (books v0.10.44, K53): "It can only be your first attack each round, and never an attack that already
  * has Disadvantage." `own` is the attacker's own Advantage sources (Power Attack's Disadvantage among them, labelled
@@ -1325,7 +1330,14 @@ export class ArneyanItem extends Item {
     switch (this.type) {
       case "weapon": return actor?.rollAttack(this, event);
       case "skill": return actor?.rollSkill(this, event);
-      case "spell": return this._castSpell(event);
+      case "spell": {
+        // Books v0.10.49 (K56): a grappled caster can't perform somatic components (only spells with no S).
+        if (actor && hasSomatic(this.system.components) && actor.effects.some(e => !e.disabled && e.flags?.[SYS]?.grappledBy)) {
+          ui.notifications.warn(`${actor.name} is grappled and can't perform somatic components: only spells with no S component.`);
+          if (!game.user.isGM) return null;
+        }
+        return this._castSpell(event);
+      }
       case "ability": return this._useAbility(event);
       // A feat with an active use (uses, options, a switch or effects) works as an ability does; the rest post their card.
       case "feat": return this._useAbility(event);

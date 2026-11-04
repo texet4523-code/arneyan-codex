@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.87 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.88 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.88
+
+- **Books HB v0.10.49** (Kieran's K56 and K57; board B-F37).
+- **Thief skills.** New skills Lockpicking (Dexterity, thieves' tools; untrained only Easy or Moderate locks, one try per lock until you gain a level), Traps (Intelligence; untrained only mechanical traps, at Disadvantage; Master adds magical traps) and Pick Pocket (Dexterity; DC 10 + the target's Level; untrained at Disadvantage). Mountaineering is now Climb, and characters who have it are renamed in place.
+  - **Rogues** get all four Trained, on top of their 3 starting skills, and Master at 5th; their Climb rolls Dexterity. **Assassins** get Traps, Master at 7th. The skills arrive when a Rogue or Assassin levels up, and the update adds them to the ones already in the world. The Rogue's old Climb, Open Locks, Pick Pocket and Find/Disable/Set Trap checks are gone (Decipher Script stays).
+  - **Rogue kits:** Guild Contract, Lost in the Crowd (was Crowd Work) and Smuggler's Stash (was Cargo Sense) take their new benefits.
+- **Weapon Master** needs training in the weapon and can be taken again for another weapon. As a Trained Feat it has no check at the end: when the 12 weeks are done, the window to add it comes up.
+- **Grappled casters** can't perform somatic components: casting a spell with S while grappled is refused (the GM gets a warning instead).
 
 ## What's new in 0.10.87
 

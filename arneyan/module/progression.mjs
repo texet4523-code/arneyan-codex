@@ -9,6 +9,7 @@ import { pickFromList, stepTitle } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const FLAG = "arneyan";
+const SYS = "arneyan";
 
 const esc = s => foundry.utils.escapeHTML ? foundry.utils.escapeHTML(String(s)) : String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -194,6 +195,7 @@ export function setClassLevel(actor, cls, target) {
       // Luck from feats that step up with level (Fated Survivor at 5th, 10th, 15th and 20th), and from one taken
       // during this level change (its own sync waits for this one). Run even when the change was cancelled.
       await syncLuckFeats(actor, { fromLevel: before }).catch(err => console.warn("Arneyan | Luck feats", err));
+      await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
       // A new level that allows another option pick (Eldritch Invocations at 5th, 9th...): ask for it.
       if (actor.type === "character" && (actor.system?.level ?? 0) > (before ?? 0)) {
         const { needsOptionChoice, promptOptionChoice } = await import("./documents.mjs");
@@ -203,6 +205,65 @@ export function setClassLevel(actor, cls, target) {
       }
     }
   });
+}
+
+/* -------------------------------------------- */
+/*  Thief Skills (books v0.10.49, K57)          */
+/* -------------------------------------------- */
+
+/** Rogues: Lockpicking, Traps, Pick Pocket and Climb Trained free, Master from 5th (Climb rolled with Dexterity).
+ * Assassins: Traps Trained free, Master from 7th. On top of the 3 starting skills. */
+export const THIEF_SKILLS = { Rogue: { skills: ["Lockpicking", "Traps", "Pick Pocket", "Climb"], master: 5, dex: ["Climb"] },
+  Assassin: { skills: ["Traps"], master: 7, dex: [] } };
+
+/** What a character's Rogue and Assassin levels give: { name: { tier, ability? } }, the higher of the two. Pure. */
+export function thiefSkillsFor(classLevels) {
+  const out = {};
+  for (const [cls, def] of Object.entries(THIEF_SKILLS)) {
+    const lvl = Number(classLevels?.[cls]) || 0;
+    if (!lvl) continue;
+    for (const name of def.skills) {
+      const tier = lvl >= def.master ? "master" : "trained";
+      const was = out[name];
+      out[name] = { tier: was?.tier === "master" ? "master" : tier, ...(def.dex.includes(name) || was?.ability ? { ability: "dex" } : {}) };
+    }
+  }
+  return out;
+}
+
+/** Add or raise a Rogue's or Assassin's Thief Skills from the Skills compendium (never lowers one; Knacks stay). */
+export async function syncThiefSkills(actor) {
+  if (actor?.type !== "character" || !actor.isOwner) return;
+  const levels = {};
+  for (const c of actor.items.filter(i => i.type === "class")) levels[c.name] = (levels[c.name] ?? 0) + (Number(c.system.levels) || 0);
+  const want = thiefSkillsFor(levels);
+  if (!Object.keys(want).length) return;
+  const pack = game.packs.get(`${SYS}.skills`);
+  const index = pack ? await pack.getIndex() : [];
+  const add = [], upd = [];
+  for (const [name, w] of Object.entries(want)) {
+    const own = actor.items.find(i => i.type === "skill" && i.name === name);
+    if (own) {
+      const change = {};
+      if (w.tier === "master" && own.system.tier !== "master") change["system.tier"] = "master";
+      if (own.system.tier === "knack" && w.tier === "trained") change["system.tier"] = "trained";
+      if (w.ability && own.system.ability !== w.ability) change["system.ability"] = w.ability;
+      if (Object.keys(change).length) upd.push({ _id: own.id, ...change });
+      continue;
+    }
+    const e = [...index].find(x => x.name === name);
+    if (!e) continue;
+    const data = (await pack.getDocument(e._id)).toObject();
+    delete data._id;
+    data.folder = null;
+    data.system.tier = w.tier;
+    if (w.ability) data.system.ability = w.ability;
+    foundry.utils.setProperty(data, "_stats.compendiumSource", e.uuid ?? `Compendium.${pack.collection}.Item.${e._id}`);
+    foundry.utils.setProperty(data, `flags.${SYS}.thiefSkill`, true);
+    add.push(data);
+  }
+  if (add.length) await actor.createEmbeddedDocuments("Item", add, { arneyanGrant: true });
+  if (upd.length) await actor.updateEmbeddedDocuments("Item", upd, { arneyanGrant: true });
 }
 
 /** Is a level change running for this actor (its Luck feats are synced at the end)? */
