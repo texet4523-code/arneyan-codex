@@ -271,7 +271,7 @@ export function trainedFeatData(data, level) {
   out.system.rules = (out.system.rules ?? []).filter(r => !/^ability\.(str|dex|con|int|wis|cha)$/.test(String(r?.key ?? "")));
   if (out.system.abilityChoice) out.system.abilityChoice = { ...out.system.abilityChoice, options: [], value: "" };
   out.system.levelTaken = Number(level) || 0;
-  foundry.utils.setProperty(out, `flags.${SYS}.trainedFeat`, { tier: trainedFeatGold(level), level: Number(level) || 0 });
+  foundry.utils.setProperty(out, `flags.${SYS}.trainedFeat`, { gold: trainedFeatGold(level), level: Number(level) || 0 });
   return out;
 }
 
@@ -282,18 +282,22 @@ async function addTrainedFeat(actor, typed) {
   const index = [...(await pack.getIndex({ fields: ["system.path"] }))].filter(e => e.type === "feat" && !UNTEACHABLE.includes(e.name) && e.system?.path)
     .sort((a, b) => a.name.localeCompare(b.name));
   const owned = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
-  const match = index.find(e => e.name.toLowerCase() === String(typed).toLowerCase());
-  const opts = index.filter(e => !owned.has(e.name)).map(e => `<option value="${e._id}" ${e === match ? "selected" : ""}>${esc(e.name)} (${esc(e.system.path)})</option>`).join("");
+  // The typed feat, if it's teachable and not already on the sheet (else the player picks; never a silent first entry).
+  const open = index.filter(e => !owned.has(e.name));
+  const match = open.find(e => e.name.toLowerCase() === String(typed).toLowerCase());
+  const already = owned.has(index.find(e => e.name.toLowerCase() === String(typed).toLowerCase())?.name);
+  const opts = open.map(e => `<option value="${e._id}" ${e === match ? "selected" : ""}>${esc(e.name)} (${esc(e.system.path)})</option>`).join("");
   const pick = await foundry.applications.api.DialogV2.wait({
     window: { title: `${actor.name}: Trained Feat learned`, icon: "fa-solid fa-graduation-cap" }, classes: ["arneyan"], position: { width: 440 },
-    content: `<p>${esc(actor.name)} has learned ${match ? `<strong>${esc(match.name)}</strong>` : "a Trained Feat"}. Add it to the sheet?</p>
+    content: `<p>${esc(actor.name)} has learned ${match ? `<strong>${esc(match.name)}</strong>` : "a Trained Feat"}. Add it to the sheet?${already ? ` (${esc(typed)} is on the sheet already.)` : ""}</p>
       <label class="arn-dt-field"><span>Feat</span><select name="feat">${match ? "" : `<option value="">Choose the feat</option>`}${opts}</select></label>
       <p class="arn-muted">A Trained Feat gives no attribute +1 and uses no feat level; one per Tier. No adds nothing (in case of a mistake); the gold and weeks stay spent either way.</p>`,
-    buttons: [{ action: "yes", label: "Yes, add it", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => btn.form.elements.feat.value || null },
+    buttons: [{ action: "yes", label: "Yes, add it", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => btn.form.elements.feat.value || "none" },
       { action: "no", label: "No" }],
     rejectClose: false
   }).catch(() => null);
   if (!pick || pick === "no") return;
+  if (pick === "none") return ui.notifications.warn("No feat picked: nothing added. Add it from the Feats compendium.");
   const doc = await pack.getDocument(pick);
   if (!doc) return;
   const data = trainedFeatData(doc.toObject(), actor.system?.level);
@@ -428,7 +432,7 @@ export async function newDowntime(actor) {
     scribe: [f("Spell", `<input type="text" name="scribe.spell">`), f("Spell level (0 for a cantrip)", `<input type="number" name="scribe.level" value="1" min="0" max="9">`)].join(""),
     research: [f("Spell", `<input type="text" name="research.spell">`), f("Spell level (the GM sets it)", `<input type="number" name="research.level" value="1" min="1" max="9">`)].join(""),
     learnSkill: [f("A skill you have (Trained to Master, or train a Knack)", `<select name="learnSkill.skill"><option value="">None: a new skill</option>${skills.filter(s => s.system.tier !== "master").map(s => `<option value="${s.id}">${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`),
-      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training" list="arn-dt-skills"><datalist id="arn-dt-skills">${skillNames.map(n => `<option value="${esc(n)}"></option>`).join("")}</datalist>`), f("Its attribute", `<select name="learnSkill.ability"><option value="">The skill's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
+      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training" list="arn-dt-skills-${actor.id}"><datalist id="arn-dt-skills-${actor.id}">${skillNames.map(n => `<option value="${esc(n)}"></option>`).join("")}</datalist>`), f("Its attribute", `<select name="learnSkill.ability"><option value="">The skill's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
     studySecret: [f("Secret", `<select name="studySecret.secret"><option value="">Not on the sheet</option>${secrets.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select>`),
       f("Or its name", `<input type="text" name="studySecret.name">`), f("Weeks (blank: the Secret's own)", `<input type="number" name="studySecret.weeks" min="1">`),
       f("DC (blank: the Secret's own)", `<input type="number" name="studySecret.dc" min="1">`), f("Attribute", `<select name="studySecret.ability"><option value="">The Secret's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),

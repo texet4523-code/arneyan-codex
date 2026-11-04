@@ -78,14 +78,15 @@ const card = T.treasureCardHtml(await T.rollTreasure(T.parseTreasureCode("H"), {
 assert.ok(card.includes("@UUID[Compendium.arneyan.equipment.Item.bt]{The Black Tome}"));
 /* TAC check (4 Nov): a Gem-grade stone reads "Water Opal (Gem)", not "(Gem gem)". */
 assert.ok(/\["Gem", "Jewel"\]\.includes\(t\.label\) \? t\.label/.test(src("module/treasure.mjs")));
-assert.ok(/list="arn-dt-skills"/.test(src("module/downtime.mjs")), "the compendium's skill names are offered");
+assert.ok(/list="arn-dt-skills-\$\{actor\.id\}"/.test(src("module/downtime.mjs")), "the compendium's skill names are offered");
 /* Kieran 4 Nov: a Trained Feat that succeeds asks to add the feat (yes or no; no refunds). */
 const tf = DT.trainedFeatData({ _id: "x", name: "Keen Mind", type: "feat", system: { rules: [{ key: "ability.int", value: "1" }, { key: "init", value: "1" }], abilityChoice: { options: ["int", "wis"], value: "" } } }, 6);
 assert.deepEqual(tf.system.rules, [{ key: "init", value: "1" }], "no attribute +1");
 assert.deepEqual(tf.system.abilityChoice.options, [], "no attribute to choose");
 assert.equal(tf._id, undefined); assert.equal(tf.system.levelTaken, 6);
-assert.deepEqual(tf.flags.arneyan.trainedFeat, { tier: 1500, level: 6 });
+assert.deepEqual(tf.flags.arneyan.trainedFeat, { gold: 1500, level: 6 });
 assert.ok(DT.UNTEACHABLE.includes("Lucky") && DT.UNTEACHABLE.includes("Familiar Bond") && DT.UNTEACHABLE.length === 12);
 assert.equal(DT.planDowntime("train", { training: "feat", what: "Keen Mind", ability: "int" }, pc()).offerFeat, "Keen Mind");
 assert.ok(/addTrainedFeat\(actor, plan\.offerFeat\)/.test(src("module/downtime.mjs")) && /stay spent either way/.test(src("module/downtime.mjs")));
+assert.ok(/const match = open\.find/.test(src("module/downtime.mjs")) && /pick === "none"/.test(src("module/downtime.mjs")), "never a silent wrong feat");
 console.log("books0148: ok");
