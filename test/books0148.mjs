@@ -76,4 +76,7 @@ assert.ok(has(await T.rollTreasure(T.parseTreasureCode("H"), { roll: roller(19),
 assert.ok(!has(await T.rollTreasure(T.parseTreasureCode("H"), { roll: roller(20), name: "Treasure: Storm Giant" })), "only a dragon's hoard");
 const card = T.treasureCardHtml(await T.rollTreasure(T.parseTreasureCode("H"), { roll: roller(20), name: "Treasure: Red Dragon, Ancient" }), { uuids: { "The Black Tome": "Compendium.arneyan.equipment.Item.bt" } });
 assert.ok(card.includes("@UUID[Compendium.arneyan.equipment.Item.bt]{The Black Tome}"));
+/* TAC check (4 Nov): a Gem-grade stone reads "Water Opal (Gem)", not "(Gem gem)". */
+assert.ok(/\["Gem", "Jewel"\]\.includes\(t\.label\) \? t\.label/.test(src("module/treasure.mjs")));
+assert.ok(/list="arn-dt-skills"/.test(src("module/downtime.mjs")), "the compendium's skill names are offered");
 console.log("books0148: ok");

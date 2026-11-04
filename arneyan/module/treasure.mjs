@@ -138,7 +138,8 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
       const tier = GEM_GRADES[grade][(await roll("1d6")) - 1];
       const t = GEM_TIERS[tier];
       const stone = await pick(t.stones);
-      items.push({ kind: "gem", name: `${stone} (${t.label} gem)`, qty: 1, value: t.value, price: `${t.value} gp`, slots: 1, bundle: 5 });
+      // "Water Opal (Gem)", not "(Gem gem)"; the other grades read "(Fancy gem)".
+      items.push({ kind: "gem", name: `${stone} (${["Gem", "Jewel"].includes(t.label) ? t.label : `${t.label} gem`})`, qty: 1, value: t.value, price: `${t.value} gp`, slots: 1, bundle: 5 });
     }
   };
   const art = async (n, grade, items) => {

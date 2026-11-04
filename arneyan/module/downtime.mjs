@@ -366,6 +366,9 @@ export async function newDowntime(actor) {
   const f = (label, html) => `<label class="arn-dt-field"><span>${label}</span>${html}</label>`;
   const abilitySel = (name, pick = "int") => `<select name="${name}">${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}" ${k === pick ? "selected" : ""}>${esc(a)}</option>`).join("")}</select>`;
   const secrets = actor.items.filter(i => i.flags?.[SYS]?.secret && Object.keys(i.flags[SYS].secret).length);
+  // The compendium's skills, offered as the new skill is typed (so the name matches and its attribute is found).
+  const skillPack = game.packs?.get?.(`${SYS}.skills`);
+  const skillNames = skillPack ? [...(await skillPack.getIndex())].map(e => e.name).filter(n => !skills.some(s => s.name === n)).sort() : [];
   const sections = {
     income: f("Skill", skillSel("income.skill")),
     craft: [f("Item", `<input type="text" name="craft.item" placeholder="A longsword">`), f("Value (gp)", `<input type="number" name="craft.value" value="15" min="0">`), f("Skill", skillSel("craft.skill")),
@@ -380,7 +383,7 @@ export async function newDowntime(actor) {
     scribe: [f("Spell", `<input type="text" name="scribe.spell">`), f("Spell level (0 for a cantrip)", `<input type="number" name="scribe.level" value="1" min="0" max="9">`)].join(""),
     research: [f("Spell", `<input type="text" name="research.spell">`), f("Spell level (the GM sets it)", `<input type="number" name="research.level" value="1" min="1" max="9">`)].join(""),
     learnSkill: [f("A skill you have (Trained to Master, or train a Knack)", `<select name="learnSkill.skill"><option value="">None: a new skill</option>${skills.filter(s => s.system.tier !== "master").map(s => `<option value="${s.id}">${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`),
-      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training">`), f("Its attribute", `<select name="learnSkill.ability"><option value="">The skill's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
+      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training" list="arn-dt-skills"><datalist id="arn-dt-skills">${skillNames.map(n => `<option value="${esc(n)}"></option>`).join("")}</datalist>`), f("Its attribute", `<select name="learnSkill.ability"><option value="">The skill's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
     studySecret: [f("Secret", `<select name="studySecret.secret"><option value="">Not on the sheet</option>${secrets.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select>`),
       f("Or its name", `<input type="text" name="studySecret.name">`), f("Weeks (blank: the Secret's own)", `<input type="number" name="studySecret.weeks" min="1">`),
       f("DC (blank: the Secret's own)", `<input type="number" name="studySecret.dc" min="1">`), f("Attribute", `<select name="studySecret.ability"><option value="">The Secret's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
