@@ -57,4 +57,10 @@ for (const k of read("kits", "items_")) if (/Smuggler|Street Thief|Robin Track/.
   const rules = JSON.stringify([k.system.rules, ...(k.system.features ?? []).map(f => f.rules ?? [])]);
   assert.ok(!/Open Locks/.test(rules), `${k.name}: no Advantage on the old Open Locks`);
 }
+/* Kieran 4 Nov: an Assassin who has the Climb skill rolls it with Dexterity too (not granted). */
+assert.deepEqual(P.thiefDexFor({ Assassin: 3 }), ["Climb"]);
+assert.deepEqual(P.thiefDexFor({ Rogue: 1 }), ["Climb"]);
+assert.deepEqual(P.thiefDexFor({ Fighter: 5 }), []);
+assert.ok(!("Climb" in P.thiefSkillsFor({ Assassin: 9 })), "not given free");
+assert.ok(/thiefDexFor\(lv\)\.includes\(plan\.learn\?\.name\)\) plan\.check\.ability = "dex"/.test(src("module/downtime.mjs")), "learning Climb rolls Dexterity for them");
 console.log("books0149: ok");

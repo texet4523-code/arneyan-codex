@@ -321,6 +321,10 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     const pack = game.packs.get(`${SYS}.skills`);
     const entry = pack ? (await pack.getIndex({ fields: ["system.ability"] })).find(e => e.name.toLowerCase() === String(plan.learn?.name ?? "").toLowerCase()) : null;
     plan.check.ability = entry?.system?.ability || "int";
+    // A Rogue or Assassin rolls Climb with Dexterity (books v0.10.49; Kieran 4 Nov for the Assassin).
+    const { thiefDexFor } = await import("./progression.mjs");
+    const lv = {}; for (const c of actor.items.filter(i => i.type === "class")) lv[c.name] = (lv[c.name] ?? 0) + (Number(c.system.levels) || 0);
+    if (thiefDexFor(lv).includes(plan.learn?.name)) plan.check.ability = "dex";
     if (plan.learn) plan.learn.ability = plan.check.ability;
   }
   let purse = { ...actor.system.currency };
@@ -361,7 +365,11 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     roll = `${rolls.join(", ")} vs DC ${c.dc}`;
     if (total >= c.dc) {
       result = `Learned: ${plan.title}${extraWeeks ? ` (${extraWeeks} more week${extraWeeks === 1 ? "" : "s"}${plan.retry.costCp ? `, ${cpText(extraCp)} more` : ""})` : ""}.`;
-      if (plan.learn) await learnSkill(actor, plan.learn).catch(err => console.warn("Arneyan | learn skill", err));
+      if (plan.learn) {
+        await learnSkill(actor, plan.learn).catch(err => console.warn("Arneyan | learn skill", err));
+        const { syncThiefSkills } = await import("./progression.mjs");
+        await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
+      }
       if (plan.offerFeat !== undefined) addTrainedFeat(actor, plan.offerFeat).catch(err => console.warn("Arneyan | trained feat", err));
     } else result = `Not yet: ${rolls.length} failed check${rolls.length === 1 ? "" : "s"}${broke ? `, and not enough gold for ${plan.retry.days / WEEK} more week${plan.retry.days === WEEK ? "" : "s"}` : ""}. Carry on later with the extra weeks only, not the whole course.`;
   } else if (c?.type === "skill" || c?.type === "ability") {

@@ -214,7 +214,7 @@ export function setClassLevel(actor, cls, target) {
 /** Rogues: Lockpicking, Traps, Pick Pocket and Climb Trained free, Master from 5th (Climb rolled with Dexterity).
  * Assassins: Traps Trained free, Master from 7th. On top of the 3 starting skills. */
 export const THIEF_SKILLS = { Rogue: { skills: ["Lockpicking", "Traps", "Pick Pocket", "Climb"], master: 5, dex: ["Climb"] },
-  Assassin: { skills: ["Traps"], master: 7, dex: [] } };
+  Assassin: { skills: ["Traps"], master: 7, dex: [], dexIfOwned: ["Climb"] } };
 
 /** What a character's Rogue and Assassin levels give: { name: { tier, ability? } }, the higher of the two. Pure. */
 export function thiefSkillsFor(classLevels) {
@@ -231,12 +231,24 @@ export function thiefSkillsFor(classLevels) {
   return out;
 }
 
+/** Skills a class rolls with Dexterity if the character has them, without granting them (Kieran 4 Nov: an Assassin's Climb). */
+export function thiefDexFor(classLevels) {
+  return Object.entries(THIEF_SKILLS).filter(([cls]) => Number(classLevels?.[cls]) > 0).flatMap(([, d]) => [...d.dex, ...(d.dexIfOwned ?? [])]);
+}
+
 /** Add or raise a Rogue's or Assassin's Thief Skills from the Skills compendium (never lowers one; Knacks stay). */
 export async function syncThiefSkills(actor) {
   if (actor?.type !== "character" || !actor.isOwner) return;
   const levels = {};
   for (const c of actor.items.filter(i => i.type === "class")) levels[c.name] = (levels[c.name] ?? 0) + (Number(c.system.levels) || 0);
   const want = thiefSkillsFor(levels);
+  // A skill the class rolls with Dexterity when the character has it (an Assassin who learns Climb).
+  for (const name of thiefDexFor(levels)) {
+    if (want[name]) continue;
+    const own = actor.items.find(i => i.type === "skill" && i.name === name);
+    if (own && own.system.ability !== "dex" && !own.flags?.[SYS]?.thiefSkill)
+      await own.update({ "system.ability": "dex", [`flags.${SYS}.thiefSkill`]: true }, { arneyanGrant: true });
+  }
   if (!Object.keys(want).length) return;
   const pack = game.packs.get(`${SYS}.skills`);
   const index = pack ? await pack.getIndex() : [];
@@ -762,6 +774,8 @@ async function setUpFirstLevel(actor, cls) {
     if (chosen.bonusFeat && chosen.bonusFeat !== chosen.feat) await addFromUuid(actor, chosen.bonusFeat, { levelTaken: 1 });
     // One at a time, so each skill goes through the slot check.
     for (const s of [...new Set(chosen.skills.filter(Boolean))]) await addFromUuid(actor, s);
+    // An Assassin who picks Climb rolls it with Dexterity (Kieran 4 Nov).
+    await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
     // The Knack: no slot, Advantage on its checks (its own skill item, or the flag on one already taken).
     if (chosen.knack) {
       const name = nameOf.get(chosen.knack);
