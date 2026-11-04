@@ -22,7 +22,7 @@ TOP = [
     ("Weapons", "#5a2a1a", ["Melee Weapons", "Missile Weapons", "Firearms"]),
     ("Armour & Shields", "#2a3a4a", []),
     ("Magic Items", "#3a1f5a", ["Iconic Weapons", "Iconic Armour & Shields", "Iconic Rings", "Iconic Wands, Staffs & Rods",
-                                "Iconic Wondrous Items", "Magic Containers", "Spellbooks & Scrolls", "Potions", "Unique Items"]),
+                                "Iconic Wondrous Items", "Magic Containers", "Spellbooks & Scrolls", "Potions", "Unique Items", "Secrets"]),
     ("Alchemy & Poisons", "#2a4a2a", ["Alchemical Weapons & Tools", "Alchemist's & Healer's Goods", "Poisons", "Weapon Oils", "Rare Brews"]),
     ("Spell Components", "#4a3a1a", ["Rare Spell Components", "Spell Components — Animals", "Spell Components — Liquids",
                                      "Spell Components — Metals", "Spell Components — Minerals", "Spell Components — Plants & Aromatics",

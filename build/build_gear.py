@@ -386,7 +386,7 @@ def build():
     # The Secrets (M&T v0.10.45, K55): one card each in a Secrets folder beside the Unique Items; the Last Form is also a feat.
     sec_list = secrets()
     if sec_list:
-        parent = json.load(open(glob.glob(os.path.join(PACK, "folders_Example_Unique_Linkbreaker_Unique__*.json"))[0])).get("folder")
+        parent = None  # build_tidy puts it under Magic Items, beside the Unique Items
         sec_folder = fid("equipment", "folder", "secrets")
         json.dump({"_id": sec_folder, "_key": f"!folders!{sec_folder}", "name": "Secrets", "type": "Item", "folder": parent, "sorting": "a",
                    "sort": 67, "color": None, "flags": {}, "description": "Monsters & Treasure: Uniques that teach what no level, teacher or feat does."},
