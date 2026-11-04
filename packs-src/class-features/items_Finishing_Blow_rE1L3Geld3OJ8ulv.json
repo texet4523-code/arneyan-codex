@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> A Sneak Attack against a creature at half its HP or less deals maximum damage on its damage dice.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> A Sneak Attack that is a critical hit against a creature at half its HP or less deals maximum damage on its Sneak Attack dice.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Finishing Blow: Sneak Attack vs a creature at half HP or less deals maximum on its damage dice.",
+    "value": "Finishing Blow: a Sneak Attack critical hit vs a creature at half HP or less deals maximum on its Sneak Attack dice.",
     "when": "",
     "label": ""
    }

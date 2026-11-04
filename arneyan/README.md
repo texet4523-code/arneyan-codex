@@ -9,6 +9,7 @@ Version 0.10.88 · Foundry v13 and v14 · **Playtest release**
   - **Rogues** get all four Trained, on top of their 3 starting skills, and Master at 5th; their Climb rolls Dexterity. **Assassins** get Traps, Master at 7th, and roll the Climb skill with Dexterity too if they learn it (their own Climb ability already uses it). The skills arrive when a Rogue or Assassin levels up, and the update adds them to the ones already in the world. The Rogue's old Climb, Open Locks, Pick Pocket and Find/Disable/Set Trap checks are gone (Decipher Script stays).
   - **Rogue kits:** Guild Contract, Lost in the Crowd (was Crowd Work) and Smuggler's Stash (was Cargo Sense) take their new benefits.
 - **Weapon Master** needs training in the weapon and can be taken again for another weapon. As a Trained Feat it has no check at the end: when the 12 weeks are done, the window to add it comes up.
+- **Books HB v0.10.50** (K58; board B-F38): Rogue and Assassin Sneak Attack also count a target you are flanking (the reminder says so). Finishing Blow needs a Sneak Attack critical hit on a target at half HP or less and maximises only the Sneak Attack dice. Slow Kill's bleeding on a solo ends when it becomes Bloodied; Death Attack's study may be done before the fight, and a solo that fails loses its next two turns (the GM's to run, like other kill effects).
 - **Grappled casters** can't perform somatic components: casting a spell with S while grappled is refused (the GM gets a warning instead).
 
 ## What's new in 0.10.87

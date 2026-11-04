@@ -1413,7 +1413,7 @@
    {
     "key": "adv.attack",
     "value": 1,
-    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, or in melee with an ally and not you)"
+    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, in melee with an ally and not you, or you are flanking it)"
    },
    {
     "key": "note.damage",
@@ -1476,7 +1476,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Finishing Blow: Sneak Attack vs a creature at half HP or less deals maximum on its damage dice."
+    "value": "Finishing Blow: a Sneak Attack critical hit vs a creature at half HP or less deals maximum on its Sneak Attack dice."
    }
   ],
   "summary": "Reminder on damage cards.",
@@ -2529,7 +2529,7 @@
    {
     "key": "adv.attack",
     "value": 1,
-    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, or in melee with an ally and not you)"
+    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, in melee with an ally and not you, or you are flanking it)"
    },
    {
     "key": "note.damage",

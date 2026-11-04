@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> On a successful hit, the target takes normal weapon damage. Each subsequent round they lose <strong>1d6</strong> HP from blood loss unless healed or bandaged.</li><li>Bleeding is cumulative</li><li>Only usable before the target has acted this encounter</li><li>Maximum four Slow Kill strikes on a single target per encounter — after four hits all vulnerable areas have been struck</li><li>Works with Sneak Attack simultaneously</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> On a successful hit, the target takes normal weapon damage. Each subsequent round they lose <strong>1d6</strong> HP from blood loss unless healed or bandaged. Against a solo, the bleeding ends when it becomes Bloodied (see Solo Creatures, Book IV).</li><li>Bleeding is cumulative</li><li>Only usable before the target has acted this encounter</li><li>Maximum four Slow Kill strikes on a single target per encounter — after four hits all vulnerable areas have been struck</li><li>Works with Sneak Attack simultaneously</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; bleeding stacks, 1d6 for each Slow Kill strike, up to four strikes per target per encounter. Not against creatures that don't bleed.",
+    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; bleeding stacks, 1d6 for each Slow Kill strike, up to four strikes per target per encounter. Not against creatures that don't bleed. Against a solo, the bleeding ends when it becomes Bloodied.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

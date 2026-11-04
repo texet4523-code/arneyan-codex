@@ -63,4 +63,10 @@ assert.deepEqual(P.thiefDexFor({ Rogue: 1 }), ["Climb"]);
 assert.deepEqual(P.thiefDexFor({ Fighter: 5 }), []);
 assert.ok(!("Climb" in P.thiefSkillsFor({ Assassin: 9 })), "not given free");
 assert.ok(/thiefDexFor\(lv\)\.includes\(plan\.learn\?\.name\)\) plan\.check\.ability = "dex"/.test(src("module/downtime.mjs")), "learning Climb rolls Dexterity for them");
+/* HB v0.10.50 (B-F38, K58). */
+const cf = read("class-features", "items_");
+for (const sa of cf.filter(i => i.name === "Sneak Attack")) assert.ok(sa.system.rules.some(r => /you are flanking it/.test(r.when ?? "")), "flanking counts");
+assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /critical hit/.test(r.value) && /Sneak Attack dice/.test(r.value)));
+assert.ok(/Against a solo, the bleeding ends when it becomes Bloodied/.test(JSON.stringify(cf.filter(i => i.system.activities?.some(a => a.name === "Slow Kill")))));
+assert.ok(/The study may be done before the fight/.test(cf.find(i => i.name === "Death Attack").system.description));
 console.log("books0149: ok");
