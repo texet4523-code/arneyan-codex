@@ -196,7 +196,7 @@ export function planDowntime(key, v, actor) {
       if (v.training === "feat") {
         // Trained Feats (books v0.10.47, K54): gold by Tier, a DC 15 check with the feat's attribute; 2 more weeks on a failure.
         const gp = trainedFeatGold(actor?.system?.level);
-        return { title: `Trained Feat${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: gp * 100,
+        return { title: `Trained Feat${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: gp * 100, offerFeat: String(v.what ?? "").trim(),
           check: { type: "ability", ability: v.ability || "str", dc: 15 }, retry: { days: 2 * WEEK, costCp: Math.round(gp * 100 / t.weeks) * 2 },
           warn: [...warn, "One Trained Feat per Tier, from a Path open to you; the master also names a price (d6)."] };
       }
@@ -258,6 +258,50 @@ async function learnSkill(actor, { skillId, name, ability, tier }) {
   return made;
 }
 
+/** Books v0.10.47 (K54): feats that can't be taught. */
+export const UNTEACHABLE = ["Diehard", "Fated Survivor", "Inscrutable Fate", "Lucky", "Quick Recovery", "Luck Battery", "Skilled Regeneration",
+  "Fate's Reversal", "Blood Magic", "Expanded Mind", "Potent Casting", "Familiar Bond"];
+
+/** A Trained Feat's copy: no attribute +1 (K54), marked as the Tier's Trained Feat. Pure, for the window and tests. */
+export function trainedFeatData(data, level) {
+  const out = foundry.utils.deepClone(data);
+  delete out._id;
+  out.folder = null;
+  out.system ??= {};
+  out.system.rules = (out.system.rules ?? []).filter(r => !/^ability\.(str|dex|con|int|wis|cha)$/.test(String(r?.key ?? "")));
+  if (out.system.abilityChoice) out.system.abilityChoice = { ...out.system.abilityChoice, options: [], value: "" };
+  out.system.levelTaken = Number(level) || 0;
+  foundry.utils.setProperty(out, `flags.${SYS}.trainedFeat`, { tier: trainedFeatGold(level), level: Number(level) || 0 });
+  return out;
+}
+
+/** After a Trained Feat's check succeeds (Kieran, 4 Nov): ask whether to put the feat on the sheet. */
+async function addTrainedFeat(actor, typed) {
+  const pack = game.packs.get(`${SYS}.feats`);
+  if (!pack) return;
+  const index = [...(await pack.getIndex({ fields: ["system.path"] }))].filter(e => e.type === "feat" && !UNTEACHABLE.includes(e.name) && e.system?.path)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const owned = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
+  const match = index.find(e => e.name.toLowerCase() === String(typed).toLowerCase());
+  const opts = index.filter(e => !owned.has(e.name)).map(e => `<option value="${e._id}" ${e === match ? "selected" : ""}>${esc(e.name)} (${esc(e.system.path)})</option>`).join("");
+  const pick = await foundry.applications.api.DialogV2.wait({
+    window: { title: `${actor.name}: Trained Feat learned`, icon: "fa-solid fa-graduation-cap" }, classes: ["arneyan"], position: { width: 440 },
+    content: `<p>${esc(actor.name)} has learned ${match ? `<strong>${esc(match.name)}</strong>` : "a Trained Feat"}. Add it to the sheet?</p>
+      <label class="arn-dt-field"><span>Feat</span><select name="feat">${match ? "" : `<option value="">Choose the feat</option>`}${opts}</select></label>
+      <p class="arn-muted">A Trained Feat gives no attribute +1 and uses no feat level; one per Tier. No adds nothing (in case of a mistake); the gold and weeks stay spent either way.</p>`,
+    buttons: [{ action: "yes", label: "Yes, add it", icon: "fa-solid fa-check", default: true, callback: (ev, btn) => btn.form.elements.feat.value || null },
+      { action: "no", label: "No" }],
+    rejectClose: false
+  }).catch(() => null);
+  if (!pick || pick === "no") return;
+  const doc = await pack.getDocument(pick);
+  if (!doc) return;
+  const data = trainedFeatData(doc.toObject(), actor.system?.level);
+  foundry.utils.setProperty(data, "_stats.compendiumSource", doc.uuid);
+  await actor.createEmbeddedDocuments("Item", [data]);
+  ui.notifications.info(`${doc.name} added to ${actor.name} as a Trained Feat.`);
+}
+
 /** Run an activity: pay, roll, settle coins, log it and post a card. */
 export async function runDowntime(actor, key, values, { paid = false } = {}) {
   const act = ACTIVITIES[key];
@@ -310,6 +354,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     if (total >= c.dc) {
       result = `Learned: ${plan.title}${extraWeeks ? ` (${extraWeeks} more week${extraWeeks === 1 ? "" : "s"}${plan.retry.costCp ? `, ${cpText(extraCp)} more` : ""})` : ""}.`;
       if (plan.learn) await learnSkill(actor, plan.learn).catch(err => console.warn("Arneyan | learn skill", err));
+      if (plan.offerFeat !== undefined) addTrainedFeat(actor, plan.offerFeat).catch(err => console.warn("Arneyan | trained feat", err));
     } else result = `Not yet: ${rolls.length} failed check${rolls.length === 1 ? "" : "s"}${broke ? `, and not enough gold for ${plan.retry.days / WEEK} more week${plan.retry.days === WEEK ? "" : "s"}` : ""}. Carry on later with the extra weeks only, not the whole course.`;
   } else if (c?.type === "skill" || c?.type === "ability") {
     const total = await rollCheck(actor, c);

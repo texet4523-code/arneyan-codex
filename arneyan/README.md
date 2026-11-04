@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.86 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.87 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.87
+
+- **A Trained Feat goes on the sheet.** When a Trained Feat's check succeeds, a window asks whether to add the feat, with the feat typed in already picked (or a list of the teachable feats). Yes adds it without its attribute +1 and marks it as the Tier's Trained Feat; No adds nothing, for when something went wrong. Either way the gold and weeks stay spent.
+- **Learn a Skill** suggests the compendium's skill names as you type, so the skill and its attribute are found ("Riding, Land-Based", not "Riding").
+- **Treasure:** the top grades of gem read "Water Opal (Gem)" and "Diamond (Jewel)", not "(Gem gem)".
 
 ## What's new in 0.10.86
 
