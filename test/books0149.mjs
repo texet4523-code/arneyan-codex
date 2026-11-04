@@ -48,4 +48,13 @@ assert.equal(D.hasSomatic("S"), true);
 assert.equal(D.hasSomatic("V"), false);
 assert.equal(D.hasSomatic(""), false);
 assert.ok(/hasSomatic\(this\.system\.components\) && actor\.effects\.some\(e => !e\.disabled && e\.flags\?\.\[SYS\]\?\.grappledBy\)/.test(src("module/documents.mjs")));
+/* Review fixes (4 Nov). */
+assert.ok(/syncThiefSkills\(actor\)\.catch[^\n]*\n  if \(stop === "close"\) return null;/.test(src("module/progression.mjs")), "a new 1st-level Rogue has them before picking skills");
+assert.ok(/i\.name === "Mountaineering"\)\.map\(i => \(\{ _id: i\.id, name: "Climb" \}\)\)/.test(src("module/migrate.mjs")), "the update renames Mountaineering itself");
+assert.ok(/flags\.\$\{SYS\}\.knack`\] = true/.test(src("module/progression.mjs")), "a Knack keeps its Advantage");
+assert.ok(/e\.name === "Weapon Master"\)\)/.test(src("module/progression.mjs")), "Weapon Master again at a feat level");
+for (const k of read("kits", "items_")) if (/Smuggler|Street Thief|Robin Track/.test(k.name)) {
+  const rules = JSON.stringify([k.system.rules, ...(k.system.features ?? []).map(f => f.rules ?? [])]);
+  assert.ok(!/Open Locks/.test(rules), `${k.name}: no Advantage on the old Open Locks`);
+}
 console.log("books0149: ok");

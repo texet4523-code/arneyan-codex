@@ -962,6 +962,15 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   // Books v0.10.49 (K57): Rogues and Assassins get their Thief Skills (Lockpicking, Traps, Pick Pocket, Climb).
   if (due && newerThan(THIEF_REWORK, from) && !newerThan(THIEF_REWORK, version)) {
     try {
+      // Mountaineering is Climb (the skill pack isn't in the item update, so rename it here, before the Thief Skills
+      // check, or a Rogue would end up with both).
+      const holders = [...game.actors, ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor).map(t => t.actor))];
+      for (const actor of holders) {
+        const old = actor.items.filter(i => i.type === "skill" && i.name === "Mountaineering").map(i => ({ _id: i.id, name: "Climb" }));
+        if (old.length) await actor.updateEmbeddedDocuments("Item", old, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+      }
+      const loose = game.items.filter(i => i.type === "skill" && i.name === "Mountaineering").map(i => ({ _id: i.id, name: "Climb" }));
+      if (loose.length) await Item.implementation.updateDocuments(loose, { arneyanMigration: true }).catch(err => console.warn("Arneyan | skills", err));
       const { syncThiefSkills } = await import("./progression.mjs");
       for (const actor of game.actors.filter(a => a.type === "character" && a.items.some(i => i.type === "class" && ["Rogue", "Assassin"].includes(i.name)))) {
         const before = actor.items.filter(i => i.type === "skill").length;
@@ -995,7 +1004,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
-      + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): Lockpicking, Traps, Pick Pocket and Climb added to ${esc(nameList(thief))}. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
+      + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")

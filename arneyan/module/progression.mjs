@@ -246,8 +246,10 @@ export async function syncThiefSkills(actor) {
     if (own) {
       const change = {};
       if (w.tier === "master" && own.system.tier !== "master") change["system.tier"] = "master";
-      if (own.system.tier === "knack" && w.tier === "trained") change["system.tier"] = "trained";
-      if (w.ability && own.system.ability !== w.ability) change["system.ability"] = w.ability;
+      // A Knack becomes Trained and keeps its Advantage (the knack flag, as the 1st-level Knack has).
+      if (own.system.tier === "knack" && w.tier === "trained") { change["system.tier"] = "trained"; change[`flags.${SYS}.knack`] = true; }
+      // The Rogue's Climb with Dexterity: set once, when it becomes a Thief Skill (a GM's later change stays).
+      if (w.ability && own.system.ability !== w.ability && !own.flags?.[SYS]?.thiefSkill) { change["system.ability"] = w.ability; change[`flags.${SYS}.thiefSkill`] = true; }
       if (Object.keys(change).length) upd.push({ _id: own.id, ...change });
       continue;
     }
@@ -595,7 +597,8 @@ export async function addFromUuid(actor, uuid, { levelTaken = 0, extra = null } 
 export async function promptFeat(actor, charLevel) {
   const owned = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
   const paths = featPaths(actor);
-  const list = await packOptions("feats", e => paths.has(e.system?.path) && !owned.has(e.name));
+  // Weapon Master can be taken again, for another weapon (books v0.10.49, K57).
+  const list = await packOptions("feats", e => paths.has(e.system?.path) && (!owned.has(e.name) || e.name === "Weapon Master"));
   if (!list.length) return;
   // Browser-style: the list on the left, what the Feat does on the right.
   const uuid = await pickFromList({
@@ -746,6 +749,8 @@ async function setUpFirstLevel(actor, cls) {
   await cls.update({ "system.levels": 1, "system.hpRolls": [hp], "system.luckGains": [0] });
   await actor.update({ "system.attributes.hp.max": hp, "system.attributes.hp.value": hp });
   await syncClassFeatures(actor, cls);
+  // A Rogue's or Assassin's Thief Skills come free (K57), so they're on the sheet before the 3 starting skills are picked.
+  await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
   if (stop === "close") return null;
 
   // Chosen so far: added at the end (Apply or Skip), nothing if a window is closed.

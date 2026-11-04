@@ -6051,32 +6051,20 @@
   "confidence": "high"
  },
  "kits/drkSYSPmTJYTWsoF#0": {
-  "name": "Cargo Sense",
+  "name": "Smuggler's Stash",
   "from": "Jinia Isles Smuggler (Rogue)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Open Locks on ship or cargo locks; Climb on rigging"
-   }
-  ],
-  "summary": "Advantage on skill checks (Open Locks on ship or cargo locks; Climb on rigging). Shown as reminders.",
+  "rules": [],
+  "summary": "Smuggler's Stash (books v0.10.49): hidden compartments, climbing rigging needs no check (manual).",
   "manual": "After your Sneak Attack hits, move 10ft as part of the same action without provoking Attacks of Opportunity.",
   "confidence": "high"
  },
  "kits/LGxAbADMr1tfUcIr#0": {
-  "name": "Crowd Work",
+  "name": "Lost in the Crowd",
   "from": "Mournas Street Thief (Rogue)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Pick Pocket and Sleight of Hand in crowds, markets or busy streets"
-   }
-  ],
-  "summary": "Advantage on skill checks (Pick Pocket and Sleight of Hand in crowds, markets or busy streets). Shown as reminders.",
+  "rules": [],
+  "summary": "Lost in the Crowd (books v0.10.49): Hide at once after a Pick Pocket in a crowd (manual).",
   "manual": "Pick Pocket as part of an attack.",
   "confidence": "high"
  },
@@ -6129,14 +6117,8 @@
   "name": "Guild Contract",
   "from": "The Guild, Robin Track (Rogue)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Pick Pocket and Open Locks on a Guild-assigned contract"
-   }
-  ],
-  "summary": "Advantage on skill checks (Pick Pocket and Open Locks on a Guild-assigned contract). Shown as reminders. Guild Mark on a target your Sneak Attack hit: the next ally to attack it before your next turn has Advantage.",
+  "rules": [],
+  "summary": "Guild Contract (books v0.10.49): a second try at a failed lock and a Pick Pocket noticed only on a fail by 5+, on a Guild contract (manual). Guild Mark on a target your Sneak Attack hit: the next ally to attack it before your next turn has Advantage.",
   "manual": "Guild Mark is meant for an ally's attack: the engine also counts yours if you attack it first.",
   "confidence": "medium",
   "applies": [
