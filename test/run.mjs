@@ -51,7 +51,7 @@ assert.equal(s.saves.fort.value, 2 + 2);   // Con +2, half of 5 = 2
 assert.equal(s.saves.ref.value, 1 + 2);
 assert.equal(s.saves.will.value, 0 + 2);
 assert.equal(s.attributes.deathAt, -12);   // -10 minus Con +2
-assert.equal(s.nwp.max, 4); assert.equal(s.nwp.used, 2);
+assert.equal(s.nwp.max, Infinity); assert.equal(s.nwp.used, 2); // K54: no skill slots
 assert.equal(s.inventory.max, 22);         // Str 16+ (F16)
 { // F16 at the use site: Str 12 +1 from a feat reaches the 13 to 15 step (20), and an "inventory" rule still adds on top.
   const strFeat = makeItem(IM.FeatData, "feat", "Strong Back", { rules: [{ key: "ability.str", value: "1" }, { key: "inventory", value: "2" }] });

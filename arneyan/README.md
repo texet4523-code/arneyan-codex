@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.85 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.86 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.86
+
+- **Books HB v0.10.48 and Monsters & Treasure v0.10.45** (Kieran's K54 and K55; board B-F35, B-F36).
+- **Skills without slots (K54).** Characters start Trained in 3 different skills and learn more in downtime, with no limit and nothing at level-up. The sheet no longer counts slots.
+  - **Learn a Skill** (downtime): Trained is 2 weeks at 25 gp a week, then a DC 10 check with the skill's attribute; Master is 4 more weeks at 50 gp a week, then DC 15. Each failure adds a week and its gold and rolls again, and a success puts the skill on the sheet (from the compendium) or makes it Master.
+  - **Skilled** halves the time and, when you take it, asks for one skill at Trained.
+  - **Trained Feats** (Train): gold by Tier of Play (750 / 1,500 / 3,000 / 6,000 gp), 12 weeks, then a DC 15 check with the feat's attribute; a failure is 2 more weeks and their gold.
+- **Secrets (K55).** All 18 are cards in the Equipment compendium (a Secrets folder beside the Unique Items), each with its own icon, what it takes to study, what it teaches and its history. The Last Form is also a feat in the Feats compendium.
+  - **Study a Secret** (downtime): pick the Secret from the sheet and its weeks, DC and attribute fill in; each failure adds 2 weeks and rolls again.
+  - **Dragon hoards:** an Adult dragon's hoard (G) holds a Secret on a d20 roll of 20 and an Ancient's (H) on 19 to 20; the card links the ones that can be carried.
+  - **Lichdom:** the Necromancer's text takes the Black Tome (from 15th) and the yearly soul upkeep.
 
 ## What's new in 0.10.85
 

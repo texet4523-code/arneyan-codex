@@ -127,7 +127,7 @@ const emptyCoins = () => ({ pp: 0, gp: 0, sp: 0, cp: 0 });
  * @param {string} [o.name]       Who it's from, for the section headings.
  * @returns {Promise<{coins:object, items:object[], sections:object[], value:number}>}
  */
-export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeLots = 0, name = "" } = {}) {
+export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeLots = 0, name = "", dragon = /\bdragon\b/i.test(name) } = {}) {
   const pick = async list => list[Math.clamp((await roll(`1d${list.length}`)) - 1, 0, list.length - 1)];
   const pct = async chance => chance >= 100 || (await roll("1d100")) <= chance;
   const sections = [];
@@ -177,6 +177,8 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
     if (def.gems) await gems(await roll(def.gems.count), def.gems.grade, sec.items);
     if (def.art) await art(await roll(def.art.count), def.art.grade, sec.items);
     for (const m of def.magic ?? []) if (await pct(m.chance)) sec.items.push(...await magicItem(m.rarity, roll));
+    // A dragon's hoard may hold a Secret (M&T v0.10.45, K55).
+    if (dragon && DRAGON_SECRET[p.code] && (await roll("1d20")) >= DRAGON_SECRET[p.code]) sec.items.push(secretItem());
     sections.push(sec);
   }
 
@@ -209,6 +211,18 @@ export const NAMED_UNIQUES = {
   2: ["Tidecaller", "Groundbreaker", "Hairsplitter", "Phoenix Oath", "Wardenbreaker", "Dreadknell", "Retort", "Veilcutter"],
   3: ["Soulthief", "Wyrmsbane", "Wallguard", "Stonefather"]
 };
+/** M&T v0.10.45 (K55): the Secrets, by name (their cards are in the equipment compendium). A dragon's hoard holds only
+ * one that can be carried (not the Black Forge, the Blood Chalice, the Evergreen Spring, the Last Form or the Second Body). */
+export const SECRETS = ["The Golem Manuals", "The Grey Muster", "The Black Tome", "The Wasteborn Bestiary", "Orrin's Little Book",
+  "The Brass Concordance", "The Phoenix Draught", "Tiahane's Tithe", "The Last Form", "Eyrie Eggs", "The Sleeping Egg", "The Black Forge",
+  "The Blood Chalice", "The Moonward Totem", "The Evergreen Spring", "A Name in Brass", "The Second Body", "A Nalwood Heartseed"];
+export const CARRIED_SECRETS = SECRETS.filter(n => !["The Black Forge", "The Blood Chalice", "The Evergreen Spring", "The Last Form", "The Second Body"].includes(n));
+/** A dragon's hoard (M&T v0.10.45): an Adult's (G) holds a Secret on a d20 roll of 20, an Ancient's (H) on 19-20. */
+export const DRAGON_SECRET = { G: 20, H: 19 };
+const SECRET_LEAD = "The GM picks one that can be carried: ";
+const secretItem = () => ({ kind: "magic", name: "A Secret (GM's choice)", qty: 1, slots: 1, bundle: 0, placeholder: true, pick: CARRIED_SECRETS, lead: SECRET_LEAD,
+  note: `${SECRET_LEAD}${CARRIED_SECRETS.join(", ")}.` });
+
 /** A hoard's weapon +N (K48: never a plain +N): made as a Unique, or a Named Unique with that bonus. */
 const UNIQUE_LEAD = "Roll its power and quirk and give it a name (Uniques, Monsters & Treasure), or use a Named Unique with that bonus: ";
 const uniqueWeapon = plus => ({ ...enchanted("weapon", plus), name: `Weapon +${plus}, made as a Unique`, pick: NAMED_UNIQUES[plus], lead: UNIQUE_LEAD,
@@ -379,7 +393,7 @@ export async function treasureForFoes(foes) {
   // One card: each group's sections, all of it stashable together.
   const merged = { coins: { pp: 0, gp: 0, sp: 0, cp: 0 }, items: [], sections: [], value: 0 };
   for (const g of groups) {
-    const r = await rollTreasure(g.parts, { roll: foundryRoll, count: g.count, lair: opts.lair, tradeLots: opts.tradeLots });
+    const r = await rollTreasure(g.parts, { roll: foundryRoll, count: g.count, lair: opts.lair, tradeLots: opts.tradeLots, name: g.name });
     for (const s of r.sections) merged.sections.push({ ...s, label: `${g.name}: ${s.label}` });
     for (const k of Object.keys(merged.coins)) merged.coins[k] += r.coins[k];
     merged.items.push(...r.items);

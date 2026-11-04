@@ -193,8 +193,9 @@ function doc(type, name, system = {}, parent = null, id = null) {
 /* ---------------- 5. "Add it anyway" is kept as extra slots ---------------- */
 {
   const s = makeActor(CharacterData, "character", { nwpBonus: 2 }, [makeItem(IM.ClassData, "class", "Fighter", { levels: 1 })]).system;
-  assert.equal(s.nwp.max, 3 + 2, "the GM's extra slots count towards the maximum");
-  assert.equal(s.nwp.extra, 2);
+  // Books v0.10.47 (K54): no skill slots; the sheet's count has no maximum (the slot check below is for old data only).
+  assert.equal(s.nwp.max, Infinity, "no limit on skills");
+  assert.equal(s.nwp.extra, 0);
   setGM(true);
   const actor = pc({ nwp: { used: 3, max: 3 } });
   DialogV2.confirm = async () => true;

@@ -400,8 +400,7 @@
       <div class="arn-tab" data-tab="skills" {{#unless (eq @root.activeTab "skills")}}hidden{{/unless}}>
         <div class="arn-section-head">
           <h3>Skills (NWP)</h3>
-          <span class="arn-muted">{{system.nwp.used}} / {{system.nwp.max}} slots{{#if system.nwp.extra}} <span data-tooltip="Extra slots the GM allowed">(+{{system.nwp.extra}} from the GM)</span>{{/if}}{{#if nwpLeft}} · {{nwpLeft}} free{{/if}}</span>
-          {{#if isGM}}{{#if editMode}}<label class="arn-muted" data-tooltip="Extra Skill (NWP) slots the GM allows">GM extra <input class="short" type="number" name="system.nwpBonus" value="{{source.nwpBonus}}" min="0"></label>{{/if}}{{/if}}
+          <span class="arn-muted" data-tooltip="No limit: learn more in downtime (Learn a Skill)">Learn more in downtime</span>
           {{#if editable}}<a class="arn-browse" data-action="browse" data-pack="skills" data-tooltip="Browse skills"><i class="fa-solid fa-book-atlas"></i></a>
           <a class="arn-add" data-action="itemCreate" data-type="skill" data-tooltip="New skill"><i class="fa-solid fa-plus"></i></a>{{/if}}
         </div>

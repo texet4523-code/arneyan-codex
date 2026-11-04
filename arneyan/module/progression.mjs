@@ -9,7 +9,6 @@ import { pickFromList, stepTitle } from "./picker.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const FLAG = "arneyan";
-const NWP_LEVELS = [4, 8, 12, 16, 20, 24];
 
 const esc = s => foundry.utils.escapeHTML ? foundry.utils.escapeHTML(String(s)) : String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -394,7 +393,7 @@ async function changeClassLevel(actor, cls, target) {
   // Feats and NWPs, by character level.
   for (let charLevel = otherLevels + from + 1; charLevel <= otherLevels + target; charLevel++) {
     if (featLevels(actor).includes(charLevel)) await promptFeat(actor, charLevel);
-    if (NWP_LEVELS.includes(charLevel)) await promptSkill(actor, charLevel);
+    // Books v0.10.47 (K54): no skill slots at level-up; skills are learned in downtime.
   }
 }
 
@@ -454,8 +453,7 @@ export function levelPreview(actor, cls, from, target, otherLevels, needsChoice,
   // Choices to make.
   const choiceFeats = Array.from({ length: charTo - charFrom }, (_, i) => charFrom + i + 1).filter(l => featLevels(actor).includes(l));
   if (choiceFeats.length) li.push(`<li><strong>Choose a feat</strong> at character level ${choiceFeats.join(" and ")}</li>`);
-  const choiceSkills = Array.from({ length: charTo - charFrom }, (_, i) => charFrom + i + 1).filter(l => NWP_LEVELS.includes(l));
-  if (choiceSkills.length) li.push(`<li><strong>New skill slot</strong> at character level ${choiceSkills.join(" and ")}</li>`);
+
   return `<div class="arn-level-preview">
     <p class="arn-lp-head">Character level <strong>${charFrom}</strong> to <strong>${charTo}</strong></p>
     <ul>${li.join("")}</ul>
@@ -545,10 +543,15 @@ export async function promptFeat(actor, charLevel) {
     entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
-  if (uuid && uuid !== "later") await addFromUuid(actor, uuid, { levelTaken: charLevel });
+  if (uuid && uuid !== "later") {
+    await addFromUuid(actor, uuid, { levelTaken: charLevel });
+    // Skilled (books v0.10.47, K54): one skill at Trained when you take it.
+    if (list.find(e => e.uuid === uuid)?.name === "Skilled") await promptSkill(actor, charLevel, { skilled: true });
+  }
 }
 
-export async function promptSkill(actor, charLevel) {
+/** One skill at Trained (the Skilled feat): a new skill, or training a Knack. `skilled` false: the old level-up slot. */
+export async function promptSkill(actor, charLevel, { skilled = false } = {}) {
   const owned = actor.items.filter(i => i.type === "skill");
   const ownedNames = new Set(owned.map(i => i.name));
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
@@ -557,13 +560,14 @@ export async function promptSkill(actor, charLevel) {
   // One slot: a new skill, a Master, or training a Knack (it keeps its Advantage), never two; each shows what it does.
   const entries = [
     ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
-    ...upgrade.map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
+    ...(skilled ? [] : upgrade).map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
     ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
       .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name))
   ];
   const pick = await pickFromList({
-    title: `${actor.name}: new Skill slot (level ${charLevel})`,
-    intro: `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, on making a trained one Master, or on training your Knack.</p>`,
+    title: skilled ? `${actor.name}: Skilled, one skill at Trained` : `${actor.name}: new Skill slot (level ${charLevel})`,
+    intro: skilled ? `<p>Skilled gives you one skill at Trained: a new skill, or training your Knack. From now on you learn skills in half the time.</p>`
+      : `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, on making a trained one Master, or on training your Knack.</p>`,
     entries, takeLabel: "Take"
   });
   if (!pick || pick === "later") return;
@@ -742,7 +746,7 @@ async function setUpFirstLevel(actor, cls) {
     }), set: v => { chosen.bonusFeat = v; } },
     skills.length && { key: "skills", ask: () => pickFromList({
       title: `${actor.name}: starting Skills`, step: stepOf("skills"), entries: skills, max: 3, takeLabel: "Take Skills", skipLabel: "Skip",
-      intro: intro(`<p>Choose three starting skills (NWP), each a different skill. You have ${actor.system.nwp?.max ?? 3} Skill slots${actor.system.nwp?.used ? `, ${actor.system.nwp.used} used` : ""}.</p>`)
+      intro: intro(`<p>Choose three starting skills (NWP), each a different skill: you start Trained in them. More are learned in downtime (Learn a Skill), with no limit.</p>`)
     }), set: v => { chosen.skills = Array.isArray(v) ? v : [v]; } },
     extras.knack && skills.length && { key: "knack", ask: () => {
       const k = extras.knack;
@@ -751,7 +755,7 @@ async function setUpFirstLevel(actor, cls) {
       const which = k.what ? `one ${esc(k.what)} skill` : "one skill";
       return pickFromList({
         title: `${actor.name}: Knack`, step: stepOf("knack"), entries: narrowed && fits.length ? fits : skills, takeLabel: "Take Knack", skipLabel: "Skip",
-        intro: intro(`<p>Your ancestry lets you choose ${which}: you have Advantage on checks with it. It isn't a Proficiency tier and takes no Skill slot. It can be one of the skills you just chose.${k.what && !narrowed ? " The GM checks it counts as the kind your ancestry names." : ""}</p>`)
+        intro: intro(`<p>Your ancestry lets you choose ${which}: you have Advantage on checks with it. It isn't a Proficiency tier and isn't one of your 3 starting skills. It can be one of the skills you just chose.${k.what && !narrowed ? " The GM checks it counts as the kind your ancestry names." : ""}</p>`)
       });
     }, set: v => { chosen.knack = v; } }
   ].filter(Boolean);

@@ -314,10 +314,10 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     s.classDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + best + mods.sum("class.dc") : null;
     s.martialDC = first ? 10 + ARNEYAN.halfLevel(first.system.levels) + Math.max(s.abilities.str.mod, s.abilities.dex.mod) + mods.sum("class.dc") : null;
 
-    // NWP slots.
+    // Skills (NWP): books v0.10.47 (K54) have no slots; skills are learned in downtime with no limit. Counted for the sheet.
     s.nwp = {
-      max: ARNEYAN.nwpSlots(s.level) + mods.sum("nwp") + (Number(s.nwpBonus) || 0),
-      extra: Number(s.nwpBonus) || 0,
+      max: Infinity,
+      extra: 0,
       used: actor.items.filter(i => i.type === "skill").reduce((t, i) => t + (i.system.tier === "master" ? 2 : i.system.tier === "knack" ? 0 : 1), 0)
     };
 

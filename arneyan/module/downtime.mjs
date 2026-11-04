@@ -70,8 +70,15 @@ export const TRAINING = {
   shield: { label: "Shield training", weeks: 2, gp: 50 },
   armourLight: { label: "Armour training: Light or Medium (one type)", weeks: 4, gp: 150 },
   armourHeavy: { label: "Armour training: Heavy (one type)", weeks: 8, gp: 500 },
-  feat: { label: "Trained Feat", weeks: 12, gp: 750 }
+  feat: { label: "Trained Feat (gold by Tier, then a DC 15 check)", weeks: 12, gp: 750 }
 };
+/** Books v0.10.47 (K54): a Trained Feat's gold by Tier of Play (1st-4th, 5th-10th, 11th-16th, 17th on). */
+export function trainedFeatGold(level) {
+  const l = Number(level) || 1;
+  return l >= 17 ? 6000 : l >= 11 ? 3000 : l >= 5 ? 1500 : 750;
+}
+/** Books v0.10.47 (K54): learning a skill. Trained 2 weeks at 25 gp a week (DC 10); Master 4 more weeks at 50 gp (DC 15). */
+export const SKILL_COURSE = { trained: { weeks: 2, gp: 25, dc: 10 }, master: { weeks: 4, gp: 50, dc: 15 } };
 /** Activities the GM rules on: time and coins only, the result written in. */
 export const OTHER = ["Research", "Create Forgery", "Farm", "Socialise / Build a Network", "Gather Information", "Learn Spells"];
 
@@ -83,8 +90,9 @@ export const ACTIVITIES = {
   copySpell: { label: "Copy a Spell", hint: "1 day and 50 gp per spell level, no roll. The spell must be on your class list." },
   scribe: { label: "Scribe a Scroll", hint: "1 week and 100 gp per spell level (a cantrip: 1 day and 10 gp), plus costly components. No more a month than your casting modifier (minimum 1)." },
   research: { label: "Research a Spell", hint: "The GM approves it and sets its level. 1 week and 100 gp per spell level, then a casting-stat check against a Hard DC. On a failure half the gold is lost." },
-  learnSkill: { label: "Learn a Skill (NWP)", hint: "A free NWP slot or GM approval. Each tier takes 1 week with a teacher at 25 gp a week." },
-  train: { label: "Train", hint: "A teacher, gold paid up front and time. No check is needed." },
+  learnSkill: { label: "Learn a Skill (NWP)", hint: "No limit. Trained: 2 weeks with a teacher at 25 gp a week, then a DC 10 check with the skill's attribute. Master: 4 more weeks at 50 gp a week with a Master teacher, then DC 15. A failure: 1 more week, its gold, and roll again. Skilled halves the time." },
+  train: { label: "Train", hint: "A teacher, gold paid up front and time. Weapon, shield and armour training need no check. A Trained Feat: one per Tier, 12 weeks, gold by Tier, then a DC 15 check with the feat's attribute; a failure is 2 more weeks and their gold." },
+  studySecret: { label: "Study a Secret", hint: "The Secret in hand (Monsters & Treasure). Its listed weeks, then a check (Intelligence unless it names another) against its DC; a failure is 2 more weeks and roll again. Your one course at a time." },
   disease: { label: "Treat a Disease", hint: "8 hours a day. A Wisdom (First Aid/Healing) check against the disease's DC once a day; a success cures it." },
   sideQuest: { label: "Side Quest", hint: "Two weeks off-screen, a 2d6 roll at the end of each week; the better one decides. 2-5 a consequence, 6-8 a minor reward, 9+ a major reward. No more than two at a time." },
   other: { label: "Other (the GM rules)", hint: "Research, forgery, farming, building a network, gathering information, learning spells: the time, the cost and what came of it." }
@@ -165,12 +173,41 @@ export function planDowntime(key, v, actor) {
       return { title: v.spell || "A new spell", days: lvl * WEEK, costCp: 10000 * lvl, check: { type: "ability", ability: castStat(), dc: 15 }, warn, failHalf: true };
     }
     case "learnSkill": {
-      const tiers = Math.clamp(num(v.tiers, 1), 1, 2);
-      return { title: v.skillName || "A skill", days: tiers * WEEK, costCp: tiers * 2500, check: null, warn };
+      const s = skill(v.skill);
+      const goal = s?.system?.tier === "trained" || v.goal === "master" ? "master" : "trained";
+      if (goal === "master" && !s) warn.push("Master needs the skill at Trained first: pick it from the list.");
+      if (s?.system?.tier === "master") warn.push(`${s.name} is already Master.`);
+      const c = SKILL_COURSE[goal];
+      // Skilled (K54): skills in half the time; the gold is weekly, so half the gold too.
+      const skilled = (actor?.items ?? []).some(i => i.type === "feat" && i.name === "Skilled");
+      const weeks = skilled ? c.weeks / 2 : c.weeks;
+      const name = s?.name ?? (String(v.skillName ?? "").trim() || "A skill");
+      const ability = s?.system?.ability || v.ability || "int";
+      return { title: `${name} (${goal === "master" ? "Master" : "Trained"})`, days: weeks * WEEK, costCp: weeks * c.gp * 100,
+        check: { type: "ability", ability, dc: c.dc }, retry: { days: WEEK, costCp: c.gp * 100 },
+        learn: { skillId: s?.id ?? "", name, ability, tier: goal }, warn: skilled ? [...warn, "Skilled: half the time."] : warn };
     }
     case "train": {
       const t = TRAINING[v.training] ?? TRAINING.weapon;
+      if (v.training === "feat") {
+        // Trained Feats (books v0.10.47, K54): gold by Tier, a DC 15 check with the feat's attribute; 2 more weeks on a failure.
+        const gp = trainedFeatGold(actor?.system?.level);
+        return { title: `Trained Feat${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: gp * 100,
+          check: { type: "ability", ability: v.ability || "str", dc: 15 }, retry: { days: 2 * WEEK, costCp: Math.round(gp * 100 / t.weeks) * 2 },
+          warn: [...warn, "One Trained Feat per Tier, from a Path open to you; the master also names a price (d6)."] };
+      }
       return { title: `${t.label}${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: t.gp * 100, check: null, warn };
+    }
+    case "studySecret": {
+      // M&T v0.10.45 (K55): the Secret's weeks, then its check; 2 more weeks on a failure (no gold).
+      const it = (actor?.items ?? []).find(i => i.id === v.secret);
+      const st = it?.flags?.[SYS]?.secret ?? {};
+      const weeks = Math.max(1, num(v.weeks, st.weeks || 4));
+      const ability = v.ability || st.ability || "int";
+      const dc = num(v.dc, st.dc || 15);
+      if (!it) warn.push("Study needs the Secret in hand, or to be with it.");
+      return { title: it?.name ?? (String(v.name ?? "").trim() || "A Secret"), days: weeks * WEEK, costCp: 0,
+        check: { type: "ability", ability, dc }, retry: { days: 2 * WEEK, costCp: 0 }, warn };
     }
     case "disease": {
       const s = skills.find(x => /first aid|healing/i.test(x.name)) ?? null;
@@ -201,6 +238,22 @@ function dailyBonus(actor, { skillId, ability }) {
   return { bonus: actor.system.abilities[ability]?.mod ?? 0, adv: false };
 }
 
+/** A skill learned in downtime (K54): a Trained skill made Master, or a new one at Trained (from the compendium if it's there). */
+async function learnSkill(actor, { skillId, name, ability, tier }) {
+  const own = skillId ? actor.items.get(skillId) : actor.items.find(i => i.type === "skill" && i.name.toLowerCase() === String(name).toLowerCase());
+  if (own) {
+    if (tier === "master" || own.system.tier === "knack") await own.update({ "system.tier": tier === "master" ? "master" : "trained" });
+    return own;
+  }
+  const pack = game.packs.get(`${SYS}.skills`);
+  const entry = pack ? (await pack.getIndex()).find(e => e.name.toLowerCase() === String(name).toLowerCase()) : null;
+  const data = entry ? (await pack.getDocument(entry._id)).toObject() : { name, type: "skill", system: { ability } };
+  if (entry) foundry.utils.setProperty(data, "_stats.compendiumSource", entry.uuid ?? `Compendium.${pack.collection}.Item.${entry._id}`);
+  foundry.utils.setProperty(data, "system.tier", "trained");
+  const [made] = await actor.createEmbeddedDocuments("Item", [data]);
+  return made;
+}
+
 /** Run an activity: pay, roll, settle coins, log it and post a card. */
 export async function runDowntime(actor, key, values, { paid = false } = {}) {
   const act = ACTIVITIES[key];
@@ -214,7 +267,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   }
   let result = plan.result ?? "";
   let roll = "";
-  let refund = 0, earn = 0, days = plan.days;
+  let refund = 0, earn = 0, days = plan.days, extraCp = 0;
   const c = plan.check;
   if (c?.type === "income") {
     const total = await rollCheck(actor, { skillId: c.skillId });
@@ -222,6 +275,29 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     earn = perDay * 6;
     roll = `${total}`;
     result = `Earned ${cpText(earn)} (${cpText(perDay)} a day for 6 days).`;
+  } else if ((c?.type === "skill" || c?.type === "ability") && plan.retry) {
+    // Learning (K54, K55): on a failure, more weeks (and their gold) and roll again, until it's learned.
+    const rolls = [];
+    let total = await rollCheck(actor, c), extraWeeks = 0, tries = 0;
+    rolls.push(total);
+    while (total < c.dc && tries < 6) {
+      if (plan.retry.costCp && !paid) {
+        const after = payCoins(purse, plan.retry.costCp);
+        if (!after) break;
+        purse = after;
+      }
+      extraCp += plan.retry.costCp;
+      days += plan.retry.days;
+      extraWeeks += plan.retry.days / WEEK;
+      tries++;
+      total = await rollCheck(actor, c);
+      rolls.push(total);
+    }
+    roll = `${rolls.join(", ")} vs DC ${c.dc}`;
+    if (total >= c.dc) {
+      result = `Learned: ${plan.title}${extraWeeks ? ` (${extraWeeks} more week${extraWeeks === 1 ? "" : "s"}${plan.retry.costCp ? `, ${cpText(extraCp)} more` : ""})` : ""}.`;
+      if (plan.learn) await learnSkill(actor, plan.learn).catch(err => console.warn("Arneyan | learn skill", err));
+    } else result = `Not yet: ${rolls.length} failed checks${plan.retry.costCp && !paid ? " (or not enough gold for another week)" : ""}. Carry on with another course later.`;
   } else if (c?.type === "skill" || c?.type === "ability") {
     const total = await rollCheck(actor, c);
     const ok = total >= c.dc;
@@ -252,12 +328,12 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   if (refund || earn) purse = addCoins(purse, refund + earn);
   const entry = {
     id: foundry.utils.randomID(), key, activity: act.label, title: plan.title, days,
-    cost: plan.costCp ? `${cpText(plan.costCp)}${paid ? " (paid already)" : ""}` : "", costCp: plan.costCp, result, roll,
+    cost: plan.costCp + extraCp ? `${cpText(plan.costCp + extraCp)}${paid ? " (paid already)" : ""}` : "", costCp: plan.costCp + extraCp, result, roll,
     when: gameWhen(), worldTime: game.time?.worldTime ?? 0
   };
   const log = [...(actor.getFlag(SYS, "downtime") ?? []), entry];
   const upd = { [`flags.${SYS}.downtime`]: log };
-  if (plan.costCp > 0 && !paid || refund || earn) Object.assign(upd, Object.fromEntries(Object.entries(purse).map(([k, v]) => [`system.currency.${k}`, v])));
+  if ((plan.costCp > 0 || extraCp > 0) && !paid || refund || earn) Object.assign(upd, Object.fromEntries(Object.entries(purse).map(([k, v]) => [`system.currency.${k}`, v])));
   await actor.update(upd);
   await ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
@@ -275,6 +351,8 @@ export async function newDowntime(actor) {
   const skillSel = (name, pick = null) => `<select name="${name}"><option value="">Untrained (plain d20)</option>${skills.map(s => `<option value="${s.id}" ${pick?.(s) ? "selected" : ""}>${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`;
   const tierSel = name => `<select name="${name}">${Object.entries(TIERS).map(([k, t]) => `<option value="${k}" ${k === "hard" ? "selected" : ""}>${t.label} (DC ${t.dc})</option>`).join("")}<option value="custom">Another DC</option></select>`;
   const f = (label, html) => `<label class="arn-dt-field"><span>${label}</span>${html}</label>`;
+  const abilitySel = (name, pick = "int") => `<select name="${name}">${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}" ${k === pick ? "selected" : ""}>${esc(a)}</option>`).join("")}</select>`;
+  const secrets = actor.items.filter(i => i.flags?.[SYS]?.secret && Object.keys(i.flags[SYS].secret).length);
   const sections = {
     income: f("Skill", skillSel("income.skill")),
     craft: [f("Item", `<input type="text" name="craft.item" placeholder="A longsword">`), f("Value (gp)", `<input type="number" name="craft.value" value="15" min="0">`), f("Skill", skillSel("craft.skill")),
@@ -288,8 +366,13 @@ export async function newDowntime(actor) {
     copySpell: [f("Spell", `<input type="text" name="copySpell.spell">`), f("Spell level", `<input type="number" name="copySpell.level" value="1" min="1" max="9">`)].join(""),
     scribe: [f("Spell", `<input type="text" name="scribe.spell">`), f("Spell level (0 for a cantrip)", `<input type="number" name="scribe.level" value="1" min="0" max="9">`)].join(""),
     research: [f("Spell", `<input type="text" name="research.spell">`), f("Spell level (the GM sets it)", `<input type="number" name="research.level" value="1" min="1" max="9">`)].join(""),
-    learnSkill: [f("Skill", `<input type="text" name="learnSkill.skillName">`), f("Tiers", `<select name="learnSkill.tiers"><option value="1">One (Trained, or Trained to Master)</option><option value="2">Two (to Master)</option></select>`)].join(""),
-    train: [f("Training", `<select name="train.training">${Object.entries(TRAINING).map(([k, t]) => `<option value="${k}">${esc(t.label)}: ${t.weeks} weeks, ${t.gp} gp</option>`).join("")}</select>`), f("Which", `<input type="text" name="train.what" placeholder="Longbow, chain mail, a feat">`)].join(""),
+    learnSkill: [f("A skill you have (to Master)", `<select name="learnSkill.skill"><option value="">None: a new skill</option>${skills.filter(s => s.system.tier !== "master").map(s => `<option value="${s.id}">${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`),
+      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training">`), f("Its attribute", abilitySel("learnSkill.ability"))].join(""),
+    studySecret: [f("Secret", `<select name="studySecret.secret"><option value="">Not on the sheet</option>${secrets.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select>`),
+      f("Or its name", `<input type="text" name="studySecret.name">`), f("Weeks (blank: the Secret's own)", `<input type="number" name="studySecret.weeks" min="1">`),
+      f("DC (blank: the Secret's own)", `<input type="number" name="studySecret.dc" min="1">`), f("Attribute", `<select name="studySecret.ability"><option value="">The Secret's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
+    train: [f("Training", `<select name="train.training">${Object.entries(TRAINING).map(([k, t]) => `<option value="${k}">${esc(t.label)}: ${t.weeks} weeks, ${k === "feat" ? `${trainedFeatGold(actor.system.level).toLocaleString("en-GB")} gp at your Tier` : `${t.gp} gp`}</option>`).join("")}</select>`), f("Which", `<input type="text" name="train.what" placeholder="Longbow, chain mail, a feat">`),
+      f("A Trained Feat's attribute", abilitySel("train.ability", "str"))].join(""),
     disease: [f("Disease", `<input type="text" name="disease.disease">`), f("Its DC", `<input type="number" name="disease.dc" value="12">`), f("Days at most", `<input type="number" name="disease.days" value="7" min="1">`)].join(""),
     sideQuest: f("Quest", `<input type="text" name="sideQuest.quest">`),
     other: [f("Activity", `<select name="other.kind">${OTHER.map(o => `<option>${esc(o)}</option>`).join("")}</select>`), f("Days", `<input type="number" name="other.days" value="7" min="0">`),

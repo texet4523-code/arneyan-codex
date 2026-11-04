@@ -170,7 +170,7 @@ ARNEYAN.damageTypes = {
 
 ARNEYAN.spellLevels = ["Cantrip", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"];
 
-/** NWP slots: 3 at 1st, +1 at 4, 8, 12, 16, 20 and 24. */
+/** NWP slots before books v0.10.47 (K54 has none: skills are learned in downtime). Kept for old notes only. */
 ARNEYAN.nwpSlots = function (level) {
   return 3 + [4, 8, 12, 16, 20, 24].filter(l => level >= l).length;
 };

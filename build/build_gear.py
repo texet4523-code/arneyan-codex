@@ -79,6 +79,56 @@ UNIQUE_GLYPH = {"Soulthief": "bloody-sword", "Wyrmsbane": "dragon-head", "Wallgu
 UNIQUE_EXTRA = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)?\s*(?:damage\s*)?against ([a-z ]+?)(?=[,.;]| and )", re.I)
 
 
+# M&T v0.10.45 (K55, R-B32): the 18 Secrets, as cards in the equipment compendium (GM-placed, never for sale), and the
+# Last Form as a Unique feat. Study details go in flags.arneyan.secret for the downtime "Study a Secret".
+SECRET_GLYPH = {"The Golem Manuals": "golem-head", "The Grey Muster": "raise-skeleton", "The Black Tome": "black-book",
+                "The Wasteborn Bestiary": "book-storm", "Orrin's Little Book": "notebook", "The Brass Concordance": "fire-ring",
+                "The Phoenix Draught": "potion-ball", "Tiahane's Tithe": "dragon-breath", "The Last Form": "fist", "Eyrie Eggs": "nest-eggs",
+                "The Sleeping Egg": "cosmic-egg", "The Black Forge": "anvil-impact", "The Blood Chalice": "chalice-drops",
+                "The Moonward Totem": "moon-claws", "The Evergreen Spring": "water-fountain", "A Name in Brass": "pentacle",
+                "The Second Body": "body-swapping", "A Nalwood Heartseed": "plant-seed"}
+ATTR = {"intelligence": "int", "wisdom": "wis", "dexterity": "dex", "strength": "str", "constitution": "con", "charisma": "cha"}
+
+
+def secrets():
+    """The Secrets list: [(name, form, text, study)] from the M&T treasure chapter; study is {weeks, dc, ability} or None."""
+    try:
+        t = open(NAMED_UNIQUE_SRC, encoding="utf-8").read()
+    except OSError:
+        print(f"gear: WARNING no {NAMED_UNIQUE_SRC}: the Secrets are not built")
+        return []
+    i = t.find("### Secrets")
+    if i < 0:
+        print("gear: WARNING no Secrets section in the treasure chapter")
+        return []
+    block = t[i:].split("\n#", 1)[0]
+    out = []
+    for m in re.finditer(r"^- \*\*(.+?)\*\* \[Unique\] \(([^)]+)\)\.\s*(.+)$", block, re.M):
+        name, form, text = m.group(1), m.group(2).strip(), m.group(3).strip()
+        st = re.search(r"\*Study:\*([^*]*)", text)
+        study = None
+        if st:
+            s = st.group(1)
+            w = re.search(r"(\d+) weeks?", s)
+            dc = re.search(r"DC (\d+)", s)
+            ab = re.search(r"an? (Intelligence|Wisdom|Dexterity|Strength|Constitution|Charisma)(?: or (Intelligence|Wisdom|Dexterity|Strength|Constitution|Charisma))? (?:check|or)", s)
+            abl = ab.group(1).lower() if ab else ("wis" if re.search(r"Animal Training check", s) else "intelligence")
+            study = {"weeks": int(w.group(1)) if w else 0, "dc": int(dc.group(1)) if dc else 15,
+                     "ability": ATTR.get(abl, abl), "alt": ATTR.get((ab.group(2) or "").lower(), "") if ab else ""}
+        out.append((name, form, text, study))
+    return out
+
+
+def secret_html(name, form, text):
+    """A Secret's card: its form, then Study / Teaches / The work / You gain / Upkeep as their own lines, then its history."""
+    body = html.escape(text)
+    body = re.sub(r"\*([A-Z][A-Za-z ]+):\*", lambda m: f"</p><p><strong>{m.group(1)}:</strong>", body)
+    body = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", body)
+    return (f"<p><em>Secret ({html.escape(form)}).</em> " + body + "</p>"
+            + "<p class=\"arn-note\">Monsters &amp; Treasure, Secrets: one of a kind, never sold, placed by the GM. "
+            "Study it in downtime (Study a Secret); no one can teach it.</p>").replace("<p></p>", "")
+
+
 def named_uniques():
     """The Named Uniques list: [(name, base phrase, bonus, text)] from the M&T treasure chapter (empty if not there)."""
     try:
@@ -332,6 +382,42 @@ def build():
         }
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', uname)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
+
+    # The Secrets (M&T v0.10.45, K55): one card each in a Secrets folder beside the Unique Items; the Last Form is also a feat.
+    sec_list = secrets()
+    if sec_list:
+        parent = json.load(open(glob.glob(os.path.join(PACK, "folders_Example_Unique_Linkbreaker_Unique__*.json"))[0])).get("folder")
+        sec_folder = fid("equipment", "folder", "secrets")
+        json.dump({"_id": sec_folder, "_key": f"!folders!{sec_folder}", "name": "Secrets", "type": "Item", "folder": parent, "sorting": "a",
+                   "sort": 67, "color": None, "flags": {}, "description": "Monsters & Treasure: Uniques that teach what no level, teacher or feat does."},
+                  open(os.path.join(PACK, f"folders_Secrets_{sec_folder}.json"), "w"), ensure_ascii=False, indent=1)
+    for sname, form, stext, study in sec_list:
+        _id = fid("equipment", "item", f"secret|{sname}")
+        doc = {
+            "_id": _id, "_key": f"!items!{_id}", "name": sname, "type": "equipment", "img": icon("secret", SECRET_GLYPH.get(sname, "secret-book")),
+            "folder": sec_folder, "sort": 0, "ownership": {"default": 0}, "flags": {"arneyan": {"secret": study or {}}}, "effects": [],
+            "system": {"description": secret_html(sname, form, stext), "source": {"book": "mt", "page": 0}, "quantity": 1, "slots": 1.0,
+                       "price": "Unique (never for sale)", "equipped": False, "bundle": 0, "ammoType": "",
+                       "container": {"holds": False, "capacity": 0, "weightless": False, "extradimensional": False},
+                       "consumable": {"use": False, "heal": ""}, "charges": {"value": 0, "max": 0, "recharge": "", "crumble": False},
+                       "light": {"bright": 0, "dim": 0, "hours": 0, "lit": False, "litAt": 0, "angle": 360},
+                       "scroll": {"spell": None, "cl": 0, "dc": 0}, "itemSpells": [], "castLevel": 0, "nonCasterCl": 0, "nonCasterDc": 0}
+        }
+        json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', sname)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
+        changed += 1
+        if sname == "The Last Form":
+            # The Unique feat it teaches: on no Path, no feat level, once per encounter.
+            teach = re.search(r"\*Teaches:\*\s*the Unique feat The Last Form:\s*(.+?)\s*It is on no Path", stext)
+            fpack = os.path.join(OUT, "feats")
+            fid_ = fid("feats", "item", "secret|The Last Form")
+            fdoc = {"_id": fid_, "_key": f"!items!{fid_}", "name": "The Last Form", "type": "feat", "img": icon("secret", "fist"),
+                    "folder": None, "sort": 0, "ownership": {"default": 0}, "flags": {}, "effects": [],
+                    "system": {"description": f"<p><em>Unique feat (a Secret).</em> {html.escape(teach.group(1) if teach else '')[:1].upper() + html.escape(teach.group(1) if teach else '')[1:]}</p>"
+                               "<p>It is on no Path, uses no feat level and isn't your Trained Feat for the Tier; once per character. Learned only by studying "
+                               "with its one living holder (the Secret The Last Form).</p>",
+                               "source": {"book": "mt", "page": 0}, "path": "", "levelTaken": 0,
+                               "uses": {"value": 1, "max": 1, "per": "encounter"}, "rules": [], "toggle": False, "active": False}}
+            json.dump(fdoc, open(os.path.join(fpack, f"items_The_Last_Form_{fid_}.json"), "w"), ensure_ascii=False, indent=1)
 
     # Worn magic items whose Catalogue line is a plain number (28 Oct 2026, the Veterans' Monk wears a Ring of
     # Protection): the number as a rule, counted while the item is equipped.

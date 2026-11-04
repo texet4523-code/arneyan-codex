@@ -513,7 +513,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const clsList = actor.items.filter(i => i.type === "class");
       context.levelReady = clsList.length > 0 && (system.level ?? 0) < 24 && system.attributes.xp >= system.xpRate;
       context.levelReadyClass = clsList.length === 1 ? clsList[0].id : "";
-      context.nwpLeft = system.nwp.max - system.nwp.used;
+      context.nwpLeft = 0;
       // Starting gold: once rolled, only the GM sees the button (players can't farm it).
       context.canStartingGold = this.isEditable && canRunStartingWealth(actor, game.user);
     } else {
