@@ -688,7 +688,7 @@ From a full run-through as a player (a Human Fighter built from scratch to 5th l
 
 - **Luck sits with the attributes again**, in the same row; the Method V dice button moved to the end of the row (edit mode).
 - **Starting gold and gear.** After a new character's 1st-level setup, a window rolls the class's starting gold (Handbook, Starting Wealth), then offers a starting pack bought from it (Explorer's, Dungeoneer's, Scholar's, Diplomat's, Survivalist's, Healer's Satchel) or keeps the gold and opens the Catalogue to shop. A pack is paid from gold first, then platinum, then silver. Gunslingers pick a free Derringer, Pistol or Dragon Pistol; Artificers get their Kit's toolkit. Closing the 1st-level setup window with its X skips this; Apply or Skip go on to it. The **Starting gold** button by the coins is there until the gold is rolled; after that only the GM sees it, and running it again adds to the gold rolled so far (kept as a total) without giving the free items twice. The Handbook's toolkits are now in the Catalogue (Tools & Trades).
-- **Skill slots are enforced.** A character can't take the same skill twice or go over their Skill (NWP) slots (a Master takes two); the GM is asked and can allow it, and the extra slots the GM allows are kept (shown by the slot count, and editable by the GM in edit mode) so later level-ups count them. Several skills added at once are checked together. The level-up skill window is one choice: a new skill or a Master, not both; confirming with nothing picked asks again (Choose later keeps the slot).
+- **Skill slots are enforced** (until 0.10.86, when books v0.10.47 dropped them). A character can't take the same skill twice or go over their Skill (NWP) slots (a Master takes two); the GM is asked and can allow it, and the extra slots the GM allows are kept (shown by the slot count, and editable by the GM in edit mode) so later level-ups count them. Several skills added at once are checked together. The level-up skill window is one choice: a new skill or a Master, not both; confirming with nothing picked asks again (Choose later keeps the slot).
 - **Where features come from.** Feature rows, item sheets and chat cards show the class or kit and the level (e.g. "Cleric · Level 1"), and ancestry traits say "Ancestry trait"; feats show their path and the level they were taken at (stamped when a feat is added to a character; the pregens carry theirs where the book gives it).
 - **Reactions and round timers follow the right encounter.** With more than one encounter in the world, Attack of Opportunity and other reactions are spent (and warned about) in the encounter the creature is fighting in, and spell and effect timers count the rounds of the encounter they started in, not whichever one the tracker shows.
 
@@ -1071,7 +1071,7 @@ The system works on its own. If these modules are active, it uses them:
 - Level (all class levels added up), BtH (best class progression), XP needed per level (highest class rate, +2 per extra class).
 - AC: 10 + armour + shield + Dex, with Dex capped at +2 in medium armour and none in heavy.
 - Saves, Class Save DC and spell DC per casting class.
-- NWP slots used and available, inventory slots against the Strength limit (coins at 100 per slot).
+- Skills (no slot limit from 0.10.86), inventory slots against the Strength limit (coins at 100 per slot).
 - Death threshold (−10 minus Con, −20 minus Con from 11th level) and dying state.
 - Long Rest restores spell slots and daily abilities. Luck does not recover with rest.
 

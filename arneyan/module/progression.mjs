@@ -543,11 +543,8 @@ export async function promptFeat(actor, charLevel) {
     entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
-  if (uuid && uuid !== "later") {
-    await addFromUuid(actor, uuid, { levelTaken: charLevel });
-    // Skilled (books v0.10.47, K54): one skill at Trained when you take it.
-    if (list.find(e => e.uuid === uuid)?.name === "Skilled") await promptSkill(actor, charLevel, { skilled: true });
-  }
+  // Skilled's one skill at Trained is asked for when it lands on the sheet (documents.mjs).
+  if (uuid && uuid !== "later") await addFromUuid(actor, uuid, { levelTaken: charLevel });
 }
 
 /** One skill at Trained (the Skilled feat): a new skill, or training a Knack. `skilled` false: the old level-up slot. */
@@ -771,7 +768,7 @@ async function setUpFirstLevel(actor, cls) {
     chosen.feat && `<li><strong>Feat:</strong> ${esc(nameOf.get(chosen.feat) ?? "")}</li>`,
     chosen.bonusFeat && `<li><strong>Ancestry Feat:</strong> ${esc(nameOf.get(chosen.bonusFeat) ?? "")}</li>`,
     chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`,
-    chosen.knack && `<li><strong>Knack:</strong> ${esc(nameOf.get(chosen.knack) ?? "")} (Advantage, no slot)</li>`].filter(Boolean);
+    chosen.knack && `<li><strong>Knack:</strong> ${esc(nameOf.get(chosen.knack) ?? "")} (Advantage; not one of your 3 starting skills)</li>`].filter(Boolean);
   const head = intro("");
   const askFinal = async () => {
   const res = await DialogV2.wait({

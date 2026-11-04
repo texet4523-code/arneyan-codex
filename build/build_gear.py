@@ -122,11 +122,24 @@ def secrets():
 def secret_html(name, form, text):
     """A Secret's card: its form, then Study / Teaches / The work / You gain / Upkeep as their own lines, then its history."""
     body = html.escape(text)
-    body = re.sub(r"\*([A-Z][A-Za-z ]+):\*", lambda m: f"</p><p><strong>{m.group(1)}:</strong>", body)
+    first = [True]
+
+    def label(m):
+        # The first label stays on the opening line; each later one starts its own paragraph.
+        if first[0]:
+            first[0] = False
+            return f"<strong>{m.group(1)}:</strong>"
+        return f"</p><p><strong>{m.group(1)}:</strong>"
+    body = re.sub(r"\*([A-Z][A-Za-z ]+):\*", label, body)
     body = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", body)
+    if "no study or check" in text:
+        how = "Used as it says, with no study."
+    elif name == "The Last Form":
+        how = "Studied with its living holder, if they agree (Study a Secret)."
+    else:
+        how = "Studied in downtime (Study a Secret); no one can teach it."
     return (f"<p><em>Secret ({html.escape(form)}).</em> " + body + "</p>"
-            + "<p class=\"arn-note\">Monsters &amp; Treasure, Secrets: one of a kind, never sold, placed by the GM. "
-            "Study it in downtime (Study a Secret); no one can teach it.</p>").replace("<p></p>", "")
+            + f"<p class=\"arn-note\">Monsters &amp; Treasure, Secrets: one of a kind, never sold, placed by the GM. {how}</p>").replace("<p></p>", "")
 
 
 def named_uniques():
@@ -398,6 +411,7 @@ def build():
             "folder": sec_folder, "sort": 0, "ownership": {"default": 0}, "flags": {"arneyan": {"secret": study or {}}}, "effects": [],
             "system": {"description": secret_html(sname, form, stext), "source": {"book": "mt", "page": 0}, "quantity": 1, "slots": 1.0,
                        "price": "Unique (never for sale)", "equipped": False, "bundle": 0, "ammoType": "",
+                       **({"slots": 0} if re.search(r"\b(forge|spring|vat|Halls)\b", form) else {}),
                        "container": {"holds": False, "capacity": 0, "weightless": False, "extradimensional": False},
                        "consumable": {"use": False, "heal": ""}, "charges": {"value": 0, "max": 0, "recharge": "", "crumble": False},
                        "light": {"bright": 0, "dim": 0, "hours": 0, "lit": False, "litAt": 0, "angle": 360},

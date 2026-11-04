@@ -14,6 +14,10 @@ const src = p => fs.readFileSync(new URL(`../arneyan/${p}`, import.meta.url), "u
 const skill = (id, name, tier, ability = "wis") => ({ id, type: "skill", name, system: { tier, ability } });
 const pc = (items = [], level = 3) => ({ items, system: { level, casters: [] } });
 let p = DT.planDowntime("learnSkill", { skillName: "Animal Training", ability: "wis" }, pc());
+assert.equal(DT.planDowntime("learnSkill", { skillName: "Animal Training" }, pc()).check.ability, "", "no attribute picked: the compendium skill's own, looked up when it runs");
+assert.ok(DT.planDowntime("learnSkill", {}, pc()).block, "nothing picked or typed: nothing charged");
+assert.ok(DT.planDowntime("learnSkill", { skillName: "riding" }, pc([skill("s1", "Riding", "master")])).block, "already Master");
+assert.equal(DT.planDowntime("learnSkill", { skillName: "Riding" }, pc([skill("s1", "Riding", "trained")])).learn.tier, "master", "a typed skill already Trained goes on to Master");
 assert.equal(p.days, 14); assert.equal(p.costCp, 5000, "Trained: 2 weeks at 25 gp");
 assert.deepEqual([p.check.ability, p.check.dc], ["wis", 10]);
 assert.deepEqual(p.retry, { days: 7, costCp: 2500 }, "a failure: 1 more week and its gold");
@@ -32,7 +36,7 @@ assert.equal(DT.planDowntime("train", { training: "weapon" }, pc()).check, null,
 const model = src("module/data/actor-models.mjs");
 assert.ok(/max: Infinity/.test(model), "no slot maximum");
 assert.ok(!/NWP_LEVELS\.includes/.test(src("module/progression.mjs")), "no skill slot at level-up");
-assert.ok(/name === "Skilled"\) await promptSkill\(actor, charLevel, \{ skilled: true \}\)/.test(src("module/progression.mjs")), "Skilled: one skill at Trained");
+
 const skilled = read("feats", "items_Skilled_k3")[0];
 assert.deepEqual(skilled.system.rules, [], "Skilled no longer adds slots");
 assert.ok(/half the time/.test(skilled.system.description));
@@ -59,6 +63,11 @@ assert.ok(DT.planDowntime("studySecret", { name: "Something" }, pc()).warn.some(
 
 /* Dragon hoards: Adult (G) a Secret on 20, Ancient (H) on 19-20; only one that can be carried. */
 assert.ok(!T.CARRIED_SECRETS.includes("The Black Forge") && !T.CARRIED_SECRETS.includes("The Evergreen Spring") && T.CARRIED_SECRETS.includes("The Black Tome"));
+assert.equal(T.isDragon({ name: "Vermithrax", system: { details: { type: "dragon (chromatic)" } } }), true, "a renamed dragon");
+assert.equal(T.isDragon({ name: "Dragon Turtle", system: { details: { type: "monstrosity" } } }), false);
+assert.equal(T.isDragon({ name: "Old Red Dragon", system: { details: {} } }), true, "no type: its name");
+assert.ok(/if \(plan\.block\)/.test(src("module/downtime.mjs")) && /tries < 40/.test(src("module/downtime.mjs")), "keeps rolling while the gold lasts");
+assert.ok(/this\.name === "Skilled"/.test(src("module/documents.mjs")), "Skilled asks for its skill however it arrives");
 const roller = d20 => async f => (f === "1d20" ? d20 : (await import("node:crypto")).randomInt(1, 2));
 const has = r => r.items.some(i => i.name === "A Secret (GM's choice)");
 assert.ok(has(await T.rollTreasure(T.parseTreasureCode("G"), { roll: roller(20), name: "Treasure: Green Dragon, Adult" })), "Adult on 20");

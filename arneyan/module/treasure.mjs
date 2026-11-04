@@ -349,9 +349,9 @@ export async function treasureOptions({ parts, count = 1, askCount = true, name 
  * @param {string} o.title  Card heading ("Treasure: Goblins").
  * @param {{code:string, lair:boolean, kind:string}[]} o.parts
  */
-export async function postTreasure({ title, parts, count = 1, lair = true, tradeLots = 0, speaker = null }) {
+export async function postTreasure({ title, parts, count = 1, lair = true, tradeLots = 0, speaker = null, dragon = undefined }) {
   if (!game.user.isGM) return ui.notifications.warn("The GM rolls treasure.");
-  const result = await rollTreasure(parts, { roll: foundryRoll, count, lair, tradeLots, name: title });
+  const result = await rollTreasure(parts, { roll: foundryRoll, count, lair, tradeLots, name: title, ...(dragon === undefined ? {} : { dragon }) });
   const uuids = await itemUuids(result.items.flatMap(i => [i.find, ...(i.pick ?? [])]), result.items.flatMap(i => i.pick ?? []));
   for (const i of result.items) if (i.find && uuids[i.find]) i.uuid = uuids[i.find];
   for (const s of result.sections) for (const i of s.items) if (i.find && uuids[i.find]) i.uuid = uuids[i.find];
@@ -364,6 +364,12 @@ export async function postTreasure({ title, parts, count = 1, lair = true, trade
   });
 }
 
+/** A true dragon, by its stat block's type ("dragon (chromatic)"), whatever the GM named it; its name otherwise. */
+export function isDragon(actor) {
+  const type = String(actor?.system?.details?.type ?? "");
+  return type ? /^dragon\b/i.test(type) : /\bdragon\b/i.test(actor?.name ?? "");
+}
+
 /** Treasure for one monster (its sheet's button). */
 export async function treasureForActor(actor) {
   if (!game.user.isGM) return;
@@ -371,7 +377,7 @@ export async function treasureForActor(actor) {
   if (!parts.length) return ui.notifications.info(`${actor.name} carries no treasure (code N, or none set on the Biography tab).`);
   const opts = await treasureOptions({ parts, name: actor.name });
   if (!opts) return;
-  return postTreasure({ title: `Treasure: ${actor.name}`, parts, ...opts, speaker: ChatMessage.getSpeaker({ actor }) });
+  return postTreasure({ title: `Treasure: ${actor.name}`, parts, ...opts, speaker: ChatMessage.getSpeaker({ actor }), dragon: isDragon(actor) });
 }
 
 /**
@@ -384,7 +390,7 @@ export async function treasureForFoes(foes) {
   for (const f of foes) {
     const actor = await fromUuid(f.uuid).catch(() => null);
     const parts = parseTreasureCode(actor?.system?.details?.treasure ?? "");
-    if (parts.length) groups.push({ name: f.name, count: f.count, parts });
+    if (parts.length) groups.push({ name: f.name, count: f.count, parts, dragon: isDragon(actor) });
   }
   if (!groups.length) return ui.notifications.info("None of these creatures has treasure.");
   const allParts = groups.flatMap(g => g.parts);
@@ -393,7 +399,7 @@ export async function treasureForFoes(foes) {
   // One card: each group's sections, all of it stashable together.
   const merged = { coins: { pp: 0, gp: 0, sp: 0, cp: 0 }, items: [], sections: [], value: 0 };
   for (const g of groups) {
-    const r = await rollTreasure(g.parts, { roll: foundryRoll, count: g.count, lair: opts.lair, tradeLots: opts.tradeLots, name: g.name });
+    const r = await rollTreasure(g.parts, { roll: foundryRoll, count: g.count, lair: opts.lair, tradeLots: opts.tradeLots, name: g.name, dragon: g.dragon });
     for (const s of r.sections) merged.sections.push({ ...s, label: `${g.name}: ${s.label}` });
     for (const k of Object.keys(merged.coins)) merged.coins[k] += r.coins[k];
     merged.items.push(...r.items);

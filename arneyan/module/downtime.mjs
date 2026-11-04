@@ -173,16 +173,20 @@ export function planDowntime(key, v, actor) {
       return { title: v.spell || "A new spell", days: lvl * WEEK, costCp: 10000 * lvl, check: { type: "ability", ability: castStat(), dc: 15 }, warn, failHalf: true };
     }
     case "learnSkill": {
-      const s = skill(v.skill);
+      // A typed name the character already has counts as that skill (no Trained course for a skill already Trained).
+      const typed = String(v.skillName ?? "").trim();
+      const s = skill(v.skill) ?? (typed ? skills.find(x => x.name.toLowerCase() === typed.toLowerCase()) : null) ?? null;
+      if (!s && !typed) return { title: "A skill", days: 0, costCp: 0, check: null, warn, block: "Pick a skill to make Master, or type a new skill's name." };
+      if (s?.system?.tier === "master") return { title: s.name, days: 0, costCp: 0, check: null, warn, block: `${s.name} is already Master.` };
       const goal = s?.system?.tier === "trained" || v.goal === "master" ? "master" : "trained";
       if (goal === "master" && !s) warn.push("Master needs the skill at Trained first: pick it from the list.");
-      if (s?.system?.tier === "master") warn.push(`${s.name} is already Master.`);
       const c = SKILL_COURSE[goal];
       // Skilled (K54): skills in half the time; the gold is weekly, so half the gold too.
       const skilled = (actor?.items ?? []).some(i => i.type === "feat" && i.name === "Skilled");
       const weeks = skilled ? c.weeks / 2 : c.weeks;
-      const name = s?.name ?? (String(v.skillName ?? "").trim() || "A skill");
-      const ability = s?.system?.ability || v.ability || "int";
+      const name = s?.name ?? typed;
+      // A new skill's attribute: the one picked, else the compendium skill's own (looked up when it runs), else Intelligence.
+      const ability = s?.system?.ability || v.ability || "";
       return { title: `${name} (${goal === "master" ? "Master" : "Trained"})`, days: weeks * WEEK, costCp: weeks * c.gp * 100,
         check: { type: "ability", ability, dc: c.dc }, retry: { days: WEEK, costCp: c.gp * 100 },
         learn: { skillId: s?.id ?? "", name, ability, tier: goal }, warn: skilled ? [...warn, "Skilled: half the time."] : warn };
@@ -259,6 +263,14 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   const act = ACTIVITIES[key];
   if (!act || !actor?.isOwner) return null;
   const plan = planDowntime(key, values, actor);
+  if (plan.block) { ui.notifications.warn(plan.block); return null; }
+  // A new skill with no attribute picked: the compendium skill's own.
+  if (plan.check?.type === "ability" && !plan.check.ability) {
+    const pack = game.packs.get(`${SYS}.skills`);
+    const entry = pack ? (await pack.getIndex({ fields: ["system.ability"] })).find(e => e.name.toLowerCase() === String(plan.learn?.name ?? "").toLowerCase()) : null;
+    plan.check.ability = entry?.system?.ability || "int";
+    if (plan.learn) plan.learn.ability = plan.check.ability;
+  }
   let purse = { ...actor.system.currency };
   if (plan.costCp > 0 && !paid) {
     const after = payCoins(purse, plan.costCp);
@@ -278,12 +290,13 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   } else if ((c?.type === "skill" || c?.type === "ability") && plan.retry) {
     // Learning (K54, K55): on a failure, more weeks (and their gold) and roll again, until it's learned.
     const rolls = [];
-    let total = await rollCheck(actor, c), extraWeeks = 0, tries = 0;
+    let total = await rollCheck(actor, c), extraWeeks = 0, tries = 0, broke = false;
     rolls.push(total);
-    while (total < c.dc && tries < 6) {
-      if (plan.retry.costCp && !paid) {
+    // The book: keep training and roll again. The extra weeks depend on the rolls, so they're paid now, "paid already" or not.
+    while (total < c.dc && tries < 40) {
+      if (plan.retry.costCp) {
         const after = payCoins(purse, plan.retry.costCp);
-        if (!after) break;
+        if (!after) { broke = true; break; }
         purse = after;
       }
       extraCp += plan.retry.costCp;
@@ -297,7 +310,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     if (total >= c.dc) {
       result = `Learned: ${plan.title}${extraWeeks ? ` (${extraWeeks} more week${extraWeeks === 1 ? "" : "s"}${plan.retry.costCp ? `, ${cpText(extraCp)} more` : ""})` : ""}.`;
       if (plan.learn) await learnSkill(actor, plan.learn).catch(err => console.warn("Arneyan | learn skill", err));
-    } else result = `Not yet: ${rolls.length} failed checks${plan.retry.costCp && !paid ? " (or not enough gold for another week)" : ""}. Carry on with another course later.`;
+    } else result = `Not yet: ${rolls.length} failed check${rolls.length === 1 ? "" : "s"}${broke ? `, and not enough gold for ${plan.retry.days / WEEK} more week${plan.retry.days === WEEK ? "" : "s"}` : ""}. Carry on later with the extra weeks only, not the whole course.`;
   } else if (c?.type === "skill" || c?.type === "ability") {
     const total = await rollCheck(actor, c);
     const ok = total >= c.dc;
@@ -328,12 +341,12 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   if (refund || earn) purse = addCoins(purse, refund + earn);
   const entry = {
     id: foundry.utils.randomID(), key, activity: act.label, title: plan.title, days,
-    cost: plan.costCp + extraCp ? `${cpText(plan.costCp + extraCp)}${paid ? " (paid already)" : ""}` : "", costCp: plan.costCp + extraCp, result, roll,
+    cost: plan.costCp + extraCp ? `${cpText(plan.costCp + extraCp)}${paid ? ` (${cpText(plan.costCp)} paid already)` : ""}` : "", costCp: plan.costCp + extraCp, result, roll,
     when: gameWhen(), worldTime: game.time?.worldTime ?? 0
   };
   const log = [...(actor.getFlag(SYS, "downtime") ?? []), entry];
   const upd = { [`flags.${SYS}.downtime`]: log };
-  if ((plan.costCp > 0 || extraCp > 0) && !paid || refund || earn) Object.assign(upd, Object.fromEntries(Object.entries(purse).map(([k, v]) => [`system.currency.${k}`, v])));
+  if (plan.costCp > 0 && !paid || extraCp > 0 || refund || earn) Object.assign(upd, Object.fromEntries(Object.entries(purse).map(([k, v]) => [`system.currency.${k}`, v])));
   await actor.update(upd);
   await ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
@@ -366,8 +379,8 @@ export async function newDowntime(actor) {
     copySpell: [f("Spell", `<input type="text" name="copySpell.spell">`), f("Spell level", `<input type="number" name="copySpell.level" value="1" min="1" max="9">`)].join(""),
     scribe: [f("Spell", `<input type="text" name="scribe.spell">`), f("Spell level (0 for a cantrip)", `<input type="number" name="scribe.level" value="1" min="0" max="9">`)].join(""),
     research: [f("Spell", `<input type="text" name="research.spell">`), f("Spell level (the GM sets it)", `<input type="number" name="research.level" value="1" min="1" max="9">`)].join(""),
-    learnSkill: [f("A skill you have (to Master)", `<select name="learnSkill.skill"><option value="">None: a new skill</option>${skills.filter(s => s.system.tier !== "master").map(s => `<option value="${s.id}">${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`),
-      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training">`), f("Its attribute", abilitySel("learnSkill.ability"))].join(""),
+    learnSkill: [f("A skill you have (Trained to Master, or train a Knack)", `<select name="learnSkill.skill"><option value="">None: a new skill</option>${skills.filter(s => s.system.tier !== "master").map(s => `<option value="${s.id}">${esc(s.name)} (${esc(ARNEYAN.skillTiers[s.system.tier] ?? s.system.tier)})</option>`).join("")}</select>`),
+      f("Or a new skill", `<input type="text" name="learnSkill.skillName" placeholder="Animal Training">`), f("Its attribute", `<select name="learnSkill.ability"><option value="">The skill's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
     studySecret: [f("Secret", `<select name="studySecret.secret"><option value="">Not on the sheet</option>${secrets.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select>`),
       f("Or its name", `<input type="text" name="studySecret.name">`), f("Weeks (blank: the Secret's own)", `<input type="number" name="studySecret.weeks" min="1">`),
       f("DC (blank: the Secret's own)", `<input type="number" name="studySecret.dc" min="1">`), f("Attribute", `<select name="studySecret.ability"><option value="">The Secret's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),

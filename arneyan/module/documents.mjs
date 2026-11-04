@@ -4,7 +4,7 @@ import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ON
 import { ARNEYAN } from "./config.mjs";
 import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
-import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
+import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, promptSkill, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
@@ -1259,6 +1259,14 @@ export class ArneyanItem extends Item {
         (wait ? wait.catch(() => {}) : Promise.resolve()).then(() => (actor.items.has(this.id) ? syncLuckFeats(actor) : null))
           .catch(err => console.warn("Arneyan | Luck feat", err));
       }
+    }
+    // Skilled (books v0.10.47, K54): one skill at Trained when it's taken, however it arrives (a feat level, the 1st-level
+    // setup, a drag onto the sheet); never for an import, a grant or the update.
+    if (userId === game.user.id && this.type === "feat" && this.name === "Skilled" && actor instanceof Actor && actor.type === "character"
+      && !options.arneyanGrant && !options.arneyanImport && !options.arneyanMigration) {
+      const wait = firstLevelSetupRunning(actor);
+      (wait ? wait.catch(() => {}) : Promise.resolve()).then(() => (actor.items.has(this.id) ? promptSkill(actor, actor.system.level, { skilled: true }) : null))
+        .catch(err => console.warn("Arneyan | Skilled", err));
     }
     if (userId !== game.user.id || !(actor instanceof Actor) || actor.type !== "character" || options.arneyanGrant) return;
     if (this.type === "class") {

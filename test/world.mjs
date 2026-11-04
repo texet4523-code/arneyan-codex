@@ -200,7 +200,7 @@ pl = D.planDowntime("scribe", { level: "0" }, crafter); assert.equal(pl.days, 1)
 pl = D.planDowntime("scribe", { level: "2" }, crafter); assert.equal(pl.days, 14); assert.equal(pl.costCp, 20000);
 pl = D.planDowntime("research", { level: "4" }, crafter); assert.equal(pl.days, 28); assert.equal(pl.check.dc, 15);
 pl = D.planDowntime("train", { training: "armourHeavy" }, crafter); assert.equal(pl.days, 56); assert.equal(pl.costCp, 50000);
-pl = D.planDowntime("learnSkill", { tiers: "2" }, crafter); assert.equal(pl.days, 14); assert.equal(pl.costCp, 5000);
+pl = D.planDowntime("learnSkill", { skillName: "Riding" }, crafter); assert.equal(pl.days, 14); assert.equal(pl.costCp, 5000); // K54: Trained, 2 weeks at 25 gp
 pl = D.planDowntime("income", { skill: smith.id }, crafter); assert.equal(pl.days, 6);
 pl = D.planDowntime("brew", { value: "50", skill: smith.id, tier: "hard" }, crafter); assert.ok(pl.warn.some(w => /Alchemy/.test(w)));
 pl = D.planDowntime("other", { kind: "Farm", days: "10", cost: "2.5", result: "A good crop" }, crafter);
