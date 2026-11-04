@@ -774,8 +774,6 @@ async function setUpFirstLevel(actor, cls) {
     if (chosen.bonusFeat && chosen.bonusFeat !== chosen.feat) await addFromUuid(actor, chosen.bonusFeat, { levelTaken: 1 });
     // One at a time, so each skill goes through the slot check.
     for (const s of [...new Set(chosen.skills.filter(Boolean))]) await addFromUuid(actor, s);
-    // An Assassin who picks Climb rolls it with Dexterity (Kieran 4 Nov).
-    await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
     // The Knack: no slot, Advantage on its checks (its own skill item, or the flag on one already taken).
     if (chosen.knack) {
       const name = nameOf.get(chosen.knack);
@@ -783,6 +781,8 @@ async function setUpFirstLevel(actor, cls) {
       if (have) await have.update({ "flags.arneyan.knack": true });
       else await addFromUuid(actor, chosen.knack, { extra: { system: { tier: "knack" }, flags: { arneyan: { knack: true } } } });
     }
+    // An Assassin who picks Climb (a starting skill or the Knack) rolls it with Dexterity (Kieran 4 Nov).
+    await syncThiefSkills(actor).catch(err => console.warn("Arneyan | Thief Skills", err));
     // Starting Luck: rolled here, or typed in from a roll at the table (player feedback, 23 Oct 2026: no auto-roll).
     let base = null;
     if (luck === "roll") {

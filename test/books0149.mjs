@@ -62,7 +62,8 @@ assert.deepEqual(P.thiefDexFor({ Assassin: 3 }), ["Climb"]);
 assert.deepEqual(P.thiefDexFor({ Rogue: 1 }), ["Climb"]);
 assert.deepEqual(P.thiefDexFor({ Fighter: 5 }), []);
 assert.ok(!("Climb" in P.thiefSkillsFor({ Assassin: 9 })), "not given free");
-assert.ok(/thiefDexFor\(lv\)\.includes\(plan\.learn\?\.name\)\) plan\.check\.ability = "dex"/.test(src("module/downtime.mjs")), "learning Climb rolls Dexterity for them");
+assert.ok(/thiefDexFor\(lv\)\.some\(n => n\.toLowerCase\(\) === /.test(src("module/downtime.mjs")), "learning Climb (any case) rolls Dexterity for them");
+assert.ok(src("module/progression.mjs").indexOf("flags: { arneyan: { knack: true } } } });\n    }\n    // An Assassin who picks Climb") > 0, "after the Knack");
 /* HB v0.10.50 (B-F38, K58). */
 const cf = read("class-features", "items_");
 for (const sa of cf.filter(i => i.name === "Sneak Attack")) assert.ok(sa.system.rules.some(r => /you are flanking it/.test(r.when ?? "")), "flanking counts");
