@@ -74,6 +74,33 @@ export function isOpposite(a, b, t) {
   return false;
 }
 
+/** Do the segments p1-p2 and q1-q2 cross or touch? */
+export function segmentsMeet(p1, p2, q1, q2) {
+  const o = (a, b, c) => (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+  const on = (a, b, c) => Math.min(a.x, b.x) <= c.x && c.x <= Math.max(a.x, b.x) && Math.min(a.y, b.y) <= c.y && c.y <= Math.max(a.y, b.y);
+  const d1 = o(q1, q2, p1), d2 = o(q1, q2, p2), d3 = o(p1, p2, q1), d4 = o(p1, p2, q2);
+  if (((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) && ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0))) return true;
+  return (d1 === 0 && on(q1, q2, p1)) || (d2 === 0 && on(q1, q2, p2)) || (d3 === 0 && on(p1, p2, q1)) || (d4 === 0 && on(p1, p2, q2));
+}
+
+/** The points of a target's space that cover is checked against: its centre and its four corners, set in a little. */
+export function coverPoints(t) {
+  const i = Math.min(t.w, t.h) * 0.1;
+  return [centre(t), { x: t.x + i, y: t.y + i }, { x: t.x + t.w - i, y: t.y + i }, { x: t.x + i, y: t.y + t.h - i }, { x: t.x + t.w - i, y: t.y + t.h - i }];
+}
+
+/**
+ * Cover from walls (Kieran, 5 Nov): lines from the attacker's centre to the target's centre and four corners. Any
+ * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b, oneWay };
+ * a one-way wall only counts where `oneWayBlocks(origin, point)` says the line hits it from its blocking side.
+ * @returns {"none"|"half"|"full"}
+ */
+export function wallCover(origin, t, walls, oneWayBlocks = () => false) {
+  const pts = coverPoints(t);
+  const blocked = pts.filter(p => walls.some(w => segmentsMeet(origin, p, w.a, w.b) && (!w.oneWay || oneWayBlocks(origin, p)))).length;
+  return !blocked ? "none" : blocked === pts.length ? "full" : "half";
+}
+
 const SIZE_ORDER = ["tiny", "small", "medium", "large", "huge", "gargantuan"];
 /** Grapple, shove and trip: only a creature up to one size larger than yourself. */
 export function sizeAllows(attacker, target) {
@@ -182,6 +209,38 @@ const rectOf = tok => {
   return { x: d.x, y: d.y, w: (d.width ?? 1) * gs, h: (d.height ?? 1) * gs };
 };
 const positional = () => { try { return game.settings.get(SYS, "positionalCombat") !== false; } catch { return true; } };
+const autoCover = () => { try { return game.settings.get(SYS, "wallCover") !== false; } catch { return true; } };
+
+/**
+ * The walls that give cover: solid ones, blocking both movement and sight (a window or an invisible wall doesn't,
+ * nor does an ethereal one), with open doors left out. Low walls drawn as Limited (terrain) walls count.
+ */
+function coverWalls() {
+  const OPEN = CONST.WALL_DOOR_STATES?.OPEN ?? 1;
+  return (canvas?.walls?.placeables ?? []).flatMap(w => {
+    const d = w.document;
+    if (!d?.c || !d.move || !d.sight) return [];
+    if (d.door && d.ds === OPEN) return [];
+    return [{ a: { x: d.c[0], y: d.c[1] }, b: { x: d.c[2], y: d.c[3] }, oneWay: !!d.dir }];
+  });
+}
+
+/** Does Foundry's own sight test stop this line? Used for one-way walls, whose blocking side Foundry decides. */
+function sightBlocked(origin, point) {
+  try {
+    const be = CONFIG.Canvas?.polygonBackends?.sight;
+    return !!be?.testCollision?.(origin, point, { type: "sight", mode: "any" });
+  } catch { return false; }
+}
+
+/** The cover the walls give a target token against an attacker token. */
+export function coverBetween(from, to) {
+  if (!from || !to || from.id === to.id || !canvas?.walls) return "none";
+  const walls = coverWalls();
+  if (!walls.length) return "none";
+  const origin = { ...centre(rectOf(from)), elevation: from.document?.elevation ?? 0 };
+  return wallCover(origin, rectOf(to), walls, (o, p) => sightBlocked(o, { ...p, elevation: to.document?.elevation ?? 0 }));
+}
 const isGMClient = () => { const gm = game.users.activeGM; return gm ? gm.id === game.user.id : game.user.isGM; };
 const subdualOf = actor => Math.max(0, Number(actor?.flags?.[SYS]?.subdual) || 0);
 const sizeOf = actor => actor?.system?.details?.size ?? "medium";
@@ -348,11 +407,37 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     out.block = true;
     return out;
   }
+  // Cover from walls (Kieran, 5 Nov), for targets without a hand-set cover status (that one wins).
+  const me = tokenOf(actor);
+  const walls = new Map();
+  if (autoCover() && me && canvas?.scene) {
+    for (const t of targets) {
+      const st = statusesOf(t.actor);
+      if (!t.token || st.has("cover") || st.has("fullcover")) continue;
+      const c = coverBetween(me, t.token);
+      if (c !== "none") walls.set(t, c);
+    }
+  }
+  const walled = targets.filter(t => walls.get(t) === "full");
+  if (walled.length) {
+    const names = walled.map(t => t.name).join(", "), is = walled.length === 1 ? "is" : "are";
+    // Players can't roll it; the GM is warned and can (a token peeking round a corner, a wall drawn loosely).
+    if (!game.user.isGM) {
+      ui.notifications.warn(`${names} ${is} behind a wall (Full Cover) and can't be targeted directly. Ask the GM if that's wrong.`);
+      out.block = true;
+      return out;
+    }
+    ui.notifications.warn(`${names} ${is} behind a wall (Full Cover). Rolling anyway, as you're the GM.`);
+    out.notes.push(`${names}: Full Cover from the walls (the GM rolled anyway)`);
+  }
+  const halfName = ARNEYAN.conditions.cover.name;
+  if (targets.length === 1 && walls.get(targets[0]) === "half") out.adv.push({ values: [-1], adv: [], dis: [`${targets[0].name}: ${halfName} (walls)`] });
   // Cover on one of several targets: one roll can't carry it, so say so.
   if (targets.length > 1) {
     for (const t of targets) {
       const st = statusesOf(t.actor);
       const c = ["cover", "concealed"].filter(id => st.has(id)).map(id => ARNEYAN.conditions[id].name);
+      if (walls.get(t) === "half") c.push(`${halfName} from the walls`);
       if (c.length) out.notes.push(`${t.name}: ${c.join(", ")} (Disadvantage against it)`);
     }
   }
@@ -955,6 +1040,11 @@ export function registerCombat() {
   game.settings.register(SYS, "positionalCombat", {
     name: "Flanking and crowding from token positions",
     hint: "Melee attacks get Advantage when an ally stands directly opposite the target; ranged attacks get Disadvantage with an enemy within 5ft or when shooting at a target next to an ally. The Flank Attack switch still works by hand.",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+  game.settings.register(SYS, "wallCover", {
+    name: "Cover from walls",
+    hint: "Attacks check the walls between attacker and target: some of the target's space behind a wall gives Half Cover (Disadvantage), all of it Full Cover (players can't attack it; the GM is warned and can). Solid walls only: windows, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand overrides it.",
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("getCombatantContextOptions", trackerOptions);

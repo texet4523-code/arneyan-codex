@@ -34,6 +34,25 @@ assert.equal(C.isOpposite(sq(-1, 0), sq(-1, 1), T), false, "both on the same sid
 assert.equal(C.isOpposite(sq(-1, 0), sq(2, 1), sq(0, 0, 2)), true, "across a Large creature");
 assert.equal(C.isOpposite(sq(-100, 0, 100), sq(100, 0, 100), sq(0, 0, 100)), true, "pixel sizes");
 
+/* Cover from walls (Kieran, 5 Nov): centre and four corners; any line blocked Half, all five Full. */
+const P = (x, y) => ({ x, y });
+const W = (x0, y0, x1, y1, oneWay = false) => ({ a: P(x0, y0), b: P(x1, y1), oneWay });
+assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, -5), P(5, 5)), true, "crossing");
+assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, 1), P(5, 5)), false, "short of the line");
+assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, 0), P(5, 5)), true, "touching counts");
+assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(12, 0), P(15, 0)), false, "in line but apart");
+assert.equal(C.coverPoints({ x: 0, y: 0, w: 100, h: 100 }).length, 5);
+const tgt = { x: 500, y: 0, w: 100, h: 100 }, from = P(50, 50);
+assert.equal(C.wallCover(from, tgt, []), "none", "no walls");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500)]), "full", "a long wall in between");
+assert.equal(C.wallCover(from, tgt, [W(300, 60, 300, 500)]), "half", "a wall hiding the lower part");
+assert.equal(C.wallCover(from, tgt, [W(300, 200, 300, 500)]), "none", "a wall off to the side");
+assert.equal(C.wallCover(from, tgt, [W(600, -500, 600, 500)]), "none", "a wall behind the target");
+assert.equal(C.wallCover(from, tgt, [W(500, -500, 500, 500)]), "full", "a wall along its near edge");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, true)]), "none", "a one-way wall from its open side");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, true)], () => true), "full", "a one-way wall from its blocking side");
+assert.equal(C.wallCover(from, { x: 500, y: 0, w: 200, h: 200 }, [W(300, 100, 300, 500)]), "half", "part of a Large creature");
+
 /* Contests. */
 assert.equal(C.contestWinner({ total: 15, natural: 10 }, { total: 15, natural: 12 }), "defender", "ties go to the defender");
 assert.equal(C.contestWinner({ total: 16, natural: 10 }, { total: 15, natural: 12 }), "attacker");
