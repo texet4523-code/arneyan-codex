@@ -100,25 +100,24 @@ function onSegment(a, b, c) {
 /**
  * The wall document fields that give cover, or null: solid walls, blocking movement and blocking sight as a Normal or
  * Limited (terrain, a low wall) wall. Windows (Proximity sight), Distance, invisible and ethereal walls don't, nor do
- * open doors. `dir` is its one-way direction (0 both ways).
+ * open doors. One-way walls don't either for now: which side Foundry blocks from is still to be checked live, and a
+ * wrong guess would refuse attacks from the open side.
  */
 export function coverWall(d, { LIMITED = 10, NORMAL = 20, OPEN = 1 } = {}) {
-  if (!d?.c || !d.move || ![LIMITED, NORMAL].includes(d.sight)) return null;
+  if (!d?.c || !d.move || ![LIMITED, NORMAL].includes(d.sight) || d.dir) return null;
   if (d.door && d.ds === OPEN) return null;
-  return { a: { x: d.c[0], y: d.c[1] }, b: { x: d.c[2], y: d.c[3] }, dir: d.dir || 0 };
+  return { a: { x: d.c[0], y: d.c[1] }, b: { x: d.c[2], y: d.c[3] } };
 }
 
 /**
  * Cover from walls (Kieran, 5 Nov): lines from the attacker's centre to the target's centre and four corners. Any
- * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b, dir, side };
- * a one-way wall only blocks a line coming from its `dir` side, which `side(origin)` gives (Foundry's own orientPoint:
- * "collides only when a ray strikes its left side"). A wall the attacker's own centre sits on blocks nothing (a big
- * token in a doorway), nor one that only touches the end of a line.
+ * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b }. A wall
+ * the attacker's own centre sits on blocks nothing (a big token in a doorway), nor one only touching a line's end.
  * @returns {"none"|"half"|"full"}
  */
 export function wallCover(origin, t, walls) {
   const pts = coverPoints(t);
-  const live = walls.filter(w => !onSegment(w.a, w.b, origin) && (!w.dir || w.side?.(origin) === w.dir));
+  const live = walls.filter(w => !onSegment(w.a, w.b, origin));
   const blocked = pts.filter(p => live.some(w => segmentsMeet(origin, p, w.a, w.b) && !onSegment(w.a, w.b, p))).length;
   return !blocked ? "none" : blocked === pts.length ? "full" : "half";
 }
@@ -233,19 +232,11 @@ const rectOf = tok => {
 const positional = () => { try { return game.settings.get(SYS, "positionalCombat") !== false; } catch { return true; } };
 const autoCover = () => { try { return game.settings.get(SYS, "wallCover") !== false; } catch { return true; } };
 
-/** The scene's walls that give cover (coverWall), each with Foundry's side test for one-way walls. */
+/** The scene's walls that give cover (coverWall). */
 function coverWalls() {
   const S = CONST.WALL_SENSE_TYPES ?? {}, D = CONST.WALL_DOOR_STATES ?? {};
   const kinds = { LIMITED: S.LIMITED ?? 10, NORMAL: S.NORMAL ?? 20, OPEN: D.OPEN ?? 1 };
-  return (canvas?.walls?.placeables ?? []).flatMap(w => {
-    const seg = coverWall(w.document, kinds);
-    if (!seg) return [];
-    if (seg.dir) {
-      const edge = w.edge ?? w;
-      seg.side = p => { try { return edge.orientPoint?.(p); } catch { return undefined; } };
-    }
-    return [seg];
-  });
+  return (canvas?.walls?.placeables ?? []).map(w => coverWall(w.document, kinds)).filter(Boolean);
 }
 
 /** The cover the walls give a target token against an attacker token. */
@@ -1058,7 +1049,7 @@ export function registerCombat() {
   });
   game.settings.register(SYS, "wallCover", {
     name: "Cover from walls",
-    hint: "Attacks check the walls between attacker and target: some of the target's space behind a wall gives Half Cover (Disadvantage), all of it Full Cover (players can't attack it; the GM is warned and can). Solid walls only: windows, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand overrides it.",
+    hint: "Attacks check the walls between attacker and target: some of the target's space behind a wall gives Half Cover (Disadvantage), all of it Full Cover (players can't attack it; the GM is warned and can). Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand overrides it.",
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("getCombatantContextOptions", trackerOptions);
