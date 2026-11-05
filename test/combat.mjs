@@ -36,7 +36,7 @@ assert.equal(C.isOpposite(sq(-100, 0, 100), sq(100, 0, 100), sq(0, 0, 100)), tru
 
 /* Cover from walls (Kieran, 5 Nov): centre and four corners; any line blocked Half, all five Full. */
 const P = (x, y) => ({ x, y });
-const W = (x0, y0, x1, y1, oneWay = false) => ({ a: P(x0, y0), b: P(x1, y1), oneWay });
+const W = (x0, y0, x1, y1, dir = 0, side) => ({ a: P(x0, y0), b: P(x1, y1), dir, side });
 assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, -5), P(5, 5)), true, "crossing");
 assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, 1), P(5, 5)), false, "short of the line");
 assert.equal(C.segmentsMeet(P(0, 0), P(10, 0), P(5, 0), P(5, 5)), true, "touching counts");
@@ -49,8 +49,27 @@ assert.equal(C.wallCover(from, tgt, [W(300, 60, 300, 500)]), "half", "a wall hid
 assert.equal(C.wallCover(from, tgt, [W(300, 200, 300, 500)]), "none", "a wall off to the side");
 assert.equal(C.wallCover(from, tgt, [W(600, -500, 600, 500)]), "none", "a wall behind the target");
 assert.equal(C.wallCover(from, tgt, [W(500, -500, 500, 500)]), "full", "a wall along its near edge");
-assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, true)]), "none", "a one-way wall from its open side");
-assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, true)], () => true), "full", "a one-way wall from its blocking side");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, 1, () => 2)]), "none", "a one-way wall from its open side");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, 1, () => 1)]), "full", "a one-way wall from its blocking side");
+assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500, 1)]), "none", "a one-way wall with no side test counts for nothing");
+// Review: a wall the attacker's centre sits on (a Large token in a doorway) blocks nothing; nor one touching a line's end.
+assert.equal(C.wallCover(P(100, 100), { x: 100, y: -400, w: 100, h: 100 }, [W(100, 100, 100, 500)]), "none", "a wall from the attacker's own centre");
+assert.equal(C.wallCover(P(50, 50), { x: 0, y: -300, w: 200, h: 200 }, [W(100, -200, 100, -600)]), "none", "a wall ending at a Large target's centre, same side");
+assert.equal(C.wallCover(P(50, 50), { x: 500, y: 0, w: 100, h: 100 }, [W(0, -100, 400, -100), W(400, -100, 400, 300)]), "full", "chained walls stay sealed at the joint");
+/* Which walls give cover. */
+const doc = o => ({ c: [0, 0, 0, 100], move: 20, sight: 20, door: 0, ds: 0, dir: 0, ...o });
+assert.ok(C.coverWall(doc({})), "a normal wall");
+assert.ok(C.coverWall(doc({ sight: 10 })), "a terrain (low) wall");
+assert.equal(C.coverWall(doc({ sight: 30 })), null, "a window (Proximity sight)");
+assert.equal(C.coverWall(doc({ sight: 40 })), null, "a Distance wall");
+assert.equal(C.coverWall(doc({ sight: 0 })), null, "an invisible wall");
+assert.equal(C.coverWall(doc({ move: 0 })), null, "an ethereal wall");
+assert.equal(C.coverWall(doc({ door: 1, ds: 1 })), null, "an open door");
+assert.ok(C.coverWall(doc({ door: 1, ds: 0 })), "a closed door");
+assert.ok(C.coverWall(doc({ door: 1, ds: 2 })), "a locked door");
+assert.ok(C.coverWall(doc({ door: 2, ds: 0 })), "a closed secret door");
+assert.equal(C.coverWall(doc({ dir: 1 })).dir, 1, "one-way direction kept");
+assert.equal(C.coverWall({}), null, "no coordinates");
 assert.equal(C.wallCover(from, { x: 500, y: 0, w: 200, h: 200 }, [W(300, 100, 300, 500)]), "half", "part of a Large creature");
 
 /* Contests. */

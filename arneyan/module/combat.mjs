@@ -89,15 +89,37 @@ export function coverPoints(t) {
   return [centre(t), { x: t.x + i, y: t.y + i }, { x: t.x + t.w - i, y: t.y + i }, { x: t.x + i, y: t.y + t.h - i }, { x: t.x + t.w - i, y: t.y + t.h - i }];
 }
 
+/** Does point c lie on the segment a-b? */
+function onSegment(a, b, c) {
+  const cross = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+  const len = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+  return Math.abs(cross) / len < 1e-6 && Math.min(a.x, b.x) - 1e-6 <= c.x && c.x <= Math.max(a.x, b.x) + 1e-6
+    && Math.min(a.y, b.y) - 1e-6 <= c.y && c.y <= Math.max(a.y, b.y) + 1e-6;
+}
+
+/**
+ * The wall document fields that give cover, or null: solid walls, blocking movement and blocking sight as a Normal or
+ * Limited (terrain, a low wall) wall. Windows (Proximity sight), Distance, invisible and ethereal walls don't, nor do
+ * open doors. `dir` is its one-way direction (0 both ways).
+ */
+export function coverWall(d, { LIMITED = 10, NORMAL = 20, OPEN = 1 } = {}) {
+  if (!d?.c || !d.move || ![LIMITED, NORMAL].includes(d.sight)) return null;
+  if (d.door && d.ds === OPEN) return null;
+  return { a: { x: d.c[0], y: d.c[1] }, b: { x: d.c[2], y: d.c[3] }, dir: d.dir || 0 };
+}
+
 /**
  * Cover from walls (Kieran, 5 Nov): lines from the attacker's centre to the target's centre and four corners. Any
- * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b, oneWay };
- * a one-way wall only counts where `oneWayBlocks(origin, point)` says the line hits it from its blocking side.
+ * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b, dir, side };
+ * a one-way wall only blocks a line coming from its `dir` side, which `side(origin)` gives (Foundry's own orientPoint:
+ * "collides only when a ray strikes its left side"). A wall the attacker's own centre sits on blocks nothing (a big
+ * token in a doorway), nor one that only touches the end of a line.
  * @returns {"none"|"half"|"full"}
  */
-export function wallCover(origin, t, walls, oneWayBlocks = () => false) {
+export function wallCover(origin, t, walls) {
   const pts = coverPoints(t);
-  const blocked = pts.filter(p => walls.some(w => segmentsMeet(origin, p, w.a, w.b) && (!w.oneWay || oneWayBlocks(origin, p)))).length;
+  const live = walls.filter(w => !onSegment(w.a, w.b, origin) && (!w.dir || w.side?.(origin) === w.dir));
+  const blocked = pts.filter(p => live.some(w => segmentsMeet(origin, p, w.a, w.b) && !onSegment(w.a, w.b, p))).length;
   return !blocked ? "none" : blocked === pts.length ? "full" : "half";
 }
 
@@ -211,26 +233,19 @@ const rectOf = tok => {
 const positional = () => { try { return game.settings.get(SYS, "positionalCombat") !== false; } catch { return true; } };
 const autoCover = () => { try { return game.settings.get(SYS, "wallCover") !== false; } catch { return true; } };
 
-/**
- * The walls that give cover: solid ones, blocking both movement and sight (a window or an invisible wall doesn't,
- * nor does an ethereal one), with open doors left out. Low walls drawn as Limited (terrain) walls count.
- */
+/** The scene's walls that give cover (coverWall), each with Foundry's side test for one-way walls. */
 function coverWalls() {
-  const OPEN = CONST.WALL_DOOR_STATES?.OPEN ?? 1;
+  const S = CONST.WALL_SENSE_TYPES ?? {}, D = CONST.WALL_DOOR_STATES ?? {};
+  const kinds = { LIMITED: S.LIMITED ?? 10, NORMAL: S.NORMAL ?? 20, OPEN: D.OPEN ?? 1 };
   return (canvas?.walls?.placeables ?? []).flatMap(w => {
-    const d = w.document;
-    if (!d?.c || !d.move || !d.sight) return [];
-    if (d.door && d.ds === OPEN) return [];
-    return [{ a: { x: d.c[0], y: d.c[1] }, b: { x: d.c[2], y: d.c[3] }, oneWay: !!d.dir }];
+    const seg = coverWall(w.document, kinds);
+    if (!seg) return [];
+    if (seg.dir) {
+      const edge = w.edge ?? w;
+      seg.side = p => { try { return edge.orientPoint?.(p); } catch { return undefined; } };
+    }
+    return [seg];
   });
-}
-
-/** Does Foundry's own sight test stop this line? Used for one-way walls, whose blocking side Foundry decides. */
-function sightBlocked(origin, point) {
-  try {
-    const be = CONFIG.Canvas?.polygonBackends?.sight;
-    return !!be?.testCollision?.(origin, point, { type: "sight", mode: "any" });
-  } catch { return false; }
 }
 
 /** The cover the walls give a target token against an attacker token. */
@@ -238,8 +253,7 @@ export function coverBetween(from, to) {
   if (!from || !to || from.id === to.id || !canvas?.walls) return "none";
   const walls = coverWalls();
   if (!walls.length) return "none";
-  const origin = { ...centre(rectOf(from)), elevation: from.document?.elevation ?? 0 };
-  return wallCover(origin, rectOf(to), walls, (o, p) => sightBlocked(o, { ...p, elevation: to.document?.elevation ?? 0 }));
+  return wallCover(centre(rectOf(from)), rectOf(to), walls);
 }
 const isGMClient = () => { const gm = game.users.activeGM; return gm ? gm.id === game.user.id : game.user.isGM; };
 const subdualOf = actor => Math.max(0, Number(actor?.flags?.[SYS]?.subdual) || 0);
