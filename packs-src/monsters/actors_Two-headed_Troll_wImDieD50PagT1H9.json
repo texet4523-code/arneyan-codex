@@ -217,6 +217,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Twin Bellow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-troll.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Both heads roar. Each enemy within <strong>60ft</strong> that can hear it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6RVv8AJ2uCeldYUq",
+   "_key": "!actors.items!wImDieD50PagT1H9.6RVv8AJ2uCeldYUq",
+   "effects": [],
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Sweep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-troll.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>It swings a tree trunk or a pillar through everything within <strong>15ft</strong>. Each creature there makes a @Check[ref|dc:19]{Reflex save DC 19}, taking @Damage[4d8+5 bludgeoning]{4d8+5 bludgeoning damage}, being pushed <strong>10ft</strong> and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 19,
+    "damage": "4d8+5",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1WKt2xWfHtZp06hW",
+   "_key": "!actors.items!wImDieD50PagT1H9.1WKt2xWfHtZp06hW",
+   "effects": [],
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Feeding Frenzy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-troll.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>Both heads bite one creature within reach twice each (+14, <strong>1d10+6</strong> each). If two or more bites hit, the target is grappled (escape <strong>DC 19</strong>).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KiHJDYLSnVseFTkG",
+   "_key": "!actors.items!wImDieD50PagT1H9.KiHJDYLSnVseFTkG",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

@@ -79,6 +79,11 @@ export function trainedFeatGold(level) {
 }
 /** Books v0.10.47 (K54): learning a skill. Trained 2 weeks at 25 gp a week (DC 10); Master 4 more weeks at 50 gp (DC 15). */
 export const SKILL_COURSE = { trained: { weeks: 2, gp: 25, dc: 10 }, master: { weeks: 4, gp: 50, dc: 15 } };
+/** Carousing (the Shopkeeper's Catalogue, HB v0.10.53, K62): a week's gold by Tier of Play. */
+export function carouseGold(level) {
+  const l = Number(level) || 1;
+  return l >= 17 ? 10000 : l >= 11 ? 2500 : l >= 5 ? 500 : 100;
+}
 /** Activities the GM rules on: time and coins only, the result written in. */
 export const OTHER = ["Research", "Create Forgery", "Farm", "Socialise / Build a Network", "Gather Information", "Learn Spells"];
 
@@ -93,6 +98,7 @@ export const ACTIVITIES = {
   learnSkill: { label: "Learn a Skill (NWP)", hint: "No limit. Trained: 2 weeks with a teacher at 25 gp a week, then a DC 10 check with the skill's attribute. Master: 4 more weeks at 50 gp a week with a Master teacher, then DC 15. A failure: 1 more week, its gold, and roll again. Skilled halves the time." },
   train: { label: "Train", hint: "A teacher, gold paid up front and time. Weapon, shield and armour training need no check. A Trained Feat: one per Tier, 12 weeks, gold by Tier, then a DC 15 check with the feat's attribute; a failure is 2 more weeks and their gold." },
   studySecret: { label: "Study a Secret", hint: "The Secret in hand (Monsters & Treasure). Its listed weeks, then a check (Intelligence unless it names another) against its DC; a failure is 2 more weeks and roll again. Your one course at a time." },
+  carouse: { label: "Carouse", hint: "A week of drink, dice and good company. Gold by Tier (100, 500, 2,500 or 10,000 gp), a Charisma check (DC 12), then a d20 on the Carousing table, +5 if the check succeeded." },
   disease: { label: "Treat a Disease", hint: "8 hours a day. A Wisdom (First Aid/Healing) check against the disease's DC once a day; a success cures it." },
   sideQuest: { label: "Side Quest", hint: "Two weeks off-screen, a 2d6 roll at the end of each week; the better one decides. 2-5 a consequence, 6-8 a minor reward, 9+ a major reward. No more than two at a time." },
   other: { label: "Other (the GM rules)", hint: "Research, forgery, farming, building a network, gathering information, learning spells: the time, the cost and what came of it." }
@@ -220,6 +226,8 @@ export function planDowntime(key, v, actor) {
       const s = skills.find(x => /first aid|healing/i.test(x.name)) ?? null;
       return { title: v.disease || "A disease", days: Math.clamp(num(v.days, 7), 1, 60), costCp: 0, check: { type: "daily", ability: "wis", skillId: s?.id ?? "", dc: num(v.dc, 12) }, warn };
     }
+    case "carouse":
+      return { title: "A week of carousing", days: WEEK, costCp: carouseGold(actor?.system?.level) * 100, check: { type: "carouse", ability: "cha", dc: 12 }, warn };
     case "sideQuest":
       return { title: v.quest || "A side quest", days: 2 * WEEK, costCp: 0, check: { type: "sideQuest" }, warn };
     default:
@@ -393,6 +401,19 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     days = cured || plan.days;
     roll = `${rolls.join(", ")} vs DC ${c.dc}`;
     result = cured ? `Cured on day ${cured}.` : `Not cured after ${plan.days} days.`;
+  } else if (c?.type === "carouse") {
+    // A Charisma check (DC 12), then a d20 on the Carousing table, +5 on a success.
+    const total = await rollCheck(actor, { ability: c.ability });
+    const ok = total >= c.dc;
+    const r = await new Roll(ok ? "1d20 + 5" : "1d20").evaluate();
+    roll = `${total} vs DC ${c.dc}; Carousing ${r.total}`;
+    const pack = game.packs.get(`${SYS}.tables`);
+    const idx = pack ? (pack.index.size ? pack.index : await pack.getIndex()) : null;
+    const hit = idx?.find(e => e.name === "Carousing");
+    const table = game.tables?.getName?.("Carousing") ?? (hit ? await pack.getDocument(hit._id) : null);
+    const res = table?.getResultsForRoll?.(Math.min(25, r.total))?.[0];
+    if (table) await table.draw({ roll: r, results: res ? [res] : undefined }).catch(() => null);
+    result = res ? `${ok ? "A good week" : "A rough week"} (${r.total}): ${res.name ?? res.text ?? ""}.` : `Rolled ${r.total} on the Carousing table${table ? "" : " (no Carousing table found)"}.`;
   } else if (c?.type === "sideQuest") {
     const a = (await new Roll("2d6").evaluate()).total, b = (await new Roll("2d6").evaluate()).total;
     const r = sideQuestResult(a, b);
@@ -456,6 +477,7 @@ export async function newDowntime(actor) {
     train: [f("Training", `<select name="train.training">${Object.entries(TRAINING).map(([k, t]) => `<option value="${k}">${esc(t.label)}: ${t.weeks} weeks, ${k === "feat" ? `${trainedFeatGold(actor.system.level).toLocaleString("en-GB")} gp at your Tier` : `${t.gp} gp`}</option>`).join("")}</select>`), f("Which", `<input type="text" name="train.what" placeholder="Longbow, chain mail, a feat">`),
       f("A Trained Feat's attribute", abilitySel("train.ability", "str"))].join(""),
     disease: [f("Disease", `<input type="text" name="disease.disease">`), f("Its DC", `<input type="number" name="disease.dc" value="12">`), f("Days at most", `<input type="number" name="disease.days" value="7" min="1">`)].join(""),
+    carouse: f("This week", `<span>${carouseGold(actor.system.level).toLocaleString("en-GB")} gp at your Tier; Charisma (DC 12), then the Carousing table</span>`),
     sideQuest: f("Quest", `<input type="text" name="sideQuest.quest">`),
     other: [f("Activity", `<select name="other.kind">${OTHER.map(o => `<option>${esc(o)}</option>`).join("")}</select>`), f("Days", `<input type="number" name="other.days" value="7" min="0">`),
       f("Cost (gp)", `<input type="number" name="other.cost" value="0" min="0" step="0.01">`), f("What came of it", `<input type="text" name="other.result">`)].join("")

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Whenever you choose the free route to Metamagic through Wild Surge (below) rather than paying with Spellburn, the GM rolls <strong>d20</strong> in secret on the Corruption Table — a GM-only resource players never see.</li><li>A result of 1 triggers a Major Corruption event.</li><li>A result of 2-20 triggers a Minor Corruption effect — these can be cosmetic, beneficial, or detrimental.</li><li>The player knows something has shifted but not what the table said</li><li>Minor Corruption (GM only): a <strong>d20</strong> result of 2–20.</li><li>Major Corruption (GM only): on a result of 1, roll a <strong>d6</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Whenever you choose the free route to Metamagic through Wild Surge (below) rather than paying with Spellburn, the GM rolls <strong>d20</strong> in secret on the Corruption Table — a GM-only resource players never see.</li><li>A result of 1 triggers a Major Corruption event.</li><li>A result of 2-20 triggers a Minor Corruption effect — these can be cosmetic, beneficial, or detrimental.</li><li>The player knows something has shifted but not what the table said</li><li>Minor Corruption (GM only): a <strong>d20</strong> result of 2–20. The GM rolls <strong>d100</strong> on the Minor Corruption table (Sorcerer's Corruption, Monsters &amp; Treasure).</li><li>Major Corruption (GM only): a <strong>d20</strong> result of 1. The GM rolls <strong>d100</strong> on the Major Corruption table (Sorcerer's Corruption, Monsters &amp; Treasure).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption.",
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: Major Corruption; 2 to 20: Minor Corruption. The GM's d100 on that table follows by itself (Monsters & Treasure, Sorcerer's Corruption).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -47,7 +47,8 @@
     "reaction": false,
     "noDamage": false,
     "effect": "",
-    "spendAny": false
+    "spendAny": false,
+    "tables": "1=Major Corruption; 2-20=Minor Corruption"
    }
   ]
  },

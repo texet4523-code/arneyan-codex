@@ -134,6 +134,8 @@ export const activityField = () => new ArrayField(new SchemaField({
   cost: int(1, { min: 0 }),  // uses spent from the feature's own uses
   per: str(),                // an option with its own frequency ("week") that isn't tracked here
   target: str(),             // "self", "one", "gm" (a roll only the GM sees)
+  /** roll: the table its result rolls on, by range ("1=Major Corruption; 2-20=Minor Corruption"), from the tables pack. */
+  tables: str(),
   removeConditions: new BooleanField({ initial: false }),
   /** check: added to the roll (a number, @-formula or level table). */
   bonus: str(),

@@ -1,0 +1,209 @@
+{
+ "_id": "7rLr0LonWW4cZtu9",
+ "_key": "!actors!7rLr0LonWW4cZtu9",
+ "name": "Yellow Mould",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 1
+   },
+   "dex": {
+    "value": 1
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 1
+   },
+   "wis": {
+    "value": 1
+   },
+   "cha": {
+    "value": 1
+   }
+  },
+  "level": 1,
+  "hd": "2d6",
+  "attributes": {
+   "hp": {
+    "value": 7,
+    "max": 7,
+    "temp": 0
+   },
+   "ac": 9,
+   "speed": "0ft",
+   "attack": 2,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": -3,
+   "will": -3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "weapons",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small plant</em></p><p><strong>GM:</strong> A yellow fur on old stone. Poking it with a sword is how most people learn what it is.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Touch",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "u2OaFDxuYKpeOMDd",
+   "_key": "!actors.items!7rLr0LonWW4cZtu9.u2OaFDxuYKpeOMDd",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spore Cloud",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, when it is touched or struck, it puffs spores: creatures within <strong>10ft</strong> make a @Check[fort|dc:11]{Fortitude save DC 11} or take @Damage[2d6 poison]{2d6 poison damage} and are @Condition[poisoned]{Poisoned} for <strong>1 hour</strong>; a creature that fails by 5 or more drops to <strong>0 HP</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "2d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gSJHkLwqT3LmIqnq",
+   "_key": "!actors.items!7rLr0LonWW4cZtu9.gSJHkLwqT3LmIqnq",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Weakness",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Fire or sunlight destroys it; Immune to weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MQsuJLK1eKmLvrbz",
+   "_key": "!actors.items!7rLr0LonWW4cZtu9.MQsuJLK1eKmLvrbz",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Yellow Mould",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vine-whip.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

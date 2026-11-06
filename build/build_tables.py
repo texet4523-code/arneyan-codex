@@ -10,6 +10,10 @@ import lib, icons
 
 PACK = "tables"
 SRC_TREASURE = "/tmp/hb/mm/treasure.md"
+SRC_FRONT = "/tmp/hb/mm/front.md"
+# The Catalogue (Carousing): the Handbook source books_md reads.
+import books_md
+SRC_CATALOGUE = f"{books_md.SRC}/HB_v{books_md.VERSION}_V_Catalogue.md"
 DASH = "–"
 
 
@@ -131,7 +135,7 @@ class Tables:
             out = "".join(pieces)
         return out
 
-    def table(self, name, formula, results, folder, img, description="", sort=0):
+    def table(self, name, formula, results, folder, img, description="", sort=0, flags=None):
         tid = self.table_id(name)
         rs = []
         for i, r in enumerate(results):
@@ -146,7 +150,7 @@ class Tables:
             rs.append(doc)
         doc = {"_id": tid, "_key": f"!tables!{tid}", "name": name, "img": img, "description": description,
                "results": rs, "formula": formula, "replacement": True, "displayRoll": True,
-               "folder": folder, "sort": sort, "ownership": {"default": 0}, "flags": {}}
+               "folder": folder, "sort": sort, "ownership": {"default": 0}, "flags": flags or {}}
         lib.write(PACK, doc)
         self.docs.append(doc)
         return doc
@@ -357,6 +361,73 @@ def build():
     from_text("Confusion", T.spells["Confusion"], "1d10", 10, f_spell, img_d20, "At the start of each affected creature's turn")
     from_text("Prismatic Spray", T.spells["Prismatic Spray"], "d8", 8, f_spell, img_d20, "Roll for each creature in the cone")
     from_text("Contact Other Plane", T.spells["Contact Other Plane"], "1d20", 20, f_spell, img_d20, "Roll for each question")
+
+    # -- M&T v0.10.48 to v0.10.50 (K62, K63): Sorcerer's Corruption, Madness, Chases; the Catalogue's Carousing.
+    front = open(SRC_FRONT, encoding="utf8").read()
+    img_corrupt = icons.icon("treasure", "evil-moon")
+    img_mad = icons.icon("treasure", "brain")
+    img_chase = icons.icon("treasure", "run")
+    img_carouse = icons.icon("treasure", "beer-stein")
+    f_gm = lib.folder(PACK, "Downtime & Mishaps", "RollTable", sort=600000, color="#3a2d12")
+
+    def label(txt, n=60):
+        """A result's short name: up to its first colon or full stop, cut at a word."""
+        head = re.split(r"(?<=[a-z\)])[:.](?:\s|$)", txt, 1)[0].strip()
+        return head if len(head) <= n else head[:n].rsplit(" ", 1)[0] + "..."
+
+    for i, tier in enumerate(["Minor", "Major"]):
+        res = []
+        for r in _md_table(md, f"## {tier} Corruption (d100)"):
+            n = 100 if r[0] == "00" else int(r[0])
+            res.append(T.text(n, n, label(r[1]), html.escape(r[1], quote=False), img=img_corrupt))
+        doc = T.table(f"{tier} Corruption", "1d100", res, f_spell, img_corrupt,
+                      f"<p>GM only. A Sorcerer's Wild Surge: the GM rolls d20 in secret, 1 is Major Corruption and 2 to 20 Minor, then d100 here "
+                      f"(Monsters &amp; Treasure, Sorcerer's Corruption). The Sorcerer's own save against its surge is DC {'15' if tier == 'Major' else '12'}; others use its spell DC.</p>",
+                      sort=900000 + i * 1000)
+        _check_ranges(doc, 100)
+
+    mad = front.split("# Madness", 1)[1]
+    for i, (kind, dur) in enumerate([("Short-term", "1d10 minutes"), ("Long-term", "1d10 × 10 hours"), ("Indefinite", "until cured")]):
+        line = re.search(rf"\*\*{kind}\*\* \(([^)]+)\): (.+)", mad)
+        assert line, kind
+        res = []
+        # The list ends where its numbers do ("...; 10 "Light hurts". The player plays the flaw ...": the rest is the intro's).
+        body = re.sub(r"\.\s+(?=[A-Z][a-z]+ [a-z])(?!.*; \d+ ).*$", "", line.group(2).strip()).rstrip(".")
+        for part in re.finditer(r"(\d+) (.+?)(?=; \d+ |$)", body):
+            txt = part.group(2).strip().rstrip(".")
+            txt = txt[0].upper() + txt[1:]
+            res.append(T.text(int(part.group(1)), int(part.group(1)), label(txt), html.escape(txt + ".", quote=False), img=img_mad))
+        doc = T.table(f"Madness ({kind})", "1d10", res, f_combat, img_mad,
+                      f"<p>{kind} madness lasts {html.escape(line.group(1), quote=False)} (Monsters &amp; Treasure, Madness). Roll, or describe one to suit."
+                      + (" The player plays the flaw; the GM gives Advantage or Disadvantage where it bites." if kind == "Indefinite" else "") + "</p>", sort=100000 + i * 1000)
+        _check_ranges(doc, 10)
+
+    chase = front.split("# Chases", 1)[1]
+    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in chase.splitlines() if re.match(r"\|\s*\d+\s*\|", line)]
+    assert len(rows) == 10, len(rows)
+    for i, (where, col) in enumerate([("Town", 1), ("Wild", 2)]):
+        res = [T.text(int(r[0]), int(r[0]), label(r[col]), html.escape(r[col], quote=False), img=img_chase) for r in rows]
+        res.append(T.text(11, 20, "No complication", img=img_chase))
+        doc = T.table(f"Chase Complications ({where})", "1d20", res, f_road, img_chase,
+                      "<p>At the end of each participant's turn in a chase, roll a d20: on 1 to 10 it meets that complication, and the next creature behind it meets the same one (Monsters &amp; Treasure, Chases).</p>",
+                      sort=400000 + i * 1000)
+        _check_ranges(doc, 20)
+
+    cat = open(SRC_CATALOGUE, encoding="utf8").read().split("### Carousing", 1)[1]
+    res = []
+    for line in cat.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) == 4 and re.match(r"\d+\+?$", cells[0]):
+            for n, txt in ((cells[0], cells[1]), (cells[2], cells[3])):
+                lo = int(n.rstrip("+"))
+                res.append(T.text(lo, 25 if n.endswith("+") else lo, label(txt), html.escape(txt, quote=False), img=img_carouse))
+        elif res and line.startswith("#"):
+            break
+    res.sort(key=lambda r: r["range"][0])
+    doc = T.table("Carousing", "1d20", res, f_gm, img_carouse,
+                  "<p>A week of carousing (downtime): spend gold by Tier (100, 500, 2,500 or 10,000 gp), make a Charisma check (DC 12), then roll a d20, adding 5 if the check succeeded (the Shopkeeper's Catalogue). The Carouse downtime plan rolls it for you.</p>",
+                  flags={"arneyan": {"top": 25}})
+    _check_ranges(doc, 25)
 
     links = sum(1 for d in T.docs for r in d["results"] if r["type"] == "document" or "@UUID" in r["description"])
     return f"{len(T.docs)} tables, {links} results linked"

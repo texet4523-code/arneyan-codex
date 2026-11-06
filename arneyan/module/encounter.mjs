@@ -111,7 +111,8 @@ export function parseNumberAppearing(text) {
     return /^[\dd\s+*-]+$/i.test(s) && /\d/.test(s) ? s.replace(/\s+/g, " ") : null;
   };
   const lair = t.match(/\(\s*lair\s+([^)]+)\)/i);
-  const wild = t.replace(/\([^)]*\)/g, "").trim();
+  // "1 with 2d6 warriors", "1d4 with slaves" (M&T v0.10.48): the leader's count; the GM adds the rest.
+  const wild = t.replace(/\([^)]*\)/g, "").replace(/\s+with\b.*$/i, "").trim();
   return { wild: asDice(wild), lair: lair ? asDice(lair[1]) : null };
 }
 

@@ -478,6 +478,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): The Doors Close",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Every door and shutter within <strong>60ft</strong> slams shut. The vampire moves up to its speed, and each enemy within <strong>30ft</strong> of it makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RcdIruv2VsqwSNR5",
+   "_key": "!actors.items!uNJCaShBblFOXndI.RcdIruv2VsqwSNR5",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Children of the Night",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>A storm of bats fills a <strong>20ft radius</strong> within <strong>60ft</strong> until the end of the vampire's next turn. A creature in it takes @Damage[2d6 piercing]{2d6 piercing damage} (@Check[ref|dc:17]{Reflex DC 17} half) and can't see beyond <strong>5ft</strong> while inside.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 17,
+    "damage": "2d6",
+    "damageType": "piercing",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HHdGADhJId8hBoB9",
+   "_key": "!actors.items!uNJCaShBblFOXndI.HHdGADhJId8hBoB9",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Crimson Feast",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to its speed as mist, re-forms beside one creature and bites it (+12, <strong>1d6+4</strong>). On a hit, Blood Drain applies as if the target were grappled.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "k2fmva3trF1lVV5m",
+   "_key": "!actors.items!uNJCaShBblFOXndI.k2fmva3trF1lVV5m",
+   "effects": [],
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -490,11 +613,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "A07hvsxEehDJXNhQ",
-   "_key": "!actors.items!uNJCaShBblFOXndI.A07hvsxEehDJXNhQ",
+   "_id": "gazumf8VGrzS5RyZ",
+   "_key": "!actors.items!uNJCaShBblFOXndI.gazumf8VGrzS5RyZ",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -513,11 +636,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "n8vcz1l5RhYwnK7R",
-   "_key": "!actors.items!uNJCaShBblFOXndI.n8vcz1l5RhYwnK7R",
+   "_id": "CKPvZ0dc1Kgn9AI1",
+   "_key": "!actors.items!uNJCaShBblFOXndI.CKPvZ0dc1Kgn9AI1",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

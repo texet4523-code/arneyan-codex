@@ -27,11 +27,11 @@ HERE = os.path.dirname(__file__)
 FIELDS = {"name": "", "kind": "note", "formula": "", "damageType": "", "ability": "", "save": "", "text": "",
           "minLevel": 0, "maxLevel": 0, "cost": 1, "per": "", "target": "", "removeConditions": False,
           "bonus": "", "count": "", "weapons": "", "disadvantage": "", "disUntil": 0, "damageBonus": "",
-          "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False, "effect": "", "spendAny": False}
+          "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False, "effect": "", "spendAny": False, "tables": ""}
 KINDS = {"heal", "temp", "damage", "check", "save", "note", "roll", "attacks"}
 INTS = ("minLevel", "maxLevel", "disUntil")
 STRS = ("formula", "damageType", "ability", "save", "per", "target", "name", "bonus", "count", "weapons",
-        "disadvantage", "damageBonus", "noStack", "targetLevel", "effect")
+        "disadvantage", "damageBonus", "noStack", "targetLevel", "effect", "tables")
 
 
 def clean(a):
@@ -49,6 +49,9 @@ def clean(a):
         out[k] = str(out[k] if out[k] is not None else "")
     if out["disadvantage"] not in ("", "rest", "all", "extra", "fixed"):
         out["disadvantage"] = ""
+    # Only the activities whose roll goes on to a table carry the field (the Sorcerer's Corruption): the schema defaults it.
+    if not out["tables"]:
+        del out["tables"]
     return out
 
 

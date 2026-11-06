@@ -291,6 +291,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Breach",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It bursts from the ground. Each creature within <strong>30ft</strong> makes a @Check[ref|dc:21]{Reflex save DC 21} or falls @Condition[prone]{Prone}, and the area is difficult terrain for the rest of the fight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 21,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "f1fLH3WwmzIYkZhi",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.f1fLH3WwmzIYkZhi",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Thrash",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>20ft</strong> makes a @Check[ref|dc:21]{Reflex save DC 21}, taking @Damage[4d10 bludgeoning]{4d10 bludgeoning damage} and being pushed <strong>10ft</strong> on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 21,
+    "damage": "4d10",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OFyshZe2coiCGegX",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.OFyshZe2coiCGegX",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Devour",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It bites one creature (+15, <strong>3d8+9</strong>). On a hit, a Large or smaller target is swallowed at once.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "E4QkG9jVcQsvukMl",
+   "_key": "!actors.items!97nzgFI8DOTBgrz2.E4QkG9jVcQsvukMl",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

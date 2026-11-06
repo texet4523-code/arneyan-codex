@@ -188,7 +188,8 @@ async function bloodiedNow(actor) {
   const ends = bloodiedEnds(actor, sideFinder(actor));
   if (ends.length) await tryIt("bloodied", () => actor.deleteEmbeddedDocuments("ActiveEffect", ends.map(e => e.id).filter(id => actor.effects.has(id))));
   // Breath weapons and other limited abilities; no spells, innate (3/day) or slotted (M&T v0.10.44, K53).
-  const uses = actor.items.filter(i => i.type !== "spell" && ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
+  // Villain actions don't recover either (M&T v0.10.50).
+  const uses = actor.items.filter(i => i.type !== "spell" && !villainNo(i) && ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
     .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
   if (uses.length) await tryIt("bloodied", () => actor.updateEmbeddedDocuments("Item", uses));
   await tryIt("bloodied", () => actor.setFlag(SYS, "soloControl", noCounts()));
@@ -202,6 +203,61 @@ async function bloodiedNow(actor) {
   if (!actor.getFlag(SYS, "bloodied")) await removeBloodied(actor);
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is Bloodied</span></header>
     <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its breath weapons and other limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spells don't, including innate spells and spell slots. A good moment for a new phase.</p>`);
+}
+
+/* -------------------------------------------- */
+/*  Villain actions                             */
+/* -------------------------------------------- */
+
+/**
+ * Villain actions (M&T v0.10.50, K65 and K71): a solo whose block lists them has three (opener, crowd control,
+ * ultimate). It uses one straight after an enemy's turn, one a round and each once a fight (its uses: per encounter),
+ * never while it can't act. It then skips its second turn that round. Bloodied doesn't recover them.
+ */
+export const villainNo = item => Number(item?.flags?.[SYS]?.villainAction) || 0;
+/** The conditions that stop it acting at all. */
+export const CANT_ACT = ["incapacitated", "paralysed", "stunned", "unconscious", "petrified"];
+
+/** Can it use a villain action now (pure, for tests)? `statuses` its conditions, `last` its flag, `combat`/`round` now. */
+export function villainBlock({ statuses = [], last = null, combatId = "", round = 0 } = {}) {
+  const cant = CANT_ACT.filter(id => statuses.includes(id));
+  if (cant.length) return { reason: "cant", cant };
+  if (combatId && last?.combat === combatId && Number(last.round) === Number(round)) return { reason: "round" };
+  return null;
+}
+
+/** Before a villain action: false (with a warning) when it can't use one now. */
+export function villainGate(item) {
+  const actor = item?.actor;
+  if (!actor || !villainNo(item)) return true;
+  const combat = game.combat;
+  const inFight = !!combat?.combatants?.some(c => c.actor === actor);
+  const b = villainBlock({ statuses: [...statusesOf(actor)], last: actor.getFlag(SYS, "villainRound"), combatId: inFight ? combat.id : "", round: combat?.round });
+  if (!b) return true;
+  if (b.reason === "cant") ui.notifications.warn(`${actor.name} can't use a villain action while ${b.cant.map(id => ARNEYAN.conditions[id]?.name ?? id).join(", ")}.`);
+  else ui.notifications.warn(`${actor.name} has used a villain action this round already: one a round.`);
+  return false;
+}
+
+/** Did it use a villain action in this round of this fight? */
+function skippedFor(actor, combat, round) {
+  const v = actor?.getFlag?.(SYS, "villainRound");
+  return !!v && v.combat === combat?.id && Number(v.round) === Number(round);
+}
+
+/** After a villain action: note the round, and its second turn this round is skipped. */
+export async function villainUsed(item) {
+  const actor = item?.actor;
+  const combat = game.combat;
+  if (!actor || !combat) return;
+  const first = combat.combatants.find(c => !soloOf(c) && c.actor === actor);
+  if (!first) return;
+  await tryIt("villain", () => actor.setFlag(SYS, "villainRound", { combat: combat.id, round: combat.round }));
+  const twin = combat.combatants.find(c => soloOf(c) === first.id);
+  const turns = combat.turns ?? [];
+  const gone = twin && turns.findIndex(t => t.id === twin.id) < (Number(combat.turn) || 0);
+  await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-skull"></i> <span>${esc(actor.name)}: ${esc(item.name)}</span></header>
+    <p>${gone ? "Its second turn this round has already gone; the GM decides what it gives up." : "It skips its second turn this round (the tracker passes over it)."} One villain action a round, each once a fight; Bloodied doesn't bring them back.</p>`);
 }
 
 export function registerSolo() {
@@ -259,7 +315,22 @@ export function registerSolo() {
     if (done.has(key)) return;
     done.add(key);
     if (done.size > 500) done.delete(done.values().next().value);
+    // A second turn skipped for a villain action wasn't a turn: nothing to shake off.
+    if (soloOf(prev) && skippedFor(prev.actor, combat, combat.previous?.round)) return;
     turnEnded(prev.actor, combat, { form }).catch(err => console.warn("Arneyan | solo turn", err));
+  });
+  // Its second turn comes up in a round it used a villain action: pass over it.
+  const skipped = new Set();
+  Hooks.on("updateCombat", (combat, changed, options = {}) => {
+    if (!activeGM() || options.direction === -1 || (!("turn" in changed) && !("round" in changed))) return;
+    const cur = combat.combatant;
+    if (!cur || !soloOf(cur) || !cur.actor || !skippedFor(cur.actor, combat, combat.round)) return;
+    const key = `${combat.id}:${combat.round}:${cur.id}`;
+    if (skipped.has(key)) return;
+    skipped.add(key);
+    if (skipped.size > 500) skipped.delete(skipped.values().next().value);
+    card(cur.actor, `<header class="arn-card-title"><i class="fa-solid fa-forward"></i> <span>${esc(cur.actor.name)} skips its second turn</span></header><p>It used a villain action this round.</p>`)
+      .then(() => combat.nextTurn()).catch(err => console.warn("Arneyan | villain skip", err));
   });
   // A fight's end: its turn counts start again next time.
   Hooks.on("deleteCombat", combat => {

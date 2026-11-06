@@ -1,0 +1,252 @@
+{
+ "_id": "tqQvCYThUrXWyw6u",
+ "_key": "!actors!tqQvCYThUrXWyw6u",
+ "name": "Vargouille",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 6
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 13
+   },
+   "int": {
+    "value": 4
+   },
+   "wis": {
+    "value": 7
+   },
+   "cha": {
+    "value": 2
+   }
+  },
+  "level": 2,
+  "hd": "3d4",
+  "attributes": {
+   "hp": {
+    "value": 7,
+    "max": 7,
+    "temp": 0
+   },
+   "ac": 12,
+   "speed": "5ft, fly 40ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 0
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d6",
+   "resistances": "cold 5, fire 5, lightning 5",
+   "immunities": "poison",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny fiend</em></p><p><strong>GM:</strong> A flying head on bat wings, shrieking in the dark. Its kiss is how there come to be more of them.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "1d4",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "U2vg9QLA8QLglqqA",
+   "_key": "!actors.items!tqQvCYThUrXWyw6u.U2vg9QLA8QLglqqA",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Kiss",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Once per round, as part of its action, it kisses an @Condition[incapacitated]{Incapacitated} creature within <strong>5ft</strong>: @Check[fort|dc:12]{Fortitude save DC 12} or cursed. Over the next <strong>24 hours</strong> the victim's head sprouts wings and fangs; then it tears free as a new vargouille and the body dies. @UUID[Compendium.arneyan.spells.Item.DBMmlO0kdlEPOc4T]{Remove curse} ends it, and the curse never progresses in sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sdp1BMsm7mQDszoI",
+   "_key": "!actors.items!tqQvCYThUrXWyw6u.sdp1BMsm7mQDszoI",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stunning Shriek",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, each creature within <strong>30ft</strong> that can hear it makes a @Check[will|dc:12]{Will save DC 12} or is @Condition[frightened]{Frightened} until the end of its next turn; a @Condition[frightened]{Frightened} creature that fails is also @Condition[stunned]{Stunned}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Nvx1AuwM763Qu0d4",
+   "_key": "!actors.items!tqQvCYThUrXWyw6u.Nvx1AuwM763Qu0d4",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Fiendish Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Resistance 5 to cold, fire and lightning. Immune to poison.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Wt5X7Myx24GQvpQU",
+   "_key": "!actors.items!tqQvCYThUrXWyw6u.Wt5X7Myx24GQvpQU",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "M2ZC2hWph5xtVb4T",
+ "prototypeToken": {
+  "name": "Vargouille",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

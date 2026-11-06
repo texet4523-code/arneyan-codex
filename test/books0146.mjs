@@ -28,7 +28,7 @@ const pa = read("feats", "items_Power_Attack_")[0];
 assert.ok(/first attack each round, and never an attack that already has/.test(pa.system.description));
 
 /* Bloodied recharges no spells; one of Harm and Mass Harm a fight (M&T v0.10.44). */
-assert.ok(/i\.type !== "spell" && \["day", "rest", "encounter"\]/.test(src("solo.mjs")));
+assert.ok(/i\.type !== "spell" && !villainNo\(i\) && \["day", "rest", "encounter"\]/.test(src("solo.mjs")));
 assert.ok(/spells don't, including innate spells and spell slots/.test(src("solo.mjs")));
 const monsters = read("monsters", "actors_");
 const solos = monsters.filter(m => m.system.details.isSolo);

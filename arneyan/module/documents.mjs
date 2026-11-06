@@ -11,6 +11,7 @@ import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
+import { villainNo, villainGate, villainUsed } from "./solo.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -1338,7 +1339,15 @@ export class ArneyanItem extends Item {
         }
         return this._castSpell(event);
       }
-      case "ability": return this._useAbility(event);
+      case "ability": {
+        // Villain actions (M&T v0.10.50): not while it can't act, one a round; then its second turn is skipped.
+        if (!villainNo(this)) return this._useAbility(event);
+        if (!villainGate(this)) return null;
+        const before = Number(this.system.uses?.value);
+        const out = await this._useAbility(event);
+        if (Number(this.system.uses?.value) < before) await villainUsed(this);
+        return out;
+      }
       // A feat with an active use (uses, options, a switch or effects) works as an ability does; the rest post their card.
       case "feat": return this._useAbility(event);
       case "equipment": return useEquipment(this, event);
@@ -1735,8 +1744,19 @@ export class ArneyanItem extends Item {
     // A formula posted to chat (Holy Campaign's troops; a roll only the GM sees for "gm").
     if (act.kind === "roll" && act.formula) {
       const roll = await new Roll(resolveFormula(act.formula, rollData)).evaluate();
-      return roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` },
-        { rollMode: act.target === "gm" ? "blindroll" : game.settings.get("core", "rollMode") });
+      const rollMode = act.target === "gm" ? "blindroll" : game.settings.get("core", "rollMode");
+      const msg = await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(this.img)}" alt=""> <span>${esc(title)}</span></header>${meta}</div>` },
+        { rollMode });
+      // Its result rolls on a table (the Sorcerer's Corruption, M&T v0.10.48): drawn the same way, blind for the GM's.
+      const name = tableFor(act.tables, roll.total);
+      if (name) {
+        const pack = game.packs?.get?.(`${SYS}.tables`);
+        const hit = pack?.index?.find(e => e.name === name) ?? (await pack?.getIndex())?.find(e => e.name === name);
+        const table = game.tables?.getName?.(name) ?? (hit ? await pack.getDocument(hit._id) : null);
+        if (table) await table.draw({ rollMode });
+        else ui.notifications.warn(`No "${name}" roll table found.`);
+      }
+      return msg;
     }
     let buttons = "";
     if (act.kind === "save" && act.save) {
@@ -1904,4 +1924,13 @@ export class ArneyanCombatant extends Combatant {
     const init = a.system.attributes.init ?? 0;
     return `${die} + ${init}`;
   }
+}
+
+/** The table an activity's roll result goes on: "1=Major Corruption; 2-20=Minor Corruption" and a total. */
+export function tableFor(spec, total) {
+  for (const part of String(spec ?? "").split(";")) {
+    const m = part.trim().match(/^(\d+)(?:\s*-\s*(\d+))?\s*=\s*(.+)$/);
+    if (m && total >= Number(m[1]) && total <= Number(m[2] ?? m[1])) return m[3].trim();
+  }
+  return "";
 }

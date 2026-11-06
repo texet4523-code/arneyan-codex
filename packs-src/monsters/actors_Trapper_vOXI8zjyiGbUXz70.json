@@ -1,0 +1,208 @@
+{
+ "_id": "vOXI8zjyiGbUXz70",
+ "_key": "!actors!vOXI8zjyiGbUXz70",
+ "name": "Trapper",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 20
+   },
+   "dex": {
+    "value": 8
+   },
+   "con": {
+    "value": 17
+   },
+   "int": {
+    "value": 2
+   },
+   "wis": {
+    "value": 12
+   },
+   "cha": {
+    "value": 3
+   }
+  },
+  "level": 12,
+  "hd": "12d10",
+  "attributes": {
+   "hp": {
+    "value": 66,
+    "max": 66,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "10ft",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 8,
+   "ref": 5,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "huge",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "fire, cold",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Huge monstrosity</em></p><p><strong>GM:</strong> The floor of a room that has no other exits. The single coin in the middle is the bait.</p>",
+   "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Engulf",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>engulf (@Check[ref|dc:20]{Reflex save DC 20}, or engulfed)</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "yN8PcvruCLzlXiQy",
+   "_key": "!actors.items!vOXI8zjyiGbUXz70.yN8PcvruCLzlXiQy",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Floor Ambush",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Lies flat on a floor, shaped and coloured like the stone, often with a treasure on top as bait. When creatures stand on it, it closes: each creature in a <strong>20ft</strong> square makes the <strong>Reflex save</strong> or is engulfed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hPzKOxL2ppRsAFHi",
+   "_key": "!actors.items!vOXI8zjyiGbUXz70.hPzKOxL2ppRsAFHi",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Smother",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>An engulfed creature is grappled (escape <strong>DC 20</strong>), @Condition[restrained]{Restrained}, @Condition[blinded]{Blinded} and can't breathe, and takes @Damage[5d6+5 bludgeoning]{5d6+5 bludgeoning damage} at the start of each of the trapper's turns.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "5d6+5",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KEbmsYCjdZKEcxUy",
+   "_key": "!actors.items!vOXI8zjyiGbUXz70.KEbmsYCjdZKEcxUy",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Trapper",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-tentacles-skull.svg"
+  },
+  "actorLink": false,
+  "width": 3,
+  "height": 3,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

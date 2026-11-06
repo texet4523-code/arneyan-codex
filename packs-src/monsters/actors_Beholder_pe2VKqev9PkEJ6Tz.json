@@ -218,6 +218,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Opening Volley",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It fires two random eye rays at different creatures within <strong>120ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "a3QBHNHIb8TntOli",
+   "_key": "!actors.items!pe2VKqev9PkEJ6Tz.a3QBHNHIb8TntOli",
+   "effects": [],
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Telekinetic Sweep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that it can see makes a @Check[fort|dc:19]{Fortitude save DC 19} or is lifted <strong>15ft</strong> and held @Condition[restrained]{Restrained} in the air until the end of its next turn, then falls.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 19,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1TCd2uqIF7dgmqwg",
+   "_key": "!actors.items!pe2VKqev9PkEJ6Tz.1TCd2uqIF7dgmqwg",
+   "effects": [],
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Gaze of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It turns every eye on one creature within <strong>120ft</strong>: three random rays, all at that creature.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PdDFaAEP0WyoA1f0",
+   "_key": "!actors.items!pe2VKqev9PkEJ6Tz.PdDFaAEP0WyoA1f0",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -230,11 +353,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "wkfBtkqshkODYjyD",
-   "_key": "!actors.items!pe2VKqev9PkEJ6Tz.wkfBtkqshkODYjyD",
+   "_id": "IP2N7ziIysnkCVPC",
+   "_key": "!actors.items!pe2VKqev9PkEJ6Tz.IP2N7ziIysnkCVPC",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

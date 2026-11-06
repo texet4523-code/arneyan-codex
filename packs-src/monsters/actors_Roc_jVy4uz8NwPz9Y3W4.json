@@ -219,6 +219,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Wingbeat Gale",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each creature in a <strong>60ft cone</strong> makes a @Check[fort|dc:23]{Fortitude save DC 23} or is pushed <strong>30ft</strong> and falls @Condition[prone]{Prone}. Unprotected flames in the cone go out.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 23,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lFToSvM4Bgbs3NVH",
+   "_key": "!actors.items!jVy4uz8NwPz9Y3W4.lFToSvM4Bgbs3NVH",
+   "effects": [],
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Stoop",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>It dives along a <strong>60ft line</strong>, <strong>10ft</strong> wide. Each creature in the line makes a @Check[ref|dc:23]{Reflex save DC 23}, taking @Damage[4d10 bludgeoning]{4d10 bludgeoning damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 23,
+    "damage": "4d10",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "i2evcwz9PrHYzx5N",
+   "_key": "!actors.items!jVy4uz8NwPz9Y3W4.i2evcwz9PrHYzx5N",
+   "effects": [],
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Carried Off",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes a talons attack (+14, <strong>4d6+9</strong>) against one creature. On a hit, it carries the target <strong>60ft</strong> up and drops it (falling damage).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "rdbZnE45FPrwR1MI",
+   "_key": "!actors.items!jVy4uz8NwPz9Y3W4.rdbZnE45FPrwR1MI",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -231,11 +354,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "uUpYlitkZ3ivG6o9",
-   "_key": "!actors.items!jVy4uz8NwPz9Y3W4.uUpYlitkZ3ivG6o9",
+   "_id": "Hao51grmB14wfld6",
+   "_key": "!actors.items!jVy4uz8NwPz9Y3W4.Hao51grmB14wfld6",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

@@ -191,7 +191,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 20</strong>. At will: @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.suPeAK50yuKj2lug]{clairaudience/clairvoyance}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.5bsYjyZvp6V579Li]{wall of fire}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH]{fire storm} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.3wMd0vWJejMk1VWh]{mass suggestion} (@Check[will|dc:20]{Will DC 20}).</p>",
+    "description": "<p>Spell <strong>DC 20</strong>. At will: @UUID[Compendium.arneyan.spells.Item.do2FllQRU9sJuZsq]{change self}, @UUID[Compendium.arneyan.spells.Item.suPeAK50yuKj2lug]{clairaudience/clairvoyance}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT]{detect magic}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.5bsYjyZvp6V579Li]{wall of fire}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:20]{Reflex DC 20}), @UUID[Compendium.arneyan.spells.Item.3wMd0vWJejMk1VWh]{mass suggestion} (@Check[will|dc:20]{Will DC 20}).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -941,39 +941,41 @@
    "folder": null
   },
   {
-   "name": "Fire Storm (1/day)",
+   "name": "Fireball (1/day)",
    "type": "spell",
-   "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>30ft</strong>-radius area. Pillars of fire deal <strong>1d8</strong> fire damage per level (max <strong>15d8</strong>); <strong>Reflex halves</strong>. Plants and flammable objects in the area ignite.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
     },
-    "level": 7,
+    "level": 3,
     "className": "",
     "classes": [
-     "Cleric",
-     "Druid"
+     "Wizard",
+     "Sorcerer",
+     "Magus",
+     "Warlock"
     ],
-    "school": "Divine / Nature",
+    "school": "Evocation",
     "castingTime": "1 action",
     "range": "Range 150ft",
     "duration": "",
-    "area": "30ft radius",
-    "components": "V, S",
+    "area": "20ft radius",
+    "components": "V, S, M",
     "concentration": false,
     "ritual": false,
     "prepared": false,
     "save": "ref",
     "saveEffect": "Half",
-    "damage": "(min(@cl, 15))d8",
+    "damage": "(min(@cl, 10))d6",
     "damageType": "fire",
     "reversible": false,
     "costly": false,
     "template": {
      "type": "circle",
-     "size": 30,
+     "size": 20,
      "width": 0,
      "attached": false,
      "fromSelf": false,
@@ -989,10 +991,10 @@
     }
    },
    "_stats": {
-    "compendiumSource": "Compendium.arneyan.spells.Item.sVS239j4SLJW4ltH"
+    "compendiumSource": "Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv"
    },
-   "_id": "wUxm3QlYgNrHk71m",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.wUxm3QlYgNrHk71m",
+   "_id": "MjEB9dz1wcXA8uM3",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.MjEB9dz1wcXA8uM3",
    "sort": 1500,
    "ownership": {
     "default": 0

@@ -1,0 +1,188 @@
+{
+ "_id": "IryAkODQKFjBJVzA",
+ "_key": "!actors!IryAkODQKFjBJVzA",
+ "name": "Brown Mould",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 1
+   },
+   "dex": {
+    "value": 1
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 1
+   },
+   "wis": {
+    "value": 1
+   },
+   "cha": {
+    "value": 1
+   }
+  },
+  "level": 2,
+  "hd": "3d6",
+  "attributes": {
+   "hp": {
+    "value": 10,
+    "max": 10,
+    "temp": 0
+   },
+   "ac": 9,
+   "speed": "0ft",
+   "attack": 0,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": -3,
+   "will": -3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "plant",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "fire",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small plant</em></p><p><strong>GM:</strong> A brown patch that drinks the warmth from a room. The torch you swing at it is lunch.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Cold Aura",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>A creature that starts its turn within <strong>10ft</strong> takes @Damage[4d6 cold]{4d6 cold damage} (@Check[fort|dc:11]{Fortitude save DC 11}, for half).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 11,
+    "damage": "4d6",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "auras": [
+     {
+      "key": "cold-aura",
+      "name": "Cold Aura",
+      "radius": 10,
+      "who": "all",
+      "includeSelf": false,
+      "rules": [],
+      "turn": {
+       "formula": "4d6",
+       "type": "cold",
+       "save": "fort",
+       "dc": 11,
+       "text": "A creature that starts its turn within 10ft takes 4d6 cold damage (Fortitude save DC 11, for half)."
+      }
+     }
+    ]
+   },
+   "_id": "NDOeI4ixUsbJn1u6",
+   "_key": "!actors.items!IryAkODQKFjBJVzA.NDOeI4ixUsbJn1u6",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Feeds on Heat",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
+   "system": {
+    "description": "<p>Fire damage within <strong>10ft</strong> makes it double in size instead of harming it. Cold damage destroys it. Immune to fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "maG2NMu2UR8DIFeD",
+   "_key": "!actors.items!IryAkODQKFjBJVzA.maG2NMu2UR8DIFeD",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "4rxoSxLQHKRNpnOz",
+ "prototypeToken": {
+  "name": "Brown Mould",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-vine-whip.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

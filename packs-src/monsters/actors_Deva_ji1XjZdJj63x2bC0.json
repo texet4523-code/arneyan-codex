@@ -538,6 +538,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Herald's Light",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[blinded]{Blinded} until the end of its next turn. The deva then flies up to its speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SCzrM5J9x0zYTcrT",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.SCzrM5J9x0zYTcrT",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Wings of Judgement",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>It flies up to <strong>60ft</strong> in a straight line. Each creature it passes within <strong>5ft</strong> of makes a @Check[ref|dc:19]{Reflex save DC 19}, taking @Damage[4d8 radiant]{4d8 radiant damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 19,
+    "damage": "4d8",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xmzEbmYZPETHqUMc",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.xmzEbmYZPETHqUMc",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Word of the Gods",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> that can hear it makes a @Check[will|dc:19]{Will save DC 19}. On a failure it takes @Damage[8d8 radiant]{8d8 radiant damage} and is @Condition[stunned]{Stunned} until the end of its next turn; on a success, half damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "8d8",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WFbBmQEWPqW2IEBF",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.WFbBmQEWPqW2IEBF",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -550,11 +673,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "nbppQOCo7qmmyKhu",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.nbppQOCo7qmmyKhu",
+   "_id": "wdkC5xYEuNSTGb0z",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.wdkC5xYEuNSTGb0z",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -573,11 +696,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "b51kBeX6cU3PHXOg",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.b51kBeX6cU3PHXOg",
+   "_id": "v5iDRX3W753ib046",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.v5iDRX3W753ib046",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },

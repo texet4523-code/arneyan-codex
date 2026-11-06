@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "system": {
-    "description": "<p>Casts as an 11th-level paladin (spell <strong>DC 18</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}.</p>",
+    "description": "<p>Casts as an 11th-level paladin (spell <strong>DC 18</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.8gJYT4r45yjoydqp]{compelled duel}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:18]{Will DC 18}), @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.jRtz5F1Uoax8pioY]{prayer}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -251,6 +251,80 @@
    "folder": null
   },
   {
+   "name": "Compelled Duel",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range <strong>30ft</strong>; one creature; <strong>1 round per level</strong>.</p><ul><li>The target has <strong>Disadvantage</strong> on attacks against anyone but you, and each time it tries to move more than <strong>30ft</strong> from you it must succeed on a <strong>Will save</strong> or stop.</li><li>Ends if you attack another creature, are <strong>Incapacitated</strong>, or end your turn more than <strong>30ft</strong> from it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Paladin",
+    "classes": [
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Keeps moving (it saves each time it tries to move more than 30ft from you)",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Compelled Duel",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "attacks against anyone but the caster",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.8gJYT4r45yjoydqp"
+   },
+   "_id": "GE9Ka5bc7N6GjSCG",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.GE9Ka5bc7N6GjSCG",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Hold Person",
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
@@ -318,9 +392,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW"
    },
-   "_id": "rjujxZjAVo69U76X",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.rjujxZjAVo69U76X",
-   "sort": 400,
+   "_id": "IghXhnmwIxngLLgz",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.IghXhnmwIxngLLgz",
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -383,16 +457,166 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
    },
-   "_id": "NyBUiNBRZdWcdLry",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.NyBUiNBRZdWcdLry",
-   "sort": 500,
+   "_id": "nc5hFMSeVJmlOTAX",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.nc5hFMSeVJmlOTAX",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
    "folder": null
   },
   {
-   "name": "Banishment",
+   "name": "Prayer",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range <strong>40ft radius</strong> centred on you; <strong>1 round per level</strong>. Allies in the area have <strong>Advantage</strong> on their first attack roll each round and gain +1 to damage rolls and saves; enemies in it have <strong>Disadvantage</strong> on their first attack roll each round and suffer -1 to damage rolls and saves. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Paladin"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 40ft radius centred on you",
+    "duration": "",
+    "area": "40ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 40,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Prayer (ally)",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "damage",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     },
+     {
+      "name": "Prayer (enemy)",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack.first",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "damage",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "save",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.jRtz5F1Uoax8pioY"
+   },
+   "_id": "IfxVwcRKOrYmBr3t",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.IfxVwcRKOrYmBr3t",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "system": {
+    "description": "<p>Spell <strong>DC 18</strong>. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW]{banishment}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lccDmrH3HCetFbv0",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.lccDmrH3HCetFbv0",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Banishment (1/day)",
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
@@ -438,15 +662,15 @@
    "effects": [],
    "flags": {
     "arneyan": {
-     "frequency": ""
+     "frequency": "1/day"
     }
    },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.FtOb5tA9Nm3DS9PW"
    },
-   "_id": "3Pttu2MeTkCXDU1Z",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.3Pttu2MeTkCXDU1Z",
-   "sort": 600,
+   "_id": "9TSRAdCCvMC2qDP8",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.9TSRAdCCvMC2qDP8",
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -479,11 +703,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "foMjOdR22g57dzxn",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.foMjOdR22g57dzxn",
+   "_id": "9cZ0jIHvSqcMiA1b",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.9cZ0jIHvSqcMiA1b",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -516,11 +740,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "TC2TtpRcopOVeYca",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.TC2TtpRcopOVeYca",
+   "_id": "EvplK47Q4yYIVxd0",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.EvplK47Q4yYIVxd0",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -559,11 +783,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "uZPPQKq0Z4Lj8JQb",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.uZPPQKq0Z4Lj8JQb",
+   "_id": "R38fFblx42mCrWJQ",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.R38fFblx42mCrWJQ",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -601,11 +825,134 @@
     "active": false,
     "applies": []
    },
-   "_id": "o7CvfpJbaxSFEJPY",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.o7CvfpJbaxSFEJPY",
+   "_id": "lh5EZZjgFzDXtv8A",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.lh5EZZjgFzDXtv8A",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Rise, Fallen",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Four skeletons claw out of the ground within <strong>30ft</strong> of it. They act on its initiative from the next round and crumble when it falls.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Vh3yB2DprzSZ17lt",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.Vh3yB2DprzSZ17lt",
+   "effects": [],
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Chains of the Oathbreaker",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:18]{Will save DC 18} or takes @Damage[2d6 necrotic]{2d6 necrotic damage} and is @Condition[restrained]{Restrained} by black chains until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 18,
+    "damage": "2d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2FTs6lpcotQEbe6l",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.2FTs6lpcotQEbe6l",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Hellfire Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It hurls its Hellfire Orb whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7FyV1UUMTarec43f",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.7FyV1UUMTarec43f",
+   "effects": [],
+   "sort": 1600,
    "ownership": {
     "default": 0
    },

@@ -1,0 +1,209 @@
+{
+ "_id": "1WD9ZE1W1nPSBKgW",
+ "_key": "!actors!1WD9ZE1W1nPSBKgW",
+ "name": "Rot Grub Swarm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 2
+   },
+   "dex": {
+    "value": 7
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 1
+   },
+   "wis": {
+    "value": 2
+   },
+   "cha": {
+    "value": 1
+   }
+  },
+  "level": 1,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 8,
+   "speed": "5ft, burrow 5ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 0,
+   "will": -3
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "swarm of Tiny beasts",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "piercing 5, slashing 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Blindsight 10ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium swarm of Tiny beasts</em></p><p><strong>GM:</strong> White worms in a corpse pile, waiting for a hand to search it. Keep a torch close.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>On a hit: plus burrow (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus burrow",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ks6kOGYPWYrksHBX",
+   "_key": "!actors.items!1WD9ZE1W1nPSBKgW.ks6kOGYPWYrksHBX",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Burrow In",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>A creature hit has grubs burrow into its flesh: it takes <strong>1d6</strong> damage at the start of each of its turns.</p><ul><li>Fire on the wound (@Damage[1d6 fire]{1d6 fire damage} to the host) or @UUID[Compendium.arneyan.spells.Item.CFRX6TQDoD7YPFja]{remove disease} kills them.</li><li>If not stopped within <strong>3 rounds</strong>, the grubs reach the heart and the host drops to <strong>0 HP</strong>.</li></ul>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "78QHwBJn2HfvpaDT",
+   "_key": "!actors.items!1WD9ZE1W1nPSBKgW.78QHwBJn2HfvpaDT",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swarm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>Can occupy another creature's space and move through openings a few inches wide. Resistance 5 to piercing and slashing.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "urw3MEIHYUKhiRdd",
+   "_key": "!actors.items!1WD9ZE1W1nPSBKgW.urw3MEIHYUKhiRdd",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "clX1wwttkWSnTo9L",
+ "prototypeToken": {
+  "name": "Rot Grub Swarm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,663 @@
+{
+ "_id": "74jRJASN5IqRFgtC",
+ "_key": "!actors!74jRJASN5IqRFgtC",
+ "name": "Bahamut",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 30
+   },
+   "dex": {
+    "value": 10
+   },
+   "con": {
+    "value": 30
+   },
+   "int": {
+    "value": 26
+   },
+   "wis": {
+    "value": 30
+   },
+   "cha": {
+    "value": 28
+   }
+  },
+  "level": 25,
+  "hd": "30d20",
+  "attributes": {
+   "hp": {
+    "value": 600,
+    "max": 600,
+    "temp": 0
+   },
+   "ac": 26,
+   "speed": "60ft, fly 120ft, swim 60ft",
+   "attack": 30,
+   "spellDC": 30,
+   "morale": 12
+  },
+  "saves": {
+   "fort": 24,
+   "ref": 15,
+   "will": 24
+  },
+  "spellcasting": {
+   "className": "Cleric",
+   "level": 20,
+   "slots": [
+    7,
+    7,
+    6,
+    6,
+    5,
+    5,
+    4,
+    4,
+    3,
+    3
+   ],
+   "used": []
+  },
+  "details": {
+   "type": "dragon (metallic)",
+   "size": "gargantuan",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "cold, poison, condition:charmed, condition:frightened, condition:paralysed",
+   "vulnerabilities": "",
+   "senses": "Truesight 120ft",
+   "isSolo": true,
+   "levelText": "Mythic",
+   "page": 0,
+   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> The Platinum Dragonlord, also Xymor or Marduk, king of the good dragons and, with Tiamat, father of Tiahane. His Deteron paladin orders and the rites of Komodo Isle keep his name. He champions war against the giants and, in matters of law, defers to Torm. He walks among mortals in disguise and judges them by how they treat a frail old man.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "4d10+9",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "F0aRwUSr9ZVxfJgf",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.F0aRwUSr9ZVxfJgf",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6+9",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XAnuq8jKzxSapF1o",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.XAnuq8jKzxSapF1o",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Breath Weapons",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, one of: Cold Breath, a <strong>120ft cone</strong> of @Damage[15d8 cold]{15d8 cold} (@Check[ref|dc:32]{Reflex save DC 32}, for half); Disintegrating Roar, a <strong>120ft line</strong>, @Check[fort|dc:32]{Fortitude save DC 32} or @Damage[12d10 force]{12d10 force damage}, and a creature brought to <strong>0 HP</strong> is turned to dust; Vapour, a <strong>60ft cone</strong> in which each creature he chooses makes a @Check[fort|dc:32]{Fortitude save DC 32} or becomes mist, as @UUID[Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN]{gaseous form}, for <strong>1 minute</strong> (he also uses it to carry allies to safety).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 32,
+    "damage": "15d8",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "njZc3rlmI6absiOX",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.njZc3rlmI6absiOX",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Limited Magic Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Unaffected by spells of 6th level or lower unless he chooses to be.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "b51NFUb8CeOxqaqu",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.b51NFUb8CeOxqaqu",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zql1gOQQPWEnpcbn",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.zql1gOQQPWEnpcbn",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Casts as a 20th-level cleric (spell <strong>DC 30</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2]{heal}, @UUID[Compendium.arneyan.spells.Item.moKhczfvYpflgrgJ]{holy word}, @UUID[Compendium.arneyan.spells.Item.8XhTI839UkXWg4Sr]{true resurrection}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1VXaHrD4Qw8JAyBn",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.1VXaHrD4Qw8JAyBn",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Heal",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch. Restores all of the target's HP except <strong>1d4</strong>, and ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong>, poison and disease. Cast reversed (Harm): touching a creature deals necrotic damage equal to half its current HP, or sets it to <strong>1d4</strong> HP if it has <strong>50 HP</strong> or fewer.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Druid",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ZsPT0n007pjvoye2"
+   },
+   "_id": "XH2Gbxv17xQ5kAFB",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.XH2Gbxv17xQ5kAFB",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Holy Word",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range <strong>30ft</strong>; creatures you choose in hearing that are Evil: Level 4 or lower die; Level 5-8 <strong>Paralysed</strong> <strong>1d4</strong> rounds; Level 9-12 <strong>Blinded</strong> <strong>2d4</strong> rounds; Level 13 or higher <strong>Deafened</strong> <strong>1d4</strong> rounds. <strong>Will negates</strong>. Cast reversed (Unholy Word): the same effects on Good creatures.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 7,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Holy Word: Paralysed",
+      "target": "target",
+      "rounds": "1d4",
+      "statuses": [
+       "paralysed"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Holy Word: Blinded",
+      "target": "target",
+      "rounds": "2d4",
+      "statuses": [
+       "blinded"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Holy Word: Deafened",
+      "target": "target",
+      "rounds": "1d4",
+      "statuses": [
+       "deafened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.moKhczfvYpflgrgJ"
+   },
+   "_id": "1RgxIKLihI6p6JBW",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.1RgxIKLihI6p6JBW",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "True Resurrection",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
+   "system": {
+    "description": "<p>Range <strong>30ft</strong>; casting takes <strong>1 hour</strong>.</p><ul><li>One willing dead creature, dead no longer than 200 years per level, even if no body remains: you must know its name or hold a piece of its body, and a new body forms.</li><li>It returns at full HP with no Exhaustion, no Constitution loss and no other penalty, even if it died of old age (it returns in the prime of its life). No save.</li><li>Material: diamond dust worth 25,000 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 9,
+    "className": "Cleric",
+    "classes": [
+     "Cleric"
+    ],
+    "school": "Divine",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.8XhTI839UkXWg4Sr"
+   },
+   "_id": "RYEmfI8vryg2fvrB",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.RYEmfI8vryg2fvrB",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Awe of the Just",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>An evil creature within <strong>120ft</strong> that sees him makes a @Check[will|dc:30]{Will save DC 30} or is @Condition[frightened]{Frightened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 30,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CrEjXtk4YefSiZhW",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.CrEjXtk4YefSiZhW",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "The Old Man and Seven Canaries",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>At will, he takes the form of an old human travelling with seven canaries (gold dragons in disguise).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "XLMVDeVruPSRYOB9",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.XLMVDeVruPSRYOB9",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "pTqKrHAA0zJjuBUK",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.pTqKrHAA0zJjuBUK",
+   "effects": [],
+   "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "fKCW3AIiY9SeFQYM",
+   "_key": "!actors.items!74jRJASN5IqRFgtC.fKCW3AIiY9SeFQYM",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "feFuiAIdl1iSVk3a",
+ "prototypeToken": {
+  "name": "Bahamut",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 4,
+  "height": 4,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -2438,11 +2438,12 @@
     "formula": "1d20",
     "target": "gm",
     "cost": 0,
-    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: a Major Corruption (the GM rolls a d6); 2 to 20: a Minor Corruption."
+    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: Major Corruption; 2 to 20: Minor Corruption. The GM's d100 on that table follows by itself (Monsters & Treasure, Sorcerer's Corruption).",
+    "tables": "1=Major Corruption; 2-20=Minor Corruption"
    }
   ],
   "confidence": "high",
-  "why": "Handbook: the GM rolls d20 in secret on the Corruption Table; a blind roll only the GM sees."
+  "why": "Monsters & Treasure v0.10.48 (K63): the GM rolls d20 in secret, 1 Major and 2 to 20 Minor, then d100 on that table; blind rolls only the GM sees."
  },
  "Cleave|Action": {
   "activities": [

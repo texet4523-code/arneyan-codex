@@ -331,11 +331,19 @@ def ability_item(name, text, img):
         dtype = named_type(name)
     if dmg and not dtype and re.search(r"constrict|buffet|throttle|trampl|crush|slam|gore|bite|claw|tail|stomp", name, re.I):
         dtype = damage_type_of(name)
+    # M&T v0.10.50 (K65): "Villain Action 1 (Opener): *Twin Bellow.* ...": once a fight each, numbered for the solo rules.
+    va = re.fullmatch(r"Villain Action ([123]) \((Opener|Crowd Control|Ultimate)\)", name)
+    flags = {}
+    if va:
+        title = re.match(r"\*([^*]+?)\.?\*\s*", text)
+        if title:
+            name, text = f"{name}: {title.group(1).strip()}", text[title.end():]
+        flags = {"arneyan": {"villainAction": int(va.group(1))}}
     return {
-        "name": name, "type": "ability", "img": img,
+        "name": name, "type": "ability", "img": img, **({"flags": flags} if flags else {}),
         "system": {
             "description": f"<p>{enrich(text)}</p>", "source": {"book": "mt", "page": 0}, "kind": "monster",
-            "uses": uses_of(text), "save": SAVE[sv.group(1).lower()] if sv else "", "dc": int(sv.group(2)) if sv else None,
+            "uses": {"value": 1, "max": 1, "per": "encounter"} if va else uses_of(text), "save": SAVE[sv.group(1).lower()] if sv else "", "dc": int(sv.group(2)) if sv else None,
             "damage": dmg.group(1).replace(" ", "") if dmg else "",
             "damageType": dtype,
             "level": 0, "className": "", "rules": [], "toggle": False, "active": False, "applies": []

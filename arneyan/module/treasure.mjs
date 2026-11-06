@@ -95,11 +95,12 @@ export function parseTreasureCode(text) {
   t = t.replace(/<[^>]+>/g, " ").replace(/treasure(\s+type)?:?/ig, " ").replace(/\([^)]*\)/g, " ");
   const parts = [];
   for (const piece of t.split(/[,;+&]|\band\b/i)) {
-    const m = piece.trim().match(/^(lair\s+)?([A-HNPQRS])$/i);
+    // "lair H ×2" (Tiamat, M&T v0.10.48): two hoards, each rolled.
+    const m = piece.trim().match(/^(lair\s+)?([A-HNPQRS])(?:\s*[×x]\s*(\d+))?$/i);
     if (!m) continue;
     const code = m[2].toUpperCase();
     if (code === "N") continue;
-    parts.push({ code, lair: !!m[1], kind: code in HOARDS ? "hoard" : "individual" });
+    for (let n = Math.max(1, Number(m[3]) || 1); n > 0; n--) parts.push({ code, lair: !!m[1], kind: code in HOARDS ? "hoard" : "individual" });
   }
   return parts;
 }

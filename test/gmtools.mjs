@@ -48,7 +48,8 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
     if (d.type !== "npc") continue;
     const raw = (d.system.details.treasure.match(/<strong>([^<]*)<\/strong>/) ?? [])[1] ?? "";
     const parts = T.parseTreasureCode(d.system.details.treasure);
-    const expected = raw.split(",").map(s => s.trim()).filter(s => s && s !== "N" && s !== "-").length;
+    // "lair H ×2" is two hoards (Tiamat).
+    const expected = raw.split(",").map(s => s.trim()).filter(s => s && s !== "N" && s !== "-").reduce((n, s) => n + (Number((s.match(/[×x]\s*(\d+)$/) ?? [])[1]) || 1), 0);
     assert.equal(parts.length, expected, `${d.name}: "${raw}"`);
     read++;
     // No. appearing reads as dice for every stat block.
@@ -156,7 +157,8 @@ if (fs.existsSync(tablesDir)) {
   for (const tier of Object.values(T.GEM_TIERS)) assert.deepEqual(names(`${tier.label} Stones (${tier.value.toLocaleString("en-GB")} gp)`), tier.stones);
   // Every table covers its die exactly once, and the sub-tables link up.
   for (const t of Object.values(tables)) {
-    const faces = t.formula === "2d6" ? [2, 12] : [1, Number(t.formula.split("d")[1])];
+    // A table rolled with a bonus (Carousing: +5 on a good week) says how high it goes.
+    const faces = t.formula === "2d6" ? [2, 12] : [1, Math.max(Number(t.formula.split("d")[1]), Number(t.flags?.arneyan?.top) || 0)];
     const hit = [];
     for (const r of t.results) for (let n = r.range[0]; n <= r.range[1]; n++) hit.push(n);
     assert.deepEqual(hit.sort((a, b) => a - b), Array.from({ length: faces[1] - faces[0] + 1 }, (_, i) => faces[0] + i), t.name);
