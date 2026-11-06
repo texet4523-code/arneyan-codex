@@ -123,8 +123,12 @@ export const fileKey = path => fileKeys(path)[0] ?? "";
  * The keys a Bestiary name may go by, best first: the name in any word order, its aliases, and for Modrons the part
  * after the comma on its own ("Modron, Monodrone" is "monodrone"; "Adult" or "Red" alone would match anything).
  */
+/** Monsters the book renamed: a copy in a world may still carry the old name (M&T v0.10.46, K59). */
+export const RENAMED_MONSTERS = { "Skeleton Warrior": "Bone Legionary" };
+
 export function nameKeys(name) {
   const s = String(name ?? "");
+  if (Object.hasOwn(RENAMED_MONSTERS, s)) return [...new Set([...nameKeys(RENAMED_MONSTERS[s]), words(s)].filter(Boolean))];
   const parts = s.split(",").map(p => p.trim()).filter(Boolean);
   const aliases = Object.hasOwn(ALIASES, s) ? ALIASES[s] : [];
   // Hyphenated names run together in some files: "YuantiPureblood.webp", "WilloWisp.png".

@@ -314,6 +314,19 @@ assert.ok(!monster("Demilich").resistances.includes("force") && !monster("Demili
 assert.equal(monster("Treant").vulnerabilities, "fire");
 // M&T v0.10.46 (K59): the Green Slime is immune to every weapon; its fire and cold exception is no immunity.
 assert.equal(monster("Green Slime").immunities, "weapons");
+// Review of the M&T v0.10.47 sync: lower-case "takes double damage from"; human-form attacks; "Once per day each";
+// damage an ability deals to the creature itself takes no type from its name.
+for (const [n, v] of [["Winter Wolf", "fire"], ["Roper", "fire"], ["Shadow Demon", "radiant"]]) assert.equal(monster(n).vulnerabilities, v, n);
+const mItems = name => JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith(`actors_${name.replace(/\W+/g, "_")}_`)))).items;
+const spear = mItems("Werewolf").find(i => i.name === "Spear");
+assert.ok(spear?.type === "weapon" && spear.system.damage === "1d6+3" && spear.system.traits.includes("human form only"), "Werewolf spear");
+const wt = mItems("Weretiger");
+assert.ok(["Scimitar", "Longbow"].every(n => wt.find(i => i.name === n && i.type === "weapon")?.system.traits.includes("human form only")), "Weretiger human-form weapons");
+assert.equal(wt.find(i => i.name === "Longbow").system.range, "150ft");
+assert.ok(!wt.concat(mItems("Werewolf")).some(i => /^or /i.test(i.name)), "no leading or");
+const om = mItems("Ogre Mage").filter(i => i.type === "spell").map(i => i.name);
+assert.ok(om.includes("Cone of Cold (1/day)") && om.includes("Gaseous Form (1/day)") && om.includes("Sleep (3/day)"), om.join(", "));
+assert.equal(mItems("Iron Golem").find(i => i.name === "Lightning and Rust").system.damageType, "");
 assert.equal(monster("Gargoyle").resistances, "non-adamantine 5");
 assert.equal(monster("Werewolf").resistances, "non-silvered 10");
 assert.ok(monster("Bearded Devil").immunities.includes("condition:frightened") && !monster("Berserker").immunities.includes("frightened"));

@@ -186,6 +186,26 @@ def damage_type_of(name):
     return "bludgeoning"
 
 
+def attack_segments(atk):
+    """The attack line's segments, each with the form it is used in (or ""). "claws +6 (2d4+3), or spear +6 (1d6+3)
+    in human form": the "or" goes, and a form named at the end covers every option from the first "or" on (M&T
+    v0.10.46: the Werewolf's spear; the Weretiger's scimitar or longbow)."""
+    out = []
+    for seg in split_top(atk):
+        alt = bool(re.match(r"or\s+", seg))
+        seg = re.sub(r"^or\s+", "", seg)
+        form = ""
+        fm = re.search(r"\s+in (\w+) form\s*$", seg)
+        if fm:
+            seg, form = seg[:fm.start()], fm.group(1)
+        out.append([seg, form, alt])
+    if out and out[-1][1]:
+        first_or = next((k for k, o in enumerate(out) if o[2]), len(out) - 1)
+        for o in out[first_or:]:
+            o[1] = out[-1][1]
+    return [(o[0], o[1]) for o in out]
+
+
 def split_top(s, seps=(", ", " or ")):
     """Split on separators that are not inside brackets."""
     out, depth, buf, i = [], 0, "", 0
@@ -223,9 +243,10 @@ def spell_items(text):
     out = []
     freq = ""
     for chunk in re.split(r"(?<=\.)\s+", text):
-        fm = re.match(r"(At will|\d+/day(?: each)?)\s*:", chunk, re.I)
+        fm = re.match(r"(At will|\d+/day(?: each)?|Once per day(?: each)?|Twice per day(?: each)?)\s*:", chunk, re.I)
         if fm:
-            freq = fm.group(1).replace(" each", "")
+            # M&T v0.10.46 (K59, the Ogre Mage): "Once per day each: ...".
+            freq = re.sub(r"(?i)once per day", "1/day", re.sub(r"(?i)twice per day", "2/day", fm.group(1))).replace(" each", "")
         for n in re.findall(r"\*([^*]+?)\*", chunk):
             d = SPELL_DOCS.get(n.lower().strip())
             if not d:
@@ -305,7 +326,8 @@ def ability_item(name, text, img):
         half = re.search(r"half of (\d+d\d+(?:\s*[+-]\s*\d+)?)", text)
         if half:
             dmg = half
-    if dmg and not dtype:
+    # "A rust monster's touch deals it 2d8 damage" (the Iron Golem's Lightning and Rust): damage it takes, untyped.
+    if dmg and not dtype and not re.search(r"\bdeals it\b", text):
         dtype = named_type(name)
     if dmg and not dtype and re.search(r"constrict|buffet|throttle|trampl|crush|slam|gore|bite|claw|tail|stomp", name, re.I):
         dtype = damage_type_of(name)
@@ -449,7 +471,7 @@ def traits_from(sp):
                             continue
                         resist += [f"{w} {amt}" for w in _words(part) if w in DAMAGE]
             # Vulnerabilities
-            for m in re.finditer(r"(?:Takes double damage from|Vulnerable to) ([^;(]+)", sent):
+            for m in re.finditer(r"(?:[Tt]akes double damage from|[Vv]ulnerable to) ([^;(]+)", sent):
                 vuln += [w for w in _words(m.group(1)) if w in DAMAGE]
     uniq = lambda xs: list(dict.fromkeys(x for x in xs if x))
     immune = uniq(immune)
@@ -570,10 +592,11 @@ def build():
             size, token = SIZE.get(size_word, ("medium", 1))
             img = icon("monster", glyph_for(m["name"], m["type"]))
             # Attacks
-            segs = [] if f.get("atk", "none").strip().lower() in ("none", "—", "-", "") else split_top(f["atk"])
+            forms = [] if f.get("atk", "none").strip().lower() in ("none", "—", "-", "") else attack_segments(f["atk"])
+            segs = [sg for sg, _ in forms]
             first = next((int(x.group(1)) for x in (re.match(r".+?\s+([+-]\d+)\s*\(", s) for s in segs) if x), 0)
             items = []
-            for seg in segs:
+            for seg, form in forms:
                 auto = re.match(rf"(.+?)\s*\(hits automatically,\s*({DICE})\s*({TYPES})?\)\s*$", seg)
                 if auto:
                     nm = auto.group(1).strip()
@@ -583,6 +606,8 @@ def build():
                     continue
                 w = weapon_item(seg, first, img)
                 if w:
+                    if form:
+                        w["system"]["traits"] = ", ".join(t for t in (w["system"]["traits"], f"{form} form only") if t)
                     items.append(w)
                 else:
                     nm = re.match(r"([^(]+)", seg).group(1).strip()
