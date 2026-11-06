@@ -128,7 +128,7 @@ export const RENAMED_MONSTERS = { "Skeleton Warrior": "Bone Legionary" };
 
 export function nameKeys(name) {
   const s = String(name ?? "");
-  if (Object.hasOwn(RENAMED_MONSTERS, s)) return [...new Set([...nameKeys(RENAMED_MONSTERS[s]), words(s)].filter(Boolean))];
+  if (Object.hasOwn(RENAMED_MONSTERS, s) && !Object.hasOwn(RENAMED_MONSTERS, RENAMED_MONSTERS[s])) return [...new Set([...nameKeys(RENAMED_MONSTERS[s]), words(s)].filter(Boolean))];
   const parts = s.split(",").map(p => p.trim()).filter(Boolean);
   const aliases = Object.hasOwn(ALIASES, s) ? ALIASES[s] : [];
   // Hyphenated names run together in some files: "YuantiPureblood.webp", "WilloWisp.png".

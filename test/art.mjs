@@ -196,7 +196,7 @@ assert.equal(A.artFor("Goblin", { entries: folderIdx })?.portrait, "art/dnd-toke
 assert.equal(Object.keys(folderIdx).length, 2, "a descriptive name (black dragon menace) matches nothing");
 const cfgHtml = hbs(root)("templates/apps/art-config.hbs", { mods: [], folders: "art/dnd-tokens", auto: false, names: 0, images: 0 });
 assert.ok(cfgHtml.includes('name="folders"') && cfgHtml.includes("art/dnd-tokens") && cfgHtml.includes('data-action="pickFolder"'));
-console.log("OK monster art");
 // M&T v0.10.46 (K59): a world copy still named Skeleton Warrior finds the Bone Legionary's art.
 assert.equal(A.nameKeys("Skeleton Warrior")[0], A.artKey("Bone Legionary"));
 assert.deepEqual(A.artFor("Skeleton Warrior", { entries: { [A.artKey("Bone Legionary")]: { token: "t.webp" } } }), { token: "t.webp" });
+console.log("OK monster art");
