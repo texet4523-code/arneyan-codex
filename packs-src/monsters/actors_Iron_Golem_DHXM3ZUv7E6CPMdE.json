@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d4",
    "resistances": "",
-   "immunities": "fire, non-magical",
+   "immunities": "fire, non-magical, poison, condition:frightened",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
@@ -181,6 +181,43 @@
    "folder": null
   },
   {
+   "name": "Lightning and Rust",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Lightning damage Slows it until the end of its next turn. A rust monster's touch deals it <strong>2d8</strong> damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d8",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bzzYf2KFPYBqZHRD",
+   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.bzzYf2KFPYBqZHRD",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Magic Weapons Only",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "KNi1x1VfBupu4hRa",
-   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.KNi1x1VfBupu4hRa",
+   "_id": "FZ23rKtz2FIPM95X",
+   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.FZ23rKtz2FIPM95X",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -244,11 +281,91 @@
     "active": false,
     "applies": []
    },
-   "_id": "r6tsPhYF2THQrG0p",
-   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.r6tsPhYF2THQrG0p",
+   "_id": "dlfO6f9pfjoMZPUr",
+   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.dlfO6f9pfjoMZPUr",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "229OGay3NmTngO77",
+   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.229OGay3NmTngO77",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lefLp1gOVHq1rq7O",
+   "_key": "!actors.items!DHXM3ZUv7E6CPMdE.lefLp1gOVHq1rq7O",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
    "ownership": {
     "default": 0
    },

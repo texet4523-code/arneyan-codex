@@ -25,7 +25,7 @@
     "value": 15
    }
   },
-  "level": 7,
+  "level": 8,
   "hd": "6d10",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 8
   },
   "saves": {
-   "fort": 5,
-   "ref": 3,
-   "will": 3
+   "fort": 6,
+   "ref": 4,
+   "will": 4
   },
   "spellcasting": {
    "className": "",
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>15ft cone</strong> of cold; @Check[ref|dc:15]{Reflex DC 15} for half of @Damage[4d6 cold]{4d6 cold damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>15ft cone</strong> of cold; @Check[ref|dc:16]{Reflex DC 16} for half of @Damage[4d6 cold]{4d6 cold damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 15,
+    "dc": 16,
     "damage": "4d6",
     "damageType": "cold",
     "level": 0,
@@ -219,11 +219,48 @@
    "folder": null
   },
   {
+   "name": "Paralysing Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>In place of its cold breath, it may exhale paralysing gas in the same cone: @Check[fort|dc:16]{Fortitude save DC 16} or @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RqsDnR4hC59FyhWa",
+   "_key": "!actors.items!94Sv6BguznXdANkV.RqsDnR4hC59FyhWa",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Frightful Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>30ft</strong> that sees the dragon makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[frightened]{Frightened}.</p>",
+    "description": "<p>A creature within <strong>30ft</strong> that sees the dragon makes a @Check[will|dc:15]{Will save DC 15} or is @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +272,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 14,
+    "dc": 15,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "T0R6qPysEPgmCovI",
-   "_key": "!actors.items!94Sv6BguznXdANkV.T0R6qPysEPgmCovI",
+   "_id": "pJw2UheMwlB04DWZ",
+   "_key": "!actors.items!94Sv6BguznXdANkV.pJw2UheMwlB04DWZ",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "4JycUOGxRXWZYzHQ",
-   "_key": "!actors.items!94Sv6BguznXdANkV.4JycUOGxRXWZYzHQ",
+   "_id": "DxYGvFaaY0EdSa7R",
+   "_key": "!actors.items!94Sv6BguznXdANkV.DxYGvFaaY0EdSa7R",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -305,11 +342,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "zyfTpDXBWfT53V5z",
-   "_key": "!actors.items!94Sv6BguznXdANkV.zyfTpDXBWfT53V5z",
+   "_id": "1RA1U727i4REAKr7",
+   "_key": "!actors.items!94Sv6BguznXdANkV.1RA1U727i4REAKr7",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -328,11 +365,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "s9giqBWCSEp7ZgGb",
-   "_key": "!actors.items!94Sv6BguznXdANkV.s9giqBWCSEp7ZgGb",
+   "_id": "Ke3k1cbR2cLa3qCW",
+   "_key": "!actors.items!94Sv6BguznXdANkV.Ke3k1cbR2cLa3qCW",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d4",
    "resistances": "",
-   "immunities": "acid, non-magical",
+   "immunities": "acid, non-magical, poison, condition:frightened",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -218,6 +218,43 @@
    "folder": null
   },
   {
+   "name": "Haste",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, it speeds up for <strong>1 minute</strong>: its speed doubles and it makes one more slam each round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SSWLJBuiPBPtfQfU",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.SSWLJBuiPBPtfQfU",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Magic Weapons Only",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
@@ -244,11 +281,91 @@
     "active": false,
     "applies": []
    },
-   "_id": "4yDMVNA7PmQyvdzD",
-   "_key": "!actors.items!iYIgNlHCaEoonPXg.4yDMVNA7PmQyvdzD",
+   "_id": "CtlETaV6SFIrIkSK",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.CtlETaV6SFIrIkSK",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "o6Yv1VFAPos2HEej",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.o6Yv1VFAPos2HEej",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Construct Nature",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lddUyDLA79xLlG7D",
+   "_key": "!actors.items!iYIgNlHCaEoonPXg.lddUyDLA79xLlG7D",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
    "ownership": {
     "default": 0
    },

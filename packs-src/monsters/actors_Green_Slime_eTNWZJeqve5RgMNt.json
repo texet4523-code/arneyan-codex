@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d6",
    "resistances": "",
-   "immunities": "",
+   "immunities": "weapons",
    "vulnerabilities": "fire, cold",
    "senses": "Blindsight 60ft",
    "isSolo": false,
@@ -144,6 +144,43 @@
    "folder": null
   },
   {
+   "name": "Slime Body",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Immune to weapons, and to spells other than those dealing fire or cold damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "O7cZGzo9mJ22gnoP",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.O7cZGzo9mJ22gnoP",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Weakness",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-slime.svg",
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "u6TIhcUuUMc0VZr5",
-   "_key": "!actors.items!eTNWZJeqve5RgMNt.u6TIhcUuUMc0VZr5",
+   "_id": "mHJl0ypKm8C1OvDY",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.mHJl0ypKm8C1OvDY",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "AktXGB4KRSesiyA2",
-   "_key": "!actors.items!eTNWZJeqve5RgMNt.AktXGB4KRSesiyA2",
+   "_id": "d9RdUDcSuVCPisyA",
+   "_key": "!actors.items!eTNWZJeqve5RgMNt.d9RdUDcSuVCPisyA",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },

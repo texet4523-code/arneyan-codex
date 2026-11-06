@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d4",
    "resistances": "",
-   "immunities": "",
+   "immunities": "condition:charmed",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Shapechanger's Mind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Cannot be @Condition[charmed]{Charmed} or magically put to sleep.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "p3wvI6bEt1P3QBs8",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.p3wvI6bEt1P3QBs8",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Shapechanger",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "e7jRapvWQLTQz6q4",
-   "_key": "!actors.items!T9D8PZnuKGQGgG6F.e7jRapvWQLTQz6q4",
+   "_id": "ncjRp4WbivMR6Ftu",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.ncjRp4WbivMR6Ftu",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "WXMhIs7UYVwmaR3q",
-   "_key": "!actors.items!T9D8PZnuKGQGgG6F.WXMhIs7UYVwmaR3q",
+   "_id": "IE0gjA1Z0VySOMdd",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.IE0gjA1Z0VySOMdd",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "ocNHxQlpDl4bShtw",
-   "_key": "!actors.items!T9D8PZnuKGQGgG6F.ocNHxQlpDl4bShtw",
+   "_id": "A35dOX1TUtBo7MUf",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.A35dOX1TUtBo7MUf",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -230,11 +267,11 @@
     "ability": "cha",
     "tier": "master"
    },
-   "_id": "mK2UumXTHtZchPT0",
-   "_key": "!actors.items!T9D8PZnuKGQGgG6F.mK2UumXTHtZchPT0",
+   "_id": "GghfE0F5vwAn4Nwv",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.GghfE0F5vwAn4Nwv",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -253,11 +290,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "a6oBDMMdXyXmL1S8",
-   "_key": "!actors.items!T9D8PZnuKGQGgG6F.a6oBDMMdXyXmL1S8",
+   "_id": "ZRnN7dJ2O7p9gN9G",
+   "_key": "!actors.items!T9D8PZnuKGQGgG6F.ZRnN7dJ2O7p9gN9G",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },

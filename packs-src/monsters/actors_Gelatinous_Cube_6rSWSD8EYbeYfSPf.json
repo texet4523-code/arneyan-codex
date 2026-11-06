@@ -144,6 +144,43 @@
    "folder": null
   },
   {
+   "name": "Paralysing Touch",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>A creature hit by its pseudopod, or when first engulfed, makes a @Check[fort|dc:16]{Fortitude save DC 16} or is @Condition[paralysed]{Paralysed} for <strong>1d4</strong> rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0z58KahOHAJakYwh",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.0z58KahOHAJakYwh",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Transparent",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-slime.svg",
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Rwg2ra0IQet2gH5S",
-   "_key": "!actors.items!6rSWSD8EYbeYfSPf.Rwg2ra0IQet2gH5S",
+   "_id": "JxVRfXHeagfq5QHK",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.JxVRfXHeagfq5QHK",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "9ToRgPUTj9l5TXg9",
-   "_key": "!actors.items!6rSWSD8EYbeYfSPf.9ToRgPUTj9l5TXg9",
+   "_id": "bxQxIhVV9AwOtWat",
+   "_key": "!actors.items!6rSWSD8EYbeYfSPf.bxQxIhVV9AwOtWat",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },

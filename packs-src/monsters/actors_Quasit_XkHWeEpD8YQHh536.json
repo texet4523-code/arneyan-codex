@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "fire 5, cold 5, lightning 5",
+   "resistances": "fire 5, cold 5, lightning 5, non-magical 5",
    "immunities": "poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-imp.svg",
    "system": {
-    "description": "<p>A creature bitten makes a @Check[fort|dc:11]{Fortitude save DC 11} or loses <strong>1d4</strong> Strength. Lost Strength returns after a full day's rest.</p>",
+    "description": "<p>A creature bitten makes a @Check[fort|dc:11]{Fortitude save DC 11} or loses <strong>1d4</strong> Dexterity. Lost Dexterity returns after a full day's rest.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -443,11 +443,11 @@
    "folder": null
   },
   {
-   "name": "Abyssal Resilience",
+   "name": "Invisibility",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-imp.svg",
    "system": {
-    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning.</p>",
+    "description": "<p>At will, as an action, it turns invisible until it attacks.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -469,11 +469,91 @@
     "active": false,
     "applies": []
    },
-   "_id": "Z2K3Vv3EzA9YXunA",
-   "_key": "!actors.items!XkHWeEpD8YQHh536.Z2K3Vv3EzA9YXunA",
+   "_id": "agz6qJEUsLwLZ699",
+   "_key": "!actors.items!XkHWeEpD8YQHh536.agz6qJEUsLwLZ699",
    "effects": [],
    "flags": {},
    "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Abyssal Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-imp.svg",
+   "system": {
+    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning. Magic weapons harm it fully; it has Resistance 5 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "shUjpZc0YKrFK9lQ",
+   "_key": "!actors.items!XkHWeEpD8YQHh536.shUjpZc0YKrFK9lQ",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-imp.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qiO8exU8cY1z2cLh",
+   "_key": "!actors.items!XkHWeEpD8YQHh536.qiO8exU8cY1z2cLh",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -492,11 +572,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "XVEeTHyfOFhiROFk",
-   "_key": "!actors.items!XkHWeEpD8YQHh536.XVEeTHyfOFhiROFk",
+   "_id": "t3iYnWQ94TNUn5S6",
+   "_key": "!actors.items!XkHWeEpD8YQHh536.t3iYnWQ94TNUn5S6",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Amphibious",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>Breathes air and water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9hEVcjKxyQ5dPL7O",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.9hEVcjKxyQ5dPL7O",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Enslave",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
@@ -133,11 +170,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "KK3DGvy9dH1iWRFf",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.KK3DGvy9dH1iWRFf",
+   "_id": "17XvTGjHCHXpGJ8q",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.17XvTGjHCHXpGJ8q",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tentacle Slime",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>A creature hit by a tentacle makes a @Check[fort|dc:16]{Fortitude save DC 16} or catches the slime: within <strong>1 hour</strong> its skin turns clear and slick, and it can breathe only water until <em>cure disease</em> or similar magic ends it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 16,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pv6gfQodw1AMrzn7",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.pv6gfQodw1AMrzn7",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -170,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "XHeIi2PClLjz67u1",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.XHeIi2PClLjz67u1",
+   "_id": "Z6PDJ8QAOrSgCDgQ",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.Z6PDJ8QAOrSgCDgQ",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -207,11 +281,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "5A69nGimR6T1Z7SA",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.5A69nGimR6T1Z7SA",
+   "_id": "DBv91ev9cPvUSNgc",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.DBv91ev9cPvUSNgc",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -244,11 +318,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "ThTNctX0F4qeJGZg",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.ThTNctX0F4qeJGZg",
+   "_id": "BpbivjJH2HwIVOEF",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.BpbivjJH2HwIVOEF",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -267,11 +341,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "tAm3mX5hAeudN4Y6",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.tAm3mX5hAeudN4Y6",
+   "_id": "vRE1k7TpUroLfbwa",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.vRE1k7TpUroLfbwa",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -294,10 +368,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "44yJ3tHaEp5cgbL2",
-   "_key": "!actors.items!s5BF2E7sBhOh2zyC.44yJ3tHaEp5cgbL2",
+   "_id": "OhXLlLgJvdCRj7DE",
+   "_key": "!actors.items!s5BF2E7sBhOh2zyC.OhXLlLgJvdCRj7DE",
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

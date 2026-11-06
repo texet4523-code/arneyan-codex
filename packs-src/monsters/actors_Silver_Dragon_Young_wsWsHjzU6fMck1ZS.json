@@ -25,7 +25,7 @@
     "value": 19
    }
   },
-  "level": 11,
+  "level": 12,
   "hd": "10d12",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 10,
-   "ref": 5,
-   "will": 5
+   "fort": 11,
+   "ref": 6,
+   "will": 6
   },
   "spellcasting": {
    "className": "",
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft cone</strong> of cold; @Check[ref|dc:20]{Reflex DC 20} for half of @Damage[7d6 cold]{7d6 cold damage}.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft cone</strong> of cold; @Check[ref|dc:21]{Reflex DC 21} for half of @Damage[7d6 cold]{7d6 cold damage}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 20,
+    "dc": 21,
     "damage": "7d6",
     "damageType": "cold",
     "level": 0,
@@ -219,11 +219,48 @@
    "folder": null
   },
   {
+   "name": "Paralysing Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>In place of its cold breath, it may exhale paralysing gas in the same cone: @Check[fort|dc:21]{Fortitude save DC 21} or @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 21,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mCFKh5eAJ0bVhxDs",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.mCFKh5eAJ0bVhxDs",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Frightful Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>60ft</strong> that sees the dragon makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[frightened]{Frightened}.</p>",
+    "description": "<p>A creature within <strong>60ft</strong> that sees the dragon makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -235,7 +272,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 19,
+    "dc": 20,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -245,11 +282,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "TvtXstM1MErZEXpw",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.TvtXstM1MErZEXpw",
+   "_id": "bPX9FTIxGuSv1Dqg",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.bPX9FTIxGuSv1Dqg",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechange",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>As an action, it takes the form of a humanoid or beast, keeping its statistics.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "h8CK8RbrLhVC1qPr",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.h8CK8RbrLhVC1qPr",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -282,11 +356,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "2dtfkiAv9Gsl9uow",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.2dtfkiAv9Gsl9uow",
+   "_id": "WpG326SnWSCIIBfE",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.WpG326SnWSCIIBfE",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -305,11 +379,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "GOeVt60It5OXe7hX",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.GOeVt60It5OXe7hX",
+   "_id": "cOD6iZqx1r0dt9ag",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.cOD6iZqx1r0dt9ag",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -328,11 +402,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "kCayQEKl22lCuMXQ",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.kCayQEKl22lCuMXQ",
+   "_id": "hSkCM7OVerbWMKAj",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.hSkCM7OVerbWMKAj",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -355,10 +429,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "pGtKq4klEQRC95Oa",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.pGtKq4klEQRC95Oa",
+   "_id": "4UvInc1jYbIJWUeD",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.4UvInc1jYbIJWUeD",
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -381,10 +455,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "k2HSCYmxvAY2KYlO",
-   "_key": "!actors.items!wsWsHjzU6fMck1ZS.k2HSCYmxvAY2KYlO",
+   "_id": "LxZzh2XBxktjCyVC",
+   "_key": "!actors.items!wsWsHjzU6fMck1ZS.LxZzh2XBxktjCyVC",
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1d2",
-   "resistances": "cold 5",
+   "resistances": "cold 5, non-silvered 5",
    "immunities": "fire, poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Binding Chains",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>A creature hit by a chain is grappled and @Condition[restrained]{Restrained} (escape <strong>DC 16</strong>), and takes <strong>2d6</strong> damage at the start of each of its turns while held.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "2d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WDmkaULwUjodqXp4",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.WDmkaULwUjodqXp4",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Animate Chains",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "GTu7TV3jdm2SrWxc",
-   "_key": "!actors.items!WQ66SHvsSx5IAulX.GTu7TV3jdm2SrWxc",
+   "_id": "jKmhkpVZYQza24H9",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.jKmhkpVZYQza24H9",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "wXsIs6akoorQ8Mte",
-   "_key": "!actors.items!WQ66SHvsSx5IAulX.wXsIs6akoorQ8Mte",
+   "_id": "vMwPXIFxcbu0UPlB",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.vMwPXIFxcbu0UPlB",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -185,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Immune to fire and poison. Resistance 5 to cold.</p>",
+    "description": "<p>Immune to fire and poison. Resistance 5 to cold. Magic weapons or silver harm it fully; it has Resistance 5 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -207,11 +244,54 @@
     "active": false,
     "applies": []
    },
-   "_id": "IL4lr6ziUrxuaDqO",
-   "_key": "!actors.items!WQ66SHvsSx5IAulX.IL4lr6ziUrxuaDqO",
+   "_id": "R8wKWlEfJiIqC9fD",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.R8wKWlEfJiIqC9fD",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "480fx0TeOyIFSUUM",
+   "_key": "!actors.items!WQ66SHvsSx5IAulX.480fx0TeOyIFSUUM",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
    "ownership": {
     "default": 0
    },

@@ -51,7 +51,7 @@ export const ALIASES = {
   "Yuan-ti Abomination": ["Aapoph Serpentfolk"], "Snapjaw Plant": ["Snapping Flytrap"], "Mud Mephit": ["Ooze Mephit"],
   "Magma Mephit": ["Fire Mephit"], "Orc War Chief": ["Orc Warchief"], "Hobgoblin Warlord": ["Hobgoblin General"],
   "Gnoll Pack Lord": ["Gnoll Sergeant"], "Lizardfolk Shaman": ["Lizardfolk Stargazer"], "Drow Elite Warrior": ["Drow Fighter"],
-  "Skeleton Warrior": ["Skeleton Guard"], "Black Dragon, Wyrmling": ["Black Dragon, Young"],
+  "Bone Legionary": ["Skeleton Warrior", "Skeleton Guard"], "Black Dragon, Wyrmling": ["Black Dragon, Young"],
   "Blue Dragon, Wyrmling": ["Blue Dragon, Young"], "Brass Dragon, Wyrmling": ["Brass Dragon, Young"],
   "Bronze Dragon, Wyrmling": ["Bronze Dragon, Young"], "Copper Dragon, Wyrmling": ["Copper Dragon, Young"],
   "Gold Dragon, Wyrmling": ["Gold Dragon, Young"], "Green Dragon, Wyrmling": ["Green Dragon, Young"],

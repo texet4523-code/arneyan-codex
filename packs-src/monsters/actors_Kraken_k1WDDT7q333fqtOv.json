@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1",
    "resistances": "",
-   "immunities": "",
+   "immunities": "lightning",
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-octopus.svg",
    "system": {
-    "description": "<p>Can breathe air and water.</p>",
+    "description": "<p>Breathes air and water.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -256,6 +256,80 @@
    "folder": null
   },
   {
+   "name": "Grasping Tentacles",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>A Huge or smaller creature hit by a tentacle is grappled and @Condition[restrained]{Restrained} (escape <strong>DC 29</strong>).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PynZEtZpIITywtOM",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.PynZEtZpIITywtOM",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swallow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "system": {
+    "description": "<p>A Large or smaller creature hit by its bite is swallowed: @Condition[blinded]{Blinded} and @Condition[restrained]{Restrained}, taking @Damage[6d6 acid]{6d6 acid damage} at the start of each of the kraken's turns. A creature inside that deals 50 damage in <strong>one turn</strong> is spat out.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "6d6",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "An1xD6hEcFiGmn1m",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.An1xD6hEcFiGmn1m",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Fling",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-octopus.svg",
@@ -282,11 +356,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "yeCdcIqqevLAdhcn",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.yeCdcIqqevLAdhcn",
+   "_id": "HnD7cY8i3IyXrgh4",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.HnD7cY8i3IyXrgh4",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -319,11 +393,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Bve6pLWnaaUrNnAP",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.Bve6pLWnaaUrNnAP",
+   "_id": "UdxcLdLq75bmq9aj",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.UdxcLdLq75bmq9aj",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

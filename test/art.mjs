@@ -98,9 +98,9 @@ assert.ok(!fold[A.artKey("Owl")], "only the folder the image is in");
 assert.ok(!fold[A.artKey("Bat")]);
 assert.equal(A.folderIndex(["pf/drakes/wyvern.webp", "pf/drakes/river-drake.webp"], ["Drake"])[A.artKey("Drake")].token, "pf/drakes/river-drake.webp", "one named for it first");
 // Review cases: a close name or folder file that is another monster's stays theirs; portraits don't fill the token slot.
-const roster = ["Goblin", "Goblin Boss", "Ogre", "Ogre Mage", "Wolf", "Dire Wolf", "Winter Wolf", "Skeleton", "Skeleton Warrior", "Bat", "Bat Swarm"];
+const roster = ["Goblin", "Goblin Boss", "Ogre", "Ogre Mage", "Wolf", "Dire Wolf", "Winter Wolf", "Skeleton", "Bone Legionary", "Bat", "Bat Swarm"];
 const near3 = A.nearIndex(["x/Goblin_Boss_Sword.webp", "x/Ogre_Mage_01_sword.webp", "x/skeleton-warrior-sword.webp", "x/skeleton-guard.webp"], roster);
-assert.deepEqual(Object.keys(near3).sort(), ["boss-goblin", "mage-ogre", "skeleton-warrior"], "theirs, not the base monster's: no Goblin Boss for a Goblin, no Ogre Mage for an Ogre, no Skeleton Warrior (or its Skeleton Guard) for a Skeleton");
+assert.deepEqual(Object.keys(near3).sort(), ["bone-legionary", "boss-goblin", "mage-ogre"], "theirs, not the base monster's: no Goblin Boss for a Goblin, no Ogre Mage for an Ogre, no Skeleton Warrior (or Skeleton Guard) art, the Bone Legionary's old names, for a Skeleton");
 const fold2 = A.folderIndex(["art/Wolf/dire-wolf.webp", "art/Wolf/winter-wolf.webp", "art/Bats/vampire-bat-swarm.webp", "art/Bat Swarm/vampire-bat-swarm.webp"], roster);
 assert.ok(!fold2[A.artKey("Wolf")], "a folder of other wolves");
 assert.ok(!fold2[A.artKey("Bat")], "a bat swarm is no Bat");

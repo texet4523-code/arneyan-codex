@@ -256,6 +256,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dlhh7gbG87VbM4tv",
+   "_key": "!actors.items!KYHvkslFg89gs7VJ.dlhh7gbG87VbM4tv",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -268,11 +311,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "KDTD77n4pqOcBUtW",
-   "_key": "!actors.items!KYHvkslFg89gs7VJ.KDTD77n4pqOcBUtW",
+   "_id": "fwMQqhWgyt4valNF",
+   "_key": "!actors.items!KYHvkslFg89gs7VJ.fwMQqhWgyt4valNF",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -291,11 +334,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "PpLNuuHrSxrozd4H",
-   "_key": "!actors.items!KYHvkslFg89gs7VJ.PpLNuuHrSxrozd4H",
+   "_id": "Tm9E9LMHZTZxVaiU",
+   "_key": "!actors.items!KYHvkslFg89gs7VJ.Tm9E9LMHZTZxVaiU",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -314,11 +357,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "c1J4AbKTbft3Nqxt",
-   "_key": "!actors.items!KYHvkslFg89gs7VJ.c1J4AbKTbft3Nqxt",
+   "_id": "EDXwqWYiTyWFGMwh",
+   "_key": "!actors.items!KYHvkslFg89gs7VJ.EDXwqWYiTyWFGMwh",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

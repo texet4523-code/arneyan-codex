@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "",
+   "resistances": "fire 5",
    "immunities": "",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Amphibious",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>Breathes air and water. Resistance 5 to fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "htj6abjqX3Qdulxq",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.htj6abjqX3Qdulxq",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Steam Breath",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "qpcKH5wZmGLkS6lw",
-   "_key": "!actors.items!ZGgFANcmX8vwBw1T.qpcKH5wZmGLkS6lw",
+   "_id": "7s8BbC3EqsHaCJ4T",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.7s8BbC3EqsHaCJ4T",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "1PGnDVDVwtJ2cSOG",
-   "_key": "!actors.items!ZGgFANcmX8vwBw1T.1PGnDVDVwtJ2cSOG",
+   "_id": "tNrVpIhkmK512iqC",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.tNrVpIhkmK512iqC",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "mjJ7fGdoANg3f01M",
-   "_key": "!actors.items!ZGgFANcmX8vwBw1T.mjJ7fGdoANg3f01M",
+   "_id": "TpBHOCrBXE2YjxqG",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.TpBHOCrBXE2YjxqG",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -282,11 +319,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "oqwUwv8yblX9I56N",
-   "_key": "!actors.items!ZGgFANcmX8vwBw1T.oqwUwv8yblX9I56N",
+   "_id": "wBNccIygUEx7KZOg",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.wBNccIygUEx7KZOg",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },

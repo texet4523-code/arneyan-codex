@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "cold 5",
+   "resistances": "cold 5, non-silvered 5",
    "immunities": "fire, poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -256,11 +256,11 @@
    "folder": null
   },
   {
-   "name": "Devil's Resilience",
+   "name": "Invisibility",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-imp.svg",
    "system": {
-    "description": "<p>Immune to fire and poison. Resistance 5 to cold.</p>",
+    "description": "<p>At will, as an action, it turns invisible until it attacks.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -282,11 +282,91 @@
     "active": false,
     "applies": []
    },
-   "_id": "ab5eM8Pic1oohpzJ",
-   "_key": "!actors.items!KdSVErnwTPfexPhe.ab5eM8Pic1oohpzJ",
+   "_id": "jhBJaQlGoyOzOU6Q",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.jhBJaQlGoyOzOU6Q",
    "effects": [],
    "flags": {},
    "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Devil's Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-imp.svg",
+   "system": {
+    "description": "<p>Immune to fire and poison. Resistance 5 to cold. Magic weapons or silver harm it fully; it has Resistance 5 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TUBwkWnXacfUjCda",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.TUBwkWnXacfUjCda",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-imp.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "M11MrJmcpiDA1qEx",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.M11MrJmcpiDA1qEx",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -305,11 +385,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "ADRxYaR9rgsVeAmA",
-   "_key": "!actors.items!KdSVErnwTPfexPhe.ADRxYaR9rgsVeAmA",
+   "_id": "KplxNOWQ4W5knpZs",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.KplxNOWQ4W5knpZs",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -328,11 +408,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "sSdzAzJyb4mgwtAx",
-   "_key": "!actors.items!KdSVErnwTPfexPhe.sSdzAzJyb4mgwtAx",
+   "_id": "nHQ9Yvy62IA06ojo",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.nHQ9Yvy62IA06ojo",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -351,11 +431,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "1LcyhZFaW2Z3VSYE",
-   "_key": "!actors.items!KdSVErnwTPfexPhe.1LcyhZFaW2Z3VSYE",
+   "_id": "jZVPriY5C9BMlgjb",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.jZVPriY5C9BMlgjb",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -374,11 +454,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "01LJbFkKg7lvs3VG",
-   "_key": "!actors.items!KdSVErnwTPfexPhe.01LJbFkKg7lvs3VG",
+   "_id": "mmM2hiYfEV0DFMZL",
+   "_key": "!actors.items!KdSVErnwTPfexPhe.mmM2hiYfEV0DFMZL",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

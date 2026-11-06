@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1d3",
-   "resistances": "fire 5, cold 5, lightning 5",
+   "resistances": "fire 5, cold 5, lightning 5, non-magical 5",
    "immunities": "poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -117,7 +117,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning.</p>",
+    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning. Magic weapons harm it fully; it has Resistance 5 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -224,6 +224,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YX31VnvdrQL9n5ug",
+   "_key": "!actors.items!jqKpZOaP1loKF1s7.YX31VnvdrQL9n5ug",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -236,11 +279,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "BU2KfE8nxOVGkpLY",
-   "_key": "!actors.items!jqKpZOaP1loKF1s7.BU2KfE8nxOVGkpLY",
+   "_id": "uV3JcLdX21T0JB0Z",
+   "_key": "!actors.items!jqKpZOaP1loKF1s7.uV3JcLdX21T0JB0Z",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },

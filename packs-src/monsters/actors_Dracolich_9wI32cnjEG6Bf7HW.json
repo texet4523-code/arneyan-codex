@@ -330,6 +330,43 @@
    "folder": null
   },
   {
+   "name": "Paralysing Touch",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, a creature hit by its claw makes a @Check[fort|dc:24]{Fortitude save DC 24} or is @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "M3l0xlzTYnFivxE5",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.M3l0xlzTYnFivxE5",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Phylactery",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
@@ -356,11 +393,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "LbpbeLq3CixVAxJx",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.LbpbeLq3CixVAxJx",
+   "_id": "pzwZAz9VeULS4aIQ",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.pzwZAz9VeULS4aIQ",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -399,11 +436,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "HfDBOsAZBcyHUe0T",
-   "_key": "!actors.items!9wI32cnjEG6Bf7HW.HfDBOsAZBcyHUe0T",
+   "_id": "BitQgNdWLSBACgLt",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.BitQgNdWLSBACgLt",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 900,
    "ownership": {
     "default": 0
    },

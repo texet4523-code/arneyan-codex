@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature hit by both pincers in the same round is @Condition[restrained]{Restrained}. It takes <strong>2d10</strong> damage at the start of each of its turns while held.</p>",
+    "description": "<p>A creature hit by both pincers in the same round is grappled and @Condition[restrained]{Restrained} (escape <strong>DC 19</strong>). It takes <strong>2d10</strong> damage at the start of each of its turns while held.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -516,6 +516,49 @@
    "effects": [],
    "flags": {},
    "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cQoWgyAiw7KmUYtu",
+   "_key": "!actors.items!qsWONuXjTZttHUrx.cQoWgyAiw7KmUYtu",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
    "ownership": {
     "default": 0
    },

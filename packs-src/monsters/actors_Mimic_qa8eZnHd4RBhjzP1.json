@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1",
    "resistances": "",
-   "immunities": "",
+   "immunities": "acid",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -192,7 +192,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-mimic-chest.svg",
    "system": {
-    "description": "<p>A creature that touches it or hits it with a weapon sticks.</p>",
+    "description": "<p>A creature that touches it or hits it with a weapon sticks to it: the creature is grappled (escape <strong>DC 15</strong>), and a stuck weapon can't be pulled free.</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -63,7 +63,7 @@
    "isSolo": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A crude patchwork of stolen limbs. It obeys its maker until it does not, and everyone fights worse while it rampages.</p>",
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A crude patchwork of stolen limbs. It obeys its maker until it does not.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -181,6 +181,43 @@
    "folder": null
   },
   {
+   "name": "Aversion to Fire and Cold",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Fire or cold damage Slows it until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cy9Kru08pl63XrDT",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.cy9Kru08pl63XrDT",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Magic Weapons Only",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "47vIoYehtHlCw4B9",
-   "_key": "!actors.items!5aitAHM5loSKAhhZ.47vIoYehtHlCw4B9",
+   "_id": "excnhMgWkiZIYIDD",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.excnhMgWkiZIYIDD",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -244,11 +281,54 @@
     "active": false,
     "applies": []
    },
-   "_id": "3NKqWllvvDFvUEOo",
-   "_key": "!actors.items!5aitAHM5loSKAhhZ.3NKqWllvvDFvUEOo",
+   "_id": "eRTbHOnD4cBaJAFJ",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.eRTbHOnD4cBaJAFJ",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KB1UNku2i7oXyu00",
+   "_key": "!actors.items!5aitAHM5loSKAhhZ.KB1UNku2i7oXyu00",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
    "ownership": {
     "default": 0
    },

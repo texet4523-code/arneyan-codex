@@ -756,6 +756,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-mummy-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SB0PPAzvBXhWQT8K",
+   "_key": "!actors.items!LpTsArKotSHQklo8.SB0PPAzvBXhWQT8K",
+   "effects": [],
+   "flags": {},
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Ancient History",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-brain.svg",
@@ -772,10 +815,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "tb327JAMK7mrX9UW",
-   "_key": "!actors.items!LpTsArKotSHQklo8.tb327JAMK7mrX9UW",
+   "_id": "oCm9LhjbwUrj3CZg",
+   "_key": "!actors.items!LpTsArKotSHQklo8.oCm9LhjbwUrj3CZg",
    "flags": {},
-   "sort": 1300,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -798,10 +841,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "vuYnxshqOXwBmXc5",
-   "_key": "!actors.items!LpTsArKotSHQklo8.vuYnxshqOXwBmXc5",
+   "_id": "zjh00rluUX9fHm0a",
+   "_key": "!actors.items!LpTsArKotSHQklo8.zjh00rluUX9fHm0a",
    "flags": {},
-   "sort": 1400,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

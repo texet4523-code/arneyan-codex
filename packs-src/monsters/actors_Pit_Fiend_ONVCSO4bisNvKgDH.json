@@ -73,7 +73,7 @@
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "",
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -89,7 +89,7 @@
     "range": "",
     "magic": 0,
     "attackBonus": 0,
-    "traits": "",
+    "traits": "plus poison",
     "bonusDamage": [],
     "rules": [],
     "toggle": false,
@@ -224,7 +224,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Regains <strong>2 HP</strong> per round. This does not work against holy or cold iron weapons.</p>",
+    "description": "<p>Regains <strong>2 HP</strong> per round. This does not work against holy or silver weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -251,6 +251,43 @@
    "effects": [],
    "flags": {},
    "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Poisoned Bite",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:24]{Fortitude save DC 24} or is @Condition[poisoned]{Poisoned} and can't regain HP, taking @Damage[3d6 poison]{3d6 poison damage} at the start of each of its turns until it saves (repeating the save each turn).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 24,
+    "damage": "3d6",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QSfjvwiiirHpSHKN",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.QSfjvwiiirHpSHKN",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -300,11 +337,11 @@
      }
     ]
    },
-   "_id": "TFAZ0KDwqpmHLFgX",
-   "_key": "!actors.items!ONVCSO4bisNvKgDH.TFAZ0KDwqpmHLFgX",
+   "_id": "BkhDydZcGih1Zl3c",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.BkhDydZcGih1Zl3c",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -337,11 +374,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "TGt85ZeUh85nkgjU",
-   "_key": "!actors.items!ONVCSO4bisNvKgDH.TGt85ZeUh85nkgjU",
+   "_id": "YlPfuqzCJeLEGnWk",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.YlPfuqzCJeLEGnWk",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -400,9 +437,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv"
    },
-   "_id": "HJqgmW0b320lLSyJ",
-   "_key": "!actors.items!ONVCSO4bisNvKgDH.HJqgmW0b320lLSyJ",
-   "sort": 700,
+   "_id": "by8dHqIYFEkoFKSI",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.by8dHqIYFEkoFKSI",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -474,9 +511,52 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym"
    },
-   "_id": "dwtiSUWsjikHBsHq",
-   "_key": "!actors.items!ONVCSO4bisNvKgDH.dwtiSUWsjikHBsHq",
-   "sort": 800,
+   "_id": "JGKp07FMRldQ5cmY",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.JGKp07FMRldQ5cmY",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vHqu8hmdibTcpQ2x",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.vHqu8hmdibTcpQ2x",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
    "ownership": {
     "default": 0
    },

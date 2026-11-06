@@ -766,6 +766,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AKWVdM3QSwT5SFcO",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.AKWVdM3QSwT5SFcO",
+   "effects": [],
+   "flags": {},
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -778,11 +821,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "KWizaezo8kvEtSTL",
-   "_key": "!actors.items!6SSF4rx8vmRLHcxO.KWizaezo8kvEtSTL",
+   "_id": "mlBaR0KyRvuY53Zy",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.mlBaR0KyRvuY53Zy",
    "effects": [],
    "flags": {},
-   "sort": 1300,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -801,11 +844,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "GZGxJI1AckdfRaDY",
-   "_key": "!actors.items!6SSF4rx8vmRLHcxO.GZGxJI1AckdfRaDY",
+   "_id": "fsNgdgZhOv25LEk0",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.fsNgdgZhOv25LEk0",
    "effects": [],
    "flags": {},
-   "sort": 1400,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -828,10 +871,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "53XKEhBedrzClBHg",
-   "_key": "!actors.items!6SSF4rx8vmRLHcxO.53XKEhBedrzClBHg",
+   "_id": "DTFiLBYMCbn4oxpA",
+   "_key": "!actors.items!6SSF4rx8vmRLHcxO.DTFiLBYMCbn4oxpA",
    "flags": {},
-   "sort": 1500,
+   "sort": 1600,
    "ownership": {
     "default": 0
    },

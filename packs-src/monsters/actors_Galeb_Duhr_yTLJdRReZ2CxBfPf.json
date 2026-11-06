@@ -25,7 +25,7 @@
     "value": 11
    }
   },
-  "level": 5,
+  "level": 6,
   "hd": "7d8+14",
   "attributes": {
    "hp": {
@@ -36,13 +36,13 @@
    "ac": 16,
    "speed": "15ft (30ft rolling)",
    "attack": 9,
-   "spellDC": 0,
+   "spellDC": 13,
    "morale": 10
   },
   "saves": {
-   "fort": 6,
-   "ref": 3,
-   "will": 2
+   "fort": 7,
+   "ref": 4,
+   "will": 3
   },
   "spellcasting": {
    "className": "",
@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d4",
    "resistances": "non-magical 5",
-   "immunities": "poison",
+   "immunities": "lightning, poison",
    "vulnerabilities": "",
    "senses": "Tremorsense 60ft",
    "isSolo": false,
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
    "system": {
-    "description": "<p>Immune to poison. Resistance 5 to non-magical weapons.</p>",
+    "description": "<p>Immune to lightning and poison. Resistance 5 to non-magical weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -185,7 +185,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
    "system": {
-    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:16]{Fortitude save DC 16} or is knocked prone.</p>",
+    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:17]{Fortitude save DC 17} or is knocked prone.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -197,7 +197,7 @@
      "per": ""
     },
     "save": "fort",
-    "dc": 16,
+    "dc": 17,
     "damage": "2d6",
     "damageType": "",
     "level": 0,
@@ -249,6 +249,220 @@
    "effects": [],
    "flags": {},
    "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
+   "system": {
+    "description": "<p>Spell <strong>DC 13</strong>. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.p3jcvjiR3rjqCCA4]{passwall}, @UUID[Compendium.arneyan.spells.Item.iasZBhcGLkWkRNbP]{move earth}, @UUID[Compendium.arneyan.spells.Item.GTNocygSoiFCD4zq]{wall of stone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "rGyPGEa7OUwdDTM3",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.rGyPGEa7OUwdDTM3",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Passwall (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range <strong>30ft</strong>. Opens a passage <strong>5ft</strong> wide and <strong>8ft</strong> high through wood, plaster or stone, <strong>3ft</strong> deep plus <strong>1ft</strong> per level (max <strong>15ft</strong>), for <strong>1 hour</strong>. The passage closes if dispelled; creatures inside when it closes are expelled to the nearest open side.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 30ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.p3jcvjiR3rjqCCA4"
+   },
+   "_id": "amGm8OoQrvFh7zXR",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.amGm8OoQrvFh7zXR",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Move Earth (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range <strong>120ft</strong>; casting takes <strong>10 minutes</strong>.</p><ul><li>Rearranges loose earth, sand or clay in an area up to 750 sq ft (e.g. <strong>30ft</strong> by <strong>25ft</strong>) to a depth of <strong>10ft</strong>, digging trenches or raising hills.</li><li>Solid rock is unaffected; creatures in the area are moved harmlessly to the new surface.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 6,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.iasZBhcGLkWkRNbP"
+   },
+   "_id": "zCoe4KT2b3xyrswF",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.zCoe4KT2b3xyrswF",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Wall of Stone (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range <strong>60ft</strong>; up to one <strong>10ft</strong> by <strong>10ft</strong> panel per two levels, 6 inches thick, shaped as you choose, permanent. Each panel has AC 15 and <strong>90 HP</strong>. Creatures in the wall's space are pushed to the nearer side.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Druid"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.GTNocygSoiFCD4zq"
+   },
+   "_id": "AGhsYjJh8BWLF2DJ",
+   "_key": "!actors.items!yTLJdRReZ2CxBfPf.AGhsYjJh8BWLF2DJ",
+   "sort": 800,
    "ownership": {
     "default": 0
    },

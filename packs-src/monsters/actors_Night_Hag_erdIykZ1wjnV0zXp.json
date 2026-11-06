@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells and magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>Once per day, while ethereal, it touches a sleeping humanoid. @Check[will|dc:16]{Will save DC 16} or the target has no rest and takes @Damage[1d10 psychic]{1d10 psychic damage}.</p>",
+    "description": "<p>Once per day, while ethereal, it touches a sleeping humanoid. @Check[will|dc:16]{Will save DC 16} or the target has no rest and its maximum HP drops by <strong>1d10</strong> until it rests free of the haunting. A humanoid whose maximum HP reaches 0 dies, and its soul goes into the hag's soul bag.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -167,8 +167,8 @@
     },
     "save": "will",
     "dc": 16,
-    "damage": "1d10",
-    "damageType": "psychic",
+    "damage": "",
+    "damageType": "",
     "level": 0,
     "className": "",
     "rules": [],
@@ -555,6 +555,43 @@
    "folder": null
   },
   {
+   "name": "Heartstone",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>It needs its heartstone to use @UUID[Compendium.arneyan.spells.Item.ZPHqsexVWgFWPhZq]{etherealness}; the stone cures any disease of the creature holding it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SNR18nsoh3fgLTPW",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.SNR18nsoh3fgLTPW",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Coven",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
@@ -581,11 +618,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "voGodWFzZhHAUlEj",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.voGodWFzZhHAUlEj",
+   "_id": "r4rpGaxQa47sOXY2",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.r4rpGaxQa47sOXY2",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -618,11 +655,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Rmi1aOjyOB779z3Z",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.Rmi1aOjyOB779z3Z",
+   "_id": "ACZrar5bLb6s8OgW",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.ACZrar5bLb6s8OgW",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -641,11 +678,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "mdFg6SpxIxsKLU2f",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.mdFg6SpxIxsKLU2f",
+   "_id": "t7hAQUfkvFt0NfHY",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.t7hAQUfkvFt0NfHY",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -664,11 +701,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "jhmsLGX4xjK1MxAD",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.jhmsLGX4xjK1MxAD",
+   "_id": "QCxHol73WjM4DA5l",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.QCxHol73WjM4DA5l",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -687,11 +724,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "4GO5rluSIeXEkbVj",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.4GO5rluSIeXEkbVj",
+   "_id": "K6rK6Lk2OLeRZLsK",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.K6rK6Lk2OLeRZLsK",
    "effects": [],
    "flags": {},
-   "sort": 1300,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -710,11 +747,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "28dIO43F8zwgV9gt",
-   "_key": "!actors.items!erdIykZ1wjnV0zXp.28dIO43F8zwgV9gt",
+   "_id": "4V1zRmLg6F7oMTHQ",
+   "_key": "!actors.items!erdIykZ1wjnV0zXp.4V1zRmLg6F7oMTHQ",
    "effects": [],
    "flags": {},
-   "sort": 1400,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

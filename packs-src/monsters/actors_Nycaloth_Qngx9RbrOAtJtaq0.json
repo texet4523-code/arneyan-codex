@@ -590,6 +590,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PQr1sNI1p5FVz7Wm",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.PQr1sNI1p5FVz7Wm",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -602,11 +645,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "QGKPnJoREj9rLnY5",
-   "_key": "!actors.items!Qngx9RbrOAtJtaq0.QGKPnJoREj9rLnY5",
+   "_id": "dJyOIJX4aoNY8D7M",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.dJyOIJX4aoNY8D7M",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -625,11 +668,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "RjDZffHXrhEXmWb7",
-   "_key": "!actors.items!Qngx9RbrOAtJtaq0.RjDZffHXrhEXmWb7",
+   "_id": "BeFHNGHuP8CG3KTZ",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.BeFHNGHuP8CG3KTZ",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -648,11 +691,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "OgYx7jJBXnhvxkYM",
-   "_key": "!actors.items!Qngx9RbrOAtJtaq0.OgYx7jJBXnhvxkYM",
+   "_id": "7LQY3Tc2nOeQxxWc",
+   "_key": "!actors.items!Qngx9RbrOAtJtaq0.7LQY3Tc2nOeQxxWc",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

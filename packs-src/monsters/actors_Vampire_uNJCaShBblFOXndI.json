@@ -223,7 +223,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
    "system": {
-    "description": "<p>A bite on a grappled or charmed creature also deals @Damage[3d6 necrotic]{3d6 necrotic damage}, and the vampire regains the same number of HP.</p>",
+    "description": "<p>A bite on a grappled or charmed creature also deals @Damage[3d6 necrotic]{3d6 necrotic damage} and the target gains 1 level of Exhaustion (energy drain); the vampire regains the same number of HP.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -297,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
    "system": {
-    "description": "<p>Regains <strong>10 HP</strong> at the start of its first turn each round. When reduced to <strong>0 HP</strong> it becomes mist and flees to its coffin, unless it was in sunlight or running water.</p>",
+    "description": "<p>Regains <strong>10 HP</strong> at the start of its first turn each round; this stops for <strong>1 round</strong> if it takes radiant damage or is splashed with holy water. When reduced to <strong>0 HP</strong> it becomes mist and flees to its coffin, unless it was in sunlight or running water.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -334,7 +334,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
    "system": {
-    "description": "<p>Takes @Damage[2d6 radiant]{2d6 radiant damage} at the start of each turn in sunlight. Running water deals <strong>2d6</strong> per turn. A stake through the heart destroys it in its coffin.</p>",
+    "description": "<p>Takes @Damage[2d6 radiant]{2d6 radiant damage} at the start of each turn in sunlight.</p><ul><li>Running water deals <strong>2d6</strong> per turn.</li><li>A stake through the heart destroys it in its coffin.</li><li>It cannot enter a home uninvited, will not willingly come within <strong>10ft</strong> of garlic or a holy symbol held out as an action, and casts no reflection.</li></ul>",
     "source": {
      "book": "mt",
      "page": 0
@@ -367,6 +367,117 @@
    "folder": null
   },
   {
+   "name": "Create Spawn",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>A humanoid slain by its bite and buried rises as a vampire spawn in <strong>1d4</strong> days, under its control.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "8AeGgZlM1tJd7CkI",
+   "_key": "!actors.items!uNJCaShBblFOXndI.8AeGgZlM1tJd7CkI",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spider Climb",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Climbs sheer surfaces and ceilings without a check.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vb2cNklHybZlqwoX",
+   "_key": "!actors.items!uNJCaShBblFOXndI.vb2cNklHybZlqwoX",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Children of the Night",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "system": {
+    "description": "<p>Once per day, as part of its action, it calls <strong>2d4</strong> wolves, a bat swarm or a rat swarm, which arrive in <strong>1d4</strong> rounds and obey it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bTfypNzgj1Xp1vbR",
+   "_key": "!actors.items!uNJCaShBblFOXndI.bTfypNzgj1Xp1vbR",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -379,11 +490,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "FAmWs6X6iTXuednk",
-   "_key": "!actors.items!uNJCaShBblFOXndI.FAmWs6X6iTXuednk",
+   "_id": "A07hvsxEehDJXNhQ",
+   "_key": "!actors.items!uNJCaShBblFOXndI.A07hvsxEehDJXNhQ",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -402,11 +513,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "hGPy3x4P8PsY1iyH",
-   "_key": "!actors.items!uNJCaShBblFOXndI.hGPy3x4P8PsY1iyH",
+   "_id": "n8vcz1l5RhYwnK7R",
+   "_key": "!actors.items!uNJCaShBblFOXndI.n8vcz1l5RhYwnK7R",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

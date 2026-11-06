@@ -237,11 +237,13 @@ def journal(pack, name, pages, folder=None, sort=0):
     write(pack, doc)
     return doc
 
-def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None, flags=None, _id=None):
-    _id = _id or fid(pack, "actor", name)
+def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None, flags=None, _id=None, seed=None):
+    """`seed`: the name its ids come from, when it has been renamed (so world copies and links still match)."""
+    seed = seed or name
+    _id = _id or fid(pack, "actor", seed)
     its = []
     for it in items:
-        iid = fid(pack, "actoritem", name, it["name"], it["type"], str(len(its)))
+        iid = fid(pack, "actoritem", seed, it["name"], it["type"], str(len(its)))
         d = dict(it)
         d["_id"] = iid
         d["_key"] = f"!actors.items!{_id}.{iid}"

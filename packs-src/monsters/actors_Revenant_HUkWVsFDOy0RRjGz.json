@@ -25,7 +25,7 @@
     "value": 18
    }
   },
-  "level": 7,
+  "level": 8,
   "hd": "8d8",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 12
   },
   "saves": {
-   "fort": 6,
-   "ref": 4,
-   "will": 5
+   "fort": 7,
+   "ref": 5,
+   "will": 6
   },
   "spellcasting": {
    "className": "",
@@ -144,6 +144,43 @@
    "folder": null
   },
   {
+   "name": "Turn Immunity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Cannot be Turned.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "guhjgq6VeQU67D1U",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.guhjgq6VeQU67D1U",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Vengeful Tracker",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
@@ -170,11 +207,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "d3Y25LyWYDhrDx8S",
-   "_key": "!actors.items!HUkWVsFDOy0RRjGz.d3Y25LyWYDhrDx8S",
+   "_id": "ArgCNbWtDolgCfli",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.ArgCNbWtDolgCfli",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vengeful Glare",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "system": {
+    "description": "<p>Once per round, as part of its action, its killer within <strong>30ft</strong> makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vV5QEv59xhu7H26x",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.vV5QEv59xhu7H26x",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -185,7 +259,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "system": {
-    "description": "<p>If both fists hit the same creature, it is grappled and takes <strong>2d6</strong> damage at the start of each of its turns while grappled.</p>",
+    "description": "<p>If both fists hit the same creature, it is grappled (escape <strong>DC 17</strong>) and takes <strong>2d6</strong> damage at the start of each of its turns while grappled.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -207,11 +281,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "Hn27xC0hrFD2AQ1M",
-   "_key": "!actors.items!HUkWVsFDOy0RRjGz.Hn27xC0hrFD2AQ1M",
+   "_id": "q5rwSSVoUMKP4WJa",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.q5rwSSVoUMKP4WJa",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -244,11 +318,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "pigTAozBXf0OTZpc",
-   "_key": "!actors.items!HUkWVsFDOy0RRjGz.pigTAozBXf0OTZpc",
+   "_id": "MwnLR5Jxk0bP53a4",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.MwnLR5Jxk0bP53a4",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -281,11 +355,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "vViLF6JrbVq7chM6",
-   "_key": "!actors.items!HUkWVsFDOy0RRjGz.vViLF6JrbVq7chM6",
+   "_id": "gzdiyvZ3l9UkIqkt",
+   "_key": "!actors.items!HUkWVsFDOy0RRjGz.gzdiyvZ3l9UkIqkt",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

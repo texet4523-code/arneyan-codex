@@ -63,7 +63,7 @@
    "isSolo": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A hulking guardian of vaults and gate-ways. <em>stone to flesh</em> leaves it flesh for a minute: AC 10 and no immunity to weapons.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A hulking guardian of vaults and gate-ways.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -181,6 +181,43 @@
    "folder": null
   },
   {
+   "name": "Mud and Rock",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Transmute rock to mud Slows it for <strong>1 minute</strong>, with no save; transmute mud to rock heals it fully.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DjQjKrOTxCQlB6YP",
+   "_key": "!actors.items!sTwYmd0tqMnwey3Y.DjQjKrOTxCQlB6YP",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Magic Weapons Only",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "PQ4Yqt83uVNOWtp8",
-   "_key": "!actors.items!sTwYmd0tqMnwey3Y.PQ4Yqt83uVNOWtp8",
+   "_id": "MVXzu9LkhrDSTB6w",
+   "_key": "!actors.items!sTwYmd0tqMnwey3Y.MVXzu9LkhrDSTB6w",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -244,11 +281,54 @@
     "active": false,
     "applies": []
    },
-   "_id": "OYrQ6hHEnpPHrasI",
-   "_key": "!actors.items!sTwYmd0tqMnwey3Y.OYrQ6hHEnpPHrasI",
+   "_id": "WTLh80POvJwZ5MC5",
+   "_key": "!actors.items!sTwYmd0tqMnwey3Y.WTLh80POvJwZ5MC5",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IOBDO0oK1gFD5lRD",
+   "_key": "!actors.items!sTwYmd0tqMnwey3Y.IOBDO0oK1gFD5lRD",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
    "ownership": {
     "default": 0
    },

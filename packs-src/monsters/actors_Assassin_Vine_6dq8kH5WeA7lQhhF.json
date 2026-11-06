@@ -56,9 +56,9 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "",
-   "immunities": "",
-   "vulnerabilities": "fire",
+   "resistances": "cold 5, fire 5",
+   "immunities": "lightning",
+   "vulnerabilities": "",
    "senses": "Blindsight 30ft",
    "isSolo": false,
    "levelText": "",
@@ -181,11 +181,11 @@
    "folder": null
   },
   {
-   "name": "Fire Vulnerability",
+   "name": "Plant Resilience",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-bandit.svg",
    "system": {
-    "description": "<p>Takes double damage from fire.</p>",
+    "description": "<p>Immune to lightning. Resistance 5 to cold and fire.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -207,8 +207,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "x1SNPtWfXnloaD1q",
-   "_key": "!actors.items!6dq8kH5WeA7lQhhF.x1SNPtWfXnloaD1q",
+   "_id": "gbZ4rkbBcbEZPHR7",
+   "_key": "!actors.items!6dq8kH5WeA7lQhhF.gbZ4rkbBcbEZPHR7",
    "effects": [],
    "flags": {},
    "sort": 300,

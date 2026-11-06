@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Tentacles",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
+   "system": {
+    "description": "<p>A Medium or smaller creature hit by its tentacles is grappled (escape <strong>DC 13</strong>).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ypy0DZfgBnCQiLBI",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.ypy0DZfgBnCQiLBI",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Mind Blast",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "66XV78rL9lqiyyj9",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.66XV78rL9lqiyyj9",
+   "_id": "2eAbqE0LCN7USgmW",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.2eAbqE0LCN7USgmW",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "7nx8qKUQuv9vecuB",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.7nx8qKUQuv9vecuB",
+   "_id": "0Q5fOC1QS1WTHV0d",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.0Q5fOC1QS1WTHV0d",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -185,7 +222,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 17</strong>. At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:17]{Will DC 17}).</p>",
+    "description": "<p>Spell <strong>DC 17</strong>. At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:17]{Will DC 17}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "mKN0D2POiSJTtNyM",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.mKN0D2POiSJTtNyM",
+   "_id": "g5qnPq1E7AZHlE3b",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.g5qnPq1E7AZHlE3b",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -269,9 +306,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP"
    },
-   "_id": "Y63KeU4wvqbU4P3L",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.Y63KeU4wvqbU4P3L",
-   "sort": 400,
+   "_id": "B38RXNIoJsisMhEC",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.B38RXNIoJsisMhEC",
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -332,9 +369,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF"
    },
-   "_id": "Tn878MEJQocx3wDi",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.Tn878MEJQocx3wDi",
-   "sort": 500,
+   "_id": "8CfrQdKUTV6XqFnT",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.8CfrQdKUTV6XqFnT",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -402,9 +439,68 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4"
    },
-   "_id": "j1Nw9ZaXcsF7Bojw",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.j1Nw9ZaXcsF7Bojw",
-   "sort": 600,
+   "_id": "B12MoR4bxR9fMuBh",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.B12MoR4bxR9fMuBh",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "lLWZleV5VGIWNHDj",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.lLWZleV5VGIWNHDj",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -443,11 +539,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "C5UXgnAmihC0tDUm",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.C5UXgnAmihC0tDUm",
+   "_id": "N9FyeOn3VLQoGMSK",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.N9FyeOn3VLQoGMSK",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -466,11 +562,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "TXAVuu1lKOt2JIRm",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.TXAVuu1lKOt2JIRm",
+   "_id": "5jw2yUFEssYFq94x",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.5jw2yUFEssYFq94x",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -489,11 +585,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "SaTMCZvFitCMf0ug",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.SaTMCZvFitCMf0ug",
+   "_id": "H3HanZQ5Xmc9NeWt",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.H3HanZQ5Xmc9NeWt",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -512,11 +608,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "UD9hCrcHuUHncw0r",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.UD9hCrcHuUHncw0r",
+   "_id": "5xQfTdMF5NGekrH6",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.5xQfTdMF5NGekrH6",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -535,11 +631,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "j1vk8zCtvNnH51wc",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.j1vk8zCtvNnH51wc",
+   "_id": "8gONwjtozP3Xb0Uw",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.8gONwjtozP3Xb0Uw",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -558,11 +654,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "2QPv1dIwaPsH6ebX",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.2QPv1dIwaPsH6ebX",
+   "_id": "UhkMNxeItmJEkLvY",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.UhkMNxeItmJEkLvY",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -585,10 +681,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "ZhCoF4JM5NtITmX6",
-   "_key": "!actors.items!dibmNlPfRmbQ2uXC.ZhCoF4JM5NtITmX6",
+   "_id": "vCVH8K3x9EZcjSTB",
+   "_key": "!actors.items!dibmNlPfRmbQ2uXC.vCVH8K3x9EZcjSTB",
    "flags": {},
-   "sort": 1300,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

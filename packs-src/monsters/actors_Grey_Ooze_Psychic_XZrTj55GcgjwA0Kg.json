@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1",
    "resistances": "",
-   "immunities": "",
+   "immunities": "fire, cold",
    "vulnerabilities": "",
    "senses": "Blindsight 60ft",
    "isSolo": false,
@@ -113,6 +113,43 @@
    "folder": null
   },
   {
+   "name": "Ooze Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Immune to fire and cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "R3Zzpi1KfHcSHAvJ",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.R3Zzpi1KfHcSHAvJ",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Corrode Metal",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-slime.svg",
@@ -139,11 +176,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "dh1iuSSVhZ0mdxat",
-   "_key": "!actors.items!XZrTj55GcgjwA0Kg.dh1iuSSVhZ0mdxat",
+   "_id": "7gF5OpkcAVVNhZqz",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.7gF5OpkcAVVNhZqz",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -176,11 +213,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "qJaHfCivVzA6qbI1",
-   "_key": "!actors.items!XZrTj55GcgjwA0Kg.qJaHfCivVzA6qbI1",
+   "_id": "N6h4p5lj10RC3cqu",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.N6h4p5lj10RC3cqu",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -213,11 +250,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "U7v1AF8yTyhAAuzr",
-   "_key": "!actors.items!XZrTj55GcgjwA0Kg.U7v1AF8yTyhAAuzr",
+   "_id": "sEsATwPqnTDz3WcP",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.sEsATwPqnTDz3WcP",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -236,11 +273,11 @@
     "ability": "dex",
     "tier": "master"
    },
-   "_id": "yY9Kq8ugZfnUkz1d",
-   "_key": "!actors.items!XZrTj55GcgjwA0Kg.yY9Kq8ugZfnUkz1d",
+   "_id": "EHUFNMMqnqePGFYU",
+   "_key": "!actors.items!XZrTj55GcgjwA0Kg.EHUFNMMqnqePGFYU",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },

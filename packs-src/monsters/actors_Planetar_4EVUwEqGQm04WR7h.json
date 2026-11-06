@@ -56,8 +56,8 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "radiant 5, non-silvered 10",
-   "immunities": "",
+   "resistances": "radiant 5, non-magical 10",
+   "immunities": "condition:charmed, condition:frightened",
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
@@ -191,7 +191,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells and magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -861,7 +861,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>Resistance 5 to radiant damage. Magic weapons or silver harm it fully; it has Resistance 10 against other weapons.</p>",
+    "description": "<p>Resistance 5 to radiant damage. Cannot be @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}. Magic weapons harm it fully; it has Resistance 10 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0

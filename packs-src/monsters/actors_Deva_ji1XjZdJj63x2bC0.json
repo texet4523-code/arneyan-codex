@@ -56,8 +56,8 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "radiant 5, non-silvered 10",
-   "immunities": "",
+   "resistances": "radiant 5, non-magical 10",
+   "immunities": "condition:charmed, condition:frightened",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
@@ -187,11 +187,48 @@
    "folder": null
   },
   {
+   "name": "Change Shape",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "system": {
+    "description": "<p>As an action, it takes the form of a humanoid or beast, keeping its statistics.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "LdxCDHyJokXwyKLx",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.LdxCDHyJokXwyKLx",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Magic Resistance",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells and magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -219,11 +256,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "zfyGfRmsnC2ASj3K",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.zfyGfRmsnC2ASj3K",
+   "_id": "dJIpoFLqJrO6OyOF",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.dJIpoFLqJrO6OyOF",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -256,11 +293,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "iggc00qpTGel3TDb",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.iggc00qpTGel3TDb",
+   "_id": "zA4YZqKrigZf1HCY",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.zA4YZqKrigZf1HCY",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -316,9 +353,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
    },
-   "_id": "UXww3raOo5eX8INi",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.UXww3raOo5eX8INi",
-   "sort": 500,
+   "_id": "0E4pFhmX12KCnXNM",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.0E4pFhmX12KCnXNM",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -374,9 +411,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.B304RhVRmPBYAPWI"
    },
-   "_id": "n0xd65z5fpqLmMIN",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.n0xd65z5fpqLmMIN",
-   "sort": 600,
+   "_id": "VZn5xqdHjqjVvSUP",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.VZn5xqdHjqjVvSUP",
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -455,9 +492,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.mYYG52RjgCthvwnM"
    },
-   "_id": "f3Yyb3dmcrt8Dxfs",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.f3Yyb3dmcrt8Dxfs",
-   "sort": 700,
+   "_id": "0VArJpifZQeAzteL",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.0VArJpifZQeAzteL",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -468,7 +505,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
    "system": {
-    "description": "<p>Resistance 5 to radiant damage. Magic weapons or silver harm it fully; it has Resistance 10 against other weapons.</p>",
+    "description": "<p>Resistance 5 to radiant damage. Cannot be @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}. Magic weapons harm it fully; it has Resistance 10 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -490,11 +527,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "POTXvLN06MTpbkou",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.POTXvLN06MTpbkou",
+   "_id": "NQShgZqea1agt6Ee",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.NQShgZqea1agt6Ee",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -513,11 +550,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "1TYIjrxwbqzyHfiy",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.1TYIjrxwbqzyHfiy",
+   "_id": "nbppQOCo7qmmyKhu",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.nbppQOCo7qmmyKhu",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -536,11 +573,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "WKkjFbYd4kvoaXxY",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.WKkjFbYd4kvoaXxY",
+   "_id": "b51kBeX6cU3PHXOg",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.b51kBeX6cU3PHXOg",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

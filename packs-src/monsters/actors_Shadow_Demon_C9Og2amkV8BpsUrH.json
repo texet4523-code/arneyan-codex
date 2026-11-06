@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ghost.svg",
    "system": {
-    "description": "<p>In bright light it has <strong>Disadvantage</strong> on attack rolls and its Incorporeal resistances do not apply to radiant damage.</p>",
+    "description": "<p>In bright light it has <strong>Disadvantage</strong> on attack rolls. It takes double damage from radiant.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -218,6 +218,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ghost.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vS7VLmwztZWYrmt0",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.vS7VLmwztZWYrmt0",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Stealth",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-juggler.svg",
@@ -230,11 +273,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "rgeHGOcEqJ21HRTc",
-   "_key": "!actors.items!C9Og2amkV8BpsUrH.rgeHGOcEqJ21HRTc",
+   "_id": "yP4C4qeSZw6480Tf",
+   "_key": "!actors.items!C9Og2amkV8BpsUrH.yP4C4qeSZw6480Tf",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },

@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "4d10",
-   "resistances": "fire 5, cold 5, lightning 5",
+   "resistances": "fire 5, cold 5, lightning 5, non-magical 5",
    "immunities": "poison",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning.</p>",
+    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning. Magic weapons harm it fully; it has Resistance 5 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -175,6 +175,49 @@
    "effects": [],
    "flags": {},
    "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ikIA3bSojNYkyvDG",
+   "_key": "!actors.items!GLtFBgSH1TXwxTIw.ikIA3bSojNYkyvDG",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
    "ownership": {
     "default": 0
    },

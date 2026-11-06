@@ -1141,6 +1141,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wJomqoLjYlz2txFb",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.wJomqoLjYlz2txFb",
+   "effects": [],
+   "flags": {},
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -1153,11 +1196,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "tr4QZzeCyleUS7xt",
-   "_key": "!actors.items!vkfHqwu0r9kTRmZA.tr4QZzeCyleUS7xt",
+   "_id": "0yYfYP7PuV0Y9Nje",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.0yYfYP7PuV0Y9Nje",
    "effects": [],
    "flags": {},
-   "sort": 1800,
+   "sort": 1900,
    "ownership": {
     "default": 0
    },
@@ -1176,11 +1219,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "3oaFNZAKRmdnAgyZ",
-   "_key": "!actors.items!vkfHqwu0r9kTRmZA.3oaFNZAKRmdnAgyZ",
+   "_id": "jmf9LMX65n3Lddv2",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.jmf9LMX65n3Lddv2",
    "effects": [],
    "flags": {},
-   "sort": 1900,
+   "sort": 2000,
    "ownership": {
     "default": 0
    },
@@ -1199,11 +1242,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "DSHdDWB84nXlThEA",
-   "_key": "!actors.items!vkfHqwu0r9kTRmZA.DSHdDWB84nXlThEA",
+   "_id": "iKPVu8m6rzhIiRVM",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.iKPVu8m6rzhIiRVM",
    "effects": [],
    "flags": {},
-   "sort": 2000,
+   "sort": 2100,
    "ownership": {
     "default": 0
    },
@@ -1226,10 +1269,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "IIeL0Vsfmhy1btFC",
-   "_key": "!actors.items!vkfHqwu0r9kTRmZA.IIeL0Vsfmhy1btFC",
+   "_id": "S0UP0WcbqSO54Cuk",
+   "_key": "!actors.items!vkfHqwu0r9kTRmZA.S0UP0WcbqSO54Cuk",
    "flags": {},
-   "sort": 2100,
+   "sort": 2200,
    "ownership": {
     "default": 0
    },

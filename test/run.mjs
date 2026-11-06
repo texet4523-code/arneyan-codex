@@ -308,9 +308,12 @@ assert.ok(render("templates/actor/actor-sheet.hbs", await sheetContext(ArneyanAc
 const monster = name => JSON.parse(fs.readFileSync(mdir + fs.readdirSync(mdir).find(f => f.startsWith(`actors_${name.replace(/\W+/g, "_")}_`)))).system.details;
 assert.ok(monster("Iron Golem").immunities.split(", ").includes("non-magical"));
 assert.ok(monster("Flameskull").immunities.includes("fire") && monster("Flameskull").resistances.includes("piercing 5"));
-assert.equal(monster("Wraith").resistances, "non-magical 10, acid 5, cold 5, fire 5, lightning 5, thunder 5");
+// M&T v0.10.46 (K59): 10 against non-magical weapons, 5 against silvered ones.
+assert.equal(monster("Wraith").resistances, "non-silvered 10, non-magical 5, acid 5, cold 5, fire 5, lightning 5, thunder 5");
 assert.ok(!monster("Demilich").resistances.includes("force") && !monster("Demilich").resistances.includes("radiant") && monster("Demilich").resistances.includes("fire 10"));
 assert.equal(monster("Treant").vulnerabilities, "fire");
+// M&T v0.10.46 (K59): the Green Slime is immune to every weapon; its fire and cold exception is no immunity.
+assert.equal(monster("Green Slime").immunities, "weapons");
 assert.equal(monster("Gargoyle").resistances, "non-adamantine 5");
 assert.equal(monster("Werewolf").resistances, "non-silvered 10");
 assert.ok(monster("Bearded Devil").immunities.includes("condition:frightened") && !monster("Berserker").immunities.includes("frightened"));

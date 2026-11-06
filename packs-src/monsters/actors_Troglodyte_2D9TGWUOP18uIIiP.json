@@ -257,6 +257,48 @@
    "folder": null
   },
   {
+   "name": "Sunlight Sensitivity",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p><strong>Disadvantage</strong> on attack rolls in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Sunlight Sensitivity: Disadvantage in sunlight"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hOcYIX2wL7uZoy1H",
+   "_key": "!actors.items!2D9TGWUOP18uIIiP.hOcYIX2wL7uZoy1H",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Stealth",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-juggler.svg",
@@ -269,11 +311,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "BoGz7C3EN9aAdT6S",
-   "_key": "!actors.items!2D9TGWUOP18uIIiP.BoGz7C3EN9aAdT6S",
+   "_id": "NxlyYUllHImG3Wwl",
+   "_key": "!actors.items!2D9TGWUOP18uIIiP.NxlyYUllHImG3Wwl",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },

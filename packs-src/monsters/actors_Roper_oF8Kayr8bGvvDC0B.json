@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "2d4",
    "resistances": "",
-   "immunities": "",
+   "immunities": "lightning",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Rubbery Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "<p>Immune to lightning; takes double damage from fire.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6R6JfZS8PwxdOR6o",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.6R6JfZS8PwxdOR6o",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "False Appearance",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "eOh5TpY18qPi3tSX",
-   "_key": "!actors.items!oF8Kayr8bGvvDC0B.eOh5TpY18qPi3tSX",
+   "_id": "1NA12gUr33LIjt3q",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.1NA12gUr33LIjt3q",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "ZQJGR94FYKwvZEHC",
-   "_key": "!actors.items!oF8Kayr8bGvvDC0B.ZQJGR94FYKwvZEHC",
+   "_id": "Nd9Bh7r7wz3WG7nL",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.Nd9Bh7r7wz3WG7nL",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "twxS24ryznwm4tds",
-   "_key": "!actors.items!oF8Kayr8bGvvDC0B.twxS24ryznwm4tds",
+   "_id": "OjKhZ6uS2QJ2cOEr",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.OjKhZ6uS2QJ2cOEr",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -268,11 +305,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "9VN76KenJHQzWJTD",
-   "_key": "!actors.items!oF8Kayr8bGvvDC0B.9VN76KenJHQzWJTD",
+   "_id": "gjrvCxpJ1IFwn2tx",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.gjrvCxpJ1IFwn2tx",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -291,11 +328,11 @@
     "ability": "dex",
     "tier": "master"
    },
-   "_id": "Yg5SMOEVlHUBVfnA",
-   "_key": "!actors.items!oF8Kayr8bGvvDC0B.Yg5SMOEVlHUBVfnA",
+   "_id": "3EbIdg98lFmwJWci",
+   "_key": "!actors.items!oF8Kayr8bGvvDC0B.3EbIdg98lFmwJWci",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells and magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -229,7 +229,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p>At will, as part of its action. It becomes visible when it attacks.</p>",
+    "description": "<p>At will, as part of its action. It stays invisible when it attacks.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -262,6 +262,43 @@
    "folder": null
   },
   {
+   "name": "Pixie Arrows",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Instead of damage, an arrow can carry sleep (@Check[will|dc:12]{Will save DC 12}, or @Condition[unconscious]{Unconscious}, asleep, for <strong>1d6</strong> hours) or forgetting (@Check[will|dc:12]{Will save DC 12}, or it forgets the last hour).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X6moQhRh9OgsjQrM",
+   "_key": "!actors.items!EsoTX5CxTf4g5RQc.X6moQhRh9OgsjQrM",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -274,11 +311,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "9jazbyxfQLneEHga",
-   "_key": "!actors.items!EsoTX5CxTf4g5RQc.9jazbyxfQLneEHga",
+   "_id": "TiS88WFyCW2jpZht",
+   "_key": "!actors.items!EsoTX5CxTf4g5RQc.TiS88WFyCW2jpZht",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -297,11 +334,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "6gwTKY2ptQofeBKe",
-   "_key": "!actors.items!EsoTX5CxTf4g5RQc.6gwTKY2ptQofeBKe",
+   "_id": "0HAptHbL4ws9xVmR",
+   "_key": "!actors.items!EsoTX5CxTf4g5RQc.0HAptHbL4ws9xVmR",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Amphibious",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>Breathes air and water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0xOKefSHxGH1gfKH",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.0xOKefSHxGH1gfKH",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Illusory Appearance",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "E25yoFKONCFPvWPA",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.E25yoFKONCFPvWPA",
+   "_id": "Sml00VMTTrxzrwI5",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.Sml00VMTTrxzrwI5",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "EnqPo017xXOhsjIL",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.EnqPo017xXOhsjIL",
+   "_id": "13Rkgqm560HeZkJI",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.13Rkgqm560HeZkJI",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Invisible Passage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
+   "system": {
+    "description": "<p>As an action, it turns invisible until it attacks or casts a spell.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HNdwyPtsnOiQvtn2",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.HNdwyPtsnOiQvtn2",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -207,11 +281,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "uDEUTUZjRdEL2Yo0",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.uDEUTUZjRdEL2Yo0",
+   "_id": "1MXsrHLvKbPciwRM",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.1MXsrHLvKbPciwRM",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -222,7 +296,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-witch-face.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 15</strong>. At will: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.p12OgZA5RfWNBZoo]{vicious mockery}. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}.</p>",
+    "description": "<p>Spell <strong>DC 15</strong>. At will: @UUID[Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a]{dancing lights}, @UUID[Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM]{silent image}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.p12OgZA5RfWNBZoo]{vicious mockery}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -244,11 +318,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "pYmwA7T2iUc9d03i",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.pYmwA7T2iUc9d03i",
+   "_id": "fGOwf66JPjbDgeYr",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.fGOwf66JPjbDgeYr",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -309,9 +383,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.PCNomSTIYJbJRX3a"
    },
-   "_id": "jhOECdp3T4SnYIXN",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.jhOECdp3T4SnYIXN",
-   "sort": 500,
+   "_id": "cudIZq60qmIvubSQ",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.cudIZq60qmIvubSQ",
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -367,9 +441,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.TpjKnDEP9HP4TDTM"
    },
-   "_id": "pKIjxdm0nDjYp72K",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.pKIjxdm0nDjYp72K",
-   "sort": 600,
+   "_id": "7PLdes3FHH6HMTLv",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.7PLdes3FHH6HMTLv",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -441,85 +515,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.p12OgZA5RfWNBZoo"
    },
-   "_id": "g0BXZlxydW4EdpOf",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.g0BXZlxydW4EdpOf",
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Invisibility (1/day)",
-   "type": "spell",
-   "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
-   "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "level": 2,
-    "className": "",
-    "classes": [
-     "Wizard",
-     "Illusionist",
-     "Warlock",
-     "Sorcerer",
-     "Bard",
-     "Magus",
-     "Necromancer",
-     "Witch"
-    ],
-    "school": "Illusion",
-    "castingTime": "1 action",
-    "range": "Touch",
-    "duration": "",
-    "area": "",
-    "components": "V, S, M",
-    "concentration": false,
-    "ritual": false,
-    "prepared": false,
-    "save": "",
-    "saveEffect": "",
-    "damage": "",
-    "damageType": "",
-    "reversible": false,
-    "costly": false,
-    "template": {
-     "type": "",
-     "size": 0,
-     "width": 0,
-     "attached": false,
-     "fromSelf": false,
-     "lingering": false,
-     "rounds": "",
-     "sizeFormula": ""
-    },
-    "applies": [
-     {
-      "name": "Invisible",
-      "target": "target",
-      "rounds": "600*@cl",
-      "statuses": [
-       "invisible"
-      ],
-      "rules": []
-     }
-    ]
-   },
-   "effects": [],
-   "flags": {
-    "arneyan": {
-     "frequency": "1/day"
-    }
-   },
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
-   },
-   "_id": "ZF5vwBGWXinUgbb4",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.ZF5vwBGWXinUgbb4",
-   "sort": 800,
+   "_id": "lUtWsuvD2dXeTv6q",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.lUtWsuvD2dXeTv6q",
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -538,11 +536,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "kCA4zEN7nNNre3r6",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.kCA4zEN7nNNre3r6",
+   "_id": "u7hdNTJWiSX9q8jZ",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.u7hdNTJWiSX9q8jZ",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -561,11 +559,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "oPynZA4eCsqgrFo8",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.oPynZA4eCsqgrFo8",
+   "_id": "wzlXP50MaCMjUkYQ",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.wzlXP50MaCMjUkYQ",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -584,11 +582,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "RNbCf4IV2nWV1if2",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.RNbCf4IV2nWV1if2",
+   "_id": "PVqtaGeTQKDSvAqG",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.PVqtaGeTQKDSvAqG",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -611,10 +609,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "tMutadQlBbXxZfPZ",
-   "_key": "!actors.items!jaPAekDi6AwYsoWO.tMutadQlBbXxZfPZ",
+   "_id": "2F3vXqdA6g8ExiCj",
+   "_key": "!actors.items!jaPAekDi6AwYsoWO.2F3vXqdA6g8ExiCj",
    "flags": {},
-   "sort": 1200,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

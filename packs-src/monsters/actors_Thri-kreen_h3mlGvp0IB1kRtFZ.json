@@ -25,7 +25,7 @@
     "value": 7
    }
   },
-  "level": 2,
+  "level": 3,
   "hd": "2d8+2",
   "attributes": {
    "hp": {
@@ -145,6 +145,44 @@
    "folder": null
   },
   {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>On a hit: plus poison (see the creature's abilities).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "plus poison",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5d2Es8wna2dShNm4",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.5d2Es8wna2dShNm4",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Chameleon Carapace",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
@@ -171,11 +209,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "SWjx61rkITbMXXAW",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.SWjx61rkITbMXXAW",
+   "_id": "RwPqsJTMoS3grHBj",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.RwPqsJTMoS3grHBj",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +246,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "IBbL1Zi7MDB8D8pP",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.IBbL1Zi7MDB8D8pP",
+   "_id": "p5xv5jMNOugpn1hM",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.p5xv5jMNOugpn1hM",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -245,11 +283,85 @@
     "active": false,
     "applies": []
    },
-   "_id": "kjzz6lDvpZ71D5Yk",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.kjzz6lDvpZ71D5Yk",
+   "_id": "LjkGFKHd2S3zZGdm",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.LjkGFKHd2S3zZGdm",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Paralysing Bite",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>A creature bitten makes a @Check[fort|dc:12]{Fortitude save DC 12} or is @Condition[poisoned]{Poisoned} until the end of its next turn; if it fails by 5 or more, it is @Condition[paralysed]{Paralysed} instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "DJ3kEdeRvYyw7DWS",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.DJ3kEdeRvYyw7DWS",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Telepathy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>Speaks by thought to creatures within <strong>60ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2Z0NsSj0O7C7KZuA",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.2Z0NsSj0O7C7KZuA",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -268,11 +380,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "bJPj6mb2gjhEmlFm",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.bJPj6mb2gjhEmlFm",
+   "_id": "fhpS7HEOGccApD4H",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.fhpS7HEOGccApD4H",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -291,11 +403,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "hFTZimtC270lp7SC",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.hFTZimtC270lp7SC",
+   "_id": "N1BvfcYem7KTNDXH",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.N1BvfcYem7KTNDXH",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -318,10 +430,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
    },
-   "_id": "UQqjEXoEnUJwNdB7",
-   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.UQqjEXoEnUJwNdB7",
+   "_id": "9KawnWFG9hLswhJE",
+   "_key": "!actors.items!h3mlGvp0IB1kRtFZ.9KawnWFG9hLswhJE",
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },

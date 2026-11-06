@@ -219,6 +219,43 @@
    "folder": null
   },
   {
+   "name": "Paralysing Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>In place of its cold breath, it may exhale paralysing gas in the same cone: @Check[fort|dc:29]{Fortitude save DC 29} or @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 29,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CmLApAeJnANU7YYH",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.CmLApAeJnANU7YYH",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Frightful Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -245,11 +282,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "2RkCXDUaZFKulgYK",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.2RkCXDUaZFKulgYK",
+   "_id": "V1eQ0IYCFWLf4Wqk",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.V1eQ0IYCFWLf4Wqk",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechange",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>As an action, it takes the form of a humanoid or beast, keeping its statistics.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RNGPGRyAcOYEAIXS",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.RNGPGRyAcOYEAIXS",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -282,11 +356,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "i5WitBhKtTPPWWS2",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.i5WitBhKtTPPWWS2",
+   "_id": "GEm2KjHpkzfrQI34",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.GEm2KjHpkzfrQI34",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -319,11 +393,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "TutdWP1ssf3Zr2xX",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.TutdWP1ssf3Zr2xX",
+   "_id": "uBatXMgA0MOD61U9",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.uBatXMgA0MOD61U9",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -342,11 +416,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "GcmEDUdaZEiH5HQ9",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.GcmEDUdaZEiH5HQ9",
+   "_id": "U20m4W8HagycQnFs",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.U20m4W8HagycQnFs",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -365,11 +439,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "gD1ECMHfo3zxDJx9",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.gD1ECMHfo3zxDJx9",
+   "_id": "TymvbgmjwCid1rH7",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.TymvbgmjwCid1rH7",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -392,10 +466,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "fJQmNijOGvYKRF8L",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.fJQmNijOGvYKRF8L",
+   "_id": "XVgQ2PBUrn7JQB5E",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.XVgQ2PBUrn7JQB5E",
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -418,10 +492,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "TOw4CDb86SJFcrmO",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.TOw4CDb86SJFcrmO",
+   "_id": "PrtFeNkud27GmKo0",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.PrtFeNkud27GmKo0",
    "flags": {},
-   "sort": 1000,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

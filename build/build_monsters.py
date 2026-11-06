@@ -60,6 +60,8 @@ def save_level(lv):
 
 # Made from the spell before Monsters & Treasure had them (0.10.43): the same ids, so copies already in a world match.
 KEEP_IDS = {"Animated Object": "AnimObjMedium001", "Animated Object, Large": "AnimObjLarge0001"}
+# Renamed monsters keep the ids (and earlier saves) of their old name. M&T v0.10.46 (K59): Skeleton Warrior.
+OLD_NAMES = {"Bone Legionary": "Skeleton Warrior"}
 SKILL_DOCS = {}
 
 
@@ -401,9 +403,14 @@ def traits_from(sp):
             sent = sent.rstrip(".")
             # Immunities
             for m in re.finditer(r"Immune to ([^;]+)", sent):
-                for w in _words(m.group(1)):
+                # M&T v0.10.46 (K59, Green Slime): "Immune to weapons, and to spells other than those dealing fire or
+                # cold damage": the exception isn't an immunity, and plain "weapons" means every weapon, magic too.
+                what = re.split(r",?\s*(?:and\s+)?to spells other than\b", m.group(1))[0]
+                for w in _words(what):
                     if w in DAMAGE:
                         immune.append(w)
+                    elif w == "weapons":
+                        immune.append("weapons")
                     elif "weapon" in w:
                         immune.append(_weapon_word(sent, w + " non-magical"))
                     else:
@@ -429,6 +436,12 @@ def traits_from(sp):
                             resist += [f"{d} {amt}" for d in DAMAGE if d not in skip]
                             continue
                         if "from spells" in part:
+                            continue
+                        # M&T v0.10.46 (K59, the Wraith): "Resistance 10 against non-magical weapons (5 against silvered
+                        # ones)": non-silvered first, then the smaller one for silver (the first match is the one taken).
+                        sv = re.search(r"\((\d+) against silvered ones\)", part)
+                        if sv and "weapon" in part:
+                            resist += [f"non-silvered {amt}", f"non-magical {sv.group(1)}"]
                             continue
                         ww = _weapon_word(sent, part)
                         if ww:
@@ -639,7 +652,8 @@ def build():
             # prepared: Foundry 13 keeps them as a list and Foundry 14 by id, so the Bestiary stores none.
             # The saves Monsters & Treasure v0.10.2 gave (half HD, +2 if good), so a copy in a world still on them can
             # take the new ones (migrate.mjs) while one the GM edited keeps its own.
-            flags = {"arneyan": {"savesBefore": dict(zip(("fort", "ref", "will"), before[m["name"]]))}} if m["name"] in before else None
-            actor("monsters", m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto, flags=flags, _id=KEEP_IDS.get(m["name"]))
+            was = OLD_NAMES.get(m["name"], m["name"])
+            flags = {"arneyan": {"savesBefore": dict(zip(("fort", "ref", "will"), before[was]))}} if was in before else None
+            actor("monsters", m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto, flags=flags, _id=KEEP_IDS.get(m["name"]), seed=was)
             count += 1
     return count

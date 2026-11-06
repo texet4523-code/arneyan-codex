@@ -56,8 +56,8 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1d10",
-   "resistances": "",
-   "immunities": "poison, condition:charmed, condition:frightened",
+   "resistances": "piercing 5, slashing 5",
+   "immunities": "poison, condition:charmed, condition:frightened, cold",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>Takes +2 damage from bludgeoning weapons.</p>",
+    "description": "<p>Takes +2 damage from bludgeoning weapons. Resistance 5 to piercing and slashing. Immune to cold.</p>",
     "source": {
      "book": "mt",
      "page": 0

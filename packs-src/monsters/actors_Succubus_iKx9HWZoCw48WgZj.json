@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "",
+   "resistances": "cold 5, fire 5, lightning 5, poison 5, non-magical 5",
    "immunities": "",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
@@ -255,6 +255,86 @@
    "folder": null
   },
   {
+   "name": "Abyssal Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>Resistance 5 to cold, fire, lightning and poison. Magic weapons harm it fully; it has Resistance 5 against other weapons.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "v2j4enzeaSD9hFlb",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.v2j4enzeaSD9hFlb",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FMNZv6nPoWk11ljK",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.FMNZv6nPoWk11ljK",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -267,11 +347,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "dXkhRqR7L6pOjsUZ",
-   "_key": "!actors.items!iKx9HWZoCw48WgZj.dXkhRqR7L6pOjsUZ",
+   "_id": "NTvCLdTBvtWzhHCu",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.NTvCLdTBvtWzhHCu",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -290,11 +370,11 @@
     "ability": "dex",
     "tier": "master"
    },
-   "_id": "trE46uCAxtnutLUR",
-   "_key": "!actors.items!iKx9HWZoCw48WgZj.trE46uCAxtnutLUR",
+   "_id": "d2KuCoxveyEENqzD",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.d2KuCoxveyEENqzD",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -313,11 +393,11 @@
     "ability": "cha",
     "tier": "master"
    },
-   "_id": "Rg7izxUSO9MiIBsz",
-   "_key": "!actors.items!iKx9HWZoCw48WgZj.Rg7izxUSO9MiIBsz",
+   "_id": "3om6BjkzZE8VmrOL",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.3om6BjkzZE8VmrOL",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -336,11 +416,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "UOmJc2skAzM1PFnm",
-   "_key": "!actors.items!iKx9HWZoCw48WgZj.UOmJc2skAzM1PFnm",
+   "_id": "RKjB7sAsxvwYR81q",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.RKjB7sAsxvwYR81q",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -359,11 +439,11 @@
     "ability": "cha",
     "tier": "master"
    },
-   "_id": "sowXMWuGPNXleBU6",
-   "_key": "!actors.items!iKx9HWZoCw48WgZj.sowXMWuGPNXleBU6",
+   "_id": "AdqkAVWBUy1yHHA3",
+   "_key": "!actors.items!iKx9HWZoCw48WgZj.AdqkAVWBUy1yHHA3",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

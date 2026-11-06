@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "fire 5, cold 5, lightning 5",
+   "resistances": "fire 5, cold 5, lightning 5, non-magical 5",
    "immunities": "poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -154,7 +154,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning.</p>",
+    "description": "<p>Immune to poison. Resistance 5 to fire, cold and lightning. Magic weapons harm it fully; it has Resistance 5 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -504,6 +504,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "GvQ7tzH45b2S6Uqs",
+   "_key": "!actors.items!6Y8VLUnEJOsJ8jEL.GvQ7tzH45b2S6Uqs",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Deception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
@@ -516,11 +559,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "6ekbG2ZmFVKRTelS",
-   "_key": "!actors.items!6Y8VLUnEJOsJ8jEL.6ekbG2ZmFVKRTelS",
+   "_id": "hfVlSSFsa83hVTxk",
+   "_key": "!actors.items!6Y8VLUnEJOsJ8jEL.hfVlSSFsa83hVTxk",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -539,11 +582,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "Hnndvw4DowR9IK3Z",
-   "_key": "!actors.items!6Y8VLUnEJOsJ8jEL.Hnndvw4DowR9IK3Z",
+   "_id": "WHmyWI37BBMW90o7",
+   "_key": "!actors.items!6Y8VLUnEJOsJ8jEL.WHmyWI37BBMW90o7",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

@@ -56,8 +56,8 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1d4",
-   "resistances": "",
-   "immunities": "poison, condition:charmed, condition:frightened, fire",
+   "resistances": "cold 5, fire 5, necrotic 5",
+   "immunities": "poison, condition:charmed, condition:frightened, lightning",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": false,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>A creature that starts its turn within <strong>30ft</strong> and can see the bodak's eyes makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[4d10 necrotic]{4d10 necrotic damage} (half on a save). A creature that averts its eyes has <strong>Disadvantage</strong> on attacks against it.</p>",
+    "description": "<p>A creature that starts its turn within <strong>30ft</strong> and can see the bodak's eyes makes a @Check[fort|dc:15]{Fortitude save DC 15} or takes @Damage[4d10 necrotic]{4d10 necrotic damage} (half on a save); a creature that fails by 5 or more drops to <strong>0 HP</strong> instead. A creature that averts its eyes has <strong>Disadvantage</strong> on attacks against it.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -233,11 +233,11 @@
    "folder": null
   },
   {
-   "name": "Fire Absorption",
+   "name": "Bodak Resilience",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>Immune to fire damage; fire damage heals it by the same amount.</p>",
+    "description": "<p>Immune to lightning. Resistance 5 to cold, fire and necrotic.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -259,8 +259,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "8EtMT9OArSuCVKta",
-   "_key": "!actors.items!eOkoQy9hPfqobbnM.8EtMT9OArSuCVKta",
+   "_id": "UjKhMXWeiPkJ6HFH",
+   "_key": "!actors.items!eOkoQy9hPfqobbnM.UjKhMXWeiPkJ6HFH",
    "effects": [],
    "flags": {},
    "sort": 400,

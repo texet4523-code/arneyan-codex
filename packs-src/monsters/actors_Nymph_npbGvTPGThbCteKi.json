@@ -36,7 +36,7 @@
    "ac": 17,
    "speed": "30ft, swim 30ft",
    "attack": 5,
-   "spellDC": 0,
+   "spellDC": 14,
    "morale": 7
   },
   "saves": {
@@ -45,9 +45,20 @@
    "will": 2
   },
   "spellcasting": {
-   "className": "",
-   "level": 0,
-   "slots": [],
+   "className": "Druid",
+   "level": 7,
+   "slots": [
+    5,
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
    "used": []
   },
   "details": {
@@ -218,11 +229,313 @@
    "folder": null
   },
   {
-   "name": "Inspire Fear",
+   "name": "Spellcasting",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fairy.svg",
    "system": {
-    "description": "<p>Once per day, as an action, creatures within <strong>30ft</strong> make a @Check[will|dc:15]{Will save DC 15} or are @Condition[frightened]{Frightened} for <strong>1 minute</strong>.</p>",
+    "description": "<p>Casts as a 7th-level druid (spell <strong>DC 14</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F]{entangle} (@Check[ref|dc:14]{Reflex DC 14}), @UUID[Compendium.arneyan.spells.Item.tMSNMPC5cczK63K1]{barkskin}, @UUID[Compendium.arneyan.spells.Item.rkP9ykLFCn1jprAT]{call lightning} (@Check[ref|dc:14]{Reflex DC 14}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3]{dimension door}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YnJsH1il327F35Q0",
+   "_key": "!actors.items!npbGvTPGThbCteKi.YnJsH1il327F35Q0",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Entangle",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range <strong>120ft</strong>; <strong>25ft</strong>-radius area of plants; <strong>1 minute</strong>. Plants grasp every creature in the area: <strong>Restrained</strong>; <strong>Reflex negates</strong> (success means half speed while in the area). A <strong>Restrained</strong> creature breaks free with a Strength check vs spell DC.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "25ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 25,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "10",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Entangled",
+      "target": "target",
+      "rounds": "10",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.fMGUN32mdJNL0v5F"
+   },
+   "_id": "uUXULl4UAkpotnif",
+   "_key": "!actors.items!npbGvTPGThbCteKi.uUXULl4UAkpotnif",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Barkskin",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one creature. Target gains +3 AC (natural armour bonus, does not stack with other natural armour) for <strong>10 minutes per level</strong>. Its skin takes on a woody texture; no effect on speed.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Druid",
+     "Witch"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Barkskin",
+      "target": "target",
+      "rounds": "100*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "ac",
+        "value": "3",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.tMSNMPC5cczK63K1"
+   },
+   "_id": "gApYtQ6rYZG6lOIO",
+   "_key": "!actors.items!npbGvTPGThbCteKi.gApYtQ6rYZG6lOIO",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Call Lightning",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
+   "system": {
+    "description": "<p>Range <strong>360ft</strong>; outdoors only, in open sky. For <strong>1 round per level</strong> you may call one bolt per round as an action, striking a <strong>10ft</strong>-radius burst for <strong>3d8</strong> lightning damage; <strong>Reflex halves</strong>. Ignites flammable objects. Double damage (<strong>6d8</strong>) during a storm.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "Druid",
+    "classes": [
+     "Druid"
+    ],
+    "school": "Nature",
+    "castingTime": "1 action",
+    "range": "Range 360ft",
+    "duration": "",
+    "area": "10ft radius",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Half",
+    "damage": "3d8",
+    "damageType": "lightning",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 10,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.rkP9ykLFCn1jprAT"
+   },
+   "_id": "Hzm8gapvvtr2WE6W",
+   "_key": "!actors.items!npbGvTPGThbCteKi.Hzm8gapvvtr2WE6W",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dimension Door (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer",
+     "Magus"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 450ft",
+    "duration": "",
+    "area": "",
+    "components": "V",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.DxQPGMgfUrbJBar3"
+   },
+   "_id": "zlrDFTaJAGVBPeRa",
+   "_key": "!actors.items!npbGvTPGThbCteKi.zlrDFTaJAGVBPeRa",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Nymph's Blessing",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fairy.svg",
+   "system": {
+    "description": "<p>Once per day, she blesses a creature she favours: for a day it has <strong>Advantage</strong> on saves.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -233,8 +546,8 @@
      "max": 1,
      "per": "day"
     },
-    "save": "will",
-    "dc": 15,
+    "save": "",
+    "dc": null,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -244,11 +557,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "U4Ah2Nu3wOlFRVoB",
-   "_key": "!actors.items!npbGvTPGThbCteKi.U4Ah2Nu3wOlFRVoB",
+   "_id": "J04Y1JXQUX2iHy63",
+   "_key": "!actors.items!npbGvTPGThbCteKi.J04Y1JXQUX2iHy63",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -267,11 +580,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "OqAKCSaCmUIZEIOx",
-   "_key": "!actors.items!npbGvTPGThbCteKi.OqAKCSaCmUIZEIOx",
+   "_id": "ITOj4rVBUR62LaOj",
+   "_key": "!actors.items!npbGvTPGThbCteKi.ITOj4rVBUR62LaOj",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -290,11 +603,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "MkDmxIfMi0BLcECd",
-   "_key": "!actors.items!npbGvTPGThbCteKi.MkDmxIfMi0BLcECd",
+   "_id": "gHV4AzNGphKacQbc",
+   "_key": "!actors.items!npbGvTPGThbCteKi.gHV4AzNGphKacQbc",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

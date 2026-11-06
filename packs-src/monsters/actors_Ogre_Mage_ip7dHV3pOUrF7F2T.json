@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ogre.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 14</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:14]{Will DC 14}). Once per day: @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:14]{Reflex DC 14}, <strong>6d6</strong>).</p>",
+    "description": "<p>Spell <strong>DC 14</strong>. <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility} (self only), @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.5BabqoPlgFsjgySK]{charm person} (@Check[will|dc:14]{Will DC 14}), @UUID[Compendium.arneyan.spells.Item.ViN558r8e1voOREg]{sleep} (@Check[will|dc:14]{Will DC 14}). Once per day each: @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:14]{Reflex DC 14}, <strong>6d6</strong>), @UUID[Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN]{gaseous form}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -491,6 +491,125 @@
    "folder": null
   },
   {
+   "name": "Gaseous Form (3/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Touch; one willing creature. For <strong>2 minutes per level</strong> it becomes insubstantial vapour: immune to nonmagical weapons, flies at half its normal speed, and can pass through cracks. It cannot attack, cast or use items; a strong wind can push it <strong>30ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Gaseous Form",
+      "target": "target",
+      "rounds": "20*@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "no.cast",
+        "value": "1",
+        "when": "",
+        "label": ""
+       },
+       {
+        "key": "speed.mult",
+        "value": "0.5",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "3/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.efUc4YO3W4HAvYZN"
+   },
+   "_id": "2Yhkn2E0LY0Gtnn4",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.2Yhkn2E0LY0Gtnn4",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Regeneration",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ogre.svg",
+   "system": {
+    "description": "<p>Regains <strong>5 HP</strong> at the start of its turn; severed limbs reattach.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "b1vpgIT26DJoX7Ki",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.b1vpgIT26DJoX7Ki",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Flight",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ogre.svg",
@@ -517,11 +636,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "WBOlGOcCgDqhF4l0",
-   "_key": "!actors.items!ip7dHV3pOUrF7F2T.WBOlGOcCgDqhF4l0",
+   "_id": "38LU7M1nW5XySC6S",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.38LU7M1nW5XySC6S",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -554,11 +673,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "LTAIVfUHqqfvuxK2",
-   "_key": "!actors.items!ip7dHV3pOUrF7F2T.LTAIVfUHqqfvuxK2",
+   "_id": "Ohxo07yrubx1UMFy",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.Ohxo07yrubx1UMFy",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -577,11 +696,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "t7zGato3U0AT2MlD",
-   "_key": "!actors.items!ip7dHV3pOUrF7F2T.t7zGato3U0AT2MlD",
+   "_id": "BNtAPJSEgpH1BgzN",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.BNtAPJSEgpH1BgzN",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -600,11 +719,11 @@
     "ability": "cha",
     "tier": "master"
    },
-   "_id": "Mr7OuDMXEglxIW8i",
-   "_key": "!actors.items!ip7dHV3pOUrF7F2T.Mr7OuDMXEglxIW8i",
+   "_id": "QYHGWP141kr4KLzZ",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.QYHGWP141kr4KLzZ",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -627,10 +746,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "zdwHY6W46WzFhN1T",
-   "_key": "!actors.items!ip7dHV3pOUrF7F2T.zdwHY6W46WzFhN1T",
+   "_id": "fwmmLrQr5cale0Z5",
+   "_key": "!actors.items!ip7dHV3pOUrF7F2T.fwmmLrQr5cale0Z5",
    "flags": {},
-   "sort": 1100,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

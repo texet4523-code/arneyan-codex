@@ -68,7 +68,7 @@
    "xp": "",
    "numberAppearing": "1",
    "resistances": "",
-   "immunities": "",
+   "immunities": "psychic, condition:charmed, condition:frightened",
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
@@ -118,6 +118,43 @@
    "folder": null
   },
   {
+   "name": "Inscrutable",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "system": {
+    "description": "<p>Magic cannot read its thoughts or detect its lies. Insight checks against it have <strong>Disadvantage</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TOp3997sthTRahrP",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.TOp3997sthTRahrP",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Spellcasting",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
@@ -144,11 +181,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "zzNZ1Rfg35C9BotR",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.zzNZ1Rfg35C9BotR",
+   "_id": "s8vcg8S7M8vCzJ5K",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.s8vcg8S7M8vCzJ5K",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -213,9 +250,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.xEH8tQjB58AOW3JT"
    },
-   "_id": "5e4kmqSKTM9KItu9",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.5e4kmqSKTM9KItu9",
-   "sort": 200,
+   "_id": "sVAGMWFoUtQ0m0S4",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.sVAGMWFoUtQ0m0S4",
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -274,9 +311,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.ioLVklpAS43XVX5x"
    },
-   "_id": "Ldg291Gc2j5D11RX",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.Ldg291Gc2j5D11RX",
-   "sort": 300,
+   "_id": "UAtT5D4BuRVwBgBp",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.UAtT5D4BuRVwBgBp",
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -339,9 +376,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp"
    },
-   "_id": "G0SRMPhKuRNoxLPx",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.G0SRMPhKuRNoxLPx",
-   "sort": 400,
+   "_id": "FIbuAC2Jf55DSRBd",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.FIbuAC2Jf55DSRBd",
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -397,9 +434,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.vSLpeM4i6d9ckMqS"
    },
-   "_id": "ZkKIsG3lJaioHOHn",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.ZkKIsG3lJaioHOHn",
-   "sort": 500,
+   "_id": "klVLlOfdBv8Df2rO",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.klVLlOfdBv8Df2rO",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -432,11 +469,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "K4bc4D3EogM02Epn",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.K4bc4D3EogM02Epn",
+   "_id": "6FNlGSKP60EEmW1V",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.6FNlGSKP60EEmW1V",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -469,11 +506,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "uiiN6vWfKPdDWcHi",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.uiiN6vWfKPdDWcHi",
+   "_id": "J6JuWyISllsoODzv",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.J6JuWyISllsoODzv",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -492,11 +529,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "ELdy9Ag5BbO37qml",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.ELdy9Ag5BbO37qml",
+   "_id": "cUFb3WM1jxkGMG4w",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.cUFb3WM1jxkGMG4w",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -519,10 +556,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "Fs2FrbLINv8wHG8r",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.Fs2FrbLINv8wHG8r",
+   "_id": "dLryhHfmJvRXSZ1W",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.dLryhHfmJvRXSZ1W",
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -545,10 +582,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "Cko7H6OoHz1xI2xA",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.Cko7H6OoHz1xI2xA",
+   "_id": "bqap4rpibTE2EpYH",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.bqap4rpibTE2EpYH",
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -571,10 +608,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "YrlNGD2rEbnnsMBB",
-   "_key": "!actors.items!VAGsAM5igD0EyZqw.YrlNGD2rEbnnsMBB",
+   "_id": "xzzk0PV5957veMmp",
+   "_key": "!actors.items!VAGsAM5igD0EyZqw.xzzk0PV5957veMmp",
    "flags": {},
-   "sort": 1100,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

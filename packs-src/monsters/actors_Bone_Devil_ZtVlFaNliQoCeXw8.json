@@ -25,7 +25,7 @@
     "value": 16
    }
   },
-  "level": 9,
+  "level": 8,
   "hd": "9d8",
   "attributes": {
    "hp": {
@@ -56,7 +56,7 @@
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
-   "resistances": "cold 5",
+   "resistances": "cold 5, non-silvered 5",
    "immunities": "fire, poison",
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
@@ -183,11 +183,11 @@
    "folder": null
   },
   {
-   "name": "Paralysing Sting",
+   "name": "Weakening Sting",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>A creature stung makes a @Check[fort|dc:17]{Fortitude save DC 17} or is @Condition[paralysed]{Paralysed} for <strong>1d3</strong> rounds.</p>",
+    "description": "<p>A creature stung makes a @Check[fort|dc:17]{Fortitude save DC 17} or loses <strong>1d4</strong> Strength, which returns after a long rest, and is @Condition[poisoned]{Poisoned} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -209,8 +209,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "KJzhgDQu6gRwF9tS",
-   "_key": "!actors.items!ZtVlFaNliQoCeXw8.KJzhgDQu6gRwF9tS",
+   "_id": "sE5E9RRBlLik6v0c",
+   "_key": "!actors.items!ZtVlFaNliQoCeXw8.sE5E9RRBlLik6v0c",
    "effects": [],
    "flags": {},
    "sort": 300,
@@ -278,7 +278,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "system": {
-    "description": "<p>Immune to fire and poison. Resistance 5 to cold.</p>",
+    "description": "<p>Immune to fire and poison. Resistance 5 to cold. Magic weapons or silver harm it fully; it has Resistance 5 against other weapons.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -311,6 +311,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hJy5UjvUTOHWCtZx",
+   "_key": "!actors.items!ZtVlFaNliQoCeXw8.hJy5UjvUTOHWCtZx",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Deception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
@@ -323,11 +366,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "iLJO6tBqHfe2q2tb",
-   "_key": "!actors.items!ZtVlFaNliQoCeXw8.iLJO6tBqHfe2q2tb",
+   "_id": "6tVhFBjvYQX74gBQ",
+   "_key": "!actors.items!ZtVlFaNliQoCeXw8.6tVhFBjvYQX74gBQ",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -346,11 +389,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "0kmAR3DJs7VW0lvU",
-   "_key": "!actors.items!ZtVlFaNliQoCeXw8.0kmAR3DJs7VW0lvU",
+   "_id": "X5wMit8bo8F4Otc1",
+   "_key": "!actors.items!ZtVlFaNliQoCeXw8.X5wMit8bo8F4Otc1",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },

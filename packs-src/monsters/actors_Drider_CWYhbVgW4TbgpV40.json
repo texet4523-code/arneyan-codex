@@ -107,6 +107,50 @@
    "folder": null
   },
   {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "2d8",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FC4dI9FEmcMmhaSp",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.FC4dI9FEmcMmhaSp",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Longbow ×2",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
@@ -140,11 +184,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "o90aU7qawBdFEqB9",
-   "_key": "!actors.items!CWYhbVgW4TbgpV40.o90aU7qawBdFEqB9",
+   "_id": "Tkzd8PyzFkUDolU8",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.Tkzd8PyzFkUDolU8",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -177,45 +221,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "la3L7BjUmgA1KkMa",
-   "_key": "!actors.items!CWYhbVgW4TbgpV40.la3L7BjUmgA1KkMa",
-   "effects": [],
-   "flags": {},
-   "sort": 200,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Poison Bite",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
-   "system": {
-    "description": "<p>Once per turn, as part of its action, it bites a creature it is grappling or that is @Condition[restrained]{Restrained}, for @Damage[2d8 poison]{2d8 poison damage}.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "save": "",
-    "dc": null,
-    "damage": "2d8",
-    "damageType": "poison",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "PC6gPsXewwytRS3B",
-   "_key": "!actors.items!CWYhbVgW4TbgpV40.PC6gPsXewwytRS3B",
+   "_id": "iGE7sGvJgLdO0pNb",
+   "_key": "!actors.items!CWYhbVgW4TbgpV40.iGE7sGvJgLdO0pNb",
    "effects": [],
    "flags": {},
    "sort": 300,

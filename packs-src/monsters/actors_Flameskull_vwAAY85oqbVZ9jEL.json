@@ -68,7 +68,7 @@
    "xp": "",
    "numberAppearing": "1",
    "resistances": "lightning 5, necrotic 5, piercing 5",
-   "immunities": "poison, condition:charmed, condition:frightened, fire",
+   "immunities": "poison, condition:charmed, condition:frightened, fire, cold",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -159,7 +159,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
    "system": {
-    "description": "<p>Immune to fire damage. Resistance 5 to lightning, necrotic and piercing damage.</p>",
+    "description": "<p>Immune to fire and cold damage. Resistance 5 to lightning, necrotic and piercing damage.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -547,6 +547,49 @@
    "folder": null
   },
   {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-fire-silhouette.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sEb2KicmAwH98S8S",
+   "_key": "!actors.items!vwAAY85oqbVZ9jEL.sEb2KicmAwH98S8S",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -559,11 +602,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "ymWtiw6ybwSJpsVJ",
-   "_key": "!actors.items!vwAAY85oqbVZ9jEL.ymWtiw6ybwSJpsVJ",
+   "_id": "Grxaw5ixlE8qr2UA",
+   "_key": "!actors.items!vwAAY85oqbVZ9jEL.Grxaw5ixlE8qr2UA",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -582,11 +625,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "Be5ANtByghNa3KOt",
-   "_key": "!actors.items!vwAAY85oqbVZ9jEL.Be5ANtByghNa3KOt",
+   "_id": "PoYNNanhVsWcetVM",
+   "_key": "!actors.items!vwAAY85oqbVZ9jEL.PoYNNanhVsWcetVM",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -609,10 +652,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "zFbZPoEmGx5wfc4u",
-   "_key": "!actors.items!vwAAY85oqbVZ9jEL.zFbZPoEmGx5wfc4u",
+   "_id": "DdctLwCeAIeLVdml",
+   "_key": "!actors.items!vwAAY85oqbVZ9jEL.DdctLwCeAIeLVdml",
    "flags": {},
-   "sort": 1100,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

@@ -25,7 +25,7 @@
     "value": 1
    }
   },
-  "level": 14,
+  "level": 15,
   "hd": "10d10",
   "attributes": {
    "hp": {
@@ -51,19 +51,19 @@
    "used": []
   },
   "details": {
-   "type": "undead construct",
+   "type": "construct",
    "size": "large",
    "alignment": "",
    "xp": "",
    "numberAppearing": "1",
    "resistances": "",
-   "immunities": "poison, condition:charmed, condition:frightened",
+   "immunities": "poison, condition:frightened",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large undead construct</em></p><p><strong>GM:</strong> A hulking amalgam of many skeletons, built by necromancers as a bodyguard. It is never alone in a lair.</p>",
+   "description": "<p><em>Large construct</em></p><p><strong>GM:</strong> A hulking amalgam of many skeletons, built by necromancers as a bodyguard. It is never alone in a lair.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -145,11 +145,11 @@
    "folder": null
   },
   {
-   "name": "Undead Nature",
+   "name": "Construct Nature",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p>Immune to poison, sleep, charm and fear.</p>",
+    "description": "<p>Immune to poison, sleep and fear. Needs no air, food or sleep.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -171,8 +171,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "smyFEKjEgsz3038V",
-   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.smyFEKjEgsz3038V",
+   "_id": "hwieWfvNzXVmUwrS",
+   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.hwieWfvNzXVmUwrS",
    "effects": [],
    "flags": {},
    "sort": 200,
@@ -219,6 +219,43 @@
    "folder": null
   },
   {
+   "name": "Deathly Laugh",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, as part of its action, it laughs; creatures within <strong>60ft</strong> that hear it make a @Check[will|dc:17]{Will save DC 17} or are @Condition[paralysed]{Paralysed} with fear for <strong>1d4</strong> rounds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qvZjYsnE94qMII4G",
+   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.qvZjYsnE94qMII4G",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Reassemble",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
@@ -245,11 +282,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "NZiKMkKz8xiBCTKw",
-   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.NZiKMkKz8xiBCTKw",
+   "_id": "uARmC3lafuerEmX1",
+   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.uARmC3lafuerEmX1",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -260,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-golem-head.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -288,11 +325,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "vNBhNCk8zGTRWSJJ",
-   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.vNBhNCk8zGTRWSJJ",
+   "_id": "xZe2YGIoRt67qXJm",
+   "_key": "!actors.items!tkVFJ0kgWxinu6tQ.xZe2YGIoRt67qXJm",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },

@@ -25,7 +25,7 @@
     "value": 19
    }
   },
-  "level": 13,
+  "level": 14,
   "hd": "11d12",
   "attributes": {
    "hp": {
@@ -40,9 +40,9 @@
    "morale": 9
   },
   "saves": {
-   "fort": 11,
-   "ref": 6,
-   "will": 6
+   "fort": 12,
+   "ref": 7,
+   "will": 7
   },
   "spellcasting": {
    "className": "",
@@ -186,7 +186,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft cone</strong> of shadow; @Check[ref|dc:21]{Reflex DC 21} for half of @Damage[8d6 necrotic]{8d6 necrotic damage}. A humanoid slain by it rises as a shadow under the dragon's control.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as an action, exhales a <strong>30ft cone</strong> of shadow; @Check[ref|dc:22]{Reflex DC 22} for half of @Damage[8d6 necrotic]{8d6 necrotic damage}. A humanoid slain by it rises as a shadow under the dragon's control.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -198,7 +198,7 @@
      "per": ""
     },
     "save": "ref",
-    "dc": 21,
+    "dc": 22,
     "damage": "8d6",
     "damageType": "necrotic",
     "level": 0,
@@ -339,7 +339,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>A creature within <strong>60ft</strong> that sees the dragon makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened}.</p>",
+    "description": "<p>A creature within <strong>60ft</strong> that sees the dragon makes a @Check[will|dc:21]{Will save DC 21} or is @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -351,7 +351,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 20,
+    "dc": 21,
     "damage": "",
     "damageType": "",
     "level": 0,

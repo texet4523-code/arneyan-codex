@@ -57,7 +57,7 @@
    "xp": "",
    "numberAppearing": "1d8",
    "resistances": "",
-   "immunities": "",
+   "immunities": "poison, condition:charmed, condition:paralysed",
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": false,
@@ -145,6 +145,43 @@
    "folder": null
   },
   {
+   "name": "Pure",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>Immune to poison; cannot be @Condition[charmed]{Charmed} or @Condition[paralysed]{Paralysed}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "UUz0US5KyQHjoRJ7",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.UUz0US5KyQHjoRJ7",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Charge",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
@@ -171,11 +208,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "artByodK1KYz2egi",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.artByodK1KYz2egi",
+   "_id": "FwoWZ9emkeclSU9X",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.FwoWZ9emkeclSU9X",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -208,11 +245,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "BKcwsSTDcjxGhWVu",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.BKcwsSTDcjxGhWVu",
+   "_id": "FGxglOyKZwIggKZs",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.FGxglOyKZwIggKZs",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Teleport",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
+   "system": {
+    "description": "<p>Once per day, as an action, it and up to three willing creatures it touches teleport up to <strong>1 mile</strong> to a place it knows.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qcGM04y01LTekU5I",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.qcGM04y01LTekU5I",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -223,7 +297,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-unicorn.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against spells and magical effects.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -251,11 +325,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "z4tuwBOGB2ppKt9g",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.z4tuwBOGB2ppKt9g",
+   "_id": "7Bh32mJ4dtZIJbXB",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.7Bh32mJ4dtZIJbXB",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -288,11 +362,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "teFkxoNaxvpa6V5Z",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.teFkxoNaxvpa6V5Z",
+   "_id": "EBuhztCKdZ53mrfk",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.EBuhztCKdZ53mrfk",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -348,9 +422,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.XtutWZ6YOMnVnkHM"
    },
-   "_id": "yLwmvJJ6dCPaCmz3",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.yLwmvJJ6dCPaCmz3",
-   "sort": 600,
+   "_id": "j7WqtfEitSr1kROX",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.j7WqtfEitSr1kROX",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -410,9 +484,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.s5FWvMrbSs9gQ5BS"
    },
-   "_id": "Km7kar4hb3EjM6YM",
-   "_key": "!actors.items!OTPKFayCB4ywvNLq.Km7kar4hb3EjM6YM",
-   "sort": 700,
+   "_id": "oFFvQcg9LMa2a6K1",
+   "_key": "!actors.items!OTPKFayCB4ywvNLq.oFFvQcg9LMa2a6K1",
+   "sort": 900,
    "ownership": {
     "default": 0
    },

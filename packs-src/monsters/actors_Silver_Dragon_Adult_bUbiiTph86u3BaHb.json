@@ -219,6 +219,43 @@
    "folder": null
   },
   {
+   "name": "Paralysing Breath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>In place of its cold breath, it may exhale paralysing gas in the same cone: @Check[fort|dc:24]{Fortitude save DC 24} or @Condition[paralysed]{Paralysed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "b8Pq4YTT0hro3QeM",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.b8Pq4YTT0hro3QeM",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Frightful Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
@@ -245,11 +282,48 @@
     "active": false,
     "applies": []
    },
-   "_id": "iYiwK5UKrYZUfvYL",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.iYiwK5UKrYZUfvYL",
+   "_id": "m2E82pEX8UolUreP",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.m2E82pEX8UolUreP",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechange",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>As an action, it takes the form of a humanoid or beast, keeping its statistics.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qUjbqtFFLYbtUXXb",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.qUjbqtFFLYbtUXXb",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -282,11 +356,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "w5I0vW2wCum1vijl",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.w5I0vW2wCum1vijl",
+   "_id": "OwW6UOLXgFGpAXhz",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.OwW6UOLXgFGpAXhz",
    "effects": [],
    "flags": {},
-   "sort": 500,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -305,11 +379,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "pYisqZYE1mauJPF1",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.pYisqZYE1mauJPF1",
+   "_id": "h9BvncjO9FqT7Eg5",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.h9BvncjO9FqT7Eg5",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -328,11 +402,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "d7Ex9IHWM373AtTn",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.d7Ex9IHWM373AtTn",
+   "_id": "Goj255bXj5chcBUP",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.Goj255bXj5chcBUP",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -355,10 +429,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "O2eUqt3hEWLtxI4f",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.O2eUqt3hEWLtxI4f",
+   "_id": "p7HaTpfFrvLg252S",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.p7HaTpfFrvLg252S",
    "flags": {},
-   "sort": 800,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -381,10 +455,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "VoWMQuleughu15nV",
-   "_key": "!actors.items!bUbiiTph86u3BaHb.VoWMQuleughu15nV",
+   "_id": "WPbRiOghljitibun",
+   "_key": "!actors.items!bUbiiTph86u3BaHb.WPbRiOghljitibun",
    "flags": {},
-   "sort": 900,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

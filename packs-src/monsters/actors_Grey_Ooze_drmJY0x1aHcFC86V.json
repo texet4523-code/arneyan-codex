@@ -57,13 +57,13 @@
    "xp": "",
    "numberAppearing": "1d3",
    "resistances": "",
-   "immunities": "",
+   "immunities": "fire, cold",
    "vulnerabilities": "",
    "senses": "Blindsight 60ft",
    "isSolo": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium ooze</em></p><p><strong>GM:</strong> Lies on cave floors and cellar drains. Strip armour before you wade through and use blunt weapons.</p>",
+   "description": "<p><em>Medium ooze</em></p><p><strong>GM:</strong> Lies on cave floors and cellar drains. Strip armour before you wade through and use wooden weapons.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -107,6 +107,43 @@
    "folder": null
   },
   {
+   "name": "Ooze Resilience",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-slime.svg",
+   "system": {
+    "description": "<p>Immune to fire and cold.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "s7as2saSnNpIpike",
+   "_key": "!actors.items!drmJY0x1aHcFC86V.s7as2saSnNpIpike",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Corrode Metal",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-slime.svg",
@@ -133,11 +170,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "pk0nydxGsTtqjQTl",
-   "_key": "!actors.items!drmJY0x1aHcFC86V.pk0nydxGsTtqjQTl",
+   "_id": "Y5fqxMyHyBeuC2kU",
+   "_key": "!actors.items!drmJY0x1aHcFC86V.Y5fqxMyHyBeuC2kU",
    "effects": [],
    "flags": {},
-   "sort": 100,
+   "sort": 200,
    "ownership": {
     "default": 0
    },
@@ -170,11 +207,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "qI1rP3ne8ntSNJBg",
-   "_key": "!actors.items!drmJY0x1aHcFC86V.qI1rP3ne8ntSNJBg",
+   "_id": "e1Oj8u9eyOXF5pII",
+   "_key": "!actors.items!drmJY0x1aHcFC86V.e1Oj8u9eyOXF5pII",
    "effects": [],
    "flags": {},
-   "sort": 200,
+   "sort": 300,
    "ownership": {
     "default": 0
    },
@@ -207,11 +244,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "O1PEUmqcxTGdR8Q0",
-   "_key": "!actors.items!drmJY0x1aHcFC86V.O1PEUmqcxTGdR8Q0",
+   "_id": "HXND5DmECRJ6rhEo",
+   "_key": "!actors.items!drmJY0x1aHcFC86V.HXND5DmECRJ6rhEo",
    "effects": [],
    "flags": {},
-   "sort": 300,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -230,11 +267,11 @@
     "ability": "dex",
     "tier": "master"
    },
-   "_id": "jwyBexbnmCS1iyQT",
-   "_key": "!actors.items!drmJY0x1aHcFC86V.jwyBexbnmCS1iyQT",
+   "_id": "7qOGXhauQol8B2EM",
+   "_key": "!actors.items!drmJY0x1aHcFC86V.7qOGXhauQol8B2EM",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },

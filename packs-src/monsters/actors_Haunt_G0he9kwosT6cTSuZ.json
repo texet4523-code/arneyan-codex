@@ -259,16 +259,16 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ghost.svg",
    "system": {
-    "description": "<p>Once per day, one creature within <strong>30ft</strong> makes a @Check[will|dc:13]{Will save DC 13} or is controlled by the haunt for <strong>1d4</strong> rounds.</p>",
+    "description": "<p>A creature hit by its touch makes a @Check[will|dc:13]{Will save DC 13} or loses <strong>1d4</strong> Dexterity, which returns after a long rest. A creature at 0 Dexterity is possessed by the haunt until the haunt is driven out or its business is settled.</p>",
     "source": {
      "book": "mt",
      "page": 0
     },
     "kind": "monster",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": "will",
     "dc": 13,
