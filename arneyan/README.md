@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.88 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.89 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.89
+
+- **Monsters & Treasure v0.10.47** (Kieran's K59 lore audit and m80; board B-F39, B-F40): classic traits back on 137 monsters.
+  - **Magic Resistance** (Advantage on saves against spells and other magical effects) on every devil, demon and yugoloth, the golems and others, with the save reminder on the sheet. Devils resist non-magical, non-silvered weapons; demons and yugoloths non-magical ones.
+  - **Golems** keep their quirks (what heals them, what Slows them); Clay and Iron gain Construct Nature. The Bone Golem is a Large construct.
+  - **New grapples** (Mind Flayer, Kraken, Chain Devil, Giant Scorpion, Cloaker, Vampire Spawn and others) say their escape DC.
+  - **Levels:** Thri-kreen 3, Galeb Duhr 6, Silver Dragon Wyrmling 8 and Young 12, Revenant 8, Bone Golem 15, Bone Devil 8, Shadow Dragon 14.
+  - **Skeleton Warrior is now the Bone Legionary.** It is the same Bestiary entry, so links still work, and its art is found under either name.
+  - Read from the new wording: the Wraith's 5 against silvered weapons, the Green Slime's immunity to every weapon, the Winter Wolf's and Roper's weakness to fire and the Shadow Demon's to radiant, the Werewolf's and Weretiger's human-form weapons, the Ogre Mage's 1/day spells.
+  - Monsters already in a world keep their old blocks; drag a fresh copy from the Bestiary for the new one.
+- **Cover from walls** (world setting, on by default). Attacks check the walls between attacker and target: some of the target behind a wall gives Half Cover (Disadvantage), all of it Full Cover (a player can't attack it; the GM is warned and can). Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A Half or Full Cover status set by hand overrides it.
 
 ## What's new in 0.10.88
 
