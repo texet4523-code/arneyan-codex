@@ -8,6 +8,7 @@ import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
 import { turnReminder } from "./qol.mjs";
 import { tickCounters, turnDamageFor, reapply } from "./counters.mjs";
 import { effectDataFor, applyEffectTo, endConcentration, onConcentrationDeleted, expireEffects, toggleCondition, statusesOf } from "./effects.mjs";
+import { skippedFor } from "./solo.mjs";
 
 const SYS = "arneyan";
 const SOCKET = `system.${SYS}`;
@@ -147,10 +148,52 @@ async function linkToConcentration(caster, item, uuids) {
   if (conc.isOwner) await conc.update({ [`flags.${SYS}.linked`]: linked });
 }
 
+/** The roll tables a player's roll may ask the GM to draw (the tables pack is hidden from players). */
+const SHARED_TABLES = ["Major Corruption", "Minor Corruption", "Carousing"];
+const ROLL_MODES = ["publicroll", "gmroll", "blindroll", "selfroll"];
+
+/**
+ * Draw a table from the tables pack (or the world's own copy). A player can't read that pack, so on a player's
+ * client the active GM draws it (socket); nothing names the table to the player, so a blind roll stays blind.
+ * `total`: the result to read off (Carousing's d20 + 5), else the table rolls its own formula.
+ * Returns the drawn result where this client drew it, else null.
+ */
+export async function drawTableFor(name, { rollMode = "publicroll", total = null } = {}) {
+  const pack = game.packs?.get?.(`${SYS}.tables`);
+  const own = game.tables?.getName?.(name);
+  if (!own && !game.user?.isGM && !pack?.visible) {
+    if (!game.users?.activeGM) { ui.notifications.warn("The GM needs to be online for this roll."); return null; }
+    game.socket.emit(SOCKET, { action: "drawTable", name, rollMode, total });
+    return null;
+  }
+  let table = own ?? null;
+  if (!table && pack) {
+    const idx = pack.index?.size ? pack.index : await pack.getIndex();
+    const hit = idx.find(e => e.name === name);
+    if (hit) table = await pack.getDocument(hit._id);
+  }
+  if (!table) { if (game.user?.isGM) ui.notifications.warn(`No "${name}" roll table found.`); return null; }
+  if (total === null || total === undefined) return (await table.draw({ rollMode }))?.results?.[0] ?? null;
+  const top = Math.max(...table.results.map(r => r.range[1]));
+  const res = table.getResultsForRoll(Math.min(top, Math.max(1, Number(total) || 1)))?.[0];
+  if (!res) return null;
+  const roll = await new Roll(String(Number(total) || 1)).evaluate();
+  await table.draw({ roll, results: [res], rollMode });
+  return res;
+}
+
 async function onSocket(msg, senderId) {
   if (!isActiveGM() || !msg || typeof msg !== "object") return;
   const sender = game.users.get(senderId);
   if (!sender) return;
+  // A player's roll that goes on to one of the books' tables (the Sorcerer's Corruption, Carousing).
+  if (msg.action === "drawTable") {
+    if (!SHARED_TABLES.includes(msg.name)) return;
+    const t = Number(msg.total);
+    await drawTableFor(msg.name, { rollMode: ROLL_MODES.includes(msg.rollMode) ? msg.rollMode : "publicroll",
+      total: msg.total === null || msg.total === undefined || !Number.isFinite(t) ? null : Math.max(1, Math.min(100, Math.round(t))) });
+    return;
+  }
   if (msg.action === "damage") {
     const amount = Number(msg.amount);
     const mult = Number(msg.opts?.mult);
@@ -613,12 +656,18 @@ function onBodyClick(event) {
 async function onTurnChange(combat, changed, options = {}) {
   if (!isActiveGM()) return;
   if (!("turn" in changed) && !("round" in changed)) return;
+  // The turn this change started (later awaits must not pick up a turn the tracker has moved on to since).
+  const current = combat.combatant;
+  const round = combat.round;
+  // A solo's second turn passed over for a villain action (solo.mjs) wasn't a turn: nothing ticks, no reminder.
+  const skipped = c => !!c && !!c.flags?.[SYS]?.soloOf && !!c.actor && skippedFor(c.actor, combat, c === current ? round : combat.previous?.round);
   // The creature whose turn just ended: its numbered conditions go down one (Slowed 2 to Slowed 1, then gone).
   const prevId = combat.previous?.combatantId;
-  if (options.direction !== -1 && prevId && prevId !== combat.combatant?.id) await tickCounters(combat.combatants.get(prevId)?.actor).catch(err => console.warn("Arneyan | counters", err));
+  const prev = prevId ? combat.combatants.get(prevId) : null;
+  if (options.direction !== -1 && prev && prevId !== current?.id && !skipped(prev)) await tickCounters(prev.actor).catch(err => console.warn("Arneyan | counters", err));
   await expireEffects(combat);
-  const actor = combat.combatant?.actor;
-  if (!actor) return;
+  const actor = current?.actor;
+  if (!actor || skipped(current)) return;
   // Bleeding out: a dying character loses 1 HP at the start of its turn until stabilised.
   // Only when the turn moves on, not when the GM steps back.
   if (options.direction !== -1 && actor.type === "character" && actor.system.attributes?.state === "dying") {
@@ -633,7 +682,7 @@ async function onTurnChange(combat, changed, options = {}) {
   }
   const st = statusesOf(actor);
   // A solo takes ongoing damage once a round, at the start of its first turn (M&T v0.10.41, Once a round).
-  const secondTurn = !!combat.combatant?.flags?.[SYS]?.soloOf;
+  const secondTurn = !!current?.flags?.[SYS]?.soloOf;
   for (const id of Object.keys(ARNEYAN.conditions)) {
     if (!st.has(id) || secondTurn) continue;
     const d = turnDamageFor(actor, id);
@@ -645,7 +694,7 @@ async function onTurnChange(combat, changed, options = {}) {
     });
   }
   // The reminder card comes last, after the expired effects are gone and the bleeding and burning cards.
-  if (options.direction !== -1) await turnReminder(combat).catch(err => console.warn("Arneyan | reminder", err));
+  if (options.direction !== -1) await turnReminder(combat, current).catch(err => console.warn("Arneyan | reminder", err));
 }
 
 /* -------------------------------------------- */

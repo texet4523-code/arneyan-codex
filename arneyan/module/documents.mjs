@@ -1750,11 +1750,8 @@ export class ArneyanItem extends Item {
       // Its result rolls on a table (the Sorcerer's Corruption, M&T v0.10.48): drawn the same way, blind for the GM's.
       const name = tableFor(act.tables, roll.total);
       if (name) {
-        const pack = game.packs?.get?.(`${SYS}.tables`);
-        const hit = pack?.index?.find(e => e.name === name) ?? (await pack?.getIndex())?.find(e => e.name === name);
-        const table = game.tables?.getName?.(name) ?? (hit ? await pack.getDocument(hit._id) : null);
-        if (table) await table.draw({ rollMode });
-        else ui.notifications.warn(`No "${name}" roll table found.`);
+        const { drawTableFor } = await import("./chat.mjs");
+        await drawTableFor(name, { rollMode });
       }
       return msg;
     }

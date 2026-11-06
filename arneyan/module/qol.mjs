@@ -214,9 +214,8 @@ function reachRing(token) {
 /*  Start of turn reminders                     */
 /* -------------------------------------------- */
 
-export async function turnReminder(combat) {
+export async function turnReminder(combat, c = combat.combatant) {
   if (!game.settings.get(SYS, "turnReminders")) return;
-  const c = combat.combatant;
   const actor = c?.actor;
   if (!actor || c.defeated) return;
   const lines = [];

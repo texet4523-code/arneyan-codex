@@ -379,7 +379,7 @@ def build():
         res = []
         for r in _md_table(md, f"## {tier} Corruption (d100)"):
             n = 100 if r[0] == "00" else int(r[0])
-            res.append(T.text(n, n, label(r[1]), html.escape(r[1], quote=False), img=img_corrupt))
+            res.append(T.text(n, n, label(r[1].replace("*", "")), lib.md_inline(r[1]), img=img_corrupt))
         doc = T.table(f"{tier} Corruption", "1d100", res, f_spell, img_corrupt,
                       f"<p>GM only. A Sorcerer's Wild Surge: the GM rolls d20 in secret, 1 is Major Corruption and 2 to 20 Minor, then d100 here "
                       f"(Monsters &amp; Treasure, Sorcerer's Corruption). The Sorcerer's own save against its surge is DC {'15' if tier == 'Major' else '12'}; others use its spell DC.</p>",

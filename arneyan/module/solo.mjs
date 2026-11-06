@@ -17,6 +17,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { statusesOf } from "./effects.mjs";
+import { combatFor, isCombatantOf } from "./fight.mjs";
 
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
@@ -226,38 +227,63 @@ export function villainBlock({ statuses = [], last = null, combatId = "", round 
   return null;
 }
 
+/** The started fight a solo is in, and its first-turn combatant (fight.mjs's helpers: unlinked tokens too). */
+function villainFight(actor) {
+  const combat = combatFor(actor);
+  if (!combat?.started) return { combat: null, first: null };
+  const first = [...combat.combatants].find(c => !soloOf(c) && isCombatantOf(c, actor)) ?? null;
+  return { combat: first ? combat : null, first };
+}
+
 /** Before a villain action: false (with a warning) when it can't use one now. */
 export function villainGate(item) {
   const actor = item?.actor;
   if (!actor || !villainNo(item)) return true;
-  const combat = game.combat;
-  const inFight = !!combat?.combatants?.some(c => c.actor === actor);
-  const b = villainBlock({ statuses: [...statusesOf(actor)], last: actor.getFlag(SYS, "villainRound"), combatId: inFight ? combat.id : "", round: combat?.round });
+  const { combat } = villainFight(actor);
+  const b = villainBlock({ statuses: [...statusesOf(actor)], last: actor.getFlag(SYS, "villainRound"), combatId: combat?.id ?? "", round: combat?.round });
   if (!b) return true;
   if (b.reason === "cant") ui.notifications.warn(`${actor.name} can't use a villain action while ${b.cant.map(id => ARNEYAN.conditions[id]?.name ?? id).join(", ")}.`);
   else ui.notifications.warn(`${actor.name} has used a villain action this round already: one a round.`);
   return false;
 }
 
-/** Did it use a villain action in this round of this fight? */
-function skippedFor(actor, combat, round) {
+/** Did it use a villain action in this round of this fight? (chat.mjs: a skipped turn ticks nothing down.) */
+export function skippedFor(actor, combat, round) {
   const v = actor?.getFlag?.(SYS, "villainRound");
   return !!v && v.combat === combat?.id && Number(v.round) === Number(round);
+}
+
+/** Pass over a solo's second turn (once a turn, and only while it is still the turn: no double step). */
+const passing = new Set();
+async function passSecondTurn(combat, twin) {
+  const key = `${combat.id}:${combat.round}:${twin.id}`;
+  if (passing.has(key)) return;
+  passing.add(key);
+  if (passing.size > 500) passing.delete(passing.values().next().value);
+  const round = combat.round;
+  await card(twin.actor, `<header class="arn-card-title"><i class="fa-solid fa-forward"></i> <span>${esc(twin.actor.name)} skips its second turn</span></header><p>It used a villain action this round.</p>`);
+  if (combat.combatant?.id === twin.id && combat.round === round) await tryIt("villain skip", () => combat.nextTurn());
 }
 
 /** After a villain action: note the round, and its second turn this round is skipped. */
 export async function villainUsed(item) {
   const actor = item?.actor;
-  const combat = game.combat;
-  if (!actor || !combat) return;
-  const first = combat.combatants.find(c => !soloOf(c) && c.actor === actor);
-  if (!first) return;
+  if (!actor) return;
+  const { combat, first } = villainFight(actor);
+  if (!combat) {
+    await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-skull"></i> <span>${esc(actor.name)}: ${esc(item.name)}</span></header><p>Outside a started fight: nothing to skip in the tracker.</p>`);
+    return;
+  }
   await tryIt("villain", () => actor.setFlag(SYS, "villainRound", { combat: combat.id, round: combat.round }));
-  const twin = combat.combatants.find(c => soloOf(c) === first.id);
-  const turns = combat.turns ?? [];
-  const gone = twin && turns.findIndex(t => t.id === twin.id) < (Number(combat.turn) || 0);
+  const twin = [...combat.combatants].find(c => soloOf(c) === first.id);
+  const at = (combat.turns ?? []).findIndex(t => t.id === twin?.id);
+  const now = Number(combat.turn) || 0;
+  const gone = twin && at >= 0 && at < now;
+  const current = twin && at === now;
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-skull"></i> <span>${esc(actor.name)}: ${esc(item.name)}</span></header>
     <p>${gone ? "Its second turn this round has already gone; the GM decides what it gives up." : "It skips its second turn this round (the tracker passes over it)."} One villain action a round, each once a fight; Bloodied doesn't bring them back.</p>`);
+  // Used at the start of its own second turn: that turn ends now.
+  if (current && activeGM()) await passSecondTurn(combat, twin);
 }
 
 export function registerSolo() {
@@ -319,18 +345,17 @@ export function registerSolo() {
     if (soloOf(prev) && skippedFor(prev.actor, combat, combat.previous?.round)) return;
     turnEnded(prev.actor, combat, { form }).catch(err => console.warn("Arneyan | solo turn", err));
   });
-  // Its second turn comes up in a round it used a villain action: pass over it.
-  const skipped = new Set();
+  // Its second turn comes up in a round it used a villain action: pass over it. Stepping back onto it lets the GM
+  // play it (the skip can come round again when the tracker moves on to it).
   Hooks.on("updateCombat", (combat, changed, options = {}) => {
-    if (!activeGM() || options.direction === -1 || (!("turn" in changed) && !("round" in changed))) return;
+    if (!activeGM() || (!("turn" in changed) && !("round" in changed))) return;
     const cur = combat.combatant;
+    if (options.direction === -1) {
+      for (const k of [...passing]) if (k.startsWith(`${combat.id}:${combat.round}:`)) passing.delete(k);
+      return;
+    }
     if (!cur || !soloOf(cur) || !cur.actor || !skippedFor(cur.actor, combat, combat.round)) return;
-    const key = `${combat.id}:${combat.round}:${cur.id}`;
-    if (skipped.has(key)) return;
-    skipped.add(key);
-    if (skipped.size > 500) skipped.delete(skipped.values().next().value);
-    card(cur.actor, `<header class="arn-card-title"><i class="fa-solid fa-forward"></i> <span>${esc(cur.actor.name)} skips its second turn</span></header><p>It used a villain action this round.</p>`)
-      .then(() => combat.nextTurn()).catch(err => console.warn("Arneyan | villain skip", err));
+    passSecondTurn(combat, cur).catch(err => console.warn("Arneyan | villain skip", err));
   });
   // A fight's end: its turn counts start again next time.
   Hooks.on("deleteCombat", combat => {

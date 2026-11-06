@@ -195,6 +195,10 @@ def attack_segments(atk):
         alt = bool(re.match(r"or\s+", seg))
         seg = re.sub(r"^or\s+", "", seg)
         form = ""
+        # "(goblin form) shortsword +6 (1d6+3)" (the Barghest, M&T v0.10.48): the form leads.
+        lead = re.match(r"\((\w+) form\)\s+", seg)
+        if lead:
+            seg, form = seg[lead.end():], lead.group(1)
         fm = re.search(r"\s+in (\w+) form\s*$", seg)
         if fm:
             seg, form = seg[:fm.start()], fm.group(1)
@@ -358,10 +362,12 @@ TYPES = "|".join(DAMAGE)
 def weapon_item(seg, base_attack, img):
     """"bite +6 (1d10+3 plus 2d8 poison, 10ft) x2" -> a weapon. A rider ("plus 2d8 poison") stays its own
     typed roll, linked in the description, so resistances apply to each part correctly."""
-    m = re.match(r"(.+?)\s+([+-]\d+)\s*\((.*)\)\s*(?:[x×]\s*(\d+))?\s*$", seg)
+    # A note after the count stays a note: "bite +30 (3d10+9) ×3 (any three heads)" (Tiamat, M&T v0.10.48).
+    m = re.match(r"(.+?)\s+([+-]\d+)\s*\(([^()]*)\)\s*(?:[x×]\s*(\d+))?\s*(?:\(([^()]*)\))?\s*$", seg)
     if not m:
         return None
     name, bonus, inner, times = m.group(1).strip(), int(m.group(2)), m.group(3), m.group(4)
+    tail_note = (m.group(5) or "").strip()
     parts = [p.strip() for p in re.split(r",|;", inner)]
     dmg_txt = parts[0]
     rng, notes = "", []
@@ -391,7 +397,7 @@ def weapon_item(seg, base_attack, img):
             desc = f"<p>On a hit: plus {enrich(rider)} (see the creature's abilities).</p>"
     if times:
         traits.append(f"{times} attacks")
-    traits += notes
+    traits += notes + ([tail_note] if tail_note else [])
     label = name[0].upper() + name[1:] + (f" ×{times}" if times else "")
     return {
         "name": label, "type": "weapon", "img": img,

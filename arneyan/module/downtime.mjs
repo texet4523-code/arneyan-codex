@@ -407,13 +407,10 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     const ok = total >= c.dc;
     const r = await new Roll(ok ? "1d20 + 5" : "1d20").evaluate();
     roll = `${total} vs DC ${c.dc}; Carousing ${r.total}`;
-    const pack = game.packs.get(`${SYS}.tables`);
-    const idx = pack ? (pack.index.size ? pack.index : await pack.getIndex()) : null;
-    const hit = idx?.find(e => e.name === "Carousing");
-    const table = game.tables?.getName?.("Carousing") ?? (hit ? await pack.getDocument(hit._id) : null);
-    const res = table?.getResultsForRoll?.(Math.min(25, r.total))?.[0];
-    if (table) await table.draw({ roll: r, results: res ? [res] : undefined }).catch(() => null);
-    result = res ? `${ok ? "A good week" : "A rough week"} (${r.total}): ${res.name ?? res.text ?? ""}.` : `Rolled ${r.total} on the Carousing table${table ? "" : " (no Carousing table found)"}.`;
+    const { drawTableFor } = await import("./chat.mjs");
+    const res = await drawTableFor("Carousing", { total: r.total }).catch(err => { console.warn("Arneyan | carousing", err); return null; });
+    // A player's client can't read the tables pack: the GM draws it and the card says what happened.
+    result = res ? `Carousing ${r.total}${ok ? " (+5 for the check)" : ""}: ${res.name ?? res.text ?? ""}.` : `Carousing ${r.total}${ok ? " (+5 for the check)" : ""}: see the Carousing card.`;
   } else if (c?.type === "sideQuest") {
     const a = (await new Roll("2d6").evaluate()).total, b = (await new Roll("2d6").evaluate()).total;
     const r = sideQuestResult(a, b);

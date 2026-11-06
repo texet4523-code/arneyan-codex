@@ -68,4 +68,25 @@ const plan = DT.planDowntime("carouse", {}, { system: { level: 9 }, items: [] })
 assert.equal(plan.costCp, 50000); assert.equal(plan.days, 7); assert.deepEqual(plan.check, { type: "carouse", ability: "cha", dc: 12 });
 assert.ok(DT.ACTIVITIES.carouse);
 
+/* Review of the sync. */
+// Tiamat's bite keeps its note; no weapon with dice in its line rolls nothing.
+const tia = one("monsters", "actors_Tiamat_").items.find(i => i.type === "weapon" && /^Bite/.test(i.name));
+assert.equal(tia.system.damage, "3d10+9"); assert.match(tia.system.traits, /any three heads/);
+const barg = one("monsters", "actors_Barghest_").items.find(i => i.name === "Shortsword");
+assert.ok(barg && /goblin form only/.test(barg.system.traits), "the Barghest's form leads its weapon");
+// The Corruption tables' spells are in italics, not asterisks.
+assert.ok(!tables["Major Corruption"].results.some(r => /\*/.test(r.description + r.name)));
+// Table draws go through the GM for a player (the tables pack is hidden from players), naming nothing to them.
+const src = p => fs.readFileSync(new URL(`../arneyan/module/${p}`, import.meta.url), "utf8");
+assert.match(src("chat.mjs"), /action: "drawTable"/);
+assert.match(src("chat.mjs"), /SHARED_TABLES = \["Major Corruption", "Minor Corruption", "Carousing"\]/);
+assert.ok(!/No "\$\{name\}" roll table found/.test(src("documents.mjs")), "no table name in a player's warning");
+assert.match(src("downtime.mjs"), /drawTableFor\("Carousing"/);
+// A skipped second turn ticks nothing and gets no reminder; the skip re-checks the turn before moving on.
+assert.match(src("chat.mjs"), /!skipped\(prev\)\) await tickCounters/);
+assert.match(src("solo.mjs"), /combat\.combatant\?\.id === twin\.id && combat\.round === round/);
+assert.match(src("solo.mjs"), /if \(current && activeGM\(\)\) await passSecondTurn/);
+assert.ok(S.skippedFor({ getFlag: () => ({ combat: "c1", round: 3 }) }, { id: "c1" }, 3));
+assert.ok(!S.skippedFor({ getFlag: () => ({ combat: "c1", round: 3 }) }, { id: "c1" }, 4));
+
 console.log("OK books v0.10.53 / M&T v0.10.50");
