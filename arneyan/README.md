@@ -1,6 +1,20 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.89 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.90 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.90
+
+- **Books HB v0.10.53 and Monsters & Treasure v0.10.50** (Kieran's K61 to K65 and K71; board B-F41, B-F42, B-F43).
+- **Villain actions** for the Level 9 to 12 solos (the Two-headed Troll, Vampire, Death Knight, Beholder and nine more): three each (opener, crowd control, ultimate), on the sheet as "Villain Action 1 (Opener): ..." and so on.
+  - Each is once a fight, and one a round. It can't be used while the solo is stunned, paralysed, incapacitated, unconscious or petrified.
+  - The round it uses one, its second turn is passed over in the tracker by itself (used during that second turn, the turn ends there). A skipped turn ticks no conditions down and doesn't count towards Shaking it off.
+  - Bloodied doesn't bring them back; a new fight does.
+- **23 new monsters**, among them Stirges, Kuo-toa, the moulds, the Lurker Above and the Trapper, Barghest, Yeth Hound, Neogi, Gauth, Ki-rin, the Marut and the Formians, and **Tiamat and Bahamut** as Mythic solos (600 HP, as the Tarrasque now is). Tiamat's lair holds two H hoards.
+- **The Ultroloth** casts *fireball* 1/day in place of *fire storm* (K61). **The Death Knight** has *banishment* 1/day as an innate spell and a new paladin list.
+- **New roll tables:** Minor and Major Corruption (d100), Madness (short-term, long-term, indefinite), Chase Complications (town and wild) and Carousing.
+  - **The Sorcerer's Corruption roll** goes on to the right d100 table by itself, blind like the d20: a 1 is Major, 2 to 20 Minor.
+- **Carouse** (downtime): a week, gold by Tier (100, 500, 2,500 or 10,000 gp), a Charisma check (DC 12), then the Carousing table, +5 if the check succeeded.
+- On a player's client the GM's client draws these tables, since players can't open the tables compendium.
 
 ## What's new in 0.10.89
 
