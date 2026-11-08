@@ -46,3 +46,35 @@ assert.equal(T.tidyDescription("<ul><li><strong>Effect:</strong> Two.</li><li><s
 assert.equal(T.tidyDescription("<p>Plain.</p>"), "<p>Plain.</p>");
 assert.equal(T.tidyDescription(null), "");
 console.log("OK descriptions");
+
+/* Toll the Dead: d6s against a creature below its maximum HP (Jacob's Well, 8 Nov). */
+{
+  for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
+  const D = await import("../arneyan/module/documents.mjs");
+  const toll = { name: "Toll the Dead", system: { damage: "(1 + floor((@cl + 1) / 6))d4" } };
+  const who = { a: { name: "A", system: { attributes: { hp: { value: 3, max: 5 } } } }, b: { name: "B", system: { attributes: { hp: { value: 5, max: 5 } } } } };
+  const saved = globalThis.fromUuidSync;
+  globalThis.fromUuidSync = u => who[u];
+  assert.equal(D.woundedDiceFor(toll, ["a"]).formula, "(1 + floor((@cl + 1) / 6))d6");
+  assert.equal(D.woundedDiceFor(toll, ["b"]).formula, null);
+  const mixed = D.woundedDiceFor(toll, ["a", "b"]);
+  assert.equal(mixed.formula, null);
+  assert.match(mixed.note, /A is below maximum HP/);
+  assert.equal(D.woundedDiceFor({ name: "Fire Bolt", system: { damage: "1d10" } }, ["a"]), null);
+  globalThis.fromUuidSync = saved;
+  console.log("OK Toll the Dead");
+}
+
+/* Advantage and Disadvantage by hand (Kieran, 8 Nov): only the click counts, unless asked to be automatic. */
+{
+  const R = await import("../arneyan/module/rolls.mjs");
+  const saved = game.settings;
+  game.settings = { get: (s, k) => (k === "advMode" ? "manual" : undefined) };
+  assert.equal(R.modeFromEvent(null, [1]), 0, "a feature's Advantage is only suggested");
+  assert.equal(R.modeFromEvent({ shiftKey: true }, [-1]), 1, "Shift-click is the player's choice");
+  assert.equal(R.modeFromEvent(null, [1], { auto: true }), 1, "contests, initiative and Luck stay automatic");
+  game.settings = { get: (s, k) => (k === "advMode" ? "auto" : undefined) };
+  assert.equal(R.modeFromEvent(null, [1]), 1);
+  game.settings = saved;
+  console.log("OK manual advantage");
+}

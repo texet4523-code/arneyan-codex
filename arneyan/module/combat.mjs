@@ -655,7 +655,7 @@ export function bestChoice(actor, choices, kind) {
   let best = choices[0], score = -Infinity;
   for (const ab of choices) {
     const c = contestParts(actor, ab, kind);
-    const mode = modeFromEvent(null, c.adv.values);
+    const mode = modeFromEvent(null, c.adv.values, { auto: true });
     const s = c.fail ? -100 : c.total + mode * 3;
     if (s > score) { score = s; best = ab; }
   }
@@ -673,7 +673,7 @@ async function contestRoll(actor, ab, { kind, role, vs, extraAdv = [], event = n
   if (event?.ctrlKey || event?.metaKey) why.dis.push("Ctrl-click");
   const label = ARNEYAN.abilities[ab];
   return d20Roll({
-    actor, kind: "contest", mode: modeFromEvent(event, values), why, autoFail: c.fail,
+    actor, kind: "contest", mode: modeFromEvent(event, values, { auto: true }), why, autoFail: c.fail,
     title: `${CONTESTS[kind].label}: ${label} check${role === "defender" ? " (resisting)" : ""}${vs ? ` vs ${vs}` : ""}`,
     parts: c.parts, notes: [...notes, ...(actor.system?.mods?.notesFor?.("check") ?? [])],
     extra: { ...extra, ability: ab, actorUuid: actor.uuid }
@@ -1096,6 +1096,10 @@ export function registerCombat() {
   }
   foundry.applications.handlebars.loadTemplates(["systems/arneyan/templates/actor/combat-tools.hbs"]);
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
+  game.settings.register(SYS, "advMode", {
+    name: "Advantage and Disadvantage", hint: "By hand: what features, conditions, cover and the map would give is listed on the roll card as \"Might apply\", and the player or GM applies it with the card's Advantage and Disadvantage buttons (or Shift- and Ctrl-click). Automatic: they apply by themselves. Contests, initiative and Luck Checks are always automatic.",
+    scope: "world", config: true, type: String, default: "manual", choices: { manual: "By hand (the card's buttons)", auto: "Automatic" }
+  });
   game.settings.register(SYS, "positionalCombat", {
     name: "Flanking and crowding from token positions",
     hint: "The attack card suggests Advantage when an ally stands directly opposite the target (flanking), and Disadvantage for a ranged attack with an enemy within 5ft or at a target next to an ally. The player applies it with the card's button.",

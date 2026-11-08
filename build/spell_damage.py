@@ -105,7 +105,7 @@ EXPLICIT = {
 
 # A reminder on the card where the text has a second number the formula can't carry.
 NOTES = {
-    "Toll the Dead": "The damage button rolls d4s. Against a creature below its maximum HP, roll the same number of d6s instead.",
+    "Toll the Dead": "The damage button rolls d4s, or d6s when the creature you target is below its maximum HP.",
     "Fire Seeds": "The damage button rolls an acorn (4d8). A berry deals 1d8.",
 }
 

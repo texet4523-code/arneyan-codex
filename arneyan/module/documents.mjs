@@ -6,7 +6,7 @@ import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurn
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, promptSkill, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
+import { usesMax, effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -71,6 +71,33 @@ export function powerAttackFor(own, others, { first = true, label = "Power Attac
   const hasDis = [without, ...others].some(s => (s?.values ?? []).some(v => v < 0));
   const off = !first ? "only your first attack each round" : hasDis ? "not on an attack that already has Disadvantage" : "";
   return off ? { own: without, off } : { own, off: "" };
+}
+
+/** Spells whose dice grow against a creature below its maximum HP: the name, the die it rolls, the die it becomes. */
+export const WOUNDED_DICE = { "Toll the Dead": ["d4", "d6"] };
+
+/** Is this creature below its maximum HP? */
+const isWounded = actor => {
+  const hp = actor?.system?.attributes?.hp;
+  const max = Number(hp?.effectiveMax ?? hp?.max) || 0;
+  return max > 0 && (Number(hp?.value) || 0) < max;
+};
+
+/**
+ * The formula and note for a spell with bigger dice against the wounded, for these targets (`hits`: actor uuids, or
+ * the user's targets): { formula, note }, or null when the spell has none or nobody is targeted.
+ */
+export function woundedDiceFor(item, hits = null) {
+  const pair = WOUNDED_DICE[item?.name] ?? (item?.flags?.arneyan?.woundedDice ?? null);
+  if (!pair || !item?.system?.damage) return null;
+  const [from, to] = pair;
+  const actors = (Array.isArray(hits) && hits.length ? hits.map(h => globalThis.fromUuidSync?.(typeof h === "string" ? h : h?.uuid)) : [...(globalThis.game?.user?.targets ?? [])].map(t => t.actor)).filter(Boolean);
+  if (!actors.length) return { formula: null, note: `${item.name}: ${to} instead of ${from} against a creature below its maximum HP (target it first and it's done for you).` };
+  const hurt = actors.filter(isWounded);
+  const swap = String(item.system.damage).replace(new RegExp(`\\b${from}\\b`, "g"), to).replace(new RegExp(`\\)${from}\\b`, "g"), `)${to}`);
+  if (hurt.length === actors.length) return { formula: swap, note: `${item.name}: ${to}s, as ${actors.length > 1 ? "every target is" : `${actors[0].name} is`} below its maximum HP.` };
+  if (!hurt.length) return { formula: null, note: "" };
+  return { formula: null, note: `${item.name}: ${hurt.map(a => a.name).join(", ")} ${hurt.length > 1 ? "are" : "is"} below maximum HP and take${hurt.length > 1 ? "" : "s"} ${to}s: roll again with only ${hurt.length > 1 ? "them" : "it"} targeted.` };
 }
 
 /**
@@ -1100,6 +1127,12 @@ export class ArneyanActor extends Actor {
     for (const a of this.items.filter(i => ["ability", "feat"].includes(i.type) && ["day", "rest", "encounter"].includes(i.system.uses?.per) && i.system.uses.max > 0)) {
       items.push({ _id: a.id, "system.uses.value": a.system.uses.max });
     }
+    // Options with their own daily count (Animate Dead's free corpses): refilled. Weekly and monthly ones stay.
+    for (const a of this.items.filter(i => i.flags?.[SYS]?.actUsed)) {
+      const daily = new Set((a.system.activities ?? []).filter(x => x.per === "day").map(x => String(x.name ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-")));
+      const row = items.find(r => r._id === a.id) ?? (items.push({ _id: a.id }), items.at(-1));
+      for (const k of Object.keys(a.flags[SYS].actUsed)) if (daily.has(k)) row[`flags.${SYS}.actUsed.${k}`] = 0;
+    }
     if (items.length) await this.updateEmbeddedDocuments("Item", items);
     // Dawn: staffs regain charges (Catalogue, magic item rules).
     const recharged = await rechargeAtDawn(this);
@@ -1583,6 +1616,9 @@ export class ArneyanItem extends Item {
   /** Roll this spell or ability's damage (or healing). */
   rollItemDamage({ hits = null, misses = [], crit = false, as = "" } = {}) {
     const actor = this.actor;
+    // Bigger dice against a wounded creature (Toll the Dead: d4s, or d6s below its maximum HP), worked out from the
+    // targets (Jacob's Well, 8 Nov): all wounded, the bigger dice; some, a note naming them.
+    const wounded = woundedDiceFor(this, hits);
     // A cure's dice as damage after a touch attack: radiant to an undead, necrotic cast reversed (touch.mjs).
     const heal = this.system.damageType === "healing" && !as;
     const damageType = as === "undead" ? "radiant" : as === "reversed" ? "necrotic" : this.system.damageType;
@@ -1599,8 +1635,8 @@ export class ArneyanItem extends Item {
     }
     return damageRoll({
       actor, item: this, title: `${this.name}: ${heal ? "Healing" : as === "reversed" ? "Damage (reversed)" : as === "undead" ? "Damage to the undead" : "Damage"}`,
-      formula: this.system.damage, damageType, terms, rollData: this.damageRollData(), hits, misses, crit,
-      notes: heal ? [] : (actor?.mods?.notesFor("damage") ?? [])
+      formula: wounded?.formula ?? this.system.damage, damageType, terms, rollData: this.damageRollData(), hits, misses, crit,
+      notes: heal ? [] : [...(wounded?.note ? [wounded.note] : []), ...(actor?.mods?.notesFor("damage") ?? [])]
     });
   }
 
@@ -1728,6 +1764,23 @@ export class ArneyanItem extends Item {
     try { return await this._applySelf(cl, { fresh: true, only: this._effectsFor(act) }); } catch (err) { console.warn("Arneyan | self effect", err); return []; }
   }
 
+  /**
+   * An option's own count, when it has one: no cost to the item's uses, a period of a day, week or month, and a count
+   * that isn't dice (its formula: a number, a level table or @cl; none means once). { key, max, used, left } or null.
+   */
+  _ownCount(act) {
+    if (!act || Number(act.cost ?? 1) !== 0 || !["day", "week", "month"].includes(String(act.per ?? ""))) return null;
+    if (["damage", "heal", "temp"].includes(act.kind)) return null;
+    const f = String(act.formula ?? "").trim();
+    if (/\d*d\d/i.test(f) || /@martialDC|@\w*dc/i.test(f)) return null;
+    const cl = this.featureLevel;
+    const max = f ? usesMax(f, { ...(this.actor?.getRollData?.() ?? {}), cl, level: cl }, 1) : 1;
+    if (!(max > 0)) return null;
+    const key = String(act.name ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const used = Number(this.getFlag?.(SYS, "actUsed")?.[key]) || 0;
+    return { key, max, used, left: max - used };
+  }
+
   /** Use one of a feature's activities: spend its use, then roll or post what it does. */
   async _useActivity(act, event) {
     const sys = this.system;
@@ -1742,6 +1795,15 @@ export class ArneyanItem extends Item {
       act = { ...act, cost: spent };
     }
     if (!(await this._spendFor(act))) return null;
+    // An option with its own daily (weekly, monthly) count and no use of the item's (Animate Dead's free corpses,
+    // Ancestral Calling): counted on the item now, refilled by a rest for "day" (Jacob's Well, 8 Nov).
+    const own = this._ownCount(act);
+    if (own) {
+      const when = act.per === "day" ? "today" : `this ${act.per}`;
+      if (own.left <= 0) { ui.notifications.warn(`${this.name}: no ${act.name} left ${when}.`); return null; }
+      if (this.isOwner) await this.setFlag(SYS, "actUsed", { ...(this.getFlag(SYS, "actUsed") ?? {}), [own.key]: own.used + 1 });
+      act = { ...act, _ownLeft: `${own.left - 1} of ${own.max} ${act.name} left ${when}` };
+    }
     await this._reacted(act);
     // A Smite used this encounter: the first-hit Smite button stops offering it (books v0.10.38, K44 S4).
     if (act.name === "Smite" && actor?.isOwner) {
@@ -1754,7 +1816,7 @@ export class ArneyanItem extends Item {
     const rollData = { ...(actor?.getRollData?.() ?? {}), cl, spent: spent ?? cost };
     const title = `${this.name}: ${act.name}`;
     const counted = this.usesCount;
-    const left = cost > 0 && counted ? ArneyanItem.usesLeftText(counted) : act.per ? `Its own count (per ${act.per}): keep track on the sheet notes` : "";
+    const left = cost > 0 && counted ? ArneyanItem.usesLeftText(counted) : act._ownLeft ? act._ownLeft : act.per ? `Its own count (per ${act.per})` : "";
     const onSelf = self.length ? `On ${actor.name}: ${self.map(e => e.name).join(", ")}` : "";
     const meta = [act.text ? `<p>${esc(act.text)}</p>` : "", left ? `<p class="arn-card-meta">${esc(left)}</p>` : "", onSelf ? `<p class="arn-card-meta">${esc(onSelf)}</p>` : "", this._strainedLine(), allegianceLine(this)].join("");
     if (act.removeConditions && actor?.isOwner) {
@@ -1949,7 +2011,7 @@ export class ArneyanCombatant extends Combatant {
     const a = this.actor;
     if (!a?.system?.mods) return super._getInitiativeFormula();
     const src = a.system.mods.adv("adv.init");
-    const mode = modeFromEvent(null, src.values);
+    const mode = modeFromEvent(null, src.values, { auto: true });
     const die = mode > 0 ? "2d20kh" : mode < 0 ? "2d20kl" : "1d20";
     const init = a.system.attributes.init ?? 0;
     return `${die} + ${init}`;

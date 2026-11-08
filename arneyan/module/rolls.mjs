@@ -7,8 +7,16 @@ const SYS = "arneyan";
  * Work out Advantage/Disadvantage from the click and any built-in source.
  * Shift = Advantage, Ctrl/Cmd = Disadvantage. One of each cancels out, and they never stack.
  */
-export function modeFromEvent(event, builtIn = 0) {
-  const sources = Array.isArray(builtIn) ? builtIn : [builtIn];
+/**
+ * Advantage and Disadvantage by hand (Kieran, 8 Nov, Jacob's Well): what features, conditions and the map would give
+ * is only suggested on the card, and the player (or GM) applies it with the card's buttons or Shift/Ctrl-click. The
+ * world setting "Advantage and Disadvantage" switches back to applying them by themselves.
+ */
+export const manualAdvantage = () => { try { return globalThis.game?.settings?.get?.("arneyan", "advMode") === "manual"; } catch { return false; } };
+
+export function modeFromEvent(event, builtIn = 0, { auto = false } = {}) {
+  // By hand: only the click counts (contests, initiative and Luck Checks have no card buttons, so they stay automatic).
+  const sources = !auto && manualAdvantage() ? [] : Array.isArray(builtIn) ? builtIn : [builtIn];
   // -2: a Disadvantage that no Advantage cancels (the Extra Attack and the off-hand attack, books v0.10.38, K44).
   if (sources.some(v => v <= -2)) return -1;
   let adv = sources.some(v => v > 0) || event?.shiftKey;
@@ -105,7 +113,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
   // nothing cancels (the off-hand attack's).
   const fixedDis = mode < 0 && (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d));
-  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !(why?.adv?.length && why?.dis?.length) && !fixedDis;
+  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {
@@ -127,7 +135,14 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
 
 async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false, paDis = false }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
-  const whyLabel = why ? [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ") : "";
+  // By hand, what would apply is a suggestion (the click's own Shift or Ctrl is what was rolled).
+  const clicked = s => /^(Shift|Ctrl)-click$/.test(s);
+  const suggest = !mode && manualAdvantage();
+  const list = (k, label) => {
+    const xs = (why?.[k] ?? []).filter(s => !suggest || !clicked(s));
+    return xs.length ? [`${label}: ${xs.join(", ")}`] : [];
+  };
+  const whyLabel = why ? `${suggest && (why.adv?.length || why.dis?.length) ? "Might apply (use the buttons): " : ""}${[...list("adv", "Advantage"), ...list("dis", "Disadvantage")].join(" · ")}` : "";
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
   const canSecond = !!second;
@@ -249,7 +264,7 @@ export async function secondDie(message, dir) {
 export async function luckCheck(actor, event) {
   const luck = actor.system.luck.value;
   const src = actor.system.mods?.adv("adv.luck") ?? { values: [], adv: [], dis: [] };
-  const mode = modeFromEvent(event, src.values);
+  const mode = modeFromEvent(event, src.values, { auto: true });
   const roll = await new Roll(mode > 0 ? "2d20kl" : mode < 0 ? "2d20kh" : "1d20").evaluate();
   const n = roll.total;
   const success = n === 1 ? true : n === 20 ? false : n <= luck;

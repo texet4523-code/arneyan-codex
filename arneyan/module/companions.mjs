@@ -46,11 +46,16 @@ export const COMPANION_PRESETS = {
     text: "A fully outfitted light warhorse (15 HP, 2d10+4)." },
   construct: { label: "Construct Companion (Artificer)", kind: "construct", feature: "Construct Companion",
     text: "A Small construct: d8 Hit Dice equal to your Artificer level, AC 14 +1 per four levels, immune to poison, disease and sleep. It acts on your initiative and follows spoken commands; without one it takes no action." },
+  // A Necromancer's raised dead (Animate Dead, Command Undead): each its own actor, so it follows its master from
+  // scene to scene like any companion (Jacob's Well, 8 Nov). Undead Mastery caps how many.
+  raisedUndead: { label: "Raised undead (Necromancer)", kind: "undead", feature: "Animate Dead", className: "Necromancer", undead: true,
+    suggest: ["Skeleton", "Zombie"],
+    text: "A skeleton or zombie you animated (or an undead you commanded). It persists until destroyed or dismissed and counts towards your Undead Mastery cap (10; 15 from 13th level, 20 from 24th). Put it on any scene from your sheet." },
   other: { label: "A mount or pet", kind: "pet", any: true, suggest: ["Horse, Light", "Pony", "Mule", "Donkey", "Mastiff", "Black Cat"],
     text: "Its Bestiary stat block, unchanged." }
 };
 
-const KIND_LABEL = { familiar: "Familiar", companion: "Companion", mount: "Mount", construct: "Construct", pet: "Pet" };
+const KIND_LABEL = { familiar: "Familiar", companion: "Companion", mount: "Mount", construct: "Construct", pet: "Pet", undead: "Undead" };
 
 /* -------------------------------------------- */
 /*  Stats                                       */
@@ -245,6 +250,13 @@ async function createCompanion(master, presetKey, { creatureUuid = "", chassis =
     const src = await fromUuid(String(creatureUuid)).catch(() => null);
     if (!(src instanceof Actor) || src.type !== "npc") throw new Error("Pick a creature from the Bestiary.");
     if (preset.beasts && !String(src.system.details?.type ?? "").toLowerCase().startsWith("beast")) throw new Error("A Bonded Companion is a beast.");
+    if (preset.undead && !/undead/i.test(String(src.system.details?.type ?? ""))) throw new Error("Raised dead are undead: pick a skeleton, zombie or other undead.");
+    if (preset.undead) {
+      const nl = classLevel(master, "Necromancer");
+      const cap = nl >= 24 ? 20 : nl >= 13 ? 15 : 10;
+      const have = companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey).length;
+      if (have >= cap) throw new Error(`${master.name} already controls ${have} undead (Undead Mastery: at most ${cap}).`);
+    }
     data = src.toObject();
     delete data._id;
     data.name = `${src.name} (${master.name}'s ${KIND_LABEL[preset.kind].toLowerCase()})`;
