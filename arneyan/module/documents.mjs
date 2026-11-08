@@ -673,7 +673,8 @@ export class ArneyanActor extends Actor {
       if (worst > r.reach) {
         if (!r.normal) { ui.notifications.warn(`${item.name}: the target is ${worst}ft away, beyond your ${r.reach}ft reach.`); notes.unshift(`Out of reach: ${worst}ft (reach ${r.reach}ft)`); }
         else if (worst > r.long) { ui.notifications.warn(`${item.name}: the target is ${worst}ft away, beyond its ${r.long}ft range.`); notes.unshift(`Out of range: ${worst}ft (range ${r.normal}/${r.long}ft)`); }
-        else if (worst > r.normal) far = { values: [-1], adv: [], dis: [`Long range (${worst}ft, range ${r.normal}ft)`] };
+        // Long range: the players' call too (Kieran, 8 Nov), noted for the card's Disadvantage button.
+        else if (worst > r.normal) notes.push(`Disadvantage if it applies: long range (${worst}ft, range ${r.normal}ft). Use the card's button.`);
       }
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");

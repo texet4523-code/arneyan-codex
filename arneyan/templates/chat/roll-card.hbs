@@ -18,6 +18,6 @@
   {{/if}}
   {{#if notes.length}}<ul class="arn-notes">{{#each notes}}<li>{{this}}</li>{{/each}}</ul>{{/if}}
   <div class="arn-footer">{{{footer}}}</div>
-  {{#if canSecond}}<div class="arn-second arn-dmg-buttons"><button type="button" class="arn-second-die" data-dir="1" data-tooltip="Roll a second d20 and keep the higher (Running Shot after moving, or the GM's call)"><i class="fa-solid fa-angles-up"></i> Advantage</button><button type="button" class="arn-second-die" data-dir="-1" data-tooltip="Roll a second d20 and keep the lower"><i class="fa-solid fa-angles-down"></i> Disadvantage</button></div>{{/if}}
+  {{#if canSecond}}<div class="arn-second arn-dmg-buttons">{{#if secondAdv}}<button type="button" class="arn-second-die" data-dir="1" data-tooltip="{{#if cancels}}Cancels the Disadvantage: the first die counts{{else}}Roll a second d20 and keep the higher (flanking, Running Shot, the GM's call){{/if}}"><i class="fa-solid fa-angles-up"></i> Advantage</button>{{/if}}{{#if secondDis}}<button type="button" class="arn-second-die" data-dir="-1" data-tooltip="{{#if cancels}}Cancels the Advantage: the first die counts{{else}}Roll a second d20 and keep the lower (cover, long range, the GM's call){{/if}}"><i class="fa-solid fa-angles-down"></i> Disadvantage</button>{{/if}}</div>{{/if}}
   {{#if canBurn}}<button type="button" class="arn-burn"><i class="fa-solid fa-clover"></i> Burn Luck</button>{{/if}}
 </div>

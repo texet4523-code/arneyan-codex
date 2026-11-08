@@ -403,6 +403,10 @@ export function targetAC(actor, { ranged = false } = {}) {
 export async function attackSituation(actor, item, targets, { offhand = false } = {}) {
   const ranged = !!item.system.ranged;
   const out = { block: false, adv: [], notes: [], extra: { melee: !ranged, offhand: !!offhand }, fire: null, trained: true };
+  // What the map suggests (cover from walls, flanking, close quarters, shooting into melee) is the players' call, not
+  // applied by itself: it goes on the card, and the card's Advantage or Disadvantage button applies it (Kieran, 8 Nov,
+  // Jacob's Well: "everything is rolling at disadvantage"). Features and conditions still apply by themselves.
+  const maybe = (dir, why) => out.notes.push(`${dir > 0 ? "Advantage" : "Disadvantage"} if it applies: ${why}. Use the card's button.`);
   const combat = combatFor(actor);
   if (combat?.started) out.extra.stamp = `${combat.id}.${combat.round}`;
 
@@ -426,18 +430,12 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   }
   const walled = targets.filter(t => walls.get(t) === "full");
   if (walled.length) {
-    const names = walled.map(t => t.name).join(", "), is = walled.length === 1 ? "is" : "are";
-    // Players can't roll it; the GM is warned and can (a token peeking round a corner, a wall drawn loosely).
-    if (!game.user.isGM) {
-      ui.notifications.warn(`${names} ${is} behind a wall (Full Cover) and can't be targeted directly. Ask the GM if that's wrong.`);
-      out.block = true;
-      return out;
-    }
-    ui.notifications.warn(`${names} ${is} behind a wall (Full Cover). Rolling anyway, as you're the GM.`);
-    out.notes.push(`${names}: Full Cover from the walls (the GM rolled anyway)`);
+    // Walls drawn loosely or a token round a corner fool it: a warning and a note, never a refusal.
+    const names = walled.map(t => t.name).join(", "), is = walled.length === 1 ? "looks" : "look";
+    out.notes.push(`${names} ${is} to be behind a wall (Full Cover): if so, it can't be attacked directly`);
   }
   const halfName = ARNEYAN.conditions.cover.name;
-  if (targets.length === 1 && walls.get(targets[0]) === "half") out.adv.push({ values: [-1], adv: [], dis: [`${targets[0].name}: ${halfName} (walls)`] });
+  if (targets.length === 1 && walls.get(targets[0]) === "half") maybe(-1, `${targets[0].name} may have ${halfName} from the walls`);
   // Cover on one of several targets: one roll can't carry it, so say so.
   if (targets.length > 1) {
     for (const t of targets) {
@@ -487,14 +485,14 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
       const inReach = feetBetween(from.document, tTok.document) <= Math.max(rangeOf(item).reach || 5, reachOf(actor));
       if (inReach && !tm?.has?.("no.flanked")) {
         const flanker = allies.find(o => feetBetween(o.document, tTok.document) <= reachOf(o.actor) && isOpposite(rectOf(from), rectOf(o), rectOf(tTok)));
-        if (flanker) out.adv.push({ values: [1], adv: [`Flanking with ${flanker.name}`], dis: [] });
+        if (flanker) maybe(1, `flanking with ${flanker.name}`);
       }
     } else {
       const disp = from.document.disposition;
       const enemyNear = creaturesOnScene().find(o => o.id !== from.id && o.document.disposition * disp === -1 && feetBetween(from.document, o.document) <= 5);
-      if (enemyNear) out.adv.push({ values: [-1], adv: [], dis: [`${enemyNear.name} within 5ft (close quarters)`] });
+      if (enemyNear) maybe(-1, `${enemyNear.name} within 5ft (close quarters)`);
       const engaged = allies.find(o => feetBetween(o.document, tTok.document) <= 5);
-      if (engaged) out.adv.push({ values: [-1], adv: [], dis: [`Shooting into melee (${engaged.name})`] });
+      if (engaged) maybe(-1, `shooting into melee (${engaged.name})`);
     }
   }
 
@@ -1099,12 +1097,12 @@ export function registerCombat() {
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "positionalCombat", {
     name: "Flanking and crowding from token positions",
-    hint: "Melee attacks get Advantage when an ally stands directly opposite the target; ranged attacks get Disadvantage with an enemy within 5ft or when shooting at a target next to an ally.",
+    hint: "The attack card suggests Advantage when an ally stands directly opposite the target (flanking), and Disadvantage for a ranged attack with an enemy within 5ft or at a target next to an ally. The player applies it with the card's button.",
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYS, "wallCover", {
     name: "Cover from walls",
-    hint: "Attacks check the walls between attacker and target: some of the target's space behind a wall gives Half Cover (Disadvantage), all of it Full Cover (players can't attack it; the GM is warned and can). Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand overrides it.",
+    hint: "Attacks check the walls between attacker and target and say so on the card: some of the target's space behind a wall suggests Half Cover (Disadvantage, with the card's button), all of it Full Cover. Nothing is applied or refused by itself. Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand still applies as usual.",
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("getCombatantContextOptions", trackerOptions);

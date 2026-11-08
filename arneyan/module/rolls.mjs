@@ -102,7 +102,11 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   const flags = { kind, natural, target: target ?? targets[0]?.ac ?? null, targets, total: roll.total, bonus, luckBurned: 0, autoFail: !!autoFail, ...extra };
   // After-the-roll Advantage or Disadvantage can change what the footer should be (damage buttons after a natural 1),
   // so each version of it is kept on the card for secondDie: a natural 1, a critical, a hit, a miss, unknown.
-  const second = !mode && ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !(why?.adv?.length && why?.dis?.length);
+  // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
+  // nothing cancels (the off-hand attack's).
+  const fixedDis = mode < 0 && (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d));
+  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !(why?.adv?.length && why?.dis?.length) && !fixedDis;
+  if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {
       nat1: footer({ natural: 1, crit: false, outcome: "nat1" }), crit: footer({ natural: 20, crit: true, outcome: "nat20" }),
@@ -127,6 +131,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
   const canSecond = !!second;
+  const secondAdv = canSecond && mode <= 0, secondDis = canSecond && mode >= 0;
   const total = roll.total + luckBurned;
   return foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title, modeLabel, whyLabel,
@@ -138,7 +143,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
       const o = outcomeFor(total, natural, t.ac, kind, false, critAt);
       return { ...t, outcome: o, label: outcomeLabel(o, kind) };
     }) : [],
-    notes, footer, canBurn, luckBurned, canSecond
+    notes, footer, canBurn, luckBurned, canSecond, secondAdv, secondDis, cancels: !!mode
   });
 }
 
@@ -152,12 +157,19 @@ export async function secondDie(message, dir) {
   const actor = ChatMessage.getSpeakerActor(message.speaker);
   if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
   message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once
-  const roll = await new Roll("1d20").evaluate();
-  await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
+  // Already rolled with the other one: they cancel, and the roll is its first die (no new die).
+  const cancel = !!flags.mode && Math.sign(flags.mode) === -Math.sign(dir) && (flags.dice ?? []).length >= 2;
+  if (flags.mode && !cancel) return;
+  let second = 0;
+  if (!cancel) {
+    const roll = await new Roll("1d20").evaluate();
+    await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
+    second = roll.total;
+  }
   // Someone else (the GM, the player) got there first while the dice rolled.
   if (game.messages?.get?.(message.id)?.flags?.[SYS]?.secondDie ?? message.flags?.[SYS]?.secondDie) return;
-  const first = Number(flags.natural) || 0, second = roll.total;
-  const kept = dir > 0 ? Math.max(first, second) : Math.min(first, second);
+  const first = Number(flags.natural) || 0;
+  const kept = cancel ? Number(flags.dice[0]) || first : dir > 0 ? Math.max(first, second) : Math.min(first, second);
   const total = flags.total - first + kept, burned = flags.luckBurned || 0, shown = total + burned;
   const critAt = flags.critAt ?? 20;
   const many = (flags.targets ?? []).length > 1;
@@ -165,12 +177,19 @@ export async function secondDie(message, dir) {
   const outcome = many ? (kept === 20 ? "nat20" : kept === 1 ? "nat1" : "") : outcomeFor(shown, kept, flags.target, flags.kind, false, critAt);
   const acs = (flags.targets ?? []).length ? flags.targets.map(t => t.ac) : [flags.target];
   const crit = flags.kind === "attack" && !flags.autoFail && isCritical(kept, shown, critAt, acs);
-  const label = dir > 0 ? "Advantage" : "Disadvantage";
+  const label = cancel ? `${dir > 0 ? "Advantage" : "Disadvantage"} (cancels)` : dir > 0 ? "Advantage" : "Disadvantage";
 
   const html = new DOMParser().parseFromString(message.content, "text/html");
   const dice = html.querySelector(".arn-card-dice");
   const firstDie = dice?.querySelector(".arn-die");
-  if (firstDie) {
+  if (cancel) {
+    // The two dice already there: the first counts now, the other is set aside.
+    const ds = [...(dice?.querySelectorAll(".arn-die") ?? [])];
+    ds.forEach((d, i) => d.classList.toggle("dropped", i !== 0));
+    html.querySelector(".arn-card-title .arn-mode")?.remove();
+    const whyEl = html.querySelector(".arn-why");
+    if (whyEl) whyEl.textContent = `${whyEl.textContent} (cancelled by ${dir > 0 ? "Advantage" : "Disadvantage"})`;
+  } else if (firstDie) {
     const extra = html.createElement("span");
     extra.className = "arn-die";
     extra.textContent = String(second);
@@ -178,7 +197,7 @@ export async function secondDie(message, dir) {
     (kept === first && first !== second ? extra : kept === second && first !== second ? firstDie : extra).classList.add("dropped");
   }
   const head = html.querySelector(".arn-card-title");
-  if (head && !head.querySelector(".arn-mode")) {
+  if (head && !cancel && !head.querySelector(".arn-mode")) {
     const m = html.createElement("span");
     m.className = "arn-mode";
     m.textContent = label;
@@ -212,7 +231,7 @@ export async function secondDie(message, dir) {
   const update = { content: html.body.innerHTML, [`flags.${SYS}.natural`]: kept, [`flags.${SYS}.total`]: total, [`flags.${SYS}.secondDie`]: dir, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) };
   if (message.canUserModify(game.user, "update")) return message.update(update);
   return ChatMessage.create({ speaker: message.speaker, whisper: message.whisper?.length ? [...message.whisper] : [], blind: !!message.blind,
-    content: `<div class="arn-card"><p>${esc(label)}: the second d20 is <strong>${second}</strong>, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
+    content: `<div class="arn-card"><p>${esc(label)}: ${cancel ? "the first die counts" : `the second d20 is <strong>${second}</strong>`}, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
 }
 
 /** Roll-under Luck Check. A natural 1 always succeeds, a natural 20 always fails. Advantage keeps the lower die. */
