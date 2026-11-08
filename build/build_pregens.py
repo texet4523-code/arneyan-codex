@@ -15,6 +15,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACK = "pregens"
 SYS = "arneyan"
 
+# Adventures no longer in the playtest (Kieran, 8 Nov 2026: The Broken Anvil scrapped for Jacob's Well). Their characters
+# are still built, from the same rules, but into test/fixtures/pregens (the tests use them), never into the compendium.
+RETIRED = {"The Broken Anvil"}
+FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to packs-src, as write() takes it
+
+
+def pack_for(adventure):
+    return FIXTURES if adventure in RETIRED else PACK
+
+
 FOLDERS = [  # (adventure, sub-folder, colour); order is the sidebar order
     ("The Broken Anvil", "", "#5a2a1a"),
     ("The Broken Anvil", "Level 1 - The Recruits", "#5a2a1a"),
@@ -350,12 +360,14 @@ def build():
     gear = Index("equipment")
     features = {d["_id"]: d for d in load("class-features")}
 
-    # Folders
+    # Folders (the retired adventures' fixtures start clean each build)
+    import shutil
+    shutil.rmtree(os.path.join(OUT, FIXTURES), ignore_errors=True)
     fold = {}
     for i, (adv, sub, colour) in enumerate(FOLDERS):
         _id = fid("pregen-folder", adv, sub)
         fold[(adv, sub)] = _id
-        write(PACK, {"_id": _id, "_key": f"!folders!{_id}", "name": sub or adv, "type": "Actor",
+        write(pack_for(adv), {"_id": _id, "_key": f"!folders!{_id}", "name": sub or adv, "type": "Actor",
                      "folder": fold[(adv, "")] if sub else None, "sorting": "m", "sort": i * 1000, "color": colour,
                      "flags": {}, "description": ""})
 
@@ -555,7 +567,8 @@ def build():
                 bio += f"<p><strong>Tonight:</strong> {html.escape(c['hook'])}</p>"
             if c.get("inAFight"):
                 bio += f"<h3>In a fight</h3>{para(c['inAFight'])}"
-            story = f"<h3>Abilities (from the printed sheet)</h3>{ability_html(c)}"
+            # Kept to the rules as they stand (8 Nov 2026, Jacob's Well prep), not to the old printed sheet.
+            story = f"<h3>Abilities</h3>{ability_html(c)}"
             if sp.get("notes"):
                 story += f"<h3>Casting</h3>{para(sp['notes'])}"
             if c.get("acBreakdown"):
@@ -602,6 +615,7 @@ def build():
                 "flags": {SYS: {"pregen": {"adventure": c["adventure"], "seat": c.get("seat"), "role": c.get("role", ""),
                                            "sheet": {"ac": c.get("ac"), "saves": c.get("saves"), "bth": c.get("bth"), "hp": c.get("hpMax")}}}},
             }
-            write(PACK, actor)
-            report["made"] += 1
+            write(pack_for(c["adventure"]), actor)
+            if c["adventure"] not in RETIRED:
+                report["made"] += 1
     return report

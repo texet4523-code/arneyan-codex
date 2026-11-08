@@ -48,7 +48,8 @@ assert.ok(docs("equipment").filter(d => /\(by quality\)/.test(d.system.price ?? 
 assert.ok(strip(one("actions", "Attack of Opportunity").system.description).includes("Only a creature with a feature that grants one"));
 // A creation feat's point moved by the starting cap: no pregen needs one since Wick became a half-elf (28 Oct 2026),
 // so the rule is checked through chosenRules below. Wick's scores are stored as listed (no feat point to take out).
-const wick = docs("pregens").find(d => d.name === "Wick Tallow");
+// The Broken Anvil was scrapped for Jacob's Well (8 Nov 2026): its characters live on as test fixtures.
+const wick = docs("../test/fixtures/pregens").find(d => d.name === "Wick Tallow");
 assert.ok(wick.items.some(i => i.type === "ancestry" && i.name === "Half-Elf"), "Wick is a half-elf");
 assert.equal(wick.system.abilities.dex.value, 18);
 assert.equal(wick.system.abilities.cha.value, 13);

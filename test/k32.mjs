@@ -3,7 +3,8 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-const dir = new URL("../packs-src/pregens/", import.meta.url);
+// The Veterans are test fixtures since the Broken Anvil was scrapped (8 Nov 2026).
+const dir = new URL("../test/fixtures/pregens/", import.meta.url);
 const actors = fs.readdirSync(dir).filter(f => f.startsWith("actors_")).map(f => JSON.parse(fs.readFileSync(new URL(f, dir), "utf8")));
 const want = { "Kavra Skyhewn": "Thunderbite", "Liriel Vance": "Opal Hush", "Sister Aurelle Dawnward": "Dawnmercy", "Marten Halloway": "Halloway's Oath", "Sarrix Stormscale": "Ascendant's Spine" };
 for (const a of actors) {

@@ -667,16 +667,20 @@ const fxs = [{ name: "Aura of Courage", disabled: false, flags: { arneyan: { rul
 assert.equal(mk(16, [cls("Fighter", 5)], [], fxs).system.saves.fort.value, 6);  // 2 + 2 + Monolith 2; Courage only vs fear
 }
 {
-// Pregens: 10 Broken Anvil characters in two level folders (K26, 28 Oct 2026: the Journeymen are cut), 4 for Jacob's Well,
-// built from the system's own items.
+// Pregens: the 4 Jacob's Well Keepers ship, built from the system's own items. The Broken Anvil was scrapped (Kieran,
+// 8 Nov 2026): its 10 characters in two level folders are built the same way into test/fixtures/pregens, never shipped.
 const pdir = new URL("../packs-src/pregens/", import.meta.url).pathname;
 const pdocs = fs.readdirSync(pdir).map(f => JSON.parse(fs.readFileSync(pdir + f)));
-const pf = pdocs.filter(d => d._key.startsWith("!folders!"));
-const pa = pdocs.filter(d => d._key.startsWith("!actors!"));
-assert.equal(pa.length, 14);
+assert.deepEqual(pdocs.filter(d => d._key.startsWith("!folders!")).map(f => f.name), ["Jacob's Well"]);
+assert.equal(pdocs.filter(d => d._key.startsWith("!actors!")).length, 4);
+const fdir = new URL("../test/fixtures/pregens/", import.meta.url).pathname;
+const fdocs = fs.readdirSync(fdir).map(f => JSON.parse(fs.readFileSync(fdir + f)));
+const pf = fdocs.filter(d => d._key.startsWith("!folders!"));
+const pa = fdocs.filter(d => d._key.startsWith("!actors!"));
+assert.equal(pa.length, 10);
 const byName = n => pf.find(f => f.name === n);
 assert.deepEqual(pf.filter(f => f.folder === byName("The Broken Anvil")._id).map(f => f.name).sort(), ["Level 1 - The Recruits", "Level 9 - The Veterans"]);
-assert.equal(pa.filter(a => a.folder === byName("Jacob's Well")._id).length, 4);
+assert.ok(!pdocs.some(d => /Broken Anvil|Recruits|Veterans/.test(d.name)), "nothing of the Broken Anvil ships");
 // Haldor (the Recruits' Fighter, rebuilt 28 Oct 2026 around the class art): 14 HP on the sheet, 13 stored + Toughness.
 const wen = pa.find(a => a.name === "Haldor Brassbeard");
 assert.deepEqual([wen.type, wen.system.attributes.hp.max, wen.prototypeToken.actorLink], ["character", 13, true]);
@@ -698,7 +702,7 @@ assert.deepEqual([gn.label, gn.options[0].name, gn.options[0].bonuses], ["Caste"
 assert.equal(anc("Human").system.pickTwo, true);
 assert.ok(anc("Elf").system.choice.options.some(o => o.name.startsWith("Saevren") && o.rules.some(r => r.key === "speed" && r.value === "5")));
 assert.ok(anc("Dwarf").system.rules.some(r => r.key === "resist" && r.value === "poison 5"), "approved ancestry traits apply");
-const pdir2 = new URL("../packs-src/pregens/", import.meta.url).pathname;
+const pdir2 = new URL("../test/fixtures/pregens/", import.meta.url).pathname;
 // A pregen's ancestry subtype, as the drop-in setup adds it (Fenna, the Recruits' wood elf, since 28 Oct 2026).
 const fenna = fs.readdirSync(pdir2).map(f => JSON.parse(fs.readFileSync(pdir2 + f))).find(d => d.name === "Fenna Thornmantle");
 assert.ok(fenna.items.some(i => i.name === "Elf (Saevren)") && fenna.items.some(i => /: Saevren/.test(i.name) && i.system.kind === "ancestry"));

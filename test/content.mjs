@@ -89,8 +89,9 @@ const pregens = pack("pregens").filter(d => d.type === "character");
 // The Journeymen (Maud the Witch, Tibbet the Alchemist) were cut (K26), and the Recruits rebuilt around the class art
 // (28 Oct 2026): Ilvaeth Duskwhisper (Warlock 1) checks a pregen's kit, its features up to her level only, and her
 // class-only spells as real prepared spells from the compendium.
-assert.ok(pregens.length >= 14 && !pregens.some(p => ["Maud Hollins", "Tibbet Quickfuse"].includes(p.name)));
-const ilvaeth = pregens.find(p => p.name === "Ilvaeth Duskwhisper");
+// Since 8 Nov 2026 only Jacob's Well ships (the Broken Anvil scrapped); its characters stay as test fixtures.
+assert.deepEqual(pregens.map(p => p.name).sort(), ["Brenna Coldwater", "Hulda Frostbraid", "Ithrien Vael", "Pip Thistlewick"]);
+const ilvaeth = pack("../test/fixtures/pregens").find(p => p.name === "Ilvaeth Duskwhisper");
 assert.ok(ilvaeth.items.some(i => i.type === "kit" && i.name === "The Queen of Air and Darkness (Warlock)"), "her patron kit");
 const kitFeats = ilvaeth.items.filter(i => i.type === "ability" && i.system.className === "The Queen of Air and Darkness (Warlock)").map(i => i.name);
 assert.ok(kitFeats.includes("Dark Gift") && !kitFeats.includes("Patron's Mark"), "the kit's 1st-level feature, not its 4th-level one");

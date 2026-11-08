@@ -28,10 +28,10 @@ assert.deepEqual(M.RENAMED_FEATURES["Compendium.arneyan.skills.Item.QwBrDsUjGQiC
 assert.ok(/THIEF_REWORK = "0\.10\.88"/.test(src("module/migrate.mjs")));
 const rogue1 = read("class-features", "items_1st-Level_Features_YGCVjC9mUfm0216U")[0];
 assert.deepEqual(rogue1.system.activities.map(a => a.name), ["Decipher Script"], "the old Rogue checks are gone");
-const wick = read("pregens", "items_Wick").concat(read("pregens", "actors_Wick_Tallow_"))[0];
+const wick = read("../test/fixtures/pregens", "actors_Wick_Tallow_")[0]; // a retired Broken Anvil pregen (test fixture)
 const wsk = Object.fromEntries(wick.items.filter(i => i.type === "skill").map(i => [i.name, [i.system.tier, i.system.ability]]));
 assert.deepEqual(wsk.Climb, ["trained", "dex"]); assert.ok(wsk.Lockpicking && wsk.Traps && wsk["Pick Pocket"]);
-const sarrix = read("pregens", "actors_Sarrix_Stormscale_")[0];
+const sarrix = read("../test/fixtures/pregens", "actors_Sarrix_Stormscale_")[0];
 assert.ok(sarrix.items.some(i => i.type === "skill" && i.name === "Climb") && !sarrix.items.some(i => i.name === "Mountaineering"));
 
 /* Weapon Master: repeatable, and as a Trained Feat no check at the end. */

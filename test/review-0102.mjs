@@ -70,7 +70,7 @@ function doc(type, name, system = {}, parent = null, id = null) {
   const feats = packDocs("feats").filter(d => d.type === "feat");
   assert.ok(feats.length && feats.every(d => d.system.levelTaken === 0), "compendium feats carry no level taken");
   // Pregens: the level from the book where it's given, else 0.
-  const pregens = packDocs("pregens").filter(d => d.type === "character");
+  const pregens = packDocs("pregens").concat(packDocs("../test/fixtures/pregens")).filter(d => d.type === "character");
   const featOf = (who, f) => pregens.find(p => p.name === who)?.items.find(i => i.type === "feat" && i.name === f)?.system.levelTaken;
   assert.equal(featOf("Marten Halloway", "Point-Blank Terror"), 2);
   assert.equal(featOf("Marten Halloway", "Swift Reflexes"), 6);
