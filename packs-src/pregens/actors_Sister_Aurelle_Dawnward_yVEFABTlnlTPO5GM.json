@@ -42,8 +42,8 @@
   },
   "currency": {
    "pp": 0,
-   "gp": 9,
-   "sp": 0,
+   "gp": 44,
+   "sp": 5,
    "cp": 0
   },
   "details": {
@@ -1262,54 +1262,6 @@
   {
    "_id": "3EiumsKtDG5rjn5T",
    "_key": "!actors.items!yVEFABTlnlTPO5GM.3EiumsKtDG5rjn5T",
-   "name": "Ancient History",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-brain.svg",
-   "system": {
-    "description": "<p>Recalling lost kingdoms and old events</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "ability": "int",
-    "tier": "trained"
-   },
-   "effects": [],
-   "ownership": {
-    "default": 0
-   },
-   "flags": {},
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
-   }
-  },
-  {
-   "_id": "D0cNuVchQqSUyZZ3",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.D0cNuVchQqSUyZZ3",
-   "name": "Etiquette",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
-   "system": {
-    "description": "<p>Court manners and social protocol</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "ability": "cha",
-    "tier": "trained"
-   },
-   "effects": [],
-   "ownership": {
-    "default": 0
-   },
-   "flags": {},
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.skills.Item.CT3tBzI96UXIuCzT"
-   }
-  },
-  {
-   "_id": "2KQOsi3gTyaNLBIu",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.2KQOsi3gTyaNLBIu",
    "name": "Singing",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
@@ -1371,29 +1323,29 @@
   {
    "_id": "3L9Yoscevl8fsBze",
    "_key": "!actors.items!yVEFABTlnlTPO5GM.3L9Yoscevl8fsBze",
-   "name": "Crossbow, Light",
+   "name": "Dagger",
    "type": "weapon",
-   "img": "systems/arneyan/assets/icons/weapon-crossbow.svg",
+   "img": "systems/arneyan/assets/icons/weapon-plain-dagger.svg",
    "system": {
-    "description": "<p>Armour Piercing</p>",
+    "description": "<p>Finesse, Light, Concealable, Thrown</p>",
     "source": {
      "book": "phb",
      "page": 0
     },
     "quantity": 1,
     "slots": 1.0,
-    "price": "35 gp",
+    "price": "2 gp",
     "equipped": true,
-    "damage": "1d6",
+    "damage": "1d4",
     "damageType": "piercing",
-    "ability": "dex",
-    "ranged": true,
-    "range": "80 ft",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "20 ft",
     "magic": 0,
     "attackBonus": 0,
-    "traits": "Armour Piercing",
+    "traits": "Finesse, Light, Concealable, Thrown",
     "bundle": 0,
-    "ammoType": "bolt",
+    "ammoType": "",
     "ammoId": ""
    },
    "effects": [],
@@ -1402,7 +1354,7 @@
    },
    "flags": {},
    "_stats": {
-    "compendiumSource": "Compendium.arneyan.equipment.Item.9r6Um75YC9I5vjac"
+    "compendiumSource": "Compendium.arneyan.equipment.Item.TMnikZBI4akkSNb2"
    }
   },
   {
@@ -1545,75 +1497,6 @@
   {
    "_id": "JB7fMvESLa0gNaTo",
    "_key": "!actors.items!yVEFABTlnlTPO5GM.JB7fMvESLa0gNaTo",
-   "name": "Bolts",
-   "type": "equipment",
-   "img": "systems/arneyan/assets/icons/ammo-arrow-cluster.svg",
-   "ownership": {
-    "default": 0
-   },
-   "flags": {},
-   "effects": [],
-   "system": {
-    "description": "<p>Ammunition, 30 to a slot. 1 gp for 12.</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "quantity": 24,
-    "slots": 1,
-    "bundle": 30,
-    "price": "1 gp for 12",
-    "equipped": false,
-    "inside": "",
-    "identified": true,
-    "unidentifiedName": "",
-    "unidentifiedDescription": "",
-    "ammoType": "bolt",
-    "container": {
-     "holds": false,
-     "capacity": 0,
-     "weightless": false,
-     "extradimensional": false
-    },
-    "consumable": {
-     "use": false,
-     "heal": ""
-    },
-    "charges": {
-     "value": 0,
-     "max": 0,
-     "recharge": "",
-     "crumble": false
-    },
-    "light": {
-     "bright": 0,
-     "dim": 0,
-     "hours": 0,
-     "lit": false,
-     "litAt": 0,
-     "angle": 360
-    },
-    "scroll": {
-     "spell": null,
-     "cl": 0,
-     "dc": 0
-    },
-    "itemSpells": [],
-    "castLevel": 0,
-    "nonCasterCl": 0,
-    "nonCasterDc": 0,
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.equipment.Item.FIVVWxi7FHED2pj1"
-   }
-  },
-  {
-   "_id": "Sid5nLDzCRI4zPxB",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.Sid5nLDzCRI4zPxB",
    "name": "Backpack",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
@@ -1673,8 +1556,8 @@
    }
   },
   {
-   "_id": "xoTtZF1kC9m3fsOq",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.xoTtZF1kC9m3fsOq",
+   "_id": "Sid5nLDzCRI4zPxB",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.Sid5nLDzCRI4zPxB",
    "name": "Week's Rations",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-bread.svg",
@@ -1734,8 +1617,8 @@
    }
   },
   {
-   "_id": "KORtPg2tAbkaUIhH",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.KORtPg2tAbkaUIhH",
+   "_id": "xoTtZF1kC9m3fsOq",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.xoTtZF1kC9m3fsOq",
    "name": "Personal Woollen Canteen",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
@@ -1795,8 +1678,8 @@
    }
   },
   {
-   "_id": "JOcbE7xrDuHWsfao",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.JOcbE7xrDuHWsfao",
+   "_id": "KORtPg2tAbkaUIhH",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.KORtPg2tAbkaUIhH",
    "name": "Cloak",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-cape.svg",
@@ -1856,8 +1739,8 @@
    }
   },
   {
-   "_id": "owWtDtE0P4UEIXDJ",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.owWtDtE0P4UEIXDJ",
+   "_id": "JOcbE7xrDuHWsfao",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.JOcbE7xrDuHWsfao",
    "name": "Hooded Lantern",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
@@ -1917,8 +1800,8 @@
    }
   },
   {
-   "_id": "Rvltgkc6DWLX3BBq",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.Rvltgkc6DWLX3BBq",
+   "_id": "owWtDtE0P4UEIXDJ",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.owWtDtE0P4UEIXDJ",
    "name": "Slate and Chalk",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
@@ -1978,8 +1861,8 @@
    }
   },
   {
-   "_id": "dgm8tDWNE1xW3OE7",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.dgm8tDWNE1xW3OE7",
+   "_id": "Rvltgkc6DWLX3BBq",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.Rvltgkc6DWLX3BBq",
    "name": "Lamp Oil",
    "type": "equipment",
    "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
@@ -2039,8 +1922,8 @@
    }
   },
   {
-   "_id": "82qbzzs2svlOGfrr",
-   "_key": "!actors.items!yVEFABTlnlTPO5GM.82qbzzs2svlOGfrr",
+   "_id": "dgm8tDWNE1xW3OE7",
+   "_key": "!actors.items!yVEFABTlnlTPO5GM.dgm8tDWNE1xW3OE7",
    "name": "Iron Spikes",
    "type": "equipment",
    "img": "icons/svg/item-bag.svg",

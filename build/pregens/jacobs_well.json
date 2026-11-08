@@ -222,14 +222,6 @@
     "tier": "trained"
    },
    {
-    "name": "Ancient History",
-    "tier": "trained"
-   },
-   {
-    "name": "Etiquette",
-    "tier": "trained"
-   },
-   {
     "name": "Singing",
     "tier": "knack"
    }
@@ -256,13 +248,13 @@
     "notes": "Sunder. Lathander: your first hit each round on undead deals +1d6 radiant."
    },
    {
-    "name": "Light crossbow",
+    "name": "Dagger",
     "qty": 1,
     "magic": 0,
-    "attack": "+1",
-    "damage": "1d6",
+    "attack": "+2",
+    "damage": "1d4+1",
     "range": "",
-    "notes": "80ft. Armour Piercing. One shot a round."
+    "notes": "Thrown 10ft."
    }
   ],
   "armour": [
@@ -286,11 +278,6 @@
    {
     "name": "Healer's Satchel",
     "qty": 1,
-    "slots": 1
-   },
-   {
-    "name": "bolts",
-    "qty": 24,
     "slots": 1
    },
    {
@@ -336,8 +323,8 @@
   ],
   "coins": {
    "pp": 0,
-   "gp": 9,
-   "sp": 0,
+   "gp": 44,
+   "sp": 5,
    "cp": 0
   },
   "spells": {
@@ -592,8 +579,9 @@
    "Common",
    "Elvish",
    "Orcish",
-   "Draconic",
-   "Sylvan"
+   "Dwarvish",
+   "Halfling",
+   "Draconic"
   ],
   "feats": [
    {
@@ -769,14 +757,6 @@
    {
     "name": "Climb",
     "tier": "trained"
-   },
-   {
-    "name": "Tracking",
-    "tier": "trained"
-   },
-   {
-    "name": "Hunting",
-    "tier": "trained"
    }
   ],
   "languages": [
@@ -847,7 +827,7 @@
     "slots": 1
    },
    {
-    "name": "Snowshoes",
+    "name": "Snowshoes (Keepers' issue)",
     "qty": 1,
     "slots": 1
    },
@@ -894,7 +874,7 @@
   ],
   "coins": {
    "pp": 0,
-   "gp": 19,
+   "gp": 27,
    "sp": 0,
    "cp": 0
   },
