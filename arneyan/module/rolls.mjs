@@ -14,9 +14,12 @@ const SYS = "arneyan";
  */
 export const manualAdvantage = () => { try { return globalThis.game?.settings?.get?.("arneyan", "advMode") === "manual"; } catch { return false; } };
 
-export function modeFromEvent(event, builtIn = 0, { auto = false } = {}) {
-  // By hand: only the click counts (contests, initiative and Luck Checks have no card buttons, so they stay automatic).
-  const sources = !auto && manualAdvantage() ? [] : Array.isArray(builtIn) ? builtIn : [builtIn];
+export function modeFromEvent(event, builtIn = 0, { auto = false, keep = [] } = {}) {
+  // By hand: only the click counts, with what the player chose (Power Attack's Disadvantage, `keep`) and what no
+  // Advantage cancels (the off-hand attack's, -2). Contests, initiative, Luck Checks and rolls with no card buttons
+  // (firearms, Last Chance, downtime) stay automatic (`auto`).
+  const all = Array.isArray(builtIn) ? builtIn : [builtIn];
+  const sources = !auto && manualAdvantage() ? [...keep, ...all.filter(v => v <= -2)] : all;
   // -2: a Disadvantage that no Advantage cancels (the Extra Attack and the off-hand attack, books v0.10.38, K44).
   if (sources.some(v => v <= -2)) return -1;
   let adv = sources.some(v => v > 0) || event?.shiftKey;
@@ -112,7 +115,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   // so each version of it is kept on the card for secondDie: a natural 1, a critical, a hit, a miss, unknown.
   // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
   // nothing cancels (the off-hand attack's).
-  const fixedDis = mode < 0 && (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d));
+  const fixedDis = (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d)) && (mode < 0 || manualAdvantage());
   const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
@@ -136,13 +139,16 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
 async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false, paDis = false }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   // By hand, what would apply is a suggestion (the click's own Shift or Ctrl is what was rolled).
-  const clicked = s => /^(Shift|Ctrl)-click$/.test(s);
-  const suggest = !mode && manualAdvantage();
-  const list = (k, label) => {
-    const xs = (why?.[k] ?? []).filter(s => !suggest || !clicked(s));
-    return xs.length ? [`${label}: ${xs.join(", ")}`] : [];
-  };
-  const whyLabel = why ? `${suggest && (why.adv?.length || why.dis?.length) ? "Might apply (use the buttons): " : ""}${[...list("adv", "Advantage"), ...list("dis", "Disadvantage")].join(" · ")}` : "";
+  // By hand: what was rolled (a click, a choice like Power Attack) apart from what only might apply.
+  let whyLabel = "";
+  if (why && manualAdvantage()) {
+    const kept = new Set(why.kept ?? []);
+    const done = s => kept.has(s) || /^(Shift|Ctrl)-click$/.test(s) || /no Advantage cancels/i.test(s);
+    const part = (k, label, f) => { const xs = (why[k] ?? []).filter(f); return xs.length ? [`${label}: ${xs.join(", ")}`] : []; };
+    const rolled = [...part("adv", "Advantage", done), ...part("dis", "Disadvantage", done)].join(" · ");
+    const might = [...part("adv", "Advantage", s => !done(s)), ...part("dis", "Disadvantage", s => !done(s))].join(" · ");
+    whyLabel = [rolled, might ? `Might apply${second ? " (use the buttons)" : ""}: ${might}` : ""].filter(Boolean).join(" · ");
+  } else if (why) whyLabel = [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ");
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
   const canSecond = !!second;

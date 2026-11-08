@@ -221,7 +221,7 @@ export async function onSocket(msg, senderId) {
 
 /** Luck burned on a roll after it was recorded: the card follows (GM). */
 function onUpdateMessage(message, changes) {
-  if (!game.user.isGM || foundry.utils.getProperty(changes, `flags.${SYS}.luckBurned`) === undefined) return;
+  if (!game.user.isGM || (foundry.utils.getProperty(changes, `flags.${SYS}.luckBurned`) === undefined && foundry.utils.getProperty(changes, `flags.${SYS}.secondDie`) === undefined)) return;
   const cards = game.messages.contents.slice(-80).filter(c => c.flags?.[SYS]?.partyRoll?.members?.some(m => m.rollId === message.id));
   for (const c of cards) {
     // A secret card: each GM's own view reads the new total.

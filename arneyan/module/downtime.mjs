@@ -242,7 +242,8 @@ export function planDowntime(key, v, actor) {
 /** A check's total from a roll card the actor's own roll methods post (so Luck can still be burned on it). */
 async function rollCheck(actor, { skillId = "", ability = "" }) {
   const item = skillId ? actor.items.get(skillId) : null;
-  const msg = item ? await actor.rollSkill(item) : ability ? await actor.rollAbility(ability) : await actor.rollSkill(null);
+  // Used at once, so Advantage and Disadvantage are worked out here even by hand (no buttons to press later).
+  const msg = item ? await actor.rollSkill(item, null, { auto: true }) : ability ? await actor.rollAbility(ability, null, { auto: true }) : await actor.rollSkill(null, null, { auto: true });
   return Number(msg?.flags?.[SYS]?.total ?? msg?.rolls?.[0]?.total ?? 0);
 }
 

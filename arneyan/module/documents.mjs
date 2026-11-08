@@ -3,7 +3,7 @@ import { areaButton } from "./areas.mjs";
 import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
-import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula } from "./rolls.mjs";
+import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula, manualAdvantage } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, promptSkill, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
 import { usesMax, effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
@@ -42,11 +42,19 @@ function allegianceLine(item) {
 /** Merge several advantage sources into a mode and an explanation. */
 function advFrom(event, ...sources) {
   const values = sources.flatMap(s => s?.values ?? []);
-  const why = { adv: sources.flatMap(s => s?.adv ?? []), dis: sources.flatMap(s => s?.dis ?? []) };
+  const uniq = xs => [...new Set(xs)];
+  const why = { adv: uniq(sources.flatMap(s => s?.adv ?? [])), dis: uniq(sources.flatMap(s => s?.dis ?? [])) };
+  // Always applied, even by hand: a source marked `keep` (Power Attack, Extra Attack's later attacks); a whole roll
+  // marked `auto` (no card buttons, or used at once).
+  const keepSrc = sources.filter(s => s?.keep);
+  why.kept = keepSrc.flatMap(s => [...(s.adv ?? []), ...(s.dis ?? [])]);
+  const auto = sources.some(s => s?.auto);
   if (event?.shiftKey) why.adv.push("Shift-click");
   if (event?.ctrlKey || event?.metaKey) why.dis.push("Ctrl-click");
-  return { mode: modeFromEvent(event, values), why };
+  return { mode: modeFromEvent(event, values, { auto, keep: keepSrc.flatMap(s => s.values ?? []) }), why };
 }
+/** A roll whose Advantage and Disadvantage are worked out by themselves even by hand (see advFrom). */
+const AUTO = { values: [], adv: [], dis: [], auto: true };
 
 const NONE = { values: [], adv: [], dis: [] };
 
@@ -94,7 +102,7 @@ export function woundedDiceFor(item, hits = null) {
   const actors = (Array.isArray(hits) && hits.length ? hits.map(h => globalThis.fromUuidSync?.(typeof h === "string" ? h : h?.uuid)) : [...(globalThis.game?.user?.targets ?? [])].map(t => t.actor)).filter(Boolean);
   if (!actors.length) return { formula: null, note: `${item.name}: ${to} instead of ${from} against a creature below its maximum HP (target it first and it's done for you).` };
   const hurt = actors.filter(isWounded);
-  const swap = String(item.system.damage).replace(new RegExp(`\\b${from}\\b`, "g"), to).replace(new RegExp(`\\)${from}\\b`, "g"), `)${to}`);
+  const swap = String(item.system.damage).replace(new RegExp(`(?<![A-Za-z])${from}(?!\\d)`, "g"), to);
   if (hurt.length === actors.length) return { formula: swap, note: `${item.name}: ${to}s, as ${actors.length > 1 ? "every target is" : `${actors[0].name} is`} below its maximum HP.` };
   if (!hurt.length) return { formula: null, note: "" };
   return { formula: null, note: `${item.name}: ${hurt.map(a => a.name).join(", ")} ${hurt.length > 1 ? "are" : "is"} below maximum HP and take${hurt.length > 1 ? "" : "s"} ${to}s: roll again with only ${hurt.length > 1 ? "them" : "it"} targeted.` };
@@ -477,11 +485,11 @@ export class ArneyanActor extends Actor {
 
   /** Attribute check: d20 + attribute modifier. Level never adds. */
   /** Attribute check. `bonus`: a one-off addition from a feature (Primeval Instincts' +4), labelled `label`. */
-  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null } = {}) {
+  rollAbility(key, event, { bonus = 0, label = "", dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null, auto = false } = {}) {
     const m = this.mods;
     const parts = [{ label: ARNEYAN.abilityAbbr[key], value: this.system.abilities[key].mod }, ...(m?.parts("check", `check.${key}`) ?? [])];
     if (Number(bonus)) parts.push({ label: label || "Bonus", value: Number(bonus) });
-    const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`, ...advKeys) ?? NONE);
+    const { mode, why } = advFrom(event, m?.adv("adv.check", `adv.check.${key}`, ...advKeys) ?? NONE, ...(auto ? [AUTO] : []));
     const fail = m?.has(`fail.check.${key}`) ? m.sources(`fail.check.${key}`).join(", ") : "";
     return d20Roll({ actor: this, kind: "check", mode, why, title: title || `${ARNEYAN.abilities[key]} Check`, parts, target: dc, notes: [...new Set([...(m?.notesFor("check") ?? []), ...more])], autoFail: fail, footer, rollMode, extra: { ...extra, ability: key } });
   }
@@ -500,7 +508,7 @@ export class ArneyanActor extends Actor {
     let adv = m?.adv("adv.save", `adv.save.${key}`, ...(concentration ? ["adv.concentration"] : [])) ?? NONE;
     // Wounded by Nalwood: the Weave falters, Disadvantage to keep concentrating.
     if (concentration && disrupted) adv = { ...adv, values: [...(adv.values ?? []), -1], dis: [...(adv.dis ?? []), "Nalwood disrupts the Weave"] };
-    const { mode, why } = advFrom(event, adv);
+    const { mode, why } = advFrom(event, adv, ...(noSecond || /^Last Chance/.test(String(source ?? "")) ? [AUTO] : []));
     const fail = m?.has(`fail.save.${key}`) ? m.sources(`fail.save.${key}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc, rollMode,
@@ -511,10 +519,10 @@ export class ArneyanActor extends Actor {
   }
 
   /** Skill (NWP) check. Untrained is a plain d20. Trained adds the modifier (minimum +1). Master also has Advantage. */
-  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null } = {}) {
+  rollSkill(item, event, { dc = null, title = "", footer = "", extra = {}, advKeys = [], notes: more = [], rollMode = null, auto = false } = {}) {
     const m = this.mods;
     if (!item) {
-      const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE);
+      const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE, ...(auto ? [AUTO] : []));
       return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], rollMode, extra: { skill: "" } });
     }
     const ab = item.system.ability;
@@ -527,7 +535,7 @@ export class ArneyanActor extends Actor {
     const masterSrc = master || knack ? { values: [1], adv: [master ? "Master" : "Knack"], dis: [] } : NONE;
     // Perception (a monster's, or a character's) also takes Advantage on noticing (adv.awareness).
     const keys = /^perception$/i.test(String(item.name).trim()) && !advKeys.includes("adv.awareness") ? [...advKeys, "adv.awareness"] : advKeys;
-    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill", ...keys) ?? NONE);
+    const { mode, why } = advFrom(event, masterSrc, m?.adv("adv.check", `adv.check.${ab}`, "adv.skill", ...keys) ?? NONE, ...(auto ? [AUTO] : []));
     const fail = m?.has(`fail.check.${ab}`) ? m.sources(`fail.check.${ab}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "skill", mode, why, title: `${title ? `${title}: ` : ""}${item.name} (${ARNEYAN.skillTiers[item.system.tier] ?? "Trained"})`, parts, target: dc,
@@ -711,7 +719,11 @@ export class ArneyanActor extends Actor {
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
     // Power Attack only on your first attack each round, never on one that already has Disadvantage (K53).
-    const others = [against, first, firstWith, heavy, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
+    // By hand (K53 still): only what the roll really has turns Power Attack off: a Ctrl-click, or the attack's own
+    // Disadvantage (Extra Attack); what might apply goes through the card's "Disadvantage applies" button.
+    const byHand = manualAdvantage() && !sit.fire;
+    const others = byHand ? [adv ?? NONE, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE]
+      : [against, first, firstWith, heavy, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
     const combatNow = combatFor(this);
     const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
     const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
@@ -719,11 +731,16 @@ export class ArneyanActor extends Actor {
     if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) await this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
     const pa = powerAttackFor(own, others, { first: firstThisRound });
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
-    const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, adv ?? NONE, ...sit.adv);
-    // Power Attack under a map Disadvantage the player confirms (K53): the card's "Disadvantage applies" button turns
-    // the extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
     const paOn = !pa.off && (pa.own?.dis ?? []).includes("Power Attack");
-    if (paOn && (sitDisHint || sit.disHint)) notes.push("Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.");
+    // Power Attack is the player's choice: its Disadvantage always applies. An attack's own (Extra Attack) too.
+    const paKeep = paOn ? { values: [-1], adv: [], dis: ["Power Attack"], keep: true } : NONE;
+    const advKeep = adv ? { ...adv, keep: true } : NONE;
+    const { mode, why } = advFrom(event, pa.own, paKeep, against, first, firstWith, heavy, advKeep, ...sit.adv, ...(sit.fire ? [AUTO] : []));
+    // Power Attack under a Disadvantage that might apply (K53): the card's "Disadvantage applies" button turns the
+    // extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
+    const otherDis = (why.dis ?? []).some(d => d !== "Power Attack" && !/^Ctrl-click$/.test(d));
+    const paHint = paOn && byHand && (sitDisHint || sit.disHint || otherDis);
+    if (paHint) notes.push("Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.");
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();
@@ -733,7 +750,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...(paOn && (sitDisHint || sit.disHint) ? { paDis: true } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...(paHint ? { paDis: true } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit, outcome }) => {
@@ -1770,8 +1787,9 @@ export class ArneyanItem extends Item {
    */
   _ownCount(act) {
     if (!act || Number(act.cost ?? 1) !== 0 || !["day", "week", "month"].includes(String(act.per ?? ""))) return null;
-    if (["damage", "heal", "temp"].includes(act.kind)) return null;
-    const f = String(act.formula ?? "").trim();
+    // A rolled option (Ancestral Calling's temporary HP): its formula is the amount, so once a period.
+    const amount = ["damage", "heal", "temp"].includes(act.kind);
+    const f = amount ? "" : String(act.formula ?? "").trim();
     if (/\d*d\d/i.test(f) || /@martialDC|@\w*dc/i.test(f)) return null;
     const cl = this.featureLevel;
     const max = f ? usesMax(f, { ...(this.actor?.getRollData?.() ?? {}), cl, level: cl }, 1) : 1;
@@ -1799,10 +1817,12 @@ export class ArneyanItem extends Item {
     // Ancestral Calling): counted on the item now, refilled by a rest for "day" (Jacob's Well, 8 Nov).
     const own = this._ownCount(act);
     if (own) {
+      // Counted, never refused: going over is the player's to pay for (Animate Dead's extra corpses take a 3rd-level
+      // slot each) or the GM's call. A daily count refills on a rest; weekly and monthly ones only count.
       const when = act.per === "day" ? "today" : `this ${act.per}`;
-      if (own.left <= 0) { ui.notifications.warn(`${this.name}: no ${act.name} left ${when}.`); return null; }
       if (this.isOwner) await this.setFlag(SYS, "actUsed", { ...(this.getFlag(SYS, "actUsed") ?? {}), [own.key]: own.used + 1 });
-      act = { ...act, _ownLeft: `${own.left - 1} of ${own.max} ${act.name} left ${when}` };
+      act = { ...act, _ownLeft: own.left > 0 ? `${own.left - 1} of ${own.max} ${act.name} left ${when}` : `Over the count: ${own.used + 1} ${act.name} ${when}, of ${own.max} (any more need what the feature says, or the GM's leave)` };
+      if (own.left <= 0) ui.notifications.warn(`${this.name}: that's more ${act.name} than its count (${own.max}) ${when}.`);
     }
     await this._reacted(act);
     // A Smite used this encounter: the first-hit Smite button stops offering it (books v0.10.38, K44 S4).

@@ -259,7 +259,9 @@ async function createCompanion(master, presetKey, { creatureUuid = "", chassis =
     }
     data = src.toObject();
     delete data._id;
-    data.name = `${src.name} (${master.name}'s ${KIND_LABEL[preset.kind].toLowerCase()})`;
+    // Raised undead are numbered (Skeleton 1, Skeleton 2...), so ten of them can be told apart.
+    const n = preset.undead ? companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey && c.name.startsWith(src.name)).length + 1 : 0;
+    data.name = `${src.name}${n ? ` ${n}` : ""} (${master.name}'s ${KIND_LABEL[preset.kind].toLowerCase()})`;
     foundry.utils.setProperty(data, `flags.${SYS}.bestiary`, src.pack ? src.uuid : (src.getFlag(SYS, "bestiary") ?? ""));
   }
   const { alliesFolder } = await import("./party.mjs");

@@ -78,3 +78,20 @@ console.log("OK descriptions");
   game.settings = saved;
   console.log("OK manual advantage");
 }
+
+/* By hand, what the player chose and what nothing cancels still apply; Toll the Dead swaps plain dice too. */
+{
+  const R = await import("../arneyan/module/rolls.mjs");
+  const D = await import("../arneyan/module/documents.mjs");
+  const saved = game.settings;
+  game.settings = { get: (s, k) => (k === "advMode" ? "manual" : undefined) };
+  assert.equal(R.modeFromEvent(null, [-1, 1], { keep: [-1] }), -1, "Power Attack's Disadvantage is the player's choice");
+  assert.equal(R.modeFromEvent({ shiftKey: true }, [-2]), -1, "the off-hand attack's Disadvantage, no Advantage cancels it");
+  assert.equal(R.modeFromEvent(null, [-1], { auto: true }), -1, "a roll with no buttons works it out itself");
+  game.settings = saved;
+  const sv = globalThis.fromUuidSync;
+  globalThis.fromUuidSync = () => ({ name: "A", system: { attributes: { hp: { value: 1, max: 5 } } } });
+  assert.equal(D.woundedDiceFor({ name: "Toll the Dead", system: { damage: "2d4" } }, ["a"]).formula, "2d6");
+  globalThis.fromUuidSync = sv;
+  console.log("OK kept advantage");
+}
