@@ -7,7 +7,8 @@ Read from each ancestry's own Character Creation text and stored on the item:
   system.choice     {label: "Bloodline", options: [{name, text, bonuses, rules}]} for subtypes, bloodlines,
                     castes and lineages. A choice's rules are only what its text states as a number: a
                     resistance ("Resist fire": Resistance 5 to fire, as the ancestry's trait says), "+5ft speed"
-                    and "+1 natural armour AC". Everything else on it is a reminder in its text.
+                    "+1 natural armour AC" and a cantrip at creation (cantrips.extra). Everything else on it
+                    is a reminder in its text. A trait's only rule is a cantrip at creation.
   system.family     Tiefling: also choose the ancestry of the family you were born into
 """
 import glob, html, json, os, re
@@ -60,6 +61,10 @@ def items(ul):
     return out
 
 
+CANTRIP_RE = re.compile(r"\bone (?:\w+ )?cantrip\b", re.I)
+CANTRIP = {"key": "cantrips.extra", "value": "1", "when": "", "label": ""}
+
+
 def choice_rules(t):
     rules = []
     for m in re.finditer(rf"\bresist(?:ance)?(?: 5 to)?\s+({DAMAGE})\b", t, re.I):
@@ -71,8 +76,8 @@ def choice_rules(t):
     if m:
         rules.append({"key": "ac", "value": m.group(1), "when": "", "label": ""})
     # An ancestry's cantrip at creation is one more known (counted on the first casting class).
-    if re.search(r"\bone (?:\w+ )?cantrip\b|\bone</strong> \w+ cantrip", t, re.I):
-        rules.append({"key": "cantrips.extra", "value": "1", "when": "", "label": ""})
+    if CANTRIP_RE.search(t):
+        rules.append(dict(CANTRIP))
     return rules
 
 
@@ -90,7 +95,8 @@ def build():
         # Traits
         m = re.search(r"<em>Traits</em></strong></p>\s*<ul>(.*?)</ul>", desc, re.S)
         traits = items(m.group(1)) if m else []
-        s["traitList"] = [{"name": a, "text": b} for a, b in traits]
+        # A trait's only rule is its cantrip at creation (Tiefling, Mindryath, Genasi): one more known.
+        s["traitList"] = [{"name": a, "text": b, **({"rules": [CANTRIP]} if CANTRIP_RE.search(b) else {})} for a, b in traits]
         # Subtypes, bloodlines...
         choice = None
         m = re.search(r"<em>(Subtypes|Bloodlines|Castes|Lineages)</em></strong></p>\s*<ul>(.*?)</ul>", desc, re.S)

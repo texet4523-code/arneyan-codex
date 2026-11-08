@@ -297,7 +297,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       return {
         id: c.id, name: c.name, ability: c.system.castingAbility, mod, classLevel: c.system.levels,
         dc: dcParts.reduce((t, p) => t + p.value, 0), dcParts, slots,
-        // An ancestry's cantrip (High Elf and others) is one more known, on the first casting class.
+        // An ancestry's cantrip at creation (High Elf, Tiefling, Mindryath, Genasi) is one more known, on the first casting class.
         cantrips: (row[0] ?? 0) + (ci === 0 && (row[0] ?? 0) > 0 ? mods.sum("cantrips.extra") : 0)
       };
     });

@@ -93,6 +93,12 @@ assert.ok(!S.skippedFor({ getFlag: () => ({ combat: "c1", round: 3 }) }, { id: "
 const elf = one("ancestries", "items_Elf_");
 assert.deepEqual(elf.system.choice.options.find(o => o.name === "High Elf").rules.map(r => [r.key, r.value]), [["cantrips.extra", "1"]]);
 assert.match(src("data/actor-models.mjs"), /mods\.sum\("cantrips\.extra"\)/);
+for (const n of ["Tiefling", "Mindryath", "Genasi"]) {
+  const t = one("ancestries", `items_${n}_`).system.traitList.filter(t => t.rules?.some(r => r.key === "cantrips.extra"));
+  assert.equal(t.length, 1, `${n}: its cantrip at creation counts`);
+}
+assert.match(src("progression.mjs"), /grant\(t\.name, t\.text, t\.rules \?\? \[\]\)/);
+assert.match(src("import.mjs"), /grant\(t\.name, t\.text, t\.rules \?\? \[\]\)/);
 // Jacob's Well notes from the review.
 const jw = fs.readFileSync(new URL("../build/pregens/jacobs_well.json", import.meta.url), "utf8");
 assert.match(jw, /three times a turn with your two-handed axe \(Cleaving\)/);

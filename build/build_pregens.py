@@ -411,7 +411,7 @@ def build():
                 pick = next((o for o in ch.get("options", []) if note and (norm(o["name"]).split(" (")[0] in note or note.split(",")[0] in norm(o["name"]))), None)
                 label = anc["name"] + (f" ({pick['name'].split(' (')[0]})" if pick else "")
                 anc_item["name"] = label
-                grants = [(t["name"], t["text"], []) for t in anc["system"].get("traitList", [])]
+                grants = [(t["name"], t["text"], t.get("rules", [])) for t in anc["system"].get("traitList", [])]
                 if pick:  # its resistances count; its speed is already in the sheet's speed
                     grants.insert(0, (f"{ch['label']}: {pick['name']}", pick["text"], [r for r in pick.get("rules", []) if r["key"] != "speed"]))
                 for gi, (gname, gtext, grules) in enumerate(grants):

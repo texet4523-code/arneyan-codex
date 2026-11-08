@@ -398,7 +398,7 @@ async function ancestryGrants(actor, anc, { choice = "", family = "" } = {}) {
     system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules, ...extra },
     flags: { [SYS]: { grantedBy: anc.id, source: `${anc.id}.${name}` } }
   });
-  const create = (s.traitList ?? []).filter(t => !(family && t.name === "Family")).map(t => grant(t.name, t.text));
+  const create = (s.traitList ?? []).filter(t => !(family && t.name === "Family")).map(t => grant(t.name, t.text, t.rules ?? []));
   // A choice that only counts while switched on (a Shifter's lineage while shifted): a switch with its uses, as the ancestry window gives it.
   if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
     { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}),

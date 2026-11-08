@@ -517,8 +517,11 @@ export function levelPreview(actor, cls, from, target, otherLevels, needsChoice,
     const a = sys.slotTable[Math.clamp(from, 1, 24) - 1] ?? [];
     const b = sys.slotTable[Math.clamp(target, 1, 24) - 1] ?? [];
     const changes = [];
+    // An ancestry's cantrip counts on the first casting class (as the sheet does).
+    let extra = 0;
+    try { extra = actor.system.casters?.[0]?.id === cls.id ? Number(actor.system.mods?.sum?.("cantrips.extra")) || 0 : 0; } catch { extra = 0; }
     for (let n = 0; n <= 9; n++) {
-      const x = a[n] ?? 0, y = b[n] ?? 0;
+      const x = (a[n] ?? 0) + (n === 0 && (a[n] ?? 0) > 0 ? extra : 0), y = (b[n] ?? 0) + (n === 0 && (b[n] ?? 0) > 0 ? extra : 0);
       if (y === x) continue;
       const label = n === 0 ? "cantrips known" : `${ARNEYAN.spellLevels[n]}-level slots`;
       changes.push(x === 0 && n > 0 ? `<strong>${label} unlocked</strong> (${y})` : `${label} ${x} to ${y}`);
@@ -1161,7 +1164,7 @@ export async function ancestrySetup(actor, anc, { step = "", replacing = false }
     system: { description: `<p>${esc(text)}</p>`, kind: "ancestry", level: 1, className: label, rules, ...extra },
     flags: { [FLAG]: { grantedBy: anc.id, source: `${anc.id}.${name}` } }
   });
-  const create = (s.traitList ?? []).filter(t => !(res.family && t.name === "Family")).map(t => grant(t.name, t.text));
+  const create = (s.traitList ?? []).filter(t => !(res.family && t.name === "Family")).map(t => grant(t.name, t.text, t.rules ?? []));
   // A choice that only counts while switched on (a Shifter's lineage while shifted) comes as a switch, with its uses.
   if (o) create.unshift(grant(`${s.choice.label}: ${o.name}`, o.text, (o.rules ?? []).map(r => ({ ...r, label: r.label || short })),
     { ...(o.toggle ? { toggle: true, active: false } : {}), ...(o.uses ? { uses: { ...o.uses } } : {}),
