@@ -22,9 +22,6 @@ export function unsetKey(key) {
   return FD ? { [key]: new FD() } : { [`-=${key}`]: null };
 }
 
-/** Is this update value a removal (either version's form)? */
-export const isUnset = v => v === null || (!!forced() && v instanceof forced());
-
 /** A plain data property of an object, never a getter (v14 puts warning getters where v13's fields were). */
 export function own(o, key) {
   if (!o || typeof o !== "object") return undefined;

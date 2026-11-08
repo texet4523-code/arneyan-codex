@@ -95,3 +95,49 @@ assert.equal(C.senseTypes().NORMAL, 21);
 delete globalThis.CONST.EDGE_SENSE_TYPES;
 
 console.log(`regen-multi: ok (Regeneration ${read}/${total} automatic, ${multi} multi-attack weapons)`);
+
+/* regenerate(): once per creature per turn, stopped once by fire in this fight, nothing when down or defeated. */
+{
+  const Q = await import("../arneyan/module/qol.mjs");
+  const saved = { settings: game.settings, users: game.users, CM: globalThis.ChatMessage };
+  const posts = [];
+  game.settings = { get: () => true, register: () => {} };
+  game.users = [{ id: "gm", isGM: true }];
+  globalThis.ChatMessage = { create: async d => posts.push(d.content), getSpeaker: () => ({}) };
+  const flags = {};
+  const a = {
+    name: "Troll", items: [{ name: "Regeneration", system: { description: troll } }],
+    system: { attributes: { hp: { value: 10, max: 30 } } },
+    getFlag: (s, k) => flags[k],
+    update: async u => { for (const [k, v] of Object.entries(u)) { const key = k.split(".").pop().replace(/^-=/, ""); if (v === null) delete flags[key]; else flags[key] = v; } },
+    applyDamage: async (n, o) => { assert.equal(o.mult, -1); a.system.attributes.hp.value += n; }
+  };
+  const combat = { id: "cb1", round: 1 };
+  const c = { id: "c1", actor: a, flags: {}, defeated: false, isDefeated: false };
+  await Q.regenerate(combat, c, 1);
+  assert.equal(a.system.attributes.hp.value, 18);
+  await Q.regenerate(combat, c, 1);
+  assert.equal(a.system.attributes.hp.value, 18, "the same turn again (turns renumbered) doesn't heal twice");
+  flags.regenStopped = { type: "fire", combat: "cb1" };
+  await Q.regenerate(combat, c, 2);
+  assert.equal(a.system.attributes.hp.value, 18, "fire stops it for a turn");
+  assert.equal(flags.regenStopped, undefined);
+  assert.match(posts.at(-1), /fire damage/);
+  flags.regenStopped = { type: "fire", combat: "old-fight" };
+  await Q.regenerate(combat, c, 3);
+  assert.equal(a.system.attributes.hp.value, 26, "a stop from another fight doesn't count");
+  await Q.regenerate(combat, { ...c, flags: { arneyan: { soloOf: "c1" } } }, 4);
+  await Q.regenerate(combat, { ...c, isDefeated: true }, 4);
+  assert.equal(a.system.attributes.hp.value, 26, "not on a solo's second turn, nor when defeated");
+  await Q.regenerate(combat, c, 4);
+  assert.equal(a.system.attributes.hp.value, 30, "never past its max");
+  a.system.attributes.hp.value = 0;
+  await Q.regenerate(combat, c, 5);
+  assert.equal(a.system.attributes.hp.value, 0, "a fallen troll is the GM's call");
+  game.settings.get = () => false;
+  a.system.attributes.hp.value = 5;
+  await Q.regenerate(combat, c, 6);
+  assert.equal(a.system.attributes.hp.value, 5, "the setting turns it off");
+  game.settings = saved.settings; game.users = saved.users; globalThis.ChatMessage = saved.CM;
+  console.log("regen-multi: regenerate ok");
+}

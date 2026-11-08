@@ -256,9 +256,16 @@ export async function doRevert(changed, { dropped = false } = {}) {
       // The token's own creature first, then (unlinked) its own changes: v14 drops an update that relinks a token
       // and sets its changes at once, which left the token on the form and the creature lost (0.10.92).
       const { delta, ...back } = tokenFromForm(before);
-      await t.update({ ...back, ...unset(`flags.${SYS}.shapeBefore`) }, { arneyanRevert: true, animate: false });
-      if (delta && !back.actorLink && t.actorId === before.actorId) {
-        await t.update({ delta }, { arneyanRevert: true, animate: false }).catch(err => console.warn("Arneyan | change shape (token changes)", err));
+      const withDelta = !!delta && !back.actorLink;
+      await t.update({ ...back, ...(withDelta ? {} : unset(`flags.${SYS}.shapeBefore`)) }, { arneyanRevert: true, animate: false });
+      if (withDelta && t.actorId === before.actorId) {
+        try {
+          await t.update({ delta, ...unset(`flags.${SYS}.shapeBefore`) }, { arneyanRevert: true, animate: false });
+        } catch (err) {
+          console.warn("Arneyan | change shape (token changes)", err);
+          ui.notifications?.warn(`${before.name ?? info.originalName}: back in its own form, but its token's own changes (HP, uses) may need checking.`);
+          await t.update(unset(`flags.${SYS}.shapeBefore`), { arneyanRevert: true }).catch(() => null);
+        }
       }
       if (t.actorId !== before.actorId) {
         stuck.push(t);

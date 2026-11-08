@@ -233,7 +233,8 @@ export async function turnReminder(combat, c = combat.combatant) {
   const secondTurn = !!c.flags?.[SYS]?.soloOf;
   // (Regeneration the system works out itself posts its own line: regenerate below.)
   const rf = secondTurn ? null : regenFor(actor);
-  const regen = rf && !(rf.regen && autoRegen()) ? rf.item : null;
+  const regen = secondTurn || (rf?.regen && autoRegen()) ? null
+    : actor.items.find(i => /regenerat/i.test(i.name) && !/^skilled regeneration$/i.test(i.name));
   if (regen) lines.push(`${regen.name}: ${String(regen.system.description ?? "").replace(/<[^>]+>/g, "").slice(0, 160)}`);
   const ongoing = [...(actor.statuses ?? [])].filter(id => (secondTurn ? ["poisoned", "confused"] : ["burning", "poisoned", "confused"]).includes(id));
   for (const id of ongoing) {
@@ -254,24 +255,27 @@ export async function turnReminder(combat, c = combat.combatant) {
 /*  Regeneration                                */
 /* -------------------------------------------- */
 
-const autoRegen = () => { try { return game.settings.get(SYS, "autoRegen") !== false; } catch { return true; } };
+export const autoRegen = () => { try { return game.settings.get(SYS, "autoRegen") !== false; } catch { return true; } };
 
 /**
  * The start of a regenerating creature's turn (the GM's client): it regains its HP, unless damage that stops it
  * (fire on a troll) landed since its last turn. Once per turn, and on a solo's first turn each round only.
  */
-export async function regenerate(combat, c = combat.combatant) {
+export async function regenerate(combat, c = combat.combatant, round = combat.round) {
   if (!autoRegen()) return;
   const actor = c?.actor;
-  if (!actor || c.defeated || c.flags?.[SYS]?.soloOf) return;
+  if (!actor || c.isDefeated || c.defeated || c.flags?.[SYS]?.soloOf) return;
   const rf = regenFor(actor);
   if (!rf?.regen) return;
-  const mark = `${combat.id}.${combat.round}.${combat.turn}`;
+  // Keyed on the creature and the round its turn began (a combatant added or removed earlier in the order renumbers
+  // the turns without it being a new turn).
+  const mark = `${combat.id}.${round}.${c.id}`;
   if (actor.getFlag(SYS, "regenAt") === mark) return;
   const hp = actor.system.attributes?.hp ?? {};
-  const stoppedBy = actor.getFlag(SYS, "regenStopped") || "";
+  const st = actor.getFlag(SYS, "regenStopped");
+  const stoppedBy = st && typeof st === "object" ? (st.combat === combat.id ? String(st.type ?? "") : "") : String(st ?? "");
   const step = regenStep(rf.regen, { value: hp.value, max: hp.effectiveMax ?? hp.max }, stoppedBy);
-  await actor.update({ [`flags.${SYS}.regenAt`]: mark, ...(stoppedBy ? unset(`flags.${SYS}.regenStopped`) : {}) });
+  await actor.update({ [`flags.${SYS}.regenAt`]: mark, ...(st ? unset(`flags.${SYS}.regenStopped`) : {}) });
   if (step.reason === "full" || step.reason === "down") return;
   let line;
   if (step.stopped) line = `${rf.item.name} doesn't work this turn (${step.reason} damage).`;

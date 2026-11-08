@@ -642,14 +642,14 @@ export class ArneyanActor extends Actor {
       if (firstSrc.values.length) {
         const last = this.getFlag?.(SYS, "lastAttack");
         if (!stamp || last !== stamp) first = { values: firstSrc.values, adv: firstSrc.adv.map(l => `${l} (first attack)`), dis: firstSrc.dis.map(l => `${l} (first attack)`) };
-        if (stamp && this.isOwner) this.setFlag(SYS, "lastAttack", stamp);
+        if (stamp && this.isOwner) await Promise.resolve().then(() => this.setFlag(SYS, "lastAttack", stamp)).catch(() => null);
       }
       if (withSrc.values.length) {
         const key = weaponKey(item.name) || item.id;
         const w = this.getFlag?.(SYS, "firstWith");
         const used = stamp && w?.stamp === stamp ? (w.used ?? []) : [];
         if (!stamp || !used.includes(key)) firstWith = { values: withSrc.values, adv: withSrc.adv.map(l => `${l} (first attack with ${item.name})`), dis: withSrc.dis.map(l => `${l} (first attack with ${item.name})`) };
-        if (stamp && this.isOwner && !used.includes(key)) this.setFlag(SYS, "firstWith", { stamp, used: [...used, key] });
+        if (stamp && this.isOwner && !used.includes(key)) await Promise.resolve().then(() => this.setFlag(SYS, "firstWith", { stamp, used: [...used, key] })).catch(() => null);
       }
     }
     // Weapon traits (Codex): Heavy needs Strength 13 (Small creatures always struggle, Large never do).
@@ -683,7 +683,7 @@ export class ArneyanActor extends Actor {
     const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
     const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
     // Only tracked for someone with Power Attack on (no write on every monster's attack).
-    if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
+    if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) await this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
     const pa = powerAttackFor(own, others, { first: firstThisRound });
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
     const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
@@ -894,8 +894,9 @@ export class ArneyanActor extends Actor {
     // Non-lethal (subdual) damage goes on its own track instead of off HP (combat.mjs).
     const value = subdual ? before : before - toHp;
     // Fire on a troll (and the like): its Regeneration skips its next turn (regen.mjs, qol.mjs).
-    const stopsRegen = dmg > 0 ? stoppingType(regenFor(this)?.regen, taken) : "";
-    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}), ...(stopsRegen ? { [`flags.${SYS}.regenStopped`]: stopsRegen } : {}) }, { arneyanDowned: true });
+    const regenAuto = (() => { try { return game.settings.get(SYS, "autoRegen") !== false; } catch { return false; } })();
+    const stopsRegen = dmg > 0 && regenAuto && game.combat?.started ? stoppingType(regenFor(this)?.regen, taken) : "";
+    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}), ...(stopsRegen ? { [`flags.${SYS}.regenStopped`]: { type: stopsRegen, combat: game.combat.id } } : {}) }, { arneyanDowned: true });
     if (stopsRegen) lines.push(`${stopsRegen} stops its regeneration next turn`);
     await this._syncDowned(before);
     // Concentration check.
@@ -1338,7 +1339,7 @@ export class ArneyanItem extends Item {
       case "weapon": {
         // A monster's "Claw ×2" (or "2 attacks"): every attack in one click, each its own card. Alt rolls just one.
         const n = attacksOf(this);
-        if (!actor || n <= 1 || event?.altKey) return actor?.rollAttack(this, event);
+        if (!actor || n <= 1 || actor.type !== "npc" || event?.altKey) return actor?.rollAttack(this, event);
         let last = null;
         for (let k = 1; k <= n; k++) {
           const msg = await actor.rollAttack(this, event, { label: `Attack ${k} of ${n}` });
