@@ -2,7 +2,7 @@
  * Combat rules (Drop 2), from Book I, Section III:
  * - Cover & Concealment as token statuses; Full Cover can't be targeted.
  * - Flanking worked out from token positions, plus the Ranged Attacks crowding rules (enemy within 5ft,
- *   shooting into melee). The Flank Attack and Rear Attack switches stay as manual overrides.
+ *   shooting into melee). A Rear Attack switch (and Flank Attack on older sheets) stays as a manual override.
  * - Dual Wielding: off-hand attacks with Light weapons, and fighting defensively with an off-hand weapon or shield.
  * - Contests (Disarm, Dirty Trick, Grapple, Overbear, Trip, breaking free): both sides roll, the GM's client rolls
  *   for creatures the player doesn't own.
@@ -714,7 +714,7 @@ export async function startContest(actor, kind, event = null) {
   if (kind === "dirty") notes.push("A creature only falls for your Dirty Trick once per fight.");
   const ab = bestChoice(actor, cfg.att, kind);
   const msg = await contestRoll(actor, ab, { kind, role: "attacker", vs: target.name, extraAdv, event, notes,
-    extra: { contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: fight?.started ? fight.id : "" } } });
+    extra: { noSecond: true, contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: fight?.started ? fight.id : "" } } });
   if (!msg) return;
   if (target.isOwner) return resolveContest(msg, target, actor);
   if (!game.users.activeGM) return ui.notifications.warn("No GM is connected to roll for the other side.");
@@ -909,7 +909,6 @@ const named = (actor, re) => (actor?.items ?? []).some(i => re.test(i.name ?? ""
 const shieldReady = actor => (actor?.items ?? []).some(i => i.type === "armour" && i.system?.category === "shield" && (actor.type === "npc" || i.system.equipped));
 export const ACTION_NEEDS = {
   "Attack of Opportunity": { text: "Combat Reflexes, or a feature that grants it", has: a => named(a, /combat reflexes|attacks? of opportunity/i) },
-  "Cleave": { text: "The Cleave feat", has: a => (a?.items ?? []).some(i => i.type === "feat" && /^cleave$/i.test(i.name)) },
   "Shield Blow": { text: "A shield", has: shieldReady },
   "Shield Wall": { text: "A shield (and 4 allies with shields)", has: shieldReady },
   "Receiving Charge": { text: "A reach weapon", has: a => (a?.items ?? []).some(i => i.type === "weapon" && (rangeOf(i).reach || 0) > 5) }
@@ -937,7 +936,9 @@ export async function useBasicAction(actor, uuid, event) {
   const mine = actor.items.find(i => i.type === doc.type && i.name === doc.name);
   if (mine) return mine.use(event);
   if (doc.system?.toggle) {
-    const [made] = await actor.createEmbeddedDocuments("Item", [{ ...doc.toObject(), system: { ...doc.toObject().system, active: true } }]);
+    const src = doc.toObject();
+    // Tracked like one dragged from the Browser, so a later refresh still updates it.
+    const [made] = await actor.createEmbeddedDocuments("Item", [{ ...src, system: { ...src.system, active: true }, _stats: { ...(src._stats ?? {}), compendiumSource: doc.uuid } }]);
     return made;
   }
   const temp = new CONFIG.Item.documentClass(doc.toObject(), { parent: actor });

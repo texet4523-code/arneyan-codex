@@ -478,7 +478,7 @@ export class ArneyanActor extends Actor {
     return d20Roll({
       actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc, rollMode,
       notes: m?.notesFor("save") ?? [], autoFail: fail,
-      extra: { save: key, concentration, actorUuid: this.uuid, source },
+      extra: { save: key, concentration, actorUuid: this.uuid, source, ...(/^Last Chance/.test(String(source ?? "")) ? { noSecond: true } : {}) },
       footer: concentration ? `<button type="button" class="arn-end-conc" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-circle-xmark"></i> Concentration broken: end it</button>` : ""
     });
   }
@@ -697,7 +697,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit, outcome }) => {

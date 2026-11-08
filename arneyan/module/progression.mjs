@@ -793,7 +793,8 @@ async function setUpFirstLevel(actor, cls) {
       // Our own card: the four dice with the lowest struck through, not Foundry's "4d6dl" formula.
       const dice = (r.dice?.[0]?.results ?? []).map(d => `<span class="arn-die${d.active === false || d.discarded ? " dropped" : ""}">${d.result}</span>`).join("");
       await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), rolls: [r],
-        content: `<div class="arn-card"><header class="arn-card-title">Starting Luck (4d6, drop the lowest)</header><div class="arn-card-dice">${dice}</div><div class="arn-card-result"><span class="arn-total">${r.total}</span></div></div>` });
+        content: `<div class="arn-card"><header class="arn-card-title">Starting Luck (4d6, drop the lowest)</header><div class="arn-card-dice">${dice}</div><div class="arn-card-result"><span class="arn-total">${r.total}</span></div></div>` },
+        { rollMode: game.settings.get("core", "rollMode") });
       base = r.total;
     } else if (typeof luck === "number") {
       base = luck;

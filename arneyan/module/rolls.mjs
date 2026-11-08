@@ -100,9 +100,19 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   extra = { ...extra, crit, critAt };
   const outcome = targets.length > 1 ? (natural === 20 ? "nat20" : natural === 1 ? "nat1" : "") : outcomeFor(roll.total, natural, target ?? targets[0]?.ac, kind, !!autoFail, critAt);
   const flags = { kind, natural, target: target ?? targets[0]?.ac ?? null, targets, total: roll.total, bonus, luckBurned: 0, autoFail: !!autoFail, ...extra };
+  // After-the-roll Advantage or Disadvantage can change what the footer should be (damage buttons after a natural 1),
+  // so each version of it is kept on the card for secondDie: a natural 1, a critical, a hit, a miss, unknown.
+  const second = !mode && ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !(why?.adv?.length && why?.dis?.length);
+  if (second && typeof footer === "function") {
+    flags.footers = {
+      nat1: footer({ natural: 1, crit: false, outcome: "nat1" }), crit: footer({ natural: 20, crit: true, outcome: "nat20" }),
+      hit: footer({ natural: 10, crit: false, outcome: "success" }), miss: footer({ natural: 10, crit: false, outcome: "failure" }),
+      plain: footer({ natural: 10, crit: false, outcome: "" })
+    };
+  }
   // The footer can depend on the roll (an attack's damage buttons on a natural 20 or 1).
   if (typeof footer === "function") footer = footer({ natural, crit, outcome });
-  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt });
+  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt, second });
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
     content,
@@ -111,12 +121,12 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }, { rollMode: rollMode || game.settings.get("core", "rollMode") });
 }
 
-async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20 }) {
+async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   const whyLabel = why ? [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ") : "";
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
-  const canSecond = !mode && ["attack", "check", "save", "skill"].includes(kind) && !autoFail;
+  const canSecond = !!second;
   const total = roll.total + luckBurned;
   return foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title, modeLabel, whyLabel,
@@ -138,16 +148,19 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
  */
 export async function secondDie(message, dir) {
   const flags = message.getFlag(SYS, "kind") ? message.flags[SYS] : null;
-  if (!flags || flags.secondDie || !["attack", "check", "save", "skill"].includes(flags.kind)) return;
+  if (!flags || flags.secondDie || !["attack", "check", "save", "skill"].includes(flags.kind) || message._arnSecond) return;
   const actor = ChatMessage.getSpeakerActor(message.speaker);
   if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
+  message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once
   const roll = await new Roll("1d20").evaluate();
-  await game.dice3d?.showForRoll?.(roll, game.user, true).catch?.(() => null);
+  await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
   const first = Number(flags.natural) || 0, second = roll.total;
   const kept = dir > 0 ? Math.max(first, second) : Math.min(first, second);
   const total = flags.total - first + kept, burned = flags.luckBurned || 0, shown = total + burned;
   const critAt = flags.critAt ?? 20;
-  const outcome = flags.autoFail ? "autofail" : outcomeFor(shown, kept, flags.target, flags.kind, false, critAt);
+  const many = (flags.targets ?? []).length > 1;
+  // As d20Roll works it out: with several targets only a natural 20 or 1 is said here (each target's row says the rest).
+  const outcome = many ? (kept === 20 ? "nat20" : kept === 1 ? "nat1" : "") : outcomeFor(shown, kept, flags.target, flags.kind, false, critAt);
   const acs = (flags.targets ?? []).length ? flags.targets.map(t => t.ac) : [flags.target];
   const crit = flags.kind === "attack" && !flags.autoFail && isCritical(kept, shown, critAt, acs);
   const label = dir > 0 ? "Advantage" : "Disadvantage";
@@ -171,14 +184,22 @@ export async function secondDie(message, dir) {
   }
   const totalEl = html.querySelector(".arn-total");
   if (totalEl) totalEl.textContent = shown;
-  const outEl = html.querySelector(".arn-outcome");
-  const outText = outcomeLabel(crit ? "crit" : outcome, flags.kind);
-  if (outEl && outText) { outEl.textContent = outText; outEl.className = `arn-outcome ${crit ? "crit" : outcome}`; }
-  else if (!outEl && outText && (outcome === "nat20" || outcome === "nat1" || crit)) {
+  const outEl = html.querySelector(".arn-card > .arn-outcome:not(.arn-misfire)");
+  const outText = outcomeLabel(outcome, flags.kind);
+  if (outEl && outText) { outEl.textContent = outText; outEl.className = `arn-outcome ${outcome}`; }
+  else if (outEl) outEl.remove();
+  else if (outText) {
     const o = html.createElement("div");
-    o.className = `arn-outcome ${crit ? "crit" : outcome}`;
+    o.className = `arn-outcome ${outcome}`;
     o.textContent = outText;
-    html.querySelector(".arn-card-result")?.after(o);
+    (html.querySelector(".arn-luck-burned") ?? html.querySelector(".arn-card-result"))?.after(o);
+  }
+  // The footer for the roll as it now stands (damage buttons back after a natural 1, critical first on a critical).
+  const fs = flags.footers;
+  const foot = html.querySelector(".arn-footer");
+  if (fs && foot) {
+    const which = kept === 1 && !crit ? "nat1" : crit ? "crit" : outcome === "failure" || outcome === "nat1" ? "miss" : outcome === "success" || outcome === "nat20" ? "hit" : "plain";
+    foot.innerHTML = fs[which] ?? "";
   }
   for (const row of html.querySelectorAll("[data-target-ac]")) {
     const o = outcomeFor(shown, kept, Number(row.dataset.targetAc), flags.kind, false, critAt);
