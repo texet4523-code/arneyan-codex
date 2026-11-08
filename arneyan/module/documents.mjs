@@ -15,6 +15,7 @@ import { villainNo, villainGate, villainUsed } from "./solo.mjs";
 import { unset, unsetKey } from "./compat.mjs";
 import { regenFor, stoppingType } from "./regen.mjs";
 import { attacksOf } from "./multiattack.mjs";
+import { tidyDescription } from "./text.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -576,7 +577,7 @@ export class ArneyanActor extends Actor {
     const all = m.reroll(), mine = fw.mods.reroll();
     const n = Math.max(all.value, mine.value);
     const formula = n ? rerollDice(own, n) : own;
-    const notes = m.notesFor("damage").filter(t => !fw.drop.has(t));
+    const notes = [...new Set([...m.notesFor("damage").filter(t => !fw.drop.has(t)), ...fw.mods.notesFor("damage")])];
     if (formula !== own) notes.unshift(rerollNote([...new Set([...all.labels, ...mine.labels])], n));
     return { formula, notes };
   }
@@ -617,7 +618,7 @@ export class ArneyanActor extends Actor {
     let against = NONE;
     // Rules scoped to weapons that fit this one apply; their reminders leave the card.
     const fw = m?.forWeapon(item) ?? null;
-    const notes = annotateAllegiance([...more, ...(m?.notesFor("attack") ?? []).filter(t => !fw?.drop.has(t))], allegianceTargets(targets));
+    const notes = annotateAllegiance([...new Set([...more, ...(m?.notesFor("attack") ?? []).filter(t => !fw?.drop.has(t)), ...(fw?.mods.notesFor("attack") ?? [])])], allegianceTargets(targets));
     if (targets.length === 1) {
       const tm = targets[0].actor.system.mods;
       if (tm) {
@@ -1374,7 +1375,7 @@ export class ArneyanItem extends Item {
   }
 
   async toChat(extraHtml = "") {
-    const description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.system.description ?? "", { rollData: this.actor?.getRollData?.() ?? {}, relativeTo: this });
+    const description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(tidyDescription(this.system.description), { rollData: this.actor?.getRollData?.() ?? {}, relativeTo: this });
     const content = await foundry.applications.handlebars.renderTemplate("systems/arneyan/templates/chat/item-card.hbs", {
       item: this, config: ARNEYAN, description, extraHtml, open: !extraHtml, page: this.system.source?.page, book: this.system.source?.book
     });
@@ -1609,7 +1610,12 @@ export class ArneyanItem extends Item {
   /** The options open at this level. */
   get availableActivities() {
     const lvl = this.featureLevel;
-    const open = (this.system.activities ?? []).filter(a => (a.minLevel ?? 0) <= lvl && (!a.maxLevel || lvl <= a.maxLevel));
+    // Options picked on the item (Arrow Repertoire's arrows): an activity named for an option not picked is hidden.
+    const oc = this.system.optionChoice;
+    const picked = new Set(optionPicks(this.system));
+    const offered = new Set((oc?.options ?? []).map(o => String(o.name ?? "").toLowerCase()));
+    const notPicked = a => picked.size > 0 && offered.has(String(a.name ?? "").toLowerCase()) && ![...picked].some(p => p.toLowerCase() === String(a.name ?? "").toLowerCase());
+    const open = (this.system.activities ?? []).filter(a => (a.minLevel ?? 0) <= lvl && (!a.maxLevel || lvl <= a.maxLevel) && !notPicked(a));
     // Damage that steps up with level ("Spark Caster (1d6)", "(1d8)" at 5th): only the highest step reached.
     const base = a => `${a.kind}|${String(a.name).replace(/\s*\(\d*d\d+(?:\s*[+-]\s*\d+)?\)\s*$/i, "")}`;
     const best = new Map();

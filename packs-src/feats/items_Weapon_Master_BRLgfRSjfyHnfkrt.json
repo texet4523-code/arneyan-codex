@@ -21,18 +21,24 @@
    {
     "key": "damage",
     "value": "2",
-    "when": "with your chosen weapon type",
-    "label": ""
+    "when": "with your Weapon Master weapon",
+    "label": "",
+    "weapon": "chosen"
    },
    {
     "key": "note.attack",
-    "value": "Weapon Master: once per round reroll one missed attack with your chosen weapon.",
+    "value": "Weapon Master: once per round, reroll one missed attack with this weapon.",
     "when": "",
-    "label": ""
+    "label": "",
+    "weapon": "chosen"
    }
   ],
   "toggle": false,
-  "active": false
+  "active": false,
+  "weaponChoice": {
+   "max": "1",
+   "value": []
+  }
  },
  "effects": [],
  "folder": "2tVXejDOi9vcMpIX",

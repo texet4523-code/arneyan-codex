@@ -9,16 +9,26 @@ import { refreshAllFromBestiary } from "./refresh.mjs";
 import { priceToPay } from "./itempiles.mjs";
 import { payGp, purseText } from "./starting.mjs";
 import { toCp, payCoins } from "./downtime.mjs";
+import { ACTION_NEEDS } from "./combat.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
 const LIMIT = 300;
 
+/** The Catalogue's kinds of thing, for the Type filter. */
+const GEAR_KINDS = ["Light armour", "Medium armour", "Heavy armour", "Shield", "Melee weapon", "Ranged weapon", "Gear"];
+function gearKind(r) {
+  const s = r.system ?? {};
+  if (r.type === "armour") return { light: "Light armour", medium: "Medium armour", heavy: "Heavy armour", shield: "Shield" }[s.category] ?? "Gear";
+  if (r.type === "weapon") return s.ranged || s.ammoType ? "Ranged weapon" : "Melee weapon";
+  return "Gear";
+}
+
 /** Tabs: which pack, which index fields, and which filters. */
 const TABS = {
-  equipment: { label: "Equipment", pack: "equipment", icon: "fa-sack", fields: ["system.price", "system.damage", "system.ac", "system.category", "system.slots", "system.damageType", "system.consumable.use", "system.charges.max", "system.ammoType"], filters: ["category"], groups: true },
+  equipment: { label: "Equipment", pack: "equipment", icon: "fa-sack", fields: ["system.price", "system.damage", "system.ac", "system.category", "system.slots", "system.damageType", "system.consumable.use", "system.charges.max", "system.ammoType", "system.ranged"], filters: ["category", "kind", "damageType"], groups: true },
   spells: { label: "Spells", pack: "spells", icon: "fa-wand-sparkles", fields: ["system.level", "system.classes", "system.school", "system.concentration", "system.save", "system.damage", "system.ritual"], filters: ["level", "class", "school"] },
-  actions: { label: "Actions", pack: "actions", icon: "fa-hand-fist", fields: ["system.kind", "system.toggle"], filters: [] },
+  actions: { label: "Actions", pack: "actions", icon: "fa-hand-fist", fields: ["system.kind", "system.toggle"], filters: ["needs"] },
   feats: { label: "Feats", pack: "feats", icon: "fa-star", fields: ["system.path"], filters: ["path"] },
   features: { label: "Class Abilities", pack: "class-features", icon: "fa-shield-halved", fields: ["system.className", "system.level", "system.uses", "system.save"], filters: ["className", "featureLevel"] },
   skills: { label: "Skills", pack: "skills", icon: "fa-book-open-reader", fields: ["system.ability"], filters: ["ability"] },
@@ -235,6 +245,9 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       if (f.monsterLevel && levelName(sys(r)) !== f.monsterLevel) return false;
       if (f.creatureType && creatureType(sys(r)) !== f.creatureType) return false;
       if (f.solo && String(!!sys(r).details?.isSolo) !== f.solo) return false;
+      if (f.kind && gearKind(r) !== f.kind) return false;
+      if (f.damageType && sys(r).damageType !== f.damageType) return false;
+      if (f.needs && (f.needs === "standard" ? !!ACTION_NEEDS[r.name] : !ACTION_NEEDS[r.name])) return false;
       return true;
     });
 
@@ -254,6 +267,10 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       if (name === "category") filters.push({ name, label: cfg.docType === "Actor" ? "Group" : "Section", options: opts(uniq(all.filter(r => !f.group || (f.group === CONSUMABLES ? r.consumable : r.group === f.group)).map(r => r.folder)).sort(), f.category) });
       if (name === "monsterLevel") filters.push({ name, label: "Level", options: opts(uniq(all.map(r => levelName(sys(r)))), f.monsterLevel) });
       if (name === "creatureType") filters.push({ name, label: "Type", options: opts(uniq(all.map(r => creatureType(sys(r)))).sort(), f.creatureType) });
+      // Jacob's Well (8 Nov): more ways to narrow the Catalogue and the actions.
+      if (name === "kind") filters.push({ name, label: "Type", options: opts(GEAR_KINDS.filter(k => all.some(r => gearKind(r) === k)), f.kind) });
+      if (name === "damageType") filters.push({ name, label: "Damage", options: opts(uniq(all.map(r => sys(r).damageType)).sort(), f.damageType, ARNEYAN.damageTypes) });
+      if (name === "needs") filters.push({ name, label: "Who", options: opts(["standard", "needs"], f.needs, { standard: "Anyone (standard)", needs: "Needs a feat or gear" }) });
       if (name === "solo") filters.push({ name, label: "Solo", options: opts(["true", "false"], f.solo, { true: "Solo only", false: "No solos" }) });
     }
 

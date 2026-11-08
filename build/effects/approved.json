@@ -1225,16 +1225,19 @@
    {
     "key": "damage",
     "value": 2,
-    "when": "with your chosen weapon type"
+    "when": "with your Weapon Master weapon",
+    "weapon": "chosen"
    },
    {
     "key": "note.attack",
-    "value": "Weapon Master: once per round reroll one missed attack with your chosen weapon."
+    "value": "Weapon Master: once per round, reroll one missed attack with this weapon.",
+    "weapon": "chosen"
    }
   ],
-  "summary": "+2 damage reminder with chosen weapon; reroll reminder.",
+  "summary": "Pick the weapon (asked when the feat is added). With it: +2 damage, applied automatically, and the once-a-round reroll reminder on its attack cards; nothing on other weapons. Kieran, 8 Nov 2026 (Jacob's Well).",
   "manual": "Weapon choice (could be moved onto the weapon item).",
-  "confidence": "medium"
+  "confidence": "medium",
+  "weaponChoice": "1"
  },
  "feats/OJP5xQmv1Y2juxrs": {
   "name": "Will of Iron",
@@ -1267,10 +1270,11 @@
    {
     "key": "adv.attack.first",
     "value": 1,
-    "when": "bow attack, after moving at least 10ft"
+    "when": "if you moved at least 10ft this turn first",
+    "weapon": "bow:remind"
    }
   ],
-  "summary": "First-attack Advantage reminder on a bow attack after moving 10ft.",
+  "summary": "Reminder on bow attack cards only (Advantage on the first bow attack after moving 10ft); the card's Advantage button rolls it. Kieran, 8 Nov 2026.",
   "manual": "",
   "confidence": "high"
  },
@@ -1282,10 +1286,11 @@
    {
     "key": "damage.ranged",
     "value": "+min(4,floor((@cl+6)/6))",
-    "when": "with bows"
+    "when": "with bows",
+    "weapon": "bow"
    }
   ],
-  "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage reminder with bows.",
+  "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage with bows, applied automatically; nothing on other weapons. Kieran, 8 Nov 2026.",
   "manual": "Could be made unconditional if the archer only uses bows; Twin Nock's arrows each get it.",
   "confidence": "high"
  },
@@ -1364,11 +1369,13 @@
    {
     "key": "damage.ranged",
     "value": "+max(0,@abilities.wis.mod)",
-    "when": "with bows"
+    "when": "with bows",
+    "weapon": "bow"
    },
    {
     "key": "note.attack",
-    "value": "Seeker: Bent Path applies to every shot you make, not just the first each round."
+    "value": "Seeker: Bent Path applies to every shot you make, not just the first each round.",
+    "weapon": "bow"
    }
   ],
   "summary": "Wisdom modifier damage reminder with bows; Bent Path on every shot.",
@@ -2832,7 +2839,8 @@
    {
     "key": "adv.attack.first",
     "value": 1,
-    "when": "bow attack, vs a target more than 60ft away, even without moving (Running Shot)"
+    "when": "against a target more than 60ft away, even without moving (Running Shot)",
+    "weapon": "bow:remind"
    }
   ],
   "summary": "Advantage on the first attack each round (bow attack, vs a target more than 60ft away, even without moving (Running Shot)). Shown as reminders.",
@@ -11029,10 +11037,11 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Bent Path: your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks it)."
+    "value": "Bent Path: your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks it).",
+    "weapon": "bow"
    }
   ],
-  "summary": "Always on: a reminder on attack cards for your first shot each round.",
+  "summary": "A reminder on bow attack cards only.",
   "manual": "Ignoring the cover Disadvantage and the shield's bonus is done by hand.",
   "confidence": "medium"
  },
@@ -11595,5 +11604,40 @@
   "manual": "",
   "confidence": "high",
   "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
+ },
+ "class-features/lQNEaP0grCdzoqMs": {
+  "name": "Arrow Repertoire",
+  "from": "Archer",
+  "container": "passive",
+  "rules": [],
+  "summary": "Choose the special arrows (two at creation, a third at 3rd, a fourth at 15th): only those arrows show as options. Kieran, 8 Nov 2026 (Jacob's Well).",
+  "manual": "The daily pool of crafted arrows is the Arrow Repertoire counter.",
+  "confidence": "high",
+  "optionChoice": {
+   "label": "Arrow type",
+   "max": "1:2, 3:3, 15:4",
+   "options": [
+    {
+     "name": "Fire Arrow",
+     "text": "+1d6 fire damage on a hit; can ignite flammable material.",
+     "rules": []
+    },
+    {
+     "name": "Whistling Arrow",
+     "text": "No damage; heard up to 500ft; a creature unfamiliar with it makes a Will save or is Shaken for 1 round.",
+     "rules": []
+    },
+    {
+     "name": "Rope Arrow",
+     "text": "Trails a line up to 60ft and anchors on a solid hit; can be climbed.",
+     "rules": []
+    },
+    {
+     "name": "Broadhead Arrow",
+     "text": "Reduces the armour bonus to the target's AC by 2.",
+     "rules": []
+    }
+   ]
+  }
  }
 }

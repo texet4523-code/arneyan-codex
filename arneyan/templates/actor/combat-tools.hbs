@@ -6,6 +6,14 @@
     {{#each combat.contests}}<button type="button" class="arn-btn small ghost" data-action="contest" data-kind="{{kind}}" data-tooltip="{{tip}}"><i class="fa-solid fa-{{icon}}"></i> {{label}}</button>{{/each}}
     {{#if combat.unarmed}}<button type="button" class="arn-btn small ghost" data-action="unarmedStrike" data-tooltip="1d2 + Strength, non-lethal by default"><i class="fa-solid fa-hand-fist"></i> Unarmed strike</button>{{/if}}
   </div>
+  {{#if combat.basic.length}}
+  <details class="arn-basic-actions">
+    <summary data-tooltip="The actions anyone can take (and the ones your feats and gear unlock). Use one from here; a switch like Charge or Dodge goes on the sheet when you use it.">Basic actions ({{combat.basic.length}})</summary>
+    <ul class="arn-basic-list">
+      {{#each combat.basic}}<li><img src="{{img}}" alt=""><a data-action="basicActionInfo" data-uuid="{{uuid}}" data-tooltip="{{#if needs}}Needs: {{needs}}. {{/if}}Open">{{name}}</a>{{#if ../editable}}<button type="button" class="arn-btn small ghost" data-action="basicAction" data-uuid="{{uuid}}">Use</button>{{/if}}</li>{{/each}}
+    </ul>
+  </details>
+  {{/if}}
   {{#if combat.defend.length}}
   <div class="arn-ct-row">
     <span class="arn-ct-label" data-tooltip="Instead of attacking with the off-hand weapon, or declared at the start of your turn with a shield. Lasts until the start of your next turn.">Fight defensively</span>

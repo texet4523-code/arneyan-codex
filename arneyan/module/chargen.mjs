@@ -264,6 +264,7 @@ async function abilityScoresWindow(actor) {
           const keep = sel.value;
           sel.innerHTML = set ? set.map((n, j) => `<option value="${j}">${n}</option>`).join("") : `<option value="">-</option>`;
           sel.value = keep !== "" && set && Number(keep) < set.length ? keep : String(i);
+          sel.dataset.prev = sel.value;
         });
         mods();
       };
@@ -318,7 +319,17 @@ async function abilityScoresWindow(actor) {
         if (i >= 0) donated.splice(i, 1);
         if (using?.id === id) using = null;
       }));
-      el.querySelector(".arn-scores-assign").addEventListener("change", mods);
+      // Picking a score another attribute has swaps the two (so two equal scores, two 14s, never lock each other out).
+      const remember = () => el.querySelectorAll(".arn-scores-assign select").forEach(s => { s.dataset.prev = s.value; });
+      el.querySelector(".arn-scores-assign").addEventListener("change", ev => {
+        const sel = ev.target;
+        if (sel?.tagName === "SELECT") {
+          const other = [...el.querySelectorAll(".arn-scores-assign select")].find(s => s !== sel && s.value === sel.value);
+          if (other && sel.dataset.prev !== undefined && sel.dataset.prev !== "") other.value = sel.dataset.prev;
+        }
+        remember();
+        mods();
+      });
       q(".arn-scores-rollbtn").addEventListener("click", async ev => {
         const btn = ev.currentTarget;
         btn.disabled = true;

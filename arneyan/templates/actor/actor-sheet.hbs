@@ -189,11 +189,11 @@
       </div>
       {{/each}}
       {{#if isCharacter}}
-      <div class="arn-ability luck" data-tooltip="Luck: roll this or under on a d20. Burn points to add +1 each to any roll. It never comes back with rest.">
+      <div class="arn-ability luck" data-tooltip="Luck: roll this or under on a d20. Burn points to add +1 each to any roll. It never comes back with rest. Starting Luck: {{source.luck.start}}.">
         <a class="arn-ability-name" data-action="rollLuck">Luck</a>
         <input class="arn-luck-value" type="number" name="system.luck.value" value="{{source.luck.value}}" min="0" max="20">
         {{#if editMode}}<label class="arn-luck-start">start <input type="number" name="system.luck.start" value="{{source.luck.start}}" min="0" max="20"></label>
-        {{else}}<span class="arn-ability-score">of {{source.luck.start}}</span>{{/if}}
+        {{/if}}
         {{#if isGM}}<a class="arn-luck-deed" data-action="luckDeed" data-tooltip="+1 Luck for acting on a tenet at real cost (GM, once a session, never above 20)"><i class="fa-solid fa-plus"></i></a>{{/if}}
       </div>
       {{/if}}
@@ -202,6 +202,7 @@
 
     <nav class="arn-tabs">
       {{#each tabs}}<a data-action="changeTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</a>{{/each}}
+      {{#if canHideTabs}}<a class="arn-tabs-cog" data-action="chooseTabs" data-tooltip="Show or hide tabs"><i class="fa-solid fa-sliders"></i></a>{{/if}}
     </nav>
 
     <section class="arn-body">

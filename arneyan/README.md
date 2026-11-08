@@ -2,6 +2,25 @@
 
 Version 0.10.93 · Foundry v13 and v14 · **Playtest release**
 
+## What's new in 0.10.94
+
+Fixes and changes from the Jacob's Well playtest (Kieran, 8 Nov).
+
+- **Reminders only where they apply.** A feature for some weapons shows on those weapons' cards and nowhere else, and applies by itself where it can:
+  - **Bow Mastery** (and Seeker) add their damage to bow attacks and say nothing on an axe.
+  - **Weapon Master** asks which weapon it's for; with that weapon it adds +2 damage and the once-a-round reroll reminder, with any other weapon nothing. Characters who already have it see **Choose weapon** on the feat.
+  - **Running Shot**, Long Sight and **Bent Path** remind on bow attacks only. A reminder never repeats its own name ("Bent Path: Bent Path:").
+- **Advantage and Disadvantage after the roll.** Attack, check, save and skill cards have Advantage and Disadvantage buttons for what the roll didn't know about (Running Shot after moving, the GM's call): one more d20, the higher or lower kept, the card rewritten. Only the roller and the GM see them.
+- **Arrow Repertoire** asks which special arrows the Archer knows (two at creation, a third at 3rd, a fourth at 15th) and only those show. The daily pool of crafted arrows is now its uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th): each special arrow spends one and the pool refills each day, so nobody carries more than it.
+- **Ability scores:** picking a score another attribute already has swaps the two, so two equal scores never lock each other out.
+- **Basic actions** on the Actions tab: a fold-out list of the actions anyone can take (and the ones a feat or gear unlocks: Cleave, Attack of Opportunity, Shield Blow and Shield Wall with a shield, Receiving Charge with a reach weapon), usable without adding them to the sheet. **Flank Attack** is no longer an action: flanking is a rule the system works out.
+- **Arneyan Browser:** Equipment can be narrowed by Type (light, medium or heavy armour, shield, melee or ranged weapon, gear) and Damage type; Actions by who can take them.
+- **The spell +** asks whether to browse the Spells compendium (at that level) or write a custom spell.
+- **Hide sheet tabs:** the slider icon at the end of the tabs hides any of Spells, Skills, Inventory, Effects, Downtime and Biography for that character.
+- **Only the GM can rename a class** (the class's features and level-ups go by its name).
+- **Luck** no longer shows "of 10" under it (the starting score is in the tooltip). Starting Luck rolls as a card of four dice with the lowest struck, not "4d6dl".
+- **Descriptions:** a feature's lone "Effect:" bullet now reads as a paragraph, on the sheet, in chat and in the Browser. An ancestry's "From 11th level" line is part of its trait (Fiendish Retort), not a trait of its own.
+
 ## What's new in 0.10.93
 
 - **Regeneration happens by itself** (Kieran, 8 Nov). At the start of its turn a creature with Regeneration regains its HP (never past its maximum), whispered to the GM. A solo regains once a round, on its first turn.

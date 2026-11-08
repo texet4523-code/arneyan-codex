@@ -16,6 +16,7 @@ import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { combatById } from "./fight.mjs";
 import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
+import { tidyDescription } from "./text.mjs";
 import { isTouchAttack } from "./touch.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
@@ -114,6 +115,10 @@ function canHold(container, item, actor) {
   return "";
 }
 
+/** Character sheet tabs a player can hide (Jacob's Well, 8 Nov). */
+const HIDEABLE_TABS = [["spells", "Spells"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]];
+const hiddenTabsOf = actor => new Set((actor?.getFlag?.("arneyan", "hiddenTabs") ?? []).filter(id => HIDEABLE_TABS.some(([t]) => t === id)));
+
 export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["arneyan", "sheet", "actor"],
@@ -136,6 +141,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemReload: ArneyanActorSheet.#itemReload,
       itemDelete: ArneyanActorSheet.#itemDelete,
       itemCreate: ArneyanActorSheet.#itemCreate,
+      chooseTabs: ArneyanActorSheet.#chooseTabs,
       itemEquip: ArneyanActorSheet.#itemEquip,
       recharge: ArneyanActorSheet.#recharge,
       castItemSpell: ArneyanActorSheet.#castItemSpell,
@@ -222,7 +228,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const byType = t => actor.items.filter(i => i.type === t).sort(sort);
     // Only the 1st level so far (one class at 1st): its HP is the full Hit Die + Con, with no roll to make.
     const firstOnly = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0) <= 1;
-    const enrich = html => TextEditorImpl().enrichHTML(html ?? "", { rollData: actor.getRollData(), relativeTo: actor, secrets: actor.isOwner });
+    const enrich = html => TextEditorImpl().enrichHTML(tidyDescription(html), { rollData: actor.getRollData(), relativeTo: actor, secrets: actor.isOwner });
 
     // Rows with an expandable description.
     const innateLeft = i => {
@@ -440,7 +446,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       isCharacter, isNpc: !isCharacter, editable: this.isEditable, editMode: this.editMode,
       tabs: (isCharacter
         ? [["actions", "Actions"], ["spells", "Spells"], ["features", "Features"], ["skills", "Skills"], ["gear", "Inventory"], ["effects", "Effects"], ["downtime", "Downtime"], ["bio", "Biography"]]
-        : [["actions", "Actions"], ["spells", "Spells"], ["effects", "Effects"], ["bio", "Description"]]).map(([id, label]) => ({ id, label, active: id === this._activeTab })),
+        : [["actions", "Actions"], ["spells", "Spells"], ["effects", "Effects"], ["bio", "Description"]])
+        // Tabs this character's player hid (a non-caster's Spells): the tab cog brings them back (Jacob's Well, 8 Nov).
+        .filter(([id]) => !hiddenTabsOf(actor).has(id) || id === this._activeTab)
+        .map(([id, label]) => ({ id, label, active: id === this._activeTab })),
+      canHideTabs: isCharacter && this.isEditable,
       activeTab: this._activeTab,
       abilities: Object.entries(system.abilities).map(([k, v]) => ({
         key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: v.total ?? v.value,
@@ -771,8 +781,35 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const ok = await DialogV2.confirm({ window: { title: `Delete ${item.name}?` }, content: `<p>Remove <strong>${item.name}</strong> from ${this.document.name}?</p>` });
     if (ok) return item.delete();
   }
-  static #itemCreate(event, target) {
+  /** Show or hide this character's sheet tabs (Actions and Features always stay). */
+  static async #chooseTabs() {
+    const actor = this.document;
+    const hidden = hiddenTabsOf(actor);
+    const content = `<p>Tabs to show on ${foundry.utils.escapeHTML(actor.name)}'s sheet. Actions and Features always show.</p>
+      <div class="arn-acts">${HIDEABLE_TABS.map(([id, label]) => `<label class="arn-act"><input type="checkbox" name="show" value="${id}" ${hidden.has(id) ? "" : "checked"}> ${label}</label>`).join("")}</div>`;
+    const shown = await foundry.applications.api.DialogV2.wait({ window: { title: "Sheet tabs", icon: "fa-solid fa-table-columns" }, classes: ["arneyan"], position: { width: 320 }, content,
+      buttons: [{ action: "ok", label: "Save", default: true, callback: (ev, btn) => [...btn.form.querySelectorAll("input[name=show]:checked")].map(i => i.value) }], rejectClose: false }).catch(() => null);
+    if (!Array.isArray(shown)) return;
+    const hide = HIDEABLE_TABS.map(([id]) => id).filter(id => !shown.includes(id));
+    if (hide.includes(this._activeTab)) this._activeTab = "actions";
+    return actor.setFlag("arneyan", "hiddenTabs", hide);
+  }
+
+  static async #itemCreate(event, target) {
     const type = target.dataset.type;
+    // A spell's +: find one in the Spells compendium (filtered to this level), or write your own
+    // (Jacob's Well, 8 Nov).
+    if (type === "spell") {
+      const level = target.dataset.level ?? "";
+      const choice = await foundry.applications.api.DialogV2.wait({
+        window: { title: "Add a spell", icon: "fa-solid fa-wand-sparkles" }, classes: ["arneyan"], position: { width: 360 },
+        content: `<p>Find the spell in the Spells compendium${level !== "" ? ` (${level === "0" ? "cantrips" : `level ${level}`})` : ""}, or write a custom one?</p>`,
+        buttons: [{ action: "browse", label: "Browse spells", icon: "fa-solid fa-book-atlas", default: true }, { action: "custom", label: "Custom spell", icon: "fa-solid fa-pen" }],
+        rejectClose: false
+      }).catch(() => null);
+      if (choice === "browse") return ArneyanBrowser.open({ tab: "spells", actor: this.document, filters: { level } });
+      if (choice !== "custom") return;
+    }
     const data = { name: `New ${CONFIG.Item.typeLabels?.[type] ? game.i18n.localize(CONFIG.Item.typeLabels[type]) : type}`, type };
     if (type === "spell" && target.dataset.level) data.system = { level: Number(target.dataset.level) };
     if (type === "spell" && target.dataset.class) foundry.utils.setProperty(data, "system.className", target.dataset.class);
@@ -1028,7 +1065,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       tabs: [["details", "Details"], ...(hasEffects ? [["effects", "Effects"]] : []), ["description", "Description"]]
         .map(([id, label]) => ({ id, label, active: id === this._activeTab })),
       hasEffects,
-      description: await TextEditorImpl().enrichHTML(sys.description ?? "", { relativeTo: item, rollData: item.actor?.getRollData?.() ?? {}, secrets: item.isOwner }),
+      description: await TextEditorImpl().enrichHTML(tidyDescription(sys.description), { relativeTo: item, rollData: item.actor?.getRollData?.() ?? {}, secrets: item.isOwner }),
       bthChoices: Object.fromEntries(Object.entries(ARNEYAN.bthProgressions).map(([k, v]) => [k, v.label])),
       spellLevelChoices: Object.fromEntries(ARNEYAN.spellLevels.map((l, i) => [i, l])),
       damageChoices: { "": "None", ...ARNEYAN.damageTypes },

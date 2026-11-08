@@ -46,6 +46,15 @@ export function registerProtection() {
     Hooks.on(`preDelete${type}`, (doc, options) => refuse(doc, options));
   }
 
+  // A class keeps its name: only the GM renames one (Jacob's Well, 8 Nov: "Neck-Romancer"). Its features, level-up
+  // and spell lists all go by the class's name, so a player's rename would quietly break them.
+  Hooks.on("preUpdateItem", (item, changes, options, userId) => {
+    if (item.type !== "class" || !("name" in (changes ?? {})) || changes.name === item.name) return;
+    if (game.users?.get(userId)?.isGM ?? game.user?.isGM) return;
+    ui.notifications?.warn("Only the GM can rename a class.");
+    return false;
+  });
+
   // The sidebar folders that hold the system's compendiums stay.
   Hooks.on("preDeleteFolder", folder => {
     if (folder.type !== "Compendium" || !holdsSystemPacks(folder)) return;

@@ -25,8 +25,9 @@
    {
     "key": "adv.attack.first",
     "value": "1",
-    "when": "bow attack, after moving at least 10ft",
-    "label": ""
+    "when": "if you moved at least 10ft this turn first",
+    "label": "",
+    "weapon": "bow:remind"
    }
   ],
   "toggle": false,

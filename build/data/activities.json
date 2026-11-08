@@ -8,7 +8,7 @@
     "damageType": "fire",
     "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th.)",
     "minLevel": 0,
-    "cost": 0,
+    "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -19,7 +19,7 @@
     "save": "will",
     "text": "The arrow deals no damage but is heard up to 500ft; a creature unfamiliar with the sound saves or is Shaken for 1 round.",
     "minLevel": 0,
-    "cost": 0,
+    "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -29,7 +29,7 @@
     "kind": "note",
     "text": "The arrow trails a thin line up to 60ft and anchors on a solid hit, so it can be climbed.",
     "minLevel": 0,
-    "cost": 0,
+    "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -39,14 +39,19 @@
     "kind": "note",
     "text": "The arrow reduces the armour bonus to the target's AC by 2.",
     "minLevel": 0,
-    "cost": 0,
+    "cost": 1,
     "per": "",
     "target": "one",
     "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th."
+  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th. 8 Nov 2026 (K77, R-F22): the daily pool is the item's uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th); each special arrow nocked spends one, and the pool refills to its maximum each day, so no Archer carries more than the pool.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "max(1, @dex.mod + @cl) * (1 + min(1, floor(@cl / 15)))"
+  }
  },
  "Called Shot (Archer)|Archer": {
   "activities": [

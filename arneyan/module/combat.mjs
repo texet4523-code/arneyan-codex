@@ -897,6 +897,56 @@ export const subdualUpdate = (actor, amount) => ({ [`flags.${SYS}.subdual`]: sub
 /*  Sheet                                       */
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+/*  Basic actions (Jacob's Well, 8 Nov)         */
+/* -------------------------------------------- */
+
+/**
+ * What an action needs before a character can take it, by name; the rest anyone can take. `has(actor)` says whether
+ * this character has it. Flank Attack isn't an action at all: it's the flanking rule (combat.mjs), so it's left out.
+ */
+const named = (actor, re) => (actor?.items ?? []).some(i => re.test(i.name ?? ""));
+const shieldReady = actor => (actor?.items ?? []).some(i => i.type === "armour" && i.system?.category === "shield" && (actor.type === "npc" || i.system.equipped));
+export const ACTION_NEEDS = {
+  "Attack of Opportunity": { text: "Combat Reflexes, or a feature that grants it", has: a => named(a, /combat reflexes|attacks? of opportunity/i) },
+  "Cleave": { text: "The Cleave feat", has: a => (a?.items ?? []).some(i => i.type === "feat" && /^cleave$/i.test(i.name)) },
+  "Shield Blow": { text: "A shield", has: shieldReady },
+  "Shield Wall": { text: "A shield (and 4 allies with shields)", has: shieldReady },
+  "Receiving Charge": { text: "A reach weapon", has: a => (a?.items ?? []).some(i => i.type === "weapon" && (rangeOf(i).reach || 0) > 5) }
+};
+export const NOT_ACTIONS = new Set(["Flank Attack"]);
+
+/**
+ * The basic actions every character has (and the ones its feats and gear unlock), from the actions compendium,
+ * for the sheet's Basic actions list: those not already on the sheet as items.
+ */
+export function basicActions(actor) {
+  const pack = game.packs?.get?.(`${SYS}.actions`);
+  const index = pack?.index ? [...pack.index] : [];
+  const mine = new Set((actor?.items ?? []).map(i => String(i.name ?? "").toLowerCase()));
+  return index.filter(e => !NOT_ACTIONS.has(e.name) && !mine.has(String(e.name).toLowerCase()))
+    .filter(e => !ACTION_NEEDS[e.name] || ACTION_NEEDS[e.name].has(actor))
+    .map(e => ({ uuid: e.uuid ?? `Compendium.${pack.collection}.Item.${e._id}`, name: e.name, img: e.img, needs: ACTION_NEEDS[e.name]?.text ?? "" }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** Use a basic action from the list: a switch (Charge, Dodge) goes on the sheet and on; the rest are used as they are. */
+export async function useBasicAction(actor, uuid, event) {
+  const doc = await fromUuid(uuid).catch(() => null);
+  if (!doc || !actor?.isOwner) return;
+  const mine = actor.items.find(i => i.type === doc.type && i.name === doc.name);
+  if (mine) return mine.use(event);
+  if (doc.system?.toggle) {
+    const [made] = await actor.createEmbeddedDocuments("Item", [{ ...doc.toObject(), system: { ...doc.toObject().system, active: true } }]);
+    return made;
+  }
+  const temp = new CONFIG.Item.documentClass(doc.toObject(), { parent: actor });
+  const r = await combatUse(temp, event);
+  if (r !== undefined) return r;
+  if (temp.system?.activities?.length && typeof temp.use === "function") return temp.use(event);
+  return temp.toChat();
+}
+
 /** What the Actions tab's combat tools show. */
 export function combatSheetContext(actor) {
   const isChar = actor.type === "character";
@@ -908,6 +958,7 @@ export function combatSheetContext(actor) {
     contests: Object.entries(CONTESTS).filter(([k]) => k !== "escape" || restrained).map(([kind, c]) => ({ kind, label: c.label, icon: c.icon,
       tip: kind === "escape" ? "Strength or Dexterity check against the grappler's Strength" : `Contest against your target: ${c.label}` })),
     unarmed: isChar,
+    basic: actor.type === "character" ? basicActions(actor) : [],
     morale: actor.type === "npc" ? { score: actor.system.attributes.morale, bonus: actor.system.mods?.sum?.("morale") ?? 0 } : null,
     subdual: subdualOf(actor),
     guns: isChar && hasGun ? { trained: firearmsTrained(actor), flag: !!actor.flags?.[SYS]?.firearmsTrained } : null
@@ -923,6 +974,8 @@ export const combatSheetActions = {
   fightDefensively(event, target) { return fightDefensively(this.document, target.dataset.mode); },
   contest(event, target) { return startContest(this.document, target.dataset.kind, event); },
   unarmedStrike(event) { return unarmedStrike(this.document, event); },
+  basicAction(event, target) { return useBasicAction(this.document, target.dataset.uuid, event); },
+  basicActionInfo(event, target) { return fromUuid(target.dataset.uuid).then(d => d?.sheet?.render(true)); },
   rollMorale() { return rollMorale(this.document); },
   clearSubdual() { return this.document.isOwner ? this.document.update({ [`flags.${SYS}.subdual`]: 0 }) : null; }
 };
@@ -1045,7 +1098,7 @@ export function registerCombat() {
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "positionalCombat", {
     name: "Flanking and crowding from token positions",
-    hint: "Melee attacks get Advantage when an ally stands directly opposite the target; ranged attacks get Disadvantage with an enemy within 5ft or when shooting at a target next to an ally. The Flank Attack switch still works by hand.",
+    hint: "Melee attacks get Advantage when an ally stands directly opposite the target; ranged attacks get Disadvantage with an enemy within 5ft or when shooting at a target next to an ally.",
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYS, "wallCover", {

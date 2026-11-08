@@ -1,3 +1,4 @@
+import { tidyDescription } from "./text.mjs";
 /**
  * A browser-style chooser for character choices: a searchable list on the left (grouped, with a line of detail on
  * each), and the clicked entry's full description on the right, so a player can read what a Kit, Feat, Skill or
@@ -24,7 +25,7 @@ async function descriptionOf(uuid, cache, meta = "") {
     if (sys.path) bits.push(esc(sys.path));
     if (sys.ability && CONFIG.ARNEYAN?.abilities?.[sys.ability]) bits.push(esc(CONFIG.ARNEYAN.abilities[sys.ability]));
     if (sys.uses?.max) bits.push(`${sys.uses.max}/${esc(CONFIG.ARNEYAN?.usesPer?.[sys.uses.per] ?? sys.uses.per ?? "")}`);
-    const body = await TE().enrichHTML(sys.description ?? "", { relativeTo: doc });
+    const body = await TE().enrichHTML(tidyDescription(sys.description), { relativeTo: doc });
     // The document's own details, or the row's line (a class: its Hit Die and key attributes).
     html = `${descHead(doc?.name, doc?.img, bits.length ? bits.join(" · ") : esc(meta))}${body || "<p class=\"arn-muted\">No description.</p>"}`;
   } catch (err) {

@@ -115,6 +115,8 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   const whyLabel = why ? [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ") : "";
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
+  // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
+  const canSecond = !mode && ["attack", "check", "save", "skill"].includes(kind) && !autoFail;
   const total = roll.total + luckBurned;
   return foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title, modeLabel, whyLabel,
@@ -126,8 +128,67 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
       const o = outcomeFor(total, natural, t.ac, kind, false, critAt);
       return { ...t, outcome: o, label: outcomeLabel(o, kind) };
     }) : [],
-    notes, footer, canBurn, luckBurned
+    notes, footer, canBurn, luckBurned, canSecond
   });
+}
+
+/**
+ * Advantage or Disadvantage after the roll (the card's buttons): one more d20, the higher (or lower) kept, and the card
+ * rewritten as if it had been rolled that way. Once per card, on a roll made without either.
+ */
+export async function secondDie(message, dir) {
+  const flags = message.getFlag(SYS, "kind") ? message.flags[SYS] : null;
+  if (!flags || flags.secondDie || !["attack", "check", "save", "skill"].includes(flags.kind)) return;
+  const actor = ChatMessage.getSpeakerActor(message.speaker);
+  if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
+  const roll = await new Roll("1d20").evaluate();
+  await game.dice3d?.showForRoll?.(roll, game.user, true).catch?.(() => null);
+  const first = Number(flags.natural) || 0, second = roll.total;
+  const kept = dir > 0 ? Math.max(first, second) : Math.min(first, second);
+  const total = flags.total - first + kept, burned = flags.luckBurned || 0, shown = total + burned;
+  const critAt = flags.critAt ?? 20;
+  const outcome = flags.autoFail ? "autofail" : outcomeFor(shown, kept, flags.target, flags.kind, false, critAt);
+  const acs = (flags.targets ?? []).length ? flags.targets.map(t => t.ac) : [flags.target];
+  const crit = flags.kind === "attack" && !flags.autoFail && isCritical(kept, shown, critAt, acs);
+  const label = dir > 0 ? "Advantage" : "Disadvantage";
+
+  const html = new DOMParser().parseFromString(message.content, "text/html");
+  const dice = html.querySelector(".arn-card-dice");
+  const firstDie = dice?.querySelector(".arn-die");
+  if (firstDie) {
+    const extra = html.createElement("span");
+    extra.className = "arn-die";
+    extra.textContent = String(second);
+    firstDie.after(extra);
+    (kept === first && first !== second ? extra : kept === second && first !== second ? firstDie : extra).classList.add("dropped");
+  }
+  const head = html.querySelector(".arn-card-title");
+  if (head && !head.querySelector(".arn-mode")) {
+    const m = html.createElement("span");
+    m.className = "arn-mode";
+    m.textContent = label;
+    head.append(" ", m);
+  }
+  const totalEl = html.querySelector(".arn-total");
+  if (totalEl) totalEl.textContent = shown;
+  const outEl = html.querySelector(".arn-outcome");
+  const outText = outcomeLabel(crit ? "crit" : outcome, flags.kind);
+  if (outEl && outText) { outEl.textContent = outText; outEl.className = `arn-outcome ${crit ? "crit" : outcome}`; }
+  else if (!outEl && outText && (outcome === "nat20" || outcome === "nat1" || crit)) {
+    const o = html.createElement("div");
+    o.className = `arn-outcome ${crit ? "crit" : outcome}`;
+    o.textContent = outText;
+    html.querySelector(".arn-card-result")?.after(o);
+  }
+  for (const row of html.querySelectorAll("[data-target-ac]")) {
+    const o = outcomeFor(shown, kept, Number(row.dataset.targetAc), flags.kind, false, critAt);
+    const res = row.querySelector(".arn-target-result");
+    if (res) { res.textContent = outcomeLabel(o, flags.kind); res.className = `arn-target-result ${o}`; }
+  }
+  html.querySelectorAll(".arn-second").forEach(b => b.remove());
+  const update = { content: html.body.innerHTML, [`flags.${SYS}.natural`]: kept, [`flags.${SYS}.total`]: total, [`flags.${SYS}.secondDie`]: dir, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) };
+  if (message.canUserModify(game.user, "update")) return message.update(update);
+  return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(label)}: the second d20 is <strong>${second}</strong>, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
 }
 
 /** Roll-under Luck Check. A natural 1 always succeeds, a natural 20 always fails. Advantage keeps the lower die. */

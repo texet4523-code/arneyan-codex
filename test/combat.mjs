@@ -202,7 +202,7 @@ for (const n of ["Grapple", "Trip", "Disarm", "Dirty Trick", "Overbear"]) assert
 /* Actions pack: the Handbook v0.9.9 combat chapter (Book I, Section III), no more and no less. */
 const BOOK_ACTIONS = ["Charge", "Disengage", "Dodge", "Hide", "Search", // Combat Manoeuvres: Actions
   "Cleave", "Dirty Trick", "Disarm", "Grapple", "Guard", "Push", "Shield Blow", "Trip", // Manoeuvres
-  "Flank Attack", "Receiving Charge", "Shield Wall", // Positioning
+  "Receiving Charge", "Shield Wall", // Positioning (Flank Attack is the flanking rule, not an action: Kieran, 8 Nov)
   "Ready", "Delay", "Dash", "Attack of Opportunity", "Unarmed Strike", "Overbear", "Break Free", "Fighting Defensively"];
 assert.deepEqual(Object.keys(actions).sort(), [...BOOK_ACTIONS].sort(), "the Actions compendium is the book's list");
 for (const gone of ["Feint", "Called Shot", "Offensive Focus", "Parry", "Rear Attack", "Charging", "Opportunity Attack"]) assert.ok(!actions[gone], `${gone} is not in the current book`);
@@ -345,7 +345,8 @@ console.log("OK combat");
   assert.deepEqual(f7.system.mods.forWeapon(great).mods.adv("adv.attack.first").values, [1], "first-attack Advantage with it");
   assert.deepEqual(f7.system.mods.forWeapon(spear).mods.adv("adv.attack.first").values, [], "not with the spear");
   assert.equal(f7.system.mods.adv("adv.attack.first").values.length, 0, "never on every weapon");
-  assert.ok(f7.weaponDice(spear).notes.some(n => n.includes("with your specialised weapon (Greatsword)")), "the spear's card reminds");
+  // Kieran, 8 Nov (Jacob's Well): a reminder on another weapon's card read as if it applied, so it leaves those cards.
+  assert.ok(!f7.weaponDice(spear).notes.some(n => n.includes("specialised weapon")), "the spear's card says nothing of it");
   assert.ok(!f7.weaponDice(great).notes.some(n => n.includes("specialised weapon")), "the greatsword's card doesn't: it applied");
   assert.equal(f7.system.mods.parts("attack").length, 0);
   // No pick yet: reminders only, and the sheet asks.

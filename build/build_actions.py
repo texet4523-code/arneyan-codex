@@ -155,6 +155,9 @@ def build(_icon=None):
     n = 0
     for label, rows in zip(("Action", "Manoeuvre", "Positioning"), man):
         for name, effect in rows:
+            # Flank Attack is the flanking rule (combat.mjs works it out), not an action anyone takes (Kieran, 8 Nov).
+            if name == "Flank Attack":
+                continue
             html = f"<p>{esc(fix(effect))}.</p>".replace("..</p>", ".</p>")
             html += f'<p class="arn-note"><strong>Combat Manoeuvres, {label}:</strong> {dict(Action="uses your action.", Manoeuvre="replaces one attack.", Positioning="a benefit for where you stand.")[label]}</p>'
             if name in more:

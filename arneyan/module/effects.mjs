@@ -229,9 +229,23 @@ export function isTwoHanded(item, { include = [] } = {}) {
 }
 
 /** Does a rule scoped to some weapons (`weapon`: "two-handed", "chosen" or "unarmed") count for this weapon? */
+/** "Label: text", unless the text already starts with its label. */
+const labelled = (label, text) => {
+  const t = String(text ?? "").trim(), l = String(label ?? "").trim();
+  return !l || t.toLowerCase().startsWith(`${l.toLowerCase()}:`) ? t : `${l}: ${t}`;
+};
+
+/** A rule's weapon scope without its ":remind" ("bow:remind": only a reminder, and only with a bow). */
+export const weaponScope = rule => String(rule?.weapon ?? "").trim().toLowerCase().replace(/:remind$/, "");
+
+/** A scoped rule that stays a reminder even with the weapon it's for (Running Shot: a bow, after moving 10ft). */
+export const remindOnly = rule => /:remind$/i.test(String(rule?.weapon ?? "").trim());
+
 export function weaponMatches(rule, item, opts = {}) {
   if (item?.type !== "weapon") return false;
-  const scope = String(rule?.weapon ?? "").trim().toLowerCase();
+  const scope = weaponScope(rule);
+  // Bows (the Archer's Bow Mastery, Running Shot): short, long and composite bows, never a crossbow.
+  if (scope === "bow") return [item._source?.name, item.name, item.flags?.arneyan?.baseWeapon].some(n => /\bbows?\b|\b(?:long|short|war)bows?\b/i.test(String(n ?? "")));
   if (scope === "two-handed") return isTwoHanded(item, opts);
   // Unarmed strikes (the Monk's Iron Fists, books v0.10.41): Unarmed Strike, or the Catalogue's Fist (the pregens carry it).
   if (scope === "unarmed") return /^(unarmed strike|fist)$/i.test(item._source?.name ?? item.name ?? "");
@@ -442,7 +456,7 @@ export class ModSet {
     }
     if (scoped) return;
     // A note that is nothing at this level (a level table's empty step, "{1:, 17:...}") isn't shown.
-    if (key.startsWith("note.")) return String(r.value ?? "").trim() ? this.#push(this.notes, key.slice(5), `${r.label}: ${r.value}`) : undefined;
+    if (key.startsWith("note.")) return String(r.value ?? "").trim() ? this.#push(this.notes, key.slice(5), labelled(r.label, r.value)) : undefined;
     // Dice that replace a weapon's own (the Monk's unarmed strike: 1d4 at 1st up to 1d10): the biggest wins.
     if (key.endsWith(".dice")) {
       const v = String(r.value ?? "").trim();
@@ -540,8 +554,17 @@ export class ModSet {
    * behind on its cards (`drop`). `include`: the damage card's extras in the roll ("versatile": wielded two-handed).
    */
   forWeapon(item, { include = [] } = {}) {
-    const hit = this.scoped.filter(s => weaponMatches(s.rule, item, { include }));
-    return { mods: new ModSet(hit.map(s => ({ ...s.rule, when: "", weapon: "" }))), drop: new Set(hit.map(s => s.note).filter(Boolean)) };
+    const hit = [], drop = new Set();
+    for (const s of this.scoped) {
+      const fits = weaponMatches(s.rule, item, { include });
+      if (fits && remindOnly(s.rule)) continue;           // with its weapon: the reminder stays (Running Shot)
+      if (fits) { hit.push(s); if (s.note) drop.add(s.note); continue; }
+      // Not for this weapon: its reminder leaves this card too (Bow Mastery on an axe), unless the weapon isn't
+      // picked yet (Weapon Master before the choice), so the player still sees it.
+      const unpicked = weaponScope(s.rule) === "chosen" && !(s.rule.names ?? []).length;
+      if (s.note && !unpicked) drop.add(s.note);
+    }
+    return { mods: new ModSet(hit.map(s => ({ ...s.rule, when: "", weapon: "" }))), drop };
   }
 
   /** Damage dice rerolled at or below this (the highest `damage.reroll`), and who gives it. */

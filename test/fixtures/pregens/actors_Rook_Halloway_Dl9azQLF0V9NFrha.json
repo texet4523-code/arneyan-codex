@@ -230,8 +230,9 @@
      {
       "key": "adv.attack.first",
       "value": "1",
-      "when": "bow attack, after moving at least 10ft",
-      "label": ""
+      "when": "if you moved at least 10ft this turn first",
+      "label": "",
+      "weapon": "bow:remind"
      }
     ],
     "toggle": false,
@@ -332,9 +333,10 @@
     },
     "kind": "class",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 4,
+     "max": 4,
+     "per": "day",
+     "formula": "max(1, @dex.mod + @cl) * (1 + min(1, floor(@cl / 15)))"
     },
     "save": "will",
     "dc": null,
@@ -352,7 +354,7 @@
       "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th.)",
       "minLevel": 0,
       "maxLevel": 0,
-      "cost": 0,
+      "cost": 1,
       "per": "",
       "target": "one",
       "removeConditions": false,
@@ -379,7 +381,7 @@
       "text": "The arrow deals no damage but is heard up to 500ft; a creature unfamiliar with the sound saves or is Shaken for 1 round.",
       "minLevel": 0,
       "maxLevel": 0,
-      "cost": 0,
+      "cost": 1,
       "per": "",
       "target": "one",
       "removeConditions": false,
@@ -406,7 +408,7 @@
       "text": "The arrow trails a thin line up to 60ft and anchors on a solid hit, so it can be climbed.",
       "minLevel": 0,
       "maxLevel": 0,
-      "cost": 0,
+      "cost": 1,
       "per": "",
       "target": "one",
       "removeConditions": false,
@@ -433,7 +435,7 @@
       "text": "The arrow reduces the armour bonus to the target's AC by 2.",
       "minLevel": 0,
       "maxLevel": 0,
-      "cost": 0,
+      "cost": 1,
       "per": "",
       "target": "one",
       "removeConditions": false,
@@ -450,7 +452,37 @@
       "effect": "",
       "spendAny": false
      }
-    ]
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "optionChoice": {
+     "label": "Arrow type",
+     "max": "1:2, 3:3, 15:4",
+     "options": [
+      {
+       "name": "Fire Arrow",
+       "text": "+1d6 fire damage on a hit; can ignite flammable material.",
+       "rules": []
+      },
+      {
+       "name": "Whistling Arrow",
+       "text": "No damage; heard up to 500ft; a creature unfamiliar with it makes a Will save or is Shaken for 1 round.",
+       "rules": []
+      },
+      {
+       "name": "Rope Arrow",
+       "text": "Trails a line up to 60ft and anchors on a solid hit; can be climbed.",
+       "rules": []
+      },
+      {
+       "name": "Broadhead Arrow",
+       "text": "Reduces the armour bonus to the target's AC by 2.",
+       "rules": []
+      }
+     ],
+     "value": []
+    }
    },
    "effects": [],
    "ownership": {
@@ -494,7 +526,8 @@
       "key": "note.attack",
       "value": "Bent Path: your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks it).",
       "when": "",
-      "label": ""
+      "label": "",
+      "weapon": "bow"
      }
     ],
     "toggle": false,

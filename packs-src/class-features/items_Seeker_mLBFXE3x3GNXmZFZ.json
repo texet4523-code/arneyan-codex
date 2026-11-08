@@ -26,13 +26,15 @@
     "key": "damage.ranged",
     "value": "+max(0,@abilities.wis.mod)",
     "when": "with bows",
-    "label": ""
+    "label": "",
+    "weapon": "bow"
    },
    {
     "key": "note.attack",
     "value": "Seeker: Bent Path applies to every shot you make, not just the first each round.",
     "when": "",
-    "label": ""
+    "label": "",
+    "weapon": "bow"
    }
   ],
   "toggle": false,

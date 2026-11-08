@@ -4,7 +4,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { spellTargets } from "./targeting.mjs";
-import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
+import { burnLuck, damageRoll, outcomeFor, secondDie } from "./rolls.mjs";
 import { regenerate, turnReminder } from "./qol.mjs";
 import { unset } from "./compat.mjs";
 import { tickCounters, turnDamageFor, reapply } from "./counters.mjs";
@@ -370,6 +370,13 @@ function onRender(message, html) {
   }));
 
   on(".arn-burn", () => burnLuck(message));
+  on(".arn-second-die", (ev, btn) => secondDie(message, Number(btn.dataset.dir) || 1));
+  // Only the roller and the GM see the Advantage and Disadvantage buttons.
+  {
+    const roller = ChatMessage.getSpeakerActor(message.speaker);
+    const may = game.user.isGM || !!roller?.isOwner || message.isAuthor;
+    html.querySelectorAll(".arn-second").forEach(b => { b.hidden = !may || !!flags.secondDie; });
+  }
 
   on(".arn-damage", async (ev, btn) => {
     const actor = flags.actorUuid ? await fromUuid(flags.actorUuid) : ChatMessage.getSpeakerActor(message.speaker);

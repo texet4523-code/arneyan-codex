@@ -95,6 +95,15 @@ def build():
         # Traits
         m = re.search(r"<em>Traits</em></strong></p>\s*<ul>(.*?)</ul>", desc, re.S)
         traits = items(m.group(1)) if m else []
+        # A line that only steps up the trait before it ("From 11th level, Fiendish Retort can be used twice per day")
+        # is part of that trait, not a trait of its own (Jacob's Well, 8 Nov).
+        folded = []
+        for a, b in traits:
+            if folded and re.match(r"From \d+(?:st|nd|rd|th) level\b", a, re.I):
+                folded[-1] = (folded[-1][0], f"{folded[-1][1].rstrip()} {b}".strip())
+            else:
+                folded.append((a, b))
+        traits = folded
         # A trait's only rule is its cantrip at creation (Tiefling, Mindryath, Genasi): one more known.
         s["traitList"] = [{"name": a, "text": b, **({"rules": [CANTRIP]} if CANTRIP_RE.search(b) else {})} for a, b in traits]
         # Subtypes, bloodlines...
