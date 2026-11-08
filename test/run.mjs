@@ -675,16 +675,18 @@ assert.deepEqual(pdocs.filter(d => d._key.startsWith("!folders!")).map(f => f.na
 assert.equal(pdocs.filter(d => d._key.startsWith("!actors!")).length, 6, "four seats and two spares (8 Nov 2026)");
 {
   const keeper = n => pdocs.find(d => d.name === n);
-  const ul = keeper("Ulrik Greyfang"), ed = keeper("Edda Rimewater");
-  assert.deepEqual([ul.flags.arneyan.pregen.seat, ed.flags.arneyan.pregen.seat], [5, 6]);
-  assert.ok(["Barbarian", "Half-Orc", "War Barbarian (Barbarian)", "Power Attack", "Cleave", "Axe, Two-Handed"].every(n => ul.items.some(i => i.name === n)), "Ulrik's class, ancestry, kit, feats and axe");
-  assert.ok(["Druid", "Human", "Shaman (Druid)", "Potent Casting", "Iron Constitution", "Entangle", "Barkskin"].every(n => ed.items.some(i => i.name === n)), "Edda's class, ancestry, kit, feats and spells");
+  // The Keepers match their class art (Kieran, 8 Nov 2026): the Broken Anvil's characters at 3rd, and Imara.
+  const kv = keeper("Kavra Skyhewn"), fe = keeper("Fenna Thornmantle");
+  assert.deepEqual([kv.flags.arneyan.pregen.seat, fe.flags.arneyan.pregen.seat], [5, 6]);
+  assert.ok(["Barbarian", "Toughness", "Critical Strike", "Axe, Two-Handed"].every(n => kv.items.some(i => i.name === n)), "Kavra's class, feats and axe");
+  assert.ok(["Druid", "Healer", "Entangle", "Barkskin"].every(n => fe.items.some(i => i.name === n)), "Fenna's class, feat and spells");
+  assert.equal(new Set(pdocs.filter(d => d._key.startsWith("!actors!")).map(a => a.img)).size, 6, "six different pictures");
 }
 const fdir = new URL("../test/fixtures/pregens/", import.meta.url).pathname;
 const fdocs = fs.readdirSync(fdir).map(f => JSON.parse(fs.readFileSync(fdir + f)));
 const pf = fdocs.filter(d => d._key.startsWith("!folders!"));
 const pa = fdocs.filter(d => d._key.startsWith("!actors!"));
-assert.equal(pa.length, 10);
+assert.equal(pa.length, 16, "the Broken Anvil's ten and the first six Keepers");
 const byName = n => pf.find(f => f.name === n);
 assert.deepEqual(pf.filter(f => f.folder === byName("The Broken Anvil")._id).map(f => f.name).sort(), ["Level 1 - The Recruits", "Level 9 - The Veterans"]);
 assert.ok(!pdocs.some(d => /Broken Anvil|Recruits|Veterans/.test(d.name)), "nothing of the Broken Anvil ships");

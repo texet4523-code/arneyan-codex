@@ -100,7 +100,7 @@ for (const n of ["Tiefling", "Mindryath", "Genasi"]) {
 assert.match(src("progression.mjs"), /grant\(t\.name, t\.text, t\.rules \?\? \[\]\)/);
 assert.match(src("import.mjs"), /grant\(t\.name, t\.text, t\.rules \?\? \[\]\)/);
 // Jacob's Well notes from the review.
-const jw = fs.readFileSync(new URL("../build/pregens/jacobs_well.json", import.meta.url), "utf8");
+const jw = fs.readFileSync(new URL("../build/pregens/jacobs_well_first.json", import.meta.url), "utf8");
 assert.match(jw, /three times a turn with your two-handed axe \(Cleaving\)/);
 assert.match(jw, /Hide and Move Silently together \(3rd\)/);
 

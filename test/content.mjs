@@ -90,8 +90,8 @@ const pregens = pack("pregens").filter(d => d.type === "character");
 // (28 Oct 2026): Ilvaeth Duskwhisper (Warlock 1) checks a pregen's kit, its features up to her level only, and her
 // class-only spells as real prepared spells from the compendium.
 // Since 8 Nov 2026 only Jacob's Well ships (the Broken Anvil scrapped); its characters stay as test fixtures.
-// Four seats and two spares (Ulrik, Edda: 8 Nov 2026).
-assert.deepEqual(pregens.map(p => p.name).sort(), ["Brenna Coldwater", "Edda Rimewater", "Hulda Frostbraid", "Ithrien Vael", "Pip Thistlewick", "Ulrik Greyfang"]);
+// Four seats and two spares; since 8 Nov 2026 the Broken Anvil characters made for the class art, at 3rd, and Imara.
+assert.deepEqual(pregens.map(p => p.name).sort(), ["Fenna Thornmantle", "Haldor Brassbeard", "Imara Vael", "Kavra Skyhewn", "Sister Aurelle Dawnward", "Wick Tallow"]);
 const ilvaeth = pack("../test/fixtures/pregens").find(p => p.name === "Ilvaeth Duskwhisper");
 assert.ok(ilvaeth.items.some(i => i.type === "kit" && i.name === "The Queen of Air and Darkness (Warlock)"), "her patron kit");
 const kitFeats = ilvaeth.items.filter(i => i.type === "ability" && i.system.className === "The Queen of Air and Darkness (Warlock)").map(i => i.name);

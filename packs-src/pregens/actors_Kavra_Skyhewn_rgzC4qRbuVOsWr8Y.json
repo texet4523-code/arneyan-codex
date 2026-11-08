@@ -1,0 +1,1995 @@
+{
+ "_id": "rgzC4qRbuVOsWr8Y",
+ "_key": "!actors!rgzC4qRbuVOsWr8Y",
+ "name": "Kavra Skyhewn",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Barbarian.webp",
+ "folder": "5T1RaoM82zwRzREb",
+ "sort": 500,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 18
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 17
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 12
+   },
+   "cha": {
+    "value": 9
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 38,
+    "max": 35,
+    "temp": 0
+   },
+   "speed": 30
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 19,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "Chaotic Good",
+   "deity": "",
+   "size": "large",
+   "languages": "Common, Giant",
+   "biography": "<p><em>Jacob&#x27;s Well · Seat 5, Spare: front line</em></p><p>You are a grey-skinned Jotunas goliath, stone-pale markings running down your arms, black hair in long braids, a rune-cut great axe and snowshoes slung on your back. Loud, warm and blunt, you treat every fight as a contest you fully intend to win. The Keepers pulled your raiding band out of a goblin warren, and you pay that debt in blood and laughter. The snow bothers you a good deal less than it bothers them.</p><p><strong>Tonight:</strong> The orc chieftain in the common room, Tonazk, has Red Waste blood. He knows your people&#x27;s markings, and he hasn&#x27;t stopped staring.</p><h3>In a fight</h3><p>Hit a foe before it acts to knock it Prone (Ambush Strike), and rage on your first swing: Reckless when you need to land it, Brutal to put things on the floor. Whirlwind when two weaklings crowd you, and throw a javelin at anything that runs. Fire for anything that won&#x27;t stay down.</p>",
+   "backgroundStory": "<h3>Abilities</h3><p><strong>Rage.</strong> As part of an attack or your move, rage for the rest of the encounter, 4 times a day. While raging, +2 melee weapon damage (two-handed axe 1d12+5). It ends early if a full round passes without you attacking or taking damage.</p><p><strong>Rage Styles (2nd).</strong> Each time you rage, pick one for that rage. <b>Reckless:</b> Advantage on your first attack roll each round, but attacks against you have Advantage. <b>Brutal:</b> once a round when you hit, shove the target 10ft or knock it Prone (Fortitude save, DC 14). <b>Terrifying:</b> once per rage, Intimidate as part of an attack instead of with your action.</p><p><strong>Whirlwind Attack (3rd).</strong> Once per rage, while raging, in place of your action: one attack roll against each of up to 2 foes within 5ft whose Level is 1 or lower. Not after retreating.</p><p><strong>Intimidate (Strength).</strong> Uses your action. One creature of your Level or lower within 15ft makes a Will save (DC 14) or is Frightened until the end of its next turn. No daily limit.</p><p><strong>Combat Sense.</strong> Advantage on checks to avoid being surprised. Attackers gain no Advantage on you from flanking or from being unseen, and Back Attack and the like don't work on you.</p><p><strong>Primeval Instincts.</strong> Works in your studded leather (light armour). Advantage on Strength, Dexterity and Constitution checks in extreme circumstances; you hold your breath twice as long and survive extreme cold and weather a day longer; Advantage on Fortitude saves to force march; you find shelter, food and water for yourself in the wild, light a fire in 1d10 minutes, always know north, and climb natural slopes and swim rivers at half speed without a check.</p><p><strong>Thick Hide.</strong> +2 AC with no armour or light armour (included).</p><p><strong>Kit: Red Waste Marauder.</strong> <b>Ambush Strike:</b> your first hit on a creature that hasn't yet acted this combat knocks it Prone (Fortitude save, DC 14, negates). <b>Desert Born:</b> Advantage on Survival checks in arid or desert terrain, and on checks to identify Red Waste tribal markings or customs.</p><p><strong>Toughness (feat, 1st).</strong> +1 HP a level and +1 Constitution (both included), and Advantage on Constitution checks.</p><p><strong>Critical Strike (feat, 2nd).</strong> Your weapon attacks score a Critical Hit on a natural 20, or on a natural 19 that hits.</p><p><strong>Goliath (Jotunas).</strong> Large: a 10ft space and 5ft more melee reach, and Heavy weapons never give you Disadvantage; but Disadvantage on Stealth and on checks to fit through tight spaces. Darkvision 60ft. Resistance 5 to cold. Advantage on Strength checks to push, drag, lift or break against something smaller. <b>Mountain Endurance:</b> once a day, when hit, reduce the damage by 1d12+3 (1 Luck for another use); Advantage on Fortitude saves against exhaustion, forced marching and thin mountain air. Advantage on Jotunas terrain, tribal-custom and giant-lineage checks, and on Charisma checks towards Dul Khagul dwarves.</p><p><strong>Armour Class on the sheet:</strong> Studded leather +3, Dex +1, Thick Hide +2 (light armour)</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "wh0R221G2nO2XBB4",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.wh0R221G2nO2XBB4",
+   "name": "Barbarian",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Barbarian.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Strength / Constitution</td></tr><tr><td>Hit Die</td><td><strong>d12</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>4 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Any</td></tr><tr><td>Armour</td><td>Light and medium armour and shields. Heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr><tr><td>Identity</td><td>A furious front-liner who shrugs off wounds, frightens foes and hits hardest when the fight turns ugly.</td></tr></tbody></table><h2>Barbarian Progression Table</h2><p><em>These values apply from the listed level until the next row.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Whirlwind Attack (opponents)</th></tr></thead><tbody><tr><td>1</td><td>—</td></tr><tr><td>3</td><td>2</td></tr><tr><td>6</td><td>3</td></tr><tr><td>10</td><td>4</td></tr><tr><td>15</td><td>5</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Combat Sense, Rage, Intimidate, Primeval Instincts, Thick Hide</td></tr><tr><td>2</td><td>Rage Styles</td></tr><tr><td>3</td><td>Whirlwind Attack (2 foes)</td></tr><tr><td>4</td><td>Primeval Will</td></tr><tr><td>5</td><td>Ancestral Calling</td></tr><tr><td>6</td><td>Force of Nature, Whirlwind Attack (3 foes)</td></tr><tr><td>7</td><td>Extra Attack</td></tr><tr><td>8</td><td>Rage Styles improve</td></tr><tr><td>9</td><td>Iron Sinews</td></tr><tr><td>10</td><td>Rage +4, Thick Hide +3, Whirlwind Attack (4 foes)</td></tr><tr><td>13</td><td>Whirlwind Attack improves</td></tr><tr><td>15</td><td>+1 Strength, Whirlwind Attack (5 foes)</td></tr><tr><td>16</td><td>Force of Nature improves</td></tr><tr><td>19</td><td>Force of Nature improves</td></tr><tr><td>20</td><td>Warlord, Rage +6</td></tr><tr><td>22</td><td>Force of Nature improves</td></tr><tr><td>24</td><td>World Ender</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Combat Sense</h4><ul><li><strong>Effect:</strong> Heightened battlefield awareness that makes the Barbarian difficult to catch off guard.</li><li><strong>Advantage</strong> on checks to avoid being surprised</li><li>Attackers gain no <strong>Advantage</strong> from flanking or from being Unseen against you</li><li>Back Attack and similar rear-attack bonuses (such as the Rogue's) do not work against you</li></ul><h4>Rage</h4><ul><li><strong>Effect:</strong> As part of an attack or your movement, enter a rage that lasts for the encounter, usable 1 + Constitution modifier times per day (minimum <strong>2/day</strong>).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li><li>Stacks normally with Primeval Will and Whirlwind Attack.</li></ul><h4>Intimidate (Strength)</h4><ul><li><strong>Effect:</strong> Uses your action. One creature of equal or lower Level within <strong>15ft</strong> makes a <strong>Will save</strong> (against your Class Save DC) or is <strong>Frightened</strong> until the end of its next turn.</li><li>No daily limit</li></ul><h4>Primeval Instincts</h4><ul><li><strong>Effect:</strong> When not wearing medium or heavy armour and having not fled the challenge, have <strong>Advantage</strong> on Strength, Dexterity and Constitution checks in extreme circumstances.</li><li>Hold your breath twice as long as normal</li><li>Survive extreme temperatures and weather <strong>1 day</strong> longer than normal</li><li><strong>Advantage</strong> on <strong>Fortitude saves</strong> made to force march</li><li>Find shelter, food, and water for themselves automatically in any wilderness environment (<strong>1d6+2</strong> hours)</li><li>Start a fire in <strong>1d10</strong> minutes by natural means</li><li>Determine true north at will</li><li>Climb typical natural slopes and swim typical rivers without a check — half speed, in light armour or none</li><li>Cannot use the shelter, fire, navigation and climbing abilities above while wearing medium or heavy armour</li></ul><h4>Thick Hide</h4><ul><li><strong>Effect:</strong> While wearing no armour or light armour, gain +2 AC (+3 from 10th level). It does not stack with other bonuses of the same kind.</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Rage Styles</h4><ul><li><strong>Effect:</strong> Each time you enter a rage, choose one style. It lasts for that rage.</li><li><strong>Reckless:</strong> <strong>Advantage</strong> on your first attack roll each round, but attacks against you have <strong>Advantage</strong>. 8th level: only the first attack against you each round has <strong>Advantage</strong></li><li><strong>Brutal:</strong> <strong>once per round</strong>, when you hit, shove the target <strong>10ft</strong> or knock it <strong>Prone</strong> (<strong>Fortitude save</strong> against your Class Save DC). 8th level: on a failed save, you shove the target <strong>10ft</strong> and knock it <strong>Prone</strong></li><li><strong>Terrifying:</strong> once per rage, use Intimidate as part of an attack instead of your action. 8th level: once per rage, as part of an attack, Intimidate every creature of your choice within <strong>15ft</strong> (each saves separately; Intimidate's Level limit applies)</li><li>8th level: your styles improve, as listed under each one.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Whirlwind Attack</h4><ul><li><strong>Effect:</strong> Once per rage, while raging, replace your action: make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li><li>13th level: the targets' Level may be up to your Level</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Primeval Will</h4><ul><li><strong>Effect:</strong> Once per day, when HP is reduced to twice your level or less, immediately gain bonus HP equal to twice your level.</li><li>The bonus HP absorb incoming damage first</li><li>Any remaining bonus HP are removed at combat's end</li><li>If reduced to 0 or negative HP before activation, it triggers automatically — if the resulting total is 1 or more HP, the Barbarian keeps fighting</li><li>Cannot prevent death from a blow that would kill you outright</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Ancestral Calling</h4><ul><li><strong>Effect:</strong> The first time you rage each day, allies within <strong>30ft</strong> gain <strong>temporary HP</strong> equal to your Barbarian level, lasting until the end of the day. Always on.</li><li>Cannot combine with another Barbarian's Ancestral Calling</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Force of Nature</h4><ul><li><strong>Effect:</strong> Gain a +1 bonus to saving throws against spells and magical effects. Magic from the primeval world bends around the Barbarian's raw will.</li><li>Improves to +2 at 16th level</li><li>Improves to +3 at 19th level</li><li>Improves to +4 at 22nd level</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Extra Attack</h4><ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li></ul><h3 class=\"arn-level\">9th Level</h3><h4>Iron Sinews</h4><ul><li><strong>Effect:</strong> Your weapon attacks count as magic, so they can harm creatures that only magic weapons can hurt.</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Strength Bonus:</strong> permanent +1 Strength</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Warlord</h4><ul><li><strong>Effect:</strong> Once per month, in an area where the Barbarian's name and deeds are known, call up an army of 10–100 1st level barbarians.</li><li>Requires a population of 500 per 10 men needed in the area</li><li><strong>Army stats:</strong> AC 13, armed with sword or axe</li><li>For every 20 barbarians, a 3rd level barbarian leads them</li><li>They fight for <strong>30 days</strong> without pay — food and water only</li><li>Repeated failed campaigns reduce this ability until reputation is restored</li></ul><h3 class=\"arn-level\">24th Level</h3><h4>World Ender</h4><ul><li><strong>Effect:</strong> Your mastery of combat reaches a mythic threshold — nothing within reach is safe, and nothing without magic stops you.</li><li>Whirlwind Attack can now target all creatures within <strong>10ft</strong> regardless of Level; the normal Level cap is removed entirely</li></ul><h2>Kits: Arneyan Warrior Cultures</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Barbarian folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Your kit defines the warrior culture that shaped you.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 3,
+    "hitDie": "d12",
+    "hpBeyond10": 4,
+    "bthProgression": "martial",
+    "keyAbility": "str",
+    "castingAbility": "",
+    "xpRate": 10,
+    "weapons": "Any",
+    "armour": "Light and medium armour and shields. Heavier armour only through training, like any class.",
+    "slotTable": [],
+    "featLevels": [
+     1,
+     2,
+     6,
+     12,
+     16,
+     21
+    ],
+    "featPaths": [
+     "General Path",
+     "Martial Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Combat Sense",
+      "uuid": "Compendium.arneyan.class-features.Item.zEXHGiACkTeX73yo"
+     },
+     {
+      "level": 1,
+      "name": "Rage",
+      "uuid": "Compendium.arneyan.class-features.Item.zsMpDQJQdsDZP4nV"
+     },
+     {
+      "level": 1,
+      "name": "Intimidate (Strength)",
+      "uuid": "Compendium.arneyan.class-features.Item.hi6cvVDyEDasF9CW"
+     },
+     {
+      "level": 1,
+      "name": "Primeval Instincts",
+      "uuid": "Compendium.arneyan.class-features.Item.iPaqIvlgNRuHF60y"
+     },
+     {
+      "level": 1,
+      "name": "Thick Hide",
+      "uuid": "Compendium.arneyan.class-features.Item.l1z0ltlq8BBhCAFg"
+     },
+     {
+      "level": 2,
+      "name": "Rage Styles",
+      "uuid": "Compendium.arneyan.class-features.Item.MA6D49vztxj5yfab"
+     },
+     {
+      "level": 3,
+      "name": "Whirlwind Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"
+     },
+     {
+      "level": 4,
+      "name": "Primeval Will",
+      "uuid": "Compendium.arneyan.class-features.Item.xQduvZAeAsW5joJx"
+     },
+     {
+      "level": 5,
+      "name": "Ancestral Calling",
+      "uuid": "Compendium.arneyan.class-features.Item.4ttPYYMgzrO97TDU"
+     },
+     {
+      "level": 6,
+      "name": "Force of Nature",
+      "uuid": "Compendium.arneyan.class-features.Item.FJCreAGaRhdM5L3X"
+     },
+     {
+      "level": 7,
+      "name": "Extra Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.isoyrXlKsMeUUBqj"
+     },
+     {
+      "level": 9,
+      "name": "Iron Sinews",
+      "uuid": "Compendium.arneyan.class-features.Item.10pHgyDZiOEXirHI"
+     },
+     {
+      "level": 15,
+      "name": "Strength Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.IL3Tj1tUwgbuYXoJ"
+     },
+     {
+      "level": 20,
+      "name": "Warlord",
+      "uuid": "Compendium.arneyan.class-features.Item.cPG4C1pCFRwCbBIh"
+     },
+     {
+      "level": 24,
+      "name": "World Ender",
+      "uuid": "Compendium.arneyan.class-features.Item.CKPI9Mgh2aS1JAMm"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.fKNZ1vFgEaJ9c8dG"
+   }
+  },
+  {
+   "_id": "qQYWbZFNVosKamXd",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.qQYWbZFNVosKamXd",
+   "name": "Combat Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Heightened battlefield awareness that makes the Barbarian difficult to catch off guard.</li><li><strong>Advantage</strong> on checks to avoid being surprised</li><li>Attackers gain no <strong>Advantage</strong> from flanking or from being Unseen against you</li><li>Back Attack and similar rear-attack bonuses (such as the Rogue's) do not work against you</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Barbarian",
+    "rules": [
+     {
+      "key": "adv.surprise",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.zEXHGiACkTeX73yo"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.zEXHGiACkTeX73yo"
+   }
+  },
+  {
+   "_id": "kx4Oy2njpsQrmpfn",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.kx4Oy2njpsQrmpfn",
+   "name": "Rage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> As part of an attack or your movement, enter a rage that lasts for the encounter, usable 1 + Constitution modifier times per day (minimum <strong>2/day</strong>).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li><li>Stacks normally with Primeval Will and Whirlwind Attack.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 4,
+     "max": 4,
+     "per": "day",
+     "formula": "max(2, 1 + @con.mod)"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Barbarian",
+    "activities": [
+     {
+      "name": "Rage",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Enter a rage that lasts the encounter: +{1:2, 10:4, 20:6} melee weapon damage. It ends early if a full round passes without you attacking or taking damage. Switch on the Rage toggle.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ],
+    "rules": [
+     {
+      "key": "damage.melee",
+      "value": "+2*(1+floor(@cl/10))",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "toggle.ends",
+      "value": "encounter",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": true,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.zsMpDQJQdsDZP4nV"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.zsMpDQJQdsDZP4nV"
+   }
+  },
+  {
+   "_id": "Nhosey4P16ZrftUO",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.Nhosey4P16ZrftUO",
+   "name": "Intimidate (Strength)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Uses your action. One creature of equal or lower Level within <strong>15ft</strong> makes a <strong>Will save</strong> (against your Class Save DC) or is <strong>Frightened</strong> until the end of its next turn.</li><li>No daily limit</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Barbarian",
+    "applies": [
+     {
+      "name": "Intimidated",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.hi6cvVDyEDasF9CW"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.hi6cvVDyEDasF9CW"
+   }
+  },
+  {
+   "_id": "PrXjz81T8XTusllV",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.PrXjz81T8XTusllV",
+   "name": "Primeval Instincts",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> When not wearing medium or heavy armour and having not fled the challenge, have <strong>Advantage</strong> on Strength, Dexterity and Constitution checks in extreme circumstances.</li><li>Hold your breath twice as long as normal</li><li>Survive extreme temperatures and weather <strong>1 day</strong> longer than normal</li><li><strong>Advantage</strong> on <strong>Fortitude saves</strong> made to force march</li><li>Find shelter, food, and water for themselves automatically in any wilderness environment (<strong>1d6+2</strong> hours)</li><li>Start a fire in <strong>1d10</strong> minutes by natural means</li><li>Determine true north at will</li><li>Climb typical natural slopes and swim typical rivers without a check — half speed, in light armour or none</li><li>Cannot use the shelter, fire, navigation and climbing abilities above while wearing medium or heavy armour</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Barbarian",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.dex",
+      "value": "1",
+      "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "in extreme circumstances (no medium or heavy armour; not having fled the challenge)",
+      "label": ""
+     },
+     {
+      "key": "adv.save.fort",
+      "value": "1",
+      "when": "to force march",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.iPaqIvlgNRuHF60y"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.iPaqIvlgNRuHF60y"
+   }
+  },
+  {
+   "_id": "1OLxepmKP7pyvUbp",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.1OLxepmKP7pyvUbp",
+   "name": "Thick Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> While wearing no armour or light armour, gain +2 AC (+3 from 10th level). It does not stack with other bonuses of the same kind.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Barbarian",
+    "rules": [
+     {
+      "key": "ac",
+      "value": "min(3,2+floor(@cl/10))",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.l1z0ltlq8BBhCAFg"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.l1z0ltlq8BBhCAFg"
+   }
+  },
+  {
+   "_id": "zsnDAJvDuEPWbmsu",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.zsnDAJvDuEPWbmsu",
+   "name": "Rage Styles",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Each time you enter a rage, choose one style. It lasts for that rage.</li><li><strong>Reckless:</strong> <strong>Advantage</strong> on your first attack roll each round, but attacks against you have <strong>Advantage</strong>. 8th level: only the first attack against you each round has <strong>Advantage</strong></li><li><strong>Brutal:</strong> <strong>once per round</strong>, when you hit, shove the target <strong>10ft</strong> or knock it <strong>Prone</strong> (<strong>Fortitude save</strong> against your Class Save DC). 8th level: on a failed save, you shove the target <strong>10ft</strong> and knock it <strong>Prone</strong></li><li><strong>Terrifying:</strong> once per rage, use Intimidate as part of an attack instead of your action. 8th level: once per rage, as part of an attack, Intimidate every creature of your choice within <strong>15ft</strong> (each saves separately; Intimidate's Level limit applies)</li><li>8th level: your styles improve, as listed under each one.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 2,
+    "className": "Barbarian"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.MA6D49vztxj5yfab"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.MA6D49vztxj5yfab"
+   }
+  },
+  {
+   "_id": "KpksElSmeHALqNm0",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.KpksElSmeHALqNm0",
+   "name": "Whirlwind Attack",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Once per rage, while raging, replace your action: make one attack roll against each of up to 2 opponents within <strong>5ft</strong> whose Level is no greater than half the Barbarian's level.</li><li>Can split attacks between targets freely</li><li>Cannot retreat before using it</li><li>Scales with level — see the Barbarian Progression Table</li><li>13th level: the targets' Level may be up to your Level</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 3,
+    "className": "Barbarian",
+    "activities": [
+     {
+      "name": "Whirlwind Attack",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per rage, while raging: replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} foes within 5ft of Level up to {1:half yours, 13:yours}.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "wh0R221G2nO2XBB4",
+     "source": "Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"
+   }
+  },
+  {
+   "_id": "d3pWaC7T9fSSIgOg",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.d3pWaC7T9fSSIgOg",
+   "name": "Goliath (Jotunas Goliath)",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p><strong>Size Large • Speed 30ft • Darkvision 60ft • +2 Str / +1 Con, −1 Int</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on Strength checks to push, drag, lift or break against a smaller creature or object.</li><li><strong>Resistance 5 to cold.</strong></li><li><strong>Mountain Endurance</strong> (<strong>Advantage</strong> on <strong>Fortitude saves</strong> against exhaustion, forced marching and thin mountain air). Once per day, when hit: reduce the damage by <strong>1d12</strong> + Constitution modifier (1 Luck for extra use).</li><li><strong>Weapon training:</strong> two-handed axe, maul, javelin, greatclub.</li></ul><p><strong><em>Subtypes</em></strong></p><ul><li><strong>Jotunas Goliath:</strong> Wisdom-themed, <strong>Advantage</strong> on Jotunas terrain/tribal-custom/true-giant-lineage checks, <strong>Advantage</strong> on Charisma checks towards Dul Khagul dwarves.</li><li><strong>Tribe Greater Goliath (Strongroar Lands):</strong> Charisma-themed, <strong>Advantage</strong> on Strongroar Lands terrain/custom checks, <strong>Advantage</strong> on Charisma checks towards Tenor Hold dwarves.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "large",
+    "speed": 30,
+    "vision": "Darkvision 60ft",
+    "attributes": "+2 Str / +1 Con, −1 Int",
+    "bonuses": {
+     "str": 2,
+     "con": 1,
+     "int": -1
+    },
+    "pickTwo": false,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Advantage on Strength checks to push",
+      "text": "Advantage on Strength checks to push, drag, lift or break against a smaller creature or object."
+     },
+     {
+      "name": "Resistance 5 to cold",
+      "text": "Resistance 5 to cold."
+     },
+     {
+      "name": "Mountain Endurance",
+      "text": "Mountain Endurance (Advantage on Fortitude saves against exhaustion, forced marching and thin mountain air). Once per day, when hit: reduce the damage by 1d12 + Constitution modifier (1 Luck for extra use)."
+     },
+     {
+      "name": "Weapon training",
+      "text": "two-handed axe, maul, javelin, greatclub."
+     }
+    ],
+    "choice": {
+     "label": "Subtype",
+     "options": [
+      {
+       "name": "Jotunas Goliath",
+       "text": "Wisdom-themed, Advantage on Jotunas terrain/tribal-custom/true-giant-lineage checks, Advantage on Charisma checks towards Dul Khagul dwarves.",
+       "bonuses": {},
+       "rules": []
+      },
+      {
+       "name": "Tribe Greater Goliath (Strongroar Lands)",
+       "text": "Charisma-themed, Advantage on Strongroar Lands terrain/custom checks, Advantage on Charisma checks towards Tenor Hold dwarves.",
+       "bonuses": {},
+       "rules": []
+      }
+     ]
+    },
+    "rules": [
+     {
+      "key": "resist",
+      "value": "cold 5",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "to push, drag, lift or break vs a smaller creature or object",
+      "label": ""
+     },
+     {
+      "key": "adv.save.fort",
+      "value": "1",
+      "when": "vs exhaustion, forced marching and thin mountain air",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "Jotunas Goliath",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.vzNzVYJRsNgCtMGN"
+   }
+  },
+  {
+   "_id": "lgtW2qdu2ztwgpvv",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.lgtW2qdu2ztwgpvv",
+   "name": "Subtype: Jotunas Goliath",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Wisdom-themed, <strong>Advantage</strong> on Jotunas terrain/tribal-custom/true-giant-lineage checks, <strong>Advantage</strong> on Charisma checks towards Dul Khagul dwarves.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Goliath (Jotunas Goliath)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "d3pWaC7T9fSSIgOg",
+     "source": "d3pWaC7T9fSSIgOg.Subtype: Jotunas Goliath"
+    }
+   }
+  },
+  {
+   "_id": "NVh10dS4VOj7BZuX",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.NVh10dS4VOj7BZuX",
+   "name": "Advantage on Strength checks to push",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on Strength checks to push, drag, lift or break against a smaller creature or object.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Goliath (Jotunas Goliath)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "d3pWaC7T9fSSIgOg",
+     "source": "d3pWaC7T9fSSIgOg.Advantage on Strength checks to push"
+    }
+   }
+  },
+  {
+   "_id": "OVHDjFKnT7IQhZo4",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.OVHDjFKnT7IQhZo4",
+   "name": "Resistance 5 to cold",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Resistance 5 to cold.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Goliath (Jotunas Goliath)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "d3pWaC7T9fSSIgOg",
+     "source": "d3pWaC7T9fSSIgOg.Resistance 5 to cold"
+    }
+   }
+  },
+  {
+   "_id": "lvdnw7bvTVnG3ACg",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.lvdnw7bvTVnG3ACg",
+   "name": "Mountain Endurance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Mountain Endurance (<strong>Advantage</strong> on <strong>Fortitude saves</strong> against exhaustion, forced marching and thin mountain air). Once per day, when hit: reduce the damage by <strong>1d12</strong> + Constitution modifier (1 Luck for extra use).</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Goliath (Jotunas Goliath)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "d3pWaC7T9fSSIgOg",
+     "source": "d3pWaC7T9fSSIgOg.Mountain Endurance"
+    }
+   }
+  },
+  {
+   "_id": "cYfnbCz9Qo8aafGp",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.cYfnbCz9Qo8aafGp",
+   "name": "Weapon training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>two-handed axe, maul, javelin, greatclub.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Goliath (Jotunas Goliath)",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "d3pWaC7T9fSSIgOg",
+     "source": "d3pWaC7T9fSSIgOg.Weapon training"
+    }
+   }
+  },
+  {
+   "_id": "PfMfpImalF5v3Mtm",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.PfMfpImalF5v3Mtm",
+   "name": "Red Waste Marauder (Barbarian)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "system": {
+    "description": "<p>Hardened in the brutal tribal warfare of Tariel's desert wastelands — raids, ambushes, endurance.</p><ul><li><strong>Ambush Strike:</strong> your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</li><li><strong>Desert Born:</strong> <strong>Advantage</strong> on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Barbarian",
+    "features": [
+     {
+      "name": "Ambush Strike",
+      "level": 1,
+      "description": "<p>Your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "fort",
+      "applies": [
+       {
+        "name": "Ambush Strike: Prone",
+        "target": "target",
+        "rounds": "0",
+        "statuses": [
+         "prone"
+        ],
+        "rules": []
+       }
+      ]
+     },
+     {
+      "name": "Desert Born",
+      "level": 1,
+      "description": "<p><strong>Advantage</strong> on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.skill",
+        "value": "1",
+        "when": "Survival in arid or desert terrain",
+        "label": ""
+       },
+       {
+        "key": "adv.check",
+        "value": "1",
+        "when": "identifying Red Waste tribal markings or customs",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.aWVs4Wj6e5DswX5g"
+   }
+  },
+  {
+   "_id": "4psq2xTHy3XYUnJO",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.4psq2xTHy3XYUnJO",
+   "name": "Ambush Strike",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Marauder (Barbarian)",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [
+     {
+      "name": "Ambush Strike: Prone",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
+     }
+    ],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort"
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "PfMfpImalF5v3Mtm",
+     "source": "PfMfpImalF5v3Mtm.0"
+    }
+   }
+  },
+  {
+   "_id": "omDk5F3v8tFWc9fL",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.omDk5F3v8tFWc9fL",
+   "name": "Desert Born",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on Survival checks in arid or desert terrain, and on checks identifying Red Waste tribal markings or customs.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Red Waste Marauder (Barbarian)",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Survival in arid or desert terrain",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "identifying Red Waste tribal markings or customs",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "PfMfpImalF5v3Mtm",
+     "source": "PfMfpImalF5v3Mtm.1"
+    }
+   }
+  },
+  {
+   "_id": "RL84t7AOVLfbSJAE",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.RL84t7AOVLfbSJAE",
+   "name": "Toughness",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+   "system": {
+    "description": "<p><em>(Constitution)</em>  Gain +1 Max HP per level (retroactive). Gain +1 to Constitution (once, on taking this feat). <strong>Advantage</strong> on Constitution-based checks.</p><p class=\"arn-note\">Open to all classes by default.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "General Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "hp.level",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ability.con",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.RrinZrhSZNSVZ5Ql"
+   }
+  },
+  {
+   "_id": "6aa8vS7T1PifCdPB",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.6aa8vS7T1PifCdPB",
+   "name": "Critical Strike",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+   "system": {
+    "description": "<p>You are a master of precision. Your weapon attacks score a Critical Hit on a natural 20, or on a natural 19 that hits.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Martial Path",
+    "levelTaken": 2,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "crit.range",
+      "value": "19",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.be3UP5Ftq9WSrUre"
+   }
+  },
+  {
+   "_id": "xSsawxzSlxchiMuV",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.xSsawxzSlxchiMuV",
+   "name": "Survival",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Finding food, water, and shelter in the wild</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.NWt0Ss8MAY59g0VS"
+   }
+  },
+  {
+   "_id": "P7ouZebeW3r92DBI",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.P7ouZebeW3r92DBI",
+   "name": "Endurance",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-heart-plus.svg",
+   "system": {
+    "description": "<p>Pushing through exhaustion, cold, or hunger</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "con",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.SNfIeX75BjonKyqo"
+   }
+  },
+  {
+   "_id": "NpvnjJOw2kofuvNC",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.NpvnjJOw2kofuvNC",
+   "name": "Climb",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-biceps.svg",
+   "system": {
+    "description": "<p>Walls, cliffs and mountains; climb at normal speed (see Thief Skills)</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "str",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.QwBrDsUjGQiCN3qz"
+   }
+  },
+  {
+   "_id": "zM211f1k7c3wJHE9",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.zM211f1k7c3wJHE9",
+   "name": "Tracking",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Following a trail left by creatures or people</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.3y9fbmBhuaxB1F9Y"
+   }
+  },
+  {
+   "_id": "6fDbxn1XCHVO29GP",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.6fDbxn1XCHVO29GP",
+   "name": "Hunting",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Tracking and bringing down game</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.O3gcbmvbX5pbb413"
+   }
+  },
+  {
+   "_id": "x2JA041utji5sfNm",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.x2JA041utji5sfNm",
+   "name": "Axe, Two-Handed",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-battle-axe.svg",
+   "system": {
+    "description": "<p>Two-handed, Heavy, Thrown, Cleaving</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "20 gp",
+    "equipped": true,
+    "damage": "1d12",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Two-handed, Heavy, Thrown, Cleaving",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.QP4Ajev8VW00Djk7"
+   }
+  },
+  {
+   "_id": "rpuErMMig9mFWqAS",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.rpuErMMig9mFWqAS",
+   "name": "Javelin",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-spear-hook.svg",
+   "system": {
+    "description": "<p>Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 3,
+    "slots": 1.0,
+    "price": "1 gp",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "piercing",
+    "ability": "dex",
+    "ranged": true,
+    "range": "30 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Thrown",
+    "bundle": 5,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.HBywxuuIEr161ZRN"
+   }
+  },
+  {
+   "_id": "81qU1MPIdYcM14Hj",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.81qU1MPIdYcM14Hj",
+   "name": "Alchemist's Fire (flask)",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/magic-toolbox.svg",
+   "system": {
+    "description": "<p>Thrown, range <strong>20 ft</strong>; ranged attack against AC. Hit: <strong>1d6</strong> fire damage, and the target is Burning (see Conditions in the Codex).</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "20 gp",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": true,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.DdPrIkDvDczDRBYL"
+   }
+  },
+  {
+   "_id": "T8VC7GKYbmRJMzpc",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.T8VC7GKYbmRJMzpc",
+   "name": "Studded Leather",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-leather-armor.svg",
+   "system": {
+    "description": "<p><strong>Light armour.</strong> Flexible</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "25 gp",
+    "equipped": true,
+    "category": "light",
+    "ac": 3,
+    "magic": 0,
+    "traits": "Flexible",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.6NgjBwMgUuI7HHR4"
+   }
+  },
+  {
+   "_id": "mN7bCl3c57mgHIrv",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.mN7bCl3c57mgHIrv",
+   "name": "Bedroll",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-camping-tent.svg",
+   "system": {
+    "description": "<p>Waterproof leather, wool padding, cotton lining, eyehooks (20 gp); thinner warm-climate variant (17 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.lHiXZDAPe8E3q8Yk"
+   }
+  },
+  {
+   "_id": "HSO9yqOBZQSsPwC6",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.HSO9yqOBZQSsPwC6",
+   "name": "Tinderbox",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Flint block, steel bars, tinder, charred cloth (15 sp); flint and steel alone (5 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.5k1Jk2O2RmCETeya"
+   }
+  },
+  {
+   "_id": "fgIXuIscgFtWlKAr",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.fgIXuIscgFtWlKAr",
+   "name": "Rope, Hemp (50 ft)",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-rope-coil.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "1 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.7szdJEVM0KQpNBZI"
+   }
+  },
+  {
+   "_id": "2cQFwVMAoWhq0T1Q",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.2cQFwVMAoWhq0T1Q",
+   "name": "Snowshoes",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 1,
+    "slots": 1
+   },
+   "effects": [],
+   "flags": {}
+  },
+  {
+   "_id": "HtvBCjVq5FjAll4U",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.HtvBCjVq5FjAll4U",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "fjv1DrOLcsu2tnxE",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.fjv1DrOLcsu2tnxE",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "Br9Dh5NkX91E2E9V",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.Br9Dh5NkX91E2E9V",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "VkiizqsVI6NgRwiT",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.VkiizqsVI6NgRwiT",
+   "name": "Cloak",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-cape.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 sp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.E5BqQlLHJGtQ5FG1"
+   }
+  },
+  {
+   "_id": "xmyh57zKaxZuMQ8o",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.xmyh57zKaxZuMQ8o",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "TWjjwvDUuJ4WIgUO",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.TWjjwvDUuJ4WIgUO",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "7CtrUxlT9ucXluYT",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.7CtrUxlT9ucXluYT",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "6oAj7h2tcV5VqzYh",
+   "_key": "!actors.items!rgzC4qRbuVOsWr8Y.6oAj7h2tcV5VqzYh",
+   "name": "Iron Spikes",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 5,
+    "slots": 0.2
+   },
+   "effects": [],
+   "flags": {}
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Kavra Skyhewn",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Barbarian.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 2,
+  "height": 2
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "Jacob's Well",
+    "seat": 5,
+    "role": "Spare: front line",
+    "sheet": {
+     "ac": 16,
+     "saves": {
+      "fort": 4,
+      "ref": 2,
+      "will": 1
+     },
+     "bth": 2,
+     "hp": 38
+    }
+   }
+  }
+ }
+}

@@ -17,7 +17,7 @@ SYS = "arneyan"
 
 # Adventures no longer in the playtest (Kieran, 8 Nov 2026: The Broken Anvil scrapped for Jacob's Well). Their characters
 # are still built, from the same rules, but into test/fixtures/pregens (the tests use them), never into the compendium.
-RETIRED = {"The Broken Anvil"}
+RETIRED = {"The Broken Anvil", "Jacob's Well (first Keepers)"}
 FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to packs-src, as write() takes it
 
 
@@ -30,6 +30,7 @@ FOLDERS = [  # (adventure, sub-folder, colour); order is the sidebar order
     ("The Broken Anvil", "Level 1 - The Recruits", "#5a2a1a"),
     ("The Broken Anvil", "Level 9 - The Veterans", "#5a2a1a"),
     ("Jacob's Well", "", "#2a3a4a"),
+    ("Jacob's Well (first Keepers)", "", "#2a3a4a"),
 ]
 
 # Sheet names that the Catalogue spells differently.
@@ -558,6 +559,17 @@ def build():
                         miss("spell", n)
                         items.append(plain_item(actor_id, f"sp-{n}", f"{n} ({base_cls} spell)", "ability",
                                                 f"<p>A {html.escape(base_cls)} spell; its full text is in the {html.escape(base_cls)} class entry.</p>", kind="other"))
+
+            # Thick Hide (+2 AC in light armour or none) is only a reminder in the engine, which can't tell the armour
+            # worn. A pregen's armour is fixed, so when it starts in light armour or none, the bonus counts on that
+            # actor, as the printed sheet counts it (Jacob's Well, 8 Nov 2026: Kavra's studded leather).
+            body = [i for i in items if i["type"] == "armour" and i["system"].get("category") not in ("shield", None)]
+            if all(i["system"].get("category") == "light" for i in body):
+                for it in items:
+                    if it["name"] == "Thick Hide" and it.get("flags", {}).get(SYS, {}).get("grantedBy") == cls["_id"]:
+                        for r in it["system"].get("rules") or []:
+                            if r.get("key") == "ac" and r.get("when"):
+                                r.pop("when")
 
             # Biography: the printed sheet's own words.
             head = f"<p><em>{html.escape(c['adventure'])}" + (f" · {html.escape(c['folder'])}" if c.get("folder") else "") + \

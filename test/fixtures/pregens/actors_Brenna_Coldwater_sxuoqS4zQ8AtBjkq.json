@@ -1,0 +1,1897 @@
+{
+ "_id": "sxuoqS4zQ8AtBjkq",
+ "_key": "!actors!sxuoqS4zQ8AtBjkq",
+ "name": "Brenna Coldwater",
+ "type": "character",
+ "img": "systems/arneyan/assets/classes/Fighter.webp",
+ "folder": "1HVjHn3dkVVaCzJQ",
+ "sort": 100,
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 18
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 9
+   },
+   "wis": {
+    "value": 12
+   },
+   "cha": {
+    "value": 11
+   }
+  },
+  "luck": {
+   "value": 12,
+   "start": 12,
+   "max": 20
+  },
+  "attributes": {
+   "hp": {
+    "value": 31,
+    "max": 28,
+    "temp": 0
+   },
+   "speed": 30
+  },
+  "currency": {
+   "pp": 0,
+   "gp": 35,
+   "sp": 0,
+   "cp": 0
+  },
+  "details": {
+   "alignment": "",
+   "deity": "",
+   "size": "medium",
+   "languages": "Common, Orcish",
+   "biography": "<p><em>Jacob&#x27;s Well (first Keepers) · Seat 1, Front line</em></p><p>Six winters on the Boldock Wall taught you that the dark beyond the firelight is full of things that want in. You took the Keepers&#x27; coin to see the world past the Red Waste. You have never shared a fire with an orc and you are not sure you can start now.</p><p><strong>Tonight:</strong> There is an orc chieftain in the common room, and the house rules say no fighting.</p>",
+   "backgroundStory": "<h3>Abilities</h3><p><strong>Weapon Specialisation (longsword).</strong> Advantage on the first attack roll you make with it each round, and +1 damage (already in the line above).</p><p><strong>Combat Manoeuvres.</strong> You can use every manoeuvre in the Codex (Trip, Disarm, Shove, Shield Blow, Guard and the rest). Your own: <b>Intimidating Strike</b>, on a hit the target makes a Will save (DC 14) or is Frightened until the end of its next turn.</p><p><strong>Manoeuvre Mastery.</strong> Manoeuvres that would give your own attack Disadvantage (Shield Blow) are rolled normally.</p><p><strong>Battle Space.</strong> You count as flanking a creature whenever an ally is also in melee with it, not only from opposite sides.</p><p><strong>Combat Reflexes (free feat).</strong> Once per round, an Attack of Opportunity against an enemy you can see that leaves your reach or moves past or through it. Disengage prevents it.</p><p><strong>Toughness (Human bonus feat).</strong> +1 HP a level and +1 Constitution (both included), and Advantage on Constitution checks.</p><p><strong>Shield Expert (feat, 1st).</strong> +1 AC with a shield (included), and your shield bonus adds to Reflex saves (included).</p><p><strong>Mighty Deed of Arms (feat, 3rd).</strong> Once per round, call your shot and roll a d4 with the attack. On a hit and a 3 or 4: knock Prone, disarm, push 10ft, blind until the end of its next turn, or give it Disadvantage on its next attack. Save DC 14 (Fortitude for prone, push or disarm; Reflex for blind; Will for the penalty). A creature more than one size larger than you ignores the deed.</p><p><strong>Kit: Boldock Wall Guard.</strong> <b>Waste-Hardened:</b> creatures with the Orc ancestry tag have Disadvantage on their first attack roll against you each round, and can't make you Frightened. <b>Wall Authority:</b> Advantage on Perception checks on watch or guard duty.</p><p><strong>Human.</strong> Advantage on Tracking checks (chosen skill). You picked up Orcish on the Wall, listening to raiders across the ditch.</p><p><strong>Armour Class on the sheet:</strong> Scale mail +4, Dex +1, wooden shield +1, Shield Expert +1</p>"
+  }
+ },
+ "items": [
+  {
+   "_id": "X8FAUu8xuQNGLdY1",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.X8FAUu8xuQNGLdY1",
+   "name": "Fighter",
+   "type": "class",
+   "img": "systems/arneyan/assets/classes/Fighter.webp",
+   "system": {
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Strength / Dexterity</td></tr><tr><td>Hit Die</td><td><strong>d10</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>3 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr><tr><td>Complexity</td><td>★★☆☆☆ Easy</td></tr><tr><td>Weapons</td><td>Any</td></tr><tr><td>Armour</td><td>Any armour and shields.</td></tr><tr><td>Kit</td><td>At character creation choose a Kit: your fighting tradition and where you learned it (see Kits).</td></tr><tr><td>Identity</td><td>Master of the fundamentals: any weapon, any armour, and combat manoeuvres no one else can match. Where other classes lean on tricks, the Fighter wins by doing the basics better than anyone.</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Weapon Specialisation, Combat Manoeuvres, Combat Reflexes</td></tr><tr><td>2</td><td>Manoeuvre Mastery</td></tr><tr><td>3</td><td>Battle Space</td></tr><tr><td>4</td><td>Combat Dominance</td></tr><tr><td>5</td><td>Unbroken</td></tr><tr><td>6</td><td>Legend of Battle</td></tr><tr><td>7</td><td>Extra Attack, Weapon Specialisation +2</td></tr><tr><td>8</td><td>Combat Dominance (3 attacks), Shield Mastery</td></tr><tr><td>9</td><td>Manoeuvre Mastery improves</td></tr><tr><td>12</td><td>Combat Dominance (4 attacks)</td></tr><tr><td>13</td><td>Battle Space improves, second Weapon Specialisation</td></tr><tr><td>15</td><td>+1 Strength</td></tr><tr><td>17</td><td>Battle Space improves</td></tr><tr><td>19</td><td>Manoeuvre Mastery improves, Weapon Specialisation +3, +1 Strength or Dexterity</td></tr><tr><td>20</td><td>Legend of Battle improves</td></tr><tr><td>22</td><td>Battle Space (Master)</td></tr><tr><td>24</td><td>Unbroken improves</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><ul><li><strong>Weapon Specialisation:</strong> Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</li><li>Improves to +2 damage at 7th level</li><li>Improves to +3 damage at 19th level</li><li>At 13th level, choose a second weapon to specialise in, or add a further +1 damage to your first</li></ul><h3 class=\"arn-level\">1st Level — Combat Manoeuvres</h3><ul><li><strong>Combat Manoeuvres:</strong> Every character can use every manoeuvre; the Fighter's edge is Manoeuvre Mastery. See the Combat Manoeuvres section for details.</li><li><strong>Combat Reflexes:</strong> You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</li></ul><h3 class=\"arn-level\">2nd Level — Manoeuvre Mastery</h3><ul><li><strong>Manoeuvre Mastery:</strong> Manoeuvres that impose disadvantage on your own attack roll (Shield Blow) are now rolled normally, with no disadvantage.</li><li>9th level: a contest-based manoeuvre (Trip, Disarm, Dirty Trick) no longer replaces an attack: <strong>once per round</strong> you may make one as part of a hit.</li><li>19th level: Manoeuvres that previously imposed disadvantage on your attack roll are now rolled with advantage instead.</li></ul><h3 class=\"arn-level\">3rd Level — Battle Space</h3><ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and you reroll 1s on Flank Attack damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul><h3 class=\"arn-level\">4th Level — Combat Dominance</h3><ul><li><strong>Combat Dominance:</strong> When every creature you attack this round is of Level up to half your character Level, you can make extra attacks (your Fighter level sets how many, below), split among them as you like.</li><li>4th level: 2 attacks per round against creatures of Level up to half your character Level</li><li>8th level: 3 attacks per round against creatures of Level up to half your character Level</li><li>12th level: 4 attacks per round against creatures of Level up to half your character Level</li><li>All but the first attack are rolled with <strong>Disadvantage</strong>. Combat Dominance replaces the Extra Attack and the off-hand attack; Flowing Strikes can still add one.</li></ul><h3 class=\"arn-level\">5th Level — Unbroken</h3><ul><li><strong>Unbroken:</strong> Once per day, when reduced to <strong>0 HP</strong> or below, immediately stand at <strong>1 HP</strong>.</li><li>No save, no check — pure will</li><li>24th level: once per encounter instead; for the next round you are immune to all damage and your attacks deal +2 damage dice, then normal rules resume</li></ul><h3 class=\"arn-level\">6th Level — Legend of Battle</h3><ul><li><strong>Legend of Battle:</strong> Once per day, as part of the action you use to attack, you become a force of war that lesser fighters can only dream of. Until the end of your turn:</li><li>All attack rolls are made with advantage</li><li>Every hit deals maximum damage — no rolling</li><li>20th level: lasts <strong>1 minute</strong>, and enemies that can see you must make a <strong>Will save</strong> (Class Save DC) at the start of each of their turns or be frightened for <strong>1 round</strong></li></ul><h3 class=\"arn-level\">7th Level — Extra Attack</h3><ul><li><strong>Extra Attack:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>Does not stack with Combat Dominance — choose one or the other each round</li></ul><h3 class=\"arn-level\">8th Level — Shield Mastery</h3><ul><li><strong>Shield Mastery:</strong> Use a shield as a second weapon without the normal two-weapon attack penalty. It is a Light weapon dealing <strong>1d4</strong> (<strong>1d6</strong> for a Tower Shield), and it keeps its AC bonus.</li></ul><h3 class=\"arn-level\">15th Level — Strength Bonus</h3><ul><li><strong>Strength Bonus:</strong> Gain a permanent +1 to Strength.</li></ul><h3 class=\"arn-level\">19th Level — Attribute Bonus</h3><ul><li><strong>Attribute Bonus:</strong> Gain a permanent +1 to either Strength or Dexterity.</li></ul><h3 class=\"arn-level\">22nd Level — Battle Space (Master)</h3><ul><li><strong>Battle Space</strong> (Master): You move through combat like water — nothing holds you and nothing catches you.</li><li>When you attack, you may also Disengage from any number of enemies as part of the same action</li><li>You have <strong>Advantage</strong> on <strong>Reflex saves</strong></li><li>A Flank Attack deals +2 damage dice instead, and the target cannot make Attacks of Opportunity against you until the start of your next turn</li></ul><h2>Combat Manoeuvres</h2><p>Every manoeuvre in the Combat Manoeuvres section is available to the Fighter from 1st level, and Mastery tiers unlock at 2nd, 9th and 19th level (see Class Abilities). The Fighter also has one manoeuvre of their own:</p><table class=\"arn-table\"><thead><tr><th>Manoeuvre</th><th>Effect</th></tr></thead><tbody><tr><td>Intimidating Strike</td><td>On a hit, target makes <strong>Will save</strong> or is frightened until end of its next turn</td></tr></tbody></table><h2>Kits</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Fighter folder. Drag one onto your character.</p><p>Choose one Kit at character creation. Kits represent your fighting tradition, background, and the culture that forged you.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "levels": 3,
+    "hitDie": "d10",
+    "hpBeyond10": 3,
+    "bthProgression": "martial",
+    "keyAbility": "str",
+    "castingAbility": "",
+    "xpRate": 10,
+    "weapons": "Any",
+    "armour": "Any armour and shields.",
+    "slotTable": [],
+    "featLevels": [
+     1,
+     3,
+     6,
+     11,
+     15,
+     20
+    ],
+    "featPaths": [
+     "General Path",
+     "Martial Path"
+    ],
+    "features": [
+     {
+      "level": 1,
+      "name": "Weapon Specialisation",
+      "uuid": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
+     },
+     {
+      "level": 1,
+      "name": "Combat Manoeuvres",
+      "uuid": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+     },
+     {
+      "level": 2,
+      "name": "Manoeuvre Mastery",
+      "uuid": "Compendium.arneyan.class-features.Item.I49NlzD8ifd82tqh"
+     },
+     {
+      "level": 3,
+      "name": "Battle Space",
+      "uuid": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
+     },
+     {
+      "level": 4,
+      "name": "Combat Dominance",
+      "uuid": "Compendium.arneyan.class-features.Item.6tpYgsxurDJ7czyV"
+     },
+     {
+      "level": 5,
+      "name": "Unbroken",
+      "uuid": "Compendium.arneyan.class-features.Item.rgZZrxEm4YRanjlP"
+     },
+     {
+      "level": 6,
+      "name": "Legend of Battle",
+      "uuid": "Compendium.arneyan.class-features.Item.1bf69xbYkk9fBqpS"
+     },
+     {
+      "level": 7,
+      "name": "Extra Attack",
+      "uuid": "Compendium.arneyan.class-features.Item.Q8Rzh5IxUJGo4mc7"
+     },
+     {
+      "level": 8,
+      "name": "Shield Mastery",
+      "uuid": "Compendium.arneyan.class-features.Item.l0T0N90jxq1w9oCV"
+     },
+     {
+      "level": 15,
+      "name": "Strength Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.njizDPGt1IitBFA5"
+     },
+     {
+      "level": 19,
+      "name": "Attribute Bonus",
+      "uuid": "Compendium.arneyan.class-features.Item.jUGmQcUzb7bbfz48"
+     },
+     {
+      "level": 22,
+      "name": "Battle Space (Master)",
+      "uuid": "Compendium.arneyan.class-features.Item.2HlL0aqGs7bGEZof"
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.classes.Item.YaDsez2mWHHDRSpv"
+   }
+  },
+  {
+   "_id": "c53dPW44NrG9CIV2",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.c53dPW44NrG9CIV2",
+   "name": "Weapon Specialisation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level</li><li>Improves to +3 damage at 19th level</li><li>At 13th level, choose a second weapon to specialise in, or add a further +1 damage to your first</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter",
+    "rules": [
+     {
+      "key": "adv.attack.first",
+      "value": "1",
+      "when": "with your specialised weapon",
+      "label": "",
+      "weapon": "chosen"
+     },
+     {
+      "key": "damage",
+      "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/19))",
+      "when": "with your specialised weapon",
+      "label": "",
+      "weapon": "chosen"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "weaponChoice": {
+     "max": "1:1, 13:2",
+     "value": [
+      "Sword, Long"
+     ]
+    }
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "X8FAUu8xuQNGLdY1",
+     "source": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
+   }
+  },
+  {
+   "_id": "VX8hEZIQXILyjcl8",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.VX8hEZIQXILyjcl8",
+   "name": "Combat Manoeuvres",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<ul><li><strong>Combat Manoeuvres:</strong> Every character can use every manoeuvre; the Fighter's edge is Manoeuvre Mastery. See the Combat Manoeuvres section for details.</li><li><strong>Combat Reflexes:</strong> You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "X8FAUu8xuQNGLdY1",
+     "source": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+   }
+  },
+  {
+   "_id": "Thb3ZbRn8vIuA52C",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.Thb3ZbRn8vIuA52C",
+   "name": "Manoeuvre Mastery",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<ul><li><strong>Manoeuvre Mastery:</strong> Manoeuvres that impose disadvantage on your own attack roll (Shield Blow) are now rolled normally, with no disadvantage.</li><li>9th level: a contest-based manoeuvre (Trip, Disarm, Dirty Trick) no longer replaces an attack: <strong>once per round</strong> you may make one as part of a hit.</li><li>19th level: Manoeuvres that previously imposed disadvantage on your attack roll are now rolled with advantage instead.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 2,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "X8FAUu8xuQNGLdY1",
+     "source": "Compendium.arneyan.class-features.Item.I49NlzD8ifd82tqh"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.I49NlzD8ifd82tqh"
+   }
+  },
+  {
+   "_id": "Go2u4GBt1m1RvNP8",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.Go2u4GBt1m1RvNP8",
+   "name": "Battle Space",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and you reroll 1s on Flank Attack damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 3,
+    "className": "Fighter",
+    "rules": [
+     {
+      "key": "adv.attack",
+      "value": "1",
+      "when": "Flank Attack (you flank whenever an ally is also in melee with the target)",
+      "label": ""
+     },
+     {
+      "key": "ac",
+      "value": "13:1",
+      "when": "unless wielding a two-handed weapon",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Battle Space: {13:reroll 1s on Flank Attack damage}.",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "note.damage",
+      "value": "Battle Space: {17:a Flank Attack also deals +1 damage die}.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "X8FAUu8xuQNGLdY1",
+     "source": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
+   }
+  },
+  {
+   "_id": "teGsmRAZmKAp802U",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.teGsmRAZmKAp802U",
+   "name": "Human",
+   "type": "ancestry",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "system": {
+    "description": "<p>Size Medium • Speed <strong>30ft</strong> • Darkvision None • +1 / +1 to any two attributes of choice, no penalty</p><p><strong><em>Traits</em></strong></p><ul><li>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and is not one of your 3 starting skills. It keeps its <strong>Advantage</strong> if you later train or master the skill.</li><li><strong>Gains an additional Feat from the General Path</strong> (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can't be a Feat you already have.</li><li><strong>Weapon training:</strong> any two martial weapons of choice.</li><li><strong>Armour training:</strong> light, medium.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "size": "medium",
+    "speed": 30,
+    "vision": "",
+    "attributes": "+1 / +1 to any two attributes of choice, no penalty",
+    "bonuses": {},
+    "pickTwo": true,
+    "family": false,
+    "traitList": [
+     {
+      "name": "Choose one skill at creation",
+      "text": "Choose one skill at creation; you have Advantage on checks with it. This is not a Proficiency tier and is not one of your 3 starting skills. It keeps its Advantage if you later train or master the skill."
+     },
+     {
+      "name": "Gains an additional Feat from the General Path",
+      "text": "Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can't be a Feat you already have."
+     },
+     {
+      "name": "Weapon training",
+      "text": "any two martial weapons of choice."
+     },
+     {
+      "name": "Armour training",
+      "text": "light, medium."
+     }
+    ],
+    "choice": null,
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "skill chosen at creation",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "ancestry": {
+      "choice": "",
+      "family": "",
+      "applied": {}
+     }
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.ancestries.Item.qtFpPzacRGlVohYi"
+   }
+  },
+  {
+   "_id": "LWz171itPk8KAfUu",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.LWz171itPk8KAfUu",
+   "name": "Choose one skill at creation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Choose one skill at creation; you have <strong>Advantage</strong> on checks with it. This is not a Proficiency tier and is not one of your 3 starting skills. It keeps its <strong>Advantage</strong> if you later train or master the skill.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "teGsmRAZmKAp802U",
+     "source": "teGsmRAZmKAp802U.Choose one skill at creation"
+    }
+   }
+  },
+  {
+   "_id": "T3K4O5pLZEOfNA4C",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.T3K4O5pLZEOfNA4C",
+   "name": "Gains an additional Feat from the General Path",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Gains an additional Feat from the General Path (The Survivors) at 1st level, on top of their normal 1st-level Feat choice. It follows the usual prerequisites, and can&#x27;t be a Feat you already have.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "teGsmRAZmKAp802U",
+     "source": "teGsmRAZmKAp802U.Gains an additional Feat from the General Path"
+    }
+   }
+  },
+  {
+   "_id": "nqU5f93WSL95iwlR",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.nqU5f93WSL95iwlR",
+   "name": "Weapon training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>any two martial weapons of choice.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "teGsmRAZmKAp802U",
+     "source": "teGsmRAZmKAp802U.Weapon training"
+    }
+   }
+  },
+  {
+   "_id": "QT7i9eXjNuqvGdVi",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.QT7i9eXjNuqvGdVi",
+   "name": "Armour training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/ancestry-person.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>light, medium.</p>",
+    "kind": "ancestry",
+    "level": 1,
+    "className": "Human",
+    "rules": []
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "teGsmRAZmKAp802U",
+     "source": "teGsmRAZmKAp802U.Armour training"
+    }
+   }
+  },
+  {
+   "_id": "O6URXbPXGGgGEjSK",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.O6URXbPXGGgGEjSK",
+   "name": "Boldock Wall Guard (Fighter)",
+   "type": "kit",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>Hardened on the Wall against the Red Waste, or walked away from it. You know what it costs to hold a line.</p><ul><li><strong>Waste-Hardened:</strong> creatures with the Orc ancestry tag have <strong>Disadvantage</strong> on their first attack roll against you each round, and can't make you <strong>Frightened</strong>.</li><li><strong>Wall Authority:</strong> <strong>Advantage</strong> on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "className": "Fighter",
+    "features": [
+     {
+      "name": "Waste-Hardened",
+      "level": 1,
+      "description": "<p>Creatures with the Orc ancestry tag have <strong>Disadvantage</strong> on their first attack roll against you each round, and can't make you <strong>Frightened</strong>.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.against.first",
+        "value": "-1",
+        "when": "by creatures with the Orc ancestry tag",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     },
+     {
+      "name": "Wall Authority",
+      "level": 1,
+      "description": "<p><strong>Advantage</strong> on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": "",
+      "rules": [
+       {
+        "key": "adv.skill",
+        "value": "1",
+        "when": "Perception during watch or guard duty",
+        "label": ""
+       }
+      ],
+      "toggle": false,
+      "active": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.kits.Item.pEuTwbNHPW98sSqe"
+   }
+  },
+  {
+   "_id": "86vffcnQZDI2fNJ7",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.86vffcnQZDI2fNJ7",
+   "name": "Waste-Hardened",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>Creatures with the Orc ancestry tag have <strong>Disadvantage</strong> on their first attack roll against you each round, and can't make you <strong>Frightened</strong>.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Boldock Wall Guard (Fighter)",
+    "rules": [
+     {
+      "key": "adv.against.first",
+      "value": "-1",
+      "when": "by creatures with the Orc ancestry tag",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "O6URXbPXGGgGEjSK",
+     "source": "O6URXbPXGGgGEjSK.0"
+    }
+   }
+  },
+  {
+   "_id": "z8XMC7mONvCMSigH",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.z8XMC7mONvCMSigH",
+   "name": "Wall Authority",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "effects": [],
+   "system": {
+    "description": "<p><strong>Advantage</strong> on Perception checks during watch or guard duty. Recognised authority within the Boldock military.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Boldock Wall Guard (Fighter)",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or guard duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "O6URXbPXGGgGEjSK",
+     "source": "O6URXbPXGGgGEjSK.1"
+    }
+   }
+  },
+  {
+   "_id": "y8n9VN8A8NGOa0yF",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.y8n9VN8A8NGOa0yF",
+   "name": "Combat Reflexes",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+   "system": {
+    "description": "<p>Once per round, make an Attack of Opportunity (one melee attack) against an enemy you can see that leaves your melee reach or moves past or through it. Disengage prevents it.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Martial Path",
+    "levelTaken": 0,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "activities": [
+     {
+      "name": "Attack of Opportunity",
+      "kind": "attacks",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per round, against an enemy you can see that leaves your melee reach or moves past or through it. Disengage prevents it.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "1",
+      "weapons": "melee",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": true,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.j94GG5xujSdpwAD3"
+   }
+  },
+  {
+   "_id": "xIvorL45zeRMJ6Ap",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.xIvorL45zeRMJ6Ap",
+   "name": "Toughness",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-laurels.svg",
+   "system": {
+    "description": "<p><em>(Constitution)</em>  Gain +1 Max HP per level (retroactive). Gain +1 to Constitution (once, on taking this feat). <strong>Advantage</strong> on Constitution-based checks.</p><p class=\"arn-note\">Open to all classes by default.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "General Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "hp.level",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "ability.con",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.RrinZrhSZNSVZ5Ql"
+   }
+  },
+  {
+   "_id": "i9uWpn3ts3a0uelp",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.i9uWpn3ts3a0uelp",
+   "name": "Shield Expert",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+   "system": {
+    "description": "<p>+1 AC while wielding a shield, and add your shield's AC bonus to <strong>Reflex saves</strong>.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Martial Path",
+    "levelTaken": 1,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "rules": [
+     {
+      "key": "ac.shield",
+      "value": "1",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "shield.reflex",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.pBzXivuU5U1ZhOsT"
+   }
+  },
+  {
+   "_id": "CpifIRaiI6om8534",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.CpifIRaiI6om8534",
+   "name": "Mighty Deed of Arms",
+   "type": "feat",
+   "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+   "system": {
+    "description": "<p>Once per round, call your shot before you swing.</p><ul><li>Roll a <strong>d4</strong> alongside your attack; if the hit lands and the <strong>d4</strong> comes up 3 or better, choose one: knock the target <strong>Prone</strong>, disarm it, push it <strong>10ft</strong>, blind it until the end of its next turn, or give it <strong>Disadvantage</strong> on its next attack.</li><li>The target resists with a save against your Class Save DC, using Strength or Dexterity, whichever is higher: Fortitude against <strong>Prone</strong>, a push or a disarm, Reflex against blinding, Will against the attack penalty.</li><li>A creature more than one size larger than you ignores the deed.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Magi, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "path": "Martial Path",
+    "levelTaken": 3,
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "activities": [
+     {
+      "name": "Deed die (1d4)",
+      "kind": "roll",
+      "formula": "1d4",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Roll alongside your attack: on a hit with 3 or better, choose a deed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     },
+     {
+      "name": "Prone, push or disarm",
+      "kind": "save",
+      "formula": "@martialDC",
+      "damageType": "",
+      "ability": "",
+      "save": "fort",
+      "text": "Knock it Prone, push it 10ft or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "Deed: Prone",
+      "spendAny": false
+     },
+     {
+      "name": "Blind",
+      "kind": "save",
+      "formula": "@martialDC",
+      "damageType": "",
+      "ability": "",
+      "save": "ref",
+      "text": "Blind it until the end of its next turn, unless it passes a Reflex save. A creature more than one size larger than you ignores the deed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "Deed: Blinded",
+      "spendAny": false
+     },
+     {
+      "name": "Attack penalty",
+      "kind": "save",
+      "formula": "@martialDC",
+      "damageType": "",
+      "ability": "",
+      "save": "will",
+      "text": "Disadvantage on its next attack, unless it passes a Will save. A creature more than one size larger than you ignores the deed.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "Deed: Off-balance",
+      "spendAny": false
+     }
+    ],
+    "applies": [
+     {
+      "name": "Deed: Prone",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Deed: Blinded",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [
+       "blinded"
+      ],
+      "rules": []
+     },
+     {
+      "name": "Deed: Off-balance",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.feats.Item.iG0QydK6dxaRZNTj"
+   }
+  },
+  {
+   "_id": "S9NEfcE6LoscBkyz",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.S9NEfcE6LoscBkyz",
+   "name": "Endurance",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-heart-plus.svg",
+   "system": {
+    "description": "<p>Pushing through exhaustion, cold, or hunger</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "con",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.SNfIeX75BjonKyqo"
+   }
+  },
+  {
+   "_id": "eqrpz4EFGgomwFwC",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.eqrpz4EFGgomwFwC",
+   "name": "Fire-building",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Starting and maintaining a fire in poor conditions</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.2wJaNY1LGe0Oefnm"
+   }
+  },
+  {
+   "_id": "WR8Kn8R6yvBBLGP1",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.WR8Kn8R6yvBBLGP1",
+   "name": "First Aid/Healing",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>Treating wounds and stabilising the injured</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.uHU3VeDjXNFWESGx"
+   }
+  },
+  {
+   "_id": "SQzELIlomLWMffpG",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.SQzELIlomLWMffpG",
+   "name": "Sword, Long",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-broadsword.svg",
+   "system": {
+    "description": "<p>Versatile</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "15 gp",
+    "equipped": true,
+    "damage": "1d8",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Versatile",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.VHOFT0wNpIuEjcwS"
+   }
+  },
+  {
+   "_id": "sTi50LXFwc5HMeW4",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.sTi50LXFwc5HMeW4",
+   "name": "Axe, Hand/Throwing",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-battle-axe.svg",
+   "system": {
+    "description": "<p>Light, Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "4 gp",
+    "equipped": true,
+    "damage": "1d6",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Light, Thrown",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.bO49hPJXgTXx7gf4"
+   }
+  },
+  {
+   "_id": "V3avK9nwqVvFf1lM",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.V3avK9nwqVvFf1lM",
+   "name": "Dagger",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/weapon-plain-dagger.svg",
+   "system": {
+    "description": "<p>Finesse, Light, Concealable, Thrown</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "2 gp",
+    "equipped": true,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "ability": "finesse",
+    "ranged": false,
+    "range": "20 ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "Finesse, Light, Concealable, Thrown",
+    "bundle": 0,
+    "ammoType": "",
+    "ammoId": ""
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.TMnikZBI4akkSNb2"
+   }
+  },
+  {
+   "_id": "Uwyx9zAWPB8TA3ez",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.Uwyx9zAWPB8TA3ez",
+   "name": "Scale Mail",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/armour-chain-mail.svg",
+   "system": {
+    "description": "<p><strong>Medium armour.</strong> Noisy</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 2.0,
+    "price": "50 gp",
+    "equipped": true,
+    "category": "medium",
+    "ac": 4,
+    "magic": 0,
+    "traits": "Noisy",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dVfuy6eq7rTph61z"
+   }
+  },
+  {
+   "_id": "mYEH1UskGidQE1wc",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.mYEH1UskGidQE1wc",
+   "name": "Shield, Medium Wooden",
+   "type": "armour",
+   "img": "systems/arneyan/assets/icons/shield-shield.svg",
+   "system": {
+    "description": "<p>Buoyant, Fire-Vulnerable</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": true,
+    "category": "shield",
+    "ac": 1,
+    "magic": 0,
+    "traits": "Buoyant, Fire-Vulnerable",
+    "bundle": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.rSBmPy2McmkXzybp"
+   }
+  },
+  {
+   "_id": "DsVX3p1c9LXTg2hy",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.DsVX3p1c9LXTg2hy",
+   "name": "Backpack",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-knapsack.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "2 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": true,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ZOp7yqKhunXC0Pxf"
+   }
+  },
+  {
+   "_id": "iadvj1ppmn2vB6pT",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.iadvj1ppmn2vB6pT",
+   "name": "Bedroll",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-camping-tent.svg",
+   "system": {
+    "description": "<p>Waterproof leather, wool padding, cotton lining, eyehooks (20 gp); thinner warm-climate variant (17 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.lHiXZDAPe8E3q8Yk"
+   }
+  },
+  {
+   "_id": "fe3jQrOvyz6xgkzg",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.fe3jQrOvyz6xgkzg",
+   "name": "Week's Rations",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-bread.svg",
+   "system": {
+    "description": "<p>Seven days of meals for one person, in one pack (10 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "10 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.ORHAv07onuaG4mE4"
+   }
+  },
+  {
+   "_id": "X0OKBaKwiTbLZ9fe",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.X0OKBaKwiTbLZ9fe",
+   "name": "Personal Woollen Canteen",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1/2-gallon, shoulder strap (5 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.0Lwg3iFM9oxV9k2h"
+   }
+  },
+  {
+   "_id": "HN10nHIKyHpfnfI8",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.HN10nHIKyHpfnfI8",
+   "name": "Tinderbox",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Flint block, steel bars, tinder, charred cloth (15 sp); flint and steel alone (5 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.5k1Jk2O2RmCETeya"
+   }
+  },
+  {
+   "_id": "trhMLKPIDdtSEU7E",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.trhMLKPIDdtSEU7E",
+   "name": "Torch",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Low-smoke dungeon torches (1 cp each)</p><p class=\"arn-note\"><strong>Slots:</strong> 1 (bundles 5/slot)</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 5,
+    "slots": 1.0,
+    "price": "1 cp each",
+    "equipped": false,
+    "bundle": 5,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": true,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 20,
+     "dim": 40,
+     "hours": 1,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.7KMsXlmND6q8Hdqn"
+   }
+  },
+  {
+   "_id": "Cl1Ek7HIcVwU7c9x",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.Cl1Ek7HIcVwU7c9x",
+   "name": "Cloak",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-cape.svg",
+   "system": {
+    "description": "<p></p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "5 sp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.E5BqQlLHJGtQ5FG1"
+   }
+  },
+  {
+   "_id": "mHyQzxjWj2HhkdYe",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.mHyQzxjWj2HhkdYe",
+   "name": "Hooded Lantern",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-lantern-flame.svg",
+   "system": {
+    "description": "<p>Standard 360-degree adventuring lantern (7 gp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "7 gp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 30,
+     "dim": 60,
+     "hours": 6,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.XLTyUXAHsWbW1vhM"
+   }
+  },
+  {
+   "_id": "ifYiTLY5qarsGiP2",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.ifYiTLY5qarsGiP2",
+   "name": "Slate and Chalk",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-swap-bag.svg",
+   "system": {
+    "description": "<p>1-ft lap slate (10 gp); 4x6 ft wall slate (30 gp); chalk stick (1 cp; 12 for 1 sp); red/yellow chalk (3 cp ea; 12 for 2 sp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 1.0,
+    "price": "",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.dcD7u4Gc30fduFMF"
+   }
+  },
+  {
+   "_id": "d4fTPh8jCo74udIl",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.d4fTPh8jCo74udIl",
+   "name": "Lamp Oil",
+   "type": "equipment",
+   "img": "systems/arneyan/assets/icons/gear-poison-bottle.svg",
+   "system": {
+    "description": "<p>Whale oil, 1-pint flask (6 cp)</p><p class=\"arn-note\"><strong>Slots:</strong> 1</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "quantity": 2,
+    "slots": 1.0,
+    "price": "6 cp",
+    "equipped": false,
+    "bundle": 0,
+    "ammoType": "",
+    "container": {
+     "holds": false,
+     "capacity": 0,
+     "weightless": false,
+     "extradimensional": false
+    },
+    "consumable": {
+     "use": false,
+     "heal": ""
+    },
+    "charges": {
+     "value": 0,
+     "max": 0,
+     "recharge": "",
+     "crumble": false
+    },
+    "light": {
+     "bright": 0,
+     "dim": 0,
+     "hours": 0,
+     "lit": false,
+     "litAt": 0,
+     "angle": 360
+    },
+    "scroll": {
+     "spell": null,
+     "cl": 0,
+     "dc": 0
+    },
+    "itemSpells": [],
+    "castLevel": 0,
+    "nonCasterCl": 0,
+    "nonCasterDc": 0
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {},
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.equipment.Item.j0dlcgpEDPm6lWDC"
+   }
+  },
+  {
+   "_id": "Axrs08YbRw7D4xrv",
+   "_key": "!actors.items!sxuoqS4zQ8AtBjkq.Axrs08YbRw7D4xrv",
+   "name": "Iron Spikes",
+   "type": "equipment",
+   "img": "icons/svg/item-bag.svg",
+   "system": {
+    "description": "",
+    "quantity": 5,
+    "slots": 0.2
+   },
+   "effects": [],
+   "flags": {}
+  }
+ ],
+ "effects": [],
+ "prototypeToken": {
+  "name": "Brenna Coldwater",
+  "actorLink": true,
+  "disposition": 1,
+  "texture": {
+   "src": "systems/arneyan/assets/classes/Fighter.webp"
+  },
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  },
+  "width": 1,
+  "height": 1
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "pregen": {
+    "adventure": "Jacob's Well (first Keepers)",
+    "seat": 1,
+    "role": "Front line",
+    "sheet": {
+     "ac": 17,
+     "saves": {
+      "fort": 3,
+      "ref": 3,
+      "will": 1
+     },
+     "bth": 2,
+     "hp": 31
+    }
+   }
+  }
+ }
+}
