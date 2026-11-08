@@ -70,6 +70,9 @@ def choice_rules(t):
     m = re.search(r"\+(\d) natural armour AC", t, re.I)
     if m:
         rules.append({"key": "ac", "value": m.group(1), "when": "", "label": ""})
+    # An ancestry's cantrip at creation is one more known (counted on the first casting class).
+    if re.search(r"\bone (?:\w+ )?cantrip\b|\bone</strong> \w+ cantrip", t, re.I):
+        rules.append({"key": "cantrips.extra", "value": "1", "when": "", "label": ""})
     return rules
 
 

@@ -89,4 +89,13 @@ assert.match(src("solo.mjs"), /if \(current && activeGM\(\)\) await passSecondTu
 assert.ok(S.skippedFor({ getFlag: () => ({ combat: "c1", round: 3 }) }, { id: "c1" }, 3));
 assert.ok(!S.skippedFor({ getFlag: () => ({ combat: "c1", round: 3 }) }, { id: "c1" }, 4));
 
+// The High Elf's Wizard cantrip is one more known (Ithrien: 5).
+const elf = one("ancestries", "items_Elf_");
+assert.deepEqual(elf.system.choice.options.find(o => o.name === "High Elf").rules.map(r => [r.key, r.value]), [["cantrips.extra", "1"]]);
+assert.match(src("data/actor-models.mjs"), /mods\.sum\("cantrips\.extra"\)/);
+// Jacob's Well notes from the review.
+const jw = fs.readFileSync(new URL("../build/pregens/jacobs_well.json", import.meta.url), "utf8");
+assert.match(jw, /three times a turn with your two-handed axe \(Cleaving\)/);
+assert.match(jw, /Hide and Move Silently together \(3rd\)/);
+
 console.log("OK books v0.10.53 / M&T v0.10.50");

@@ -297,7 +297,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       return {
         id: c.id, name: c.name, ability: c.system.castingAbility, mod, classLevel: c.system.levels,
         dc: dcParts.reduce((t, p) => t + p.value, 0), dcParts, slots,
-        cantrips: row[0] ?? 0
+        // An ancestry's cantrip (High Elf and others) is one more known, on the first casting class.
+        cantrips: (row[0] ?? 0) + (ci === 0 && (row[0] ?? 0) > 0 ? mods.sum("cantrips.extra") : 0)
       };
     });
     s.spellDC = s.casters.length ? Math.max(...s.casters.map(c => c.dc)) : null;

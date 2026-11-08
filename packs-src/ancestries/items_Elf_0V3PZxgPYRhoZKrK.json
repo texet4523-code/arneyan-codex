@@ -50,7 +50,14 @@
      "name": "High Elf",
      "text": "weapon training (longsword/shortsword/longbow/rapier), one Wizard cantrip at creation, Arcane Sense (innately sense the presence and rough direction of significant magical auras or arcane sites — wards, ley-adjacent places, active enchantments — within 60ft, no check required).",
      "bonuses": {},
-     "rules": []
+     "rules": [
+      {
+       "key": "cantrips.extra",
+       "value": "1",
+       "when": "",
+       "label": ""
+      }
+     ]
     },
     {
      "name": "Saevren (Wood Elf)",
