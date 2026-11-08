@@ -174,7 +174,12 @@ export async function syncLight(actor) {
     ...actor.items.filter(modeLit).map(i => ({ bright: i.system.modeLight, dim: i.system.modeLight, angle: 360 })),
     ...[effectLight(actor)].filter(Boolean)
   ];
-  const best = lit.reduce((b, l) => (Math.max(l.bright, l.dim) > Math.max(b.bright, b.dim) ? l : b), { bright: 0, dim: 0 });
+  // The biggest bright and the biggest dim, each on its own (Continual Flame's 30ft bright beats a torch's 20ft);
+  // it looks like magic only when a spell gives the farthest light outright.
+  const far = l => Math.max(l.bright, l.dim);
+  const top = Math.max(0, ...lit.map(far));
+  const best = { bright: Math.max(0, ...lit.map(l => l.bright)), dim: top, angle: 360,
+    magic: lit.some(l => l.magic && far(l) === top) && !lit.some(l => !l.magic && far(l) === top) };
   const proto = actor.isToken ? actor.token?.light : actor.prototypeToken?.light;
   let saved = actor.getFlag?.(SYS, "baseLight");
   // Remember the light the token had before a torch was lit, to give it back afterwards.
@@ -187,7 +192,8 @@ export async function syncLight(actor) {
   if (lit.length) data = { "light.bright": best.bright, "light.dim": Math.max(best.dim, best.bright), "light.angle": best.angle || 360, "light.color": look.color, "light.alpha": look.alpha, "light.animation": look.animation };
   else if (saved) data = { "light.bright": saved.bright, "light.dim": saved.dim, "light.angle": saved.angle ?? 360, "light.color": saved.color, "light.alpha": saved.alpha, "light.animation": saved.animation };
   else return;
-  const tokens = actor.isToken ? [actor.token] : actor.getActiveTokens(true, true);
+  // Every scene's tokens, not just the one being viewed (a spell can end while the GM is elsewhere).
+  const tokens = actor.isToken ? [actor.token] : (actor.getDependentTokens?.({ linked: true }) ?? actor.getActiveTokens(true, true));
   for (const t of tokens) if (t?.isOwner) await t.update(data).catch(() => null);
   if (!actor.isToken && actor.isOwner) {
     await actor.update(Object.fromEntries(Object.entries(data).map(([k, v]) => [`prototypeToken.${k}`, v]))).catch(() => null);
@@ -756,7 +762,7 @@ export function registerGear() {
       const userId = rest.at(-1);
       if (userId !== game.user.id || !givesLight(effect)) return;
       const actor = effect.parent instanceof Actor ? effect.parent : effect.parent?.parent instanceof Actor ? effect.parent.parent : null;
-      if (actor) setTimeout(() => syncLight(actor), 50);
+      if (actor) setTimeout(() => syncLight(actor).catch(err => console.warn("Arneyan | spell light", err)), 50);
     });
   }
 }
