@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.91 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.92 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.92
+
+- **The Jacob's Well Keepers now match their class pictures** (Kieran, 8 Nov). Five are the Broken Anvil characters made for those pictures, rebuilt at 3rd level: **Haldor Brassbeard** (dwarf Fighter), **Sister Aurelle Dawnward** (aasimar Cleric of Lathander), **Wick Tallow** (half-elf Rogue), **Kavra Skyhewn** (goliath Barbarian, spare) and **Fenna Thornmantle** (wood elf Druid, spare, with Bramble the boar). The sixth is new: **Imara Vael**, a human Wizard of the Silver Tower. Each keeps the seat and the thread of the Keeper it replaces. Keepers already in a world stay: drag the new ones in from the compendium.
+- A pregen that starts in light armour or none counts its Thick Hide (+2 AC) on the sheet (Kavra: AC 16).
 
 ## What's new in 0.10.91
 
