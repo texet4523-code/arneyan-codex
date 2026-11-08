@@ -10,6 +10,7 @@ import { servantOf, lostToForsaken } from "./favour.mjs";
 import { reapply } from "./counters.mjs";
 import { combatFor, combatOnScene } from "./fight.mjs";
 import { durationData } from "./duration.mjs";
+import { unset } from "./compat.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -774,7 +775,7 @@ export async function endEncounterEffects(combat) {
     const ward = inIt && w && (typeof w !== "object" || w.combat === combat.id || w.combat === "next") ? Number(typeof w === "object" ? w.amount : w) || 0 : 0;
     if (ward && actor.update) {
       const temp = Number(actor.system?.attributes?.hp?.temp) || 0;
-      await actor.update({ ...(temp <= ward ? { "system.attributes.hp.temp": 0 } : {}), [`flags.${SYS}.-=wardTemp`]: null }).catch(() => null);
+      await actor.update({ ...(temp <= ward ? { "system.attributes.hp.temp": 0 } : {}), ...unset(`flags.${SYS}.wardTemp`) }).catch(() => null);
     }
     const gone = (actor.effects ?? []).filter(e => {
       const x = e.flags?.[SYS]?.encounter;

@@ -13,6 +13,7 @@ import { ARNEYAN } from "./config.mjs";
 import { weaponKey } from "./effects.mjs";
 import { syncClassFeatures, syncKitFeatures } from "./progression.mjs";
 import { bestiarySource } from "./refresh.mjs";
+import { unset } from "./compat.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -420,7 +421,7 @@ async function clearSheet(actor) {
   if (actor.items.size) await actor.deleteEmbeddedDocuments("Item", actor.items.map(i => i.id), quiet());
   if (actor.effects.size) await actor.deleteEmbeddedDocuments("ActiveEffect", actor.effects.map(e => e.id), quiet());
   const initial = actor.system.constructor.schema.getInitialValue?.() ?? null;
-  const flags = Object.fromEntries(SHEET_FLAGS.filter(k => actor.flags?.[SYS]?.[k] !== undefined).map(k => [`flags.${SYS}.-=${k}`, null]));
+  const flags = Object.fromEntries(SHEET_FLAGS.filter(k => actor.flags?.[SYS]?.[k] !== undefined).flatMap(k => Object.entries(unset(`flags.${SYS}.${k}`))));
   // The system data as a whole (not merged into what's there), then the flags on their own.
   if (initial) await actor.update({ system: initial }, { diff: false, recursive: false, ...quiet() });
   if (Object.keys(flags).length) await actor.update(flags, quiet());
@@ -619,7 +620,7 @@ async function slotsFor(className, level) {
 
 /** Which Bestiary entry the sheet comes from (what "Update from the Bestiary" uses). Never stops the import. */
 async function setBestiarySource(actor, uuid) {
-  await actor.update({ "_stats.compendiumSource": uuid, "flags.core.-=sourceId": null }).catch(err => console.warn("Arneyan | import source", err));
+  await actor.update({ "_stats.compendiumSource": uuid, ...unset("flags.core.sourceId") }).catch(err => console.warn("Arneyan | import source", err));
 }
 
 /** An NPC's stat block (on top of a Bestiary monster if the block names one) and its attacks. */

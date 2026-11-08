@@ -2,6 +2,16 @@
 
 Version 0.10.92 · Foundry v13 and v14 · **Playtest release**
 
+## What's new in 0.10.93
+
+- **Regeneration happens by itself** (Kieran, 8 Nov). At the start of its turn a creature with Regeneration regains its HP (never past its maximum), whispered to the GM. A solo regains once a round, on its first turn.
+  - Damage its text names stops it for its next turn: fire or acid on a troll, radiant on a vampire. The damage card says so, and the next turn's line says why it didn't work. Running water, holy water and sunlight stay the GM's call (the line reminds you).
+  - It only works while the creature has at least 1 HP: a fallen troll rising again is still the GM's call. Regeneration that depends on what made the wound ("does not work against silver weapons") stays a reminder.
+  - **Automatic regeneration** in the system settings turns it off.
+- **Multi-attacks in one click**: a monster's "Claw ×2" (or "2 attacks") rolls every attack, each its own card ("Attack 1 of 2"), all at the current target. Hold Alt to roll just one.
+- **Fixed: Wild Shape on an unlinked token.** Returning to its own form (at 0 HP, when the hour ran out, or from the banner) left the token on the form and lost the creature. It now turns back, with its own HP and the use spent. If a token ever won't turn back, the form stays and the GM is told, rather than the creature going missing.
+- Foundry v14: no more deprecation warnings from the system (removing flags, effect durations, wall senses). v13 works as before.
+
 ## What's new in 0.10.92
 
 - **The Jacob's Well Keepers now match their class pictures** (Kieran, 8 Nov). Five are the Broken Anvil characters made for those pictures, rebuilt at 3rd level: **Haldor Brassbeard** (dwarf Fighter), **Sister Aurelle Dawnward** (aasimar Cleric of Lathander), **Wick Tallow** (half-elf Rogue), **Kavra Skyhewn** (goliath Barbarian, spare) and **Fenna Thornmantle** (wood elf Druid, spare, with Bramble the boar). The sixth is new: **Imara Vael**, a human Wizard of the Silver Tower. Each keeps the seat and the thread of the Keeper it replaces. Keepers already in a world stay: drag the new ones in from the compendium.

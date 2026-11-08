@@ -12,6 +12,7 @@
  * sheet is never altered, so its HP is what it had when it changed.
  */
 import { ARNEYAN } from "./config.mjs";
+import { unset } from "./compat.mjs";
 import { WILD_FORMS } from "./wild-forms.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -246,12 +247,23 @@ export async function doRevert(changed, { dropped = false } = {}) {
   if (original?.id === changed.id) original = null;
   const base = game.actors.get(info.baseActorId);
   const belongs = t => original?.isToken ? t.id === original.token?.id : (t.actorLink && t.actorId === info.baseActorId);
+  const stuck = [];
   for (const scene of game.scenes) {
     // The creature's own tokens, now the form: turned back where they stand.
     const turned = scene.tokens.filter(t => t.actorId === changed.id && t.getFlag(SYS, "shapeBefore"));
     for (const t of turned) {
       const before = t.getFlag(SYS, "shapeBefore");
-      await t.update({ ...tokenFromForm(before), [`flags.${SYS}.-=shapeBefore`]: null }, { arneyanRevert: true, animate: false });
+      // The token's own creature first, then (unlinked) its own changes: v14 drops an update that relinks a token
+      // and sets its changes at once, which left the token on the form and the creature lost (0.10.92).
+      const { delta, ...back } = tokenFromForm(before);
+      await t.update({ ...back, ...unset(`flags.${SYS}.shapeBefore`) }, { arneyanRevert: true, animate: false });
+      if (delta && !back.actorLink && t.actorId === before.actorId) {
+        await t.update({ delta }, { arneyanRevert: true, animate: false }).catch(err => console.warn("Arneyan | change shape (token changes)", err));
+      }
+      if (t.actorId !== before.actorId) {
+        stuck.push(t);
+        continue;
+      }
       await setCombatantActor(scene, t.id, before.actorId);
     }
     // Before 0.10.46 the creature's token waited hidden while a separate form token stood in for it.
@@ -280,6 +292,12 @@ export async function doRevert(changed, { dropped = false } = {}) {
       await swapCombatants(scene, f.id, made);
     }
     if (forms.length) await scene.deleteEmbeddedDocuments("Token", forms.map(t => t.id));
+  }
+  // A token that wouldn't turn back keeps the form (and the form its actor), rather than pointing at nothing.
+  if (stuck.length) {
+    ui.notifications?.error(`${info.originalName} couldn't return to its own form: its token didn't change back. The form stays for now.`);
+    console.warn("Arneyan | change shape: tokens that didn't turn back", stuck.map(t => t.uuid));
+    return null;
   }
   // An object keeps the creature's own stats, so what happened to them stays.
   const back = await fromUuid(info.originalUuid).catch(() => null) ?? original;

@@ -11,6 +11,7 @@
  * - Acting out of turn (books v0.10.25; "reactions" before): no tracker (Kieran, 20 Oct); the features say so in chat.
  * - Firearms: Misfire Threshold, the natural 1 catastrophe, Reliable, Silent Mechanism and training.
  */
+import { senseTypes } from "./compat.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { d20Roll, damageRoll, modeFromEvent } from "./rolls.mjs";
 import { endEncounterEffects, statusesOf, toggleCondition } from "./effects.mjs";
@@ -234,7 +235,7 @@ const autoCover = () => { try { return game.settings.get(SYS, "wallCover") !== f
 
 /** The scene's walls that give cover (coverWall). */
 function coverWalls() {
-  const S = CONST.WALL_SENSE_TYPES ?? {}, D = CONST.WALL_DOOR_STATES ?? {};
+  const S = senseTypes(), D = CONST.WALL_DOOR_STATES ?? {};
   const kinds = { LIMITED: S.LIMITED ?? 10, NORMAL: S.NORMAL ?? 20, OPEN: D.OPEN ?? 1 };
   return (canvas?.walls?.placeables ?? []).map(w => coverWall(w.document, kinds)).filter(Boolean);
 }

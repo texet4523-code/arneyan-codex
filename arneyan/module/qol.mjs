@@ -7,6 +7,8 @@
  *   selected token (or your character).
  */
 import { turnDamageFor } from "./counters.mjs";
+import { regenFor, regenStep } from "./regen.mjs";
+import { unset } from "./compat.mjs";
 const SYS = "arneyan";
 const isGM = () => !!game.users?.activeGM?.isSelf;
 
@@ -229,7 +231,9 @@ export async function turnReminder(combat, c = combat.combatant) {
   }
   // A solo's regeneration and ongoing damage come at the start of its first turn only (M&T v0.10.41).
   const secondTurn = !!c.flags?.[SYS]?.soloOf;
-  const regen = secondTurn ? null : actor.items.find(i => /regenerat/i.test(i.name));
+  // (Regeneration the system works out itself posts its own line: regenerate below.)
+  const rf = secondTurn ? null : regenFor(actor);
+  const regen = rf && !(rf.regen && autoRegen()) ? rf.item : null;
   if (regen) lines.push(`${regen.name}: ${String(regen.system.description ?? "").replace(/<[^>]+>/g, "").slice(0, 160)}`);
   const ongoing = [...(actor.statuses ?? [])].filter(id => (secondTurn ? ["poisoned", "confused"] : ["burning", "poisoned", "confused"]).includes(id));
   for (const id of ongoing) {
@@ -243,6 +247,44 @@ export async function turnReminder(combat, c = combat.combatant) {
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor, token: c.token }), whisper: owners,
     content: `<div class="arn-card arn-report"><header class="arn-card-title"><i class="fa-solid fa-hourglass-start"></i> <span>${foundry.utils.escapeHTML(c.name)}'s turn</span></header><ul>${lines.map(l => `<li>${foundry.utils.escapeHTML(l)}</li>`).join("")}</ul></div>`
+  });
+}
+
+/* -------------------------------------------- */
+/*  Regeneration                                */
+/* -------------------------------------------- */
+
+const autoRegen = () => { try { return game.settings.get(SYS, "autoRegen") !== false; } catch { return true; } };
+
+/**
+ * The start of a regenerating creature's turn (the GM's client): it regains its HP, unless damage that stops it
+ * (fire on a troll) landed since its last turn. Once per turn, and on a solo's first turn each round only.
+ */
+export async function regenerate(combat, c = combat.combatant) {
+  if (!autoRegen()) return;
+  const actor = c?.actor;
+  if (!actor || c.defeated || c.flags?.[SYS]?.soloOf) return;
+  const rf = regenFor(actor);
+  if (!rf?.regen) return;
+  const mark = `${combat.id}.${combat.round}.${combat.turn}`;
+  if (actor.getFlag(SYS, "regenAt") === mark) return;
+  const hp = actor.system.attributes?.hp ?? {};
+  const stoppedBy = actor.getFlag(SYS, "regenStopped") || "";
+  const step = regenStep(rf.regen, { value: hp.value, max: hp.effectiveMax ?? hp.max }, stoppedBy);
+  await actor.update({ [`flags.${SYS}.regenAt`]: mark, ...(stoppedBy ? unset(`flags.${SYS}.regenStopped`) : {}) });
+  if (step.reason === "full" || step.reason === "down") return;
+  let line;
+  if (step.stopped) line = `${rf.item.name} doesn't work this turn (${step.reason} damage).`;
+  else {
+    await actor.applyDamage(step.heal, { mult: -1 });
+    const now = actor.system.attributes?.hp?.value ?? "?";
+    line = `${rf.item.name}: regains ${step.heal} HP (now ${now}/${hp.effectiveMax ?? hp.max}).`;
+  }
+  const extra = rf.regen.otherStops ? " (Running water, holy water or sunlight stop it too: the GM's call.)" : "";
+  return ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ actor, token: c.token }),
+    whisper: game.users.filter(u => u.isGM).map(u => u.id),
+    content: `<div class="arn-card"><p><i class="fa-solid fa-heart-pulse"></i> ${foundry.utils.escapeHTML(line + extra)}</p></div>`
   });
 }
 
@@ -270,6 +312,10 @@ export function registerQol() {
       if (tool) tool.active = !!value;
       ui.controls?.render?.();
     }
+  });
+  game.settings.register(SYS, "autoRegen", {
+    name: "Automatic regeneration", hint: "A creature with Regeneration regains its HP at the start of its turn (whispered to the GM). Damage its text names (fire on a troll) stops it for its next turn.",
+    scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYS, "turnReminders", {
     name: "Start of turn reminders", hint: "One card, to the creature's owners and the GM, listing concentration, effects about to end, ongoing damage and Regeneration.",

@@ -10,6 +10,7 @@ import { ARNEYAN } from "./config.mjs";
 import { d20Roll, damageRoll } from "./rolls.mjs";
 import { HazardData } from "./data/hazard-models.mjs";
 import { partyMembers } from "./party.mjs";
+import { unset } from "./compat.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -384,7 +385,7 @@ export async function advanceTimer(id) {
         lines.push(`${a.name} drops to 0 HP and falls unconscious.`);
       }
       if (event === "dying") {
-        if (a.type === "character" && (a.system.attributes?.hp?.value ?? 0) >= 0) await a.update({ "system.attributes.hp.value": -1, "system.attributes.stable": false, "flags.arneyan.-=lastChance": null });
+        if (a.type === "character" && (a.system.attributes?.hp?.value ?? 0) >= 0) await a.update({ "system.attributes.hp.value": -1, "system.attributes.stable": false, ...unset("flags.arneyan.lastChance") });
         lines.push(a.type === "character" ? `${a.name} is dying (see Death & Dying).` : `${a.name} dies.`);
       }
     }

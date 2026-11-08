@@ -10,6 +10,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { pickClass } from "./progression.mjs";
+import { unset } from "./compat.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYSFLAG = "arneyan";
@@ -386,7 +387,7 @@ async function abilityScoresWindow(actor) {
   });
   if (!res || res === "skip") return false;
   // Remembered so a first ancestry above 1st level knows its bonuses still need adding (progression.mjs).
-  await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true, "flags.arneyan.-=needsScores": null });
+  await actor.update({ ...Object.fromEntries(KEYS.map(k => [`system.abilities.${k}.value`, res.scores[k]])), "flags.arneyan.scoresRolled": true, ...unset("flags.arneyan.needsScores") });
   if (res.took) {
     const ok = await viaGm("take", { id: res.took, by: actor.name });
     if (!ok) ui.notifications.warn("No GM is on to take that set off the donated list: ask the GM to remove it.");

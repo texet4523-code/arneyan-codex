@@ -16,6 +16,7 @@
  *   neither). Once, until it is back to full HP.
  */
 import { ARNEYAN } from "./config.mjs";
+import { unset } from "./compat.mjs";
 import { statusesOf } from "./effects.mjs";
 import { combatFor, isCombatantOf } from "./fight.mjs";
 
@@ -360,7 +361,7 @@ export function registerSolo() {
   // A fight's end: its turn counts start again next time.
   Hooks.on("deleteCombat", combat => {
     if (!activeGM()) return;
-    for (const c of combat.combatants ?? []) if (soloOf(c) && c.actor) c.actor.update({ [`flags.${SYS}.soloControl`]: noCounts(), [`flags.${SYS}.-=soloShakes`]: null }).catch(() => null);
+    for (const c of combat.combatants ?? []) if (soloOf(c) && c.actor) c.actor.update({ [`flags.${SYS}.soloControl`]: noCounts(), ...unset(`flags.${SYS}.soloShakes`) }).catch(() => null);
   });
   // Bloodied, once until it's back to full HP.
   Hooks.on("updateActor", (actor, changes) => {

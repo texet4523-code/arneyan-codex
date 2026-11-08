@@ -5,7 +5,7 @@
 import { ARNEYAN } from "./config.mjs";
 import { spellTargets } from "./targeting.mjs";
 import { burnLuck, damageRoll, outcomeFor } from "./rolls.mjs";
-import { turnReminder } from "./qol.mjs";
+import { regenerate, turnReminder } from "./qol.mjs";
 import { tickCounters, turnDamageFor, reapply } from "./counters.mjs";
 import { effectDataFor, applyEffectTo, endConcentration, onConcentrationDeleted, expireEffects, toggleCondition, statusesOf } from "./effects.mjs";
 import { skippedFor } from "./solo.mjs";
@@ -694,6 +694,7 @@ async function onTurnChange(combat, changed, options = {}) {
     });
   }
   // The reminder card comes last, after the expired effects are gone and the bleeding and burning cards.
+  if (options.direction !== -1) await regenerate(combat, current).catch(err => console.warn("Arneyan | regeneration", err));
   if (options.direction !== -1) await turnReminder(combat, current).catch(err => console.warn("Arneyan | reminder", err));
 }
 

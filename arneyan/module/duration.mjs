@@ -7,6 +7,7 @@
  * `readDuration` reads either shape (from an effect, its source or creation data) as one plain object, and
  * `durationData` writes the shape the running version stores. Nothing here throws.
  */
+import { own } from "./compat.mjs";
 
 const ROUND = 6;
 const MINUTE = 60, HOUR = 3600, DAY = 86400;
@@ -46,30 +47,32 @@ export function readDuration(src) {
     const obj = v => (v && typeof v === "object" ? v : null);
     const s = obj(src?._source) ?? obj(src) ?? {};
     const isBare = !("duration" in s) && ("value" in s || "units" in s || "seconds" in s || "rounds" in s || "turns" in s);
-    const d = (isBare ? s : obj(s.duration)) ?? {};
-    const st = isBare ? null : obj(s.start);
+    const d = (isBare ? s : obj(own(s, "duration") ?? s.duration)) ?? {};
+    const st = isBare ? null : obj(own(s, "start") ?? null);
+    // (Only plain data: v14 hangs warning getters where v13's fields were.)
+    const get = k => own(d, k);
     // v13 lengths (also what a module may still pass to a v14 create, before Foundry migrates it).
-    const legacy = pos(d.seconds) || pos(d.rounds) || pos(d.turns);
+    const legacy = pos(get("seconds")) || pos(get("rounds")) || pos(get("turns"));
     if (legacy) {
       out.shape = "v13";
-      out.seconds = pos(d.seconds);
-      out.rounds = pos(d.rounds);
-      out.turns = pos(d.turns);
-    } else if (pos(d.value) && typeof d.units === "string") {
+      out.seconds = pos(get("seconds"));
+      out.rounds = pos(get("rounds"));
+      out.turns = pos(get("turns"));
+    } else if (pos(get("value")) && typeof get("units") === "string") {
       out.shape = "v14";
-      const v = pos(d.value), u = d.units.toLowerCase();
+      const v = pos(get("value")), u = get("units").toLowerCase();
       if (u === "rounds" || u === "round") out.rounds = v;
       else if (u === "turns" || u === "turn") out.turns = v;
       else out.seconds = v * unitSeconds(u);
     }
     // Start: v13's duration.startTime/startRound/startTurn/combat, else v14's start.*. v14 fills start.time with 0
     // by default (and copies from items carry it), so 0 there counts as not set.
-    const t13 = num(d.startTime);
-    const t14 = num(st?.time);
+    const t13 = num(get("startTime"));
+    const t14 = num(own(st, "time"));
     out.startTime = t13 !== null ? t13 : t14 ? t14 : null;
-    out.startRound = num(d.startRound) ?? num(st?.round);
-    out.startTurn = num(d.startTurn) ?? num(st?.turn);
-    out.combat = d.combat ?? st?.combat ?? null;
+    out.startRound = num(get("startRound")) ?? num(own(st, "round"));
+    out.startTurn = num(get("startTurn")) ?? num(own(st, "turn"));
+    out.combat = get("combat") ?? own(st, "combat") ?? null;
   } catch { /* an unreadable duration is no duration */ }
   return out;
 }

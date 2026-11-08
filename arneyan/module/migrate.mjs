@@ -22,6 +22,7 @@
  * a character whose update failed is tried again the next time the world loads.
  */
 import { formulaUsesFor } from "./data/actor-models.mjs";
+import { unset } from "./compat.mjs";
 
 const SYS = "arneyan";
 /** The version a run brings the world to: the installed system's. */
@@ -597,7 +598,7 @@ export async function putBack(uuids = [], version = null) {
     keepPlay(i, data);
     const paths = [...new Set([...(i.flags?.[SYS]?.putBack ?? []), ...Object.keys(data)])];
     const k = i.parent ?? null;
-    byParent.set(k, [...(byParent.get(k) ?? []), { _id: i.id, ...data, [`flags.${SYS}.putBack`]: paths, [`flags.${SYS}.-=before`]: null }]);
+    byParent.set(k, [...(byParent.get(k) ?? []), { _id: i.id, ...data, [`flags.${SYS}.putBack`]: paths, ...unset(`flags.${SYS}.before`) }]);
   }
   let n = 0;
   for (const [actor, ups] of byParent) {

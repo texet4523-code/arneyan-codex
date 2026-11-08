@@ -12,6 +12,9 @@ import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubd
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 import { villainNo, villainGate, villainUsed } from "./solo.mjs";
+import { unset, unsetKey } from "./compat.mjs";
+import { regenFor, stoppingType } from "./regen.mjs";
+import { attacksOf } from "./multiattack.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -366,7 +369,7 @@ export class ArneyanActor extends Actor {
     // The world update's backups don't travel with a duplicated or imported character.
     // (Embedded items merge by id, so the key has to be deleted, not just left out.)
     const backed = (this._source.items ?? []).filter(i => i.flags?.arneyan?.before);
-    if (backed.length) this.updateSource({ items: backed.map(i => ({ _id: i._id, flags: { arneyan: { "-=before": null } } })) });
+    if (backed.length) this.updateSource({ items: backed.map(i => ({ _id: i._id, flags: { arneyan: { ...unsetKey("before") } } })) });
     const from = this._source?._stats?.compendiumSource ?? "";
     if (typeof from !== "string" || !from.startsWith("Compendium.arneyan.") || this._source?._stats?.duplicateSource) return;
     let changed = false;
@@ -890,7 +893,10 @@ export class ArneyanActor extends Actor {
     if (soaked) after.push(`${soaked} on temporary HP`);
     // Non-lethal (subdual) damage goes on its own track instead of off HP (combat.mjs).
     const value = subdual ? before : before - toHp;
-    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}) }, { arneyanDowned: true });
+    // Fire on a troll (and the like): its Regeneration skips its next turn (regen.mjs, qol.mjs).
+    const stopsRegen = dmg > 0 ? stoppingType(regenFor(this)?.regen, taken) : "";
+    await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}), ...(stopsRegen ? { [`flags.${SYS}.regenStopped`]: stopsRegen } : {}) }, { arneyanDowned: true });
+    if (stopsRegen) lines.push(`${stopsRegen} stops its regeneration next turn`);
     await this._syncDowned(before);
     // Concentration check.
     if (dmg > 0 && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
@@ -941,7 +947,7 @@ export class ArneyanActor extends Actor {
     }
     // No longer dying (stable, at 0 or more, or dead): the next time they're dying brings a new Last Chance.
     if (this.getFlag?.(SYS, "lastChance") && (hp >= 0 || hp <= this.system.attributes.deathAt || this.system.attributes.stable)) {
-      await this.update({ [`flags.${SYS}.-=lastChance`]: null }).catch(() => null);
+      await this.update({ ...unset(`flags.${SYS}.lastChance`) }).catch(() => null);
     }
     const deathAt = this.system.attributes.deathAt;
     if (hp <= deathAt) {
@@ -982,14 +988,14 @@ export class ArneyanActor extends Actor {
     const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)" });
     const f = msg?.flags?.[SYS] ?? {};
     const ok = !f.autoFail && (f.natural === 20 || (f.natural !== 1 && f.total >= 10));
-    if (ok) await this.update({ "system.attributes.stable": true, [`flags.${SYS}.-=lastChance`]: null });
+    if (ok) await this.update({ "system.attributes.stable": true, ...unset(`flags.${SYS}.lastChance`) });
     ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} ${ok ? "is stabilised and stops bleeding." : "is still dying. That was their Last Chance this time: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now."}</p></div>` });
   }
 
   /** An ally's successful Wisdom check (DC 10), First Aid, or the GM's say-so. */
   async stabilise() {
     if (this.type !== "character" || !game.user.isGM) return;
-    await this.update({ "system.attributes.stable": true, [`flags.${SYS}.-=lastChance`]: null });
+    await this.update({ "system.attributes.stable": true, ...unset(`flags.${SYS}.lastChance`) });
     ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} is stabilised and stops bleeding.</p></div>` });
   }
 
@@ -1187,7 +1193,7 @@ export class ArneyanItem extends Item {
       try { const st = await stampOnCreate(stored); if (st) this.updateSource({ "flags.arneyan.synced": st }); } catch (err) { console.warn("Arneyan | fingerprint", err); }
     }
     // The world update's copy of what it replaced belongs to the item it was taken from, not to copies of it.
-    if (stored.flags?.arneyan?.before && !options?.arneyanMigration) this.updateSource({ "flags.arneyan.-=before": null });
+    if (stored.flags?.arneyan?.before && !options?.arneyanMigration) this.updateSource({ ...unset("flags.arneyan.before") });
     // A lit torch handed to someone else arrives unlit.
     if (this.system?.light?.lit && !options.arneyanGrant) this.updateSource(putOutData(this.system.light));
     const actor = this.parent;
@@ -1223,7 +1229,7 @@ export class ArneyanItem extends Item {
     }
     if (this.type === "ancestry" && !actor.items.has(this.id)) {
       // Dropped on (not arriving with an imported or duplicated character): set it up, starting clean.
-      this.updateSource({ "flags.arneyan.fresh": true, "flags.arneyan.-=ancestry": null, name: this.name.replace(/\s*\(.*\)$/, "") });
+      this.updateSource({ "flags.arneyan.fresh": true, ...unset("flags.arneyan.ancestry"), name: this.name.replace(/\s*\(.*\)$/, "") });
     }
     if (this.type === "spell" && !this.system.className) {
       // Cast it as the first class on this character whose list has it.
@@ -1279,11 +1285,11 @@ export class ArneyanItem extends Item {
       if (!this.flags.arneyan?.fresh) return;
       const classes = actor.items.filter(i => i.type === "class");
       if (classes.length === 1) {
-        await this.update({ "flags.arneyan.-=fresh": null });
+        await this.update({ ...unset("flags.arneyan.fresh") });
         return firstLevelSetup(actor, this);
       }
       // A new class for a multiclass character: its 1st level is a normal level up.
-      await this.update({ "system.levels": 0, "flags.arneyan.-=fresh": null });
+      await this.update({ "system.levels": 0, ...unset("flags.arneyan.fresh") });
       const done = await setClassLevel(actor, this, 1);
       if (done === false && actor.items.has(this.id)) {
         ui.notifications.info(`${this.name} was not added.`);
@@ -1294,7 +1300,7 @@ export class ArneyanItem extends Item {
     if (this.type === "kit") return syncKitFeatures(actor, this);
     if (this.type === "ancestry") {
       if (!this.flags.arneyan?.fresh) return;
-      await this.update({ "flags.arneyan.-=fresh": null });
+      await this.update({ ...unset("flags.arneyan.fresh") });
       const old = actor.items.filter(i => i.type === "ancestry" && i.id !== this.id).map(i => i.id);
       if (old.length) await actor.deleteEmbeddedDocuments("Item", old);
       await actor.update({ "system.attributes.speed": this.system.speed, "system.details.size": this.system.size, "system.details.senses": this.system.vision ?? "" });
@@ -1329,7 +1335,18 @@ export class ArneyanItem extends Item {
     if (handled !== undefined) return handled;
     if (["spell", "ability", "feat"].includes(this.type) && this._forsakenBlocked()) return null;
     switch (this.type) {
-      case "weapon": return actor?.rollAttack(this, event);
+      case "weapon": {
+        // A monster's "Claw ×2" (or "2 attacks"): every attack in one click, each its own card. Alt rolls just one.
+        const n = attacksOf(this);
+        if (!actor || n <= 1 || event?.altKey) return actor?.rollAttack(this, event);
+        let last = null;
+        for (let k = 1; k <= n; k++) {
+          const msg = await actor.rollAttack(this, event, { label: `Attack ${k} of ${n}` });
+          if (!msg) break;
+          last = msg;
+        }
+        return last;
+      }
       case "skill": return actor?.rollSkill(this, event);
       case "spell": {
         // Books v0.10.49 (K56): a grappled caster can't perform somatic components (only spells with no S).

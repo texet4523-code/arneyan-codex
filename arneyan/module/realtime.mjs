@@ -9,6 +9,7 @@
  * by day, and a gradual change from dawn to full day and from dusk to full night. A scene can be left out (indoors,
  * underground). Times are minutes after midnight.
  */
+import { unset } from "./compat.mjs";
 const SYS = "arneyan";
 const DAY = 86400;
 
@@ -263,7 +264,7 @@ async function putBack(scene) {
   if (!scene || was === undefined || !game.user.isGM) return;
   // Still followed (ticked again, or daylight back on, before this turn came): leave it to daylight.
   if (sceneFollows(scene)) return;
-  await scene.update({ [darknessKey(scene)]: Number(was) || 0, [`flags.${SYS}.-=darknessBefore`]: null }, { animateDarkness: 2000 }).catch(err => console.warn("Arneyan | daylight", err));
+  await scene.update({ [darknessKey(scene)]: Number(was) || 0, ...unset(`flags.${SYS}.darknessBefore`) }, { animateDarkness: 2000 }).catch(err => console.warn("Arneyan | daylight", err));
 }
 
 /* -------------------------------------------- */
