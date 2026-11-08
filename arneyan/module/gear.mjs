@@ -151,6 +151,19 @@ export async function rechargeAtDawn(actor) {
 /* -------------------------------------------- */
 
 const LIGHT = { color: "#ff9b3d", alpha: 0.35, animation: { type: "torch", speed: 3, intensity: 3 } };
+// Magical light (the Light spell, Daylight, Continual Flame): steady and pale, no flicker.
+const SPELL_LIGHT = { color: "#fff1cc", alpha: 0.25, animation: { type: null } };
+
+/** Light from effects on the creature (a Light spell): { bright, dim } in feet, the biggest of each, or null. */
+function effectLight(actor) {
+  const m = actor?.system?.mods;
+  const big = key => Math.max(0, ...((m?.numbers?.get?.(key) ?? []).map(e => Number(e.value) || 0)));
+  const bright = big("light.bright"), dim = big("light.dim");
+  return bright || dim ? { bright, dim: Math.max(bright, dim), angle: 360, magic: true } : null;
+}
+
+/** Does this effect give light (its rules name light.bright or light.dim)? */
+const givesLight = effect => (effect?.flags?.[SYS]?.rules ?? []).some(r => /^light\.(bright|dim)$/.test(String(r?.key ?? "")));
 
 /** The actor's tokens show the brightest lit light source it carries; with none lit, the token's own light comes back. */
 export async function syncLight(actor) {
@@ -158,7 +171,8 @@ export async function syncLight(actor) {
   // Lit torches and lanterns, and weapons whose mode gives light (a Flame Tongue ignited).
   const lit = [
     ...actor.items.filter(i => i.type === "equipment" && i.system.light?.lit).map(i => i.system.light),
-    ...actor.items.filter(modeLit).map(i => ({ bright: i.system.modeLight, dim: i.system.modeLight, angle: 360 }))
+    ...actor.items.filter(modeLit).map(i => ({ bright: i.system.modeLight, dim: i.system.modeLight, angle: 360 })),
+    ...[effectLight(actor)].filter(Boolean)
   ];
   const best = lit.reduce((b, l) => (Math.max(l.bright, l.dim) > Math.max(b.bright, b.dim) ? l : b), { bright: 0, dim: 0 });
   const proto = actor.isToken ? actor.token?.light : actor.prototypeToken?.light;
@@ -169,7 +183,8 @@ export async function syncLight(actor) {
     await actor.setFlag(SYS, "baseLight", saved);
   }
   let data;
-  if (lit.length) data = { "light.bright": best.bright, "light.dim": Math.max(best.dim, best.bright), "light.angle": best.angle || 360, "light.color": LIGHT.color, "light.alpha": LIGHT.alpha, "light.animation": LIGHT.animation };
+  const look = best.magic ? SPELL_LIGHT : LIGHT;
+  if (lit.length) data = { "light.bright": best.bright, "light.dim": Math.max(best.dim, best.bright), "light.angle": best.angle || 360, "light.color": look.color, "light.alpha": look.alpha, "light.animation": look.animation };
   else if (saved) data = { "light.bright": saved.bright, "light.dim": saved.dim, "light.angle": saved.angle ?? 360, "light.color": saved.color, "light.alpha": saved.alpha, "light.animation": saved.animation };
   else return;
   const tokens = actor.isToken ? [actor.token] : actor.getActiveTokens(true, true);
@@ -730,9 +745,18 @@ export function registerGear() {
       btn.addEventListener("click", ev => { ev.preventDefault(); scrollEffect(message, Number(btn.dataset.index)); });
     }
   });
-  // A token placed for someone carrying a lit torch shows its light.
+  // A token placed for someone carrying a lit torch (or under a Light spell) shows its light.
   Hooks.on("createToken", (token, options, userId) => {
     if (userId !== game.user.id) return;
-    if (token.actor?.items?.some(i => i.type === "equipment" && i.system.light?.lit)) syncLight(token.actor);
+    if (token.actor?.items?.some(i => i.type === "equipment" && i.system.light?.lit) || effectLight(token.actor)) syncLight(token.actor);
   });
+  // A Light spell put on a creature, ended or switched off: its token lights up or goes back (Jacob's Well, 8 Nov).
+  for (const hook of ["createActiveEffect", "deleteActiveEffect", "updateActiveEffect"]) {
+    Hooks.on(hook, (effect, ...rest) => {
+      const userId = rest.at(-1);
+      if (userId !== game.user.id || !givesLight(effect)) return;
+      const actor = effect.parent instanceof Actor ? effect.parent : effect.parent?.parent instanceof Actor ? effect.parent.parent : null;
+      if (actor) setTimeout(() => syncLight(actor), 50);
+    });
+  }
 }

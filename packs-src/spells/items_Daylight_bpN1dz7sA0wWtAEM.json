@@ -40,7 +40,29 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Daylight",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": "60",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "light.dim",
+      "value": "120",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
  },
  "effects": [],
  "folder": "TosiXyO7gR9by0QD",

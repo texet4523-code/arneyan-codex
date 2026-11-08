@@ -11639,5 +11639,83 @@
     }
    ]
   }
+ },
+ "spells/7tbOQ7PalxLYPrKt": {
+  "name": "Light",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Light",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": 20
+     },
+     {
+      "key": "light.dim",
+      "value": 40
+     }
+    ]
+   }
+  ],
+  "summary": "Apply it to the creature holding the lit object (target your own token for yourself): its token sheds bright light 20ft and dim light 20ft more, 1 hour per level, like a lit torch. Kieran, 8 Nov 2026 (Jacob's Well).",
+  "manual": "Light on an object nobody holds: place a light on the map by hand.",
+  "confidence": "high"
+ },
+ "spells/bpN1dz7sA0wWtAEM": {
+  "name": "Daylight",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Daylight",
+    "target": "target",
+    "rounds": "100*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": 60
+     },
+     {
+      "key": "light.dim",
+      "value": 120
+     }
+    ]
+   }
+  ],
+  "summary": "Apply it to the creature holding the lit object (target your own token for yourself): its token sheds bright light 60ft and dim light 60ft more, 10 minutes per level, like a lit torch. Kieran, 8 Nov 2026 (Jacob's Well).",
+  "manual": "Light on an object nobody holds: place a light on the map by hand.",
+  "confidence": "high"
+ },
+ "spells/yuFPzOtlxnYJISWQ": {
+  "name": "Continual Flame",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Continual Flame",
+    "target": "target",
+    "rounds": "",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": 30
+     },
+     {
+      "key": "light.dim",
+      "value": 30
+     }
+    ]
+   }
+  ],
+  "summary": "Apply it to the creature holding the lit object (target your own token for yourself): its token sheds bright light 30ft, until dispelled, like a lit torch. Kieran, 8 Nov 2026 (Jacob's Well).",
+  "manual": "Light on an object nobody holds: place a light on the map by hand.",
+  "confidence": "high"
  }
 }

@@ -48,7 +48,29 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Light",
+    "target": "target",
+    "rounds": "600*@cl",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": "20",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "light.dim",
+      "value": "40",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
  },
  "effects": [],
  "folder": "dTT7k26x8ayyUTNM",

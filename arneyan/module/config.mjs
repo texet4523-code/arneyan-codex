@@ -328,7 +328,9 @@ ARNEYAN.ruleKeys = {
     // HP regained on top of the usual after a long rest (the Monk's Fast Healing, books v0.10.38).
     "rest.heal",
     // While a shield is equipped (Shield Expert, 8 Nov 2026): ac.shield adds to AC; shield.reflex adds the shields' AC to Reflex.
-    "ac.shield", "shield.reflex", "cantrips.extra"],
+    "ac.shield", "shield.reflex", "cantrips.extra",
+    // Light the creature sheds, in feet (the Light spell on it or on something it holds: light.bright 20, light.dim 40).
+    "light.bright", "light.dim"],
   "When applied (once)": ["hp.temp", "exhaustion"],
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).

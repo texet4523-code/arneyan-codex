@@ -44,7 +44,29 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Continual Flame",
+    "target": "target",
+    "rounds": "",
+    "statuses": [],
+    "rules": [
+     {
+      "key": "light.bright",
+      "value": "30",
+      "when": "",
+      "label": ""
+     },
+     {
+      "key": "light.dim",
+      "value": "30",
+      "when": "",
+      "label": ""
+     }
+    ]
+   }
+  ]
  },
  "effects": [],
  "folder": "r3QkMiGjdblPLlGw",
