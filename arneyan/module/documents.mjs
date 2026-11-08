@@ -460,7 +460,7 @@ export class ArneyanActor extends Actor {
   }
 
   /** Saving throw. Pass a DC to show success or failure; concentration saves add their own Advantage. */
-  rollSave(key, event, { dc = null, concentration = false, disrupted = false, source = "", rollMode = null } = {}) {
+  rollSave(key, event, { dc = null, concentration = false, disrupted = false, source = "", rollMode = null, noSecond = false } = {}) {
     const m = this.mods;
     const label = `${ARNEYAN.saves[key].label} Save${concentration ? " (Concentration)" : ""}`;
     let parts;
@@ -478,7 +478,7 @@ export class ArneyanActor extends Actor {
     return d20Roll({
       actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc, rollMode,
       notes: m?.notesFor("save") ?? [], autoFail: fail,
-      extra: { save: key, concentration, actorUuid: this.uuid, source, ...(/^Last Chance/.test(String(source ?? "")) ? { noSecond: true } : {}) },
+      extra: { save: key, concentration, actorUuid: this.uuid, source, ...(noSecond || /^Last Chance/.test(String(source ?? "")) ? { noSecond: true } : {}) },
       footer: concentration ? `<button type="button" class="arn-end-conc" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-circle-xmark"></i> Concentration broken: end it</button>` : ""
     });
   }
@@ -987,7 +987,7 @@ export class ArneyanActor extends Actor {
   }
   async _lastChanceRoll(event) {
     await this.update({ "system.luck.value": this.system.luck.value - 1, [`flags.${SYS}.lastChance`]: true });
-    const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)" });
+    const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)", noSecond: true });
     const f = msg?.flags?.[SYS] ?? {};
     const ok = !f.autoFail && (f.natural === 20 || (f.natural !== 1 && f.total >= 10));
     if (ok) await this.update({ "system.attributes.stable": true, ...unset(`flags.${SYS}.lastChance`) });

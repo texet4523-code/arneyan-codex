@@ -154,6 +154,8 @@ export async function secondDie(message, dir) {
   message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once
   const roll = await new Roll("1d20").evaluate();
   await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
+  // Someone else (the GM, the player) got there first while the dice rolled.
+  if (game.messages?.get?.(message.id)?.flags?.[SYS]?.secondDie ?? message.flags?.[SYS]?.secondDie) return;
   const first = Number(flags.natural) || 0, second = roll.total;
   const kept = dir > 0 ? Math.max(first, second) : Math.min(first, second);
   const total = flags.total - first + kept, burned = flags.luckBurned || 0, shown = total + burned;
@@ -209,7 +211,8 @@ export async function secondDie(message, dir) {
   html.querySelectorAll(".arn-second").forEach(b => b.remove());
   const update = { content: html.body.innerHTML, [`flags.${SYS}.natural`]: kept, [`flags.${SYS}.total`]: total, [`flags.${SYS}.secondDie`]: dir, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) };
   if (message.canUserModify(game.user, "update")) return message.update(update);
-  return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(label)}: the second d20 is <strong>${second}</strong>, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
+  return ChatMessage.create({ speaker: message.speaker, whisper: message.whisper?.length ? [...message.whisper] : [], blind: !!message.blind,
+    content: `<div class="arn-card"><p>${esc(label)}: the second d20 is <strong>${second}</strong>, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
 }
 
 /** Roll-under Luck Check. A natural 1 always succeeds, a natural 20 always fails. Advantage keeps the lower die. */

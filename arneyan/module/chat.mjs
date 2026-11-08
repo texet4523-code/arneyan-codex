@@ -374,7 +374,8 @@ function onRender(message, html) {
   // Only the roller and the GM see the Advantage and Disadvantage buttons.
   {
     const roller = ChatMessage.getSpeakerActor(message.speaker);
-    const may = game.user.isGM || !!roller?.isOwner || message.isAuthor;
+    // Only where the card itself can be rewritten (so the result on it is the one that counts).
+    const may = (game.user.isGM || !!roller?.isOwner || message.isAuthor) && message.canUserModify(game.user, "update");
     html.querySelectorAll(".arn-second").forEach(b => { b.hidden = !may || !!flags.secondDie; });
   }
 
