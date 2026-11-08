@@ -141,7 +141,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
   // By hand, what would apply is a suggestion (the click's own Shift or Ctrl is what was rolled).
   // By hand: what was rolled (a click, a choice like Power Attack) apart from what only might apply.
   let whyLabel = "";
-  if (why && manualAdvantage()) {
+  if (why && manualAdvantage() && !why.auto) {
     const kept = new Set(why.kept ?? []);
     const done = s => kept.has(s) || /^(Shift|Ctrl)-click$/.test(s) || /no Advantage cancels/i.test(s);
     const part = (k, label, f) => { const xs = (why[k] ?? []).filter(f); return xs.length ? [`${label}: ${xs.join(", ")}`] : []; };

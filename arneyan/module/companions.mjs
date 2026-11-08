@@ -260,7 +260,9 @@ async function createCompanion(master, presetKey, { creatureUuid = "", chassis =
     data = src.toObject();
     delete data._id;
     // Raised undead are numbered (Skeleton 1, Skeleton 2...), so ten of them can be told apart.
-    const n = preset.undead ? companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey && c.name.startsWith(src.name)).length + 1 : 0;
+    const nums = companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey)
+      .map(c => Number(c.name.match(new RegExp(`^${src.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} (\\d+) \\(`))?.[1]) || 0);
+    const n = preset.undead ? Math.max(0, ...nums) + 1 : 0;
     data.name = `${src.name}${n ? ` ${n}` : ""} (${master.name}'s ${KIND_LABEL[preset.kind].toLowerCase()})`;
     foundry.utils.setProperty(data, `flags.${SYS}.bestiary`, src.pack ? src.uuid : (src.getFlag(SYS, "bestiary") ?? ""));
   }

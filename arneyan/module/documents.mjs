@@ -49,6 +49,7 @@ function advFrom(event, ...sources) {
   const keepSrc = sources.filter(s => s?.keep);
   why.kept = keepSrc.flatMap(s => [...(s.adv ?? []), ...(s.dis ?? [])]);
   const auto = sources.some(s => s?.auto);
+  if (auto) why.auto = true;  // everything on it was rolled: the card says so plainly
   if (event?.shiftKey) why.adv.push("Shift-click");
   if (event?.ctrlKey || event?.metaKey) why.dis.push("Ctrl-click");
   return { mode: modeFromEvent(event, values, { auto, keep: keepSrc.flatMap(s => s.values ?? []) }), why };
@@ -722,7 +723,9 @@ export class ArneyanActor extends Actor {
     // By hand (K53 still): only what the roll really has turns Power Attack off: a Ctrl-click, or the attack's own
     // Disadvantage (Extra Attack); what might apply goes through the card's "Disadvantage applies" button.
     const byHand = manualAdvantage() && !sit.fire;
-    const others = byHand ? [adv ?? NONE, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE]
+    // (Plus what applies by hand anyway: a Disadvantage nothing cancels, the off-hand attack's.)
+    const fixedOnly = s => ({ values: (s?.values ?? []).filter(v => v <= -2) });
+    const others = byHand ? [adv ?? NONE, ...[against, first, firstWith, heavy, ...sit.adv].map(fixedOnly), (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE]
       : [against, first, firstWith, heavy, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
     const combatNow = combatFor(this);
     const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
@@ -739,8 +742,8 @@ export class ArneyanActor extends Actor {
     // Power Attack under a Disadvantage that might apply (K53): the card's "Disadvantage applies" button turns the
     // extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
     const otherDis = (why.dis ?? []).some(d => d !== "Power Attack" && !/^Ctrl-click$/.test(d));
-    const paHint = paOn && byHand && (sitDisHint || sit.disHint || otherDis);
-    if (paHint) notes.push("Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.");
+    const paHint = paOn && (sitDisHint || sit.disHint || (byHand && otherDis));
+    if (paHint) notes.push(`Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). ${sit.fire ? "Ctrl-click to roll it again with Disadvantage." : "The card's button says so."}`);
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();

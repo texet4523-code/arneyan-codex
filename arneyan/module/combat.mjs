@@ -668,7 +668,8 @@ async function contestRoll(actor, ab, { kind, role, vs, extraAdv = [], event = n
   const own = actor.system?.mods?.adv(...keys) ?? NONE;
   const sources = [c.adv, ...(keys.length ? [own] : []), ...extraAdv];
   const values = sources.flatMap(s => s.values ?? []);
-  const why = { adv: sources.flatMap(s => s.adv ?? []), dis: sources.flatMap(s => s.dis ?? []) };
+  // A contest works its Advantage out itself, so its card says it plainly (never "Might apply").
+  const why = { adv: sources.flatMap(s => s.adv ?? []), dis: sources.flatMap(s => s.dis ?? []), auto: true };
   if (event?.shiftKey) why.adv.push("Shift-click");
   if (event?.ctrlKey || event?.metaKey) why.dis.push("Ctrl-click");
   const label = ARNEYAN.abilities[ab];
