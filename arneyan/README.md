@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.90 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.91 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.91
+
+- **Jacob's Well replaces The Broken Anvil** as the playtest one-shot (Kieran, 8 Nov). The Pregenerated Characters compendium now holds the six Jacob's Well Keepers, all 3rd level: Brenna Coldwater (Fighter), Hulda Frostbraid (Cleric), Pip Thistlewick (Rogue), Ithrien Vael (Wizard), and two spares, **Ulrik Greyfang** (half-orc War Barbarian) and **Edda Rimewater** (human Shaman Druid). Their ability notes follow the rules as they stand. The Broken Anvil's pregens are gone from the compendium; any already in a world stay.
+- **Shield Expert** works while a shield is equipped: +1 AC, and the shield's AC added to Reflex saves (Brenna: AC 17, Reflex 3).
+- **A cantrip at creation from an ancestry** (High Elf, Tiefling, Mindryath, Genasi) counts as one more cantrip known on your first spellcasting class, on the sheet and in the level-up summary (Ithrien: 5).
 
 ## What's new in 0.10.90
 
