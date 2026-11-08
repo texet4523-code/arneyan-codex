@@ -664,7 +664,7 @@ export class ArneyanActor extends Actor {
     }
     // Reach and range (Feature Board QoL): beyond reach or range warns; between a range and its long range (twice the
     // listed range, or the second number in "60–200 ft") the attack has Disadvantage.
-    let far = NONE;
+    let sitDisHint = false;
     const from = this.token?.object ?? this.getActiveTokens?.()?.[0];
     if (from && targets.length && canvas?.scene) {
       const { rangeOf, feetBetween } = await import("./qol.mjs");
@@ -674,13 +674,17 @@ export class ArneyanActor extends Actor {
         if (!r.normal) { ui.notifications.warn(`${item.name}: the target is ${worst}ft away, beyond your ${r.reach}ft reach.`); notes.unshift(`Out of reach: ${worst}ft (reach ${r.reach}ft)`); }
         else if (worst > r.long) { ui.notifications.warn(`${item.name}: the target is ${worst}ft away, beyond its ${r.long}ft range.`); notes.unshift(`Out of range: ${worst}ft (range ${r.normal}/${r.long}ft)`); }
         // Long range: the players' call too (Kieran, 8 Nov), noted for the card's Disadvantage button.
-        else if (worst > r.normal) notes.push(`Disadvantage if it applies: long range (${worst}ft, range ${r.normal}ft). Use the card's button.`);
+        else if (worst > r.normal) {
+          const longs = targets.filter(t => feetBetween(from.document, t.token.document) > r.normal).map(t => t.name);
+          notes.push(`Disadvantage if it applies: long range (${targets.length > 1 ? `${longs.join(", ")}, ` : ""}${worst}ft, range ${r.normal}ft). ${firearmOf(item) ? "A firearm: roll it again with Ctrl-click." : "The card's button applies it."}`);
+          sitDisHint = true;
+        }
       }
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
     // Power Attack only on your first attack each round, never on one that already has Disadvantage (K53).
-    const others = [against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
+    const others = [against, first, firstWith, heavy, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
     const combatNow = combatFor(this);
     const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
     const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
@@ -688,7 +692,11 @@ export class ArneyanActor extends Actor {
     if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) await this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
     const pa = powerAttackFor(own, others, { first: firstThisRound });
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
-    const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, far, adv ?? NONE, ...sit.adv);
+    const { mode, why } = advFrom(event, pa.own, against, first, firstWith, heavy, adv ?? NONE, ...sit.adv);
+    // Power Attack under a map Disadvantage the player confirms (K53): the card's "Disadvantage applies" button turns
+    // the extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
+    const paOn = !pa.off && (pa.own?.dis ?? []).includes("Power Attack");
+    if (paOn && (sitDisHint || sit.disHint)) notes.push("Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.");
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();
@@ -698,7 +706,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...(paOn && (sitDisHint || sit.disHint) ? { paDis: true } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit, outcome }) => {

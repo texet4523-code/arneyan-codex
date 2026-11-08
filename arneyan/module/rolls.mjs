@@ -116,7 +116,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }
   // The footer can depend on the roll (an attack's damage buttons on a natural 20 or 1).
   if (typeof footer === "function") footer = footer({ natural, crit, outcome });
-  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt, second });
+  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt, second, paDis: !!extra.paDis && mode < 0 });
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
     content,
@@ -125,13 +125,13 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }, { rollMode: rollMode || game.settings.get("core", "rollMode") });
 }
 
-async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false }) {
+async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false, paDis = false }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   const whyLabel = why ? [...(why.adv?.length ? [`Advantage: ${why.adv.join(", ")}`] : []), ...(why.dis?.length ? [`Disadvantage: ${why.dis.join(", ")}`] : [])].join(" · ") : "";
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
   const canSecond = !!second;
-  const secondAdv = canSecond && mode <= 0, secondDis = canSecond && mode >= 0;
+  const secondAdv = canSecond && mode <= 0, secondDis = canSecond && (mode >= 0 || paDis);
   const total = roll.total + luckBurned;
   return foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title, modeLabel, whyLabel,
@@ -143,7 +143,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
       const o = outcomeFor(total, natural, t.ac, kind, false, critAt);
       return { ...t, outcome: o, label: outcomeLabel(o, kind) };
     }) : [],
-    notes, footer, canBurn, luckBurned, canSecond, secondAdv, secondDis, cancels: !!mode
+    notes, footer, canBurn, luckBurned, canSecond, secondAdv, secondDis, cancels: !!mode, paDis
   });
 }
 
@@ -156,10 +156,21 @@ export async function secondDie(message, dir) {
   if (!flags || flags.secondDie || !["attack", "check", "save", "skill"].includes(flags.kind) || message._arnSecond) return;
   const actor = ChatMessage.getSpeakerActor(message.speaker);
   if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
-  message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once
+  // Power Attack's Disadvantage already on the roll and a map Disadvantage confirmed (K53): no new die, Power Attack
+  // stops counting (no extra damage die).
+  if (dir < 0 && flags.mode < 0 && flags.paDis) {
+    const html = new DOMParser().parseFromString(message.content, "text/html");
+    html.querySelectorAll(".arn-second").forEach(b => b.remove());
+    const li = html.createElement("li");
+    li.textContent = "Disadvantage applies: Power Attack doesn't count on this attack (no extra damage die).";
+    (html.querySelector(".arn-notes") ?? html.querySelector(".arn-card-result"))?.append(li);
+    if (message.canUserModify(game.user, "update")) return message.update({ content: html.body.innerHTML, [`flags.${SYS}.noPowerAttack`]: true, [`flags.${SYS}.secondDie`]: dir });
+    return;
+  }
   // Already rolled with the other one: they cancel, and the roll is its first die (no new die).
   const cancel = !!flags.mode && Math.sign(flags.mode) === -Math.sign(dir) && (flags.dice ?? []).length >= 2;
   if (flags.mode && !cancel) return;
+  message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once
   let second = 0;
   if (!cancel) {
     const roll = await new Roll("1d20").evaluate();

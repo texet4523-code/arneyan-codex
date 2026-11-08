@@ -406,7 +406,8 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   // What the map suggests (cover from walls, flanking, close quarters, shooting into melee) is the players' call, not
   // applied by itself: it goes on the card, and the card's Advantage or Disadvantage button applies it (Kieran, 8 Nov,
   // Jacob's Well: "everything is rolling at disadvantage"). Features and conditions still apply by themselves.
-  const maybe = (dir, why) => out.notes.push(`${dir > 0 ? "Advantage" : "Disadvantage"} if it applies: ${why}. Use the card's button.`);
+  const gun = !!firearmOf(item);
+  const maybe = (dir, why) => { out.disHint ||= dir < 0; out.notes.push(`${dir > 0 ? "Advantage" : "Disadvantage"} if it applies: ${why}. ${gun ? `A firearm: roll it again with ${dir > 0 ? "Shift" : "Ctrl"}-click.` : "The card's button applies it."}`); };
   const combat = combatFor(actor);
   if (combat?.started) out.extra.stamp = `${combat.id}.${combat.round}`;
 
@@ -430,9 +431,9 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   }
   const walled = targets.filter(t => walls.get(t) === "full");
   if (walled.length) {
-    // Walls drawn loosely or a token round a corner fool it: a warning and a note, never a refusal.
+    // Walls drawn loosely or a token round a corner fool it: a note, never a refusal.
     const names = walled.map(t => t.name).join(", "), is = walled.length === 1 ? "looks" : "look";
-    out.notes.push(`${names} ${is} to be behind a wall (Full Cover): if so, it can't be attacked directly`);
+    out.notes.push(`${names} ${is} to be behind a wall (Full Cover): if so, it can't be attacked directly.`);
   }
   const halfName = ARNEYAN.conditions.cover.name;
   if (targets.length === 1 && walls.get(targets[0]) === "half") maybe(-1, `${targets[0].name} may have ${halfName} from the walls`);
@@ -441,8 +442,8 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     for (const t of targets) {
       const st = statusesOf(t.actor);
       const c = ["cover", "concealed"].filter(id => st.has(id)).map(id => ARNEYAN.conditions[id].name);
-      if (walls.get(t) === "half") c.push(`${halfName} from the walls`);
-      if (c.length) out.notes.push(`${t.name}: ${c.join(", ")} (Disadvantage against it)`);
+      if (walls.get(t) === "half") c.push(`maybe ${halfName} from the walls`);
+      if (c.length) out.notes.push(`${t.name}: ${c.join(", ")} (Disadvantage against it if so)`);
     }
   }
 
