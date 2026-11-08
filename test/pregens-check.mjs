@@ -26,6 +26,8 @@ for (const f of fs.readdirSync(dir).filter(f => f.startsWith("actors_"))) {
 }
 console.log(rows.sort().join("\n"));
 console.log(`${rows.length} pregens, ${bad} with differences`);
+// Since 8 Nov 2026 (Jacob's Well prep) every number must agree, not only HP: Brenna's Shield Expert went unnoticed.
+if (bad) { console.error("A shipped pregen's numbers differ from its sheet."); process.exit(1); }
 // Max HP must match the printed sheet on every pregen (Toughness and Hag's Vigour are added by their rules, not twice).
 if (hpBad.length) { console.error(`HP differs from the printed sheet: ${hpBad.join(", ")}`); process.exit(1); }
 console.log(`HP matches the printed sheet on all ${rows.length}.`);

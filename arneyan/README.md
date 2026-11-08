@@ -940,9 +940,8 @@ The rest of the Codex's conditions table: **Confused** (a reminder to roll 1d10 
 
 ## Pregenerated characters
 The **Pregenerated Characters** compendium (in the Adventures folder) has ready characters for the one-shots:
-- **The Broken Anvil:** 10 characters in two folders, Level 1 - The Recruits and Level 9 - The Veterans (five seats each, seat 5 being the spare; every one a different class, built around its class art).
-- **Jacob's Well:** the four 3rd-level Keepers.
-Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet; the printed sheet's text (abilities, personality, tactics) is in its biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
+- **Jacob's Well:** six 3rd-level Keepers, four seats and two spares. (The Broken Anvil left the playtest on 8 Nov 2026.)
+Each is built from the system's own class, ancestry, kit, features, feats, skills, spells and gear, so it works like a character made on the sheet. Its abilities, kept to the rules as they stand, are on the background tab; its personality, tactics and hook are in the biography. Players can see the compendium: drag a pregen into the Actors sidebar and give the player ownership.
 
 ## Ancestry
 - **Dropping an ancestry** on a character opens its setup: the **subtype, bloodline, caste or lineage** (a Tiefling's bloodline sets its Resistance 5; a Genasi's caste and a Shifter's lineage set their attributes), a Human's **two +1s**, a Tiefling's **family**, and whether to **add the attribute changes to the scores** (ticked at 1st level; no score goes above 18 at creation, and you pick which attribute takes any points that would). Speed, size and vision follow the ancestry.

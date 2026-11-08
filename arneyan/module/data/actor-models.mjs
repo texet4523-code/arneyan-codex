@@ -184,6 +184,9 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // Uses worked out from a formula (Flèche: Dexterity modifier a day, minimum 1; Turn Undead: 3 + Wisdom).
     prepareFormulaUses(actor, s, classes);
 
+    // Shields equipped (Shield Expert: +1 AC and the shield's AC to Reflex while one is held).
+    const shieldsWorn = (actor?.items ?? []).filter(i => i.type === "armour" && i.system.equipped && i.system.category === "shield");
+    const shieldAc = shieldsWorn.reduce((t, i) => t + (Number(i.system.ac) || 0) + (Number(i.system.magic) || 0), 0);
     // Saves: attribute modifier + half character level (minimum 1) + bonuses.
     for (const [k, cfg] of Object.entries(ARNEYAN.saves)) {
       const sv = s.saves[k];
@@ -193,7 +196,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
         { label: ARNEYAN.abilityAbbr[cfg.ability], value: s.abilities[cfg.ability].mod },
         { label: "Half level", value: half },
         { label: "Sheet bonus", value: sv.bonus },
-        ...mods.parts("save", `save.${k}`)
+        ...mods.parts("save", `save.${k}`),
+        ...(k === "ref" && shieldAc && mods.sum("shield.reflex") > 0 ? [{ label: "Shield (Shield Expert)", value: shieldAc }] : [])
       ];
       sv.value = sv.parts.reduce((t, p) => t + p.value, 0);
       sv.autoFail = mods.has(`fail.save.${k}`);
@@ -226,7 +230,8 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       { label: dexLabel, value: dexToAc },
       ...shields.map(i => ({ label: i.name, value: i.system.ac + i.system.magic })),
       { label: "Sheet bonus", value: s.attributes.ac.bonus },
-      ...mods.parts("ac")
+      ...mods.parts("ac"),
+      ...(shields.length ? mods.parts("ac.shield") : [])
     ];
     s.attributes.ac.armour = body?.name ?? "";
     s.attributes.ac.parts = acParts;

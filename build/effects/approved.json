@@ -1062,18 +1062,17 @@
   "container": "passive",
   "rules": [
    {
-    "key": "ac",
-    "value": 1,
-    "when": "while wielding a shield"
+    "key": "ac.shield",
+    "value": 1
    },
    {
-    "key": "note.save",
-    "value": "Shield Expert: add your shield's AC bonus to Reflex saves while wielding it."
+    "key": "shield.reflex",
+    "value": 1
    }
   ],
-  "summary": "+1 AC reminder with a shield; Reflex reminder.",
-  "manual": "Shield bonus to Reflex (no formula for the shield's bonus); engine cannot tell if a shield is held.",
-  "confidence": "medium"
+  "summary": "+1 AC and the shield's AC to Reflex, while a shield is equipped.",
+  "manual": "",
+  "confidence": "high"
  },
  "feats/k3OzeklkXBnO30Kl": {
   "name": "Skilled",

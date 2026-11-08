@@ -672,7 +672,14 @@ assert.equal(mk(16, [cls("Fighter", 5)], [], fxs).system.saves.fort.value, 6);  
 const pdir = new URL("../packs-src/pregens/", import.meta.url).pathname;
 const pdocs = fs.readdirSync(pdir).map(f => JSON.parse(fs.readFileSync(pdir + f)));
 assert.deepEqual(pdocs.filter(d => d._key.startsWith("!folders!")).map(f => f.name), ["Jacob's Well"]);
-assert.equal(pdocs.filter(d => d._key.startsWith("!actors!")).length, 4);
+assert.equal(pdocs.filter(d => d._key.startsWith("!actors!")).length, 6, "four seats and two spares (8 Nov 2026)");
+{
+  const keeper = n => pdocs.find(d => d.name === n);
+  const ul = keeper("Ulrik Greyfang"), ed = keeper("Edda Rimewater");
+  assert.deepEqual([ul.flags.arneyan.pregen.seat, ed.flags.arneyan.pregen.seat], [5, 6]);
+  assert.ok(["Barbarian", "Half-Orc", "War Barbarian (Barbarian)", "Power Attack", "Cleave", "Axe, Two-Handed"].every(n => ul.items.some(i => i.name === n)), "Ulrik's class, ancestry, kit, feats and axe");
+  assert.ok(["Druid", "Human", "Shaman (Druid)", "Potent Casting", "Iron Constitution", "Entangle", "Barkskin"].every(n => ed.items.some(i => i.name === n)), "Edda's class, ancestry, kit, feats and spells");
+}
 const fdir = new URL("../test/fixtures/pregens/", import.meta.url).pathname;
 const fdocs = fs.readdirSync(fdir).map(f => JSON.parse(fs.readFileSync(fdir + f)));
 const pf = fdocs.filter(d => d._key.startsWith("!folders!"));
