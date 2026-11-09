@@ -1,0 +1,851 @@
+{
+ "_id": "2J5Ktj1LvJv1IQnV",
+ "_key": "!actors!2J5Ktj1LvJv1IQnV",
+ "name": "Ulitharid",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 15
+   },
+   "dex": {
+    "value": 12
+   },
+   "con": {
+    "value": 15
+   },
+   "int": {
+    "value": 21
+   },
+   "wis": {
+    "value": 19
+   },
+   "cha": {
+    "value": 21
+   }
+  },
+  "level": 10,
+  "hd": "10d10+20",
+  "attributes": {
+   "hp": {
+    "value": 75,
+    "max": 75,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft",
+   "attack": 12,
+   "spellDC": 20,
+   "morale": 11
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 5,
+   "will": 9
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "aberration",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large aberration</em></p><p><strong>GM:</strong> A mind flayer with six tentacles, born to sit at the elder brain's side. It speaks for the brain, and the colony knows it.</p>",
+   "treasure": "<p>Treasure type <strong>F</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tentacles",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SU9Wfm7XoIAab6qX",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.SU9Wfm7XoIAab6qX",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tentacles",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>A Large or smaller creature hit by its tentacles is grappled (escape <strong>DC 16</strong>).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nMrgDrX5cvsUIiCZ",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.nMrgDrX5cvsUIiCZ",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mind Blast",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>60ft cone</strong>. Creatures make a @Check[will|dc:20]{Will save DC 20} or are @Condition[stunned]{Stunned} for <strong>1 round</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NoSELQLHLMJrQKpL",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.NoSELQLHLMJrQKpL",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Extract Brain",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>A creature grappled by tentacles and @Condition[stunned]{Stunned} or @Condition[incapacitated]{Incapacitated} is killed if it deals 10+ damage with its tentacles in a single round.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Znb1m2RlT8jZLN3i",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.Znb1m2RlT8jZLN3i",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Psionic Hub",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Within <strong>5 miles</strong> of its elder brain, the brain sees what it sees and speaks through it to every mind flayer in the colony.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ca4WeTQVcjjgfsyu",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.ca4WeTQVcjjgfsyu",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Innate Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p>Spell <strong>DC 20</strong>. At will: @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}, @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{levitate}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{dominate monster} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.teHIr9w7eqL9Po3G]{feeblemind} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aIJ1p7X0jqHKbj74",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.aIJ1p7X0jqHKbj74",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Detect Thoughts (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
+   "system": {
+    "description": "<p>Range <strong>60ft cone</strong>, <strong>1 minute per level</strong> (concentration).</p><ul><li>Each round you focus on one creature in the cone and read its surface thoughts; <strong>Will negates</strong> for that creature (it knows nothing has been read).</li><li>Stone <strong>3ft</strong> thick, lead or metal sheets block it.</li><li>Cast reversed (Obscure Thoughts), one touched creature is immune to thought detection for the same duration.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Divination",
+    "castingTime": "1 action",
+    "range": "Range 60ft cone, 1 minute per level (concentration)",
+    "duration": "",
+    "area": "60ft cone",
+    "components": "V, S, M",
+    "concentration": true,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "cone",
+     "size": 60,
+     "width": 0,
+     "attached": false,
+     "fromSelf": true,
+     "lingering": true,
+     "rounds": "10*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF"
+   },
+   "_id": "0A07prXdpElZBl68",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.0A07prXdpElZBl68",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Levitate (at will)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-transform.svg",
+   "system": {
+    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Spellblade, Sorcerer</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Spellblade",
+     "Sorcerer"
+    ],
+    "school": "Transmutation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "At will"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP"
+   },
+   "_id": "jU6YhN6Yi3LJzewO",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.jU6YhN6Yi3LJzewO",
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Confusion (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range <strong>120ft</strong>; <strong>15ft</strong>-radius.</p><ul><li>Creatures in the area act randomly for <strong>1 round per level</strong>; <strong>Will negates</strong>.</li><li>At the start of each affected creature's turn roll <strong>1d10</strong>: 1-3 it attacks the nearest creature (friend or foe); 4-6 it does nothing; 7-8 it moves in a random direction at full speed; 9-10 it acts normally.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Sorcerer",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 120ft",
+    "duration": "",
+    "area": "15ft radius",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 15,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3"
+   },
+   "_id": "rZbossFP0l6k6c9z",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.rZbossFP0l6k6c9z",
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Dominate Monster (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range <strong>60ft</strong>; one creature of any type.</p><ul><li>It must make a <strong>Will save</strong> or fall under your complete mental control for <strong>1 day per level</strong>; it gets a new save every <strong>24 hours</strong>.</li><li>You send orders by thought (same plane); it will not follow self-destructive orders. <strong>Will negates</strong>.</li><li>Not undead or constructs.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 8,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Dominated",
+      "target": "target",
+      "rounds": "14400*@cl",
+      "statuses": [
+       "dominated"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4"
+   },
+   "_id": "GHsHHf7Pv9WyiD34",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.GHsHHf7Pv9WyiD34",
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Feeblemind (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-charm.svg",
+   "system": {
+    "description": "<p>Range <strong>150ft</strong>; one creature.</p><ul><li><strong>Will negates</strong> (arcane casters make the save with <strong>Disadvantage</strong>).</li><li>On a failure its Intelligence and Charisma become 1: it cannot cast spells, read or understand language.</li><li>Cured only by Greater Restoration or Wish.</li><li>Mindless creatures are immune.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Illusionist",
+     "Warlock",
+     "Bard",
+     "Witch"
+    ],
+    "school": "Enchantment",
+    "castingTime": "1 action",
+    "range": "Range 150ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Feebleminded",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "no.cast",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.teHIr9w7eqL9Po3G"
+   },
+   "_id": "24ddXKa7BZ0OAMyu",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.24ddXKa7BZ0OAMyu",
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Plane Shift (1/day)",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 5,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Warlock"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": "1/day"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc"
+   },
+   "_id": "ko3dzYL4h9tFi8MO",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.ko3dzYL4h9tFi8MO",
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Resistance",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "system": {
+    "description": "<p><strong>Advantage</strong> on saves against spells and other magical effects.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "against spells and magical effects"
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "S4qjd6921s2X9Sei",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.S4qjd6921s2X9Sei",
+   "effects": [],
+   "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "m1JSJeAmypnh2UM6",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.m1JSJeAmypnh2UM6",
+   "effects": [],
+   "flags": {},
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "2PdClEo6gzMIc5Vs",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.2PdClEo6gzMIc5Vs",
+   "effects": [],
+   "flags": {},
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Deception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Deception check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "Z9BVzgHirwqRIJyA",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.Z9BVzgHirwqRIJyA",
+   "effects": [],
+   "flags": {},
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "KZ33caum4PwnmICQ",
+   "_key": "!actors.items!2J5Ktj1LvJv1IQnV.KZ33caum4PwnmICQ",
+   "flags": {},
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "IBuLOZDNXXkAVkeR",
+ "prototypeToken": {
+  "name": "Ulitharid",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

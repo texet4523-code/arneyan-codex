@@ -330,6 +330,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Tyrant's Roar",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:28]{Will save DC 28} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 28,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ec40UP8qhvAM0xcT",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.Ec40UP8qhvAM0xcT",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Ring of Fire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Flame bursts from the ground around it. Each creature within <strong>30ft</strong> makes a @Check[ref|dc:30]{Reflex save DC 30}, taking @Damage[6d8 fire]{6d8 fire damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 30,
+    "damage": "6d8",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "w5OB3poq6qqG0jpP",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.w5OB3poq6qqG0jpP",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "uWlK6yaLmYiBtdXO",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.uWlK6yaLmYiBtdXO",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -342,11 +465,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "XhxOL4mwVo1KMaMi",
-   "_key": "!actors.items!iTEREHBvj4i3I3SW.XhxOL4mwVo1KMaMi",
+   "_id": "SmssU5CvDpkDLULz",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.SmssU5CvDpkDLULz",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -365,11 +488,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "wroM8DymWmuLYw9b",
-   "_key": "!actors.items!iTEREHBvj4i3I3SW.wroM8DymWmuLYw9b",
+   "_id": "xsyoHKHrulJJQs0L",
+   "_key": "!actors.items!iTEREHBvj4i3I3SW.xsyoHKHrulJJQs0L",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },

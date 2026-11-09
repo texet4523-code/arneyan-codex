@@ -330,6 +330,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Dread Majesty",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Y0mRmU5X3eZB1YR1",
+   "_key": "!actors.items!rABuj64FecJu8RZp.Y0mRmU5X3eZB1YR1",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Stone to Mud",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>The ground in a <strong>20ft radius</strong> within <strong>60ft</strong> turns to deep mud for the rest of the fight (difficult terrain). Each creature there makes a @Check[ref|dc:26]{Reflex save DC 26} or sinks in and is @Condition[restrained]{Restrained} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 26,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Kffd9sT41ugRY7wP",
+   "_key": "!actors.items!rABuj64FecJu8RZp.Kffd9sT41ugRY7wP",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bw4PGsdvpWKVYMsh",
+   "_key": "!actors.items!rABuj64FecJu8RZp.bw4PGsdvpWKVYMsh",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -342,11 +465,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "HtPgPWO2xc5i0dwv",
-   "_key": "!actors.items!rABuj64FecJu8RZp.HtPgPWO2xc5i0dwv",
+   "_id": "rKyHvnNguGa9jH1S",
+   "_key": "!actors.items!rABuj64FecJu8RZp.rKyHvnNguGa9jH1S",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -365,11 +488,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "XazwAV8nGJsKGszY",
-   "_key": "!actors.items!rABuj64FecJu8RZp.XazwAV8nGJsKGszY",
+   "_id": "CbD5Qp4akZKSSDNM",
+   "_key": "!actors.items!rABuj64FecJu8RZp.CbD5Qp4akZKSSDNM",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -388,11 +511,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "KN3M47HBNjzTd0Ul",
-   "_key": "!actors.items!rABuj64FecJu8RZp.KN3M47HBNjzTd0Ul",
+   "_id": "PqWyEl3gvltHS7Vy",
+   "_key": "!actors.items!rABuj64FecJu8RZp.PqWyEl3gvltHS7Vy",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

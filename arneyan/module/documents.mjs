@@ -435,6 +435,17 @@ export class ArneyanActor extends Actor {
     if (this.type === "npc" && lvl !== undefined && lvl !== this.system.level && foundry.utils.getProperty(changes, "system.details.levelText") === undefined) {
       foundry.utils.setProperty(changes, "system.details.levelText", "");
     }
+    // A minion (R-F26): ticked, current and maximum HP are 1; unticked, the HP it had before comes back.
+    const minion = foundry.utils.getProperty(changes, "system.attributes.minion");
+    if (this.type === "npc" && minion !== undefined && !!minion !== !!this.system.attributes?.minion) {
+      if (minion) {
+        foundry.utils.setProperty(changes, `flags.${SYS}.minionHp`, this.system.attributes.hp.value);
+        foundry.utils.setProperty(changes, "system.attributes.hp.value", 1);
+      } else {
+        const back = Number(this.flags?.[SYS]?.minionHp);
+        foundry.utils.setProperty(changes, "system.attributes.hp.value", Number.isFinite(back) && back > 0 ? back : this.system.attributes.hp.fullMax ?? 1);
+      }
+    }
     // Current HP never goes above the maximum (Kieran, 25 Oct 2026), the maximum as this change leaves it.
     capHpChange(this, changes);
   }

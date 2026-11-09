@@ -20,6 +20,7 @@
         <input class="arn-hp-value" type="number" name="system.attributes.hp.value" value="{{source.attributes.hp.value}}">
         <span class="arn-hp-max">/ {{system.attributes.hp.max}}</span>
         {{#if editable}}<a class="arn-step" data-action="hpStep" data-step="1" data-tooltip="+1 HP (Shift: +5)"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        {{#if isNpc}}{{#if isGM}}{{#if editable}}<label class="arn-minion" data-tooltip="Minion: 1 HP, the rest of the stat block as it is. Untick to put its HP back."><input type="checkbox" name="system.attributes.minion" {{checked source.attributes.minion}}> Minion</label>{{/if}}{{/if}}{{/if}}
       </div>
       <div class="arn-hp-sub">
         <label data-tooltip="Temporary HP: lost first, never healed back">Temp <input class="short" type="number" name="system.attributes.hp.temp" value="{{source.attributes.hp.temp}}" min="0"></label>
@@ -292,7 +293,7 @@
                 <span class="arn-muted arn-meta">{{#if usesLabel}}<span class="arn-chip">{{usesLabel}}</span> {{/if}}{{#if touch}}<span data-tooltip="A touch spell: an attack roll, not a save">Touch attack</span>{{else if item.system.save}}{{lookup @root.config.saveTypes item.system.save}}{{/if}}{{#if item.system.concentration}} · Conc.{{/if}}{{#if item.system.ritual}} · Ritual{{/if}}{{#if item.system.applies.length}} · <i class="fa-solid fa-wand-sparkles" data-tooltip="Applies an effect"></i>{{/if}}</span>
                 {{#if item.system.damage}}<button type="button" class="arn-roll-btn dmg small" data-action="itemDamage" data-tooltip="Roll {{#if (eq item.system.damageType 'healing')}}healing{{else}}damage{{/if}}"><i class="fa-solid fa-{{#if (eq item.system.damageType 'healing')}}heart{{else}}burst{{/if}}"></i></button>{{/if}}
                 <button type="button" class="arn-btn small" data-action="castSpell">Cast</button>
-                {{#if @root.isCharacter}}{{#if @root.editable}}<a class="arn-ctl" data-action="writeScroll" data-tooltip="Write a scroll of it (1 week and 100 gp a level)"><i class="fa-solid fa-scroll"></i></a>{{/if}}{{/if}}
+                {{#if @root.isCharacter}}{{#if @root.editable}}<a class="arn-ctl" data-action="writeScroll" data-tooltip="Write a scroll of it (1 week and 100 sp a level)"><i class="fa-solid fa-scroll"></i></a>{{/if}}{{/if}}
                 {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
                 {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
               </li>

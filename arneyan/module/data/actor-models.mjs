@@ -423,7 +423,9 @@ export class NpcData extends foundry.abstract.TypeDataModel {
         attack: int(0),
         morale: int(0),
         /** The stat block's spell save DC; 0 works it out from Level and the best mental ability. */
-        spellDC: int(0, { min: 0 })
+        spellDC: int(0, { min: 0 }),
+        /** A minion (Kieran, 9 Nov, R-F26): 1 HP, everything else as the block. */
+        minion: new BooleanField({ initial: false })
       }),
       /** A stat block's "casts as an 11th-level cleric": that class's spell slots, and how many are spent. */
       spellcasting: new SchemaField({
@@ -487,7 +489,9 @@ export class NpcData extends foundry.abstract.TypeDataModel {
     hp.base = this.parent?._source?.system?.attributes?.hp?.max ?? hp.max;
     hp.raw = hp.base + mods.sum("hp.max") + mods.sum("hp.level") * s.level;
     hp.mult = mods.mult("hp.mult");
-    hp.max = Math.max(1, Math.floor(hp.raw * hp.mult));
+    // A minion has 1 HP whatever its block says; fullMax is the block's, for when it stops being one.
+    hp.fullMax = Math.max(1, Math.floor(hp.raw * hp.mult));
+    hp.max = s.attributes.minion ? 1 : hp.fullMax;
     hp.effectiveMax = hp.max;
     hp.halved = hp.mult < 1;
     try { s.allegiance = npcAllegiance({ override: s.details.allegiance, type: s.details.type }); }

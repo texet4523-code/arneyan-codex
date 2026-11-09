@@ -247,7 +247,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Spellblade, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -256,7 +256,7 @@
     "className": "",
     "classes": [
      "Wizard",
-     "Magus",
+     "Spellblade",
      "Sorcerer"
     ],
     "school": "Transmutation",
@@ -401,6 +401,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Thunder Stomp",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:27]{Fortitude save DC 27} or falls @Condition[prone]{Prone} and can't hear until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 27,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3X5WEjsMoUdgr7s1",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.3X5WEjsMoUdgr7s1",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Chain Lightning",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Lightning leaps between up to four creatures within <strong>120ft</strong>. Each makes a @Check[ref|dc:22]{Reflex save DC 22}, taking @Damage[5d8 lightning]{5d8 lightning damage} on a failure, or half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "5d8",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nOkl2RlOxoh7ls1n",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.nOkl2RlOxoh7ls1n",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Wrath of the Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes one greatsword attack (+21, <strong>8d6+7</strong>) against one creature. On a hit, lightning follows the blade: the target makes a @Check[ref|dc:22]{Reflex save DC 22} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "12W6zYldIyNDkGr1",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.12W6zYldIyNDkGr1",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -413,11 +536,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "GaF9ceHWxGjcL3G8",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.GaF9ceHWxGjcL3G8",
+   "_id": "rM5XY4ic6mg9JXN7",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.rM5XY4ic6mg9JXN7",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -436,11 +559,11 @@
     "ability": "str",
     "tier": "trained"
    },
-   "_id": "S2A1ryPUEuJcDmxP",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.S2A1ryPUEuJcDmxP",
+   "_id": "ZJrCmPjS8O5iV2Av",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.ZJrCmPjS8O5iV2Av",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -463,10 +586,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "ANqBcg6AE7rYlZEd",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.ANqBcg6AE7rYlZEd",
+   "_id": "zDJjgy2bODWueYTU",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.zDJjgy2bODWueYTU",
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -489,10 +612,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "LUzGQ2BQxKe7ZFjE",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.LUzGQ2BQxKe7ZFjE",
+   "_id": "2C2dMFhhUuZB3zTE",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.2C2dMFhhUuZB3zTE",
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

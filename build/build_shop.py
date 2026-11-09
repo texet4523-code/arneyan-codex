@@ -117,12 +117,20 @@ def build(icon):
                     }, icon("armour", nm + " " + r[1]), folder=root_armour, sort=n); n += 1
                 continue
             if head[0] == "Shield":
+                # Books v0.10.55 (R-B54): a Type column and "What it does" in place of Traits; read by heading.
+                col = {h: i for i, h in enumerate(head)}
                 for r in body:
                     nm = clean_name(r[0])
+                    what = r[col.get("What it does", col.get("Traits", len(r) - 1))]
+                    kind = r[col["Type"]] if "Type" in col else ""
+                    slots = r[col.get("Slots", 3)]
+                    # The trait names: "Buoyant (helps you swim); Fire-Vulnerable (...)" -> "Buoyant, Fire-Vulnerable".
+                    names = [re.split(r"[:(]", p)[0].strip(" .") for p in re.split(r"[;,]", re.sub(r"\([^)]*\)", "", what))]
+                    names = [x for x in names if x and re.match(r"^[A-Z][\w-]*(?: [A-Z][\w-]*)?$", x)]
                     item("equipment", nm, "armour", {
-                        "description": f"<p>{esc(r[4])}</p>", "source": {"book": "phb", "page": 0},
-                        "quantity": 1, "slots": num(r[3], 0) if "N/A" not in r[3] else 0, "price": r[1], "equipped": False,
-                        "category": "shield", "ac": int(num(r[2], 1)), "magic": 0, "traits": r[4]
+                        "description": (f"<p><strong>{esc(kind)}.</strong> " if kind else "<p>") + f"{esc(what)}</p>", "source": {"book": "phb", "page": 0},
+                        "quantity": 1, "slots": num(slots, 0) if "N/A" not in slots and slots.strip() not in ("—", "-") else 0, "price": r[col.get("Cost", 1)], "equipped": False,
+                        "category": "shield", "ac": int(num(r[col.get("AC Bonus", 2)], 1)), "magic": 0, "traits": ", ".join(names) if names else what
                     }, icon("shield", nm), folder=root_armour, sort=n); n += 1
                 continue
             if head[0] == "Weapon":

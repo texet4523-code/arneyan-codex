@@ -202,7 +202,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -212,7 +212,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Necromancer"
     ],
     "school": "Evocation",
@@ -263,7 +263,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -273,7 +273,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -351,7 +351,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -364,7 +364,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -498,7 +498,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -508,7 +508,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -558,7 +558,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; one creature. It gains a fly speed of <strong>90ft</strong> for <strong>1 minute per level</strong>. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Touch; one creature. It gains a fly speed of <strong>90ft</strong> for <strong>1 minute per level</strong>. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -569,7 +569,7 @@
      "Wizard",
      "Warlock",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Transmutation",
     "castingTime": "1 action",

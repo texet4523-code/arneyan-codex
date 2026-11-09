@@ -1,0 +1,51 @@
+{
+ "_id": "o15Vvrk1VosCMHlq",
+ "_key": "!items!o15Vvrk1VosCMHlq",
+ "name": "Battle Caster (Spellblade)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
+ "system": {
+  "description": "<p>You lean into the \"caster\" half of the hybrid — less committed to the blade, more willing to cast outright when the moment calls for it.</p><ul><li><strong>Broader Study:</strong> Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Spellblade list (not Polymorph; Haste on yourself only).</li><li>You still use the Spellblade's slot progression and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Spellblade",
+  "features": [
+   {
+    "name": "Broader Study",
+    "level": 1,
+    "description": "<p>Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Spellblade list (not Polymorph; Haste on yourself only).</p><ul><li>You still use the Spellblade's slot progression and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "applies": [
+     {
+      "name": "Broader Study",
+      "target": "self",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "xfPAuHvlZnGs2uY5",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

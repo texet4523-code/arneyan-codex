@@ -330,6 +330,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Dread Majesty",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:30]{Will save DC 30} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 30,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "X2zejzUK5J75xzAV",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.X2zejzUK5J75xzAV",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Sunburst Wings",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[fort|dc:30]{Fortitude save DC 30}, taking @Damage[6d8 radiant]{6d8 radiant damage} and being @Condition[blinded]{Blinded} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 30,
+    "damage": "6d8",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WFDUkQia2THISjEg",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.WFDUkQia2THISjEg",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "81c05fHo7TTmSTNq",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.81c05fHo7TTmSTNq",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -342,11 +465,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "ZNC0t01uMMxbDsUh",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.ZNC0t01uMMxbDsUh",
+   "_id": "rWAuoGRX56NUL7WM",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.rWAuoGRX56NUL7WM",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -365,11 +488,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "tyRVc7gS8SF3YXwR",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.tyRVc7gS8SF3YXwR",
+   "_id": "KAZNtRDl5WvBi6Dh",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.KAZNtRDl5WvBi6Dh",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -388,11 +511,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "yguJRGOSieRhspBP",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.yguJRGOSieRhspBP",
+   "_id": "C6oBheaek6seUH67",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.C6oBheaek6seUH67",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -411,11 +534,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "Qg131CpXodij6Esa",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.Qg131CpXodij6Esa",
+   "_id": "r1kXnAFaZVNU7oxK",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.r1kXnAFaZVNU7oxK",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

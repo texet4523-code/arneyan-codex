@@ -28,7 +28,7 @@ for (const f of [feat("Eldritch Blast", "Warlock").damage, spell("Eldritch Blast
 assert.deepEqual([1, 13, 17, 24].map(l => dice(feat("Spark Caster", "Artificer").damage, l)), ["1d6", "2d8", "3d6", "3d8"]);
 
 /* Spellstrike: 3d6 at 11th, 4d6 at 17th, 5d6 at 21st; the Extra Attack carries one from 7th. */
-const ss = feat("Spellstrike", "Magus").activities.filter(a => a.name.startsWith("Cantrip"));
+const ss = feat("Spellstrike", "Spellblade").activities.filter(a => a.name.startsWith("Cantrip"));
 assert.deepEqual(ss.map(a => [a.formula, a.minLevel]), [["1d4", 0], ["2d4", 5], ["3d6", 11], ["4d6", 17], ["5d6", 21]]);
 assert.ok(ss.every(a => a.text.includes("From 7th level your Extra Attack")));
 

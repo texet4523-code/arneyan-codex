@@ -389,7 +389,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -399,7 +399,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -557,6 +557,129 @@
    "effects": [],
    "flags": {},
    "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Infernal Decree",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can hear it makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "p0cSYihJmoLXeOhF",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.p0cSYihJmoLXeOhF",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Ring of Hellfire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Hellfire bursts from the ground around it. Each creature within <strong>20ft</strong> makes a @Check[ref|dc:24]{Reflex save DC 24}, taking @Damage[4d8 fire]{4d8 fire damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 24,
+    "damage": "4d8",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dwULCNN1mORP8TGg",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.dwULCNN1mORP8TGg",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Infernal Contract",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[will|dc:24]{Will save DC 24}. On a failure it takes @Damage[6d10 fire]{6d10 fire damage} and is @Condition[charmed]{Charmed} until the end of its next turn; on a success, half damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "6d10",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oefef0ch8MdqxoxE",
+   "_key": "!actors.items!ONVCSO4bisNvKgDH.oefef0ch8MdqxoxE",
+   "effects": [],
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

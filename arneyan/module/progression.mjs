@@ -812,7 +812,7 @@ async function setUpFirstLevel(actor, cls) {
   if (stop === "skip") return finish(false);
 
   // The HP line and how the steps work head the first class step.
-  let lead = `<p class="arn-step-lead">Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet.${steps.length > 1 ? " <strong>Choose later</strong> leaves a step empty; <strong>Skip</strong> stops choosing and goes on to starting gold with what you have chosen so far." : ""}</p>`;
+  let lead = `<p class="arn-step-lead">Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet.${steps.length > 1 ? " <strong>Choose later</strong> leaves a step empty; <strong>Skip</strong> stops choosing and goes on to starting money with what you have chosen so far." : ""}</p>`;
   const intro = text => { const out = lead + text; lead = ""; return out; };
   const pickers = [
     kits.length && { key: "kit", ask: () => pickFromList({
@@ -868,7 +868,7 @@ async function setUpFirstLevel(actor, cls) {
         <label><input type="radio" name="luckHow" value="roll"> Roll it for me</label>
         <label><input type="radio" name="luckHow" value="later"> Later (type it on the sheet)</label>
       </fieldset>
-      <p class="hint">Apply adds them, sets Luck as chosen, and goes on to starting gold. Skip adds them and leaves Luck for later. Closing this window adds nothing.</p>`,
+      <p class="hint">Apply adds them, sets Luck as chosen, and goes on to starting money. Skip adds them and leaves Luck for later. Closing this window adds nothing.</p>`,
     render: (ev, dialog) => {
       // Typing a number picks "rolled at the table".
       const el = dialog?.element ?? ev?.target?.element;
@@ -1007,7 +1007,7 @@ async function pickClassOnce(actor) {
   if (!entries.length) return "later";
   const uuid = await pickFromList({
     title: `${actor.name}: class`, entries, takeLabel: "Choose class", laterLabel: "Later", width: 820, art: true,
-    intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ${actor.items.some(i => i.type === "ancestry") ? "" : "ancestry, "}Kit, Feats, skills and Starting Luck, then starting gold. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
+    intro: `<p>Choose ${esc(actor.name)}'s class. Click one to read it. Its 1st-level choices follow: ${actor.items.some(i => i.type === "ancestry") ? "" : "ancestry, "}Kit, Feats, skills and Starting Luck, then starting money. <strong>Later</strong> stops here: <strong>Set up</strong> on the sheet starts again, or drag a class onto it.</p>`
   });
   if (uuid === null || uuid === "later") return uuid;
   // Chosen while the window was open: a class dropped on the sheet meanwhile has already started the setup.

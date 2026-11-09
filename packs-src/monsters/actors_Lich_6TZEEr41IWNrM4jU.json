@@ -196,7 +196,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -206,7 +206,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Necromancer"
     ],
     "school": "Evocation",
@@ -257,7 +257,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -267,7 +267,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -345,7 +345,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -356,7 +356,7 @@
      "Wizard",
      "Sorcerer",
      "Warlock",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -406,7 +406,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -420,7 +420,7 @@
      "Warlock",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Abjuration",
@@ -471,7 +471,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -481,7 +481,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -890,6 +890,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Dread Presence",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NLLRMYrKo53HCzHd",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.NLLRMYrKo53HCzHd",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grip of the Grave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Bony hands claw out of the ground in a <strong>20ft radius</strong> within <strong>60ft</strong>. Each creature there makes a @Check[ref|dc:22]{Reflex save DC 22}, taking @Damage[4d8 necrotic]{4d8 necrotic damage} and being @Condition[restrained]{Restrained} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "4d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "q5yyTrj3wU9hjl9M",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.q5yyTrj3wU9hjl9M",
+   "effects": [],
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Soul Rend",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[fort|dc:22]{Fortitude save DC 22}. On a failure it takes @Damage[10d8 necrotic]{10d8 necrotic damage} and can't regain HP until the end of its next turn; on a success, half damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 22,
+    "damage": "10d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zRiX7dbsZzVSaW4Y",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.zRiX7dbsZzVSaW4Y",
+   "effects": [],
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -902,11 +1025,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "IJDdLcANolTYBxKU",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.IJDdLcANolTYBxKU",
+   "_id": "HpeitSv22Tn37RDE",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.HpeitSv22Tn37RDE",
    "effects": [],
    "flags": {},
-   "sort": 1500,
+   "sort": 1800,
    "ownership": {
     "default": 0
    },
@@ -925,11 +1048,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "7nTgx08vf9toBDuy",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.7nTgx08vf9toBDuy",
+   "_id": "hqmMbKboTGWELEYn",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.hqmMbKboTGWELEYn",
    "effects": [],
    "flags": {},
-   "sort": 1600,
+   "sort": 1900,
    "ownership": {
     "default": 0
    },
@@ -952,10 +1075,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "nvsFsnMvQ2CoOCTj",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.nvsFsnMvQ2CoOCTj",
+   "_id": "F07divVZGq27s2qS",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.F07divVZGq27s2qS",
    "flags": {},
-   "sort": 1700,
+   "sort": 2000,
    "ownership": {
     "default": 0
    },
@@ -978,10 +1101,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "o77cxWvebpVPzMeK",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.o77cxWvebpVPzMeK",
+   "_id": "U4o7mQE0XfQm4tYP",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.U4o7mQE0XfQm4tYP",
    "flags": {},
-   "sort": 1800,
+   "sort": 2100,
    "ownership": {
     "default": 0
    },

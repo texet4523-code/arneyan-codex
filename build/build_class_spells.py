@@ -177,7 +177,7 @@ def build(icon):
             "duration": "", "area": "", "components": re.sub(r"\s*\(.*\)\s*$", "", comps.replace("‡", "")).strip() if comps else ("M" if material else ""),
             "concentration": bool(re.search(r"\bconcentration\b", text, re.I)), "ritual": False, "prepared": False,
             "save": save, "saveEffect": eff, "damage": dmg, "damageType": dtype,
-            "reversible": False, "costly": "‡" in comps or bool(material and re.search(r"\bgp\b", material.group(1)))
+            "reversible": False, "costly": "‡" in comps or bool(material and re.search(r"\b[gsp]p\b", material.group(1)))
         }, icon("spell", ICON.get(home, "")), folder=folders[home], sort=i, key=f"class-only|{name}")
         made.append(name)
     return made, skipped

@@ -240,6 +240,29 @@ TOOLKITS = [
     ("Weaponsmith's Tools", "Weaponsmithing", "22 gp"), ("Armourer's Tools", "Armourer", "25 gp"), ("Brewer's Tools", "Brewing", "10 gp"),
     ("Vintner's Tools", "Winemaking", "12 gp"), ("Cook's Tools", "Cooking", "5 gp")]]
 
+# The base weapon a "+N <word>" names (M&T Iconic Weapons).
+BASE_WORDS = [("elven longsword", "Sword, Long"), ("greatsword", "Greatsword"), ("longsword", "Sword, Long"), ("scimitar", "Sword, Scimitar"),
+              ("sword", "Sword, Long"), ("warhammer", "Hammer, War"), ("maul", "Maul"), ("mace", "Mace, Heavy"), ("dagger", "Dagger"),
+              ("trident", "Trident"), ("javelin", "Javelin"), ("crossbow", "Crossbow, Light"), ("longbow", "Bow, Long"), ("axe", "Axe, Battle")]
+
+
+def iconic_from_text(t):
+    """(base, +N, extra damage, extras) from an Iconic weapon's text, or None (ammunition, "any weapon")."""
+    m = re.search(r"\bA \+(\d) ([a-z ]{0,40})", t)
+    if not m or re.match(r"(arrow|bolt)\b", m.group(2)):
+        return None
+    words = m.group(2).lower()
+    hits = [(words.find(w), -len(w), b) for w, b in BASE_WORDS if re.search(rf"\b{w}\b", words)]
+    if not hits:
+        return None
+    base = min(hits)[2]
+    extra = []
+    for x in re.finditer(r"\+(\d+d\d+) ?(fire|cold|lightning|thunder|acid|poison|necrotic|radiant|force|psychic)?(?: damage)? (against [a-z ]+|on a hit)(?=[.;,])", t):
+        when = "" if x.group(3) == "on a hit" else x.group(3)
+        extra.append((x.group(1), x.group(2) or "", when))
+    return (base, int(m.group(1)), extra, {})
+
+
 def build():
     bundled = catalogue_bundles()
     names = spell_names()
@@ -317,8 +340,16 @@ def build():
             changed += 1
             json.dump(d, open(f, "w"), ensure_ascii=False, indent=1)
 
-    # Iconic weapons become weapons on their base weapon.
-    for name, (base, plus, extra, more) in ICONIC.items():
+    # Iconic weapons become weapons on their base weapon: the hand-made list, then the rest read from their text
+    # ("A +1 mace ... +2d6 radiant damage against fiends and undead").
+    auto = {}
+    for f, d in docs.items():
+        if folder_names.get(d.get("folder"), "") != "Iconic Weapons" or d["name"] in ICONIC or d["type"] == "weapon":
+            continue
+        got = iconic_from_text(text(d))
+        if got:
+            auto[d["name"]] = got
+    for name, (base, plus, extra, more) in {**ICONIC, **auto}.items():
         if name not in by_name or base not in by_name:
             print(f"gear: skipped {name} (missing {base})")
             continue
@@ -330,9 +361,9 @@ def build():
             "description": s["description"], "source": s.get("source", {"book": "phb", "page": 0}),
             "quantity": 1, "slots": s.get("slots", 1), "bundle": 0, "price": s.get("price", ""), "equipped": False,
             "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
-            "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": False,
+            "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged", False)),
             "range": more.get("range", bs.get("range", "")), "magic": plus, "attackBonus": 0,
-            "traits": more.get("traits", bs.get("traits", "")), "ammoType": "", "ammoId": "",
+            "traits": more.get("traits", bs.get("traits", "")), "ammoType": bs.get("ammoType", "") if bs.get("ranged") else "", "ammoId": "",
             "bonusDamage": [{"formula": a, "type": b, "when": "" if c == "mode" else c, "mode": c == "mode"} for a, b, c in extra],
             "modeLabel": more.get("modeLabel", ""), "modeLight": more.get("modeLight", 0),
             "rules": more.get("rules", []), "toggle": more.get("toggle", False), "active": False, "applies": []

@@ -351,7 +351,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -364,7 +364,7 @@
      "Illusionist",
      "Bard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -415,7 +415,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -430,7 +430,7 @@
      "Sorcerer",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -545,7 +545,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -559,7 +559,7 @@
      "Warlock",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Abjuration",
@@ -610,7 +610,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -623,7 +623,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -748,7 +748,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -759,7 +759,7 @@
      "Wizard",
      "Warlock",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Conjuration",
     "castingTime": "1 action",
@@ -809,7 +809,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -821,7 +821,7 @@
      "Illusionist",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Illusion",
@@ -883,7 +883,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; opaque wall up to <strong>20ft</strong> high and <strong>10ft</strong> long per level (max <strong>60ft</strong>), or a ring up to <strong>10ft radius</strong>, for <strong>1 round per level</strong>.</p><ul><li>A creature that passes through or is within the wall takes <strong>2d6 + 1 per level</strong> fire damage (max <strong>2d6+15</strong>); <strong>Reflex halves</strong>.</li><li>Creatures within <strong>10ft</strong> of the hot side take <strong>2d4</strong> fire damage per round.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Warlock, Magus, Sorcerer</p>",
+    "description": "<p>Range <strong>120ft</strong>; opaque wall up to <strong>20ft</strong> high and <strong>10ft</strong> long per level (max <strong>60ft</strong>), or a ring up to <strong>10ft radius</strong>, for <strong>1 round per level</strong>.</p><ul><li>A creature that passes through or is within the wall takes <strong>2d6 + 1 per level</strong> fire damage (max <strong>2d6+15</strong>); <strong>Reflex halves</strong>.</li><li>Creatures within <strong>10ft</strong> of the hot side take <strong>2d4</strong> fire damage per round.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Warlock, Spellblade, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -894,7 +894,7 @@
      "Wizard",
      "Druid",
      "Warlock",
-     "Magus",
+     "Spellblade",
      "Sorcerer"
     ],
     "school": "Evocation",
@@ -945,7 +945,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -955,7 +955,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -1107,6 +1107,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Mesmerising Eyes",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>30ft</strong> that can see its eyes makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[charmed]{Charmed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zkyCXS3TRQ3Q1Y5J",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.zkyCXS3TRQ3Q1Y5J",
+   "effects": [],
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Rift Step",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>It teleports up to <strong>60ft</strong>. Each creature within <strong>10ft</strong> of where it appears makes a @Check[ref|dc:18]{Reflex save DC 18}, taking @Damage[4d6 fire]{4d6 fire damage} and being @Condition[blinded]{Blinded} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 18,
+    "damage": "4d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SsoNdPR2esYHgKxQ",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.SsoNdPR2esYHgKxQ",
+   "effects": [],
+   "sort": 1900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Doom Blade",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes two longsword attacks against one creature. If both hit, the target makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[charmed]{Charmed} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VNky2hCgYsir2Ohr",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.VNky2hCgYsir2Ohr",
+   "effects": [],
+   "sort": 2000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -1119,11 +1242,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "zyXAnLXUPDIVX4up",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.zyXAnLXUPDIVX4up",
+   "_id": "lsZgzgpvoH01juZ7",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.lsZgzgpvoH01juZ7",
    "effects": [],
    "flags": {},
-   "sort": 1800,
+   "sort": 2100,
    "ownership": {
     "default": 0
    },
@@ -1142,11 +1265,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "lGGfg3D7nYkHdX6j",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.lGGfg3D7nYkHdX6j",
+   "_id": "lAYHg2iHG9U9kSTE",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.lAYHg2iHG9U9kSTE",
    "effects": [],
    "flags": {},
-   "sort": 1900,
+   "sort": 2200,
    "ownership": {
     "default": 0
    },
@@ -1165,11 +1288,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "QYXtuJAxRoQvDNhV",
-   "_key": "!actors.items!HlD1iZPpkYWLbeyg.QYXtuJAxRoQvDNhV",
+   "_id": "N2oQQNSMB1OfYBQC",
+   "_key": "!actors.items!HlD1iZPpkYWLbeyg.N2oQQNSMB1OfYBQC",
    "effects": [],
    "flags": {},
-   "sort": 2000,
+   "sort": 2300,
    "ownership": {
     "default": 0
    },

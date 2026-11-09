@@ -445,6 +445,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Dread of the Grave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} until the end of its next turn. It then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "oMhT983mYdoV5kAs",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.oMhT983mYdoV5kAs",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grave Wind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:24]{Fortitude save DC 24}, taking @Damage[4d8 necrotic]{4d8 necrotic damage} and being unable to regain HP until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 24,
+    "damage": "4d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "hRDJ9nUTsLCi360v",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.hRDJ9nUTsLCi360v",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of the Grave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also can't regain HP until the end of their next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "k9rNMCrEri5UK4mZ",
+   "_key": "!actors.items!9wI32cnjEG6Bf7HW.k9rNMCrEri5UK4mZ",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

@@ -218,6 +218,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Opening Volley",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It fires two random eye rays at different creatures within <strong>120ft</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6lYRDcpz2hAgL0LX",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.6lYRDcpz2hAgL0LX",
+   "effects": [],
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grave Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each living enemy within <strong>60ft</strong> that it can see makes a @Check[fort|dc:21]{Fortitude save DC 21}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and being unable to regain HP until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 21,
+    "damage": "4d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vi1NL6ty5VV9363i",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.vi1NL6ty5VV9363i",
+   "effects": [],
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Gaze of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-ant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It turns every eye on one creature within <strong>120ft</strong>: three random rays, all at that creature.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "IOz12wu7jcKuLrfM",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.IOz12wu7jcKuLrfM",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -230,11 +353,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "j5kLBOLFEsRN1AYj",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.j5kLBOLFEsRN1AYj",
+   "_id": "SNquv6gmLDxfR9ww",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.SNquv6gmLDxfR9ww",
    "effects": [],
    "flags": {},
-   "sort": 400,
+   "sort": 700,
    "ownership": {
     "default": 0
    },

@@ -88,7 +88,7 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
   game.messages = { contents: [] }; game.combat = null; game.combats = { contents: [] };
   const ev = feat("Evasive Manoeuvre", "Rogue");
   assert.ok(ev.system.rules.some(r => r.key === "adv.against.first.melee" && Number(r.value) < 0));
-  const cascade = feat("Arcane Cascade", "Magus");
+  const cascade = feat("Arcane Cascade", "Spellblade");
   assert.ok(cascade.system.applies[0].rules.some(r => r.key === "adv.against.first"));
   const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
   assert.ok(docs.includes("firstAgainst(targets[0].actor, { ranged, name: targets[0].name })") && docs.includes("firstAgainst(targets[0].actor, { ranged: false, name: targets[0].name })"), "weapon and touch attacks read it");

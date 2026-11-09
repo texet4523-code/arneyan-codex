@@ -367,6 +367,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Tyrant's Roar",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:25]{Will save DC 25} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 25,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "65mXDHHCderuWjkC",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.65mXDHHCderuWjkC",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Choking Mist",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:27]{Fortitude save DC 27}, taking @Damage[6d8 poison]{6d8 poison damage} and being @Condition[poisoned]{Poisoned} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 27,
+    "damage": "6d8",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "pTwFJ9mNPswJoeyj",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.pTwFJ9mNPswJoeyj",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "QqB6PM8DQcXchr3t",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.QqB6PM8DQcXchr3t",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -379,11 +502,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "yQcv1jIR1MpdFNbC",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.yQcv1jIR1MpdFNbC",
+   "_id": "YA2wY0sIoh3mEdCb",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.YA2wY0sIoh3mEdCb",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -402,11 +525,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "EqMkA0JFNKtJNVqG",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.EqMkA0JFNKtJNVqG",
+   "_id": "Nt76juW4yDPAfcpe",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.Nt76juW4yDPAfcpe",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -425,11 +548,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "ibT1hBuSVBAZNniH",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.ibT1hBuSVBAZNniH",
+   "_id": "axLBpE2N1YJ1blrP",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.axLBpE2N1YJ1blrP",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -448,11 +571,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "y1P8zyBytnBBzRWj",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.y1P8zyBytnBBzRWj",
+   "_id": "ZsjMIEKXBVtL4oME",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.ZsjMIEKXBVtL4oME",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -471,11 +594,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "SDj3vFlO2ftRwH3N",
-   "_key": "!actors.items!9eWTXDeNNUgLcfJd.SDj3vFlO2ftRwH3N",
+   "_id": "Fm6xXLRcpLuoKfAU",
+   "_key": "!actors.items!9eWTXDeNNUgLcfJd.Fm6xXLRcpLuoKfAU",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

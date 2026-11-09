@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p>Touch; one living creature below <strong>0 HP</strong> and dying. It dies immediately and you gain <strong>temporary HP</strong> equal to its HD for <strong>1 hour</strong>. Cannot target stable or healthy creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock, Necromancer</p>",
+  "description": "<p>Touch; one living creature at <strong>0 HP</strong> and dying (not stable).</p><ul><li>It dies at once, and you gain <strong>temporary HP</strong> equal to its Level (a monster's HD) for <strong>1 hour</strong>.</li><li>A finishing spell: priests of death and necromancers use it to end a fallen foe and take its last strength.</li><li>It can't target a stable or healthy creature.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock, Necromancer</p>",
   "source": {
    "book": "phb",
    "page": 0

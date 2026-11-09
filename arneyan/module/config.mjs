@@ -207,7 +207,7 @@ ARNEYAN.hpBonusText = function (hp) {
 ARNEYAN.classKeys = {
   Archer: ["dex", "wis"], Artificer: ["int"], Assassin: ["dex", "int"], Barbarian: ["str", "con"], Bard: ["cha", "dex"],
   Cleric: ["wis"], "Cleric (Battle Priest)": ["wis"], Druid: ["wis"], Fighter: ["str", "dex"], Gunslinger: ["dex", "wis"],
-  Illusionist: ["int"], Knight: ["cha", "str"], Magus: ["int", "str"], Monk: ["wis", "dex"], Necromancer: ["int"],
+  Illusionist: ["int"], Knight: ["cha", "str"], Spellblade: ["int", "str"], Magus: ["int", "str"], Monk: ["wis", "dex"], Necromancer: ["int"],
   Paladin: ["cha", "str"], Ranger: ["dex", "wis"], Rogue: ["dex", "int"], Sorcerer: ["cha"], Swashbuckler: ["dex", "cha"],
   Warlock: ["cha"], Witch: ["wis"], Wizard: ["int"]
 };

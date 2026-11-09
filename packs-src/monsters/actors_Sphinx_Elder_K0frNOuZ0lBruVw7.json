@@ -313,7 +313,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -327,7 +327,7 @@
      "Warlock",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Abjuration",
@@ -441,7 +441,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -452,7 +452,7 @@
      "Wizard",
      "Cleric",
      "Warlock",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -643,7 +643,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained ability scores (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one ability score of your choice.</li><li>Material: diamond dust worth 100 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "description": "<p>Touch; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained ability scores (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one ability score of your choice.</li><li>Material: diamond dust worth 100 sp, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -736,6 +736,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): The Last Riddle",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It asks a riddle. Up to three enemies that can hear it make a @Check[will|dc:24]{Will save DC 24} or are @Condition[incapacitated]{Incapacitated}, pondering, until the end of their next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Odsy8DSaKZlvKuPM",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.Odsy8DSaKZlvKuPM",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Time Ripple",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:24]{Will save DC 24}, taking @Damage[4d8 force]{4d8 force damage} and being <strong>Slowed</strong> until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "4d8",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KiZX2wrAqNXxZJ2r",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.KiZX2wrAqNXxZJ2r",
+   "effects": [],
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Lost to the Ages",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[will|dc:24]{Will save DC 24}. On a failure it vanishes until the end of its next turn, then returns @Condition[prone]{Prone} and takes @Damage[8d8 force]{8d8 force damage}; on a success, half damage and it stays.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "8d8",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Bhj9DPIplSKYSkTc",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.Bhj9DPIplSKYSkTc",
+   "effects": [],
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -748,11 +871,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "XGnlNDaW53YaWAyK",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.XGnlNDaW53YaWAyK",
+   "_id": "z93tg0RO6Xr6o3XR",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.z93tg0RO6Xr6o3XR",
    "effects": [],
    "flags": {},
-   "sort": 1200,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -775,10 +898,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "1JsVpGQAyWZXp4Pp",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.1JsVpGQAyWZXp4Pp",
+   "_id": "Jhua9pMCaIYDZEHF",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.Jhua9pMCaIYDZEHF",
    "flags": {},
-   "sort": 1300,
+   "sort": 1600,
    "ownership": {
     "default": 0
    },
@@ -801,10 +924,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "NiXDq3VaxlgnRtyy",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.NiXDq3VaxlgnRtyy",
+   "_id": "WxLSei0AWs5ate3f",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.WxLSei0AWs5ate3f",
    "flags": {},
-   "sort": 1400,
+   "sort": 1700,
    "ownership": {
     "default": 0
    },

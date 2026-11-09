@@ -350,7 +350,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Magus, Witch, Bard</p>",
+    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -363,7 +363,7 @@
      "Cleric",
      "Warlock",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch",
      "Bard"
     ],
@@ -426,7 +426,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature. For <strong>1 round per level</strong> it has <strong>Disadvantage</strong> on attack rolls with Str-based attacks and takes -1 per four levels (min -1, max -4) to damage with them; <strong>Fortitude negates</strong>. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Magus, Necromancer, Witch</p>",
+    "description": "<p>Range <strong>60ft</strong>; one creature. For <strong>1 round per level</strong> it has <strong>Disadvantage</strong> on attack rolls with Str-based attacks and takes -1 per four levels (min -1, max -4) to damage with them; <strong>Fortitude negates</strong>. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -436,7 +436,7 @@
     "classes": [
      "Wizard",
      "Warlock",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -510,7 +510,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -520,7 +520,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",

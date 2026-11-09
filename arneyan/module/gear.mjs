@@ -427,23 +427,23 @@ function wireLightTimer(app, element) {
 
 const SCROLL_IMG = "systems/arneyan/assets/icons/gear-scroll-unfurled.svg";
 
-/** Write a scroll of a spell you know: 1 week and 100 gp a spell level (a cantrip, 1 day and 10 gp). */
+/** Write a scroll of a spell you know: 1 week and 100 sp a spell level (a cantrip, 1 day and 10 sp). */
 export async function writeScroll(spell) {
   const actor = spell.actor;
   if (!actor?.isOwner || spell.type !== "spell") return;
   const lvl = spell.system.level;
+  // In sp (the silver standard, books v0.10.55): 100 sp a spell level, a cantrip 10 sp.
   const cost = lvl ? 100 * lvl : 10;
   const time = lvl ? "1 week" : "1 day";
   const caster = spell.caster;
   const cl = caster?.classLevel ?? actor.system.level ?? 1;
   const dc = caster?.dc ?? actor.system.spellDC ?? 0;
-  const gp = actor.system.currency?.gp ?? 0;
   const pay = await DialogV2.wait({
     window: { title: `Write a scroll: ${spell.name}` }, classes: ["arneyan"],
-    content: `<p>Writing it takes <strong>${time}</strong> and <strong>${cost} gp</strong>${spell.system.costly ? " plus the spell's costly components" : ""}. You may write no more scrolls a month than your casting modifier (minimum 1).</p>
+    content: `<p>Writing it takes <strong>${time}</strong> and <strong>${cost} sp</strong>${spell.system.costly ? " plus the spell's costly components" : ""}. You may write no more scrolls a month than your casting modifier (minimum 1).</p>
       <p class="arn-muted">The scroll keeps your caster level (${cl}) and save DC${dc ? ` (${dc})` : ""}.</p>`,
     buttons: [
-      { action: "pay", label: `Write it and pay ${cost} gp`, icon: "fa-solid fa-coins", default: true },
+      { action: "pay", label: `Write it and pay ${cost} sp`, icon: "fa-solid fa-coins", default: true },
       { action: "free", label: "Write it (paid already)", icon: "fa-solid fa-scroll" },
       { action: "cancel", label: "Cancel" }
     ],
@@ -451,20 +451,22 @@ export async function writeScroll(spell) {
   });
   if (!["pay", "free"].includes(pay)) return;
   if (pay === "pay") {
-    if (gp < cost) return ui.notifications.warn(`${actor.name} has ${gp} gp; the scroll needs ${cost} gp.`);
-    await actor.update({ "system.currency.gp": gp - cost });
+    const { payCoins, toCp, cpText } = await import("./downtime.mjs");
+    const after = payCoins(actor.system.currency, cost * 10);
+    if (!after) return ui.notifications.warn(`${actor.name} has ${cpText(toCp(actor.system.currency))}; the scroll needs ${cost} sp.`);
+    await actor.update(Object.fromEntries(Object.entries(after).map(([k, v]) => [`system.currency.${k}`, v])));
   }
   const spellData = spell.toObject();
   delete spellData._id;
   const [made] = await actor.createEmbeddedDocuments("Item", [{
     name: `Scroll of ${spell.name}`, type: "equipment", img: SCROLL_IMG,
     system: {
-      description: spell.system.description, quantity: 1, slots: 1, bundle: 5, price: lvl ? `${200 * lvl} gp` : "25 gp",
+      description: spell.system.description, quantity: 1, slots: 1, bundle: 5, price: lvl ? `${200 * lvl} sp` : "25 sp",
       consumable: { use: true, heal: "" }, scroll: { spell: spellData, cl, dc }, identified: true,
       source: { book: "phb", page: 0 }
     }
   }]);
-  say(actor, `<p>${esc(actor.name)} writes ${esc(made?.name)} (${time}${pay === "pay" ? `, ${cost} gp` : ""}).</p>`);
+  say(actor, `<p>${esc(actor.name)} writes ${esc(made?.name)} (${time}${pay === "pay" ? `, ${cost} sp` : ""}).</p>`);
 }
 
 /** The unknown scroll's check as its card says it: a natural 20 passes and a natural 1 fails. */

@@ -135,12 +135,13 @@ class Tables:
             out = "".join(pieces)
         return out
 
-    def table(self, name, formula, results, folder, img, description="", sort=0, flags=None):
-        tid = self.table_id(name)
+    def table(self, name, formula, results, folder, img, description="", sort=0, flags=None, key=None):
+        # `key`: the name its id was made from (a table renamed in the books keeps its id: gp to sp, R-B54).
+        tid = self.table_id(key or name)
         rs = []
         for i, r in enumerate(results):
             lo, hi = r["range"]
-            rid = lib.fid(PACK, "result", name, str(i))
+            rid = lib.fid(PACK, "result", key or name, str(i))
             doc = {"_id": rid, "_key": f"!tables.results!{tid}.{rid}", "type": r.get("type", "text"),
                    "name": _nodash(r.get("name", "")), "description": _nodash(r.get("description", "")), "img": r.get("img") or img,
                    "weight": max(1, hi - lo + 1), "range": [lo, hi], "drawn": False, "flags": {}}
@@ -208,31 +209,34 @@ def build():
     tiers = {}
     for cells in _rows(cat_gems):
         m = re.match(r"([A-Z][\w-]+)(?: \[\w+\])?$", cells[0])
-        v = re.match(r"([\d,]+) gp$", cells[1]) if len(cells) > 2 else None
+        v = re.match(r"([\d,]+) ([gsc]p)$", cells[1]) if len(cells) > 2 else None
         if m and v:
-            tiers[m.group(1)] = (int(v.group(1).replace(",", "")), [x.strip() for x in cells[2].split(",") if x.strip()])
+            tiers[m.group(1)] = (int(v.group(1).replace(",", "")), [x.strip() for x in cells[2].split(",") if x.strip()], v.group(2))
     assert list(tiers) == ["Ornamental", "Semi-Precious", "Fancy", "Precious", "Gem", "Jewel"], tiers.keys()
-    for i, (tier, (value, stones)) in enumerate(tiers.items()):
-        T.table(f"{tier} Stones ({value:,} gp)", f"1d{len(stones)}",
+    # Silver standard (books v0.10.55): the same numbers in sp; each table keeps the id it had in gp.
+    stone = lambda t: f"{t} Stones ({tiers[t][0]:,} {tiers[t][2]})"
+    stone_key = lambda t: f"{t} Stones ({tiers[t][0]:,} gp)"
+    for i, (tier, (value, stones, unit)) in enumerate(tiers.items()):
+        T.table(stone(tier), f"1d{len(stones)}",
                 [T.text(n + 1, n + 1, s, img=img_gem) for n, s in enumerate(stones)], f_gems, img_gem,
-                f"<p>The Catalogue's example stones for the {tier} tier ({value:,} gp each). The GM may choose instead; cut and quality can move a stone up or down a band.</p>",
-                sort=200000 + i * 1000)
+                f"<p>The Catalogue's example stones for the {tier} tier ({value:,} {unit} each). The GM may choose instead; cut and quality can move a stone up or down a band.</p>",
+                sort=200000 + i * 1000, key=stone_key(tier))
     rows = _md_table(md, "## Gems and Art")
     for gi, grade in enumerate(["Lesser", "Fine", "Superb"]):
         res = []
         for r in rows:
             lo, hi = _span(r[0])
             cell = r[1 + gi]
-            m = re.match(r"(.+?) \(([\d,]+) gp\)", cell)
+            m = re.match(r"(.+?) \(([\d,]+) [gsc]p\)", cell)
             tier = m.group(1)
             stones = next(n for n in tiers if n == tier)
-            res.append(T.text(lo, hi, cell, f"{html.escape(cell, quote=False)}: @UUID[{T.uuid_table(f'{stones} Stones ({tiers[stones][0]:,} gp)')}]{{choose or draw a stone}}"))
+            res.append(T.text(lo, hi, cell, f"{html.escape(cell, quote=False)}: @UUID[{T.uuid_table(stone_key(stones))}]{{choose or draw a stone}}"))
         T.table(f"{grade} Gems", "1d6", res, f_gems, img_gem,
                 f"<p>Roll a d6 for each {grade} gem a hoard gives. Up to 5 gems of one tier fit in 1 slot.</p>", sort=100000 + gi * 1000)
 
     # -- Art objects: the book's examples (value rolled as it says).
-    art = re.search(r"Minor art is worth 1d6 × 50 gp: (.+?)\. Major art is worth 2d6 × 250 gp: (.+?)\. ", md)
-    for i, (grade, formula, slots, items) in enumerate([("Minor", "1d6 × 50 gp", 1, art.group(1)), ("Major", "2d6 × 250 gp", 2, art.group(2))]):
+    art = re.search(r"Minor art is worth 1d6 × 50 ([gsc]p): (.+?)\. Major art is worth 2d6 × 250 \1: (.+?)\. ", md)
+    for i, (grade, formula, slots, items) in enumerate([("Minor", f"1d6 × 50 {art.group(1)}", 1, art.group(2)), ("Major", f"2d6 × 250 {art.group(1)}", 2, art.group(3))]):
         ex = [re.sub(r"^an? ", "", x.strip()) for x in items.split(",") if x.strip()]
         ex = [x[0].upper() + x[1:] for x in ex]
         T.table(f"{grade} Art Objects", f"1d{len(ex)}", [T.text(n + 1, n + 1, e, img=img_art) for n, e in enumerate(ex)], f_gems, img_art,

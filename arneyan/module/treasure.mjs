@@ -15,10 +15,10 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
 /** Individual treasure, rolled for each creature. */
 export const INDIVIDUAL = {
   N: { coins: [] },
-  P: { coins: [["2d6", "sp"]] },
-  Q: { coins: [["1d6", "gp"]] },
-  R: { coins: [["2d6", "gp"]] },
-  S: { coins: [["4d6", "gp"]], gems: { chance: 25, count: "1", grade: "lesser" } }
+  P: { coins: [["2d6", "cp"]] },
+  Q: { coins: [["1d6", "sp"]] },
+  R: { coins: [["2d6", "sp"]] },
+  S: { coins: [["4d6", "sp"]], gems: { chance: 25, count: "1", grade: "lesser" } }
 };
 
 /** Hoards, rolled once for the whole group. */
@@ -140,7 +140,7 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
       const t = GEM_TIERS[tier];
       const stone = await pick(t.stones);
       // "Water Opal (Gem)", not "(Gem gem)"; the other grades read "(Fancy gem)".
-      items.push({ kind: "gem", name: `${stone} (${["Gem", "Jewel"].includes(t.label) ? t.label : `${t.label} gem`})`, qty: 1, value: t.value, price: `${t.value} gp`, slots: 1, bundle: 5 });
+      items.push({ kind: "gem", name: `${stone} (${["Gem", "Jewel"].includes(t.label) ? t.label : `${t.label} gem`})`, qty: 1, value: t.value, price: `${t.value} sp`, slots: 1, bundle: 5 });
     }
   };
   const art = async (n, grade, items) => {
@@ -148,7 +148,7 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
     for (let i = 0; i < n; i++) {
       const value = await roll(a.value);
       const what = await pick(a.examples);
-      items.push({ kind: "art", name: `${what} (${a.label.toLowerCase()})`, qty: 1, value, price: `${value} gp`, slots: a.slots, bundle: 0 });
+      items.push({ kind: "art", name: `${what} (${a.label.toLowerCase()})`, qty: 1, value, price: `${value} sp`, slots: a.slots, bundle: 0 });
     }
   };
 
@@ -167,14 +167,14 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
     const def = HOARDS[p.code];
     if (!def || (p.lair && !lair)) continue;
     const sec = { label: `Hoard ${p.code}${p.lair ? " (in the lair, to be found)" : ""}`, coins: emptyCoins(), items: [], lair: p.lair };
-    sec.coins.gp += await roll(def.coins);
+    sec.coins.sp += await roll(def.coins);
     // Goods in bulk instead of coin: each lot's value comes off the coin.
-    while (tradeLeft > 0 && sec.coins.gp > 0) {
+    while (tradeLeft > 0 && sec.coins.sp > 0) {
       const [lot, value] = await pick(TRADE_GOODS);
-      if (value > sec.coins.gp) break;
-      sec.coins.gp -= value;
+      if (value > sec.coins.sp) break;
+      sec.coins.sp -= value;
       tradeLeft--;
-      sec.items.push({ kind: "trade", name: `${lot} (a lot of trade goods)`, qty: 1, value, price: `${value} gp`, slots: 2, bundle: 0 });
+      sec.items.push({ kind: "trade", name: `${lot} (a lot of trade goods)`, qty: 1, value, price: `${value} sp`, slots: 2, bundle: 0 });
     }
     if (def.gems) await gems(await roll(def.gems.count), def.gems.grade, sec.items);
     if (def.art) await art(await roll(def.art.count), def.art.grade, sec.items);
@@ -188,7 +188,8 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
   const coins = emptyCoins();
   for (const s of sections) for (const k of Object.keys(coins)) coins[k] += s.coins[k];
   const items = mergeItems(sections.flatMap(s => s.items));
-  const value = coins.pp * 10 + coins.gp + coins.sp / 10 + coins.cp / 100 + items.filter(i => i.kind !== "magic").reduce((t, i) => t + (i.value || 0) * i.qty, 0);
+  // In sp (the silver standard, books v0.10.55).
+  const value = coins.pp * 100 + coins.gp * 10 + coins.sp + coins.cp / 10 + items.filter(i => i.kind !== "magic").reduce((t, i) => t + (i.value || 0) * i.qty, 0);
   return { name, coins, items, sections, value: Math.round(value * 100) / 100 };
 }
 
@@ -203,7 +204,7 @@ function mergeItems(list) {
 }
 
 const enchanted = (what, plus, note = "") => ({
-  kind: "magic", name: `${what[0].toUpperCase()}${what.slice(1)} +${plus}`, qty: 1, value: ENCHANTED[what][plus], price: `${ENCHANTED[what][plus].toLocaleString("en-GB")} gp`,
+  kind: "magic", name: `${what[0].toUpperCase()}${what.slice(1)} +${plus}`, qty: 1, value: ENCHANTED[what][plus], price: `${ENCHANTED[what][plus].toLocaleString("en-GB")} sp`,
   slots: 1, bundle: 0, placeholder: true,
   note: note || `Choose the ${what} and give it +${plus}${what === "weapon" ? " to attack and damage" : " to AC"}.`
 });
@@ -285,7 +286,7 @@ export function treasureCardHtml(result, { title = "Treasure", code = "", uuids 
     const uuid = uuids[i.find ?? ""];
     const name = uuid ? `@UUID[${uuid}]{${esc(i.name)}}` : esc(i.name);
     const qty = i.qty > 1 ? `${i.qty} × ` : "";
-    const each = i.kind !== "magic" && i.value ? ` <span class="arn-muted">(${i.value.toLocaleString("en-GB")} gp${i.qty > 1 ? " each" : ""})</span>` : "";
+    const each = i.kind !== "magic" && i.value ? ` <span class="arn-muted">(${i.value.toLocaleString("en-GB")} sp${i.qty > 1 ? " each" : ""})</span>` : "";
     // A Unique's line links each Named Unique it could be (their items in the equipment compendium).
     const note = i.pick?.length
       ? ` <span class="arn-muted">${esc(i.lead ?? "")}${i.pick.map(n => uuids[n] ? `@UUID[${uuids[n]}]{${esc(n)}}` : esc(n)).join(", ")}.</span>`
@@ -300,7 +301,7 @@ export function treasureCardHtml(result, { title = "Treasure", code = "", uuids 
   const empty = !result.sections.length || (!coinText(result.coins) && !result.items.length);
   return `<div class="arn-card arn-treasure"><header class="arn-card-title"><i class="fa-solid fa-gem"></i> <span>${esc(title)}</span>${code ? `<span class="arn-mode">${esc(code)}</span>` : ""}</header>
     ${empty ? '<p class="arn-muted">Nothing worth taking.</p>' : secs}
-    ${empty ? "" : `<p class="arn-tr-total">Coins, gems, art and goods worth about <strong>${Math.round(result.value).toLocaleString("en-GB")} gp</strong>${result.items.some(i => i.kind === "magic") ? ", plus the magic" : ""}.</p>
+    ${empty ? "" : `<p class="arn-tr-total">Coins, gems, art and goods worth about <strong>${Math.round(result.value).toLocaleString("en-GB")} sp</strong>${result.items.some(i => i.kind === "magic") ? ", plus the magic" : ""}.</p>
     <button type="button" class="arn-tr-stash"><i class="fa-solid fa-sack-dollar"></i> Put it in the party stash</button>`}
   </div>`;
 }

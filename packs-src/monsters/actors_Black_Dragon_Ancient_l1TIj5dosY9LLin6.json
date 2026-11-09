@@ -367,6 +367,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Tyrant's Roar",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "M3vNtBZzH1yR6tKF",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.M3vNtBZzH1yR6tKF",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Rotting Mire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>The ground in a <strong>20ft radius</strong> within <strong>60ft</strong> turns to acid mire. Each creature there makes a @Check[ref|dc:26]{Reflex save DC 26}, taking @Damage[6d8 acid]{6d8 acid damage} and being @Condition[restrained]{Restrained} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 26,
+    "damage": "6d8",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "I8CnrQNz8hhISCfG",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.I8CnrQNz8hhISCfG",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1ZgvEq6uNvHcOgeO",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.1ZgvEq6uNvHcOgeO",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -379,11 +502,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "UBdyc8dpe7GT9Uog",
-   "_key": "!actors.items!l1TIj5dosY9LLin6.UBdyc8dpe7GT9Uog",
+   "_id": "KaGUg6O2vcbGiGp5",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.KaGUg6O2vcbGiGp5",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -402,11 +525,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "VtBY2HOAYTnUW2qV",
-   "_key": "!actors.items!l1TIj5dosY9LLin6.VtBY2HOAYTnUW2qV",
+   "_id": "tlq6bItaksIfXLqL",
+   "_key": "!actors.items!l1TIj5dosY9LLin6.tlq6bItaksIfXLqL",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },

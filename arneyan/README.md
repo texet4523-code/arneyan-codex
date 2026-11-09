@@ -4,6 +4,14 @@ Version 0.10.94 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.95
 
+Books HB v0.10.55 and M&T v0.10.54 (B-F39 to B-F47, R-F22, R-F26).
+
+- **The silver standard** (R-B54, K77). Every price, cost and value in both books is in silver now (old gold prices are the same number in sp, old silver in cp), and the system follows: the Catalogue and the Browser's prices, starting money (rolled in sp, the starting packs 8 to 35 sp), Earn Income (1 sp, 3 sp or 1 gp a day; 3 cp on a failure), crafting, brewing, magic items, scrolls, spell copying and research, training, Trained Feats and Carousing (all in sp), writing a scroll from the sheet, treasure (individual treasure in cp and sp, hoards, gems, art and trade goods in sp) and the gem and art tables. Coins themselves are unchanged (10 cp = 1 sp, 10 sp = 1 gp).
+- **The Magus is the Spellblade.** Same class, Kits and features (existing characters' copies are renamed when the world updates); the spell lists' class code is Spb.
+- **Monsters & Treasure v0.10.54:** 19 new monsters (the Elder Brain, Ulitharid, Neothelid, four duergar, four yuan-ti, the five Abishai, the Hobgoblin Devastator and Iron Shadow, the Nilbog) and villain actions on every solo. The full Iconic item list (95 more weapons, armour, rings, wands, staffs, rods and wondrous items) is in the Equipment compendium; Iconic weapons are real weapons on their base weapon with their bonus and extra damage.
+- **Shields and armour:** each shield says its type and what its traits do; the six new armour traits (Quiet, Hot, Concealable, Corrosion-Proof, Quick-Strapped, Ornate) and the weapon changes (Katar, Heavy Mace, Rapier, Scimitar and the rest) come from the Catalogue.
+- **The Minotaur's Horn Charge** is an action: its +1d6 reminder says so.
+- **Minion** (R-F26): a Minion box beside a monster's HP (GM only). Ticked, its HP is 1 of 1; unticked, the HP it had comes back. Everything else on the block stays.
 - **Advantage and Disadvantage on every d20 roll** (Kieran, 9 Nov: "I mean all d20 rolls"). Any message in chat with a d20 now has the buttons: a typed /roll, an inline roll from a description, a table draw (the note says what the new total lands on), another module's roll. Pressing one rolls the second d20 and the message says the new total.
   - **Downtime checks** have them too, and pressing one works the downtime out again: income earned (coins added or taken back), a single check such as crafting or brewing (finished or not, and the half of the gold kept). Learning with more weeks and Carousing say what changed, for the GM to adjust on the Downtime tab. The window's "Advantage on the check" choice stays.
   - **Reading an unknown scroll** is an ordinary check card: a pass after a second die casts the spell after all.

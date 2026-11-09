@@ -328,6 +328,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Rising Swell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It surges up out of the water or earth. Each creature within <strong>30ft</strong> makes a @Check[ref|dc:22]{Reflex save DC 22} or is pushed <strong>15ft</strong> and falls @Condition[prone]{Prone}; a vessel above it makes its capsize check.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 22,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kU18SvlwBjHDRgMS",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.kU18SvlwBjHDRgMS",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Scalding Fog",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Steam fills a <strong>30ft radius</strong> around it until the end of its next turn. Each creature in it makes a @Check[fort|dc:20]{Fortitude save DC 20}, taking @Damage[5d8 fire]{5d8 fire damage} and being @Condition[blinded]{Blinded} while inside on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 20,
+    "damage": "5d8",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AXwNpOxprXfplpCp",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.AXwNpOxprXfplpCp",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Drag Under",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It bites and claws one creature (bite and both claws). If the bite hits, the target is grappled (escape <strong>DC 22</strong>) and dragged under the water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sOT448VDEQZc9Dhz",
+   "_key": "!actors.items!ZGgFANcmX8vwBw1T.sOT448VDEQZc9Dhz",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

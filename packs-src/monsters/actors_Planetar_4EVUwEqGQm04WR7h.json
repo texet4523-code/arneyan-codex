@@ -329,7 +329,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -342,7 +342,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -590,7 +590,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; casting takes <strong>1 minute</strong>.</p><ul><li>One willing dead creature, dead no longer than <strong>1 day per level</strong>, whose body is intact (head and torso present).</li><li>It returns with <strong>1 HP</strong>, 4 levels of Exhaustion, no spells prepared, and permanently loses 1 Constitution (minimum 3).</li><li>This loss is not drain: only Wish or Miracle can restore it.</li><li>Fails if the creature died of old age, is undead, or was destroyed by Disintegrate. No save.</li><li>Material: diamond dust worth 500 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "description": "<p>Touch; casting takes <strong>1 minute</strong>.</p><ul><li>One willing dead creature, dead no longer than <strong>1 day per level</strong>, whose body is intact (head and torso present).</li><li>It returns with <strong>1 HP</strong>, 4 levels of Exhaustion, no spells prepared, and permanently loses 1 Constitution (minimum 3).</li><li>This loss is not drain: only Wish or Miracle can restore it.</li><li>Fails if the creature died of old age, is undead, or was destroyed by Disintegrate. No save.</li><li>Material: diamond dust worth 500 sp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -894,6 +894,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Trumpet of the Host",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can hear it makes a @Check[will|dc:23]{Will save DC 23} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 23,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Ioz79lLsdRd6BCqb",
+   "_key": "!actors.items!4EVUwEqGQm04WR7h.Ioz79lLsdRd6BCqb",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Wheel of Blades",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Spinning blades sweep everything within <strong>15ft</strong>. Each creature there makes a @Check[ref|dc:23]{Reflex save DC 23}, taking @Damage[6d8 slashing]{6d8 slashing damage} and being pushed <strong>15ft</strong> on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 23,
+    "damage": "6d8",
+    "damageType": "slashing",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "a7Xr0c4IH43Ugwkl",
+   "_key": "!actors.items!4EVUwEqGQm04WR7h.a7Xr0c4IH43Ugwkl",
+   "effects": [],
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Smite of Heaven",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes one greatsword attack (+19, <strong>6d6+7</strong> plus @Damage[4d8 radiant]{4d8 radiant}) against one creature. On a hit the target makes a @Check[fort|dc:23]{Fortitude save DC 23} or is @Condition[blinded]{Blinded} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 23,
+    "damage": "4d8",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WBYJmnlzMdmAXjgG",
+   "_key": "!actors.items!4EVUwEqGQm04WR7h.WBYJmnlzMdmAXjgG",
+   "effects": [],
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -906,11 +1029,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "tSL1QQxIjL2cvI3N",
-   "_key": "!actors.items!4EVUwEqGQm04WR7h.tSL1QQxIjL2cvI3N",
+   "_id": "MUnCFDskDEcztIQG",
+   "_key": "!actors.items!4EVUwEqGQm04WR7h.MUnCFDskDEcztIQG",
    "effects": [],
    "flags": {},
-   "sort": 1500,
+   "sort": 1800,
    "ownership": {
     "default": 0
    },

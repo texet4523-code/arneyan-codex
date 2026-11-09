@@ -134,7 +134,7 @@ function doc(type, name, system = {}, parent = null, id = null) {
   nextRoll = 40;
   await S.startingWealth(actor, cls);
   assert.equal(actor.flags.arneyan.startingGold, 40);
-  assert.equal(actor.system.currency.gp, 40);
+  assert.equal(actor.system.currency.sp, 40, "starting money is silver (books v0.10.55)");
   assert.deepEqual(actor.flags.arneyan.startingGear.free, ["Pistol"], "the free firearm is recorded");
   assert.equal(actor.created[0]._stats.compendiumSource, gun.uuid, "giveItems links the copy to the Catalogue");
   assert.equal(S.canRunStartingWealth(actor, game.user), false, "rolled: the player can't run it again");
@@ -149,8 +149,8 @@ function doc(type, name, system = {}, parent = null, id = null) {
   nextRoll = 25; asked = []; actor.created.length = 0;
   await S.startingWealth(actor, cls);
   assert.equal(actor.flags.arneyan.startingGold, 65, "a running total of the gold rolled");
-  assert.equal(actor.system.currency.gp, 65);
-  assert.ok(asked[0].content.includes("Already rolled: 40 gp") && asked[0].content.includes("aren't given again"), asked[0].content);
+  assert.equal(actor.system.currency.sp, 65);
+  assert.ok(asked[0].content.includes("Already rolled: 40 sp") && asked[0].content.includes("aren't given again"), asked[0].content);
   assert.ok(!asked[1].content.includes('name="gun"'), "no second free firearm");
   assert.ok(asked[1].content.includes("Free items already taken: Pistol"));
   assert.equal(actor.created.length, 0, "nothing given twice");
@@ -170,8 +170,8 @@ function doc(type, name, system = {}, parent = null, id = null) {
   const buyer = pc({ items: [{ type: "class", name: "Fighter", system: {} }], currency: { gp: 1, pp: 1, sp: 0 } });
   chat.length = 0;
   await S.applyStartingGear(buyer, { pick: "1", gun: "" }, { gun: false, toolkit: null, taken: [] });
-  assert.equal(S.STARTING_PACKS[1].gp, 8);
-  assert.deepEqual([buyer.system.currency.pp, buyer.system.currency.gp], [0, 3], "8 gp: 1 gp, then a pp with 3 gp change");
+  assert.equal(S.STARTING_PACKS[1].sp, 8);
+  assert.deepEqual([buyer.system.currency.pp, buyer.system.currency.gp, buyer.system.currency.sp], [1, 0, 2], "8 sp from 1 gp, 2 sp change (books v0.10.55, silver)");
   assert.deepEqual(buyer.flags.arneyan.startingGear.packs, ["Dungeoneer's Pack"]);
   // Every freebie missing from the Catalogue: still a chat line.
   const art = pc({ items: [{ type: "class", name: "Artificer", system: {} }] });
@@ -307,11 +307,11 @@ function doc(type, name, system = {}, parent = null, id = null) {
   let duringGold = null;
   DialogV2.wait = async o => {
     titles.push(o.window.title);
-    if (o.window.title.endsWith("starting gold")) { duringGold = await P.setClassLevel(actor, cls, 1); return "skip"; }
+    if (o.window.title.endsWith("starting money")) { duringGold = await P.setClassLevel(actor, cls, 1); return "skip"; }
     return "skip";
   };
   await P.firstLevelSetup(actor, cls);
-  assert.deepEqual(titles, ["Tess: 1st-level Fighter", "Tess: starting gold"]);
+  assert.deepEqual(titles, ["Tess: 1st-level Fighter", "Tess: starting money"]);
   assert.notEqual(duringGold, false, "not locked out while the gold window is open");
   assert.ok(!warnings.some(w => w.includes("Finish the current level change")), warnings.join(" | "));
 }
@@ -420,7 +420,7 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   };
   const answer = (o, how) => {
     const t = o.window.title;
-    const key = t.endsWith("starting gold") ? "gold" : /Kit/.test(t) ? "kit" : /Feat/.test(t) ? "feat" : /Skills/.test(t) ? "skills" : /1st-level Fighter/.test(t) ? "finish" : "other";
+    const key = t.endsWith("starting money") ? "gold" : /Kit/.test(t) ? "kit" : /Feat/.test(t) ? "feat" : /Skills/.test(t) ? "skills" : /1st-level Fighter/.test(t) ? "finish" : "other";
     const a = how[key];
     if (typeof a === "function") return a(o);
     return a === undefined ? "skip" : a;
@@ -429,12 +429,12 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   // Every step: Kit taken, Feat later, three Skills, Apply with Luck; added before starting gold.
   let { cls, actor } = mk();
   let seen = [], atGold = -1;
-  DialogV2.wait = async o => { seen.push(o); if (o.window.title.endsWith("starting gold")) atGold = actor.created.length; return answer(o, {
+  DialogV2.wait = async o => { seen.push(o); if (o.window.title.endsWith("starting money")) atGold = actor.created.length; return answer(o, {
     kit: o => take(o, [kit.uuid]), feat: "later", skills: o => take(o, sk.slice(0, 3).map(s => s.uuid)), finish: o => take(o, ["roll"]) }); };
   nextRoll = 13;
   assert.equal(await P.firstLevelSetup(actor, cls), "gold");
   assert.deepEqual(seen.map(o => o.window.title), ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)",
-    "Tess: starting Skills (Step 3 of 4)", "Tess: 1st-level Fighter (Step 4 of 4)", "Tess: starting gold"]);
+    "Tess: starting Skills (Step 3 of 4)", "Tess: 1st-level Fighter (Step 4 of 4)", "Tess: starting money"]);
   assert.ok(seen[0].content.includes("Max HP is set to <strong>10</strong>"), "the HP line heads step 1");
   assert.ok(!seen[1].content.includes("Max HP is set"), "and only step 1");
   assert.ok(seen[0].content.includes('arn-pick-group">Deity<') && seen[0].content.includes(">Bane<") && seen[0].content.includes(">The Heavy Hand<"), "kits grouped, class name dropped");
@@ -484,7 +484,7 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   seen = [];
   DialogV2.wait = async o => { seen.push(o.window.title); return answer(o, { kit: o => take(o, [kit.uuid]), feat: "skip" }); };
   assert.equal(await P.firstLevelSetup(actor, cls), "gold");
-  assert.deepEqual(seen, ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)", "Tess: starting gold"]);
+  assert.deepEqual(seen, ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)", "Tess: starting money"]);
   assert.deepEqual(actor.created.map(c => c.name), ["The Heavy Hand (Fighter)"]);
   assert.equal(actor.system.luck.start, 0);
 

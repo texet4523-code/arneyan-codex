@@ -58,7 +58,7 @@ export const SUMMON_SPELLS = {
     note: "They act as one group." },
   "Summon Planar Ally": { filter: "extraplanar", duration: { n: 1, unit: "hour", perLevel: true },
     options: [{ label: "One extraplanar creature of Level 16 or lower", max: 16, count: "1" }],
-    note: "Aligned with your deity or alignment. It performs one task for 100 gp per Level, refuses suicidal tasks and leaves if unpaid or attacked." },
+    note: "Aligned with your deity or alignment. It performs one task for 100 sp per Level, refuses suicidal tasks and leaves if unpaid or attacked." },
   // Animate Objects (0.10.43): the objects the spell describes, as two Bestiary creatures made from its numbers
   // (build_animated.py): up to one per two caster levels, a Large one counting as two.
   "Animate Objects": { filter: ["Animated Object", "Animated Object, Large"], duration: { n: 1, unit: "round", perLevel: true },

@@ -259,6 +259,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Labyrinth Charge",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It charges up to twice its speed in a straight line. Each creature in its path makes a @Check[ref|dc:25]{Reflex save DC 25} or is pushed <strong>10ft</strong> aside and falls @Condition[prone]{Prone}; it gores the creature at the end of the charge.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 25,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7MdgnJYacthhU8fl",
+   "_key": "!actors.items!DC6OwR8KRqa99pPI.7MdgnJYacthhU8fl",
+   "effects": [],
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Earthshaker",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>It stamps. Each creature within <strong>20ft</strong> makes a @Check[fort|dc:25]{Fortitude save DC 25}, taking @Damage[4d8 bludgeoning]{4d8 bludgeoning damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 25,
+    "damage": "4d8",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1FnMt7jEMZPykvul",
+   "_key": "!actors.items!DC6OwR8KRqa99pPI.1FnMt7jEMZPykvul",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Pulverise",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes two fist attacks against one creature. If both hit, the target makes a @Check[fort|dc:25]{Fortitude save DC 25} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 25,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "39XDC0RULwSBzjjh",
+   "_key": "!actors.items!DC6OwR8KRqa99pPI.39XDC0RULwSBzjjh",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

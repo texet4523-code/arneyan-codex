@@ -266,7 +266,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -281,7 +281,7 @@
      "Sorcerer",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -396,7 +396,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -409,7 +409,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -590,7 +590,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -602,7 +602,7 @@
      "Illusionist",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Illusion",
@@ -664,7 +664,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -674,7 +674,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -725,7 +725,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Touch; one creature. It gains a fly speed of <strong>90ft</strong> for <strong>1 minute per level</strong>. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Touch; one creature. It gains a fly speed of <strong>90ft</strong> for <strong>1 minute per level</strong>. When the spell ends the target falls unless on the ground.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -736,7 +736,7 @@
      "Wizard",
      "Warlock",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Transmutation",
     "castingTime": "1 action",

@@ -229,7 +229,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to <strong>60ft</strong> per round as you direct; <strong>1 minute</strong>. Lights must stay within <strong>20ft</strong> of each other; the spell ends if one passes beyond <strong>120ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Range <strong>120ft</strong>; up to 4 torch-bright lights (or one glowing humanoid shape), moving up to <strong>60ft</strong> per round as you direct; <strong>1 minute</strong>. Lights must stay within <strong>20ft</strong> of each other; the spell ends if one passes beyond <strong>120ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -242,7 +242,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -292,7 +292,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -305,7 +305,7 @@
      "Illusionist",
      "Bard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -432,7 +432,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Magus, Sorcerer</p>",
+    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Spellblade, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -441,7 +441,7 @@
     "className": "",
     "classes": [
      "Wizard",
-     "Magus",
+     "Spellblade",
      "Sorcerer"
     ],
     "school": "Transmutation",

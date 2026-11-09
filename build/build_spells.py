@@ -8,7 +8,7 @@ import spell_damage, spell_saves
 RENAMED = {"Malediction": "Hex"}
 
 CLASSES = {"Wiz": "Wizard", "Cle": "Cleric", "Ill": "Illusionist", "Dru": "Druid", "Sor": "Sorcerer", "Wit": "Witch",
-           "Bar": "Bard", "War": "Warlock", "Mag": "Magus", "Nec": "Necromancer", "Pal": "Paladin"}
+           "Bar": "Bard", "War": "Warlock", "Mag": "Spellblade", "Spb": "Spellblade", "Nec": "Necromancer", "Pal": "Paladin"}
 SAVES = {"Will": "will", "Reflex": "ref", "Fortitude": "fort"}
 LEVELS = ["Cantrips", "1st Level", "2nd Level", "3rd Level", "4th Level", "5th Level", "6th Level", "7th Level", "8th Level", "9th Level"]
 DTYPES = ["slashing", "piercing", "bludgeoning", "fire", "cold", "lightning", "thunder", "acid", "poison", "necrotic", "radiant", "psychic", "force"]

@@ -112,6 +112,7 @@
 .arneyan .arn-hp-bar { height: 8px; border-radius: 4px; background: var(--arn-surface-2); overflow: hidden; margin-bottom: 4px; }
 .arneyan .arn-hp-bar div { height: 100%; background: linear-gradient(90deg, var(--arn-red), var(--arn-accent-2)); }
 .arneyan .arn-hp-row { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.arneyan .arn-hp-row .arn-minion { display: inline-flex; align-items: center; gap: 2px; font-size: var(--font-size-12, 12px); margin-left: 6px; white-space: nowrap; }
 .arneyan input.arn-hp-value { width: 3.2em; font-size: 22px; font-weight: 700; text-align: center; height: 34px; }
 .arneyan .arn-hp-max { font-size: 18px; font-weight: 700; color: var(--arn-muted); }
 .arneyan .arn-step { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--arn-surface-2); color: var(--arn-muted); cursor: pointer; font-size: 11px; }

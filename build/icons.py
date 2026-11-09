@@ -43,7 +43,7 @@ FEAT = {"General Path": "laurels", "Martial Path": "crossed-swords", "Specialist
 SKILL = {"str": "biceps", "dex": "juggler", "con": "heart-plus", "int": "brain", "wis": "owl", "cha": "drama-masks"}
 KIT_CLASS = {"Archer": "bowman", "Artificer": "gears", "Assassin": "hood", "Barbarian": "barbarian", "Bard": "lyre",
              "Cleric": "holy-symbol", "Druid": "oak-leaf", "Fighter": "swordman", "Gunslinger": "pistol-gun", "Illusionist": "domino-mask",
-             "Knight": "visored-helm", "Magus": "sword-spin", "Monk": "fist", "Necromancer": "death-skull", "Paladin": "shield-reflect",
+             "Knight": "visored-helm", "Spellblade": "sword-spin", "Monk": "fist", "Necromancer": "death-skull", "Paladin": "shield-reflect",
              "Ranger": "bow-arrow", "Rogue": "cloak-dagger", "Sorcerer": "fire-spell-cast", "Swashbuckler": "sparkling-sabre",
              "Warlock": "pentacle", "Witch": "witch-flight", "Wizard": "wizard-face"}
 

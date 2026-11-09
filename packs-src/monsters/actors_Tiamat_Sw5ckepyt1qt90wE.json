@@ -377,7 +377,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -391,7 +391,7 @@
      "Warlock",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Abjuration",
@@ -442,7 +442,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -454,7 +454,7 @@
      "Illusionist",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Illusion",
@@ -737,6 +737,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Queen of Dragons",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see her makes a @Check[will|dc:30]{Will save DC 30} or is @Condition[frightened]{Frightened} until the end of its next turn. She then flies up to half her flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 30,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "h20lzuhffjSOEHbI",
+   "_key": "!actors.items!Sw5ckepyt1qt90wE.h20lzuhffjSOEHbI",
+   "effects": [],
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Five-fold Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>All five heads breathe at once around her. Each creature within <strong>30ft</strong> makes a @Check[ref|dc:30]{Reflex save DC 30}, taking <strong>12d8</strong> damage (acid, cold, fire, lightning or poison, the GM's choice for each) and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 30,
+    "damage": "12d8",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0QnRydylo6unocTv",
+   "_key": "!actors.items!Sw5ckepyt1qt90wE.0QnRydylo6unocTv",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Chromatic Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>All five heads breathe at one creature within <strong>120ft</strong>. It makes a @Check[ref|dc:30]{Reflex save DC 30}, taking <strong>20d8</strong> damage on a failure, or half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 30,
+    "damage": "20d8",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "MzpF4xl7wSVefwIx",
+   "_key": "!actors.items!Sw5ckepyt1qt90wE.MzpF4xl7wSVefwIx",
+   "effects": [],
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -749,11 +872,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "nk742rqDeDIvVkHX",
-   "_key": "!actors.items!Sw5ckepyt1qt90wE.nk742rqDeDIvVkHX",
+   "_id": "et5SdFVkxaJgyE3K",
+   "_key": "!actors.items!Sw5ckepyt1qt90wE.et5SdFVkxaJgyE3K",
    "effects": [],
    "flags": {},
-   "sort": 1400,
+   "sort": 1700,
    "ownership": {
     "default": 0
    },
@@ -772,11 +895,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "jpwxFQ49rdoAf3fI",
-   "_key": "!actors.items!Sw5ckepyt1qt90wE.jpwxFQ49rdoAf3fI",
+   "_id": "KAKWVjO12z5bGcvD",
+   "_key": "!actors.items!Sw5ckepyt1qt90wE.KAKWVjO12z5bGcvD",
    "effects": [],
    "flags": {},
-   "sort": 1500,
+   "sort": 1800,
    "ownership": {
     "default": 0
    },

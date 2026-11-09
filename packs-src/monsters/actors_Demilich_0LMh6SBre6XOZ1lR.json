@@ -289,6 +289,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Rise from the Hoard",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Dust and bone swirl <strong>20ft</strong> around it as it rises <strong>30ft</strong>. Each enemy in the swirl makes a @Check[will|dc:23]{Will save DC 23} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 23,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Jd7wLWhupJeFMFOH",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.Jd7wLWhupJeFMFOH",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grave Chill",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>20ft</strong> makes a @Check[fort|dc:23]{Fortitude save DC 23}, taking @Damage[4d8 necrotic]{4d8 necrotic damage} and being unable to regain HP until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 23,
+    "damage": "4d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "CS5FwDkuuLef8opg",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.CS5FwDkuuLef8opg",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Soul Siphon",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>30ft</strong> makes a @Check[fort|dc:23]{Fortitude save DC 23}. On a failure it takes @Damage[10d8 necrotic]{10d8 necrotic damage}, and the demilich regains half of it; on a success, half damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 23,
+    "damage": "10d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "H6ZLWEiXghOmXere",
+   "_key": "!actors.items!0LMh6SBre6XOZ1lR.H6ZLWEiXghOmXere",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

@@ -22,7 +22,10 @@ assert.ok(!/^\*/.test(va[0].system.description.replace(/<[^>]+>/g, "")), "the ti
 assert.equal(va[0].system.save, "will"); assert.equal(va[0].system.dc, 20);
 assert.equal(va[1].system.save, "ref"); assert.equal(va[1].system.damage, "4d8+5");
 const withVa = read("monsters", "actors_").filter(m => m.items.some(i => i.flags?.arneyan?.villainAction));
-assert.equal(withVa.length, 13, withVa.map(m => m.name).join(", "));
+// M&T v0.10.51 (B-F44): every solo has its three.
+const solos = read("monsters", "actors_").filter(m => m.system.details.isSolo);
+assert.deepEqual(solos.filter(m => !withVa.some(w => w.name === m.name)).map(m => m.name), [], "solos without villain actions");
+assert.ok(withVa.length >= 57, String(withVa.length));
 for (const m of withVa) assert.deepEqual(m.items.filter(i => i.flags?.arneyan?.villainAction).map(i => i.flags.arneyan.villainAction), [1, 2, 3], m.name);
 for (const m of withVa) assert.ok(m.system.details.isSolo, `${m.name} is a solo`);
 
@@ -62,10 +65,10 @@ assert.equal(D.tableFor("", 5), "");
 const corr = one("class-features", "items_Corruption_");
 assert.equal(corr.system.activities[0].tables, "1=Major Corruption; 2-20=Minor Corruption");
 
-/* Carouse (downtime): gold by Tier, Charisma DC 12, a week. */
+/* Carouse (downtime): silver by Tier (books v0.10.55), Charisma DC 12, a week. */
 assert.deepEqual([1, 4, 5, 10, 11, 16, 17, 20].map(DT.carouseGold), [100, 100, 500, 500, 2500, 2500, 10000, 10000]);
 const plan = DT.planDowntime("carouse", {}, { system: { level: 9 }, items: [] });
-assert.equal(plan.costCp, 50000); assert.equal(plan.days, 7); assert.deepEqual(plan.check, { type: "carouse", ability: "cha", dc: 12 });
+assert.equal(plan.costCp, 5000, "500 sp"); assert.equal(plan.days, 7); assert.deepEqual(plan.check, { type: "carouse", ability: "cha", dc: 12 });
 assert.ok(DT.ACTIVITIES.carouse);
 
 /* Review of the sync. */

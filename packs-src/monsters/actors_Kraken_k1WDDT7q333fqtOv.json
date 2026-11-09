@@ -402,6 +402,129 @@
     "default": 0
    },
    "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Ink and Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Ink and storm-dark fill everything within <strong>60ft</strong> until the end of its next turn. Each enemy in it makes a @Check[fort|dc:26]{Fortitude save DC 26} or is @Condition[blinded]{Blinded} while inside.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 26,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vnApwE8lvG94yUjj",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.vnApwE8lvG94yUjj",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Writhing Tentacles",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[ref|dc:29]{Reflex save DC 29}, taking @Damage[6d8 bludgeoning]{6d8 bludgeoning damage} and being grappled (escape <strong>DC 29</strong>) on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 29,
+    "damage": "6d8",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jo6jMOeL1a16wMz7",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.jo6jMOeL1a16wMz7",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Drag to the Deep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It bites one creature (+24, <strong>3d8+8</strong>) and swallows it at once if it is Large or smaller, then dives up to its swimming speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "khC3ePguv1pjlI1P",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.khC3ePguv1pjlI1P",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
   }
  ],
  "effects": [],

@@ -404,6 +404,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Dread Majesty",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:27]{Will save DC 27} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 27,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kJLUkNLb3scRSLgL",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.kJLUkNLb3scRSLgL",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Hailstorm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Hail pounds a <strong>20ft radius</strong> within <strong>90ft</strong>. Each creature there makes a @Check[ref|dc:29]{Reflex save DC 29}, taking @Damage[6d8 cold]{6d8 cold damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 29,
+    "damage": "6d8",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "jMIJX8rtZup26IzD",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.jMIJX8rtZup26IzD",
+   "effects": [],
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses either of its breaths whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "RO7i7WbwMSD3x5SY",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.RO7i7WbwMSD3x5SY",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -416,11 +539,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "U20m4W8HagycQnFs",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.U20m4W8HagycQnFs",
+   "_id": "nhGFUv7M5RGIQulU",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.nhGFUv7M5RGIQulU",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -439,11 +562,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "TymvbgmjwCid1rH7",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.TymvbgmjwCid1rH7",
+   "_id": "5IN4sUkBqfPEtYFL",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.5IN4sUkBqfPEtYFL",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -466,10 +589,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "XVgQ2PBUrn7JQB5E",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.XVgQ2PBUrn7JQB5E",
+   "_id": "qFYHPrPdrf5dtpJb",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.qFYHPrPdrf5dtpJb",
    "flags": {},
-   "sort": 1100,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -492,10 +615,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "PrtFeNkud27GmKo0",
-   "_key": "!actors.items!pI5N07LlxLmM8EiZ.PrtFeNkud27GmKo0",
+   "_id": "zYmsWmqizJTtO6I8",
+   "_key": "!actors.items!pI5N07LlxLmM8EiZ.zYmsWmqizJTtO6I8",
    "flags": {},
-   "sort": 1200,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },

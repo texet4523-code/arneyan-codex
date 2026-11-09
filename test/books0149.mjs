@@ -36,7 +36,7 @@ assert.ok(sarrix.items.some(i => i.type === "skill" && i.name === "Climb") && !s
 
 /* Weapon Master: repeatable, and as a Trained Feat no check at the end. */
 const p = DT.planDowntime("train", { training: "feat", what: "Weapon Master" }, { items: [], system: { level: 6 } });
-assert.equal(p.check, null); assert.equal(p.costCp, 150000); assert.equal(p.offerFeat, "Weapon Master");
+assert.equal(p.check, null); assert.equal(p.costCp, 15000); assert.equal(p.offerFeat, "Weapon Master");
 assert.ok(/i\.name !== "Weapon Master"/.test(src("module/downtime.mjs")), "can be taken again");
 assert.ok(/!c && plan\.offerFeat !== undefined/.test(src("module/downtime.mjs")), "added when the weeks are done");
 assert.ok(/You can take this feat again/.test(read("feats", "items_Weapon_Master_")[0].system.description));

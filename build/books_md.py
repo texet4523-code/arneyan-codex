@@ -14,9 +14,9 @@ Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01053"
+SRC = "/tmp/hb/src_v01055"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.53"
+VERSION = "0.10.55"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -74,6 +74,49 @@ def patched(part, patches):
     return out
 
 
+# The Catalogue lists the staple Iconic items; Monsters & Treasure has the full list (v0.10.53, R-B38, B-F46). Every
+# M&T Iconic item the Catalogue's matching section lacks is added to the Catalogue copy, so it becomes equipment too.
+MT_TREASURE = "/tmp/hb/mm/treasure.md"
+ICONIC_SECTIONS = [("Iconic Weapons", "Iconic Weapons"), ("Iconic Armour and Shields", "Iconic Armour & Shields"),
+                   ("Iconic Rings", "Iconic Rings"), ("Iconic Wands, Staffs and Rods", "Iconic Wands, Staffs & Rods"),
+                   ("Iconic Wondrous Items", "Iconic Wondrous Items")]
+
+
+def _section(text, head, level):
+    return re.search(rf"^{level} {re.escape(head)}\s*$(.*?)(?=^#{{2,3}} |\Z)", text, re.M | re.S)
+
+
+def _item_rows(body):
+    return [l for l in body.splitlines() if l.startswith("| ") and not l.startswith("| Item") and not l.startswith("|---")]
+
+
+def _row_name(row):
+    return re.sub(r"\s*\[.*", "", row.split("|")[1].strip())
+
+
+def add_iconic(shop_path):
+    if not os.path.exists(MT_TREASURE):
+        return 0
+    mt = open(MT_TREASURE, encoding="utf-8").read()
+    cat = open(shop_path, encoding="utf-8").read()
+    added = 0
+    for mt_head, cat_head in ICONIC_SECTIONS:
+        ms, cs = _section(mt, mt_head, "##"), _section(cat, cat_head, "###")
+        if not ms or not cs:
+            continue
+        have = {_row_name(r) for r in _item_rows(cs.group(1))}
+        new = [r for r in _item_rows(ms.group(1)) if _row_name(r) not in have]
+        if not new:
+            continue
+        rows = _item_rows(cs.group(1))
+        last = rows[-1]
+        at = cs.start(1) + cs.group(1).index(last) + len(last)
+        cat = cat[:at] + "\n" + "\n".join(new) + cat[at:]
+        added += len(new)
+    open(shop_path, "w", encoding="utf-8").write(cat)
+    return added
+
+
 def prepare():
     os.makedirs(CLASSES, exist_ok=True)
     codex = patched("I_Codex", CODEX_PATCHES)
@@ -84,6 +127,7 @@ def prepare():
     os.remove(spells)
     shutil.copyfile(src("II_Character_Creation"), CC)
     shutil.copyfile(src("V_Catalogue"), SHOP)
+    print("Iconic items added from M&T:", add_iconic(SHOP))
     for f in glob.glob(os.path.join(CLASSES, "*")):
         os.remove(f)
     classes_md = joined(open(src("III_Classes"), encoding="utf-8").read())

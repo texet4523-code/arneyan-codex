@@ -330,6 +330,129 @@
    "folder": null
   },
   {
+   "name": "Villain Action 1 (Opener): Dread Majesty",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:24]{Will save DC 24} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 24,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2YMquHAUtmAmZLC5",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.2YMquHAUtmAmZLC5",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Scouring Wind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature in a <strong>60ft cone</strong> makes a @Check[fort|dc:26]{Fortitude save DC 26}, taking @Damage[6d8 fire]{6d8 fire damage}, being pushed <strong>30ft</strong> and @Condition[blinded]{Blinded} by sand until the end of its next turn on a failure, or half damage on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 26,
+    "damage": "6d8",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "AAM9Pqpqjt8ZqcN4",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.AAM9Pqpqjt8ZqcN4",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Breath of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7sP9DiPfQZwBU0mo",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.7sP9DiPfQZwBU0mo",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -342,11 +465,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "rU1Nb8T0A84qxsBy",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.rU1Nb8T0A84qxsBy",
+   "_id": "EU9mjmctPYXoPn0z",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.EU9mjmctPYXoPn0z",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -365,11 +488,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "lLJnXEd4yRgLLls2",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.lLJnXEd4yRgLLls2",
+   "_id": "cFOcl8uNSUf7GkWp",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.cFOcl8uNSUf7GkWp",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -388,11 +511,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "ZuFVa0SZpRJi0dUk",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.ZuFVa0SZpRJi0dUk",
+   "_id": "HM6DKSiyFVbzwIyo",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.HM6DKSiyFVbzwIyo",
    "effects": [],
    "flags": {},
-   "sort": 900,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -415,10 +538,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "WyVRX5MhEklnNCkC",
-   "_key": "!actors.items!WwpMXlXot9UdYPU3.WyVRX5MhEklnNCkC",
+   "_id": "iRAr0TaxPxw92lEq",
+   "_key": "!actors.items!WwpMXlXot9UdYPU3.iRAr0TaxPxw92lEq",
    "flags": {},
-   "sort": 1000,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },

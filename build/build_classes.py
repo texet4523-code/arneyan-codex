@@ -7,17 +7,17 @@ import books_md
 SRC = books_md.CLASSES
 ABIL = {"Strength": "str", "Dexterity": "dex", "Constitution": "con", "Intelligence": "int", "Wisdom": "wis", "Charisma": "cha"}
 XP = {"Assassin": 8, "Rogue": 8, "Necromancer": 12, "Paladin": 12, "Witch": 12, "Wizard": 12}
-CAST = {"Bard": "cha", "Cleric": "wis", "Druid": "wis", "Illusionist": "int", "Magus": "int", "Necromancer": "int",
+CAST = {"Bard": "cha", "Cleric": "wis", "Druid": "wis", "Illusionist": "int", "Spellblade": "int", "Necromancer": "int",
         "Paladin": "cha", "Sorcerer": "cha", "Warlock": "cha", "Witch": "wis", "Wizard": "int"}
 
 FEAT_LEVELS = {}
 for cls in ["Fighter"]: FEAT_LEVELS[cls] = [1, 3, 6, 11, 15, 20]
-for cls in ["Barbarian", "Bard", "Paladin", "Knight", "Monk", "Artificer", "Magus"]: FEAT_LEVELS[cls] = [1, 2, 6, 12, 16, 21]
+for cls in ["Barbarian", "Bard", "Paladin", "Knight", "Monk", "Artificer", "Spellblade"]: FEAT_LEVELS[cls] = [1, 2, 6, 12, 16, 21]
 for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_LEVELS[cls] = [1, 4, 8, 12, 16, 20]
 for cls in ["Assassin", "Rogue", "Ranger", "Archer", "Gunslinger", "Swashbuckler"]: FEAT_LEVELS[cls] = [1, 2, 6, 11, 16, 21]
 M, S, A = "Martial Path", "Specialist Path", "Arcane & Devout Path"
 FEAT_PATHS = {"Fighter": [M], "Barbarian": [M], "Knight": [M],
-              "Bard": [M, A], "Paladin": [M, A], "Magus": [M, A], "Artificer": [S, A],
+              "Bard": [M, A], "Paladin": [M, A], "Spellblade": [M, A], "Artificer": [S, A],
               "Ranger": [M, S], "Archer": [M, S], "Rogue": [M, S], "Assassin": [M, S], "Monk": [M, S], "Gunslinger": [M, S], "Swashbuckler": [M, S]}
 for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_PATHS[cls] = [A]
 # Paragraphs that lost their list formatting in the class docx. A short bold line reads as a feature heading, so the
@@ -288,7 +288,8 @@ def build(icon_for_class):
             }, icon_for_class(name, f.name), folder=ffol, sort=i, key=f"{name}|{f.level}|{f.name}|{i}",
                _id=known[n] if n < len(known) else None)
             system["features"].append({"level": f.level, "name": f.name, "uuid": f"Compendium.arneyan.class-features.Item.{fdoc['_id']}"})
-        item("classes", name, "class", system, f"systems/arneyan/assets/classes/{name}.webp")
+        # The Magus is the Spellblade (books v0.10.55, R-B54): same class document, same id.
+        item("classes", name, "class", system, f"systems/arneyan/assets/classes/{name}.webp", key="Magus" if name == "Spellblade" else None)
         if name == "Cleric":
             bp = dict(system)
             bp["bthProgression"] = "knight"

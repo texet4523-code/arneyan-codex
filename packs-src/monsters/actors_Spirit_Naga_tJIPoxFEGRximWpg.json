@@ -270,7 +270,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -285,7 +285,7 @@
      "Sorcerer",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -411,7 +411,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Magus, Witch, Bard</p>",
+    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -424,7 +424,7 @@
      "Cleric",
      "Warlock",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch",
      "Bard"
     ],
@@ -487,7 +487,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -497,7 +497,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -670,7 +670,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -681,7 +681,7 @@
      "Wizard",
      "Warlock",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Conjuration",
     "castingTime": "1 action",

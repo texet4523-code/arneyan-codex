@@ -222,7 +222,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Magus, Warlock</p>",
+    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -235,7 +235,7 @@
      "Illusionist",
      "Bard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Warlock"
     ],
     "school": "Evocation",
@@ -286,7 +286,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Magus, Necromancer, Witch</p>",
+    "description": "<p>Self; <strong>60ft cone</strong>; <strong>1 round per level</strong>. You see which creatures and objects in the cone carry magic, and the school of the strongest aura. Blocked by <strong>1ft</strong> of stone, 1 inch of metal or <strong>3ft</strong> of wood.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Sorcerer, Bard, Paladin, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -301,7 +301,7 @@
      "Sorcerer",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -353,7 +353,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Magus, Witch</p>",
+    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -367,7 +367,7 @@
      "Warlock",
      "Bard",
      "Paladin",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Abjuration",
@@ -418,7 +418,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus, Necromancer, Witch</p>",
+    "description": "<p>Touch; one creature, up to <strong>1 hour per level</strong>. Target is <strong>Invisible</strong>. The spell ends when the target attacks, casts a spell or deals damage. Gear it carries becomes invisible with it; items dropped become visible.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -431,7 +431,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Necromancer",
      "Witch"
     ],
@@ -494,7 +494,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -507,7 +507,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Illusion",
     "castingTime": "1 action",

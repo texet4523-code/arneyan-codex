@@ -233,7 +233,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus, Necromancer</p>",
+    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -243,7 +243,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus",
+     "Spellblade",
      "Necromancer"
     ],
     "school": "Evocation",
@@ -294,7 +294,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Magus</p>",
+    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -304,7 +304,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -445,7 +445,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Magus</p>",
+    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -458,7 +458,7 @@
      "Warlock",
      "Sorcerer",
      "Bard",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Illusion",
     "castingTime": "1 action",
@@ -508,7 +508,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -519,7 +519,7 @@
      "Wizard",
      "Sorcerer",
      "Warlock",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -569,7 +569,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Magus, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Frightened</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -581,7 +581,7 @@
      "Illusionist",
      "Sorcerer",
      "Bard",
-     "Magus",
+     "Spellblade",
      "Witch"
     ],
     "school": "Illusion",
@@ -643,7 +643,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Magus</p>",
+    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -654,7 +654,7 @@
      "Wizard",
      "Cleric",
      "Warlock",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Abjuration",
     "castingTime": "1 action",
@@ -704,7 +704,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Magus</p>",
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -715,7 +715,7 @@
      "Wizard",
      "Warlock",
      "Sorcerer",
-     "Magus"
+     "Spellblade"
     ],
     "school": "Conjuration",
     "castingTime": "1 action",

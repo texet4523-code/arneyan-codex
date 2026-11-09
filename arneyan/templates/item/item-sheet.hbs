@@ -136,7 +136,7 @@
       <label>Quantity <input type="number" name="system.quantity" value="{{source.quantity}}" min="0"></label>
       <label>Slots <input type="number" step="0.01" name="system.slots" value="{{source.slots}}" min="0" data-tooltip="Slots for each one, or for each bundle"></label>
       <label data-tooltip="How many share those slots: ammunition 30, small items 5 (0: each one takes the slots)">Bundle of <input type="number" name="system.bundle" value="{{source.bundle}}" min="0"></label>
-      <label>Price <input type="text" name="system.price" value="{{source.price}}" placeholder="10 gp"></label>
+      <label>Price <input type="text" name="system.price" value="{{source.price}}" placeholder="10 sp"></label>
       <label class="check"><input type="checkbox" name="system.equipped" {{checked source.equipped}}> Equipped / carried</label>
       {{#if isGM}}
       <label class="check" data-tooltip="Unticked, players see the plain name and description below"><input type="checkbox" name="system.identified" {{checked source.identified}}> Identified</label>

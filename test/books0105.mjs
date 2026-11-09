@@ -6,7 +6,7 @@ const { ARNEYAN } = await import("../arneyan/module/config.mjs");
 const dir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const mons = fs.readdirSync(dir).map(f => JSON.parse(fs.readFileSync(dir + f))).filter(d => d.type === "npc");
 const by = Object.fromEntries(mons.map(d => [d.name, d]));
-assert.equal(mons.length, 489); // M&T v0.10.48: 23 new (R-B40)
+assert.equal(mons.length, 508); // M&T v0.10.48: 23 new (R-B40); v0.10.52: 19 new (R-B52, B-F45)
 
 // Every monster has six scores; saves = modifier + half Level (minimum 1), ¼ and ½ as 1, Mythic as 30.
 const K = ["str", "dex", "con", "int", "wis", "cha"];
@@ -38,7 +38,7 @@ assert.deepEqual(skills("Goblin"), { Stealth: ["dex", "master"] });
 assert.deepEqual(skills("Wolf"), { Perception: ["wis", "trained"], Stealth: ["dex", "trained"] });
 assert.deepEqual(skills("Lich"), { Perception: ["wis", "trained"], Insight: ["wis", "trained"], Spellcraft: ["int", "trained"], "Ancient History": ["int", "trained"] });
 assert.match(by["Lich"].items.find(i => i.name === "Spellcraft")._stats.compendiumSource, /^Compendium\.arneyan\.skills\.Item\./);
-assert.equal(mons.filter(d => d.items.some(i => i.type === "skill")).length, 279); // 14 of M&T v0.10.48's 23 new list skills
+assert.equal(mons.filter(d => d.items.some(i => i.type === "skill")).length, 287); // M&T v0.10.52: +8 of its 19 new list skills; 14 of M&T v0.10.48's 23 new list skills
 assert.equal(mons.reduce((n, d) => n + d.items.filter(i => i.type === "skill" && i.system.tier === "master").length, 0), 111); // +2 from M&T v0.10.48
 
 // Animated objects are in Monsters & Treasure now, with the ids the spell's own copies had.

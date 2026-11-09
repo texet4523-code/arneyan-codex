@@ -469,6 +469,8 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
         upd[`flags.${SYS}.shiftSet`] = SHIFT_REWORK;
       }
     }
+    // Books v0.10.55 (R-B54): what belongs to a Magus (its features, Kits and spells: system.className) is the Spellblade's.
+    if (actor && /^Magus\b/.test(String((i._source?.system ?? i.system)?.className ?? ""))) upd["system.className"] = String((i._source?.system ?? i.system).className).replace(/^Magus\b/, "Spellblade");
     // Books v0.10.46 (W4, L72): the Shifter lineage Ophidian-Sslyth is "Ophidian", same rules. Renamed in place (a
     // GM's own wording of its bite note stays; the system's own takes the new name).
     // The lineage's feature, and the Shifter ancestry item ("Shifter (Ophidian-Sslyth)", its choice flag).
@@ -759,6 +761,11 @@ export const RENAMED_FEATURES = Object.fromEntries([
 ].map(([id, from, to]) => [`Compendium.${SYS}.class-features.Item.${id}`, [from, to]]));
 // Books v0.10.41 (K49): the Warlock's Hex spell is Malediction (the Witch's Hex feature keeps its name).
 RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
+// Books v0.10.55 (R-B54, K77): the Magus is the Spellblade, its class and Kits renamed in place (same documents).
+RENAMED_FEATURES[`Compendium.${SYS}.classes.Item.LvKwCIHxnmqy9ycn`] = ["Magus", "Spellblade"];
+RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.o15Vvrk1VosCMHlq`] = ["Battle Caster (Magus)", "Battle Caster (Spellblade)"];
+RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.HpaIs8fp3QvxCOYw`] = ["Bladebound (Magus)", "Bladebound (Spellblade)"];
+RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.br5JCSRGfkQYXHY2`] = ["Shadow Edge (Magus)", "Shadow Edge (Spellblade)"];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
 RENAMED_FEATURES[`Compendium.${SYS}.skills.Item.QwBrDsUjGQiCN3qz`] = ["Mountaineering", "Climb"];
 /** Books v0.10.46 (W4): "Ophidian-Sslyth" becomes "Ophidian". */
