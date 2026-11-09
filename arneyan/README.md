@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.98 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.99 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.99
+
+- **Felling Shot** (Kieran, 9 Nov): its card now has an Apply button that knocks the targets Prone after a failed Fortitude save, as Shield Bash and Mighty Deed of Arms already do.
 
 ## What's new in 0.10.98
 

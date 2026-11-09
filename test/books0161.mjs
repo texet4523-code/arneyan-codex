@@ -30,6 +30,8 @@ assert.ok(feats.filter(d => d.system.path).every(d => Array.isArray(d.system.als
 for (const n of ["Felling Shot", "Covering Fire", "Practised Thrower"]) assert.equal(feat(n).system.path, "Martial Path", n);
 const felling = feat("Felling Shot").system.activities ?? [];
 assert.ok(felling.some(a => a.kind === "save" && a.save === "fort"), "Felling Shot: a Fortitude save button");
+assert.ok((feat("Felling Shot").system.applies ?? []).some(e => e.target === "target" && (e.statuses ?? []).includes("prone")), "Felling Shot: Apply Prone to targets (as Shield Bash)");
+assert.ok((feat("Shield Bash").system.applies ?? []).some(e => (e.statuses ?? []).includes("prone")), "Shield Bash: Apply Prone");
 assert.ok((feat("Covering Fire").system.activities ?? []).some(a => a.per === "round"), "Covering Fire: once per round");
 assert.ok(feat("Mighty Deed of Arms").system.description.replace(/<[^>]+>/g, "").includes("5ft with a ranged attack"), "Mighty Deed at range");
 assert.ok((feat("Mighty Deed of Arms").system.activities ?? []).some(a => /5ft with a ranged attack/.test(a.text)));

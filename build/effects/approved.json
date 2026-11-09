@@ -11324,5 +11324,24 @@
   "summary": "Drawn Veil makes you or an ally within 30ft Invisible until the end of its next turn. Books v0.10.58 (R-B55).",
   "manual": "Spend 1 Glamour (the Use).",
   "confidence": "high"
+ },
+ "feats/LrfWdsodnSV1YLuF": {
+  "name": "Felling Shot",
+  "from": "Feat",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Felling Shot",
+    "target": "target",
+    "rounds": 0,
+    "statuses": [
+     "prone"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Applies Prone to the target on a failed Fortitude save (HB v0.10.61, K110; as Shield Bash).",
+  "manual": "The save roll; ranged hit and size limits.",
+  "confidence": "high"
  }
 }
