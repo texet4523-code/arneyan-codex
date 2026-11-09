@@ -13,7 +13,7 @@ import lib
 
 PACKS = ["class-features", "feats", "actions", "kits", "spells", "equipment", "ancestries", "classes", "skills"]
 # The retired one-shot's pregens (test fixtures, 8 Nov 2026) get the same text as shipped ones.
-EMBEDDED = ["pregens", "monsters", os.path.join("..", "test", "fixtures", "pregens")]
+EMBEDDED = ["pregens", "monsters", os.path.join("..", "test", "fixtures", "pregens"), os.path.join("..", "test", "fixtures", "pregens-jw")]
 FAT = 260
 LONG_BOLD = 90
 

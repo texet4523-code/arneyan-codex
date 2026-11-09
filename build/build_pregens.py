@@ -18,6 +18,7 @@ SYS = "arneyan"
 # Adventures no longer in the playtest (Kieran, 8 Nov 2026: The Broken Anvil scrapped for Jacob's Well). Their characters
 # are still built, from the same rules, but into test/fixtures/pregens (the tests use them), never into the compendium.
 # Kieran, 9 Nov 2026: Jacob's Well is finished and comes out of Foundry; the pack stays for the next one-shot's pregens.
+# (Jacob's Well itself goes to its own fixtures folder, pack_for; listed here so the build counts it as not shipped.)
 RETIRED = {"The Broken Anvil", "Jacob's Well (first Keepers)", "Jacob's Well"}
 FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to packs-src, as write() takes it
 

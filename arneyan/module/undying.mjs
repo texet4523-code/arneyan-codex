@@ -26,13 +26,10 @@ export function undyingCard(name, damage) {
 }
 
 export function registerUndying() {
-  Hooks.on("preUpdateActor", (actor, changes, options) => {
-    if (actor.type !== "npc" || !foundry.utils.hasProperty(changes, "system.attributes.hp.value")) return;
-    (options.arneyanHpBefore ??= {})[actor.id] = Number(actor.system.attributes?.hp?.value) || 0;
-  });
+  // The HP before the change: ArneyanActor._preUpdate keeps it (options.arneyanPrevHp), unlinked tokens' actors too.
   Hooks.on("updateActor", async (actor, changes, options, userId) => {
-    if (userId !== game.user.id || actor.type !== "npc") return;
-    const before = options?.arneyanHpBefore?.[actor.id];
+    if (userId !== game.user.id || actor.type !== "npc" || !foundry.utils.hasProperty(changes, "system.attributes.hp.value")) return;
+    const before = Number(options?.arneyanPrevHp?.[actor.id]);
     const now = Number(actor.system.attributes?.hp?.value);
     if (!(before > 0) || !(now <= 0) || !undyingOf(actor)) return;
     const { dc, content } = undyingCard(actor.token?.name ?? actor.name, before - now);
@@ -55,6 +52,8 @@ export function registerUndying() {
       ev.preventDefault();
       const actor = await actorOf();
       if (!actor?.isOwner) return ui.notifications.warn("Only the GM can do that.");
+      // Only while it's still down (a late click never lowers a creature healed since).
+      if (Number(actor.system.attributes?.hp?.value) > 0) return ui.notifications.info(`${actor.token?.name ?? actor.name} is already above 0 HP.`);
       await actor.update({ "system.attributes.hp.value": 1 });
       ui.notifications.info(`${actor.token?.name ?? actor.name} is back at 1 HP (Undying).`);
     });

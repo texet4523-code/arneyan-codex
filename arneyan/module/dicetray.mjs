@@ -16,7 +16,7 @@ async function rollDie(n) {
 /** Inside the chat form, at its top, so the tray goes wherever Foundry moves the chat box (the sidebar or the
  *  notification area when the sidebar is collapsed). */
 function addTray() {
-  for (const form of document.querySelectorAll("form.chat-form")) {
+  for (const form of document.querySelectorAll(".chat-form")) {
     if (form.querySelector(".arn-dice-tray")) continue;
     form.insertAdjacentHTML("afterbegin", diceTrayHtml());
     form.querySelectorAll(".arn-tray-die").forEach(b => b.addEventListener("click", ev => { ev.preventDefault(); rollDie(Number(b.dataset.die)); }));
