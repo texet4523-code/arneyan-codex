@@ -58,7 +58,6 @@ async function downtimeChanged(message) {
   } else if (d.kind === "check" && d.dc !== null) {
     const ok = total >= d.dc;
     entry.roll = `${total} vs DC ${d.dc}`;
-    if (ok === !!d.ok) note = ok ? "still a success" : "still a failure";
     // Whether the half kept on a failure is in the purse now (it may not have been taken back).
     let kept = d.kept ?? !d.ok;
     if (ok === !!d.ok) note = ok ? "still a success" : "still a failure";
@@ -68,9 +67,10 @@ async function downtimeChanged(message) {
       if (paid && d.half && kept) { purse = paid; kept = false; }
       note = `a success now: ${d.title} is finished${d.half ? (kept ? ` (the ${D.cpText(d.half)} kept should go back into it, but the purse is short)` : ` (the ${D.cpText(d.half)} kept goes back into it)`) : ""}`;
     } else {
-      if (d.half && !kept) { purse = D.addCoins(purse, d.half); kept = true; }
+      const back = d.half && !kept;
+      if (back) { purse = D.addCoins(purse, d.half); kept = true; }
       entry.result = `Failure: the time is spent and it isn't finished; half the gold is lost${d.half ? ` (${D.cpText(d.half)} kept)` : ""}.`;
-      note = `a failure now: not finished${d.half ? `, ${D.cpText(d.half)} back in the purse` : ""}`;
+      note = `a failure now: not finished${back ? `, ${D.cpText(d.half)} back in the purse` : d.half ? ` (the ${D.cpText(d.half)} kept never left the purse)` : ""}`;
     }
     flag = { ok, kept };
   } else {
@@ -302,8 +302,10 @@ export function d20Of(message) {
   if (!die || dice.filter(d => Number(d.faces) === 20).length > 1) return null;
   const mods = (die.modifiers ?? []).map(String);
   if (mods.some(m => !/^k[hl]1?$/.test(m))) return null;
-  const terms = roll.terms ?? [];
-  const i = terms.indexOf(die);
+  const terms = roll.terms ?? null;
+  const i = terms ? terms.indexOf(die) : -1;
+  // Inside brackets, a pool or a function ("(1d20 + 2) * 2"): not simply added.
+  if (terms && i < 0) return null;
   if (i >= 0) {
     const op = t => t?.operator ?? (typeof t?.formula === "string" && /^[-+*/%]$/.test(t.formula.trim()) ? t.formula.trim() : null);
     if (i > 0 && op(terms[i - 1]) !== "+") return null;
