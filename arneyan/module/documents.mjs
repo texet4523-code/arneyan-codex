@@ -1464,7 +1464,7 @@ export class ArneyanItem extends Item {
     }
     if (sys.damage) {
       const heal = sys.damageType === "healing";
-      out.push(`<button type="button" class="arn-item-damage" data-item-uuid="${this.uuid}"><i class="fa-solid fa-${heal ? "heart" : "burst"}"></i> ${heal ? "Roll healing" : "Roll damage"}: ${esc(this.damageFormulaLabel())}${(() => { const p = WOUNDED_DICE[this.name] ?? this.flags?.arneyan?.woundedDice; return p ? ` (${p[1]}s against the hurt)` : ""; })()}</button>`);
+      out.push(`<button type="button" class="arn-item-damage" data-item-uuid="${this.uuid}"><i class="fa-solid fa-${heal ? "heart" : "burst"}"></i> ${heal ? "Roll healing" : "Roll damage"}: ${esc(this.damageFormulaLabel())}${(() => { const p = WOUNDED_DICE[this.name] ?? this.flags?.arneyan?.woundedDice; return Array.isArray(p) && p[1] ? ` (${esc(p[1])}s against the hurt)` : ""; })()}</button>`);
       // Handbook v0.10.6: "a Cause Wounds spell heals an undead instead".
       if (heal && CURES.has(this.name)) out.push(`<p class="arn-card-meta"><i class="fa-solid fa-skull"></i> Cast reversed on an undead, it heals: use Roll healing on it (no attack).</p>`);
     }

@@ -163,4 +163,16 @@ assert.equal(D.lastChanceOk({ natural: 12, total: 12, autoFail: true }), false);
   naturals = [4, 5];
   assert.equal(X.d20Of({ rolls: [await new Roll("2d20").evaluate()] }), null, "two d20s added together aren't a d20 roll");
 }
+/* Review fixes: the scroll's naturals; a d20 that isn't simply added gets no buttons. */
+{
+  const G = await import("../arneyan/module/gear.mjs");
+  assert.equal(G.scrollCheckOk({ natural: 1, total: 4, luckBurned: 7 }, 11), false, "a natural 1 fails whatever Luck adds");
+  assert.equal(G.scrollCheckOk({ natural: 20, total: 18 }, 19), true, "a natural 20 passes");
+  assert.equal(G.scrollCheckOk({ natural: 9, total: 12 }, 12), true);
+  const die = { faces: 20, number: 1, total: 7, modifiers: [], results: [{ result: 7 }] };
+  assert.equal(X.d20Of({ rolls: [{ dice: [die], terms: [{ number: 10 }, { operator: "-" }, die], total: 3 }] }), null, "10 - 1d20");
+  assert.equal(X.d20Of({ rolls: [{ dice: [die], terms: [die, { operator: "*" }, { number: 2 }], total: 14 }] }), null, "1d20 * 2");
+  assert.equal(X.d20Of({ rolls: [{ dice: [{ ...die, modifiers: ["x"] }], terms: [], total: 7 }] }), null, "exploding");
+  assert.ok(X.d20Of({ rolls: [{ dice: [die], terms: [die, { operator: "+" }, { number: 5 }], total: 12 }] }), "1d20 + 5");
+}
 console.log("OK redo");

@@ -53,22 +53,26 @@ async function downtimeChanged(message) {
     }
     entry.roll = `${total}`;
     entry.result = `Earned ${D.cpText(earn)} (${D.cpText(perDay)} a day for 6 days).`;
-    flag = { earn };
+    // What the purse really got: coins that couldn't be taken back still count as given.
+    flag = { earn: delta < 0 && note.includes("purse is short") ? Number(d.earn) || 0 : earn };
   } else if (d.kind === "check" && d.dc !== null) {
     const ok = total >= d.dc;
     entry.roll = `${total} vs DC ${d.dc}`;
     if (ok === !!d.ok) note = ok ? "still a success" : "still a failure";
+    // Whether the half kept on a failure is in the purse now (it may not have been taken back).
+    let kept = d.kept ?? !d.ok;
+    if (ok === !!d.ok) note = ok ? "still a success" : "still a failure";
     else if (ok) {
       entry.result = `Success: ${d.title} is finished.`;
-      const paid = d.half ? D.payCoins(purse, d.half) : purse;
-      if (paid) purse = paid;
-      note = `a success now: ${d.title} is finished${d.half ? (paid ? ` (the ${D.cpText(d.half)} kept goes back into it)` : ` (the ${D.cpText(d.half)} kept should go back, but the purse is short)`) : ""}`;
+      const paid = d.half && kept ? D.payCoins(purse, d.half) : purse;
+      if (paid && d.half && kept) { purse = paid; kept = false; }
+      note = `a success now: ${d.title} is finished${d.half ? (kept ? ` (the ${D.cpText(d.half)} kept should go back into it, but the purse is short)` : ` (the ${D.cpText(d.half)} kept goes back into it)`) : ""}`;
     } else {
-      if (d.half) purse = D.addCoins(purse, d.half);
+      if (d.half && !kept) { purse = D.addCoins(purse, d.half); kept = true; }
       entry.result = `Failure: the time is spent and it isn't finished; half the gold is lost${d.half ? ` (${D.cpText(d.half)} kept)` : ""}.`;
       note = `a failure now: not finished${d.half ? `, ${D.cpText(d.half)} back in the purse` : ""}`;
     }
-    flag = { ok };
+    flag = { ok, kept };
   } else {
     // Later rolls (more weeks of learning) or the Carousing table followed from this one: the GM adjusts the entry.
     return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s downtime check (${esc(d.title)}) is now <strong>${total}</strong>${d.dc !== null ? ` against DC ${d.dc}` : ""}. What followed from it was worked out from the first roll: change it on the Downtime tab if it should be different.</p></div>` });
@@ -83,14 +87,13 @@ async function scrollChanged(message) {
   const f = message.flags[SYS], s = f.scroll;
   const actor = s.actorUuid ? await fromUuid(s.actorUuid).catch(() => null) : null;
   if (!actor?.isOwner) return;
-  const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
-  const ok = total >= s.dc;
+  const { scrollCheckOk, castSpellCard } = await import("./gear.mjs");
+  const ok = scrollCheckOk(f, s.dc);
   if (ok === !!s.ok) return;
-  if (message.canUserModify(game.user, "update")) await message.setFlag(SYS, "scroll", { ...s, ok });
-  if (ok) {
-    const { castSpellCard } = await import("./gear.mjs");
-    return castSpellCard(actor, s.spell, { cl: s.cl, dc: s.castDc, from: "a scroll (the check passed after all)" });
-  }
+  const cast = !!s.cast || ok;
+  if (message.canUserModify(game.user, "update")) await message.setFlag(SYS, "scroll", { ...s, ok, cast });
+  if (ok && s.cast) return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s scroll check passes again: the spell was cast already (if the GM undid it, it takes hold again).</p></div>` });
+  if (ok) return castSpellCard(actor, s.spell, { cl: s.cl, dc: s.castDc, from: "a scroll (the check passed after all)" });
   return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s scroll check is a failure now: the spell shouldn't have taken hold. The GM undoes what it did.</p></div>` });
 }
 
@@ -291,23 +294,39 @@ const HANDLED = new Set(["attack", "check", "save", "skill", "contest", "luck", 
 
 /** The first single d20 of a message's rolls (1d20, or 2d20 keeping one): { roll, die, mode, dice, natural }. */
 export function d20Of(message) {
-  for (const roll of message?.rolls ?? []) {
-    for (const die of roll.dice ?? []) {
-      if (Number(die.faces) !== 20) continue;
-      const mods = (die.modifiers ?? []).join("");
-      const mode = /kh/.test(mods) ? 1 : /kl/.test(mods) ? -1 : 0;
-      const n = Number(die.number) || (die.results ?? []).length;
-      if (!(n === 1 || (n === 2 && mode))) return null;
-      return { roll, die, mode, dice: (die.results ?? []).map(r => r.result), natural: Number(die.total) || 0 };
-    }
+  const roll = (message?.rolls ?? [])[0];
+  if (!roll) return null;
+  const dice = roll.dice ?? [];
+  const die = dice.find(d => Number(d.faces) === 20);
+  // One d20 (not several d20 rolls in one message), added to the rest: never "10 - 1d20", "1d20 * 2", exploding or counted.
+  if (!die || dice.filter(d => Number(d.faces) === 20).length > 1) return null;
+  const mods = (die.modifiers ?? []).map(String);
+  if (mods.some(m => !/^k[hl]1?$/.test(m))) return null;
+  const terms = roll.terms ?? [];
+  const i = terms.indexOf(die);
+  if (i >= 0) {
+    const op = t => t?.operator ?? (typeof t?.formula === "string" && /^[-+*/%]$/.test(t.formula.trim()) ? t.formula.trim() : null);
+    if (i > 0 && op(terms[i - 1]) !== "+") return null;
+    if (["*", "/", "%"].includes(op(terms[i + 1]))) return null;
   }
-  return null;
+  const mode = mods.some(m => m.startsWith("kh")) ? 1 : mods.some(m => m.startsWith("kl")) ? -1 : 0;
+  const n = Number(die.number) || (die.results ?? []).length;
+  if (!(n === 1 || (n === 2 && mode))) return null;
+  return { roll, die, mode, dice: (die.results ?? []).map(r => r.result), natural: Number(die.total) || 0 };
+}
+
+/** A table draw's table: a world table, or one of the system's (the compendium). */
+async function drawTable(message) {
+  const id = message.getFlag?.("core", "RollTable");
+  if (!id) return null;
+  return game.tables?.get?.(id) ?? await game.packs?.get?.(`${SYS}.tables`)?.getDocument?.(id).catch(() => null) ?? null;
 }
 
 /** Buttons on any other message with a d20 (a typed /roll, an inline roll, a table draw, a module's roll). */
 function onRenderAny(message, html) {
   const f = message.flags?.[SYS] ?? {};
-  if (HANDLED.has(f.kind) || !html?.querySelector) return;
+  // An initiative roll this system didn't tag (a summon's, a solo's second turn): the tracker sets those.
+  if (HANDLED.has(f.kind) || !html?.querySelector || message.getFlag?.("core", "initiativeRoll") || message.isContentVisible === false) return;
   const found = d20Of(message);
   if (!found) return;
   const box = html.querySelector(".message-content") ?? html;
@@ -353,8 +372,9 @@ export async function anyD20SecondDie(message, dir) {
   const label = dir > 0 ? "Advantage" : "Disadvantage";
   let note = cancel ? `${label} cancels: the first die counts, so the total is ${total}.` : `${label}: second d20 ${second}, so the total is ${total}.`;
   // A table draw: what the new total lands on.
-  const table = game.tables?.get?.(message.getFlag?.("core", "RollTable") ?? "");
-  const res = table?.getResultsForRoll?.(total) ?? [];
+  // Every result in range, drawn already or not.
+  const table = await drawTable(message);
+  const res = (table?.results?.contents ?? []).filter(r => Array.isArray(r.range) && total >= r.range[0] && total <= r.range[1]);
   if (res.length) note += ` On ${table.name} that's: ${res.map(r => r.name || r.description || r.text || "").filter(Boolean).join(", ").replace(/<[^>]+>/g, "")}.`;
   await message.update({ [`flags.${SYS}.anyD20`]: { secondDie: dir, natural: kept, total, note } });
   Hooks.callAll("arneyanAnyD20", message, { before: found.natural, natural: kept, total, dir });
@@ -404,7 +424,7 @@ async function secondDieFor(msg, senderId) {
 }
 
 export function registerRedo() {
-  Hooks.once("ready", () => game.socket.on(SOCKET, (m, id) => { onSocket(m, id).catch(err => console.error("Arneyan | burn Luck", err)); }));
+  Hooks.once("ready", () => game.socket.on(SOCKET, (m, id) => { onSocket(m, id).catch(err => console.error("Arneyan | GM socket", err)); }));
   Hooks.on("arneyanRollChanged", message => { onRollChanged(message).catch(err => console.error("Arneyan | redo", err)); });
   Hooks.on("preCreateChatMessage", onPreCreateMessage);
   Hooks.on("renderChatMessageHTML", onRenderMessage);

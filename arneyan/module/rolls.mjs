@@ -176,7 +176,8 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
  */
 export async function secondDie(message, dir) {
   const flags = message.getFlag(SYS, "kind") ? message.flags[SYS] : null;
-  if (!flags || flags.secondDie || message._arnSecond) return;
+  // Only on a card that offered the buttons (mode is set then): never an automatic failure or a fixed Disadvantage.
+  if (!flags || flags.secondDie || message._arnSecond || flags.mode === undefined || flags.autoFail) return;
   if (flags.kind === "luck") return secondDieLuck(message, dir);
   if (!SECOND_KINDS.includes(flags.kind)) return;
   const actor = ChatMessage.getSpeakerActor(message.speaker);

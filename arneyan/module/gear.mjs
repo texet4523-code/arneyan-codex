@@ -467,6 +467,15 @@ export async function writeScroll(spell) {
   say(actor, `<p>${esc(actor.name)} writes ${esc(made?.name)} (${time}${pay === "pay" ? `, ${cost} gp` : ""}).</p>`);
 }
 
+/** The unknown scroll's check as its card says it: a natural 20 passes and a natural 1 fails. */
+export function scrollCheckOk(f, dc) {
+  if (f.autoFail) return false;
+  const n = Number(f.natural) || 0;
+  if (n === 20) return true;
+  if (n === 1) return false;
+  return (Number(f.total) || 0) + (Number(f.luckBurned) || 0) >= dc;
+}
+
 /**
  * Read a scroll: no slot or components, but you must speak and gesture. Unidentified, it needs a casting-stat check
  * (Intelligence with none) against DC 10 + the spell's level, or it's wasted. It keeps its writer's caster level and DC;
@@ -488,8 +497,8 @@ export async function readScroll(item, event) {
     const msg = await actor.rollAbility(ab, event, { dc: 10 + lvl, title: `${actor.name} reads an unknown scroll (${ARNEYAN.abilities[ab]})`, auto: true,
       notes: ["A pass: the spell takes hold. A failure: the words slip away and the scroll is wasted."] });
     const f = msg?.flags?.[SYS] ?? {};
-    const ok = !f.autoFail && (Number(f.total) || 0) >= 10 + lvl;
-    if (msg?.canUserModify?.(game.user, "update")) await msg.setFlag(SYS, "scroll", { actorUuid: actor.uuid, dc: 10 + lvl, castDc: dc, cl, ok, spell: foundry.utils.deepClone(sp) }).catch(() => null);
+    const ok = scrollCheckOk(f, 10 + lvl);
+    if (msg?.canUserModify?.(game.user, "update")) await msg.setFlag(SYS, "scroll", { actorUuid: actor.uuid, dc: 10 + lvl, castDc: dc, cl, ok, cast: ok, spell: foundry.utils.deepClone(sp) }).catch(() => null);
     if (!ok) return useUp(item);
   }
   await castSpellCard(actor, sp, { cl, dc, from: "a scroll" });
