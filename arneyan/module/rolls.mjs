@@ -116,6 +116,10 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
   // nothing cancels (the off-hand attack's).
   const fixedDis = (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d)) && (mode < 0 || manualAdvantage());
+  // A Disadvantage the player chose (books v0.10.56, K89: Power Attack, Shield Blow, Called Shot) is never offset: no
+  // Advantage button (Power Attack keeps its "Disadvantage applies" one).
+  const chosenDis = mode < 0 && (why?.dis ?? []).some(d => /^(Power Attack|Shield Blow|Called Shot)$/.test(d));
+  if (chosenDis) flags.chosenDis = true;
   // On every d20 roll (Kieran, 9 Nov): what the roll already decided (a contest's winner, a misfire, Last Chance) is
   // worked out again when a button is pressed (the arneyanRollChanged hook, redo.mjs).
   const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() && !why?.auto ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
@@ -129,7 +133,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }
   // The footer can depend on the roll (an attack's damage buttons on a natural 20 or 1).
   if (typeof footer === "function") footer = footer({ natural, crit, outcome });
-  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt, second, paDis: !!extra.paDis && mode < 0 });
+  const content = await renderCard({ title, parts, mode, why, roll, natural, outcome, target: flags.target, targets, kind, footer, actor, notes, autoFail, luckBurned: 0, critAt, second, paDis: !!extra.paDis && mode < 0, chosenDis });
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor }),
     content,
@@ -138,7 +142,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   }, { rollMode: rollMode || game.settings.get("core", "rollMode") });
 }
 
-async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false, paDis = false }) {
+async function renderCard({ title, parts, mode, why, roll, natural, outcome, target, targets, kind, footer, actor, notes, autoFail, luckBurned, critAt = 20, second = false, paDis = false, chosenDis = false }) {
   const modeLabel = mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "";
   // By hand, what would apply is a suggestion (the click's own Shift or Ctrl is what was rolled).
   // By hand: what was rolled (a click, a choice like Power Attack) apart from what only might apply.
@@ -154,7 +158,7 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
   const canBurn = actor?.type === "character" && kind !== "luck" && kind !== "damage" && !autoFail;
   // Advantage or Disadvantage the roll didn't know about (Running Shot after moving, the GM's call): one more d20.
   const canSecond = !!second;
-  const secondAdv = canSecond && mode <= 0, secondDis = canSecond && (mode >= 0 || paDis);
+  const secondAdv = canSecond && mode <= 0 && !chosenDis, secondDis = canSecond && (mode >= 0 || paDis);
   const total = roll.total + luckBurned;
   return foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title, modeLabel, whyLabel,
@@ -194,6 +198,8 @@ export async function secondDie(message, dir) {
     return;
   }
   // Already rolled with the other one: they cancel, and the roll is its first die (no new die).
+  // A chosen Disadvantage (K89) is never cancelled.
+  if (dir > 0 && flags.chosenDis) return;
   const cancel = !!flags.mode && Math.sign(flags.mode) === -Math.sign(dir) && (flags.dice ?? []).length >= 2;
   if (flags.mode && !cancel) return;
   message._arnSecond = true;  // one at a time: Advantage then Disadvantage before the card updates rolls only once

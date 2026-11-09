@@ -531,9 +531,15 @@ export class ModSet {
 
   /** Advantage sources for these keys as [+1, -1] style values plus who gave them. */
   adv(...keys) {
-    const list = keys.flat().flatMap(k => this.flags.get(k) ?? []).filter(e => e.value);
+    return this.advExcept(null, ...keys);
+  }
+
+  /** As adv, leaving out the sources named in `skip` (a Set of labels). A value of -2 or less stays -2: a Disadvantage
+   *  nothing offsets (a chosen one, books v0.10.56, K89: Shield Blow, Called Shot). */
+  advExcept(skip, ...keys) {
+    const list = keys.flat().flatMap(k => this.flags.get(k) ?? []).filter(e => e.value && !skip?.has(e.label));
     return {
-      values: list.map(e => Math.sign(e.value)),
+      values: list.map(e => (e.value <= -2 ? -2 : Math.sign(e.value))),
       adv: list.filter(e => e.value > 0).map(e => e.label),
       dis: list.filter(e => e.value < 0).map(e => e.label)
     };

@@ -662,7 +662,10 @@ export class ArneyanActor extends Actor {
     const ammoPlus = Number(ammoName.match(/\+(\d)/)?.[1] ?? 0);
     const m = this.mods;
     const ranged = !!item.system.ranged;
-    const own = m?.adv("adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
+    // A Disadvantage you choose (Shield Blow, Called Shot, Power Attack) is never offset (books v0.10.56, K89); the
+    // Fighter's Manoeuvre Mastery (2nd) rolls Shield Blow normally.
+    const mastery = (this.items ?? []).some(i => i.type === "ability" && i.name === "Manoeuvre Mastery");
+    const own = m?.advExcept(mastery ? new Set(["Shield Blow"]) : null, "adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
     // Conditions on a single target (Prone, Restrained, Invisible...) change the attacker's roll.
     let against = NONE;
     // Rules scoped to weapons that fit this one apply; their reminders leave the card.
@@ -749,7 +752,7 @@ export class ArneyanActor extends Actor {
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
     const paOn = !pa.off && (pa.own?.dis ?? []).includes("Power Attack");
     // Power Attack is the player's choice: its Disadvantage always applies. An attack's own (Extra Attack) too.
-    const paKeep = paOn ? { values: [-1], adv: [], dis: ["Power Attack"], keep: true } : NONE;
+    const paKeep = paOn ? { values: [-2], adv: [], dis: ["Power Attack"], keep: true } : NONE;
     const advKeep = adv ? { ...adv, keep: true } : NONE;
     const { mode, why } = advFrom(event, pa.own, paKeep, against, first, firstWith, heavy, advKeep, ...sit.adv);
     // Power Attack under a Disadvantage that might apply (K53): the card's "Disadvantage applies" button turns the

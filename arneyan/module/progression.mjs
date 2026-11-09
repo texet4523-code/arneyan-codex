@@ -689,6 +689,9 @@ export function firstLevelSetupRunning(actor) { return setups.get(actor?.id) ?? 
 
 const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+/** Classes that take a Path and a Kit (books v0.10.56): two steps at 1st level. */
+const PATH_AND_KIT = new Set(["Ranger"]);
+
 /** The lists for the 1st-level steps, as picker entries. */
 async function firstLevelLists(actor, cls) {
   const base = cls.name.replace(/\s*\(.*\)$/, "");
@@ -742,10 +745,16 @@ async function setUpFirstLevel(actor, cls) {
     try { await abilityScores(actor); } catch { /* closed either way */ }
   }
   try { await scoresWindowFor(actor); } catch { /* closed either way */ }
-  const { base, kits, feats, skills, ancestries } = await firstLevelLists(actor, cls);
+  const lists = await firstLevelLists(actor, cls);
+  const { base, feats, skills, ancestries } = lists;
+  // Paths (books v0.10.56): a Ranger takes a Path and a Kit, each its own step; a Knight's list is all Paths and a
+  // Spellblade's has the Battle Caster Path among its Kits, one step either way.
+  const paths = PATH_AND_KIT.has(base) ? lists.kits.filter(e => e.group === "Path") : [];
+  const kits = paths.length ? lists.kits.filter(e => e.group !== "Path") : lists.kits;
+  const kitWord = kits.length && kits.every(e => e.group === "Path") ? "Path" : kits.some(e => e.group === "Path") ? "Kit or Path" : "Kit";
   // The ancestry's extra Feat and Knack are steps too; known once the ancestry is (step 1, or already on the sheet).
   let extras = ancestryExtras(actor);
-  const stepList = () => [ancestries.length && "ancestry", kits.length && "kit", feats.length && "feat", extras.bonusFeat && feats.length && "bonusFeat",
+  const stepList = () => [ancestries.length && "ancestry", paths.length && "path", kits.length && "kit", feats.length && "feat", extras.bonusFeat && feats.length && "bonusFeat",
     skills.length && "skills", extras.knack && skills.length && "knack", "finish"].filter(Boolean);
   let steps = stepList();
   const stepOf = key => (steps.length > 1 ? `Step ${steps.indexOf(key) + 1} of ${steps.length}` : "");
@@ -769,9 +778,10 @@ async function setUpFirstLevel(actor, cls) {
   if (stop === "close") return null;
 
   // Chosen so far: added at the end (Apply or Skip), nothing if a window is closed.
-  const chosen = { kit: "", feat: "", bonusFeat: "", skills: [], knack: "" };
-  const nameOf = new Map([...kits, ...feats, ...skills].map(e => [e.value, e.name]));
+  const chosen = { path: "", kit: "", feat: "", bonusFeat: "", skills: [], knack: "" };
+  const nameOf = new Map([...paths, ...kits, ...feats, ...skills].map(e => [e.value, e.name]));
   const finish = async luck => {
+    if (chosen.path) await addFromUuid(actor, chosen.path);
     if (chosen.kit) await addFromUuid(actor, chosen.kit);
     if (chosen.feat) await addFromUuid(actor, chosen.feat, { levelTaken: 1 });
     if (chosen.bonusFeat && chosen.bonusFeat !== chosen.feat) await addFromUuid(actor, chosen.bonusFeat, { levelTaken: 1 });
@@ -815,9 +825,13 @@ async function setUpFirstLevel(actor, cls) {
   let lead = `<p class="arn-step-lead">Max HP is set to <strong>${hp}</strong> (${cls.system.hitDie} maximum + Con) and your 1st-level class features are on the sheet.${steps.length > 1 ? " <strong>Choose later</strong> leaves a step empty; <strong>Skip</strong> stops choosing and goes on to starting money with what you have chosen so far." : ""}</p>`;
   const intro = text => { const out = lead + text; lead = ""; return out; };
   const pickers = [
+    paths.length && { key: "path", ask: () => pickFromList({
+      title: `${actor.name}: ${base} Path`, step: stepOf("path"), entries: paths, takeLabel: "Take Path", skipLabel: "Skip",
+      intro: intro(`<p>Choose your Path: its 1st-level features go on the sheet, and it grows at 5th and 10th. Your Kit comes next. Click one to read it.</p>`)
+    }), set: v => { chosen.path = v; } },
     kits.length && { key: "kit", ask: () => pickFromList({
-      title: `${actor.name}: ${base} Kit`, step: stepOf("kit"), entries: kits, takeLabel: "Take Kit", skipLabel: "Skip",
-      intro: intro(`<p>Choose your Kit: its 1st-level features go on the sheet. Click one to read it.</p>`)
+      title: `${actor.name}: ${base} ${kitWord}`, step: stepOf("kit"), entries: kits, takeLabel: `Take ${kitWord === "Path" ? "Path" : "Kit"}`, skipLabel: "Skip",
+      intro: intro(`<p>Choose your ${kitWord}: its 1st-level features go on the sheet. Click one to read it.</p>`)
     }), set: v => { chosen.kit = v; } },
     feats.length && { key: "feat", ask: () => pickFromList({
       title: `${actor.name}: 1st-level Feat`, step: stepOf("feat"), entries: feats, takeLabel: "Take Feat", skipLabel: "Skip",
@@ -851,7 +865,8 @@ async function setUpFirstLevel(actor, cls) {
   }
 
   // Last step: what was chosen, and the Starting Luck roll.
-  const lines = [chosen.kit && `<li><strong>Kit:</strong> ${esc(nameOf.get(chosen.kit) ?? "")}</li>`,
+  const lines = [chosen.path && `<li><strong>Path:</strong> ${esc(nameOf.get(chosen.path) ?? "")}</li>`,
+    chosen.kit && `<li><strong>${kitWord === "Path" ? "Path" : "Kit"}:</strong> ${esc(nameOf.get(chosen.kit) ?? "")}</li>`,
     chosen.feat && `<li><strong>Feat:</strong> ${esc(nameOf.get(chosen.feat) ?? "")}</li>`,
     chosen.bonusFeat && `<li><strong>Ancestry Feat:</strong> ${esc(nameOf.get(chosen.bonusFeat) ?? "")}</li>`,
     chosen.skills.length && `<li><strong>Skills:</strong> ${chosen.skills.map(s => esc(nameOf.get(s) ?? "")).join(", ")}</li>`,

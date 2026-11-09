@@ -3,9 +3,9 @@
  "_key": "!items!AXnd4vZExKB97Oh6",
  "name": "Called Shot",
  "type": "ability",
- "img": "systems/arneyan/assets/icons/action-swords-emblem.svg",
+ "img": "systems/arneyan/assets/icons/action-on-target.svg",
  "system": {
-  "description": "<p>Declare before rolling, and take <strong>Disadvantage</strong> on the attack roll (<strong>Advantage</strong> never cancels it) to aim at the Head, an Arm or a Leg.</p><ul><li>Only one attack a round can be a called shot.</li><li>On a hit the target makes a <strong>Fortitude save</strong> against your Class Save DC or: Head, it is <strong>Stunned</strong> for <strong>1 round</strong>, and a creature that recovers is immune to your Head shots for the rest of the encounter; Arm, it drops what it holds; Leg, its speed is halved for <strong>1 round</strong>.</li><li>Archers and Gunslingers gain it at 4th level; others only with the Mighty Deed of Arms feat.</li></ul><p class=\"arn-note\"><strong>Combat Manoeuvres, Manoeuvre:</strong> replaces one attack.</p>",
+  "description": "<p>Declare before rolling, and take <strong>Disadvantage</strong> on the attack roll (<strong>Advantage</strong> never cancels it) to aim at the Head, an Arm or a Leg.</p><ul><li>Only one attack a round can be a called shot.</li><li>On a hit the target makes a <strong>Fortitude save</strong> against your Class Save DC or: Head, it is <strong>Stunned</strong> for <strong>1 round</strong>, and a creature that recovers is immune to your Head shots for the rest of the encounter; Arm, it drops what it holds; Leg, its speed is halved for <strong>1 round</strong>.</li><li>Archers and Gunslingers gain it at 4th level; others only with the Mighty Deed of Arms feat.</li></ul><p class=\"arn-note\"><strong>Combat Manoeuvres, Manoeuvre:</strong> replaces one attack.</p><p class=\"arn-note\">Switch it on from the Actions tab while it applies; the sheet adds the <strong>Advantage</strong> or <strong>Disadvantage</strong>.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -21,8 +21,21 @@
   "damage": "",
   "level": 0,
   "className": "",
-  "rules": [],
-  "toggle": false,
+  "rules": [
+   {
+    "key": "adv.attack",
+    "value": "-2",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "note.attack",
+    "value": "Called Shot: on a hit the target makes a Fortitude save against your Class Save DC or: Head, Stunned 1 round; Arm, drops what it holds; Leg, speed halved 1 round",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": true,
   "active": false,
   "applies": [],
   "activities": []

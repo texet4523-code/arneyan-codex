@@ -25,7 +25,7 @@ CODEX = books_md.CODEX
 GLYPH = {
     "Charge": "charging-bull", "Cleave": "axe-swing", "Disarm": "drop-weapon", "Disengage": "exit-door", "Dodge": "dodging",
     "Flank Attack": "sword-clash", "Hide": "hood", "Search": "magnifying-glass", "Guard": "shield", "Push": "push",
-    "Receiving Charge": "spears", "Shield Blow": "shield-bash", "Shield Wall": "shield-reflect", "Trip": "falling",
+    "Receiving Charge": "spears", "Shield Blow": "shield-bash", "Called Shot": "on-target", "Shield Wall": "shield-reflect", "Trip": "falling",
     "Ready": "hourglass", "Delay": "sands-of-time", "Dash": "run", "Attack of Opportunity": "sword-wound", "Grapple": "grab",
     "Overbear": "knockout", "Unarmed Strike": "fist", "Dirty Trick": "dust-cloud", "Break Free": "breaking-chain",
     "Fighting Defensively": "sword-break",
@@ -39,7 +39,10 @@ TOGGLES = {
     # "make one melee attack with Advantage": the first melee attack only, not every attack while it's on.
     "Charge": [("adv.attack.first.melee", "1"), ("adv.against", "1")],
     "Dodge": [("adv.against", "-1")],
-    "Shield Blow": [("adv.attack", "-1"), ("note.attack", "Shield Blow: on a hit the target makes a Fortitude save or is Stunned for 1d2 rounds")],
+    # A Disadvantage you choose is never offset (books v0.10.56, K89): -2, which no Advantage cancels. The Fighter's
+    # Manoeuvre Mastery rolls Shield Blow normally (documents.mjs).
+    "Shield Blow": [("adv.attack", "-2"), ("note.attack", "Shield Blow: on a hit the target makes a Fortitude save or is Stunned for 1d2 rounds")],
+    "Called Shot": [("adv.attack", "-2"), ("note.attack", "Called Shot: on a hit the target makes a Fortitude save against your Class Save DC or: Head, Stunned 1 round; Arm, drops what it holds; Leg, speed halved 1 round")],
     "Flank Attack": [("adv.attack.melee", "1")],
 }
 
