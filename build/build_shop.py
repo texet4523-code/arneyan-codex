@@ -6,6 +6,9 @@ import books_md
 BLUDGEON = re.compile(r"club|hammer|mace|maul|flail|staff|sap|knuckle|cestus|fist|sling|morning|bolas|blowpipe|cudgel|baton|warhammer|mallet|quarterstaff|lucerne|horseman's pick", re.I)
 PIERCE = re.compile(r"spear|dagger|dirk|knife|pick|bow|crossbow|dart|javelin|harpoon|rapier|trident|lance|pike|katar|stiletto|aclis|estoc|awl|fork|ranseur|spetum|partisan|military fork|gun|pistol|rifle|musket|carbine|cannon|blunderbuss|derringer|net", re.I)
 
+# Items that list a variant after their own price: the first price is the item's.
+FIRST_PRICE = {"Bedroll"}
+
 def dmg_type(name):
     if BLUDGEON.search(name):
         return "bludgeoning"
@@ -84,6 +87,10 @@ def build(icon):
                     last_group = re.sub(r"\s*\(.*\)", "", name).strip()
                 price_m = re.findall(r"\(([^()]*?\d[\d,]*\s*(?:gp|sp|cp|pp)[^()]*)\)", rest)
                 price = price_m[0] if len(price_m) == 1 else ""
+                # A variant noted after the item (the Bedroll's thin warm-climate one, books v0.10.60) leaves the
+                # item its own price.
+                if not price and name in FIRST_PRICE and price_m:
+                    price = price_m[0]
                 if not price:
                     # (a trailing note such as "(by quality)" stays with the price, books v0.10.11)
                     pm = re.fullmatch(r"[^;()]*?\b(\d[\d,]*\s*(?:gp|sp|cp|pp)\b[^;()]*(?:\([^()]*\))?)", rest)

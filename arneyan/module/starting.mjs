@@ -59,7 +59,7 @@ export function goldCoinFor(className) {
   return STARTING_COIN[baseName(className)] ?? "gp";
 }
 
-/** How a formula reads on a button: "3d6 × 10". */
+/** How a formula reads on a button: "1d6 × 10" (starting money is now a plain "3d6"). */
 const formulaLabel = f => f.replace("*", " × ");
 
 /** Catalogue items by name (one index read). */

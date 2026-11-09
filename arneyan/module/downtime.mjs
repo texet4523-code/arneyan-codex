@@ -148,7 +148,7 @@ export function planDowntime(key, v, actor) {
     case "craft":
     case "brew": {
       // Typed in gold (books v0.10.59, K103); worked in sp.
-      const value = Math.max(0, num(v.value)) * 10;
+      const value = Math.round(Math.max(0, num(v.value)) * 1000) / 100;
       const s = skill(v.skill);
       const master = s?.system?.tier === "master";
       const remote = v.place === "remote";
@@ -163,7 +163,7 @@ export function planDowntime(key, v, actor) {
     }
     case "magicItem": {
       // Typed in gold (books v0.10.59, K103); worked in sp.
-      const value = Math.max(0, num(v.value)) * 10;
+      const value = Math.round(Math.max(0, num(v.value)) * 1000) / 100;
       const need = { uncommon: 3, rare: 5, veryRare: 7 }[v.rarity] ?? 3;
       if (highestSpellLevel(actor) < need) warn.push(`Needs a caster who can cast ${ARNEYAN.spellLevels[need]}-level spells.`);
       if (v.rarity !== "uncommon") warn.push("A Rare or Very Rare item also needs a Special Material, which the gold does not cover.");

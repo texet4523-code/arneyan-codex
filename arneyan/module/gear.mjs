@@ -467,7 +467,7 @@ export async function writeScroll(spell) {
       source: { book: "phb", page: 0 }
     }
   }]);
-  say(actor, `<p>${esc(actor.name)} writes ${esc(made?.name)} (${time}${pay === "pay" ? `, ${cost} sp` : ""}).</p>`);
+  say(actor, `<p>${esc(actor.name)} writes ${esc(made?.name)} (${time}${pay === "pay" ? `, ${priceText(cost)}` : ""}).</p>`);
 }
 
 /** The unknown scroll's check as its card says it: a natural 20 passes and a natural 1 fails. */

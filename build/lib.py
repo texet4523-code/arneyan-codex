@@ -254,7 +254,8 @@ def actor(pack, name, type_, system, img, items=(), folder=None, prototype=None,
     _id = _id or fid(pack, "actor", seed)
     its = []
     for it in items:
-        iid = fid(pack, "actoritem", seed, it["name"], it["type"], str(len(its)))
+        # An item the books renamed keeps the id its old name gave (item_ids.json, "Actor|new name": old name).
+        iid = fid(pack, "actoritem", seed, ITEM_IDS.get(f"{seed}|{it['name']}", it["name"]), it["type"], str(len(its)))
         d = dict(it)
         d["_id"] = iid
         d["_key"] = f"!actors.items!{_id}.{iid}"
