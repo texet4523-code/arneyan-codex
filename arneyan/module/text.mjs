@@ -15,15 +15,17 @@ export function rollableDice(html) {
   const s = String(html ?? "");
   if (!/\d*d\d/i.test(s)) return s;
   let inLink = 0;
-  return s.split(/(<[^>]*>|\[\[[^\]]*\]\]|@\w+\[[^\]]*\](?:\{[^}]*\})?)/).map((part, i) => {
+  return s.split(/(<[^>]*>|\[\[[^\]]*\]\](?:\{[^}]*\})?|@\w+\[[^\]]*\](?:\{[^}]*\})?)/).map((part, i) => {
     if (i % 2 === 1) {
       if (/^<a\b/i.test(part)) inLink++;
       else if (/^<\/a>/i.test(part)) inLink = Math.max(0, inLink - 1);
       return part;
     }
     if (inLink) return part;
-    return part.replace(/(^|[^\w@\[])(\d*d(?:4|6|8|10|12|20|100)(?:\s*[+-]\s*\d+(?!\s*(?:ft|feet|%)))?)(?![\w\]])/gi,
-      (m, pre, f) => `${pre}[[/r ${f.replace(/\s+/g, "")}]]{${f}}`);
+    // A count is needed ("1d4", not a bare "d20" or "Hit Die d8"), and dice that scale ("1d6 per level", "max 10d6")
+    // stay words.
+    return part.replace(/(^|[^\w@\[{])(\d+d(?:4|6|8|10|12|20|100)(?:\s*[+-]\s*\d+(?!\s*(?:ft|feet|%)))?)(?![\w\]])(?!\s*(?:per\b|\/\s*level|for each|each level|×|x\s*\d))/gi,
+      (m, pre, f) => /max(?:imum)?\s*$/i.test(pre === "" ? "" : part.slice(0, part.indexOf(m) + pre.length)) ? m : `${pre}[[/r ${f.replace(/\s+/g, "")}]]{${f}}`);
   }).join("");
 }
 

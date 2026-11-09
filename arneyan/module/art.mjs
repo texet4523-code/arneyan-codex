@@ -735,10 +735,10 @@ export function registerArt() {
     const blank = !tok || /mystery-man|icons\/svg\//.test(tok);
     if (!(blank || tok === actor.img)) return;
     foundry.utils.setProperty(changes, "prototypeToken.texture.src", changes.img);
-    options.arneyanTokenArt = { from: actor.img, to: changes.img };
+    (options.arneyanTokenArt ??= {})[actor.id] = { from: actor.img, to: changes.img };
   });
   Hooks.on("updateActor", (actor, changes, options, userId) => {
-    const art = options?.arneyanTokenArt;
+    const art = options?.arneyanTokenArt?.[actor.id];
     if (!art || userId !== game.user.id) return;
     for (const t of actor.getDependentTokens?.({ linked: true }) ?? []) {
       const src = t.texture?.src ?? "";
