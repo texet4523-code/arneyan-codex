@@ -2,7 +2,7 @@
 
 - Bundles: ammunition 30 a slot; "(bundles 5/slot)" items, thrown weapons, rings and wands 5 a slot
   (Codex, Carrying; Catalogue, thrown weapons and magic item rules).
-- Ammunition items from the Catalogue's line "Arrows 2 gp/20, Arrows, Silver 2 gp each, Bolts 1 gp/12, Rock",
+- Ammunition items from the Catalogue's line "Arrows 2 sp/20, Arrows, Silver 2 sp each, Bolts 1 sp/12, Rock",
   and which weapons fire them.
 - Consumables (potions, oils, poisons, flasks, scrolls, torches), with healing where the entry gives it.
 - Wand and staff charges; staffs regain 1d4 at dawn; both can crumble at 0.
@@ -172,9 +172,9 @@ LIGHTS = {
 }
 
 AMMO = [
-    ("Arrows", "arrow", 20, "2 gp for 20"),
-    ("Arrow, Silver", "arrow", 1, "2 gp each"),
-    ("Bolts", "bolt", 12, "1 gp for 12"),
+    ("Arrows", "arrow", 20, "2 sp for 20"),
+    ("Arrow, Silver", "arrow", 1, "2 sp each"),
+    ("Bolts", "bolt", 12, "1 sp for 12"),
     ("Sling Stones", "stone", 20, "free (found)"),
 ]
 
@@ -205,17 +205,33 @@ def spell_names():
 
 def item_spells(t, names):
     """Spells a wand or staff casts and their charge costs, from lines like "One charge casts Magic Missile",
-    "2 charges casts Neutralise Poison" or "Fireball (3)"; only real Arneyan spells count."""
+    "2 charges casts Neutralise Poison", "Fireball (3)" or M&T's "Two cast *hold person*" and "*command* (1)"; only
+    real Arneyan spells count."""
     out = []
-    words = {"one": 1, "two": 2, "three": 3}
-    for m in re.finditer(r"\b((?i:one|two|three)|\d+) charges? casts? ([A-Z][A-Za-z' ]+?)(?=[,.;(]| as | at |$)", t):
-        n = m.group(2).strip().lower()
-        if n in names:
-            out.append({"name": names[n], "cost": words.get(m.group(1).lower()) or int(m.group(1))})
-    for m in re.finditer(r"([A-Z][A-Za-z' ]+?) \((\d+)(?: charges?)?\)", t):
-        n = re.sub(r"^.*?(?:: |, )", "", m.group(1)).strip().lower()
-        if n in names and not any(x["name"].lower() == n for x in out):
-            out.append({"name": names[n], "cost": int(m.group(2))})
+    t = t.replace("*", "")
+    words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+    def spell_at_end(phrase):
+        ws = phrase.strip().split()
+        for k in range(min(5, len(ws)), 0, -1):
+            n = " ".join(ws[-k:]).lower()
+            if n in names:
+                return names[n]
+        return None
+    def spell_at_start(phrase):
+        ws = phrase.strip().split()
+        for k in range(min(5, len(ws)), 0, -1):
+            n = " ".join(ws[:k]).lower()
+            if n in names:
+                return names[n]
+        return None
+    for m in re.finditer(r"\b(one|two|three|four|five|six|\d+)(?: charges?)? casts? ([A-Za-z' ]+?)(?=[,.;(]| as | at |$)", t, re.I):
+        sp = spell_at_start(m.group(2))
+        if sp and not any(x["name"] == sp for x in out):
+            out.append({"name": sp, "cost": words.get(m.group(1).lower()) or int(m.group(1))})
+    for m in re.finditer(r"([A-Za-z' ]+?) \((\d+)(?: charges?)?\)", t):
+        sp = spell_at_end(m.group(1))
+        if sp and not any(x["name"] == sp for x in out):
+            out.append({"name": sp, "cost": int(m.group(2))})
     cl = re.search(r"as an? (\d+)(?:st|nd|rd|th)-level caster", t)
     return out, int(cl.group(1)) if cl else 0
 
@@ -229,16 +245,16 @@ def non_caster(t):
 # Toolkits from the Handbook's Starting Equipment & Gear page (p. 41-42): the Artificer Kit toolkits
 # (free to an Artificer of the matching Kit) and the Artisan's toolkits that go with crafting Skills.
 TOOLKITS = [
-    ("Infuser's Toolkit", "35 gp", "Fine engraving picks, a small portable forge-kit, etching acid, and a set of enchanter's files, carried in a reinforced satchel. Free to an Artificer of the Infuser Kit."),
-    ("Construct Engineer's Toolkit", "35 gp", "Precision screwdrivers, a miniature bellows, spare gears and joints, wiring spools, and a small vice, carried in a hinged case. Free to an Artificer of the Construct Engineer Kit."),
-    ("Gadgeteer's Toolkit", "35 gp", "A lockpick-adjacent fine-tool roll, spare springs and triggers, fuse cord, and a magnifying loupe, carried in a slim leather wrap. Free to an Artificer of the Gadgeteer Kit."),
-    ("Alchemist's Toolkit", "35 gp", "A collapsible burner, glass vials and stoppers, a mortar and pestle, and a small dosage scale, carried in a padded case. Matches the Alchemy Skill; free to an Artificer of the Alchemist Kit."),
+    ("Infuser's Toolkit", "35 sp", "Fine engraving picks, a small portable forge-kit, etching acid, and a set of enchanter's files, carried in a reinforced satchel. Free to an Artificer of the Infuser Kit."),
+    ("Construct Engineer's Toolkit", "35 sp", "Precision screwdrivers, a miniature bellows, spare gears and joints, wiring spools, and a small vice, carried in a hinged case. Free to an Artificer of the Construct Engineer Kit."),
+    ("Gadgeteer's Toolkit", "35 sp", "A lockpick-adjacent fine-tool roll, spare springs and triggers, fuse cord, and a magnifying loupe, carried in a slim leather wrap. Free to an Artificer of the Gadgeteer Kit."),
+    ("Alchemist's Toolkit", "35 sp", "A collapsible burner, glass vials and stoppers, a mortar and pestle, and a small dosage scale, carried in a padded case. Matches the Alchemy Skill; free to an Artificer of the Alchemist Kit."),
 ] + [(n, p, f"Artisan's toolkit for the {k} Skill (NWP). You need the tools to craft: with no usable tools you cannot craft.") for n, k, p in [
-    ("Blacksmith's Tools", "Blacksmithing", "20 gp"), ("Carpenter's Tools", "Carpentry", "12 gp"), ("Stonemason's Tools", "Stonemasonry", "15 gp"),
-    ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "10 gp"), ("Cobbler's Tools", "Cobbling", "6 gp"), ("Gem Cutter's Tools", "Gem Cutting", "25 gp"),
-    ("Potter's Tools", "Pottery", "5 gp"), ("Weaver's Tools", "Weaving", "6 gp"), ("Leatherworker's Tools", "Leatherworking", "10 gp"),
-    ("Weaponsmith's Tools", "Weaponsmithing", "22 gp"), ("Armourer's Tools", "Armourer", "25 gp"), ("Brewer's Tools", "Brewing", "10 gp"),
-    ("Vintner's Tools", "Winemaking", "12 gp"), ("Cook's Tools", "Cooking", "5 gp")]]
+    ("Blacksmith's Tools", "Blacksmithing", "20 sp"), ("Carpenter's Tools", "Carpentry", "12 sp"), ("Stonemason's Tools", "Stonemasonry", "15 sp"),
+    ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "10 sp"), ("Cobbler's Tools", "Cobbling", "6 sp"), ("Gem Cutter's Tools", "Gem Cutting", "25 sp"),
+    ("Potter's Tools", "Pottery", "5 sp"), ("Weaver's Tools", "Weaving", "6 sp"), ("Leatherworker's Tools", "Leatherworking", "10 sp"),
+    ("Weaponsmith's Tools", "Weaponsmithing", "22 sp"), ("Armourer's Tools", "Armourer", "25 sp"), ("Brewer's Tools", "Brewing", "10 sp"),
+    ("Vintner's Tools", "Winemaking", "12 sp"), ("Cook's Tools", "Cooking", "5 sp")]]
 
 # The base weapon a "+N <word>" names (M&T Iconic Weapons).
 BASE_WORDS = [("elven longsword", "Sword, Long"), ("greatsword", "Greatsword"), ("longsword", "Sword, Long"), ("scimitar", "Sword, Scimitar"),
@@ -260,7 +276,12 @@ def iconic_from_text(t):
     for x in re.finditer(r"\+(\d+d\d+) ?(fire|cold|lightning|thunder|acid|poison|necrotic|radiant|force|psychic)?(?: damage)? (against [a-z ]+|on a hit)(?=[.;,])", t):
         when = "" if x.group(3) == "on a hit" else x.group(3)
         extra.append((x.group(1), x.group(2) or "", when))
-    return (base, int(m.group(1)), extra, {})
+    more = {}
+    th = re.search(r"\bThrown \((\d+)ft", t)
+    if th:
+        more["range"] = f"{th.group(1)} ft"
+        more["traits_add"] = "Thrown"
+    return (base, int(m.group(1)), extra, more)
 
 
 def build():
@@ -363,7 +384,7 @@ def build():
             "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
             "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged", False)),
             "range": more.get("range", bs.get("range", "")), "magic": plus, "attackBonus": 0,
-            "traits": more.get("traits", bs.get("traits", "")), "ammoType": bs.get("ammoType", "") if bs.get("ranged") else "", "ammoId": "",
+            "traits": more.get("traits", ", ".join(x for x in [bs.get("traits", ""), more.get("traits_add", "")] if x)), "ammoType": bs.get("ammoType", "") if bs.get("ranged") else "", "ammoId": "",
             "bonusDamage": [{"formula": a, "type": b, "when": "" if c == "mode" else c, "mode": c == "mode"} for a, b, c in extra],
             "modeLabel": more.get("modeLabel", ""), "modeLight": more.get("modeLight", 0),
             "rules": more.get("rules", []), "toggle": more.get("toggle", False), "active": False, "applies": []

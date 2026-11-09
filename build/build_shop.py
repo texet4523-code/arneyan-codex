@@ -19,7 +19,7 @@ def num(s, default=0.0):
 
 def clean_name(n):
     n = plain(n).replace("†", "")
-    n = re.sub(r"\s*\[(Uncommon|Rare|Very Rare|Legendary|Unique)\]", "", n)
+    n = re.sub(r"\s*\[(?:Uncommon|Rare|Very Rare|Legendary|Unique)(?:,\s*(?:Uncommon|Rare|Very Rare|Legendary|Unique))*\]", "", n)
     return re.sub(r"\s+", " ", n).strip()
 
 def rarity(n):

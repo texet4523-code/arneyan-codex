@@ -429,7 +429,7 @@ def build():
             break
     res.sort(key=lambda r: r["range"][0])
     doc = T.table("Carousing", "1d20", res, f_gm, img_carouse,
-                  "<p>A week of carousing (downtime): spend gold by Tier (100, 500, 2,500 or 10,000 gp), make a Charisma check (DC 12), then roll a d20, adding 5 if the check succeeded (the Shopkeeper's Catalogue). The Carouse downtime plan rolls it for you.</p>",
+                  "<p>A week of carousing (downtime): spend silver by Tier (100, 500, 2,500 or 10,000 sp), make a Charisma check (DC 12), then roll a d20, adding 5 if the check succeeded (the Shopkeeper's Catalogue). The Carouse downtime plan rolls it for you.</p>",
                   flags={"arneyan": {"top": 25}})
     _check_ranges(doc, 25)
 

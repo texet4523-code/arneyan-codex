@@ -21,6 +21,8 @@ export async function refreshFromBestiary(actor, { quiet = false } = {}) {
   const src = await fromUuid(uuid).catch(() => null);
   if (!src) { if (!quiet) ui.notifications.warn(`${actor.name}: its Bestiary entry is gone.`); return false; }
   const data = src.toObject();
+  // A minion stays one (R-F26): the box isn't in the Bestiary.
+  if (actor.system.attributes?.minion) { data.system.attributes.minion = true; data.system.attributes.hp.value = 1; }
   const keepName = actor.name !== src.name;
   await actor.deleteEmbeddedDocuments("Item", actor.items.map(i => i.id));
   // The stat block replaces the old one whole; then the token settings.

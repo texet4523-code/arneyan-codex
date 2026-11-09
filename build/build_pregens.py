@@ -21,6 +21,13 @@ RETIRED = {"The Broken Anvil", "Jacob's Well (first Keepers)"}
 FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to packs-src, as write() takes it
 
 
+
+def silver_standard(cur):
+    """Coins written before the silver standard (books v0.10.55, R-B54): gp are the same number of sp, sp of cp, pp of
+    gp, and cp a tenth (rounded, at least 1 if there were any)."""
+    cp = cur.get("cp", 0)
+    return {"pp": 0, "gp": cur.get("pp", 0), "sp": cur.get("gp", 0), "cp": cur.get("sp", 0) + (max(1, round(cp / 10)) if cp else 0)}
+
 def pack_for(adventure):
     return FIXTURES if adventure in RETIRED else PACK
 
@@ -613,7 +620,7 @@ def build():
                     "luck": {"value": int(c.get("luck", 12)), "start": int(c.get("luck", 12)), "max": 20},
                     "attributes": {"hp": {"value": int(c["hpMax"]), "max": hp_max, "temp": 0},
                                    "speed": int(c.get("speed") or (anc or {}).get("system", {}).get("speed", 30))},
-                    "currency": {k: int((c.get("coins") or {}).get(k, 0) or 0) for k in ("pp", "gp", "sp", "cp")},
+                    "currency": silver_standard({k: int((c.get("coins") or {}).get(k, 0) or 0) for k in ("pp", "gp", "sp", "cp")}),
                     "details": {"alignment": c.get("alignment", ""), "deity": c.get("classNote", "") if base_cls in ("Cleric", "Paladin") else "",
                                 "size": size, "languages": ", ".join(c.get("languages", [])), "biography": bio, "backgroundStory": story},
                 },

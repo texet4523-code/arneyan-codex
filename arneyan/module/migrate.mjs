@@ -469,8 +469,6 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
         upd[`flags.${SYS}.shiftSet`] = SHIFT_REWORK;
       }
     }
-    // Books v0.10.55 (R-B54): what belongs to a Magus (its features, Kits and spells: system.className) is the Spellblade's.
-    if (actor && /^Magus\b/.test(String((i._source?.system ?? i.system)?.className ?? ""))) upd["system.className"] = String((i._source?.system ?? i.system).className).replace(/^Magus\b/, "Spellblade");
     // Books v0.10.46 (W4, L72): the Shifter lineage Ophidian-Sslyth is "Ophidian", same rules. Renamed in place (a
     // GM's own wording of its bite note stays; the system's own takes the new name).
     // The lineage's feature, and the Shifter ancestry item ("Shifter (Ophidian-Sslyth)", its choice flag).
@@ -748,6 +746,28 @@ export const SHIFT_REWORK = "0.10.79";
 export const SOLO_REWORK = "0.10.81";
 /** Books v0.10.49 (K57): the Thief Skills reach existing Rogues and Assassins. */
 export const THIEF_REWORK = "0.10.88";
+/** Books v0.10.55 (R-B54): the Magus is the Spellblade. */
+export const SPELLBLADE = "0.10.95";
+
+/**
+ * The renames a Magus's items need (class name, Kits "(Magus)", and every system.className that names it, kit-granted
+ * features' "Battle Caster (Magus)" included): [{ _id, ... }] for updateEmbeddedDocuments or updateDocuments.
+ */
+export function spellbladeRenames(items) {
+  const re = /\bMagus\b/g;
+  const out = [];
+  for (const i of items ?? []) {
+    const upd = {};
+    if (i.type === "class" && i.name === "Magus") upd.name = "Spellblade";
+    if (i.type === "kit" && /\(Magus\)$/.test(i.name ?? "")) upd.name = i.name.replace(/\(Magus\)$/, "(Spellblade)");
+    // The same books: the Minotaur's Goring Charge is Horn Charge (a granted trait from an imported character).
+    if (i.type === "ability" && i.name === "Goring Charge") upd.name = "Horn Charge";
+    const cn = String((i._source?.system ?? i.system)?.className ?? "");
+    if (/\bMagus\b/.test(cn)) upd["system.className"] = cn.replace(re, "Spellblade");
+    if (Object.keys(upd).length) out.push({ _id: i.id ?? i._id, ...upd });
+  }
+  return out;
+}
 /** The Bestiary's own Legendary Resistance abilities among these items (ids): name and its old words, not a GM's own. */
 export function dropLegendary(items) {
   return [...(items ?? [])].filter(i => i.type === "ability" && i.name === "Legendary Resistance"
@@ -987,6 +1007,21 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       }
     } catch (err) {
       console.warn("Arneyan | Thief Skills step", err);
+    }
+  }
+  // Books v0.10.55 (R-B54): the Magus is the Spellblade: its class item (classes aren't in the item update), Kits and
+  // whatever names it as its class, on every actor, unlinked token and the Items directory.
+  if (due && newerThan(SPELLBLADE, from) && !newerThan(SPELLBLADE, version)) {
+    try {
+      const holders = [...game.actors, ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor).map(t => t.actor))];
+      for (const actor of holders) {
+        const ups = spellbladeRenames(actor.items.contents ?? [...actor.items]);
+        if (ups.length) await actor.updateEmbeddedDocuments("Item", ups, { arneyanMigration: true }).catch(err => console.warn(`Arneyan | ${actor.name}`, err));
+      }
+      const loose = spellbladeRenames(game.items.contents ?? [...game.items]);
+      if (loose.length) await Item.implementation.updateDocuments(loose, { arneyanMigration: true }).catch(err => console.warn("Arneyan | Spellblade", err));
+    } catch (err) {
+      console.warn("Arneyan | Spellblade step", err);
     }
   }
   if (due) await game.settings.set(SYS, "migratedTo", version);
