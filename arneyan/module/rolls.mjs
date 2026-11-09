@@ -16,8 +16,8 @@ export const manualAdvantage = () => { try { return globalThis.game?.settings?.g
 
 export function modeFromEvent(event, builtIn = 0, { auto = false, keep = [] } = {}) {
   // By hand: only the click counts, with what the player chose (Power Attack's Disadvantage, `keep`) and what no
-  // Advantage cancels (the off-hand attack's, -2). Contests, initiative, Luck Checks and rolls with no card buttons
-  // (firearms, Last Chance, downtime) stay automatic (`auto`).
+  // Advantage cancels (the off-hand attack's, -2). Contests, initiative, Luck Checks, Last Chance and downtime stay
+  // automatic (`auto`): their cards still have the buttons, and what they decided is worked out again (redo.mjs).
   const all = Array.isArray(builtIn) ? builtIn : [builtIn];
   const sources = !auto && manualAdvantage() ? [...keep, ...all.filter(v => v <= -2)] : all;
   // -2: a Disadvantage that no Advantage cancels (the Extra Attack and the off-hand attack, books v0.10.38, K44).
@@ -116,14 +116,15 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
   // nothing cancels (the off-hand attack's).
   const fixedDis = (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d)) && (mode < 0 || manualAdvantage());
-  // Not on a roll that works its own Advantage out and is used at once (downtime, Last Chance, firearms: why.auto).
-  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !why?.auto && (manualAdvantage() ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
+  // On every d20 roll (Kieran, 9 Nov): what the roll already decided (a contest's winner, a misfire, Last Chance) is
+  // worked out again when a button is pressed (the arneyanRollChanged hook, redo.mjs).
+  const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() || why?.auto ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {
-      nat1: footer({ natural: 1, crit: false, outcome: "nat1" }), crit: footer({ natural: 20, crit: true, outcome: "nat20" }),
-      hit: footer({ natural: 10, crit: false, outcome: "success" }), miss: footer({ natural: 10, crit: false, outcome: "failure" }),
-      plain: footer({ natural: 10, crit: false, outcome: "" })
+      nat1: footer({ natural: 1, crit: false, outcome: "nat1", synthetic: true }), crit: footer({ natural: 20, crit: true, outcome: "nat20", synthetic: true }),
+      hit: footer({ natural: 10, crit: false, outcome: "success", synthetic: true }), miss: footer({ natural: 10, crit: false, outcome: "failure", synthetic: true }),
+      plain: footer({ natural: 10, crit: false, outcome: "", synthetic: true })
     };
   }
   // The footer can depend on the roll (an attack's damage buttons on a natural 20 or 1).
@@ -175,7 +176,9 @@ async function renderCard({ title, parts, mode, why, roll, natural, outcome, tar
  */
 export async function secondDie(message, dir) {
   const flags = message.getFlag(SYS, "kind") ? message.flags[SYS] : null;
-  if (!flags || flags.secondDie || !["attack", "check", "save", "skill"].includes(flags.kind) || message._arnSecond) return;
+  if (!flags || flags.secondDie || message._arnSecond) return;
+  if (flags.kind === "luck") return secondDieLuck(message, dir);
+  if (!SECOND_KINDS.includes(flags.kind)) return;
   const actor = ChatMessage.getSpeakerActor(message.speaker);
   if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
   // Power Attack's Disadvantage already on the roll and a map Disadvantage confirmed (K53): no new die, Power Attack
@@ -262,9 +265,68 @@ export async function secondDie(message, dir) {
   }
   html.querySelectorAll(".arn-second").forEach(b => b.remove());
   const update = { content: html.body.innerHTML, [`flags.${SYS}.natural`]: kept, [`flags.${SYS}.total`]: total, [`flags.${SYS}.secondDie`]: dir, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) };
-  if (message.canUserModify(game.user, "update")) return message.update(update);
+  if (message.canUserModify(game.user, "update")) {
+    await message.update(update);
+    // What the roll already decided is worked out again (contest, misfire, Last Chance, downtime).
+    Hooks.callAll("arneyanRollChanged", message, { before: { natural: first, total: flags.total }, natural: kept, total, shown, crit, dir });
+    return message;
+  }
   return ChatMessage.create({ speaker: message.speaker, whisper: message.whisper?.length ? [...message.whisper] : [], blind: !!message.blind,
     content: `<div class="arn-card"><p>${esc(label)}: ${cancel ? "the first die counts" : `the second d20 is <strong>${second}</strong>`}, so the roll is <strong>${shown}</strong>${outText ? `: ${esc(outText)}` : ""}.</p></div>` });
+}
+
+/** The d20 rolls the card's Advantage and Disadvantage buttons work on. */
+export const SECOND_KINDS = ["attack", "check", "save", "skill", "contest"];
+
+/**
+ * Advantage or Disadvantage after a Luck Check: roll-under, so Advantage keeps the lower die (and the other button
+ * cancels one the check already had).
+ */
+async function secondDieLuck(message, dir) {
+  const f = message.flags[SYS];
+  const actor = ChatMessage.getSpeakerActor(message.speaker);
+  if (!(actor?.isOwner || game.user.isGM) || !message.canUserModify(game.user, "update")) return;
+  const cancel = !!f.mode && Math.sign(f.mode) === -Math.sign(dir) && (f.dice ?? []).length >= 2;
+  if (f.mode && !cancel) return;
+  message._arnSecond = true;
+  let second = 0;
+  if (!cancel) {
+    const roll = await new Roll("1d20").evaluate();
+    await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
+    second = roll.total;
+  }
+  if (game.messages?.get?.(message.id)?.flags?.[SYS]?.secondDie) return;
+  const first = Number(f.natural) || 0;
+  const kept = cancel ? Number(f.dice[0]) || first : dir > 0 ? Math.min(first, second) : Math.max(first, second);
+  const { outcome, label } = luckOutcome(kept, f.luck);
+  const html = new DOMParser().parseFromString(message.content, "text/html");
+  const dice = html.querySelector(".arn-card-dice");
+  if (cancel) [...(dice?.querySelectorAll(".arn-die") ?? [])].forEach((d, i) => d.classList.toggle("dropped", i !== 0));
+  else {
+    const firstDie = dice?.querySelector(".arn-die");
+    const extra = html.createElement("span");
+    extra.className = "arn-die";
+    extra.textContent = String(second);
+    firstDie?.after(extra);
+    if (first !== second) (kept === first ? extra : firstDie)?.classList.add("dropped");
+  }
+  const head = html.querySelector(".arn-card-title");
+  head?.querySelector(".arn-mode")?.remove();
+  if (head && !cancel) { const m = html.createElement("span"); m.className = "arn-mode"; m.textContent = dir > 0 ? "Advantage" : "Disadvantage"; head.append(" ", m); }
+  const totalEl = html.querySelector(".arn-total");
+  if (totalEl) totalEl.textContent = kept;
+  const outEl = html.querySelector(".arn-outcome");
+  if (outEl) { outEl.textContent = label; outEl.className = `arn-outcome ${outcome === "success" || outcome === "nat1luck" ? "success" : "failure"}`; }
+  html.querySelectorAll(".arn-second").forEach(b => b.remove());
+  return message.update({ content: html.body.innerHTML, [`flags.${SYS}.natural`]: kept, [`flags.${SYS}.secondDie`]: dir });
+}
+
+/** A Luck Check's result: roll under or equal; a natural 1 always succeeds, a natural 20 always fails. */
+export function luckOutcome(n, luck) {
+  const success = n === 1 ? true : n === 20 ? false : n <= luck;
+  const outcome = n === 1 ? "nat1luck" : n === 20 ? "nat20luck" : success ? "success" : "failure";
+  const label = { nat1luck: "Natural 1: fate smiles", nat20luck: "Natural 20: fate turns away", success: "Success", failure: "Failure" }[outcome];
+  return { success, outcome, label };
 }
 
 /** Roll-under Luck Check. A natural 1 always succeeds, a natural 20 always fails. Advantage keeps the lower die. */
@@ -274,20 +336,18 @@ export async function luckCheck(actor, event) {
   const mode = modeFromEvent(event, src.values, { auto: true });
   const roll = await new Roll(mode > 0 ? "2d20kl" : mode < 0 ? "2d20kh" : "1d20").evaluate();
   const n = roll.total;
-  const success = n === 1 ? true : n === 20 ? false : n <= luck;
-  const outcome = n === 1 ? "nat1luck" : n === 20 ? "nat20luck" : success ? "success" : "failure";
-  const label = {
-    nat1luck: "Natural 1: fate smiles", nat20luck: "Natural 20: fate turns away",
-    success: "Success", failure: "Failure"
-  }[outcome];
+  const { success, label } = luckOutcome(n, luck);
   const content = await foundry.applications.handlebars.renderTemplate(`systems/${SYS}/templates/chat/roll-card.hbs`, {
     title: `Luck Check (roll ${luck} or under)`, parts: [], total: n,
     modeLabel: mode > 0 ? "Advantage" : mode < 0 ? "Disadvantage" : "",
     dice: roll.dice[0].results.map(r => ({ result: r.result, dropped: !r.active || r.discarded })), natural: n,
     outcome: success ? "success" : "failure", outcomeLabel: label, canBurn: false,
-    notes: actor.system.mods?.notesFor("luck") ?? []
+    notes: actor.system.mods?.notesFor("luck") ?? [],
+    // Roll-under: Advantage keeps the lower die.
+    canSecond: true, secondAdv: mode <= 0, secondDis: mode >= 0, cancels: !!mode
   });
-  return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content, rolls: [roll], flags: { [SYS]: { kind: "luck" } } }, { rollMode: game.settings.get("core", "rollMode") });
+  return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content, rolls: [roll],
+    flags: { [SYS]: { kind: "luck", natural: n, luck, mode, dice: (roll.dice?.[0]?.results ?? []).map(r => r.result) } } }, { rollMode: game.settings.get("core", "rollMode") });
 }
 
 /** Maximum of the dice in a formula, e.g. "1d8+1d6" gives 14. Used for critical hits. */
@@ -456,6 +516,8 @@ export async function burnLuck(message) {
   const crit = flags.kind === "attack" && !flags.autoFail && isCritical(flags.natural, total, flags.critAt ?? 20, acs);
   if (message.canUserModify(game.user, "update")) {
     await message.update({ content: html.body.innerHTML, [`flags.${SYS}.luckBurned`]: burned, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) });
+    // A contest's winner and Last Chance are worked out again (redo.mjs).
+    Hooks.callAll("arneyanRollChanged", message, { luck: spend });
   } else {
     await ChatMessage.create({
       speaker: message.speaker,

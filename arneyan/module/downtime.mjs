@@ -240,10 +240,13 @@ export function planDowntime(key, v, actor) {
 /* -------------------------------------------- */
 
 /** A check's total from a roll card the actor's own roll methods post (so Luck can still be burned on it). */
-async function rollCheck(actor, { skillId = "", ability = "" }) {
+async function rollCheck(actor, { skillId = "", ability = "" }, adv = 0) {
   const item = skillId ? actor.items.get(skillId) : null;
-  // Used at once, so Advantage and Disadvantage are worked out here even by hand (no buttons to press later).
-  const msg = item ? await actor.rollSkill(item, null, { auto: true }) : ability ? await actor.rollAbility(ability, null, { auto: true }) : await actor.rollSkill(null, null, { auto: true });
+  // Used at once (gold, weeks and what's learned follow from it), so Advantage and Disadvantage are chosen in the
+  // window before the roll (Kieran, 9 Nov), with the rules' own, and the card has no buttons to press later.
+  const event = adv ? { shiftKey: adv > 0, ctrlKey: adv < 0 } : null;
+  const opts = { auto: true, extra: { noSecond: true } };
+  const msg = item ? await actor.rollSkill(item, event, opts) : ability ? await actor.rollAbility(ability, event, opts) : await actor.rollSkill(null, event, opts);
   return Number(msg?.flags?.[SYS]?.total ?? msg?.rolls?.[0]?.total ?? 0);
 }
 
@@ -320,7 +323,7 @@ async function addTrainedFeat(actor, typed) {
 }
 
 /** Run an activity: pay, roll, settle coins, log it and post a card. */
-export async function runDowntime(actor, key, values, { paid = false } = {}) {
+export async function runDowntime(actor, key, values, { paid = false, adv = 0 } = {}) {
   const act = ACTIVITIES[key];
   if (!act || !actor?.isOwner) return null;
   const plan = planDowntime(key, values, actor);
@@ -347,7 +350,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   let refund = 0, earn = 0, days = plan.days, extraCp = 0;
   const c = plan.check;
   if (c?.type === "income") {
-    const total = await rollCheck(actor, { skillId: c.skillId });
+    const total = await rollCheck(actor, { skillId: c.skillId }, adv);
     const perDay = incomePerDay(total);
     earn = perDay * 6;
     roll = `${total}`;
@@ -355,7 +358,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
   } else if ((c?.type === "skill" || c?.type === "ability") && plan.retry) {
     // Learning (K54, K55): on a failure, more weeks (and their gold) and roll again, until it's learned.
     const rolls = [];
-    let total = await rollCheck(actor, c), extraWeeks = 0, tries = 0, broke = false;
+    let total = await rollCheck(actor, c, adv), extraWeeks = 0, tries = 0, broke = false;
     rolls.push(total);
     // The book: keep training and roll again. The extra weeks depend on the rolls, so they're paid now, "paid already" or not.
     while (total < c.dc && tries < 40) {
@@ -368,7 +371,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
       days += plan.retry.days;
       extraWeeks += plan.retry.days / WEEK;
       tries++;
-      total = await rollCheck(actor, c);
+      total = await rollCheck(actor, c, adv);
       rolls.push(total);
     }
     roll = `${rolls.join(", ")} vs DC ${c.dc}`;
@@ -382,7 +385,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
       if (plan.offerFeat !== undefined) addTrainedFeat(actor, plan.offerFeat).catch(err => console.warn("Arneyan | trained feat", err));
     } else result = `Not yet: ${rolls.length} failed check${rolls.length === 1 ? "" : "s"}${broke ? `, and not enough gold for ${plan.retry.days / WEEK} more week${plan.retry.days === WEEK ? "" : "s"}` : ""}. Carry on later with the extra weeks only, not the whole course.`;
   } else if (c?.type === "skill" || c?.type === "ability") {
-    const total = await rollCheck(actor, c);
+    const total = await rollCheck(actor, c, adv);
     const ok = total >= c.dc;
     roll = `${total} vs DC ${c.dc}`;
     if (ok) result = `Success: ${plan.title} is finished.`;
@@ -391,11 +394,13 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
       result = `Failure: the time is spent and it isn't finished; half the gold is lost${refund ? ` (${cpText(refund)} kept)` : ""}.`;
     }
   } else if (c?.type === "daily") {
-    const { bonus, adv } = dailyBonus(actor, c);
+    const { bonus, adv: master } = dailyBonus(actor, c);
+    // A Master's Advantage and the window's choice: one of each cancels.
+    const mode = Math.sign((master ? 1 : 0) + Math.sign(adv));
     const rolls = [];
     let cured = 0;
     for (let d = 1; d <= plan.days; d++) {
-      const r = await new Roll(`${adv ? "2d20kh" : "1d20"} + ${bonus}`).evaluate();
+      const r = await new Roll(`${mode > 0 ? "2d20kh" : mode < 0 ? "2d20kl" : "1d20"} + ${bonus}`).evaluate();
       rolls.push(r.total);
       if (r.total >= c.dc) { cured = d; break; }
     }
@@ -404,7 +409,7 @@ export async function runDowntime(actor, key, values, { paid = false } = {}) {
     result = cured ? `Cured on day ${cured}.` : `Not cured after ${plan.days} days.`;
   } else if (c?.type === "carouse") {
     // A Charisma check (DC 12), then a d20 on the Carousing table, +5 on a success.
-    const total = await rollCheck(actor, { ability: c.ability });
+    const total = await rollCheck(actor, { ability: c.ability }, adv);
     const ok = total >= c.dc;
     const r = await new Roll(ok ? "1d20 + 5" : "1d20").evaluate();
     roll = `${total} vs DC ${c.dc}; Carousing ${r.total}`;
@@ -483,13 +488,14 @@ export async function newDowntime(actor) {
   const content = `<div class="arn-dt-dialog">
     <label class="arn-dt-field"><span>Activity</span><select name="activity">${Object.entries(ACTIVITIES).map(([k, a]) => `<option value="${k}">${esc(a.label)}</option>`).join("")}</select></label>
     ${Object.entries(sections).map(([k, html]) => `<section data-activity="${k}"><p class="arn-muted">${esc(ACTIVITIES[k].hint)}</p>${html}</section>`).join("")}
+    <label class="arn-dt-field"><span>Advantage on the check</span><select name="adv"><option value="0">Neither (the rules' own still apply)</option><option value="1">Advantage</option><option value="-1">Disadvantage</option></select></label>
     <label class="arn-check"><input type="checkbox" name="paid"> Paid already (take no coins)</label>
     <p class="arn-muted">${esc(actor.name)} has ${cpText(toCp(actor.system.currency))}.</p></div>`;
   const read = form => {
     const key = form.elements.activity.value;
     const values = {};
     for (const el of form.querySelectorAll(`[name^="${key}."]`)) values[el.name.slice(key.length + 1)] = el.type === "checkbox" ? el.checked : el.value;
-    return { key, values, paid: !!form.elements.paid?.checked };
+    return { key, values, paid: !!form.elements.paid?.checked, adv: Number(form.elements.adv?.value) || 0 };
   };
   const pick = await foundry.applications.api.DialogV2.wait({
     window: { title: `${actor.name}: downtime`, icon: "fa-solid fa-hourglass-half" }, classes: ["arneyan", "arn-dt-app"], position: { width: 500 }, content,
@@ -504,7 +510,7 @@ export async function newDowntime(actor) {
     }
   });
   if (!pick || typeof pick !== "object") return;
-  return runDowntime(actor, pick.key, pick.values, { paid: pick.paid });
+  return runDowntime(actor, pick.key, pick.values, { paid: pick.paid, adv: pick.adv });
 }
 
 /** The Downtime tab: the log, newest first, and the totals. */

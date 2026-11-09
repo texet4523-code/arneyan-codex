@@ -510,12 +510,13 @@ export class ArneyanActor extends Actor {
     let adv = m?.adv("adv.save", `adv.save.${key}`, ...(concentration ? ["adv.concentration"] : [])) ?? NONE;
     // Wounded by Nalwood: the Weave falters, Disadvantage to keep concentrating.
     if (concentration && disrupted) adv = { ...adv, values: [...(adv.values ?? []), -1], dis: [...(adv.dis ?? []), "Nalwood disrupts the Weave"] };
-    const { mode, why } = advFrom(event, adv, ...(noSecond || /^Last Chance/.test(String(source ?? "")) ? [AUTO] : []));
+    const lastChance = /^Last Chance/.test(String(source ?? ""));
+    const { mode, why } = advFrom(event, adv, ...(noSecond || lastChance ? [AUTO] : []));
     const fail = m?.has(`fail.save.${key}`) ? m.sources(`fail.save.${key}`).join(", ") : "";
     return d20Roll({
       actor: this, kind: "save", mode, why, title: source ? `${label}: ${source}` : label, parts, target: dc, rollMode,
       notes: m?.notesFor("save") ?? [], autoFail: fail,
-      extra: { save: key, concentration, actorUuid: this.uuid, source, ...(noSecond || /^Last Chance/.test(String(source ?? "")) ? { noSecond: true } : {}) },
+      extra: { save: key, concentration, actorUuid: this.uuid, source, ...(noSecond ? { noSecond: true } : {}), ...(lastChance ? { lastChance: true } : {}) },
       footer: concentration ? `<button type="button" class="arn-end-conc" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-circle-xmark"></i> Concentration broken: end it</button>` : ""
     });
   }
@@ -525,7 +526,7 @@ export class ArneyanActor extends Actor {
     const m = this.mods;
     if (!item) {
       const { mode, why } = advFrom(event, m?.adv("adv.check", "adv.skill") ?? NONE, ...(auto ? [AUTO] : []));
-      return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], rollMode, extra: { skill: "" } });
+      return d20Roll({ actor: this, kind: "skill", mode, why, title: title ? `${title} (untrained)` : "Untrained Skill Check", parts: [...(m?.parts("check", "skill") ?? [])], target: dc, notes: m?.notesFor("check", "skill") ?? [], rollMode, extra: { ...extra, skill: "" } });
     }
     const ab = item.system.ability;
     const mod = this.system.abilities[ab].mod;
@@ -739,12 +740,12 @@ export class ArneyanActor extends Actor {
     // Power Attack is the player's choice: its Disadvantage always applies. An attack's own (Extra Attack) too.
     const paKeep = paOn ? { values: [-1], adv: [], dis: ["Power Attack"], keep: true } : NONE;
     const advKeep = adv ? { ...adv, keep: true } : NONE;
-    const { mode, why } = advFrom(event, pa.own, paKeep, against, first, firstWith, heavy, advKeep, ...sit.adv, ...(sit.fire ? [AUTO] : []));
+    const { mode, why } = advFrom(event, pa.own, paKeep, against, first, firstWith, heavy, advKeep, ...sit.adv);
     // Power Attack under a Disadvantage that might apply (K53): the card's "Disadvantage applies" button turns the
     // extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
     const otherDis = (why.dis ?? []).some(d => d !== "Power Attack" && !/^Ctrl-click$/.test(d));
     const paHint = paOn && (sitDisHint || sit.disHint || (byHand && otherDis));
-    if (paHint) notes.push(`Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). ${sit.fire ? "Ctrl-click to roll it again with Disadvantage." : "The card's button says so."}`);
+    if (paHint) notes.push(`Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.`);
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();
@@ -754,7 +755,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: this.system.critRange ?? 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged }), uuid: t.actor.uuid })),
       title: `${item.name}: ${label || `${offhand ? "Off-hand " : ""}Attack`}${ammo ? ` (${ammo.name})` : ""}`, parts: [...this.attackParts(item), ...(ammoPlus ? [{ label: ammo.name, value: ammoPlus }] : [])], notes,
-      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(sit.fire ? { noSecond: true } : {}), ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...(paHint ? { paDis: true } : {}), ...sit.extra },
+      extra: { itemId: item.id, actorUuid: this.uuid, ammoName, ...(bonus ? { featureBonus: bonus } : {}), ...(dice ? { weaponDice: dice } : {}), ...(pa.off ? { noPowerAttack: true } : {}), ...(paHint ? { paDis: true } : {}), ...sit.extra },
       // A natural 1 is a miss: no damage buttons. A critical leads with critical damage; either way both are there.
       // A gun that misfires has none either (combat.mjs).
       footer: sit.footer(({ natural, crit, outcome }) => {
@@ -1044,9 +1045,11 @@ export class ArneyanActor extends Actor {
   }
   async _lastChanceRoll(event) {
     await this.update({ "system.luck.value": this.system.luck.value - 1, [`flags.${SYS}.lastChance`]: true });
-    const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)", noSecond: true });
+    const msg = await this.rollSave("fort", event, { dc: 10, source: "Last Chance (1 Luck burned)" });
     const f = msg?.flags?.[SYS] ?? {};
-    const ok = !f.autoFail && (f.natural === 20 || (f.natural !== 1 && f.total >= 10));
+    const ok = lastChanceOk(f);
+    // Kept on the card: Advantage or Disadvantage pressed afterwards works it out again (redo.mjs).
+    if (msg?.canUserModify?.(game.user, "update")) await msg.setFlag(SYS, "lastChanceOk", ok).catch(() => null);
     if (ok) await this.update({ "system.attributes.stable": true, ...unset(`flags.${SYS}.lastChance`) });
     ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<div class="arn-card"><p>${esc(this.name)} ${ok ? "is stabilised and stops bleeding." : "is still dying. That was their Last Chance this time: only an ally (a Wisdom check, DC 10) or First Aid can stabilise them now."}</p></div>` });
   }
@@ -2032,6 +2035,11 @@ export class ArneyanItem extends Item {
     lines.push(this._actionButtons({ dc, cl }));
     return this.toChat(lines.join(""));
   }
+}
+
+/** Last Chance (Fort DC 10): a natural 20 always stabilises, a natural 1 never does. */
+export function lastChanceOk(f) {
+  return !f.autoFail && (f.natural === 20 || (f.natural !== 1 && (Number(f.total) || 0) + (Number(f.luckBurned) || 0) >= 10));
 }
 
 /** Initiative: d20 + Dex + rules, with Advantage or Disadvantage from rules (Exhaustion 1 and so on). */

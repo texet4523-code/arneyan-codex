@@ -38,6 +38,7 @@ import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
 import { registerSolo } from "./solo.mjs";
+import { registerRedo } from "./redo.mjs";
 
 const SYS = "arneyan";
 
@@ -95,6 +96,7 @@ Hooks.once("init", () => {
   registerGmTools();
   registerWorld();
   registerArt();
+  registerRedo();
   registerImport();
   registerMaps();
   registerCalendar();

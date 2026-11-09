@@ -461,7 +461,10 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   if (fire) {
     out.fire = fire;
     out.trained = firearmsTrained(actor);
-    if (!out.trained) out.adv.push({ values: [-1], adv: [], dis: ["Untrained with firearms"] });
+    // A rule, not the table's call: kept when Advantage is by hand.
+    if (!out.trained) out.adv.push({ values: [-1], adv: [], dis: ["Untrained with firearms"], keep: true });
+    // For a second die after the roll (redo.mjs works the misfire out again).
+    out.extra.gun = { trained: out.trained };
     out.notes.push(fire.silent ? "Silent Mechanism: never misfires." : `Misfires on a natural ${fire.threshold > 1 ? `1-${fire.threshold}` : "1"}${fire.reliable ? " (Reliable)" : ""}.`);
     if (!out.trained) out.notes.push("Untrained: a roll that would be a critical hit jams instead.");
   }
@@ -498,11 +501,11 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   }
 
   // After the roll: misfires.
+  // The card's other footers (kept for a second die: synthetic) are the plain ones; redo.mjs adds the misfire then.
   out.footer = normal => args => {
+    if (args.synthetic) return normal(args);
     const r = misfireResult(out.fire, args.natural, { trained: out.trained, crit: args.crit });
-    if (!r.jam) return normal(args);
-    const why = r.catastrophe ? "Natural 1: catastrophic misfire (the d6 follows)." : r.untrainedCrit ? "Untrained: the critical becomes a misfire." : `Natural ${args.natural}: within the Misfire Threshold.`;
-    return `<div class="arn-outcome failure arn-misfire"><i class="fa-solid fa-gun"></i> Misfire: ${esc(item.name)} jams. No damage. ${esc(why)} Clearing it takes ${esc(out.fire.reload || "its Reload time")}, then a normal reload.</div>`;
+    return r.jam ? misfireHtml(item, out.fire, args.natural, r) : normal(args);
   };
   out.after = async msg => {
     // A shot fired (a misfire still uses it).
@@ -511,15 +514,29 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     const f = msg.flags?.[SYS] ?? {};
     const r = misfireResult(out.fire, f.natural, { trained: out.trained, crit: !!f.crit });
     if (!r.jam) return msg;
-    if (item.isOwner) {
-      await item.setFlag(SYS, "gunState", "jammed").catch(() => null);
-      // Cleared or not, it then needs a normal reload (even with Quick Reload, which refilled it as it fired).
-      if (out.reloadable) await item.setFlag(SYS, "ammo", { loaded: 0, reloading: 0 }).catch(() => null);
-    }
-    if (r.catastrophe) await catastrophe(actor, item);
+    await jamGun(actor, item, msg, { reloadable: out.reloadable, catastrophe: r.catastrophe });
     return msg;
   };
   return out;
+}
+
+/** The misfire line on an attack card (in place of the damage buttons). */
+export function misfireHtml(item, fire, natural, r) {
+  const why = r.catastrophe ? "Natural 1: catastrophic misfire (the d6 follows)." : r.untrainedCrit ? "Untrained: the critical becomes a misfire." : `Natural ${natural}: within the Misfire Threshold.`;
+  return `<div class="arn-outcome failure arn-misfire"><i class="fa-solid fa-gun"></i> Misfire: ${esc(item.name)} jams. No damage. ${esc(why)} Clearing it takes ${esc(fire?.reload || "its Reload time")}, then a normal reload.</div>`;
+}
+
+/**
+ * A gun jams: it needs clearing, then a normal reload (even with Quick Reload, which refilled it as it fired). What it
+ * held is kept on the card, so a second die that clears the misfire can give it back.
+ */
+export async function jamGun(actor, item, msg, { reloadable = false, catastrophe: cat = false } = {}) {
+  if (item.isOwner) {
+    if (msg?.canUserModify?.(game.user, "update")) await msg.update({ [`flags.${SYS}.gunBefore`]: { state: item.getFlag(SYS, "gunState") ?? "", ammo: item.getFlag(SYS, "ammo") ?? null }, [`flags.${SYS}.gunJam`]: { catastrophe: !!cat } }).catch(() => null);
+    await item.setFlag(SYS, "gunState", "jammed").catch(() => null);
+    if (reloadable) await item.setFlag(SYS, "ammo", { loaded: 0, reloading: 0 }).catch(() => null);
+  }
+  if (cat) await catastrophe(actor, item);
 }
 
 /** The natural 1 table: roll a d6 and do what it says. */
@@ -714,7 +731,7 @@ export async function startContest(actor, kind, event = null) {
   if (kind === "dirty") notes.push("A creature only falls for your Dirty Trick once per fight.");
   const ab = bestChoice(actor, cfg.att, kind);
   const msg = await contestRoll(actor, ab, { kind, role: "attacker", vs: target.name, extraAdv, event, notes,
-    extra: { noSecond: true, contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: fight?.started ? fight.id : "" } } });
+    extra: { contest: { kind, targetUuid: target.uuid, attackerUuid: actor.uuid, combat: fight?.started ? fight.id : "" } } });
   if (!msg) return;
   if (target.isOwner) return resolveContest(msg, target, actor);
   if (!game.users.activeGM) return ui.notifications.warn("No GM is connected to roll for the other side.");
@@ -735,34 +752,97 @@ export async function resolveContest(message, target, attacker) {
   const att = { total: (f.total ?? 0) + (f.luckBurned ?? 0), natural: f.natural, autoFail: !!f.autoFail };
   const def = { total: (d.total ?? 0) + (d.luckBurned ?? 0), natural: d.natural, autoFail: !!d.autoFail };
   const won = contestWinner(att, def) === "attacker";
-  const lines = [];
-  if (won) {
-    if (kind === "grapple") {
-      await target.createEmbeddedDocuments("ActiveEffect", [{ name: `Grappled by ${attacker.name}`, img: `systems/${SYS}/assets/conditions/restrained.svg`, statuses: ["restrained"],
-        description: "<p>Restrained by a grapple. Break free with a Strength or Dexterity check contested by the grappler's Strength, as an action.</p>",
-        flags: { [SYS]: { grappledBy: attacker.uuid, sourceName: "Grapple" } } }]);
-    } else if (kind === "trip" || kind === "overbear") {
-      await toggleCondition(target, "prone", true);
-    } else if (kind === "dirty") {
-      await target.createEmbeddedDocuments("ActiveEffect", [{ name: `Dirty Trick (${attacker.name})`, img: `systems/${SYS}/assets/conditions/blinded.svg`, statuses: ["blinded"],
-        flags: { [SYS]: { value: 1, sourceName: "Dirty Trick" } } }]);
-      // Once per fight: remembered for this combat only.
-      if (f.contest.combat) await target.setFlag(SYS, "dirtyTricked", [...(target.flags?.[SYS]?.dirtyTricked ?? []), `${f.contest.combat}:${attacker.uuid}`].slice(-20));
-    } else if (kind === "escape") {
-      const gone = attacker.effects.filter(e => (e.statuses?.has?.("restrained") ?? false) && (e.flags?.[SYS]?.grappledBy === target.uuid || !e.flags?.[SYS]?.grappledBy));
-      if (gone.length && attacker.isOwner) await attacker.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));
-    }
-  }
+  const done = won ? await applyContestWin(kind, target, attacker, f.contest) : null;
+  const res = await ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ actor: attacker }),
+    content: contestCard(kind, attacker, target, att, def, won, f.ability, ab),
+    flags: { [SYS]: { contestResult: { kind, attackerUuid: attacker.uuid, targetUuid: target.uuid, attMsg: message.id, defMsg: dmsg?.id ?? "", attAb: f.ability ?? "", defAb: ab, combat: f.contest.combat ?? "", won, done } } }
+  });
+  // Both cards point at the result, so Advantage or Disadvantage pressed on either works the contest out again.
+  if (dmsg?.canUserModify?.(game.user, "update")) await dmsg.setFlag(SYS, "contestResultId", res?.id ?? "").catch(() => null);
+  if (message.canUserModify?.(game.user, "update")) await message.setFlag(SYS, "contest", { ...f.contest, resolved: true, resultId: res?.id ?? "" }).catch(() => null);
+  return won;
+}
+
+/** A contest's result card. */
+function contestCard(kind, attacker, target, att, def, won, attAb, defAb, { redone = false } = {}) {
+  const cfg = CONTESTS[kind];
   const outcome = kind === "escape"
     ? (won ? `${attacker.name} breaks free.` : `${attacker.name} is still held.`)
     : (won ? `${target.name} ${cfg.win}` : `${target.name} resists.`);
-  lines.push(`${attacker.name} ${att.total} (${ARNEYAN.abilities[f.ability] ?? ""}) vs ${target.name} ${def.total} (${ARNEYAN.abilities[ab] ?? ""})${att.total === def.total && !won ? ": a tie goes to the defender" : ""}.`);
-  await ChatMessage.create({
-    speaker: ChatMessage.getSpeaker({ actor: attacker }),
-    content: `<div class="arn-card arn-contest"><header class="arn-card-title"><i class="fa-solid fa-${cfg.icon}"></i> <span>${esc(cfg.label)}: ${won ? "success" : "failure"}</span></header>
-      <p>${esc(lines[0])}</p><div class="arn-outcome ${won ? "success" : "failure"}">${esc(outcome)}</div></div>`
-  });
-  if (message.canUserModify?.(game.user, "update")) await message.setFlag(SYS, "contest", { ...f.contest, resolved: true }).catch(() => null);
+  const line = `${attacker.name} ${att.total} (${ARNEYAN.abilities[attAb] ?? ""}) vs ${target.name} ${def.total} (${ARNEYAN.abilities[defAb] ?? ""})${att.total === def.total && !won ? ": a tie goes to the defender" : ""}.`;
+  return `<div class="arn-card arn-contest"><header class="arn-card-title"><i class="fa-solid fa-${cfg.icon}"></i> <span>${esc(cfg.label)}: ${won ? "success" : "failure"}</span></header>
+      <p>${esc(line)}</p><div class="arn-outcome ${won ? "success" : "failure"}">${esc(outcome)}</div>${redone ? `<p class="arn-card-meta">Worked out again after Advantage, Disadvantage or Luck on a roll.</p>` : ""}</div>`;
+}
+
+/** What winning a contest does, and what undoes it (a second die can turn the contest round). */
+async function applyContestWin(kind, target, attacker, contest = {}) {
+  const done = { effects: [], prone: false, dirty: "", removed: [] };
+  if (kind === "grapple") {
+    const [e] = await target.createEmbeddedDocuments("ActiveEffect", [{ name: `Grappled by ${attacker.name}`, img: `systems/${SYS}/assets/conditions/restrained.svg`, statuses: ["restrained"],
+      description: "<p>Restrained by a grapple. Break free with a Strength or Dexterity check contested by the grappler's Strength, as an action.</p>",
+      flags: { [SYS]: { grappledBy: attacker.uuid, sourceName: "Grapple" } } }]);
+    if (e) done.effects.push(e.id);
+  } else if (kind === "trip" || kind === "overbear") {
+    // Already Prone: nothing to undo later.
+    done.prone = !statusesOf(target).has("prone");
+    await toggleCondition(target, "prone", true);
+  } else if (kind === "dirty") {
+    const [e] = await target.createEmbeddedDocuments("ActiveEffect", [{ name: `Dirty Trick (${attacker.name})`, img: `systems/${SYS}/assets/conditions/blinded.svg`, statuses: ["blinded"],
+      flags: { [SYS]: { value: 1, sourceName: "Dirty Trick" } } }]);
+    if (e) done.effects.push(e.id);
+    // Once per fight: remembered for this combat only.
+    if (contest.combat) {
+      done.dirty = `${contest.combat}:${attacker.uuid}`;
+      await target.setFlag(SYS, "dirtyTricked", [...(target.flags?.[SYS]?.dirtyTricked ?? []), done.dirty].slice(-20));
+    }
+  } else if (kind === "escape") {
+    const gone = attacker.effects.filter(e => (e.statuses?.has?.("restrained") ?? false) && (e.flags?.[SYS]?.grappledBy === target.uuid || !e.flags?.[SYS]?.grappledBy));
+    if (gone.length && attacker.isOwner) {
+      done.removed = gone.map(e => e.toObject());
+      await attacker.deleteEmbeddedDocuments("ActiveEffect", gone.map(e => e.id));
+    }
+  }
+  return done;
+}
+
+async function undoContestWin(kind, target, attacker, done) {
+  if (!done) return;
+  const ids = (done.effects ?? []).filter(id => target.effects.has(id));
+  if (ids.length) await target.deleteEmbeddedDocuments("ActiveEffect", ids);
+  if (done.prone && statusesOf(target).has("prone")) await toggleCondition(target, "prone", false);
+  if (done.dirty) await target.setFlag(SYS, "dirtyTricked", (target.flags?.[SYS]?.dirtyTricked ?? []).filter(k => k !== done.dirty));
+  const back = (done.removed ?? []).filter(e => !attacker.effects.has(e._id));
+  if (back.length) await attacker.createEmbeddedDocuments("ActiveEffect", back, { keepId: true });
+}
+
+/** Can this client work the contest out again itself (or does the GM's)? */
+export async function contestRedoHere(result) {
+  const r = result?.flags?.[SYS]?.contestResult;
+  if (!r) return false;
+  const attacker = await fromUuid(r.attackerUuid).catch(() => null), target = await fromUuid(r.targetUuid).catch(() => null);
+  return !!(attacker?.isOwner && target?.isOwner && result.canUserModify(game.user, "update"));
+}
+
+/**
+ * Work a contest out again from its two cards as they now stand (a second d20 or Luck burned on either), undoing or
+ * applying what the win does, and rewrite the result card.
+ */
+export async function redoContest(result) {
+  const r = result?.flags?.[SYS]?.contestResult;
+  if (!r || !CONTESTS[r.kind]) return;
+  const am = game.messages.get(r.attMsg), dm = game.messages.get(r.defMsg);
+  const attacker = await fromUuid(r.attackerUuid).catch(() => null), target = await fromUuid(r.targetUuid).catch(() => null);
+  if (!am || !dm || !(attacker instanceof Actor) || !(target instanceof Actor)) return;
+  const side = m => { const x = m.flags?.[SYS] ?? {}; return { total: (x.total ?? 0) + (x.luckBurned ?? 0), natural: x.natural, autoFail: !!x.autoFail }; };
+  const att = side(am), def = side(dm);
+  const won = contestWinner(att, def) === "attacker";
+  let done = r.done ?? null;
+  if (won !== r.won) {
+    if (r.won) await undoContestWin(r.kind, target, attacker, done);
+    done = won ? await applyContestWin(r.kind, target, attacker, { combat: r.combat }) : null;
+  }
+  await result.update({ content: contestCard(r.kind, attacker, target, att, def, won, r.attAb, r.defAb, { redone: true }), [`flags.${SYS}.contestResult`]: { ...r, won, done } });
   return won;
 }
 
@@ -1004,7 +1084,9 @@ function trackerOptions(app, options) {
 /* -------------------------------------------- */
 
 async function onSocket(msg, senderId) {
-  if (!msg || typeof msg !== "object" || msg.action !== "combatContest" || !isGMClient()) return;
+  if (!msg || typeof msg !== "object" || !isGMClient()) return;
+  if (msg.action === "contestRedo") return onContestRedo(msg, senderId);
+  if (msg.action !== "combatContest") return;
   const sender = game.users.get(senderId);
   const m = game.messages.get(String(msg.messageId ?? ""));
   const c = m?.flags?.[SYS]?.contest;
@@ -1018,7 +1100,19 @@ async function onSocket(msg, senderId) {
   const tok = target.token ?? target.getActiveTokens?.(false, true)?.[0];
   if (!tok || tok.hidden) return;
   await resolveContest(m, target, attacker);
-  await m.setFlag(SYS, "contest", { ...c, resolved: true }).catch(() => null);
+  if (!m.flags?.[SYS]?.contest?.resolved) await m.setFlag(SYS, "contest", { ...(m.flags?.[SYS]?.contest ?? c), resolved: true }).catch(() => null);
+}
+
+/** A player's second die on a contest card whose creatures they don't all control: the GM works it out again. */
+async function onContestRedo(msg, senderId) {
+  const sender = game.users.get(senderId);
+  const result = game.messages.get(String(msg.resultId ?? ""));
+  const r = result?.flags?.[SYS]?.contestResult;
+  if (!sender || !r) return;
+  // Only from the author of one of its two cards.
+  const cards = [game.messages.get(r.attMsg), game.messages.get(r.defMsg)].filter(Boolean);
+  if (!cards.some(m => m.author?.id === sender.id)) return;
+  await redoContest(result);
 }
 
 /* -------------------------------------------- */
