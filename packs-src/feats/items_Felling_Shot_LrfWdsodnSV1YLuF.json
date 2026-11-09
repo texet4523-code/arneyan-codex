@@ -1,0 +1,58 @@
+{
+ "_id": "LrfWdsodnSV1YLuF",
+ "_key": "!items!LrfWdsodnSV1YLuF",
+ "name": "Felling Shot",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>Once per round, when you hit a creature no more than one size larger than you with a ranged weapon attack, it makes a <strong>Fortitude save</strong> against your Class Save DC, using Strength or Dexterity, whichever is higher, or is knocked <strong>Prone</strong>.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Spellblades, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "alsoPaths": [],
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "activities": [
+   {
+    "name": "Felling Shot",
+    "kind": "save",
+    "formula": "@martialDC",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "After a ranged weapon hit on a creature no more than one size larger: Fortitude save against your Class Save DC (Strength or Dexterity, whichever is higher) or knocked Prone.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 14,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

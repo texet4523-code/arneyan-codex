@@ -838,12 +838,15 @@
    "type": "feat",
    "img": "systems/arneyan/assets/icons/feat-target-arrows.svg",
    "system": {
-    "description": "<p>No <strong>Disadvantage</strong> on ranged attacks against a target engaged in melee with an ally.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p>",
+    "description": "<p>No <strong>Disadvantage</strong> on ranged attacks against a target engaged in melee with an ally. The same feat appears in the Martial Path; you can only take it once.</p><p class=\"arn-note\">Available to: Rogues, Assassins, Rangers, Monks, Archers, Gunslingers, Swashbucklers, and Artificers.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Spellblades, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
     "source": {
      "book": "phb",
      "page": 0
     },
     "path": "Specialist Path",
+    "alsoPaths": [
+     "Martial Path"
+    ],
     "levelTaken": 1,
     "uses": {
      "value": 0,
@@ -883,6 +886,7 @@
      "page": 0
     },
     "path": "General Path",
+    "alsoPaths": [],
     "levelTaken": 1,
     "uses": {
      "value": 0,

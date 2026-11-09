@@ -36,6 +36,7 @@ def build(icon):
     fstart = md.index("# Class-Bound Feat Paths")
     fend = md.index("# Skills (NWP)", fstart)
     fblock = md[fstart:fend]
+    feats = {}
     for pi, (path, body) in enumerate(md_sections(fblock, 2)):
         pname = re.sub(r"^[IVX]+\.\s*", "", path).split("(")[0].strip()
         fol = folder("feats", pname, sort=pi)
@@ -53,11 +54,20 @@ def build(icon):
                 desc = f"<p><em>{esc(fname[len(fname_clean):].strip())}</em></p>" + desc
             if avail:
                 desc += f'<p class="arn-note">{md_inline(avail.group(1))}</p>'
-            item("feats", fname_clean, "feat", {
-                "description": desc, "source": {"book": "phb", "page": 0},
-                "path": pname, "levelTaken": 0
-            }, icon("feat", pname), folder=fol, sort=n)
+            prev = feats.get(fname_clean)
+            also = ([prev["path"]] + prev["also"]) if prev else []
+            # Listed in another Path too: its "Available to" note comes along, so every class it is open to is named.
+            for note in (prev["notes"] if prev else []):
+                if note not in desc:
+                    desc += note
+            notes = (prev["notes"] if prev else []) + ([f'<p class="arn-note">{md_inline(avail.group(1))}</p>'] if avail else [])
+            feats[fname_clean] = {"desc": desc, "path": pname, "also": also, "fol": fol, "n": n, "pname": pname, "notes": notes}
             n += 1
+    for fname_clean, f in feats.items():
+        item("feats", fname_clean, "feat", {
+            "description": f["desc"], "source": {"book": "phb", "page": 0},
+            "path": f["path"], "alsoPaths": f["also"], "levelTaken": 0
+        }, icon("feat", f["pname"]), folder=f["fol"], sort=f["n"])
 
     # ---------------- Skills (NWP)
     sstart = md.index("# Master Proficiency List")

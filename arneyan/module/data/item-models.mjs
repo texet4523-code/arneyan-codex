@@ -258,6 +258,8 @@ export class FeatData extends BaseItemData {
   static defineSchema() {
     return {
       ...base(), path: str(),
+      /** Other Paths that also list it (HB v0.10.61, K110: Point-Blank Terror and Steady Aim are Martial and Specialist). */
+      alsoPaths: new ArrayField(new StringField({ required: true, blank: false })),
       /** The character level it was taken at (stamped when it arrives on a character); 0: not known, not shown. */
       levelTaken: int(0, { min: 0 }),
       /** A feat with an active use: so many a day or session, and what using it does (as an ability's). */

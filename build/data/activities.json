@@ -2146,7 +2146,7 @@
     "cost": 0,
     "per": "round",
     "effect": "Deed: Prone",
-    "text": "Knock it Prone, push it 10ft or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed."
+    "text": "Knock it Prone, push it 10ft (5ft with a ranged attack) or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed."
    },
    {
     "name": "Blind",
@@ -2170,7 +2170,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, against your Class Save DC using Strength or Dexterity, whichever is higher."
+  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, against your Class Save DC using Strength or Dexterity, whichever is higher. HB v0.10.61 (K110): works at range; a ranged push is 5ft."
  },
  "Ritual Caster|Feat": {
   "activities": [],
@@ -4242,5 +4242,34 @@
   ],
   "confidence": "high",
   "why": "1d6 HP when Grit activates."
+ },
+ "Felling Shot|Feat": {
+  "activities": [
+   {
+    "name": "Felling Shot",
+    "kind": "save",
+    "save": "fort",
+    "formula": "@martialDC",
+    "cost": 0,
+    "per": "round",
+    "text": "After a ranged weapon hit on a creature no more than one size larger: Fortitude save against your Class Save DC (Strength or Dexterity, whichever is higher) or knocked Prone."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.61 (K110): the ranged twin of Shield Bash, once per round."
+ },
+ "Covering Fire|Feat": {
+  "activities": [
+   {
+    "name": "Covering Fire",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "text": "In place of one ranged attack: the next attack the target makes before the start of your next turn has Disadvantage, unless it attacks you."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.61 (K110): once per round, in place of one ranged attack; the GM applies the Disadvantage."
  }
 }

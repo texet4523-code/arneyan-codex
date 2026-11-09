@@ -567,6 +567,9 @@ function featLevels(actor) {
   return first?.system.featLevels ?? [1, 4, 8, 12, 16, 20];
 }
 
+/** A feat is open if its Path, or another Path that also lists it (HB v0.10.61), is open to the character. */
+export const featOpen = (e, paths) => paths.has(e.system?.path) || (e.system?.alsoPaths ?? []).some(p => paths.has(p));
+
 /** Feat Paths open to the character: General plus every class's Paths. */
 function featPaths(actor) {
   const paths = new Set(["General Path"]);
@@ -581,7 +584,7 @@ function featPaths(actor) {
 async function packOptions(packName, filter, more = []) {
   const pack = game.packs.get(`arneyan.${packName}`);
   if (!pack) return [];
-  const index = await pack.getIndex({ fields: ["system.path", "system.className", "system.ability", ...more] });
+  const index = await pack.getIndex({ fields: ["system.path", "system.alsoPaths", "system.className", "system.ability", ...more] });
   return index.filter(filter).sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -613,7 +616,7 @@ export async function promptFeat(actor, charLevel) {
   const owned = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
   const paths = featPaths(actor);
   // Weapon Master can be taken again, for another weapon (books v0.10.49, K57).
-  const list = await packOptions("feats", e => paths.has(e.system?.path) && (!owned.has(e.name) || e.name === "Weapon Master"));
+  const list = await packOptions("feats", e => featOpen(e, paths) && (!owned.has(e.name) || e.name === "Weapon Master"));
   if (!list.length) return;
   // Browser-style: the list on the left, what the Feat does on the right.
   const uuid = await pickFromList({
@@ -703,7 +706,7 @@ async function firstLevelLists(actor, cls) {
   }).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
   const paths = featPaths(actor);
   const ownedFeats = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
-  const feats = (await packOptions("feats", e => paths.has(e.system?.path) && !ownedFeats.has(e.name)))
+  const feats = (await packOptions("feats", e => featOpen(e, paths) && !ownedFeats.has(e.name)))
     .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" }))
     .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
   // Skills by attribute, in sheet order.
