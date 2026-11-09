@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Spend <strong>2 rounds</strong> aiming without moving: full concentration, no other actions. The next shot this combat gains advantage and deals +<strong>1d6</strong> bonus damage.</li><li>If interrupted while aiming, the bonus is lost but the rounds are not wasted</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> If you did not move or attack last turn, your first shot this turn has <strong>Advantage</strong> and deals +<strong>1d6</strong> damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +{1:1d6, 13:2d6} damage.",
+    "text": "If you did not move or attack last turn, your first shot this turn has Advantage and deals +{1:1d6, 13:2d6} damage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -54,13 +54,13 @@
    {
     "key": "adv.attack.ranged",
     "value": "1",
-    "when": "next shot after 2 rounds of Dead Aim",
+    "when": "first shot this turn, if you did not move or attack last turn",
     "label": ""
    },
    {
     "key": "damage.ranged",
     "value": "3:1d6, 13:2d6",
-    "when": "next shot after 2 rounds of Dead Aim",
+    "when": "first shot this turn, if you did not move or attack last turn",
     "label": ""
    }
   ],

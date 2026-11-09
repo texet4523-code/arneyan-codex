@@ -1,0 +1,63 @@
+{
+ "_id": "zy3417l1bdSnv7ZD",
+ "_key": "!items!zy3417l1bdSnv7ZD",
+ "name": "Phantasm",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> During a rest, weave an illusory companion of your size or smaller, in any shape.</li><li>It lasts until destroyed or rewoven, acts on your turn at no cost, moves <strong>30ft</strong> (flying, if winged) and cannot attack or move objects.</li><li>It can Aid an ally against a creature beside it, flank, and scout: as part of your action, see and hear through it within <strong>120ft</strong>.</li><li>One hit or damaging effect destroys it, and a creature that sees through it ignores it.</li><li>Re-form it beside you, as part of your action, for 1 Glamour.</li><li>13th level: only a second hit destroys it</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": "",
+   "pool": "Glamour"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Illusionist",
+  "activities": [
+   {
+    "name": "Re-form the Phantasm",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Re-form a destroyed Phantasm (otherwise woven during a rest).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

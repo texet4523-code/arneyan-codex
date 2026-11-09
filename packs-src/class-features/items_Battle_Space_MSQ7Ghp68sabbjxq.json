@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Battle Space:</strong> You control the space around you in ways most fighters never learn.</li><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and you reroll 1s on Flank Attack damage</li><li>17th level: a Flank Attack also deals +1 damage die</li></ul>",
+  "description": "<p>You control the space around you in ways most fighters never learn.</p><ul><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and a Flank Attack also pushes the target <strong>5ft</strong></li><li>17th level: a Flank Attack also deals +1 damage die</li><li>22nd level: when you attack, you may also Disengage from any number of enemies as part of the same action; you have <strong>Advantage</strong> on <strong>Reflex saves</strong>; and a Flank Attack deals +2 damage dice instead, and its target can't make Attacks of Opportunity against you until the start of your next turn</li><li><strong>Armour Training:</strong> you ignore the Cumbersome, Hot and Bulky traits and the Tower Shield's speed loss (Noisy still applies).</li><li>You also gain the Immovable manoeuvre: in medium or heavy armour, a creature no more than one size larger than you can't push or shove you, knock you <strong>Prone</strong> or otherwise move you against your will.</li><li>Once per round, out of turn, a creature that tries is knocked <strong>Prone</strong> instead.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -36,13 +36,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Battle Space: {13:reroll 1s on Flank Attack damage}.",
-    "when": "",
-    "label": ""
-   },
-   {
-    "key": "note.damage",
-    "value": "Battle Space: {17:a Flank Attack also deals +1 damage die}.",
+    "value": "Battle Space: {13:a Flank Attack also pushes the target 5ft, 17:a Flank Attack also pushes the target 5ft and deals +1 damage die, 22:a Flank Attack also pushes the target 5ft and deals +2 damage dice, and its target can't make Attacks of Opportunity against you until your next turn}.",
     "when": "",
     "label": ""
    }
@@ -52,7 +46,7 @@
  },
  "effects": [],
  "folder": "iosSCPSOMRgZoPgx",
- "sort": 3,
+ "sort": 2,
  "ownership": {
   "default": 0
  },

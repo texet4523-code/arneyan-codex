@@ -1,0 +1,66 @@
+{
+ "_id": "ntQRdCKuC7CDPq3b",
+ "_key": "!items!ntQRdCKuC7CDPq3b",
+ "name": "Mechanist (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>The dwarves of Tenor Hold didn't wait for blackpowder to kill things at range. They solved it decades earlier with springs, gears and spite.</p><ul><li><strong>Clockwork Precision:</strong> a repeating crossbow can be used with Two-Gun Shot (the second shot has <strong>Disadvantage</strong>, as normal), and has no <strong>Disadvantage</strong> on a Called Shot.<ul><li>9th level: your repeating crossbow bolts have the Armour Piercing trait.</li></ul></li><li><strong>Engineer's Eye:</strong> <strong>Advantage</strong> on checks to identify, maintain, repair or modify mechanical ranged weapons, and you can field-repair any crossbow or firearm during a rest.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Clockwork Precision",
+    "level": 1,
+    "description": "<p>A repeating crossbow can be used with Two-Gun Shot (the second shot has <strong>Disadvantage</strong>, as normal), and has no <strong>Disadvantage</strong> on a Called Shot.</p><p>9th level: your repeating crossbow bolts have the Armour Piercing trait.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Engineer's Eye",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify, maintain, repair or modify mechanical ranged weapons, and you can field-repair any crossbow or firearm during a rest.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, maintain, repair or modify mechanical ranged weapons",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

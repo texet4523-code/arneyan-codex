@@ -1,0 +1,62 @@
+{
+ "_id": "4sWm57LGm7BhimnN",
+ "_key": "!items!4sWm57LGm7BhimnN",
+ "name": "Pit Fighter (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>The Iron Crucible of Mournas and the Red Waste pits: no forms, no philosophy, just what works when a crowd is watching and money is on the line.</p><ul><li><strong>Opening Blow:</strong> <strong>once per round</strong>, when you start a grapple or overbear a creature, you also deal your primary unarmed damage. Holding a grapple deals no further damage on its own.<ul><li>9th level: a creature you are grappling has <strong>Disadvantage</strong> on checks to escape.</li></ul></li><li><strong>Ring Reader:</strong> <strong>Advantage</strong> on Intimidation checks before or during combat, and on checks to read an opponent's fighting style in the first round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Opening Blow",
+    "level": 1,
+    "description": "<p>Once per round, when you start a grapple or overbear a creature, you also deal your primary unarmed damage. Holding a grapple deals no further damage on its own.</p><p>9th level: a creature you are grappling has <strong>Disadvantage</strong> on checks to escape.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Ring Reader",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Intimidation checks before or during combat, and on checks to read an opponent's fighting style in the first round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation before or during combat",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to read an opponent's fighting style in the first round",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

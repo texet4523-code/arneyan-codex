@@ -1,0 +1,66 @@
+{
+ "_id": "xdIZvKbLrMXwMaWW",
+ "_key": "!items!xdIZvKbLrMXwMaWW",
+ "name": "Skulker (Rogue)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<p>Survival-honed stealth from the Red Waste and the deep Nalwood: stillness, patience, and the strike from nowhere.</p><ul><li><strong>Stillness:</strong> <strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.<ul><li>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</li></ul></li><li><strong>Ghost of the Sands:</strong> <strong>Advantage</strong> on checks to evade tracking in harsh terrain.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Rogue",
+  "features": [
+   {
+    "name": "Stillness",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.</p><p>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Hide on a turn you have not moved",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Ghost of the Sands",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to evade tracking in harsh terrain.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "evading tracking in harsh terrain",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "UwZ81OhImTwueZ4z",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

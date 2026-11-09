@@ -189,7 +189,12 @@ KIT_IDS = json.load(open(_KIT_IDS, encoding="utf-8")) if os.path.exists(_KIT_IDS
 
 def item(pack, name, type_, system, img, folder=None, sort=0, key=None, _id=None):
     if pack == "kits" and key is None:
-        key = KIT_IDS.get(name)
+        # Follow renames back to the first name (books v0.10.56 renamed most kits again: "Gladiator (Fighter)" was
+        # "Gladiator, The Pit-Forged (Fighter)", which was "Gladiator — The Pit-Forged (Fighter)").
+        key, seen = KIT_IDS.get(name), set()
+        while key in KIT_IDS and key not in seen:
+            seen.add(key)
+            key = KIT_IDS[key]
     _id = _id or fid(pack, type_, key or name)
     doc = {
         "_id": _id, "_key": f"!items!{_id}", "name": name, "type": type_, "img": img,

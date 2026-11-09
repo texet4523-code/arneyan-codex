@@ -1,0 +1,66 @@
+{
+ "_id": "hviYzyxxOQvRIL7n",
+ "_key": "!items!hviYzyxxOQvRIL7n",
+ "name": "Sharpshooter (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A ranged specialist who has given up melee training for precision at distance, from the archers' butts of Eltor to the gun companies of Opal.</p><ul><li><strong>Dead Reckoning:</strong> your bow and crossbow attacks ignore half and three-quarters cover, and score a critical hit on a 19 or 20 against a target with no cover or an unaware one.<ul><li>9th level: your bow or crossbow has no <strong>Disadvantage</strong> at long range, and its long range doubles.</li></ul></li><li><strong>Trained Eye:</strong> <strong>Advantage</strong> on checks estimating range, wind, elevation or trajectory, and you can name the make and origin of any arrow or bolt you examine.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Dead Reckoning",
+    "level": 1,
+    "description": "<p>Your bow and crossbow attacks ignore half and three-quarters cover, and score a critical hit on a 19 or 20 against a target with no cover or an unaware one.</p><p>9th level: your bow or crossbow has no <strong>Disadvantage</strong> at long range, and its long range doubles.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Dead Reckoning: {1:your bow and crossbow attacks ignore half and three-quarters cover and score a critical hit on a 19 or 20 against a target with no cover or an unaware one, 9:your bow and crossbow attacks ignore half and three-quarters cover and score a critical hit on a 19 or 20 against a target with no cover or an unaware one; no Disadvantage at long range, and long range doubles}.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Trained Eye",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks estimating range, wind, elevation or trajectory, and you can name the make and origin of any arrow or bolt you examine.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "estimating range, wind, elevation or trajectory",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

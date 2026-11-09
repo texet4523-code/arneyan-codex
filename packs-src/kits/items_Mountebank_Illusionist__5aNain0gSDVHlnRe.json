@@ -1,0 +1,62 @@
+{
+ "_id": "5aNain0gSDVHlnRe",
+ "_key": "!items!5aNain0gSDVHlnRe",
+ "name": "Mountebank (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<p>A travelling entertainer with no school or patron.</p><ul><li><strong>Showmanship:</strong> <strong>Advantage</strong> on Charisma checks to hold an audience while maintaining an illusion. While you maintain an illusion, the first attack against you each round has <strong>Disadvantage</strong>.<ul><li>9th level: the first two attacks.</li></ul></li><li><strong>New Face, New Town:</strong> <strong>Advantage</strong> on checks to set up a false identity in a new town, and on Legend Lore about travelling performers and carnivals.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Showmanship",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Charisma checks to hold an audience while maintaining an illusion. While you maintain an illusion, the first attack against you each round has <strong>Disadvantage</strong>.</p><p>9th level: the first two attacks.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "to hold an audience while maintaining an illusion",
+      "label": ""
+     },
+     {
+      "key": "adv.against.first",
+      "value": "-1",
+      "when": "while you maintain an illusion",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "New Face, New Town",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to set up a false identity in a new town, and on Legend Lore about travelling performers and carnivals.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

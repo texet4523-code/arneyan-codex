@@ -69,14 +69,14 @@ assert.ok(classOnly.every(d => d.system.school && d.system.components), classOnl
 
 // Knight kits: written out and automated. v0.10.4 to v0.10.24 they replaced Embolden or Demoralise; books v0.10.25
 // (R-B7) make them stronger versions of the Command options, with no uses and no replacing (test/rb7.mjs too).
-const hedge = one("kits", "Hedge Knights (Knight)").system.features.find(f => f.name === "Steadfast Courage");
-assert.deepEqual([hedge.level, hedge.replaces, hedge.uses.max], [3, "", 0]);
+const hedge = one("kits", "Path: Hedge Knight (Knight)").system.features.find(f => f.name === "Steadfast Courage");
+assert.deepEqual([hedge.level, hedge.replaces, hedge.uses.max], [1, "", 0], "books v0.10.56: the Path's 1st-level feature");
 assert.equal(hedge.applies[0].rounds, "encounter");
 assert.deepEqual(hedge.applies[0].rules.map(r => `${r.key} ${r.value}`), ["adv.save 1"]);
-const wall = one("kits", "Boldock Wall-Knights (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
+const wall = one("kits", "Path: Castellan (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([wall.level, wall.replaces, wall.save], [5, "", "will"]);
 assert.deepEqual(wall.applies.map(a => a.statuses), [["frightened"]], "books v0.10.36 (K43): Frightened while the Command lasts");
-assert.ok(strip(one("kits", "Boldock Wall-Knights (Knight)").system.description).includes("your Demoralise option is harsher"), "books v0.10.25 wording");
+assert.ok(strip(one("kits", "Path: Castellan (Knight)").system.description).includes("Wall-Forged Dread"), "the Path's text");
 assert.ok(/replaces: str\(\)/.test(fs.readFileSync(path.join(root, "module/data/item-models.mjs"), "utf8")), "kits keep the field");
 const prog = fs.readFileSync(path.join(root, "module/progression.mjs"), "utf8");
 assert.ok(prog.includes("replacedFor(actor, cls)") && prog.includes("dropReplaced"));

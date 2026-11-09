@@ -1,0 +1,66 @@
+{
+ "_id": "ioMzfnluzghImDnW",
+ "_key": "!items!ioMzfnluzghImDnW",
+ "name": "Wall-Breaker (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>The siege companies of Dul Khagul and every army that has had to break a gate: breaking lines, shattering formations, holding ground.</p><ul><li><strong>Siege Master:</strong> <strong>Advantage</strong> on Strength checks to break, smash or force open objects.<ul><li>9th level: your weapon attacks deal double damage to objects and structures, and Cleaving Fury carries through to a second enemy.</li></ul></li><li><strong>Siege-Bound:</strong> <strong>Advantage</strong> on checks about clan etiquette and military structure, and you are recognised as a warrior of note by any company that has stormed a wall.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Siege Master",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Strength checks to break, smash or force open objects.</p><p>9th level: your weapon attacks deal double damage to objects and structures, and Cleaving Fury carries through to a second enemy.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "to break, smash or force open objects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Siege-Bound",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks about clan etiquette and military structure, and you are recognised as a warrior of note by any company that has stormed a wall.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "about clan etiquette and military structure",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "jGVbG6ezuKWLMVAk",
+ "_key": "!items!jGVbG6ezuKWLMVAk",
+ "name": "Outrider (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>The freelance riders of the caravan roads and the mercenary companies: a mounted warrior who fights for coin, not a sworn order.</p><ul><li><strong>Cavalry Strike:</strong> while mounted, you can split your mount's movement before and after your attack. The creature you attack can't make an Attack of Opportunity against you or your mount for that movement. Your mount has <strong>Advantage</strong> on saves against fear while you ride it.<ul><li>9th level: when you hit with a melee attack after your mount moved at least <strong>20ft</strong> this turn, the target makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li></ul></li><li><strong>Soldier's Rep:</strong> <strong>Advantage</strong> on Persuasion when negotiating pay or contracts, and a name among mercenary companies and caravan guilds.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Cavalry Strike",
+    "level": 1,
+    "description": "<p>While mounted, you can split your mount's movement before and after your attack. The creature you attack can't make an Attack of Opportunity against you or your mount for that movement. Your mount has <strong>Advantage</strong> on saves against fear while you ride it.</p><p>9th level: when you hit with a melee attack after your mount moved at least <strong>20ft</strong> this turn, the target makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Cavalry Strike: while mounted, split your mount's movement before and after this attack; the target can't make an Attack of Opportunity against you or your mount for that movement.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Soldier's Rep",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Persuasion when negotiating pay or contracts, and a name among mercenary companies and caravan guilds.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion when negotiating pay or contracts",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

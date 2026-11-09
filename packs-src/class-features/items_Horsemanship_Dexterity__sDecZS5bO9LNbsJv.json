@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Trained in all aspects of mounted combat with no check required: saddle, mount, ride, dismount; control the mount in combat; guide with the knees; stay in the saddle when the mount rears or bolts; assess horse quality.</li><li>Direct the mount to perform cover, deflect, fall softly, leap, and charge manoeuvres on a successful Dexterity check</li><li>When mounted on a war-trained horse, your mount's attacks have <strong>Advantage</strong></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Trained in all aspects of mounted combat with no check required: saddle, mount, ride, dismount; control the mount in combat; guide with the knees; stay in the saddle when the mount rears or bolts; assess horse quality.</li><li>Your mount needs no check to charge, leap or fall softly: it does what you tell it</li><li>If your mount can attack (see Mounted Combat in The Arneyan Codex), it attacks as part of your action, with <strong>Advantage</strong>, and you have <strong>Advantage</strong> on your first melee attack each round from the saddle</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,13 +23,13 @@
   "className": "Knight",
   "activities": [
    {
-    "name": "Mount Manoeuvre",
-    "kind": "check",
+    "name": "Mounted",
+    "kind": "note",
     "formula": "",
     "damageType": "",
-    "ability": "dex",
+    "ability": "",
     "save": "",
-    "text": "Direct your mount to cover, deflect, fall softly, leap or charge.",
+    "text": "Your mount charges, leaps and falls softly with no check. A mount that can attack does so as part of your action, with Advantage, and you have Advantage on your first melee attack each round from the saddle.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

@@ -1,0 +1,88 @@
+{
+ "_id": "uK8P0scQNmrf2Dbk",
+ "_key": "!items!uK8P0scQNmrf2Dbk",
+ "name": "Twist the Knife",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>No <strong>Disadvantage</strong> against a <strong>Poisoned</strong> creature.</li><li>If both attacks hit one creature, it can't regain Hit Points until the end of its next turn.</li><li>Sneak Attack still applies to only one attack per round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Assassin",
+  "activities": [
+   {
+    "name": "Twist the Knife",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit one creature, it can't regain Hit Points until the end of its next turn. Sneak Attack still applies to only one attack per round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "extra",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Twist the Knife (against a Poisoned creature)",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "No Disadvantage on the extra attack (against a Poisoned creature). If both hit one creature, it can't regain Hit Points until the end of its next turn. Sneak Attack still applies to only one attack per round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

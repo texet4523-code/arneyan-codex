@@ -1,0 +1,85 @@
+{
+ "_id": "ekcWjuVk2liVW10x",
+ "_key": "!items!ekcWjuVk2liVW10x",
+ "name": "Freelance (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>A gun for hire in Mournas or any city with work for one: no loyalties, odd jobs, survival instincts.</p><ul><li><strong>Stubborn:</strong> when Grit activates, you recover <strong>1d6</strong> HP instead of standing at <strong>1 HP</strong>.<ul><li>9th level: <strong>2d6</strong> HP.</li></ul></li><li><strong>Shadow Work:</strong> <strong>Advantage</strong> on checks to negotiate payment, find employers, and stay out of the law's sight in a city.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Stubborn",
+    "level": 1,
+    "description": "<p>When Grit activates, you recover <strong>1d6</strong> HP instead of standing at <strong>1 HP</strong>.</p><p>9th level: <strong>2d6</strong> HP.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "activities": [
+     {
+      "name": "Grit recovery",
+      "kind": "heal",
+      "formula": "1:1d6, 9:2d6",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "When Grit activates: recover HP instead of standing at 1 HP.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "",
+      "target": "self",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
+   },
+   {
+    "name": "Shadow Work",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to negotiate payment, find employers, and stay out of the law's sight in a city.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to negotiate payment, find employers, and stay out of the law's sight in a city",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

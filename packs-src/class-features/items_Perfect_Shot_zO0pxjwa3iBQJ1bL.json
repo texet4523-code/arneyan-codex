@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, declare before rolling. The next ranged attack deals maximum damage regardless of the dice result.</li><li>The attack still requires a hit. A die set to its maximum by this ability does not explode; only a rolled maximum explodes.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, declare before rolling: if the shot hits, every damage die explodes once, whatever it rolled (roll it again and add the result; the new die explodes as normal).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Declared before rolling, your next ranged attack deals maximum damage if it hits; set maximums do not explode.",
+    "text": "Declared before rolling: if your shot hits, every damage die explodes once, whatever it rolled (roll it again and add; the new die explodes as normal).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

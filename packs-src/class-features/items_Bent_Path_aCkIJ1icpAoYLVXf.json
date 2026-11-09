@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your first shot each round curves around cover and shields. Half Cover doesn't give you <strong>Disadvantage</strong> on it, and the target's shield adds 2 less to its AC.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your first shot each round curves around cover and shields. Half Cover doesn't give you <strong>Disadvantage</strong> on it, and the target's shield adds 2 less to its AC.</li><li>10th level: it can also curve around Full Cover: you can target a creature behind it, with <strong>Disadvantage</strong>. It ignores the target's shield entirely, magic included.</li><li>11th level: it applies to every shot you make, not just the first each round</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Bent Path: your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2 (Full Cover still blocks it).",
+    "value": "Bent Path: {1:your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2, 10:your first shot each round ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely, 11:every shot ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely}.",
     "when": "",
     "label": "",
     "weapon": "bow"

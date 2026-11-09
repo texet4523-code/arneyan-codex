@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (see the Assassin Progression Table) against an aware-but-unsuspecting target.</li><li>Usable <strong>once per round</strong>.</li><li>A target is unsuspecting if it cannot see you, has not yet acted this encounter, or is in melee with one of your allies and not with you, or you are flanking it (see Flanking, Book I).</li><li>Usable at range within <strong>30ft</strong></li><li>No prior stealth check required</li><li>A Death Attack is delivered by a Sneak Attack; if the target saves, it takes maximum Sneak Attack dice damage</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (see the Assassin Progression Table) against a creature that cannot see you, has not yet acted this encounter, or is your Studied target. Usable <strong>once per round</strong>.</li><li>Usable at range within <strong>30ft</strong></li><li>No prior stealth check required</li><li>A Death Attack is delivered by a Sneak Attack; if the target saves, it takes maximum Sneak Attack dice damage</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against an unsuspecting target within 30ft, once per round.",
+    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -81,7 +81,7 @@
    {
     "key": "adv.attack",
     "value": "1",
-    "when": "Sneak Attack vs an unsuspecting target (cannot see you, has not acted yet, in melee with an ally and not you, or you are flanking it)",
+    "when": "Sneak Attack vs a creature that cannot see you, has not yet acted, or is your Studied target",
     "label": ""
    },
    {
@@ -96,7 +96,7 @@
  },
  "effects": [],
  "folder": "b3fiHSAW8zySsJZt",
- "sort": 2,
+ "sort": 3,
  "ownership": {
   "default": 0
  },

@@ -1,0 +1,93 @@
+{
+ "_id": "WtB20YgHDIiDxb5Q",
+ "_key": "!items!WtB20YgHDIiDxb5Q",
+ "name": "Path: Castellan (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The wall-knight who holds what others attack: the Boldock Wall-Knights facing the Red Waste from the Wall and Westfront Fort, and the keepers of every border hold.</p><ul><li><strong>Hold the Wall (1st):</strong> while an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</li><li><strong>Siege Discipline (1st):</strong> <strong>Advantage</strong> on checks involving fortification, siege assessment or coordinating a defence.</li><li><strong>Wall-Forged Dread (5th):</strong> you gain Demoralise at 5th level rather than 7th, and it is harsher: on a failed <strong>Will save</strong>, enemies stay <strong>Frightened</strong> of you while the Command lasts, not just until the end of their next turn.</li><li><strong>Shield of the Wall (10th):</strong> an ally within <strong>30ft</strong> of you who has not moved since the start of its last turn imposes <strong>Disadvantage</strong> on the first attack against it each round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Hold the Wall",
+    "level": 1,
+    "description": "<p>While an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Siege Discipline",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks involving fortification, siege assessment or coordinating a defence.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "fortification, siege assessment, or coordinating soldiers in a defence",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Wall-Forged Dread",
+    "level": 5,
+    "description": "<p>You gain Demoralise at 5th level rather than 7th, and it is harsher: on a failed <strong>Will save</strong>, enemies stay <strong>Frightened</strong> of you while the Command lasts, not just until the end of their next turn. When you give Demoralise, apply this in place of the usual failed-save effect.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [
+     {
+      "name": "Demoralised (Wall-Forged Dread, failed save)",
+      "target": "target",
+      "rounds": "encounter",
+      "statuses": [
+       "frightened"
+      ],
+      "rules": []
+     }
+    ],
+    "replaces": ""
+   },
+   {
+    "name": "Shield of the Wall",
+    "level": 10,
+    "description": "<p>An ally within <strong>30ft</strong> of you who has not moved since the start of its last turn imposes <strong>Disadvantage</strong> on the first attack against it each round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

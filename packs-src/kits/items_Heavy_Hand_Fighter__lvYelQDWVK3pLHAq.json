@@ -1,0 +1,67 @@
+{
+ "_id": "lvYelQDWVK3pLHAq",
+ "_key": "!items!lvYelQDWVK3pLHAq",
+ "name": "Heavy Hand (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A disciplined two-handed weapon specialist, from any army or arena that values the big swing. You don't parry; you end fights.</p><ul><li><strong>Crushing Blow:</strong> reroll 1s and 2s on the damage dice of two-handed weapons.<ul><li>9th level: <strong>once per round</strong>, when you hit with a two-handed weapon, a creature of your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</li></ul></li><li><strong>Breaker:</strong> <strong>Advantage</strong> on Strength checks to break, smash or force objects.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Crushing Blow",
+    "level": 1,
+    "description": "<p>Reroll 1s and 2s on the damage dice of two-handed weapons.</p><p>9th level: <strong>once per round</strong>, when you hit with a two-handed weapon, a creature of your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "rules": [
+     {
+      "key": "damage.reroll",
+      "value": "2",
+      "when": "",
+      "label": "",
+      "weapon": "two-handed"
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Breaker",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Strength checks to break, smash or force objects.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "to break, smash or force objects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

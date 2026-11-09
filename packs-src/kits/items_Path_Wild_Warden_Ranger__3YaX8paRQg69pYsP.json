@@ -1,0 +1,78 @@
+{
+ "_id": "3YaX8paRQg69pYsP",
+ "_key": "!items!3YaX8paRQg69pYsP",
+ "name": "Path: Wild Warden (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>Rangers who walk the old green paths and learned the druids' quiet magic along the way.</p><ul><li><strong>Thorn Snare (1st):</strong> once per encounter, when you hit a creature in natural terrain, roots and briars grip it: it makes a <strong>Reflex save</strong> against your Class Save DC or its speed is 0 until the end of its next turn.</li><li><strong>Warden's Lore (1st):</strong> <strong>Advantage</strong> on checks to identify plants, animals and natural omens.</li><li><strong>Nature Magic (5th):</strong> cast divine Nature spells from the Druid list, up to 4th level, using the Paladin Spells Per Day table.</li><li>Wisdom is your casting attribute, and your spell DC is 10 + half your Ranger level (minimum 1) + your Wisdom modifier.</li><li>You prepare spells each morning from the Druid list, as a Druid does.</li><li><strong>Warden's Communion (10th):</strong> <strong>once per day</strong>, cast one Druid spell you have prepared, of 2nd level or lower, without expending a slot.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Thorn Snare",
+    "level": 1,
+    "description": "<p>Once per encounter, when you hit a creature in natural terrain, roots and briars grip it: it makes a <strong>Reflex save</strong> against your Class Save DC or its speed is 0 until the end of its next turn.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref"
+   },
+   {
+    "name": "Warden's Lore",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify plants, animals and natural omens.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify plants, animals and natural omens",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Nature Magic",
+    "level": 5,
+    "description": "<p>Cast divine Nature spells from the Druid list, up to 4th level, using the Paladin Spells Per Day table.</p><ul><li>Wisdom is your casting attribute, and your spell DC is 10 + half your Ranger level (minimum 1) + your Wisdom modifier.</li><li>You prepare spells each morning from the Druid list, as a Druid does.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Warden's Communion",
+    "level": 10,
+    "description": "<p>Once per day, cast one Druid spell you have prepared, of 2nd level or lower, without expending a slot.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> A new Command option: enemies who can see you have <strong>Disadvantage</strong> on Charisma checks, and must make a <strong>Will save</strong> against your Class Save DC or be unable to move closer to you while the Command lasts.</li><li>Affects up to 25 creatures at 5th, 100 at 7th, 250 at 9th, 1,000 at 12th, 5,000 at 16th</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> A new Command option: enemies within <strong>30ft</strong> who can see you make a <strong>Will save</strong> against your Class Save DC or are <strong>Frightened</strong> of you until the end of their next turn; they save again each time you give a Command.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,12 +19,12 @@
   "save": "will",
   "dc": null,
   "damage": "",
-  "level": 5,
+  "level": 7,
   "className": "Knight"
  },
  "effects": [],
  "folder": "CGUojR3z1P04gXa2",
- "sort": 7,
+ "sort": 9,
  "ownership": {
   "default": 0
  },

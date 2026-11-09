@@ -14,7 +14,6 @@ assert.equal(ur.activities[0].cost, 1);
 assert.ok(ur.activities[0].text.startsWith("The first time each encounter"));
 const un = feat("Untouchable", "Monk");
 assert.deepEqual([un.uses.max, un.uses.per, un.uses.formula], [1, "encounter", "max(1, @wis.mod * min(1, floor(@cl / 24)))"]);
-assert.ok(!feat("Quick Reflexes (Improved)", "Monk").activities.some(a => a.name === "Untouchable"), "the 24th-level count is on Untouchable itself");
 assert.ok(feat("Surprise", "Assassin").rules.some(r => r.key === "surprise.tier"));
 assert.ok(!/18th|23rd/.test(feat("Surprise", "Assassin").description));
 assert.ok(/Disadvantage/.test(feat("Signature Style", "Assassin").description));

@@ -27,9 +27,10 @@ for (const f of [feat("Eldritch Blast", "Warlock").damage, spell("Eldritch Blast
 /* The Spark Caster keeps the old dice: 2d8 at 13th, 3d6 at 17th, 3d8 at 24th. */
 assert.deepEqual([1, 13, 17, 24].map(l => dice(feat("Spark Caster", "Artificer").damage, l)), ["1d6", "2d8", "3d6", "3d8"]);
 
-/* Spellstrike: 3d6 at 11th, 4d6 at 17th, 5d6 at 21st; the Extra Attack carries one from 7th. */
+/* Spellstrike (books v0.10.56, R-B59: the text matches the table): 3d4 at 11th, 4d4 at 17th, 5d4 at 21st; the Extra
+   Attack carries one from 7th. */
 const ss = feat("Spellstrike", "Spellblade").activities.filter(a => a.name.startsWith("Cantrip"));
-assert.deepEqual(ss.map(a => [a.formula, a.minLevel]), [["1d4", 0], ["2d4", 5], ["3d6", 11], ["4d6", 17], ["5d6", 21]]);
+assert.deepEqual(ss.map(a => [a.formula, a.minLevel]), [["1d4", 0], ["2d4", 5], ["3d4", 11], ["4d4", 17], ["5d4", 21]]);
 assert.ok(ss.every(a => a.text.includes("From 7th level your Extra Attack")));
 
 /* Rules for the new and changed always-on features. */
@@ -41,7 +42,7 @@ assert.deepEqual(rules("Iron Fists", "Monk"), [["attack", "7:1, 13:2, 19:3"], ["
 const ps = feat("Precise Strikes", "Rogue").rules[0].value.replace(/^\+/, "").replace(/@cl/g, "L");
 const at = L => Function("L", "min", "max", "floor", `return ${ps}`)(L, Math.min, Math.max, Math.floor);
 assert.deepEqual([1, 3, 9, 12, 13, 18, 24].map(at), [1, 1, 3, 4, 6, 9, 12], "per three levels, per two from 13th");
-for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Aura of Resolve", "Paladin"], ["Lore Master", "Bard"], ["Second School", "Wizard"]]) assert.ok(feat(n, c).rules.length, n);
+for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Aura of Resolve", "Paladin"], ["Lore Master", "Bard"]]) assert.ok(feat(n, c).rules.length, n);
 
 /* Activities. */
 const cd = feat("Channel Divinity (Charisma)", "Paladin").activities.find(a => a.name.startsWith("Smite improves"));

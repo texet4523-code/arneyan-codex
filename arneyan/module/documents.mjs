@@ -1916,7 +1916,8 @@ export class ArneyanItem extends Item {
     if (!actor?.rollAttack) return null;
     const lvl = this.featureLevel;
     const rollData = { ...(actor.getRollData?.() ?? {}), cl: lvl };
-    const n = Math.max(1, Math.floor(byLevel(act.count || "1", lvl, rollData)));
+    // "targets": one attack against each targeted creature (Combat Dominance, books v0.10.57).
+    const n = act.count === "targets" ? Math.max(1, targetActors().length) : Math.max(1, Math.floor(byLevel(act.count || "1", lvl, rollData)));
     const kindLabel = { melee: "melee weapon", ranged: "ranged weapon", unarmed: "Unarmed Strike", "": "weapon" }[act.weapons ?? ""] ?? `weapon that fires ${act.weapons}s`;
     // Unarmed attacks (a Monk's): the Unarmed Strike, added to the sheet if it isn't there yet.
     if (act.weapons === "unarmed") {

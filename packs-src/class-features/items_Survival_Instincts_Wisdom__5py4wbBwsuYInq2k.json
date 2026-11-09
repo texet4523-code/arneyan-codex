@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Bonus to surprise checks: +2 at 9th level, rising to +6 at 23rd (see the Ranger Progression Table): the ranger senses something is wrong before being able to pinpoint it exactly.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on checks to avoid being surprised; from 17th level you are never surprised in the wilderness.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,8 +23,8 @@
   "className": "Ranger",
   "rules": [
    {
-    "key": "surprise",
-    "value": "9:2, 17:3, 19:4, 21:5, 23:6",
+    "key": "adv.surprise",
+    "value": "1",
     "when": "",
     "label": ""
    }

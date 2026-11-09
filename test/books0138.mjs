@@ -29,7 +29,7 @@ assert.equal(feat("Flèche", "Swashbuckler").system.activities[0].disadvantage, 
 assert.deepEqual(read("feats").find(f => f.name === "Flowing Strikes").system.activities.map(a => a.disadvantage), ["fixed", ""]);
 assert.ok(src("documents.mjs").includes('const fixed = ["extra", "fixed"].includes(act.disadvantage)'));
 // Twin Nock and Combat Dominance are not Extra Attacks: their Disadvantage still cancels.
-assert.equal(feat("Combat Dominance", "Fighter").system.activities[0].disadvantage, "rest");
+assert.equal(feat("Combat Dominance", "Fighter").system.activities[0].disadvantage, "", "books v0.10.57: no Disadvantage at all");
 
 /* K44 S3: Marked Prey, Advantage on the marker's own first attack each round against it. */
 const mp = feat("Marked Prey", "Ranger").system;
@@ -81,24 +81,25 @@ const fas = feat("Performance: Fascinate", "Bard");
 assert.equal(fas._id, "LsWKxgs0ZtOLLPCd");
 assert.equal(fas.system.uses.pool, "Performance (Charisma)");
 assert.equal(fas.system.activities.find(a => a.name === "Fascinate").cost, 1);
-assert.ok(fas.system.activities.find(a => a.name === "Sway Crowd").text.includes("until the end of their next turn"));
+assert.ok(fas.system.activities.find(a => a.name === "Sway Crowd").text.includes("may save again at once"), "books v0.10.57");
 
 /* Fable M5: Sorcerer's Spark gave way to Wild Surge improves. */
 assert.ok(feat("Wild Surge", "Sorcerer").system.activities[0].text.includes("second Wild Surge each day"));
-assert.equal(features.filter(f => f.name === "Wild Surge improves").length, 3, "5th, 13th (books v0.10.41) and 20th");
+assert.equal(features.filter(f => f.name === "Wild Surge improves").length, 2, "5th and 13th (books v0.10.41); the 20th is the Seat (v0.10.57)");
 
 /* Fable M6 and M13: First Blood, Change Self at will. */
 assert.equal(feat("First Blood", "Assassin").system.level, 1);
 assert.deepEqual(feat("First Blood", "Assassin").system.activities.map(a => a.formula), ["1d6"]);
-assert.deepEqual(feat("Change Self", "Illusionist").system.activities.map(a => a.cost), [0, 1]);
-for (const [n, id] of [["Quick Reflexes", "12r60eED90uq58Pr"], ["Quick Reflexes (Improved)", "VkVLCNJ3it9jWN1i"], ["Hit and Run", "ImomMrYnSQza53HJ"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps its id`);
+// Books v0.10.58 (R-B55): Change Self is Disguise's 10th-level step.
+assert.deepEqual(feat("Disguise (Charisma)", "Illusionist").system.activities.map(a => [a.cost, a.minLevel]), [[0, 0], [0, 10], [1, 10]]);
+for (const [n, id] of [["Cold Blood", "12r60eED90uq58Pr"], ["Marked for Death (Improved)", "VkVLCNJ3it9jWN1i"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps the id of the feature it replaced`);
 
 /* Kits (M2, M11, M17). */
 const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };
 assert.equal(kit("Deity: Brigh (The Crafted Turn) (Cleric)")[0].applies.find(a => a.name === "Tempered Weapon").rules[0].value, "+1d6");
 assert.equal(kit("The Silver Serpent (Swashbuckler)")[0].rules[0].key, "adv.check.dex");
-assert.ok(kit("Westfront Wall-Archer (Archer)")[0].rules[0].value.includes("ignores its resistances"));
-assert.ok(kit("The Opportunist (Fighter)")[0].rules[0].value.includes("19 or 20"));
+assert.ok(kit("Wall Archer (Archer)")[0].rules[0].value.includes("ignores its resistances"));
+assert.ok(kit("Opportunist (Fighter)")[0].rules[0].value.includes("19 or 20"));
 assert.deepEqual(kit("College of the Silver Pipes (Bard)")[0].applies[0].rules.map(r => [r.key, Number(r.value) || r.value]).slice(0, 1), [["adv.attack.first", -1]]);
 
 /* K45: Beasthide resists one chosen nonmagical weapon type. */
@@ -154,7 +155,7 @@ assert.equal(bh.optionChoice.options.length, 3);
   const uses = (who, what) => pregens.find(p => p.name.startsWith(who)).items.find(i => i.name === what).system.uses;
   assert.deepEqual([uses("Sarrix", "Ki").value, uses("Sarrix", "Ki").max], [11, 11]);
   assert.equal(uses("Kavra", "Rage").value, 4);
-  assert.equal(uses("Liriel", "Flèche").value, 4);
+  assert.equal(uses("Liriel", "Flèche").value, 1, "once per encounter (books v0.10.57)");
   assert.equal(uses("Sister Aurelle", "Turn Undead").value, 6);
 }
 

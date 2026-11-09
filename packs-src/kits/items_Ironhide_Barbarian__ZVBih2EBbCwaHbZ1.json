@@ -1,0 +1,72 @@
+{
+ "_id": "ZVBih2EBbCwaHbZ1",
+ "_key": "!items!ZVBih2EBbCwaHbZ1",
+ "name": "Ironhide (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>The dragon-kin warriors of Depsopteron and the hardest of the Dul Khagul clans: fury carried on a hide that won't break.</p><ul><li><strong>Dragon-kin Resilience:</strong> <strong>Advantage</strong> on saves against fire. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.<ul><li>9th level: while raging, you have Resistance 5 to fire.</li></ul></li><li><strong>Dragon Culture:</strong> <strong>Advantage</strong> on checks involving dragon-kin customs, and on identifying dragon-made or dwarf-made arms and armour.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Dragon-kin Resilience",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on saves against fire. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.</p><p>9th level: while raging, you have Resistance 5 to fire.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fire",
+      "label": ""
+     },
+     {
+      "key": "resist",
+      "value": "fire 5",
+      "when": "while raging, from 9th level",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Dragon Culture",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks involving dragon-kin customs, and on identifying dragon-made or dwarf-made arms and armour.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "dragon-kin customs, and identifying dragon-made or dwarf-made arms and armour",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

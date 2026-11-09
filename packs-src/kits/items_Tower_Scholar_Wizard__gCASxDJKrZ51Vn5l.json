@@ -1,0 +1,66 @@
+{
+ "_id": "gCASxDJKrZ51Vn5l",
+ "_key": "!items!gCASxDJKrZ51Vn5l",
+ "name": "Tower Scholar (Wizard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<p>Trained in the Aldorethi tradition of the Silver Tower, or in the schools of Myllnoris and Eccria.</p><ul><li><strong>Elemental Precision:</strong> reroll 1s on the damage dice of your spells that deal elemental damage (once per die).<ul><li>9th level: reroll 1s and 2s.</li></ul></li><li><strong>Tower Theory:</strong> <strong>Advantage</strong> on Intelligence checks to recall magical theory and the history of the great schools.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Wizard",
+  "features": [
+   {
+    "name": "Elemental Precision",
+    "level": 1,
+    "description": "<p>Reroll 1s on the damage dice of your spells that deal elemental damage (once per die).</p><p>9th level: reroll 1s and 2s.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.spell",
+      "value": "Elemental Precision: reroll any 1s on the damage dice of your spells that deal elemental damage (once per die).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Tower Theory",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Intelligence checks to recall magical theory and the history of the great schools.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.int",
+      "value": "1",
+      "when": "to recall magical theory and the history of the great schools",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "VgY1bC87fOK4H2sj",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

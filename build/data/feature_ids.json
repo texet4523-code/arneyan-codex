@@ -1,5 +1,5 @@
 {
- "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document.",
+ "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document. Books v0.10.58 (R-B59 to R-B64): renamed features keep the old feature's id (Extra Attack became each class's named version, Sneak Attack became Exploit, Detect Magic Arcane Analysis, and so on).",
  "features": {
   "Archer|Running Shot": [
    "vcBhJLUgua28MVqR"
@@ -18,9 +18,6 @@
   ],
   "Archer|Twin Nock": [
    "vOc78FoNb2MZ2v1E"
-  ],
-  "Archer|Skirmisher's Grace": [
-   "62OC4bUQYm1cFCmV"
   ],
   "Archer|Longshot": [
    "QVXPyvF7StB6qpJ5"
@@ -94,9 +91,6 @@
   "Artificer|Master Artisan": [
    "FqTvsCJ0JePnAdE5"
   ],
-  "Artificer|Lasting Work improves": [
-   "BdQ095dAhRId2IqS"
-  ],
   "Artificer|Magnum Opus": [
    "cfhrMYhZ8lF6Ghhq"
   ],
@@ -124,14 +118,8 @@
   "Assassin|Poisoner's Edge": [
    "m1kwWTk3ghJ499h3"
   ],
-  "Assassin|Marked Prey": [
-   "N25afn6yXRGW2l6x"
-  ],
   "Assassin|Lethal Dose": [
    "593xRkBDjDx6BUq7"
-  ],
-  "Assassin|Extra Attack": [
-   "uK8P0scQNmrf2Dbk"
   ],
   "Assassin|Many Faces": [
    "Ou1MNMC2CSp7P9fe"
@@ -199,12 +187,6 @@
   "Barbarian|Primeval Will": [
    "xQduvZAeAsW5joJx"
   ],
-  "Barbarian|Extra Attack": [
-   "isoyrXlKsMeUUBqj"
-  ],
-  "Barbarian|Ancestral Calling": [
-   "4ttPYYMgzrO97TDU"
-  ],
   "Barbarian|Iron Sinews": [
    "10pHgyDZiOEXirHI"
   ],
@@ -213,9 +195,6 @@
   ],
   "Barbarian|Force of Nature": [
    "FJCreAGaRhdM5L3X"
-  ],
-  "Barbarian|Warlord": [
-   "cPG4C1pCFRwCbBIh"
   ],
   "Barbarian|World Ender": [
    "CKPI9Mgh2aS1JAMm"
@@ -268,9 +247,6 @@
   "Bard|Rally": [
    "JIaD39xKsToGFQqI"
   ],
-  "Bard|Quest": [
-   "4qqHboQmU4JcT7qH"
-  ],
   "Bard|Change Alignment": [
    "Hy6Zo1cU4VQR0YW8"
   ],
@@ -294,9 +270,6 @@
   ],
   "Cleric|Wisdom Bonus": [
    "LN7DNKycs5jrG5GK"
-  ],
-  "Cleric|Holy Campaign": [
-   "dTpQQ9CCam9IXNPr"
   ],
   "Cleric|Perfect Recall": [
    "BJU6gLbFnS6K9ZYM"
@@ -367,14 +340,8 @@
   "Fighter|Manoeuvre Mastery": [
    "I49NlzD8ifd82tqh"
   ],
-  "Fighter|Extra Attack": [
-   "Q8Rzh5IxUJGo4mc7"
-  ],
   "Fighter|Battle Space": [
    "MSQ7Ghp68sabbjxq"
-  ],
-  "Fighter|Shield Mastery": [
-   "l0T0N90jxq1w9oCV"
   ],
   "Fighter|Strength Bonus": [
    "njizDPGt1IitBFA5"
@@ -415,9 +382,6 @@
   "Gunslinger|Trick Shot (Dexterity)": [
    "tSsGI3cjiew7d6Qe"
   ],
-  "Gunslinger|Extra Attack": [
-   "Rgsqt53SjH8tIspx"
-  ],
   "Gunslinger|Brace and Fire": [
    "6ERrEcxGIFNL5AKd"
   ],
@@ -442,14 +406,8 @@
   "Illusionist|Spell Use": [
    "6ZijnO7JMJ45DkWv"
   ],
-  "Illusionist|Minor Figment": [
-   "VHDu11dWUT5mMhQM"
-  ],
   "Illusionist|Disguise (Charisma)": [
    "ogym3rQFcp6fY1k1"
-  ],
-  "Illusionist|Sharp Senses": [
-   "VqRSC5j8eG2wcPpU"
   ],
   "Illusionist|Master of Illusion": [
    "u7eycEucV2EbX0yM"
@@ -471,9 +429,6 @@
   ],
   "Illusionist|Intelligence Bonus": [
    "OkcDFCWpBXJ1JTTx"
-  ],
-  "Illusionist|Detect Magic (Intelligence)": [
-   "1YI3nwYAqHY63Jck"
   ],
   "Illusionist|Change Self": [
    "dczkcDK2eHgF7KYJ"
@@ -505,17 +460,8 @@
   "Knight|Demoralise": [
    "dRkz1FNkc0dlZnex"
   ],
-  "Knight|Extra Attack": [
-   "rKQ6kskz9SbLUBUX"
-  ],
   "Knight|Battlefield Dominance": [
    "HM2EnwW1NBL9dPxn"
-  ],
-  "Knight|Call-to-Arms": [
-   "UckUIv8wZJ7Uuob2"
-  ],
-  "Knight|Rallying Cry": [
-   "KlzX2tyIHERdZedH"
   ],
   "Knight|Expert in Arms": [
    "xG5wRGsRMzXivujQ"
@@ -571,17 +517,11 @@
   "Monk|Fast Movement": [
    "6uf0iFxdTfpRNUBQ"
   ],
-  "Monk|Iron Discipline": [
-   "GOKLoYXjDzcYgpad"
-  ],
   "Monk|Parrying Stance": [
    "aYIbwLQ1PRplV0iz"
   ],
   "Monk|Hand-to-Hand Combat": [
    "c8cIjNbSP58apy0Z"
-  ],
-  "Monk|Deflect Missiles (Dexterity)": [
-   "KmUuGj3VT408VPmk"
   ],
   "Monk|Iron Fists": [
    "f1kxBRYRFg1tQ5WI"
@@ -658,9 +598,6 @@
   "Paladin|Blessed Weapon": [
    "fAbmGByYrE4Mwp6V"
   ],
-  "Paladin|Bequeath Virtue": [
-   "rHfRR0zSDCTbxJZh"
-  ],
   "Paladin|Divine Intervention": [
    "bdwwOd80cGPmzxut"
   ],
@@ -670,14 +607,8 @@
   "Paladin|Aura of Devotion": [
    "xMVHhH53Y6L66Q1t"
   ],
-  "Paladin|Divine Will": [
-   "exG0emggBTiTai1N"
-  ],
   "Paladin|Cleanse Soul": [
    "mLo4nyTCIcyFsar0"
-  ],
-  "Ranger|Combat Marauder": [
-   "BmWnLgQbDj3vwatI"
   ],
   "Ranger|Marked Prey": [
    "4WQMpHN5adDKtK5M"
@@ -690,9 +621,6 @@
   ],
   "Ranger|Favoured Enemy": [
    "pCluFTtTvLIjjq8F"
-  ],
-  "Ranger|Extra Attack": [
-   "TeHdw0YChFdEa0Md"
   ],
   "Ranger|Hunter's Quarry": [
    "pvvQciAicNmRUPdF"
@@ -718,9 +646,6 @@
   "Rogue|Back Attack": [
    "8qIgZFStG8JBG61j"
   ],
-  "Rogue|Sneak Attack": [
-   "ksFXEzB68ifNtFcY"
-  ],
   "Rogue|Precise Strikes": [
    "rYGfw4Teqi4GyXr5"
   ],
@@ -738,9 +663,6 @@
   ],
   "Rogue|Evasion": [
    "nOp0AU9bIH8n7Zb8"
-  ],
-  "Rogue|Extra Attack": [
-   "wMRvnl9bZQO0tb4l"
   ],
   "Rogue|Skill Mastery": [
    "mvhTxYNCGTrOcZc1"
@@ -816,9 +738,6 @@
   ],
   "Swashbuckler|Disarming Strike": [
    "kfA08cRGWbpeBRXp"
-  ],
-  "Swashbuckler|Extra Attack": [
-   "g9HqaWdixBTXpRhZ"
   ],
   "Swashbuckler|9th-Level Features": [
    "5MT88w46XR8Db1ma"
@@ -925,9 +844,6 @@
   "Wizard|Cantrip Expertise": [
    "wSp3drjfzXCu5kzX"
   ],
-  "Wizard|Detect Magic": [
-   "G0I66J8JwKVyGyGR"
-  ],
   "Wizard|Intelligence Bonus": [
    "246pyapHNS7L8JaA"
   ],
@@ -949,9 +865,6 @@
   "Monk|Quick Reflexes (Improved)": [
    "Zm8c8FOKZGsdneoK"
   ],
-  "Monk|Quick Reflexes": [
-   "Hf4NJtXTzPZminn3"
-  ],
   "Monk|Untouchable": [
    "xmPiPhpgl8dUfkx4"
   ],
@@ -960,12 +873,6 @@
   ],
   "Monk|Iron Mind": [
    "LqOxYGmu2kk4H0hr"
-  ],
-  "Assassin|Quick Reflexes": [
-   "12r60eED90uq58Pr"
-  ],
-  "Assassin|Quick Reflexes (Improved)": [
-   "VkVLCNJ3it9jWN1i"
   ],
   "Assassin|Hit and Run": [
    "ImomMrYnSQza53HJ"
@@ -984,8 +891,7 @@
   ],
   "Sorcerer|Wild Surge improves": [
    "UTIrytRZu4fYc46O",
-   "htfHPooYPhlXxkWY",
-   "oJxxsvpo4WgI1u92"
+   "htfHPooYPhlXxkWY"
   ],
   "Bard|Performance: Words of Power": [
    "UsoB3FG2OjoJloob"
@@ -1016,6 +922,366 @@
   ],
   "Wizard|Arcane Resilience": [
    "Ja7qAxQyHV2Ut5db"
+  ],
+  "Assassin|Cold Blood": [
+   "12r60eED90uq58Pr"
+  ],
+  "Monk|Deflect (Dexterity)": [
+   "KmUuGj3VT408VPmk"
+  ],
+  "Assassin|Twist the Knife": [
+   "uK8P0scQNmrf2Dbk"
+  ],
+  "Artificer|Intelligence Bonus": [
+   "XPwab1AoaajYVUEt"
+  ],
+  "Rogue|Dirty Fighting": [
+   "NrIvLcAy6GNior9L"
+  ],
+  "Monk|Flowing Form": [
+   "Hf4NJtXTzPZminn3"
+  ],
+  "Knight|Renown: Castle": [
+   "UckUIv8wZJ7Uuob2"
+  ],
+  "Artificer|Kit Feature (5th)": [
+   "Ggnu5xXrfhhvhvMI"
+  ],
+  "Swashbuckler|Master Duelist (Improved)": [
+   "0FV0BOGe6LSRuyzK"
+  ],
+  "Gunslinger|Two-Gun Shot": [
+   "Rgsqt53SjH8tIspx"
+  ],
+  "Knight|Challenger's Blow": [
+   "rKQ6kskz9SbLUBUX"
+  ],
+  "Knight|Command: Demoralise": [
+   "OmuzFSLAt9p4ziPQ"
+  ],
+  "Archer|Skirmish": [
+   "62OC4bUQYm1cFCmV"
+  ],
+  "Sorcerer|Renown: Bloodline Seat": [
+   "oJxxsvpo4WgI1u92"
+  ],
+  "Knight|Command: Expert in Arms": [
+   "3gIR77E7xLXq5uxV"
+  ],
+  "Bard|Renown: College": [
+   "4qqHboQmU4JcT7qH"
+  ],
+  "Wizard|Arcane Analysis": [
+   "G0I66J8JwKVyGyGR"
+  ],
+  "Cleric|Renown: Temple": [
+   "dTpQQ9CCam9IXNPr"
+  ],
+  "Ranger|Quarry Strike": [
+   "TeHdw0YChFdEa0Md"
+  ],
+  "Ranger|Hunter's Edge": [
+   "BmWnLgQbDj3vwatI"
+  ],
+  "Monk|Iron Body": [
+   "GOKLoYXjDzcYgpad"
+  ],
+  "Ranger|Relentless Hunter": [
+   "HBDyC9c5LRv73aRw"
+  ],
+  "Assassin|Dossier": [
+   "N25afn6yXRGW2l6x"
+  ],
+  "Illusionist|Displacement": [
+   "K94HkoZdVJgTl4hh"
+  ],
+  "Barbarian|Savage Swing": [
+   "isoyrXlKsMeUUBqj"
+  ],
+  "Archer|Perfect Loose (Improved)": [
+   "d3zV0G7bWbGYV43G"
+  ],
+  "Barbarian|Cleaving Fury": [
+   "4ttPYYMgzrO97TDU"
+  ],
+  "Fighter|Hold Ground": [
+   "l0T0N90jxq1w9oCV"
+  ],
+  "Illusionist|Arcane Analysis (Intelligence)": [
+   "1YI3nwYAqHY63Jck"
+  ],
+  "Knight|Command: Embolden": [
+   "qQnGuk0Ssjyg4FgO"
+  ],
+  "Artificer|Renown: Workshop": [
+   "BdQ095dAhRId2IqS"
+  ],
+  "Rogue|Perfect Timing": [
+   "mUljAWFviDMM2z02"
+  ],
+  "Illusionist|Eye for the False": [
+   "VqRSC5j8eG2wcPpU"
+  ],
+  "Rogue|Exploit (Sneak Attack)": [
+   "ksFXEzB68ifNtFcY"
+  ],
+  "Assassin|Marked for Death (Improved)": [
+   "VkVLCNJ3it9jWN1i"
+  ],
+  "Rogue|Slippery": [
+   "e8xjs8uHxKKAnpui"
+  ],
+  "Assassin|First Blood": [
+   "AGdLY2eRBPdnVVg2"
+  ],
+  "Gunslinger|Dead Aim (Improved)": [
+   "GSqrOdw248KEDAYq"
+  ],
+  "Paladin|Renown: Holy Order": [
+   "exG0emggBTiTai1N"
+  ],
+  "Illusionist|Glamour": [
+   "VHDu11dWUT5mMhQM"
+  ],
+  "Gunslinger|Perfect Shot (Improved)": [
+   "82ymENjtohdKkNfn"
+  ],
+  "Knight|Knight's Riposte": [
+   "KlzX2tyIHERdZedH"
+  ],
+  "Bard|Lore Master": [
+   "3DjLvO7ZvSdfAB1e"
+  ],
+  "Paladin|Blessed Token": [
+   "rHfRR0zSDCTbxJZh"
+  ],
+  "Rogue|Cut and Run": [
+   "wMRvnl9bZQO0tb4l"
+  ],
+  "Illusionist|Half-Real": [
+   "EAb2JsGDv46nJOyE"
+  ],
+  "Swashbuckler|Dazzling Combo": [
+   "g9HqaWdixBTXpRhZ"
+  ],
+  "Fighter|Press On": [
+   "Q8Rzh5IxUJGo4mc7"
+  ],
+  "Illusionist|Convincing Illusions": [
+   "e7qUJzgQ8uw86nGO"
+  ],
+  "Barbarian|Renown: War-camp": [
+   "cPG4C1pCFRwCbBIh"
+  ],
+  "Barbarian|Savage Stride": [
+   "Q6s4duGAdPHCIjIF"
+  ],
+  "Paladin|Channel: Turn Undead": [
+   "5BcG7AM0xcSmTyDg"
+  ],
+  "Rogue|Hit and Run": [
+   "aPzYWM6j7LxtABQI"
+  ],
+  "Witch|Cauldron Brews": [
+   "oHWyh1j2cLSBQLOE"
+  ],
+  "Assassin|Study": [
+   "oaaKXpditDPOpWc1"
+  ],
+  "Swashbuckler|Renown: Salle": [
+   "1tuPueShzZcwLnAY"
+  ],
+  "Necromancer|Renown: Necropolis": [
+   "IkYOQZnzlctncsUI"
+  ],
+  "Paladin|Channel Divinity (Charisma)": [
+   "SITkRcsV0orjWqI4"
+  ],
+  "Witch|Evil Eye": [
+   "Hg7eZciRYQeAHuNg"
+  ],
+  "Bard|Performance (Charisma)": [
+   "6E3Qgm8EqTA3RAmF"
+  ],
+  "Illusionist|Seed of Doubt": [
+   "GsMEH2jF0MG0oDTQ"
+  ],
+  "Illusionist|Shattered Glass": [
+   "gif2hk4k4E3b5qTa"
+  ],
+  "Illusionist|Mirage Step": [
+   "XlQ4I69TXjCRNPJy"
+  ],
+  "Wizard|Renown: Tower": [
+   "XuhFOWwi19yRNY7q"
+  ],
+  "Archer|Renown: Bowyers' Lodge": [
+   "wPxqqf39bYB5PtKf"
+  ],
+  "Bard|Jack of All Trades": [
+   "XVX41a4B1WLKgBWa"
+  ],
+  "Monk|Flurry of Blows": [
+   "3bTt1NcoImtCTOWL"
+  ],
+  "Rogue|Renown: Guild House": [
+   "9ORlbeiBIXTuHFWE"
+  ],
+  "Rogue|Dexterity Bonus": [
+   "HujGiQgXFA7cniaj"
+  ],
+  "Paladin|Smite improves": [
+   "pqi1fqyRJ1EGdnnE"
+  ],
+  "Wizard|Spell Mastery": [
+   "YESPAWcnRkGYcr4F"
+  ],
+  "Sorcerer|Shifting Blood": [
+   "iG05S2W7TaQCyCLO"
+  ],
+  "Witch|Passing Hex": [
+   "QCJr0rI6wOaK7Uib"
+  ],
+  "Witch|Hag's Vigour improves": [
+   "YFtHbgQ9trfsootu"
+  ],
+  "Monk|Untouchable improves": [
+   "qiamCd80Q8iAikJL"
+  ],
+  "Fighter|Renown: Hold": [
+   "hEd6TX2s8qTmhwpX"
+  ],
+  "Illusionist|Renown: Theatre of Mirrors": [
+   "I2wlPOTFgyNkVisF"
+  ],
+  "Cleric|Turn Undead improves": [
+   "tcjlnEXGQPWKQOWG"
+  ],
+  "Illusionist|Phantasm": [
+   "zy3417l1bdSnv7ZD"
+  ],
+  "Cleric|Cleansing Prayer": [
+   "OMo4CxLfLGHqH7We"
+  ],
+  "Knight|Command (Charisma)": [
+   "HsaRmK1vFPmnyMmS"
+  ],
+  "Druid|Wild Shape Casting improves": [
+   "8MyaEVB3o6YlTGW5"
+  ],
+  "Wizard|Arcane Ward improves": [
+   "LmPa3baYEBdC5tcR"
+  ],
+  "Fighter|Press the Advantage": [
+   "XWo7zAT0eTgrQjyn"
+  ],
+  "Wizard|Sculpt Spells": [
+   "nror4Z9IqFHyyH3r"
+  ],
+  "Knight|Martial Bearing": [
+   "8DY1NmlAZleWk9St"
+  ],
+  "Wizard|Flexible Preparation": [
+   "2mTkMP6h7bPlSVBh"
+  ],
+  "Monk|Renown: Monastery": [
+   "SaqcVr7mtr4lZpcq"
+  ],
+  "Wizard|Potent Cantrips": [
+   "cVJOC5PNKdh7FG7X"
+  ],
+  "Cleric|Steadfast Faith": [
+   "LIjmB0McSWGHgq6X"
+  ],
+  "Witch|Renown: Coven": [
+   "y03JnukU32MYOdaB"
+  ],
+  "Illusionist|Misdirect": [
+   "4GElPAMUOsgjLcSl"
+  ],
+  "Ranger|Hunter's Tricks": [
+   "i5nkMr38FkojvwYK"
+  ],
+  "Bard|Steady Voice": [
+   "QO7LTE0fY8vA1LxD"
+  ],
+  "Wizard|Second School": [
+   "5pf4di3y2OSw81O5"
+  ],
+  "Sorcerer|Blood Burn": [
+   "WpKhYgjUj5yry3Hi"
+  ],
+  "Witch|Bonded Familiar": [
+   "xI8qSmvEAhwkBS7n"
+  ],
+  "Gunslinger|Renown: Company": [
+   "MZ9C6ZKzmpVTSLa1"
+  ],
+  "Wizard|Arcane Ward": [
+   "TgGJDs1KneKENxXD"
+  ],
+  "Sorcerer|Overchannel improves": [
+   "ebrUjtZylJkwokce"
+  ],
+  "Necromancer|Bone Shield": [
+   "KXmWyY4ldQnineBF"
+  ],
+  "Barbarian|Rage Styles": [
+   "MA6D49vztxj5yfab"
+  ],
+  "Druid|Beast Kin": [
+   "trS2EUoUSyb9tnCw"
+  ],
+  "Spellblade|Renown: Order of the Blade": [
+   "x8FloNBMSq8KNspx"
+  ],
+  "Paladin|Aura of Resolve": [
+   "6KnvsKVmfEMQyXjz"
+  ],
+  "Illusionist|Drawn Veil": [
+   "CTeK4Jy5VTLNX0AM"
+  ],
+  "Cleric|Turning Radiance": [
+   "1hUKY1rVQ7gfBTeG"
+  ],
+  "Necromancer|Command Undead improves": [
+   "kaEcPfrY7VTDo9i6"
+  ],
+  "Monk|Flowing Flurry": [
+   "Q6k8dhVpFhMUKi06"
+  ],
+  "Warlock|Renown: Cult": [
+   "RXILSbkmcfyAtuRp"
+  ],
+  "Druid|Primal Strikes": [
+   "5waTR44flK1LDhMk"
+  ],
+  "Necromancer|Undead Mastery improves": [
+   "DYH79OxQ1JZbmqXt"
+  ],
+  "Ranger|Renown: Lodge of the March": [
+   "wZQ5eWYv2qvnVPGB"
+  ],
+  "Paladin|Channel: Divine Intervention": [
+   "tSqTs7IEczqwLYOL"
+  ],
+  "Necromancer|Lingering Death": [
+   "nUuAeT23uSK44SOL"
+  ],
+  "Paladin|Divine Healing": [
+   "yGy859etfLShU7my"
+  ],
+  "Assassin|Renown: Shadow Guild": [
+   "w5tbkvH6FxA82z6e"
+  ],
+  "Druid|Renown: Sacred Grove": [
+   "TyrVSliVdqQZsHmD"
+  ],
+  "Swashbuckler|Hit and Run": [
+   "hkMczVteeUDEIYSY"
+  ],
+  "Illusionist|Phantom Wound": [
+   "LUQGopO0lyZpTc4H"
   ]
  }
 }

@@ -1,0 +1,62 @@
+{
+ "_id": "Rb1ZvMykda14c3cX",
+ "_key": "!items!Rb1ZvMykda14c3cX",
+ "name": "Survivor (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>The fighting that came out of the slave pits of the Red Waste: not taught, not codified, discovered through survival. It isn't elegant, but it is devastating.</p><ul><li><strong>Hard to Kill:</strong> the first time each encounter you drop below half HP, your next unarmed hit deals an extra unarmed damage die.<ul><li>9th level, Pit-Forged Fury: when you use your action to attack, your primary unarmed attack can target up to 2 creatures within <strong>5ft</strong> (one roll against each).</li></ul></li><li><strong>Survivor's Instinct:</strong> <strong>Advantage</strong> on Constitution checks against exhaustion, extreme temperatures and starvation, and you know the signs of someone else who survived the pits.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Hard to Kill",
+    "level": 1,
+    "description": "<p>The first time each encounter you drop below half HP, your next unarmed hit deals an extra unarmed damage die.</p><p>9th level, Pit-Forged Fury: when you use your action to attack, your primary unarmed attack can target up to 2 creatures within <strong>5ft</strong> (one roll against each).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Survivor's Instinct",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Constitution checks against exhaustion, extreme temperatures and starvation, and you know the signs of someone else who survived the pits.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "to resist exhaustion, extreme temperatures and starvation",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to recognise signs of another pit survivor",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

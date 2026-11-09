@@ -1,0 +1,90 @@
+{
+ "_id": "LUQGopO0lyZpTc4H",
+ "_key": "!items!LUQGopO0lyZpTc4H",
+ "name": "Phantom Wound",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> As your action, spend 1 Glamour: one creature within <strong>60ft</strong> that can see makes a <strong>Will save</strong> against your Class Save DC or takes <strong>2d6</strong> psychic damage. A creature fooled by one of your illusions saves with <strong>Disadvantage</strong>.</li><li>Damage: <strong>3d6</strong> at 5th, <strong>4d6</strong> at 9th, <strong>5d6</strong> at 13th, <strong>6d6</strong> at 17th, <strong>7d6</strong> at 21st</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": "",
+   "pool": "Glamour"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist",
+  "activities": [
+   {
+    "name": "Phantom Wound",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "As your action: one creature within 60ft that can see makes a Will save against your Class Save DC or takes the damage. A creature fooled by one of your illusions saves with Disadvantage.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Phantom Wound damage",
+    "kind": "damage",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "damageType": "psychic",
+    "ability": "",
+    "save": "",
+    "text": "On a failed save.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

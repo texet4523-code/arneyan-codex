@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, declare a decisive strike. Make one melee attack: if it hits, it deals maximum damage automatically. A miss still uses it.</li><li>Any creature of lower Level that witnesses this strike must make a <strong>Will save</strong> against your Class Save DC, or suffer disadvantage on their first attack against the Swashbuckler in any future combat where they recognise them</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, when you hit, the target makes a <strong>Will save</strong> against your Class Save DC or is <strong>Frightened</strong> of you for the encounter, and every creature of lower Level that sees it has <strong>Disadvantage</strong> on its first attack against you.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,12 +25,12 @@
   "activities": [
    {
     "name": "Master Duelist",
-    "kind": "note",
+    "kind": "save",
     "formula": "",
     "damageType": "",
     "ability": "",
-    "save": "",
-    "text": "Declare a decisive strike: one melee attack that deals maximum damage if it hits (a miss still uses it). Lower-Level witnesses save or have Disadvantage on their first attack against you in later fights. From 24th level it's once per encounter: reset its use after each encounter.",
+    "save": "will",
+    "text": "When you hit: the target makes a Will save against your Class Save DC or is Frightened of you for the encounter, and every creature of lower Level that sees it has Disadvantage on its first attack against you.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

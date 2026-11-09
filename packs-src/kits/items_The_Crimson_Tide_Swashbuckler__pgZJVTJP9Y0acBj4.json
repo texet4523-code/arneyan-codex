@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<p>Opal's most aggressive duelling school — attack as defence, momentum as armour.</p><ul><li><strong>Committed Blade:</strong> Relentless Assault starts from the second hit as normal, but the bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong> — committing to a target pays off more, but you still have to earn it.</li><li><strong>Noble Rivalry:</strong> <strong>Advantage</strong> on Intimidation checks and on checks related to Opal's duelling culture or noble rivalry.</li></ul>",
+  "description": "<p>Opal's most aggressive duelling school: attack as defence, momentum as armour.</p><ul><li><strong>Committed Blade:</strong> Relentless Assault starts from the second hit as normal, but its bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong>.<ul><li>9th level: +<strong>3d4</strong>.</li></ul></li><li><strong>Noble Rivalry:</strong> <strong>Advantage</strong> on Intimidation checks and on checks involving duelling culture and noble rivalries.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Committed Blade",
     "level": 1,
-    "description": "<p>Relentless Assault starts from the second hit as normal, but the bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong> — committing to a target pays off more, but you still have to earn it.</p>",
+    "description": "<p>Relentless Assault starts from the second hit as normal, but its bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong>.</p><p>9th level: +<strong>3d4</strong>.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -54,8 +54,8 @@
     "rules": [
      {
       "key": "damage",
-      "value": "+1d4",
-      "when": "each hit after the first on the same target this round (with Relentless Assault, total +2d4)",
+      "value": "1:1d4, 9:2d4",
+      "when": "each Relentless Assault hit (on top of its +1d4: +2d4 in total, +3d4 from 9th)",
       "label": ""
      }
     ],
@@ -65,7 +65,7 @@
    {
     "name": "Noble Rivalry",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Intimidation checks and on checks related to Opal's duelling culture or noble rivalry.</p>",
+    "description": "<p><strong>Advantage</strong> on Intimidation checks and on checks involving duelling culture and noble rivalries.</p>",
     "uses": {
      "value": 0,
      "max": 0,

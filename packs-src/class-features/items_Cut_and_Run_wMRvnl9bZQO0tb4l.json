@@ -1,0 +1,88 @@
+{
+ "_id": "wMRvnl9bZQO0tb4l",
+ "_key": "!items!wMRvnl9bZQO0tb4l",
+ "name": "Cut and Run",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>No <strong>Disadvantage</strong> against a creature next to one of your allies; your movement this turn then doesn't provoke Attacks of Opportunity from it.</li><li>Exploit still applies to only one attack per round.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Rogue",
+  "activities": [
+   {
+    "name": "Cut and Run",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "extra",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Cut and Run (target next to an ally)",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "No Disadvantage on the extra attack (target next to an ally). Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "mpjthAeSZRrS7A4C",
+ "sort": 11,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "pEuTwbNHPW98sSqe",
+ "_key": "!items!pEuTwbNHPW98sSqe",
+ "name": "Wall Guard (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Taught on the Boldock Wall against the Red Waste, at Westfront Fort on the Wall, and on the walls of Gondural in Dul Khagul. You know what it costs to hold a line.</p><ul><li><strong>Hold the Line:</strong> <strong>once per round</strong>, out of turn, when an enemy within your reach moves, it makes a <strong>Reflex save</strong> against your Class Save DC or its movement ends. You have <strong>Advantage</strong> on saves against fear while an ally is adjacent to you.<ul><li>9th level: an enemy whose movement you end also has <strong>Disadvantage</strong> on its next attack roll against anyone but you.</li></ul></li><li><strong>Wall Authority:</strong> <strong>Advantage</strong> on Perception checks during watch or guard duty, and recognised authority within the Boldock military.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Hold the Line",
+    "level": 1,
+    "description": "<p>Once per round, out of turn, when an enemy within your reach moves, it makes a <strong>Reflex save</strong> against your Class Save DC or its movement ends. You have <strong>Advantage</strong> on saves against fear while an ally is adjacent to you.</p><p>9th level: an enemy whose movement you end also has <strong>Disadvantage</strong> on its next attack roll against anyone but you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fear while an ally is adjacent to you",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Wall Authority",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Perception checks during watch or guard duty, and recognised authority within the Boldock military.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or guard duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 7,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

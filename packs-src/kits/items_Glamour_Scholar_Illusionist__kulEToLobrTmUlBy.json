@@ -1,0 +1,66 @@
+{
+ "_id": "kulEToLobrTmUlBy",
+ "_key": "!items!kulEToLobrTmUlBy",
+ "name": "Glamour Scholar (Illusionist)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<p>The Aldorethi art of illusion out of the Silver Tower and the schools of Myllnoris and Eccria: scholarship and precision disguised as entertainment.</p><ul><li><strong>Precise Focus:</strong> <strong>Advantage</strong> on <strong>Fortitude saves</strong> to keep an illusion going while attacked, damaged or grappled.<ul><li>9th level: on saves to keep any spell going, not only illusions.</li></ul></li><li><strong>Tower Insight:</strong> <strong>Advantage</strong> to identify or counter another illusionist's work, and on Arcane Analysis for Aldorethi illusions.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Illusionist",
+  "features": [
+   {
+    "name": "Precise Focus",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on <strong>Fortitude saves</strong> to keep an illusion going while attacked, damaged or grappled.</p><p>9th level: on saves to keep any spell going, not only illusions.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save.fort",
+      "value": "1",
+      "when": "to keep an illusion going while attacked, damaged or grappled",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Tower Insight",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> to identify or counter another illusionist's work, and on Arcane Analysis for Aldorethi illusions.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify or counter another illusionist's work, and Arcane Analysis on Aldorethi illusions",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Jf8PwQ5HDbQfC5Lj",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

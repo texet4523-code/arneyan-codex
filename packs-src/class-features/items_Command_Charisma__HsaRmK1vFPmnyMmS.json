@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Uses per day equal to 1 + your Charisma modifier (minimum 2), +1 more at 6th level and again at 12th. Spend a use as your action to give a Command; it lasts for the encounter. Only one Command is active at a time: a new one ends the last.</li><li><strong>Inspire (the default Command):</strong> allies within your presence can't be <strong>Frightened</strong>, and an ally's first hit each round on a creature you have Challenged deals an extra weapon damage die</li><li>Inspire affects up to 12 creatures at 1st level, 25 at 3rd, 50 at 5th, 250 at 7th, 1,000 at 9th, 5,000 at 12th, 20,000 at 16th</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Uses per day equal to 1 + your Charisma modifier (minimum 2), +1 more at 6th level and again at 12th.</li><li>Spend a use as part of your action, <strong>once per round</strong>, to give a Command to allies within <strong>30ft</strong> who can see or hear you; it lasts for the encounter.</li><li>Only one Command is active at a time: a new one ends the last.</li><li><strong>Inspire (the default Command):</strong> allies have <strong>Advantage</strong> on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. Giving Inspire also ends <strong>Frightened</strong> on allies who can hear you.</li><li>19th level: your Command range doubles to <strong>60ft</strong>, and allies feel your Commands even when they can't see or hear you</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "The default Command, for the encounter: allies within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) can't be Frightened, and an ally's first hit each round on a creature you have Challenged deals an extra weapon damage die. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "text": "The default Command, for the encounter: allies within {1:30ft, 19:60ft} who can see or hear you have Advantage on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -57,8 +57,8 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "For the encounter, companions and followers within {3:30ft, 19:60ft} have Advantage on Will saves. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 3,
+    "text": "For the encounter, companions and followers within {9:30ft, 19:60ft} have Advantage on Will saves.",
+    "minLevel": 9,
     "maxLevel": 0,
     "cost": 1,
     "per": "",
@@ -84,8 +84,8 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also can't move closer to you while the Command lasts. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 5,
+    "text": "Enemies within {7:30ft, 19:60ft} who can see you make a Will save against your Class Save DC or are Frightened of you until the end of their next turn; they save again each time you give a Command.",
+    "minLevel": 7,
     "maxLevel": 0,
     "cost": 1,
     "per": "",
@@ -101,7 +101,7 @@
     "targetLevel": "",
     "reaction": false,
     "noDamage": false,
-    "effect": "Demoralised, Demoralised (failed save)",
+    "effect": "Demoralised (failed save)",
     "spendAny": false
    },
    {
@@ -111,8 +111,8 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Until the start of your next turn, allies within {9:40ft, 19:80ft} who follow your orders have Advantage on contested manoeuvre checks. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 9,
+    "text": "For the encounter, allies within {3:30ft, 19:60ft} have Advantage on manoeuvre contests and on checks to resist being Grappled, Tripped or Disarmed.",
+    "minLevel": 3,
     "maxLevel": 0,
     "cost": 1,
     "per": "",
@@ -140,14 +140,14 @@
     "statuses": [],
     "rules": [
      {
-      "key": "immune",
-      "value": "condition:frightened",
-      "when": "",
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs fear",
       "label": ""
      },
      {
       "key": "note.damage",
-      "value": "Inspired: your first hit each round on a creature the Knight has Challenged deals an extra weapon damage die.",
+      "value": "Inspired: one hit of your choice each round on the Knight's Challenged foe deals an extra weapon damage die.",
       "when": "",
       "label": ""
      }
@@ -168,43 +168,24 @@
     ]
    },
    {
-    "name": "Demoralised",
-    "target": "target",
-    "rounds": "encounter",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.check.cha",
-      "value": "-1",
-      "when": "",
-      "label": ""
-     }
-    ]
-   },
-   {
     "name": "Demoralised (failed save)",
     "target": "target",
-    "rounds": "encounter",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "note.attack",
-      "value": "Demoralised: it can't move closer to the Knight while the Command lasts.",
-      "when": "",
-      "label": ""
-     }
-    ]
+    "rounds": "1",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
    },
    {
     "name": "Expert in Arms",
     "target": "target",
-    "rounds": "1",
+    "rounds": "encounter",
     "statuses": [],
     "rules": [
      {
       "key": "adv.check",
       "value": "1",
-      "when": "contested manoeuvre checks",
+      "when": "manoeuvre contests, and checks to resist being Grappled, Tripped or Disarmed",
       "label": ""
      }
     ]

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>Barbarians who learned the discipline of the shield wall and the weight of mail, and carry their fury into armour.</p><ul><li><strong>Armoured Fury:</strong> You are trained in heavy armour. Primeval Instincts and the wilderness abilities work in medium armour; only heavy armour switches them off.</li><li><strong>Iron Rage:</strong> While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.</li></ul>",
+  "description": "<p>Barbarians who learned the discipline of the shield wall and the weight of mail, and carry their fury into armour.</p><ul><li><strong>Armoured Fury:</strong> you are trained in heavy armour, and Primeval Instincts and the wilderness abilities work in medium armour. While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.<ul><li>9th level: while you rage in armour, you also have <strong>Advantage</strong> on saves and contests against being knocked <strong>Prone</strong> or pushed.</li></ul></li><li><strong>Shield-Wall Veteran:</strong> <strong>Advantage</strong> on Charisma checks with soldiers, mercenaries and watchmen, and you are recognised as a veteran on sight.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,18 +15,7 @@
    {
     "name": "Armoured Fury",
     "level": 1,
-    "description": "<p>You are trained in heavy armour. Primeval Instincts and the wilderness abilities work in medium armour; only heavy armour switches them off.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "save": ""
-   },
-   {
-    "name": "Iron Rage",
-    "level": 1,
-    "description": "<p>While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.</p>",
+    "description": "<p>You are trained in heavy armour, and Primeval Instincts and the wilderness abilities work in medium armour. While you rage in medium or heavy armour, the first attack against you each round has <strong>Disadvantage</strong>.</p><p>9th level: while you rage in armour, you also have <strong>Advantage</strong> on saves and contests against being knocked <strong>Prone</strong> or pushed.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -48,6 +37,27 @@
      }
     ],
     "toggle": true,
+    "active": false
+   },
+   {
+    "name": "Shield-Wall Veteran",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Charisma checks with soldiers, mercenaries and watchmen, and you are recognised as a veteran on sight.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with soldiers, mercenaries and watchmen",
+      "label": ""
+     }
+    ],
+    "toggle": false,
     "active": false
    }
   ]

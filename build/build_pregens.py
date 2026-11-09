@@ -22,6 +22,9 @@ FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to pack
 
 
 
+KIT_RENAMES = {}
+
+
 def silver_standard(cur):
     """Coins written before the silver standard (books v0.10.55, R-B54): gp are the same number of sp, sp of cp, pp of
     gp, and cp a tenth (rounded, at least 1 if there were any)."""
@@ -364,6 +367,20 @@ def build():
     classes = Index("classes")
     ancestries = Index("ancestries")
     kits = load("kits")
+    # Old kit names (data/kit_ids.json: each new name to the one before it) to the current kit, by class.
+    global KIT_RENAMES
+    KIT_RENAMES = {}
+    _ids = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "kit_ids.json"), encoding="utf-8"))
+    _split = lambda n: (lambda m: (norm(m.group(1)), norm(m.group(2))) if m else (norm(n), ""))(re.match(r"^(.*)\s*\(([^()]*)\)$", n))
+    for k in kits:
+        o, seen = _ids.get(k["name"]), set()
+        while o and o not in seen:
+            seen.add(o)
+            stem, cl = _split(o)
+            new_stem = _split(k["name"])[0]
+            KIT_RENAMES[(stem, cl)] = re.sub(r"^path:\s*", "", new_stem)
+            KIT_RENAMES[(stem.replace(" — ", ", "), cl)] = KIT_RENAMES[(stem, cl)]
+            o = _ids.get(o)
     feats = Index("feats")
     skills = Index("skills")
     spells = Index("spells")
@@ -438,6 +455,8 @@ def build():
             base_cls = re.sub(r"\s*\(.*", "", c["class"])
             want = norm(re.sub(r"(?i)^(patron|deity|path|kit):\s*", "", c.get("kit", "")).split(",")[0])
             words = lambda t: set(re.findall(r"[a-z0-9']+", t)) - {"the", "of", "and"}
+            # A kit the books renamed (v0.10.56: "Dul Khagul Shieldbearer" is Shield-Wall) by its old name.
+            want = KIT_RENAMES.get((want, norm(base_cls)), want)
             note = norm(c.get("classNote", ""))
             kit = None
             for k in kits:

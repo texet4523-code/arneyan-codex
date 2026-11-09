@@ -74,6 +74,20 @@ export function importType(data) {
 /* -------------------------------------------- */
 
 /** A name reduced for matching: lower case, straight apostrophes, no "+1", single spaces. */
+/**
+ * A Kit's current name for one the books have renamed ("Dul Khagul Shieldbearer" is Shield-Wall, "Hedge Knights" the
+ * Hedge Knight Path), from the renames the world update uses; the name as given if it isn't one.
+ */
+export async function currentKitName(name) {
+  const { RENAMED_FEATURES } = await import("./migrate.mjs");
+  const stem = t => norm(String(t ?? "").replace(/\s*\([^()]*\)\s*$/, "").replace(/\s+—\s+/g, ", "));
+  const want = stem(name);
+  for (const [uuid, [from, to]] of Object.entries(RENAMED_FEATURES)) {
+    if (uuid.includes(".kits.") && [from].flat().some(f => stem(f) === want)) return String(to).replace(/\s*\([^()]*\)\s*$/, "");
+  }
+  return name;
+}
+
 export function norm(s) {
   return String(s ?? "").toLowerCase().replace(/[’‘]/g, "'").replace(/^\+\d+\s+|\s+\+\d+$/g, "").replace(/\s+/g, " ").trim().replace(/[ .]+$/, "");
 }
@@ -241,8 +255,18 @@ export async function planImport(data, { find = finder } = {}) {
       else miss("Ancestry", a.name);
     }
     if (data.kit) {
-      const kitName = entry(data.kit).name;
-      const all = (await find("kits")).candidates(kitName, { types: ["kit"] });
+      let kitName = entry(data.kit).name;
+      let all = (await find("kits")).candidates(kitName, { types: ["kit"] });
+      // A Kit by a name the books have since changed ("The Heavy Hand" is Heavy Hand, books v0.10.56).
+      if (!all.length) {
+        const now = await currentKitName(kitName);
+        if (now !== kitName) { kitName = now; all = (await find("kits")).candidates(kitName, { types: ["kit"] }); }
+      }
+      // A Path written without "Path:" ("Cavalier" for "Path: Cavalier (Knight)").
+      if (!all.length && !/^path:/i.test(kitName)) {
+        const path = (await find("kits")).candidates(`Path: ${kitName}`, { types: ["kit"] });
+        if (path.length) { kitName = `Path: ${kitName}`; all = path; }
+      }
       // The Kit's class against the classes found ("Cleric (Battle Priest)" takes a Cleric Kit), as classForKit does.
       const have = plan.found.filter(x => x.pack === "classes").map(x => norm(x.name));
       const kitClass = e => norm(e.system?.className || (e.name.match(/\(([^)]*)\)$/)?.[1] ?? ""));

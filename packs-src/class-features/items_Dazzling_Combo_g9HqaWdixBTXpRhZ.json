@@ -1,0 +1,88 @@
+{
+ "_id": "g9HqaWdixBTXpRhZ",
+ "_key": "!items!g9HqaWdixBTXpRhZ",
+ "name": "Dazzling Combo",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>No <strong>Disadvantage</strong> while Duel's Rhythm is on (only one enemy in your reach).</li><li>If both attacks hit, Encore: the second hit adds your Charisma modifier to damage again, as Opening Flourish does.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Swashbuckler",
+  "activities": [
+   {
+    "name": "Dazzling Combo",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit, Encore: the second hit adds your Charisma modifier to damage again.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "extra",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Dazzling Combo (Duel's Rhythm on)",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "No Disadvantage on the extra attack (Duel's Rhythm on). If both hit, Encore: the second hit adds your Charisma modifier to damage again.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "izulQ2PeBRinttAY",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

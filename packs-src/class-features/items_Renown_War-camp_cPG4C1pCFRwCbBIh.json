@@ -1,0 +1,88 @@
+{
+ "_id": "cPG4C1pCFRwCbBIh",
+ "_key": "!items!cPG4C1pCFRwCbBIh",
+ "name": "Renown: War-camp",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You may found a war-camp (see Renown in The Arneyan Codex); each season <strong>2d6</strong> warriors join it, with one 3rd-level Barbarian to lead every 20. While you hold it, once per season you may call the host: where your name and deeds are known, 10 to 100 1st-level Barbarians answer and fight for <strong>30 days</strong> for food and water alone (the GM's Guide sets how many a land can raise).</li><li>The host has AC 13 and fights with sword or axe. Failed campaigns shrink it until your name is restored</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Barbarian",
+  "activities": [
+   {
+    "name": "Warriors this season",
+    "kind": "roll",
+    "formula": "2d6",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Warriors who join your war-camp this season, with one 3rd-level Barbarian to lead every 20.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Call the host",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Where your name and deeds are known, 10 to 100 1st-level Barbarians answer and fight for 30 days for food and water alone (AC 13, sword or axe).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "season",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "RN91L6Q7BHJcBlKX",
+ "sort": 13,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

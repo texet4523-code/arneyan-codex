@@ -18,7 +18,7 @@ const CB = await import("../arneyan/module/combat.mjs");
 
 // Kit names lose their dashes.
 assert.ok(!docs("kits").some(d => d.name.includes("—")), "no kit name has a dash");
-assert.ok(one("kits", "Gladiator, The Pit-Forged (Fighter)"));
+assert.ok(one("kits", "Gladiator (Fighter)"));
 // Twin Nock: each arrow gets Bow Mastery's bonus (on Bow Mastery's own scale), never twice.
 const twin = one("class-features", "Twin Nock");
 assert.ok(strip(twin.system.description).includes("Each arrow gets your Bow Mastery bonus."));
@@ -31,8 +31,9 @@ assert.equal(dev.system.auras[0].includeSelf, true);
 assert.ok(ARNEYAN.conditions.turned && ARNEYAN.conditions.turned.text.includes("moving away"));
 for (const d of docs("class-features").filter(d => d.name === "Turn Undead")) assert.deepEqual(d.system.applies[0].statuses, ["turned"], d.system.className);
 // Holy Campaign, Combat Dominance, Umberlee, Delay Poison: the new wording.
-assert.ok(strip(one("class-features", "Holy Campaign").system.description).includes("Once per year, or once per campaign at the GM's call"));
-assert.ok(strip(one("class-features", "Combat Dominance").system.description).includes("half your character Level"));
+// Holy Campaign folded into Renown: Temple (books v0.10.57).
+assert.ok(strip(one("class-features", "Renown: Temple").system.description).includes("once a year you may call its faithful to a Holy Campaign"));
+assert.ok(strip(one("class-features", "Combat Dominance").system.description).includes("whose Level is no more than half yours"));
 const umb = one("kits", "Deity: Umberlee (Cleric)").system.features.find(f => /Granted Power/.test(f.name));
 assert.ok(strip(umb.description).includes("make a Fortitude save"));
 assert.ok(strip(one("spells", "Delay Poison").system.description).includes("Poison taken during the spell is held back too."));
@@ -83,7 +84,7 @@ assert.ok(!aoo.includes("A creature that leaves an enemy's melee reach without D
 assert.equal(aoo.split("Being moved by someone else").length, 2, "said once");
 
 // Kits renamed by the books keep their old ids (worlds that have them still find them).
-assert.equal(one("kits", "Gladiator, The Pit-Forged (Fighter)")._id, "AVBy314CbBUdzNTB");
+assert.equal(one("kits", "Gladiator (Fighter)")._id, "AVBy314CbBUdzNTB");
 
 // Firearms training comes from the 1st-level class.
 const cls = name => makeItem(IM.ClassData, "class", name, { levels: 3 });

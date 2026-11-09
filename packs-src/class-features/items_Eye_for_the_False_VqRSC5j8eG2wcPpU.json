@@ -1,0 +1,48 @@
+{
+ "_id": "VqRSC5j8eG2wcPpU",
+ "_key": "!items!VqRSC5j8eG2wcPpU",
+ "name": "Eye for the False",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against illusions and on checks to see through disguises. Once a round, as no action, you may try to disbelieve an illusion you can see without touching or studying it.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs illusions",
+    "label": ""
+   },
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "to see through a disguise",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

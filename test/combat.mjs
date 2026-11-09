@@ -202,10 +202,10 @@ for (const n of ["Grapple", "Trip", "Disarm", "Dirty Trick", "Overbear"]) assert
 /* Actions pack: the Handbook v0.9.9 combat chapter (Book I, Section III), no more and no less. */
 const BOOK_ACTIONS = ["Charge", "Disengage", "Dodge", "Hide", "Search", // Combat Manoeuvres: Actions
   "Cleave", "Dirty Trick", "Disarm", "Grapple", "Guard", "Push", "Shield Blow", "Trip", // Manoeuvres
-  "Receiving Charge", "Shield Wall", // Positioning (Flank Attack is the flanking rule, not an action: Kieran, 8 Nov)
+  "Receiving Charge", "Shield Wall", "Called Shot", // Called Shot: one Codex rule (books v0.10.57) // Positioning (Flank Attack is the flanking rule, not an action: Kieran, 8 Nov)
   "Ready", "Delay", "Dash", "Attack of Opportunity", "Unarmed Strike", "Overbear", "Break Free", "Fighting Defensively"];
 assert.deepEqual(Object.keys(actions).sort(), [...BOOK_ACTIONS].sort(), "the Actions compendium is the book's list");
-for (const gone of ["Feint", "Called Shot", "Offensive Focus", "Parry", "Rear Attack", "Charging", "Opportunity Attack"]) assert.ok(!actions[gone], `${gone} is not in the current book`);
+for (const gone of ["Feint", "Offensive Focus", "Parry", "Rear Attack", "Charging", "Opportunity Attack"]) assert.ok(!actions[gone], `${gone} is not in the current book`);
 assert.equal(actions["Charge"]._id, "UniEPc3NhFzkrGYI", "Charge keeps the old Charging ID");
 assert.equal(actions["Attack of Opportunity"]._id, "g8Ifmgn7innIiAZy", "Attack of Opportunity keeps the old Opportunity Attack ID");
 assert.equal(actions["Trip"]._id, "oF3I9qCsbxavZOJn", "surviving actions keep their IDs");
@@ -276,11 +276,11 @@ console.log("OK combat");
   const E = await import("../arneyan/module/effects.mjs");
   const D = await import("../arneyan/module/documents.mjs");
   const kits = packItems("kits");
-  const cbRules = kits.find(k => k.name === "The Heavy Hand (Fighter)").system.features.find(f => f.name === "Crushing Blow").rules;
+  const cbRules = kits.find(k => k.name === "Heavy Hand (Fighter)").system.features.find(f => f.name === "Crushing Blow").rules;
   assert.deepEqual(cbRules.map(r => [r.key, r.value, r.weapon]), [["damage.reroll", "2", "two-handed"]], "Crushing Blow is a scoped reroll now");
   assert.ok(ARNEYAN.allRuleKeys.has("damage.reroll"));
   const specSrc = packItems("class-features").find(i => i.name === "Weapon Specialisation");
-  assert.equal(specSrc.system.weaponChoice.max, "1:1, 13:2");
+  assert.equal(specSrc.system.weaponChoice.max, "1", "one weapon (books v0.10.57: no second at 13th)");
   assert.ok(specSrc.system.rules.every(r => r.weapon === "chosen"));
   assert.ok(packItems("equipment").find(i => i.name === "Greatsword").system.traits.includes("Two-handed"), "the Catalogue's two-handed weapons say so");
   assert.ok(!packItems("equipment").find(i => i.name === "Sword, Long").system.traits.includes("Two-handed"), "a Versatile one doesn't");
@@ -322,7 +322,7 @@ console.log("OK combat");
     [makeItem(IM.ClassData, "class", "Fighter", { levels: level }), ...features, great, magicGreat, longsword, oldHalberd, spear]));
 
   // Crushing Blow: two-handed weapons' own dice reroll 1s and 2s, and the card says so; one-handed weapons don't.
-  const crushing = makeItem(IM.AbilityData, "ability", "Crushing Blow", { rules: cbRules, className: "The Heavy Hand (Fighter)" });
+  const crushing = makeItem(IM.AbilityData, "ability", "Crushing Blow", { rules: cbRules, className: "Heavy Hand (Fighter)" });
   const heavy = withFeatures(3, crushing);
   const gd = heavy.weaponDice(great);
   assert.equal(gd.formula, "2d6r<=2");
@@ -361,8 +361,9 @@ console.log("OK combat");
   // A second weapon counts from 13th level only.
   const two = ["Greatsword", "Sword, Long"];
   assert.deepEqual(bonus(withFeatures(12, specWith(two)).damageTerms(longsword)), [], "12th: the first pick only");
-  assert.deepEqual(bonus(withFeatures(13, specWith(two)).damageTerms(longsword)), ["+2"], "13th: the second counts");
-  assert.deepEqual(bonus(withFeatures(19, specWith(two)).damageTerms(great)), ["+3"], "+3 at 19th");
+  // (The mechanism; the book's Fighter has one weapon from books v0.10.57, with +3 at 13th and +4 at 19th.)
+  assert.deepEqual(bonus(withFeatures(13, specWith(two)).damageTerms(longsword)), ["+3"], "13th: the second counts");
+  assert.deepEqual(bonus(withFeatures(19, specWith(two)).damageTerms(great)), ["+4"], "+4 at 19th");
   assert.deepEqual(E.weaponPicks({ weaponChoice: { max: "1:1, 13:2", value: two } }, 5), ["Greatsword"]);
 
   // The prompt: a Later stores nothing; a pick is stored.

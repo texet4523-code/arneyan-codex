@@ -421,7 +421,7 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
       // A feature the books renamed in place (the same compendium entry) takes the new name, unless it was renamed by
       // hand: the Ki options find their pool by name.
       const rn = RENAMED_FEATURES[uuid];
-      if (rn && i.name === rn[0] && !i.flags?.[SYS]?.keepCustom) upd.name = rn[1];
+      if (rn && [rn[0]].flat().includes(i.name) && !i.flags?.[SYS]?.keepCustom) upd.name = rn[1];
       if (i.type === "kit") Object.assign(upd, kitFill(i, src));
       // The features a kit granted follow the kit as it will be: the compendium's list if the kit takes it, or the
       // kit's own list if it keeps an edit (or is left as it was).
@@ -783,9 +783,116 @@ export const RENAMED_FEATURES = Object.fromEntries([
 RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
 // Books v0.10.55 (R-B54, K77): the Magus is the Spellblade, its class and Kits renamed in place (same documents).
 RENAMED_FEATURES[`Compendium.${SYS}.classes.Item.LvKwCIHxnmqy9ycn`] = ["Magus", "Spellblade"];
-RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.o15Vvrk1VosCMHlq`] = ["Battle Caster (Magus)", "Battle Caster (Spellblade)"];
-RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.HpaIs8fp3QvxCOYw`] = ["Bladebound (Magus)", "Bladebound (Spellblade)"];
-RENAMED_FEATURES[`Compendium.${SYS}.kits.Item.br5JCSRGfkQYXHY2`] = ["Shadow Edge (Magus)", "Shadow Edge (Spellblade)"];
+// Books v0.10.56 to v0.10.58 (R-B59 to R-B64): kits renamed for their style ("Gladiator, The Pit-Forged" is
+// Gladiator), the Knight's, Ranger's and Battle Caster's Paths ("Path: Cavalier"), and class features renamed in place
+// (each martial's Extra Attack, Sneak Attack as Exploit, Detect Magic as Arcane Analysis, the 20th-level Seats). The
+// Spellblade kits' "(Magus)" names (books v0.10.55) are here too. [pack, id, old name or names, new name].
+for (const [pack, id, from, to] of [
+  ["class-features", "62OC4bUQYm1cFCmV", "Skirmisher's Grace", "Skirmish"],
+  ["class-features", "BdQ095dAhRId2IqS", "Lasting Work improves", "Renown: Workshop"],
+  ["class-features", "uK8P0scQNmrf2Dbk", "Extra Attack", "Twist the Knife"],
+  ["class-features", "N25afn6yXRGW2l6x", "Marked Prey", "Dossier"],
+  ["class-features", "12r60eED90uq58Pr", "Quick Reflexes", "Cold Blood"],
+  ["class-features", "VkVLCNJ3it9jWN1i", "Quick Reflexes (Improved)", "Marked for Death (Improved)"],
+  ["class-features", "isoyrXlKsMeUUBqj", "Extra Attack", "Savage Swing"],
+  ["class-features", "4ttPYYMgzrO97TDU", "Ancestral Calling", "Cleaving Fury"],
+  ["class-features", "cPG4C1pCFRwCbBIh", "Warlord", "Renown: War-camp"],
+  ["class-features", "4qqHboQmU4JcT7qH", "Quest", "Renown: College"],
+  ["class-features", "dTpQQ9CCam9IXNPr", "Holy Campaign", "Renown: Temple"],
+  ["class-features", "Q8Rzh5IxUJGo4mc7", "Extra Attack", "Press On"],
+  ["class-features", "l0T0N90jxq1w9oCV", "Shield Mastery", "Hold Ground"],
+  ["class-features", "Rgsqt53SjH8tIspx", "Extra Attack", "Two-Gun Shot"],
+  ["class-features", "1YI3nwYAqHY63Jck", "Detect Magic (Intelligence)", "Arcane Analysis (Intelligence)"],
+  ["class-features", "VqRSC5j8eG2wcPpU", "Sharp Senses", "Eye for the False"],
+  ["class-features", "VHDu11dWUT5mMhQM", "Minor Figment", "Glamour"],
+  ["class-features", "KlzX2tyIHERdZedH", "Rallying Cry", "Knight's Riposte"],
+  ["class-features", "rKQ6kskz9SbLUBUX", "Extra Attack", "Challenger's Blow"],
+  ["class-features", "UckUIv8wZJ7Uuob2", "Call-to-Arms", "Renown: Castle"],
+  ["class-features", "GOKLoYXjDzcYgpad", "Iron Discipline", "Iron Body"],
+  ["class-features", "KmUuGj3VT408VPmk", "Deflect Missiles (Dexterity)", "Deflect (Dexterity)"],
+  ["class-features", "Hf4NJtXTzPZminn3", "Quick Reflexes", "Flowing Form"],
+  ["class-features", "rHfRR0zSDCTbxJZh", "Bequeath Virtue", "Blessed Token"],
+  ["class-features", "exG0emggBTiTai1N", "Divine Will", "Renown: Holy Order"],
+  ["class-features", "BmWnLgQbDj3vwatI", "Combat Marauder", "Hunter's Edge"],
+  ["class-features", "TeHdw0YChFdEa0Md", "Extra Attack", "Quarry Strike"],
+  ["class-features", "ksFXEzB68ifNtFcY", "Sneak Attack", "Exploit (Sneak Attack)"],
+  ["class-features", "wMRvnl9bZQO0tb4l", "Extra Attack", "Cut and Run"],
+  ["class-features", "e8xjs8uHxKKAnpui", "Quick Reflexes", "Slippery"],
+  ["class-features", "mUljAWFviDMM2z02", "Quick Reflexes (Improved)", "Perfect Timing"],
+  ["class-features", "oJxxsvpo4WgI1u92", ["Sorcerer's Spark (Improved)", "Wild Surge improves"], "Renown: Bloodline Seat"],
+  ["class-features", "g9HqaWdixBTXpRhZ", "Extra Attack", "Dazzling Combo"],
+  ["class-features", "G0I66J8JwKVyGyGR", "Detect Magic", "Arcane Analysis"],
+  ["kits", "X6VhKo8j6GufXbbe", ["The Gifted Ward (Wizard)"], "Apprentice (Wizard)"],
+  ["kits", "ByyzVAg8zpdMEmbW", ["Students of the Ascendant Dragon (Monk)"], "Ascendant Dragon (Monk)"],
+  ["kits", "S9ukVEZRfWR68UCh", ["Ashes of the Phoenix, Zaun (Assassin)", "Ashes of the Phoenix — Zaun (Assassin)"], "Ashes of the Phoenix (Assassin)"],
+  ["kits", "vXB0bc6uo7HxIZY7", ["Komodo Isle Skirmisher (Archer)"], "Beast-Fletcher (Archer)"],
+  ["kits", "HpaIs8fp3QvxCOYw", ["Bladebound (Magus)"], "Bladebound (Spellblade)"],
+  ["kits", "OPZ41afbze95Ivu3", ["Opal Isles Pirate (Gunslinger)"], "Boarder (Gunslinger)"],
+  ["kits", "Meg7LBecunl7cL8y", ["Mournas Circle (Druid)"], "City Druid (Druid)"],
+  ["kits", "ig2l7w2qrwlyVMag", ["Slums Con Artist (Illusionist)"], "Con Artist (Illusionist)"],
+  ["kits", "R2GSdvlBkuCK49yD", ["Eltor Court Bard (Bard)"], "Courtier (Bard)"],
+  ["kits", "LGxAbADMr1tfUcIr", ["Mournas Street Thief (Rogue)"], "Cutpurse (Rogue)"],
+  ["kits", "jO6xMTLzOj0XyLuT", ["Mercenary Outrider (Gunslinger)"], "Dragoon (Gunslinger)"],
+  ["kits", "Ehk2rOsrPogqG06P", ["Followers of Drake (Barbarian)"], "Drake's Followers (Barbarian)"],
+  ["kits", "gCvz9fRgu84Qy71E", ["Swordmaster, The Eltor Duelist (Fighter)", "Swordmaster — The Eltor Duelist (Fighter)"], "Duellist (Fighter)"],
+  ["kits", "rhTGYTzdz1190RhY", ["Myllnoris Cabal (Druid)"], "Fey Warden (Druid)"],
+  ["kits", "4JgUpVLSKmAflyjU", ["Nalwood Warden (Ranger)"], "Forest Warden (Ranger)"],
+  ["kits", "ekcWjuVk2liVW10x", ["Mournas Freelance (Gunslinger)"], "Freelance (Gunslinger)"],
+  ["kits", "AVBy314CbBUdzNTB", ["Gladiator, The Pit-Forged (Fighter)", "Gladiator — The Pit-Forged (Fighter)"], "Gladiator (Fighter)"],
+  ["kits", "kulEToLobrTmUlBy", ["Silver Tower Illusionist (Illusionist)"], "Glamour Scholar (Illusionist)"],
+  ["kits", "DEtRTFISH0l358nI", ["Nalwood Cabal (Druid)"], "Grove Healer (Druid)"],
+  ["kits", "n97HrctQdnq2MXNf", ["The Guild, Crow Track (Assassin)", "The Guild — Crow Track (Assassin)"], "Guild Crow (Assassin)"],
+  ["kits", "ihmjokGtIE5hAHR6", ["O.M.G.A. Initiate (Wizard)"], "Guild Mage (Wizard)"],
+  ["kits", "Fi2yWZ5a0hSU3mwp", ["The Guild, Robin Track (Rogue)", "The Guild — Robin Track (Rogue)"], "Guild Robin (Rogue)"],
+  ["kits", "lvYelQDWVK3pLHAq", ["The Heavy Hand (Fighter)"], "Heavy Hand (Fighter)"],
+  ["kits", "MrnBoL13grjKz5wD", ["The Hollow Mountain (Monk)"], "Hermit (Monk)"],
+  ["kits", "VSeb3BKHP3BDyXX1", ["Iron Ox Wrestlers (Monk)"], "Iron Ox Wrestler (Monk)"],
+  ["kits", "ZVBih2EBbCwaHbZ1", ["Depsopteron Ironhide (Barbarian)"], "Ironhide (Barbarian)"],
+  ["kits", "bALqpS4MeCkdNeVU", ["Mournas Liberator (Fighter)"], "Liberator (Fighter)"],
+  ["kits", "hxKu3MfhoHTQ9l30", ["Red Waste Tracker (Archer)"], "Longsight (Archer)"],
+  ["kits", "ntQRdCKuC7CDPq3b", ["Tenor Hold Mechanist (Gunslinger)"], "Mechanist (Gunslinger)"],
+  ["kits", "5aNain0gSDVHlnRe", ["Wandering Mountebank (Illusionist)"], "Mountebank (Illusionist)"],
+  ["kits", "pIDvLs80I6qozfyW", ["The Opportunist (Fighter)"], "Opportunist (Fighter)"],
+  ["kits", "jGVbG6ezuKWLMVAk", ["Mercenary, Blade for Hire (Fighter)", "Mercenary — Blade for Hire (Fighter)"], "Outrider (Fighter)"],
+  ["kits", "o15Vvrk1VosCMHlq", ["Battle Caster (Spellblade)", "Battle Caster (Magus)"], "Path: Battle Caster (Spellblade)"],
+  ["kits", "BMaBYqyABILDjiNj", ["Beast Master (Ranger)"], "Path: Beast Master (Ranger)"],
+  ["kits", "WtB20YgHDIiDxb5Q", ["Boldock Wall-Knights (Knight)"], "Path: Castellan (Knight)"],
+  ["kits", "C40ePAoIJ813ZscO", ["Knights of Holfast (Knight)"], "Path: Cavalier (Knight)"],
+  ["kits", "gVuTPk2exlMMJDzM", ["Hedge Knights (Knight)"], "Path: Hedge Knight (Knight)"],
+  ["kits", "sWP1kgpHl9CvXe6N", ["Wandering Knights Errant (Knight)"], "Path: Knight Errant (Knight)"],
+  ["kits", "3YaX8paRQg69pYsP", ["Wild Warden (Ranger)"], "Path: Wild Warden (Ranger)"],
+  ["kits", "8jOVJRRQs0XGFMr4", ["Myllnoris Phantomsmith (Illusionist)"], "Phantomsmith (Illusionist)"],
+  ["kits", "4sWm57LGm7BhimnN", ["Mournas Fight Club (Monk)"], "Pit Fighter (Monk)"],
+  ["kits", "t32f3e2VTWabhteJ", ["Monster Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
+  ["kits", "aWVs4Wj6e5DswX5g", ["Red Waste Marauder (Barbarian)"], "Raider (Barbarian)"],
+  ["kits", "YMKl8Km3TxVRTqEl", ["Depsopteron Scale-Fist (Monk)"], "Scale-Fist (Monk)"],
+  ["kits", "d4dE6lsDguQT2COi", ["Westfront Defender (Gunslinger)", "Fort Dunwell Defender (Gunslinger)"], "Sentinel (Gunslinger)"],
+  ["kits", "br5JCSRGfkQYXHY2", ["Shadow Edge (Magus)"], "Shadow Edge (Spellblade)"],
+  ["kits", "GARmKRgAYwPXPANC", ["Opal Shanty-Master (Bard)"], "Shanty-Master (Bard)"],
+  ["kits", "hviYzyxxOQvRIL7n", ["The Sharpshooter (Fighter)"], "Sharpshooter (Fighter)"],
+  ["kits", "a9c6Lt8lNOCQtAZq", ["Dul Khagul Shieldbearer (Fighter)"], "Shield-Wall (Fighter)"],
+  ["kits", "jfRP63QVBHFycIT4", ["Skalds of the Red Waste (Bard)"], "Skald (Bard)"],
+  ["kits", "xdIZvKbLrMXwMaWW", ["Red Waste Skulker (Rogue)"], "Skulker (Rogue)"],
+  ["kits", "drkSYSPmTJYTWsoF", ["Jinia Isles Smuggler (Rogue)"], "Smuggler (Rogue)"],
+  ["kits", "pGxznlNS2jkU7pAN", ["Mournas Rebel (Barbarian)"], "Street Fighter (Barbarian)"],
+  ["kits", "YouyZrX1hyfoLMUS", ["Mournas Street Poet (Bard)"], "Street Poet (Bard)"],
+  ["kits", "Rb1ZvMykda14c3cX", ["Slave Pits Survivor (Monk)"], "Survivor (Monk)"],
+  ["kits", "lBB8nHgbUymZ55kN", ["Jinia Isles Tideblade (Assassin)"], "Tideblade (Assassin)"],
+  ["kits", "gCASxDJKrZ51Vn5l", ["Silver Tower Scholar (Wizard)"], "Tower Scholar (Wizard)"],
+  ["kits", "pABZPl5YBwZFN2ju", ["Tanatharen Grove (Druid)"], "Tree-Speaker (Druid)"],
+  ["kits", "oKaT9HHk4VgtMJQJ", ["Frontier Vanguard (Ranger)"], "Vanguard (Ranger)"],
+  ["kits", "2DIdlFH7tFNIipm9", ["The Veiled Ones, Information Gatherer (Rogue)", "The Veiled Ones — Information Gatherer (Rogue)"], "Veiled Gatherer (Rogue)"],
+  ["kits", "Qc8GsQhcP4KgH0F8", ["The Veiled Ones, Shadow Operative (Assassin)", "The Veiled Ones — Shadow Operative (Assassin)"], "Veiled Operative (Assassin)"],
+  ["kits", "7SipgwkVCMcbQFBC", ["O.M.G.A. Veilweaver (Illusionist)"], "Veilweaver (Illusionist)"],
+  ["kits", "zDMRX1wfcZ7EVA2X", ["Westfront Wall-Archer (Archer)", "Fort Dunwell Wall-Archer (Archer)"], "Wall Archer (Archer)"],
+  ["kits", "pEuTwbNHPW98sSqe", ["Boldock Wall Guard (Fighter)"], "Wall Guard (Fighter)"],
+  ["kits", "ioMzfnluzghImDnW", ["Dul Khagul Wall-Breaker (Barbarian)"], "Wall-Breaker (Barbarian)"],
+  ["kits", "UGjKmpWCrGYm4ojI", ["Wandering Druid (Druid)"], "Wanderer (Druid)"],
+  ["kits", "by2i0r0U9tTKFIV9", ["The Wandering Blades (Assassin)"], "Wandering Blade (Assassin)"],
+  ["kits", "j7eZxpvFKIZmwacA", ["Holfast City Watch (Gunslinger)"], "Watchman (Gunslinger)"],
+  ["kits", "IRmJxYnSYm9v1vl0", ["Saevren Pathfinder (Archer)"], "Woodland Stalker (Archer)"]
+
+]) RENAMED_FEATURES[`Compendium.${SYS}.${pack}.Item.${id}`] = [from, to];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
 RENAMED_FEATURES[`Compendium.${SYS}.skills.Item.QwBrDsUjGQiCN3qz`] = ["Mountaineering", "Climb"];
 /** Books v0.10.46 (W4): "Ophidian-Sslyth" becomes "Ophidian". */

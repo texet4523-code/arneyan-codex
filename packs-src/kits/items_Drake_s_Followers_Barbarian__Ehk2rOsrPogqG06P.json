@@ -1,0 +1,84 @@
+{
+ "_id": "Ehk2rOsrPogqG06P",
+ "_key": "!items!Ehk2rOsrPogqG06P",
+ "name": "Drake's Followers (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>Drake of the Last Watch is a name everyone knows: his strength and his bond with the natural world are legend across Arneyan. You train to fight like him and to stand for what he stood for. Less a school, more a devotion.</p><ul><li><strong>Drake's Fury:</strong> while raging, you have <strong>Advantage</strong> in Trip and Grapple contests. In natural wilderness, Primeval Instincts covers every physical check, not only those that could cost you HP, Exhaustion or your life.<ul><li>9th level: a creature you Trip or Grapple while raging also takes your Rage damage bonus.</li></ul></li><li><strong>Legend's Path:</strong> <strong>Advantage</strong> on checks to identify, track or commune with natural creatures and places, and Drake's name opens doors wherever you go.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Drake's Fury",
+    "level": 1,
+    "description": "<p>While raging, you have <strong>Advantage</strong> in Trip and Grapple contests. In natural wilderness, Primeval Instincts covers every physical check, not only those that could cost you HP, Exhaustion or your life.</p><p>9th level: a creature you Trip or Grapple while raging also takes your Rage damage bonus.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.str",
+      "value": "1",
+      "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.dex",
+      "value": "1",
+      "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)",
+      "label": ""
+     },
+     {
+      "key": "adv.check.con",
+      "value": "1",
+      "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Trip and Grapple contests while raging",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Legend's Path",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify, track or commune with natural creatures and places, and Drake's name opens doors wherever you go.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, track or commune with natural creatures and environments",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

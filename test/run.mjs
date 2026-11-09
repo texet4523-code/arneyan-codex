@@ -693,7 +693,7 @@ assert.ok(!pdocs.some(d => /Broken Anvil|Recruits|Veterans/.test(d.name)), "noth
 // Haldor (the Recruits' Fighter, rebuilt 28 Oct 2026 around the class art): 14 HP on the sheet, 13 stored + Toughness.
 const wen = pa.find(a => a.name === "Haldor Brassbeard");
 assert.deepEqual([wen.type, wen.system.attributes.hp.max, wen.prototypeToken.actorLink], ["character", 13, true]);
-assert.ok(["Fighter", "Dwarf (Tenor Hold)", "Dul Khagul Shieldbearer (Fighter)", "Sword, Long", "Toughness"].every(n => wen.items.some(i => i.name === n)), "class, ancestry, kit, weapon and feat come from the compendiums");
+assert.ok(["Fighter", "Dwarf (Tenor Hold)", "Shield-Wall (Fighter)", "Sword, Long", "Toughness"].every(n => wen.items.some(i => i.name === n)), "class, ancestry, kit, weapon and feat come from the compendiums");
 assert.ok(wen.items.some(i => i.flags?.arneyan?.grantedBy && i.type === "ability"), "class features are granted like on the sheet");
 // Every Broken Anvil pregen has a different class, so each shows its own class art (Kieran, 28 Oct 2026).
 const anvil = pa.filter(a => [byName("Level 1 - The Recruits")._id, byName("Level 9 - The Veterans")._id].includes(a.folder));

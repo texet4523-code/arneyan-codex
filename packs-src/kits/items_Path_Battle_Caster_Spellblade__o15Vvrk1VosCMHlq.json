@@ -1,0 +1,84 @@
+{
+ "_id": "o15Vvrk1VosCMHlq",
+ "_key": "!items!o15Vvrk1VosCMHlq",
+ "name": "Path: Battle Caster (Spellblade)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
+ "system": {
+  "description": "<p>You lean into the caster's half of the hybrid: less committed to the blade, more willing to cast outright when the moment calls for it. A Battle Caster takes this Path in place of a kit.</p><ul><li><strong>Broader Study (1st):</strong> each time you gain access to a new spell level, add one Wizard-list spell of that level to your Spellblade list (not Polymorph; Haste on yourself only).</li><li>You still use the Spellblade's slots and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li><li><strong>Scholar's Standing (1st):</strong> <strong>Advantage</strong> on checks with wizards and mages' guilds, and on recalling arcane lore.</li><li><strong>Caster's Guard (5th):</strong> Arcane Cascade also triggers when you cast a spell of 1st level or higher, not only after a Spellstrike.</li><li><strong>Spell Surge (10th):</strong> once per encounter, when you cast a spell of 1st level or higher as your action, you may make one weapon attack with your bonded weapon as part of the same action.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Spellblade",
+  "features": [
+   {
+    "name": "Broader Study",
+    "level": 1,
+    "description": "<p>Each time you gain access to a new spell level, add one Wizard-list spell of that level to your Spellblade list (not Polymorph; Haste on yourself only).</p><ul><li>You still use the Spellblade's slots and DC.</li><li>After you cast a spell of 1st level or higher, your next weapon attack before the end of your next turn has <strong>Advantage</strong>.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "applies": [
+     {
+      "name": "Broader Study",
+      "target": "self",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Scholar's Standing",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks with wizards and mages' guilds, and on recalling arcane lore.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Caster's Guard",
+    "level": 5,
+    "description": "<p>Arcane Cascade also triggers when you cast a spell of 1st level or higher, not only after a Spellstrike.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Spell Surge",
+    "level": 10,
+    "description": "<p>Once per encounter, when you cast a spell of 1st level or higher as your action, you may make one weapon attack with your bonded weapon as part of the same action.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "xfPAuHvlZnGs2uY5",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

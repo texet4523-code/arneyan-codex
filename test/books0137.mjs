@@ -36,21 +36,22 @@ assert.deepEqual(smite.map(a => [a.kind, a.cost, a.damageType ?? ""]), [["damage
 assert.ok(/when you hit/.test(smite[0].text) && !/Advantage/.test(smite[0].text));
 const cmd = feat("Command (Charisma)", "Knight");
 const inspired = cmd.applies.find(a => a.name === "Inspired");
-assert.ok(!advFirst(inspired.rules) && inspired.rules.some(r => r.key === "immune" && r.value === "condition:frightened"));
-assert.ok(cmd.applies.find(a => a.name === "Demoralised (failed save)").rules.every(r => r.key.startsWith("note.")));
+// Books v0.10.57 (R-B61): Inspire gives Advantage on saves against fear (it was immunity).
+assert.ok(!advFirst(inspired.rules) && inspired.rules.some(r => r.key === "adv.save" && r.when === "vs fear"));
+assert.deepEqual(cmd.applies.find(a => a.name === "Demoralised (failed save)").statuses, ["frightened"], "books v0.10.57: Frightened until the end of its next turn");
 const perf = feat("Performance (Charisma)", "Bard");
 assert.ok(!advFirst(perf.applies.find(a => a.name === "Exhorted").rules) && !advFirst(perf.applies.find(a => a.name === "Discord").rules));
 assert.deepEqual(feat("Intimidate (Strength)", "Barbarian").applies[0].statuses, ["frightened"]);
 for (const [n, c] of [["Favoured Enemy", "Ranger"], ["Duel's Rhythm", "Swashbuckler"], ["Dead Eye", "Gunslinger"]]) assert.ok(!advFirst(feat(n, c).rules), `${n}: no attack Advantage`);
-assert.equal(feat("Advanced Favoured Enemy improves", "Ranger").applies[0].rounds, "encounter");
+
 const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };
-assert.deepEqual(kit("Red Waste Marauder (Barbarian)")[0].applies[0].statuses, ["prone"]);
-for (const n of ["Deity: Akadi (Cleric)", "Deity: Annam (Cleric)", "Deity: Annam (Paladin)", "Deity: Lathander (The Dawning Light) (Cleric)", "The Sharpshooter (Fighter)", "Grave Warden (Necromancer)"]) assert.ok(!advFirst(kit(n)[0].rules), `${n}: no attack Advantage`);
-assert.ok(!advFirst(kit("Frontier Vanguard (Ranger)")[1].rules));
+assert.deepEqual(kit("Raider (Barbarian)")[0].applies[0].statuses, ["prone"]);
+for (const n of ["Deity: Akadi (Cleric)", "Deity: Annam (Cleric)", "Deity: Annam (Paladin)", "Deity: Lathander (The Dawning Light) (Cleric)", "Sharpshooter (Fighter)", "Grave Warden (Necromancer)"]) assert.ok(!advFirst(kit(n)[0].rules), `${n}: no attack Advantage`);
+assert.ok(!advFirst(kit("Vanguard (Ranger)")[1].rules));
 
 /* Kits renamed for the Wall's forts keep their ids. */
-assert.equal(kits.find(k => k.name === "Westfront Wall-Archer (Archer)")?._id, "zDMRX1wfcZ7EVA2X");
-assert.equal(kits.find(k => k.name === "Westfront Defender (Gunslinger)")?._id, "d4dE6lsDguQT2COi");
+assert.equal(kits.find(k => k.name === "Wall Archer (Archer)")?._id, "zDMRX1wfcZ7EVA2X");
+assert.equal(kits.find(k => k.name === "Sentinel (Gunslinger)")?._id, "d4dE6lsDguQT2COi");
 assert.ok(!kits.some(k => /Dunwell/.test(k.name)));
 
 /* Ancestries (K39 to K41). */
@@ -62,7 +63,7 @@ const longtooth = a("Shifter").choice.options.find(o => o.name.endsWith("Longtoo
 assert.ok(!advFirst(longtooth.rules) && /Prone/.test(longtooth.rules[0].value));
 assert.deepEqual([longtooth.uses.max, longtooth.uses.per], [1, "encounter"]);
 assert.ok(a("Shifter").choice.options.every(o => o.rules.some(r => r.key === "toggle.ends" && r.value === "encounter")), "the shift ends with the encounter");
-const dread = kit("Boldock Wall-Knights (Knight)").find(f => f.name === "Wall-Forged Dread");
+const dread = kit("Path: Castellan (Knight)").find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([dread.applies[0].statuses, dread.applies[0].rules.length], [["frightened"], 0]);
 const M = await import("../arneyan/module/migrate.mjs");
 assert.equal(M.CLASS_REWORK, "0.10.81", "the class rework runs again for Cauldron Brews");

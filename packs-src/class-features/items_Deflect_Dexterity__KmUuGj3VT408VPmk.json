@@ -1,0 +1,61 @@
+{
+ "_id": "KmUuGj3VT408VPmk",
+ "_key": "!items!KmUuGj3VT408VPmk",
+ "name": "Deflect (Dexterity)",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Out of turn, when a nonmagical missile would hit you (not a siege weapon), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll; on a success it does no damage.</li><li>Attempts per round: the table above.</li><li>You need a free hand, and can't deflect while surprised or <strong>Incapacitated</strong>.</li><li>5th level: a melee attack too</li><li>7th level: on a success against a melee attack, you may hold the weapon instead (the attacker takes it back with a Strength contest)</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Monk",
+  "activities": [
+   {
+    "name": "Deflect",
+    "kind": "check",
+    "formula": "",
+    "damageType": "",
+    "ability": "dex",
+    "save": "",
+    "text": "Out of turn, when a nonmagical missile would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

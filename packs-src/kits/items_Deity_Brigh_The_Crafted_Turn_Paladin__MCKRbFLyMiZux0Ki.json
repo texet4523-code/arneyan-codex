@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> Once/day: repair a broken weapon or armour to full functionality instantly.</p><ul><li><strong>Advantage</strong> on Craft/Smith checks.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next hit before your next turn deals +<strong>1d6</strong> fire damage, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508957\">Brigh</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, Light</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Craft/Smith checks. Once/day: repair a broken weapon or armour to full functionality instantly. Your Divine Mount wears god-forged barding: +2 AC, and its hits deal +<strong>1d6</strong> fire damage.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508957\">Brigh</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Brigh)",
     "level": 1,
-    "description": "<p>Once/day: repair a broken weapon or armour to full functionality instantly.</p><ul><li><strong>Advantage</strong> on Craft/Smith checks.</li><li>Once per round, as part of your action, temper an ally's weapon or armour by touch: its next hit before your next turn deals +<strong>1d6</strong> fire damage, or the next attack against it has <strong>Disadvantage</strong>.</li></ul><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
+    "description": "<p><strong>Advantage</strong> on Craft/Smith checks. Once/day: repair a broken weapon or armour to full functionality instantly. Your Divine Mount wears god-forged barding: +2 AC, and its hits deal +<strong>1d6</strong> fire damage.</p><p><strong>Favoured weapon:</strong> Hammer, Light</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -114,37 +114,7 @@
      }
     ],
     "toggle": false,
-    "active": false,
-    "applies": [
-     {
-      "name": "Tempered Weapon",
-      "target": "target",
-      "rounds": "1",
-      "statuses": [],
-      "rules": [
-       {
-        "key": "damage",
-        "value": "+1d6",
-        "when": "next hit before the tempering priest's next turn (fire)",
-        "label": ""
-       }
-      ]
-     },
-     {
-      "name": "Tempered Armour",
-      "target": "target",
-      "rounds": "1",
-      "statuses": [],
-      "rules": [
-       {
-        "key": "adv.against.first",
-        "value": "-1",
-        "when": "",
-        "label": ""
-       }
-      ]
-     }
-    ]
+    "active": false
    }
   ],
   "alignment": "True Neutral"

@@ -1,0 +1,72 @@
+{
+ "_id": "OPZ41afbze95Ivu3",
+ "_key": "!items!OPZ41afbze95Ivu3",
+ "name": "Boarder (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>The ship-board shooters of the Opal Isles and the Jinia seas, who learned to fight in the chaos of boarding actions: close quarters, many targets, no room to reload.</p><ul><li><strong>Close Quarters:</strong> no <strong>Disadvantage</strong> on ranged attacks in a confined space: a ship's deck, a corridor or a room under <strong>30ft</strong> wide.<ul><li>9th level: when you hit a creature within <strong>10ft</strong> with a firearm, it makes a <strong>Reflex save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</li></ul></li><li><strong>Sea Dog:</strong> <strong>Advantage</strong> on Seamanship checks, and on Intimidation checks when visibly armed with firearms.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Close Quarters",
+    "level": 1,
+    "description": "<p>No <strong>Disadvantage</strong> on ranged attacks in a confined space: a ship's deck, a corridor or a room under <strong>30ft</strong> wide.</p><p>9th level: when you hit a creature within <strong>10ft</strong> with a firearm, it makes a <strong>Reflex save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Close Quarters: no Disadvantage on ranged attacks in a confined space (deck, corridor, room under 30ft wide).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sea Dog",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Seamanship checks, and on Intimidation checks when visibly armed with firearms.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Seamanship",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Intimidation when visibly armed with firearms",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

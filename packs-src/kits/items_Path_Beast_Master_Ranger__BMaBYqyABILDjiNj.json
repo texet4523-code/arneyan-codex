@@ -1,0 +1,78 @@
+{
+ "_id": "BMaBYqyABILDjiNj",
+ "_key": "!items!BMaBYqyABILDjiNj",
+ "name": "Path: Beast Master (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>Not every ranger works alone. Some build a partnership with the wild, starting with whatever creature will have them, and in time earning the trust of things that shouldn't trust anyone.</p><ul><li><strong>Bonded Companion (1st):</strong> tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling, with HD equal to half your Ranger level (rounded up).</li><li>It acts on its own initiative and defends itself and you whenever either of you is threatened, at no cost to you.</li><li>Directing it to attack a particular target or do a particular thing costs your action.</li><li><strong>Beastspeaker (1st):</strong> <strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and beast-type monsters, even ones far beyond what you could safely fight. It grants no control over an unbonded creature.</li><li><strong>Wild Bond (5th):</strong> you may try to tame a beast-type monster of low power (giant spider, dire wolf or similar, GM-approved). Taming takes days of exposure and a Wisdom check the GM sets by the creature's HD and temper, and can fail or provoke an attack.</li><li><strong>Apex Bond (10th):</strong> you may try the same with a dangerous beast-type monster (a young wyvern, a manticore or a similar apex predator, GM-approved); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after a season of searching.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Bonded Companion",
+    "level": 1,
+    "description": "<p>Tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling, with HD equal to half your Ranger level (rounded up).</p><ul><li>It acts on its own initiative and defends itself and you whenever either of you is threatened, at no cost to you.</li><li>Directing it to attack a particular target or do a particular thing costs your action.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Beastspeaker",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and beast-type monsters, even ones far beyond what you could safely fight. It grants no control over an unbonded creature.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to calm, communicate with or avoid provoking wild animals and beast-type monsters",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Wild Bond",
+    "level": 5,
+    "description": "<p>You may try to tame a beast-type monster of low power (giant spider, dire wolf or similar, GM-approved). Taming takes days of exposure and a Wisdom check the GM sets by the creature's HD and temper, and can fail or provoke an attack.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Apex Bond",
+    "level": 10,
+    "description": "<p>You may try the same with a dangerous beast-type monster (a young wyvern, a manticore or a similar apex predator, GM-approved); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after a season of searching.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

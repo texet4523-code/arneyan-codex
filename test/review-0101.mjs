@@ -115,7 +115,8 @@ assert.equal(E.usesMax("3 +", {}, 2), 2, "a syntax error: the stored maximum");
 assert.equal(E.usesMax("3 - 10", {}, 2), 0, "never below 0");
 const fdoc = byName(packItems("class-features"), "Flèche", "Swashbuckler");
 const swash = makeItem(IM.ClassData, "class", "Swashbuckler", { levels: 5 });
-const fleche = makeItem(IM.AbilityData, "ability", "Fleche", { ...fdoc.system, uses: { ...fdoc.system.uses, value: 9 } });
+// (A Dexterity-modifier pool: Flèche had one before books v0.10.57.)
+const fleche = makeItem(IM.AbilityData, "ability", "Fleche", { ...fdoc.system, uses: { value: 9, max: 1, per: "day", formula: "max(1, @dex.mod)" } });
 const smite = makeItem(IM.AbilityData, "ability", "Smite", { className: "Paladin", uses: { value: 1, max: 1, per: "day", formula: "1:1, 15:2, 20:3" } });
 const pal = makeItem(IM.ClassData, "class", "Paladin", { levels: 15 });
 const broken = makeItem(IM.FeatData, "feat", "Odd", { uses: { value: 2, max: 2, per: "day", formula: "@dex.mod +* 2" } });
@@ -324,7 +325,7 @@ const M = await import("../arneyan/module/migrate.mjs");
   batches.length = 0; batches.push([...new Map(all.map(u => [u._id, u])).values()].filter(u => changed.has(u._id)));
   assert.ok(!changed.has(homebrew.id) && !changed.has(keptWoi.id), "homebrew and Keep my edits: untouched");
   assert.ok(!changed.has(cls[0].id), "classes are left alone");
-  assert.equal(oldFleche.system.uses.formula, "max(1, @dex.mod)", "Flèche's uses formula");
+  assert.equal(oldFleche.system.uses.formula, "1:1, 16:2", "Flèche's uses formula (books v0.10.57)");
   assert.equal(oldFleche.system.activities[0].cost, 1, "its attack now spends a use");
   assert.equal(oldFleche.system.uses.value, 1, "uses left kept (1, within the new maximum)");
   assert.equal(oldFleche.system.description, "<p>My notes</p>", "description kept");

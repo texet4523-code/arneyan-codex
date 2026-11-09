@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as your action, make one bow attack roll against every creature in a <strong>10ft radius</strong> within range, rolling damage separately for each.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as your action, make one bow attack against every creature in a <strong>15ft radius</strong> within long range (Longshot's range), rolling damage separately for each.</li><li>12th level: a <strong>20ft radius</strong></li><li>17th level: a <strong>30ft radius</strong>, and a second use per encounter</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "encounter"
+   "per": "encounter",
+   "formula": "1:1, 17:2"
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "As your action, make one bow attack roll against every creature in a {1:10ft, 12:15ft} radius within range, rolling damage separately for each.",
+    "text": "As your action, make one bow attack against every creature in a {1:15ft, 12:20ft, 17:30ft} radius within long range, rolling damage separately for each.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

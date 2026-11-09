@@ -1,0 +1,68 @@
+{
+ "_id": "lo7VFmTRPD7VpKro",
+ "_key": "!items!lo7VFmTRPD7VpKro",
+ "name": "Path: Hunter (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>The plain hunter's road: no beast at your side and no druid's magic, just the mark, the trail and the kill.</p><ul><li><strong>Read the Quarry (1st):</strong> when you mark a creature, you learn its weakest save and any Resistance or vulnerability it has, and you have <strong>Advantage</strong> on checks to recall what it is and how it fights.</li><li><strong>Lone Hunter (1st):</strong> <strong>Advantage</strong> on Survival checks when you hunt or travel alone or with one companion, and on checks to read a creature's size, number and wounds from its tracks.</li><li><strong>Bring Down (5th):</strong> Hunter's Tricks gain a fourth option, Bring Down: the prey makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Twin Marks (10th):</strong> you may keep two creatures marked at once; Marked Prey's <strong>Advantage</strong> and Hunter's Tricks apply to either.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Read the Quarry",
+    "level": 1,
+    "description": "<p>When you mark a creature, you learn its weakest save and any Resistance or vulnerability it has, and you have <strong>Advantage</strong> on checks to recall what it is and how it fights.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Lone Hunter",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Survival checks when you hunt or travel alone or with one companion, and on checks to read a creature's size, number and wounds from its tracks.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Bring Down",
+    "level": 5,
+    "description": "<p>Hunter's Tricks gain a fourth option, Bring Down: the prey makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort"
+   },
+   {
+    "name": "Twin Marks",
+    "level": 10,
+    "description": "<p>You may keep two creatures marked at once; Marked Prey's <strong>Advantage</strong> and Hunter's Tricks apply to either.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

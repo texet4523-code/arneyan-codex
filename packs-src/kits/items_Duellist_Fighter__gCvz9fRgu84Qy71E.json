@@ -1,0 +1,56 @@
+{
+ "_id": "gCvz9fRgu84Qy71E",
+ "_key": "!items!gCvz9fRgu84Qy71E",
+ "name": "Duellist (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>The fencing salles of Eltor, the duelling courts of Opal and any city where honour is settled with a blade. Precision over power.</p><ul><li><strong>Riposte Step:</strong> when a creature misses you with a melee attack, your next hit against it before the end of your next turn deals an extra weapon damage die.<ul><li>9th level: Riposte Step also triggers when a creature misses an ally within your reach.</li></ul></li><li><strong>Connoisseur:</strong> <strong>Advantage</strong> on checks to identify, appraise or recall lore about fine weapons and famous duellists.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Riposte Step",
+    "level": 1,
+    "description": "<p>When a creature misses you with a melee attack, your next hit against it before the end of your next turn deals an extra weapon damage die.</p><p>9th level: Riposte Step also triggers when a creature misses an ally within your reach.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Connoisseur",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify, appraise or recall lore about fine weapons and famous duellists.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify, appraise or recall lore about your chosen weapon type",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

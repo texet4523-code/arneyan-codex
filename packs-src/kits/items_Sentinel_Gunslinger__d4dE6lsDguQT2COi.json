@@ -1,0 +1,62 @@
+{
+ "_id": "d4dE6lsDguQT2COi",
+ "_key": "!items!d4dE6lsDguQT2COi",
+ "name": "Sentinel (Gunslinger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
+ "system": {
+  "description": "<p>The marksmen of the Boldock Wall and Westfront Fort, who learned precision over years of watching the Red Waste for movement.</p><ul><li><strong>Patient Aim:</strong> Dead Eye also works on a turn you moved <strong>5ft</strong> or less.<ul><li>9th level: Dead Aim also works if you moved <strong>5ft</strong> or less last turn.</li></ul></li><li><strong>Sentry's Eye:</strong> <strong>Advantage</strong> on checks to estimate range and identify distant targets, and on Perception checks on watch or sentry duty.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Gunslinger",
+  "features": [
+   {
+    "name": "Patient Aim",
+    "level": 1,
+    "description": "<p>Dead Eye also works on a turn you moved <strong>5ft</strong> or less.</p><p>9th level: Dead Aim also works if you moved <strong>5ft</strong> or less last turn.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Sentry's Eye",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to estimate range and identify distant targets, and on Perception checks on watch or sentry duty.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "estimating range or identifying targets at distance",
+      "label": ""
+     },
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or sentry duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "yT6bJwhehVQRZDvQ",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

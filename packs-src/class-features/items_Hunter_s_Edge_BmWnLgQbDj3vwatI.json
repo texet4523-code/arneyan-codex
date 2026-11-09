@@ -1,0 +1,48 @@
+{
+ "_id": "BmWnLgQbDj3vwatI",
+ "_key": "!items!BmWnLgQbDj3vwatI",
+ "name": "Hunter's Edge",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your weapon hits deal +1 damage per three Ranger levels (minimum +1); against your marked prey or favoured enemy, +1 per two Ranger levels.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Ranger",
+  "rules": [
+   {
+    "key": "damage",
+    "value": "+max(1,floor(@cl/3))",
+    "when": "weapon hits (any creature)",
+    "label": ""
+   },
+   {
+    "key": "damage",
+    "value": "+floor(@cl/2)",
+    "when": "weapon hits vs your marked prey, favoured enemy or Quarry Hunter quarry (instead)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "mTYolNxClYl3gPJt",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

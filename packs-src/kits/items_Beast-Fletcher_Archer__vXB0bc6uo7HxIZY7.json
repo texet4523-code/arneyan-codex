@@ -1,0 +1,56 @@
+{
+ "_id": "vXB0bc6uo7HxIZY7",
+ "_key": "!items!vXB0bc6uo7HxIZY7",
+ "name": "Beast-Fletcher (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>The jungle archers of Komodo Isle and the Jinia forests, who make their arrows from the beasts they hunt.</p><ul><li><strong>Rare Arrows:</strong> your Arrow Repertoire adds two arrows made from rare beasts. Venom arrow: +<strong>1d6</strong> poison, and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Poisoned</strong> until the end of its next turn. Barbed arrow: the target makes a <strong>Reflex save</strong> or its speed is halved until it spends an action to pull the barb free.<ul><li>9th level: venom arrows deal +<strong>2d6</strong> poison.</li></ul></li><li><strong>Island Craft:</strong> <strong>Advantage</strong> on Fletcher's Craft checks with improvised or natural materials instead of proper tools.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Rare Arrows",
+    "level": 1,
+    "description": "<p>Your Arrow Repertoire adds two arrows made from rare beasts.</p><ul><li>Venom arrow: +<strong>1d6</strong> poison, and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Poisoned</strong> until the end of its next turn.</li><li>Barbed arrow: the target makes a <strong>Reflex save</strong> or its speed is halved until it spends an action to pull the barb free.</li></ul><p>9th level: venom arrows deal +<strong>2d6</strong> poison.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort"
+   },
+   {
+    "name": "Island Craft",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Fletcher's Craft checks with improvised or natural materials instead of proper tools.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Fletcher's Craft with improvised or natural materials",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

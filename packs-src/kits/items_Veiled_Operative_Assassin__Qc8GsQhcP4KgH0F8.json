@@ -1,0 +1,66 @@
+{
+ "_id": "Qc8GsQhcP4KgH0F8",
+ "_key": "!items!Qc8GsQhcP4KgH0F8",
+ "name": "Veiled Operative (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<p>An assassin on the outer ring of the Veiled Ones' network, trusted with work that needs discretion over drama. Your marks aren't always meant to die; sometimes they're meant to disappear.</p><ul><li><strong>Clean Hands:</strong> after a Sneak Attack, you can Hide as part of the same action if cover or a crowd is within <strong>10ft</strong> (the Hide check still applies). <strong>Advantage</strong> on checks to pass as someone with a reason to be there.<ul><li>9th level: if that Hide succeeds, your next Sneak Attack against a creature that can't see you deals one extra Sneak Attack die.</li></ul></li><li><strong>Surveillance:</strong> <strong>Advantage</strong> on checks to surveil or tail a target unnoticed, map its routine and find its weak points.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Clean Hands",
+    "level": 1,
+    "description": "<p>After a Sneak Attack, you can Hide as part of the same action if cover or a crowd is within <strong>10ft</strong> (the Hide check still applies). <strong>Advantage</strong> on checks to pass as someone with a reason to be there.</p><p>9th level: if that Hide succeeds, your next Sneak Attack against a creature that can't see you deals one extra Sneak Attack die.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to pass as someone with a legitimate reason to be somewhere, or to extract, verify or pass intelligence untraced",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Surveillance",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to surveil or tail a target unnoticed, map its routine and find its weak points.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "surveilling or tailing a target without being noticed",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

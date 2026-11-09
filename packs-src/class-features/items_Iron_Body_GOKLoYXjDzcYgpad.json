@@ -1,0 +1,42 @@
+{
+ "_id": "GOKLoYXjDzcYgpad",
+ "_key": "!items!GOKLoYXjDzcYgpad",
+ "name": "Iron Body",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against poison, disease, paralysis, petrification and death effects.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Monk",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs poison, disease, paralysis, petrification and death effects",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "F4ugkKNsZhwE5mHp",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

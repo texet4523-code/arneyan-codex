@@ -1,0 +1,72 @@
+{
+ "_id": "pIDvLs80I6qozfyW",
+ "_key": "!items!pIDvLs80I6qozfyW",
+ "name": "Opportunist (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>A cunning fighter from any background who wins by outthinking rather than outmuscling.</p><ul><li><strong>Exploit Opening:</strong> you score a critical hit on a 19 or 20 against a creature that is <strong>Prone</strong>, <strong>Restrained</strong>, <strong>Blinded</strong> or surprised, or that an ally is flanking with you.<ul><li>9th level: when you score a critical hit, the target also has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li><li><strong>Read the Room:</strong> <strong>Advantage</strong> on Insight when reading opponents, and on checks to case a place or a situation before you act.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Exploit Opening",
+    "level": 1,
+    "description": "<p>You score a critical hit on a 19 or 20 against a creature that is <strong>Prone</strong>, <strong>Restrained</strong>, <strong>Blinded</strong> or surprised, or that an ally is flanking with you.</p><p>9th level: when you score a critical hit, the target also has <strong>Disadvantage</strong> on its next attack roll.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Exploit Opening: a critical hit on a 19 or 20 against a creature that is Prone, Restrained, Blinded or surprised, or that an ally is flanking with you.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Read the Room",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Insight when reading opponents, and on checks to case a place or a situation before you act.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Insight when reading opponents",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "casing a location or situation before acting",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 5,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

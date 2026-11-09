@@ -1,0 +1,56 @@
+{
+ "_id": "IRmJxYnSYm9v1vl0",
+ "_key": "!items!IRmJxYnSYm9v1vl0",
+ "name": "Woodland Stalker (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>The hunting bow of the Saevren wood-elves, the Nalwood wardens and the Myllnoris marches: patience, cover and the shot that arrives from nowhere.</p><ul><li><strong>Vanishing Shot:</strong> after a bow attack on a turn you moved, you can Hide as part of your movement if cover or foliage is within reach (the Hide check still applies). Climbing or moving through trees costs you no extra movement, and that movement counts for Running Shot.<ul><li>9th level: you may Hide this way on a turn you did not move.</li></ul></li><li><strong>Forest Kin:</strong> <strong>Advantage</strong> on checks to find paths and shelter in woodland, and wood-elves and forest wardens greet you as a friend.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Vanishing Shot",
+    "level": 1,
+    "description": "<p>After a bow attack on a turn you moved, you can Hide as part of your movement if cover or foliage is within reach (the Hide check still applies). Climbing or moving through trees costs you no extra movement, and that movement counts for Running Shot.</p><p>9th level: you may Hide this way on a turn you did not move.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Forest Kin",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to find paths and shelter in woodland, and wood-elves and forest wardens greet you as a friend.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to find paths and shelter in woodland",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

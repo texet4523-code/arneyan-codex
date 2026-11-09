@@ -66,8 +66,10 @@ assert.ok(/thiefDexFor\(lv\)\.some\(n => n\.toLowerCase\(\) === /.test(src("modu
 assert.ok(src("module/progression.mjs").indexOf("flags: { arneyan: { knack: true } } } });\n    }\n    // An Assassin who picks Climb") > 0, "after the Knack");
 /* HB v0.10.50 (B-F38, K58). */
 const cf = read("class-features", "items_");
-for (const sa of cf.filter(i => i.name === "Sneak Attack")) assert.ok(sa.system.rules.some(r => /you are flanking it/.test(r.when ?? "")), "flanking counts");
+// Books v0.10.57 (R-B61): the Rogue's Exploit counts a flanked creature; the Assassin's Sneak Attack its Studied target.
+assert.ok(cf.find(i => i.name === "Exploit (Sneak Attack)").system.rules.some(r => /flanked/.test(r.when ?? "")), "flanking counts");
+assert.ok(cf.find(i => i.name === "Sneak Attack" && i.system.className === "Assassin").system.rules.some(r => /Studied target/.test(r.when ?? "")));
 assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /critical hit/.test(r.value) && /Sneak Attack dice/.test(r.value)));
-assert.ok(/Against a solo, the bleeding ends when it becomes Bloodied/.test(JSON.stringify(cf.filter(i => i.system.activities?.some(a => a.name === "Slow Kill")))));
-assert.ok(/The study may be done before the fight/.test(cf.find(i => i.name === "Death Attack").system.description));
+assert.ok(/a solo stops bleeding when Bloodied/.test(JSON.stringify(cf.find(i => i.name === "Marked for Death (Improved)").system.rules)));
+assert.ok(/You may study before a fight/.test(cf.find(i => i.name === "Study").system.description));
 console.log("books0149: ok");

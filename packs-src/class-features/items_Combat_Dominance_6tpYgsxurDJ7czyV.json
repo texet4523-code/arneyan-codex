@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Combat Dominance:</strong> When every creature you attack this round is of Level up to half your character Level, you can make extra attacks (your Fighter level sets how many, below), split among them as you like.</li><li>4th level: 2 attacks per round against creatures of Level up to half your character Level</li><li>8th level: 3 attacks per round against creatures of Level up to half your character Level</li><li>12th level: 4 attacks per round against creatures of Level up to half your character Level</li><li>All but the first attack are rolled with <strong>Disadvantage</strong>. Combat Dominance replaces the Extra Attack and the off-hand attack; Flowing Strikes can still add one.</li></ul>",
+  "description": "<p>as your action, make one attack against each creature within your reach whose Level is no more than half yours. These attacks have no <strong>Advantage</strong> or <strong>Disadvantage</strong> from any source, and nothing adds an attack to them: no Press On, off-hand attack or Flowing Strikes.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,7 +19,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 4,
+  "level": 13,
   "className": "Fighter",
   "activities": [
    {
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Only when every creature you attack this round is of Level up to half yours; split the attacks among them as you like. Replaces Extra Attack and the off-hand attack; Flowing Strikes can still add one.",
+    "text": "As your action, one attack against each creature within your reach whose Level is no more than half yours (target them first). These attacks have no Advantage or Disadvantage from any source, and nothing adds an attack to them.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -37,9 +37,9 @@
     "target": "",
     "removeConditions": false,
     "bonus": "",
-    "count": "4:2, 8:3, 12:4",
+    "count": "targets",
     "weapons": "",
-    "disadvantage": "rest",
+    "disadvantage": "",
     "disUntil": 0,
     "damageBonus": "",
     "noStack": "",
@@ -53,7 +53,7 @@
  },
  "effects": [],
  "folder": "iosSCPSOMRgZoPgx",
- "sort": 4,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

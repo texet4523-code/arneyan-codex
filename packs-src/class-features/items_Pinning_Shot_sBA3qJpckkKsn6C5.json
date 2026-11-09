@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> On a hit, the target makes a <strong>Reflex save</strong> against your Class Save DC or has its movement halved for <strong>1 round</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> On a hit against a creature next to a wall, tree, mast or the ground (if <strong>Prone</strong>), it makes a <strong>Reflex save</strong> against your Class Save DC or is <strong>Restrained</strong> until it spends an action to pull the arrow free.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,16 +25,11 @@
    {
     "name": "Pinned",
     "target": "target",
-    "rounds": "1",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "speed.mult",
-      "value": "0.5",
-      "when": "",
-      "label": ""
-     }
-    ]
+    "rounds": "0",
+    "statuses": [
+     "restrained"
+    ],
+    "rules": []
    }
   ]
  },

@@ -1,0 +1,56 @@
+{
+ "_id": "n97HrctQdnq2MXNf",
+ "_key": "!items!n97HrctQdnq2MXNf",
+ "name": "Guild Crow (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<p>The Guild is the continent-wide network out of Opal; many members worship Mask. The Owl runs everything through Ravens, and Crows carry out the high-value work. Knowing who to kill and why is half the job.</p><ul><li><strong>Sanctioned Strike:</strong> a target named in a Guild contract, or one you have a Dossier on, has <strong>Disadvantage</strong> on its Death Attack save.<ul><li>9th level: your first Sneak Attack each encounter against that target deals one extra Sneak Attack die.</li></ul></li><li><strong>Crow's Papers:</strong> <strong>Advantage</strong> on Case Target checks when a Raven or Crow superior has given you the target's dossier, and you are recognised on sight by other Guild members as a Crow.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Sanctioned Strike",
+    "level": 1,
+    "description": "<p>A target named in a Guild contract, or one you have a Dossier on, has <strong>Disadvantage</strong> on its Death Attack save.</p><p>9th level: your first Sneak Attack each encounter against that target deals one extra Sneak Attack die.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Crow's Papers",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Case Target checks when a Raven or Crow superior has given you the target's dossier, and you are recognised on sight by other Guild members as a Crow.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Case Target when the dossier came from a Raven or Crow superior",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

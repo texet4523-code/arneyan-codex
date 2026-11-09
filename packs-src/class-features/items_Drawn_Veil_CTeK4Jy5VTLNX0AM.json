@@ -1,0 +1,74 @@
+{
+ "_id": "CTeK4Jy5VTLNX0AM",
+ "_key": "!items!CTeK4Jy5VTLNX0AM",
+ "name": "Drawn Veil",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> As part of your action, spend 1 Glamour: you or one ally within <strong>30ft</strong> is <strong>Invisible</strong> until the end of its next turn.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": "",
+   "pool": "Glamour"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 4,
+  "className": "Illusionist",
+  "activities": [
+   {
+    "name": "Drawn Veil",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "As part of your action: you or one ally within 30ft is Invisible until the end of its next turn.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Drawn Veil",
+    "spendAny": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Drawn Veil",
+    "target": "target",
+    "rounds": "1",
+    "statuses": [
+     "invisible"
+    ],
+    "rules": []
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 10,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

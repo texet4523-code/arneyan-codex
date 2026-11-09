@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, when reduced to <strong>0 HP</strong> or below, make a <strong>Fortitude save</strong>, DC = 10 + damage taken above <strong>0 HP</strong>. On a success, remain at <strong>1 HP</strong> and stay conscious.</li><li>Gains a second use per day at 10th level</li><li>Gains a third use per day at 20th level</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, when you are reduced to <strong>0 HP</strong> or below, you stay at <strong>1 HP</strong> instead.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,9 +15,9 @@
    "value": 1,
    "max": 1,
    "per": "day",
-   "formula": "1:1, 10:2, 20:3"
+   "formula": ""
   },
-  "save": "fort",
+  "save": "",
   "dc": null,
   "damage": "",
   "level": 1,

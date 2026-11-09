@@ -1,0 +1,88 @@
+{
+ "_id": "Q8Rzh5IxUJGo4mc7",
+ "_key": "!items!Q8Rzh5IxUJGo4mc7",
+ "name": "Press On",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</p><ul><li>No <strong>Disadvantage</strong> if your first attack missed.</li><li>After the extra attack, you may make one Trip, Disarm or Dirty Trick contest, or one Fighter Manoeuvre if it hit, against the same target for free; it doesn't count as your <strong>once per round</strong>.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 5,
+  "className": "Fighter",
+  "activities": [
+   {
+    "name": "Press On",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. After it, one Trip, Disarm or Dirty Trick contest, or one Fighter Manoeuvre if it hit, against the same target for free (not your once per round).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "2",
+    "weapons": "",
+    "disadvantage": "extra",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Press On (first attack missed)",
+    "kind": "attacks",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Your first attack missed: the extra attack has no Disadvantage. After it, one Trip, Disarm or Dirty Trick contest, or one Fighter Manoeuvre if it hit, against the same target for free (not your once per round).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "1",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "iosSCPSOMRgZoPgx",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

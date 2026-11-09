@@ -1,0 +1,68 @@
+{
+ "_id": "dyinyq8LEyIkfGqO",
+ "_key": "!items!dyinyq8LEyIkfGqO",
+ "name": "Path: Champion (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The duelling knight of the Eltor and Holfast tourneys, who wins renown one opponent at a time.</p><ul><li><strong>Tourney Blade (1st):</strong> you gain Honour Attack at 1st level, using half your Charisma modifier (minimum 1) until 6th, when it uses your full modifier.</li><li><strong>Tourney Renown (1st):</strong> <strong>Advantage</strong> on Charisma checks with nobles and knights who follow the tourneys, and a knight or noble who refuses your formal challenge to a duel loses face.</li><li><strong>Twice Challenged (5th):</strong> you may Challenge twice per encounter, on different foes.</li><li><strong>Champion's Blow (10th):</strong> once per encounter, your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled). From 17th, twice per encounter.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Tourney Blade",
+    "level": 1,
+    "description": "<p>You gain Honour Attack at 1st level, using half your Charisma modifier (minimum 1) until 6th, when it uses your full modifier.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Tourney Renown",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Charisma checks with nobles and knights who follow the tourneys, and a knight or noble who refuses your formal challenge to a duel loses face.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Twice Challenged",
+    "level": 5,
+    "description": "<p>You may Challenge twice per encounter, on different foes.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Champion's Blow",
+    "level": 10,
+    "description": "<p>Once per encounter, your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled). From 17th, twice per encounter.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

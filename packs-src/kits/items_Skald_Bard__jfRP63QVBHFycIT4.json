@@ -1,0 +1,56 @@
+{
+ "_id": "jfRP63QVBHFycIT4",
+ "_key": "!items!jfRP63QVBHFycIT4",
+ "name": "Skald (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<p>The war-song tradition of the Red Waste tribes and their allies at Treaty Hold: epic verse, battle cries and histories of the dead carried in memory, because paper doesn't survive the desert.</p><ul><li><strong>War Poem:</strong> while you recite a war-poem during combat, your Exalt also lets allies reroll 1s on weapon damage dice. Keeping the war-poem going takes part of your action each round; if it lapses, Exalt goes back to checks and saves only.<ul><li>9th level: allies reroll 1s and 2s.</li></ul></li><li><strong>Oral Historian:</strong> <strong>Advantage</strong> on Legend Lore checks on oral histories, lineages, tribal politics and old wars.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "War Poem",
+    "level": 1,
+    "description": "<p>While you recite a war-poem during combat, your Exalt also lets allies reroll 1s on weapon damage dice. Keeping the war-poem going takes part of your action each round; if it lapses, Exalt goes back to checks and saves only.</p><p>9th level: allies reroll 1s and 2s.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Oral Historian",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Legend Lore checks on oral histories, lineages, tribal politics and old wars.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Legend Lore on oral histories, lineages, tribal politics and old wars",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

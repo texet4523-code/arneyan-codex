@@ -1,0 +1,72 @@
+{
+ "_id": "pABZPl5YBwZFN2ju",
+ "_key": "!items!pABZPl5YBwZFN2ju",
+ "name": "Tree-Speaker (Druid)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<p>Druids trained in the Tanatharen Woods by Sihnora, the sentient tree who guards them; outsiders can speak with him only through a druid of this circle.</p><ul><li><strong>Voice of the Grove:</strong> one extra use of Wild Shape per day, and <strong>Advantage</strong> on Language of the Wilderlands checks with trees and plants.<ul><li>9th level: <strong>once per day</strong>, cast Entangle without expending a slot.</li></ul></li><li><strong>Ancient Communion:</strong> <strong>Advantage</strong> on checks to commune with, identify or bargain with ancient or sentient plants.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Druid",
+  "features": [
+   {
+    "name": "Voice of the Grove",
+    "level": 1,
+    "description": "<p>One extra use of Wild Shape per day, and <strong>Advantage</strong> on Language of the Wilderlands checks with trees and plants.</p><p>9th level: <strong>once per day</strong>, cast Entangle without expending a slot.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Language of the Wilderlands with trees and plant life",
+      "label": ""
+     },
+     {
+      "key": "uses.extra.wild-shape",
+      "value": "1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Ancient Communion",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to commune with, identify or bargain with ancient or sentient plants.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "communing with, identifying or negotiating with ancient or sentient plant life",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "eLpVXIYAkUFHTT3m",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

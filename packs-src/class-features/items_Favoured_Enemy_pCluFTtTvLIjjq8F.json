@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one specific creature type as favoured enemy (GM should require a creature encountered repeatedly in the character's history). Against this enemy: your first hit each round deals an extra weapon damage die and ignores its resistance, it can't hide from you, and you have +2 AC and +2 to tracking checks, and the ranger can neutralise their manufactured poisons as well as natural ones.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one specific creature type as favoured enemy (GM should require a creature encountered repeatedly in the character's history).</li><li>Against your favoured enemy, one hit of your choice each round deals an extra weapon damage die and ignores its resistance; it has <strong>Disadvantage</strong> on Hide checks against you, and its first attack against you each round has <strong>Disadvantage</strong>.</li><li>You have <strong>Advantage</strong> on checks to track it and to neutralise its poisons.</li><li>13th level: choose a second favoured enemy</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,20 +24,14 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Favoured Enemy: your first hit each round deals an extra weapon damage die and ignores its resistance.",
+    "value": "Favoured Enemy: one hit of your choice each round deals an extra weapon damage die and ignores its resistance.",
     "when": "",
     "label": ""
    },
    {
-    "key": "ac",
-    "value": "2",
-    "when": "vs your favoured enemy",
-    "label": ""
-   },
-   {
-    "key": "skill",
-    "value": "2",
-    "when": "tracking your favoured enemy",
+    "key": "adv.check",
+    "value": "1",
+    "when": "to track your favoured enemy or neutralise its poisons",
     "label": ""
    }
   ],

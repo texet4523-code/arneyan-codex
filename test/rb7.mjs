@@ -190,10 +190,10 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
 /* Knight kits: their Command options are stronger versions, no longer replacing a class feature. */
 {
   const kits = packItems("kits");
-  const hedge = kits.find(k => k.name === "Hedge Knights (Knight)").system.features.find(f => f.name === "Steadfast Courage");
+  const hedge = kits.find(k => k.name === "Path: Hedge Knight (Knight)").system.features.find(f => f.name === "Steadfast Courage");
   assert.equal(hedge.replaces ?? "", "");
   assert.deepEqual([hedge.uses.max, hedge.applies[0].rounds, hedge.applies[0].rules[0].key], [0, "encounter", "adv.save"]);
-  const wall = kits.find(k => k.name === "Boldock Wall-Knights (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
+  const wall = kits.find(k => k.name === "Path: Castellan (Knight)").system.features.find(f => f.name === "Wall-Forged Dread");
   assert.deepEqual([wall.replaces ?? "", wall.uses.max, wall.applies.length], ["", 0, 1]);
   for (const k of kits) for (const f of k.system.features ?? []) assert.ok(!/^<p>[a-z]/.test(f.description ?? ""), `${k.name}: ${f.name} starts with a capital`);
 }

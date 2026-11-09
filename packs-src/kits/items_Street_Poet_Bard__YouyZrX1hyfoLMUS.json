@@ -1,0 +1,56 @@
+{
+ "_id": "YouyZrX1hyfoLMUS",
+ "_key": "!items!YouyZrX1hyfoLMUS",
+ "name": "Street Poet (Bard)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-lyre.svg",
+ "system": {
+  "description": "<p>A voice of the underclass in Mournas and every city like it: satirists, protest singers, broadsheet writers. Art as disruption.</p><ul><li><strong>Hostile Crowd:</strong> Sway Crowd works even on an actively hostile crowd if you can perform for at least <strong>1 round</strong> uninterrupted. When a creature fails its save against your Discord, one ally who can hear you can move up to half their speed towards it without provoking.<ul><li>9th level: the ally can move its full speed.</li></ul></li><li><strong>Underground Voice:</strong> <strong>Advantage</strong> on Legend Lore checks on a city's criminal history, underground movements and rebellions.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Bard",
+  "features": [
+   {
+    "name": "Hostile Crowd",
+    "level": 1,
+    "description": "<p>Sway Crowd works even on an actively hostile crowd if you can perform for at least <strong>1 round</strong> uninterrupted. When a creature fails its save against your Discord, one ally who can hear you can move up to half their speed towards it without provoking.</p><p>9th level: the ally can move its full speed.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Underground Voice",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Legend Lore checks on a city's criminal history, underground movements and rebellions.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Legend Lore on Mournas's criminal history, underground movements or the Rebellion",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "LypZwjxW3jaKJdry",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,66 @@
+{
+ "_id": "zDMRX1wfcZ7EVA2X",
+ "_key": "!items!zDMRX1wfcZ7EVA2X",
+ "name": "Wall Archer (Archer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bowman.svg",
+ "system": {
+  "description": "<p>The volley archers of the Boldock Wall and Westfront Fort: coordinated fire from the battlements.</p><ul><li><strong>Volley Timing:</strong> one bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances.<ul><li>9th level: that hit also deals an extra weapon damage die.</li></ul></li><li><strong>Sentry's Patience:</strong> <strong>Advantage</strong> on Perception checks on watch or sentry duty.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Archer",
+  "features": [
+   {
+    "name": "Volley Timing",
+    "level": 1,
+    "description": "<p>One bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances.</p><p>9th level: that hit also deals an extra weapon damage die.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Volley Timing: {1:one bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances, 9:one bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances and deals an extra weapon damage die}.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sentry's Patience",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Perception checks on watch or sentry duty.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Perception during watch or sentry duty",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "9kG3U0bA5bTSNyXX",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

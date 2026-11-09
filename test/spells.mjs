@@ -73,11 +73,12 @@ assert.ok(!cf.some(d => d.name === "GM rolls secretly"), "no stray 'GM rolls sec
 const skills = cf.filter(d => d.name === "Assassin's Skills");
 assert.equal(skills.length, 1);
 const sk = plain(skills[0].system.description);
-for (const w of ["Case Target (Wisdom)", "Climb (Dexterity)", "Disguise (Charisma)", "GM rolls secretly.", "Hide (Dexterity)", "Identify Poison (Intelligence)", "Listen (Wisdom)", "Move Silently (Dexterity)", "Traps (Intelligence)"]) {
+// Books v0.10.57 (R-B61): trained in Climb, Disguise and Traps, with short lines for the rest.
+for (const w of ["Case Target (Wisdom)", "You roll Climb with Dexterity", "Disguise (Charisma)", "The GM rolls secretly", "Hide, Move Silently (Dexterity) and Listen (Wisdom)", "Identify Poison (Intelligence)", "Master in Traps from 7th level"]) {
   assert.ok(sk.includes(w), `Assassin's Skills: ${w}`);
 }
 const assassin = pack("classes").find(d => d.name === "Assassin");
-assert.deepEqual(assassin.system.features.filter(f => f.level === 1).map(f => f.name), ["Class Skills", "Death Attack", "Sneak Attack", "First Blood", "Killer's Precision", "Assassin's Skills"]);
+assert.deepEqual(assassin.system.features.filter(f => f.level === 1).map(f => f.name), ["Class Skills", "Study", "Death Attack", "Sneak Attack", "First Blood", "Killer's Precision", "Assassin's Skills"]);
 assert.ok(!assassin.system.description.includes("<h4>GM rolls secretly</h4>"));
 
 console.log("OK spells");

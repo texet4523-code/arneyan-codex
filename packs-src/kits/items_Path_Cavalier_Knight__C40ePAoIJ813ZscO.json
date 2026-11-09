@@ -1,0 +1,84 @@
+{
+ "_id": "C40ePAoIJ813ZscO",
+ "_key": "!items!C40ePAoIJ813ZscO",
+ "name": "Path: Cavalier (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The mounted knight: the Knights of Holfast, steeped in mounted war and formal doctrine, and the Eltor Cavalry Guard, the lance-and-horse elite of the Eltor court.</p><ul><li><strong>Saddle-Born (1st):</strong> while you are mounted, your Challenge reaches <strong>60ft</strong> and a foe need only see you, not hear you. Your mount has <strong>Advantage</strong> on saves against fear and against effects that would unseat you.</li><li><strong>The Order's Name (1st):</strong> <strong>Advantage</strong> on Persuasion and Intimidation checks when invoking your order's name, and on checks to judge a horse's quality.</li><li><strong>Lancer's Charge (5th):</strong> a mounted charge triples the lance's damage dice instead of doubling them (flat modifiers are not multiplied).</li><li><strong>Mounted Champion (10th):</strong> once per encounter, your first hit while mounted on your Challenged foe doubles the weapon's damage dice. From 17th, Honour Attack triples them instead of doubling them.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Saddle-Born",
+    "level": 1,
+    "description": "<p>While you are mounted, your Challenge reaches <strong>60ft</strong> and a foe need only see you, not hear you. Your mount has <strong>Advantage</strong> on saves against fear and against effects that would unseat you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "The Order's Name",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Persuasion and Intimidation checks when invoking your order's name, and on checks to judge a horse's quality.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Persuasion and Intimidation when invoking your order's name",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to judge a horse's quality",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Lancer's Charge",
+    "level": 5,
+    "description": "<p>A mounted charge triples the lance's damage dice instead of doubling them (flat modifiers are not multiplied).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Mounted Champion",
+    "level": 10,
+    "description": "<p>Once per encounter, your first hit while mounted on your Challenged foe doubles the weapon's damage dice. From 17th, Honour Attack triples them instead of doubling them.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

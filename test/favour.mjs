@@ -172,8 +172,8 @@ const b2 = JSON.stringify(book2);
 assert.match(b2, /pull a mortal towards Evil/);
 assert.match(b2, /Gods, fiends, celestials and the undead have one by nature/);
 assert.match(b2, /DC 12 check with your key attribute/);
-const bard = pack("class-features").find(x => x.name === "Change Alignment");
-assert.match(bard.system.description, /their Outlook shifts one step/);
+// The Bard's Change Alignment was cut (books v0.10.57, R-B63).
+assert.ok(!pack("class-features").some(x => x.name === "Change Alignment"));
 
 /* Worlds: a kit copy from before gets the alignment and wiki page; a GM's own alignment stays. */
 const old = { type: "kit", name: "Deity: Abadar (Cleric)", system: { className: "Cleric", alignment: "", features: [] }, flags: {} };

@@ -1,0 +1,98 @@
+{
+ "_id": "gVuTPk2exlMMJDzM",
+ "_key": "!items!gVuTPk2exlMMJDzM",
+ "name": "Path: Hedge Knight (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The landless knight: untitled and unsponsored, some left without a lord and others self-made in battle. No keep, no banner, just the code you chose.</p><ul><li><strong>Steadfast Courage (1st):</strong> you know the Embolden Command from 1st level rather than 9th; it reaches <strong>60ft</strong>, and companions and followers in range have <strong>Advantage</strong> on all saves.</li><li><strong>Common Ground (1st):</strong> <strong>Advantage</strong> on Charisma checks with common folk, mercenaries and anyone who distrusts titled nobility.</li><li><strong>Captain of Commoners (5th):</strong> allied hirelings, followers and common folk who can see you have <strong>Advantage</strong> on morale checks.</li><li><strong>Banner Without a Keep (10th):</strong> a squire and <strong>1d6</strong> commoners (all Level 0) travel with you; any who fall or leave are replaced each season.</li><li>Your scutage pays them, 3 gp a month each.</li><li>From 20th, your Renown: Castle needs no castle: followers gather wherever you hold a camp or a hall for a season.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Steadfast Courage",
+    "level": 1,
+    "description": "<p>You know the Embolden Command from 1st level rather than 9th. It reaches <strong>60ft</strong>, and companions and followers in range have <strong>Advantage on all saves</strong>. When you give Embolden, apply this in place of the usual Emboldened.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [
+     {
+      "name": "Emboldened (Steadfast Courage)",
+      "target": "target",
+      "rounds": "encounter",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.save",
+        "value": "1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ],
+    "replaces": ""
+   },
+   {
+    "name": "Common Ground",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Charisma checks with common folk, mercenaries and anyone who distrusts titled nobility.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with common folk, mercenaries, or anyone who distrusts titled nobility",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Captain of Commoners",
+    "level": 5,
+    "description": "<p>Allied hirelings, followers and common folk who can see you have <strong>Advantage</strong> on morale checks.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Banner Without a Keep",
+    "level": 10,
+    "description": "<p>A squire and <strong>1d6</strong> commoners (all Level 0) travel with you; any who fall or leave are replaced each season.</p><ul><li>Your scutage pays them, 3 gp a month each.</li><li>From 20th, your Renown: Castle needs no castle: followers gather wherever you hold a camp or a hall for a season.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,56 @@
+{
+ "_id": "MrnBoL13grjKz5wD",
+ "_key": "!items!MrnBoL13grjKz5wD",
+ "name": "Hermit (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>The ascetics of the Hollow Mountain and other remote places, who practise alone, with no students and no lineage.</p><ul><li><strong>Mountain Communion:</strong> on a turn in which you do not move, the target of your Stun Attack has <strong>Disadvantage</strong> on its save. Fast Healing doubles when you meditate outdoors in natural surroundings for <strong>12 hours</strong>.<ul><li>9th level: on a turn you do not move, the first attack against you before your next turn has <strong>Disadvantage</strong>.</li></ul></li><li><strong>Unshaken Mind:</strong> you have Iron Mind from 1st level, not 8th.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Mountain Communion",
+    "level": 1,
+    "description": "<p>On a turn in which you do not move, the target of your Stun Attack has <strong>Disadvantage</strong> on its save. Fast Healing doubles when you meditate outdoors in natural surroundings for <strong>12 hours</strong>.</p><p>9th level: on a turn you do not move, the first attack against you before your next turn has <strong>Disadvantage</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Unshaken Mind",
+    "level": 1,
+    "description": "<p>You have Iron Mind from 1st level, not 8th.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs mind-affecting effects",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

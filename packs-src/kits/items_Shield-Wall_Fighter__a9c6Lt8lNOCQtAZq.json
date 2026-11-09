@@ -1,0 +1,66 @@
+{
+ "_id": "a9c6Lt8lNOCQtAZq",
+ "_key": "!items!a9c6Lt8lNOCQtAZq",
+ "name": "Shield-Wall (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>The shield-walls of Dul Khagul and its Jotunas allies, the Boldock Wall, and any drilled company that fights shoulder to shoulder.</p><ul><li><strong>Shield Wall:</strong> while you carry a shield, ranged attacks against you and an adjacent ally have <strong>Disadvantage</strong>.<ul><li>9th level: Shield Wall covers every ally adjacent to you.</li></ul></li><li><strong>Drilled:</strong> <strong>Advantage</strong> on etiquette checks with soldiers and dwarven clans, and you are trusted on sight by any company that fights in a shield-wall.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Shield Wall",
+    "level": 1,
+    "description": "<p>While you carry a shield, ranged attacks against you and an adjacent ally have <strong>Disadvantage</strong>.</p><p>9th level: Shield Wall covers every ally adjacent to you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.against.ranged",
+      "value": "-1",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Drilled",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on etiquette checks with soldiers and dwarven clans, and you are trusted on sight by any company that fights in a shield-wall.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "etiquette with soldiers and dwarven clans",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

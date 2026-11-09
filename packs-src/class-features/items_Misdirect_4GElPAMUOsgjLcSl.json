@@ -1,0 +1,63 @@
+{
+ "_id": "4GElPAMUOsgjLcSl",
+ "_key": "!items!4GElPAMUOsgjLcSl",
+ "name": "Misdirect",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Once a round, out of turn, when a creature you can see attacks you, spend 1 Glamour: it makes a <strong>Will save</strong> against your Class Save DC. On a failure the attack hits an illusory double and misses.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": "",
+   "pool": "Glamour"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist",
+  "activities": [
+   {
+    "name": "Misdirect",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Once a round, out of turn, when a creature you can see attacks you: it makes a Will save against your Class Save DC; on a failure the attack hits an illusory double and misses.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": true,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,61 @@
+{
+ "_id": "UckUIv8wZJ7Uuob2",
+ "_key": "!items!UckUIv8wZJ7Uuob2",
+ "name": "Renown: Castle",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> You may found a castle (see Renown in The Arneyan Codex); each season <strong>2d10</strong> followers (Level 0) and one 1st-level Knight come to your banner, and you choose who stays.</li><li>Your scutage pays them: 3 gp a month for a follower, 4 gp a month per Level for a Knight.</li><li>While you hold it, a follower who has served a year may be knighted, as under Conversion to Knighthood.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 20,
+  "className": "Knight",
+  "activities": [
+   {
+    "name": "Followers this season",
+    "kind": "roll",
+    "formula": "2d10",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Followers (Level 0) and one 1st-level Knight who come to your castle this season; you choose who stays. Scutage pays 3 gp a month for a follower and 4 gp a month per Level for a Knight.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "season",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "CGUojR3z1P04gXa2",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

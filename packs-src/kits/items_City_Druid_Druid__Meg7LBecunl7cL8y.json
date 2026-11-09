@@ -1,0 +1,82 @@
+{
+ "_id": "Meg7LBecunl7cL8y",
+ "_key": "!items!Meg7LBecunl7cL8y",
+ "name": "City Druid (Druid)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
+ "system": {
+  "description": "<p>The independent circle of Mournas, outside the Cabal, and the hedge-druids of Opal's gardens: the wild that lives in walls, gutters and gardens.</p><ul><li><strong>Urban Swarm:</strong> in a town or city, one creature of your choice you hit with a spell each round has <strong>Disadvantage</strong> on its next attack roll, as the rats and pigeons swarm it. <strong>Advantage</strong> on Dismiss Woodland Creatures checks in or under a city.<ul><li>9th level: the swarm also comes outside towns, wherever rats, birds or insects can reach.</li></ul></li><li><strong>City's Wild:</strong> <strong>Advantage</strong> on checks to find shelter, safe passage or allies in a city through its wild things: the rats in the walls, the moss on the stones, the gardens between buildings.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Druid",
+  "features": [
+   {
+    "name": "Urban Swarm",
+    "level": 1,
+    "description": "<p>In a town or city, one creature of your choice you hit with a spell each round has <strong>Disadvantage</strong> on its next attack roll, as the rats and pigeons swarm it. <strong>Advantage</strong> on Dismiss Woodland Creatures checks in or under a city.</p><p>9th level: the swarm also comes outside towns, wherever rats, birds or insects can reach.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Dismiss Woodland Creatures vs creatures in or beneath a city",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false,
+    "applies": [
+     {
+      "name": "Rats and Pigeons",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "City's Wild",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to find shelter, safe passage or allies in a city through its wild things: the rats in the walls, the moss on the stones, the gardens between buildings.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to find shelter, safe passage or allies in a city through its wild things",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "eLpVXIYAkUFHTT3m",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

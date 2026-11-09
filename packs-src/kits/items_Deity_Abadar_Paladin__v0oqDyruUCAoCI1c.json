@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Crossbow, Light</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on checks to appraise, bargain or spot a forgery, and on saves against charm. Once/day: compel a creature to honour a contract it agreed to (<strong>Will save</strong> negates).</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508951\">Abadar</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Crossbow, Light</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on checks to appraise, bargain or spot a forgery, and on saves against charm. Your Smite deals double its radiant damage to a creature that has broken its word to you or an ally.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508951\">Abadar</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,13 @@
    {
     "name": "Granted Power (Abadar)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to appraise, bargain or spot a forgery, and on saves against charm. Once/day: compel a creature to honour a contract it agreed to (<strong>Will save</strong> negates).</p><p><strong>Favoured weapon:</strong> Crossbow, Light</p>",
+    "description": "<p><strong>Advantage</strong> on checks to appraise, bargain or spot a forgery, and on saves against charm. Your Smite deals double its radiant damage to a creature that has broken its word to you or an ally.</p><p><strong>Favoured weapon:</strong> Crossbow, Light</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": "will",
+    "save": "",
     "rules": [
      {
       "key": "adv.check",

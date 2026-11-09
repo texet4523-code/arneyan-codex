@@ -397,7 +397,7 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
 {
   setGM(true);
   const C8 = "Compendium.arneyan.";
-  const kit = { uuid: `${C8}kits.Item.k1`, name: "The Heavy Hand (Fighter)", type: "kit", system: { className: "Fighter" } };
+  const kit = { uuid: `${C8}kits.Item.k1`, name: "Heavy Hand (Fighter)", type: "kit", system: { className: "Fighter" } };
   const deity = { uuid: `${C8}kits.Item.k2`, name: "Deity: Bane (Fighter)", type: "kit", system: { className: "Fighter" } };
   const other = { uuid: `${C8}kits.Item.k3`, name: "Sneak (Rogue)", type: "kit", system: { className: "Rogue" } };
   const feat = { uuid: `${C8}feats.Item.f1`, name: "Diehard", type: "feat", system: { path: "General Path" } };
@@ -437,13 +437,13 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
     "Tess: starting Skills (Step 3 of 4)", "Tess: 1st-level Fighter (Step 4 of 4)", "Tess: starting money"]);
   assert.ok(seen[0].content.includes("Max HP is set to <strong>10</strong>"), "the HP line heads step 1");
   assert.ok(!seen[1].content.includes("Max HP is set"), "and only step 1");
-  assert.ok(seen[0].content.includes('arn-pick-group">Deity<') && seen[0].content.includes(">Bane<") && seen[0].content.includes(">The Heavy Hand<"), "kits grouped, class name dropped");
+  assert.ok(seen[0].content.includes('arn-pick-group">Deity<') && seen[0].content.includes(">Bane<") && seen[0].content.includes(">Heavy Hand<"), "kits grouped, class name dropped");
   assert.ok(!seen[0].content.includes("Sneak"), "only this class's kits");
   const sc = seen[2].content;
   assert.ok(sc.includes('type="checkbox"') && sc.includes("0 of 3 chosen"), "skills: pick three");
   assert.ok(sc.indexOf(">Strength<") < sc.indexOf(">Dexterity<") && sc.indexOf(">Dexterity<") < sc.indexOf(">Intelligence<"), "grouped by attribute in sheet order");
-  assert.ok(seen[3].content.includes("The Heavy Hand") && seen[3].content.includes("Riding, Swimming, Lore"), "the last step lists the choices");
-  assert.deepEqual(actor.created.map(c => c.name), ["The Heavy Hand (Fighter)", "Riding", "Swimming", "Lore"]);
+  assert.ok(seen[3].content.includes("Heavy Hand") && seen[3].content.includes("Riding, Swimming, Lore"), "the last step lists the choices");
+  assert.deepEqual(actor.created.map(c => c.name), ["Heavy Hand (Fighter)", "Riding", "Swimming", "Lore"]);
   assert.equal(actor.created[0]._stats.compendiumSource, kit.uuid);
   assert.equal(atGold, 4, "the kit and skills are on before starting gold (an Artificer's toolkit follows the kit)");
   assert.equal(actor.system.luck.start, 13, "Starting Luck rolled");
@@ -485,7 +485,7 @@ const take = (o, vals) => o.buttons[0].callback(null, { form: {
   DialogV2.wait = async o => { seen.push(o.window.title); return answer(o, { kit: o => take(o, [kit.uuid]), feat: "skip" }); };
   assert.equal(await P.firstLevelSetup(actor, cls), "gold");
   assert.deepEqual(seen, ["Tess: Fighter Kit (Step 1 of 4)", "Tess: 1st-level Feat (Step 2 of 4)", "Tess: starting money"]);
-  assert.deepEqual(actor.created.map(c => c.name), ["The Heavy Hand (Fighter)"]);
+  assert.deepEqual(actor.created.map(c => c.name), ["Heavy Hand (Fighter)"]);
   assert.equal(actor.system.luck.start, 0);
 
   // Closed (X) part way: nothing chosen is added, no starting gold; HP is still set.

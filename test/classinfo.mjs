@@ -15,7 +15,7 @@ const C = await import("../arneyan/module/classinfo.mjs");
   assert.equal(t.rows.length, 24);
   assert.deepEqual(t.slotCols, [], "a Fighter has no spell slots");
   assert.equal(t.rows[0].bth, "+0"); assert.equal(t.rows[11].bth, "+8", "+8 at 12th (Martial)"); assert.equal(t.rows[23].bth, "+16");
-  assert.ok(t.rows[0].gains.includes("Weapon Specialisation") && t.rows[3].gains.includes("Combat Dominance"));
+  assert.ok(t.rows[0].gains.includes("Weapon Specialisation") && t.rows[12].gains.includes("Combat Dominance"), "Combat Dominance at 13th (books v0.10.57)");
   assert.deepEqual(t.rows.filter(r => r.feat).map(r => r.level), f.system.featLevels);
 }
 // Wizard: the slot columns it uses, cantrips first.

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one weapon to master: gain +1 damage and +1 to attack rolls while wielding it, and <strong>once per round</strong> you may reroll one missed attack roll with it. The weapon becomes an extension of the body: Stun Attack, Deflect Missiles and Death Strike can all be performed with the mastered weapon, extending those abilities' reach and style.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one monk weapon: Stun Attack, Deflect and Death Strike work through it as if you were unarmed, and it uses your unarmed damage if that is higher.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,23 +20,7 @@
   "dc": null,
   "damage": "",
   "level": 4,
-  "className": "Monk",
-  "rules": [
-   {
-    "key": "attack",
-    "value": "1",
-    "when": "with your mastered weapon",
-    "label": ""
-   },
-   {
-    "key": "damage",
-    "value": "1",
-    "when": "with your mastered weapon",
-    "label": ""
-   }
-  ],
-  "toggle": false,
-  "active": false
+  "className": "Monk"
  },
  "effects": [],
  "folder": "F4ugkKNsZhwE5mHp",

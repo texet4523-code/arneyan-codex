@@ -8,10 +8,12 @@ const packDocs = (dir, prefix = "items_") => fs.readdirSync(new URL(`../packs-sr
 const features = packDocs("class-features");
 // Books v0.10.38 (Fable M5): Sorcerer's Spark gave way to Wild Surge improves (5th and 20th), keeping its ids.
 const surge = features.filter(f => f.name === "Wild Surge improves" && f.system.className === "Sorcerer");
-// Books v0.10.41 adds a third at 13th (a new id); the 5th and 20th keep the Spark's.
-assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY", "oJxxsvpo4WgI1u92"]);
+// Books v0.10.41 adds a third at 13th (a new id); the 5th keeps the Spark's. Books v0.10.57 (R-B63): the 20th is
+// Renown: Bloodline Seat, on the 20th's id.
+assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY"]);
+assert.equal(features.find(f => f.name === "Renown: Bloodline Seat")._id, "oJxxsvpo4WgI1u92");
 assert.ok(!features.some(f => /^Sorcerer's Spark/.test(f.name)));
-const guard = packDocs("kits").find(k => k.name === "Mournas Liberator (Fighter)").system.features[0];
+const guard = packDocs("kits").find(k => k.name === "Liberator (Fighter)").system.features[0];
 assert.ok(/^<p>Once per round/.test(guard.description), guard.description);
 assert.equal(guard.applies[0].rules[0].key, "adv.against");
 const imp = packDocs("monsters", "actors_").find(m => m.name === "Imp");

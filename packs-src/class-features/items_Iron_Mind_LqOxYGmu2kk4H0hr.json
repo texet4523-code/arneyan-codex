@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your Iron Discipline save bonus now also applies against confusion, charm, fear and mind-affecting spells, at the Iron Mind value in the Monk Progression Table.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against charm, fear, confusion and other mind-affecting effects.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,11 +20,21 @@
   "dc": null,
   "damage": "",
   "level": 8,
-  "className": "Monk"
+  "className": "Monk",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "1",
+    "when": "vs charm, fear, confusion and other mind-affecting effects",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "F4ugkKNsZhwE5mHp",
- "sort": 12,
+ "sort": 11,
  "ownership": {
   "default": 0
  },

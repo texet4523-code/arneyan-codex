@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose a second school for School Focus. The save DC of your spells of that school is also increased by 1.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose a second school for School Focus, with a second extra slot for a spell of that school.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,17 +20,7 @@
   "dc": null,
   "damage": "",
   "level": 10,
-  "className": "Wizard",
-  "rules": [
-   {
-    "key": "spell.dc",
-    "value": "1",
-    "when": "spells of your second chosen school",
-    "label": ""
-   }
-  ],
-  "toggle": false,
-  "active": false
+  "className": "Wizard"
  },
  "effects": [],
  "folder": "ZIH0gIdHjvUp1Jp5",

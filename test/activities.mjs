@@ -113,23 +113,33 @@ foundry.applications.api.DialogV2.wait = async ({ buttons }) => buttons[0].callb
 shots = await fire(twin, 5, { items: [bow] });
 assert.deepEqual(shots.map(s => s.targets.map(t => t.name)), [["Goblin"], ["Ogre"]], "one arrow at each target");
 
-/* Combat Dominance: 2/3/4 attacks at 4th/8th/12th, all but the first at Disadvantage, Level up to half yours. */
+/* Combat Dominance (books v0.10.57, K92): at 13th, one attack against each creature in reach (each target), none with
+   Disadvantage, Level up to half yours. */
 const dom = dataOf("Combat Dominance", "Fighter");
 warnings.length = 0;
-shots = await fire(dom, 8, { name: "Combat Dominance", cls: "Fighter", items: [sword] });
-assert.equal(shots.length, 3);
-assert.ok(shots[0].adv === null && shots[1].adv.values[0] === -1 && shots[2].adv.values[0] === -1, "all but the first at Disadvantage");
-assert.ok(warnings.some(w => w.includes("Ogre") && w.includes("Level 4")), "the Level 7 ogre is above half of 8");
+shots = await fire(dom, 13, { name: "Combat Dominance", cls: "Fighter", items: [sword] });
+assert.equal(shots.length, 2, "one attack at each of the two targets");
+assert.ok(shots.every(s => s.adv === null), "no Disadvantage");
+assert.deepEqual(shots.map(s => s.targets.map(t => t.name)), [["Goblin"], ["Ogre"]]);
 assert.ok(!warnings.some(w => w.includes("Goblin")));
-assert.equal((await fire(dom, 12, { name: "Combat Dominance", cls: "Fighter", items: [sword] })).length, 4);
-assert.equal((await fire(dom, 4, { name: "Combat Dominance", cls: "Fighter", items: [sword] })).length, 2);
+assert.ok(warnings.some(w => w.includes("Ogre") && w.includes("Level 6")), "the Level 7 ogre is above half of 13");
 game.user.targets = new Set();
 
 /* Extra Attack: two attacks, the second at Disadvantage that no Advantage cancels (books v0.10.38), every class that has it. */
-for (const d of built.filter(i => /^Extra Attack/.test(i.name))) {
+// Books v0.10.57 (R-B62): the martials' Extra Attack has its own name at 5th, and a second button for when its
+// condition lifts the Disadvantage.
+const NAMED_EXTRA = ["Press On", "Savage Swing", "Challenger's Blow", "Cut and Run", "Twist the Knife", "Quarry Strike", "Dazzling Combo", "Two-Gun Shot"];
+const extras = built.filter(i => /^Extra Attack/.test(i.name) || NAMED_EXTRA.includes(i.name));
+assert.ok(extras.filter(i => NAMED_EXTRA.includes(i.name)).length === 8, "all eight named Extra Attacks are built");
+for (const d of extras) {
   assert.equal(d.system.activities?.[0]?.kind, "attacks", `${d.name} (${d.system.className}) attacks`);
   assert.equal(d.system.activities[0].count, "2");
   assert.equal(d.system.activities[0].disadvantage, "extra");
+  if (NAMED_EXTRA.includes(d.name)) {
+    assert.equal(d.system.level, 5, `${d.name} at 5th`);
+    const free = d.system.activities[1];
+    assert.ok(free?.kind === "attacks" && free.disadvantage === "", `${d.name}: a button without Disadvantage`);
+  }
 }
 
 /* Primeval Instincts: books v0.10.26 (K15) give Advantage on physical checks in extreme circumstances, not +4: no
@@ -149,15 +159,11 @@ assert.ok(prim.rules.some(r => r.key === "adv.check.str" && Number(r.value) > 0)
   assert.equal(msg.flags.arneyan.bonus, 6, "+2 Dexterity and +4");
 }
 
-/* Holy Campaign: troops rolled by level; Corruption is the GM's secret roll. */
-const holy = dataOf("Holy Campaign", "Cleric");
-for (const [lvl, f] of [[18, "1d100"], [19, "2d100"], [23, "4d100"]]) {
-  const { item } = feature({ ...holy, name: "Holy Campaign" }, { level: lvl, cls: "Cleric" });
-  const rolls = item.availableActivities.filter(a => a.kind === "roll");
-  assert.deepEqual(rolls.map(a => a.formula), [f, f], `two troop rolls of ${f} at ${lvl}`);
-  posted.length = 0;
-  await item._useActivity(item.availableActivities.find(a => a.kind === "note"), {});
-  assert.ok(posted[0].content.includes(`<strong>${lvl >= 23 ? 3 : lvl >= 19 ? 2 : 1}</strong>`), "the campaign bonus by level");
+/* Renown: Temple (books v0.10.57, R-B63; Holy Campaign folded in): the season's faithful rolled; Corruption is the
+   GM's secret roll. */
+{
+  const { item } = feature({ ...dataOf("Renown: Temple", "Cleric"), name: "Renown: Temple" }, { level: 20, cls: "Cleric" });
+  assert.deepEqual(item.availableActivities.filter(a => a.kind === "roll").map(a => a.formula), ["2d6"], "the season's faithful");
 }
 {
   const { item } = feature({ ...dataOf("Corruption", "Sorcerer"), name: "Corruption" }, { level: 5, cls: "Sorcerer" });
@@ -186,7 +192,7 @@ assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "
   assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
 }
 assert.equal(dataOf("Command: Embolden", "Knight").save, "");
-for (const [n, c] of [["Evasion", "Rogue"], ["Battle Space (Master)", "Fighter"], ["Signature Style", "Assassin"]]) assert.equal(dataOf(n, c).save, "", `${n}: no save of its own`);
+for (const [n, c] of [["Evasion", "Rogue"], ["Signature Style", "Assassin"]]) assert.equal(dataOf(n, c).save, "", `${n}: no save of its own`);
 assert.equal(dataOf("Pinning Shot", "Archer").save, "ref", "a save the feature calls for stays");
 
 /* Feats: uses read from the text (session, encounter), and their activities. */
@@ -231,7 +237,7 @@ assert.equal(ilmater.activities[0].formula, "2d8 + @wis.mod");
 const akadi = kitFeat("Deity: Akadi (Cleric)", "Granted Power (Akadi)");
 assert.deepEqual([akadi.damage, akadi.damageType, akadi.save, akadi.uses.max], ["3d6", "lightning", "ref", 1]);
 // Books v0.10.26 (K15): Drake's Fury is Advantage on physical checks in natural wilderness, not +6 check buttons.
-assert.ok(!(kitFeat("Followers of Drake (Barbarian)", "Drake's Fury").activities ?? []).length, "Drake's Fury: no +6 check buttons");
+assert.ok(!(kitFeat("Drake's Followers (Barbarian)", "Drake's Fury").activities ?? []).length, "Drake's Fury: no +6 check buttons");
 {
   const { syncKitFeatures } = await import("../arneyan/module/progression.mjs");
   const created = [];
@@ -291,10 +297,10 @@ for (const d of [...built, ...feats, ...actions]) {
   assert.equal(made.length, 1, "used again while it's on: no second copy");
 }
 
-/* Uses from a formula: Flèche (Dexterity modifier a day, minimum 1), and its attack spends one. */
+/* Uses from a formula: Flèche (books v0.10.57: once per encounter, twice from 16th), and its attack spends one. */
 const fl = dataOf("Flèche", "Swashbuckler");
-assert.equal(fl.uses.formula, "max(1, @dex.mod)");
-assert.equal(fl.uses.per, "day");
+assert.equal(fl.uses.formula, "1:1, 16:2");
+assert.equal(fl.uses.per, "encounter");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
 const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
   "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
@@ -362,18 +368,19 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
    spends one use per option (two for the big ones); Lay on Hands spends any number of points (`spendAny`). */
 {
   const cmd = dataOf("Command (Charisma)", "Knight");
-  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 3, 1], ["Demoralise", 5, 1], ["Expert in Arms", 9, 1]]);
-  assert.ok(cmd.applies.every(e => e.name === "Expert in Arms" ? e.rounds === "1" : e.rounds === "encounter"), "Commands last the encounter");
-  const { item } = feature({ ...cmd, name: "Command (Charisma)", uses: { value: 3, max: 3, per: "day", formula: "" } }, { level: 5, cls: "Knight" });
-  assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Embolden", "Demoralise"], "Expert in Arms from 9th");
-  assert.ok(item.availableActivities[0].text.includes("Rallying Cry"), "Rallying Cry rides on every Command from 4th");
+  // Books v0.10.57 (R-B61): Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone.
+  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 9, 1], ["Demoralise", 7, 1], ["Expert in Arms", 3, 1]]);
+  assert.ok(cmd.applies.every(e => e.name === "Demoralised (failed save)" ? e.rounds === "1" : e.rounds === "encounter"), "Commands last the encounter; Demoralise's Frightened a round");
+  const { item } = feature({ ...cmd, name: "Command (Charisma)", uses: { value: 3, max: 3, per: "day", formula: "" } }, { level: 7, cls: "Knight" });
+  assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Demoralise", "Expert in Arms"], "Embolden from 9th");
+  assert.ok(!item.availableActivities[0].text.includes("Rallying Cry"));
   posted.length = 0;
   await item._useActivity(item.availableActivities.find(a => a.name === "Inspire"), {});
   const card = posted.at(-1).content;
   assert.ok(card.includes("Apply Inspired to targets") && !card.includes("Emboldened") && !card.includes("Demoralised"), "Inspire offers only Inspired");
   assert.equal(item.system.uses.value, 2, "one use spent");
   await item._useActivity(item.availableActivities.find(a => a.name === "Demoralise"), {});
-  assert.ok(posted.at(-1).content.includes("Apply Demoralised to targets") && posted.at(-1).content.includes("Apply Demoralised (failed save) to targets"));
+  assert.ok(posted.at(-1).content.includes("Apply Demoralised (failed save) to targets"));
   const perfItem = feature({ ...dataOf("Performance (Charisma)", "Bard"), name: "Performance (Charisma)", uses: { value: 9, max: 9, per: "day", formula: "" } }, { level: 5, cls: "Bard" }).item;
   await perfItem._useActivity(perfItem.availableActivities.find(a => a.name === "Rally"), {});
   assert.ok(!posted.at(-1).content.includes("Apply "), "an option naming no effect offers none on a pool (Rally)");

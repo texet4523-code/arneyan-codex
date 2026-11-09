@@ -1,0 +1,66 @@
+{
+ "_id": "pGxznlNS2jkU7pAN",
+ "_key": "!items!pGxznlNS2jkU7pAN",
+ "name": "Street Fighter (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>The street brawlers of the Mournas underground and Opal's docks: a scrapper who fights dirty and fights smart.</p><ul><li><strong>Street Fighter:</strong> <strong>once per round</strong> while raging, when you hit, you may also make a Dirty Trick against that creature as part of the hit.<ul><li>9th level: you have <strong>Advantage</strong> on that Dirty Trick.</li></ul></li><li><strong>Underground Network:</strong> <strong>Advantage</strong> on checks to navigate a city's underworld, read gang or faction markings, or find allies among its criminals.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Street Fighter",
+    "level": 1,
+    "description": "<p>Once per round while raging, when you hit, you may also make a Dirty Trick against that creature as part of the hit.</p><p>9th level: you have <strong>Advantage</strong> on that Dirty Trick.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Street Fighter: once per round while raging, when you hit, you may make a Dirty Trick against that creature as part of the hit.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Underground Network",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to navigate a city's underworld, read gang or faction markings, or find allies among its criminals.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to navigate a city's underworld, read gang or faction markings, or find allies among its criminals",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

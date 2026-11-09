@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Whip</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Persuasion. Once/day: one creature within <strong>30ft</strong> that can see you is <strong>Charmed</strong> by you for <strong>1 minute</strong> (<strong>Will save</strong> negates; it saves again whenever you or your allies harm it). Lay on Hands also ends the <strong>Charmed</strong> condition.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7453611\">Sune</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Whip</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Persuasion. Lay on Hands also ends the <strong>Charmed</strong> condition. Once/day, your Smite's healing reaches every ally within <strong>10ft</strong> instead of one.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7453611\">Sune</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,13 @@
    {
     "name": "Granted Power (Sune)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Persuasion. Once/day: one creature within <strong>30ft</strong> that can see you is <strong>Charmed</strong> by you for <strong>1 minute</strong> (<strong>Will save</strong> negates; it saves again whenever you or your allies harm it). Lay on Hands also ends the <strong>Charmed</strong> condition.</p><p><strong>Favoured weapon:</strong> Whip</p>",
+    "description": "<p><strong>Advantage</strong> on Persuasion. Lay on Hands also ends the <strong>Charmed</strong> condition. Once/day, your Smite's healing reaches every ally within <strong>10ft</strong> instead of one.</p><p><strong>Favoured weapon:</strong> Whip</p>",
     "uses": {
      "value": 1,
      "max": 1,
      "per": "day"
     },
-    "save": "will",
+    "save": "",
     "rules": [
      {
       "key": "adv.skill",

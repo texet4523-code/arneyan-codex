@@ -1,0 +1,56 @@
+{
+ "_id": "ByyzVAg8zpdMEmbW",
+ "_key": "!items!ByyzVAg8zpdMEmbW",
+ "name": "Ascendant Dragon (Monk)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-fist.svg",
+ "system": {
+  "description": "<p>The order founded by Kiyo, whose hidden monastery in Tenor trains those who would avenge their master's death at the hands of The Omniscience. Students are urged to protect the weak and follow their own moral compass, and many travel with the Keepers of Tariel.</p><ul><li><strong>Dragon's Reflex:</strong> a natural 15 or higher on your Deflect check against a melee attack succeeds whatever the attack roll was.<ul><li>9th level: a natural 13 or higher.</li></ul></li><li><strong>Kiyo's Legacy:</strong> <strong>Advantage</strong> on checks to identify or learn about The Omniscience and its agents, and the Keepers of Tariel know you as an ally on sight.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Monk",
+  "features": [
+   {
+    "name": "Dragon's Reflex",
+    "level": 1,
+    "description": "<p>A natural 15 or higher on your Deflect check against a melee attack succeeds whatever the attack roll was.</p><p>9th level: a natural 13 or higher.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Kiyo's Legacy",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify or learn about The Omniscience and its agents, and the Keepers of Tariel know you as an ally on sight.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify or gather information about The Omniscience or their agents",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "HQY1VcR9hxT7c6VS",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

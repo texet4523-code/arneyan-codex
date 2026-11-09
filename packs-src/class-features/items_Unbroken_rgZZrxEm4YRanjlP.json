@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<ul><li><strong>Unbroken:</strong> Once per day, when reduced to <strong>0 HP</strong> or below, immediately stand at <strong>1 HP</strong>.</li><li>No save, no check — pure will</li><li>24th level: once per encounter instead; for the next round you are immune to all damage and your attacks deal +2 damage dice, then normal rules resume</li></ul>",
+  "description": "<p>Once per day, when reduced to <strong>0 HP</strong> or below, immediately stand at <strong>1 HP</strong>.</p><ul><li>No save, no check: pure will</li><li>24th level: once per encounter instead; for the next round you have Resistance 10 to all damage and your attacks deal +2 damage dice, then normal rules resume</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,7 +20,7 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 5,
+  "level": 7,
   "className": "Fighter",
   "activities": [
    {
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level you are also immune to all damage for the next round, with +2 damage dice on your attacks. From 24th level it's once per encounter: reset its use after each encounter.",
+    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level it's once per encounter, and for the next round you have Resistance 10 to all damage and your attacks deal +2 damage dice: reset its use after each encounter.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -54,7 +54,7 @@
  },
  "effects": [],
  "folder": "iosSCPSOMRgZoPgx",
- "sort": 5,
+ "sort": 6,
  "ownership": {
   "default": 0
  },

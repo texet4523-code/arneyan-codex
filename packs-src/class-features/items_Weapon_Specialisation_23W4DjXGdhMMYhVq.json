@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level</li><li>Improves to +3 damage at 19th level</li><li>At 13th level, choose a second weapon to specialise in, or add a further +1 damage to your first</li></ul>",
+  "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li><li><strong>Weapon Training:</strong> your specialised weapon gives you its own manoeuvre, used <strong>once per round</strong> as part of a hit (still one rider per hit):<ul><li><strong>Bind (blades):</strong> make a Disarm contest against the target.</li><li><strong>Hew (axes, maces, hammers and flails):</strong> a creature your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Hook (spears and polearms):</strong> make a Trip contest against the target, at your weapon's full reach.</li><li><strong>Pinning Fire (bows and crossbows):</strong> the target has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li><li><strong>Combat Manoeuvres:</strong> Every character can use every manoeuvre; the Fighter's edge is its own manoeuvres (Weapon Training, Armour Training, Fighter Manoeuvres) and Manoeuvre Mastery. See the Combat Manoeuvres section for details.</li><li><strong>Combat Reflexes:</strong> You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -16,7 +16,7 @@
    "max": 0,
    "per": ""
   },
-  "save": "",
+  "save": "fort",
   "dc": null,
   "damage": "",
   "level": 1,
@@ -31,7 +31,7 @@
    },
    {
     "key": "damage",
-    "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/19))",
+    "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
     "when": "with your specialised weapon",
     "label": "",
     "weapon": "chosen"
@@ -40,7 +40,7 @@
   "toggle": false,
   "active": false,
   "weaponChoice": {
-   "max": "1:1, 13:2",
+   "max": "1",
    "value": []
   }
  },

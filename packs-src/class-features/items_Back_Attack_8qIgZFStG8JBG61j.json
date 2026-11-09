@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a damage multiplier (double at 1st level, rising to sextuple at 20th: see the Rogue Progression Table).</li><li>Usable <strong>once per round</strong>.</li><li>Requires a successful Move Silently or Hide check, attacking from behind a target with a discernible back, using a close-quarters melee weapon shorter than your arm.</li><li>Multiply the weapon's damage dice only.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice (double at 1st level, rising to sextuple at 20th: see the Rogue Progression Table).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
+    "text": "Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -51,12 +51,6 @@
    }
   ],
   "rules": [
-   {
-    "key": "adv.attack",
-    "value": "1",
-    "when": "Back Attack",
-    "label": ""
-   },
    {
     "key": "note.damage",
     "value": "Back Attack: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",

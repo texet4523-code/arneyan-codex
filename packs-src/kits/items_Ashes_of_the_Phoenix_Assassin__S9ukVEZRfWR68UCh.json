@@ -1,0 +1,66 @@
+{
+ "_id": "S9ukVEZRfWR68UCh",
+ "_key": "!items!S9ukVEZRfWR68UCh",
+ "name": "Ashes of the Phoenix (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<p>An elven order of the Supreme Aldorethi Council, sworn to protect the Phoenix Prince Daeric Khyrmin.</p><ul><li>The Ashes take elves, young, and erase who they were; a runaway of another people is the GM's call.</li><li>Most who take this kit fled the order, and the Ashes want them back.</li></ul><ul><li><strong>Ghost Step:</strong> indoors or in a settled area, when you Hide and Move Silently together, only one of the two checks has <strong>Disadvantage</strong>. Your first Sneak Attack each encounter against a creature that can't see you is a critical hit on a 19 or 20.<ul><li>9th level: a critical hit on an 18 to 20.</li></ul></li><li><strong>Reconstructed Identity:</strong> <strong>Advantage</strong> on Disguise checks to impersonate an elf. An Aldorethi noble or Ashes operative who recognises you as a former member starts Hostile on the Reaction table.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Ghost Step",
+    "level": 1,
+    "description": "<p>Indoors or in a settled area, when you Hide and Move Silently together, only one of the two checks has <strong>Disadvantage</strong>. Your first Sneak Attack each encounter against a creature that can't see you is a critical hit on a 19 or 20.</p><p>9th level: a critical hit on an 18 to 20.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Ghost Step: your first Sneak Attack each encounter against a creature that can't see you is a critical hit on a {1:19 or 20, 9:18 to 20}.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Reconstructed Identity",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Disguise checks to impersonate an elf. An Aldorethi noble or Ashes operative who recognises you as a former member starts Hostile on the Reaction table.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Disguise when impersonating any elf",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,78 @@
+{
+ "_id": "sWP1kgpHl9CvXe6N",
+ "_key": "!items!sWP1kgpHl9CvXe6N",
+ "name": "Path: Knight Errant (Knight)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
+ "system": {
+  "description": "<p>The questing knight: no order, no lord, no stronghold, just the code and the road.</p><ul><li><strong>Universal Bearing (1st):</strong> your Inspire works on creatures who can't understand your language, and reaches <strong>60ft</strong>.</li><li><strong>Roads Well Travelled (1st):</strong> <strong>Advantage</strong> on lore checks about distant lands, knighthood's history and famous deeds of arms.</li><li><strong>Far Challenge (5th):</strong> your Challenge reaches <strong>60ft</strong>.</li><li><strong>Errant's Reckoning (10th):</strong> you gain Champion's Reckoning at 10th rather than 11th, and your Challenged foe has <strong>Disadvantage</strong> on saves against your Commands.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Knight",
+  "features": [
+   {
+    "name": "Universal Bearing",
+    "level": 1,
+    "description": "<p>Your Inspire works on creatures who can't understand your language, and reaches <strong>60ft</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Roads Well Travelled",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on lore checks about distant lands, knighthood's history and famous deeds of arms.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "lore about distant lands, the history of knighthood, or famous deeds of arms",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Far Challenge",
+    "level": 5,
+    "description": "<p>Your Challenge reaches <strong>60ft</strong>.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Errant's Reckoning",
+    "level": 10,
+    "description": "<p>You gain Champion's Reckoning at 10th rather than 11th, and your Challenged foe has <strong>Disadvantage</strong> on saves against your Commands.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "oAedJwFMC1hT8tFC",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

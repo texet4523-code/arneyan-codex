@@ -194,12 +194,15 @@ def build(icon_for_class):
                     continue
                 lvl = 2 if style == "Heading 1" else 3
                 desc.add(f"<h{lvl}>{esc(fix(t))}</h{lvl}>")
-                if re.match(r"^(Kits|Bloodline Kits|Deities|Patron Paths|Patrons$)", t):
+                if re.match(r"^(Kits|Paths|Bloodline Kits|Deities|Patron Paths|Patrons$)", t):
                     desc.add(f'<p class="arn-note">Each kit is an item in the <strong>Kits</strong> compendium, in the {esc(name)} folder. Drag one onto your character.</p>')
                 continue
-            # "Kit — Gladiator — The Pit-Forged" (v0.9.9) or "Kit: Gladiator, The Pit-Forged" (v0.10.0).
-            if info["bold"] and re.match(r"^Kit\s*(—|:)", t):
+            # "Kit — Gladiator — The Pit-Forged" (v0.9.9) or "Kit: Gladiator, The Pit-Forged" (v0.10.0). A Path
+            # (books v0.10.56: the Knight's, the Ranger's and the Spellblade's Battle Caster) is a kit item named
+            # "Path: Cavalier", with features at 1st, 5th and 10th.
+            if info["bold"] and re.match(r"^(Kit|Path)\s*(—|:)", t):
                 kname = re.sub(r"^Kit\s*(—|:)\s*", "", t).strip()
+                kname = re.sub(r"^Path\s*(—|:)\s*", "Path: ", kname)
                 cur_kit = (kname, HtmlBuf(), [])
                 kits.append(cur_kit)
                 continue

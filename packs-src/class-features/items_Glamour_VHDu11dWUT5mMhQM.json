@@ -1,0 +1,33 @@
+{
+ "_id": "VHDu11dWUT5mMhQM",
+ "_key": "!items!VHDu11dWUT5mMhQM",
+ "name": "Glamour",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> A pool of Glamour points equal to your Intelligence modifier + half your Illusionist level (minimum 1), spent on tricks: any feature that costs Glamour.</li><li>You regain them all on a full rest.</li><li>You may use one trick on your turn, and Misdirect <strong>once a round</strong> out of turn.</li><li>Your illusions are your Illusion spells, your Phantasm and the doubles your tricks make.</li><li>9th level: when an encounter begins and your pool is empty, you regain 2 points</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "rest",
+   "formula": "max(1, @int.mod + floor(@cl/2))"
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Illusionist"
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

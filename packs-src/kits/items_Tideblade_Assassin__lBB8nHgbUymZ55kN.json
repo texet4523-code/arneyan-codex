@@ -1,0 +1,66 @@
+{
+ "_id": "lBB8nHgbUymZ55kN",
+ "_key": "!items!lBB8nHgbUymZ55kN",
+ "name": "Tideblade (Assassin)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<p>The maritime killers of the Jinia Isles and the Opal waterfront: a merchant face-down in the harbour, a captain who never reached his cabin.</p><ul><li><strong>Unsteady Ground:</strong> a creature that is swimming, in water above its knees, or on ice, a ledge or a pitching deck counts as unable to see you for your Sneak Attack. You climb and swim at full speed.<ul><li>9th level: when you hit a creature on unsteady ground, it makes a <strong>Reflex save</strong> against your Class Save DC or falls <strong>Prone</strong> (or into the water).</li></ul></li><li><strong>Sea Cover:</strong> <strong>Advantage</strong> on Disguise checks to pass as a sailor, docker or maritime merchant, and on checks to dispose of evidence at sea.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Assassin",
+  "features": [
+   {
+    "name": "Unsteady Ground",
+    "level": 1,
+    "description": "<p>A creature that is swimming, in water above its knees, or on ice, a ledge or a pitching deck counts as unable to see you for your Sneak Attack. You climb and swim at full speed.</p><p>9th level: when you hit a creature on unsteady ground, it makes a <strong>Reflex save</strong> against your Class Save DC or falls <strong>Prone</strong> (or into the water).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Unsteady Ground: a creature that is swimming, in water above its knees, or on ice, a ledge or a pitching deck counts as unable to see you for your Sneak Attack.",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Sea Cover",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Disguise checks to pass as a sailor, docker or maritime merchant, and on checks to dispose of evidence at sea.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "Disguise as sailors, dock workers or maritime merchants; disposing of evidence or a body at sea",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Shvx8w3VSMlwQC3E",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

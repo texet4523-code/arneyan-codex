@@ -1,0 +1,90 @@
+{
+ "_id": "gif2hk4k4E3b5qTa",
+ "_key": "!items!gif2hk4k4E3b5qTa",
+ "name": "Shattered Glass",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> As your action, spend 2 Glamour to shatter one of your illusions within <strong>60ft</strong>. Each creature within <strong>10ft</strong> of it makes a <strong>Will save</strong> against your Class Save DC: on a failure it takes your Phantom Wound damage and is <strong>Blinded</strong> until the end of its next turn; on a success it takes half.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": "",
+   "formula": "",
+   "pool": "Glamour"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 13,
+  "className": "Illusionist",
+  "activities": [
+   {
+    "name": "Shattered Glass",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "As your action: shatter one of your illusions within 60ft. Each creature within 10ft of it makes a Will save: on a failure it takes your Phantom Wound damage and is Blinded until the end of its next turn; on a success, half damage.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 2,
+    "per": "",
+    "target": "many",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Shattered Glass damage",
+    "kind": "damage",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "damageType": "psychic",
+    "ability": "",
+    "save": "",
+    "text": "Phantom Wound damage; half on a success.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "many",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "Sb0INpDHUVYqugcB",
+ "sort": 16,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,73 @@
+{
+ "_id": "aWVs4Wj6e5DswX5g",
+ "_key": "!items!aWVs4Wj6e5DswX5g",
+ "name": "Raider (Barbarian)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
+ "system": {
+  "description": "<p>The raiding bands of the Red Waste and the Jotunas marches: ambush, speed and endurance.</p><ul><li><strong>Ambush Strike:</strong> your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).<ul><li>9th level: Ambush Strike also works against a creature that can't see you.</li></ul></li><li><strong>Raider's Eye:</strong> <strong>Advantage</strong> on Survival checks in harsh terrain, and on checks to read tribal markings and the signs of a raid.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Barbarian",
+  "features": [
+   {
+    "name": "Ambush Strike",
+    "level": 1,
+    "description": "<p>Your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</p><p>9th level: Ambush Strike also works against a creature that can't see you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "applies": [
+     {
+      "name": "Ambush Strike: Prone",
+      "target": "target",
+      "rounds": "0",
+      "statuses": [
+       "prone"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   {
+    "name": "Raider's Eye",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Survival checks in harsh terrain, and on checks to read tribal markings and the signs of a raid.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.skill",
+      "value": "1",
+      "when": "Survival in harsh terrain",
+      "label": ""
+     },
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to read tribal markings and the signs of a raid",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "JjYcxEOcATvG9Dxr",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

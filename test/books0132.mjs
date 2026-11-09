@@ -49,8 +49,9 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
   // Sorcerer Metamagic at 1st; the Monk's Iron Mind at 8th (its bonus is Iron Discipline's, so no second effect).
   assert.equal(feat("Metamagic Options", "Sorcerer").system.level, 1);
   assert.equal(feat("Iron Mind", "Monk").system.level, 8);
-  assert.ok(!Object.values(approved).some(e => e.name === "Iron Mind"));
-  assert.ok(feat("Iron Discipline", "Monk").system.rules.some(r => /Iron Mind/.test(r.when)), "Iron Discipline still carries the Iron Mind bonus");
+  // Books v0.10.57 (R-B61): Iron Discipline is Iron Body (1st) and Iron Mind (8th), each with its own Advantage.
+  assert.ok(feat("Iron Body", "Monk").system.rules.some(r => r.key === "adv.save" && /poison/.test(r.when)));
+  assert.ok(feat("Iron Mind", "Monk").system.rules.some(r => r.key === "adv.save" && /charm/.test(r.when)));
   // Ambush Predator: Advantage on initiative.
   assert.deepEqual(feat("Ambush Predator", "Assassin").system.rules.map(r => [r.key, String(r.value)]), [["adv.init", "1"]]);
 }
@@ -75,17 +76,18 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
 /* The four Fighter kit benefits (K28). */
 {
   const f = (k, i = 0) => kit(k).system.features[i];
-  const crowd = f("Gladiator, The Pit-Forged (Fighter)");
+  const crowd = f("Gladiator (Fighter)");
   assert.deepEqual(crowd.applies.map(a => [a.target, String(a.rounds), a.statuses.join()]), [["target", "1", "shaken"]], "Crowd's Favourite: Disadvantage on its next attack");
-  const wall = f("Boldock Wall Guard (Fighter)");
-  assert.deepEqual(wall.rules.map(r => [r.key, String(r.value)]), [["adv.against.first", "-1"]]);
-  assert.ok(/Orc/.test(wall.rules[0].when));
-  const cav = f("Mercenary, Blade for Hire (Fighter)");
+  const wall = f("Wall Guard (Fighter)");
+  // Books v0.10.56 (R-B59, K82): Hold the Line, Advantage on saves against fear beside an ally.
+  assert.deepEqual(wall.rules.map(r => [r.key, String(r.value)]), [["adv.save", "1"]]);
+  assert.ok(/fear/.test(wall.rules[0].when));
+  const cav = f("Outrider (Fighter)");
   assert.ok(cav.rules.length === 1 && cav.rules[0].key === "note.attack" && /Attack of Opportunity/.test(cav.rules[0].value));
-  const guard = f("Mournas Liberator (Fighter)");
+  const guard = f("Liberator (Fighter)");
   assert.deepEqual(guard.applies.map(a => [a.target, String(a.rounds), a.rules.map(r => `${r.key} ${r.value}`).join()]), [["target", "1", "adv.against -1"]]);
-  const tenor = f("Tenor Hold Mechanist (Gunslinger)");
-  assert.ok(/Extra Attack/.test(tenor.rules[0].value) && !/\+1 damage/.test(tenor.rules[0].value));
+  const tenor = f("Mechanist (Gunslinger)");
+  assert.ok(/Two-Gun Shot/.test(tenor.rules[0].value) && !/\+1 damage/.test(tenor.rules[0].value));
 }
 
 /* Spending a pool: a patron power takes its Favour from the Warlock's Patron Favour feature. */

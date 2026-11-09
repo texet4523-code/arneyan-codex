@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
  "system": {
-  "description": "<p>Your bonded weapon is more than a tool — it is a partner, growing more attuned to you with every spell channelled through it.</p><ul><li><strong>Attuned Edge:</strong> Your bonded weapon counts as magical for the purpose of overcoming damage resistance, and you have advantage on checks to identify or recall lore about it or weapons like it. If the weapon is ever lost or destroyed, you may bond a replacement of the same type after a short ritual (<strong>1 hour</strong>, no cost) rather than waiting for a new weapon to find you.</li></ul>",
+  "description": "<p>Your bonded weapon is more than a tool: it is a partner, more attuned to you with every spell channelled through it.</p><ul><li><strong>Attuned Edge:</strong> your bonded weapon counts as magical for overcoming damage resistance. If it is lost or destroyed, you may bond a replacement of the same type after a 1-hour ritual at no cost.<ul><li>9th level: your Cantrip Spellstrikes through it ignore resistance to force damage.</li></ul></li><li><strong>Bonded Lore:</strong> <strong>Advantage</strong> on checks to identify weapons and the magic in them.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,21 @@
    {
     "name": "Attuned Edge",
     "level": 1,
-    "description": "<p>Your bonded weapon counts as magical for the purpose of overcoming damage resistance, and you have advantage on checks to identify or recall lore about it or weapons like it. If the weapon is ever lost or destroyed, you may bond a replacement of the same type after a short ritual (<strong>1 hour</strong>, no cost) rather than waiting for a new weapon to find you.</p>",
+    "description": "<p>Your bonded weapon counts as magical for overcoming damage resistance. If it is lost or destroyed, you may bond a replacement of the same type after a 1-hour ritual at no cost.</p><p>9th level: your Cantrip Spellstrikes through it ignore resistance to force damage.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Bonded Lore",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify weapons and the magic in them.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -26,7 +40,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "to identify or recall lore about your bonded weapon or similar weapons",
+      "when": "to identify weapons and the magic in them",
       "label": ""
      }
     ],
@@ -37,7 +51,7 @@
  },
  "effects": [],
  "folder": "xfPAuHvlZnGs2uY5",
- "sort": 0,
+ "sort": 1,
  "ownership": {
   "default": 0
  },

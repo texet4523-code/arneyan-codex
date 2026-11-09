@@ -1,0 +1,72 @@
+{
+ "_id": "bALqpS4MeCkdNeVU",
+ "_key": "!items!bALqpS4MeCkdNeVU",
+ "name": "Liberator (Fighter)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+ "system": {
+  "description": "<p>Forged in or inspired by the Rebellion of Mournas, or any rising against a tyrant. You fight to protect, not to avenge.</p><ul><li><strong>Guardian's Reach:</strong> <strong>once per round</strong>, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.<ul><li>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</li></ul></li><li><strong>Rebellion's Name:</strong> <strong>Advantage</strong> on Charisma checks with anyone who honours the Rebellion's memory.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Fighter",
+  "features": [
+   {
+    "name": "Guardian's Reach",
+    "level": 1,
+    "description": "<p>Once per round, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.</p><p>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "applies": [
+     {
+      "name": "Guardian's Reach",
+      "target": "target",
+      "rounds": "1",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.against",
+        "value": "-1",
+        "when": "",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Rebellion's Name",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Charisma checks with anyone who honours the Rebellion's memory.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check.cha",
+      "value": "1",
+      "when": "with anyone who honours the Rebellion's memory",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "T0walK1GdF8ERgJC",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

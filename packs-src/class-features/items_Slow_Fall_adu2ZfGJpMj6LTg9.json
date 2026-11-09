@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> If within <strong>10ft</strong> of a vertical surface while falling, use it to slow descent: treat the fall as if it were <strong>20ft</strong> shorter.</li><li>Reduction improves with level — see the Monk Progression Table (<strong>20ft</strong> at 4th, up to <strong>40ft</strong> at 18th)</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Halve falling damage; from 10th level, you take none from a fall of <strong>40ft</strong> or less.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Within 10ft of a vertical surface while falling: treat the fall as {4:20, 6:25, 9:30, 13:35, 18:40}ft shorter.",
+    "text": "Halve falling damage{10:; none from a fall of 40ft or less}.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

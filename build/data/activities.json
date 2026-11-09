@@ -37,7 +37,7 @@
    {
     "name": "Broadhead Arrow",
     "kind": "note",
-    "text": "The arrow reduces the armour bonus to the target's AC by 2.",
+    "text": "The arrow has the Armour Piercing trait.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -115,7 +115,7 @@
    {
     "name": "Hail of Arrows",
     "kind": "note",
-    "text": "As your action, make one bow attack roll against every creature in a {1:10ft, 12:15ft} radius within range, rolling damage separately for each.",
+    "text": "As your action, make one bow attack against every creature in a {1:15ft, 12:20ft, 17:30ft} radius within long range, rolling damage separately for each.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -124,7 +124,12 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter area attack."
+  "why": "Once per encounter area attack.",
+  "uses": {
+   "max": 1,
+   "per": "encounter",
+   "formula": "1:1, 17:2"
+  }
  },
  "Perfect Loose|Archer": {
   "activities": [
@@ -164,7 +169,7 @@
     "name": "Tinker's Craft",
     "kind": "check",
     "ability": "int",
-    "text": "Build, repair, identify or jury-rig a mechanism or minor magic item, adding the level-based Tinker's Craft bonus.",
+    "text": "Build, repair, identify or jury-rig a mechanism or minor magic item (Trained at 1st, Master at 5th).",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -323,7 +328,7 @@
    {
     "name": "Sneak Attack",
     "kind": "note",
-    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against an unsuspecting target within 30ft, once per round.",
+    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -344,45 +349,6 @@
   ],
   "confidence": "high",
   "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
- },
- "Slow Kill|Assassin": {
-  "activities": [
-   {
-    "name": "Slow Kill",
-    "kind": "note",
-    "text": "Before the target has acted, a hit leaves it bleeding 1d6 HP each round until healed or bandaged; bleeding stacks, 1d6 for each Slow Kill strike, up to four strikes per target per encounter. Not against creatures that don't bleed. Against a solo, the bleeding ends when it becomes Bloodied.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Bleed",
-    "kind": "damage",
-    "formula": "1d6",
-    "damageType": "",
-    "text": "The target loses 1d6 HP from blood loss at the start of the round, for each Slow Kill strike on it (roll once per strike).",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Cripple Limb",
-    "kind": "save",
-    "save": "fort",
-    "text": "The Assassin picks a limb; the target saves against the Class Save DC or loses use of it until healed. Not against creatures that don't bleed.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Strike reminder plus a button for the per-round bleed."
  },
  "Rage|Barbarian": {
   "activities": [
@@ -405,29 +371,13 @@
    "formula": "max(2, 1 + @con.mod)"
   }
  },
- "Whirlwind Attack|Barbarian": {
-  "activities": [
-   {
-    "name": "Whirlwind Attack",
-    "kind": "note",
-    "text": "Once per rage, while raging: replace your action with one attack against each of up to {1:2, 6:3, 10:4, 15:5} foes within 5ft of Level up to {1:half yours, 13:yours}.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per rage (not tracked: one use each time you rage). Checked against Handbook v0.10.27."
- },
  "Primeval Will|Barbarian": {
   "activities": [
    {
     "name": "Primeval Will",
     "kind": "temp",
-    "formula": "2*@level",
-    "text": "When reduced to twice your level in HP or less, gain bonus HP equal to twice your level until combat ends.",
+    "formula": "2*@cl",
+    "text": "When you drop to half your HP or less (or first, if a blow would drop you to 0), gain temporary HP equal to twice your Barbarian level until the encounter ends.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -437,39 +387,6 @@
   ],
   "confidence": "high",
   "why": "\"Twice your level\" read as total level. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Ancestral Calling|Barbarian": {
-  "activities": [
-   {
-    "name": "Ancestral Calling",
-    "kind": "temp",
-    "text": "The first time you rage each day, allies within 30ft gain temporary HP equal to your Barbarian level, lasting until the end of the day. Not with another Barbarian's Ancestral Calling.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "allies",
-    "removeConditions": false,
-    "formula": "@cl"
-   }
-  ],
-  "confidence": "high",
-  "why": "Always on: comes with the first rage each day (untracked daily). Checked against Handbook v0.10.27."
- },
- "Warlord|Barbarian": {
-  "activities": [
-   {
-    "name": "Warlord",
-    "kind": "note",
-    "text": "Where your deeds are known, call up an army of 10 to 100 1st-level barbarians who fight for 30 days for food and water.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "month",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per month narrative summon. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Decipher Script (Intelligence)|Bard": {
   "activities": [
@@ -552,9 +469,8 @@
   "activities": [
    {
     "name": "Perfect Recall",
-    "kind": "check",
-    "ability": "wis",
-    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 13th) without spending a slot.",
+    "kind": "note",
+    "text": "Cast a 1st-level spell you have already cast today without expending a slot (a 2nd-level spell from 13th).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -563,70 +479,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Daily Wisdom check."
- },
- "Holy Campaign|Cleric": {
-  "activities": [
-   {
-    "name": "Troops with d8 HD (1d100)",
-    "kind": "roll",
-    "formula": "1d100",
-    "maxLevel": 18,
-    "cost": 0,
-    "text": "How many NPCs with d8 Hit Dice you raise (1 to 100)."
-   },
-   {
-    "name": "Troops with d8 HD (2d100)",
-    "kind": "roll",
-    "formula": "2d100",
-    "minLevel": 19,
-    "maxLevel": 22,
-    "cost": 0,
-    "text": "How many NPCs with d8 Hit Dice you raise (2 to 200)."
-   },
-   {
-    "name": "Troops with d8 HD (4d100)",
-    "kind": "roll",
-    "formula": "4d100",
-    "minLevel": 23,
-    "cost": 0,
-    "text": "How many NPCs with d8 Hit Dice you raise (4 to 400)."
-   },
-   {
-    "name": "Troops with d4 HD (1d100)",
-    "kind": "roll",
-    "formula": "1d100",
-    "maxLevel": 18,
-    "cost": 0,
-    "text": "How many NPCs with d4 Hit Dice you raise (1 to 100)."
-   },
-   {
-    "name": "Troops with d4 HD (2d100)",
-    "kind": "roll",
-    "formula": "2d100",
-    "minLevel": 19,
-    "maxLevel": 22,
-    "cost": 0,
-    "text": "How many NPCs with d4 Hit Dice you raise (2 to 200)."
-   },
-   {
-    "name": "Troops with d4 HD (4d100)",
-    "kind": "roll",
-    "formula": "4d100",
-    "minLevel": 23,
-    "cost": 0,
-    "text": "How many NPCs with d4 Hit Dice you raise (4 to 400)."
-   },
-   {
-    "name": "Campaign bonus",
-    "kind": "note",
-    "formula": "18:1, 19:2, 23:3",
-    "cost": 0,
-    "text": "Once per year (or once per campaign at the GM's call). Bonus on checks for all your troops while you are present. From 23rd level they also gain leaders of 1st, 2nd and 3rd level per 20 troops."
-   }
-  ],
-  "confidence": "high",
-  "why": "Handbook gives the troop counts as ranges (1-100, 2-200, 4-400): read as 1d100, 2d100, 4d100. Once per year, or once per campaign at the GM's call (in the text: no yearly uses)."
+  "why": "Books v0.10.57 (R-B63, Fable 2.11): once per day, no roll."
  },
  "Banish|Cleric": {
   "activities": [
@@ -654,62 +507,6 @@
   ],
   "confidence": "high",
   "why": "Turn-like use; frequency not stated. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Mark of the Saint|Cleric": {
-  "activities": [
-   {
-    "name": "Heal",
-    "kind": "note",
-    "text": "Use your weekly Heal.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Remove Blindness or Deafness",
-    "kind": "note",
-    "text": "Use your weekly Remove Blindness or Deafness.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Remove Disease",
-    "kind": "note",
-    "text": "Use your weekly Remove Disease.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Holy or Unholy Word",
-    "kind": "note",
-    "text": "Use your daily Holy or Unholy Word.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "",
-    "removeConditions": false
-   },
-   {
-    "name": "Resurrection",
-    "kind": "note",
-    "text": "Use your weekly Resurrection.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "week",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Granted spell-like uses, each with its own frequency. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Nature Lore (Wisdom)|Druid": {
   "activities": [
@@ -781,9 +578,8 @@
   "activities": [
    {
     "name": "Perfect Recall",
-    "kind": "check",
-    "ability": "wis",
-    "text": "Make a DC 10 Wisdom check to recast a previously cast 1st-level spell (2nd-level from 24th) without spending a slot.",
+    "kind": "note",
+    "text": "Cast a 1st-level spell you have already cast today without expending a slot (a 2nd-level spell from 24th).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -792,29 +588,28 @@
    }
   ],
   "confidence": "high",
-  "why": "Daily Wisdom check."
+  "why": "Books v0.10.57 (R-B63, Fable 2.11): once per day, no roll."
  },
  "Combat Dominance|Fighter": {
   "activities": [
    {
     "name": "Combat Dominance",
     "kind": "attacks",
-    "count": "4:2, 8:3, 12:4",
-    "disadvantage": "rest",
+    "count": "targets",
     "targetLevel": "half",
     "cost": 0,
-    "text": "Only when every creature you attack this round is of Level up to half yours; split the attacks among them as you like. Replaces Extra Attack and the off-hand attack; Flowing Strikes can still add one."
+    "text": "As your action, one attack against each creature within your reach whose Level is no more than half yours (target them first). These attacks have no Advantage or Disadvantage from any source, and nothing adds an attack to them."
    }
   ],
   "confidence": "high",
-  "why": "Handbook: 2 attacks at 4th, 3 at 8th, 4 at 12th, all but the first with Disadvantage; warns on a target above half your Level."
+  "why": "Books v0.10.57 (R-B61, K92): 13th level, one attack against each creature in reach of Level up to half yours; warns on a target above half your Level."
  },
  "Unbroken|Fighter": {
   "activities": [
    {
     "name": "Unbroken",
     "kind": "note",
-    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level you are also immune to all damage for the next round, with +2 damage dice on your attacks. From 24th level it's once per encounter: reset its use after each encounter.",
+    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level it's once per encounter, and for the next round you have Resistance 10 to all damage and your attacks deal +2 damage dice: reset its use after each encounter.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -892,7 +687,7 @@
     "kind": "damage",
     "formula": "3:1d6, 13:2d6",
     "damageType": "",
-    "text": "After 2 rounds aiming without moving, your next shot this combat has Advantage and deals +{1:1d6, 13:2d6} damage.",
+    "text": "If you did not move or attack last turn, your first shot this turn has Advantage and deals +{1:1d6, 13:2d6} damage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -908,7 +703,7 @@
    {
     "name": "Perfect Shot",
     "kind": "note",
-    "text": "Declared before rolling, your next ranged attack deals maximum damage if it hits; set maximums do not explode.",
+    "text": "Declared before rolling: if your shot hits, every damage die explodes once, whatever it rolled (roll it again and add; the new die explodes as normal).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -936,26 +731,30 @@
     "per": "",
     "target": "",
     "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named check, but the GM rolls it secretly. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Minor Figment|Illusionist": {
-  "activities": [
+   },
    {
-    "name": "Minor Figment",
+    "name": "Change Self",
     "kind": "note",
-    "text": "Create a harmless momentary sight or sound within 30ft to feint, mask a small sound or object, or aid one Stealth check per encounter.",
-    "minLevel": 0,
     "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
+    "target": "self",
+    "text": "At will, as the spell: alter your appearance.",
+    "minLevel": 10
+   },
+   {
+    "name": "Change Self (fools touch)",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "Once per day: the change also fools touch, smell and True Seeing until you dispel it.",
+    "minLevel": 10
    }
   ],
   "confidence": "high",
-  "why": "At-will action."
+  "why": "Named check, but the GM rolls it secretly. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.58 (R-B55): Change Self is Disguise's 10th-level step: at will, and once a day it also fools touch, smell and True Seeing (the use).",
+  "uses": {
+   "max": 1,
+   "per": "day"
+  }
  },
  "Quickened Illusion|Illusionist": {
   "activities": [
@@ -990,43 +789,6 @@
   "confidence": "high",
   "why": "Named Intelligence check, once per round."
  },
- "Detect Magic (Intelligence)|Illusionist": {
-  "activities": [
-   {
-    "name": "Detect Magic",
-    "kind": "check",
-    "ability": "int",
-    "text": "After 5 rounds of study, reveal the origin of an item's magic if you have met that kind before.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Intelligence check."
- },
- "Change Self|Illusionist": {
-  "activities": [
-   {
-    "name": "Change Self",
-    "kind": "note",
-    "cost": 0,
-    "target": "self",
-    "text": "At will, as the spell: alter your appearance."
-   },
-   {
-    "name": "Change Self (fools touch)",
-    "kind": "note",
-    "cost": 1,
-    "target": "self",
-    "text": "Once per day: the change also fools touch, smell and True Seeing until you dispel it."
-   }
-  ],
-  "confidence": "high",
-  "why": "Books v0.10.38 (Fable M13): at will as the spell; once a day the change also fools touch, smell and True Seeing."
- },
  "Magnum Opus|Illusionist": {
   "activities": [
    {
@@ -1046,10 +808,9 @@
  "Horsemanship (Dexterity)|Knight": {
   "activities": [
    {
-    "name": "Mount Manoeuvre",
-    "kind": "check",
-    "ability": "dex",
-    "text": "Direct your mount to cover, deflect, fall softly, leap or charge.",
+    "name": "Mounted",
+    "kind": "note",
+    "text": "Your mount charges, leaps and falls softly with no check. A mount that can attack does so as part of your action, with Advantage, and you have Advantage on your first melee attack each round from the saddle.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1130,9 +891,9 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (3d6)",
+    "name": "Cantrip Spellstrike (3d4)",
     "kind": "damage",
-    "formula": "3d6",
+    "formula": "3d4",
     "damageType": "force",
     "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 11,
@@ -1142,9 +903,9 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (4d6)",
+    "name": "Cantrip Spellstrike (4d4)",
     "kind": "damage",
-    "formula": "4d6",
+    "formula": "4d4",
     "damageType": "force",
     "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 17,
@@ -1154,9 +915,9 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (5d6)",
+    "name": "Cantrip Spellstrike (5d4)",
     "kind": "damage",
-    "formula": "5d6",
+    "formula": "5d4",
     "damageType": "force",
     "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. From 7th level your Extra Attack can carry a Cantrip Spellstrike too, a second one that round.",
     "minLevel": 21,
@@ -1198,7 +959,7 @@
    {
     "name": "Everstrike",
     "kind": "note",
-    "text": "Your next Levelled Spellstrike of {1:2nd level or lower, 13:4th level or lower, 20:any level} costs no slot.",
+    "text": "Your next Levelled Spellstrike of {1:2nd level or lower, 13:4th level or lower, 19:any level} costs no slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1225,24 +986,6 @@
   "confidence": "high",
   "why": "Once per round reactive defence."
  },
- "Deflect Missiles (Dexterity)|Monk": {
-  "activities": [
-   {
-    "name": "Deflect Missiles",
-    "kind": "check",
-    "text": "Out of turn: against the attack roll of a nonmagical ranged weapon that hit you; on success take no damage. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Not while surprised or Incapacitated.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "removeConditions": false,
-    "ability": "dex",
-    "reaction": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Dexterity check vs attack roll, out of turn; attempts per round from the table. Checked against Handbook v0.10.27."
- },
  "Ascetic Recovery|Monk": {
   "activities": [
    {
@@ -1258,41 +1001,6 @@
   ],
   "confidence": "high",
   "why": "Feign Death only; books v0.10.38 (Fable M5): Fast Healing is always on, a rest.heal rule (approved.json) added to every long rest."
- },
- "Deflect Blow (Dexterity)|Monk": {
-  "activities": [
-   {
-    "name": "Deflect Blow",
-    "kind": "check",
-    "ability": "dex",
-    "text": "Against the attacker's melee attack roll; on success deflect the blow entirely.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Dexterity check vs attack roll; shares Deflect Missiles attempts."
- },
- "Catch Weapon (Dexterity)|Monk": {
-  "activities": [
-   {
-    "name": "Catch Weapon",
-    "kind": "check",
-    "text": "Out of turn, when struck in melee: against the attacker's attack roll; on success you hold the weapon the opponent was wielding. Not while surprised or Incapacitated.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "self",
-    "removeConditions": false,
-    "ability": "dex",
-    "reaction": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Dexterity check vs attack roll, once per round out of turn. Checked against Handbook v0.10.27."
  },
  "Animate Dead|Necromancer": {
   "activities": [
@@ -1400,22 +1108,6 @@
   },
   "confidence": "high",
   "why": "Books v0.10.25: a daily pool of 2 HP per Paladin level, spent in any amounts; Cure Disease costs 5 points. Divine Healing is now a Divine Intervention option (Channel Divinity)."
- },
- "Bequeath Virtue|Paladin": {
-  "activities": [
-   {
-    "name": "Bequeath Virtue",
-    "kind": "note",
-    "text": "Imbue a small item so its holder heals at double rate while resting and is stabilised if dying; costs you 1 temporary Constitution.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "One item per day. Checked against Handbook v0.10.10, 25 Oct."
  },
  "Cleanse Soul|Paladin": {
   "activities": [
@@ -1567,7 +1259,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "When you use Marked Prey: for the encounter your marked prey can't Disengage, hide or turn invisible from you, and you always know where it is. From 24th level you may use it twice per day, with Advantage on checks to track, corner or finish your marked prey.",
+    "text": "When you use Marked Prey: for the encounter your marked prey has Disadvantage on Hide checks against you, can't Disengage from you, and you know where it is within 60ft; turning invisible doesn't end the mark. From 24th level you may use it twice per day, with Advantage on checks to track, corner or finish your marked prey.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1644,7 +1336,7 @@
    {
     "name": "Back Attack",
     "kind": "note",
-    "text": "From behind after a successful Hide or Move Silently, gain Advantage and multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
+    "text": "Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -1654,33 +1346,6 @@
   ],
   "confidence": "high",
   "why": "Once per round; multiplier from the Rogue Progression Table. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Sneak Attack|Rogue": {
-  "activities": [
-   {
-    "name": "Sneak Attack",
-    "kind": "note",
-    "text": "Gain Advantage and add {1:1d6, 13:2d6, 18:3d6, 23:4d6} against an unsuspecting target within 30ft, once per round.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Sneak Attack damage",
-    "kind": "damage",
-    "text": "Add to the weapon's damage on a hit, once per round.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false,
-    "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6"
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per round; dice come from the Rogue Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
  },
  "Uncanny Dodge|Rogue": {
   "activities": [
@@ -1704,7 +1369,7 @@
    {
     "name": "Evasive Manoeuvre",
     "kind": "note",
-    "text": "The first melee attack against you this round has Disadvantage (the first two from 20th). Not in a round you make a ranged attack or use another rogue ability, or while surprised. Switch on the Evasive Manoeuvre toggle.",
+    "text": "The first melee attack against you this round has Disadvantage (the first two from 20th). Not in a round you make a ranged attack (from 18th, Slippery: it works then too), or while surprised. Switch on the Evasive Manoeuvre toggle.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -1720,7 +1385,7 @@
    {
     "name": "Spellburn",
     "kind": "note",
-    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double). Burned points return at {1:1, 6:2} per attribute each day; never below 1.",
+    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double). Burned points return at 1 per attribute each day; never below 1.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1936,11 +1601,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Handbook: one extra melee attack with Disadvantage; Dexterity modifier uses a day, not tracked here. Books v0.10.38 (K44, F-R4): its Disadvantage is never cancelled.",
+  "why": "Books v0.10.57 (R-B61): once per encounter, twice from 16th.",
   "uses": {
    "max": 1,
-   "per": "day",
-   "formula": "max(1, @dex.mod)"
+   "per": "encounter",
+   "formula": "1:1, 16:2"
   }
  },
  "Eldritch Invocations|Warlock": {
@@ -2001,7 +1666,7 @@
    {
     "name": "Dark Harvest",
     "kind": "note",
-    "text": "When you drop a hostile creature to 0 HP, recover one expended slot of level up to half its Level (rounded up).",
+    "text": "When you drop a foe to 0 HP (one that fought your side this encounter, not helpless, not summoned or controlled by your side), recover one expended slot of level up to half its Level (rounded up, minimum 1st).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2188,23 +1853,6 @@
   "confidence": "high",
   "why": "Once per day."
  },
- "Detect Magic|Wizard": {
-  "activities": [
-   {
-    "name": "Detect Magic",
-    "kind": "check",
-    "ability": "int",
-    "text": "After 5 rounds of study, reveal the origin of an item's magic if you have met that kind before.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Intelligence check stated."
- },
  "Cauldron of the Ninth Moon improves|Witch": {
   "activities": [],
   "confidence": "high",
@@ -2236,118 +1884,6 @@
     "disadvantage": "extra",
     "cost": 0,
     "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Ranger": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Swashbuckler": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Barbarian": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Knight": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Fighter": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Does not stack with Combat Dominance: choose one or the other each round."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Gunslinger": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. A firearm still has to be loaded for each shot."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Assassin": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Sneak Attack still applies to only one attack per round."
-   }
-  ],
-  "confidence": "high",
-  "why": "Your attack and the extra one, the second with Disadvantage (Extra attacks, Codex p. 8). Books v0.10.38 (K44): Advantage from any source never cancels it."
- },
- "Extra Attack|Rogue": {
-  "activities": [
-   {
-    "name": "Extra Attack",
-    "kind": "attacks",
-    "count": "2",
-    "disadvantage": "extra",
-    "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Sneak Attack still applies to only one attack per round."
    }
   ],
   "confidence": "high",
@@ -2420,20 +1956,6 @@
   ],
   "confidence": "high",
   "why": "Handbook: flat +1d4 on each hit after the first against the same target in a round."
- },
- "Call-to-Arms|Knight": {
-  "activities": [
-   {
-    "name": "Followers this month",
-    "kind": "roll",
-    "formula": "2d10",
-    "cost": 0,
-    "per": "month",
-    "text": "With a stronghold: 0-level followers who arrive this month. A 1st-level knight per 40 followers; a 5th-level knight at 80. Followers must be paid (0-level 3 gp a month; a knight follower 4 gp a month per Level)."
-   }
-  ],
-  "confidence": "high",
-  "why": "Handbook: 2d10 followers every month."
  },
  "Corruption|Sorcerer": {
   "activities": [
@@ -2818,20 +2340,6 @@
   ],
   "confidence": "high",
   "why": "Handbook: 1d6 necrotic on an unarmed hit (2d6 from 10th), and a Fortitude save against max HP loss."
- },
- "Stubborn|Mournas Freelance (Gunslinger)": {
-  "activities": [
-   {
-    "name": "Grit recovery",
-    "kind": "heal",
-    "formula": "1d6",
-    "cost": 0,
-    "target": "self",
-    "text": "When Grit activates: recover 1d6 HP instead of stabilising at exactly 1 HP."
-   }
-  ],
-  "confidence": "high",
-  "why": "1d6 HP when Grit activates."
  },
  "Warden's Strike|Grave Warden (Necromancer)": {
   "activities": [
@@ -3339,11 +2847,10 @@
  },
  "Grit|Gunslinger": {
   "confidence": "high",
-  "why": "0.10.48: steps up with level (Progression Table)",
+  "why": "Books v0.10.57 (R-B63): once per day, stay at 1 HP (no save).",
   "uses": {
    "max": 1,
-   "per": "day",
-   "formula": "1:1, 10:2, 20:3"
+   "per": "day"
   }
  },
  "Surprise|Assassin": {
@@ -3369,7 +2876,7 @@
    {
     "name": "Slow Fall",
     "kind": "note",
-    "text": "Within 10ft of a vertical surface while falling: treat the fall as {4:20, 6:25, 9:30, 13:35, 18:40}ft shorter.",
+    "text": "Halve falling damage{10:; none from a fall of 40ft or less}.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -3380,15 +2887,15 @@
  },
  "Hand-to-Hand Combat|Monk": {
   "confidence": "high",
-  "why": "0.10.48: steps up with level (Progression Table). Books v0.10.34 (K31): the second attack from 5th.",
+  "why": "Books v0.10.57 (R-B62): second blow at 3rd, Flurry of Blows' third at 5th, a fourth at 13th (Secondary and Tertiary columns); never the extra-attack Disadvantage.",
   "activities": [
    {
     "name": "Unarmed attacks",
     "kind": "attacks",
     "weapons": "unarmed",
-    "count": "1:1, 5:2, 16:3",
-    "formula": "; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {16:1d4, 19:1d6, 22:1d8}",
-    "text": "Your action's unarmed attacks with Unarmed Strike: the first with your Primary dice, the second (from 5th) and third (from 16th) with the Secondary and Tertiary dice.",
+    "count": "1:1, 3:2, 5:3, 13:4",
+    "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6, 22:1d8}",
+    "text": "Your action's unarmed blows with Unarmed Strike, none with Disadvantage: the first with your Primary dice, the second (from 3rd) and third (Flurry of Blows, 5th) with the Secondary dice, the fourth (from 13th) with the Tertiary.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -3462,13 +2969,14 @@
   "activities": [
    {
     "name": "Master Duelist",
-    "kind": "note",
-    "text": "Declare a decisive strike: one melee attack that deals maximum damage if it hits (a miss still uses it). Lower-Level witnesses save or have Disadvantage on their first attack against you in later fights. From 24th level it's once per encounter: reset its use after each encounter.",
+    "kind": "save",
+    "text": "When you hit: the target makes a Will save against your Class Save DC or is Frightened of you for the encounter, and every creature of lower Level that sees it has Disadvantage on its first attack against you.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "one",
-    "removeConditions": false
+    "removeConditions": false,
+    "save": "will"
    }
   ],
   "confidence": "high",
@@ -3483,7 +2991,7 @@
    {
     "name": "Inspire",
     "kind": "note",
-    "text": "The default Command, for the encounter: allies within your presence (up to {1:12, 3:25, 5:50, 7:250, 9:1000, 12:5000, 16:20000}) can't be Frightened, and an ally's first hit each round on a creature you have Challenged deals an extra weapon damage die. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
+    "text": "The default Command, for the encounter: allies within {1:30ft, 19:60ft} who can see or hear you have Advantage on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3494,8 +3002,8 @@
    {
     "name": "Embolden",
     "kind": "note",
-    "text": "For the encounter, companions and followers within {3:30ft, 19:60ft} have Advantage on Will saves. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 3,
+    "text": "For the encounter, companions and followers within {9:30ft, 19:60ft} have Advantage on Will saves.",
+    "minLevel": 9,
     "cost": 1,
     "per": "",
     "target": "allies",
@@ -3505,20 +3013,20 @@
    {
     "name": "Demoralise",
     "kind": "save",
-    "text": "For the encounter, enemies who can see you (up to {5:25, 7:100, 9:250, 12:1000, 16:5000}) have Disadvantage on Charisma checks; on a failed Will save (your Class Save DC) they also can't move closer to you while the Command lasts. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 5,
+    "text": "Enemies within {7:30ft, 19:60ft} who can see you make a Will save against your Class Save DC or are Frightened of you until the end of their next turn; they save again each time you give a Command.",
+    "minLevel": 7,
     "cost": 1,
     "per": "",
     "target": "",
     "removeConditions": false,
     "save": "will",
-    "effect": "Demoralised, Demoralised (failed save)"
+    "effect": "Demoralised (failed save)"
    },
    {
     "name": "Expert in Arms",
     "kind": "note",
-    "text": "Until the start of your next turn, allies within {9:40ft, 19:80ft} who follow your orders have Advantage on contested manoeuvre checks. {1:, 4:Rallying Cry: also ends Frightened and Charmed on allies within 30ft who can hear you.}",
-    "minLevel": 9,
+    "text": "For the encounter, allies within {3:30ft, 19:60ft} have Advantage on manoeuvre contests and on checks to resist being Grappled, Tripped or Disarmed.",
+    "minLevel": 3,
     "cost": 1,
     "per": "",
     "target": "allies",
@@ -3532,7 +3040,7 @@
    "formula": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Command pool, 1 + Charisma modifier a day (minimum 2), +1 at 6th and 12th; each option spends one use and lasts the encounter (Expert in Arms until your next turn). Rallying Cry (4th) and Banner Bearer (19th, range doubles) ride on every Command."
+  "why": "Books v0.10.25 (R-B7): one Command pool, 1 + Charisma modifier a day (minimum 2), +1 at 6th and 12th; each option spends one use and lasts the encounter (Expert in Arms until your next turn). Rallying Cry (4th) and Banner Bearer (19th, range doubles) ride on every Command. Books v0.10.57 (R-B61): given as part of your action, once per round, to allies within 30ft; Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone."
  },
  "Performance (Charisma)|Bard": {
   "activities": [
@@ -3699,38 +3207,6 @@
   },
   "confidence": "high",
   "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Divine Intervention (2 uses) 5th, Divine Healing its fourth option from 8th. Books v0.10.36 (K36): Smite is spent on a hit, radiant, and heals an ally. Books v0.10.41 (K48 B-M1): Smite improves at 13th, +1d8 radiant."
- },
- "Quick Reflexes (Improved)|Monk": {
-  "activities": [
-   {
-    "name": "Extra Action",
-    "kind": "note",
-    "text": "In the first round, take one extra action: one additional attack or half movement.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Extra action once per encounter (the feature's use). Untouchable's improvement (Wisdom modifier hits each encounter) is on Untouchable's own uses from 24th (books v0.10.35)."
- },
- "Quick Reflexes (Improved)|Rogue": {
-  "activities": [
-   {
-    "name": "Extra Action",
-    "kind": "note",
-    "text": "In the first round, take one extra action: one additional attack or half movement.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per encounter extra action."
  },
  "Granted Power (Asmodeus)|Deity: Asmodeus (Cleric)": {
   "activities": [
@@ -4182,7 +3658,7 @@
    {
     "name": "Fascinate",
     "kind": "save",
-    "text": "A Performance option (1 use): up to {1:2, 6:4, 12:10} creatures that can see and hear you, and aren't in immediate combat, save or fall into a trance until the scene ends or something breaks it.",
+    "text": "A Performance option (1 use), out of combat: up to {1:2, 6:4, 12:10} creatures that can see and hear you make a Will save or are held, Incapacitated, while you perform and for a round after. An obvious threat breaks it.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -4191,32 +3667,10 @@
     "save": "will"
    },
    {
-    "name": "Charm Person",
-    "kind": "save",
-    "text": "A currently fascinated creature saves or is affected as by Charm Person.",
-    "minLevel": 5,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
     "name": "Suggestion",
     "kind": "save",
-    "text": "A currently fascinated creature saves or receives a Suggestion.",
+    "text": "Implant a Suggestion in a held creature as part of the performance (Will save to resist).",
     "minLevel": 8,
-    "cost": 0,
-    "per": "",
-    "target": "one",
-    "removeConditions": false,
-    "save": "will"
-   },
-   {
-    "name": "Antipathy/Sympathy",
-    "kind": "save",
-    "text": "A currently fascinated creature saves or is affected as by Antipathy/Sympathy.",
-    "minLevel": 12,
     "cost": 0,
     "per": "",
     "target": "one",
@@ -4226,7 +3680,7 @@
    {
     "name": "Sway Crowd",
     "kind": "save",
-    "text": "Use Fascinate while performing (1 Performance use): all listeners save or are held in rapture, unable to leave while you perform and until the end of their next turn after you stop: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language.",
+    "text": "While performing (1 Performance use): all listeners save or are Incapacitated while you perform: up to {13:20, 16:40, 19:80, 22:160} Levels of targets, lowest Level first, any humanoid regardless of language. A creature that is attacked or sees an ally attacked may save again at once.{22: A held crowd may be given a Suggestion that lasts a week.}",
     "minLevel": 13,
     "cost": 1,
     "per": "",
@@ -4237,7 +3691,7 @@
    {
     "name": "Mass Suggestion",
     "kind": "save",
-    "text": "Currently fascinated creatures save or receive a Mass Suggestion.",
+    "text": "Implant a Mass Suggestion in every held creature instead (Will save to resist).",
     "minLevel": 18,
     "cost": 0,
     "per": "",
@@ -4285,5 +3739,508 @@
   },
   "confidence": "high",
   "why": "Books v0.10.41 (K48 B-M1): once per day from 18th."
+ },
+ "Press On|Fighter": {
+  "activities": [
+   {
+    "name": "Press On",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. After it, one Trip, Disarm or Dirty Trick contest, or one Fighter Manoeuvre if it hit, against the same target for free (not your once per round)."
+   },
+   {
+    "name": "Press On (first attack missed)",
+    "kind": "attacks",
+    "count": "1",
+    "cost": 0,
+    "text": "Your first attack missed: the extra attack has no Disadvantage. After it, one Trip, Disarm or Dirty Trick contest, or one Fighter Manoeuvre if it hit, against the same target for free (not your once per round)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Savage Swing|Barbarian": {
+  "activities": [
+   {
+    "name": "Savage Swing",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit one creature no more than one size larger than you, on its next turn it can move or act, not both."
+   },
+   {
+    "name": "Savage Swing (while Raging)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (while Raging). If both hit one creature no more than one size larger than you, on its next turn it can move or act, not both."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Challenger's Blow|Knight": {
+  "activities": [
+   {
+    "name": "Challenger's Blow",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Against your Challenged foe, a hit gives it Disadvantage on attacks against anyone but you until your next turn."
+   },
+   {
+    "name": "Challenger's Blow (against your Challenged foe)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (against your Challenged foe). Against your Challenged foe, a hit gives it Disadvantage on attacks against anyone but you until your next turn."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Cut and Run|Rogue": {
+  "activities": [
+   {
+    "name": "Cut and Run",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round."
+   },
+   {
+    "name": "Cut and Run (target next to an ally)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (target next to an ally). Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Twist the Knife|Assassin": {
+  "activities": [
+   {
+    "name": "Twist the Knife",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit one creature, it can't regain Hit Points until the end of its next turn. Sneak Attack still applies to only one attack per round."
+   },
+   {
+    "name": "Twist the Knife (against a Poisoned creature)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (against a Poisoned creature). If both hit one creature, it can't regain Hit Points until the end of its next turn. Sneak Attack still applies to only one attack per round."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Quarry Strike|Ranger": {
+  "activities": [
+   {
+    "name": "Quarry Strike",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If it drops your marked prey, mark a new creature you can see at once, without spending a use of Marked Prey."
+   },
+   {
+    "name": "Quarry Strike (against your marked prey)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (against your marked prey). If it drops your marked prey, mark a new creature you can see at once, without spending a use of Marked Prey."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Dazzling Combo|Swashbuckler": {
+  "activities": [
+   {
+    "name": "Dazzling Combo",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit, Encore: the second hit adds your Charisma modifier to damage again."
+   },
+   {
+    "name": "Dazzling Combo (Duel's Rhythm on)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (Duel's Rhythm on). If both hit, Encore: the second hit adds your Charisma modifier to damage again."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Two-Gun Shot|Gunslinger": {
+  "activities": [
+   {
+    "name": "Two-Gun Shot",
+    "kind": "attacks",
+    "count": "2",
+    "disadvantage": "extra",
+    "cost": 0,
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. A firearm still has to be loaded for each shot; no Disadvantage when the extra shot comes from a second loaded firearm drawn as part of the attack."
+   },
+   {
+    "name": "Two-Gun Shot (second loaded firearm)",
+    "kind": "attacks",
+    "count": "2",
+    "cost": 0,
+    "text": "No Disadvantage on the extra attack (second loaded firearm). A firearm still has to be loaded for each shot; no Disadvantage when the extra shot comes from a second loaded firearm drawn as part of the attack."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+ },
+ "Perfect Timing|Rogue": {
+  "activities": [
+   {
+    "name": "Perfect Timing",
+    "kind": "note",
+    "text": "Act first in the round, whatever initiative says.",
+    "cost": 1,
+    "target": "self"
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57: once per encounter, act first in the round.",
+  "uses": {
+   "max": 1,
+   "per": "encounter"
+  }
+ },
+ "Blessed Token|Paladin": {
+  "activities": [
+   {
+    "name": "Blessed Token",
+    "kind": "note",
+    "text": "Bless a small item: the first ally to hold it while dying is stabilised and regains HP equal to your Charisma modifier{18:, and one condition on them ends}.",
+    "cost": 1,
+    "per": "day",
+    "target": "one"
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B63): once per day.",
+  "uses": {
+   "max": 1,
+   "per": "day"
+  }
+ },
+ "Renown: Castle|Knight": {
+  "activities": [
+   {
+    "name": "Followers this season",
+    "kind": "roll",
+    "formula": "2d10",
+    "cost": 0,
+    "per": "season",
+    "text": "Followers (Level 0) and one 1st-level Knight who come to your castle this season; you choose who stays. Scutage pays 3 gp a month for a follower and 4 gp a month per Level for a Knight."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B63): Renown: Castle, 2d10 followers each season."
+ },
+ "Renown: War-camp|Barbarian": {
+  "activities": [
+   {
+    "name": "Warriors this season",
+    "kind": "roll",
+    "formula": "2d6",
+    "cost": 0,
+    "text": "Warriors who join your war-camp this season, with one 3rd-level Barbarian to lead every 20."
+   },
+   {
+    "name": "Call the host",
+    "kind": "note",
+    "cost": 0,
+    "per": "season",
+    "text": "Where your name and deeds are known, 10 to 100 1st-level Barbarians answer and fight for 30 days for food and water alone (AC 13, sword or axe)."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B63): Renown: War-camp; the host once per season."
+ },
+ "Renown: Temple|Cleric": {
+  "activities": [
+   {
+    "name": "Faithful this season",
+    "kind": "roll",
+    "formula": "2d6",
+    "cost": 0,
+    "text": "Faithful who join your temple this season, with one 1st-level Cleric or Battle Priest."
+   },
+   {
+    "name": "Temple spell",
+    "kind": "note",
+    "cost": 0,
+    "per": "week",
+    "text": "While you hold the temple: cast one spell of 7th level or lower from your list once a week without a slot."
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B63): Renown: Temple."
+ },
+ "Deflect (Dexterity)|Monk": {
+  "activities": [
+   {
+    "name": "Deflect",
+    "kind": "check",
+    "text": "Out of turn, when a nonmagical missile would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "self",
+    "removeConditions": false,
+    "ability": "dex",
+    "reaction": true
+   }
+  ],
+  "confidence": "high",
+  "why": "Books v0.10.57 (R-B61): Deflect Missiles, Deflect Blow and Catch Weapon are one Deflect; attempts per round from the table."
+ },
+ "Arcane Analysis (Intelligence)|Illusionist": {
+  "activities": [
+   {
+    "name": "Arcane Analysis",
+    "kind": "check",
+    "ability": "int",
+    "text": "After 5 rounds of study, reveal whether an item is magical and the origin of its magic, if you have met that kind before{18:; also its power and history}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Intelligence check."
+ },
+ "Arcane Analysis|Wizard": {
+  "activities": [
+   {
+    "name": "Arcane Analysis",
+    "kind": "check",
+    "ability": "int",
+    "text": "After 5 rounds of study, reveal whether an item is magical and the origin of its magic, if you have met that kind before{18:; also its power and history}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Intelligence check stated."
+ },
+ "Glamour|Illusionist": {
+  "activities": [],
+  "uses": {
+   "max": 1,
+   "per": "rest",
+   "formula": "max(1, @int.mod + floor(@cl/2))"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55, K78): Glamour points equal to Intelligence modifier + half Illusionist level (minimum 1), all back on a full rest. The tricks spend it (uses.pool). 9th level: 2 back when an encounter starts with the pool empty (by hand)."
+ },
+ "Misdirect|Illusionist": {
+  "activities": [
+   {
+    "name": "Misdirect",
+    "kind": "save",
+    "save": "will",
+    "cost": 1,
+    "target": "one",
+    "reaction": true,
+    "text": "Once a round, out of turn, when a creature you can see attacks you: it makes a Will save against your Class Save DC; on a failure the attack hits an illusory double and misses."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 1 Glamour."
+ },
+ "Phantom Wound|Illusionist": {
+  "activities": [
+   {
+    "name": "Phantom Wound",
+    "kind": "save",
+    "save": "will",
+    "cost": 1,
+    "target": "one",
+    "text": "As your action: one creature within 60ft that can see makes a Will save against your Class Save DC or takes the damage. A creature fooled by one of your illusions saves with Disadvantage."
+   },
+   {
+    "name": "Phantom Wound damage",
+    "kind": "damage",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "damageType": "psychic",
+    "cost": 0,
+    "target": "one",
+    "text": "On a failed save."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 1 Glamour; damage from the Level table."
+ },
+ "Mirage Step|Illusionist": {
+  "activities": [
+   {
+    "name": "Mirage Step",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "As part of your movement: swap places with one of your illusions within 30ft, without provoking Attacks of Opportunity."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 1 Glamour."
+ },
+ "Drawn Veil|Illusionist": {
+  "activities": [
+   {
+    "name": "Drawn Veil",
+    "kind": "note",
+    "cost": 1,
+    "target": "one",
+    "effect": "Drawn Veil",
+    "text": "As part of your action: you or one ally within 30ft is Invisible until the end of its next turn."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 1 Glamour."
+ },
+ "Seed of Doubt|Illusionist": {
+  "activities": [
+   {
+    "name": "Seed of Doubt",
+    "kind": "save",
+    "save": "will",
+    "cost": 1,
+    "target": "one",
+    "text": "As part of your action: one creature within 60ft makes a Will save against your Class Save DC; on a failure, until the end of its next turn it takes one real creature or object you choose for an illusion (it won't attack or avoid it, and that creature has Advantage on attacks against it)."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 1 Glamour."
+ },
+ "Shattered Glass|Illusionist": {
+  "activities": [
+   {
+    "name": "Shattered Glass",
+    "kind": "save",
+    "save": "will",
+    "cost": 2,
+    "target": "many",
+    "text": "As your action: shatter one of your illusions within 60ft. Each creature within 10ft of it makes a Will save: on a failure it takes your Phantom Wound damage and is Blinded until the end of its next turn; on a success, half damage."
+   },
+   {
+    "name": "Shattered Glass damage",
+    "kind": "damage",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "damageType": "psychic",
+    "cost": 0,
+    "target": "many",
+    "text": "Phantom Wound damage; half on a success."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): 2 Glamour."
+ },
+ "Phantasm|Illusionist": {
+  "activities": [
+   {
+    "name": "Re-form the Phantasm",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "Re-form a destroyed Phantasm (otherwise woven during a rest)."
+   }
+  ],
+  "uses": {
+   "max": 0,
+   "pool": "Glamour"
+  },
+  "confidence": "high",
+  "why": "Books v0.10.58 (R-B55): re-forming costs 1 Glamour."
+ },
+ "Exploit (Sneak Attack)|Rogue": {
+  "activities": [
+   {
+    "name": "Exploit",
+    "kind": "note",
+    "text": "Gain Advantage and add {1:1d6, 13:2d6, 18:3d6, 23:4d6} against a creature within 30ft that is flanked, in melee with an ally and not you, Restrained, Prone or can't see you, once per round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Exploit damage",
+    "kind": "damage",
+    "text": "Add to the weapon's damage on a hit, once per round.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6"
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round; dice come from the Rogue Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
+ },
+ "Stubborn|Freelance (Gunslinger)": {
+  "activities": [
+   {
+    "name": "Grit recovery",
+    "kind": "heal",
+    "formula": "1:1d6, 9:2d6",
+    "cost": 0,
+    "target": "self",
+    "text": "When Grit activates: recover HP instead of standing at 1 HP."
+   }
+  ],
+  "confidence": "high",
+  "why": "1d6 HP when Grit activates."
  }
 }

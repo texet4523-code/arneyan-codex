@@ -110,21 +110,22 @@ CLASS_ONLY_FOLDERS = {"Necromancer", "Warlock", "Witch"}
 # Knight's Commands are one pool, and these two now change a Command option instead of replacing a feature: they keep
 # no uses of their own and carry the stronger version of the option's effect, applied in its place.
 KITS = {
-    "Hedge Knights (Knight)": {
-        "name": "Steadfast Courage", "level": 3, "replaces": "",
-        "description": "<p>Your Embolden option reaches <strong>60ft</strong>, and companions and followers in range have "
-                       "<strong>Advantage on all saves</strong>. When you give Embolden, apply this in place of the usual "
-                       "Emboldened.</p>",
+    # Books v0.10.56 (R-B59): the Knight's kits are Paths ("Path: Hedge Knight"), and these come at the Path's levels.
+    "Path: Hedge Knight (Knight)": {
+        "name": "Steadfast Courage", "level": 1, "replaces": "",
+        "description": "<p>You know the Embolden Command from 1st level rather than 9th. It reaches <strong>60ft</strong>, and "
+                       "companions and followers in range have <strong>Advantage on all saves</strong>. When you give "
+                       "Embolden, apply this in place of the usual Emboldened.</p>",
         "uses": {"value": 0, "max": 0, "per": ""}, "save": "",
         "applies": [{"name": "Emboldened (Steadfast Courage)", "target": "target", "rounds": "encounter", "statuses": [],
                      "rules": [{"key": "adv.save", "value": "1", "when": "", "label": ""}]}],
         "kit_text": None,
     },
-    "Boldock Wall-Knights (Knight)": {
+    "Path: Castellan (Knight)": {
         "name": "Wall-Forged Dread", "level": 5, "replaces": "",
-        "description": "<p>Your Demoralise option is harsher: on a failed Will save, enemies are <strong>Frightened</strong> of "
-                       "you while the Command lasts. Otherwise it works as Demoralise. When you give Demoralise, apply this in "
-                       "place of the usual failed-save effect.</p>",
+        "description": "<p>You gain Demoralise at 5th level rather than 7th, and it is harsher: on a failed Will save, enemies "
+                       "stay <strong>Frightened</strong> of you while the Command lasts, not just until the end of their next "
+                       "turn. When you give Demoralise, apply this in place of the usual failed-save effect.</p>",
         "uses": {"value": 0, "max": 0, "per": ""}, "save": "will",
         "applies": [{"name": "Demoralised (Wall-Forged Dread, failed save)", "target": "target", "rounds": "encounter", "statuses": ["frightened"],
                      "rules": []}],
