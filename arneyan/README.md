@@ -7,7 +7,7 @@ Version 0.10.98 · Foundry v13 and v14 · **Playtest release**
 Book II from HB v0.10.61 (B-F53; K110, F-B13, F-B14).
 
 - **More ranged Martial feats** (Jacob's Well: "not enough ranged feats for the martial path"). New: **Felling Shot** (a ranged hit, Fortitude save or Prone, with a save button), **Covering Fire** (in place of one ranged attack, the target's next attack has Disadvantage unless it attacks you; a once-a-round button) and **Practised Thrower** (draw as part of the throw, double range, recover your thrown weapons after a fight; its range is yours to apply).
-- **Feats in two Paths:** Point-Blank Terror and Steady Aim are now Martial feats as well as Specialist ones, and Two-Weapon Fighting (already in both) now shows up for Martial-only classes too. One item each, as before; the feat picker offers it if either Path is open to you, and the sheet lists both Paths.
+- **Feats in two Paths:** Point-Blank Terror and Steady Aim are now Martial feats as well as Specialist ones, and Two-Weapon Fighting (already in both) now shows up for Martial-only classes too. One item each, as before; the feat pickers and the Feat Browser's Path filter offer it if either Path is open to you, and the sheet lists both Paths. Feats already on characters keep the text they had (their buttons update).
 - **Mighty Deed of Arms** works at range: call your shot in melee or at range, and a ranged push is 5ft.
 - **Book II's Starting Money line** reads 5d4 sp for a Monk up to 3d6 gp.
 

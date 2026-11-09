@@ -1210,7 +1210,7 @@ export class ArneyanItem extends Item {
       if (!from) return "";
       return [from, sys.level > 0 ? `Level ${sys.level}` : ""].filter(Boolean).join(" · ");
     }
-    if (this.type === "feat") return ["Feat", sys.path, sys.levelTaken > 0 ? `taken at level ${sys.levelTaken}` : ""].filter(Boolean).join(" · ");
+    if (this.type === "feat") return ["Feat", [sys.path, ...(sys.alsoPaths ?? [])].filter(Boolean).join(", "), sys.levelTaken > 0 ? `taken at level ${sys.levelTaken}` : ""].filter(Boolean).join(" · ");
     if (this.type === "kit") return [sys.className, "Kit"].filter(Boolean).join(" · ");
     return "";
   }

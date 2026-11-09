@@ -59,7 +59,7 @@ export function itemFacts(item, { gm = globalThis.game?.user?.isGM ?? false } = 
       if (s.ritual) push("Ritual");
       break;
     case "feat":
-      push(s.path);
+      push([s.path, ...(s.alsoPaths ?? [])].filter(Boolean).join(", "));
       if (s.levelTaken) push(`Taken at level ${s.levelTaken}`);
       break;
     case "ability":

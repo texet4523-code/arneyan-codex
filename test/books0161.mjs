@@ -21,6 +21,9 @@ for (const [n, id] of [["Point-Blank Terror", "haGhp1pKRchF3fjE"], ["Steady Aim"
 const martial = new Set(["General Path", "Martial Path"]), arcane = new Set(["General Path", "Arcane & Devout Path"]);
 assert.ok(P.featOpen(feat("Steady Aim"), martial));
 assert.ok(!P.featOpen(feat("Steady Aim"), arcane));
+assert.equal(P.featGroup(feat("Steady Aim"), martial), "Martial Path", "a Fighter sees it under the Martial Path");
+assert.equal(P.featGroup(feat("Steady Aim"), new Set(["General Path", "Martial Path", "Specialist Path"])), "Specialist Path");
+assert.equal((feat("Steady Aim").system.description.match(/Available to:/g) ?? []).length, 1, "one note");
 assert.ok(feats.filter(d => d.system.path).every(d => Array.isArray(d.system.alsoPaths)), "every Path feat has the field (The Last Form, a Secret, has no Path)");
 
 // The three new Martial feats (K110), with their buttons.

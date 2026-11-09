@@ -569,6 +569,8 @@ function featLevels(actor) {
 
 /** A feat is open if its Path, or another Path that also lists it (HB v0.10.61), is open to the character. */
 export const featOpen = (e, paths) => paths.has(e.system?.path) || (e.system?.alsoPaths ?? []).some(p => paths.has(p));
+/** The Path a picker shows a feat under: its own if open to the character, else the first other Path that is. */
+export const featGroup = (e, paths) => (paths.has(e.system?.path) ? e.system.path : (e.system?.alsoPaths ?? []).find(p => paths.has(p))) ?? e.system?.path ?? "";
 
 /** Feat Paths open to the character: General plus every class's Paths. */
 function featPaths(actor) {
@@ -622,7 +624,7 @@ export async function promptFeat(actor, charLevel) {
   const uuid = await pickFromList({
     title: `${actor.name}: choose a Feat (level ${charLevel})`,
     intro: `<p>You gain a Feat at level ${charLevel}. Open to you: ${[...paths].map(esc).join(", ")}. Click one to read it.</p>`,
-    entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
+    entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: featGroup(e, paths) })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
   // Skilled's one skill at Trained is asked for when it lands on the sheet (documents.mjs).
@@ -707,7 +709,7 @@ async function firstLevelLists(actor, cls) {
   const paths = featPaths(actor);
   const ownedFeats = new Set(actor.items.filter(i => i.type === "feat").map(i => i.name));
   const feats = (await packOptions("feats", e => featOpen(e, paths) && !ownedFeats.has(e.name)))
-    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: e.system?.path ?? "" }))
+    .map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: featGroup(e, paths) }))
     .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name));
   // Skills by attribute, in sheet order.
   const ownedSkills = new Set(actor.items.filter(i => i.type === "skill").map(i => i.name));

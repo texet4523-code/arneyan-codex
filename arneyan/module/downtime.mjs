@@ -300,7 +300,7 @@ export function trainedFeatData(data, level) {
 async function addTrainedFeat(actor, typed) {
   const pack = game.packs.get(`${SYS}.feats`);
   if (!pack) return;
-  const index = [...(await pack.getIndex({ fields: ["system.path"] }))].filter(e => e.type === "feat" && !UNTEACHABLE.includes(e.name) && e.system?.path)
+  const index = [...(await pack.getIndex({ fields: ["system.path", "system.alsoPaths"] }))].filter(e => e.type === "feat" && !UNTEACHABLE.includes(e.name) && e.system?.path)
     .sort((a, b) => a.name.localeCompare(b.name));
   // Weapon Master can be taken again for another weapon (K57), so it stays on the list.
   const owned = new Set(actor.items.filter(i => i.type === "feat" && i.name !== "Weapon Master").map(i => i.name));
@@ -308,7 +308,7 @@ async function addTrainedFeat(actor, typed) {
   const open = index.filter(e => !owned.has(e.name));
   const match = open.find(e => e.name.toLowerCase() === String(typed).toLowerCase());
   const already = owned.has(index.find(e => e.name.toLowerCase() === String(typed).toLowerCase())?.name);
-  const opts = open.map(e => `<option value="${e._id}" ${e === match ? "selected" : ""}>${esc(e.name)} (${esc(e.system.path)})</option>`).join("");
+  const opts = open.map(e => `<option value="${e._id}" ${e === match ? "selected" : ""}>${esc(e.name)} (${esc([e.system.path, ...(e.system.alsoPaths ?? [])].join(", "))})</option>`).join("");
   const pick = await foundry.applications.api.DialogV2.wait({
     window: { title: `${actor.name}: Trained Feat learned`, icon: "fa-solid fa-graduation-cap" }, classes: ["arneyan"], position: { width: 440 },
     content: `<p>${esc(actor.name)} has learned ${match ? `<strong>${esc(match.name)}</strong>` : "a Trained Feat"}. Add it to the sheet?${already ? ` (${esc(typed)} is on the sheet already.)` : ""}</p>

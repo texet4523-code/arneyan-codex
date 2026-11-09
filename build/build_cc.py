@@ -52,15 +52,19 @@ def build(icon):
             desc = f"<p>{md_inline(rest)}</p>"
             if fname != fname_clean:
                 desc = f"<p><em>{esc(fname[len(fname_clean):].strip())}</em></p>" + desc
-            if avail:
-                desc += f'<p class="arn-note">{md_inline(avail.group(1))}</p>'
             prev = feats.get(fname_clean)
             also = ([prev["path"]] + prev["also"]) if prev else []
-            # Listed in another Path too: its "Available to" note comes along, so every class it is open to is named.
-            for note in (prev["notes"] if prev else []):
-                if note not in desc:
-                    desc += note
-            notes = (prev["notes"] if prev else []) + ([f'<p class="arn-note">{md_inline(avail.group(1))}</p>'] if avail else [])
+            notes = (prev["notes"] if prev else []) + ([avail.group(1)] if avail else [])
+            # Listed in more than one Path (HB v0.10.61): one note naming every class it is open to, each once.
+            if len(notes) > 1 and all(n_.startswith("Available to:") for n_ in notes):
+                who = []
+                for n_ in notes:
+                    for w in re.split(r",\s*(?:and\s+)?|\s+and\s+", n_[len("Available to:"):].strip().rstrip(".")):
+                        if w.strip() and w.strip() not in who:
+                            who.append(w.strip())
+                desc += f'<p class="arn-note">{md_inline("Available to: " + ", ".join(who[:-1]) + ", and " + who[-1] + ".")}</p>'
+            elif notes:
+                desc += "".join(f'<p class="arn-note">{md_inline(n_)}</p>' for n_ in notes)
             feats[fname_clean] = {"desc": desc, "path": pname, "also": also, "fol": fol, "n": n, "pname": pname, "notes": notes}
             n += 1
     for fname_clean, f in feats.items():

@@ -29,7 +29,7 @@ const TABS = {
   equipment: { label: "Equipment", pack: "equipment", icon: "fa-sack", fields: ["system.price", "system.damage", "system.ac", "system.category", "system.slots", "system.damageType", "system.consumable.use", "system.charges.max", "system.ammoType", "system.ranged"], filters: ["category", "kind", "damageType"], groups: true },
   spells: { label: "Spells", pack: "spells", icon: "fa-wand-sparkles", fields: ["system.level", "system.classes", "system.school", "system.concentration", "system.save", "system.damage", "system.ritual"], filters: ["level", "class", "school"] },
   actions: { label: "Actions", pack: "actions", icon: "fa-hand-fist", fields: ["system.kind", "system.toggle"], filters: ["needs"] },
-  feats: { label: "Feats", pack: "feats", icon: "fa-star", fields: ["system.path"], filters: ["path"] },
+  feats: { label: "Feats", pack: "feats", icon: "fa-star", fields: ["system.path", "system.alsoPaths"], filters: ["path"] },
   features: { label: "Class Abilities", pack: "class-features", icon: "fa-shield-halved", fields: ["system.className", "system.level", "system.uses", "system.save"], filters: ["className", "featureLevel"] },
   skills: { label: "Skills", pack: "skills", icon: "fa-book-open-reader", fields: ["system.ability"], filters: ["ability"] },
   classes: { label: "Classes", pack: "classes", icon: "fa-user-shield", fields: ["system.hitDie", "system.bthProgression", "system.castingAbility"], filters: [] },
@@ -236,7 +236,7 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
       if (f.level !== undefined && f.level !== "" && String(sys(r).level) !== String(f.level)) return false;
       if (f.class && !(sys(r).classes ?? []).includes(f.class)) return false;
       if (f.school && sys(r).school !== f.school) return false;
-      if (f.path && sys(r).path !== f.path) return false;
+      if (f.path && sys(r).path !== f.path && !(sys(r).alsoPaths ?? []).includes(f.path)) return false;
       if (f.className && !(sys(r).className ?? "").startsWith(f.className)) return false;
       if (f.featureLevel && String(sys(r).level) !== String(f.featureLevel)) return false;
       if (f.ability && sys(r).ability !== f.ability) return false;
@@ -300,7 +300,7 @@ export class ArneyanBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     switch (this.tab) {
       case "equipment": return [r.folder, s.damage, s.ac ? `AC +${s.ac}` : "", s.price].filter(Boolean).join(" · ");
       case "spells": return [s.level === 0 ? "Cantrip" : `${ARNEYAN.spellLevels[s.level] ?? s.level} level`, s.school, s.save ? `${ARNEYAN.saveTypes[s.save]} save` : "", s.concentration ? "Concentration" : "", s.damage ? "Damage" : "", (s.classes ?? []).join(", ")].filter(Boolean).join(" · ");
-      case "feats": return s.path ?? "";
+      case "feats": return [s.path, ...(s.alsoPaths ?? [])].filter(Boolean).join(", ");
       case "features": return [s.className, s.level ? `Level ${s.level}` : "", s.uses?.max ? `${s.uses.max}/${ARNEYAN.usesPer[s.uses.per] ?? ""}` : ""].filter(Boolean).join(" · ");
       case "skills": return ARNEYAN.abilities[s.ability] ?? "";
       case "classes": return [s.hitDie, ARNEYAN.bthProgressions[s.bthProgression]?.label, s.castingAbility ? `Casts with ${ARNEYAN.abilities[s.castingAbility]}` : ""].filter(Boolean).join(" · ");
