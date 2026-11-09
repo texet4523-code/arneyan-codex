@@ -383,12 +383,17 @@ function onRender(message, html) {
   }));
 
   on(".arn-burn", () => burnLuck(message));
-  on(".arn-second-die", (ev, btn) => secondDie(message, Number(btn.dataset.dir) || 1));
+  on(".arn-second-die", (ev, btn) => {
+    const dir = Number(btn.dataset.dir) || 1;
+    if (message.canUserModify(game.user, "update")) return secondDie(message, dir);
+    // A card the GM's client rolled for the player's creature (resisting a grapple): the GM's client rolls it.
+    if (!game.users.activeGM) return ui.notifications.warn("No GM is connected to roll the second die.");
+    game.socket.emit(`system.${SYS}`, { action: "secondDieCard", messageId: message.id, dir });
+  });
   // Only the roller and the GM see the Advantage and Disadvantage buttons.
   {
     const roller = ChatMessage.getSpeakerActor(message.speaker);
-    // Only where the card itself can be rewritten (so the result on it is the one that counts).
-    const may = (game.user.isGM || !!roller?.isOwner || message.isAuthor) && message.canUserModify(game.user, "update");
+    const may = game.user.isGM || !!roller?.isOwner || (message.isAuthor && message.canUserModify(game.user, "update"));
     html.querySelectorAll(".arn-second").forEach(b => { b.hidden = !may || !!flags.secondDie; });
   }
 

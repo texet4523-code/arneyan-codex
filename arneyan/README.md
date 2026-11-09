@@ -2,6 +2,15 @@
 
 Version 0.10.94 · Foundry v13 and v14 · **Playtest release**
 
+## What's new in 0.10.95
+
+- **Advantage and Disadvantage on every d20 roll** (Kieran, 9 Nov: "I mean all d20 rolls"). Any message in chat with a d20 now has the buttons: a typed /roll, an inline roll from a description, a table draw (the note says what the new total lands on), another module's roll. Pressing one rolls the second d20 and the message says the new total.
+  - **Downtime checks** have them too, and pressing one works the downtime out again: income earned (coins added or taken back), a single check such as crafting or brewing (finished or not, and the half of the gold kept). Learning with more weeks and Carousing say what changed, for the GM to adjust on the Downtime tab. The window's "Advantage on the check" choice stays.
+  - **Reading an unknown scroll** is an ordinary check card: a pass after a second die casts the spell after all.
+  - **A charged item crumbling on a 1** can be saved (or ended) by the second die.
+  - **A player's own resisting card** that the GM's client rolled (a monster grappling them): the player now sees the buttons too, and the GM's client rolls the die and works the contest out again.
+- **Toll the Dead's** button says "(d6s against the hurt)".
+
 ## What's new in 0.10.94
 
 Fixes and changes from the Jacob's Well playtest (Kieran, 8 Nov).

@@ -24,6 +24,74 @@ async function onRollChanged(message) {
   if (f.kind === "contest") await contestChanged(message);
   if (f.lastChance) await lastChanceChanged(message);
   if (f.kind === "attack" && f.gun) await gunChanged(message);
+  if (f.downtime) await downtimeChanged(message);
+  if (f.scroll) await scrollChanged(message);
+}
+
+/**
+ * A downtime check, worked out again: income and a single check (crafting, brewing...) change the log entry and the
+ * purse; learning with retries and carousing (later rolls followed from this one) get a note for the GM.
+ */
+async function downtimeChanged(message) {
+  const f = message.flags[SYS], d = f.downtime;
+  const actor = d.actorUuid ? await fromUuid(d.actorUuid).catch(() => null) : null;
+  if (!actor?.isOwner) return;
+  const D = await import("./downtime.mjs");
+  const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
+  const log = foundry.utils.deepClone(actor.getFlag(SYS, "downtime") ?? []);
+  const entry = log.find(e => e.id === d.entryId);
+  if (!entry) return;
+  let purse = { ...actor.system.currency }, note = "", flag = {};
+  if (d.kind === "income") {
+    const perDay = D.incomePerDay(total), earn = perDay * 6, delta = earn - (Number(d.earn) || 0);
+    if (!delta) note = `still ${D.cpText(earn)}`;
+    else if (delta > 0) { purse = D.addCoins(purse, delta); note = `${D.cpText(earn)} now, ${D.cpText(delta)} more added`; }
+    else {
+      const paid = D.payCoins(purse, -delta);
+      if (paid) { purse = paid; note = `${D.cpText(earn)} now, ${D.cpText(-delta)} taken back`; }
+      else note = `${D.cpText(earn)} now; ${D.cpText(-delta)} should come back, but the purse is short (the GM takes it)`;
+    }
+    entry.roll = `${total}`;
+    entry.result = `Earned ${D.cpText(earn)} (${D.cpText(perDay)} a day for 6 days).`;
+    flag = { earn };
+  } else if (d.kind === "check" && d.dc !== null) {
+    const ok = total >= d.dc;
+    entry.roll = `${total} vs DC ${d.dc}`;
+    if (ok === !!d.ok) note = ok ? "still a success" : "still a failure";
+    else if (ok) {
+      entry.result = `Success: ${d.title} is finished.`;
+      const paid = d.half ? D.payCoins(purse, d.half) : purse;
+      if (paid) purse = paid;
+      note = `a success now: ${d.title} is finished${d.half ? (paid ? ` (the ${D.cpText(d.half)} kept goes back into it)` : ` (the ${D.cpText(d.half)} kept should go back, but the purse is short)`) : ""}`;
+    } else {
+      if (d.half) purse = D.addCoins(purse, d.half);
+      entry.result = `Failure: the time is spent and it isn't finished; half the gold is lost${d.half ? ` (${D.cpText(d.half)} kept)` : ""}.`;
+      note = `a failure now: not finished${d.half ? `, ${D.cpText(d.half)} back in the purse` : ""}`;
+    }
+    flag = { ok };
+  } else {
+    // Later rolls (more weeks of learning) or the Carousing table followed from this one: the GM adjusts the entry.
+    return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s downtime check (${esc(d.title)}) is now <strong>${total}</strong>${d.dc !== null ? ` against DC ${d.dc}` : ""}. What followed from it was worked out from the first roll: change it on the Downtime tab if it should be different.</p></div>` });
+  }
+  await actor.update({ [`flags.${SYS}.downtime`]: log, ...Object.fromEntries(Object.entries(purse).map(([k, v]) => [`system.currency.${k}`, v])) });
+  if (message.canUserModify(game.user, "update")) await message.setFlag(SYS, "downtime", { ...d, ...flag });
+  return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s downtime (${esc(d.title)}), worked out again with ${total}: ${esc(note)}.</p></div>` });
+}
+
+/** An unknown scroll's check: failed before and passed now, the spell takes hold after all (the scroll is gone either way). */
+async function scrollChanged(message) {
+  const f = message.flags[SYS], s = f.scroll;
+  const actor = s.actorUuid ? await fromUuid(s.actorUuid).catch(() => null) : null;
+  if (!actor?.isOwner) return;
+  const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
+  const ok = total >= s.dc;
+  if (ok === !!s.ok) return;
+  if (message.canUserModify(game.user, "update")) await message.setFlag(SYS, "scroll", { ...s, ok });
+  if (ok) {
+    const { castSpellCard } = await import("./gear.mjs");
+    return castSpellCard(actor, s.spell, { cl: s.cl, dc: s.castDc, from: "a scroll (the check passed after all)" });
+  }
+  return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(actor.name)}'s scroll check is a failure now: the spell shouldn't have taken hold. The GM undoes what it did.</p></div>` });
 }
 
 async function contestChanged(message) {
@@ -214,8 +282,106 @@ export async function initiativeSecondDie(message, dir) {
   return total;
 }
 
+/* -------------------------------------------- */
+/*  Any other d20 in chat                       */
+/* -------------------------------------------- */
+
+/** Cards with their own buttons (rolls.mjs, the initiative ones above). */
+const HANDLED = new Set(["attack", "check", "save", "skill", "contest", "luck", "initiative"]);
+
+/** The first single d20 of a message's rolls (1d20, or 2d20 keeping one): { roll, die, mode, dice, natural }. */
+export function d20Of(message) {
+  for (const roll of message?.rolls ?? []) {
+    for (const die of roll.dice ?? []) {
+      if (Number(die.faces) !== 20) continue;
+      const mods = (die.modifiers ?? []).join("");
+      const mode = /kh/.test(mods) ? 1 : /kl/.test(mods) ? -1 : 0;
+      const n = Number(die.number) || (die.results ?? []).length;
+      if (!(n === 1 || (n === 2 && mode))) return null;
+      return { roll, die, mode, dice: (die.results ?? []).map(r => r.result), natural: Number(die.total) || 0 };
+    }
+  }
+  return null;
+}
+
+/** Buttons on any other message with a d20 (a typed /roll, an inline roll, a table draw, a module's roll). */
+function onRenderAny(message, html) {
+  const f = message.flags?.[SYS] ?? {};
+  if (HANDLED.has(f.kind) || !html?.querySelector) return;
+  const found = d20Of(message);
+  if (!found) return;
+  const box = html.querySelector(".message-content") ?? html;
+  if (f.anyD20?.secondDie) {
+    const p = document.createElement("p");
+    p.className = "arn-card-meta arn-any-second";
+    p.textContent = f.anyD20.note ?? "";
+    box.append(p);
+    return;
+  }
+  if (!(game.user.isGM || message.isAuthor) || !message.canUserModify(game.user, "update")) return;
+  const wrap = document.createElement("div");
+  wrap.className = "arn-second arn-dmg-buttons";
+  const btn = (dir, label, icon, tip) => `<button type="button" class="arn-any-second-die" data-dir="${dir}" data-tooltip="${esc(tip)}"><i class="fa-solid ${icon}"></i> ${label}</button>`;
+  wrap.innerHTML = [found.mode <= 0 ? btn(1, "Advantage", "fa-angles-up", found.mode < 0 ? "Cancels the Disadvantage: the first die counts" : "Roll a second d20 and keep the higher") : "",
+    found.mode >= 0 ? btn(-1, "Disadvantage", "fa-angles-down", found.mode > 0 ? "Cancels the Advantage: the first die counts" : "Roll a second d20 and keep the lower") : ""].join("");
+  box.append(wrap);
+  wrap.querySelectorAll("button").forEach(b => b.addEventListener("click", ev => {
+    ev.preventDefault();
+    if (b.dataset.busy) return;
+    b.dataset.busy = "1";
+    anyD20SecondDie(message, Number(b.dataset.dir) || 1).catch(err => { console.error("Arneyan |", err); ui.notifications.error(err.message); }).finally(() => { delete b.dataset.busy; });
+  }));
+}
+
+/** Advantage or Disadvantage after any other d20: the new total (and, for a table draw, what it lands on). */
+export async function anyD20SecondDie(message, dir) {
+  const f = message.flags?.[SYS] ?? {};
+  const found = d20Of(message);
+  if (!found || f.anyD20?.secondDie || message._arnSecond) return;
+  const cancel = !!found.mode && Math.sign(found.mode) === -Math.sign(dir) && found.dice.length >= 2;
+  if (found.mode && !cancel) return;
+  message._arnSecond = true;
+  let second = 0;
+  if (!cancel) {
+    const roll = await new Roll("1d20").evaluate();
+    await Promise.resolve(game.dice3d?.showForRoll?.(roll, game.user, true, message.whisper?.length ? [...message.whisper] : null, !!message.blind)).catch(() => null);
+    second = roll.total;
+  }
+  if (game.messages.get(message.id)?.flags?.[SYS]?.anyD20?.secondDie) return;
+  const kept = keptAfter(found.natural, second, dir, { cancel, first: found.dice[0] });
+  const total = (Number(found.roll.total) || 0) - found.natural + kept;
+  const label = dir > 0 ? "Advantage" : "Disadvantage";
+  let note = cancel ? `${label} cancels: the first die counts, so the total is ${total}.` : `${label}: second d20 ${second}, so the total is ${total}.`;
+  // A table draw: what the new total lands on.
+  const table = game.tables?.get?.(message.getFlag?.("core", "RollTable") ?? "");
+  const res = table?.getResultsForRoll?.(total) ?? [];
+  if (res.length) note += ` On ${table.name} that's: ${res.map(r => r.name || r.description || r.text || "").filter(Boolean).join(", ").replace(/<[^>]+>/g, "")}.`;
+  await message.update({ [`flags.${SYS}.anyD20`]: { secondDie: dir, natural: kept, total, note } });
+  Hooks.callAll("arneyanAnyD20", message, { before: found.natural, natural: kept, total, dir });
+  return total;
+}
+
+/** A charged item that crumbles on a 1: the second die can save it, or end it. */
+async function crumbleChanged(message, { before, natural }) {
+  const c = message.flags?.[SYS]?.crumble;
+  if (!c) return;
+  const actor = c.actorUuid ? await fromUuid(c.actorUuid).catch(() => null) : null;
+  if (!actor?.isOwner) return;
+  const was = before === 1, now = natural === 1;
+  if (was === now) return;
+  if (was && !actor.items.get(c.item._id)) {
+    await actor.createEmbeddedDocuments("Item", [c.item], { keepId: true });
+    return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(c.item.name)} holds together after all, empty.</p></div>` });
+  }
+  if (now) {
+    await actor.items.get(c.item._id)?.delete();
+    return ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(c.item.name)} crumbles to dust after all.</p></div>` });
+  }
+}
+
 /** The GM's client: Luck a player burned on a card only the GM can rewrite (a contest the player resisted). */
 async function onSocket(msg, senderId) {
+  if (msg?.action === "secondDieCard" && game.users.activeGM?.isSelf) return secondDieFor(msg, senderId);
   if (msg?.action !== "burnLuckCard" || !game.users.activeGM?.isSelf) return;
   const sender = game.users.get(senderId);
   const message = game.messages.get(String(msg.messageId ?? ""));
@@ -226,9 +392,22 @@ async function onSocket(msg, senderId) {
   return applyBurn(message, spend);
 }
 
+/** The GM's client: Advantage or Disadvantage a player pressed on a card only the GM can rewrite. */
+async function secondDieFor(msg, senderId) {
+  const sender = game.users.get(senderId);
+  const message = game.messages.get(String(msg.messageId ?? ""));
+  const actor = message ? ChatMessage.getSpeakerActor(message.speaker) : null;
+  const dir = Number(msg.dir) > 0 ? 1 : -1;
+  if (!sender || !actor || !actor.testUserPermission(sender, "OWNER") || !message.flags?.[SYS]?.kind) return;
+  const { secondDie } = await import("./rolls.mjs");
+  return secondDie(message, dir);
+}
+
 export function registerRedo() {
   Hooks.once("ready", () => game.socket.on(SOCKET, (m, id) => { onSocket(m, id).catch(err => console.error("Arneyan | burn Luck", err)); }));
   Hooks.on("arneyanRollChanged", message => { onRollChanged(message).catch(err => console.error("Arneyan | redo", err)); });
   Hooks.on("preCreateChatMessage", onPreCreateMessage);
   Hooks.on("renderChatMessageHTML", onRenderMessage);
+  Hooks.on("renderChatMessageHTML", onRenderAny);
+  Hooks.on("arneyanAnyD20", (message, data) => { crumbleChanged(message, data).catch(err => console.error("Arneyan | crumble", err)); });
 }

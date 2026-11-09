@@ -18,9 +18,9 @@ globalThis.Roll = class {
   async evaluate() {
     const two = /^2d20/.test(this.formula);
     const rs = two ? [naturals.shift(), naturals.shift()] : [naturals.shift()];
-    const kept = /kh/.test(this.formula) ? Math.max(...rs) : /kl/.test(this.formula) ? Math.min(...rs) : rs[0];
+    const kept = /kh/.test(this.formula) ? Math.max(...rs) : /kl/.test(this.formula) ? Math.min(...rs) : rs.reduce((t, x) => t + x, 0);
     const bonus = Number(this.formula.match(/\+\s*(\d+)/)?.[1] ?? 0);
-    this.dice = [{ faces: 20, total: kept, modifiers: two ? [/kh/.test(this.formula) ? "kh" : "kl"] : [], results: rs.map(r => ({ result: r, active: r === kept })) }];
+    this.dice = [{ faces: 20, total: kept, modifiers: /kh/.test(this.formula) ? ["kh"] : /kl/.test(this.formula) ? ["kl"] : [], results: rs.map(r => ({ result: r, active: r === kept })) }];
     this.total = kept + bonus;
     return this;
   }
@@ -142,5 +142,25 @@ assert.equal(D.lastChanceOk({ natural: 12, total: 12, autoFail: true }), false);
   assert.equal(await C.redoContest(res2), false);
   assert.equal(held.effects.length, 1, "held again: the grapple is back");
   assert.equal(held.effects[0].flags.arneyan.grappledBy, grappler.uuid);
+}
+/* Any other d20 in chat (a typed roll, an inline roll, a table draw). */
+{
+  naturals = [7];
+  const r = await new Roll("1d20 + 4").evaluate();
+  const msg = { id: "q", flags: {}, rolls: [r], getFlag: () => null, whisper: [], async update(u) { this.flags.arneyan = { anyD20: u["flags.arneyan.anyD20"] }; } };
+  assert.deepEqual(X.d20Of(msg), { roll: r, die: r.dice[0], mode: 0, dice: [7], natural: 7 });
+  game.messages.set("q", msg);
+  naturals = [15];
+  assert.equal(await X.anyD20SecondDie(msg, 1), 19, "Advantage keeps the 15: 15 + 4");
+  assert.match(msg.flags.arneyan.anyD20.note, /second d20 15, so the total is 19/);
+  assert.equal(await X.anyD20SecondDie(msg, -1), undefined, "once only");
+  naturals = [3, 18];
+  const adv = await new Roll("2d20kh").evaluate();
+  const m2 = { id: "q2", flags: {}, rolls: [adv], getFlag: () => null, whisper: [], async update(u) { this.flags.arneyan = { anyD20: u["flags.arneyan.anyD20"] }; } };
+  game.messages.set("q2", m2);
+  assert.equal(await X.anyD20SecondDie(m2, 1), undefined, "already Advantage: no second Advantage");
+  assert.equal(await X.anyD20SecondDie(m2, -1), 3, "Disadvantage cancels it: the first die counts");
+  naturals = [4, 5];
+  assert.equal(X.d20Of({ rolls: [await new Roll("2d20").evaluate()] }), null, "two d20s added together aren't a d20 roll");
 }
 console.log("OK redo");

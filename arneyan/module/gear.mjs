@@ -484,13 +484,12 @@ export async function readScroll(item, event) {
     const casters = actor.system.casters ?? [];
     const best = casters.length ? casters.reduce((a, b) => (b.mod > a.mod ? b : a)) : null;
     const ab = best?.ability ?? "int";
-    const mod = actor.system.abilities?.[ab]?.mod ?? 0;
-    const r = await new Roll(`1d20 + ${mod}`).evaluate();
-    const ok = r.total >= 10 + lvl;
-    await ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor }), rolls: [r],
-      content: `<div class="arn-card"><header class="arn-card-title">${esc(actor.name)} reads an unknown scroll</header><p>${esc(ARNEYAN.abilities[ab])} check: <strong>${r.total}</strong> against DC ${10 + lvl}. ${ok ? "The spell takes hold." : "The words slip away: the scroll is wasted."}</p></div>`
-    });
+    // An ordinary check card (Advantage and Disadvantage buttons; a pass afterwards casts it after all, redo.mjs).
+    const msg = await actor.rollAbility(ab, event, { dc: 10 + lvl, title: `${actor.name} reads an unknown scroll (${ARNEYAN.abilities[ab]})`, auto: true,
+      notes: ["A pass: the spell takes hold. A failure: the words slip away and the scroll is wasted."] });
+    const f = msg?.flags?.[SYS] ?? {};
+    const ok = !f.autoFail && (Number(f.total) || 0) >= 10 + lvl;
+    if (msg?.canUserModify?.(game.user, "update")) await msg.setFlag(SYS, "scroll", { actorUuid: actor.uuid, dc: 10 + lvl, castDc: dc, cl, ok, spell: foundry.utils.deepClone(sp) }).catch(() => null);
     if (!ok) return useUp(item);
   }
   await castSpellCard(actor, sp, { cl, dc, from: "a scroll" });
@@ -583,6 +582,8 @@ async function spendCharges(item, spend) {
     const gone = r.total === 1;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: item.actor }), rolls: [r],
+      // A second die afterwards can save it or end it (redo.mjs).
+      flags: { [SYS]: { crumble: { actorUuid: item.actor?.uuid ?? "", item: item.toObject() } } },
       content: `<div class="arn-card"><header class="arn-card-title">${esc(item.name)}: out of charges</header><p>d20: <strong>${r.total}</strong>. ${gone ? "It crumbles to dust." : "It holds together, empty."}</p></div>`
     });
     if (gone) await item.delete();
