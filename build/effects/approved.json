@@ -11717,5 +11717,62 @@
   "summary": "Apply it to the creature holding the lit object (target your own token for yourself): its token sheds bright light 30ft, until dispelled, like a lit torch. Kieran, 8 Nov 2026 (Jacob's Well).",
   "manual": "Light on an object nobody holds: place a light on the map by hand.",
   "confidence": "high"
+ },
+ "spells/GglKZ6r7E1U3lrIx": {
+  "name": "Cause Fear",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Frightened (Cause Fear)",
+    "target": "target",
+    "rounds": "1d4",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Apply to each target that failed its save (Jacob's Well, 9 Nov: spells' follow-ups in chat).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "spells/MpteTc6FUQmGtRuy": {
+  "name": "Fear (Mass)",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Frightened (Fear)",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Apply to each target that failed its save (Jacob's Well, 9 Nov: spells' follow-ups in chat).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "spells/FSqTzx5GEnwKtfCH": {
+  "name": "Halt Undead",
+  "from": "Spell",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Halted (Halt Undead)",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ],
+  "summary": "Apply to each target that failed its save (Jacob's Well, 9 Nov: spells' follow-ups in chat).",
+  "manual": "",
+  "confidence": "high"
  }
 }

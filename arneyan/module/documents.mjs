@@ -70,14 +70,15 @@ export function hasSomatic(components) {
  * with its name); `others` every other source of this attack. Returns { own, off }: `own` without Power Attack and the
  * reason when it doesn't count (off: "" when it does, or when it isn't on).
  */
-export function powerAttackFor(own, others, { first = true, label = "Power Attack" } = {}) {
+export function powerAttackFor(own, others, { first = true, label = "Power Attack", byHand = false } = {}) {
   const i = (own?.dis ?? []).indexOf(label);
   if (i < 0) return { own, off: "" };
   const values = [...own.values];
   const at = values.indexOf(-1);
   if (at >= 0) values.splice(at, 1);
   const without = { values, adv: [...own.adv], dis: own.dis.filter((_, k) => k !== i) };
-  const hasDis = [without, ...others].some(s => (s?.values ?? []).some(v => v < 0));
+  // By hand, the attacker's own suggested Disadvantage (Prone, Poisoned) only might apply: just what is fixed counts.
+  const hasDis = [byHand ? { values: without.values.filter(v => v <= -2) } : without, ...others].some(s => (s?.values ?? []).some(v => v < 0));
   const off = !first ? "only your first attack each round" : hasDis ? "not on an attack that already has Disadvantage" : "";
   return off ? { own: without, off } : { own, off: "" };
 }
@@ -732,7 +733,7 @@ export class ArneyanActor extends Actor {
     const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
     // Only tracked for someone with Power Attack on (no write on every monster's attack).
     if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) await this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
-    const pa = powerAttackFor(own, others, { first: firstThisRound });
+    const pa = powerAttackFor(own, others, { first: firstThisRound, byHand });
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
     const paOn = !pa.off && (pa.own?.dis ?? []).includes("Power Attack");
     // Power Attack is the player's choice: its Disadvantage always applies. An attack's own (Extra Attack) too.
@@ -1798,8 +1799,13 @@ export class ArneyanItem extends Item {
     const max = f ? usesMax(f, { ...(this.actor?.getRollData?.() ?? {}), cl, level: cl }, 1) : 1;
     if (!(max > 0)) return null;
     const key = String(act.name ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    const used = Number(this.getFlag?.(SYS, "actUsed")?.[key]) || 0;
-    return { key, max, used, left: max - used };
+    let used = Number(this.getFlag?.(SYS, "actUsed")?.[key]) || 0;
+    // A weekly or monthly count starts again 7 or 30 days (game time) after its first use in that span.
+    const span = { week: 7, month: 30 }[act.per];
+    const since = Number(this.getFlag?.(SYS, "actSince")?.[key]);
+    const now = Number(globalThis.game?.time?.worldTime) || 0;
+    if (span && Number.isFinite(since) && now - since >= span * 86400) used = 0;
+    return { key, max, used, left: max - used, span, since: Number.isFinite(since) && used > 0 ? since : now };
   }
 
   /** Use one of a feature's activities: spend its use, then roll or post what it does. */
@@ -1821,9 +1827,9 @@ export class ArneyanItem extends Item {
     const own = this._ownCount(act);
     if (own) {
       // Counted, never refused: going over is the player's to pay for (Animate Dead's extra corpses take a 3rd-level
-      // slot each) or the GM's call. A daily count refills on a rest; weekly and monthly ones only count.
+      // slot each) or the GM's call. A daily count refills on a rest; weekly and monthly ones after 7 or 30 days.
       const when = act.per === "day" ? "today" : `this ${act.per}`;
-      if (this.isOwner) await this.setFlag(SYS, "actUsed", { ...(this.getFlag(SYS, "actUsed") ?? {}), [own.key]: own.used + 1 });
+      if (this.isOwner) await this.update({ [`flags.${SYS}.actUsed.${own.key}`]: own.used + 1, ...(own.span ? { [`flags.${SYS}.actSince.${own.key}`]: own.since } : {}) });
       act = { ...act, _ownLeft: own.left > 0 ? `${own.left - 1} of ${own.max} ${act.name} left ${when}` : `Over the count: ${own.used + 1} ${act.name} ${when}, of ${own.max} (any more need what the feature says, or the GM's leave)` };
       if (own.left <= 0) ui.notifications.warn(`${this.name}: that's more ${act.name} than its count (${own.max}) ${when}.`);
     }

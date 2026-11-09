@@ -96,3 +96,14 @@ console.log("OK descriptions");
   globalThis.fromUuidSync = sv;
   console.log("OK kept advantage");
 }
+
+/* Power Attack by hand: the attacker's own suggested Disadvantage (Prone) doesn't turn it off; the off-hand -2 does. */
+{
+  for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
+  const D = await import("../arneyan/module/documents.mjs");
+  const own = { values: [-1, -1], adv: [], dis: ["Prone", "Power Attack"] };
+  assert.equal(D.powerAttackFor(own, [], { byHand: true }).off, "");
+  assert.match(D.powerAttackFor(own, [], { byHand: false }).off, /already has Disadvantage/);
+  assert.match(D.powerAttackFor({ values: [-2, -1], adv: [], dis: ["Off-hand", "Power Attack"] }, [], { byHand: true }).off, /already has Disadvantage/);
+  console.log("OK Power Attack by hand");
+}

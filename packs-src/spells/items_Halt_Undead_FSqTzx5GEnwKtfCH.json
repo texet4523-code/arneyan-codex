@@ -39,7 +39,18 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Halted (Halt Undead)",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "paralysed"
+    ],
+    "rules": []
+   }
+  ]
  },
  "effects": [],
  "folder": "bOqH8dr0GIRGNGw4",

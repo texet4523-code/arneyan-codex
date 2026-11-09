@@ -99,6 +99,8 @@ EXPLICIT = {
     "Spike Growth": ("1d4", "piercing", "The damage button rolls one 5ft of movement: 1d4 for each 5ft moved through the area."),
     # "1d8 piercing damage per 10ft moved (minimum 1d8)"
     "Spike Stones": ("1d8", "piercing", "The damage button rolls one 10ft of movement: 1d8 for each 10ft moved (at least 1d8)."),
+    # "take 1d6 radiant or necrotic damage (you choose when casting); Will halves" (Jacob's Well, 9 Nov)
+    "Spirit Guardians": ("1d6", "radiant", "Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; Will halves."),
     # "2d6 piercing damage per 5ft moved"
     "Wall of Thorns": ("2d6", "piercing", "The damage button rolls one 5ft of movement: 2d6 for each 5ft moved."),
 }

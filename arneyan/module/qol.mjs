@@ -336,6 +336,27 @@ export function registerQol() {
         toggle: true, active: game.settings.get(SYS, "reachRing"), visible: true, onChange: (event, active) => game.settings.set(SYS, "reachRing", active ?? !game.settings.get(SYS, "reachRing")) };
     } catch (err) { console.warn("Arneyan | reach tool", err); }
   });
+  // The first time Walls is opened after loading, it opens on the wall brush (or the wall tool used last) rather than
+  // the arrow, which only draws a selection box (Jacob's Well, 9 Nov: "it kept just selecting a box"). After that,
+  // Foundry remembers whichever tool you pick.
+  const WALL_KEY = "arneyan.lastWallTool";
+  let wallsOpened = false;
+  Hooks.on("renderSceneControls", app => {
+    try {
+      const control = app?.control?.name, tool = app?.tool?.name;
+      if (control !== "walls") return;
+      if (tool && tool !== "select") { try { globalThis.localStorage?.setItem(WALL_KEY, tool); } catch { /* storage unavailable */ } }
+      if (wallsOpened) return;
+      wallsOpened = true;
+      if (tool !== "select") return;
+      let last = null;
+      try { last = globalThis.localStorage?.getItem(WALL_KEY); } catch { /* private window */ }
+      const tools = app.control?.tools ?? {};
+      const has = name => Array.isArray(tools) ? tools.some(t => t?.name === name) : !!tools[name];
+      const pick = [last, "wall", "walls"].find(t => t && t !== "select" && has(t));
+      if (pick) setTimeout(() => (app.activate ?? app.initialize)?.call(app, { control: "walls", tool: pick }), 0);
+    } catch (err) { console.warn("Arneyan | wall tool", err); }
+  });
   game.keybindings.register(SYS, "reachRing", {
     name: "Reach outline on or off", hint: "Show or hide the faint square at your selected token's melee reach.",
     editable: [{ key: "KeyR", modifiers: ["Shift"] }], onDown: () => { game.settings.set(SYS, "reachRing", !game.settings.get(SYS, "reachRing")); return true; }

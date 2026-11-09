@@ -116,7 +116,8 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   // With Advantage or Disadvantage already, the other button cancels it (back to the first die); never a Disadvantage
   // nothing cancels (the off-hand attack's).
   const fixedDis = (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d)) && (mode < 0 || manualAdvantage());
-  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
+  // Not on a roll that works its own Advantage out and is used at once (downtime, Last Chance, firearms: why.auto).
+  const second = ["attack", "check", "save", "skill"].includes(kind) && !autoFail && !extra.noSecond && !why?.auto && (manualAdvantage() ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {

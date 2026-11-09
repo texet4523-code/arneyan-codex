@@ -39,7 +39,18 @@
    "lingering": false,
    "rounds": "",
    "sizeFormula": ""
-  }
+  },
+  "applies": [
+   {
+    "name": "Frightened (Fear)",
+    "target": "target",
+    "rounds": "@cl",
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
+   }
+  ]
  },
  "effects": [],
  "folder": "bOqH8dr0GIRGNGw4",
