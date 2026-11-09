@@ -354,7 +354,7 @@ export function registerQol() {
       const tools = app.control?.tools ?? {};
       const has = name => Array.isArray(tools) ? tools.some(t => t?.name === name) : !!tools[name];
       const pick = [last, "wall", "walls"].find(t => t && t !== "select" && has(t));
-      if (pick) setTimeout(() => (app.activate ?? app.initialize)?.call(app, { control: "walls", tool: pick }), 0);
+      if (pick) setTimeout(() => Promise.resolve((app.activate ?? app.initialize)?.call(app, { control: "walls", tool: pick })).catch(err => console.warn("Arneyan | wall tool", err)), 0);
     } catch (err) { console.warn("Arneyan | wall tool", err); }
   });
   game.keybindings.register(SYS, "reachRing", {

@@ -1098,7 +1098,7 @@ export function registerCombat() {
   foundry.applications.handlebars.loadTemplates(["systems/arneyan/templates/actor/combat-tools.hbs"]);
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "advMode", {
-    name: "Advantage and Disadvantage", hint: "By hand: what features and conditions would give is listed on the roll card as \"Might apply\", and the player or GM applies it with the card's Advantage and Disadvantage buttons (or Shift- and Ctrl-click). Power Attack's Disadvantage and the off-hand attack's always apply. Automatic: features and conditions apply by themselves. Either way, what the map suggests (cover from walls, flanking, long range) is only suggested. Contests, initiative, Luck Checks, firearms, the Last Chance save and downtime checks always work it out themselves.",
+    name: "Advantage and Disadvantage", hint: "By hand: what features and conditions would give is listed on the roll card as \"Might apply\", and the player or GM applies it with the card's Advantage and Disadvantage buttons (or Shift- and Ctrl-click). Power Attack's Disadvantage, the off-hand attack's and Extra Attack's later attacks always apply. Automatic: features and conditions apply by themselves. Either way, what the map suggests (cover from walls, flanking, long range) is only suggested. Contests, initiative, Luck Checks, firearms, the Last Chance save and downtime checks always work it out themselves.",
     scope: "world", config: true, type: String, default: "manual", choices: { manual: "By hand (the card's buttons)", auto: "Automatic" }
   });
   game.settings.register(SYS, "positionalCombat", {
