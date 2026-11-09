@@ -26,7 +26,9 @@ def silver_standard(cur):
     """Coins written before the silver standard (books v0.10.55, R-B54): gp are the same number of sp, sp of cp, pp of
     gp, and cp a tenth (rounded, at least 1 if there were any)."""
     cp = cur.get("cp", 0)
-    return {"pp": 0, "gp": cur.get("pp", 0), "sp": cur.get("gp", 0), "cp": cur.get("sp", 0) + (max(1, round(cp / 10)) if cp else 0)}
+    copper = cur.get("sp", 0) + (max(1, round(cp / 10)) if cp else 0)
+    # Ten copper make a silver piece.
+    return {"pp": 0, "gp": cur.get("pp", 0), "sp": cur.get("gp", 0) + copper // 10, "cp": copper % 10}
 
 def pack_for(adventure):
     return FIXTURES if adventure in RETIRED else PACK
