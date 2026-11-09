@@ -64,7 +64,7 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
 {
   // Most: hoard H, everything at its maximum.
   const r = await T.rollTreasure(T.parseTreasureCode("H"), { roll: maxRoll });
-  assert.equal(r.coins.sp, 60000);
+  assert.equal(r.coins.gp, 6000, "1d6 × 1,000 gp (M&T v0.10.59, prices in gold)");
   const gems = r.items.filter(i => i.kind === "gem");
   assert.equal(gems.reduce((t, i) => t + i.qty, 0), 24);           // 4d6 Superb gems
   assert.ok(gems.every(g => g.value === 5000 && g.bundle === 5));  // a 6 on the Superb column: Jewel
@@ -80,7 +80,7 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
 {
   // Least: hoard C, every die a 1 (the 20% item comes up on a 1).
   const r = await T.rollTreasure(T.parseTreasureCode("C"), { roll: minRoll });
-  assert.equal(r.coins.sp, 200);
+  assert.equal(r.coins.gp, 20);
   assert.deepEqual(r.items.map(i => [i.kind, i.qty, i.value]), [["gem", 1, 10], ["magic", 1, 450]]);
   // M&T v0.10.41 (K48): never a plain +1: made as a Unique, or a Named Unique with that bonus.
   assert.equal(r.items[1].name, "Weapon +1, made as a Unique");
@@ -109,7 +109,7 @@ if (fs.existsSync(path.join(packsSrc, "monsters"))) {
   // Trade goods instead of some of the coin.
   const r = await T.rollTreasure(T.parseTreasureCode("E"), { roll: maxRoll, tradeLots: 2 });
   assert.equal(r.items.filter(i => i.kind === "trade").reduce((t, i) => t + i.qty, 0), 2);
-  assert.equal(r.coins.sp, 6000 - 600);                             // two lots of fine weapons (300 sp)
+  assert.equal(r.coins.gp, 600 - 60);                               // two lots of fine weapons (30 gp)
   assert.ok(r.items.filter(i => i.kind === "trade").every(i => i.slots === 2));
 }
 // Lots of random hoards: well formed, no negative coin, every item named.
@@ -133,7 +133,9 @@ for (const rarity of ["uncommon", "rare", "veryRare"]) {
   const html = T.treasureCardHtml(r, { title: "Treasure: Red Dragon", code: "lair H", uuids: { "Mace of Delving": "Compendium.arneyan.equipment.Item.abc" } });
   assert.ok(html.includes("@UUID[Compendium.arneyan.equipment.Item.abc]{Mace of Delving}"));
   assert.ok(html.includes("arn-tr-stash"));
-  assert.ok(html.includes("60,000 sp"));
+  assert.ok(html.includes("6,000 gp"));
+  assert.ok(html.includes("21,600 gp"), "the total in gold");
+  assert.ok(html.includes("(500 gp each)"), "a Jewel in gold");
   assert.ok(!html.includes("—"));
   const none = T.treasureCardHtml(await T.rollTreasure([], { roll: maxRoll }), { title: "x" });
   assert.ok(none.includes("Nothing worth taking") && !none.includes("arn-tr-stash"));
@@ -141,20 +143,22 @@ for (const rarity of ["uncommon", "rare", "veryRare"]) {
 
 /* ---------------- The tables in the code match the built roll tables ---------------- */
 const tablesDir = path.join(packsSrc, "tables");
+// Gem values in sp in the code; the tables print them as the books do (prices in gold, M&T v0.10.59).
+const { priceText } = await import("../arneyan/module/money.mjs");
 if (fs.existsSync(tablesDir)) {
   const tables = Object.fromEntries(fs.readdirSync(tablesDir).filter(f => f.startsWith("tables_")).map(f => JSON.parse(fs.readFileSync(path.join(tablesDir, f)))).map(t => [t.name, t]));
   const names = t => tables[t].results.map(r => r.name);
   assert.deepEqual(names("Iconic Uncommon Items"), T.ICONIC_UNCOMMON);
   assert.deepEqual(names("Iconic Rare Items").slice(0, 17), T.ICONIC_RARE);
   assert.deepEqual(names("Iconic Very Rare Items").slice(0, 11), T.ICONIC_VERY_RARE.slice(0, 11));
-  assert.deepEqual(names("Trade Goods"), T.TRADE_GOODS.map(([n, v]) => `${n} (${v} sp)`));
+  assert.deepEqual(names("Trade Goods"), T.TRADE_GOODS.map(([n, v]) => `${n} (${v / 10} gp)`)); // the book prints gold (M&T v0.10.59)
   assert.deepEqual(names("Minor Art Objects"), T.ART.minor.examples);
   assert.deepEqual(names("Major Art Objects"), T.ART.major.examples);
   for (const [grade, col] of Object.entries(T.GEM_GRADES)) {
     const t = tables[`${grade[0].toUpperCase()}${grade.slice(1)} Gems`];
-    assert.deepEqual(t.results.map(r => r.name), col.map(k => `${T.GEM_TIERS[k].label} (${T.GEM_TIERS[k].value.toLocaleString("en-GB")} sp)`));
+    assert.deepEqual(t.results.map(r => r.name), col.map(k => `${T.GEM_TIERS[k].label} (${priceText(T.GEM_TIERS[k].value)})`));
   }
-  for (const tier of Object.values(T.GEM_TIERS)) assert.deepEqual(names(`${tier.label} Stones (${tier.value.toLocaleString("en-GB")} sp)`), tier.stones);
+  for (const tier of Object.values(T.GEM_TIERS)) assert.deepEqual(names(`${tier.label} Stones (${priceText(tier.value)})`), tier.stones);
   // Every table covers its die exactly once, and the sub-tables link up.
   for (const t of Object.values(tables)) {
     // A table rolled with a bonus (Carousing: +5 on a good week) says how high it goes.

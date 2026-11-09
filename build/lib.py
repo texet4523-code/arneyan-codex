@@ -185,6 +185,10 @@ def plain(s):
 # their old name gave, so worlds that have them still find them in the compendium.
 _KIT_IDS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "kit_ids.json")
 KIT_IDS = json.load(open(_KIT_IDS, encoding="utf-8")) if os.path.exists(_KIT_IDS) else {}
+# Other items renamed by the books keep the id their old name gave (new name -> old name), e.g. Quiver of Ehlonna
+# became Efficient Quiver in M&T v0.10.60 (R-B73, Lore board R59).
+_ITEM_IDS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "item_ids.json")
+ITEM_IDS = json.load(open(_ITEM_IDS, encoding="utf-8")) if os.path.exists(_ITEM_IDS) else {}
 
 
 def item(pack, name, type_, system, img, folder=None, sort=0, key=None, _id=None):
@@ -195,6 +199,8 @@ def item(pack, name, type_, system, img, folder=None, sort=0, key=None, _id=None
         while key in KIT_IDS and key not in seen:
             seen.add(key)
             key = KIT_IDS[key]
+    if key is None and pack != "kits":
+        key = ITEM_IDS.get(name)
     _id = _id or fid(pack, type_, key or name)
     doc = {
         "_id": _id, "_key": f"!items!{_id}", "name": name, "type": type_, "img": img,

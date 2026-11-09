@@ -1,29 +1,33 @@
 /**
  * Starting gold and gear for a new character (Handbook, Starting Equipment & Gear): roll the class's gold, then buy
  * one of the starting packs from it or keep the gold and shop in the Catalogue. Gunslingers pick a free firearm of
- * 300 sp or less from the Basic Firearms list; Artificers get the toolkit that matches their Kit.
+ * 30 gp or less from the Basic Firearms list; Artificers get the toolkit that matches their Kit.
  */
 import { ArneyanBrowser } from "./browser.mjs";
+import { priceText } from "./money.mjs";
 import { payCoins, toCp } from "./downtime.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
 
-/** Starting Wealth: roll by class category, in silver (books v0.10.55, the silver standard). */
+/** Starting Wealth: roll by class category, in gold (books v0.10.59, prices in gold, K103); a Monk rolls silver. */
 export const STARTING_GOLD = {
-  Fighter: "3d6*10", Ranger: "3d6*10", Archer: "3d6*10", Knight: "3d6*10", Paladin: "3d6*10", Spellblade: "3d6*10", Magus: "3d6*10", Barbarian: "3d6*10",
-  Cleric: "3d6*10", Druid: "3d6*10",
-  Rogue: "2d6*10", Assassin: "2d6*10", Bard: "2d6*10",
-  Gunslinger: "2d6*10", Swashbuckler: "2d6*10", Artificer: "2d6*10",
+  Fighter: "3d6", Ranger: "3d6", Archer: "3d6", Knight: "3d6", Paladin: "3d6", Spellblade: "3d6", Magus: "3d6", Barbarian: "3d6",
+  Cleric: "3d6", Druid: "3d6",
+  Rogue: "2d6", Assassin: "2d6", Bard: "2d6",
+  Gunslinger: "2d6", Swashbuckler: "2d6", Artificer: "2d6",
   Monk: "5d4",
-  Wizard: "1d4*10", Illusionist: "1d4*10",
-  Sorcerer: "1d4*10", Warlock: "1d4*10", Necromancer: "1d4*10", Witch: "1d4*10"
+  Wizard: "1d4", Illusionist: "1d4",
+  Sorcerer: "1d4", Warlock: "1d4", Necromancer: "1d4", Witch: "1d4"
 };
+/** The coin each class's starting roll is in (Book II, Starting Wealth): gold, but a Monk's 5d4 is silver. */
+export const STARTING_COIN = { Monk: "sp" };
 
-/** Starting Packs: price in sp and the Catalogue items in each (name, quantity). */
+/** Starting Packs: price in sp and the Catalogue items in each (name, quantity). Books v0.10.60 (K107): the bedroll is
+ * 2 cp, so the packs that hold one cost less (Explorer's 17 sp, Survivalist's 29 sp). */
 export const STARTING_PACKS = [
-  { name: "Explorer's Pack", sp: 23, note: "The default for the wilderness or a dungeon.",
+  { name: "Explorer's Pack", sp: 17, note: "The default for the wilderness or a dungeon.",
     items: [["Backpack", 1], ["Bedroll", 1], ["Week's Rations", 1], ["Personal Woollen Canteen", 1], ["Tinderbox", 1], ["Torch", 5], ["Rope, Hemp (50 ft)", 1], ["Mess Kit", 1]] },
   { name: "Dungeoneer's Pack", sp: 8, note: "Built for delving: more light and first aid.",
     items: [["Backpack", 1], ["Tinderbox", 1], ["Torch", 10], ["Rope, Hemp (50 ft)", 1], ["Kettle, Iron", 1], ["Bandages", 1], ["Signal Horns", 1], ["Sack, Small", 1], ["Belt Pouch, Small", 2]] },
@@ -31,13 +35,13 @@ export const STARTING_PACKS = [
     items: [["Backpack", 1], ["Ink (1 oz)", 1], ["Paper (10 sheets)", 1], ["Parchment (10 sheets)", 1], ["Quill", 1], ["Sealing Wax", 1], ["Case, Map or Scroll", 1], ["Belt Pouch, Small", 1]] },
   { name: "Diplomat's Pack", sp: 18, note: "More court appearances than cave crawls.",
     items: [["Backpack", 1], ["Perfume", 1], ["Signet Ring", 1], ["Robe", 1], ["Handkerchiefs", 1], ["Sealing Wax", 1], ["Case, Map or Scroll", 1], ["Belt Pouch, Small", 1]] },
-  { name: "Survivalist's Pack", sp: 35, note: "For those who sleep outdoors more nights than not.",
+  { name: "Survivalist's Pack", sp: 29, note: "For those who sleep outdoors more nights than not.",
     items: [["Backpack", 1], ["Bedroll", 1], ["Canvas Tents", 1], ["Firegrate", 1], ["Mess Kit", 1], ["Week's Rations", 2], ["Personal Woollen Canteen", 1], ["Rope, Hemp (50 ft)", 1], ["Herbal Repellents", 1]] },
   { name: "Healer's Satchel", sp: 16, note: "Keeps a party alive between rests.",
     items: [["Belt Pouch, Small", 1], ["Bandages", 1], ["Balm Kit", 1], ["Herbal Medications Case", 1]] }
 ];
 
-/** Gunslingers: one firearm costing 300 sp or less from the Basic Firearms list, free. */
+/** Gunslingers: one firearm costing 30 gp or less from the Basic Firearms list, free. */
 export const FREE_FIREARMS = ["Derringer", "Pistol", "Dragon Pistol"];
 
 /** Artificers: the toolkit matching their Kit, free. */
@@ -48,6 +52,11 @@ const baseName = n => String(n ?? "").replace(/\s*\(.*\)$/, "").trim();
 /** The gold roll for a class, or null for a class the table doesn't list. */
 export function goldFormulaFor(className) {
   return STARTING_GOLD[baseName(className)] ?? null;
+}
+
+/** The coin that roll is in: "gp", or "sp" for a Monk. */
+export function goldCoinFor(className) {
+  return STARTING_COIN[baseName(className)] ?? "gp";
 }
 
 /** How a formula reads on a button: "3d6 × 10". */
@@ -176,13 +185,15 @@ export async function startingWealth(actor, cls = null) {
   cls ??= firstClass(actor);
   const formula = goldFormulaFor(cls?.name);
   if (!formula) return ui.notifications.warn(`No starting money is listed for ${cls?.name ?? "a character with no class"}. Add it by hand.`);
+  const coin = goldCoinFor(cls?.name);
+  // The running total is kept in sp (as before the prices went to gold), whatever coin the roll is in.
   const rolled = actor.getFlag(SYS, "startingGold");
   const taken = actor.getFlag(SYS, "startingGear")?.free ?? [];
   const go = await DialogV2.wait({
     window: { title: `${actor.name}: starting money`, icon: "fa-solid fa-coins" }, classes: ["arneyan"], position: { width: 420 },
-    content: `<p>Roll your starting money for a ${esc(baseName(cls.name))}: <strong>${formulaLabel(formula)} sp</strong>. Then buy a starting pack with it, or keep it and shop in the Catalogue.</p>
-      <div class="form-group"><label>Rolled at the table? Type it in (sp)</label><input type="number" name="typed" min="0" step="1" placeholder="sp"></div>
-      ${rolled != null ? `<p class="hint">Already rolled: ${rolled} sp in all. Rolling again adds more.${taken.length ? ` Free items already taken (${esc(taken.join(", "))}) aren't given again.` : ""}</p>` : ""}`,
+    content: `<p>Roll your starting money for a ${esc(baseName(cls.name))}: <strong>${formulaLabel(formula)} ${coin}</strong>. Then buy a starting pack with it, or keep it and shop in the Catalogue.</p>
+      <div class="form-group"><label>Rolled at the table? Type it in (${coin})</label><input type="number" name="typed" min="0" step="1" placeholder="${coin}"></div>
+      ${rolled != null ? `<p class="hint">Already rolled: ${esc(priceText(Number(rolled) || 0))} in all. Rolling again adds more.${taken.length ? ` Free items already taken (${esc(taken.join(", "))}) aren't given again.` : ""}</p>` : ""}`,
     // Enter in the box uses the typed amount (it would otherwise press Roll, the first button).
     render: (ev, dialog) => {
       const el = dialog?.element ?? ev?.target?.element;
@@ -192,7 +203,7 @@ export async function startingWealth(actor, cls = null) {
         el.querySelector("[data-action=typed]")?.click();
       });
     },
-    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} sp`, icon: "fa-solid fa-dice", default: true },
+    buttons: [{ action: "roll", label: `Roll ${formulaLabel(formula)} ${coin}`, icon: "fa-solid fa-dice", default: true },
       { action: "typed", label: "Use what I typed", icon: "fa-solid fa-keyboard", callback: (ev, btn) => ({ typed: btn.form?.elements?.typed?.value ?? "" }) },
       { action: "skip", label: "Not now" }],
     rejectClose: false
@@ -200,19 +211,19 @@ export async function startingWealth(actor, cls = null) {
   let gold;
   if (go === "roll") {
     const roll = await new Roll(formula).evaluate();
-    await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `Starting money (${esc(baseName(cls.name))}: ${formulaLabel(formula)} sp)` });
+    await roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `Starting money (${esc(baseName(cls.name))}: ${formulaLabel(formula)} ${coin})` });
     gold = roll.total;
   } else if (go && typeof go === "object") {
     gold = Math.floor(Number(go.typed));
     const most = (await new Roll(formula).evaluate({ maximize: true, allowInteractive: false })).total;
     const least = (await new Roll(formula).evaluate({ minimize: true, allowInteractive: false })).total;
     if (String(go.typed).trim() === "" || !Number.isFinite(gold) || gold < least || gold > most) {
-      ui.notifications.warn(`Type in the silver you rolled (${least} to ${most} sp for ${formulaLabel(formula)}), then press Use what I typed.`);
+      ui.notifications.warn(`Type in the ${coin === "sp" ? "silver" : "gold"} you rolled (${least} to ${most} ${coin} for ${formulaLabel(formula)}), then press Use what I typed.`);
       return startingWealth(actor, cls);
     }
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>Starting money (${esc(baseName(cls.name))}: ${formulaLabel(formula)} sp), rolled at the table: <strong>${gold} sp</strong>.</p>` });
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p>Starting money (${esc(baseName(cls.name))}: ${formulaLabel(formula)} ${coin}), rolled at the table: <strong>${gold} ${coin}</strong>.</p>` });
   } else return;
-  await actor.update({ "system.currency.sp": (actor.system.currency?.sp ?? 0) + gold, [`flags.${SYS}.startingGold`]: (Number(rolled) || 0) + gold });
+  await actor.update({ [`system.currency.${coin}`]: (actor.system.currency?.[coin] ?? 0) + gold, [`flags.${SYS}.startingGold`]: (Number(rolled) || 0) + gold * (coin === "gp" ? 10 : 1) });
   return spendStartingGold(actor, cls);
 }
 
@@ -229,7 +240,7 @@ export async function spendStartingGold(actor, cls) {
     const slots = packSlots(p, info);
     const over = inv.max && (inv.used ?? 0) + slots > inv.max;
     return `<label class="arn-act"><input type="radio" name="pick" value="${i}" ${can ? "" : "disabled"}>
-      <strong>${esc(p.name)}</strong> · ${p.sp} sp · ${slots} slot${slots === 1 ? "" : "s"}${over ? " <em>(over your limit)</em>" : ""}${can ? "" : " <em>(not enough money)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
+      <strong>${esc(p.name)}</strong> · ${esc(priceText(p.sp))} · ${slots} slot${slots === 1 ? "" : "s"}${over ? " <em>(over your limit)</em>" : ""}${can ? "" : " <em>(not enough money)</em>"}<br><small>${esc(p.note)} ${esc(p.items.map(([n, q]) => q > 1 ? `${q} × ${n}` : n).join(", "))}</small></label>`;
   }).join("");
   const already = free.taken.length ? `<p class="hint">Free items already taken: ${esc(free.taken.join(", "))}. They aren't given again.</p>` : "";
   const content = `<p>${esc(actor.name)} has <strong>${esc(purseText(cur, ["pp", "gp", "sp", "cp"]))}</strong>.${inv.max ? ` Inventory: ${inv.used ?? 0} of ${inv.max} slots used.` : ""}</p>
@@ -237,7 +248,7 @@ export async function spendStartingGold(actor, cls) {
       <label class="arn-act"><input type="radio" name="pick" value="shop" checked> <strong>Keep the money and shop</strong><br><small>Opens the Shopkeeper's Catalogue. Take what you buy off your coins yourself.</small></label>
       ${packRows}
     </div>
-    ${free.gun ? `<div class="form-group"><label>Free firearm (300 sp or less)</label><select name="gun">${FREE_FIREARMS.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join("")}<option value="">Choose later</option></select></div>` : ""}
+    ${free.gun ? `<div class="form-group"><label>Free firearm (30 gp or less)</label><select name="gun">${FREE_FIREARMS.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join("")}<option value="">Choose later</option></select></div>` : ""}
     ${base === "Artificer" && !free.taken.some(n => Object.values(KIT_TOOLKITS).includes(n)) ? `<p class="hint">${free.toolkit ? `Your ${esc(free.kitName)} Kit's ${esc(free.toolkit)} is free and goes in your inventory.` : "Pick your Artificer Kit first and its toolkit is free (add it from Tools &amp; Trades)."}</p>` : ""}
     ${already}`;
   const res = await DialogV2.wait({
@@ -265,8 +276,8 @@ export async function applyStartingGear(actor, res, free) {
       await actor.update({ "system.currency.pp": paid.pp, "system.currency.gp": paid.gp, "system.currency.sp": paid.sp, "system.currency.cp": paid.cp });
       const missing = await giveItems(actor, pack.items, byName);
       packName = pack.name;
-      lines.push(`bought the ${esc(pack.name)} for ${pack.sp} sp${missing.length ? ` (not in the Catalogue, add by hand: ${esc(missing.join(", "))})` : ""}`);
-    } else if (pack) lines.push(`couldn't pay ${pack.sp} sp for the ${esc(pack.name)}`);
+      lines.push(`bought the ${esc(pack.name)} for ${esc(priceText(pack.sp))}${missing.length ? ` (not in the Catalogue, add by hand: ${esc(missing.join(", "))})` : ""}`);
+    } else if (pack) lines.push(`couldn't pay ${esc(priceText(pack.sp))} for the ${esc(pack.name)}`);
   }
   let given = [];
   if (freeList.length) {

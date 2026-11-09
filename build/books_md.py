@@ -14,9 +14,9 @@ Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01058"
+SRC = "/tmp/hb/src_v01060"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.58"
+VERSION = "0.10.60"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -95,7 +95,7 @@ def _row_name(row):
 
 
 # Books M&T v0.10.56 (R-B38 Part 3): items that come in kinds are a note block after the Wondrous table, one paragraph a
-# kind ("**Ioun Stones.** ... *Rare, 3,000 sp:* Awareness (you can't be surprised); ..."). Each becomes a table row of
+# kind ("**Ioun Stones.** ... *Rare, 300 gp:* Awareness (you can't be surprised); ..."). Each becomes a table row of
 # its own, in the table's columns, from the paragraph's own words; the counts are checked so a changed book is noticed.
 SET_KINDS = {"Belts of Giant Strength": 6, "Elemental Vessels": 4, "Feather Tokens": 6, "Figurines of Wondrous Power": 9,
              "Horns of Valhalla": 4, "Ioun Stones": 14, "Manuals and Tomes": 6}
@@ -111,24 +111,24 @@ def set_rows(mt):
     t = paras.get("Belts of Giant Strength", "")
     if t:
         set_to = lambda n, more="": f"Worn, it sets your Strength to {n} unless yours is higher{more}."
-        row("Belt of Hill Giant Strength", "Rare", "3,000 sp", set_to(19))
-        row("Belt of Stone Giant Strength", "Rare", "4,500 sp", set_to(20))
-        row("Belt of Frost Giant Strength", "Rare", "4,500 sp", set_to(20))
-        row("Belt of Fire Giant Strength", "Very Rare", "8,000 sp", set_to(20, ", and you have Advantage on Strength checks"))
-        row("Belt of Cloud Giant Strength", "Very Rare", "12,000 sp", set_to(20, ", and you have Advantage on Strength checks and Fortitude saves"))
-        row("Belt of Storm Giant Strength", "Very Rare", "20,000 sp", set_to(22, ": the exception to the Mortal Limit"))
+        row("Belt of Hill Giant Strength", "Rare", "300 gp", set_to(19))
+        row("Belt of Stone Giant Strength", "Rare", "450 gp", set_to(20))
+        row("Belt of Frost Giant Strength", "Rare", "450 gp", set_to(20))
+        row("Belt of Fire Giant Strength", "Very Rare", "800 gp", set_to(20, ", and you have Advantage on Strength checks"))
+        row("Belt of Cloud Giant Strength", "Very Rare", "1,200 gp", set_to(20, ", and you have Advantage on Strength checks and Fortitude saves"))
+        row("Belt of Storm Giant Strength", "Very Rare", "2,000 gp", set_to(22, ": the exception to the Mortal Limit"))
     t = paras.get("Elemental Vessels", "")
     if t:
-        how = t.split(": each Rare, 4,000 sp. ", 1)[1]
+        how = t.split(": each Rare, 400 gp. ", 1)[1]
         for n in ("Bowl of Commanding Water Elementals", "Brazier of Commanding Fire Elementals", "Censer of Controlling Air Elementals", "Stone of Controlling Earth Elementals"):
-            row(n, "Rare", "4,000 sp", how, "2" if n.startswith("Brazier") else "1")
+            row(n, "Rare", "400 gp", how, "2" if n.startswith("Brazier") else "1")
     t = paras.get("Feather Tokens", "")
     if t:
         for n, eff in re.findall(r"(Anchor|Bird|Fan|Swan Boat|Tree|Whip): ([^.]+\.)", t):
-            row(f"Quaal's Feather Token ({n})", "Uncommon", "200 sp", f"Used once (an action): {eff[0].lower() + eff[1:]}", "1 (bundles 5/slot)")
+            row(f"Quaal's Feather Token ({n})", "Uncommon", "20 gp", f"Used once (an action): {eff[0].lower() + eff[1:]}", "1 (bundles 5/slot)")
     t = paras.get("Figurines of Wondrous Power", "")
     if t:
-        for tier, value, body in re.findall(r"\*(Uncommon|Rare|Very Rare), ([\d,]+ sp):\* (.*?)(?= \*|$)", t):
+        for tier, value, body in re.findall(r"\*(Uncommon|Rare|Very Rare), ([\d,]+ [gs]p):\* (.*?)(?= \*|$)", t):
             for name, what, h, d in re.findall(r"([A-Z][\w ]+?), (an? [^(]+|two [^(]+|three [^(]+) \((\d+) h, (\d+) d\)", body):
                 hours = f"{h} hour{'' if h == '1' else 's'}"
                 row(f"Figurine of Wondrous Power ({name.strip()})", tier, value,
@@ -136,14 +136,14 @@ def set_rows(mt):
     t = paras.get("Horns of Valhalla", "")
     if t:
         lead = t.split(":", 1)[0]
-        for kind, n, rar, value in re.findall(r"(silver|brass|bronze|iron), (\d) \((?:(Rare|Very Rare), )?([\d,]+ sp)\)", t):
+        for kind, n, rar, value in re.findall(r"(silver|brass|bronze|iron), (\d) \((?:(Rare|Very Rare), )?([\d,]+ [gs]p)\)", t):
             rar = rar or "Very Rare"
             extra = " Bronze or iron Berserkers attack a blower untrained in heavy armour." if kind in ("bronze", "iron") else ""
             row(f"Horn of Valhalla ({kind.title()})", rar, value, f"{lead}: {n} Berserkers.{extra}")
     t = paras.get("Ioun Stones", "")
     if t:
         lead = t.split(" *Rare", 1)[0].replace("5 to a slot. ", "")
-        for tier, value, body in re.findall(r"\*(Rare|Very Rare), ([\d,]+ sp):\* (.*?)(?= \*|$)", t):
+        for tier, value, body in re.findall(r"\*(Rare|Very Rare), ([\d,]+ [gs]p):\* (.*?)(?= \*|$)", t):
             m = re.match(r"Agility, Fortitude, Insight, Intellect, Leadership or Strength \(\+1 to ([^)]*?), to 20 at most\); (.*)$", body)
             if m:
                 attrs = [a.strip() for a in re.split(r", | or ", m.group(1))]
@@ -154,7 +154,7 @@ def set_rows(mt):
                 row(f"Ioun Stone ({n.strip()})", tier, value, f"{lead} {eff[0].upper() + eff[1:]}.", "1 (bundles 5/slot)")
     t = paras.get("Manuals and Tomes", "")
     if t:
-        m = re.match(r"(Very Rare), ([\d,]+ sp) each\. (.*?\.) (Manuals of .*)$", t)
+        m = re.match(r"(Very Rare), ([\d,]+ [gs]p) each\. (.*?\.) (Manuals of .*)$", t)
         how = m.group(3).replace("Study one", "Study it").replace("its attribute", "{a}")
         for n, a in re.findall(r"(Gainful Exercise|Bodily Health|Quickness of Action|Clear Thought|Understanding|Leadership and Influence) \((\w+)\)", m.group(4)):
             kind = "Manual" if n in ("Gainful Exercise", "Bodily Health", "Quickness of Action") else "Tome"

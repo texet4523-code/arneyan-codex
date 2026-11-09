@@ -185,15 +185,15 @@ assert.equal(D.sideQuestResult(5, 2).text, "a consequence");
 const smith = makeItem(IM.SkillData, "skill", "Weaponsmithing", { ability: "str", tier: "trained" });
 const msmith = makeItem(IM.SkillData, "skill", "Blacksmithing", { ability: "str", tier: "master" });
 const crafter = makeActor(CharacterData, "character", { currency: { gp: 500 } }, [cls("Fighter", 3), smith, msmith]);
-let pl = D.planDowntime("craft", { item: "Chain", value: "100", skill: smith.id, tier: "hard", place: "city" }, crafter);
+let pl = D.planDowntime("craft", { item: "Chain", value: "10", skill: smith.id, tier: "hard", place: "city" }, crafter);
 assert.equal(pl.costCp, 500); assert.equal(pl.days, 4, "a 100 sp item takes 4 days"); assert.equal(pl.check.dc, 15); assert.ok(pl.failHalf);
-pl = D.planDowntime("craft", { value: "100", skill: msmith.id, tier: "easy", place: "remote" }, crafter);
+pl = D.planDowntime("craft", { value: "10", skill: msmith.id, tier: "easy", place: "remote" }, crafter);
 assert.equal(pl.costCp, Math.ceil(1000 / 3 * 1.25)); assert.ok(pl.check.master); assert.equal(pl.check.dc, 10);
-pl = D.planDowntime("craft", { value: "10", skill: smith.id, tier: "custom", dc: "17", place: "wild" }, crafter);
+pl = D.planDowntime("craft", { value: "1", skill: smith.id, tier: "custom", dc: "17", place: "wild" }, crafter);
 assert.equal(pl.days, 2, "at least a day, twice as long in the wilderness"); assert.equal(pl.check.dc, 17);
-pl = D.planDowntime("magicItem", { value: "450", rarity: "uncommon" }, crafter);
+pl = D.planDowntime("magicItem", { value: "45", rarity: "uncommon" }, crafter);
 assert.equal(pl.costCp, 2250); assert.equal(pl.days, 7); assert.ok(pl.warn.some(w => /3rd-level/.test(w)), "needs a caster");
-pl = D.planDowntime("magicItem", { value: "3000", rarity: "rare" }, crafter);
+pl = D.planDowntime("magicItem", { value: "300", rarity: "rare" }, crafter);
 assert.equal(pl.costCp, 15000); assert.equal(pl.days, 42, "the Codex's Flame Tongue: 1,500 sp and 6 weeks"); assert.equal(pl.check.dc, 20);
 pl = D.planDowntime("copySpell", { level: "3" }, crafter); assert.equal(pl.days, 3); assert.equal(pl.costCp, 1500); assert.equal(pl.check, null);
 pl = D.planDowntime("scribe", { level: "0" }, crafter); assert.equal(pl.days, 1); assert.equal(pl.costCp, 100);
@@ -202,16 +202,18 @@ pl = D.planDowntime("research", { level: "4" }, crafter); assert.equal(pl.days, 
 pl = D.planDowntime("train", { training: "armourHeavy" }, crafter); assert.equal(pl.days, 56); assert.equal(pl.costCp, 5000);
 pl = D.planDowntime("learnSkill", { skillName: "Riding" }, crafter); assert.equal(pl.days, 14); assert.equal(pl.costCp, 500); // K54: Trained, 2 weeks at 25 sp
 pl = D.planDowntime("income", { skill: smith.id }, crafter); assert.equal(pl.days, 6);
-pl = D.planDowntime("brew", { value: "50", skill: smith.id, tier: "hard" }, crafter); assert.ok(pl.warn.some(w => /Alchemy/.test(w)));
-pl = D.planDowntime("other", { kind: "Farm", days: "10", cost: "2.5", result: "A good crop" }, crafter);
-assert.equal(pl.days, 10); assert.equal(pl.costCp, 25, "2.5 sp"); assert.equal(pl.result, "A good crop");
+pl = D.planDowntime("brew", { value: "5", skill: smith.id, tier: "hard" }, crafter); assert.ok(pl.warn.some(w => /Alchemy/.test(w)));
+pl = D.planDowntime("other", { kind: "Farm", days: "10", cost: "0.25", result: "A good crop" }, crafter);
+assert.equal(pl.days, 10); assert.equal(pl.costCp, 25, "0.25 gp is 2 sp 5 cp (typed in gold, books v0.10.59)"); assert.equal(pl.result, "A good crop");
 const caster = makeActor(CharacterData, "character", { abilities: { int: { value: 16 } } }, [{ ...cls("Wizard", 9) }]);
 // The rules text these follow.
 const book1 = JSON.parse(fs.readFileSync(path.join(src("rules"), fs.readdirSync(src("rules")).find(f => f.startsWith("journal_Book_I_"))), "utf8"));
 const page = n => strip(book1.pages.find(p => p.name === n).text.content);
 assert.ok(page("Downtime Rules").includes("DC 10 earns 1 sp a day, DC 15 earns 3 sp, DC 20 earns 1 gp; a failure earns 3 cp a day"));
 assert.ok(page("Downtime: Crafting").includes("1 day per 25 sp of the item's value"));
-assert.match(page("Downtime: Training & Instruction"), /Heavy \(one type\)\s*8 weeks\s*500 sp/);
+assert.match(page("Downtime: Training & Instruction"), /Heavy \(one type\)\s*8 weeks\s*50 gp/);
+assert.ok(page("Downtime: Training & Instruction").includes("75 gp in Tier 1, 150 gp in Tier 2, 300 gp in Tier 3 and 600 gp in Tier 4"), "Trained Feats (R-B74)");
+assert.deepEqual([1, 5, 11, 17].map(D.trainedFeatGold), [750, 1500, 3000, 6000], "the same values in sp");
 assert.match(page("Travelling Rules"), /Foot \(with rests\)\s*1 hex\/day\s*2 hexes\/day\s*3 hexes\/day\s*Mounts \/ Vehicles \/ Ships\s*2 hexes\/day\s*3 hexes\/day\s*4 hexes\/day\s*Umbral Journey\s*\S+\s*24 hexes\/day/);
 
 /* ---------------- Travel ---------------- */

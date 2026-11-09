@@ -214,8 +214,10 @@ def build():
             tiers[m.group(1)] = (int(v.group(1).replace(",", "")), [x.strip() for x in cells[2].split(",") if x.strip()], v.group(2))
     assert list(tiers) == ["Ornamental", "Semi-Precious", "Fancy", "Precious", "Gem", "Jewel"], tiers.keys()
     # Silver standard (books v0.10.55): the same numbers in sp; each table keeps the id it had in gp.
+    # Prices in gold (books v0.10.59, K103): a tier of 10 sp or more prints in gp; the id still comes from the sp figure.
+    in_sp = lambda t: tiers[t][0] * {"gp": 10, "sp": 1, "cp": 0.1}[tiers[t][2]]
     stone = lambda t: f"{t} Stones ({tiers[t][0]:,} {tiers[t][2]})"
-    stone_key = lambda t: f"{t} Stones ({tiers[t][0]:,} gp)"
+    stone_key = lambda t: f"{t} Stones ({round(in_sp(t)):,} gp)"
     for i, (tier, (value, stones, unit)) in enumerate(tiers.items()):
         T.table(stone(tier), f"1d{len(stones)}",
                 [T.text(n + 1, n + 1, s, img=img_gem) for n, s in enumerate(stones)], f_gems, img_gem,
@@ -235,8 +237,8 @@ def build():
                 f"<p>Roll a d6 for each {grade} gem a hoard gives. Up to 5 gems of one tier fit in 1 slot.</p>", sort=100000 + gi * 1000)
 
     # -- Art objects: the book's examples (value rolled as it says).
-    art = re.search(r"Minor art is worth 1d6 × 50 ([gsc]p): (.+?)\. Major art is worth 2d6 × 250 \1: (.+?)\. ", md)
-    for i, (grade, formula, slots, items) in enumerate([("Minor", f"1d6 × 50 {art.group(1)}", 1, art.group(2)), ("Major", f"2d6 × 250 {art.group(1)}", 2, art.group(3))]):
+    art = re.search(r"Minor art is worth (1d6 × [\d,]+ [gsc]p): (.+?)\. Major art is worth (2d6 × [\d,]+ [gsc]p): (.+?)\. ", md)
+    for i, (grade, formula, slots, items) in enumerate([("Minor", art.group(1), 1, art.group(2)), ("Major", art.group(3), 2, art.group(4))]):
         ex = [re.sub(r"^an? ", "", x.strip()) for x in items.split(",") if x.strip()]
         ex = [x[0].upper() + x[1:] for x in ex]
         T.table(f"{grade} Art Objects", f"1d{len(ex)}", [T.text(n + 1, n + 1, e, img=img_art) for n, e in enumerate(ex)], f_gems, img_art,
@@ -429,7 +431,7 @@ def build():
             break
     res.sort(key=lambda r: r["range"][0])
     doc = T.table("Carousing", "1d20", res, f_gm, img_carouse,
-                  "<p>A week of carousing (downtime): spend silver by Tier (100, 500, 2,500 or 10,000 sp), make a Charisma check (DC 12), then roll a d20, adding 5 if the check succeeded (the Shopkeeper's Catalogue). The Carouse downtime plan rolls it for you.</p>",
+                  "<p>A week of carousing (downtime): spend gold by Tier (10, 50, 250 or 1,000 gp), make a Charisma check (DC 12), then roll a d20, adding 5 if the check succeeded (the Shopkeeper's Catalogue). The Carouse downtime plan rolls it for you.</p>",
                   flags={"arneyan": {"top": 25}})
     _check_ranges(doc, 25)
 

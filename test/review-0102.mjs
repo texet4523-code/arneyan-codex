@@ -131,10 +131,10 @@ function doc(type, name, system = {}, parent = null, id = null) {
   assert.equal(S.canRunStartingWealth(actor, game.user), true, "not rolled yet: the player can");
   let asked = [];
   DialogV2.wait = async o => { asked.push(o); return o.buttons[0].action === "roll" ? "roll" : o.buttons[0].callback(null, { form: { querySelector: () => ({ value: "shop" }), elements: { gun: { value: "Pistol" } } } }); };
-  nextRoll = 40;
+  nextRoll = 4;
   await S.startingWealth(actor, cls);
-  assert.equal(actor.flags.arneyan.startingGold, 40);
-  assert.equal(actor.system.currency.sp, 40, "starting money is silver (books v0.10.55)");
+  assert.equal(actor.flags.arneyan.startingGold, 40, "the running total is kept in sp");
+  assert.equal(actor.system.currency.gp, 4, "starting money is gold (books v0.10.59, K103): 2d6 gp for a Gunslinger");
   assert.deepEqual(actor.flags.arneyan.startingGear.free, ["Pistol"], "the free firearm is recorded");
   assert.equal(actor.created[0]._stats.compendiumSource, gun.uuid, "giveItems links the copy to the Catalogue");
   assert.equal(S.canRunStartingWealth(actor, game.user), false, "rolled: the player can't run it again");
@@ -146,11 +146,11 @@ function doc(type, name, system = {}, parent = null, id = null) {
   // The GM reruns it: gold adds to the total, the firearm isn't offered or given again, and the window says so.
   setGM(true);
   assert.equal(S.canRunStartingWealth(actor, game.user), true);
-  nextRoll = 25; asked = []; actor.created.length = 0;
+  nextRoll = 3; asked = []; actor.created.length = 0;
   await S.startingWealth(actor, cls);
-  assert.equal(actor.flags.arneyan.startingGold, 65, "a running total of the gold rolled");
-  assert.equal(actor.system.currency.sp, 65);
-  assert.ok(asked[0].content.includes("Already rolled: 40 sp") && asked[0].content.includes("aren't given again"), asked[0].content);
+  assert.equal(actor.flags.arneyan.startingGold, 70, "a running total of the gold rolled (in sp)");
+  assert.equal(actor.system.currency.gp, 7);
+  assert.ok(asked[0].content.includes("Already rolled: 4 gp") && asked[0].content.includes("aren't given again"), asked[0].content);
   assert.ok(!asked[1].content.includes('name="gun"'), "no second free firearm");
   assert.ok(asked[1].content.includes("Free items already taken: Pistol"));
   assert.equal(actor.created.length, 0, "nothing given twice");

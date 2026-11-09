@@ -5,6 +5,8 @@
  *
  * The rolling is pure (pass any async dice roller), so it can be tested outside Foundry.
  */
+import { priceText } from "./money.mjs";
+
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -21,16 +23,17 @@ export const INDIVIDUAL = {
   S: { coins: [["4d6", "sp"]], gems: { chance: 25, count: "1", grade: "lesser" } }
 };
 
-/** Hoards, rolled once for the whole group. */
+/** Hoards, rolled once for the whole group. Coin in gold (M&T v0.10.59, K103: "3d6 × 10 gp"); the same value as
+ * the silver it was. */
 export const HOARDS = {
-  A: { coins: "2d6 * 10" },
-  B: { coins: "1d6 * 100", gems: { count: "1d4", grade: "lesser" } },
-  C: { coins: "2d6 * 100", gems: { count: "1d6", grade: "lesser" }, magic: [{ chance: 20, rarity: "uncommon" }] },
-  D: { coins: "3d6 * 100", gems: { count: "2d6", grade: "lesser" }, art: { count: "1d4", grade: "minor" }, magic: [{ chance: 40, rarity: "uncommon" }] },
-  E: { coins: "1d6 * 1000", gems: { count: "2d6", grade: "fine" }, magic: [{ chance: 50, rarity: "rare" }] },
-  F: { coins: "2d6 * 1000", gems: { count: "3d6", grade: "fine" }, art: { count: "1d6", grade: "minor" }, magic: [{ chance: 100, rarity: "uncommon" }, { chance: 40, rarity: "rare" }] },
-  G: { coins: "4d6 * 1000", gems: { count: "3d6", grade: "superb" }, art: { count: "1d6", grade: "major" }, magic: [{ chance: 100, rarity: "rare" }, { chance: 30, rarity: "veryRare" }] },
-  H: { coins: "1d6 * 10000", gems: { count: "4d6", grade: "superb" }, art: { count: "2d6", grade: "major" }, magic: [{ chance: 100, rarity: "veryRare" }, { chance: 100, rarity: "rare" }] }
+  A: { coins: "2d6" },
+  B: { coins: "1d6 * 10", gems: { count: "1d4", grade: "lesser" } },
+  C: { coins: "2d6 * 10", gems: { count: "1d6", grade: "lesser" }, magic: [{ chance: 20, rarity: "uncommon" }] },
+  D: { coins: "3d6 * 10", gems: { count: "2d6", grade: "lesser" }, art: { count: "1d4", grade: "minor" }, magic: [{ chance: 40, rarity: "uncommon" }] },
+  E: { coins: "1d6 * 100", gems: { count: "2d6", grade: "fine" }, magic: [{ chance: 50, rarity: "rare" }] },
+  F: { coins: "2d6 * 100", gems: { count: "3d6", grade: "fine" }, art: { count: "1d6", grade: "minor" }, magic: [{ chance: 100, rarity: "uncommon" }, { chance: 40, rarity: "rare" }] },
+  G: { coins: "4d6 * 100", gems: { count: "3d6", grade: "superb" }, art: { count: "1d6", grade: "major" }, magic: [{ chance: 100, rarity: "rare" }, { chance: 30, rarity: "veryRare" }] },
+  H: { coins: "1d6 * 1000", gems: { count: "4d6", grade: "superb" }, art: { count: "2d6", grade: "major" }, magic: [{ chance: 100, rarity: "veryRare" }, { chance: 100, rarity: "rare" }] }
 };
 
 /** A dragon's hoard by age. */
@@ -140,7 +143,7 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
       const t = GEM_TIERS[tier];
       const stone = await pick(t.stones);
       // "Water Opal (Gem)", not "(Gem gem)"; the other grades read "(Fancy gem)".
-      items.push({ kind: "gem", name: `${stone} (${["Gem", "Jewel"].includes(t.label) ? t.label : `${t.label} gem`})`, qty: 1, value: t.value, price: `${t.value} sp`, slots: 1, bundle: 5 });
+      items.push({ kind: "gem", name: `${stone} (${["Gem", "Jewel"].includes(t.label) ? t.label : `${t.label} gem`})`, qty: 1, value: t.value, price: priceText(t.value), slots: 1, bundle: 5 });
     }
   };
   const art = async (n, grade, items) => {
@@ -148,7 +151,7 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
     for (let i = 0; i < n; i++) {
       const value = await roll(a.value);
       const what = await pick(a.examples);
-      items.push({ kind: "art", name: `${what} (${a.label.toLowerCase()})`, qty: 1, value, price: `${value} sp`, slots: a.slots, bundle: 0 });
+      items.push({ kind: "art", name: `${what} (${a.label.toLowerCase()})`, qty: 1, value, price: priceText(value), slots: a.slots, bundle: 0 });
     }
   };
 
@@ -167,14 +170,14 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
     const def = HOARDS[p.code];
     if (!def || (p.lair && !lair)) continue;
     const sec = { label: `Hoard ${p.code}${p.lair ? " (in the lair, to be found)" : ""}`, coins: emptyCoins(), items: [], lair: p.lair };
-    sec.coins.sp += await roll(def.coins);
-    // Goods in bulk instead of coin: each lot's value comes off the coin.
-    while (tradeLeft > 0 && sec.coins.sp > 0) {
+    sec.coins.gp += await roll(def.coins);
+    // Goods in bulk instead of coin: each lot's value (in sp, every one a whole number of gp) comes off the gold.
+    while (tradeLeft > 0 && sec.coins.gp > 0) {
       const [lot, value] = await pick(TRADE_GOODS);
-      if (value > sec.coins.sp) break;
-      sec.coins.sp -= value;
+      if (value > sec.coins.gp * 10) break;
+      sec.coins.gp -= value / 10;
       tradeLeft--;
-      sec.items.push({ kind: "trade", name: `${lot} (a lot of trade goods)`, qty: 1, value, price: `${value} sp`, slots: 2, bundle: 0 });
+      sec.items.push({ kind: "trade", name: `${lot} (a lot of trade goods)`, qty: 1, value, price: priceText(value), slots: 2, bundle: 0 });
     }
     if (def.gems) await gems(await roll(def.gems.count), def.gems.grade, sec.items);
     if (def.art) await art(await roll(def.art.count), def.art.grade, sec.items);
@@ -188,7 +191,7 @@ export async function rollTreasure(parts, { roll, count = 1, lair = true, tradeL
   const coins = emptyCoins();
   for (const s of sections) for (const k of Object.keys(coins)) coins[k] += s.coins[k];
   const items = mergeItems(sections.flatMap(s => s.items));
-  // In sp (the silver standard, books v0.10.55).
+  // In sp (the silver standard, books v0.10.55); shown as the books print it (priceText).
   const value = coins.pp * 100 + coins.gp * 10 + coins.sp + coins.cp / 10 + items.filter(i => i.kind !== "magic").reduce((t, i) => t + (i.value || 0) * i.qty, 0);
   return { name, coins, items, sections, value: Math.round(value * 100) / 100 };
 }
@@ -204,7 +207,7 @@ function mergeItems(list) {
 }
 
 const enchanted = (what, plus, note = "") => ({
-  kind: "magic", name: `${what[0].toUpperCase()}${what.slice(1)} +${plus}`, qty: 1, value: ENCHANTED[what][plus], price: `${ENCHANTED[what][plus].toLocaleString("en-GB")} sp`,
+  kind: "magic", name: `${what[0].toUpperCase()}${what.slice(1)} +${plus}`, qty: 1, value: ENCHANTED[what][plus], price: priceText(ENCHANTED[what][plus]),
   slots: 1, bundle: 0, placeholder: true,
   note: note || `Choose the ${what} and give it +${plus}${what === "weapon" ? " to attack and damage" : " to AC"}.`
 });
@@ -286,7 +289,7 @@ export function treasureCardHtml(result, { title = "Treasure", code = "", uuids 
     const uuid = uuids[i.find ?? ""];
     const name = uuid ? `@UUID[${uuid}]{${esc(i.name)}}` : esc(i.name);
     const qty = i.qty > 1 ? `${i.qty} × ` : "";
-    const each = i.kind !== "magic" && i.value ? ` <span class="arn-muted">(${i.value.toLocaleString("en-GB")} sp${i.qty > 1 ? " each" : ""})</span>` : "";
+    const each = i.kind !== "magic" && i.value ? ` <span class="arn-muted">(${priceText(i.value)}${i.qty > 1 ? " each" : ""})</span>` : "";
     // A Unique's line links each Named Unique it could be (their items in the equipment compendium).
     const note = i.pick?.length
       ? ` <span class="arn-muted">${esc(i.lead ?? "")}${i.pick.map(n => uuids[n] ? `@UUID[${uuids[n]}]{${esc(n)}}` : esc(n)).join(", ")}.</span>`
@@ -301,7 +304,7 @@ export function treasureCardHtml(result, { title = "Treasure", code = "", uuids 
   const empty = !result.sections.length || (!coinText(result.coins) && !result.items.length);
   return `<div class="arn-card arn-treasure"><header class="arn-card-title"><i class="fa-solid fa-gem"></i> <span>${esc(title)}</span>${code ? `<span class="arn-mode">${esc(code)}</span>` : ""}</header>
     ${empty ? '<p class="arn-muted">Nothing worth taking.</p>' : secs}
-    ${empty ? "" : `<p class="arn-tr-total">Coins, gems, art and goods worth about <strong>${Math.round(result.value).toLocaleString("en-GB")} sp</strong>${result.items.some(i => i.kind === "magic") ? ", plus the magic" : ""}.</p>
+    ${empty ? "" : `<p class="arn-tr-total">Coins, gems, art and goods worth about <strong>${priceText(Math.round(result.value))}</strong>${result.items.some(i => i.kind === "magic") ? ", plus the magic" : ""}.</p>
     <button type="button" class="arn-tr-stash"><i class="fa-solid fa-sack-dollar"></i> Put it in the party stash</button>`}
   </div>`;
 }

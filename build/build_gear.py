@@ -250,10 +250,10 @@ TOOLKITS = [
     ("Gadgeteer's Toolkit", "35 sp", "A lockpick-adjacent fine-tool roll, spare springs and triggers, fuse cord, and a magnifying loupe, carried in a slim leather wrap. Free to an Artificer of the Gadgeteer Kit."),
     ("Alchemist's Toolkit", "35 sp", "A collapsible burner, glass vials and stoppers, a mortar and pestle, and a small dosage scale, carried in a padded case. Matches the Alchemy Skill; free to an Artificer of the Alchemist Kit."),
 ] + [(n, p, f"Artisan's toolkit for the {k} Skill (NWP). You need the tools to craft: with no usable tools you cannot craft.") for n, k, p in [
-    ("Blacksmith's Tools", "Blacksmithing", "20 sp"), ("Carpenter's Tools", "Carpentry", "12 sp"), ("Stonemason's Tools", "Stonemasonry", "15 sp"),
-    ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "10 sp"), ("Cobbler's Tools", "Cobbling", "6 sp"), ("Gem Cutter's Tools", "Gem Cutting", "25 sp"),
-    ("Potter's Tools", "Pottery", "5 sp"), ("Weaver's Tools", "Weaving", "6 sp"), ("Leatherworker's Tools", "Leatherworking", "10 sp"),
-    ("Weaponsmith's Tools", "Weaponsmithing", "22 sp"), ("Armourer's Tools", "Armourer", "25 sp"), ("Brewer's Tools", "Brewing", "10 sp"),
+    ("Blacksmith's Tools", "Blacksmithing", "2 gp"), ("Carpenter's Tools", "Carpentry", "12 sp"), ("Stonemason's Tools", "Stonemasonry", "15 sp"),
+    ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "1 gp"), ("Cobbler's Tools", "Cobbling", "6 sp"), ("Gem Cutter's Tools", "Gem Cutting", "25 sp"),
+    ("Potter's Tools", "Pottery", "5 sp"), ("Weaver's Tools", "Weaving", "6 sp"), ("Leatherworker's Tools", "Leatherworking", "1 gp"),
+    ("Weaponsmith's Tools", "Weaponsmithing", "22 sp"), ("Armourer's Tools", "Armourer", "25 sp"), ("Brewer's Tools", "Brewing", "1 gp"),
     ("Vintner's Tools", "Winemaking", "12 sp"), ("Cook's Tools", "Cooking", "5 sp")]]
 
 # The base weapon a "+N <word>" names (M&T Iconic Weapons).

@@ -1,6 +1,20 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.96 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.97 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.97
+
+Books HB v0.10.60 and M&T v0.10.60 (B-F51, B-F52; K103, K107).
+
+- **Prices in gold.** Wherever the books print gold (any amount of 10 sp or more that divides by 10), so does Foundry: the Catalogue and its items, spell components, magic items, the gem stones tables (1 gp up to 500 gp), art objects and trade goods. Values are unchanged, and every table and item keeps its id.
+- **Starting money** is rolled in gold (3d6 gp for the martial and divine classes, 2d6 gp, 1d4 gp), a Monk's in silver (5d4 sp). The Explorer's Pack is 17 sp and the Survivalist's Pack 29 sp (the bedroll is now 2 cp); the Gunslinger's free firearm is one costing 30 gp or less.
+- **Treasure:** hoards pay out in gold (1d6 × 1,000 gp for H), and the treasure card shows gems, art, goods and the total in gold.
+- **Downtime:** item values are typed in gold; training (5, 15 or 50 gp), Trained Feats (75, 150, 300 or 600 gp by Tier), carousing (10 to 1,000 gp), copying (5 gp a spell level), scrolls and research (10 gp a level) and magic items (1 week per 50 gp) read as the Codex now does. A scroll you write is priced 20 gp a level.
+- **Raising the dead:** Raise Dead 500 gp, Resurrection 1,000 gp and True Resurrection 25,000 gp of components (K107).
+- **Fighter Press On:** the extra attack has no Disadvantage if your first attack **hit** (its second button now says so).
+- **Villain actions:** every solo's opener (Villain Action 1) shows its damage for the solo's Level, half the Damage target to one creature or a quarter to each in an area, with a damage button, on top of its control.
+- **Monsters:** Purple Worm Venom 3d6, the Death Knight's Hellfire Ruin 3d6, the Vampire's unarmed strikes 2d8+4 ×2 and bite 1d8+4.
+- **Also from the books:** Quiver of Ehlonna is now the **Efficient Quiver** (same item in your world); the minion line in Building Encounters; Running Shot trimmed; Flank Attack is the flanking rule, not an action; clearer Animal Handling and Animal Training.
 
 ## What's new in 0.10.96
 

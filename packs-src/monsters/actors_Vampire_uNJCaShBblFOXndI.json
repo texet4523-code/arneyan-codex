@@ -69,7 +69,7 @@
  },
  "items": [
   {
-   "name": "Unarmed strike",
+   "name": "Unarmed strike ×2",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
    "system": {
@@ -82,22 +82,22 @@
     "slots": 0,
     "price": "",
     "equipped": true,
-    "damage": "1d8+4",
+    "damage": "2d8+4",
     "damageType": "bludgeoning",
     "ability": "str",
     "ranged": false,
     "range": "",
     "magic": 0,
     "attackBonus": 0,
-    "traits": "",
+    "traits": "2 attacks",
     "bonusDamage": [],
     "rules": [],
     "toggle": false,
     "active": false,
     "applies": []
    },
-   "_id": "jXSov2gg5VGIuIsX",
-   "_key": "!actors.items!uNJCaShBblFOXndI.jXSov2gg5VGIuIsX",
+   "_id": "7wzQHcYa4a7CRBWD",
+   "_key": "!actors.items!uNJCaShBblFOXndI.7wzQHcYa4a7CRBWD",
    "effects": [],
    "flags": {},
    "sort": 0,
@@ -120,7 +120,7 @@
     "slots": 0,
     "price": "",
     "equipped": true,
-    "damage": "1d6+4",
+    "damage": "1d8+4",
     "damageType": "piercing",
     "ability": "str",
     "ranged": false,
@@ -487,7 +487,7 @@
     }
    },
    "system": {
-    "description": "<p>Every door and shutter within <strong>60ft</strong> slams shut. The vampire moves up to its speed, and each enemy within <strong>30ft</strong> of it makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "description": "<p>Every door and shutter within <strong>60ft</strong> slams shut. The vampire moves up to its speed, and each enemy within <strong>30ft</strong> of it makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[11]{11 damage} to one creature it affects, or @Damage[5]{5} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -569,7 +569,7 @@
     }
    },
    "system": {
-    "description": "<p>It moves up to its speed as mist, re-forms beside one creature and bites it (+12, <strong>1d6+4</strong>). On a hit, Blood Drain applies as if the target were grappled.</p>",
+    "description": "<p>It moves up to its speed as mist, re-forms beside one creature and bites it (+12, <strong>1d8+4</strong>). On a hit, Blood Drain applies as if the target were grappled.</p>",
     "source": {
      "book": "mt",
      "page": 0

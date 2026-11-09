@@ -259,7 +259,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Charmed</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong> and all <strong>Exhausted</strong> levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency).</p><ul><li>It does not restore HP.</li><li>Material: diamond dust worth 5,000 sp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "description": "<p>Touch; ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Charmed</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong> and all <strong>Exhausted</strong> levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency).</p><ul><li>It does not restore HP.</li><li>Material: diamond dust worth 500 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -318,7 +318,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature or object for <strong>1 hour per level</strong>.</p><ul><li>Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (<strong>d20</strong> + casting-stat modifier + half its level) vs <strong>DC 10</strong> + the spell's level, failing means the spell fails.</li><li>Material: diamond dust worth 50 sp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Spellblade</p>",
+    "description": "<p>Touch; one creature or object for <strong>1 hour per level</strong>.</p><ul><li>Divination spells (scrying, locating, detecting) targeting it fail if of 3rd level or lower; for higher levels the caster makes a casting check (<strong>d20</strong> + casting-stat modifier + half its level) vs <strong>DC 10</strong> + the spell's level, failing means the spell fails.</li><li>Material: diamond dust worth 5 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Bard, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -826,7 +826,7 @@
     }
    },
    "system": {
-    "description": "<p>Each enemy within <strong>120ft</strong> that can hear it makes a @Check[will|dc:26]{Will save DC 26} or falls @Condition[prone]{Prone} in awe and is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "description": "<p>Each enemy within <strong>120ft</strong> that can hear it makes a @Check[will|dc:26]{Will save DC 26} or falls @Condition[prone]{Prone} in awe and is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
     "source": {
      "book": "mt",
      "page": 0

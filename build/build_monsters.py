@@ -359,6 +359,29 @@ DICE = r"\d+(?:d\d+)?(?:\s*[+-]\s*\d+)?"
 TYPES = "|".join(DAMAGE)
 
 
+def damage_targets():
+    """The Damage target by Level, from M&T's Level table (front.md: "| Level | HP | AC | Attack | Damage |" twice a row)."""
+    out = {}
+    for ln in open(os.path.join(SRC, "front.md"), encoding="utf-8"):
+        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+        if len(cells) == 10 and cells[0].isdigit() and cells[5].isdigit():
+            out[int(cells[0])] = int(cells[4])
+            out[int(cells[5])] = int(cells[9])
+    assert sorted(out) == list(range(1, 25)), f"M&T Level table: {sorted(out)}"
+    return out
+
+
+def opener_note(level, targets):
+    """M&T v0.10.59 (R-B69, K103): on top of its control, a solo's opener deals half the Damage target for its Level to one
+    creature it affects, or a quarter to each creature in an area, of a type that suits it, in place of any smaller
+    damage its block lists. Halves and quarters round down."""
+    t = targets[min(max(int(level), 1), 24)]
+    one, area = t // 2, t // 4
+    return (f'<p class="arn-note"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its '
+            f'control, @Damage[{one}]{{{one} damage}} to one creature it affects, or @Damage[{area}]{{{area}}} to each creature in an '
+            f'area, of a type that suits it, in place of any smaller damage listed.</p>')
+
+
 def weapon_item(seg, base_attack, img):
     """"bite +6 (1d10+3 plus 2d8 poison, 10ft) x2" -> a weapon. A rider ("plus 2d8 poison") stays its own
     typed roll, linked in the description, so resistances apply to each part correctly."""
@@ -567,6 +590,8 @@ def build():
         icon("form", g)
     load_spells()
     load_skills()
+    global TARGETS
+    TARGETS = damage_targets()
     before = json.load(open(os.path.join(os.path.dirname(__file__), "data", "monster_saves_0102.json")))
     groups = {}
     count = 0
@@ -634,6 +659,10 @@ def build():
                     items += spell_items(cm.group(2))
             if "sk" in f:
                 items += skill_items(f["sk"])
+            if solo:
+                for it in items:
+                    if (it.get("flags") or {}).get("arneyan", {}).get("villainAction") == 1:
+                        it["system"]["description"] += opener_note(level, TARGETS)
             dcs = [x for it in items for x in it.pop("_dcs", [])]
             # "Casts as an 11th-level cleric": that class's spell slots at that level.
             spellcasting = {"className": "", "level": 0, "slots": [], "used": []}

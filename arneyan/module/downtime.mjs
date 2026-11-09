@@ -6,6 +6,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 import { gameWhen } from "./worldtime.mjs";
+import { priceText } from "./money.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -70,14 +71,14 @@ export const TRAINING = {
   shield: { label: "Shield training", weeks: 2, sp: 50 },
   armourLight: { label: "Armour training: Light or Medium (one type)", weeks: 4, sp: 150 },
   armourHeavy: { label: "Armour training: Heavy (one type)", weeks: 8, sp: 500 },
-  feat: { label: "Trained Feat (silver by Tier, then a DC 15 check)", weeks: 12, sp: 750 }
+  feat: { label: "Trained Feat (gold by Tier, then a DC 15 check)", weeks: 12, sp: 750 }
 };
 /** Books v0.10.47 (K54): a Trained Feat's gold by Tier of Play (1st-4th, 5th-10th, 11th-16th, 17th on). */
 export function trainedFeatGold(level) {
   const l = Number(level) || 1;
   return l >= 17 ? 6000 : l >= 11 ? 3000 : l >= 5 ? 1500 : 750;
 }
-/** Books v0.10.47 (K54): learning a skill. Trained 2 weeks at 25 sp a week (DC 10); Master 4 more weeks at 50 sp (DC 15). */
+/** Books v0.10.47 (K54): learning a skill. Trained 2 weeks at 25 sp a week (DC 10); Master 4 more weeks at 5 gp (DC 15). */
 export const SKILL_COURSE = { trained: { weeks: 2, sp: 25, dc: 10 }, master: { weeks: 4, sp: 50, dc: 15 } };
 /** Carousing (the Shopkeeper's Catalogue, HB v0.10.53, K62): a week's gold by Tier of Play. */
 export function carouseGold(level) {
@@ -91,14 +92,14 @@ export const ACTIVITIES = {
   income: { label: "Earn Income", hint: "One week of work (six working days). d20 + a skill: DC 10 earns 1 sp a day, DC 15 3 sp, DC 20 1 gp; a failure 3 cp a day." },
   craft: { label: "Craft", hint: "Pay half the market price (a Master a third; +25% in a remote village). 1 day per 25 sp of value (twice as long in the wilderness). On a failure half the gold is lost." },
   brew: { label: "Brew a Potion", hint: "Alchemy and an Alchemist's Toolkit. Pay half the potion's price; 1 day per 25 sp. On a failure half the gold is lost." },
-  magicItem: { label: "Make a Magic Item", hint: "Half the item's value on top of the base item; 1 week per 500 sp. A casting-stat check at the end: Hard for Uncommon, Severe for Rare. On a failure half the gold is lost." },
-  copySpell: { label: "Copy a Spell", hint: "1 day and 50 sp per spell level, no roll. The spell must be on your class list." },
-  scribe: { label: "Scribe a Scroll", hint: "1 week and 100 sp per spell level (a cantrip: 1 day and 10 sp), plus costly components. No more a month than your casting modifier (minimum 1)." },
-  research: { label: "Research a Spell", hint: "The GM approves it and sets its level. 1 week and 100 sp per spell level, then a casting-stat check against a Hard DC. On a failure half the gold is lost." },
-  learnSkill: { label: "Learn a Skill (NWP)", hint: "No limit. Trained: 2 weeks with a teacher at 25 sp a week, then a DC 10 check with the skill's attribute. Master: 4 more weeks at 50 sp a week with a Master teacher, then DC 15. A failure: 1 more week, its gold, and roll again. Skilled halves the time." },
+  magicItem: { label: "Make a Magic Item", hint: "Half the item's value on top of the base item; 1 week per 50 gp. A casting-stat check at the end: Hard for Uncommon, Severe for Rare. On a failure half the gold is lost." },
+  copySpell: { label: "Copy a Spell", hint: "1 day and 5 gp per spell level, no roll. The spell must be on your class list." },
+  scribe: { label: "Scribe a Scroll", hint: "1 week and 10 gp per spell level (a cantrip: 1 day and 1 gp), plus costly components. No more a month than your casting modifier (minimum 1)." },
+  research: { label: "Research a Spell", hint: "The GM approves it and sets its level. 1 week and 10 gp per spell level, then a casting-stat check against a Hard DC. On a failure half the gold is lost." },
+  learnSkill: { label: "Learn a Skill (NWP)", hint: "No limit. Trained: 2 weeks with a teacher at 25 sp a week, then a DC 10 check with the skill's attribute. Master: 4 more weeks at 5 gp a week with a Master teacher, then DC 15. A failure: 1 more week, its gold, and roll again. Skilled halves the time." },
   train: { label: "Train", hint: "A teacher, gold paid up front and time. Weapon, shield and armour training need no check. A Trained Feat: one per Tier, 12 weeks, gold by Tier, then a DC 15 check with the feat's attribute; a failure is 2 more weeks and their gold." },
   studySecret: { label: "Study a Secret", hint: "The Secret in hand (Monsters & Treasure). Its listed weeks, then a check (Intelligence unless it names another) against its DC; a failure is 2 more weeks and roll again. Your one course at a time." },
-  carouse: { label: "Carouse", hint: "A week of drink, dice and good company. Silver by Tier (100, 500, 2,500 or 10,000 sp), a Charisma check (DC 12), then a d20 on the Carousing table, +5 if the check succeeded." },
+  carouse: { label: "Carouse", hint: "A week of drink, dice and good company. Gold by Tier (10, 50, 250 or 1,000 gp), a Charisma check (DC 12), then a d20 on the Carousing table, +5 if the check succeeded." },
   disease: { label: "Treat a Disease", hint: "8 hours a day. A Wisdom (First Aid/Healing) check against the disease's DC once a day; a success cures it." },
   sideQuest: { label: "Side Quest", hint: "Two weeks off-screen, a 2d6 roll at the end of each week; the better one decides. 2-5 a consequence, 6-8 a minor reward, 9+ a major reward. No more than two at a time." },
   other: { label: "Other (the GM rules)", hint: "Research, forgery, farming, building a network, gathering information, learning spells: the time, the cost and what came of it." }
@@ -146,7 +147,8 @@ export function planDowntime(key, v, actor) {
       return { title: skill(v.skill)?.name ?? "Untrained", days: 6, costCp: 0, check: { type: "income", skillId: v.skill || "" }, warn };
     case "craft":
     case "brew": {
-      const value = Math.max(0, num(v.value));
+      // Typed in gold (books v0.10.59, K103); worked in sp.
+      const value = Math.max(0, num(v.value)) * 10;
       const s = skill(v.skill);
       const master = s?.system?.tier === "master";
       const remote = v.place === "remote";
@@ -160,7 +162,8 @@ export function planDowntime(key, v, actor) {
       return { title: v.item || "An item", days, costCp: Math.ceil(cost), check: { type: "skill", skillId: s?.id ?? "", dc: tierDc(v.tier, v.dc), master }, warn, failHalf: true };
     }
     case "magicItem": {
-      const value = Math.max(0, num(v.value));
+      // Typed in gold (books v0.10.59, K103); worked in sp.
+      const value = Math.max(0, num(v.value)) * 10;
       const need = { uncommon: 3, rare: 5, veryRare: 7 }[v.rarity] ?? 3;
       if (highestSpellLevel(actor) < need) warn.push(`Needs a caster who can cast ${ARNEYAN.spellLevels[need]}-level spells.`);
       if (v.rarity !== "uncommon") warn.push("A Rare or Very Rare item also needs a Special Material, which the gold does not cover.");
@@ -232,7 +235,7 @@ export function planDowntime(key, v, actor) {
     case "sideQuest":
       return { title: v.quest || "A side quest", days: 2 * WEEK, costCp: 0, check: { type: "sideQuest" }, warn };
     default:
-      return { title: v.kind || OTHER[0], days: Math.max(0, Math.round(num(v.days, 1))), costCp: Math.round(Math.max(0, num(v.cost)) * 10), check: null, warn, result: String(v.result ?? "") };
+      return { title: v.kind || OTHER[0], days: Math.max(0, Math.round(num(v.days, 1))), costCp: Math.round(Math.max(0, num(v.cost)) * 100), check: null, warn, result: String(v.result ?? "") };
   }
 }
 
@@ -473,13 +476,13 @@ export async function newDowntime(actor) {
   const skillNames = skillPack ? [...(await skillPack.getIndex())].map(e => e.name).filter(n => !skills.some(s => s.name === n)).sort() : [];
   const sections = {
     income: f("Skill", skillSel("income.skill")),
-    craft: [f("Item", `<input type="text" name="craft.item" placeholder="A longsword">`), f("Value (sp)", `<input type="number" name="craft.value" value="15" min="0">`), f("Skill", skillSel("craft.skill")),
+    craft: [f("Item", `<input type="text" name="craft.item" placeholder="A longsword">`), f("Value (gp)", `<input type="number" name="craft.value" value="1.5" min="0" step="0.1">`), f("Skill", skillSel("craft.skill")),
       f("Difficulty", tierSel("craft.tier")), f("Other DC", `<input type="number" name="craft.dc" value="15">`),
       f("Where", `<select name="craft.place"><option value="city">Large town or city</option><option value="remote">Remote village (+25% gold)</option><option value="wild">Wilderness (twice as long)</option></select>`)].join(""),
-    brew: [f("Potion", `<input type="text" name="brew.item" placeholder="Potion of Healing">`), f("Value (sp)", `<input type="number" name="brew.value" value="50" min="0">`),
+    brew: [f("Potion", `<input type="text" name="brew.item" placeholder="Potion of Healing">`), f("Value (gp)", `<input type="number" name="brew.value" value="5" min="0" step="0.1">`),
       f("Skill", skillSel("brew.skill", s => /alchemy/i.test(s.name))), f("Difficulty", tierSel("brew.tier")), f("Other DC", `<input type="number" name="brew.dc" value="15">`),
       f("Where", `<select name="brew.place"><option value="city">Large town or city</option><option value="remote">Remote village (+25% gold)</option><option value="wild">Wilderness (twice as long)</option></select>`)].join(""),
-    magicItem: [f("Item", `<input type="text" name="magicItem.item" placeholder="Wand of Magic Missiles">`), f("Value (sp)", `<input type="number" name="magicItem.value" value="450" min="0">`),
+    magicItem: [f("Item", `<input type="text" name="magicItem.item" placeholder="Wand of Magic Missiles">`), f("Value (gp)", `<input type="number" name="magicItem.value" value="45" min="0" step="0.1">`),
       f("Rarity", `<select name="magicItem.rarity"><option value="uncommon">Uncommon (Hard)</option><option value="rare">Rare (Severe)</option><option value="veryRare">Very Rare (the GM sets the DC)</option></select>`), f("Very Rare DC", `<input type="number" name="magicItem.dc" value="20">`)].join(""),
     copySpell: [f("Spell", `<input type="text" name="copySpell.spell">`), f("Spell level", `<input type="number" name="copySpell.level" value="1" min="1" max="9">`)].join(""),
     scribe: [f("Spell", `<input type="text" name="scribe.spell">`), f("Spell level (0 for a cantrip)", `<input type="number" name="scribe.level" value="1" min="0" max="9">`)].join(""),
@@ -489,13 +492,13 @@ export async function newDowntime(actor) {
     studySecret: [f("Secret", `<select name="studySecret.secret"><option value="">Not on the sheet</option>${secrets.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select>`),
       f("Or its name", `<input type="text" name="studySecret.name">`), f("Weeks (blank: the Secret's own)", `<input type="number" name="studySecret.weeks" min="1">`),
       f("DC (blank: the Secret's own)", `<input type="number" name="studySecret.dc" min="1">`), f("Attribute", `<select name="studySecret.ability"><option value="">The Secret's own</option>${Object.entries(ARNEYAN.abilities).map(([k, a]) => `<option value="${k}">${esc(a)}</option>`).join("")}</select>`)].join(""),
-    train: [f("Training", `<select name="train.training">${Object.entries(TRAINING).map(([k, t]) => `<option value="${k}">${esc(t.label)}: ${t.weeks} weeks, ${k === "feat" ? `${trainedFeatGold(actor.system.level).toLocaleString("en-GB")} sp at your Tier` : `${t.sp} sp`}</option>`).join("")}</select>`), f("Which", `<input type="text" name="train.what" placeholder="Longbow, chain mail, a feat">`),
+    train: [f("Training", `<select name="train.training">${Object.entries(TRAINING).map(([k, t]) => `<option value="${k}">${esc(t.label)}: ${t.weeks} weeks, ${k === "feat" ? `${priceText(trainedFeatGold(actor.system.level))} at your Tier` : priceText(t.sp)}</option>`).join("")}</select>`), f("Which", `<input type="text" name="train.what" placeholder="Longbow, chain mail, a feat">`),
       f("A Trained Feat's attribute", abilitySel("train.ability", "str"))].join(""),
     disease: [f("Disease", `<input type="text" name="disease.disease">`), f("Its DC", `<input type="number" name="disease.dc" value="12">`), f("Days at most", `<input type="number" name="disease.days" value="7" min="1">`)].join(""),
-    carouse: f("This week", `<span>${carouseGold(actor.system.level).toLocaleString("en-GB")} sp at your Tier; Charisma (DC 12), then the Carousing table</span>`),
+    carouse: f("This week", `<span>${priceText(carouseGold(actor.system.level))} at your Tier; Charisma (DC 12), then the Carousing table</span>`),
     sideQuest: f("Quest", `<input type="text" name="sideQuest.quest">`),
     other: [f("Activity", `<select name="other.kind">${OTHER.map(o => `<option>${esc(o)}</option>`).join("")}</select>`), f("Days", `<input type="number" name="other.days" value="7" min="0">`),
-      f("Cost (sp)", `<input type="number" name="other.cost" value="0" min="0" step="0.01">`), f("What came of it", `<input type="text" name="other.result">`)].join("")
+      f("Cost (gp)", `<input type="number" name="other.cost" value="0" min="0" step="0.01">`), f("What came of it", `<input type="text" name="other.result">`)].join("")
   };
   const content = `<div class="arn-dt-dialog">
     <label class="arn-dt-field"><span>Activity</span><select name="activity">${Object.entries(ACTIVITIES).map(([k, a]) => `<option value="${k}">${esc(a.label)}</option>`).join("")}</select></label>

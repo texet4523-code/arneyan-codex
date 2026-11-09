@@ -644,7 +644,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Touch; casting takes <strong>10 minutes</strong>.</p><ul><li>One willing dead creature, dead no longer than 10 years per level, of which you hold at least a piece of the body (the spell restores the rest).</li><li>It returns with half its maximum HP, 2 levels of Exhaustion and no spells prepared, with no Constitution loss.</li><li>Fails if the creature died of old age. No save.</li><li>Material: diamond dust worth 1,000 sp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Touch; casting takes <strong>10 minutes</strong>.</p><ul><li>One willing dead creature, dead no longer than 10 years per level, of which you hold at least a piece of the body (the spell restores the rest).</li><li>It returns with half its maximum HP, 2 levels of Exhaustion and no spells prepared, with no Constitution loss.</li><li>Fails if the creature died of old age. No save.</li><li>Material: diamond dust worth 1,000 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -880,7 +880,7 @@
     }
    },
    "system": {
-    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:29]{Will save DC 29} or falls @Condition[prone]{Prone} in awe and is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:29]{Will save DC 29} or falls @Condition[prone]{Prone} in awe and is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[14]{14 damage} to one creature it affects, or @Damage[7]{7} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
     "source": {
      "book": "mt",
      "page": 0

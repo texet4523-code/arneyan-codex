@@ -4,6 +4,7 @@
  * (magic item rules, Illuminations), Spellcasting in Arneyan (Spellbooks & Scrolls) and Character
  * Creation (Recovering Luck).
  */
+import { priceText } from "./money.mjs";
 import { areaButton } from "./areas.mjs";
 import { TOUCH_ATTACK } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
@@ -427,12 +428,12 @@ function wireLightTimer(app, element) {
 
 const SCROLL_IMG = "systems/arneyan/assets/icons/gear-scroll-unfurled.svg";
 
-/** Write a scroll of a spell you know: 1 week and 100 sp a spell level (a cantrip, 1 day and 10 sp). */
+/** Write a scroll of a spell you know: 1 week and 10 gp a spell level (a cantrip, 1 day and 1 gp). */
 export async function writeScroll(spell) {
   const actor = spell.actor;
   if (!actor?.isOwner || spell.type !== "spell") return;
   const lvl = spell.system.level;
-  // In sp (the silver standard, books v0.10.55): 100 sp a spell level, a cantrip 10 sp.
+  // In sp (the silver standard, books v0.10.55): 100 sp a spell level, a cantrip 10 sp; shown in gold (v0.10.59, K103).
   const cost = lvl ? 100 * lvl : 10;
   const time = lvl ? "1 week" : "1 day";
   const caster = spell.caster;
@@ -440,10 +441,10 @@ export async function writeScroll(spell) {
   const dc = caster?.dc ?? actor.system.spellDC ?? 0;
   const pay = await DialogV2.wait({
     window: { title: `Write a scroll: ${spell.name}` }, classes: ["arneyan"],
-    content: `<p>Writing it takes <strong>${time}</strong> and <strong>${cost} sp</strong>${spell.system.costly ? " plus the spell's costly components" : ""}. You may write no more scrolls a month than your casting modifier (minimum 1).</p>
+    content: `<p>Writing it takes <strong>${time}</strong> and <strong>${priceText(cost)}</strong>${spell.system.costly ? " plus the spell's costly components" : ""}. You may write no more scrolls a month than your casting modifier (minimum 1).</p>
       <p class="arn-muted">The scroll keeps your caster level (${cl}) and save DC${dc ? ` (${dc})` : ""}.</p>`,
     buttons: [
-      { action: "pay", label: `Write it and pay ${cost} sp`, icon: "fa-solid fa-coins", default: true },
+      { action: "pay", label: `Write it and pay ${priceText(cost)}`, icon: "fa-solid fa-coins", default: true },
       { action: "free", label: "Write it (paid already)", icon: "fa-solid fa-scroll" },
       { action: "cancel", label: "Cancel" }
     ],
@@ -453,7 +454,7 @@ export async function writeScroll(spell) {
   if (pay === "pay") {
     const { payCoins, toCp, cpText } = await import("./downtime.mjs");
     const after = payCoins(actor.system.currency, cost * 10);
-    if (!after) return ui.notifications.warn(`${actor.name} has ${cpText(toCp(actor.system.currency))}; the scroll needs ${cost} sp.`);
+    if (!after) return ui.notifications.warn(`${actor.name} has ${cpText(toCp(actor.system.currency))}; the scroll needs ${priceText(cost)}.`);
     await actor.update(Object.fromEntries(Object.entries(after).map(([k, v]) => [`system.currency.${k}`, v])));
   }
   const spellData = spell.toObject();
@@ -461,7 +462,7 @@ export async function writeScroll(spell) {
   const [made] = await actor.createEmbeddedDocuments("Item", [{
     name: `Scroll of ${spell.name}`, type: "equipment", img: SCROLL_IMG,
     system: {
-      description: spell.system.description, quantity: 1, slots: 1, bundle: 5, price: lvl ? `${200 * lvl} sp` : "25 sp",
+      description: spell.system.description, quantity: 1, slots: 1, bundle: 5, price: lvl ? priceText(200 * lvl) : "25 sp",
       consumable: { use: true, heal: "" }, scroll: { spell: spellData, cl, dc }, identified: true,
       source: { book: "phb", page: 0 }
     }
