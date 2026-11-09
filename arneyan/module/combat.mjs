@@ -407,7 +407,7 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   // applied by itself: it goes on the card, and the card's Advantage or Disadvantage button applies it (Kieran, 8 Nov,
   // Jacob's Well: "everything is rolling at disadvantage"). Features and conditions still apply by themselves.
   const gun = !!firearmOf(item);
-  const maybe = (dir, why) => { out.disHint ||= dir < 0; out.notes.push(`${dir > 0 ? "Advantage" : "Disadvantage"} if it applies: ${why}. ${gun ? `A firearm: roll it again with ${dir > 0 ? "Shift" : "Ctrl"}-click.` : "The card's button applies it."}`); };
+  const maybe = (dir, why) => { out.disHint ||= dir < 0; out.notes.push(`${dir > 0 ? "Advantage" : "Disadvantage"} if it applies: ${why}. The card's button applies it.`); };
   const combat = combatFor(actor);
   if (combat?.started) out.extra.stamp = `${combat.id}.${combat.round}`;
 
@@ -749,7 +749,9 @@ export async function resolveContest(message, target, attacker) {
   const ab = bestChoice(target, cfg.def, kind);
   const dmsg = await contestRoll(target, ab, { kind, role: "defender", vs: attacker.name });
   const d = dmsg?.flags?.[SYS] ?? {};
-  const att = { total: (f.total ?? 0) + (f.luckBurned ?? 0), natural: f.natural, autoFail: !!f.autoFail };
+  // As the card stands now (a button pressed while the defender rolled).
+  const fa = game.messages?.get?.(message.id)?.flags?.[SYS] ?? message.flags?.[SYS] ?? f;
+  const att = { total: (fa.total ?? 0) + (fa.luckBurned ?? 0), natural: fa.natural, autoFail: !!fa.autoFail };
   const def = { total: (d.total ?? 0) + (d.luckBurned ?? 0), natural: d.natural, autoFail: !!d.autoFail };
   const won = contestWinner(att, def) === "attacker";
   const done = won ? await applyContestWin(kind, target, attacker, f.contest) : null;
@@ -761,6 +763,9 @@ export async function resolveContest(message, target, attacker) {
   // Both cards point at the result, so Advantage or Disadvantage pressed on either works the contest out again.
   if (dmsg?.canUserModify?.(game.user, "update")) await dmsg.setFlag(SYS, "contestResultId", res?.id ?? "").catch(() => null);
   if (message.canUserModify?.(game.user, "update")) await message.setFlag(SYS, "contest", { ...f.contest, resolved: true, resultId: res?.id ?? "" }).catch(() => null);
+  // Changed again before the result card was written: worked out once more.
+  const now = game.messages?.get?.(message.id)?.flags?.[SYS] ?? fa;
+  if (res && ((now.total ?? 0) + (now.luckBurned ?? 0) !== att.total)) return redoContest(game.messages?.get?.(res.id) ?? res);
   return won;
 }
 
@@ -828,7 +833,18 @@ export async function contestRedoHere(result) {
  * Work a contest out again from its two cards as they now stand (a second d20 or Luck burned on either), undoing or
  * applying what the win does, and rewrite the result card.
  */
-export async function redoContest(result) {
+const redoQueue = new Map();
+export function redoContest(result) {
+  // One at a time for each contest (a player's button and the GM's at once would apply the win twice).
+  const key = result?.id ?? "";
+  const next = (redoQueue.get(key) ?? Promise.resolve()).then(() => redoContestNow(game.messages?.get?.(key) ?? result));
+  const tail = next.catch(() => null);
+  redoQueue.set(key, tail);
+  tail.then(() => { if (redoQueue.get(key) === tail) redoQueue.delete(key); });
+  return next;
+}
+
+async function redoContestNow(result) {
   const r = result?.flags?.[SYS]?.contestResult;
   if (!r || !CONTESTS[r.kind]) return;
   const am = game.messages.get(r.attMsg), dm = game.messages.get(r.defMsg);
@@ -1192,7 +1208,7 @@ export function registerCombat() {
   foundry.applications.handlebars.loadTemplates(["systems/arneyan/templates/actor/combat-tools.hbs"]);
   if (game.arneyan) game.arneyan.combat = { rollMorale, startContest, fightDefensively, unarmedStrike };
   game.settings.register(SYS, "advMode", {
-    name: "Advantage and Disadvantage", hint: "By hand: what features and conditions would give is listed on the roll card as \"Might apply\", and the player or GM applies it with the card's Advantage and Disadvantage buttons (or Shift- and Ctrl-click). Power Attack's Disadvantage, the off-hand attack's and Extra Attack's later attacks always apply. Automatic: features and conditions apply by themselves. Either way, what the map suggests (cover from walls, flanking, long range) is only suggested. Contests, initiative, Luck Checks, firearms, the Last Chance save and downtime checks always work it out themselves.",
+    name: "Advantage and Disadvantage", hint: "By hand: what features and conditions would give is listed on the roll card as \"Might apply\", and the player or GM applies it with the card's Advantage and Disadvantage buttons (or Shift- and Ctrl-click). Power Attack's Disadvantage, the off-hand attack's and Extra Attack's later attacks always apply. Automatic: features and conditions apply by themselves. Either way, what the map suggests (cover from walls, flanking, long range) is only suggested. Contests, initiative, Luck Checks and the Last Chance save always work the rules' own out themselves (their cards still have the buttons); downtime checks ask before rolling.",
     scope: "world", config: true, type: String, default: "manual", choices: { manual: "By hand (the card's buttons)", auto: "Automatic" }
   });
   game.settings.register(SYS, "positionalCombat", {

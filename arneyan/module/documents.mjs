@@ -714,7 +714,7 @@ export class ArneyanActor extends Actor {
         // Long range: the players' call too (Kieran, 8 Nov), noted for the card's Disadvantage button.
         else if (worst > r.normal) {
           const longs = targets.filter(t => feetBetween(from.document, t.token.document) > r.normal).map(t => t.name);
-          notes.push(`Disadvantage if it applies: long range (${targets.length > 1 ? `${longs.join(", ")}, ` : ""}${worst}ft, range ${r.normal}ft). ${firearmOf(item) ? "A firearm: roll it again with Ctrl-click." : "The card's button applies it."}`);
+          notes.push(`Disadvantage if it applies: long range (${targets.length > 1 ? `${longs.join(", ")}, ` : ""}${worst}ft, range ${r.normal}ft). The card's button applies it.`);
           sitDisHint = true;
         }
       }
@@ -724,7 +724,7 @@ export class ArneyanActor extends Actor {
     // Power Attack only on your first attack each round, never on one that already has Disadvantage (K53).
     // By hand (K53 still): only what the roll really has turns Power Attack off: a Ctrl-click, or the attack's own
     // Disadvantage (Extra Attack); what might apply goes through the card's "Disadvantage applies" button.
-    const byHand = manualAdvantage() && !sit.fire;
+    const byHand = manualAdvantage();
     // (Plus what applies by hand anyway: a Disadvantage nothing cancels, the off-hand attack's.)
     const fixedOnly = s => ({ values: (s?.values ?? []).filter(v => v <= -2) });
     const others = byHand ? [adv ?? NONE, ...[against, first, firstWith, heavy, ...sit.adv].map(fixedOnly), (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE]

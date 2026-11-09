@@ -41,6 +41,9 @@ const X = await import("../arneyan/module/redo.mjs");
   const auto = await R.d20Roll({ actor: null, kind: "save", mode: 1, title: "Last Chance", why: { adv: ["Rule"], dis: [], auto: true }, extra: { lastChance: true } });
   const card = JSON.parse(auto.content);
   assert.ok(card.canSecond && card.secondDis && !card.secondAdv, "an automatic roll with Advantage: the other button cancels it");
+  naturals = [10];
+  const cancelled = await R.d20Roll({ actor: null, kind: "contest", title: "Break free", why: { adv: ["Small"], dis: ["Rule"], auto: true } });
+  assert.equal(JSON.parse(cancelled.content).canSecond, false, "the rules' own Advantage and Disadvantage cancelled: no button overrules that");
   naturals = [9];
   const none = await R.d20Roll({ actor: null, kind: "check", title: "Downtime", extra: { noSecond: true } });
   assert.equal(JSON.parse(none.content).canSecond, false, "a downtime check chooses before rolling, so none");
@@ -113,6 +116,14 @@ assert.equal(D.lastChanceOk({ natural: 12, total: 12, autoFail: true }), false);
   assert.ok(tgt.effects[0].statuses.has("restrained"));
   assert.match(result.content, /Grapple: success/);
   assert.match(result.content, /worked out again/i);
+  // Two at once (the player's button through the GM, the GM's own): one after the other, the win applied once.
+  am.flags.arneyan.total = 30;
+  dm.flags.arneyan.total = 16;
+  result.flags.arneyan.contestResult = { ...result.flags.arneyan.contestResult, won: false, done: null };
+  for (const e of [...tgt.effects]) tgt.effects.splice(tgt.effects.indexOf(e), 1);
+  await Promise.all([C.redoContest(result), C.redoContest(result)]);
+  assert.equal(tgt.effects.length, 1, "one grapple, not two");
+  am.flags.arneyan.total = 21;
   // Advantage on the defender's card: 21 against 21, and a tie goes to the defender.
   dm.flags.arneyan.total = 21;
   assert.equal(await C.redoContest(result), false, "a tie goes to the defender");

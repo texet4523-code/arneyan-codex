@@ -118,7 +118,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   const fixedDis = (why?.dis ?? []).some(d => /no Advantage cancels/i.test(d)) && (mode < 0 || manualAdvantage());
   // On every d20 roll (Kieran, 9 Nov): what the roll already decided (a contest's winner, a misfire, Last Chance) is
   // worked out again when a button is pressed (the arneyanRollChanged hook, redo.mjs).
-  const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() || why?.auto ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
+  const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() && !why?.auto ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {
@@ -344,7 +344,7 @@ export async function luckCheck(actor, event) {
     outcome: success ? "success" : "failure", outcomeLabel: label, canBurn: false,
     notes: actor.system.mods?.notesFor("luck") ?? [],
     // Roll-under: Advantage keeps the lower die.
-    canSecond: true, secondAdv: mode <= 0, secondDis: mode >= 0, cancels: !!mode
+    canSecond: true, secondAdv: mode <= 0, secondDis: mode >= 0, cancels: !!mode, rollUnder: true
   });
   return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content, rolls: [roll],
     flags: { [SYS]: { kind: "luck", natural: n, luck, mode, dice: (roll.dice?.[0]?.results ?? []).map(r => r.result) } } }, { rollMode: game.settings.get("core", "rollMode") });
@@ -490,7 +490,19 @@ export async function burnLuck(message) {
   if (!amount || amount < 1) return;
   const spend = Math.min(amount, current);
   await actor.update({ "system.luck.value": current - spend });
+  if (message.canUserModify(game.user, "update")) return applyBurn(message, spend);
+  // A card the GM's client rolled (a contest the player resists): the GM's client rewrites it.
+  if (game.users?.activeGM) return game.socket.emit(`system.${SYS}`, { action: "burnLuckCard", messageId: message.id, spend });
+  return applyBurn(message, spend, actor);
+}
 
+/**
+ * Luck burned on a card: the total and outcome rewritten, and what the roll decided worked out again (redo.mjs). With
+ * `noteFor` (no one can rewrite the card) a note is posted instead.
+ */
+export async function applyBurn(message, spend, noteFor = null) {
+  const flags = message.flags?.[SYS];
+  if (!flags) return;
   const burned = (flags.luckBurned || 0) + spend;
   const total = flags.total + burned;
   const outcome = outcomeFor(total, flags.natural, flags.target, flags.kind, false, flags.critAt ?? 20);
@@ -514,14 +526,14 @@ export async function burnLuck(message) {
   // Burning Luck can turn a natural 19 that missed into a hit, and so into a critical.
   const acs = (flags.targets ?? []).length ? flags.targets.map(t => t.ac) : [flags.target];
   const crit = flags.kind === "attack" && !flags.autoFail && isCritical(flags.natural, total, flags.critAt ?? 20, acs);
-  if (message.canUserModify(game.user, "update")) {
+  if (!noteFor && message.canUserModify(game.user, "update")) {
     await message.update({ content: html.body.innerHTML, [`flags.${SYS}.luckBurned`]: burned, ...(flags.kind === "attack" ? { [`flags.${SYS}.crit`]: crit } : {}) });
     // A contest's winner and Last Chance are worked out again (redo.mjs).
     Hooks.callAll("arneyanRollChanged", message, { luck: spend });
   } else {
     await ChatMessage.create({
       speaker: message.speaker,
-      content: `<div class="arn-card"><p><strong>${esc(actor.name)}</strong> burns ${spend} Luck. The roll is now <strong>${total}</strong>${outcome ? `: ${outcomeLabel(outcome, flags.kind)}` : ""}.</p></div>`
+      content: `<div class="arn-card"><p><strong>${esc(noteFor?.name ?? "")}</strong> burns ${spend} Luck. The roll is now <strong>${total}</strong>${outcome ? `: ${outcomeLabel(outcome, flags.kind)}` : ""}.</p></div>`
     });
   }
 }

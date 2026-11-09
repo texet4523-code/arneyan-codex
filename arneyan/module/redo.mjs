@@ -44,6 +44,9 @@ async function lastChanceChanged(message) {
   if (!actor?.isOwner || f.lastChanceOk === undefined) return;
   const ok = lastChanceOk(f);
   if (ok === !!f.lastChanceOk) return;
+  // Healed, dead or helped since: the card is history, nothing changes now.
+  const hp = Number(actor.system?.attributes?.hp?.value) || 0;
+  if (hp >= 0 || actor.system?.attributes?.state === "dead") return;
   if (message.canUserModify(game.user, "update")) await message.setFlag(SYS, "lastChanceOk", ok);
   if (ok) await actor.update({ "system.attributes.stable": true, ...unset(`flags.${SYS}.lastChance`) });
   else await actor.update({ "system.attributes.stable": false, [`flags.${SYS}.lastChance`]: true });
@@ -81,12 +84,18 @@ async function gunChanged(message) {
     await jamGun(actor, item, message, { reloadable: isReloadable(item), catastrophe: now.catastrophe });
   } else if (!now.jam && was) {
     // Doesn't misfire after all: back as it was before the shot jammed it.
-    const before = f.gunBefore ?? {};
-    if (before.state) await item.setFlag(SYS, "gunState", before.state);
-    else await item.unsetFlag(SYS, "gunState");
-    if (before.ammo) await item.setFlag(SYS, "ammo", before.ammo);
+    // Only what the jam did, and only while the gun is still as the jam left it (not cleared, reloaded or fired since).
+    const before = f.gunBefore ?? null;
+    const state = item.getFlag(SYS, "gunState");
+    const ammo = item.getFlag(SYS, "ammo");
+    let restored = false;
+    if (["jammed", "damaged", "destroyed"].includes(state)) {
+      if (before?.state) await item.setFlag(SYS, "gunState", before.state);
+      else await item.unsetFlag(SYS, "gunState");
+      if (before?.ammo && ammo && !Number(ammo.loaded) && !Number(ammo.reloading)) { await item.setFlag(SYS, "ammo", before.ammo); restored = Number(before.ammo.loaded) > 0; }
+    }
     await message.update({ ...unset(`flags.${SYS}.gunJam`) });
-    await ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(item.name)} doesn't misfire after all: it's back as it was, still loaded.${was.catastrophe
+    await ChatMessage.create({ speaker: message.speaker, content: `<div class="arn-card"><p>${esc(item.name)} doesn't misfire after all: it isn't jammed${restored ? ", and what was loaded is back" : ""}.${was.catastrophe
       ? " The catastrophic misfire is undone too: undo any damage it dealt from its damage card." : ""}</p></div>` });
   } else if (now.jam && was && was.catastrophe !== now.catastrophe) {
     if (now.catastrophe) {
@@ -171,6 +180,7 @@ export async function initiativeSecondDie(message, dir) {
   const combat = game.combats.get(f.combatId);
   const combatant = combat?.combatants.get(f.combatantId);
   if (!combatant) return ui.notifications.warn("That combatant is no longer in the fight.");
+  if (combatant.initiative !== f.total) return ui.notifications.warn(`${combatant.name}'s initiative has changed since this roll.`);
   const cancel = !!f.mode && Math.sign(f.mode) === -Math.sign(dir) && (f.dice ?? []).length >= 2;
   if (f.mode && !cancel) return;
   message._arnSecond = true;
@@ -201,7 +211,20 @@ export async function initiativeSecondDie(message, dir) {
   return total;
 }
 
+/** The GM's client: Luck a player burned on a card only the GM can rewrite (a contest the player resisted). */
+async function onSocket(msg, senderId) {
+  if (msg?.action !== "burnLuckCard" || !game.users.activeGM?.isSelf) return;
+  const sender = game.users.get(senderId);
+  const message = game.messages.get(String(msg.messageId ?? ""));
+  const actor = message ? ChatMessage.getSpeakerActor(message.speaker) : null;
+  const spend = Math.max(0, Math.floor(Number(msg.spend) || 0));
+  if (!sender || !actor || !spend || !actor.testUserPermission(sender, "OWNER") || !message.flags?.[SYS]?.kind) return;
+  const { applyBurn } = await import("./rolls.mjs");
+  return applyBurn(message, spend);
+}
+
 export function registerRedo() {
+  Hooks.once("ready", () => game.socket.on(SOCKET, (m, id) => { onSocket(m, id).catch(err => console.error("Arneyan | burn Luck", err)); }));
   Hooks.on("arneyanRollChanged", message => { onRollChanged(message).catch(err => console.error("Arneyan | redo", err)); });
   Hooks.on("preCreateChatMessage", onPreCreateMessage);
   Hooks.on("renderChatMessageHTML", onRenderMessage);
