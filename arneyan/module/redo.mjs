@@ -32,9 +32,11 @@ async function contestChanged(message) {
   const result = id ? game.messages.get(id) : null;
   // Not worked out yet: the contest reads the card as it stands when it is.
   if (!result) return;
+  // On one client only (the GM's when one is connected), so two presses at once queue up there.
+  const gm = game.users.activeGM;
+  if (gm && !gm.isSelf) return game.socket.emit(SOCKET, { action: "contestRedo", resultId: result.id });
   if (await contestRedoHere(result)) return redoContest(result);
-  if (!game.users.activeGM) return ui.notifications.warn("No GM is connected to work the contest out again.");
-  game.socket.emit(SOCKET, { action: "contestRedo", resultId: result.id });
+  ui.notifications.warn("No GM is connected to work the contest out again.");
 }
 
 /** Last Chance (Fort DC 10): stabilised or still dying, as the save now stands. */
@@ -89,7 +91,8 @@ async function gunChanged(message) {
     const state = item.getFlag(SYS, "gunState");
     const ammo = item.getFlag(SYS, "ammo");
     let restored = false;
-    if (["jammed", "damaged", "destroyed"].includes(state)) {
+    if (["jammed", "damaged", "destroyed"].includes(state) && item.getFlag(SYS, "jamBy") === message.id) {
+      await item.unsetFlag(SYS, "jamBy");
       if (before?.state) await item.setFlag(SYS, "gunState", before.state);
       else await item.unsetFlag(SYS, "gunState");
       if (before?.ammo && ammo && !Number(ammo.loaded) && !Number(ammo.reloading)) { await item.setFlag(SYS, "ammo", before.ammo); restored = Number(before.ammo.loaded) > 0; }

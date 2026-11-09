@@ -534,6 +534,8 @@ export async function jamGun(actor, item, msg, { reloadable = false, catastrophe
   if (item.isOwner) {
     if (msg?.canUserModify?.(game.user, "update")) await msg.update({ [`flags.${SYS}.gunBefore`]: { state: item.getFlag(SYS, "gunState") ?? "", ammo: item.getFlag(SYS, "ammo") ?? null }, [`flags.${SYS}.gunJam`]: { catastrophe: !!cat } }).catch(() => null);
     await item.setFlag(SYS, "gunState", "jammed").catch(() => null);
+    // Which card jammed it: a second die on that card undoes only its own jam.
+    if (msg?.id) await item.setFlag(SYS, "jamBy", msg.id).catch(() => null);
     if (reloadable) await item.setFlag(SYS, "ammo", { loaded: 0, reloading: 0 }).catch(() => null);
   }
   if (cat) await catastrophe(actor, item);
@@ -765,7 +767,11 @@ export async function resolveContest(message, target, attacker) {
   if (message.canUserModify?.(game.user, "update")) await message.setFlag(SYS, "contest", { ...f.contest, resolved: true, resultId: res?.id ?? "" }).catch(() => null);
   // Changed again before the result card was written: worked out once more.
   const now = game.messages?.get?.(message.id)?.flags?.[SYS] ?? fa;
-  if (res && ((now.total ?? 0) + (now.luckBurned ?? 0) !== att.total)) return redoContest(game.messages?.get?.(res.id) ?? res);
+  if (res && ((now.total ?? 0) + (now.luckBurned ?? 0) !== att.total)) {
+    const gm = game.users?.activeGM;
+    if (gm && !gm.isSelf) game.socket.emit(SOCKET, { action: "contestRedo", resultId: res.id });
+    else return redoContest(game.messages?.get?.(res.id) ?? res);
+  }
   return won;
 }
 
