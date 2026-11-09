@@ -103,7 +103,7 @@
 .arneyan .arn-side { background: var(--arn-surface-2); border-right: 1px solid var(--arn-border); padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
 .arneyan .arn-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .arneyan .arn-portrait-wrap { position: relative; }
-.arneyan .arn-portrait { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--arn-border); cursor: pointer; background: var(--arn-surface-2); display: block; }
+.arneyan .arn-portrait { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center top; border-radius: 8px; border: 1px solid var(--arn-border); cursor: pointer; background: var(--arn-surface-2); display: block; }
 .arneyan .arn-state-banner { position: absolute; left: 6px; right: 6px; bottom: 6px; text-align: center; font-weight: 700; font-size: 12px; border-radius: 4px; padding: 2px; background: var(--arn-red); color: #fff; }
 .arneyan .arn-state-banner.stable { background: var(--arn-gold); }
 
@@ -887,3 +887,9 @@ a.arn-inline { background: color-mix(in srgb, #2d5a27 10%, transparent); border-
 .arneyan .arn-basic-list button { flex: none; padding: 0 8px; line-height: 20px; }
 .arneyan .arn-tabs .arn-tabs-cog { margin-left: auto; opacity: 0.6; }
 .arneyan .arn-tabs .arn-tabs-cog:hover { opacity: 1; }
+
+/* Dice buttons above the chat box (Jacob's Well: "no d4 roll button"). */
+.arn-dice-tray { display: flex; gap: 2px; margin: 0 0 4px; }
+.arn-dice-tray .arn-tray-die { flex: 1; min-width: 0; padding: 0 2px; height: 22px; line-height: 20px; font-size: var(--font-size-11, 11px); }
+/* The Undying card's buttons side by side. */
+.arn-undying .arn-card-buttons { display: flex; gap: 4px; flex-wrap: wrap; }

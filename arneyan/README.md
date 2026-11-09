@@ -2,6 +2,13 @@
 
 Version 0.10.95 · Foundry v13 and v14 · **Playtest release**
 
+## What's new in 0.10.96
+
+- **Jacob's Well is out of Foundry** (Kieran, 9 Nov). The Pregenerated Characters compendium no longer ships; copies already in a world stay until the GM deletes them. It comes back with the next one-shot's pregens.
+- **Dice buttons** above the chat box: d4, d6, d8, d10, d12, d20 and d100, each rolling one die as the selected token (Jacob's Well: "no d4 roll button").
+- **Undying** (the zombies' trait): when a creature with it drops to 0 HP, the GM gets a card with the DC worked out (5 + the damage that dropped it), a button for the Fortitude save and one to put it back at 1 HP. It still doesn't apply to fire, radiant damage or a critical hit: the card says so.
+- **Tall art** on the character sheet shows the top of the picture (the face), not its middle.
+
 ## What's new in 0.10.95
 
 Books HB v0.10.58 and M&T v0.10.56 (B-F39 to B-F50, R-F22, R-F26, K89, K91, K100).

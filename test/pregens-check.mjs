@@ -5,7 +5,7 @@ const { CharacterData } = await import("../arneyan/module/data/actor-models.mjs"
 const IM = await import("../arneyan/module/data/item-models.mjs");
 const M = { class: IM.ClassData, ancestry: IM.AncestryData, kit: IM.KitData, feat: IM.FeatData, skill: IM.SkillData, ability: IM.AbilityData,
   weapon: IM.WeaponData, armour: IM.ArmourData, equipment: IM.EquipmentData, spell: IM.SpellData };
-const dir = new URL("../packs-src/pregens/", import.meta.url).pathname;
+const dir = new URL("../test/fixtures/pregens-jw/", import.meta.url).pathname;
 const rows = [];
 let bad = 0;
 const hpBad = [];

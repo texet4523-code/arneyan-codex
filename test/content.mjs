@@ -84,8 +84,14 @@ for (const k of [...witch, ...art]) assert.ok(folders && k.folder, `${k.name} ha
 // No em dashes in names we made.
 for (const d of [...witch, ...art, ...sp]) for (const f of d.system.features ?? []) assert.ok(!f.name.includes("—"), `em dash in ${f.name}`);
 
-// ---- 3. The pregens find them.
-const pregens = pack("pregens").filter(d => d.type === "character");
+// ---- 3. The pregens find them. Since 0.10.96 (Kieran, 9 Nov 2026) Jacob's Well is out of Foundry: no Pregenerated
+// Characters pack ships (its manifest entry waits in build/held-back-packs.json); its six are test fixtures.
+{
+  const sj = JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url), "utf8"));
+  assert.ok(!sj.packs.some(p => p.name === "pregens") && !sj.packFolders.some(f => f.packs.includes("pregens")), "no pregens pack ships");
+  assert.ok(JSON.parse(fs.readFileSync(new URL("../build/held-back-packs.json", import.meta.url), "utf8")).packs.some(p => p.name === "pregens"));
+}
+const pregens = pack("../test/fixtures/pregens-jw").filter(d => d.type === "character");
 // The Journeymen (Maud the Witch, Tibbet the Alchemist) were cut (K26), and the Recruits rebuilt around the class art
 // (28 Oct 2026): Ilvaeth Duskwhisper (Warlock 1) checks a pregen's kit, its features up to her level only, and her
 // class-only spells as real prepared spells from the compendium.

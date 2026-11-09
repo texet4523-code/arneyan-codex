@@ -151,7 +151,7 @@ assert.equal(bh.optionChoice.options.length, 3);
 /* Pregens start with formula uses full (Ki 11 of 11 at 9th, not the compendium's fallback 1). */
 {
   // Jacob's Well (shipped) and the retired Broken Anvil characters (test fixtures since 8 Nov 2026).
-  const pregens = read("pregens", "actors_").concat(read("../test/fixtures/pregens", "actors_"));
+  const pregens = read("../test/fixtures/pregens-jw", "actors_").concat(read("../test/fixtures/pregens", "actors_"));
   const uses = (who, what) => pregens.find(p => p.name.startsWith(who)).items.find(i => i.name === what).system.uses;
   assert.deepEqual([uses("Sarrix", "Ki").value, uses("Sarrix", "Ki").max], [11, 11]);
   assert.equal(uses("Kavra", "Rage").value, 4);

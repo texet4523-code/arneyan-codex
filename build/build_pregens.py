@@ -17,7 +17,8 @@ SYS = "arneyan"
 
 # Adventures no longer in the playtest (Kieran, 8 Nov 2026: The Broken Anvil scrapped for Jacob's Well). Their characters
 # are still built, from the same rules, but into test/fixtures/pregens (the tests use them), never into the compendium.
-RETIRED = {"The Broken Anvil", "Jacob's Well (first Keepers)"}
+# Kieran, 9 Nov 2026: Jacob's Well is finished and comes out of Foundry; the pack stays for the next one-shot's pregens.
+RETIRED = {"The Broken Anvil", "Jacob's Well (first Keepers)", "Jacob's Well"}
 FIXTURES = os.path.join("..", "test", "fixtures", "pregens")  # relative to packs-src, as write() takes it
 
 
@@ -33,7 +34,13 @@ def silver_standard(cur):
     # Ten copper make a silver piece.
     return {"pp": 0, "gp": cur.get("pp", 0), "sp": cur.get("gp", 0) + copper // 10, "cp": copper % 10}
 
+# Jacob's Well's six (shipped until 0.10.95) keep a folder of their own, so the tests that check a shipped set still can.
+FIXTURES_JW = os.path.join("..", "test", "fixtures", "pregens-jw")
+
+
 def pack_for(adventure):
+    if adventure == "Jacob's Well":
+        return FIXTURES_JW
     return FIXTURES if adventure in RETIRED else PACK
 
 
@@ -390,6 +397,8 @@ def build():
     # Folders (the retired adventures' fixtures start clean each build)
     import shutil
     shutil.rmtree(os.path.join(OUT, FIXTURES), ignore_errors=True)
+    shutil.rmtree(os.path.join(OUT, FIXTURES_JW), ignore_errors=True)
+    shutil.rmtree(os.path.join(OUT, PACK), ignore_errors=True)
     fold = {}
     for i, (adv, sub, colour) in enumerate(FOLDERS):
         _id = fid("pregen-folder", adv, sub)

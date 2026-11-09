@@ -39,6 +39,8 @@ import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
 import { registerSolo } from "./solo.mjs";
 import { registerRedo } from "./redo.mjs";
+import { registerUndying } from "./undying.mjs";
+import { registerDiceTray } from "./dicetray.mjs";
 
 const SYS = "arneyan";
 
@@ -97,6 +99,8 @@ Hooks.once("init", () => {
   registerWorld();
   registerArt();
   registerRedo();
+  registerUndying();
+  registerDiceTray();
   registerImport();
   registerMaps();
   registerCalendar();

@@ -669,7 +669,7 @@ assert.equal(mk(16, [cls("Fighter", 5)], [], fxs).system.saves.fort.value, 6);  
 {
 // Pregens: the 4 Jacob's Well Keepers ship, built from the system's own items. The Broken Anvil was scrapped (Kieran,
 // 8 Nov 2026): its 10 characters in two level folders are built the same way into test/fixtures/pregens, never shipped.
-const pdir = new URL("../packs-src/pregens/", import.meta.url).pathname;
+const pdir = new URL("../test/fixtures/pregens-jw/", import.meta.url).pathname;
 const pdocs = fs.readdirSync(pdir).map(f => JSON.parse(fs.readFileSync(pdir + f)));
 assert.deepEqual(pdocs.filter(d => d._key.startsWith("!folders!")).map(f => f.name), ["Jacob's Well"]);
 assert.equal(pdocs.filter(d => d._key.startsWith("!actors!")).length, 6, "four seats and two spares (8 Nov 2026)");
