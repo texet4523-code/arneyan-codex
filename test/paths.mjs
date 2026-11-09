@@ -32,6 +32,20 @@ assert.deepEqual(R["Compendium.arneyan.kits.Item.AVBy314CbBUdzNTB"], [["Gladiato
 assert.deepEqual(R["Compendium.arneyan.class-features.Item.Q8Rzh5IxUJGo4mc7"], ["Extra Attack", "Press On"]);
 assert.deepEqual(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][1], "Path: Battle Caster (Spellblade)");
 assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Battle Caster (Magus)"));
+// A granted kit feature: renamed with its slot when its name has gone; followed when it moved in the list.
+{
+  const g = (name, source) => ({ type: "ability", name, flags: { arneyan: { source } }, system: { level: 1, description: "" } });
+  const feats = [{ name: "Hold the Wall", level: 1, description: "<p>a</p>" }, { name: "Siege Discipline", level: 1, description: "<p>b</p>" }, { name: "Wall-Forged Dread", level: 5, description: "<p>c</p>" }];
+  const moved = M.refreshGranted(g("Wall-Forged Dread", "k1.0"), feats, { legacy: "update" });
+  assert.equal(moved["flags.arneyan.source"], "k1.2");
+  assert.ok(!("name" in moved));
+  const renamed = M.refreshGranted(g("Maritime Strike", "k2.0"), [{ name: "Unsteady Ground", level: 1, description: "<p>x</p>" }, { name: "Sea Cover", level: 1, description: "" }], { legacy: "update" });
+  assert.equal(renamed.name, "Unsteady Ground");
+  assert.ok(!("flags.arneyan.source" in renamed));
+  assert.deepEqual(M.refreshGranted(g("Siege Discipline", "k1.1"), feats, { legacy: "update" })["flags.arneyan.source"], undefined, "in place: nothing to move");
+}
+assert.equal(M.CLASS_REWORK, "0.10.95");
+assert.ok(M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"), "Whirlwind Attack is listed as gone");
 const src = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
 assert.ok(src.includes("[rn[0]].flat().includes(i.name)"), "one old name or several");
 

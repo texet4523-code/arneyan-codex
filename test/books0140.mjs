@@ -58,7 +58,7 @@ assert.ok("polymorph" in S.noCounts() && "feeblemind" in S.noCounts());
   const lasting = { effects: [{ name: "Held", disabled: false, statuses: new Set(["paralysed"]), flags: { arneyan: { expires: { combat: "c1", round: 5, turn: 1 } } } }] };
   assert.deepEqual(S.controlOn(lasting, { combat }), ["paralysed"]);
 }
-assert.equal(M.CLASS_REWORK, "0.10.81", "worlds at 0.10.79 and 0.10.80 take the new class features");
+assert.equal(M.CLASS_REWORK, "0.10.95", "worlds at 0.10.79 and 0.10.80 take the new class features");
 {
   const actor = { effects: [{ name: "Feeblemind", disabled: false, statuses: new Set() }, { name: "Prone", disabled: false, statuses: new Set(["prone"]) }, { name: "Slow", disabled: false, statuses: new Set(["slowed"]) }] };
   assert.deepEqual(S.controlOn(actor).sort(), ["feeblemind", "slowed"]);

@@ -156,7 +156,7 @@ function warlockWith(favourLeft, powers) {
     { max: 0, per: "", formula: "", pool: "Patron Favour", value: 0 });
   assert.ok(!("pool" in M.usesFrom({ value: 1, max: 1, per: "day" }, { max: 1, per: "day", formula: "" })), "no pool on either side: no field");
   assert.equal(M.usesFrom({ value: 0, max: 0, pool: "Patron Favour" }, { max: 0, per: "" }).pool, "", "a pool the books dropped goes");
-  assert.equal(M.CLASS_REWORK, "0.10.81", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
+  assert.equal(M.CLASS_REWORK, "0.10.95", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
   // The schema fills a blank pool into every stored item and kit feature: that is no edit and no change (review
   // 0.10.75: unedited kits read as edited, and every item with uses was rewritten).
   const SRC = "Compendium.arneyan.class-features.Item.x";

@@ -343,10 +343,20 @@ export function kitFill(item, src) {
 /** A feature a kit granted (flags.arneyan.source "<kit id>.<index>"), refreshed from the kit's (new) features. */
 export function refreshGranted(item, features, { maxNow = null, ...opts } = {}) {
   if (item?.type !== "ability" || item.flags?.[SYS]?.keepCustom) return {};
-  const idx = Number(String(item.flags?.[SYS]?.source ?? "").split(".").pop());
-  const f = (Number.isInteger(idx) && features?.[idx]?.name === item.name ? features[idx] : null) ?? features?.find?.(x => x.name === item.name);
+  const source = String(item.flags?.[SYS]?.source ?? "");
+  const idx = Number(source.split(".").pop());
+  const at = Number.isInteger(idx) && features?.[idx]?.name === item.name ? idx : (features ?? []).findIndex(x => x?.name === item.name);
+  // Books v0.10.56 (R-B59): a kit's feature that moved in its list keeps following it (its source names the new
+  // place), and one whose name is gone from the list is the feature now in its place, renamed ("Maritime Strike" is
+  // Tideblade's Unsteady Ground).
+  const slot = at >= 0 ? at : (Number.isInteger(idx) && features?.[idx] ? idx : -1);
+  const f = slot >= 0 ? features[slot] : null;
   if (!f) return {};
-  return refreshFrom(item, { type: "ability", system: f }, { maxNow, ...opts });
+  const upd = refreshFrom(item, { type: "ability", system: f }, { maxNow, ...opts });
+  if (at < 0 && f.name) upd.name = f.name;
+  if (slot !== idx && source.includes(".")) upd[`flags.${SYS}.source`] = `${source.slice(0, source.lastIndexOf("."))}.${slot}`;
+  if (at < 0 && Number(f.level) && Number(f.level) !== Number(item.system?.level)) upd["system.level"] = Number(f.level);
+  return upd;
 }
 
 /** The uses maximum a formula from `srcUses` gives on this actor (null without one). */
@@ -738,7 +748,7 @@ async function askLegacy(n, actors, version) {
  * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
  * before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.81";
+export const CLASS_REWORK = "0.10.95";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
@@ -932,7 +942,10 @@ const featureKey = list => JSON.stringify((list ?? []).map(f => [Number(f?.level
  * (books v0.10.25, gone again in v0.10.28, K19). A class's list
  * loses these; anything else not in the compendium (homebrew) stays. */
 export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item.I2r5qtG2KwQTR6iK", "Compendium.arneyan.class-features.Item.Rn6ITCaMUuOEzKtD",
-  ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs", "OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+  ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs", "OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9",
+    // Books v0.10.56 to v0.10.58: features cut or folded into others (Whirlwind Attack, Slow Kill, Point Blank, the
+    // Illusionist's Minor Figment line and the rest).
+    "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Q3uauEf0dyumm63R", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {
@@ -1022,6 +1035,7 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         const cls = classOf ? classOf(actor, kit) : null;
         if (cls) {
           const level = Number(cls.system?.levels) || 1;
+          // Newly reached, or a new place in the list (books v0.10.56: a Path's list grew from two features to four).
           const only = new Set(feats.map((f, idx) => ((Number(f.level) || 1) <= level && (before[idx] ?? 99) > level ? `${kit.id}.${idx}` : null)).filter(Boolean));
           const added = only.size ? await grant.kit(actor, kit, only) : [];
           if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
@@ -1153,9 +1167,9 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
-      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th; books v0.10.56 to v0.10.58: the martial and Illusionist reworks, Paths and the Seats). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone; books v0.10.56 to v0.10.58: Whirlwind Attack, Slow Kill, Point Blank, Hit and Run, Master of Illusion, Minor Figment's line and other features were cut or folded into others). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

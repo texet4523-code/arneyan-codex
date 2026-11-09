@@ -66,7 +66,7 @@ assert.ok(a("Shifter").choice.options.every(o => o.rules.some(r => r.key === "to
 const dread = kit("Path: Castellan (Knight)").find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([dread.applies[0].statuses, dread.applies[0].rules.length], [["frightened"], 0]);
 const M = await import("../arneyan/module/migrate.mjs");
-assert.equal(M.CLASS_REWORK, "0.10.81", "the class rework runs again for Cauldron Brews");
+assert.equal(M.CLASS_REWORK, "0.10.95", "the class rework runs again for Cauldron Brews");
 assert.equal(M.SHIFT_REWORK, "0.10.79");
 assert.ok(/Celestial Wings/.test(a("Aasimar").description) && !/Lay on Hands heal/.test(a("Aasimar").description));
 
