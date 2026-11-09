@@ -97,6 +97,21 @@
       "uuid": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
      },
      {
+      "level": 1,
+      "name": "Weapon Training",
+      "uuid": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+     },
+     {
+      "level": 1,
+      "name": "Combat Manoeuvres",
+      "uuid": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+     },
+     {
+      "level": 1,
+      "name": "Combat Reflexes",
+      "uuid": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
+     },
+     {
       "level": 2,
       "name": "Manoeuvre Mastery",
       "uuid": "Compendium.arneyan.class-features.Item.I49NlzD8ifd82tqh"
@@ -107,9 +122,19 @@
       "uuid": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
      },
      {
+      "level": 3,
+      "name": "Armour Training",
+      "uuid": "Compendium.arneyan.class-features.Item.WYCT6UEXjjldkqIN"
+     },
+     {
       "level": 4,
       "name": "Press the Advantage",
       "uuid": "Compendium.arneyan.class-features.Item.XWo7zAT0eTgrQjyn"
+     },
+     {
+      "level": 4,
+      "name": "Fighter Manoeuvres",
+      "uuid": "Compendium.arneyan.class-features.Item.9aOyha9w0MlnMa1o"
      },
      {
       "level": 5,
@@ -169,7 +194,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-swordman.svg",
    "system": {
-    "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li><li><strong>Weapon Training:</strong> your specialised weapon gives you its own manoeuvre, used <strong>once per round</strong> as part of a hit (still one rider per hit):<ul><li><strong>Bind (blades):</strong> make a Disarm contest against the target.</li><li><strong>Hew (axes, maces, hammers and flails):</strong> a creature your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Hook (spears and polearms):</strong> make a Trip contest against the target, at your weapon's full reach.</li><li><strong>Pinning Fire (bows and crossbows):</strong> the target has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li><li><strong>Combat Manoeuvres:</strong> Every character can use every manoeuvre; the Fighter's edge is its own manoeuvres (Weapon Training, Armour Training, Fighter Manoeuvres) and Manoeuvre Mastery. See the Combat Manoeuvres section for details.</li><li><strong>Combat Reflexes:</strong> You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</li></ul>",
+    "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -180,7 +205,7 @@
      "max": 0,
      "per": ""
     },
-    "save": "fort",
+    "save": "",
     "dc": null,
     "damage": "",
     "level": 1,
@@ -222,6 +247,120 @@
    },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
+   }
+  },
+  {
+   "_id": "Q3xNBnRzgSjr5ZW2",
+   "_key": "!actors.items!Tf5W09ItBEblxcjN.Q3xNBnRzgSjr5ZW2",
+   "name": "Weapon Training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>your specialised weapon gives you its own manoeuvre, used <strong>once per round</strong> as part of a hit (still one rider per hit):</p><ul><li><ul><li><strong>Bind (blades):</strong> make a Disarm contest against the target.</li><li><strong>Hew (axes, maces, hammers and flails):</strong> a creature your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Hook (spears and polearms):</strong> make a Trip contest against the target, at your weapon's full reach.</li><li><strong>Pinning Fire (bows and crossbows):</strong> the target has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "5DZOJ7xffeKsC3wI",
+     "source": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+   }
+  },
+  {
+   "_id": "znCVQg7crzlkOWL8",
+   "_key": "!actors.items!Tf5W09ItBEblxcjN.znCVQg7crzlkOWL8",
+   "name": "Combat Manoeuvres",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>Every character can use every manoeuvre; the Fighter's edge is its own manoeuvres (Weapon Training, Armour Training, Fighter Manoeuvres) and Manoeuvre Mastery. See the Combat Manoeuvres section for details.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "5DZOJ7xffeKsC3wI",
+     "source": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+   }
+  },
+  {
+   "_id": "cLEflagrKYYeGzH3",
+   "_key": "!actors.items!Tf5W09ItBEblxcjN.cLEflagrKYYeGzH3",
+   "name": "Combat Reflexes",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "5DZOJ7xffeKsC3wI",
+     "source": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
    }
   },
   {

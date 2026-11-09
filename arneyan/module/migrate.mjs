@@ -355,7 +355,8 @@ export function refreshGranted(item, features, { maxNow = null, ...opts } = {}) 
   const upd = refreshFrom(item, { type: "ability", system: f }, { maxNow, ...opts });
   if (at < 0 && f.name) upd.name = f.name;
   if (slot !== idx && source.includes(".")) upd[`flags.${SYS}.source`] = `${source.slice(0, source.lastIndexOf("."))}.${slot}`;
-  if (at < 0 && Number(f.level) && Number(f.level) !== Number(item.system?.level)) upd["system.level"] = Number(f.level);
+  // Its level as the kit now gives it (the Wild Warden's Nature Magic moved from 1st to 5th).
+  if (Number(f.level) && Number(f.level) !== Number((item._source?.system ?? item.system)?.level)) upd["system.level"] = Number(f.level);
   return upd;
 }
 
@@ -458,6 +459,10 @@ export async function updatesFor(items, actor, fetch, { legacy, force = false, f
       const idx = Number(String(i.flags[SYS].source ?? "").split(".").pop());
       const f = features[idx]?.name === i.name ? features[idx] : features.find(x => x.name === i.name);
       upd = refreshGranted(i, features, { maxNow: maxOn(actor, i, f?.uses), legacy, force: force || !!forceIds?.has(i.id), report });
+      // A kit the books renamed (books v0.10.56): its features name it as their class, so they take its new name too.
+      const kitNow = actor?.items?.get?.(i.flags[SYS].grantedBy);
+      const krn = kitNow ? RENAMED_FEATURES[sourceOf(kitNow)] : null;
+      if (krn && [krn[0]].flat().includes(String((i._source?.system ?? i.system)?.className ?? ""))) upd["system.className"] = krn[1];
       const d = !i.flags?.[SYS]?.keepCustom && !report.unstamped && !(i.flags?.[SYS]?.putBack ?? []).includes("system.description") && layoutFrom((i._source?.system ?? i.system)?.description, f?.description);
       if (d) upd["system.description"] = d;
     } else if (i.type === "ability" && actor && !i.flags?.[SYS]?.toggleSet && !i.flags?.[SYS]?.keepCustom) {
@@ -900,7 +905,12 @@ for (const [pack, id, from, to] of [
   ["kits", "UGjKmpWCrGYm4ojI", ["Wandering Druid (Druid)"], "Wanderer (Druid)"],
   ["kits", "by2i0r0U9tTKFIV9", ["The Wandering Blades (Assassin)"], "Wandering Blade (Assassin)"],
   ["kits", "j7eZxpvFKIZmwacA", ["Holfast City Watch (Gunslinger)"], "Watchman (Gunslinger)"],
-  ["kits", "IRmJxYnSYm9v1vl0", ["Saevren Pathfinder (Archer)"], "Woodland Stalker (Archer)"]
+  ["kits", "IRmJxYnSYm9v1vl0", ["Saevren Pathfinder (Archer)"], "Woodland Stalker (Archer)"],
+  // Kits merged into another (their own entries are gone; a world copy keeps its old features): the importer's names.
+  ["kits", "k7NWOpHjUSYrcfuv", ["Jinia Isles Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
+  ["kits", "JAy2MYioJqawi03K", ["Ordenvael Demon Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
+  ["kits", "8ZeeQnQKk3CQaxNl", ["Treaty Hold Scout (Ranger)"], "Quarry Hunter (Ranger)"],
+  ["kits", "VYtbwoz2nWOT89rN", ["Eltor Cavalry Guard (Knight)"], "Path: Cavalier (Knight)"]
 
 ]) RENAMED_FEATURES[`Compendium.${SYS}.${pack}.Item.${id}`] = [from, to];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
@@ -945,7 +955,7 @@ export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item
   ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs", "OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9",
     // Books v0.10.56 to v0.10.58: features cut or folded into others (Whirlwind Attack, Slow Kill, Point Blank, the
     // Illusionist's Minor Figment line and the rest).
-    "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Q3uauEf0dyumm63R", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+    "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {

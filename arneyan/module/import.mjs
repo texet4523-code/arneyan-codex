@@ -73,7 +73,6 @@ export function importType(data) {
 /*  Finding names in the compendiums            */
 /* -------------------------------------------- */
 
-/** A name reduced for matching: lower case, straight apostrophes, no "+1", single spaces. */
 /**
  * A Kit's current name for one the books have renamed ("Dul Khagul Shieldbearer" is Shield-Wall, "Hedge Knights" the
  * Hedge Knight Path), from the renames the world update uses; the name as given if it isn't one.
@@ -88,6 +87,7 @@ export async function currentKitName(name) {
   return name;
 }
 
+/** A name reduced for matching: lower case, straight apostrophes, no "+1", single spaces. */
 export function norm(s) {
   return String(s ?? "").toLowerCase().replace(/[’‘]/g, "'").replace(/^\+\d+\s+|\s+\+\d+$/g, "").replace(/\s+/g, " ").trim().replace(/[ .]+$/, "");
 }

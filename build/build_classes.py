@@ -131,6 +131,9 @@ def slot_table(rows):
             out[lvl - 1][col] = int(v.group(1)) if v else 0
     return out
 
+BULLET_FEATURES = {"Fighter"}
+
+
 def build(icon_for_class):
     for path in sorted(glob.glob(os.path.join(SRC, "*.docx"))):
         name = os.path.splitext(os.path.basename(path))[0]
@@ -234,7 +237,10 @@ def build(icon_for_class):
                 else:
                     lab, rest = label_of(p)
                     inner = runs_html(p)
-                    if lab and lab not in ("Effect", "Note", "Example") and (cur_feat is None or cur_feat.level != cur_level or (not info["list"] and lab != cur_feat.name)):
+                    # The Fighter (books v0.10.57) writes each feature as a bulleted bold name ("- **Weapon Training:**"),
+                    # several at one level: each is its own feature.
+                    own = name in BULLET_FEATURES and info["list"] and info["lvl"] == 0 and cur_feat is not None and lab != cur_feat.name
+                    if lab and lab not in ("Effect", "Note", "Example") and (cur_feat is None or cur_feat.level != cur_level or own or (not info["list"] and lab != cur_feat.name)):
                         cur_feat = Feature(lab, cur_level); feats.append(cur_feat)
                         cur_feat.add(md_inline(rest), rest)
                     else:

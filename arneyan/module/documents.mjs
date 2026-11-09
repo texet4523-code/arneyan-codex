@@ -59,6 +59,9 @@ const AUTO = { values: [], adv: [], dis: [], auto: true };
 
 const NONE = { values: [], adv: [], dis: [] };
 
+/** Options a feature brings forward (books v0.10.56 Paths): the item, the option, and the features that unlock it early. */
+const EARLY_OPTIONS = { "Command (Charisma)": { Embolden: ["Steadfast Courage"], Demoralise: ["Wall-Forged Dread"] } };
+
 /** Does a spell's components line ("V, S, M (a pearl)") include a somatic component? */
 export function hasSomatic(components) {
   return /(^|[\s,(])S($|[\s,)])/.test(String(components ?? "").replace(/\([^)]*\)/g, ""));
@@ -662,10 +665,16 @@ export class ArneyanActor extends Actor {
     const ammoPlus = Number(ammoName.match(/\+(\d)/)?.[1] ?? 0);
     const m = this.mods;
     const ranged = !!item.system.ranged;
-    // A Disadvantage you choose (Shield Blow, Called Shot, Power Attack) is never offset (books v0.10.56, K89); the
-    // Fighter's Manoeuvre Mastery (2nd) rolls Shield Blow normally.
-    const mastery = (this.items ?? []).some(i => i.type === "ability" && i.name === "Manoeuvre Mastery");
-    const own = m?.advExcept(mastery ? new Set(["Shield Blow"]) : null, "adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
+    // A Disadvantage you choose (Shield Blow, Called Shot, Power Attack) is never offset (books v0.10.56, K89). Rolled
+    // normally: both with the Fighter's Manoeuvre Mastery (2nd); a Called Shot for an Archer or Gunslinger from 10th,
+    // and with a repeating crossbow for a Mechanist (Clockwork Precision).
+    const has = n => (this.items ?? []).some(i => i.type === "ability" && i.name === n);
+    const levelIn = n => Number((this.items ?? []).find(i => i.type === "class" && i.name === n)?.system?.levels) || 0;
+    const mastery = has("Manoeuvre Mastery");
+    const freeShot = mastery || (has("Called Shot (Archer)") && levelIn("Archer") >= 10) || (has("Called Shot") && levelIn("Gunslinger") >= 10)
+      || (has("Clockwork Precision") && /repeating crossbow/i.test(item.name ?? ""));
+    const skip = new Set([...(mastery ? ["Shield Blow"] : []), ...(freeShot ? ["Called Shot"] : [])]);
+    const own = m?.advExcept(skip.size ? skip : null, "adv.attack", ranged ? "adv.attack.ranged" : "adv.attack.melee") ?? NONE;
     // Conditions on a single target (Prone, Restrained, Invisible...) change the attacker's roll.
     let against = NONE;
     // Rules scoped to weapons that fit this one apply; their reminders leave the card.
@@ -1698,7 +1707,9 @@ export class ArneyanItem extends Item {
     const picked = new Set(optionPicks(this.system));
     const offered = new Set((oc?.options ?? []).map(o => String(o.name ?? "").toLowerCase()));
     const notPicked = a => picked.size > 0 && offered.has(String(a.name ?? "").toLowerCase()) && ![...picked].some(p => p.toLowerCase() === String(a.name ?? "").toLowerCase());
-    const open = (this.system.activities ?? []).filter(a => (a.minLevel ?? 0) <= lvl && (!a.maxLevel || lvl <= a.maxLevel) && !notPicked(a));
+    // An option a Path brings forward (the Hedge Knight's Embolden from 1st, the Castellan's Demoralise from 5th).
+    const early = a => (EARLY_OPTIONS[this.name]?.[a.name] ?? []).some(f => (this.actor?.items ?? []).some(i => i.type === "ability" && i.name === f));
+    const open = (this.system.activities ?? []).filter(a => ((a.minLevel ?? 0) <= lvl || early(a)) && (!a.maxLevel || lvl <= a.maxLevel) && !notPicked(a));
     // Damage that steps up with level ("Spark Caster (1d6)", "(1d8)" at 5th): only the highest step reached.
     const base = a => `${a.kind}|${String(a.name).replace(/\s*\(\d*d\d+(?:\s*[+-]\s*\d+)?\)\s*$/i, "")}`;
     const best = new Map();

@@ -26,7 +26,7 @@ for (const n of ["Shield Blow", "Called Shot"]) {
 }
 const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
 assert.ok(docs.includes('const paKeep = paOn ? { values: [-2], adv: [], dis: ["Power Attack"], keep: true } : NONE;'));
-assert.ok(docs.includes('advExcept(mastery ? new Set(["Shield Blow"]) : null'));
+assert.ok(docs.includes('const skip = new Set([...(mastery ? ["Shield Blow"] : []), ...(freeShot ? ["Called Shot"] : [])]);'));
 // The card: no Advantage button under a chosen Disadvantage, and the button does nothing on an older card.
 const rolls = fs.readFileSync(new URL("../arneyan/module/rolls.mjs", import.meta.url), "utf8");
 assert.ok(rolls.includes("secondAdv = canSecond && mode <= 0 && !chosenDis"));

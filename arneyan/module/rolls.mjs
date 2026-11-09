@@ -122,7 +122,7 @@ export async function d20Roll({ actor, title, parts = [], mode = 0, why = null, 
   if (chosenDis) flags.chosenDis = true;
   // On every d20 roll (Kieran, 9 Nov): what the roll already decided (a contest's winner, a misfire, Last Chance) is
   // worked out again when a button is pressed (the arneyanRollChanged hook, redo.mjs).
-  const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() && !why?.auto ? true : !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
+  const second = SECOND_KINDS.includes(kind) && !autoFail && !extra.noSecond && (manualAdvantage() && !why?.auto ? true : chosenDis || !(why?.adv?.length && why?.dis?.length)) && !fixedDis;
   if (second) { flags.mode = mode; flags.dice = (roll.dice?.[0]?.results ?? []).map(r => r.result); }
   if (second && typeof footer === "function") {
     flags.footers = {

@@ -56,4 +56,17 @@ assert.equal(await I.currentKitName("Hedge Knights"), "Path: Hedge Knight");
 assert.equal(await I.currentKitName("Heavy Hand"), "Heavy Hand", "a current name stays");
 const prog = fs.readFileSync(new URL("../arneyan/module/progression.mjs", import.meta.url), "utf8");
 assert.ok(prog.includes('const PATH_AND_KIT = new Set(["Ranger"]);') && prog.includes('key: "path"'), "a Ranger picks a Path, then a Kit");
+// Review fixes: the Fighter's bulleted features are their own items; Called Shot needs the class or the feat;
+// a Path brings its Command option forward; a renamed kit's features take its name as their class.
+const fighter = cf.filter(f => f.system.className === "Fighter").map(f => f.name);
+for (const n of ["Weapon Training", "Combat Manoeuvres", "Combat Reflexes", "Armour Training", "Fighter Manoeuvres"]) assert.ok(fighter.includes(n), n);
+assert.equal(cf.find(f => f.name === "Combat Manoeuvres" && f.system.className === "Fighter")._id, "Q3uauEf0dyumm63R");
+assert.ok(!M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"));
+const combat = fs.readFileSync(new URL("../arneyan/module/combat.mjs", import.meta.url), "utf8");
+assert.ok(combat.includes('"Called Shot": { text: "Archer or Gunslinger 4th level, or the Mighty Deed of Arms feat"'));
+const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
+assert.ok(docs.includes('const EARLY_OPTIONS = { "Command (Charisma)": { Embolden: ["Steadfast Courage"], Demoralise: ["Wall-Forged Dread"] } };'));
+assert.ok(docs.includes('...(freeShot ? ["Called Shot"] : [])'));
+assert.ok(src.includes('upd["system.className"] = krn[1];'));
+assert.equal(await I.currentKitName("Treaty Hold Scout"), "Quarry Hunter");
 console.log("OK paths");

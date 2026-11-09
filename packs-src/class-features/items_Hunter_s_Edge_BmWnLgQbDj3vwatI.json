@@ -30,7 +30,7 @@
    },
    {
     "key": "damage",
-    "value": "+floor(@cl/2)",
+    "value": "+max(1,floor(@cl/2))",
     "when": "weapon hits vs your marked prey, favoured enemy or Quarry Hunter quarry (instead)",
     "label": ""
    }

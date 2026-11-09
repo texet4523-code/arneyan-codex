@@ -97,6 +97,21 @@
       "uuid": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
      },
      {
+      "level": 1,
+      "name": "Weapon Training",
+      "uuid": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+     },
+     {
+      "level": 1,
+      "name": "Combat Manoeuvres",
+      "uuid": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+     },
+     {
+      "level": 1,
+      "name": "Combat Reflexes",
+      "uuid": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
+     },
+     {
       "level": 2,
       "name": "Manoeuvre Mastery",
       "uuid": "Compendium.arneyan.class-features.Item.I49NlzD8ifd82tqh"
@@ -107,9 +122,19 @@
       "uuid": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
      },
      {
+      "level": 3,
+      "name": "Armour Training",
+      "uuid": "Compendium.arneyan.class-features.Item.WYCT6UEXjjldkqIN"
+     },
+     {
       "level": 4,
       "name": "Press the Advantage",
       "uuid": "Compendium.arneyan.class-features.Item.XWo7zAT0eTgrQjyn"
+     },
+     {
+      "level": 4,
+      "name": "Fighter Manoeuvres",
+      "uuid": "Compendium.arneyan.class-features.Item.9aOyha9w0MlnMa1o"
      },
      {
       "level": 5,
@@ -169,7 +194,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-swordman.svg",
    "system": {
-    "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li><li><strong>Weapon Training:</strong> your specialised weapon gives you its own manoeuvre, used <strong>once per round</strong> as part of a hit (still one rider per hit):<ul><li><strong>Bind (blades):</strong> make a Disarm contest against the target.</li><li><strong>Hew (axes, maces, hammers and flails):</strong> a creature your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Hook (spears and polearms):</strong> make a Trip contest against the target, at your weapon's full reach.</li><li><strong>Pinning Fire (bows and crossbows):</strong> the target has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li><li><strong>Combat Manoeuvres:</strong> Every character can use every manoeuvre; the Fighter's edge is its own manoeuvres (Weapon Training, Armour Training, Fighter Manoeuvres) and Manoeuvre Mastery. See the Combat Manoeuvres section for details.</li><li><strong>Combat Reflexes:</strong> You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</li></ul>",
+    "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -180,7 +205,7 @@
      "max": 0,
      "per": ""
     },
-    "save": "fort",
+    "save": "",
     "dc": null,
     "damage": "",
     "level": 1,
@@ -222,6 +247,120 @@
    },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.class-features.Item.23W4DjXGdhMMYhVq"
+   }
+  },
+  {
+   "_id": "3tIDTUUVUycr0zDj",
+   "_key": "!actors.items!MgrFP9msSIVXVVsM.3tIDTUUVUycr0zDj",
+   "name": "Weapon Training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>your specialised weapon gives you its own manoeuvre, used <strong>once per round</strong> as part of a hit (still one rider per hit):</p><ul><li><ul><li><strong>Bind (blades):</strong> make a Disarm contest against the target.</li><li><strong>Hew (axes, maces, hammers and flails):</strong> a creature your size or smaller makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li><li><strong>Hook (spears and polearms):</strong> make a Trip contest against the target, at your weapon's full reach.</li><li><strong>Pinning Fire (bows and crossbows):</strong> the target has <strong>Disadvantage</strong> on its next attack roll.</li></ul></li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Ijvp4ubpV8iQf82p",
+     "source": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.FJWipNN8liauc2ib"
+   }
+  },
+  {
+   "_id": "srIsUDwkJ4LTAqvW",
+   "_key": "!actors.items!MgrFP9msSIVXVVsM.srIsUDwkJ4LTAqvW",
+   "name": "Combat Manoeuvres",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>Every character can use every manoeuvre; the Fighter's edge is its own manoeuvres (Weapon Training, Armour Training, Fighter Manoeuvres) and Manoeuvre Mastery. See the Combat Manoeuvres section for details.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Ijvp4ubpV8iQf82p",
+     "source": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"
+   }
+  },
+  {
+   "_id": "pjeE5oU7dpWZYbJ8",
+   "_key": "!actors.items!MgrFP9msSIVXVVsM.pjeE5oU7dpWZYbJ8",
+   "name": "Combat Reflexes",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>You have the Combat Reflexes feat for free (see The Feats of Arneyan in Character Creation). It doesn't use a feat slot.</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Ijvp4ubpV8iQf82p",
+     "source": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.ubobcytkGteIF9jh"
    }
   },
   {
@@ -269,7 +408,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-swordman.svg",
    "system": {
-    "description": "<p>You control the space around you in ways most fighters never learn.</p><ul><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and a Flank Attack also pushes the target <strong>5ft</strong></li><li>17th level: a Flank Attack also deals +1 damage die</li><li>22nd level: when you attack, you may also Disengage from any number of enemies as part of the same action; you have <strong>Advantage</strong> on <strong>Reflex saves</strong>; and a Flank Attack deals +2 damage dice instead, and its target can't make Attacks of Opportunity against you until the start of your next turn</li><li><strong>Armour Training:</strong> you ignore the Cumbersome, Hot and Bulky traits and the Tower Shield's speed loss (Noisy still applies).</li><li>You also gain the Immovable manoeuvre: in medium or heavy armour, a creature no more than one size larger than you can't push or shove you, knock you <strong>Prone</strong> or otherwise move you against your will.</li><li>Once per round, out of turn, a creature that tries is knocked <strong>Prone</strong> instead.</li></ul>",
+    "description": "<p>You control the space around you in ways most fighters never learn.</p><ul><li>You count as flanking a creature whenever an ally is also in melee with it, not only when directly opposite</li><li>13th level: +1 AC unless wielding a two-handed weapon, and a Flank Attack also pushes the target <strong>5ft</strong></li><li>17th level: a Flank Attack also deals +1 damage die</li><li>22nd level: when you attack, you may also Disengage from any number of enemies as part of the same action; you have <strong>Advantage</strong> on <strong>Reflex saves</strong>; and a Flank Attack deals +2 damage dice instead, and its target can't make Attacks of Opportunity against you until the start of your next turn</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -320,6 +459,44 @@
    },
    "_stats": {
     "compendiumSource": "Compendium.arneyan.class-features.Item.MSQ7Ghp68sabbjxq"
+   }
+  },
+  {
+   "_id": "XBqCSj5UnVICDNUd",
+   "_key": "!actors.items!MgrFP9msSIVXVVsM.XBqCSj5UnVICDNUd",
+   "name": "Armour Training",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-swordman.svg",
+   "system": {
+    "description": "<p>you ignore the Cumbersome, Hot and Bulky traits and the Tower Shield's speed loss (Noisy still applies).</p><ul><li>You also gain the Immovable manoeuvre: in medium or heavy armour, a creature no more than one size larger than you can't push or shove you, knock you <strong>Prone</strong> or otherwise move you against your will.</li><li>Once per round, out of turn, a creature that tries is knocked <strong>Prone</strong> instead.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 3,
+    "className": "Fighter"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "Ijvp4ubpV8iQf82p",
+     "source": "Compendium.arneyan.class-features.Item.WYCT6UEXjjldkqIN"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.WYCT6UEXjjldkqIN"
    }
   },
   {
