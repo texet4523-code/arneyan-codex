@@ -33,6 +33,19 @@ function targetedThenSelected() {
   return list.map(t => t.actor).filter(creature);
 }
 
+/**
+ * Damage with nobody targeted lands on your selected token, usually your own (Jacob's Well, 8 Nov: "damage applied to
+ * the wrong token"). A player is asked first; the GM isn't.
+ */
+async function okToHurtOwn(actors, mult) {
+  if (!(mult > 0) || game.user.isGM || (game.user.targets?.size ?? 0) > 0) return true;
+  if (!actors.length || !actors.every(a => a.isOwner)) return true;
+  const names = actors.map(a => foundry.utils.escapeHTML(a.name)).join(", ");
+  return foundry.applications.api.DialogV2.confirm({ window: { title: "Apply damage" }, classes: ["arneyan"],
+    content: `<p>Nobody is targeted, so this damage would go to <strong>${names}</strong> (your selected token). Apply it there?</p><p class="arn-hint">To hit someone else, target them (T, or right-click their token) and Apply again.</p>`,
+    rejectClose: false }).catch(() => false);
+}
+
 /** Saves: whoever you are targeting, then selected tokens, then your own character. */
 function saveRollers() {
   const targets = Array.from(game.user.targets ?? []).map(x => x.actor).filter(creature);
@@ -464,7 +477,10 @@ function onRender(message, html) {
     if (Array.isArray(flags.hits) && mult > 0 && !ev.altKey) {
       actors = (await Promise.all(flags.hits.map(h => fromUuid(h.uuid).catch(() => null)))).filter(a => a && creature(a));
       if (!actors.length) return ui.notifications.info("That attack hit nobody. (Alt-click Apply to use your targets anyway.)");
-    } else actors = targetedThenSelected();
+    } else {
+      actors = targetedThenSelected();
+      if (!(await okToHurtOwn(actors, mult))) return;
+    }
     // A spell that only harms one kind of creature (Disrupt Undead) leaves the others out.
     if (flags.spell && mult > 0) {
       actors = spellTargets(flags.spell, actors);
@@ -574,10 +590,12 @@ function contextOptions(app, options) {
     const m = msgOf(li);
     return !!m && (m.rolls?.length > 0) && ["damage", "healing"].includes(m.flags?.[SYS]?.kind);
   };
-  const apply = (mult, subdual) => li => {
+  const apply = (mult, subdual) => async li => {
     const m = msgOf(li);
     const f = m.flags[SYS];
-    applyDamageTo(targetedThenSelected(), f.total ?? m.rolls[0].total, { type: f.damageType ?? "", mult, weapon: f.weapon ?? "",
+    const who = targetedThenSelected();
+    if (!(await okToHurtOwn(who, mult))) return;
+    applyDamageTo(who, f.total ?? m.rolls[0].total, { type: f.damageType ?? "", mult, weapon: f.weapon ?? "",
       parts: mult > 0 && f.split?.length > 1 ? f.split : null, spell: f.spell ?? "", disrupt: !!f.disrupt, subdual: mult > 0 && (subdual ?? !!f.subdual) }, sourceOf(m));
   };
   const add = (name, icon, mult, subdual) => options.push({ name, label: name, icon: `<i class="fa-solid ${icon}"></i>`, condition: canApply, callback: apply(mult, subdual) });

@@ -726,6 +726,25 @@ export function registerArt() {
     const upd = artUpdate(actor);
     if (upd) actor.updateSource(upd);
   });
+  // A character's new portrait becomes its token too, while the token still shows the old portrait or a blank
+  // (Jacob's Well, 8 Nov: "token and avatar images out of sync"). A token art of its own is left alone.
+  Hooks.on("preUpdateActor", (actor, changes, options, userId) => {
+    if (actor.type !== "character" || !changes?.img || changes.img === actor.img) return;
+    if (foundry.utils.hasProperty(changes, "prototypeToken.texture.src")) return;
+    const tok = actor.prototypeToken?.texture?.src ?? "";
+    const blank = !tok || /mystery-man|icons\/svg\//.test(tok);
+    if (!(blank || tok === actor.img)) return;
+    foundry.utils.setProperty(changes, "prototypeToken.texture.src", changes.img);
+    options.arneyanTokenArt = { from: actor.img, to: changes.img };
+  });
+  Hooks.on("updateActor", (actor, changes, options, userId) => {
+    const art = options?.arneyanTokenArt;
+    if (!art || userId !== game.user.id) return;
+    for (const t of actor.getDependentTokens?.({ linked: true }) ?? []) {
+      const src = t.texture?.src ?? "";
+      if (!src || src === art.from || /mystery-man|icons\/svg\//.test(src)) t.update({ "texture.src": art.to }).catch(() => null);
+    }
+  });
   game.arneyan ??= {};
   game.arneyan.art = { scan: scanArt, applyToWorld: applyArtToWorld, find: name => artFor(name), random: randomArt };
 }

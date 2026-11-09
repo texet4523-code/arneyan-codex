@@ -42,9 +42,10 @@ console.log("OK archer");
 /* Descriptions: a lone "Effect:" bullet reads as a paragraph. */
 const T = await import("../arneyan/module/text.mjs");
 assert.equal(T.tidyDescription("<ul><li><strong>Effect:</strong> Moved <strong>10ft</strong>.</li></ul>"), "<p>Moved <strong>10ft</strong>.</p>");
-assert.equal(T.tidyDescription("<ul><li><strong>Effect:</strong> Two.</li><li><strong>Fire:</strong> 1d6</li></ul><p>x</p>"), "<p>Two.</p><ul><li><strong>Fire:</strong> 1d6</li></ul><p>x</p>");
+assert.equal(T.tidyDescription("<ul><li><strong>Effect:</strong> Two.</li><li><strong>Fire:</strong> 1d6</li></ul><p>x</p>"), "<p>Two.</p><ul><li><strong>Fire:</strong> [[/r 1d6]]{1d6}</li></ul><p>x</p>");
 assert.equal(T.tidyDescription("<p>Plain.</p>"), "<p>Plain.</p>");
 assert.equal(T.tidyDescription(null), "");
+assert.equal(T.rollableDice("<p>Asleep for 1d4 rounds, <a>1d6</a>, [[/r 2d6]].</p>"), "<p>Asleep for [[/r 1d4]]{1d4} rounds, <a>1d6</a>, [[/r 2d6]].</p>");
 console.log("OK descriptions");
 
 /* Toll the Dead: d6s against a creature below its maximum HP (Jacob's Well, 8 Nov). */
