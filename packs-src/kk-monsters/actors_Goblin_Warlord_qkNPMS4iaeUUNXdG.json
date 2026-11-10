@@ -1,0 +1,247 @@
+{
+ "_id": "qkNPMS4iaeUUNXdG",
+ "_key": "!actors!qkNPMS4iaeUUNXdG",
+ "name": "Goblin Warlord",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 18
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 14
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 16
+   }
+  },
+  "level": 4,
+  "hd": "4d8",
+  "attributes": {
+   "hp": {
+    "value": 18,
+    "max": 18,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft",
+   "attack": 6,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 5,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (goblinoid)",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small humanoid (goblinoid)</em></p><p><strong>GM:</strong> A warlord's best trick is to be somewhere else. Its crew breaks the moment it falls.</p><p><strong>Leader</strong> (Keeps &amp; Kingdoms): a boss who fights with a crew. Its Command works once per round, out of turn, straight after one of its allies' turns. Kill it, and its crew checks Morale at once.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Scimitar ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZgnKL6DyHdU4VOHR",
+   "_key": "!actors.items!qkNPMS4iaeUUNXdG.ZgnKL6DyHdU4VOHR",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shortbow ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80/320ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "srDrtZlO9KO32L92",
+   "_key": "!actors.items!qkNPMS4iaeUUNXdG.srDrtZlO9KO32L92",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command, Get 'Em!",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, after an ally's turn, one goblin that can hear it moves up to its speed and attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "N806nOcrtEHK3yJv",
+   "_key": "!actors.items!qkNPMS4iaeUUNXdG.N806nOcrtEHK3yJv",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Not Me, You",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, when an attack hits it, a goblin within 10ft swaps places with it and takes the hit instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bab19YCJ2ynwC0NM",
+   "_key": "!actors.items!qkNPMS4iaeUUNXdG.bab19YCJ2ynwC0NM",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "HHlvtgpwHA3iLUCS",
+ "prototypeToken": {
+  "name": "Goblin Warlord",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-goblin-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

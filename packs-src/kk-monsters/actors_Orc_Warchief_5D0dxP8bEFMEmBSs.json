@@ -1,0 +1,209 @@
+{
+ "_id": "5D0dxP8bEFMEmBSs",
+ "_key": "!actors!5D0dxP8bEFMEmBSs",
+ "name": "Orc Warchief",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 20
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 18
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 16
+   }
+  },
+  "level": 6,
+  "hd": "4d10",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "30ft",
+   "attack": 8,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 4,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> A warchief who is beaten in a fair duel loses its band, which may follow the victor.</p><p><strong>Leader</strong> (Keeps &amp; Kingdoms): a boss who fights with a crew. Its Command works once per round, out of turn, straight after one of its allies' turns. Kill it, and its crew checks Morale at once.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair D</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Greataxe ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d12+4",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "z1S0sDdpsYjOukTJ",
+   "_key": "!actors.items!5D0dxP8bEFMEmBSs.z1S0sDdpsYjOukTJ",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Relentless (once per day)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "<p>when it drops to 0 HP, it drops to 1 HP instead.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9zGWOerLc7GvEstX",
+   "_key": "!actors.items!5D0dxP8bEFMEmBSs.9zGWOerLc7GvEstX",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command, Blood for the Chief",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, after an ally's turn, one orc that can hear it moves up to its speed and attacks with Advantage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ruz26T1TACb5JflV",
+   "_key": "!actors.items!5D0dxP8bEFMEmBSs.ruz26T1TACb5JflV",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "JFgx5MFXNIySC6Rz",
+ "prototypeToken": {
+  "name": "Orc Warchief",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-orc-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

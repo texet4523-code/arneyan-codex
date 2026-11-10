@@ -1,0 +1,184 @@
+{
+ "_id": "AcyYlNZhkhU798yV",
+ "_key": "!journal!AcyYlNZhkhU798yV",
+ "name": "Chapter 4: Warfare",
+ "pages": [
+  {
+   "_id": "lPnIbCm4we2CNnAh",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.lPnIbCm4we2CNnAh",
+   "name": "How a battle works",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Units, not soldiers:</strong> an army is made of <strong>units</strong>, bodies of soldiers who share a people, training, gear and type. A unit might be fifty spears or five thousand; the rules don't change.</li><li><strong>Casualties:</strong> losses are counted in <strong>casualties</strong>, which stand for soldiers dead, fled, lost or too shaken to obey.</li><li><strong>Commanders:</strong> each unit answers to a commander. Player characters usually command from behind the lines while their army fights the enemy's.</li><li><strong>Speed:</strong> a battle is meant to run faster than an ordinary fight, and it often runs alongside one (see Heroes in battle).</li></ul>"
+   },
+   "sort": 100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "NvTUvgtgtNJ9LMyQ",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.NvTUvgtgtNJ9LMyQ",
+   "name": "The battlefield",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>The grid:</strong> each side has a grid 5 spaces wide and 4 ranks deep. From the front, its ranks are the <strong>Vanguard</strong>, <strong>Reserve</strong>, <strong>Centre</strong> and <strong>Rear</strong>. The two grids meet at the Vanguards.</li><li><strong>On the grid:</strong> infantry, archers and siege engines stand on the grid.</li><li><strong>Off the grid:</strong> cavalry and flying units stand beside it and can reach anywhere.</li><li><strong>Adjacent</strong> means next to, along a row or a column, never on a diagonal.</li><li><strong>Size of battle:</strong> a good battle has 12 units a side or fewer. For more, add a column for every 3 units over 15.</li><li><strong>Collapsing ranks:</strong> at the start of each round, an empty rank with no fortification in it disappears, and the ranks either side close up.</li></ul>"
+   },
+   "sort": 200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "wB2dZjmjl6GQFhOe",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.wB2dZjmjl6GQFhOe",
+   "name": "The unit card",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<table class=\"arn-table\"><thead><tr><th>Stat</th><th>What it does</th></tr></thead><tbody><tr><td><strong>Attack</strong></td><td>d20 + Attack against the target's Defence. A hit deals 1 casualty, and you then roll Power</td></tr><tr><td><strong>Defence</strong></td><td>What enemies must reach with Attack</td></tr><tr><td><strong>Power</strong></td><td>d20 + Power against the target's Toughness. A success deals casualties equal to the unit's Damage</td></tr><tr><td><strong>Toughness</strong></td><td>What enemies must reach with Power</td></tr><tr><td><strong>Morale</strong></td><td>A Morale Score of 2 to 12, as for monsters. A Morale check is 2d6: roll higher than the score and the unit fails</td></tr><tr><td><strong>Command</strong></td><td>d20 + Command for manoeuvres (Follow Up, Brace, Retreat)</td></tr><tr><td><strong>Attacks</strong></td><td>How many attacks it makes with one action</td></tr><tr><td><strong>Damage</strong></td><td>Extra casualties on a successful Power roll</td></tr><tr><td><strong>Size</strong></td><td>The unit's casualty die: Size 1d6 means it starts with 6 casualties to lose. Never more than 1d12</td></tr></tbody></table><ul><li><strong>Bonuses to morale:</strong> a bonus \"to Morale\" raises the Morale Score, as the Handbook says (12 at most). The Knight's Battle Lord works this way.</li></ul><h4>Building a unit</h4><ul><li><strong>Starting point:</strong> start from its type, then apply its experience, its equipment and its people.</li></ul><p><strong>Base unit (regular, light equipment)</strong></p><table class=\"arn-table\"><thead><tr><th>Type</th><th>Atk</th><th>Def</th><th>Pow</th><th>Tou</th><th>Mor</th><th>Cmd</th><th>Dmg</th></tr></thead><tbody><tr><td>Infantry</td><td>+3</td><td>12</td><td>+2</td><td>12</td><td>7</td><td>+1</td><td>1</td></tr><tr><td>Archers</td><td>+3</td><td>10</td><td>+1</td><td>10</td><td>6</td><td>+0</td><td>1</td></tr><tr><td>Cavalry</td><td>+3</td><td>12</td><td>+3</td><td>11</td><td>7</td><td>+0</td><td>2</td></tr><tr><td>Flying</td><td>+5</td><td>10</td><td>+2</td><td>10</td><td>7</td><td>+0</td><td>1</td></tr><tr><td>Siege engine</td><td>+2</td><td>9</td><td>+3</td><td>9</td><td>6</td><td>−1</td><td>3</td></tr></tbody></table><ul><li><strong>Infantry</strong> attack adjacent units only, never cavalry or flying.</li><li><strong>Archers</strong> stand in the Centre and can attack any unit.</li><li><strong>Cavalry</strong> stand off the grid and attack cavalry and exposed units.</li><li><strong>Flying</strong> units stand off the grid and can attack any unit; only archers and flying units can attack them.</li><li><strong>Siege engines</strong> stand in the Centre and can attack any unit. They must spend a round idle between shots, and always hit fortifications.</li></ul><p><strong>Experience</strong></p><table class=\"arn-table\"><thead><tr><th>Experience</th><th>Attacks</th><th>Atk</th><th>Def</th><th>Mor</th><th>Cmd</th></tr></thead><tbody><tr><td>Green</td><td>+0</td><td>−1</td><td>−2</td><td>−2</td><td>−1</td></tr><tr><td>Regular</td><td>+0</td><td>+0</td><td>+0</td><td>+0</td><td>+0</td></tr><tr><td>Seasoned</td><td>+0</td><td>+1</td><td>+1</td><td>+1</td><td>+1</td></tr><tr><td>Veteran</td><td>+0</td><td>+1</td><td>+2</td><td>+2</td><td>+2</td></tr><tr><td>Elite</td><td>+1</td><td>+2</td><td>+4</td><td>+3</td><td>+2</td></tr></tbody></table><p><strong>Equipment</strong></p><table class=\"arn-table\"><thead><tr><th>Equipment</th><th>Infantry and siege</th><th>Archers, cavalry and flying</th></tr></thead><tbody><tr><td>Light</td><td>+0</td><td>+0</td></tr><tr><td>Medium</td><td>Power +2, Toughness +2</td><td>Power +1, Toughness +1</td></tr><tr><td>Heavy</td><td>Power +4, Toughness +4</td><td>Power +2, Toughness +2</td></tr></tbody></table><p><strong>Peoples</strong></p><ul><li>Each unit takes one trait from its people.</li><li>A unit raised by your stronghold is of your people unless an ambassador says otherwise.</li></ul><table class=\"arn-table\"><thead><tr><th>People</th><th>Trait</th></tr></thead><tbody><tr><td>Human</td><td><strong>Adaptable:</strong> once per battle, reroll a failed Morale check</td></tr><tr><td>Dwarf</td><td><strong>Stalwart:</strong> +1 Toughness; can't be pushed or moved against its will</td></tr><tr><td>Elf</td><td><strong>Keen-Eyed:</strong> archers have +1 Attack; forest doesn't slow it</td></tr><tr><td>Gnome</td><td><strong>Spell-Wise:</strong> Advantage on rolls against battle magic</td></tr><tr><td>Halfling</td><td><strong>Lucky:</strong> once per battle, reroll one Attack or Power roll</td></tr><tr><td>Orc</td><td><strong>Relentless:</strong> once per battle, when broken, it fights on until the end of its next activation, then breaks</td></tr><tr><td>Hobgoblin</td><td><strong>Warbred:</strong> +1 Command, and Advantage on Follow Up</td></tr><tr><td>Goblin</td><td><strong>Swarm:</strong> Size one die smaller and Morale −1, but two goblin units muster as one</td></tr><tr><td>Gnoll</td><td><strong>Rush:</strong> +1 movement when it moves towards an enemy</td></tr><tr><td>Lizardfolk</td><td><strong>Amphibious:</strong> mud, rivers and rain don't slow it</td></tr><tr><td>Aasimar</td><td><strong>Radiant:</strong> Advantage on Morale checks against undead and fiends, which have Disadvantage on Morale checks against it</td></tr><tr><td>Undead</td><td><strong>Mindless:</strong> never makes Morale checks, and can't be rallied</td></tr></tbody></table><h4>Monsters as units</h4><ul><li><strong>When to use it:</strong> a monster is a unit only when the heroes wouldn't rather fight it themselves. A dragon is an encounter at 5th level, and a unit at 15th.</li><li><strong>Stats:</strong><ul><li>Attack and Power are half its Level + 2.</li><li>Defence and Toughness are 10 + half its Level.</li><li>Morale is its Morale Score.</li><li>Damage is 1, or 2 if Huge, or 3 if Gargantuan.</li><li>Size is 1d6 for a pack or Large creature, 1d8 for Huge, 1d10 or 1d12 for Gargantuan.</li></ul></li><li><strong>Traits:</strong> add one or two traits from its block, for example <strong>Fearsome</strong> (dragons, demons, the dead): the first time a unit attacks it, that unit makes a Morale check, and on a failure its activation ends.</li><li><strong>Solo rules:</strong> a monster unit never uses solo rules or villain actions. It is one unit, and it takes one activation like any other.</li></ul>"
+   },
+   "sort": 300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "WeMPmTEAGLjFUX4G",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.WeMPmTEAGLjFUX4G",
+   "name": "Raising and keeping an army",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>From your stronghold:</strong> units raised by a keep (Chapter 1) or from your follower table (Chapter 3) cost nothing to raise. You pay their upkeep, which the stronghold's taxes cover (Chapter 5).</li><li><strong>Mercenaries:</strong> a mercenary unit costs one season's upkeep to hire, then its upkeep each season.</li><li><strong>Upkeep each season:</strong></li></ul><table class=\"arn-table\"><thead><tr><th>Unit</th><th>Upkeep (gp a season)</th></tr></thead><tbody><tr><td>Green infantry or archers</td><td>450</td></tr><tr><td>Regular infantry or archers</td><td>900</td></tr><tr><td>Cavalry</td><td>2,400</td></tr><tr><td>Flying</td><td>3,600</td></tr><tr><td>Siege engine</td><td>600</td></tr></tbody></table><ul><li><strong>Upkeep adjustments:</strong><ul><li>Seasoned and veteran units cost half again. Elite units cost double.</li><li>Heavy equipment costs half again.</li><li>A keep cuts upkeep by 10% per level.</li></ul></li><li><strong>Going unpaid:</strong><ul><li>A unit unpaid for a season has its Morale cut by 2.</li><li>A unit unpaid for two seasons goes home.</li></ul></li><li><strong>Better gear:</strong> a unit's equipment goes up one step for 50 gp × its Size die's largest number, light to medium, then double that for medium to heavy. A Miner artisan does it for free.</li><li><strong>Class armies:</strong> the Barbarian's Warlord and the Cleric's Holy Campaign field one unit for every 50 troops, rounded up: regular light infantry, Size 1d6. The Knight's followers make one green infantry unit (Size 1d4) for every 40 who stay.</li></ul>"
+   },
+   "sort": 400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "jVQPg4oNZxG3O8ed",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.jVQPg4oNZxG3O8ed",
+   "name": "Commanders",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>How many units:</strong> a character commands 1 unit, +1 at 4th, 8th, 12th, 16th and 20th level. A Knight commands one more.</li><li><strong>Enemy commanders:</strong> an enemy commander uses the same scale by its Level.</li><li><strong>Every unit needs a commander at the battle.</strong> If its commander falls or flees, the unit makes a Morale check at once. After that, its sergeants keep it fighting.</li><li><strong>Orders:</strong><ul><li>Each player character commander knows one Order from their class's list, two from 8th level and three from 16th.</li><li>Each Order can be given once per battle, on your side's turn, to a unit you command.</li></ul></li></ul><table class=\"arn-table\"><thead><tr><th>Order</th><th>Classes</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Rally</strong></td><td>Cleric, Battle Priest, Paladin, Knight, Fighter, Bard</td><td>One broken unit makes a Morale check. On a success it returns to its old space (or the nearest empty one) with 1d4 casualties</td></tr><tr><td><strong>Charge</strong></td><td>Knight, Paladin, Fighter, Barbarian</td><td>Your cavalry have Advantage on Attack this round. On a successful Power roll, the unit behind their target also takes 1 casualty</td></tr><tr><td><strong>Volley</strong></td><td>Archer, Ranger, Gunslinger, Fighter</td><td>One archer unit attacks two adjacent enemy units with this action</td></tr><tr><td><strong>Hold the Line</strong></td><td>Knight, Fighter, Paladin, Monk</td><td>Until your next turn, your infantry can't be moved and pass their Morale checks</td></tr><tr><td><strong>Skirmish</strong></td><td>Rogue, Assassin, Ranger, Swashbuckler</td><td>A unit that moved this activation has Advantage on Attack, and may move 1 space after attacking</td></tr><tr><td><strong>Feint</strong></td><td>Rogue, Swashbuckler, Bard, Illusionist</td><td>One unit steps aside into an empty space, and the enemy unit it faced is drawn into the space it left</td></tr><tr><td><strong>Fire from Heaven</strong></td><td>Wizard, Sorcerer, Spellblade, Warlock, Witch, Necromancer</td><td>One enemy unit takes 1d4 casualties (half on a DC 13 Power roll), then makes a Morale check</td></tr><tr><td><strong>Fog of War</strong></td><td>Druid, Illusionist, Witch, Ranger</td><td>Until your next turn, attacks against units in one of your ranks have Disadvantage</td></tr><tr><td><strong>Dread</strong></td><td>Necromancer, Warlock, Assassin, Barbarian</td><td>One enemy unit makes a Morale check with its Morale cut by 2</td></tr><tr><td><strong>Inspire</strong></td><td>Bard, Knight, Paladin, Cleric, Battle Priest</td><td>One unit makes one extra attack this activation, and has Advantage on its Power rolls</td></tr><tr><td><strong>Engineers</strong></td><td>Artificer, Gunslinger, Fighter</td><td>A fortification of yours regains 1d4 + 2 HP, or a siege engine of yours fires without its idle round</td></tr><tr><td><strong>Beasts of the Wild</strong></td><td>Druid, Ranger, Archer</td><td>One unit ignores terrain for the battle, and its first attack this round has Advantage</td></tr></tbody></table>"
+   },
+   "sort": 500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "0i0FY3ZgLdAHcLs2",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.0i0FY3ZgLdAHcLs2",
+   "name": "Fighting a battle",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<h4>Before the battle</h4><ul><li><strong>Choosing the ground:</strong> if both sides are looking for the fight, each leader makes a Hard Intelligence check. The winner chooses whether to attack, defend its stronghold or fight in open ground.</li><li><strong>Deployment:</strong></li><li>Roll side initiative, as the Handbook allows for mass battles. The loser deploys first.</li><li>Infantry deploy in any rank.</li><li>Archers and siege engines deploy in the Centre.</li><li>Cavalry and flying units deploy off the grid.</li><li><strong>The attacker's first strike:</strong> the side that brought the battle may give each unit in its Vanguard one free activation before the first round.</li></ul><h4>Each round</h4><ul><li><strong>Initiative:</strong> roll side initiative each round. The winning side takes its whole turn first.</li><li><strong>Activations:</strong> on your side's turn, each commander activates each of their units, one at a time. A unit may:<ul><li>move 1 space and act, or act and then move;</li><li><strong>march</strong> (move 2 spaces);</li><li>or hold.</li></ul></li><li><strong>Actions:</strong> attack, or try a manoeuvre.</li><li><strong>Movement:</strong><ul><li>Movement is into an empty space, never on a diagonal and never through another unit.</li><li>A unit that moves backwards off its own Rear rank has left the battle for good.</li></ul></li></ul><h4>Who can attack whom</h4><ul><li><strong>Infantry:</strong> adjacent units, but never cavalry or flying.</li><li><strong>Archers and siege engines:</strong> any unit.</li><li><strong>Cavalry:</strong> other cavalry, and <strong>exposed</strong> infantry, archers or siege engines.</li><li><strong>Flying:</strong> any unit. Only archers and flying units can attack them.</li><li><strong>Exposed:</strong> a unit is exposed if it has no unit between it and either side edge of the field, or no unit in any rank behind it.<ul><li>A unit in the Rear rank is always exposed.</li><li>A unit in a fortification never is.</li></ul></li></ul><h4>Attacking</h4><ul><li>Roll d20 + Attack against the target's Defence. On a hit, the target takes 1 casualty.</li><li>Then roll d20 + Power against its Toughness. On a success, it takes casualties equal to your Damage.</li></ul><p>Advantage and Disadvantage work as in the Handbook.</p><h4>Diminished and broken</h4><ul><li><strong>Diminished:</strong> when a unit is down to half its Size or less, it is diminished. The first time this happens in a battle, it makes a Morale check, and on a failure it takes 1 casualty.</li><li><strong>Broken:</strong> at 0 casualties left, the unit is broken and leaves the field.</li></ul><h4>Morale checks</h4><ul><li><strong>When a unit checks:</strong><ul><li>the first time it is diminished;</li><li>when its commander falls or flees;</li><li>the first time it attacks a Fearsome unit;</li><li>when its fortification falls (with Disadvantage);</li><li>when an Order or a trait says so.</li></ul></li><li><strong>The result:</strong> a failed check costs 1 casualty unless the rule says otherwise.</li></ul><h4>Manoeuvres</h4><p>Manoeuvres are d20 + Command.</p><ul><li><strong>Follow Up</strong> (infantry): once per round, out of turn, when an adjacent enemy breaks or leaves its space, DC 8: move into that space.</li><li><strong>Brace</strong> (infantry): once per round, out of turn, when cavalry or flying units deal it a casualty in melee, DC 13: the attacker takes 1 casualty.</li><li><strong>Retreat</strong> (any unit, as its action): DC 8.<ul><li>Success: the unit leaves the battle in good order.</li><li>Failure: it takes 1 casualty first, then leaves if it still can.</li></ul></li></ul><h4>Victory</h4><ul><li><strong>Unit value:</strong> each unit is worth 1, +1 if seasoned, veteran or elite, +1 if heavy, and +1 if a monster of Level 10 or more.</li><li><strong>The check:</strong> at the end of each round, total the value of each side's units still on the field. A side worth more than twice the other wins.</li><li><strong>The losing side:</strong> every unit on the losing side tries to Retreat at once.</li></ul>"
+   },
+   "sort": 600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "t0er6JhSXK8ERAMJ",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.t0er6JhSXK8ERAMJ",
+   "name": "Fortifications and ground",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<table class=\"arn-table\"><thead><tr><th>Fortification</th><th>Spaces</th><th>Mor</th><th>Def</th><th>Archer Pow</th><th>HP</th></tr></thead><tbody><tr><td>Stone wall or ditch</td><td>1–2</td><td>+1</td><td>+2</td><td>—</td><td>4</td></tr><tr><td>Tower</td><td>1</td><td>+1</td><td>+2</td><td>+2</td><td>6</td></tr><tr><td>Town wall</td><td>3–4</td><td>+1</td><td>+2</td><td>—</td><td>8</td></tr><tr><td>Gatehouse</td><td>5</td><td>+2</td><td>+2</td><td>+2</td><td>8</td></tr><tr><td>Keep</td><td>2 × 2</td><td>+2</td><td>+2</td><td>+2</td><td>10</td></tr><tr><td>Castle</td><td>4 × 2</td><td>+3</td><td>+2</td><td>+2</td><td>12</td></tr></tbody></table><ul><li><strong>Who benefits:</strong> the Morale bonus goes to every one of its side's units on the field; only the highest counts. Defence and Power go to units inside it.</li><li><strong>Moving in:</strong> entering a fortification space costs a whole move; leaving is free.</li><li><strong>Contested:</strong> once an enemy unit is inside, no one gets its Morale bonus.</li><li><strong>Damage:</strong> only siege engines and units whose traits say so can damage a fortification. A siege engine always hits for 1d4 + 2.</li><li><strong>When it falls:</strong> at 0 HP the fortification falls, and every unit that was in it makes a Morale check with Disadvantage.</li><li><strong>Your stronghold:</strong> a stronghold fights as its fortification (Chapter 1).</li></ul><p><strong>Ground</strong></p><ul><li><strong>Forest or fog:</strong> archers have Disadvantage on Attack.</li><li><strong>Mud or deep snow:</strong> moving 1 space takes a march.</li><li><strong>Rain:</strong> counts as both mud and fog.</li><li><strong>Open plains:</strong> cavalry have +1 Command.</li><li><strong>Hills:</strong> a unit charging downhill has Advantage on its first Attack; a march uphill needs a DC 8 Command roll or it moves only 1 space.</li><li><strong>Bridges and passes:</strong> the Vanguard is one space wide, and cavalry can't fight there.</li></ul>"
+   },
+   "sort": 700000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "hVaDllCj1PAKggBh",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.hVaDllCj1PAKggBh",
+   "name": "Heroes in battle",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Behind the lines:</strong> player characters usually fight the enemy commanders, champions and monsters in an ordinary encounter, while the armies fight around them.<ul><li>Run one battle round, then one encounter round, and so on.</li><li>When an enemy commander falls or flees, each unit they led makes a Morale check at once.</li><li>If the heroes are beaten, every unit they led tries to Retreat.</li></ul></li><li><strong>Leading a unit:</strong> a character may instead fight inside a unit.<ul><li>The unit has Advantage on its Morale checks.</li><li>When the unit breaks, the character is left in an ordinary encounter with whatever broke it.</li></ul></li><li><strong>Champions:</strong> when two units led by commanders are adjacent, one commander may call the other out. If the other accepts, the battle waits while the two fight. The loser's unit takes 1 casualty for each round the duel lasted.</li><li><strong>The Knight's Battle Lord:</strong> allied units that can see the knight have +1 Defence and +1 Morale, and add the knight's Charisma modifier to their Power rolls. If the knight leaves or falls, they make a Morale check with their Morale cut by 4.</li></ul>"
+   },
+   "sort": 800000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "ma4sNlHL5uphZ3Dg",
+   "_key": "!journal.pages!AcyYlNZhkhU798yV.ma4sNlHL5uphZ3Dg",
+   "name": "After the battle",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Rally:</strong> each broken unit makes a Morale check. On a success it returns with 1 casualty; on a failure it disbands.</li><li><strong>Recovery:</strong> surviving units regain 1 casualty a week until they're whole.</li><li><strong>Experience:</strong> a unit that survives a battle gains experience:<ul><li>green to regular after 1 battle;</li><li>regular to seasoned after 1 more;</li><li>seasoned to veteran after 2 more;</li><li>veteran to elite after 4 more.</li></ul></li><li><strong>Afterwards:</strong> loaned and allied units go home, and any effects from the battle end.</li></ul>"
+   },
+   "sort": 900000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  }
+ ],
+ "folder": null,
+ "sort": 400,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

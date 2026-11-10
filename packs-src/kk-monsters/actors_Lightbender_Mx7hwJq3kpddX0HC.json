@@ -1,0 +1,411 @@
+{
+ "_id": "Mx7hwJq3kpddX0HC",
+ "_key": "!actors!Mx7hwJq3kpddX0HC",
+ "name": "Lightbender",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-paw.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 20
+   },
+   "dex": {
+    "value": 18
+   },
+   "con": {
+    "value": 18
+   },
+   "int": {
+    "value": 3
+   },
+   "wis": {
+    "value": 16
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 8,
+  "hd": "8d10",
+  "attributes": {
+   "hp": {
+    "value": 44,
+    "max": 44,
+    "temp": 0
+   },
+   "ac": 17,
+   "speed": "50ft",
+   "attack": 10,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 7,
+   "ref": 7,
+   "will": 6
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "beast (ambusher)",
+   "size": "large",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1 (2 with cubs)",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Large beast (ambusher)</em></p><p><strong>GM:</strong> A lightbender's mane makes a fine cloak of displacement. Its killers are rarely the ones who wear it.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d10+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ITXZXIpp4pbtkNHW",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.ITXZXIpp4pbtkNHW",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Claw ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OLQL3p3F3WZgve5e",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.OLQL3p3F3WZgve5e",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tail",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+3",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "reach 15ft",
+    "bonusDamage": [
+     {
+      "formula": "2d6",
+      "type": "radiant",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bf2DwDhWcmCpfmp4",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.bf2DwDhWcmCpfmp4",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Afterimage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, when an attack hits it, roll a d6. On a 4 or more the attack strikes an image and misses.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "H2K3sjCdQRmZXWEK",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.H2K3sjCdQRmZXWEK",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Slippery Light",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>when a save would halve the damage it takes, it takes none on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TJCbokPssIFs7kbI",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.TJCbokPssIFs7kbI",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Pounce",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>if it moves at least 20ft straight at a creature and hits with a claw, the target makes a @Check[fort|dc:18]{Fortitude save DC 18} or falls @Condition[prone]{Prone}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 18,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7Q6AINaK3Aj80JH0",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.7Q6AINaK3Aj80JH0",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hypnotic Mane (once per day)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-paw.svg",
+   "system": {
+    "description": "<p>in place of its attacks, its mane blazes. Each creature within 15ft that can see it makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[incapacitated]{Incapacitated} until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will",
+    "dc": 14,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "G1tRVVsdI2lE8o7v",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.G1tRVVsdI2lE8o7v",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "master"
+   },
+   "_id": "l32Om5eYczh3cY4U",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.l32Om5eYczh3cY4U",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "QkEaZ29U2aher8bR",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.QkEaZ29U2aher8bR",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "1D618Pc2V5LZWOZn",
+ "prototypeToken": {
+  "name": "Lightbender",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-paw.svg"
+  },
+  "actorLink": false,
+  "width": 2,
+  "height": 2,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

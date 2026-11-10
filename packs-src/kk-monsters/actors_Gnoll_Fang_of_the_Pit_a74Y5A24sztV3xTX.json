@@ -1,0 +1,247 @@
+{
+ "_id": "a74Y5A24sztV3xTX",
+ "_key": "!actors!a74Y5A24sztV3xTX",
+ "name": "Gnoll Fang of the Pit",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 20
+   },
+   "dex": {
+    "value": 16
+   },
+   "con": {
+    "value": 18
+   },
+   "int": {
+    "value": 7
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 7,
+  "hd": "6d10",
+  "attributes": {
+   "hp": {
+    "value": 33,
+    "max": 33,
+    "temp": 0
+   },
+   "ac": 16,
+   "speed": "40ft",
+   "attack": 9,
+   "spellDC": 0,
+   "morale": 9
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 5,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "fiend (brute)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "fire 5, cold 5",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 120ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium fiend (brute)</em></p><p><strong>GM:</strong> Where the fangs gather, something from the Maw is calling them.</p>",
+   "treasure": "<p>Treasure type <strong>R, lair C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Flail",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "2d6+4",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "5DQIhf8ZIFe0kJRz",
+   "_key": "!actors.items!a74Y5A24sztV3xTX.5DQIhf8ZIFe0kJRz",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "TfEmx1fKkuZzvtK3",
+   "_key": "!actors.items!a74Y5A24sztV3xTX.TfEmx1fKkuZzvtK3",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rampage",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>when it drops a creature to 0 HP, it moves up to half its speed and bites, as part of the same action.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xkuLqbltJPa0wi5o",
+   "_key": "!actors.items!a74Y5A24sztV3xTX.xkuLqbltJPa0wi5o",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Demonic",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "system": {
+    "description": "<p>it holds Chaotic Evil Allegiance, and spells and effects that turn fiends affect it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1lfCBfBeh6OdUpiA",
+   "_key": "!actors.items!a74Y5A24sztV3xTX.1lfCBfBeh6OdUpiA",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "awJ0UBMcbXJiv6UQ",
+ "prototypeToken": {
+  "name": "Gnoll Fang of the Pit",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-devil-mask.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 120,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

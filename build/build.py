@@ -35,6 +35,8 @@ assert apply_effects.run(lib.OUT) == 0, "approved effects point at missing docum
 print('auras (features, spells):', build_auras.before_monsters())
 print('monsters:', build_monsters.build())
 print('auras (monsters):', build_auras.after_monsters())
+# Keeps & Kingdoms (R-F28): its creatures and its chapters, each in a compendium of its own.
+print('keeps & kingdoms (creatures, chapters):', __import__('build_kk').build())
 print('gear:', build_gear.build(), 'catalogue entries made usable')
 print('tidy: removed %d rule items; stray top folders: %s' % build_tidy.build())
 print('books v0.10.0:', __import__('books_0100').build())

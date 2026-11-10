@@ -1,0 +1,272 @@
+{
+ "_id": "LZO4wG7wrOr7nAT2",
+ "_key": "!actors!LZO4wG7wrOr7nAT2",
+ "name": "Kobold Trapmaster",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 7
+   },
+   "dex": {
+    "value": 18
+   },
+   "con": {
+    "value": 10
+   },
+   "int": {
+    "value": 16
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 3,
+  "hd": "4d6",
+  "attributes": {
+   "hp": {
+    "value": 14,
+    "max": 14,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 4,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (reptilian, controller)",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d2",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small humanoid (reptilian, controller)</em></p><p><strong>GM:</strong> A trapmaster prepares the ground days before the fight. Its warren is full of the traps it couldn't carry.</p>",
+   "treasure": "<p>Treasure type <strong>R, lair B</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Light crossbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "80/320ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "S6eb1h4FfxtbKYRt",
+   "_key": "!actors.items!LZO4wG7wrOr7nAT2.S6eb1h4FfxtbKYRt",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Caltrop Bag",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>in place of its attack, it scatters caltrops in a 10ft square within 30ft. The square is difficult ground; a creature that enters it takes @Damage[1d4 piercing]{1d4 piercing damage} and makes a @Check[ref|dc:13]{Reflex save DC 13} or has half speed until the end of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 13,
+    "damage": "1d4",
+    "damageType": "piercing",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "m97jUQbXLdXXyNar",
+   "_key": "!actors.items!LZO4wG7wrOr7nAT2.m97jUQbXLdXXyNar",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Snare",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>in place of its attack, one creature within 30ft makes a @Check[ref|dc:13]{Reflex save DC 13} or is @Condition[restrained]{Restrained} until it escapes with a Moderate Strength check as its action.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 13,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "eRyMhWgUEx7CTk8m",
+   "_key": "!actors.items!LZO4wG7wrOr7nAT2.eRyMhWgUEx7CTk8m",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Light Sensitive",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-lizardman.svg",
+   "system": {
+    "description": "<p>Disadvantage on attacks in bright sunlight.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zsrXfFTVfgPAc08g",
+   "_key": "!actors.items!LZO4wG7wrOr7nAT2.zsrXfFTVfgPAc08g",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Engineering",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Siege engines, fortifications, and structures</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "master"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.LMHAEKSopy2FxMZe"
+   },
+   "_id": "Fo4ZJzWD8Hqgvwhl",
+   "_key": "!actors.items!LZO4wG7wrOr7nAT2.Fo4ZJzWD8Hqgvwhl",
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "jRm3N2EWfJYgShtk",
+ "prototypeToken": {
+  "name": "Kobold Trapmaster",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-lizardman.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

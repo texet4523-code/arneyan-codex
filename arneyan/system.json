@@ -265,6 +265,30 @@
         "ASSISTANT": "OWNER"
       },
       "flags": {}
+    },
+    {
+      "name": "kk-rules",
+      "label": "Keeps & Kingdoms",
+      "path": "packs/kk-rules",
+      "type": "JournalEntry",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "kk-monsters",
+      "label": "Keeps & Kingdoms: Monsters",
+      "path": "packs/kk-monsters",
+      "type": "Actor",
+      "system": "arneyan",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -292,6 +316,15 @@
       "packs": [
         "monsters",
         "tables"
+      ]
+    },
+    {
+      "name": "Keeps & Kingdoms",
+      "sorting": "m",
+      "color": "#3a2a17",
+      "packs": [
+        "kk-rules",
+        "kk-monsters"
       ]
     }
   ],

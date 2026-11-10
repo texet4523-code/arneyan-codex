@@ -1,0 +1,560 @@
+{
+ "_id": "gQ8n6fPXfnAcAWjX",
+ "_key": "!actors!gQ8n6fPXfnAcAWjX",
+ "name": "Corpse Herder",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-person.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 7
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 18
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 14
+   }
+  },
+  "level": 5,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 14,
+   "speed": "30ft",
+   "attack": 7,
+   "spellDC": 15,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 3,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (necromancer)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (necromancer)</em></p><p><strong>GM:</strong> A herder never stands at the front. Find it, and the dead stop.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair C</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Bone staff",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "2d6",
+      "type": "necrotic",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "it6VoHwunEoLOn13",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.it6VoHwunEoLOn13",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Chill bolt",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d8",
+    "damageType": "necrotic",
+    "ability": "str",
+    "ranged": true,
+    "range": "120ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "i1MXqWJf9ckbx3Aq",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.i1MXqWJf9ckbx3Aq",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcasting",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>casts as a 5th-level necromancer (spell DC 15). Typical spells: @UUID[Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj]{ray of enfeeblement}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.RFuN2hB1ykt9qLdU]{animate dead}, @UUID[Compendium.arneyan.spells.Item.veQ92CeE0CUbzONh]{vampiric touch}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2UCvoXiExCNDeLZK",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.2UCvoXiExCNDeLZK",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Ray of Enfeeblement",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Range 60ft; one creature. For 1 round per level it has Disadvantage on attack rolls with Str-based attacks and takes -1 per four levels (min -1, max -4) to damage with them; Fortitude negates. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Spellblade, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Spellblade",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "fort",
+    "saveEffect": "Negates",
+    "damage": "",
+    "damageType": "",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Enfeebled",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [],
+      "rules": [
+       {
+        "key": "adv.attack",
+        "value": "-1",
+        "when": "Str-based attacks",
+        "label": ""
+       },
+       {
+        "key": "damage",
+        "value": "-min(4,max(1,floor(@cl/4)))",
+        "when": "Str-based attacks",
+        "label": ""
+       }
+      ]
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj"
+   },
+   "_id": "KKAyQbQeMroLhcQz",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.KKAyQbQeMroLhcQz",
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Darkness",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+   "system": {
+    "description": "<p>Range 60ft; 20ft-radius sphere fixed on a point or object, for 1 round per level. Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included. Cast reversed (Light), it sheds bright light in 20ft radius for the same duration and dispels Darkness of equal or lower level.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 2,
+    "className": "",
+    "classes": [
+     "Cleric",
+     "Wizard",
+     "Illusionist",
+     "Bard",
+     "Sorcerer",
+     "Spellblade",
+     "Warlock"
+    ],
+    "school": "Evocation",
+    "castingTime": "1 action",
+    "range": "Range 60ft",
+    "duration": "",
+    "area": "20ft radius",
+    "components": "V, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": false,
+    "template": {
+     "type": "circle",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP"
+   },
+   "_id": "Lxuiyw1Cz1TC8Dny",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.Lxuiyw1Cz1TC8Dny",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Animate Dead",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Range 10ft. Raises skeletons or zombies from bones or corpses; total HD raised = your level, each with the HD it had in life (max 6 HD each). They obey your spoken commands within 60ft and stay active for 1 hour per level, then fall inert; you control at most 2 × your level in HD at once (oldest go inert first). A Necromancer's raised undead use Undead Mastery and Soul Tax instead; any other caster uses this paragraph. Cast reversed (Rest the Dead): Range 30ft; one undead of Level up to your level is destroyed; Will negates. Material: a black onyx worth 25 sp per HD of each undead raised, consumed.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Cleric",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Range 10ft",
+    "duration": "",
+    "area": "",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "will",
+    "saveEffect": "Negates (Rest the Dead only)",
+    "damage": "",
+    "damageType": "",
+    "reversible": true,
+    "costly": true,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.RFuN2hB1ykt9qLdU"
+   },
+   "_id": "CMLtgCT2toplMC28",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.CMLtgCT2toplMC28",
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Vampiric Touch",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch. Deals 1d6 necrotic damage per two levels (max 5d6). You gain temporary HP equal to the damage dealt for 1 hour; temporary HP do not stack.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 3,
+    "className": "",
+    "classes": [
+     "Wizard",
+     "Warlock",
+     "Necromancer",
+     "Witch"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "(max(1, min(floor(@cl/2), 5)))d6",
+    "damageType": "necrotic",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.veQ92CeE0CUbzONh"
+   },
+   "_id": "AgOo0wp44lRv7Z5d",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.AgOo0wp44lRv7Z5d",
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Get Up",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, when a shambler within 60ft drops, it stands up again at 1 HP, unless the damage was fire or radiant.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "drd03VIvEPdqcAEz",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.drd03VIvEPdqcAEz",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Herd",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>when it dies, every shambler within 60ft falls where it stands.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4cNK0fDjEb2S1hIP",
+   "_key": "!actors.items!gQ8n6fPXfnAcAWjX.4cNK0fDjEb2S1hIP",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "F1Os46NBTL1G3JKF",
+ "prototypeToken": {
+  "name": "Corpse Herder",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-person.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

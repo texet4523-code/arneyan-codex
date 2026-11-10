@@ -1,0 +1,246 @@
+{
+ "_id": "X9Psjeorb05DccUH",
+ "_key": "!actors!X9Psjeorb05DccUH",
+ "name": "Hobgoblin War Captain",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 20
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 16
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 18
+   }
+  },
+  "level": 9,
+  "hd": "8d10",
+  "attributes": {
+   "hp": {
+    "value": 44,
+    "max": 44,
+    "temp": 0
+   },
+   "ac": 19,
+   "speed": "30ft",
+   "attack": 11,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 6,
+   "ref": 5,
+   "will": 5
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (goblinoid)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (goblinoid)</em></p><p><strong>GM:</strong> A war captain retreats in good order rather than die for nothing, and comes back with more.</p><p><strong>Leader</strong> (Keeps &amp; Kingdoms): a boss who fights with a crew. Its Command works once per round, out of turn, straight after one of its allies' turns. Kill it, and its crew checks Morale at once.</p>",
+   "treasure": "<p>Treasure type <strong>S, lair E</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Longsword ×2",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+5",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "2 attacks",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "xPEBTXT3dZV5dGSB",
+   "_key": "!actors.items!X9Psjeorb05DccUH.xPEBTXT3dZV5dGSB",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "War Banner",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>hobgoblins within 60ft that can see it roll Morale checks with Advantage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "kEaqA2K3y55m9TXI",
+   "_key": "!actors.items!X9Psjeorb05DccUH.kEaqA2K3y55m9TXI",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Command, Drilled Orders",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>once per round, out of turn, after an ally's turn, choose one: up to three hobgoblins each move 10ft; or one hobgoblin attacks.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "WQ9Mcnz9EmFiJs1R",
+   "_key": "!actors.items!X9Psjeorb05DccUH.WQ9Mcnz9EmFiJs1R",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rally (once per day)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>in place of its attacks, up to four fallen legionnaires within 30ft stand up again, at 1 HP, as minions.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "dcQdcfLdWZ9NC0rI",
+   "_key": "!actors.items!X9Psjeorb05DccUH.dcQdcfLdWZ9NC0rI",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "x04hOc4nnvFKT5Wz",
+ "prototypeToken": {
+  "name": "Hobgoblin War Captain",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-goblin-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,127 @@
+{
+ "_id": "1YFNnPwtHqVxaOBU",
+ "_key": "!journal!1YFNnPwtHqVxaOBU",
+ "name": "Chapter 2: Followers",
+ "pages": [
+  {
+   "_id": "mWrhhclPv5EcJg8B",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.mWrhhclPv5EcJg8B",
+   "name": "Getting followers",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Where from:</strong> each class has a d100 follower table (Strongholds by Class). It mixes units, retainers, artisans, ambassadors and the odd special ally, and isn't limited to that class's own retainers.</li><li><strong>When you roll:</strong> when your stronghold is finished, at each upgrade, and each time you gain a Level while you hold it. That's roughly one roll per adventure.<ul><li>The GM may roll in secret and pick, or simply award a follower for a great deed, stronghold or not.</li></ul></li><li><strong>Multiclass:</strong> a multiclass character picks which class table to roll on each time.</li></ul>"
+   },
+   "sort": 100000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "wOQtM8zr9D1LNP3b",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.wOQtM8zr9D1LNP3b",
+   "name": "Retainers",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>What they are:</strong> retainers are henchmen (Handbook, Hiring) who came to you.</li><li><strong>TAC's henchman rules apply:</strong><ul><li>They start at least one Level below you.</li><li>They gain Levels from party XP, never above yours.</li><li>They take half a share of treasure.</li><li>They have a Loyalty score and make Loyalty checks.</li></ul></li><li><strong>Starting Loyalty:</strong> your Charisma modifier + 2, because they sought you out.</li><li><strong>Control:</strong> they obey. They don't take the lead or the spotlight.</li><li><strong>Lieutenant:</strong><ul><li>One retainer, or a Captain artisan, can run the stronghold while you're away.</li><li>If your character dies, a lieutenant can become your new character.</li></ul></li><li><strong>Retainer frame:</strong> a retainer is a simplified character. A martial retainer has a weapon signature attack; a caster's is a cantrip.</li></ul><table class=\"arn-table\"><thead><tr><th>Stat</th><th>Rule</th></tr></thead><tbody><tr><td>Health</td><td>One health level per 2 Levels (minimum 2). No HP</td></tr><tr><td>When hit</td><td>Fortitude save, DC = the attack's average damage. Success: nothing. Failure: lose 1 health level per damage die</td></tr><tr><td>Spells</td><td>It saves as normal. Success: lose half the spell's level (round down). Failure: lose the spell's level</td></tr><tr><td>Down</td><td>At 0 health levels it's dying (Handbook, Death &amp; Dying)</td></tr><tr><td>Healing</td><td>+1 health level per die of healing; all back on a full rest</td></tr><tr><td>AC</td><td>By the armour it wears</td></tr><tr><td>Attack</td><td>Level + 3. One signature attack a round; from Level 7, a second one at Disadvantage</td></tr><tr><td>Saves</td><td>Half Level + 3 on its two listed saves, half Level + 1 on the third</td></tr><tr><td>DC</td><td>10 + half Level + 3</td></tr><tr><td>Skills</td><td>+3 on its listed skills, +0 otherwise</td></tr><tr><td>Special actions</td><td>One at Level 3 (once per encounter), one at 7 (once per day), one at 11 (once per day)</td></tr></tbody></table><ul><li><strong>Fighting together:</strong><ul><li><strong>The default:</strong> on your turn, if you hit an enemy (a damaging spell or one with a save counts), your retainer's signature attack hits too, against a target of your choice in its reach or range.</li><li><strong>If you miss or don't attack:</strong> it rolls its own attack.</li><li><strong>Either way:</strong> it moves and acts on your turn.</li></ul></li><li><strong>Kit:</strong> it starts with a starting character's kit for its class. Items you give it work normally, but it shouldn't outshine you.</li><li><strong>The retainers themselves:</strong> each class's retainers (the Reaver, Curate, Tracker, Evoker, Cutpurse and more) are given in Strongholds by Class, in this frame.</li></ul>"
+   },
+   "sort": 200000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "ZFc5R7W9vFvS3yhm",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.ZFc5R7W9vFvS3yhm",
+   "name": "Artisans",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>What they are:</strong> specialists who stay on after the build, or locals you helped.</li><li><strong>Their shop:</strong><ul><li>Each one sets up a shop at 1st level for free. It goes up to 5th.</li><li>Upgrades cost 100, 150, 200 and 250 gp, and each takes a season. Paying more doesn't make it faster.</li></ul></li></ul><table class=\"arn-table\"><thead><tr><th>Artisan</th><th>Shop</th><th>Effect</th></tr></thead><tbody><tr><td>Alchemist</td><td>Laboratory</td><td>Potions you make cost and take 10% less per shop level. Harvests eyes and brains (below)</td></tr><tr><td>Blacksmith</td><td>Smithy</td><td>Magic arms and armour you make cost and take 10% less per level. Quenches slaying weapons (below)</td></tr><tr><td>Scribe</td><td>Scriptorium</td><td>Scrolls you make cost and take 10% less per level, if the caster spends an hour with them. Also translation and diplomatic letters</td></tr><tr><td>Captain</td><td>Barracks</td><td>One unit per barracks level fights one step more experienced in a battle (you choose at the start; Warfare). Can be your lieutenant. Brings no troops</td></tr><tr><td>Carpenter</td><td>Woodshop</td><td>Siege engines cost 10% less per level, to build and keep. Stronghold upgrades take 10% less time per level</td></tr><tr><td>Mason</td><td>Quarry</td><td>Free repairs after a siege, worth 25 gp × level a week. Upgrades take 10% less time per level (with the carpenter, 50% at most)</td></tr><tr><td>Farmer</td><td>Market</td><td>+10 gp a season</td></tr><tr><td>Miner</td><td>Mine</td><td>+50 gp a season. One unit per mine level gets one step better gear (light to medium to heavy)</td></tr><tr><td>Sage</td><td>Library</td><td>A week's research on one kind of creature: your next attack against it has Advantage, or ignores its Resistance, or its next save against you has Disadvantage. Uses equal library level per Extended Rest</td></tr><tr><td>Spy</td><td>Network</td><td>Enemy spies' checks against you are harder (DC +3 + network level). You may shift any follower roll by up to 3 + network level</td></tr><tr><td>Tailor</td><td>Tailor's Shop</td><td>Treat the d20 on one Charisma check as a 12. Uses equal shop level per Extended Rest</td></tr></tbody></table><p><strong>Monster harvests (Alchemist, Blacksmith, Scribe)</strong></p><ul><li><strong>The rules:</strong> the Handbook's Making Magic Items rules still apply (who can make it, checks, Special Materials). The artisan only cuts the time and gold.</li><li><strong>Timing:</strong> harvest within minutes of the kill, one try per body.</li><li><strong>The checks:</strong> Hard Spellcraft to find the organ, then Healing or First Aid to take it: Moderate for a creature of Level 1 to 5, Hard for Level 6 to 12, Severe for Level 13+.</li><li><strong>Range:</strong> each item works only against <strong>that exact kind</strong> of creature. A black dragon's eyes work on black dragons only.</li></ul><table class=\"arn-table\"><thead><tr><th>Organ</th><th>Makes</th><th>Artisan</th></tr></thead><tbody><tr><td>Eyes</td><td>Potion of invisibility to that creature (Uncommon)</td><td>Alchemist</td></tr><tr><td>Brain</td><td>Potion of control over that creature (Rare; as Dominate Monster, 1 hour)</td><td>Alchemist</td></tr><tr><td>Heart</td><td>Scroll of protection from that creature (Uncommon)</td><td>Scribe</td></tr><tr><td>Blood</td><td>Arrows of slaying for that creature: 1d6 arrows (Level 1 to 5), 1d4 (6 to 9), 2 (10 to 14), 1 (15+)</td><td>Blacksmith</td></tr><tr><td>Blood</td><td>A slaying weapon: a slashing weapon quenched in the blood deals +2d6 damage to that creature. It takes a name</td><td>Blacksmith</td></tr></tbody></table>"
+   },
+   "sort": 300000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "eRG1ktJKaxaurhwk",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.eRG1ktJKaxaurhwk",
+   "name": "Ambassadors",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>What they are:</strong> each ambassador speaks for one people or polity (a particular orc clan, not all orcs).</li><li><strong>What they give:</strong> you can raise or buy units of that people (Warfare) as if they were friendly.</li><li><strong>What they aren't:</strong> a reward, not a spy. Any falling-out comes from play.</li></ul>"
+   },
+   "sort": 400000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "ZQrER5L9rrDopsZv",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.ZQrER5L9rrDopsZv",
+   "name": "Special allies",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>What they are:</strong> powerful beings (a couatl, a young metallic dragon, a ki-rin) who approve of you.</li><li><strong>What they do:</strong> they can't be ordered and won't always come, but they offer favours and quests.</li><li><strong>Tables:</strong> each class table points to them, and Strongholds by Class gives the d20 tables by Outlook.</li></ul>"
+   },
+   "sort": 500000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  },
+  {
+   "_id": "D7396UllSD5sVp0L",
+   "_key": "!journal.pages!1YFNnPwtHqVxaOBU.D7396UllSD5sVp0L",
+   "name": "With the Handbook",
+   "type": "text",
+   "title": {
+    "show": true,
+    "level": 1
+   },
+   "text": {
+    "format": 1,
+    "content": "<ul><li><strong>Knight, Call-to-Arms (10th):</strong> \"establishing a stronghold\" means holding a keep, or a castle with a keep, under these rules. Its followers and their pay are unchanged.</li><li><strong>Knight, Battle Lord (20th):</strong> works in Warfare.</li><li><strong>Barbarian Warlord, Cleric Holy Campaign:</strong> these armies become units in Warfare.</li><li><strong>Downtime:</strong> an Extended Rest is a downtime week. Learning, crafting and training run as the Handbook says, and a stronghold's artisans only cut the cost.</li><li><strong>Divine Favour:</strong> used for petitions as it stands.</li></ul>"
+   },
+   "sort": 600000,
+   "ownership": {
+    "default": -1
+   },
+   "flags": {}
+  }
+ ],
+ "folder": null,
+ "sort": 200,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

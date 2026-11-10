@@ -1,0 +1,332 @@
+{
+ "_id": "NpI5lx8NElBMSxh0",
+ "_key": "!actors!NpI5lx8NElBMSxh0",
+ "name": "Dragonet",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 5
+   },
+   "dex": {
+    "value": 16
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 16
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 14
+   }
+  },
+  "level": 1,
+  "hd": "4d6",
+  "attributes": {
+   "hp": {
+    "value": 14,
+    "max": 14,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "10ft, fly 30ft, swim 20ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 6
+  },
+  "saves": {
+   "fort": 1,
+   "ref": 2,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "dragon (support)",
+   "size": "tiny",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d3",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Tiny dragon (support)</em></p><p><strong>GM:</strong> A dragonet who likes a spellcaster may follow them as a familiar, at the GM's call.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Claw",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d4+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mKJc2rGqByJudVcg",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.mKJc2rGqByJudVcg",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Magic Sense",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>it has Advantage on checks to learn about a magical effect or object it can see, and knows when it is the target of divination.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "NYkyelz0Utc9T7FO",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.NYkyelz0Utc9T7FO",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "True Words",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>it knows when a creature speaking Draconic lies to it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "wq62B5Q90aYpND9P",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.wq62B5Q90aYpND9P",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Revealing Breath (once per day)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>a 15ft cone of glittering light. Every object in it glows for 1 minute, and each creature in it makes a @Check[ref|dc:12]{Reflex save DC 12} or glows too. Attacks against a glowing creature have Advantage, it can't be @Condition[invisible]{Invisible}, and the dragonet learns whether a glowing thing is magical and of what school.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gJGyk33WjtEPgrKT",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.gJGyk33WjtEPgrKT",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Truesight (once per day)",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
+   "system": {
+    "description": "<p>for 1 minute it has truesight to 60ft.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "p19Q1ynRnBrZIIWB",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.p19Q1ynRnBrZIIWB",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Spellcraft",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-brain.svg",
+   "system": {
+    "description": "<p>Identifying a spell being cast or a magical effect</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "ability": "int",
+    "tier": "trained"
+   },
+   "effects": [],
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
+   },
+   "_id": "H4PpWrwcfrtTXELx",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.H4PpWrwcfrtTXELx",
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "YiZvwvNsvCqId68Q",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.YiZvwvNsvCqId68Q",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "wRrl0XGBtJY3rHb1",
+ "prototypeToken": {
+  "name": "Dragonet",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-dragon-head.svg"
+  },
+  "actorLink": false,
+  "width": 0.5,
+  "height": 0.5,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

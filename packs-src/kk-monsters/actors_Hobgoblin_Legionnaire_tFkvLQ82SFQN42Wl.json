@@ -1,0 +1,211 @@
+{
+ "_id": "tFkvLQ82SFQN42Wl",
+ "_key": "!actors!tFkvLQ82SFQN42Wl",
+ "name": "Hobgoblin Legionnaire",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 14
+   },
+   "dex": {
+    "value": 14
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 10
+   },
+   "cha": {
+    "value": 7
+   }
+  },
+  "level": 3,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 1,
+    "max": 1,
+    "temp": 0
+   },
+   "minion": true,
+   "ac": 18,
+   "speed": "30ft",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (goblinoid, soldier)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "2d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (goblinoid, soldier)</em></p><p><strong>Minion</strong> (Keeps &amp; Kingdoms): 1 HP, its attacks and Level as the block; any damage drops it. Minions of a kind share a turn, attack and save in groups of up to five, and check Morale as one.</p>",
+   "treasure": "<p>Treasure type <strong>Q</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Longsword",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+1",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "FMbInuwLjWgzytAl",
+   "_key": "!actors.items!tFkvLQ82SFQN42Wl.FMbInuwLjWgzytAl",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Longbow",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "150/600ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Nfia0Iw4XTvcWXii",
+   "_key": "!actors.items!tFkvLQ82SFQN42Wl.Nfia0Iw4XTvcWXii",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Phalanx",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-goblin-head.svg",
+   "system": {
+    "description": "<p>its attacks have Advantage against a creature next to two or more legionnaires.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9NSHXw3Jx1NbXWMP",
+   "_key": "!actors.items!tFkvLQ82SFQN42Wl.9NSHXw3Jx1NbXWMP",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "x04hOc4nnvFKT5Wz",
+ "prototypeToken": {
+  "name": "Hobgoblin Legionnaire",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-goblin-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

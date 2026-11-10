@@ -583,7 +583,9 @@ OBJECT_FORMS = ["teapot", "stone-block", "wooden-chair", "book-cover", "barrel",
 CLASS_SLOTS = {}
 
 
-def build():
+def build(pack="monsters", entries=None):
+    """The Bestiary from M&T's sources; or, given `entries` ([monster dicts as load() makes]), those into `pack`
+    (Keeps & Kingdoms' creatures, R-F28)."""
     for f in glob.glob(os.path.join(OUT, "classes", "items_*.json")):
         d = json.load(open(f))
         if d["system"].get("slotTable"):
@@ -597,15 +599,19 @@ def build():
     before = json.load(open(os.path.join(os.path.dirname(__file__), "data", "monster_saves_0102.json")))
     groups = {}
     count = 0
-    for i, fn in enumerate(FILES):
-        for m in load(os.path.join(SRC, fn + ".txt")):
+    if entries is None:
+        entries = [m for fn in FILES for m in load(os.path.join(SRC, fn + ".txt"))]
+    for m in [m for m in entries]:
+        if True:
             g = m["group"]
             if g not in groups:
-                groups[g] = folder("monsters", g, type_="Actor", sort=len(groups) * 10, color="#2a1414")
+                groups[g] = folder(pack, g, type_="Actor", sort=len(groups) * 10, color="#2a1414")
             f = m["f"]
             cl = m["cl"]
             solo = "solo" in cl
-            lv = cl.replace("solo", "").strip()
+            # Keeps & Kingdoms: "1 minion", "4 leader", "5 support": a role after the Level (R-F28, K101).
+            role = (re.search(r"\b(minion|leader|support)\b", cl) or [None, ""])[1]
+            lv = re.sub(r"\b(solo|minion|leader|support)\b", "", cl).strip()
             level_text = lv if lv in ("¼", "½", "Mythic") else ""
             level = {"¼": 0, "½": 0, "Mythic": 25}.get(lv, None)
             if level is None:
@@ -688,6 +694,12 @@ def build():
             desc = f"<p><em>{html.escape(m['type'])}</em></p>"
             if m["gm"]:
                 desc += f"<p><strong>GM:</strong> {enrich(m['gm'])}</p>"
+            if role == "minion":
+                desc += ("<p><strong>Minion</strong> (Keeps &amp; Kingdoms): 1 HP, its attacks and Level as the block; any damage drops "
+                         "it. Minions of a kind share a turn, attack and save in groups of up to five, and check Morale as one.</p>")
+            elif role == "leader":
+                desc += ("<p><strong>Leader</strong> (Keeps &amp; Kingdoms): a boss who fights with a crew. Its Command works once per "
+                         "round, out of turn, straight after one of its allies' turns. Kill it, and its crew checks Morale at once.</p>")
             if solo:
                 # Books v0.10.40 (K47): no Legendary Resistance; the system gives the second turn, Shaking it off and
                 # Bloodied (solo.mjs). Fight-ending effects are the GM's.
@@ -704,7 +716,7 @@ def build():
             system = {
                 "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),
-                "attributes": {"hp": {"value": hp, "max": hp, "temp": 0}, "ac": ac, "speed": f.get("mv", ""), "attack": first, "spellDC": max(dcs) if dcs else 0,
+                "attributes": {"hp": {"value": hp, "max": hp, "temp": 0}, **({"minion": True} if role == "minion" else {}), "ac": ac, "speed": f.get("mv", ""), "attack": first, "spellDC": max(dcs) if dcs else 0,
                                "morale": int(re.match(r"-?\d+", f.get("mor", "0")).group(0)) if re.match(r"-?\d+", f.get("mor", "0")) else 0},
                 "saves": saves, "spellcasting": spellcasting,
                 "details": {
@@ -724,6 +736,8 @@ def build():
             # take the new ones (migrate.mjs) while one the GM edited keeps its own.
             was = OLD_NAMES.get(m["name"], m["name"])
             flags = {"arneyan": {"savesBefore": dict(zip(("fort", "ref", "will"), before[was]))}} if was in before else None
-            actor("monsters", m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto, flags=flags, _id=KEEP_IDS.get(m["name"]), seed=was)
+            if pack != "monsters":
+                flags = None
+            actor(pack, m["name"], "npc", system, img, items=items, folder=groups[g], prototype=proto, flags=flags, _id=KEEP_IDS.get(m["name"]), seed=was)
             count += 1
     return count

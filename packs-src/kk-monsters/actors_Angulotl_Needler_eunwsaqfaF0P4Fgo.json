@@ -1,0 +1,350 @@
+{
+ "_id": "eunwsaqfaF0P4Fgo",
+ "_key": "!actors!eunwsaqfaF0P4Fgo",
+ "name": "Angulotl Needler",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-person.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 20
+   },
+   "con": {
+    "value": 14
+   },
+   "int": {
+    "value": 10
+   },
+   "wis": {
+    "value": 16
+   },
+   "cha": {
+    "value": 10
+   }
+  },
+  "level": 5,
+  "hd": "5d8",
+  "attributes": {
+   "hp": {
+    "value": 22,
+    "max": 22,
+    "temp": 0
+   },
+   "ac": 15,
+   "speed": "20ft, climb 20ft, swim 30ft",
+   "attack": 7,
+   "spellDC": 0,
+   "morale": 7
+  },
+  "saves": {
+   "fort": 3,
+   "ref": 6,
+   "will": 4
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (ambusher)",
+   "size": "small",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Small humanoid (ambusher)</em></p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Poisoned shortsword",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+4",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [
+     {
+      "formula": "2d6",
+      "type": "poison",
+      "when": ""
+     }
+    ],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7wknV9XrRuM7cTib",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.7wknV9XrRuM7cTib",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Blowgun",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": true,
+    "range": "25/100ft",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "and Fortitude save DC 16: on a failure the target is Poisoned and takes 2d6 poison damage at the start of each of its turns until it saves at the end of one",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "6qvG9XjeCqZnvoB2",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.6qvG9XjeCqZnvoB2",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Sniper",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>if it misses while Hidden, it stays Hidden.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "2QxpU0w6RozuMeYq",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.2QxpU0w6RozuMeYq",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Hop and Hide",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>after it attacks, it can leap up to 20ft and hide, if there is cover to hide in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZghuIVtMBlO259tq",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.ZghuIVtMBlO259tq",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Amphibious",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>breathes air and water.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "p1McoskzXqTjC19t",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.p1McoskzXqTjC19t",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Toxic Skin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-person.svg",
+   "system": {
+    "description": "<p>a creature that touches it, or hits it with a melee attack from next to it, takes @Damage[1d4 poison]{1d4 poison damage}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "1d4",
+    "damageType": "poison",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1pqppOsbrEvqAIHQ",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.1pqppOsbrEvqAIHQ",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "master"
+   },
+   "_id": "W693Z1Y4NgiFI2hx",
+   "_key": "!actors.items!eunwsaqfaF0P4Fgo.W693Z1Y4NgiFI2hx",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "QuWN9rht7QGY4fXJ",
+ "prototypeToken": {
+  "name": "Angulotl Needler",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-person.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

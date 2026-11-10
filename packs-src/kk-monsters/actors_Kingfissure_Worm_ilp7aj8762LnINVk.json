@@ -1,0 +1,444 @@
+{
+ "_id": "ilp7aj8762LnINVk",
+ "_key": "!actors!ilp7aj8762LnINVk",
+ "name": "Kingfissure Worm",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 28
+   },
+   "dex": {
+    "value": 7
+   },
+   "con": {
+    "value": 24
+   },
+   "int": {
+    "value": 2
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 3
+   }
+  },
+  "level": 15,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 375,
+    "max": 375,
+    "temp": 0
+   },
+   "ac": 20,
+   "speed": "60ft, burrow 50ft",
+   "attack": 17,
+   "spellDC": 0,
+   "morale": 10
+  },
+  "saves": {
+   "fort": 13,
+   "ref": 6,
+   "will": 8
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "monstrosity",
+   "size": "gargantuan",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": true,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> A kingfissure worm leaves when it's Bloodied and has eaten. It has no reason to die for a meal.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "treasure": "<p>Treasure type <strong>lair D (in its gut)</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Tongue ×3",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d6",
+    "damageType": "acid",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "3 attacks, and the target is held, escape is a check contested by its Strength",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "opi0oLre340oV2fx",
+   "_key": "!actors.items!ilp7aj8762LnINVk.opi0oLre340oV2fx",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Bite",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "3d10+6",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "rAIOoGiGws9nHtsS",
+   "_key": "!actors.items!ilp7aj8762LnINVk.rAIOoGiGws9nHtsS",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tunneller",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>it burrows through rock at half speed, leaving a 10ft tunnel behind.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "vl07XjBCpbil58Wm",
+   "_key": "!actors.items!ilp7aj8762LnINVk.vl07XjBCpbil58Wm",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Three Tongues",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>a tongue holding a creature can be attacked (AC 20). One that takes 25 damage in one turn is torn off, freeing what it held; the worm has one fewer tongue attack until it next rests. Bloodied doesn't regrow them.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ai48hpf15gEvocnt",
+   "_key": "!actors.items!ilp7aj8762LnINVk.ai48hpf15gEvocnt",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Swallow",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>in place of its bite, it swallows one creature its tongues hold, Huge or smaller. A swallowed creature is @Condition[blinded]{Blinded} and @Condition[restrained]{Restrained} and takes @Damage[6d6 acid]{6d6 acid damage} at the start of each of the worm's first turns. 30 damage from inside in one turn makes the worm spit out everything it has swallowed, @Condition[prone]{Prone}, next to it.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "6d6",
+    "damageType": "acid",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "eRhO2rNPs5ZHPFmq",
+   "_key": "!actors.items!ilp7aj8762LnINVk.eRhO2rNPs5ZHPFmq",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Tongue Sweep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "system": {
+    "description": "<p>in place of one tongue attack, it swings a creature it holds. That creature and each other creature within 10ft of it make a @Check[ref|dc:23]{Reflex save DC 23}, taking @Damage[3d6 bludgeoning]{3d6 bludgeoning damage} on a failure or half on a success.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 23,
+    "damage": "3d6",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "iRlVPWekgl3hwHhq",
+   "_key": "!actors.items!ilp7aj8762LnINVk.iRlVPWekgl3hwHhq",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Eruption",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1
+    }
+   },
+   "system": {
+    "description": "<p>It bursts up from the ground under a point within 60ft. Each creature within 15ft makes a @Check[ref|dc:23]{Reflex save DC 23}: on a failure it takes @Damage[2d6 bludgeoning]{2d6 bludgeoning damage} and falls @Condition[prone]{Prone}. The area becomes rubble, difficult ground.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 23,
+    "damage": "2d6",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZNBKCCQnFrwMhFwC",
+   "_key": "!actors.items!ilp7aj8762LnINVk.ZNBKCCQnFrwMhFwC",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Quake",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2
+    }
+   },
+   "system": {
+    "description": "<p>Each creature on the ground within 60ft makes a @Check[ref|dc:23]{Reflex save DC 23}. On a failure it takes @Damage[4d6 bludgeoning]{4d6 bludgeoning damage}, falls @Condition[prone]{Prone} and can't stand until the end of its next turn; on a success, half damage.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 23,
+    "damage": "4d6",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "zHGLFFiR46KEo7aU",
+   "_key": "!actors.items!ilp7aj8762LnINVk.zHGLFFiR46KEo7aU",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Feeding Frenzy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-worm-mouth.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3
+    }
+   },
+   "system": {
+    "description": "<p>It makes three tongue attacks, then swallows every creature it holds.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ylL3kLIsDn4qVJIF",
+   "_key": "!actors.items!ilp7aj8762LnINVk.ylL3kLIsDn4qVJIF",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "UeelkWIRvY2Nby3d",
+ "prototypeToken": {
+  "name": "Kingfissure Worm",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-worm-mouth.svg"
+  },
+  "actorLink": false,
+  "width": 4,
+  "height": 4,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

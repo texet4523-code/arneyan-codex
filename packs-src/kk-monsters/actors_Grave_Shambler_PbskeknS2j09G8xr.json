@@ -1,0 +1,210 @@
+{
+ "_id": "PbskeknS2j09G8xr",
+ "_key": "!actors!PbskeknS2j09G8xr",
+ "name": "Grave Shambler",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 14
+   },
+   "dex": {
+    "value": 5
+   },
+   "con": {
+    "value": 16
+   },
+   "int": {
+    "value": 2
+   },
+   "wis": {
+    "value": 5
+   },
+   "cha": {
+    "value": 3
+   }
+  },
+  "level": 1,
+  "hd": "—",
+  "attributes": {
+   "hp": {
+    "value": 1,
+    "max": 1,
+    "temp": 0
+   },
+   "minion": true,
+   "ac": 11,
+   "speed": "20ft",
+   "attack": 3,
+   "spellDC": 0,
+   "morale": 0
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 1,
+   "will": 1
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "undead",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "4d6",
+   "resistances": "",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "Darkvision 60ft",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium undead</em></p><p><strong>Minion</strong> (Keeps &amp; Kingdoms): 1 HP, its attacks and Level as the block; any damage drops it. Minions of a kind share a turn, attack and save in groups of up to five, and check Morale as one.</p>",
+   "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Slam",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+1",
+    "damageType": "bludgeoning",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7a7c3hXANf99lDpL",
+   "_key": "!actors.items!PbskeknS2j09G8xr.7a7c3hXANf99lDpL",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Grasping Mass",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>a creature next to three or more shamblers at the start of its turn makes a @Check[ref|dc:12]{Reflex save DC 12} or is @Condition[restrained]{Restrained} until the start of its next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "ref",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "qh9ly1m6ZZ9ENu6K",
+   "_key": "!actors.items!PbskeknS2j09G8xr.qh9ly1m6ZZ9ENu6K",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mindless",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "system": {
+    "description": "<p>it never checks Morale and can't be @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cGkuzllT7KPWauKS",
+   "_key": "!actors.items!PbskeknS2j09G8xr.cGkuzllT7KPWauKS",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "F1Os46NBTL1G3JKF",
+ "prototypeToken": {
+  "name": "Grave Shambler",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-skeleton.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 60,
+   "visionMode": "darkvision"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}
