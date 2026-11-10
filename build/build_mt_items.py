@@ -45,6 +45,8 @@ NOTE = {"named": "Monsters &amp; Treasure, Named Uniques.", "common": "Monsters 
 # Common items small enough to bundle 5 to a slot.
 SMALL = re.compile(r"\b(Bead|Candle|Die|Key|Arrow|Ammunition|Ruby|Eye)\b")
 NEVER_SOLD = "Unique (never for sale)"
+# Renamed items keep their ids: new name -> the name the id was made from (M&T v0.10.66, L80).
+RENAMED = {"Orbs of Dragonkind": "Orb of Dragonkind"}
 # What a cursed item passes for, where the Catalogue names it differently.
 SEEMS = {"spellbook": "Spellbook, blank"}
 # M&T Enchanted Arms and Armour: the value of a plain +N (what a cursed weapon or shield passes for).
@@ -213,7 +215,7 @@ def build(by_name, pack):
                 + "</p>")
         img = icon("unique", UNIQUE_GLYPH.get(name) or ("crossed-swords" if kind == "weapon" else glyph(kind, name, paren)))
         ch = charges_of(power) if not kind else None
-        _id, doc = doc_for(f"unique|{name}", name, desc, kind, base, plus, by_name, folders["named"], img, NEVER_SOLD,
+        _id, doc = doc_for(f"unique|{RENAMED.get(name, name)}", name, desc, kind, base, plus, by_name, folders["named"], img, NEVER_SOLD,
                            slots=slots, extra=damage_extras(power) if kind == "weapon" else None,
                            more={"charges": {**ch, "crumble": False}} if ch else None)
         # Its own damage ("Only a Large or larger creature can wield it: 3d12 slashing, +1d6 cold": Gurt's Greataxe).
@@ -238,7 +240,7 @@ def build(by_name, pack):
             desc += f"<p><strong>{parts[k]}:</strong> {p(parts[k + 1].strip())}</p>"
         desc += f"<p class=\"arn-note\">{NOTE['artefact']} Its save DC is 20 unless the entry says otherwise.</p>"
         ch = charges_of(parts[0]) if not kind else None
-        _id, doc = doc_for(f"artefact|{name}", name, desc, kind, base, plus, by_name, folders["artefact"],
+        _id, doc = doc_for(f"artefact|{RENAMED.get(name, name)}", name, desc, kind, base, plus, by_name, folders["artefact"],
                            icon("unique", glyph(kind, name, paren)), NEVER_SOLD,
                            extra=damage_extras(parts[0]) if kind == "weapon" else None,
                            more={"charges": {**ch, "crumble": False}} if ch else None,
@@ -263,7 +265,7 @@ def build(by_name, pack):
                 + (f" Its bonus is +{bonus['dormant']} Dormant, +{bonus['awakened']} Awakened and +{bonus['exalted']} Exalted: raise it on the item when it wakes."
                    if kind and bonus["exalted"] != bonus["dormant"] else "") + "</p>")
         extra = damage_extras(states.get("Dormant", "")) if kind == "weapon" else None
-        _id, doc = doc_for(f"growing|{name}", name, desc, kind, base, plus, by_name, folders["growing"],
+        _id, doc = doc_for(f"growing|{RENAMED.get(name, name)}", name, desc, kind, base, plus, by_name, folders["growing"],
                            icon("unique", glyph(kind, name, paren)), NEVER_SOLD, extra=extra, flags={"growing": bonus} if kind else None)
         save(pack, name, _id, doc)
         made += 1
@@ -282,7 +284,7 @@ def build(by_name, pack):
             kind, base = "weapon", "Sword, Long"
             more.update({"toggle": True, "modeLabel": "In darkness", "modeLight": 15})
         desc = f"<p><em>Common magic item.</em> {p(text[:1].upper() + text[1:])}</p><p class=\"arn-note\">{NOTE['common']} {html.escape(price)}.</p>"
-        _id, doc = doc_for(f"common|{name}", name, desc, kind, base, plus, by_name, folders["common"],
+        _id, doc = doc_for(f"common|{RENAMED.get(name, name)}", name, desc, kind, base, plus, by_name, folders["common"],
                            icon("weapon", base) if kind else icon("magic", name), price, more=more)
         save(pack, name, _id, doc)
         made += 1
@@ -307,7 +309,7 @@ def build(by_name, pack):
                 f"<p class=\"arn-note\">{NOTE['cursed']} Identify shows only what it seems; once the curse shows, it can't be put down "
                 "or taken off until Remove Curse frees the user, and the item stays cursed. Valued as the item it imitates. "
                 "Save DC 15 unless the entry says otherwise.</p>")
-        _id, doc = doc_for(f"cursed|{name}", name, desc, kind, base, plus, by_name, folders["cursed"],
+        _id, doc = doc_for(f"cursed|{RENAMED.get(name, name)}", name, desc, kind, base, plus, by_name, folders["cursed"],
                            looks[1]["img"] if looks else (icon("weapon", base) if kind == "weapon" else icon("shield" if "Shield" in (base or "") else "armour", base)
                                                           if kind else icon("magic", seems)), price,
                            more={"identified": False, "unidentifiedName": shown, "unidentifiedDescription": undesc})

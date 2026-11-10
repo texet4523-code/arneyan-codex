@@ -94,7 +94,7 @@ const entropy = mon("Ygorl, Slaad Lord").items.find(i => i.name === "Entropy");
 assert.ok(entropy.system.description.includes("deals only its weapon die, with no attribute modifier, until mended"));
 assert.ok(!/−1|-1 damage/.test(entropy.system.description), "no flat −1");
 assert.ok(mon("Bheur Hag").items.some(i => i.type === "skill" && /Nature/.test(i.name)), "the Bheur Hag's Nature");
-assert.match(mon("Gazer").system.details.treasure, /<strong>-<\/strong>/, "no treasure reads as -");
+assert.match(mon("Gazer").system.details.treasure, /<strong>(-|N)<\/strong>/, "no treasure (N since M&T v0.10.65)");
 
 // Book II: legendary magic includes "an artefact" (K113).
 const b2 = read("rules").find(d => d.name === "Book II: Character Creation") ?? read("rules").find(d => /Book II/.test(d.name));
