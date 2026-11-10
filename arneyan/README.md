@@ -1,6 +1,26 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.100 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.101 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.101
+
+Keeps & Kingdoms v0.5.1 and books HB v0.10.65 and M&T v0.10.66 (R-F28, B-F57, B-F58; K117 to K120).
+
+- **Keeps & Kingdoms,** the companion book for strongholds, followers, warfare, domains and intrigue, now has a compendium folder of its own with two compendiums:
+  - **Keeps & Kingdoms:** its six chapters as read-only journals, a page per section, to read and run by hand. Nothing about strongholds, units or intrigue is automated.
+  - **Keeps & Kingdoms: Monsters:** Chapter 6's 19 creatures as actors. These are the angulotls, the dragonet, the kingfissure worm, the lightbender, the goblin, kobold, orc and hobgoblin war bands, the gnolls of Yeenoghu and the restless dead.
+    - The seven minions have the Minion box ticked.
+    - The goblin warlord, orc warchief and hobgoblin war captain are leaders, with their Command.
+    - The kingfissure worm is a solo with three villain actions and its opener damage.
+- **Two openers soften (K118):** the Elder Orb's The Orb Wakes and the Githzerai Anarch's Stilled Mind keep their area, but a failed save now leaves a creature Slowed until the end of its next turn, not Stunned.
+- **Monsters & Treasure lore (L80):**
+  - The Orb of Dragonkind is now the **Orbs of Dragonkind**, one for each draconic lineage (the same item in your world).
+  - New GM and ability text for the gith, the Flind, the Witherling, the Frost Giant Everlasting One (Troll God's Rage) and the gem dragon wyrmlings.
+- **Handbook text:**
+  - Sentences that were bold all through now bold only their label.
+  - The class Renown lines point to the Codex's p. 4.
+  - The Spellblade's 15th-level **Intelligence Bonus** (+1 Intelligence) is now a class feature, as the other classes' attribute bonuses are.
+- **No treasure** reads N on the Gazer, Maw Demon and Witherling.
 
 ## What's new in 0.10.100
 
