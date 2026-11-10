@@ -6,18 +6,17 @@ Version 0.10.100 · Foundry v13 and v14 · **Playtest release**
 
 Books M&T v0.10.64 and HB v0.10.64 (B-F54, B-F55, B-F56; K113, K114). Monsters & Treasure's magic items beyond the Catalogue now sit in five new folders under Magic Items in the Equipment compendium. The GM places them all.
 
-- **Named Uniques (63):** the 20 you had (same items, moved into the folder) and 43 new ones. A Unique with a base weapon or armour is that weapon or armour at its bonus, so you can attack with it or wear it (Ironfang is a heavy pick +2, Helldusk Armour is plate +2, Viconia's Walking Fortress is a large shield +2). The rest are item cards. The Sunsword deals radiant damage.
-- **Artefacts (24):** never for sale, and never from a hoard roll. Each card shows its powers, its Drawback and what destroys it. The Axe of the Dwarvish Lords, the Sword of Kas and the Wand of Orcus are weapons, and the Invulnerable Coat of Arnd is armour.
-- **Growing Uniques (19):** each card gives its Dormant, Awakened (9th level) and Exalted (17th level) states. A weapon, armour or shield starts at its Dormant bonus; the card says what it rises to, and you raise it on the item when it wakes.
+- **Named Uniques (63):** the 20 you had (same items, moved into the folder) and 43 new ones. A Unique with a base weapon or armour is that weapon or armour at its bonus, so you can attack with it or wear it (Ironfang is a heavy pick +2, Helldusk Armour is plate +2, Viconia's Walking Fortress is a large shield +2). The rest are item cards, with their charges where they have them. The Sunsword deals radiant damage, Gurt's Greataxe 3d12 slashing and 1d6 cold, and the Heavy ones take the slots their quirk says.
+- **Artefacts (24):** never for sale, and never from a hoard roll. Each card shows its powers, and its Drawback and what destroys it where it has them. The Axe of the Dwarvish Lords, the Sword of Kas (+2d10 against Vecna's servants and the undead) and the Wand of Orcus are weapons, and the Invulnerable Coat of Arnd is armour.
+- **Growing Uniques (19):** each card gives its Dormant, Awakened (9th level) and Exalted (17th level) states. One with a set weapon, armour or shield starts at its Dormant bonus; the card says what it rises to, and you raise it on the item when it wakes.
 - **Common Magic Items (48):** 5 gp unless the entry says otherwise. Beads, candles, dice and the like bundle 5 to a slot, and the wands come with their charges. The Moon-Touched Sword is a long sword with an "In darkness" switch for its light.
 - **Cursed Items (19):** each is unidentified, so players see the item it passes for, with that item's own text and price (a Bag of Devouring shows as a Bag of Holding; a Berserker Axe as a battle axe +1, valued at 45 gp). The GM sees the curse. Reveal it from the item sheet when the curse shows.
 - **65 new monsters (573 in all):**
-  - The ten new solos: Hive Mother, Elder Orb, Ssendam, Ygorl, Githzerai Anarch, Drow Matron Mother, Nihileth, Storm Giant Quintessent, Molydeus and Baelnorn.
-  - The five gem dragons from Wyrmling to Ancient, and the Primus.
-  - Githyanki, modrons, yugoloths, giants and more.
-  - Every new solo has its three villain actions, with its opener damage. Monster art comes from your art packs, as before.
+  - 21 new solos: the Hive Mother, Elder Orb, Ssendam, Ygorl, Githzerai Anarch, Drow Matron Mother, Nihileth, Storm Giant Quintessent, Molydeus, Baelnorn and Primus, and the Adult and Ancient gem dragons (crystal, topaz, emerald, sapphire, amethyst). Each has its three villain actions, with its opener damage.
+  - The gem dragons' Wyrmlings and Young, githyanki, modrons, yugoloths, giants and more.
+  - Monster skill notes now read "An Insight check" where they read "A Insight check". Monster art comes from your art packs, as before.
 - **Ygorl's Entropy:** a non-magical weapon that hits it deals only its weapon die, with no attribute modifier, until mended.
-- **Book II:** legendary magic beyond the Mortal Limit now includes "an artefact". Items that go past 20 say so on their cards (the Manuals and Tomes, the Belt of Storm Giant Strength and the Books of Exalted Deeds and Vile Darkness).
+- **Mortal Limit:** Book II's legendary magic now includes "an artefact". The magic that goes past 20 says so on its card (the Manuals and Tomes, the Belt of Storm Giant Strength, and the Books of Exalted Deeds and Vile Darkness, up to 22).
 
 ## What's new in 0.10.99
 

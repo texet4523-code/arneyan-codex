@@ -22,7 +22,7 @@
    "page": 0
   },
   "quantity": 1,
-  "slots": 2.0,
+  "slots": 4,
   "bundle": 0,
   "price": "Unique (never for sale)",
   "equipped": false,
@@ -30,7 +30,7 @@
   "identified": true,
   "unidentifiedName": "",
   "unidentifiedDescription": "",
-  "damage": "1d12",
+  "damage": "3d12",
   "damageType": "slashing",
   "ability": "str",
   "ranged": false,
@@ -40,7 +40,14 @@
   "traits": "Two-handed, Heavy, Thrown, Cleaving",
   "ammoType": "",
   "ammoId": "",
-  "bonusDamage": [],
+  "bonusDamage": [
+   {
+    "formula": "1d6",
+    "type": "cold",
+    "when": "",
+    "mode": false
+   }
+  ],
   "modeLabel": "",
   "modeLight": 0,
   "rules": [],

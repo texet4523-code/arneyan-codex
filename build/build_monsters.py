@@ -91,7 +91,7 @@ def skill_items(line):
         ab = CHECK_SKILLS.get(name)
         assert ab, f"unknown monster skill: {name}"
         out.append({"name": name, "type": "skill", "img": icon("skill", ab),
-                    "system": {"description": f"<p>A {name} check: a {ABIL_NAMES[ab]} check the creature is trained in.</p>",
+                    "system": {"description": f"<p>{'An' if name[:1] in 'AEIOU' else 'A'} {name} check: a {ABIL_NAMES[ab]} check the creature is trained in.</p>",
                                "source": {"book": "mt", "page": 0}, "ability": ab, "tier": tier}})
     return out
 

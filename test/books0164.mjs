@@ -101,3 +101,20 @@ const b2 = read("rules").find(d => d.name === "Book II: Character Creation") ?? 
 assert.ok(JSON.stringify(b2).includes("an artefact"), "Beyond Mortal Limits says an artefact");
 assert.ok(!JSON.stringify(b2).includes("a relic of power"));
 console.log("books0164 ok");
+
+// Review fixes (0.10.100): Gurt's own damage, Heavy slots, the Sword of Kas rider, charges, the Vacuous Grimoire.
+const gurt = item("Gurt's Greataxe");
+assert.equal(gurt.system.damage, "3d12");
+assert.deepEqual(gurt.system.bonusDamage.map(b => [b.formula, b.type]), [["1d6", "cold"]]);
+assert.equal(gurt.system.slots, 4);
+assert.equal(item("Matalotok").system.slots, 3);
+assert.equal(item("Balduran's Giantslayer").system.slots, 3);
+assert.equal(item("The Icon of Ravenloft").system.slots, 2);
+assert.deepEqual(item("Sword of Kas").system.bonusDamage.map(b => [b.formula, b.when]), [["2d10", "against Vecna's servants and the undead"]]);
+assert.deepEqual([item("The Holy Symbol of Ravenkind").system.charges.max, item("The Holy Symbol of Ravenkind").system.charges.recharge], [5, "1d4"]);
+assert.equal(item("Talisman of Pure Good").system.charges.max, 7);
+const vg = item("Vacuous Grimoire");
+assert.equal(vg.system.unidentifiedName, "Spellbook");
+assert.equal(vg.system.price, items.find(d => d.name === "Spellbook, blank").system.price);
+assert.ok(mons.every(m => m.items.every(i => !/^<p>A [AEIOU]/.test(i.system?.description ?? ""))), "An Insight check");
+console.log("books0164 review fixes ok");

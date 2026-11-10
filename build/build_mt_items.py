@@ -31,7 +31,7 @@ UNIQUE_GLYPH = {"Soulthief": "bloody-sword", "Wyrmsbane": "dragon-head", "Wallgu
                 "Gravebane": "mace-head", "Hillfeller": "battle-axe", "Adder's Kiss": "snake-bite", "Stormcall": "lightning-trio",
                 "Weeping Edge": "bleeding-wound", "Greenmantle": "vine-whip", "Quickwind": "crossbow", "Wakeful": "awareness"}
 # "+2d6 damage against dragons": extra damage the GM ticks on the damage card.
-EXTRA = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)?\s*(?:damage\s*)?against ([a-z ]+?)(?=[,.;]| and )", re.I)
+EXTRA = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)?\s*(?:damage\s*)?against ([a-z'’ ]+?)(?=[,.;]| and (?!the ))", re.I)
 # "+1d6 fire on a hit": extra damage on every hit.
 ON_HIT = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)\s*(?:damage\s*)?on a hit", re.I)
 
@@ -45,6 +45,8 @@ NOTE = {"named": "Monsters &amp; Treasure, Named Uniques.", "common": "Monsters 
 # Common items small enough to bundle 5 to a slot.
 SMALL = re.compile(r"\b(Bead|Candle|Die|Key|Arrow|Ammunition|Ruby|Eye)\b")
 NEVER_SOLD = "Unique (never for sale)"
+# What a cursed item passes for, where the Catalogue names it differently.
+SEEMS = {"spellbook": "Spellbook, blank"}
 # M&T Enchanted Arms and Armour: the value of a plain +N (what a cursed weapon or shield passes for).
 ENCHANT_VALUE = {("weapon", 1): "45 gp", ("weapon", 2): "300 gp", ("weapon", 3): "900 gp",
                  ("armour", 1): "45 gp", ("armour", 2): "300 gp", ("armour", 3): "900 gp",
@@ -154,6 +156,21 @@ def save(pack, name, _id, doc):
     json.dump(doc, open(os.path.join(pack, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
 
 
+def charges_of(text):
+    """"5 charges (1d4 regained at dawn)", "7 uses, then it fades": the item's charges, or None."""
+    m = re.search(r"\b(\d+) (charges|uses)\b", text)
+    if not m:
+        return None
+    rc = re.search(r"\((\d+d\d+) regained at dawn\)", text)
+    return {"value": int(m.group(1)), "max": int(m.group(1)), "recharge": rc.group(1) if rc else ""}
+
+
+def slots_named(text):
+    """"Quirk (Heavy): it takes 3 slots" -> 3."""
+    m = re.search(r"it takes (\d+) slots", text)
+    return int(m.group(1)) if m else None
+
+
 def damage_extras(text):
     out = [{"formula": a, "type": (b or "").lower(), "when": f"against {c.strip()}", "mode": False} for a, b, c in EXTRA.findall(text)]
     out += [{"formula": a, "type": b.lower(), "when": "", "mode": False} for a, b in ON_HIT.findall(text)]
@@ -186,7 +203,7 @@ def build(by_name, pack):
             kind = None
         power, _, quirk = text.partition("*Quirk")
         quirk = ("Quirk" + quirk).replace("*", "").strip() if quirk else ""
-        slots = None
+        slots = slots_named(quirk)
         if kind and re.search(r"takes 1 more slot", quirk, re.I):
             slots = by_name[base][1]["system"].get("slots", 1) + 1
         desc = (f"<p><em>Named Unique ({p(paren)}).</em> {p(power.strip())}</p>"
@@ -195,8 +212,15 @@ def build(by_name, pack):
                 + (" Saves use DC 10 + half your level + the attribute named." if re.search(r"\bsave\b", text, re.I) and "DC)" in text else "")
                 + "</p>")
         img = icon("unique", UNIQUE_GLYPH.get(name) or ("crossed-swords" if kind == "weapon" else glyph(kind, name, paren)))
+        ch = charges_of(power) if not kind else None
         _id, doc = doc_for(f"unique|{name}", name, desc, kind, base, plus, by_name, folders["named"], img, NEVER_SOLD,
-                           slots=slots, extra=damage_extras(power) if kind == "weapon" else None)
+                           slots=slots, extra=damage_extras(power) if kind == "weapon" else None,
+                           more={"charges": {**ch, "crumble": False}} if ch else None)
+        # Its own damage ("Only a Large or larger creature can wield it: 3d12 slashing, +1d6 cold": Gurt's Greataxe).
+        own = re.search(r"wield it: (\d+d\d+) (\w+), \+(\d+d\d+) (\w+)", power)
+        if kind == "weapon" and own:
+            doc["system"]["damage"], doc["system"]["damageType"] = own.group(1), own.group(2)
+            doc["system"]["bonusDamage"] = [{"formula": own.group(3), "type": own.group(4), "when": "", "mode": False}]
         dt = re.search(r"\bit deals (fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force) damage", power)
         if kind == "weapon" and dt:      # the Sunsword: "Its blade is sunlight: it deals radiant damage"
             doc["system"]["damageType"] = dt.group(1)
@@ -213,9 +237,11 @@ def build(by_name, pack):
         for k in range(1, len(parts) - 1, 2):
             desc += f"<p><strong>{parts[k]}:</strong> {p(parts[k + 1].strip())}</p>"
         desc += f"<p class=\"arn-note\">{NOTE['artefact']} Its save DC is 20 unless the entry says otherwise.</p>"
+        ch = charges_of(parts[0]) if not kind else None
         _id, doc = doc_for(f"artefact|{name}", name, desc, kind, base, plus, by_name, folders["artefact"],
                            icon("unique", glyph(kind, name, paren)), NEVER_SOLD,
                            extra=damage_extras(parts[0]) if kind == "weapon" else None,
+                           more={"charges": {**ch, "crumble": False}} if ch else None,
                            slots=0 if re.search(r"room-sized|walking engine|throne|2ft globe", paren) else None)
         save(pack, name, _id, doc)
         made += 1
@@ -267,8 +293,9 @@ def build(by_name, pack):
         kind, base, plus = base_of(seems)
         if kind and not known(kind, base):
             kind = None
+        orig, seems = seems, SEEMS.get(seems.lower(), seems)
         looks = by_name.get(seems) or next((v for k, v in by_name.items() if k.lower() == seems.lower()), None)
-        shown = seems[:1].upper() + seems[1:]
+        shown = orig[:1].upper() + orig[1:]
         if kind:
             looks = None
             undesc = by_name[base][1]["system"].get("description", "") + f"<p>A {html.escape(seems)}.</p>"
