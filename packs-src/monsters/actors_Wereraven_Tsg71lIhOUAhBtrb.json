@@ -1,0 +1,368 @@
+{
+ "_id": "Tsg71lIhOUAhBtrb",
+ "_key": "!actors!Tsg71lIhOUAhBtrb",
+ "name": "Wereraven",
+ "type": "npc",
+ "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+ "system": {
+  "abilities": {
+   "str": {
+    "value": 10
+   },
+   "dex": {
+    "value": 15
+   },
+   "con": {
+    "value": 13
+   },
+   "int": {
+    "value": 13
+   },
+   "wis": {
+    "value": 14
+   },
+   "cha": {
+    "value": 12
+   }
+  },
+  "level": 2,
+  "hd": "3d8+2",
+  "attributes": {
+   "hp": {
+    "value": 15,
+    "max": 15,
+    "temp": 0
+   },
+   "ac": 13,
+   "speed": "30ft (fly 50ft as a raven)",
+   "attack": 5,
+   "spellDC": 0,
+   "morale": 8
+  },
+  "saves": {
+   "fort": 2,
+   "ref": 2,
+   "will": 2
+  },
+  "spellcasting": {
+   "className": "",
+   "level": 0,
+   "slots": [],
+   "used": []
+  },
+  "details": {
+   "type": "humanoid (shapechanger)",
+   "size": "medium",
+   "alignment": "",
+   "xp": "",
+   "numberAppearing": "1d4",
+   "resistances": "non-silvered 10",
+   "immunities": "",
+   "vulnerabilities": "",
+   "senses": "",
+   "isSolo": false,
+   "levelText": "",
+   "page": 0,
+   "description": "<p><em>Medium humanoid (shapechanger)</em></p><p><strong>GM:</strong> Good-hearted lycanthropes, spies and messengers who watch for evil from the rooftops.</p>",
+   "treasure": "<p>Treasure type <strong>R</strong> (see the Treasure tables).</p>"
+  }
+ },
+ "items": [
+  {
+   "name": "Beak",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "bWykNLFZ9YPuh8Rv",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.bWykNLFZ9YPuh8Rv",
+   "effects": [],
+   "flags": {},
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Talons",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d6+2",
+    "damageType": "slashing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "z7kTS63XR1bIgq5d",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.z7kTS63XR1bIgq5d",
+   "effects": [],
+   "flags": {},
+   "sort": 100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Rapier",
+   "type": "weapon",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "quantity": 1,
+    "slots": 0,
+    "price": "",
+    "equipped": true,
+    "damage": "1d8+2",
+    "damageType": "piercing",
+    "ability": "str",
+    "ranged": false,
+    "range": "",
+    "magic": 0,
+    "attackBonus": 0,
+    "traits": "human form only",
+    "bonusDamage": [],
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "YulD1HpWw3DWcU4e",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.YulD1HpWw3DWcU4e",
+   "effects": [],
+   "flags": {},
+   "sort": 200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Shapechanger",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "<p>Human, raven-human hybrid or raven.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "42dIx4lITHzQKM38",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.42dIx4lITHzQKM38",
+   "effects": [],
+   "flags": {},
+   "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Lycanthropy",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "<p>Resistance 10 to non-magical, non-silvered weapons. Its bite spreads the curse (@Check[fort|dc:12]{Fortitude DC 12}).</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "fort",
+    "dc": 12,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "KU7pS1hxkhyruT1O",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.KU7pS1hxkhyruT1O",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Mimicry",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-eagle-head.svg",
+   "system": {
+    "description": "<p>Mimics voices and sounds it has heard.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "VAFpTprcT1nwBpDD",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.VAFpTprcT1nwBpDD",
+   "effects": [],
+   "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "4tOjJAzxiHPe9bdM",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.4tOjJAzxiHPe9bdM",
+   "effects": [],
+   "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "3m6tSCISYUsLkIzR",
+   "_key": "!actors.items!Tsg71lIhOUAhBtrb.3m6tSCISYUsLkIzR",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  }
+ ],
+ "effects": [],
+ "folder": "SasWvp4aDR4WBDqJ",
+ "prototypeToken": {
+  "name": "Wereraven",
+  "texture": {
+   "src": "systems/arneyan/assets/icons/monster-eagle-head.svg"
+  },
+  "actorLink": false,
+  "width": 1,
+  "height": 1,
+  "disposition": -1,
+  "displayBars": 20,
+  "bar1": {
+   "attribute": "attributes.hp"
+  },
+  "sight": {
+   "enabled": true,
+   "range": 0,
+   "visionMode": "basic"
+  }
+ },
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

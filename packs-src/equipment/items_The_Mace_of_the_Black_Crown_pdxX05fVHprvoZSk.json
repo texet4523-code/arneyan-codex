@@ -1,0 +1,63 @@
+{
+ "_id": "pdxX05fVHprvoZSk",
+ "_key": "!items!pdxX05fVHprvoZSk",
+ "name": "The Mace of the Black Crown",
+ "type": "weapon",
+ "img": "systems/arneyan/assets/icons/unique-flanged-mace.svg",
+ "folder": "uVlpnDxdd4nh5Q9U",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "baseWeapon": "Mace, Heavy",
+   "growing": {
+    "dormant": 1,
+    "awakened": 2,
+    "exalted": 3
+   }
+  }
+ },
+ "effects": [],
+ "system": {
+  "description": "<p><em>Growing Unique (heavy mace +1).</em></p><p><strong>Dormant</strong> (when found, save <strong>DC 13</strong>): +<strong>1d6</strong> fire on a hit.</p><p><strong>Awakened</strong> (bearer 9th level, save <strong>DC 15</strong>): the mace is +2; <strong>once per day</strong>, cast <em>summon lesser monster</em> (fiends only).</p><p><strong>Exalted</strong> (bearer 17th level, save <strong>DC 17</strong>): the mace is +3; <strong>once per day</strong>, cast <em>summon monster</em> (fiends only).</p><p class=\"arn-note\">Monsters &amp; Treasure, Growing Uniques. Each state adds to the one before. It falls back to Dormant with a new bearer. Its bonus is +1 Dormant, +2 Awakened and +3 Exalted: raise it on the item when it wakes.</p>",
+  "source": {
+   "book": "mt",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 1.0,
+  "bundle": 0,
+  "price": "Unique (never for sale)",
+  "equipped": false,
+  "inside": "",
+  "identified": true,
+  "unidentifiedName": "",
+  "unidentifiedDescription": "",
+  "damage": "1d8+1",
+  "damageType": "bludgeoning",
+  "ability": "str",
+  "ranged": false,
+  "range": "",
+  "magic": 1,
+  "attackBonus": 0,
+  "traits": "Sunder",
+  "ammoType": "",
+  "ammoId": "",
+  "bonusDamage": [
+   {
+    "formula": "1d6",
+    "type": "fire",
+    "when": "",
+    "mode": false
+   }
+  ],
+  "modeLabel": "",
+  "modeLight": 0,
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": []
+ }
+}

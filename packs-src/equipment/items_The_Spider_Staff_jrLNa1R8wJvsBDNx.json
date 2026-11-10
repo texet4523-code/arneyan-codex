@@ -1,0 +1,58 @@
+{
+ "_id": "jrLNa1R8wJvsBDNx",
+ "_key": "!items!jrLNa1R8wJvsBDNx",
+ "name": "The Spider Staff",
+ "type": "weapon",
+ "img": "systems/arneyan/assets/icons/unique-crossed-swords.svg",
+ "folder": "QOa8eNrpPsVqhMtK",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "baseWeapon": "Staff"
+  }
+ },
+ "effects": [],
+ "system": {
+  "description": "<p><em>Named Unique (quarterstaff +1).</em> +<strong>1d6</strong> poison on a hit, and you climb as a spider. 5 charges (<strong>1d4</strong> regained at dawn): <em>spider climb</em> (1) or <em>web</em> (2).</p><p><strong>Quirk (Choosy):</strong> it refuses to harm a spider.</p><p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques.</p>",
+  "source": {
+   "book": "mt",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 1.0,
+  "bundle": 0,
+  "price": "Unique (never for sale)",
+  "equipped": false,
+  "inside": "",
+  "identified": true,
+  "unidentifiedName": "",
+  "unidentifiedDescription": "",
+  "damage": "1d6",
+  "damageType": "bludgeoning",
+  "ability": "str",
+  "ranged": false,
+  "range": "",
+  "magic": 1,
+  "attackBonus": 0,
+  "traits": "Versatile, Reach",
+  "ammoType": "",
+  "ammoId": "",
+  "bonusDamage": [
+   {
+    "formula": "1d6",
+    "type": "poison",
+    "when": "",
+    "mode": false
+   }
+  ],
+  "modeLabel": "",
+  "modeLight": 0,
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": []
+ }
+}

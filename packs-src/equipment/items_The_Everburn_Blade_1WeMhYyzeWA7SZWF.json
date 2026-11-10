@@ -1,0 +1,58 @@
+{
+ "_id": "1WeMhYyzeWA7SZWF",
+ "_key": "!items!1WeMhYyzeWA7SZWF",
+ "name": "The Everburn Blade",
+ "type": "weapon",
+ "img": "systems/arneyan/assets/icons/unique-crossed-swords.svg",
+ "folder": "QOa8eNrpPsVqhMtK",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {
+  "arneyan": {
+   "baseWeapon": "Greatsword"
+  }
+ },
+ "effects": [],
+ "system": {
+  "description": "<p><em>Named Unique (greatsword +1).</em> +<strong>1d4</strong> fire on a hit, and it sheds light like a torch. Once per day, a struck creature catches fire (Burning) unless it makes a <strong>Reflex save</strong> (Str DC).</p><p><strong>Quirk (Bloodthirsty):</strong> it won&#x27;t be sheathed until it has drawn blood.</p><p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques. Saves use <strong>DC 10</strong> + half your level + the attribute named.</p>",
+  "source": {
+   "book": "mt",
+   "page": 0
+  },
+  "quantity": 1,
+  "slots": 2.0,
+  "bundle": 0,
+  "price": "Unique (never for sale)",
+  "equipped": false,
+  "inside": "",
+  "identified": true,
+  "unidentifiedName": "",
+  "unidentifiedDescription": "",
+  "damage": "2d6",
+  "damageType": "slashing",
+  "ability": "str",
+  "ranged": false,
+  "range": "",
+  "magic": 1,
+  "attackBonus": 0,
+  "traits": "Two-handed, Heavy",
+  "ammoType": "",
+  "ammoId": "",
+  "bonusDamage": [
+   {
+    "formula": "1d4",
+    "type": "fire",
+    "when": "",
+    "mode": false
+   }
+  ],
+  "modeLabel": "",
+  "modeLight": 0,
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": []
+ }
+}

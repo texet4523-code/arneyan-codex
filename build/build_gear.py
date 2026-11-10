@@ -14,6 +14,7 @@
 import copy, glob, html, json, os, re
 from lib import OUT, fid
 import books_md
+import build_mt_items
 from icons import icon
 
 PACK = os.path.join(OUT, "equipment")
@@ -62,21 +63,8 @@ ICONIC = {
     "Javelin of Lightning": ("Javelin", 1, [], {"range": "30 ft"}),
 }
 
-# Monsters & Treasure v0.10.41 (K48 A-S2, K51): the Named Uniques, read from the M&T treasure chapter, as weapons on
-# their base weapon. Their base (from the line's "(greatsword +3)") -> the Catalogue's name, and a glyph each.
+# Monsters & Treasure's treasure chapter (the Secrets here; the Named Uniques and the rest in build_mt_items).
 NAMED_UNIQUE_SRC = "/tmp/hb/mm/treasure.md"
-UNIQUE_BASE = {"greatsword": "Greatsword", "long sword": "Sword, Long", "maul": "Maul", "trident": "Trident",
-               "war hammer": "Hammer, War", "scimitar": "Sword, Scimitar", "long bow": "Bow, Long", "heavy flail": "Flail, Heavy",
-               "rapier": "Sword, Rapier", "glaive": "Glaive", "heavy mace": "Mace, Heavy", "battle axe": "Axe, Battle",
-               "dagger": "Dagger", "wolf spear": "Spear, Wolf", "short sword": "Sword, Short", "heavy crossbow": "Crossbow, Heavy",
-               "morningstar": "Morningstar"}
-UNIQUE_GLYPH = {"Soulthief": "bloody-sword", "Wyrmsbane": "dragon-head", "Wallguard": "stone-wall", "Stonefather": "warhammer",
-                "Tidecaller": "trident", "Groundbreaker": "hammer-drop", "Hairsplitter": "saber-slash", "Phoenix Oath": "winged-arrow",
-                "Wardenbreaker": "flail", "Dreadknell": "ringing-bell", "Retort": "fencer", "Veilcutter": "glaive",
-                "Gravebane": "mace-head", "Hillfeller": "battle-axe", "Adder's Kiss": "snake-bite", "Stormcall": "lightning-trio",
-                "Weeping Edge": "bleeding-wound", "Greenmantle": "vine-whip", "Quickwind": "crossbow", "Wakeful": "awareness"}
-# Extra damage the system can add when the GM ticks it on the damage card: "+2d6 damage against dragons".
-UNIQUE_EXTRA = re.compile(r"\+(\d+d\d+)\s*(fire|cold|lightning|radiant|necrotic|poison|acid|thunder|psychic|force)?\s*(?:damage\s*)?against ([a-z ]+?)(?=[,.;]| and )", re.I)
 
 
 # M&T v0.10.45 (K55, R-B32): the 18 Secrets, as cards in the equipment compendium (GM-placed, never for sale), and the
@@ -141,23 +129,6 @@ def secret_html(name, form, text):
     return (f"<p><em>Secret ({html.escape(form)}).</em> " + body + "</p>"
             + f"<p class=\"arn-note\">Monsters &amp; Treasure, Secrets: one of a kind, never sold, placed by the GM. {how}</p>").replace("<p></p>", "")
 
-
-def named_uniques():
-    """The Named Uniques list: [(name, base phrase, bonus, text)] from the M&T treasure chapter (empty if not there)."""
-    try:
-        t = open(NAMED_UNIQUE_SRC, encoding="utf-8").read()
-    except OSError:
-        print(f"gear: WARNING no {NAMED_UNIQUE_SRC}: the Named Uniques are not built")
-        return []
-    i = t.find("### Named Uniques")
-    if i < 0:
-        print("gear: WARNING no Named Uniques section in the treasure chapter")
-        return []
-    block = t[i:].split("\n#", 1)[0]
-    out = []
-    for m in re.finditer(r"^- \*\*(.+?)\*\* \[Unique\] \(([a-z ]+?) \+(\d)\)\.\s*(.+)$", block, re.M):
-        out.append((m.group(1), m.group(2).strip(), int(m.group(3)), m.group(4).strip()))
-    return out
 
 # Light sources. The Catalogue and Codex give no radius except the Sunrod's; Kieran chose 5e's (19 Oct 2026).
 # (bright ft, total ft incl. dim, hours, cone angle)
@@ -413,40 +384,9 @@ def build():
         json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
         changed += 1
 
-    # Named Uniques (M&T v0.10.41): one weapon each, beside the iconic weapons, with its own icon. The GM places them.
-    uniques = named_uniques()
-    home = by_name.get("Vorpal Sword", (None, {}))[1].get("folder")
-    for uname, base_phrase, plus, utext in uniques:
-        base = UNIQUE_BASE.get(base_phrase.lower())
-        if not base or base not in by_name:
-            print(f"gear: skipped {uname} (no base weapon for {base_phrase})")
-            continue
-        bs = by_name[base][1]["system"]
-        _id = fid("equipment", "item", f"unique|{uname}")
-        power, _, quirk = utext.partition("*Quirk")
-        quirk = ("Quirk" + quirk).replace("*", "").strip() if quirk else ""
-        # "Quirk (Heavy): it takes 1 more slot" (Stonefather).
-        slots = bs.get("slots", 1) + (1 if re.search(r"takes 1 more slot", quirk, re.I) else 0)
-        extra = [{"formula": a, "type": (b or "").lower(), "when": f"against {c.strip()}", "mode": False} for a, b, c in UNIQUE_EXTRA.findall(power)]
-        desc = (f"<p><em>Named Unique ({base_phrase} +{plus}).</em> {html.escape(power.strip())}</p>"
-                + (f"<p><strong>{html.escape(quirk.split(':', 1)[0])}:</strong> {html.escape(quirk.split(':', 1)[1].strip()) if ':' in quirk else ''}</p>" if quirk else "")
-                + "<p class=\"arn-note\">Monsters &amp; Treasure, Named Uniques."
-                + (" Saves use DC 10 + half your level + the attribute named." if re.search(r"\bsave\b", utext, re.I) and "DC)" in utext else "") + "</p>")
-        doc = {
-            "_id": _id, "_key": f"!items!{_id}", "name": uname, "type": "weapon", "img": icon("unique", UNIQUE_GLYPH.get(uname, "crossed-swords")),
-            "folder": home, "sort": 0, "ownership": {"default": 0}, "flags": {"arneyan": {"baseWeapon": base}}, "effects": [],
-            "system": {
-                "description": desc, "source": {"book": "mt", "page": 0},
-                "quantity": 1, "slots": slots, "bundle": 0, "price": "Unique (never for sale)", "equipped": False,
-                "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
-                "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged")),
-                "range": bs.get("range", ""), "magic": plus, "attackBonus": 0, "traits": bs.get("traits", ""),
-                "ammoType": bs.get("ammoType", ""), "ammoId": "", "bonusDamage": extra, "modeLabel": "", "modeLight": 0,
-                "rules": [], "toggle": False, "active": False, "applies": []
-            }
-        }
-        json.dump(doc, open(os.path.join(PACK, f"items_{re.sub(r'[^A-Za-z0-9]+', '_', uname)}_{_id}.json"), "w"), ensure_ascii=False, indent=1)
-        changed += 1
+    # The M&T magic items beyond the Catalogue (Named Uniques, Common, Cursed, Artefacts, Growing Uniques; B-F54):
+    # build_mt_items reads them from the treasure chapter, each in its own folder under Magic Items.
+    changed += build_mt_items.build(by_name, PACK)
 
     # The Secrets (M&T v0.10.45, K55): one card each in a Secrets folder beside the Unique Items; the Last Form is also a feat.
     sec_list = secrets()

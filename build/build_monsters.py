@@ -28,7 +28,9 @@ CONDITION_IMMUNE = {"charm": "charmed", "fear": "frightened", "frighten": "frigh
 SAVE = {"fortitude": "fort", "reflex": "ref", "will": "will"}
 # Skills a stat block names that aren't Skills (NWP) in the Player's Handbook: named attribute checks.
 CHECK_SKILLS = {"Perception": "wis", "Stealth": "dex", "Deception": "cha", "Insight": "wis", "Intimidation": "cha",
-                "Persuasion": "cha", "Performance": "cha", "Athletics": "str", "Investigation": "int"}
+                "Persuasion": "cha", "Performance": "cha", "Athletics": "str", "Investigation": "int",
+                # M&T v0.10.63 (the Bheur Hag): Nature is no Handbook skill; a Wisdom check, as Perception and Insight.
+                "Nature": "wis", "Sleight of Hand": "dex"}
 ABIL_KEYS = ("str", "dex", "con", "int", "wis", "cha")
 ABIL_NAMES = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
 SAVE_ABIL = (("fort", "con"), ("ref", "dex"), ("will", "wis"))
@@ -710,7 +712,7 @@ def build():
                     "alignment": "", "xp": "", "numberAppearing": f.get("no", ""), "resistances": ", ".join(resist),
                     "immunities": ", ".join(immune), "vulnerabilities": ", ".join(vuln), "senses": ", ".join(senses),
                     "isSolo": solo, "levelText": level_text, "page": 0, "description": desc,
-                    "treasure": f"<p>Treasure type <strong>{html.escape(f.get('tr', '-'))}</strong> (see the Treasure tables).</p>"
+                    "treasure": f"<p>Treasure type <strong>{html.escape(f.get('tr', '-').replace('\u2014', '-'))}</strong> (see the Treasure tables).</p>"
                 }
             }
             proto = {"name": m["name"], "texture": {"src": img}, "actorLink": False, "width": token, "height": token,
