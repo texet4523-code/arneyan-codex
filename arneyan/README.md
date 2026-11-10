@@ -18,7 +18,6 @@ Keeps & Kingdoms v0.5.1 and books HB v0.10.65 and M&T v0.10.66 (R-F28, B-F57, B-
   - New GM and ability text for the gith, the Flind, the Witherling, the Frost Giant Everlasting One (Troll God's Rage) and the gem dragon wyrmlings.
 - **Handbook text:**
   - Sentences that were bold all through now bold only their label.
-  - The class Renown lines point to the Codex's p. 4.
   - The Spellblade's 15th-level **Intelligence Bonus** (+1 Intelligence) is now a class feature, as the other classes' attribute bonuses are.
 - **No treasure** reads N on the Gazer, Maw Demon and Witherling.
 

@@ -45,9 +45,20 @@
    "will": 4
   },
   "spellcasting": {
-   "className": "",
-   "level": 0,
-   "slots": [],
+   "className": "Necromancer",
+   "level": 5,
+   "slots": [
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
    "used": []
   },
   "details": {
@@ -155,7 +166,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>casts as a 5th-level necromancer (spell DC 15). Typical spells: @UUID[Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj]{ray of enfeeblement}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.RFuN2hB1ykt9qLdU]{animate dead}, @UUID[Compendium.arneyan.spells.Item.veQ92CeE0CUbzONh]{vampiric touch}.</p>",
+    "description": "<p>Casts as a 5th-level necromancer (spell DC 15). Typical spells: @UUID[Compendium.arneyan.spells.Item.ZGrEcw08IZOcnsgj]{ray of enfeeblement}, @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.RFuN2hB1ykt9qLdU]{animate dead}, @UUID[Compendium.arneyan.spells.Item.veQ92CeE0CUbzONh]{vampiric touch}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -462,7 +473,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>once per round, out of turn, when a shambler within 60ft drops, it stands up again at 1 HP, unless the damage was fire or radiant.</p>",
+    "description": "<p>Once per round, out of turn, when a shambler within 60ft drops, it stands up again at 1 HP, unless the damage was fire or radiant.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -499,7 +510,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>when it dies, every shambler within 60ft falls where it stands.</p>",
+    "description": "<p>When it dies, every shambler within 60ft falls where it stands.</p>",
     "source": {
      "book": "mt",
      "page": 0

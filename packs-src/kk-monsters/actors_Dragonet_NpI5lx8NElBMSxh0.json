@@ -111,7 +111,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>it has Advantage on checks to learn about a magical effect or object it can see, and knows when it is the target of divination.</p>",
+    "description": "<p>It has Advantage on checks to learn about a magical effect or object it can see, and knows when it is the target of divination.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>it knows when a creature speaking Draconic lies to it.</p>",
+    "description": "<p>It knows when a creature speaking Draconic lies to it.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -181,20 +181,20 @@
    "folder": null
   },
   {
-   "name": "Revealing Breath (once per day)",
+   "name": "Revealing Breath",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>a 15ft cone of glittering light. Every object in it glows for 1 minute, and each creature in it makes a @Check[ref|dc:12]{Reflex save DC 12} or glows too. Attacks against a glowing creature have Advantage, it can't be @Condition[invisible]{Invisible}, and the dragonet learns whether a glowing thing is magical and of what school.</p>",
+    "description": "<p>Once per day, a 15ft cone of glittering light. Every object in it glows for 1 minute, and each creature in it makes a @Check[ref|dc:12]{Reflex save DC 12} or glows too. Attacks against a glowing creature have Advantage, it can't be @Condition[invisible]{Invisible}, and the dragonet learns whether a glowing thing is magical and of what school.</p>",
     "source": {
      "book": "mt",
      "page": 0
     },
     "kind": "monster",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "ref",
     "dc": 12,
@@ -207,8 +207,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "gJGyk33WjtEPgrKT",
-   "_key": "!actors.items!NpI5lx8NElBMSxh0.gJGyk33WjtEPgrKT",
+   "_id": "XtjIXW9Kk4j1y74L",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.XtjIXW9Kk4j1y74L",
    "effects": [],
    "flags": {},
    "sort": 300,
@@ -218,20 +218,20 @@
    "folder": null
   },
   {
-   "name": "Truesight (once per day)",
+   "name": "Truesight",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>for 1 minute it has truesight to 60ft.</p>",
+    "description": "<p>Once per day, for 1 minute it has truesight to 60ft.</p>",
     "source": {
      "book": "mt",
      "page": 0
     },
     "kind": "monster",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "",
     "dc": null,
@@ -244,8 +244,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "p19Q1ynRnBrZIIWB",
-   "_key": "!actors.items!NpI5lx8NElBMSxh0.p19Q1ynRnBrZIIWB",
+   "_id": "X1T7zptbn7TKgKYl",
+   "_key": "!actors.items!NpI5lx8NElBMSxh0.X1T7zptbn7TKgKYl",
    "effects": [],
    "flags": {},
    "sort": 400,

@@ -107,20 +107,20 @@
    "folder": null
   },
   {
-   "name": "Relentless (once per day)",
+   "name": "Relentless",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
    "system": {
-    "description": "<p>when it drops to 0 HP, it drops to 1 HP instead.</p>",
+    "description": "<p>Once per day, when it drops to 0 HP, it drops to 1 HP instead.</p>",
     "source": {
      "book": "mt",
      "page": 0
     },
     "kind": "monster",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "",
     "dc": null,
@@ -133,8 +133,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "9zGWOerLc7GvEstX",
-   "_key": "!actors.items!5D0dxP8bEFMEmBSs.9zGWOerLc7GvEstX",
+   "_id": "9C5yfcvo5tBifjtN",
+   "_key": "!actors.items!5D0dxP8bEFMEmBSs.9C5yfcvo5tBifjtN",
    "effects": [],
    "flags": {},
    "sort": 100,
@@ -148,7 +148,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-orc-head.svg",
    "system": {
-    "description": "<p>once per round, out of turn, after an ally's turn, one orc that can hear it moves up to its speed and attacks with Advantage.</p>",
+    "description": "<p>Once per round, out of turn, after an ally's turn, one orc that can hear it moves up to its speed and attacks with Advantage.</p>",
     "source": {
      "book": "mt",
      "page": 0

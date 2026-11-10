@@ -110,7 +110,7 @@ def blocks(md):
                         elif k == "Saves":
                             m["f"]["svx"] = v.replace("−", "-")
                         elif k == "Morale":
-                            m["f"]["mor"] = v
+                            m["f"]["mor"] = "12" if v.startswith("never") else v   # mindless: never breaks, as M&T's undead
                         elif k == "Treasure":
                             m["f"]["tr"] = v
                         elif k == "No.":
@@ -126,7 +126,14 @@ def blocks(md):
                 if ref:
                     m["refs"].append((re.findall(r"\*\*([^*]+)\*\*", ref.group(1)), ref.group(2)))
                     continue
-                m["sp"].append(ln.replace("**", "").strip())   # italics stay, as in the M&T sources
+                sp = ln.replace("**", "").strip()   # italics stay, as in the M&T sources
+                # "Toxic Bubble (once per day): it blows..." -> "Toxic Bubble: Once per day, it blows..." (M&T's form, so
+                # the uses counter reads it); every ability's text starts with a capital, as M&T's do.
+                od = re.match(r"([^:]+?) \(once per day\):\s*(.*)$", sp)
+                if od:
+                    sp = f"{od.group(1)}: Once per day, {od.group(2)}"
+                sp = re.sub(r"^([^:]{1,60}:\s*)([a-z])", lambda x: x.group(1) + x.group(2).upper(), sp)
+                m["sp"].append(sp)
             out.append(m)
     # "**Amphibious** and **Toxic Skin**, as the blade.": copy those abilities from the block named.
     for m in out:

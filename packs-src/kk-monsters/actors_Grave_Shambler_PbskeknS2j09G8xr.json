@@ -38,7 +38,7 @@
    "speed": "20ft",
    "attack": 3,
    "spellDC": 0,
-   "morale": 0
+   "morale": 12
   },
   "saves": {
    "fort": 2,
@@ -112,7 +112,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>a creature next to three or more shamblers at the start of its turn makes a @Check[ref|dc:12]{Reflex save DC 12} or is @Condition[restrained]{Restrained} until the start of its next turn.</p>",
+    "description": "<p>A creature next to three or more shamblers at the start of its turn makes a @Check[ref|dc:12]{Reflex save DC 12} or is @Condition[restrained]{Restrained} until the start of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -149,7 +149,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
    "system": {
-    "description": "<p>it never checks Morale and can't be @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
+    "description": "<p>It never checks Morale and can't be @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0

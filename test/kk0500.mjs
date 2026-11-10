@@ -46,3 +46,14 @@ assert.equal((all.match(/MCDM/g) ?? []).length, 2, "the small print's two mentio
 assert.ok(js.find(j => j.name === "Chapter 1: Strongholds").pages[0].text.content.includes("Not an MCDM product"));
 assert.ok(JSON.stringify(read("kk-monsters")).indexOf("MCDM") < 0);
 console.log("kk0500 ok");
+
+// Review fixes (0.10.101): GM-only creatures, the mindless Shambler, once-a-day uses, the Corpse Herder's slots.
+assert.equal(sys.packs.find(p => p.name === "kk-monsters").ownership.PLAYER, "NONE");
+assert.equal(by["Grave Shambler"].system.attributes.morale, 12);
+for (const [n, a] of [["Angulotl Seer", "Toxic Bubble"], ["Dragonet", "Revealing Breath"], ["Lightbender", "Hypnotic Mane"], ["Orc Warchief", "Relentless"], ["Hobgoblin War Captain", "Rally"]]) {
+  const it = by[n].items.find(i => i.name.startsWith(a));
+  assert.equal(it?.system.uses?.max, 1, `${n}: ${a} once per day`);
+}
+assert.equal(by["Corpse Herder"].system.spellcasting.className, "Necromancer");
+assert.equal(by["Corpse Herder"].system.spellcasting.level, 5);
+console.log("kk0500 review fixes ok");

@@ -193,7 +193,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-paw.svg",
    "system": {
-    "description": "<p>once per round, out of turn, when an attack hits it, roll a d6. On a 4 or more the attack strikes an image and misses.</p>",
+    "description": "<p>Once per round, out of turn, when an attack hits it, roll a d6. On a 4 or more the attack strikes an image and misses.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -230,7 +230,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-paw.svg",
    "system": {
-    "description": "<p>when a save would halve the damage it takes, it takes none on a success.</p>",
+    "description": "<p>When a save would halve the damage it takes, it takes none on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -267,7 +267,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-paw.svg",
    "system": {
-    "description": "<p>if it moves at least 20ft straight at a creature and hits with a claw, the target makes a @Check[fort|dc:18]{Fortitude save DC 18} or falls @Condition[prone]{Prone}.</p>",
+    "description": "<p>If it moves at least 20ft straight at a creature and hits with a claw, the target makes a @Check[fort|dc:18]{Fortitude save DC 18} or falls @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -300,20 +300,20 @@
    "folder": null
   },
   {
-   "name": "Hypnotic Mane (once per day)",
+   "name": "Hypnotic Mane",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-paw.svg",
    "system": {
-    "description": "<p>in place of its attacks, its mane blazes. Each creature within 15ft that can see it makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[incapacitated]{Incapacitated} until the end of its next turn.</p>",
+    "description": "<p>Once per day, in place of its attacks, its mane blazes. Each creature within 15ft that can see it makes a @Check[will|dc:14]{Will save DC 14} or is @Condition[incapacitated]{Incapacitated} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
     },
     "kind": "monster",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "will",
     "dc": 14,
@@ -326,8 +326,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "G1tRVVsdI2lE8o7v",
-   "_key": "!actors.items!Mx7hwJq3kpddX0HC.G1tRVVsdI2lE8o7v",
+   "_id": "Lvkiu046wy6ko1Gz",
+   "_key": "!actors.items!Mx7hwJq3kpddX0HC.Lvkiu046wy6ko1Gz",
    "effects": [],
    "flags": {},
    "sort": 600,
