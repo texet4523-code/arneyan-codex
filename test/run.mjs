@@ -63,12 +63,12 @@ assert.equal(s.inventory.used, 3 + 1 + 1 + 1 + 2); // armour, shield, sword, arr
 assert.equal(s.xpRate, 10);
 assert.equal(s.classDC, 10 + 2 + 2);
 
-// Level 1 wizard multiclass: XP rate is the highest plus 2, saves use half level minimum 1.
+// Level 1 wizard multiclass: 10 XP a level like anyone (K121), saves use half level minimum 1.
 const wiz = makeItem(IM.ClassData, "class", "Wizard", { levels: 1, bthProgression: "arcane", keyAbility: "int", castingAbility: "int", xpRate: 12 });
 const rogue = makeItem(IM.ClassData, "class", "Rogue", { levels: 1, bthProgression: "rogue", xpRate: 8 });
 const mc = makeActor(CharacterData, "character", { abilities: { int: { value: 18 } } }, [rogue, wiz]);
 assert.equal(mc.system.level, 2);
-assert.equal(mc.system.xpRate, 14);        // the handbook's Rogue/Wizard example
+assert.equal(mc.system.xpRate, 10);        // K121: no multiclass surcharge, whatever the class items say
 assert.equal(mc.system.saves.will.value, 1);
 assert.equal(mc.system.spellDC, 10 + 1 + 3);
 

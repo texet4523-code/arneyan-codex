@@ -1,0 +1,56 @@
+{
+ "_id": "R1eV7jWfi2Jwwa8R",
+ "_key": "!items!R1eV7jWfi2Jwwa8R",
+ "name": "Wardblade (Spellblade)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
+ "system": {
+  "description": "<p>First taught in Aldori, where the spellblade tradition was born, and now to the wardens of the O.M.G.A. in Opal: Abjuration carried on the edge of a blade, so the people beside you keep standing.</p><ul><li><strong>Warding Strike:</strong> when your Spellstrike hits, as well as Arcane Cascade, choose one ally within <strong>10ft</strong> of you: the first attack against that ally before your next turn has <strong>Disadvantage</strong>.<ul><li>9th level: Warding Strike covers every ally within <strong>10ft</strong> of you.</li></ul></li><li><strong>Ward-Reader:</strong> <strong>Advantage</strong> on checks to notice, study and identify wards, glyphs and other protective magic.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Spellblade",
+  "features": [
+   {
+    "name": "Warding Strike",
+    "level": 1,
+    "description": "<p>When your Spellstrike hits, as well as Arcane Cascade, choose one ally within <strong>10ft</strong> of you: the first attack against that ally before your next turn has <strong>Disadvantage</strong>.</p><p>9th level: Warding Strike covers every ally within <strong>10ft</strong> of you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Ward-Reader",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to notice, study and identify wards, glyphs and other protective magic.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to notice, study and identify wards, glyphs and other protective magic",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "xfPAuHvlZnGs2uY5",
+ "sort": 3,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

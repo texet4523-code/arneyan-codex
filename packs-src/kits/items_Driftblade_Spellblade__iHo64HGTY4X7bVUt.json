@@ -1,0 +1,56 @@
+{
+ "_id": "iHo64HGTY4X7bVUt",
+ "_key": "!items!iHo64HGTY4X7bVUt",
+ "name": "Driftblade (Spellblade)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
+ "system": {
+  "description": "<p>The roving spellblades of the Keepers' Road and the harbour towns of the Jinia Isles: strike, step aside, and be gone before the answer comes.</p><ul><li><strong>Drift Step:</strong> when your Spellstrike hits, you may move up to <strong>10ft</strong> at once. This movement does not provoke Attacks of Opportunity.<ul><li>9th level: you may also Spellstrike through a thrown weapon, at its normal range, as well as your bonded weapon type. It is still your one Spellstrike that round.</li></ul></li><li><strong>Caravan Friend:</strong> <strong>Advantage</strong> on checks to find work, passage or shelter with caravans, ship crews and other travelling companies.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Spellblade",
+  "features": [
+   {
+    "name": "Drift Step",
+    "level": 1,
+    "description": "<p>When your Spellstrike hits, you may move up to <strong>10ft</strong> at once. This movement does not provoke Attacks of Opportunity.</p><p>9th level: you may also Spellstrike through a thrown weapon, at its normal range, as well as your bonded weapon type. It is still your one Spellstrike that round.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Caravan Friend",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to find work, passage or shelter with caravans, ship crews and other travelling companies.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to find work, passage or shelter with caravans, ship crews and other travelling companies",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "xfPAuHvlZnGs2uY5",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

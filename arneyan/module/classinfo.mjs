@@ -140,7 +140,7 @@ export class ArneyanClassInfo extends HandlebarsApplicationMixin(ApplicationV2) 
       ["Weapons", sys.weapons || "None listed"],
       ["Armour", sys.armour || "None listed"],
       ["Feats", `${(sys.featPaths ?? []).join(", ") || "General Path"}; at levels ${(sys.featLevels ?? []).join(", ")}`],
-      ["XP per level", sys.xpRate]
+      ["XP per level", 10]
     ].map(([label, value]) => ({ label, value }));
     return {
       img: cls.img, name: cls.name, facts, table, levels, kits,

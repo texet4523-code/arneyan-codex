@@ -177,8 +177,9 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // BtH and XP rate.
     s.bthBase = Math.max(0, ...classes.map(c => ARNEYAN.bth(c.system.bthProgression, c.system.levels)));
     s.bth = s.bthBase + s.attributes.bthBonus;
-    const rates = classes.map(c => c.system.xpRate || 10);
-    s.xpRate = (rates.length ? Math.max(...rates) : 10) + Math.max(0, classes.length - 1) * 2;
+    // K121 (books v0.10.66): every level costs 10 XP, for every class and multiclass character alike. Class items made
+    // before it may still carry 8, 12 or the Battle Priest's 12; they no longer count.
+    s.xpRate = 10;
     s.classLabel = classes.map(c => `${c.name} ${c.system.levels}`).join(" / ");
 
     // Uses worked out from a formula (Flèche: Dexterity modifier a day, minimum 1; Turn Undead: 3 + Wisdom).

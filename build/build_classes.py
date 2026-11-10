@@ -6,7 +6,7 @@ from lib import *
 import books_md
 SRC = books_md.CLASSES
 ABIL = {"Strength": "str", "Dexterity": "dex", "Constitution": "con", "Intelligence": "int", "Wisdom": "wis", "Charisma": "cha"}
-XP = {"Assassin": 8, "Rogue": 8, "Necromancer": 12, "Paladin": 12, "Witch": 12, "Wizard": 12}
+XP = {}   # K121 (books v0.10.66): every class pays 10 XP a level
 CAST = {"Bard": "cha", "Cleric": "wis", "Druid": "wis", "Illusionist": "int", "Spellblade": "int", "Necromancer": "int",
         "Paladin": "cha", "Sorcerer": "cha", "Warlock": "cha", "Witch": "wis", "Wizard": "int"}
 
@@ -302,10 +302,9 @@ def build(icon_for_class):
         if name == "Cleric":
             bp = dict(system)
             bp["bthProgression"] = "knight"
-            bp["xpRate"] = 12
             # Spell slots run two rows behind the Cleric's.
             bp["slotTable"] = [[0] * 10, [0] * 10] + (slots or [])[:22] if slots else []
-            bp["description"] = "<p><strong>Battle Priest</strong> is the Cleric option for war gods: Knight Base to Hit, Extra Attack at 7th, spell slots two rows behind the Cleric's, and 12 XP a level. Everything else is as the Cleric.</p>" + system["description"]
+            bp["description"] = "<p><strong>Battle Priest</strong> is the Cleric option for war gods: Knight Base to Hit, Extra Attack at 7th, and spell slots two rows behind the Cleric's. Everything else is as the Cleric.</p>" + system["description"]
             item("classes", "Cleric (Battle Priest)", "class", bp, f"systems/arneyan/assets/classes/{name}.webp")
 
         fol = folder("kits", name)

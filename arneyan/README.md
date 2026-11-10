@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.101 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.102 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.102
+
+Books HB v0.10.67 and M&T v0.10.67 (B-F59, B-F60, R-F29; K121 to K125, L81).
+
+- **One XP rate (K121):** every level now costs 10 XP for every class, multiclass characters included. The Rogue and Assassin's 8, the 12 for Wizards, Necromancers, Paladins, Witches and the Battle Priest, and the +2 for each extra class are gone. The character sheet, the party sheet and the GM's XP award all use 10, even on class items already in your world.
+- **Two new Spellblade kits** in the Kits compendium (K122 to K125):
+  - **Wardblade**, first taught in Aldori: Warding Strike (a Spellstrike hit, as well as Arcane Cascade, gives one ally within 10ft Disadvantage on the first attack against it; every such ally at 9th) and Ward-Reader.
+  - **Driftblade**, from the Keepers' Road and the Jinia Isles: Drift Step (a 10ft step after a Spellstrike hit, with no Attacks of Opportunity; Spellstrike through a thrown weapon at 9th) and Caravan Friend.
+  - Ward-Reader and Caravan Friend show their Advantage as reminders on the sheet.
+- **Magic item lore (L81):** the Githyanki Silver Sword is now a relic of the Forgotten Age, and the Axe of the Dwarvish Lords, Dwarven Plate, the Belt of Dwarvenkind, the Moonblade and the Dragon Slayer name their homes. (The Catalogue's own copies of the Dwarven Thrower, Elven Chain, Boots and Cloak of Elvenkind and Sun Blade follow when the Catalogue does.)
+- **Handbook text:** the Codex's Levelling Up, Book II's Experience by Class and Multiclassing, and the Cleric's Battle Priest now say 10 XP a level.
 
 ## What's new in 0.10.101
 

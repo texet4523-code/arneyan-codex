@@ -2,27 +2,23 @@
  "_id": "jr7oO4T2jnBkTzNs",
  "_key": "!items!jr7oO4T2jnBkTzNs",
  "name": "Axe of the Dwarvish Lords",
- "type": "weapon",
- "img": "systems/arneyan/assets/icons/unique-battle-axe.svg",
+ "type": "equipment",
+ "img": "systems/arneyan/assets/icons/unique-cut-diamond.svg",
  "folder": "XkyOsCUPCOk5TIdd",
  "sort": 0,
  "ownership": {
   "default": 0
  },
- "flags": {
-  "arneyan": {
-   "baseWeapon": "Axe, Battle"
-  }
- },
+ "flags": {},
  "effects": [],
  "system": {
-  "description": "<p><em>Artefact (battle axe +3).</em> You have Darkvision <strong>120ft</strong> and <strong>Advantage</strong> on saves against poison, and you can&#x27;t be knocked <strong>Prone</strong>. Once per day you may cast <em>move earth</em> or <em>wall of stone</em>, or call <strong>2d4</strong> dwarven Veterans who fight for you for an hour.</p><p><strong>Drawback:</strong> a creature that isn&#x27;t a dwarf and holds it makes a <strong>Will save</strong> each day or grows dwarf-like, losing 1 Charisma (a drain).</p><p><strong>Destroyed:</strong> melted in the forge that made it.</p><p class=\"arn-note\">Monsters &amp; Treasure, Artefacts. Its save DC is 20 unless the entry says otherwise.</p>",
+  "description": "<p><em>Artefact (battle axe +3; Galrim Stoneblessed&#x27;s axe, the first clan weapon of Dul Khagul).</em> You have Darkvision <strong>120ft</strong> and <strong>Advantage</strong> on saves against poison, and you can&#x27;t be knocked <strong>Prone</strong>. Once per day you may cast <em>move earth</em> or <em>wall of stone</em>, or call <strong>2d4</strong> dwarven Veterans who fight for you for an hour.</p><p><strong>Drawback:</strong> a creature that isn&#x27;t a dwarf and holds it makes a <strong>Will save</strong> each day or grows dwarf-like, losing 1 Charisma (a drain).</p><p><strong>Destroyed:</strong> melted in the forge that made it.</p><p class=\"arn-note\">Monsters &amp; Treasure, Artefacts. Its save DC is 20 unless the entry says otherwise.</p>",
   "source": {
    "book": "mt",
    "page": 0
   },
   "quantity": 1,
-  "slots": 1.0,
+  "slots": 1,
   "bundle": 0,
   "price": "Unique (never for sale)",
   "equipped": false,
@@ -30,19 +26,40 @@
   "identified": true,
   "unidentifiedName": "",
   "unidentifiedDescription": "",
-  "damage": "1d8",
-  "damageType": "slashing",
-  "ability": "str",
-  "ranged": false,
-  "range": "",
-  "magic": 3,
-  "attackBonus": 0,
-  "traits": "Cleaving",
   "ammoType": "",
-  "ammoId": "",
-  "bonusDamage": [],
-  "modeLabel": "",
-  "modeLight": 0,
+  "container": {
+   "holds": false,
+   "capacity": 0,
+   "weightless": false,
+   "extradimensional": false
+  },
+  "consumable": {
+   "use": false,
+   "heal": ""
+  },
+  "charges": {
+   "value": 0,
+   "max": 0,
+   "recharge": "",
+   "crumble": false
+  },
+  "light": {
+   "bright": 0,
+   "dim": 0,
+   "hours": 0,
+   "lit": false,
+   "litAt": 0,
+   "angle": 360
+  },
+  "scroll": {
+   "spell": null,
+   "cl": 0,
+   "dc": 0
+  },
+  "itemSpells": [],
+  "castLevel": 0,
+  "nonCasterCl": 0,
+  "nonCasterDc": 0,
   "rules": [],
   "toggle": false,
   "active": false,

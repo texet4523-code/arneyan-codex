@@ -11357,5 +11357,35 @@
   "summary": "+1 Int.",
   "manual": "",
   "confidence": "high"
+ },
+ "kits/R1eV7jWfi2Jwwa8R#1": {
+  "name": "Ward-Reader",
+  "from": "Wardblade (Spellblade)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to notice, study and identify wards, glyphs and other protective magic"
+   }
+  ],
+  "summary": "Advantage on checks to notice, study and identify wards, glyphs and other protective magic. Shown as reminders. Books v0.10.66.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "kits/iHo64HGTY4X7bVUt#1": {
+  "name": "Caravan Friend",
+  "from": "Driftblade (Spellblade)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to find work, passage or shelter with caravans, ship crews and other travelling companies"
+   }
+  ],
+  "summary": "Advantage on checks to find work, passage or shelter with caravans, ship crews and travelling companies. Shown as reminders. Books v0.10.66.",
+  "manual": "",
+  "confidence": "high"
  }
 }
