@@ -88,7 +88,7 @@ def section(t, head):
 
 def base_of(paren):
     """(kind, Catalogue name, +N) from "greatsword +3", "a shield +1, crawling ...", "a skull-headed rod, also a heavy mace +3"."""
-    for part in [p.strip() for p in re.split(r",", paren)]:
+    for part in [p.strip() for p in re.split(r"[,;]", paren)]:
         m = re.match(r"^(?:also )?(?:an? )?([a-z ]+?)(?: \+(\d))?$", part)
         if not m:
             continue

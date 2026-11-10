@@ -27,7 +27,7 @@
       <label>Attack progression <select name="system.bthProgression">{{selectOptions bthChoices selected=source.bthProgression}}</select></label>
       <label>Key attribute <select name="system.keyAbility">{{selectOptions config.abilities selected=source.keyAbility}}</select></label>
       <label>Casting attribute <select name="system.castingAbility">{{selectOptions config.castingAbilities selected=source.castingAbility}}</select></label>
-      <label>XP per level <input type="number" name="system.xpRate" value="{{source.xpRate}}" min="1"></label>
+      <label>XP per level <span class="arn-big-inline">10</span></label>
       <label>BtH at this level <span class="arn-big-inline">+{{system.bth}}</span></label>
       <label class="wide">Weapons <input type="text" name="system.weapons" value="{{source.weapons}}"></label>
       <label class="wide">Armour <input type="text" name="system.armour" value="{{source.armour}}"></label>
