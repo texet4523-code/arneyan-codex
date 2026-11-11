@@ -170,7 +170,11 @@ assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
     "Gnoll Fang of the Pit", "Ygorl, Slaad Lord", "Ssendam, Slaad Lord", "Slaad, Black", "Slaad, White", "Githyanki Gish",
     "Githyanki Kith'rak", "Githyanki Supreme Commander", "Githzerai Anarch", "Bheur Hag", "Hobgoblin Legionnaire", "Kobold Shieldbearer",
     "Kobold Trapmaster", "Orc Raider", "Gnoll Ravager", "Goblin Runner", "Angulotl Blade", "Angulotl Needler", "Angulotl Seer",
-    "Angulotl Tadpole", "Orc War Chief", "Dhergoloth", "Nabassu", "Emerald Dragon, Young", "Emerald Dragon, Adult", "Emerald Dragon, Ancient"]);
+    "Angulotl Tadpole", "Orc War Chief", "Dhergoloth", "Nabassu", "Emerald Dragon, Young", "Emerald Dragon, Adult", "Emerald Dragon, Ancient",
+    // 0.10.105: the rest of M&T v0.10.63's monsters and Lightbender.
+    "Lightbender", "Modron, Decaton", "Modron, Hexton", "Modron, Tertian", "Primus", "Canoloth", "Hydroloth", "Amnizu", "Merregon",
+    "Narzugon", "Orthon", "Molydeus", "Maw Demon", "Draegloth", "Death Kiss", "Eye of the Deep", "Wereraven", "Witherling",
+    ...["Amethyst", "Sapphire", "Topaz"].flatMap(gem => ["Young", "Adult", "Ancient"].map(age => `${gem} Dragon, ${age}`))]);
   for (const [name, alts] of Object.entries(A.ALIASES)) for (const alt of alts) {
     const other = primary.get(A.artKey(alt));
     if (other && other !== name && !kin.has(name) && !/Wyrmling$/.test(name)) assert.fail(`${name}'s other name "${alt}" is the Bestiary's ${other}`);

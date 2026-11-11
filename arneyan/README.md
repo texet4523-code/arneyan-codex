@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.104 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.105 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.105
+
+Monster art for the rest of the new monsters (R-F31, K72).
+
+- **Every new monster now has art:** the modrons and the Primus, the yugoloths, the new devils and demons, the Death Kiss and the Eye of the Deep, the Wereraven, the Witherling and the gem dragons take the nearest kin from your art packs (a gem dragon takes the crystal dragon of its age). Keeps & Kingdoms' Lightbender takes a will-o'-wisp.
+- **After updating:** press Scan once in the Monster art settings so the index picks up the new names.
 
 ## What's new in 0.10.104
 

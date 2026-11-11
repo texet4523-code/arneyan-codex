@@ -97,7 +97,15 @@ const STAND_INS = {
   "Kobold Trapmaster": ["Kobold Scout"], "Orc Raider": ["Orc Warrior"], "Gnoll Ravager": ["Gnoll Warrior"],
   "Gnoll Fang of the Pit": ["Gnoll Fang of Yeenoghu"], "Grave Shambler": ["Zombie Shambler"], "Corpse Herder": ["Necromancer"],
   "Kingfissure Worm": ["Purple Worm"], "Dragonet": ["Pseudodragon"], "Angulotl Blade": ["Boggard Warrior"],
-  "Angulotl Needler": ["Boggard Scout"], "Angulotl Seer": ["Boggard Swampseer"], "Angulotl Tadpole": ["Grippli Scout"]
+  "Angulotl Needler": ["Boggard Scout"], "Angulotl Seer": ["Boggard Swampseer"], "Angulotl Tadpole": ["Grippli Scout"],
+  "Lightbender": ["Will-o'-Wisp"],
+  // M&T v0.10.63's monsters left without art on 0.10.103: the nearest kin on TAC (checked 11 Nov).
+  "Modron, Decaton": ["Modron, Pentadrone"], "Modron, Hexton": ["Modron, Pentadrone"], "Modron, Tertian": ["Modron, Pentadrone"],
+  "Primus": ["Modron, Pentadrone"], "Canoloth": ["Mezzoloth"], "Hydroloth": ["Mezzoloth"], "Amnizu": ["Bone Devil"],
+  "Merregon": ["Bearded Devil"], "Narzugon": ["Erinyes"], "Orthon": ["Horned Devil"], "Molydeus": ["Balor"], "Maw Demon": ["Dretch"],
+  "Draegloth": ["Glabrezu"], "Death Kiss": ["Beholder"], "Eye of the Deep": ["Spectator"], "Wereraven": ["Wererat"], "Witherling": ["Ghoul"],
+  ...Object.fromEntries(["Amethyst", "Sapphire", "Topaz"].flatMap(gem => ["Wyrmling", "Young", "Adult", "Ancient"].map(age =>
+    [`${gem} Dragon, ${age}`, [`Crystal Dragon, ${age === "Wyrmling" ? "Young" : age}`]])))
 };
 for (const extra of [ALIASES_2024, STAND_INS]) for (const [name, alts] of Object.entries(extra)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
