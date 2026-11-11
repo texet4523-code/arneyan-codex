@@ -156,9 +156,9 @@ assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
 // No other name points at another Bestiary monster, except close kin given on purpose.
 {
   const bestiary = new Set();
-  for (const f of fs.readdirSync(new URL("../packs-src/monsters/", import.meta.url))) {
+  for (const pack of ["monsters", "kk-monsters"]) for (const f of fs.readdirSync(new URL(`../packs-src/${pack}/`, import.meta.url))) {
     if (!f.endsWith(".json")) continue;
-    const d = JSON.parse(fs.readFileSync(new URL(`../packs-src/monsters/${f}`, import.meta.url)));
+    const d = JSON.parse(fs.readFileSync(new URL(`../packs-src/${pack}/${f}`, import.meta.url)));
     if (d?.name && (d.type === "npc" || !d.type)) bestiary.add(d.name);
   }
   const primary = new Map([...bestiary].map(n => [A.artKey(n), n]));
@@ -170,7 +170,7 @@ assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
     "Gnoll Fang of the Pit", "Ygorl, Slaad Lord", "Ssendam, Slaad Lord", "Slaad, Black", "Slaad, White", "Githyanki Gish",
     "Githyanki Kith'rak", "Githyanki Supreme Commander", "Githzerai Anarch", "Bheur Hag", "Hobgoblin Legionnaire", "Kobold Shieldbearer",
     "Kobold Trapmaster", "Orc Raider", "Gnoll Ravager", "Goblin Runner", "Angulotl Blade", "Angulotl Needler", "Angulotl Seer",
-    "Angulotl Tadpole", "Dhergoloth", "Nabassu", "Emerald Dragon, Young", "Emerald Dragon, Adult", "Emerald Dragon, Ancient"]);
+    "Angulotl Tadpole", "Orc War Chief", "Dhergoloth", "Nabassu", "Emerald Dragon, Young", "Emerald Dragon, Adult", "Emerald Dragon, Ancient"]);
   for (const [name, alts] of Object.entries(A.ALIASES)) for (const alt of alts) {
     const other = primary.get(A.artKey(alt));
     if (other && other !== name && !kin.has(name) && !/Wyrmling$/.test(name)) assert.fail(`${name}'s other name "${alt}" is the Bestiary's ${other}`);

@@ -12,7 +12,7 @@ Monster art for the new monsters and Keeps & Kingdoms.
   - The Nihileth gets an aboleth, the Elder Orb a beholder and the Gazer a spectator.
   - The gith leaders get githyanki knights and a githzerai zerth, and the slaad lords get slaadi.
   - The goblin, hobgoblin, kobold, orc and gnoll war bands get their nearest kin, and the angulotls get boggards.
-- **To use them:** in Configure Settings, under the Arneyan system, open **Monster art** and press **Scan** once (your packs stay ticked as before).
+- **To use them:** in Configure Settings, under The Arneyan Codex, open **Monster art** and press **Scan** once (your packs stay ticked as before).
 
 ## What's new in 0.10.102
 

@@ -353,9 +353,9 @@ async function imagesUnder(path, depth = 0) {
   return files;
 }
 
-/** Every key the Bestiary's monsters go by (so the index keeps only art for them). */
 /** The monster compendiums art is matched for: the Bestiary and Keeps & Kingdoms' creatures. */
 const MONSTER_PACKS = ["monsters", "kk-monsters"];
+/** Every name those monsters go by (so the index keeps only art for them). */
 async function bestiaryNames() {
   const out = [];
   for (const id of MONSTER_PACKS) {
