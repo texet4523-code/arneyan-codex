@@ -1,6 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.103 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.104 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.104
+
+Books HB v0.10.69 and M&T v0.10.69 (B-F61, B-F62; F-B16, K128).
+
+- **The Catalogue and Monsters & Treasure agree:** the Sun Blade (Lathander's Orders of the Rose), the Dwarven Thrower (Dul Khagul's smiths), and Elven Chain and the Boots and Cloak of Elvenkind (from Aldori) now carry the same text in both books. The Ring of Free Action reads "non-magical".
+- **Cursed items:** the Boots of Dancing and the Ring of Contrariness show players the new text of the items they pass for.
+- **Vorpal Sword (K128):** its beheading save is a Fortitude save at DC 17 in both books.
 
 ## What's new in 0.10.103
 
