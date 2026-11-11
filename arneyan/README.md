@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.102 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.103 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.103
+
+Monster art for the new monsters and Keeps & Kingdoms.
+
+- **Keeps & Kingdoms' creatures get art too:** the art scan now reads their names, and they take their art when you drag them out, as Bestiary monsters do.
+- **Stand-ins** from common art packs where a pack has nothing by the name. Examples:
+  - The Bheur Hag gets a winter hag, and the giant variants get their giant.
+  - The Nihileth gets an aboleth, the Elder Orb a beholder and the Gazer a spectator.
+  - The gith leaders get githyanki knights and a githzerai zerth, and the slaad lords get slaadi.
+  - The goblin, hobgoblin, kobold, orc and gnoll war bands get their nearest kin, and the angulotls get boggards.
+- **To use them:** in Configure Settings, under the Arneyan system, open **Monster art** and press **Scan** once (your packs stay ticked as before).
 
 ## What's new in 0.10.102
 

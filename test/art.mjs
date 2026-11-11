@@ -162,7 +162,15 @@ assert.equal(A.artFor("Goblin", bs).portrait, "a/portraits/goblin.webp");
     if (d?.name && (d.type === "npc" || !d.type)) bestiary.add(d.name);
   }
   const primary = new Map([...bestiary].map(n => [A.artKey(n), n]));
-  const kin = new Set(["Abominable Yeti", "Young Remorhaz", "Grey Ooze, Psychic", "Magma Mephit", "Giant Wolf Spider", "Bat Swarm", "Donkey", "Giant Elk", "Giant Owl", "Grick Alpha"]);
+  const kin = new Set(["Abominable Yeti", "Young Remorhaz", "Grey Ooze, Psychic", "Magma Mephit", "Giant Wolf Spider", "Bat Swarm", "Donkey", "Giant Elk", "Giant Owl", "Grick Alpha",
+    // 0.10.103: stand-ins for M&T v0.10.63's monsters and Keeps & Kingdoms' creatures, kin given on purpose.
+    "Alhoon", "Baelnorn", "Elder Orb", "Gazer", "Nihileth", "Cloud Giant Smiling One", "Fire Giant Dreadnought",
+    "Frost Giant Everlasting One", "Stone Giant Dreamwalker", "Storm Giant Quintessent", "Drow House Captain", "Drow Matron Mother",
+    "Flind", "Goblin Warlord", "Hobgoblin War Captain", "Kingfissure Worm", "Dragonet", "Corpse Herder", "Grave Shambler",
+    "Gnoll Fang of the Pit", "Ygorl, Slaad Lord", "Ssendam, Slaad Lord", "Slaad, Black", "Slaad, White", "Githyanki Gish",
+    "Githyanki Kith'rak", "Githyanki Supreme Commander", "Githzerai Anarch", "Bheur Hag", "Hobgoblin Legionnaire", "Kobold Shieldbearer",
+    "Kobold Trapmaster", "Orc Raider", "Gnoll Ravager", "Goblin Runner", "Angulotl Blade", "Angulotl Needler", "Angulotl Seer",
+    "Angulotl Tadpole", "Dhergoloth", "Nabassu", "Emerald Dragon, Young", "Emerald Dragon, Adult", "Emerald Dragon, Ancient"]);
   for (const [name, alts] of Object.entries(A.ALIASES)) for (const alt of alts) {
     const other = primary.get(A.artKey(alt));
     if (other && other !== name && !kin.has(name) && !/Wyrmling$/.test(name)) assert.fail(`${name}'s other name "${alt}" is the Bestiary's ${other}`);

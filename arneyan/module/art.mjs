@@ -79,7 +79,25 @@ const STAND_INS = {
   "Beetle Swarm": ["Cockroach Swarm"], "Bugbear Chief": ["Bugbear Stalker", "Bugbear Tormentor"], "Drow Mage": ["Drow Caster"],
   "Orc Eye-Priest": ["Orc Mage"], "Orog": ["Orc Berserker"], "Ox": ["Bison"], "Sea Horse": ["Giant Seahorse"],
   "Star Spawn Grue": ["Abberant Prowler"], "Star Spawn Hulk": ["Far Realm Intruder"],
-  "Donkey": ["Mule"], "Giant Elk": ["Elk"], "Giant Owl": ["Owl"], "Grick Alpha": ["Grick"]
+  "Donkey": ["Mule"], "Giant Elk": ["Elk"], "Giant Owl": ["Owl"], "Grick Alpha": ["Grick"],
+  // M&T v0.10.63 (0.10.100): the nearest kin Kieran's packs have, checked on TAC 11 Nov.
+  "Alhoon": ["Mind Flayer Arcanist"], "Baelnorn": ["Lich"], "Bheur Hag": ["Winter Hag"], "Elder Orb": ["Beholder"],
+  "Gazer": ["Spectator"], "Nihileth": ["Aboleth"], "Nabassu": ["Nabasu"], "Dhergoloth": ["Derghodaemon"],
+  "Cloud Giant Smiling One": ["Cloud Giant"], "Fire Giant Dreadnought": ["Fire Giant"], "Frost Giant Everlasting One": ["Frost Giant"],
+  "Stone Giant Dreamwalker": ["Stone Giant"], "Storm Giant Quintessent": ["Storm Giant"],
+  "Drow House Captain": ["Drow Fighter"], "Drow Matron Mother": ["Drow High Priestess", "Drow Priestess"], "Flind": ["Gnoll Pack Lord"],
+  "Githyanki Gish": ["Githyanki Dracomancer"], "Githyanki Kith'rak": ["Githyanki Knight"], "Githyanki Supreme Commander": ["Githyanki Knight"],
+  "Githzerai Anarch": ["Githzerai Zerth"], "Slaad, Black": ["Death Slaad"], "Slaad, White": ["Gray Slaad"],
+  "Ygorl, Slaad Lord": ["Death Slaad"], "Ssendam, Slaad Lord": ["Gray Slaad"], "Crystal Dragon, Wyrmling": ["Crystal Dragon, Young"],
+  "Emerald Dragon, Wyrmling": ["Emerald Dragon"], "Emerald Dragon, Young": ["Emerald Dragon"], "Emerald Dragon, Adult": ["Emerald Dragon"],
+  "Emerald Dragon, Ancient": ["Emerald Dragon"],
+  // Keeps & Kingdoms' creatures (R-F28).
+  "Goblin Warlord": ["Goblin Boss"], "Goblin Runner": ["Goblin Warrior"], "Hobgoblin War Captain": ["Hobgoblin Captain"],
+  "Hobgoblin Legionnaire": ["Hobgoblin Soldier", "Hobgoblin Warrior"], "Kobold Shieldbearer": ["Kobold Warrior"],
+  "Kobold Trapmaster": ["Kobold Scout"], "Orc Raider": ["Orc Warrior"], "Gnoll Ravager": ["Gnoll Warrior"],
+  "Gnoll Fang of the Pit": ["Gnoll Fang of Yeenoghu"], "Grave Shambler": ["Zombie Shambler"], "Corpse Herder": ["Necromancer"],
+  "Kingfissure Worm": ["Purple Worm"], "Dragonet": ["Pseudodragon"], "Angulotl Blade": ["Boggard Warrior"],
+  "Angulotl Needler": ["Boggard Scout"], "Angulotl Seer": ["Boggard Swampseer"], "Angulotl Tadpole": ["Grippli Scout"]
 };
 for (const extra of [ALIASES_2024, STAND_INS]) for (const [name, alts] of Object.entries(extra)) ALIASES[name] = [...(ALIASES[name] ?? []), ...alts];
 
@@ -336,9 +354,15 @@ async function imagesUnder(path, depth = 0) {
 }
 
 /** Every key the Bestiary's monsters go by (so the index keeps only art for them). */
+/** The monster compendiums art is matched for: the Bestiary and Keeps & Kingdoms' creatures. */
+const MONSTER_PACKS = ["monsters", "kk-monsters"];
 async function bestiaryNames() {
-  const pack = game.packs.get(`${SYS}.monsters`);
-  return pack ? [...await pack.getIndex()].filter(e => e.type === "npc" || !e.type).map(e => e.name) : [];
+  const out = [];
+  for (const id of MONSTER_PACKS) {
+    const pack = game.packs.get(`${SYS}.${id}`);
+    if (pack) out.push(...[...await pack.getIndex()].filter(e => e.type === "npc" || !e.type).map(e => e.name));
+  }
+  return [...new Set(out)];
 }
 
 /** A folder in the user data as typed or picked ("art/dnd-tokens"), or "" if it isn't one the scan may read. */
@@ -440,7 +464,7 @@ export function artUpdate(actor, index = readIndex()) {
 
 const fromBestiary = actor => {
   const src = actor?._stats?.compendiumSource ?? actor?.flags?.core?.sourceId ?? "";
-  return typeof src === "string" && src.startsWith(`Compendium.${SYS}.monsters.`);
+  return typeof src === "string" && MONSTER_PACKS.some(id => src.startsWith(`Compendium.${SYS}.${id}.`));
 };
 
 /**
