@@ -208,7 +208,7 @@ export function planDowntime(key, v, actor) {
         const sp = trainedFeatGold(actor?.system?.level);
         // Weapon Master (books v0.10.49, K57): no check at the end; you're already trained in the weapon.
         if (/^weapon master\b/i.test(String(v.what ?? "").trim())) return { title: `Trained Feat: Weapon Master`, days: t.weeks * WEEK, costCp: sp * 10,
-          offerFeat: "Weapon Master", check: null, warn: [...warn, "Weapon Master needs training in the weapon (never a Fighter's specialised one); no check at the end."] };
+          offerFeat: "Weapon Master", check: null, warn: [...warn, "Weapon Master needs training in the weapon (never one in the group a Fighter has specialised in); no check at the end."] };
         return { title: `Trained Feat${v.what ? `: ${v.what}` : ""}`, days: t.weeks * WEEK, costCp: sp * 10, offerFeat: String(v.what ?? "").trim(),
           check: { type: "ability", ability: v.ability || "str", dc: 15 }, retry: { days: 2 * WEEK, costCp: Math.round(sp * 10 / t.weeks) * 2 },
           warn: [...warn, "One Trained Feat per Tier, from a Path open to you; the master also names a price (d6)."] };

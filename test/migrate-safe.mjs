@@ -485,3 +485,15 @@ console.log("OK safe world update");
   assert.ok(!("system.optionChoice" in kept), "a pick already made stays");
   console.log("OK 0.10.66 dropped choice cleared");
 }
+
+// HB v0.10.70 (K131): an old Weapon Specialisation with a weapon picked takes that weapon's group.
+{
+  const grp = { label: "Weapon group", max: "1", options: ["Bind", "Hew", "Hook", "Pinning Fire", "Clinch"].map(name => ({ name, text: "", rules: [] })), value: [] };
+  const oldItem = { type: "ability", name: "Weapon Specialisation", system: { rules: [], weaponChoice: { max: "1", value: ["Sword, Long"] }, optionChoice: { label: "", max: "", options: [], value: [] } }, flags: { arneyan: {} } };
+  oldItem._source = { system: oldItem.system };
+  const upd = M.refreshFrom(oldItem, { type: "ability", system: { rules: [], weaponChoice: { max: "", value: [] }, optionChoice: grp } }, { force: true });
+  assert.deepEqual(upd["system.optionChoice"]?.value, ["Bind"], "a long sword is Bind");
+  assert.deepEqual(M.groupsOfWeapons(["Maul"], new Set(grp.options.map(o => o.name))), ["Hew"]);
+  assert.deepEqual(M.groupsOfWeapons(["Homebrew Thing"], new Set(grp.options.map(o => o.name))), [], "a weapon on no table: the player picks");
+  console.log("OK old weapon pick becomes its group");
+}

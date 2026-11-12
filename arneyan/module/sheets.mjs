@@ -2,7 +2,7 @@ import { isReloadable, ammoOf, reloadRounds, startReload } from "./reload.mjs";
 import { hideState, rollHide, rollSearch } from "./stealth.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
-import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, weaponPickMax, featureLevel } from "./effects.mjs";
+import { breakdown, toggleCondition, statusesOf, endConcentration, scopeText, weaponPickMax, featureLevel, weaponGroup } from "./effects.mjs";
 import { ArneyanBrowser } from "./browser.mjs";
 import { alignmentContext } from "./favour.mjs";
 import { startingWealth, canRunStartingWealth } from "./starting.mjs";
@@ -1069,6 +1069,9 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       bthChoices: Object.fromEntries(Object.entries(ARNEYAN.bthProgressions).map(([k, v]) => [k, v.label])),
       spellLevelChoices: Object.fromEntries(ARNEYAN.spellLevels.map((l, i) => [i, l])),
       damageChoices: { "": "None", ...ARNEYAN.damageTypes },
+      groupChoices: { "": "As the Catalogue lists it", ...ARNEYAN.weaponGroups },
+      // Blank: the group the Catalogue gives the weapon it is ("Hew"), shown in the tooltip.
+      groupFrom: item.type === "weapon" && !sys.group ? (ARNEYAN.weaponGroups[weaponGroup(item)] ?? "") : "",
       isGear: ["weapon", "armour", "equipment"].includes(item.type),
       canForge: ["weapon", "armour"].includes(item.type),
       isGM: game.user.isGM,

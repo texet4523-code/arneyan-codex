@@ -354,7 +354,7 @@ def build():
             "quantity": 1, "slots": s.get("slots", 1), "bundle": 0, "price": s.get("price", ""), "equipped": False,
             "inside": "", "identified": True, "unidentifiedName": "", "unidentifiedDescription": "",
             "damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged", False)),
-            "range": more.get("range", bs.get("range", "")), "magic": plus, "attackBonus": 0,
+            "range": more.get("range", bs.get("range", "")), "magic": plus, "attackBonus": 0, "group": bs.get("group", ""),
             "traits": more.get("traits", ", ".join(x for x in [bs.get("traits", ""), more.get("traits_add", "")] if x)), "ammoType": bs.get("ammoType", "") if bs.get("ranged") else "", "ammoId": "",
             "bonusDamage": [{"formula": a, "type": b, "when": "" if c == "mode" else c, "mode": c == "mode"} for a, b, c in extra],
             "modeLabel": more.get("modeLabel", ""), "modeLight": more.get("modeLight", 0),

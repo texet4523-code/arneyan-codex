@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Choose one weapon — you have <strong>Advantage</strong> on the first attack roll you make with it each round, and gain +1 damage with it.</p><ul><li>Improves to +2 damage at 7th level, +3 at 13th and +4 at 19th</li></ul>",
+  "description": "<p>Choose one weapon group (see Weapon Training). You gain +1 to attack rolls and +1 damage with weapons of that group. You can change your group with one Downtime Phase of training.</p><ul><li>Improves to +2 to hit and damage at 7th level, +3 at 13th and +4 at 19th</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -21,26 +21,114 @@
   "damage": "",
   "level": 1,
   "className": "Fighter",
-  "rules": [
-   {
-    "key": "adv.attack.first",
-    "value": "1",
-    "when": "with your specialised weapon",
-    "label": "",
-    "weapon": "chosen"
-   },
-   {
-    "key": "damage",
-    "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
-    "when": "with your specialised weapon",
-    "label": "",
-    "weapon": "chosen"
-   }
-  ],
+  "rules": [],
   "toggle": false,
   "active": false,
-  "weaponChoice": {
+  "optionChoice": {
+   "label": "Weapon group",
    "max": "1",
+   "options": [
+    {
+     "name": "Bind",
+     "text": "Bind (blades): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Disarm contest against the target.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Bind weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:bind"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Bind weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:bind"
+      }
+     ]
+    },
+    {
+     "name": "Hew",
+     "text": "Hew (chopping and crushing): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: a creature your size or smaller makes a Fortitude save against your Class Save DC or is knocked Prone.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hew weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:hew"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hew weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:hew"
+      }
+     ]
+    },
+    {
+     "name": "Hook",
+     "text": "Hook (reach and tangling): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Trip contest against the target, at your weapon's full reach.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hook weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:hook"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hook weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:hook"
+      }
+     ]
+    },
+    {
+     "name": "Pinning Fire",
+     "text": "Pinning Fire (missiles): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: the target has Disadvantage on its next attack roll.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Pinning Fire weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:pinning fire"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Pinning Fire weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:pinning fire"
+      }
+     ]
+    },
+    {
+     "name": "Clinch",
+     "text": "Clinch (fist weapons): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Grapple contest against the target.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Clinch weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:clinch"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Clinch weapons",
+       "label": "Weapon Specialisation",
+       "weapon": "group:clinch"
+      }
+     ]
+    }
+   ],
    "value": []
   }
  },

@@ -280,8 +280,12 @@ console.log("OK combat");
   assert.deepEqual(cbRules.map(r => [r.key, r.value, r.weapon]), [["damage.reroll", "2", "two-handed"]], "Crushing Blow is a scoped reroll now");
   assert.ok(ARNEYAN.allRuleKeys.has("damage.reroll"));
   const specSrc = packItems("class-features").find(i => i.name === "Weapon Specialisation");
-  assert.equal(specSrc.system.weaponChoice.max, "1", "one weapon (books v0.10.57: no second at 13th)");
-  assert.ok(specSrc.system.rules.every(r => r.weapon === "chosen"));
+  // HB v0.10.70 (K131, K132): a weapon group, not a weapon; the old weapon pick stays as a mechanism (tested below).
+  assert.equal(specSrc.system.weaponChoice?.max ?? "", "", "no weapon pick now");
+  assert.deepEqual(specSrc.system.optionChoice.options.map(o => o.name), ["Bind", "Hew", "Hook", "Pinning Fire", "Clinch"]);
+  assert.ok(specSrc.system.optionChoice.options.every(o => o.rules.length === 2 && o.rules.every(r => r.weapon === `group:${o.name.toLowerCase()}`)));
+  const oldSpec = { rules: [{ key: "adv.attack.first", value: "1", when: "with your specialised weapon", weapon: "chosen" },
+    { key: "damage", value: "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))", when: "with your specialised weapon", weapon: "chosen" }] };
   assert.ok(packItems("equipment").find(i => i.name === "Greatsword").system.traits.includes("Two-handed"), "the Catalogue's two-handed weapons say so");
   assert.ok(!packItems("equipment").find(i => i.name === "Sword, Long").system.traits.includes("Two-handed"), "a Versatile one doesn't");
 
@@ -336,7 +340,8 @@ console.log("OK combat");
   assert.equal(withFeatures(3).weaponDice(great).formula, "2d6", "no Crushing Blow, no reroll");
 
   // Weapon Specialisation: with the picked weapon, +damage and first-attack Advantage for real; otherwise reminders.
-  const specWith = value => makeItem(IM.AbilityData, "ability", "Weapon Specialisation", { ...specSrc.system, className: "Fighter", weaponChoice: { max: "1:1, 13:2", value } });
+  // The weapon pick (Weapon Specialisation before HB v0.10.70): the mechanism, on a feature made here.
+  const specWith = value => makeItem(IM.AbilityData, "ability", "Weapon Specialisation", { ...oldSpec, className: "Fighter", weaponChoice: { max: "1:1, 13:2", value } });
   const f7 = withFeatures(7, specWith(["Greatsword"]));
   const bonus = x => x.filter(t => t.label === "Weapon Specialisation").map(t => t.value);
   assert.deepEqual(bonus(f7.damageTerms(great)), ["+2"], "+2 damage at 7th with the picked weapon");
@@ -389,5 +394,38 @@ console.log("OK combat");
   assert.equal(ictx.weaponPick.slots.length, 2, "two picks at 13th");
   const ihtml = render("templates/item/item-sheet.hbs", { ...ictx, editable: true });
   assert.ok(ihtml.includes('class="arn-weapon-pick"') && ihtml.includes('<option value="Greatsword" selected>') && ihtml.includes('<option value="Dagger">') && ihtml.includes("Second weapon"), "the weapon selects");
+  // HB v0.10.70: Weapon Specialisation by group. Bind at 7th: +2 to hit and damage with blades, nothing with a spear.
+  const groupSpec = pick => makeItem(IM.AbilityData, "ability", "Weapon Specialisation", { ...specSrc.system, className: "Fighter", optionChoice: { ...specSrc.system.optionChoice, value: pick } });
+  const g7 = withFeatures(7, groupSpec(["Bind"]));
+  assert.deepEqual(bonus(g7.damageTerms(great)), ["+2"], "a greatsword is Bind (the Catalogue's group, though the copy has none)");
+  assert.deepEqual(bonus(g7.damageTerms(magicGreat)), ["+2"], "so is a +1 Greatsword");
+  assert.deepEqual(bonus(g7.damageTerms(spear)), [], "a spear is Hook");
+  assert.deepEqual(g7.system.mods.forWeapon(great).mods.parts("attack").map(p => p.value), [2], "+2 to hit with it");
+  assert.deepEqual(g7.system.mods.forWeapon(spear).mods.parts("attack"), [], "not with the spear");
+  assert.equal(g7.system.mods.parts("attack").length, 0, "never on every weapon");
+  assert.deepEqual(g7.system.mods.forWeapon(great).mods.adv("adv.attack.first").values, [], "no first-attack Advantage now");
+  assert.deepEqual(bonus(withFeatures(19, groupSpec(["Hook"])).damageTerms(spear)), ["+4"], "Hook at 19th: +4 with the spear");
+  // A weapon's own Group wins over the Catalogue's; the map covers the Catalogue's names either way round.
+  assert.equal(E.weaponGroup(W("Sword, Long", { group: "hew" })), "hew");
+  assert.equal(E.weaponGroup(longsword), "bind");
+  assert.equal(E.weaponGroup(W("Long Sword", {})), "bind");
+  assert.equal(E.weaponGroup(W("Javelin", {})), "pinning fire", "a javelin is a missile (K132)");
+  assert.equal(E.weaponGroup(W("Fist", {})), "clinch");
+  assert.equal(E.weaponGroup(W("Moonblade", {})), "", "a name on no table: none");
+  // Every Catalogue and magic weapon in the compendium has its group.
+  assert.ok(packItems("equipment").filter(i => i.type === "weapon").every(i => ARNEYAN.weaponGroups[i.system.group]), "every weapon has a group");
+  assert.equal(packItems("equipment").find(i => i.name === "Vorpal Sword").system.group, "bind", "a magic weapon takes its base weapon's");
+  // The weapon's sheet: a Group select, blank showing the Catalogue's group in its tooltip.
+  {
+    const { ArneyanItemSheet: IS } = await import("../arneyan/module/sheets.mjs");
+    const ws = W("Sword, Long", { damage: "1d8" });
+    const wctx = await sheetContext(IS, ws, { _activeTab: "details" });
+    assert.equal(wctx.groupFrom, "Bind");
+    const whtml = render("templates/item/item-sheet.hbs", { ...wctx, editable: true });
+    assert.ok(whtml.includes('name="system.group"') && whtml.includes("Pinning Fire") && whtml.includes("Blank: Bind"), "the Group select");
+  }
+  // None picked: reminders only, and the sheet asks.
+  assert.equal(groupSpec([]).system.needsOption, true);
+  assert.deepEqual(bonus(withFeatures(7, groupSpec([])).damageTerms(great)), []);
   console.log("OK Crushing Blow and Weapon Specialisation");
 }

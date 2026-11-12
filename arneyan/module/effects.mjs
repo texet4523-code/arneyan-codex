@@ -11,6 +11,7 @@ import { reapply } from "./counters.mjs";
 import { combatFor, combatOnScene } from "./fight.mjs";
 import { durationData } from "./duration.mjs";
 import { unset } from "./compat.mjs";
+import { WEAPON_GROUPS } from "./data/weapon-groups.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -253,7 +254,31 @@ export function weaponMatches(rule, item, opts = {}) {
     const want = new Set((rule.names ?? []).map(weaponKey).filter(Boolean));
     return want.size > 0 && weaponKeys(item).some(k => want.has(k));
   }
+  // A weapon group (the Fighter's Weapon Specialisation, HB v0.10.70): "group:hew".
+  if (scope.startsWith("group:")) return weaponGroup(item) === scope.slice(6).trim();
   return false;
+}
+
+/**
+ * A weapon's group, lower case ("hew", "pinning fire"), or "" for none: its own Group field, else the Catalogue's
+ * group for the weapon it is (a copy made before groups existed, a magic or renamed one, a Named Unique's base weapon).
+ */
+export function weaponGroup(item) {
+  if (item?.type !== "weapon") return "";
+  const own = String(item.system?.group ?? "").trim().toLowerCase();
+  if (own) return own;
+  for (const k of weaponKeys(item)) if (WEAPON_GROUPS[k]) return WEAPON_GROUPS[k];
+  return "";
+}
+
+/** The weapon groups (option names, "Bind") of weapons picked by name ("Sword, Long"): the first one's, if any. */
+export function groupsOfWeapons(weapons = [], names = new Set()) {
+  const byLower = new Map([...names].map(n => [String(n).toLowerCase(), n]));
+  for (const w of weapons ?? []) {
+    const g = WEAPON_GROUPS[weaponKey(w)];
+    if (g && byLower.has(g)) return [byLower.get(g)];
+  }
+  return [];
 }
 
 /** How many weapons an item's weapon pick allows at this class level (0: it has none). */
@@ -297,6 +322,7 @@ export function scopeText(rule) {
   const scope = String(rule?.weapon ?? "").trim();
   if (scope === "two-handed") return "with two-handed weapons";
   if (scope === "chosen") return rule.names?.length ? `with ${rule.names.join(" or ")}` : "with the picked weapon (none picked yet)";
+  if (scope.startsWith("group:")) return `with ${ARNEYAN.weaponGroups[scope.slice(6).trim()] ?? scope.slice(6)} weapons`;
   return scope ? `with ${scope} weapons` : "";
 }
 

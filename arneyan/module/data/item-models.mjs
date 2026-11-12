@@ -312,6 +312,8 @@ export class WeaponData extends BaseItemData {
       magic: int(0),
       attackBonus: int(0),
       traits: str(),
+      /** Its weapon group (HB v0.10.70, K132): Bind, Hew, Hook, Pinning Fire or Clinch; blank reads the Catalogue's. */
+      group: new StringField({ required: true, blank: true, initial: "", choices: () => ({ "": "None", ...ARNEYAN.weaponGroups }) }),
       /** The ammunition it fires ("arrow", "bolt", "stone", "bullet"); blank needs none. */
       ammoType: str(),
       /** Which stack on the sheet it draws from (blank: the first that fits). */

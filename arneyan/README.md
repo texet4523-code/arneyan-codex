@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.105 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.106 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.106
+
+Handbook v0.10.70 (B-F63; K131 to K133, from a player's review of the classes).
+
+- **Weapon groups:** every weapon has a group (Bind, Hew, Hook, Pinning Fire or Clinch), shown on its sheet and in the Catalogue's weapon tables. A magic weapon is in its base weapon's group; a weapon made before groups existed reads its group from the Catalogue.
+- **Fighter, Weapon Specialisation:** you pick a weapon group, not a weapon: +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th), applied on the roll. The Advantage on the first attack is gone. A Fighter who had picked a weapon gets that weapon's group. To change group after a Downtime Phase of training, pick again on the item.
+- **Fighter, Weapon Training:** your group's manoeuvre, with Clinch (a Grapple contest) for fist weapons, or Shield Guard in its place.
+- **Archer, Twin Nock:** a second button for when you haven't moved this turn (no Disadvantage on the second arrow). If both arrows hit one creature, it has Disadvantage on its next attack.
+- **Assassin:** Finishing Blow adds one Sneak Attack die. Marked for Death also lets Death Attack work whatever the target's Level. Cold Blood's Disadvantage doesn't apply to Death Attack saves. Marked for Death (Improved) is now **Open Vein** (3d6 a turn, no healing while it bleeds); characters who have it are renamed.
+- **Barbarian:** Savage Swing's move-or-act effect allows a Fortitude save; Cleaving Fury rolls the weapon's damage dice; World Ender reaches 10ft or your reach.
+- **Weapon Master** can't be taken for a weapon in the group a Fighter has specialised in.
 
 ## What's new in 0.10.105
 

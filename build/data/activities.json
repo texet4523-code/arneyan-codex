@@ -102,13 +102,23 @@
     "disadvantage": "rest",
     "disUntil": 10,
     "cost": 0,
-    "text": "Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn.",
+    "text": "Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
+    "damageBonus": "1:1, 6:2, 12:3, 18:4",
+    "noStack": "Bow Mastery"
+   },
+   {
+    "name": "Twin Nock (not moved this turn)",
+    "kind": "attacks",
+    "count": "4:2, 17:3",
+    "weapons": "arrow",
+    "cost": 0,
+    "text": "No Disadvantage on the second arrow: you haven't moved this turn. Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
     "damageBonus": "1:1, 6:2, 12:3, 18:4",
     "noStack": "Bow Mastery"
    }
   ],
   "confidence": "high",
-  "why": "Handbook v0.10.0: two arrows (three from 17th), the second at Disadvantage until 10th, and each arrow gets your Bow Mastery bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th). Bow Mastery itself is a reminder (bows only), so the arrows carry its bonus here; if Bow Mastery ever adds it itself, the higher counts, never both. Arrows: bows only."
+  "why": "Handbook v0.10.0: two arrows (three from 17th), the second at Disadvantage until 10th, and each arrow gets your Bow Mastery bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th). Bow Mastery itself is a reminder (bows only), so the arrows carry its bonus here; if Bow Mastery ever adds it itself, the higher counts, never both. Arrows: bows only. HB v0.10.70 (K133): no Disadvantage on the second arrow if you haven't moved this turn (its own button); both arrows hitting one creature give it Disadvantage on its next attack."
  },
  "Hail of Arrows|Archer": {
   "activities": [
@@ -3769,18 +3779,18 @@
     "count": "2",
     "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit one creature no more than one size larger than you, on its next turn it can move or act, not both."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. If both hit one creature no more than one size larger than you, it makes a Fortitude save against your Class Save DC or, on its next turn, it can move or act, not both (standing up from Prone counts as moving)."
    },
    {
     "name": "Savage Swing (while Raging)",
     "kind": "attacks",
     "count": "2",
     "cost": 0,
-    "text": "No Disadvantage on the extra attack (while Raging). If both hit one creature no more than one size larger than you, on its next turn it can move or act, not both."
+    "text": "No Disadvantage on the extra attack (while Raging). If both hit one creature no more than one size larger than you, it makes a Fortitude save against your Class Save DC or, on its next turn, it can move or act, not both (standing up from Prone counts as moving)."
    }
   ],
   "confidence": "high",
-  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies."
+  "why": "Books v0.10.57 (R-B62): Extra Attack at 5th with its own name; the button without Disadvantage is for when its condition applies. HB v0.10.70 (K133): the move-or-act effect allows a Fortitude save."
  },
  "Challenger's Blow|Knight": {
   "activities": [

@@ -9,6 +9,49 @@ PIERCE = re.compile(r"spear|dagger|dirk|knife|pick|bow|crossbow|dart|javelin|har
 # Items that list a variant after their own price: the first price is the item's.
 FIRST_PRICE = {"Bedroll"}
 
+
+# Weapon groups (HB v0.10.70, K132): the Catalogue's Group column, kept on each weapon and as a name-to-group map the
+# system reads for weapons made before groups existed (arneyan/module/data/weapon-groups.mjs).
+GROUPS = {"bind": "bind", "hew": "hew", "hook": "hook", "pinning fire": "pinning fire", "clinch": "clinch"}
+WEAPON_GROUPS = {}
+
+
+def weapon_group(text):
+    """The group a Group cell names, lower case ("Pinning Fire" -> "pinning fire"), or ""."""
+    return GROUPS.get(re.sub(r"\s+", " ", str(text or "")).strip().lower(), "")
+
+
+def weapon_key(name):
+    """As effects.mjs weaponKey: no brackets or +N, "Kind, Variety" read the other way round, letters only."""
+    s = re.sub(r"\([^)]*\)", " ", str(name or "").lower())
+    s = re.sub(r"[+-]\s*\d+\b", " ", s)
+    parts = [x.strip() for x in s.split(",") if x.strip()]
+    if len(parts) == 2:
+        s = f"{parts[1]} {parts[0]}"
+    return re.sub(r"[^a-z]", "", s)
+
+
+def weapon_names(name):
+    """A Catalogue name and the names it stands for: "Axe, Hand/Throwing" is also a hand axe and a throwing axe,
+    "Bill/Billhook" a bill and a billhook."""
+    out = [name]
+    if "/" in name:
+        if "," in name:
+            kind, variety = [x.strip() for x in name.split(",", 1)]
+            out += [f"{kind}, {v.strip()}" for v in variety.split("/")]
+        else:
+            out += [v.strip() for v in name.split("/")]
+    return out
+
+
+def write_weapon_groups():
+    import json, os
+    path = os.path.join(os.path.dirname(__file__), "..", "arneyan", "module", "data", "weapon-groups.mjs")
+    body = json.dumps(dict(sorted(WEAPON_GROUPS.items())), indent=1)
+    with open(path, "w") as f:
+        f.write("/** Built from the Catalogue's weapon tables (build/build_shop.py): each weapon's group, by weaponKey. */\n"
+                f"export const WEAPON_GROUPS = {body};\n")
+
 def dmg_type(name):
     if BLUDGEON.search(name):
         return "bludgeoning"
@@ -163,8 +206,12 @@ def build(icon):
                         "source": {"book": "phb", "page": 0}, "quantity": 1,
                         "slots": num(cols.get("Slots", "1"), 1), "price": cols.get("Cost", ""), "equipped": False,
                         "damage": weapon_damage(cols.get("Damage", "")), "damageType": dmg_type(nm),
-                        "ability": ability, "ranged": ranged, "range": rng, "magic": 0, "attackBonus": 0, "traits": traits
+                        "ability": ability, "ranged": ranged, "range": rng, "magic": 0, "attackBonus": 0, "traits": traits,
+                        "group": weapon_group(cols.get("Group", ""))
                     }, icon("weapon", nm), folder=sub, sort=n); n += 1
+                    if weapon_group(cols.get("Group", "")):
+                        for alt in weapon_names(nm):
+                            WEAPON_GROUPS.setdefault(weapon_key(alt), weapon_group(cols.get("Group", "")))
                 continue
             if head[:2] == ["Item", "Cost"] or head[:2] == ["Item", "Use"]:
                 parent = root_magic if sec2 in ("Alchemist's & Healer's Goods", "Magic Items", "Rare Spell Components") else root_gear
@@ -183,6 +230,8 @@ def build(icon):
                 continue
             continue
         i += 1
+
+    write_weapon_groups()
 
     # Journal: the whole Catalogue, one page per section.
     pages = [(re.sub(r"^\d+\.\s*", "", plain(t)), md_to_html(b)) for t, b in md_sections(md, 2)]

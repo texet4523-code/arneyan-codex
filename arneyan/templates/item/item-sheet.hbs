@@ -94,6 +94,7 @@
       <label>Damage type <select name="system.damageType">{{selectOptions damageChoices selected=source.damageType}}</select></label>
       <label>Attack attribute <select name="system.ability">{{selectOptions config.weaponAbilities selected=source.ability}}</select></label>
       <label>Range <input type="text" name="system.range" value="{{source.range}}" placeholder="Melee, 80/320ft..."></label>
+      <label data-tooltip="Its weapon group (the Fighter's Weapon Specialisation and Weapon Training).{{#if groupFrom}} Blank: {{groupFrom}}, as the Catalogue lists it.{{/if}}">Group <select name="system.group">{{selectOptions groupChoices selected=source.group}}</select></label>
       <label>Magic bonus <input type="number" name="system.magic" value="{{source.magic}}"></label>
       <label>Other attack bonus <input type="number" name="system.attackBonus" value="{{source.attackBonus}}"></label>
       <label class="check"><input type="checkbox" name="system.ranged" {{checked source.ranged}}> Ranged</label>

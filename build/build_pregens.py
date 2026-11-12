@@ -435,6 +435,17 @@ def build():
                 wc = it["system"].get("weaponChoice")
                 if isinstance(wc, dict) and wc.get("max") and not wc.get("value"):
                     wc["value"] = picked_weapons(fdoc["name"], c, gear)
+                # A weapon group of the player's choice (Weapon Specialisation from HB v0.10.70): the group of the weapon
+                # the printed sheet names ("Weapon Specialisation (Longsword)" is Bind).
+                oc = it["system"].get("optionChoice")
+                if isinstance(oc, dict) and oc.get("label") == "Weapon group" and not oc.get("value"):
+                    import build_shop
+                    groups = [build_shop.WEAPON_GROUPS.get(build_shop.weapon_key(w)) for w in picked_weapons(fdoc["name"], c, gear)]
+                    names = {o["name"].lower(): o["name"] for o in oc.get("options", [])}
+                    # Or the group itself ("Weapon Specialisation (Bind)" on a sheet written since).
+                    txt = re.sub(r"<[^>]+>", " ", f"{c.get('abilitiesText', '')} {c.get('abilitiesHtml', '')} {' '.join(c.get('classFeatures', []))}")
+                    groups += [m.group(1).lower() for m in re.finditer(rf"{re.escape(fdoc['name'])}\s*\(([^)]+)\)", txt, re.I)]
+                    oc["value"] = [names[g] for g in groups if g in names][:1]
                 items.append(it)
 
             # Ancestry

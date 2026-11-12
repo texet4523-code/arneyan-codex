@@ -69,7 +69,8 @@ const cf = read("class-features", "items_");
 // Books v0.10.57 (R-B61): the Rogue's Exploit counts a flanked creature; the Assassin's Sneak Attack its Studied target.
 assert.ok(cf.find(i => i.name === "Exploit (Sneak Attack)").system.rules.some(r => /flanked/.test(r.when ?? "")), "flanking counts");
 assert.ok(cf.find(i => i.name === "Sneak Attack" && i.system.className === "Assassin").system.rules.some(r => /Studied target/.test(r.when ?? "")));
-assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /critical hit/.test(r.value) && /Sneak Attack dice/.test(r.value)));
-assert.ok(/a solo stops bleeding when Bloodied/.test(JSON.stringify(cf.find(i => i.name === "Marked for Death (Improved)").system.rules)));
+// HB v0.10.70 (K133): Finishing Blow is one extra Sneak Attack die; Marked for Death (Improved) is Open Vein.
+assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /one extra Sneak Attack die/.test(r.value)));
+assert.ok(/a solo stops bleeding when Bloodied/.test(JSON.stringify(cf.find(i => i.name === "Open Vein").system.rules)));
 assert.ok(/You may study before a fight/.test(cf.find(i => i.name === "Study").system.description));
 console.log("books0149: ok");

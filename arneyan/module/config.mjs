@@ -146,7 +146,10 @@ ARNEYAN.weaponTraits = {
  * What a rule's `weapon` scope may say: the rule counts only on attack and damage rolls with a weapon that fits, and
  * is a reminder (its "when") on the rest.
  */
-ARNEYAN.ruleWeaponScopes = { "two-handed": "Two-handed weapons", chosen: "The weapons picked on the item" };
+/** Weapon groups (HB v0.10.70, K132): the Fighter's Weapon Specialisation and Weapon Training go by group. */
+ARNEYAN.weaponGroups = { bind: "Bind", hew: "Hew", hook: "Hook", "pinning fire": "Pinning Fire", clinch: "Clinch" };
+ARNEYAN.ruleWeaponScopes = { "two-handed": "Two-handed weapons", chosen: "The weapons picked on the item",
+  "group:bind": "Bind weapons", "group:hew": "Hew weapons", "group:hook": "Hook weapons", "group:pinning fire": "Pinning Fire weapons", "group:clinch": "Clinch weapons" };
 
 // A Knack (an ancestry's "choose one skill at creation"): Advantage on its checks, not a Proficiency tier, no slot.
 /** The crafting Skills: those with an Artisan's or Artificer toolkit (Handbook, Starting Packs). A "Craft skill" (the

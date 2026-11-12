@@ -1,0 +1,42 @@
+{
+ "_id": "VkVLCNJ3it9jWN1i",
+ "_key": "!items!VkVLCNJ3it9jWN1i",
+ "name": "Open Vein",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-hood.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your Sneak Attack hits on a creature you have a Dossier on open a wound: it loses <strong>3d6</strong> HP at the start of each of its turns and can't regain Hit Points while it bleeds.</li><li>The wound closes when an ally spends an action and succeeds on a Wisdom check against your Class Save DC (one wound at a time; against a solo, the bleeding ends when it becomes Bloodied).</li><li>Creatures that don't bleed are unaffected.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 24,
+  "className": "Assassin",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "Open Vein: a Sneak Attack hit on a creature you have a Dossier on opens a wound: it loses 3d6 HP at the start of each of its turns and can't regain HP while it bleeds. An ally closes it with an action and a Wisdom check against your Class Save DC (one wound at a time; a solo stops bleeding when Bloodied). Creatures that don't bleed are unaffected.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "b3fiHSAW8zySsJZt",
+ "sort": 25,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

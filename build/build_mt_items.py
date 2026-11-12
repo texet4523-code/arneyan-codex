@@ -118,7 +118,7 @@ def glyph(kind, name, paren):
 
 def weapon_system(bs, plus, extra=None, slots=None):
     return {"damage": bs["damage"], "damageType": bs["damageType"], "ability": bs["ability"], "ranged": bool(bs.get("ranged")),
-            "range": bs.get("range", ""), "magic": plus, "attackBonus": 0, "traits": bs.get("traits", ""),
+            "range": bs.get("range", ""), "magic": plus, "attackBonus": 0, "traits": bs.get("traits", ""), "group": bs.get("group", ""),
             "ammoType": bs.get("ammoType", "") if bs.get("ranged") else "", "ammoId": "", "bonusDamage": extra or [],
             "modeLabel": "", "modeLight": 0, "rules": [], "toggle": False, "active": False, "applies": []}
 

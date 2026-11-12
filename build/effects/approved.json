@@ -1459,11 +1459,11 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Finishing Blow: a Sneak Attack critical hit vs a creature at half HP or less deals maximum on its Sneak Attack dice."
+    "value": "Finishing Blow: a Sneak Attack against a creature at half its HP or less deals one extra Sneak Attack die."
    }
   ],
-  "summary": "Reminder on damage cards.",
-  "manual": "Maximising dice.",
+  "summary": "Reminder on damage cards. Updated for HB v0.10.70 (K133).",
+  "manual": "Add the extra die by hand.",
   "confidence": "medium"
  },
  "class-features/X8iOjp1QiTg31kah": {
@@ -1742,24 +1742,116 @@
   "name": "Weapon Specialisation",
   "from": "Fighter",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.attack.first",
-    "value": 1,
-    "when": "with your specialised weapon",
-    "weapon": "chosen"
-   },
-   {
-    "key": "damage",
-    "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
-    "when": "with your specialised weapon",
-    "weapon": "chosen"
-   }
-  ],
-  "summary": "Pick the weapon (asked when the feature is added). With it: Advantage on the first attack with it each round and +1/+2/+3/+4 (1st/7th/13th/19th) damage, applied automatically; with any other weapon, or none picked, they stay reminders. Updated for books v0.10.58.",
-  "manual": "Weapon Training's manoeuvre (Bind, Hew, Hook or Pinning Fire) is used by hand, once per round as part of a hit.",
+  "rules": [],
+  "summary": "Pick the weapon group (asked when the feature is added): +1/+2/+3/+4 (1st/7th/13th/19th) to hit and damage with that group's weapons, applied automatically; with other weapons, or none picked, they stay reminders. Each weapon's group is on its sheet (Group, from the Catalogue's Group column). Updated for HB v0.10.70 (K131, K132).",
+  "manual": "Weapon Training's manoeuvre (your group's, or Shield Guard in its place) is used by hand, once per round as part of a hit (one rider per hit). Changing group takes one Downtime Phase of training: pick again on the item.",
   "confidence": "high",
-  "weaponChoice": "1"
+  "optionChoice": {
+   "label": "Weapon group",
+   "max": "1",
+   "options": [
+    {
+     "name": "Bind",
+     "text": "Bind (blades): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Disarm contest against the target.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Bind weapons",
+       "weapon": "group:bind",
+       "label": "Weapon Specialisation"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Bind weapons",
+       "weapon": "group:bind",
+       "label": "Weapon Specialisation"
+      }
+     ]
+    },
+    {
+     "name": "Hew",
+     "text": "Hew (chopping and crushing): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: a creature your size or smaller makes a Fortitude save against your Class Save DC or is knocked Prone.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hew weapons",
+       "weapon": "group:hew",
+       "label": "Weapon Specialisation"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hew weapons",
+       "weapon": "group:hew",
+       "label": "Weapon Specialisation"
+      }
+     ]
+    },
+    {
+     "name": "Hook",
+     "text": "Hook (reach and tangling): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Trip contest against the target, at your weapon's full reach.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hook weapons",
+       "weapon": "group:hook",
+       "label": "Weapon Specialisation"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Hook weapons",
+       "weapon": "group:hook",
+       "label": "Weapon Specialisation"
+      }
+     ]
+    },
+    {
+     "name": "Pinning Fire",
+     "text": "Pinning Fire (missiles): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: the target has Disadvantage on its next attack roll.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Pinning Fire weapons",
+       "weapon": "group:pinning fire",
+       "label": "Weapon Specialisation"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Pinning Fire weapons",
+       "weapon": "group:pinning fire",
+       "label": "Weapon Specialisation"
+      }
+     ]
+    },
+    {
+     "name": "Clinch",
+     "text": "Clinch (fist weapons): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Grapple contest against the target.",
+     "rules": [
+      {
+       "key": "attack",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Clinch weapons",
+       "weapon": "group:clinch",
+       "label": "Weapon Specialisation"
+      },
+      {
+       "key": "damage",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "when": "with Clinch weapons",
+       "weapon": "group:clinch",
+       "label": "Weapon Specialisation"
+      }
+     ]
+    }
+   ]
+  }
  },
  "class-features/MSQ7Ghp68sabbjxq": {
   "name": "Battle Space",
@@ -10602,20 +10694,20 @@
    }
   ],
   "summary": "A reminder on damage cards. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "Your Studied target has Disadvantage on its first save against you each encounter.",
+  "manual": "Your Studied target has Disadvantage on its first save against you each encounter, other than a Death Attack save (HB v0.10.70).",
   "confidence": "high",
   "from": "Assassin"
  },
  "class-features/VkVLCNJ3it9jWN1i": {
-  "name": "Marked for Death (Improved)",
+  "name": "Open Vein",
   "container": "passive",
   "rules": [
    {
     "key": "note.damage",
-    "value": "Marked for Death (Improved): a Sneak Attack hit on a creature you have a Dossier on opens a wound: it loses 1d6 HP at the start of each of its turns until healed or bandaged, and regains HP at half rate (one wound at a time; a solo stops bleeding when Bloodied)."
+    "value": "Open Vein: a Sneak Attack hit on a creature you have a Dossier on opens a wound: it loses 3d6 HP at the start of each of its turns and can't regain HP while it bleeds. An ally closes it with an action and a Wisdom check against your Class Save DC (one wound at a time; a solo stops bleeding when Bloodied). Creatures that don't bleed are unaffected."
    }
   ],
-  "summary": "A reminder on damage cards. Updated for books v0.10.58 (R-B59 to R-B64).",
+  "summary": "A reminder on damage cards. Updated for HB v0.10.70 (K133; was Marked for Death (Improved)).",
   "manual": "Track the bleeding by hand.",
   "confidence": "high",
   "from": "Assassin"

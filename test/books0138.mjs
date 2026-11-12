@@ -92,7 +92,7 @@ assert.equal(feat("First Blood", "Assassin").system.level, 1);
 assert.deepEqual(feat("First Blood", "Assassin").system.activities.map(a => a.formula), ["1d6"]);
 // Books v0.10.58 (R-B55): Change Self is Disguise's 10th-level step.
 assert.deepEqual(feat("Disguise (Charisma)", "Illusionist").system.activities.map(a => [a.cost, a.minLevel]), [[0, 0], [0, 10], [1, 10]]);
-for (const [n, id] of [["Cold Blood", "12r60eED90uq58Pr"], ["Marked for Death (Improved)", "VkVLCNJ3it9jWN1i"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps the id of the feature it replaced`);
+for (const [n, id] of [["Cold Blood", "12r60eED90uq58Pr"], ["Open Vein", "VkVLCNJ3it9jWN1i"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps the id of the feature it replaced`);
 
 /* Kits (M2, M11, M17). */
 const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };

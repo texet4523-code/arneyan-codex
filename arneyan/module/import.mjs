@@ -10,7 +10,7 @@
  * a Bestiary monster.
  */
 import { ARNEYAN } from "./config.mjs";
-import { weaponKey } from "./effects.mjs";
+import { weaponKey, groupsOfWeapons } from "./effects.mjs";
 import { syncClassFeatures, syncKitFeatures } from "./progression.mjs";
 import { bestiarySource } from "./refresh.mjs";
 import { unset } from "./compat.mjs";
@@ -516,6 +516,15 @@ export async function applyImport(actor, plan, { replace = true } = {}) {
       if (abilityKey(p.moved)) upd["system.abilityChoice.moved"] = abilityKey(p.moved);
       const w = p.weapons.length ? p.weapons : (!k && p.pick ? weaponPicks(p.pick) : []);
       if (w.length && String(it.system.weaponChoice?.max ?? "").trim()) upd["system.weaponChoice.value"] = w;
+      // A weapon group of the player's choice (Weapon Specialisation from HB v0.10.70): the group named, or the
+      // group of the weapon named ("Weapon Specialisation (Greatsword)" is Bind).
+      const oc = it.system.optionChoice;
+      if (w.length && oc?.label === "Weapon group" && oc.options?.length) {
+        const names = new Set(oc.options.map(o => o.name));
+        const named = w.map(x => [...names].find(n => n.toLowerCase() === String(x).trim().toLowerCase())).filter(Boolean);
+        const value = named.length ? named.slice(0, 1) : groupsOfWeapons(w, names);
+        if (value.length) upd["system.optionChoice.value"] = value;
+      }
       if (Object.keys(upd).length) await it.update(upd, quiet());
       else notes.push(`${p.name}: nothing it could take from "${[p.pick, ...p.weapons].filter(Boolean).join(", ")}".`);
     }

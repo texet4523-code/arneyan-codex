@@ -23,7 +23,9 @@
  */
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { unset } from "./compat.mjs";
+import { groupsOfWeapons } from "./effects.mjs";
 
+export { groupsOfWeapons };
 const SYS = "arneyan";
 /** The version a run brings the world to: the installed system's. */
 const currentVersion = () => game.system?.version ?? "0.10.15";
@@ -306,7 +308,10 @@ export function refreshFrom(item, src, { maxNow = null, legacy = "update", force
   // Options picked already stay where the compendium still has them (Elemental Mastery's element).
   if (o.optionChoice?.options?.length && "optionChoice" in s) {
     const names = new Set(o.optionChoice.options.map(x => x?.name));
-    set("optionChoice", { ...clone(o.optionChoice), value: (s.optionChoice?.value ?? []).filter(v => names.has(v)) });
+    let value = (s.optionChoice?.value ?? []).filter(v => names.has(v));
+    // HB v0.10.70 (K131): Weapon Specialisation picks a weapon group now; a weapon picked before gives its group.
+    if (!value.length && o.optionChoice.label === "Weapon group") value = groupsOfWeapons(s.weaponChoice?.value, names);
+    set("optionChoice", { ...clone(o.optionChoice), value });
   }
   // A choice the compendium no longer asks on this item (0.10.66: Elemental Mastery (Improved) follows Elemental
   // Mastery's pick): cleared while nothing is picked on it, so the sheet stops asking.
@@ -808,7 +813,7 @@ for (const [pack, id, from, to] of [
   ["class-features", "uK8P0scQNmrf2Dbk", "Extra Attack", "Twist the Knife"],
   ["class-features", "N25afn6yXRGW2l6x", "Marked Prey", "Dossier"],
   ["class-features", "12r60eED90uq58Pr", "Quick Reflexes", "Cold Blood"],
-  ["class-features", "VkVLCNJ3it9jWN1i", "Quick Reflexes (Improved)", "Marked for Death (Improved)"],
+  ["class-features", "VkVLCNJ3it9jWN1i", ["Quick Reflexes (Improved)", "Marked for Death (Improved)"], "Open Vein"],
   ["class-features", "isoyrXlKsMeUUBqj", "Extra Attack", "Savage Swing"],
   ["class-features", "4ttPYYMgzrO97TDU", "Ancestral Calling", "Cleaving Fury"],
   ["class-features", "cPG4C1pCFRwCbBIh", "Warlord", "Renown: War-camp"],
