@@ -44,8 +44,18 @@ def weapon_names(name):
     return out
 
 
+# Other names the same weapons go by (an imported sheet, an older copy): the Catalogue's weapon they mean.
+GROUP_ALIASES = {"Unarmed Strike": "Fist", "Rapier": "Sword, Rapier", "Scimitar": "Sword, Scimitar", "Greataxe": "Axe, Two-Handed",
+                 "Quarterstaff": "Staff", "Mace": "Mace, Light", "Flail": "Flail, Light", "Crossbow": "Crossbow, Light",
+                 "Warhammer": "Hammer, War", "Handaxe": "Axe, Hand/Throwing"}
+
+
 def write_weapon_groups():
     import json, os
+    for alias, name in GROUP_ALIASES.items():
+        g = WEAPON_GROUPS.get(weapon_key(name))
+        if g:
+            WEAPON_GROUPS.setdefault(weapon_key(alias), g)
     path = os.path.join(os.path.dirname(__file__), "..", "arneyan", "module", "data", "weapon-groups.mjs")
     body = json.dumps(dict(sorted(WEAPON_GROUPS.items())), indent=1)
     with open(path, "w") as f:

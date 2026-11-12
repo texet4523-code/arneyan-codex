@@ -17,6 +17,8 @@ for (const [n, g] of [["Club", "hew"], ["Fist", "clinch"], ["Staff", "hook"], ["
 assert.equal(eq.filter(i => i.type === "weapon" && !i.system.group).length, 0, "no weapon without a group");
 const { WEAPON_GROUPS } = await import("../arneyan/module/data/weapon-groups.mjs");
 assert.ok(Object.keys(WEAPON_GROUPS).length > 100 && WEAPON_GROUPS.longsword === "bind" && WEAPON_GROUPS.handaxe === "hew");
+assert.equal(WEAPON_GROUPS.unarmedstrike, "clinch", "the sheet's Unarmed Strike is a fist");
+assert.equal(WEAPON_GROUPS.rapier, "bind");
 // K131: Weapon Specialisation picks a group (no weapon pick, no Advantage).
 const ws = cf.find(i => i.name === "Weapon Specialisation");
 assert.equal(ws.system.optionChoice.label, "Weapon group");
