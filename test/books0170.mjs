@@ -70,3 +70,17 @@ console.log("books0170: ok");
   assert.ok(E.weaponMatches({ weapon: "bow" }, xbow(["Arbalester (Archer)"])), "except for an Arbalester");
   console.log("arbalester: ok");
 }
+{
+  const E = await import("../arneyan/module/effects.mjs");
+  const deleted = [];
+  const actor = st => ({ effects: st.map((s, i) => ({ id: `e${i}`, statuses: new Set([s]) })), deleteEmbeddedDocuments: async (t, ids) => deleted.push(...ids) });
+  assert.deepEqual(await E.fearEitherOr(actor(["frightened"]), ["terrified"]), ["terrified"]);
+  assert.deepEqual(deleted, ["e0"], "Terrified ends Frightened");
+  assert.deepEqual(await E.fearEitherOr(actor(["terrified"]), ["frightened", "prone"]), ["prone"], "Frightened adds nothing to Terrified");
+  assert.deepEqual(await E.fearEitherOr(actor([]), ["terrified", "frightened"]), ["terrified"]);
+  const upd = [];
+  const mixed = { effects: [{ id: "p", statuses: new Set(["blinded", "frightened"]), update: async d => upd.push(d) }], deleteEmbeddedDocuments: async () => assert.fail("nothing deleted") };
+  await E.fearEitherOr(mixed, ["terrified"]);
+  assert.deepEqual(upd, [{ statuses: ["blinded"] }], "Blinded stays");
+  console.log("fear either/or: ok");
+}

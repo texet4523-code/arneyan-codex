@@ -44,7 +44,7 @@ assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Battle
   assert.ok(!("flags.arneyan.source" in renamed));
   assert.deepEqual(M.refreshGranted(g("Siege Discipline", "k1.1"), feats, { legacy: "update" })["flags.arneyan.source"], undefined, "in place: nothing to move");
 }
-assert.equal(M.CLASS_REWORK, "0.10.95");
+assert.equal(M.CLASS_REWORK, "0.10.107");
 assert.ok(M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"), "Whirlwind Attack is listed as gone");
 const src = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
 assert.ok(src.includes("[rn[0]].flat().includes(i.name)"), "one old name or several");

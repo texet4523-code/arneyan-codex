@@ -21,7 +21,17 @@
      "max": 0,
      "per": ""
     },
-    "save": "ref"
+    "save": "ref",
+    "rules": [
+     {
+      "key": "note.damage",
+      "value": "Crossbow Drill: a crossbow can't fire a Twin Nock; its one bolt deals an extra weapon damage die ({1:one, 17:two}).",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
    },
    {
     "name": "Garrison Friend",
@@ -32,7 +42,17 @@
      "max": 0,
      "per": ""
     },
-    "save": ""
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "with city watches, militias, caravan masters and garrison quartermasters",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
    }
   ]
  },

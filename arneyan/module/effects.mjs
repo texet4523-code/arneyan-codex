@@ -719,8 +719,10 @@ export async function applyEffectTo(actors, data) {
       continue;
     }
     // Immune to a condition: skip those statuses.
-    const immune = actor.system.mods?.traits.immune.map(t => t.value) ?? [];
-    const statuses = (data.statuses ?? []).filter(s => !immune.includes(`condition:${s}`) && !immune.includes(s));
+    let statuses = (data.statuses ?? []).filter(s => !immuneTo(actor, s));
+    // Frightened or Terrified, never both (HB v0.10.72): a new Terrified ends Frightened; a new Frightened adds
+    // nothing while the creature is Terrified.
+    statuses = await fearEitherOr(actor, statuses);
     // One-off grants when the effect lands: temporary HP and Exhaustion levels.
     const once = (data.flags?.[SYS]?.rules ?? []).filter(r => ["hp.temp", "exhaustion"].includes(r.key) && !r.when);
     const keep = (data.flags?.[SYS]?.rules ?? []).filter(r => !once.includes(r));
@@ -743,6 +745,25 @@ export async function applyEffectTo(actors, data) {
   return done;
 }
 
+/**
+ * Frightened or Terrified, never both (HB v0.10.72). `statuses`: what is about to go on. Returns them without
+ * Frightened while the creature is (or is about to be) Terrified, and removes a Frightened it has when Terrified lands.
+ */
+export async function fearEitherOr(actor, statuses = []) {
+  const on = s => [...(actor?.effects ?? [])].filter(e => !e.disabled && (e.statuses?.has?.(s) || e.statuses?.includes?.(s)));
+  let out = [...statuses];
+  if (out.includes("terrified")) {
+    out = out.filter(s => s !== "frightened");
+    const fr = on("frightened");
+    // An effect that is only Frightened goes; one that carries more (Prismatic Spray's Blinded) keeps the rest.
+    const only = fr.filter(e => [...(e.statuses ?? [])].length <= 1);
+    const more = fr.filter(e => [...(e.statuses ?? [])].length > 1);
+    if (only.length && typeof actor.deleteEmbeddedDocuments === "function") await actor.deleteEmbeddedDocuments("ActiveEffect", only.map(e => e.id));
+    for (const e of more) if (typeof e.update === "function") await e.update({ statuses: [...e.statuses].filter(x => x !== "frightened") });
+  } else if (out.includes("frightened") && on("terrified").length) out = out.filter(s => s !== "frightened");
+  return out;
+}
+
 /** Is the actor immune to this condition (a trait, or an effect such as Shook it off)? */
 export function immuneTo(actor, id) {
   const immune = actor?.system?.mods?.traits?.immune?.map?.(t => t?.value ?? t) ?? [];
@@ -757,11 +778,8 @@ export async function toggleCondition(actor, id, active, { overlay = false, valu
   const existing = actor.effects.filter(e => e.statuses?.has?.(id) || e.statuses?.includes?.(id));
   if (existing.length && active !== true) return actor.deleteEmbeddedDocuments("ActiveEffect", existing.map(e => e.id));
   // Frightened or Terrified, never both (HB v0.10.72): Terrified replaces Frightened; Frightened adds nothing to Terrified.
-  if (!existing.length && active !== false && ["frightened", "terrified"].includes(id)) {
-    const other = id === "terrified" ? "frightened" : "terrified";
-    const has = actor.effects.filter(e => e.statuses?.has?.(other) || e.statuses?.includes?.(other));
-    if (id === "frightened" && has.length) return;
-    if (id === "terrified" && has.length) await actor.deleteEmbeddedDocuments("ActiveEffect", has.map(e => e.id));
+  if (!existing.length && active !== false && ["frightened", "terrified"].includes(id) && !immuneTo(actor, id)) {
+    if (!(await fearEitherOr(actor, [id])).length) return;
   }
   // Already on: Burning stacks, a timed one keeps the longer (counters.mjs).
   if (existing.length && active === true) return reapply(actor, id, value);

@@ -2382,10 +2382,10 @@
    {
     "key": "damage",
     "value": "1:1, 4:2, 6:3, 8:4, 10:5, 12:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12",
-    "when": "weapon hits vs your marked prey or favoured enemy (instead)"
+    "when": "weapon hits vs your marked prey, favoured enemy or Chosen Quarry quarry (instead)"
    }
   ],
-  "summary": "Damage reminders: +1 per three Ranger levels (minimum +1), or +1 per two against marked prey, favoured enemy or quarry. Updated for books v0.10.58 (R-B59 to R-B64). Updated for HB v0.10.71 (stepped values).",
+  "summary": "+1 to +8 weapon damage by the book's steps; against your marked prey, favoured enemy or Chosen Quarry quarry, +1 then +1 every even level from 4th (to +12), instead. Updated for HB v0.10.71.",
   "manual": "",
   "confidence": "high",
   "from": "Ranger"
@@ -2453,7 +2453,7 @@
     "value": "Backstab: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}."
    }
   ],
-  "summary": "Back Attack damage reminder. Updated for books v0.10.58.",
+  "summary": "Backstab damage reminder. Updated for HB v0.10.72 (was Back Attack).",
   "manual": "Once per round, a hit with a light or finesse melee weapon on a creature that cannot see you: multiply the weapon's dice.",
   "confidence": "medium"
  },
@@ -10572,7 +10572,7 @@
     "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers; never with another doubling, such as a lance's charge).}"
    }
   ],
-  "summary": "Reminder: first attack each round against your Challenged foe gets your Charisma modifier (its AC counts as that much lower). From 17th, the once-per-encounter doubled dice (its Use). HB v0.10.71: adds Charisma to the attack roll (not lowering AC).",
+  "summary": "Adds your Charisma modifier to your first attack roll each round against your Challenged foe (HB v0.10.71); from 17th, once per encounter, the first hit doubles the weapon's dice.",
   "manual": "Whether this is the first attack this round against the Challenged foe.",
   "confidence": "high"
  },
@@ -11492,6 +11492,35 @@
    }
   ],
   "summary": "Advantage on checks (to identify, maintain, repair or modify mechanical ranged weapons). Shown as reminders.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "kits/jzRZ4VI3xncrnikW#0": {
+  "name": "Crossbow Drill",
+  "from": "Arbalester (Archer)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "Crossbow Drill: a crossbow can't fire a Twin Nock; its one bolt deals an extra weapon damage die ({1:one, 17:two})."
+   }
+  ],
+  "summary": "Reminder on damage cards; crossbows count as bows for Archer features (the system does that by the kit). HB v0.10.72.",
+  "manual": "Heavy crossbow reloads as part of the shot; 9th level Pinning Shot needs no wall with a crossbow.",
+  "confidence": "high"
+ },
+ "kits/jzRZ4VI3xncrnikW#1": {
+  "name": "Garrison Friend",
+  "from": "Arbalester (Archer)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "with city watches, militias, caravan masters and garrison quartermasters"
+   }
+  ],
+  "summary": "Advantage on those checks. HB v0.10.72.",
   "manual": "",
   "confidence": "high"
  }

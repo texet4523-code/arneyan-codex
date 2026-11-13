@@ -6,7 +6,7 @@ import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurn
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula, manualAdvantage } from "./rolls.mjs";
 import { setClassLevel, syncKitFeatures, removeGrants, firstLevelSetup, firstLevelSetupRunning, promptSkill, ancestrySetup, LUCK_FEATS, syncLuckFeats, removeLuckFeat, newLuckRecord, levelChangeRunning } from "./progression.mjs";
 import { stampOnCreate, stampOf, tracked } from "./migrate.mjs";
-import { usesMax, effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
+import { usesMax, effectDataFor, applyEffectTo, startConcentration, endConcentration, statusesOf, toggleCondition, immuneTo, fearEitherOr, weaponKey, weaponPickMax, featureLevel, rerollDice, rerollNote, chosenRules, levelText, optionPickMax, optionPicks } from "./effects.mjs";
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
@@ -491,6 +491,8 @@ export class ArneyanActor extends Actor {
       globalThis.ui?.notifications?.info?.(`${this.name} is immune to ${ARNEYAN.conditions[statusId]?.name ?? statusId}.`);
       return false;
     }
+    // Frightened or Terrified, never both (HB v0.10.72).
+    if (!existing.length && options.active !== false && ["frightened", "terrified"].includes(statusId) && !(await fearEitherOr(this, [statusId])).length) return false;
     return super.toggleStatusEffect(statusId, options);
   }
 

@@ -758,7 +758,7 @@ async function askLegacy(n, actors, version) {
  * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
  * before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.95";
+export const CLASS_REWORK = "0.10.107";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
