@@ -1,6 +1,20 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.106 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.107 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.107
+
+Handbook v0.10.73, Monsters & Treasure v0.10.72 and Keeps & Kingdoms v0.5.2 (B-F64, B-F65, B-F66, R-F36).
+
+- **Frightened and Terrified:** Frightened is now the lesser fear (Disadvantage on attacks, half speed towards the source); the new Terrified condition is the greater one. Fear, Scare, Antipathy, Eyebite and Mass Fear make a creature Terrified. A creature is one or the other, never both, and immunity to fear covers both.
+- **Rogue rework:** Back Attack is now Backstab, the 1st-level lines are Thieves' Cant and Thief Skills, and Snatch, Fleet Shadow (17th) and Unseen Stride (24th) are new. Exploit gains a die at 9th and 17th; Hide, Move Silently and Listen go by your pace; Evasive Manoeuvre works on any round you aren't surprised. Slippery is gone, and the new Trapsmith kit joins the kits. Characters keep their features under the new names.
+- **Stepped bonuses:** Killer's Precision, Precise Strikes, Hunter's Edge and Martial Bearing use the book's steps.
+- **Knight:** Honour Attack adds your Charisma modifier to the attack roll; Horsemanship lists the mounted manoeuvres; Battle Lord's troop rules have moved to Keeps & Kingdoms.
+- **Archer:** arrow tiers, with Smoke and Net arrows from 9th and Exploding and Lightning arrows from 13th (they cost more of your pool), and the Arbalester kit, whose crossbows count as bows for Archer features.
+- **Monk, Gunslinger, Assassin:** Deflect works on magical missiles from 10th; Flowing Form gives Reach and Entangling; Perfect Shot explodes two dice (three at 9th, all from 12th); Finishing Blow at 10th.
+- **Gear:** Shots on every firearm, repeating hand and heavy crossbows that refill like a gun, a Hunting Trap, and a Splintered Shield button on a non-magical shield in hand.
+- **Taunt** joins the combat manoeuvres.
+- **Keeps & Kingdoms:** Knighted followers (Chapter 2) and the Knight's Battle Lord in battle (Chapter 4).
 
 ## What's new in 0.10.106
 

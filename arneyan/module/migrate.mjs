@@ -814,6 +814,11 @@ for (const [pack, id, from, to] of [
   ["class-features", "N25afn6yXRGW2l6x", "Marked Prey", "Dossier"],
   ["class-features", "12r60eED90uq58Pr", "Quick Reflexes", "Cold Blood"],
   ["class-features", "VkVLCNJ3it9jWN1i", ["Quick Reflexes (Improved)", "Marked for Death (Improved)"], "Open Vein"],
+  // HB v0.10.72 (R-B94, K146): the Rogue's rework names its features (Back Attack is Backstab).
+  ["class-features", "8qIgZFStG8JBG61j", "Back Attack", "Backstab"],
+  ["class-features", "YGCVjC9mUfm0216U", "1st-Level Features", "Thieves' Cant"],
+  ["class-features", "NWBykczmWaN2vdDu", "17th-Level Features", "Fleet Shadow"],
+  ["class-features", "F1NLweBWzm8qXgeP", "24th-Level Features", "Unseen Stride"],
   ["class-features", "isoyrXlKsMeUUBqj", "Extra Attack", "Savage Swing"],
   ["class-features", "4ttPYYMgzrO97TDU", "Ancestral Calling", "Cleaving Fury"],
   ["class-features", "cPG4C1pCFRwCbBIh", "Warlord", "Renown: War-camp"],
@@ -960,7 +965,10 @@ export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item
   ...["PGT74NWPoMAAKgp7", "9LMT5x0O4r7fkocP", "UuTSGIvWzg5QslOT", "vjHmF66KtVOxZDDU", "uSTUZxOJHdvFNgWR", "JIaD39xKsToGFQqI", "kRQIqmxGqZ793v4R", "eYTrrXe7aFfrOTyg", "dRkz1FNkc0dlZnex", "s1yZv1dE0bEj5BOv", "xG5wRGsRMzXivujQ", "ZE561JAXiWa2pFqL", "rvBtNNIjxzyJA17V", "FNO70JvfLoZanKqm", "bdwwOd80cGPmzxut", "7aWDedO6ICkfxNO3", "hjEk4CMWD5TSmD3U", "gKVwolNGBNNiLG6q", "H3neu8yzLSGCe5yL", "v5Af6iwBOG6WQMBU", "TuG1EEi0FYQBtn7p", "hU9kcAPORzWXsrOh", "UrSW25YSYzhk2JKs", "OeBvaMJNJnuII8ki", "EYjMeqRHAqP2eDk9",
     // Books v0.10.56 to v0.10.58: features cut or folded into others (Whirlwind Attack, Slow Kill, Point Blank, the
     // Illusionist's Minor Figment line and the rest).
-    "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+    "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp",
+    // HB v0.10.72 (K146): the Rogue's 3rd-level Hide-and-Move-Silently line (now 1st) and Slippery; the Knight's Battle
+    // Lord improves (Battle Lord's troop rules moved to Keeps & Kingdoms).
+    "zwfxpS7JHuXSOVmN", "e8xjs8uHxKKAnpui", "VFZfr75GIfknqbqK"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {

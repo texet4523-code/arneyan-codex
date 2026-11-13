@@ -39,9 +39,10 @@ assert.deepEqual(rules("Arcane Ward improves", "Wizard"), [["cast.temp", "1"]]);
 assert.deepEqual(rules("Hag's Vigour improves", "Witch"), [["hp.max", "@cl"]]);
 assert.deepEqual(rules("Displacement", "Illusionist"), [["adv.against.first", "-1"]]);
 assert.deepEqual(rules("Iron Fists", "Monk"), [["attack", "7:1, 13:2, 19:3"], ["damage", "7:1, 13:2, 19:3"]]);
-const ps = feat("Precise Strikes", "Rogue").rules[0].value.replace(/^\+/, "").replace(/@cl/g, "L");
-const at = L => Function("L", "min", "max", "floor", `return ${ps}`)(L, Math.min, Math.max, Math.floor);
-assert.deepEqual([1, 3, 9, 12, 13, 18, 24].map(at), [1, 1, 3, 4, 6, 9, 12], "per three levels, per two from 13th");
+// HB v0.10.71: the book's steps as a level table.
+const ps = feat("Precise Strikes", "Rogue").rules[0].value;
+const at = L => { let v = 0; for (const [, l, n] of ps.matchAll(/(\d+):(\d+)/g)) if (L >= Number(l)) v = Number(n); return v; };
+assert.deepEqual([1, 3, 9, 12, 13, 18, 24].map(at), [1, 1, 3, 4, 6, 9, 12], "the book's steps");
 for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Aura of Resolve", "Paladin"], ["Lore Master", "Bard"]]) assert.ok(feat(n, c).rules.length, n);
 
 /* Activities. */

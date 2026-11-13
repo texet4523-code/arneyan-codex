@@ -29,7 +29,7 @@ const activeGM = () => {
 
 /** The conditions a solo shakes off (M&T v0.10.41): anything that stops it acting, attacking, moving or casting. */
 export const CONTROL = ["incapacitated", "paralysed", "stunned", "unconscious", "charmed", "dominated", "confused", "petrified",
-  "slowed", "restrained", "blinded", "frightened"];
+  "slowed", "restrained", "blinded", "frightened", "terrified"];
 /** Effects shaken off the same way, by name (they carry no condition of their own). */
 export const CONTROL_EFFECTS = { feeblemind: /^Feeblemind/i, polymorph: /^Polymorph/i };
 const KEYS = [...CONTROL, ...Object.keys(CONTROL_EFFECTS)];

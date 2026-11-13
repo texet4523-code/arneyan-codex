@@ -4,9 +4,9 @@
    {
     "name": "Fire Arrow",
     "kind": "damage",
-    "formula": "1d6",
+    "formula": "1:1d6, 9:2d6, 17:3d6",
     "damageType": "fire",
-    "text": "The arrow deals an extra 1d6 fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th.)",
+    "text": "The arrow deals an extra {1:1d6, 9:2d6, 17:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th. A 9th-tier arrow uses 2 of the pool and a 13th-tier arrow 3; only one arrow of the 9th tier or higher a round.)",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -43,10 +43,54 @@
     "per": "",
     "target": "one",
     "removeConditions": false
+   },
+   {
+    "name": "Smoke Arrow",
+    "kind": "note",
+    "text": "Where it lands, a 15ft radius is heavily obscured until the end of your next turn. (9th tier: uses 2 of your pool.)",
+    "minLevel": 9,
+    "cost": 2,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Net Arrow",
+    "kind": "save",
+    "save": "reflex",
+    "text": "On a hit, a Large or smaller target makes a Reflex save against your Class Save DC or is Restrained until it spends an action to break free. (9th tier: uses 2 of your pool.)",
+    "minLevel": 9,
+    "cost": 2,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Exploding Arrow",
+    "kind": "save",
+    "save": "reflex",
+    "text": "On a hit, or at a point within range, it bursts: each creature within 10ft makes a Reflex save against your Class Save DC, taking 4d6 thunder damage, or half on a success. (13th tier: uses 3 of your pool.)",
+    "minLevel": 13,
+    "cost": 3,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Lightning Arrow",
+    "kind": "damage",
+    "formula": "6d6",
+    "damageType": "lightning",
+    "text": "On a hit, +6d6 lightning damage to the target. (13th tier: uses 3 of your pool.)",
+    "minLevel": 13,
+    "cost": 3,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th. 8 Nov 2026 (K77, R-F22): the daily pool is the item's uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th); each special arrow nocked spends one, and the pool refills to its maximum each day, so no Archer carries more than the pool.",
+  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th. 8 Nov 2026 (K77, R-F22): the daily pool is the item's uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th); each special arrow nocked spends one, and the pool refills to its maximum each day, so no Archer carries more than the pool. HB v0.10.72 (R-B94): arrow tiers (Smoke and Net from 9th, cost 2; Exploding and Lightning from 13th, cost 3); Fire Arrow 2d6 at 9th, 3d6 at 17th.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -125,7 +169,7 @@
    {
     "name": "Hail of Arrows",
     "kind": "note",
-    "text": "As your action, make one bow attack against every creature in a {1:15ft, 12:20ft, 17:30ft} radius within long range, rolling damage separately for each.",
+    "text": "As your action, make one bow attack against every creature in a {1:15ft, 12:20ft, 17:30ft} radius within long range, rolling damage separately for each. Plain arrows only.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -146,7 +190,7 @@
    {
     "name": "Perfect Loose",
     "kind": "note",
-    "text": "Declared before rolling, your next shot deals maximum damage. From 20th level it also gains Bent Path's improved effect if used, and covers every arrow of a Twin Nock.",
+    "text": "Declared before rolling, your next shot deals maximum damage: the weapon's own dice only, not a special arrow's extra dice. From 20th level it also gains Bent Path's improved effect if used, and covers every arrow of a Twin Nock.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -245,7 +289,7 @@
     "name": "Case Target",
     "kind": "check",
     "ability": "wis",
-    "text": "After 1d3x10 minutes observing a target, a success reveals its approximate Level, alignment, hidden weapons and habits.",
+    "text": "After 1d3x10 minutes observing a target, a success reveals its approximate Level, Allegiance, hidden weapons and habits.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -278,7 +322,7 @@
     "name": "Hide",
     "kind": "check",
     "ability": "dex",
-    "text": "Conceal yourself from observers, even while only lightly obscured; Disadvantage above half speed and impossible while running.",
+    "text": "Conceal yourself; you count as Hidden while lightly obscured even on 12 to 14. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -300,7 +344,7 @@
     "name": "Listen",
     "kind": "check",
     "ability": "wis",
-    "text": "Hear whispers or soft movement up to 30ft or through an adjacent door; Disadvantage through stone.",
+    "text": "Hear whispers or soft movement up to 30ft or through an adjacent door. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage. Listening through a solid barrier has Disadvantage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -311,7 +355,7 @@
     "name": "Move Silently",
     "kind": "check",
     "ability": "dex",
-    "text": "Move without sound; Disadvantage above half speed and impossible while running.",
+    "text": "Move without sound. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -713,7 +757,7 @@
    {
     "name": "Perfect Shot",
     "kind": "note",
-    "text": "Declared before rolling: if your shot hits, every damage die explodes once, whatever it rolled (roll it again and add; the new die explodes as normal).",
+    "text": "Once per day, declared before rolling: if your shot hits, {1:two of its damage dice, 9:three of its damage dice, 12:every damage die} explode once, whatever they rolled (roll each again and add it; the new die explodes as normal).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -722,7 +766,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day (twice from 20th, Perfect Shot (Improved)).",
+  "why": "Once per day (twice from 20th, Perfect Shot (Improved)). HB v0.10.71: two dice, three at 9th, every die from 12th.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -826,6 +870,16 @@
     "per": "",
     "target": "",
     "removeConditions": false
+   },
+   {
+    "name": "Mounted manoeuvres",
+    "kind": "note",
+    "text": "From the saddle, always on. Mounted Charge: a charge uses your mount's movement; on a hit, a target no larger than your mount makes a Fortitude save against your Class Save DC or is knocked Prone (a lance still doubles its dice). Ride-By: after you attack from the saddle, your mount's remaining movement doesn't provoke from the creature you attacked. Overrun: once per round, in place of one of your attacks, your mount moves through a smaller creature's space; it makes a Reflex save against your Class Save DC or is knocked Prone.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
    }
   ],
   "confidence": "high",
@@ -836,7 +890,7 @@
    {
     "name": "Doubled dice",
     "kind": "note",
-    "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled).",
+    "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled; never with another doubling, such as a lance's charge).",
     "minLevel": 17,
     "cost": 1,
     "per": "",
@@ -1285,30 +1339,13 @@
    "formula": "1:1, 24:2"
   }
  },
- "1st-Level Features|Rogue": {
-  "activities": [
-   {
-    "name": "Decipher Script",
-    "kind": "check",
-    "ability": "int",
-    "text": "Decipher writing at 2d8 minutes per page; arcane script is a Hard check and divine scrolls never work.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Lists the Rogue skills with their attributes."
- },
  "Hide and Move Silently|Rogue": {
   "activities": [
    {
     "name": "Hide",
     "kind": "check",
     "ability": "dex",
-    "text": "Conceal yourself, even while only lightly obscured; Disadvantage above half speed.",
+    "text": "Conceal yourself; you count as Hidden while lightly obscured even on 12 to 14. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage. You may Hide and Move Silently at once, at your pace, with no extra penalty.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1319,7 +1356,7 @@
     "name": "Move Silently",
     "kind": "check",
     "ability": "dex",
-    "text": "Move without sound; Disadvantage above half speed and impossible while running or charging.",
+    "text": "Move without sound. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1330,7 +1367,7 @@
     "name": "Listen",
     "kind": "check",
     "ability": "wis",
-    "text": "Listen for sounds; Disadvantage through any solid barrier.",
+    "text": "Listen for sounds. You ignore the Disadvantage for listening through a solid barrier, and follow whispered speech through a door as if you were in the room.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1339,23 +1376,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Listen's attribute taken from the Assassin's matching skill. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Back Attack|Rogue": {
-  "activities": [
-   {
-    "name": "Back Attack",
-    "kind": "note",
-    "text": "Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per round; multiplier from the Rogue Progression Table. Checked against Handbook v0.10.10, 25 Oct."
+  "why": "Listen's attribute taken from the Assassin's matching skill. Checked against Handbook v0.10.10, 25 Oct. HB v0.10.71 (R-B91): pace sets the roll; Listen ignores barriers."
  },
  "Uncanny Dodge|Rogue": {
   "activities": [
@@ -1379,7 +1400,7 @@
    {
     "name": "Evasive Manoeuvre",
     "kind": "note",
-    "text": "The first melee attack against you this round has Disadvantage (the first two from 20th). Not in a round you make a ranged attack (from 18th, Slippery: it works then too), or while surprised. Switch on the Evasive Manoeuvre toggle.",
+    "text": "The first melee attack against you each round has Disadvantage (the first two from 20th). Not while you are surprised. Switch on the Evasive Manoeuvre toggle.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -2018,7 +2039,7 @@
     "kind": "check",
     "ability": "dex",
     "cost": 0,
-    "text": "Your action, only while unobserved or in cover or concealment. The result sets how hidden you are and the Search DC: below 12 not hidden; 12 to 14 Partially Hidden (DC 12); 15 to 19 Hidden (DC 15); 20 or more Completely Hidden (DC 20). A creature not actively looking spots you if its passive awareness meets the Search DC."
+    "text": "Your action, only while unobserved or in cover or concealment. You can't Hide while running or charging, and moving faster than half your speed gives the check Disadvantage (a class feature may change this). The result sets how hidden you are and the Search DC: below 12 not hidden; 12 to 14 Partially Hidden (DC 12); 15 to 19 Hidden (DC 15); 20 or more Completely Hidden (DC 20). A creature not actively looking spots you if its passive awareness meets the Search DC."
    }
   ],
   "confidence": "high",
@@ -2905,7 +2926,7 @@
     "weapons": "unarmed",
     "count": "1:1, 3:2, 5:3, 13:4",
     "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6, 22:1d8}",
-    "text": "Your action's unarmed blows with Unarmed Strike, none with Disadvantage: the first with your Primary dice, the second (from 3rd) and third (Flurry of Blows, 5th) with the Secondary dice, the fourth (from 13th) with the Tertiary.",
+    "text": "Your action's unarmed blows with Unarmed Strike, none with Disadvantage: the first with your Primary dice, the second (from 3rd) and third (Flurry of Blows, 5th) with the Secondary dice, the fourth (from 13th) with the Tertiary. Until 9th level (Flowing Flurry), all your blows in a turn go at the same creature.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -3821,14 +3842,14 @@
     "count": "2",
     "disadvantage": "extra",
     "cost": 0,
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round."
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Slip away: if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature. Exploit still applies to only one attack per round."
    },
    {
     "name": "Cut and Run (target next to an ally)",
     "kind": "attacks",
     "count": "2",
     "cost": 0,
-    "text": "No Disadvantage on the extra attack (target next to an ally). Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round."
+    "text": "No Disadvantage on the extra attack against a creature next to one of your allies. Slip away: if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature. Exploit still applies to only one attack per round."
    }
   ],
   "confidence": "high",
@@ -4012,7 +4033,7 @@
    {
     "name": "Deflect",
     "kind": "check",
-    "text": "Out of turn, when a nonmagical missile would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
+    "text": "Out of turn, when a {1:nonmagical missile, 10:missile (a magical one too, such as an enchanted arrow or a spell's ranged attack)} would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -4217,7 +4238,7 @@
    {
     "name": "Exploit",
     "kind": "note",
-    "text": "Gain Advantage and add {1:1d6, 13:2d6, 18:3d6, 23:4d6} against a creature within 30ft that is flanked, in melee with an ally and not you, Restrained, Prone or can't see you, once per round.",
+    "text": "Gain Advantage and add {1:1d6, 9:2d6, 17:3d6, 23:4d6} against a creature within 30ft that is flanked, in melee with an ally and not you, Restrained, Prone or can't see you, once per round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -4233,7 +4254,7 @@
     "per": "round",
     "target": "one",
     "removeConditions": false,
-    "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6"
+    "formula": "1:1d6, 9:2d6, 17:3d6, 23:4d6"
    }
   ],
   "confidence": "high",
@@ -4281,5 +4302,21 @@
   ],
   "confidence": "high",
   "why": "HB v0.10.61 (K110): once per round, in place of one ranged attack; the GM applies the Disadvantage."
+ },
+ "Backstab|Rogue": {
+  "activities": [
+   {
+    "name": "Backstab",
+    "kind": "note",
+    "text": "Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Once per round; multiplier from the Rogue Progression Table. Checked against Handbook v0.10.10, 25 Oct."
  }
 }

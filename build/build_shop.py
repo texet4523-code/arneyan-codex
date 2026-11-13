@@ -206,7 +206,10 @@ def build(icon):
                     rng = "" if rng == "—" else rng
                     extra = []
                     if firearm:
-                        extra.append(f"Reload {cols.get('Reload','')}, misfire on {cols.get('Misfire','')}.")
+                        shots = cols.get("Shots", "").strip()
+                        # HB v0.10.71: a Shots column (how many it fires before reloading); "5 shots" is what reload.mjs reads.
+                        shots_txt = (f", {shots} shot{'s' if shots != '1' else ''}" if shots.isdigit() else f", shots {shots}" if shots else "")
+                        extra.append(f"Reload {cols.get('Reload','')}{shots_txt}, misfire on {cols.get('Misfire','')}.")
                         if "x" in cols.get("Damage", "") and "targets" in cols.get("Damage", ""):
                             extra.append(cols["Damage"])
                     ranged = missile or firearm

@@ -52,7 +52,7 @@
    "size": "small",
    "languages": "Common, Halfling, Dwarvish, Thieves' Cant",
    "biography": "<p><em>Jacob&#x27;s Well (first Keepers) · Seat 3, Skirmisher</em></p><p>The Keepers think you are a scout. The Veiled Ones think you are their eyes on the frontier. Both are paying you, and you would like to keep it that way. You notice things, write them down, and pass them on.</p><p><strong>Tonight:</strong> The innkeeper keeps a locked door behind the bar, and he checks it every hour.</p>",
-   "backgroundStory": "<h3>Abilities</h3><p><strong>Sneak Attack.</strong> Once a round, against an aware but unsuspecting target within 30ft (it can't see you, hasn't acted yet this fight, is in melee with an ally and not you, or you're flanking it): Advantage on the attack and <b>+2d6</b> damage (1d6 Rogue, +1d6 Predator). Cannot combine with Back Attack.</p><p><strong>Back Attack.</strong> Once a round, after a successful Hide or Move Silently check, attacking from behind with a melee weapon shorter than your arm: Advantage and the weapon's dice are <b>doubled</b> (short sword 2d6+4).</p><p><strong>Thief Skills.</strong> Trained in Lockpicking (one try per lock per level; Advantage with your lockpicks), Traps, Pick Pocket (DC 10 + target's Level) and Climb (rolled with Dex); Master in all four from 5th. Decipher Script (Int). Thieves' Cant.</p><p><strong>Hide and Move Silently.</strong> Normal roll at half speed or less, Disadvantage above it, and not while running or charging. While lightly obscured, a Hide result of 12 to 14 still counts as Hidden. Listening through a solid barrier is at Disadvantage.</p><p><strong>Hide and Move Silently together (3rd).</strong> Disadvantage on both, at quarter speed.</p><p><strong>Detect Secret/Concealed Doors (3rd).</strong> Advantage on checks to find secret or concealed doors, and a free check whenever you pass within 10ft of one.</p><p><strong>Precise Strikes.</strong> +1 damage on every weapon hit (included).</p><p><strong>Hit and Run.</strong> On a turn you attack, your speed is 10ft higher. Once a round you can move through one enemy's space, and that doesn't provoke Attacks of Opportunity.</p><p><strong>Cunning Step.</strong> Once a round, move away from a creature in your reach without provoking.</p><p><strong>Alertness (feat, 1st).</strong> You can't be surprised by nonmagical means, and +2 initiative (included).</p><p><strong>Predator (feat, 2nd).</strong> Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).</p><p><strong>Kit: The Veiled Ones.</strong> <b>Silent Tail:</b> Advantage to observe or tail someone unseen; a creature you watched for 10 minutes before a fight has Disadvantage on its attacks against you in the first round. <b>Discreet Channels:</b> Advantage on checks to gather, verify or pass on information quietly, or to explain why you're somewhere you shouldn't be.</p><p><strong>Halfling.</strong> <b>Lucky:</b> on a natural 1 on an attack, check or save, reroll and take the new result, 3 times a session. <b>Brave Heart:</b> Advantage on saves against fear. Move through the space of any larger creature. Advantage on farming, foraging and plant identification.</p><p><strong>Armour Class on the sheet:</strong> Leather armour +2, Dex +3. Leather is Insulated: Resistance 5 to cold</p>"
+   "backgroundStory": "<h3>Abilities</h3><p><strong>Sneak Attack.</strong> Once a round, against an aware but unsuspecting target within 30ft (it can't see you, hasn't acted yet this fight, is in melee with an ally and not you, or you're flanking it): Advantage on the attack and <b>+2d6</b> damage (1d6 Rogue, +1d6 Predator). Cannot combine with Backstab.</p><p><strong>Backstab.</strong> Once a round, after a successful Hide or Move Silently check, attacking from behind with a melee weapon shorter than your arm: Advantage and the weapon's dice are <b>doubled</b> (short sword 2d6+4).</p><p><strong>Thief Skills.</strong> Trained in Lockpicking (one try per lock per level; Advantage with your lockpicks), Traps, Pick Pocket (DC 10 + target's Level) and Climb (rolled with Dex); Master in all four from 5th. Decipher Script (Int). Thieves' Cant.</p><p><strong>Hide and Move Silently.</strong> Normal roll at half speed or less, Disadvantage above it, and not while running or charging. While lightly obscured, a Hide result of 12 to 14 still counts as Hidden. Listening through a solid barrier is at Disadvantage.</p><p><strong>Hide and Move Silently together (3rd).</strong> Disadvantage on both, at quarter speed.</p><p><strong>Detect Secret/Concealed Doors (3rd).</strong> Advantage on checks to find secret or concealed doors, and a free check whenever you pass within 10ft of one.</p><p><strong>Precise Strikes.</strong> +1 damage on every weapon hit (included).</p><p><strong>Hit and Run.</strong> On a turn you attack, your speed is 10ft higher. Once a round you can move through one enemy's space, and that doesn't provoke Attacks of Opportunity.</p><p><strong>Cunning Step.</strong> Once a round, move away from a creature in your reach without provoking.</p><p><strong>Alertness (feat, 1st).</strong> You can't be surprised by nonmagical means, and +2 initiative (included).</p><p><strong>Predator (feat, 2nd).</strong> Advantage on Stealth checks, and your Sneak Attack deals +1d6 (included).</p><p><strong>Kit: The Veiled Ones.</strong> <b>Silent Tail:</b> Advantage to observe or tail someone unseen; a creature you watched for 10 minutes before a fight has Disadvantage on its attacks against you in the first round. <b>Discreet Channels:</b> Advantage on checks to gather, verify or pass on information quietly, or to explain why you're somewhere you shouldn't be.</p><p><strong>Halfling.</strong> <b>Lucky:</b> on a natural 1 on an attack, check or save, reroll and take the new result, 3 times a session. <b>Brave Heart:</b> Advantage on saves against fear. Move through the space of any larger creature. Advantage on farming, foraging and plant identification.</p><p><strong>Armour Class on the sheet:</strong> Leather armour +2, Dex +3. Leather is Insulated: Resistance 5 to cold</p>"
   }
  },
  "items": [
@@ -63,7 +63,7 @@
    "type": "class",
    "img": "systems/arneyan/assets/classes/Rogue.webp",
    "system": {
-    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Intelligence</td></tr><tr><td>Hit Die</td><td><strong>d6</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>2 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★☆☆☆☆ Simple</td></tr><tr><td>Weapons</td><td>Blowpipe, broadsword, cat-o-nine-tails, cestus, club, dagger, dart, light hammer, hand axe, hand crossbow, javelin, knife, light crossbow, longsword, mace, main gauche, staff, rapier, sap, shortbow, short sword, sickle, sleeve tangler, spiked gauntlet, sling, whip</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>About +1 per 4 levels to 12th (+2), then the Knight track from 13th (+7 at 13th, +15 at 24th)</td></tr><tr><td>Identity</td><td>A skill expert and opportunist: locks, traps, scouting and talk, then a vicious strike from behind when the moment comes.</td></tr></tbody></table><h2>Rogue Progression Table</h2><p><em>These values apply from the listed level until the next row. Exploit's dice stay smaller than the Assassin's Sneak Attack because its trigger is easier to meet.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Back Attack multiplier</th><th>Exploit damage</th></tr></thead><tbody><tr><td>1</td><td>x2</td><td><strong>1d6</strong></td></tr><tr><td>5</td><td>x3</td><td><strong>1d6</strong></td></tr><tr><td>9</td><td>x4</td><td><strong>1d6</strong></td></tr><tr><td>13</td><td>x4</td><td><strong>2d6</strong></td></tr><tr><td>14</td><td>x5</td><td><strong>2d6</strong></td></tr><tr><td>18</td><td>x5</td><td><strong>3d6</strong></td></tr><tr><td>20</td><td>x6</td><td><strong>3d6</strong></td></tr><tr><td>23</td><td>x6</td><td><strong>4d6</strong></td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Rogue Skills, Back Attack, Exploit (Sneak Attack), Precise Strikes, Hide and Move Silently</td></tr><tr><td>2</td><td>Cunning Step, Hit and Run</td></tr><tr><td>3</td><td>Dirty Fighting, Hide and Move Silently together, Detect Secret/Concealed Doors</td></tr><tr><td>4</td><td>Evasive Manoeuvre</td></tr><tr><td>5</td><td>Cut and Run (Extra Attack), Thief Skills (Master)</td></tr><tr><td>6</td><td>Skill Mastery</td></tr><tr><td>7</td><td>Evasion, Uncanny Dodge</td></tr><tr><td>8</td><td>Sixth Sense</td></tr><tr><td>9</td><td>Dirty Fighting improves, kit improves</td></tr><tr><td>13</td><td>Knight attack track, Precise Strikes improves</td></tr><tr><td>15</td><td>+1 Dexterity</td></tr><tr><td>17</td><td>No fast-movement penalty to Hide or Move Silently</td></tr><tr><td>18</td><td>Slippery</td></tr><tr><td>20</td><td>Evasive Manoeuvre improves, Renown: Guild House</td></tr><tr><td>24</td><td>Perfect Timing, Unpenalised Hide and Move Silently</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><ul><li>Cant — a coded thieves' language</li><li><strong>Thief Skills</strong>: Trained in Lockpicking, Traps, Pick Pocket and Climb (Book II), on top of your 3 starting skills, and Master in all four from 5th level. You roll Climb with Dexterity.</li><li><strong>Decipher Script</strong> (Intelligence): <strong>2d8</strong> minutes per page; arcane script is a Hard check to read (you cannot cast it); never works on divine scrolls</li></ul><h4>Back Attack</h4><ul><li><strong>Effect:</strong> Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice (double at 1st level, rising to sextuple at 20th: see the Rogue Progression Table).</li></ul><h4>Exploit (Sneak Attack)</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (<strong>1d6</strong> at 1st level, rising to <strong>4d6</strong> at 23rd: see the Rogue Progression Table) against a creature that is flanked, in melee with one of your allies and not with you, <strong>Restrained</strong>, <strong>Prone</strong>, or that cannot see you, <strong>once per round</strong>. Usable at range within <strong>30ft</strong>, doesn't require a prior stealth check, can't combine with Back Attack.</li></ul><h4>Precise Strikes</h4><ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage per three Rogue levels (minimum +1), and from 13th level +1 per two Rogue levels. This applies to every hit, not only Exploits.</li></ul><h4>Hide and Move Silently</h4><ul><li><strong>Effect:</strong> Normal roll at half speed or under, disadvantage above half speed, impossible to attempt while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> disadvantage when listening through any solid barrier</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Cunning Step</h4><ul><li><strong>Effect:</strong> Once per round, you may move away from a creature in melee reach without provoking opportunity attacks.</li></ul><h4>Hit and Run</h4><ul><li><strong>Effect:</strong> On a turn you make an attack, your speed increases by <strong>10ft</strong> (<strong>20ft</strong> from 13th level). Once per round, you can move through one enemy's space. Moving through that space doesn't provoke Attacks of Opportunity.</li></ul><h3 class=\"arn-level\">3rd Level</h3><ul><li>Attempting Hide and Move Silently together imposes <strong>Disadvantage</strong> on both checks, at quarter speed</li></ul><h4>Detect Secret/Concealed Doors</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on checks to find secret or concealed doors, plus a free check whenever you pass within <strong>10ft</strong> of one.</li></ul><h4>Dirty Fighting</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on Dirty Trick, Disarm and Trip contests (see Combat Manoeuvres in The Arneyan Codex), and you may use Dexterity for all three.</li><li>9th level: <strong>once per round</strong>, when your Exploit hits, you may make one of them against that creature as part of the hit</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Evasive Manoeuvre</h4><ul><li><strong>Effect:</strong> The first melee attack against you each round has <strong>Disadvantage</strong>. It doesn't work in a round you make a ranged attack, or while you are surprised.</li><li>20th level: the first two melee attacks against you each round have <strong>Disadvantage</strong></li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Cut and Run</h4><ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>No <strong>Disadvantage</strong> against a creature next to one of your allies; your movement this turn then doesn't provoke Attacks of Opportunity from it.</li><li>Exploit still applies to only one attack per round.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Skill Mastery</h4><ul><li><strong>Effect:</strong> Treat any <strong>d20</strong> roll of 9 or lower as a 10 when using your Rogue Skills, Thief Skills included.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Evasion</h4><ul><li><strong>Effect:</strong> When you succeed on a <strong>Reflex save</strong> against an effect that deals half damage on a success, you take none. If you fail, you take half.</li></ul><h4>Uncanny Dodge</h4><ul><li><strong>Effect:</strong> Once per round, when an attacker you can see hits you, halve the damage.</li></ul><h3 class=\"arn-level\">8th Level</h3><ul><li><strong>Sixth Sense:</strong> <strong>Advantage</strong> on checks to avoid being surprised</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Dexterity Bonus:</strong> permanent +1 Dexterity</li></ul><h3 class=\"arn-level\">17th Level</h3><ul><li>The disadvantage from moving fast while hiding or moving silently is removed entirely</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Slippery:</strong> Evasive Manoeuvre also works on a round you make a ranged attack.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Renown: Guild House</h4><ul><li><strong>Effect:</strong> You may found a guild house (see Renown in The Arneyan Codex); each season <strong>1d6</strong> apprentice thieves and a fence join it. While you hold it, you have <strong>Advantage</strong> on checks to gather information in its city.</li></ul><h3 class=\"arn-level\">24th Level</h3><ul><li>Hide and Move Silently are fully unpenalised even while running or charging</li></ul><h4>Perfect Timing</h4><ul><li><strong>Effect:</strong> Once per encounter, act first in the round, whatever initiative says.</li></ul><h2>Kits: Arneyan Thief Cultures</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Rogue folder. Drag one onto your character.</p><p>Rogue Kits represent the network, upbringing, or tradition that shaped the character's criminal trade.</p>",
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Dexterity / Intelligence</td></tr><tr><td>Hit Die</td><td><strong>d6</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>2 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Blowpipe, broadsword, cat-o-nine-tails, cestus, club, dagger, dart, light hammer, hand axe, hand crossbow, javelin, knife, light crossbow, longsword, mace, main gauche, staff, rapier, sap, shortbow, short sword, sickle, sleeve tangler, spiked gauntlet, sling, whip</td></tr><tr><td>Armour</td><td>Light armour. Shields and heavier armour only through training, like any class.</td></tr><tr><td>BtH</td><td>About +1 per 4 levels to 12th (+2), then the Knight track from 13th (+7 at 13th, +15 at 24th)</td></tr><tr><td>Identity</td><td>A skill expert and opportunist: locks, traps, scouting and talk, then a vicious strike from behind when the moment comes.</td></tr></tbody></table><h2>Rogue Progression Table</h2><p><em>These values apply from the listed level until the next row. Exploit's dice stay smaller than the Assassin's Sneak Attack because its trigger is easier to meet.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>Backstab multiplier</th><th>Exploit damage</th></tr></thead><tbody><tr><td>1</td><td>x2</td><td><strong>1d6</strong></td></tr><tr><td>5</td><td>x3</td><td><strong>1d6</strong></td></tr><tr><td>9</td><td>x4</td><td><strong>2d6</strong></td></tr><tr><td>14</td><td>x5</td><td><strong>2d6</strong></td></tr><tr><td>17</td><td>x5</td><td><strong>3d6</strong></td></tr><tr><td>20</td><td>x6</td><td><strong>3d6</strong></td></tr><tr><td>23</td><td>x6</td><td><strong>4d6</strong></td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Thief Skills, Backstab, Exploit (Sneak Attack), Snatch, Precise Strikes, Hide and Move Silently</td></tr><tr><td>2</td><td>Cunning Step, Hit and Run</td></tr><tr><td>3</td><td>Dirty Fighting, Detect Secret/Concealed Doors</td></tr><tr><td>4</td><td>Evasive Manoeuvre</td></tr><tr><td>5</td><td>Cut and Run (Extra Attack), Thief Skills (Master)</td></tr><tr><td>6</td><td>Skill Mastery, Uncanny Dodge</td></tr><tr><td>7</td><td>Evasion</td></tr><tr><td>8</td><td>Sixth Sense</td></tr><tr><td>9</td><td>Exploit <strong>2d6</strong>, Dirty Fighting improves, kit improves</td></tr><tr><td>13</td><td>Knight attack track, Precise Strikes improves</td></tr><tr><td>15</td><td>+1 Dexterity</td></tr><tr><td>17</td><td>Fleet Shadow, Exploit <strong>3d6</strong></td></tr><tr><td>20</td><td>Evasive Manoeuvre improves, Renown: Guild House</td></tr><tr><td>24</td><td>Perfect Timing, Unseen Stride</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><ul><li><strong>Thieves' Cant:</strong> the coded slang and signs thieves use to talk in plain sight.</li><li><strong>Thief Skills:</strong> Trained in Lockpicking, Traps, Pick Pocket and Climb (Book II), on top of your 3 starting skills, and Master in all four from 5th level. Your versions are better than anyone else's:<ul><li><strong>Lockpicking:</strong> you may try a lock you failed again after <strong>1 minute</strong>; the one-attempt-per-level limit doesn't apply to you. From 5th level, you pick a lock in <strong>one round</strong>.</li><li><strong>Traps:</strong> you disarm a trap in <strong>one round</strong>, not a minute, and a failure sets it off only on a natural 1. You can re-arm a trap you disarmed, or carry a small one away and set it elsewhere.</li><li><strong>Pick Pocket:</strong> your DC is 10 + half the target's Level, and a failure by less than 5 goes unnoticed.</li><li><strong>Climb:</strong> you roll Dexterity and climb at full speed with a hand free. From 5th level, you can climb sheer walls and overhangs, with <strong>Disadvantage</strong>.</li></ul></li></ul><h4>Backstab</h4><ul><li><strong>Effect:</strong> Once per round, when you hit a creature that cannot see you with a light or finesse melee weapon, multiply the weapon's damage dice (double at 1st level, rising to sextuple at 20th: see the Rogue Progression Table).</li></ul><h4>Exploit (Sneak Attack)</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (<strong>1d6</strong> at 1st level, rising to <strong>4d6</strong> at 23rd: see the Rogue Progression Table) against a creature that is flanked, in melee with one of your allies and not with you, <strong>Restrained</strong>, <strong>Prone</strong>, or that cannot see you, <strong>once per round</strong>. Usable at range within <strong>30ft</strong>, doesn't require a prior stealth check, can't combine with Backstab.</li></ul><h4>Snatch</h4><ul><li><strong>Effect:</strong> Once per round, when your Exploit hits a creature within <strong>5ft</strong> of you, you may take one unsecured item from it (a pouch, potion, scroll or wand) instead of the Exploit's damage die: make a Pick Pocket check against your Pick Pocket DC for it (10 + half its Level), and on a success the item is yours.</li></ul><h4>Precise Strikes</h4><ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage. This applies to every hit, not only Exploits. Improves to +2 at 6th level, +3 at 9th, +4 at 12th, +6 at 13th, +7 at 14th, +8 at 16th, +9 at 18th, +10 at 20th, +11 at 22nd and +12 at 24th.</li></ul><h4>Hide and Move Silently</h4><ul><li><strong>Effect:</strong> Your pace sets the roll. Half speed or less: <strong>Advantage</strong>. Normal speed: a normal roll. Running or charging: <strong>Disadvantage</strong> (where anyone else can't try at all).</li><li><strong>Together:</strong> you may Hide and Move Silently at once, at your pace, with no extra penalty.</li><li><strong>Lightly obscured:</strong> you count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> you ignore the <strong>Disadvantage</strong> for listening through a solid barrier (see Disengage &amp; Hide in The Arneyan Codex), and you follow whispered speech through a door as if you were in the room.</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Cunning Step</h4><ul><li><strong>Effect:</strong> Once per round, you may move away from a creature in melee reach without provoking opportunity attacks.</li></ul><h4>Hit and Run</h4><ul><li><strong>Effect:</strong> On a turn you make an attack, your speed increases by <strong>10ft</strong> (<strong>20ft</strong> from 13th level). Once per round, you can move through one enemy's space. Moving through that space doesn't provoke Attacks of Opportunity.</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Detect Secret/Concealed Doors</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on checks to find secret or concealed doors, plus a free check whenever you pass within <strong>10ft</strong> of one.</li></ul><h4>Dirty Fighting</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on Dirty Trick, Disarm and Trip contests (see Combat Manoeuvres in The Arneyan Codex), and you may use Dexterity for all three.</li><li>9th level: <strong>once per round</strong>, when your Exploit hits, you may make a Dirty Trick, Disarm or Trip contest against that creature as part of the hit</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Evasive Manoeuvre</h4><ul><li><strong>Effect:</strong> The first melee attack against you each round has <strong>Disadvantage</strong>. It doesn't work while you are surprised.</li><li>20th level: the first two melee attacks against you each round have <strong>Disadvantage</strong></li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Cut and Run</h4><ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li><strong>Next to an ally:</strong> the extra attack has no <strong>Disadvantage</strong> against a creature next to one of your allies.</li><li><strong>Slip away:</strong> if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature.</li><li><strong>Exploit:</strong> still applies to only one attack per round.</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Skill Mastery</h4><ul><li><strong>Effect:</strong> Treat any <strong>d20</strong> roll of 9 or lower as a 10 on Rogue class skills and Thief Skills.</li></ul><h4>Uncanny Dodge</h4><ul><li><strong>Effect:</strong> Once per round, when an attacker you can see hits you, halve the damage.</li></ul><h3 class=\"arn-level\">7th Level</h3><h4>Evasion</h4><ul><li><strong>Effect:</strong> When you succeed on a <strong>Reflex save</strong> against an effect that deals half damage on a success, you take none. If you fail, you take half.</li></ul><h3 class=\"arn-level\">8th Level</h3><ul><li><strong>Sixth Sense:</strong> <strong>Advantage</strong> on checks to avoid being surprised</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Dexterity Bonus:</strong> permanent +1 Dexterity. It can take the score past 20, to 22 at most (see The Mortal Limit in Character Creation).</li></ul><h3 class=\"arn-level\">17th Level</h3><ul><li><strong>Fleet Shadow:</strong> running or charging no longer gives <strong>Disadvantage</strong> on Hide or Move Silently, and <strong>once per round</strong> you may Hide as part of your movement, even while observed, if you end that movement in cover or heavy obscurement.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Renown: Guild House</h4><ul><li><strong>Effect:</strong> You may found a guild house (see Renown in The Arneyan Codex); each season <strong>1d6</strong> apprentice thieves and a fence join it. While you hold it, you have <strong>Advantage</strong> on checks to gather information in its city.</li></ul><h3 class=\"arn-level\">24th Level</h3><ul><li><strong>Unseen Stride:</strong> Hide and Move Silently have <strong>Advantage</strong> at any speed, even while running or charging.</li></ul><h4>Perfect Timing</h4><ul><li><strong>Effect:</strong> Once per encounter, act first in the round, whatever initiative says.</li></ul><h2>Kits: Arneyan Thief Cultures</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Rogue folder. Drag one onto your character.</p><p>Each Rogue Kit is built on one thief skill and makes you better still at it, on top of the Rogue's own edge. The peoples, orders and places a kit names are examples, not the only ones: a kit suits anyone from a tradition like it.</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -94,18 +94,23 @@
     "features": [
      {
       "level": 1,
-      "name": "1st-Level Features",
+      "name": "Thieves' Cant",
       "uuid": "Compendium.arneyan.class-features.Item.YGCVjC9mUfm0216U"
      },
      {
       "level": 1,
-      "name": "Back Attack",
+      "name": "Backstab",
       "uuid": "Compendium.arneyan.class-features.Item.8qIgZFStG8JBG61j"
      },
      {
       "level": 1,
       "name": "Exploit (Sneak Attack)",
       "uuid": "Compendium.arneyan.class-features.Item.ksFXEzB68ifNtFcY"
+     },
+     {
+      "level": 1,
+      "name": "Snatch",
+      "uuid": "Compendium.arneyan.class-features.Item.eGMSxhNvkxbTXyK0"
      },
      {
       "level": 1,
@@ -126,11 +131,6 @@
       "level": 2,
       "name": "Hit and Run",
       "uuid": "Compendium.arneyan.class-features.Item.aPzYWM6j7LxtABQI"
-     },
-     {
-      "level": 3,
-      "name": "3rd-Level Features",
-      "uuid": "Compendium.arneyan.class-features.Item.zwfxpS7JHuXSOVmN"
      },
      {
       "level": 3,
@@ -158,14 +158,14 @@
       "uuid": "Compendium.arneyan.class-features.Item.mvhTxYNCGTrOcZc1"
      },
      {
-      "level": 7,
-      "name": "Evasion",
-      "uuid": "Compendium.arneyan.class-features.Item.nOp0AU9bIH8n7Zb8"
+      "level": 6,
+      "name": "Uncanny Dodge",
+      "uuid": "Compendium.arneyan.class-features.Item.vka3ovKtrcrLBBJQ"
      },
      {
       "level": 7,
-      "name": "Uncanny Dodge",
-      "uuid": "Compendium.arneyan.class-features.Item.vka3ovKtrcrLBBJQ"
+      "name": "Evasion",
+      "uuid": "Compendium.arneyan.class-features.Item.nOp0AU9bIH8n7Zb8"
      },
      {
       "level": 8,
@@ -179,13 +179,8 @@
      },
      {
       "level": 17,
-      "name": "17th-Level Features",
+      "name": "Fleet Shadow",
       "uuid": "Compendium.arneyan.class-features.Item.NWBykczmWaN2vdDu"
-     },
-     {
-      "level": 18,
-      "name": "Slippery",
-      "uuid": "Compendium.arneyan.class-features.Item.e8xjs8uHxKKAnpui"
      },
      {
       "level": 20,
@@ -194,7 +189,7 @@
      },
      {
       "level": 24,
-      "name": "24th-Level Features",
+      "name": "Unseen Stride",
       "uuid": "Compendium.arneyan.class-features.Item.F1NLweBWzm8qXgeP"
      },
      {
@@ -216,11 +211,11 @@
   {
    "_id": "bIaTc0zymT3fioVB",
    "_key": "!actors.items!ixdBFJov1mjE7sWQ.bIaTc0zymT3fioVB",
-   "name": "1st-Level Features",
+   "name": "Thieves' Cant",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<ul><li>Cant — a coded thieves' language</li><li><strong>Thief Skills</strong>: Trained in Lockpicking, Traps, Pick Pocket and Climb (Book II), on top of your 3 starting skills, and Master in all four from 5th level. You roll Climb with Dexterity.</li><li><strong>Decipher Script</strong> (Intelligence): <strong>2d8</strong> minutes per page; arcane script is a Hard check to read (you cannot cast it); never works on divine scrolls</li></ul>",
+    "description": "<p>the coded slang and signs thieves use to talk in plain sight.</p><ul><li><strong>Thief Skills:</strong> Trained in Lockpicking, Traps, Pick Pocket and Climb (Book II), on top of your 3 starting skills, and Master in all four from 5th level. Your versions are better than anyone else's:<ul><li><strong>Lockpicking:</strong> you may try a lock you failed again after <strong>1 minute</strong>; the one-attempt-per-level limit doesn't apply to you. From 5th level, you pick a lock in <strong>one round</strong>.</li><li><strong>Traps:</strong> you disarm a trap in <strong>one round</strong>, not a minute, and a failure sets it off only on a natural 1. You can re-arm a trap you disarmed, or carry a small one away and set it elsewhere.</li><li><strong>Pick Pocket:</strong> your DC is 10 + half the target's Level, and a failure by less than 5 goes unnoticed.</li><li><strong>Climb:</strong> you roll Dexterity and climb at full speed with a hand free. From 5th level, you can climb sheer walls and overhangs, with <strong>Disadvantage</strong>.</li></ul></li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -235,36 +230,7 @@
     "dc": null,
     "damage": "",
     "level": 1,
-    "className": "Rogue",
-    "activities": [
-     {
-      "name": "Decipher Script",
-      "kind": "check",
-      "formula": "",
-      "damageType": "",
-      "ability": "int",
-      "save": "",
-      "text": "Decipher writing at 2d8 minutes per page; arcane script is a Hard check and divine scrolls never work.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ]
+    "className": "Rogue"
    },
    "effects": [],
    "ownership": {
@@ -283,7 +249,7 @@
   {
    "_id": "jrwMNPLN0UjITWOh",
    "_key": "!actors.items!ixdBFJov1mjE7sWQ.jrwMNPLN0UjITWOh",
-   "name": "Back Attack",
+   "name": "Backstab",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
@@ -305,7 +271,7 @@
     "className": "Rogue",
     "activities": [
      {
-      "name": "Back Attack",
+      "name": "Backstab",
       "kind": "note",
       "formula": "",
       "damageType": "",
@@ -335,7 +301,7 @@
     "rules": [
      {
       "key": "note.damage",
-      "value": "Back Attack: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
+      "value": "Backstab: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}.",
       "when": "",
       "label": ""
      }
@@ -364,7 +330,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (<strong>1d6</strong> at 1st level, rising to <strong>4d6</strong> at 23rd: see the Rogue Progression Table) against a creature that is flanked, in melee with one of your allies and not with you, <strong>Restrained</strong>, <strong>Prone</strong>, or that cannot see you, <strong>once per round</strong>. Usable at range within <strong>30ft</strong>, doesn't require a prior stealth check, can't combine with Back Attack.</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on the attack roll plus a scaling damage die (<strong>1d6</strong> at 1st level, rising to <strong>4d6</strong> at 23rd: see the Rogue Progression Table) against a creature that is flanked, in melee with one of your allies and not with you, <strong>Restrained</strong>, <strong>Prone</strong>, or that cannot see you, <strong>once per round</strong>. Usable at range within <strong>30ft</strong>, doesn't require a prior stealth check, can't combine with Backstab.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -388,7 +354,7 @@
       "damageType": "",
       "ability": "",
       "save": "",
-      "text": "Gain Advantage and add {1:1d6, 13:2d6, 18:3d6, 23:4d6} against a creature within 30ft that is flanked, in melee with an ally and not you, Restrained, Prone or can't see you, once per round.",
+      "text": "Gain Advantage and add {1:1d6, 9:2d6, 17:3d6, 23:4d6} against a creature within 30ft that is flanked, in melee with an ally and not you, Restrained, Prone or can't see you, once per round.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -411,7 +377,7 @@
      {
       "name": "Exploit damage",
       "kind": "damage",
-      "formula": "1:1d6, 13:2d6, 18:3d6, 23:4d6",
+      "formula": "1:1d6, 9:2d6, 17:3d6, 23:4d6",
       "damageType": "",
       "ability": "",
       "save": "",
@@ -445,7 +411,7 @@
      },
      {
       "key": "note.damage",
-      "value": "Exploit (Sneak Attack): add {1:1d6, 13:2d6, 18:3d6, 23:4d6} (once per round).",
+      "value": "Exploit (Sneak Attack): add {1:1d6, 9:2d6, 17:3d6, 23:4d6} (once per round).",
       "when": "",
       "label": ""
      }
@@ -468,13 +434,51 @@
    }
   },
   {
+   "_id": "zuxwWqNWSfsK4naz",
+   "_key": "!actors.items!ixdBFJov1mjE7sWQ.zuxwWqNWSfsK4naz",
+   "name": "Snatch",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "system": {
+    "description": "<ul><li><strong>Effect:</strong> Once per round, when your Exploit hits a creature within <strong>5ft</strong> of you, you may take one unsecured item from it (a pouch, potion, scroll or wand) instead of the Exploit's damage die: make a Pick Pocket check against your Pick Pocket DC for it (10 + half its Level), and on a success the item is yours.</li></ul>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "kind": "class",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "level": 1,
+    "className": "Rogue"
+   },
+   "effects": [],
+   "ownership": {
+    "default": 0
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "AmpsFT3q5DG7roLw",
+     "source": "Compendium.arneyan.class-features.Item.eGMSxhNvkxbTXyK0"
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.class-features.Item.eGMSxhNvkxbTXyK0"
+   }
+  },
+  {
    "_id": "nZmsRcKYgSJCgtgK",
    "_key": "!actors.items!ixdBFJov1mjE7sWQ.nZmsRcKYgSJCgtgK",
    "name": "Precise Strikes",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage per three Rogue levels (minimum +1), and from 13th level +1 per two Rogue levels. This applies to every hit, not only Exploits.</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage. This applies to every hit, not only Exploits. Improves to +2 at 6th level, +3 at 9th, +4 at 12th, +6 at 13th, +7 at 14th, +8 at 16th, +9 at 18th, +10 at 20th, +11 at 22nd and +12 at 24th.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -493,7 +497,7 @@
     "rules": [
      {
       "key": "damage",
-      "value": "+max(max(1, floor(@cl/3)), floor(@cl/2) * min(1, floor(@cl/13)))",
+      "value": "1:1, 6:2, 9:3, 12:4, 13:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12",
       "when": "",
       "label": ""
      }
@@ -522,7 +526,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> Normal roll at half speed or under, disadvantage above half speed, impossible to attempt while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> disadvantage when listening through any solid barrier</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> Your pace sets the roll. Half speed or less: <strong>Advantage</strong>. Normal speed: a normal roll. Running or charging: <strong>Disadvantage</strong> (where anyone else can't try at all).</li><li><strong>Together:</strong> you may Hide and Move Silently at once, at your pace, with no extra penalty.</li><li><strong>Lightly obscured:</strong> you count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> you ignore the <strong>Disadvantage</strong> for listening through a solid barrier (see Disengage &amp; Hide in The Arneyan Codex), and you follow whispered speech through a door as if you were in the room.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -546,7 +550,7 @@
       "damageType": "",
       "ability": "dex",
       "save": "",
-      "text": "Conceal yourself, even while only lightly obscured; Disadvantage above half speed.",
+      "text": "Conceal yourself; you count as Hidden while lightly obscured even on 12 to 14. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage. You may Hide and Move Silently at once, at your pace, with no extra penalty.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -573,7 +577,7 @@
       "damageType": "",
       "ability": "dex",
       "save": "",
-      "text": "Move without sound; Disadvantage above half speed and impossible while running or charging.",
+      "text": "Move without sound. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -600,7 +604,7 @@
       "damageType": "",
       "ability": "wis",
       "save": "",
-      "text": "Listen for sounds; Disadvantage through any solid barrier.",
+      "text": "Listen for sounds. You ignore the Disadvantage for listening through a solid barrier, and follow whispered speech through a door as if you were in the room.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -713,44 +717,6 @@
    }
   },
   {
-   "_id": "RiFt8rIxrUG7xqR4",
-   "_key": "!actors.items!ixdBFJov1mjE7sWQ.RiFt8rIxrUG7xqR4",
-   "name": "3rd-Level Features",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
-   "system": {
-    "description": "<ul><li>Attempting Hide and Move Silently together imposes <strong>Disadvantage</strong> on both checks, at quarter speed</li></ul>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "kind": "class",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "level": 3,
-    "className": "Rogue"
-   },
-   "effects": [],
-   "ownership": {
-    "default": 0
-   },
-   "flags": {
-    "arneyan": {
-     "grantedBy": "AmpsFT3q5DG7roLw",
-     "source": "Compendium.arneyan.class-features.Item.zwfxpS7JHuXSOVmN"
-    }
-   },
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.class-features.Item.zwfxpS7JHuXSOVmN"
-   }
-  },
-  {
    "_id": "xs53sMPThBStir4n",
    "_key": "!actors.items!ixdBFJov1mjE7sWQ.xs53sMPThBStir4n",
    "name": "Detect Secret/Concealed Doors",
@@ -805,7 +771,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on Dirty Trick, Disarm and Trip contests (see Combat Manoeuvres in The Arneyan Codex), and you may use Dexterity for all three.</li><li>9th level: <strong>once per round</strong>, when your Exploit hits, you may make one of them against that creature as part of the hit</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on Dirty Trick, Disarm and Trip contests (see Combat Manoeuvres in The Arneyan Codex), and you may use Dexterity for all three.</li><li>9th level: <strong>once per round</strong>, when your Exploit hits, you may make a Dirty Trick, Disarm or Trip contest against that creature as part of the hit</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1028,7 +994,7 @@
    "type": "kit",
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "system": {
-    "description": "<p>An operative on the outer ring of the Veiled Ones' intelligence network, which works for the Violet Conclave: trusted to collect, verify and pass on information, and told no more about the order above you than you need.</p><ul><li><strong>Silent Tail:</strong> <strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.<ul><li>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</li></ul></li><li><strong>Discreet Channels:</strong> <strong>Advantage</strong> on checks to collect, verify or pass on intelligence discreetly, and to give a plausible reason for being somewhere you shouldn't be.</li></ul>",
+    "description": "<p>An operative on the outer ring of the Veiled Ones' intelligence network, which works for the Violet Conclave: trusted to collect, verify and pass on information, and told no more about the order above you than you need.</p><ul><li><strong>Silent Tail:</strong> <strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed, and you follow speech through a wall or floor, up to <strong>30ft</strong> away, as if you were in the room. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.<ul><li>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</li></ul></li><li><strong>Discreet Channels:</strong> <strong>Advantage</strong> on checks to collect, verify or pass on intelligence discreetly, and to give a plausible reason for being somewhere you shouldn't be.</li><li><strong>Decipher Script:</strong> (Intelligence) <strong>2d8</strong> minutes per page; arcane script is a Hard check to read (you can't cast it); never works on divine scrolls.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1038,7 +1004,7 @@
      {
       "name": "Silent Tail",
       "level": 1,
-      "description": "<p><strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.</p><p>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</p>",
+      "description": "<p><strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed, and you follow speech through a wall or floor, up to <strong>30ft</strong> away, as if you were in the room. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.</p><p>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</p>",
       "uses": {
        "value": 0,
        "max": 0,
@@ -1082,6 +1048,17 @@
       ],
       "toggle": false,
       "active": false
+     },
+     {
+      "name": "Decipher Script",
+      "level": 1,
+      "description": "<p>(Intelligence) <strong>2d8</strong> minutes per page; arcane script is a Hard check to read (you can't cast it); never works on divine scrolls.</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": ""
      }
     ]
    },
@@ -1102,7 +1079,7 @@
    "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
    "effects": [],
    "system": {
-    "description": "<p><strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.</p><p>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to observe, tail or surveil a target without being noticed, and you follow speech through a wall or floor, up to <strong>30ft</strong> away, as if you were in the room. A creature you observed for at least <strong>10 minutes</strong> before the fight has <strong>Disadvantage</strong> on its attacks against you in the first round.</p><p>9th level: that creature also has <strong>Disadvantage</strong> on its saves against you in the first round.</p>",
     "kind": "class",
     "level": 1,
     "className": "Veiled Gatherer (Rogue)",
@@ -1169,6 +1146,35 @@
     "arneyan": {
      "grantedBy": "qOPbbghymGGxiUAA",
      "source": "qOPbbghymGGxiUAA.1"
+    }
+   }
+  },
+  {
+   "_id": "C0lDwLKPRlWavqAU",
+   "_key": "!actors.items!ixdBFJov1mjE7sWQ.C0lDwLKPRlWavqAU",
+   "name": "Decipher Script",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>(Intelligence) <strong>2d8</strong> minutes per page; arcane script is a Hard check to read (you can't cast it); never works on divine scrolls.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Veiled Gatherer (Rogue)",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "qOPbbghymGGxiUAA",
+     "source": "qOPbbghymGGxiUAA.2"
     }
    }
   },

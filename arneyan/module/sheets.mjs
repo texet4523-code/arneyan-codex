@@ -10,7 +10,7 @@ import { setUpCharacter, hitDieFormula } from "./progression.mjs";
 import { moveDroppedItem, blockedCopy, giveItemTo } from "./party.mjs";
 import { promptTransform, chooseForm, revertTransform } from "./transform.mjs";
 import { openForge, toggleTrait, traitList, withMode } from "./forge.mjs";
-import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName, lightInfo } from "./gear.mjs";
+import { ammoFor, toggleLight, toggleMode, writeScroll, luckForDeed, castFromItem, blankScrollLevel, spellByName, lightInfo, canSplinter, splinterShield } from "./gear.mjs";
 import { bestiarySource, refreshFromBestiary } from "./refresh.mjs";
 import { compendiumSourceOf } from "./migrate.mjs";
 import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
@@ -143,6 +143,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       itemCreate: ArneyanActorSheet.#itemCreate,
       chooseTabs: ArneyanActorSheet.#chooseTabs,
       itemEquip: ArneyanActorSheet.#itemEquip,
+      itemSplinter: ArneyanActorSheet.#itemSplinter,
       recharge: ArneyanActorSheet.#recharge,
       castItemSpell: ArneyanActorSheet.#castItemSpell,
       giveItem: ArneyanActorSheet.#giveItem,
@@ -283,6 +284,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         price: hide ? "" : (s.price ?? ""),
         // Anything can be worn or held (a ring, a torch, a shield); containers are worn too but show as their own block.
         equip: !holds, dim: i.type !== "equipment" && !s.equipped && !parent,
+        // Splintered Shield (Codex, HB v0.10.71): a non-magical shield in hand, not a buckler.
+        splinter: canSplinter(i),
         usable: i.type === "equipment" && !holds && !!(s.consumable?.use || s.charges?.max || s.scroll?.spell || light.bright || light.dim || /^scroll\b/i.test(i._source?.name ?? "")),
         useLabel: light.bright || light.dim ? (light.lit ? "Put out" : "Light") : hide ? "Use" : s.scroll?.spell ? "Read" : s.charges?.max ? "Use" : blankScrollLevel(i) !== null ? "Inscribe" : "Use",
         recharge: !hide && !!s.charges?.max,
@@ -821,6 +824,11 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     // Wearing or holding something takes it out of the pack.
     const on = !item.system.equipped;
     return item.update({ "system.equipped": on, ...(on && item.system.inside ? { "system.inside": "" } : {}) });
+  }
+  /** Splintered Shield: destroy the shield to take no damage from the hit (asks first). */
+  static async #itemSplinter(event, target) {
+    const item = this._itemFrom(target);
+    if (item) return splinterShield(item);
   }
   static #itemMode(event, target) {
     const item = this._itemFrom(target);

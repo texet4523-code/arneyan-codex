@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<p>The dwarves of Tenor Hold didn't wait for blackpowder to kill things at range. They solved it decades earlier with springs, gears and spite.</p><ul><li><strong>Clockwork Precision:</strong> a repeating crossbow can be used with Two-Gun Shot (the second shot has <strong>Disadvantage</strong>, as normal), and has no <strong>Disadvantage</strong> on a Called Shot.<ul><li>9th level: your repeating crossbow bolts have the Armour Piercing trait.</li></ul></li><li><strong>Engineer's Eye:</strong> <strong>Advantage</strong> on checks to identify, maintain, repair or modify mechanical ranged weapons, and you can field-repair any crossbow or firearm during a rest.</li></ul>",
+  "description": "<p>The dwarves of Tenor Hold didn't wait for blackpowder to kill things at range. They solved it decades earlier with springs, gears and spite.</p><ul><li><strong>Clockwork Precision:</strong> a repeating crossbow can be used with Two-Gun Shot (the second shot has <strong>Disadvantage</strong>, as normal), and has no <strong>Disadvantage</strong> on a Called Shot.<ul><li>9th level: your repeating crossbow bolts have the Armour Piercing trait.</li></ul></li><li><strong>Repeating crossbow:</strong> every Gunslinger feature that works with a firearm also works with a repeating crossbow, and its damage dice explode as a firearm's do. Firearm Proficiency covers it, Lightning Reload refills its magazine <strong>one round</strong> faster, and Quick Draw, Dead Eye, Dead Aim, Steady Shot, Trick Shot, Brace and Fire and Perfect Shot treat it as a firearm. It never misfires.</li><li><strong>Engineer's Eye:</strong> <strong>Advantage</strong> on checks to identify, maintain, repair or modify mechanical ranged weapons, and you can field-repair any crossbow or firearm during a rest.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,28 @@
     "rules": [
      {
       "key": "note.attack",
-      "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal).",
+      "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal) and has no Disadvantage on a Called Shot; {1:, 9:its bolts have the Armour Piercing trait.}",
+      "when": "",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Repeating crossbow",
+    "level": 1,
+    "description": "<p>Every Gunslinger feature that works with a firearm also works with a repeating crossbow, and its damage dice explode as a firearm's do. Firearm Proficiency covers it, Lightning Reload refills its magazine <strong>one round</strong> faster, and Quick Draw, Dead Eye, Dead Aim, Steady Shot, Trick Shot, Brace and Fire and Perfect Shot treat it as a firearm. It never misfires.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "note.attack",
+      "value": "Repeating crossbow: every Gunslinger feature that works with a firearm works with it; its damage dice explode as a firearm's, and it never misfires.",
       "when": "",
       "label": ""
      }

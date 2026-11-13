@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>Survival-honed stealth from the Red Waste and the deep Nalwood: stillness, patience, and the strike from nowhere.</p><ul><li><strong>Stillness:</strong> <strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.<ul><li>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</li></ul></li><li><strong>Ghost of the Sands:</strong> <strong>Advantage</strong> on checks to evade tracking in harsh terrain.</li></ul>",
+  "description": "<p>Survival-honed stealth from the Red Waste and the deep Nalwood: stillness, patience, and the strike from nowhere.</p><ul><li><strong>Stillness:</strong> <strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.<ul><li>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</li></ul></li><li><strong>Ghost of the Trail:</strong> <strong>Advantage</strong> on checks to cover your tracks, find or make a hidden camp and evade pursuit, in any terrain.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -34,9 +34,9 @@
     "active": false
    },
    {
-    "name": "Ghost of the Sands",
+    "name": "Ghost of the Trail",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to evade tracking in harsh terrain.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to cover your tracks, find or make a hidden camp and evade pursuit, in any terrain.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -47,7 +47,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "evading tracking in harsh terrain",
+      "when": "to cover your tracks, find or make a hidden camp and evade pursuit",
       "label": ""
      }
     ],

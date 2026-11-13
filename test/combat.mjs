@@ -201,7 +201,7 @@ for (const n of ["Grapple", "Trip", "Disarm", "Dirty Trick", "Overbear"]) assert
 
 /* Actions pack: the Handbook v0.9.9 combat chapter (Book I, Section III), no more and no less. */
 const BOOK_ACTIONS = ["Charge", "Disengage", "Dodge", "Hide", "Search", // Combat Manoeuvres: Actions
-  "Cleave", "Dirty Trick", "Disarm", "Grapple", "Guard", "Push", "Shield Blow", "Trip", // Manoeuvres
+  "Cleave", "Dirty Trick", "Disarm", "Grapple", "Guard", "Push", "Shield Blow", "Taunt", "Trip", // Manoeuvres (Taunt: HB v0.10.71)
   "Receiving Charge", "Shield Wall", "Called Shot", // Called Shot: one Codex rule (books v0.10.57) // Positioning (Flank Attack is the flanking rule, not an action: Kieran, 8 Nov)
   "Ready", "Delay", "Dash", "Attack of Opportunity", "Unarmed Strike", "Overbear", "Break Free", "Fighting Defensively"];
 assert.deepEqual(Object.keys(actions).sort(), [...BOOK_ACTIONS].sort(), "the Actions compendium is the book's list");

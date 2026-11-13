@@ -82,7 +82,7 @@ assert.equal(poolAt("Lay on Hands", "Paladin", 7, 0), 14);
 const ruleText = (name, cls, key) => feature(name)(cls).system.rules.find(r => r.key === key).value;
 assert.equal(levelText(ruleText("Exploit (Sneak Attack)", "Rogue", "note.damage"), 13), "Exploit (Sneak Attack): add 2d6 (once per round).");
 assert.equal(levelText(ruleText("Sneak Attack", "Assassin", "note.damage"), 24), "Sneak Attack: add 7d6 (once per round).");
-assert.match(levelText(ruleText("Back Attack", "Rogue", "note.damage"), 9), /by 4\./);
+assert.match(levelText(ruleText("Backstab", "Rogue", "note.damage"), 9), /by 4\./);
 const sneak = feature("Exploit (Sneak Attack)")("Rogue").system.activities.find(a => a.name === "Exploit damage");
 assert.equal(levelText(sneak.formula, 18), "3d6");
 assert.match(levelText(feature("Deflect (Dexterity)")("Monk").system.activities[0].text, 11), /Up to 3 a round/);

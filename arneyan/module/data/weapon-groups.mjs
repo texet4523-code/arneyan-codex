@@ -93,6 +93,8 @@ export const WEAPON_GROUPS = {
  "ranseur": "hook",
  "rapier": "bind",
  "rapiersword": "bind",
+ "repeatinghandcrossbow": "pinning fire",
+ "repeatingheavycrossbow": "pinning fire",
  "repeatingpistol": "pinning fire",
  "rifle": "pinning fire",
  "ringbroadsword": "bind",

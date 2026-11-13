@@ -246,7 +246,12 @@ export function weaponMatches(rule, item, opts = {}) {
   if (item?.type !== "weapon") return false;
   const scope = weaponScope(rule);
   // Bows (the Archer's Bow Mastery, Running Shot): short, long and composite bows, never a crossbow.
-  if (scope === "bow") return [item._source?.name, item.name, item.flags?.arneyan?.baseWeapon].some(n => /\bbows?\b|\b(?:long|short|war)bows?\b/i.test(String(n ?? "")));
+  if (scope === "bow") {
+    const names = [item._source?.name, item.name, item.flags?.arneyan?.baseWeapon].map(n => String(n ?? ""));
+    if (names.some(n => /\bbows?\b|\b(?:long|short|war)bows?\b/i.test(n))) return true;
+    // The Arbalester kit (HB v0.10.72): every Archer feature that names a bow works with a crossbow.
+    return names.some(n => /crossbow/i.test(n)) && [...(item.actor?.items ?? item.parent?.items ?? [])].some(i => i.type === "kit" && /^arbalester\b/i.test(i.name ?? ""));
+  }
   if (scope === "two-handed") return isTwoHanded(item, opts);
   // Unarmed strikes (the Monk's Iron Fists, books v0.10.41): Unarmed Strike, or the Catalogue's Fist (the pregens carry it).
   if (scope === "unarmed") return /^(unarmed strike|fist)$/i.test(item._source?.name ?? item.name ?? "");
@@ -741,7 +746,9 @@ export async function applyEffectTo(actors, data) {
 /** Is the actor immune to this condition (a trait, or an effect such as Shook it off)? */
 export function immuneTo(actor, id) {
   const immune = actor?.system?.mods?.traits?.immune?.map?.(t => t?.value ?? t) ?? [];
-  return immune.includes(`condition:${id}`) || immune.includes(id);
+  const has = x => immune.includes(`condition:${x}`) || immune.includes(x);
+  // Anything that ends, prevents or gives Advantage against Frightened covers Terrified too (HB v0.10.72).
+  return has(id) || (id === "terrified" && has("frightened"));
 }
 
 /** Toggle a condition on an actor (used by the sheet and chat buttons). */
@@ -749,6 +756,13 @@ export async function toggleCondition(actor, id, active, { overlay = false, valu
   // Remove every effect carrying the status (spells create their own effects with random ids).
   const existing = actor.effects.filter(e => e.statuses?.has?.(id) || e.statuses?.includes?.(id));
   if (existing.length && active !== true) return actor.deleteEmbeddedDocuments("ActiveEffect", existing.map(e => e.id));
+  // Frightened or Terrified, never both (HB v0.10.72): Terrified replaces Frightened; Frightened adds nothing to Terrified.
+  if (!existing.length && active !== false && ["frightened", "terrified"].includes(id)) {
+    const other = id === "terrified" ? "frightened" : "terrified";
+    const has = actor.effects.filter(e => e.statuses?.has?.(other) || e.statuses?.includes?.(other));
+    if (id === "frightened" && has.length) return;
+    if (id === "terrified" && has.length) await actor.deleteEmbeddedDocuments("ActiveEffect", has.map(e => e.id));
+  }
   // Already on: Burning stacks, a timed one keeps the longer (counters.mjs).
   if (existing.length && active === true) return reapply(actor, id, value);
   if (existing.length || active === false) return;

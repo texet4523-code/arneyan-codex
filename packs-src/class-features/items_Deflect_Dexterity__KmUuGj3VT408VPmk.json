@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Out of turn, when a nonmagical missile would hit you (not a siege weapon), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll; on a success it does no damage.</li><li>Attempts per round: the table above.</li><li>You need a free hand, and can't deflect while surprised or <strong>Incapacitated</strong>.</li><li>5th level: a melee attack too</li><li>7th level: on a success against a melee attack, you may hold the weapon instead (the attacker takes it back with a Strength contest)</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Out of turn, when a nonmagical missile would hit you (not a siege weapon), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll; on a success it does no damage.</li><li>Attempts per round: the table above.</li><li>You need a free hand, and can't deflect while surprised or <strong>Incapacitated</strong>.</li><li>5th level: a melee attack too</li><li>7th level: on a success against a melee attack, you may hold the weapon instead (the attacker takes it back with a Strength contest)</li><li>10th level: a magical missile too, such as an enchanted arrow or a spell that makes a ranged attack roll</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Out of turn, when a nonmagical missile would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
+    "text": "Out of turn, when a {1:nonmagical missile, 10:missile (a magical one too, such as an enchanted arrow or a spell's ranged attack)} would hit you{5:, or a melee attack}: against the attack roll; on a success it does no damage{7:, and against a melee attack you may hold the weapon instead}. Up to {2:1, 6:2, 11:3, 16:4, 20:5} a round. Needs a free hand; not while surprised or Incapacitated.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Normal roll at half speed or under, disadvantage above half speed, impossible to attempt while running or charging. You count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> disadvantage when listening through any solid barrier</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your pace sets the roll. Half speed or less: <strong>Advantage</strong>. Normal speed: a normal roll. Running or charging: <strong>Disadvantage</strong> (where anyone else can't try at all).</li><li><strong>Together:</strong> you may Hide and Move Silently at once, at your pace, with no extra penalty.</li><li><strong>Lightly obscured:</strong> you count as Hidden while lightly obscured even on a result of 12 to 14.</li><li><strong>Listen:</strong> you ignore the <strong>Disadvantage</strong> for listening through a solid barrier (see Disengage &amp; Hide in The Arneyan Codex), and you follow whispered speech through a door as if you were in the room.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Conceal yourself, even while only lightly obscured; Disadvantage above half speed.",
+    "text": "Conceal yourself; you count as Hidden while lightly obscured even on 12 to 14. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage. You may Hide and Move Silently at once, at your pace, with no extra penalty.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -56,7 +56,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Move without sound; Disadvantage above half speed and impossible while running or charging.",
+    "text": "Move without sound. Your pace sets the roll: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -83,7 +83,7 @@
     "damageType": "",
     "ability": "wis",
     "save": "",
-    "text": "Listen for sounds; Disadvantage through any solid barrier.",
+    "text": "Listen for sounds. You ignore the Disadvantage for listening through a solid barrier, and follow whispered speech through a door as if you were in the room.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -107,7 +107,7 @@
  },
  "effects": [],
  "folder": "mpjthAeSZRrS7A4C",
- "sort": 4,
+ "sort": 5,
  "ownership": {
   "default": 0
  },

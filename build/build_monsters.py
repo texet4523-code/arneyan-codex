@@ -20,7 +20,7 @@ SRC = "/tmp/hb/mm"
 FILES = ["humanoids", "animals", "undead", "fiends_fey_elementals", "aberrations_monstrosities", "dragons_giants", "constructs_oozes_plants"]
 DAMAGE = ["slashing", "piercing", "bludgeoning", "fire", "cold", "lightning", "thunder", "acid", "poison", "necrotic", "radiant", "psychic", "force"]
 CONDITIONS = {"Blinded": "blinded", "Burning": "burning", "Charmed": "charmed", "Deafened": "deafened", "Dominated": "dominated",
-              "Frightened": "frightened", "Incapacitated": "incapacitated", "Invisible": "invisible", "Paralysed": "paralysed",
+              "Frightened": "frightened", "Terrified": "terrified", "Incapacitated": "incapacitated", "Invisible": "invisible", "Paralysed": "paralysed",
               "Petrified": "petrified", "Poisoned": "poisoned", "Prone": "prone", "Restrained": "restrained", "Stunned": "stunned",
               "Unconscious": "unconscious", "Sickened": "poisoned"}
 CONDITION_IMMUNE = {"charm": "charmed", "fear": "frightened", "frighten": "frightened", "unconscious": "unconscious", "paralyse": "paralysed", "paralysis": "paralysed", "poisoned": "poisoned",

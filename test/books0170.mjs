@@ -37,3 +37,36 @@ assert.ok(cf.find(i => i.name === "Savage Swing").system.activities.every(a => /
 assert.ok(/whichever is greater/.test(cf.find(i => i.name === "World Ender")?.system.description ?? JSON.stringify(cf.filter(i => /World Ender/.test(i.system.description)).map(i => i.system.description))));
 assert.ok(src("module/downtime.mjs").includes("never one in the group a Fighter has specialised in"));
 console.log("books0170: ok");
+
+// HB v0.10.71 to v0.10.73 (B-F64 to B-F66).
+{
+  const R = await import("../arneyan/module/reload.mjs");
+  const w = n => eq.find(i => i.type === "weapon" && i.name === n);
+  assert.equal(R.capacityOf(w("Repeating Pistol")), 5);
+  assert.equal(R.capacityOf(w("Paired Pistols")), 2);
+  assert.equal(R.capacityOf(w("Musket")), 1);
+  const rep = w("Crossbow, Repeating Heavy");
+  assert.ok(R.isReloadable(rep) && R.capacityOf(rep) === 5 && R.listedRounds(rep) === 2, "a repeating crossbow holds 5 and refills in 2 rounds");
+  assert.equal(R.listedRounds(w("Crossbow, Repeating Hand")), 1);
+  const { ARNEYAN } = await import("../arneyan/module/config.mjs");
+  assert.ok(ARNEYAN.conditions.terrified && /lesser fear/.test(ARNEYAN.conditions.frightened.text));
+  const E = await import("../arneyan/module/effects.mjs");
+  const fearless = { system: { mods: { traits: { immune: [{ value: "condition:frightened" }] } } } };
+  assert.ok(E.immuneTo(fearless, "terrified"), "immune to fear covers Terrified");
+  const sp = read("spells");
+  assert.ok(sp.find(s => s.name === "Fear").system.applies.some(a => a.statuses.includes("terrified")));
+  const G = await import("../arneyan/module/gear.mjs");
+  const shield = (name, magic = 0, equipped = true) => ({ type: "armour", name, _source: { name }, system: { category: "shield", magic, equipped } });
+  assert.ok(G.canSplinter(shield("Shield, Medium")) && !G.canSplinter(shield("Buckler")) && !G.canSplinter(shield("+1 Shield", 1)) && !G.canSplinter(shield("Shield, Medium", 0, false)));
+  assert.ok(read("actions").some(a => a.name === "Taunt"));
+  assert.equal(cf.find(i => i.name === "Backstab")._id, "8qIgZFStG8JBG61j", "Backstab keeps Back Attack's id");
+  assert.equal(cf.find(i => i.name === "Thieves' Cant")._id, "YGCVjC9mUfm0216U");
+  console.log("books0173: ok");
+}
+{
+  const E = await import("../arneyan/module/effects.mjs");
+  const xbow = (kits) => ({ type: "weapon", name: "Crossbow, Light", _source: { name: "Crossbow, Light" }, flags: {}, actor: { items: kits.map(n => ({ type: "kit", name: n })) } });
+  assert.ok(!E.weaponMatches({ weapon: "bow" }, xbow([])), "a crossbow isn't a bow");
+  assert.ok(E.weaponMatches({ weapon: "bow" }, xbow(["Arbalester (Archer)"])), "except for an Arbalester");
+  console.log("arbalester: ok");
+}

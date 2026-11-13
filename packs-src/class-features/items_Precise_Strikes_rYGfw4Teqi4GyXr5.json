@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage per three Rogue levels (minimum +1), and from 13th level +1 per two Rogue levels. This applies to every hit, not only Exploits.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your weapon attacks deal +1 damage. This applies to every hit, not only Exploits. Improves to +2 at 6th level, +3 at 9th, +4 at 12th, +6 at 13th, +7 at 14th, +8 at 16th, +9 at 18th, +10 at 20th, +11 at 22nd and +12 at 24th.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+max(max(1, floor(@cl/3)), floor(@cl/2) * min(1, floor(@cl/13)))",
+    "value": "1:1, 6:2, 9:3, 12:4, 13:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12",
     "when": "",
     "label": ""
    }
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "mpjthAeSZRrS7A4C",
- "sort": 3,
+ "sort": 4,
  "ownership": {
   "default": 0
  },

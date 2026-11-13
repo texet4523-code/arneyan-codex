@@ -19,21 +19,31 @@ const textOf = item => `${item?.system?.description ?? ""} ${item?.system?.trait
 /** A weapon that has to be reloaded: a firearm, or a heavy crossbow. */
 export function isReloadable(item) {
   if (item?.type !== "weapon") return false;
-  return !!firearmOf(item) || /^crossbow,\s*heavy$|^heavy crossbow$/i.test(String(item.name ?? "").trim());
+  return !!firearmOf(item) || /^crossbow,\s*heavy$|^heavy crossbow$/i.test(String(item.name ?? "").trim()) || isRepeatingCrossbow(item);
+}
+
+/** A repeating crossbow (HB v0.10.72): Shots in its notes ("Shots 5, refill 1 round"), refilled like a gun. */
+export function isRepeatingCrossbow(item) {
+  return item?.type === "weapon" && /\brepeating\b/i.test(String(item.name ?? "")) && /crossbow/i.test(String(item.name ?? ""));
 }
 
 /** Shots it holds: "5 shots per reload", "6 shots"; Paired Pistols two (one each); otherwise one. */
 export function capacityOf(item) {
   const t = textOf(item);
-  const m = t.match(/(\d+)\s+shots?\b/i);
-  if (m) return Math.max(1, Number(m[1]));
   if (/\bpaired pistols\b/i.test(item?.name ?? "") || /\bea\./i.test(t)) return 2;
+  const m = t.match(/(\d+)\s+shots?\b/i) ?? t.match(/\bshots\s+(\d+)/i);
+  if (m) return Math.max(1, Number(m[1]));
   return 1;
 }
 
 /** The weapon's listed reload, in rounds ("1 rd", "2 rounds", "4 rd (full)"); a heavy crossbow 1. */
 export function listedRounds(item) {
   const fire = firearmOf(item);
+  // A repeating crossbow: "refill 2 rounds".
+  if (!fire && isRepeatingCrossbow(item)) {
+    const r = Number(textOf(item).match(/refill\s+(\d+)/i)?.[1]);
+    return Number.isFinite(r) ? r : 1;
+  }
   const s = fire?.reload ?? "";
   const n = Number(String(s).match(/(\d+)/)?.[1]);
   if (Number.isFinite(n)) return n;

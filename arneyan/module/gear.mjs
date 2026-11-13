@@ -779,3 +779,25 @@ export function registerGear() {
     });
   }
 }
+
+/**
+ * Splintered Shield (Codex, HB v0.10.71): when a hit would damage you, you may destroy the non-magical shield you are
+ * wielding (not a buckler) to take no damage from that hit. A magic shield can't be splintered.
+ */
+export function canSplinter(item) {
+  const s = item?.system ?? {};
+  return item?.type === "armour" && s.category === "shield" && !!s.equipped && !(Number(s.magic) > 0)
+    && !/buckler/i.test(`${item._source?.name ?? ""} ${item.name ?? ""}`);
+}
+
+/** Ask, then destroy the shield and say so in chat (the hit deals no damage). */
+export async function splinterShield(item) {
+  if (!canSplinter(item) || !item.isOwner) return false;
+  const { DialogV2 } = foundry.applications.api;
+  const yes = await DialogV2.confirm({ window: { title: "Splintered Shield" }, content: `<p>Splinter ${foundry.utils.escapeHTML?.(item.name) ?? item.name} to take no damage from this hit? The shield is destroyed.</p>`, rejectClose: false }).catch(() => false);
+  if (!yes) return false;
+  const actor = item.actor;
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<p><strong>Splintered Shield.</strong> ${actor?.name ?? "Someone"} splinters their ${item.name} and takes no damage from the hit.</p>` });
+  await item.delete();
+  return true;
+}

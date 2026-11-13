@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<p>A fighting art adapted from the Depsopteron dragon-kin: tough, direct, draconic.</p><ul><li><strong>Draconic Toughness:</strong> while below half HP, your unarmed damage die is one step larger (<strong>d4</strong> to <strong>d6</strong>, <strong>d6</strong> to <strong>d8</strong>, <strong>d8</strong> to <strong>d10</strong>, <strong>d10</strong> to <strong>d12</strong>).<ul><li>9th level: while below half HP, you also have Resistance 5 to fire.</li></ul></li><li><strong>Scale-Fist Bearing:</strong> <strong>Advantage</strong> on Intimidation checks, and on saves against fire.</li></ul>",
+  "description": "<p>A fighting art adapted from the Deteron dragon-kin: tough, direct, draconic.</p><ul><li><strong>Draconic Toughness:</strong> while below half HP, your unarmed damage die is one step larger (<strong>d4</strong> to <strong>d6</strong>, <strong>d6</strong> to <strong>d8</strong>, <strong>d8</strong> to <strong>d10</strong>, <strong>d10</strong> to <strong>d12</strong>).<ul><li>9th level: while below half HP, you also have Resistance 5 to acid, cold, fire, lightning and poison.</li></ul></li><li><strong>Scale-Fist Bearing:</strong> <strong>Advantage</strong> on Intimidation checks, and on saves against fire.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Draconic Toughness",
     "level": 1,
-    "description": "<p>While below half HP, your unarmed damage die is one step larger (<strong>d4</strong> to <strong>d6</strong>, <strong>d6</strong> to <strong>d8</strong>, <strong>d8</strong> to <strong>d10</strong>, <strong>d10</strong> to <strong>d12</strong>).</p><p>9th level: while below half HP, you also have Resistance 5 to fire.</p>",
+    "description": "<p>While below half HP, your unarmed damage die is one step larger (<strong>d4</strong> to <strong>d6</strong>, <strong>d6</strong> to <strong>d8</strong>, <strong>d8</strong> to <strong>d10</strong>, <strong>d10</strong> to <strong>d12</strong>).</p><p>9th level: while below half HP, you also have Resistance 5 to acid, cold, fire, lightning and poison.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -25,7 +25,7 @@
     "rules": [
      {
       "key": "note.damage",
-      "value": "Draconic Toughness: below half HP your unarmed damage die is one step larger.",
+      "value": "Draconic Toughness: below half HP your unarmed damage die is one step larger{1:, 9: and you have Resistance 5 to acid, cold, fire, lightning and poison}.",
       "when": "",
       "label": ""
      }
@@ -53,7 +53,7 @@
      {
       "key": "adv.save",
       "value": "1",
-      "when": "to resist fire damage",
+      "when": "against fire",
       "label": ""
      }
     ],

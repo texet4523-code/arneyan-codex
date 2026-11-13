@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li>No <strong>Disadvantage</strong> against a creature next to one of your allies; your movement this turn then doesn't provoke Attacks of Opportunity from it.</li><li>Exploit still applies to only one attack per round.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, make one additional weapon attack as part of it, with <strong>Disadvantage</strong> (see Extra attacks in The Arneyan Codex).</li><li><strong>Next to an ally:</strong> the extra attack has no <strong>Disadvantage</strong> against a creature next to one of your allies.</li><li><strong>Slip away:</strong> if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature.</li><li><strong>Exploit:</strong> still applies to only one attack per round.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round.",
+    "text": "One additional weapon attack as part of your attack action, with Disadvantage that no Advantage cancels. Slip away: if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature. Exploit still applies to only one attack per round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -56,7 +56,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "No Disadvantage on the extra attack (target next to an ally). Against a creature next to one of your allies, your movement this turn doesn't provoke Attacks of Opportunity from it. Exploit still applies to only one attack per round.",
+    "text": "No Disadvantage on the extra attack against a creature next to one of your allies. Slip away: if that attack hits, your movement this turn doesn't provoke Attacks of Opportunity from that creature. Exploit still applies to only one attack per round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

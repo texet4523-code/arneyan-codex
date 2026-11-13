@@ -1381,10 +1381,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+max(1,floor(@cl/3))"
+    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8"
    }
   ],
-  "summary": "+1 weapon damage per three Assassin levels (min +1).",
+  "summary": "+1 to +8 weapon damage (1st, 6th, 9th, 12th, 15th, 18th, 21st, 24th), applied automatically. Updated for HB v0.10.71.",
   "manual": "",
   "confidence": "high"
  },
@@ -2215,7 +2215,7 @@
    }
   ],
   "summary": "Advantage reminder on overbearing and grappling.",
-  "manual": "Unarmed damage table and extra unarmed attacks.",
+  "manual": "Unarmed damage table and extra unarmed attacks. Until 9th level all your blows in a turn go at the same creature (HB v0.10.71).",
   "confidence": "high"
  },
  "class-features/EEd86TSRn8QJQNK3": {
@@ -2376,16 +2376,16 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+max(1,floor(@cl/3))",
+    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8",
     "when": "weapon hits (any creature)"
    },
    {
     "key": "damage",
-    "value": "+max(1,floor(@cl/2))",
-    "when": "weapon hits vs your marked prey, favoured enemy or Quarry Hunter quarry (instead)"
+    "value": "1:1, 4:2, 6:3, 8:4, 10:5, 12:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12",
+    "when": "weapon hits vs your marked prey or favoured enemy (instead)"
    }
   ],
-  "summary": "Damage reminders: +1 per three Ranger levels (minimum +1), or +1 per two against marked prey, favoured enemy or quarry. Updated for books v0.10.58 (R-B59 to R-B64).",
+  "summary": "Damage reminders: +1 per three Ranger levels (minimum +1), or +1 per two against marked prey, favoured enemy or quarry. Updated for books v0.10.58 (R-B59 to R-B64). Updated for HB v0.10.71 (stepped values).",
   "manual": "",
   "confidence": "high",
   "from": "Ranger"
@@ -2444,13 +2444,13 @@
   "confidence": "high"
  },
  "class-features/8qIgZFStG8JBG61j": {
-  "name": "Back Attack",
+  "name": "Backstab",
   "from": "Rogue",
   "container": "passive",
   "rules": [
    {
     "key": "note.damage",
-    "value": "Back Attack: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}."
+    "value": "Backstab: multiply the weapon's damage dice by {1:2, 5:3, 9:4, 14:5, 20:6}."
    }
   ],
   "summary": "Back Attack damage reminder. Updated for books v0.10.58.",
@@ -2464,10 +2464,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "+max(max(1, floor(@cl/3)), floor(@cl/2) * min(1, floor(@cl/13)))"
+    "value": "1:1, 6:2, 9:3, 12:4, 13:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12"
    }
   ],
-  "summary": "+1 weapon damage per three Rogue levels (min +1); from 13th, +1 per two Rogue levels (books v0.10.41).",
+  "summary": "+1 to +12 weapon damage by the book's steps, applied automatically. Updated for HB v0.10.71.",
   "manual": "",
   "confidence": "high"
  },
@@ -2482,11 +2482,11 @@
    },
    {
     "key": "note.damage",
-    "value": "Exploit (Sneak Attack): add {1:1d6, 13:2d6, 18:3d6, 23:4d6} (once per round)."
+    "value": "Exploit (Sneak Attack): add {1:1d6, 9:2d6, 17:3d6, 23:4d6} (once per round)."
    }
   ],
   "summary": "Exploit reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "Dice by level (table); once per round; not with Back Attack.",
+  "manual": "Dice by level (table); once per round; not with Backstab. Snatch can take an item instead of the die.",
   "confidence": "high",
   "from": "Rogue"
  },
@@ -2497,7 +2497,7 @@
   "rules": [
    {
     "key": "note.skill",
-    "value": "Skill Mastery: treat a d20 roll of 9 or lower as 10 on Rogue Skills."
+    "value": "Skill Mastery: treat a d20 roll of 9 or lower as 10 on Rogue class skills and Thief Skills."
    }
   ],
   "summary": "Reminder on skill cards.",
@@ -2548,7 +2548,7 @@
    }
   ],
   "summary": "Toggle: the first melee attack against you each round has Disadvantage (the first two from 20th).",
-  "manual": "Switch off in a round you make a ranged attack (unless you have Slippery, 18th), or while surprised.",
+  "manual": "Switch off while surprised (HB v0.10.71: ranged attacks no longer turn it off).",
   "confidence": "high"
  },
  "class-features/bqEF33vO4Q00syjA": {
@@ -4510,10 +4510,10 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal)."
+    "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal) and has no Disadvantage on a Called Shot; {1:, 9:its bolts have the Armour Piercing trait.}"
    }
   ],
-  "summary": "A reminder note on the matching card.",
+  "summary": "Reminder on attack cards. Updated for HB v0.10.72 (R-B94).",
   "manual": "No Disadvantage on Called Shot with a repeating crossbow.",
   "confidence": "medium"
  },
@@ -4524,26 +4524,25 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Close Quarters: no Disadvantage on ranged attacks in a confined space (deck, corridor, room under 30ft wide)."
+    "value": "Close Quarters: no Disadvantage on ranged attacks from an enemy within 5ft of you; {1:, 9:a creature within 10ft you hit with a firearm makes a Reflex save against your Class Save DC or is pushed 5ft.}"
    }
   ],
-  "summary": "A reminder note on the matching card.",
+  "summary": "Reminder on attack cards. Updated for HB v0.10.72 (R-B94).",
   "manual": "Cancelling the Disadvantage.",
   "confidence": "medium"
  },
  "kits/ntQRdCKuC7CDPq3b#1": {
-  "name": "Engineer's Eye",
+  "name": "Repeating crossbow",
   "from": "Mechanist (Gunslinger)",
   "container": "passive",
   "rules": [
    {
-    "key": "adv.check",
-    "value": 1,
-    "when": "to identify, maintain, repair or modify mechanical ranged weapons"
+    "key": "note.attack",
+    "value": "Repeating crossbow: every Gunslinger feature that works with a firearm works with it; its damage dice explode as a firearm's, and it never misfires."
    }
   ],
-  "summary": "Advantage on checks (to identify, maintain, repair or modify mechanical ranged weapons). Shown as reminders.",
-  "manual": "",
+  "summary": "Reminder on attack cards. Updated for HB v0.10.72 (R-B94).",
+  "manual": "Exploding dice and the firearm features with a repeating crossbow are applied by hand.",
   "confidence": "high"
  },
  "kits/jO6xMTLzOj0XyLuT#1": {
@@ -4850,10 +4849,10 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Draconic Toughness: below half HP your unarmed damage die is one step larger."
+    "value": "Draconic Toughness: below half HP your unarmed damage die is one step larger{1:, 9: and you have Resistance 5 to acid, cold, fire, lightning and poison}."
    }
   ],
-  "summary": "A reminder note on the matching card.",
+  "summary": "Reminder on damage cards. Updated for HB v0.10.72 (R-B94).",
   "manual": "Die step.",
   "confidence": "medium"
  },
@@ -4905,11 +4904,11 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "to resist fire damage"
+    "when": "against fire"
    }
   ],
-  "summary": "Advantage on skill checks (Intimidation); Advantage on saves (to resist fire damage). Shown as reminders.",
-  "manual": "Text says \"checks to resist fire damage\"; read here as saves.",
+  "summary": "Advantage on Intimidation and on saves against fire. Updated for HB v0.10.72 (R-B94).",
+  "manual": "",
   "confidence": "medium"
  },
  "kits/Rb1ZvMykda14c3cX#1": {
@@ -4943,8 +4942,8 @@
     "when": "vs mind-affecting effects"
    }
   ],
-  "summary": "Advantage on saves (vs mind-affecting effects). Shown as reminders.",
-  "manual": "",
+  "summary": "Advantage on saves (vs mind-affecting effects). Shown as reminders. Updated for HB v0.10.72 (R-B94).",
+  "manual": "Iron Mind from 1st level (the class feature's own effect). 8th level: after you succeed on a Will save, the creature that forced it has Disadvantage on its save against your next Stun Attack before the end of your next turn.",
   "confidence": "high"
  },
  "kits/QuBKSmSPZxKrjBOP#1": {
@@ -5812,12 +5811,12 @@
   "confidence": "high"
  },
  "kits/drkSYSPmTJYTWsoF#0": {
-  "name": "Smuggler's Stash",
+  "name": "Deckhand's Footing",
   "from": "Smuggler (Rogue)",
   "container": "passive",
   "rules": [],
-  "summary": "Smuggler's Stash (books v0.10.49): hidden compartments, climbing rigging needs no check (manual).",
-  "manual": "After your Exploit hits, move 10ft (20ft from 9th) as part of the same action without provoking Attacks of Opportunity.",
+  "summary": "Footing at sea, climbing and swimming at full speed. Updated for HB v0.10.72 (R-B94).",
+  "manual": "Never Prone from footing or motion on a ship, pier, rigging or cliff path; climb and swim at full speed. 9th level: the first creature you attack after a drop, swing or leap of 10ft or more that turn counts as unable to see you.",
   "confidence": "high"
  },
  "kits/LGxAbADMr1tfUcIr#0": {
@@ -5826,7 +5825,7 @@
   "container": "passive",
   "rules": [],
   "summary": "Lost in the Crowd (books v0.10.49): Hide at once after a Pick Pocket in a crowd (manual).",
-  "manual": "Pick Pocket as part of an attack.",
+  "manual": "Hide right after a Pick Pocket in a crowd; Snatch can take any item not held in a hand or worn (from 9th, on a critical Exploit, a held one too).",
   "confidence": "high"
  },
  "kits/2DIdlFH7tFNIipm9#1": {
@@ -5845,32 +5844,32 @@
   "confidence": "high"
  },
  "kits/drkSYSPmTJYTWsoF#1": {
-  "name": "Dockside Charm",
+  "name": "Smuggler's Stash",
   "from": "Smuggler (Rogue)",
   "container": "passive",
   "rules": [
    {
     "key": "adv.check",
     "value": 1,
-    "when": "bribing or negotiating with port officials"
+    "when": "to bribe or bargain with port officials"
    }
   ],
-  "summary": "Advantage on checks (bribing or negotiating with port officials). Shown as reminders.",
-  "manual": "",
+  "summary": "Advantage on bribing or bargaining with port officials. Updated for HB v0.10.72 (R-B94).",
+  "manual": "Hidden compartments and stashed goods by hand.",
   "confidence": "high"
  },
  "kits/xdIZvKbLrMXwMaWW#1": {
-  "name": "Ghost of the Sands",
+  "name": "Ghost of the Trail",
   "from": "Skulker (Rogue)",
   "container": "passive",
   "rules": [
    {
     "key": "adv.check",
     "value": 1,
-    "when": "evading tracking in harsh terrain"
+    "when": "to cover your tracks, find or make a hidden camp and evade pursuit"
    }
   ],
-  "summary": "Advantage on checks (evading tracking in harsh terrain). Shown as reminders.",
+  "summary": "Advantage on those checks. Updated for HB v0.10.72 (R-B94).",
   "manual": "",
   "confidence": "high"
  },
@@ -5929,7 +5928,7 @@
    }
   ],
   "summary": "Advantage on checks (to observe, tail or surveil a target unnoticed); -1 adv.against (first round, from a creature you observed for 10+ minutes before the fight). Shown as reminders.",
-  "manual": "",
+  "manual": "9th level: that creature also has Disadvantage on its saves against you in the first round. Speech through a wall or floor up to 30ft.",
   "confidence": "medium"
  },
  "kits/xdIZvKbLrMXwMaWW#0": {
@@ -7928,12 +7927,12 @@
     "target": "target",
     "rounds": "@cl",
     "statuses": [
-     "frightened"
+     "terrified"
     ],
     "rules": []
    }
   ],
-  "summary": "Frightened for 1 round per level.",
+  "summary": "Frightened for 1 round per level. HB v0.10.72: Terrified.",
   "manual": "Stunned 1 round instead if it cannot flee.",
   "confidence": "high"
  },
@@ -8658,12 +8657,12 @@
     "target": "target",
     "rounds": "@cl",
     "statuses": [
-     "frightened"
+     "terrified"
     ],
     "rules": []
    }
   ],
-  "summary": "Frightened for 1 round per level.",
+  "summary": "Frightened for 1 round per level. HB v0.10.72: Terrified.",
   "manual": "Fleeing and dropping items.",
   "confidence": "high"
  },
@@ -9240,11 +9239,11 @@
   "container": "applies",
   "applies": [
    {
-    "name": "Eyebite: Frightened",
+    "name": "Eyebite: Terrified",
     "target": "target",
     "rounds": "2d4",
     "statuses": [
-     "frightened"
+     "terrified"
     ],
     "rules": []
    },
@@ -9274,7 +9273,7 @@
     "rules": []
    }
   ],
-  "summary": "Pick one: Frightened 2d4 rounds; Sickened (Disadvantage on attacks and checks) 10 minutes; Unconscious 10 minutes.",
+  "summary": "Pick one: Frightened 2d4 rounds; Sickened (Disadvantage on attacks and checks) 10 minutes; Unconscious 10 minutes. HB v0.10.72: Terrified.",
   "manual": "Damage wakes.",
   "confidence": "high"
  },
@@ -9506,12 +9505,12 @@
     "target": "target",
     "rounds": "600*@cl",
     "statuses": [
-     "frightened"
+     "terrified"
     ],
     "rules": []
    }
   ],
-  "summary": "Frightened while in the area (1 hour per level).",
+  "summary": "Frightened while in the area (1 hour per level). HB v0.10.72: Terrified.",
   "manual": "Per-round saves; Sympathy option.",
   "confidence": "medium"
  },
@@ -10401,7 +10400,8 @@
    }
   ],
   "summary": "Monk AC and movement from the Monk Progression Table.",
-  "confidence": "high"
+  "confidence": "high",
+  "manual": "Sure Climber: you roll Climb with Dexterity (HB v0.10.71)."
  },
  "class-features/Sqxt8w1xDKWpnqaM": {
   "name": "Surprise",
@@ -10550,10 +10550,10 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "+max(1,floor(@cl/3))"
+    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8"
    }
   ],
-  "summary": "+1 melee weapon damage per three Knight levels (minimum +1).",
+  "summary": "+1 to +8 melee weapon damage (1st, 6th, 9th ... 24th), applied automatically. Updated for HB v0.10.71.",
   "manual": "",
   "confidence": "high"
  },
@@ -10565,14 +10565,14 @@
    {
     "key": "attack",
     "value": "+@abilities.cha.mod",
-    "when": "your first attack roll each round against your Challenged foe (its AC counts as lower by your Charisma modifier)"
+    "when": "your first attack roll each round against your Challenged foe"
    },
    {
     "key": "note.damage",
-    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers).}"
+    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers; never with another doubling, such as a lance's charge).}"
    }
   ],
-  "summary": "Reminder: first attack each round against your Challenged foe gets your Charisma modifier (its AC counts as that much lower). From 17th, the once-per-encounter doubled dice (its Use).",
+  "summary": "Reminder: first attack each round against your Challenged foe gets your Charisma modifier (its AC counts as that much lower). From 17th, the once-per-encounter doubled dice (its Use). HB v0.10.71: adds Charisma to the attack roll (not lowering AC).",
   "manual": "Whether this is the first attack this round against the Challenged foe.",
   "confidence": "high"
  },
@@ -10718,7 +10718,7 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Flowing Form: your unarmed attacks have the Finesse and Reach traits."
+    "value": "Flowing Form: your unarmed attacks have the Reach and Entangling traits."
    }
   ],
   "summary": "A reminder on attack cards. Updated for books v0.10.58 (R-B59 to R-B64).",
@@ -11294,16 +11294,16 @@
   "container": "applies",
   "applies": [
    {
-    "name": "Frightened (Fear)",
+    "name": "Terrified (Fear)",
     "target": "target",
     "rounds": "@cl",
     "statuses": [
-     "frightened"
+     "terrified"
     ],
     "rules": []
    }
   ],
-  "summary": "Apply to each target that failed its save (Jacob's Well, 9 Nov: spells' follow-ups in chat).",
+  "summary": "Apply to each target that failed its save (Jacob's Well, 9 Nov: spells' follow-ups in chat). HB v0.10.72: Terrified.",
   "manual": "Creatures of higher Level than the caster are unaffected; the frightened flee.",
   "confidence": "high"
  },
@@ -11477,6 +11477,21 @@
    }
   ],
   "summary": "Advantage on checks to find work, passage or shelter with caravans, ship crews and travelling companies. Shown as reminders. Books v0.10.66.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "kits/ntQRdCKuC7CDPq3b#2": {
+  "name": "Engineer's Eye",
+  "from": "Mechanist (Gunslinger)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "to identify, maintain, repair or modify mechanical ranged weapons"
+   }
+  ],
+  "summary": "Advantage on checks (to identify, maintain, repair or modify mechanical ranged weapons). Shown as reminders.",
   "manual": "",
   "confidence": "high"
  }

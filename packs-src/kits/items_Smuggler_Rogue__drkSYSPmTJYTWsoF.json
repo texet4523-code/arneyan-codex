@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>The smugglers of the Jinia Isles and the Opal docks: cargo, hidden holds and quick exits.</p><ul><li><strong>Smuggler's Stash:</strong> on a ship, cart or wagon you find its hidden compartments with <strong>1 minute</strong> of searching and no check, and can hide up to 2 slots of goods there that a search finds only by beating your Pick Pocket check. Climbing rigging never needs a check. After your Exploit hits, you can move <strong>10ft</strong> as part of the same action without provoking Attacks of Opportunity.<ul><li>9th level: you may move <strong>20ft</strong> instead, climbing as you go without a check.</li></ul></li><li><strong>Dockside Charm:</strong> <strong>Advantage</strong> on checks to bribe or bargain with port officials.</li></ul>",
+  "description": "<p>The smugglers of the Jinia Isles and the Opal docks: rigging, hidden holds and quick exits by sea.</p><ul><li><strong>Deckhand's Footing:</strong> on a ship, a pier, rigging or a cliff path you never fall <strong>Prone</strong> from footing or motion, and you climb and swim at full speed without a check.<ul><li>9th level: the first creature you attack after a drop, swing or leap of <strong>10ft</strong> or more that turn counts as unable to see you.</li></ul></li><li><strong>Smuggler's Stash:</strong> on a ship, cart or wagon you find its hidden compartments with <strong>1 minute</strong> of searching and no check, and can hide up to 2 slots of goods there that a search finds only by beating your Pick Pocket check. You also have <strong>Advantage</strong> on checks to bribe or bargain with port officials.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,9 @@
   "className": "Rogue",
   "features": [
    {
-    "name": "Smuggler's Stash",
+    "name": "Deckhand's Footing",
     "level": 1,
-    "description": "<p>On a ship, cart or wagon you find its hidden compartments with <strong>1 minute</strong> of searching and no check, and can hide up to 2 slots of goods there that a search finds only by beating your Pick Pocket check.</p><ul><li>Climbing rigging never needs a check.</li><li>After your Exploit hits, you can move <strong>10ft</strong> as part of the same action without provoking Attacks of Opportunity.</li></ul><p>9th level: you may move <strong>20ft</strong> instead, climbing as you go without a check.</p>",
+    "description": "<p>On a ship, a pier, rigging or a cliff path you never fall <strong>Prone</strong> from footing or motion, and you climb and swim at full speed without a check.</p><p>9th level: the first creature you attack after a drop, swing or leap of <strong>10ft</strong> or more that turn counts as unable to see you.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -27,9 +27,9 @@
     "active": false
    },
    {
-    "name": "Dockside Charm",
+    "name": "Smuggler's Stash",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to bribe or bargain with port officials.</p>",
+    "description": "<p>On a ship, cart or wagon you find its hidden compartments with <strong>1 minute</strong> of searching and no check, and can hide up to 2 slots of goods there that a search finds only by beating your Pick Pocket check. You also have <strong>Advantage</strong> on checks to bribe or bargain with port officials.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -40,7 +40,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "bribing or negotiating with port officials",
+      "when": "to bribe or bargain with port officials",
       "label": ""
      }
     ],

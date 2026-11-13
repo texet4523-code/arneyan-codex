@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<p>The wall-knight who holds what others attack: the Boldock Wall-Knights facing the Red Waste from the Wall and Westfront Fort, and the keepers of every border hold.</p><ul><li><strong>Hold the Wall (1st):</strong> while an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</li><li><strong>Siege Discipline (1st):</strong> <strong>Advantage</strong> on checks involving fortification, siege assessment or coordinating a defence.</li><li><strong>Wall-Forged Dread (5th):</strong> you gain Demoralise at 5th level rather than 7th, and it is harsher: on a failed <strong>Will save</strong>, enemies stay <strong>Frightened</strong> of you while the Command lasts, not just until the end of their next turn.</li><li><strong>Shield of the Wall (10th):</strong> an ally within <strong>30ft</strong> of you who has not moved since the start of its last turn imposes <strong>Disadvantage</strong> on the first attack against it each round.</li></ul>",
+  "description": "<p>The wall-knight who holds what others attack. Examples: the Boldock Wall-Knights facing the Red Waste from the Wall and Westfront Fort, and the keepers of every border hold.</p><ul><li><strong>Shield of the Wall (1st):</strong> you guard a steady ally and hold the line beside it.<ul><li><strong>Guard:</strong> choose an ally within <strong>30ft</strong> of you that hasn't moved since the start of its last turn: the first attack against it each round has <strong>Disadvantage</strong>.</li><li><strong>Hold the Wall:</strong> while an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</li></ul></li><li><strong>Siege Discipline (1st):</strong> <strong>Advantage</strong> on checks involving fortification, siege assessment or coordinating a defence.</li><li><strong>Wall-Forged Dread (5th):</strong> you gain Demoralise at 5th level rather than 7th.<ul><li>7th level: an enemy <strong>Frightened</strong> by your Demoralise also can't willingly move closer to the ally you guard with Shield of the Wall.</li></ul></li><li><strong>Keeper of the Gate (10th):</strong> garrisons, watch-houses and border forts treat you as one of their own: a bed, a hearing with the commander and the wall's news for the asking. Once you've stood a watch with them, a commander lends you <strong>1d4</strong> guards for a day's errand.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,9 @@
   "className": "Knight",
   "features": [
    {
-    "name": "Hold the Wall",
+    "name": "Shield of the Wall",
     "level": 1,
-    "description": "<p>While an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</p>",
+    "description": "<p>You guard a steady ally and hold the line beside it.</p><p><strong>Guard:</strong> choose an ally within <strong>30ft</strong> of you that hasn't moved since the start of its last turn: the first attack against it each round has <strong>Disadvantage</strong>.</p><p><strong>Hold the Wall:</strong> while an ally is within <strong>5ft</strong> of you, you and that ally have <strong>Advantage</strong> on checks to resist being shoved, tripped or grappled.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -71,9 +71,9 @@
     "replaces": ""
    },
    {
-    "name": "Shield of the Wall",
+    "name": "Keeper of the Gate",
     "level": 10,
-    "description": "<p>An ally within <strong>30ft</strong> of you who has not moved since the start of its last turn imposes <strong>Disadvantage</strong> on the first attack against it each round.</p>",
+    "description": "<p>Garrisons, watch-houses and border forts treat you as one of their own: a bed, a hearing with the commander and the wall's news for the asking. Once you've stood a watch with them, a commander lends you <strong>1d4</strong> guards for a day's errand.</p>",
     "uses": {
      "value": 0,
      "max": 0,
