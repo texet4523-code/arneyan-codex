@@ -34,7 +34,7 @@ for (const n of ["Ill Omen", "Hex of Stumbling", "Bind Wound", "Evil Eye", "Cont
   assert.ok(byName[n], `Witch spell ${n} missing`);
   assert.ok(byName[n].system.classes.includes("Witch"), `${n} not on the Witch list`);
 }
-for (const n of ["Disrupt Undead", "Touch of Fatigue", "Cause Fear", "Inflict Light Wounds", "Ghoul Touch", "Halt Undead", "Enervation", "Fear (Mass)", "Harm", "Horrid Wilting", "Vile Blight", "Create Greater Undead"]) {
+for (const n of ["Disrupt Undead", "Touch of Fatigue", "Cause Fear", "Cause Light Wounds", "Ghoul Touch", "Halt Undead", "Enervation", "Fear (Mass)", "Harm", "Horrid Wilting", "Vile Blight", "Create Greater Undead"]) {
   assert.ok(byName[n]?.system.classes.includes("Necromancer"), `Necromancer spell ${n} missing`);
 }
 for (const n of ["Eldritch Blast", "Enslave", "Slay Living"]) assert.ok(byName[n]?.system.classes.includes("Warlock"), `Warlock spell ${n} missing`);
@@ -43,14 +43,14 @@ assert.ok(byName["Cause Fear"].system.classes.includes("Warlock"), "Cause Fear i
 const s = n => byName[n].system;
 assert.equal(s("Hex of Stumbling").level, 1); assert.equal(s("Hex of Stumbling").save, "ref"); assert.equal(s("Hex of Stumbling").saveEffect, "Negates");
 assert.equal(s("Hex of Stumbling").range, "Range 30ft");
-assert.equal(s("Bind Wound").damage, "2d8 + min(@cl, 10)"); assert.equal(s("Bind Wound").damageType, "healing"); assert.equal(s("Bind Wound").range, "Touch");
-assert.equal(s("Inflict Light Wounds").damage, "1d8 + min(@cl, 5)"); assert.equal(s("Inflict Light Wounds").damageType, "necrotic"); assert.equal(s("Inflict Light Wounds").save, "", "a touch attack, no save (Handbook v0.10.11)");
+assert.equal(s("Bind Wound").damage, "1d8 + min(@cl, 10)"); assert.equal(s("Bind Wound").damageType, "healing"); assert.equal(s("Bind Wound").range, "Touch");   // 1d8 since HB v0.10.74
+assert.equal(s("Cause Light Wounds").damage, "1d8 + min(@cl, 5)"); assert.equal(s("Cause Light Wounds").damageType, "necrotic"); assert.equal(s("Cause Light Wounds").save, "", "a touch attack, no save (Handbook v0.10.11)");
 assert.equal(s("Horrid Wilting").damage, "(min(@cl, 20))d6"); assert.equal(s("Horrid Wilting").template.type, "circle"); assert.equal(s("Horrid Wilting").template.size, 30);
 assert.equal(s("Vile Blight").template.type, "cone"); assert.equal(s("Vile Blight").save, "fort"); assert.equal(s("Vile Blight").saveEffect, "Half");
 assert.equal(s("Fear (Mass)").template.type, "cone"); assert.equal(s("Fear (Mass)").template.lingering, false, "Fear (Mass) lasts on the creatures, not the area");
 assert.equal(s("Ill Omen").level, 0); assert.equal(s("Withering Curse").level, 8); assert.equal(s("Slay Living").level, 6); assert.equal(s("Enslave").level, 5);
 assert.equal(s("Create Greater Undead").costly, true);
-assert.equal(s("Disrupt Undead").damage, "1d6");
+assert.equal(s("Disrupt Undead").damage, "(1 + min(3, floor((@cl + 1) / 6)))d6");   // +1 die at 5th, 11th and 17th since HB v0.10.74
 
 // Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (books v0.10.41).
 const eb = s("Eldritch Blast");

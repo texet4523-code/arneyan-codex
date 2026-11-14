@@ -32,8 +32,18 @@ export function capacityOf(item) {
   const t = textOf(item);
   if (/\bpaired pistols\b/i.test(item?.name ?? "") || /\bea\./i.test(t)) return 2;
   const m = t.match(/(\d+)\s+shots?\b/i) ?? t.match(/\bshots\s+(\d+)/i);
-  if (m) return Math.max(1, Number(m[1]));
-  return 1;
+  const n = m ? Math.max(1, Number(m[1])) : 1;
+  // HB v0.10.74 (K157): from 9th level a Mechanist's repeating crossbows hold 10 Shots.
+  if (isRepeatingCrossbow(item) && mechanistNine(item?.actor ?? item?.parent)) return Math.max(n, 10);
+  return n;
+}
+
+/** A Gunslinger of 9th level or higher with the Mechanist kit. */
+export function mechanistNine(actor) {
+  const items = actor?.items;
+  if (!items?.some) return false;
+  return items.some(i => i.type === "kit" && /^Mechanist\b/i.test(String(i.name ?? "")))
+    && items.some(i => i.type === "class" && /^gunslinger\b/i.test(String(i.name ?? "")) && Number(i.system?.levels ?? 0) >= 9);
 }
 
 /** The weapon's listed reload, in rounds ("1 rd", "2 rounds", "4 rd (full)"); a heavy crossbow 1. */
@@ -45,6 +55,11 @@ export function listedRounds(item) {
     return Number.isFinite(r) ? r : 1;
   }
   const s = fire?.reload ?? "";
+  // "Reload —" (the Wind Rifle, HB v0.10.74): no reloading in a fight; its refill is minutes ("10 min to refill").
+  if (/^[—–-]/.test(String(s).trim())) {
+    const mins = Number(textOf(item).match(/(\d+)\s*min(?:utes?)?\s+to\s+refill/i)?.[1]);
+    return Number.isFinite(mins) ? mins * 10 : 1;
+  }
   const n = Number(String(s).match(/(\d+)/)?.[1]);
   if (Number.isFinite(n)) return n;
   return isReloadable(item) ? 1 : 0;

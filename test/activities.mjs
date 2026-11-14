@@ -369,7 +369,7 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "sav
 {
   const cmd = dataOf("Command (Charisma)", "Knight");
   // Books v0.10.57 (R-B61): Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone.
-  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 9, 1], ["Demoralise", 7, 1], ["Expert in Arms", 3, 1]]);
+  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 9, 1], ["Demoralise", 7, 1], ["Expert in Arms", 2, 1]]);
   assert.ok(cmd.applies.every(e => e.name === "Demoralised (failed save)" ? e.rounds === "1" : e.rounds === "encounter"), "Commands last the encounter; Demoralise's Frightened a round");
   const { item } = feature({ ...cmd, name: "Command (Charisma)", uses: { value: 3, max: 3, per: "day", formula: "" } }, { level: 7, cls: "Knight" });
   assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Demoralise", "Expert in Arms"], "Embolden from 9th");

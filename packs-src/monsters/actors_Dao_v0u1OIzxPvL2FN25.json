@@ -861,7 +861,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -881,8 +881,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "",
-    "saveEffect": "",
+    "save": "will",
+    "saveEffect": "Negates (an unwilling creature, after the touch attack hits)",
     "damage": "",
     "damageType": "",
     "reversible": false,
@@ -979,7 +979,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Cast as a spell: duplicates any spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies.</p><ul><li>Cast as a Ritual (no slot; takes <strong>1 hour</strong>; consumes 2,500 gp of components; you gain 2 levels of Exhaustion): shape reality by choosing one effect: raise one attribute of one creature by 1 permanently (once per creature); return a dead creature to life as True Resurrection, with no body or time limit needed; end any curse, disease, affliction, ability loss or Exhaustion; free a creature from Imprisonment, Temporal Stasis, Maze or Trap the Soul; create one nonmagical object worth up to 2,500 gp; or transport up to 8 creatures anywhere on any plane.</li><li>Any other effect must be approved by the GM before the ritual begins; it cannot kill a creature outright or grant levels, and the GM names its cost up front.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "description": "<p>Cast as a spell: duplicates any spell of 8th level or lower, using your caster level and spell DC and ignoring its material components; the duplicated spell's own save applies.</p><ul><li>It cannot return the dead; use the Ritual.</li><li>Cast as a Ritual (no slot; takes <strong>1 hour</strong>; consumes 2,500 gp of components; you gain 2 levels of Exhaustion): shape reality by choosing one effect: raise one attribute of one creature by 1 permanently (once per creature); return a dead creature to life as True Resurrection, with no body or time limit needed (plus 25,000 gp of diamond dust); end any curse, disease, affliction, attribute loss or Exhaustion; free a creature from Imprisonment, Temporal Stasis, Maze or Trap the Soul; create one nonmagical object worth up to 2,500 gp; or transport up to 8 creatures anywhere on any plane.</li><li>Any other effect must be approved by the GM before the ritual begins; it cannot kill a creature outright or grant levels, and the GM names its cost up front.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
     "source": {
      "book": "phb",
      "page": 0

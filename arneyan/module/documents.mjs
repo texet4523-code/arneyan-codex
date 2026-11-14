@@ -1,6 +1,6 @@
 import { endHiding, rollHide } from "./stealth.mjs";
 import { areaButton } from "./areas.mjs";
-import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY } from "./touch.mjs";
+import { isTouchAttack, touchLabel, touchParts, touchApplies, CURES, REVERSED_ONLY, TOUCH_THEN_SAVE, thenSaveName } from "./touch.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { servantOf, godOf, lostToForsaken, strainedKey, highestSlotLevel, isTurnUndead, annotateAllegiance, itemNamesAlignment } from "./favour.mjs";
 import { d20Roll, luckCheck, damageRoll, modeFromEvent, resolveFormula, manualAdvantage } from "./rolls.mjs";
@@ -838,7 +838,7 @@ export class ArneyanActor extends Actor {
       actor: this, kind: "attack", mode, why, critAt: 20,
       targets: targets.map(t => ({ name: t.name, ac: targetAC(t.actor, { ranged: false }), uuid: t.actor.uuid })),
       title: `${item.name}: Touch attack`, parts: touchParts(this, item),
-      notes: [...(this.system.noAct ? [`${this.name} cannot take actions right now.`] : []), "A touch spell: the attack replaces the save. On a hit it takes full effect; on a miss, none."],
+      notes: [...(this.system.noAct ? [`${this.name} cannot take actions right now.`] : []), TOUCH_THEN_SAVE.has(item.name) ? `A touch spell: on a hit, the creature then makes ${thenSaveName(item, ARNEYAN.saveTypes)}; on a miss, nothing.` : "A touch spell: the attack replaces the save. On a hit it takes full effect; on a miss, none."],
       // Counted as a melee attack against the target this round ("the first attack against it", firstAgainst).
       extra: { itemId: item.id, actorUuid: this.uuid, touchSpell: item.uuid, cl, melee: true, ...(combatFor(this)?.started ? { stamp: `${combatFor(this).id}.${combatFor(this).round}` } : {}) },
       footer: ({ natural }) => {
@@ -853,7 +853,7 @@ export class ArneyanActor extends Actor {
         for (const { e, i } of touchApplies(item)) {
           b.push(`<button type="button" class="arn-touch-effect" data-index="${i}"><i class="fa-solid fa-wand-sparkles"></i> Apply ${esc(e.name || item.name)} to the one hit</button>`);
         }
-        if (!b.length) b.push(`<p class="arn-card-meta"><i class="fa-solid fa-hand-sparkles"></i> On a hit, ${esc(item.name)} takes effect (no save).</p>`);
+        if (!b.length) b.push(`<p class="arn-card-meta"><i class="fa-solid fa-hand-sparkles"></i> On a hit, ${TOUCH_THEN_SAVE.has(item.name) ? `the creature makes ${esc(thenSaveName(item, ARNEYAN.saveTypes))}${item.system.save ? " (the button on the spell's card)" : ""}` : `${esc(item.name)} takes effect (no save)`}.</p>`);
         return b.join("");
       }
     });
@@ -1480,10 +1480,10 @@ export class ArneyanItem extends Item {
     // A touch spell: an attack roll in place of the save (touch.mjs). One that only harms has its damage and effects
     // on the attack's card, for the creature it hits; a cure or a reversible spell keeps them here for an ally.
     const touch = isTouchAttack(this);
-    const forAllies = touch && (CURES.has(this.name) || REVERSED_ONLY.has(this.name) || ["Polymorph", "Plane Shift"].includes(this.name));
-    if (touch) out.push(`<button type="button" class="arn-touch-attack" data-item-uuid="${this.uuid}" data-cl="${cl}" data-tooltip="d20 + BtH + casting modifier against the target's AC (no save). An ally is touched automatically."><i class="fa-solid fa-hand-sparkles"></i> ${esc(touchLabel(this))}</button>`);
+    const forAllies = touch && (CURES.has(this.name) || REVERSED_ONLY.has(this.name) || TOUCH_THEN_SAVE.has(this.name));
+    if (touch) out.push(`<button type="button" class="arn-touch-attack" data-item-uuid="${this.uuid}" data-cl="${cl}" data-tooltip="d20 + BtH + casting modifier against the target's AC (${TOUCH_THEN_SAVE.has(this.name) ? "on a hit, the creature then makes its save" : "no save"}). An ally is touched automatically."><i class="fa-solid fa-hand-sparkles"></i> ${esc(touchLabel(this))}</button>`);
     if (touch && !forAllies) return out.concat(sys.template?.type && this.actor ? [areaButton(this, { actor: this.actor, dc, cl, formula: sys.damage ? this.damageFormulaLabel() : "", itemUuid: this.uuid })] : []).join("");
-    if (sys.save && !touch) {
+    if (sys.save && (!touch || TOUCH_THEN_SAVE.has(this.name))) {
       out.push(`<button type="button" class="arn-save-btn" data-save="${sys.save}" data-dc="${dc ?? ""}" data-source="${esc(this.name)}"${this.type === "spell" ? ' data-spell="1"' : ""}><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saveTypes[sys.save]} save${dc ? ` DC ${dc}` : ""}</button>`);
       if (sys.saveEffect) out.push(`<p class="arn-save-effect">On a save: ${esc(sys.saveEffect)}</p>`);
     }

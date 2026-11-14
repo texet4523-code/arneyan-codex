@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You deal +1 damage with bows, rising to +2 at 6th level, +3 at 12th and +4 at 18th.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You deal +1 damage with bows, rising to +2 at 6th level, +3 at 12th and +4 at 18th. Your first two steps also add to bow attack rolls: +1 to hit from 2nd level and +2 from 6th; the later steps add damage only.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,6 +25,13 @@
    {
     "key": "damage.ranged",
     "value": "+min(4,floor((@cl+6)/6))",
+    "when": "with bows",
+    "label": "",
+    "weapon": "bow"
+   },
+   {
+    "key": "attack",
+    "value": "2:1, 6:2",
     "when": "with bows",
     "label": "",
     "weapon": "bow"

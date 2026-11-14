@@ -28,10 +28,21 @@ const names = new Set(fs.readdirSync(dir).map(f => JSON.parse(fs.readFileSync(di
 for (const n of T.TOUCH_ATTACK) assert.ok(names.has(n), `${n} is a spell`);
 assert.ok(T.isTouchAttack({ type: "spell", name: "Shocking Grasp" }) && !T.isTouchAttack({ type: "spell", name: "Glyph of Warding" }));
 assert.equal(T.touchLabel({ name: "Cure Light Wounds" }), "Touch attack: an undead, or cast reversed");
+// HB v0.10.74: Inflict Light Wounds is Cause Light Wounds (a copy under the old name still rolls to hit), and an
+// unwilling creature hit by Polymorph or Plane Shift then makes a Will save.
+assert.ok(T.TOUCH_ATTACK.has("Cause Light Wounds") && !T.TOUCH_ATTACK.has("Inflict Light Wounds"));
+assert.ok(T.isTouchAttack({ type: "spell", name: "Inflict Light Wounds" }) && T.isTouchAttack({ type: "spell", name: "Cause Light Wounds" }));
+for (const n of ["Polymorph", "Plane Shift"]) {
+  const sp = JSON.parse(fs.readFileSync(dir + fs.readdirSync(dir).find(f => f.startsWith(`items_${n.replace(" ", "_")}_`) && JSON.parse(fs.readFileSync(dir + f)).name === n)));
+  assert.equal(sp.system.save, "will", `${n}: Will save after the touch`);
+  assert.match(sp.system.saveEffect, /^Negates/);
+  assert.ok(T.TOUCH_THEN_SAVE.has(n));
+}
+assert.ok(read("module/documents.mjs").includes("sys.save && (!touch || TOUCH_THEN_SAVE.has(this.name))"));
 assert.deepEqual(T.touchParts({ type: "character", system: { bth: 2 } }, { caster: { ability: "wis", mod: 3 } }).map(p => p.value), [2, 3]);
 assert.deepEqual(T.touchParts({ type: "npc", system: { attributes: { attack: 6 } } }, {}).map(p => p.value), [6]);
 const docs = read("module/documents.mjs");
-assert.ok(docs.includes("if (sys.save && !touch)") && docs.includes("async rollSpellAttack(") && docs.includes('as === "undead" ? "radiant"'));
+assert.ok(docs.includes("if (sys.save && (!touch || TOUCH_THEN_SAVE.has(this.name)))") && docs.includes("async rollSpellAttack(") && docs.includes('as === "undead" ? "radiant"'));
 const chat = read("module/chat.mjs");
 for (const c of [".arn-touch-attack", ".arn-touch-damage", ".arn-touch-effect"]) assert.ok(chat.includes(c), c);
 

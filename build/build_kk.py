@@ -156,7 +156,7 @@ def journals(md, ver):
         if k == 0:
             pages.append(("About Keeps & Kingdoms",
                           f"<p><strong>Keeps &amp; Kingdoms</strong>, a companion for The Arneyan Codex. Version {html.escape(ver)}.</p>"
-                          "<p>Rules to read and run by hand: strongholds and followers, warfare, domains and intrigue, and "
+                          "<p>Rules to read and run by hand: strongholds and followers, mass combat, domains and intrigue, and "
                           "monsters. The creatures are actors in the <strong>Keeps &amp; Kingdoms: Monsters</strong> compendium.</p>"
                           f"<p class=\"arn-note\">{SMALL_PRINT}</p>"))
         intro = body.split("\n## ")[0].strip()

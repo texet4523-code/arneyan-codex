@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p><strong>40ft cone</strong>; <strong>10d6</strong> necrotic damage (<strong>Fortitude save</strong> for half); plants in the area die</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+  "description": "<p><strong>40ft cone</strong>; <strong>1d6</strong> necrotic damage per level (max <strong>15d6</strong>), <strong>Fortitude halves</strong>; plants in the area die.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,7 +26,7 @@
   "prepared": false,
   "save": "fort",
   "saveEffect": "Half",
-  "damage": "10d6",
+  "damage": "(min(@cl, 15))d6",
   "damageType": "necrotic",
   "reversible": false,
   "costly": false,

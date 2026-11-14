@@ -259,7 +259,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Charmed</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong> and all <strong>Exhausted</strong> levels, removes curses, and restores all ability scores (not points lost permanently to Raise Dead or Permanency).</p><ul><li>It does not restore HP.</li><li>Material: diamond dust worth 500 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
+    "description": "<p>Touch; ends <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Charmed</strong>, <strong>Stunned</strong>, <strong>Paralysed</strong> and all <strong>Exhausted</strong> levels, removes curses, and restores all attributes (not points lost permanently to Raise Dead or Permanency). It does not restore HP. Material: diamond dust worth 500 gp, consumed.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -762,7 +762,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -782,8 +782,8 @@
     "concentration": false,
     "ritual": false,
     "prepared": false,
-    "save": "",
-    "saveEffect": "",
+    "save": "will",
+    "saveEffect": "Negates (an unwilling creature, after the touch attack hits)",
     "damage": "",
     "damageType": "",
     "reversible": false,

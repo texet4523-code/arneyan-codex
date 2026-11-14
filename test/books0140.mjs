@@ -58,7 +58,7 @@ assert.ok("polymorph" in S.noCounts() && "feeblemind" in S.noCounts());
   const lasting = { effects: [{ name: "Held", disabled: false, statuses: new Set(["paralysed"]), flags: { arneyan: { expires: { combat: "c1", round: 5, turn: 1 } } } }] };
   assert.deepEqual(S.controlOn(lasting, { combat }), ["paralysed"]);
 }
-assert.equal(M.CLASS_REWORK, "0.10.107", "worlds at 0.10.79 and 0.10.80 take the new class features (again for HB v0.10.73)");
+assert.equal(M.CLASS_REWORK, "0.10.108", "worlds at 0.10.79 and 0.10.80 take the new class features (again for HB v0.10.73)");
 {
   const actor = { effects: [{ name: "Feeblemind", disabled: false, statuses: new Set() }, { name: "Prone", disabled: false, statuses: new Set(["prone"]) }, { name: "Slow", disabled: false, statuses: new Set(["slowed"]) }] };
   assert.deepEqual(S.controlOn(actor).sort(), ["feeblemind", "slowed"]);
@@ -107,7 +107,7 @@ assert.ok(src("solo.mjs").includes("done.has(key)"), "a re-sent turn isn't count
 /* Books v0.10.41 to v0.10.43, module side. */
 {
   const { ARNEYAN } = await import("../arneyan/module/config.mjs");
-  assert.deepEqual([12, 13, 24].map(l => ARNEYAN.bth("rogue", l)), [2, 7, 15], "the Rogue and the Assassin join the Knight track from 13th");
+  assert.deepEqual([8, 9, 10, 11, 12, 13, 24].map(l => ARNEYAN.bth("rogue", l)), [1, 3, 3, 4, 5, 7, 15], "the Rogue and the Assassin ramp from 9th (HB v0.10.74) and join the Knight track from 13th");
   const E = await import("../arneyan/module/effects.mjs");
   assert.ok(E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Unarmed Strike" }) && !E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Quarterstaff" }), "Iron Fists counts on Unarmed Strike only");
   assert.ok(E.weaponMatches({ weapon: "unarmed" }, { type: "weapon", name: "Fist" }), "and on the Catalogue's Fist (Sarrix carries it)");

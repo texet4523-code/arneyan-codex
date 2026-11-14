@@ -207,9 +207,9 @@ h.system.level = 5;
 await P.syncLuckFeats(h, { fromLevel: 4 });
 assert.equal(h.system.luck.value, 13);
 assert.ok(posted.some(t => /Fated Survivor: \+1 Luck/.test(t)));
-// F3 (0.10.49): the Ranger's trap search has Advantage as well as the table bonus.
+// HB v0.10.74: the Ranger's trap search bonus left the Progression Table, so Woodcraft carries no trap search rules.
 const wood = feature("Woodcraft")("Ranger").system.rules;
-assert.ok(wood.some(r => r.key === "adv.skill" && /wilderness traps/.test(r.when)) && wood.some(r => r.key === "skill" && /wilderness traps/.test(r.when) && /^1:2/.test(r.value)));
+assert.ok(!wood.some(r => /wilderness traps/.test(r.when ?? "")));
 console.log("OK level scaling");
 
 // 0.10.65: a situational damage reminder in dice reads as its dice (Blessed Weapon: "+1d6", not "+0").

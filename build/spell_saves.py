@@ -10,10 +10,13 @@ with the readings the plain parser would get wrong written out below."""
 import re
 
 # Spells whose Save column is "—" in both books, though the text names a save.
-# (Polymorph: the books v0.10.11 print Touch, a touch attack on an unwilling creature, so no save.)
-SAVE_ADD = {"Forcecage": "ref", "Mislead": "will", "Dispel Magic": "will"}
+# (Polymorph: the books v0.10.11 print Touch, a touch attack on an unwilling creature. Since HB v0.10.74 an unwilling
+# creature hit by Polymorph or Plane Shift then makes a Will save, Will negates: touch.mjs's TOUCH_THEN_SAVE.)
+SAVE_ADD = {"Forcecage": "ref", "Mislead": "will", "Dispel Magic": "will", "Polymorph": "will", "Plane Shift": "will"}
 
 EFFECT = {
+    "Polymorph": "Negates (an unwilling creature, after the touch attack hits)",
+    "Plane Shift": "Negates (an unwilling creature, after the touch attack hits)",
     # Illusions: a save sees through them.
     "Minor Illusion": "Sees through it",
     "Silent Image": "Sees through it",

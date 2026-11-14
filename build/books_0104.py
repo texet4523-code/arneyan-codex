@@ -73,7 +73,7 @@ SPELLS = {
     "Disrupt Undead": ("Necromancy", "V, S", ""),
     "Touch of Fatigue": ("Necromancy", "V, S, M", ""),
     "Cause Fear": ("Illusion", "V, S", ""),
-    "Inflict Light Wounds": ("Necromancy", "V, S", ""),
+    "Cause Light Wounds": ("Necromancy", "V, S", ""),
     "Bind Undead": ("Necromancy", "V, S, M", ""),
     "False Life": ("Necromancy", "V, S, M", ""),
     "Ghoul Touch": ("Necromancy", "V, S, M", ""),

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> While unarmed and unarmoured, <strong>once per round</strong> when struck in melee, add your Wisdom modifier to your AC against that single attack, applied after the attacker rolls.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> While unarmed and unarmoured, <strong>once per round</strong> when struck in melee, add your Wisdom modifier to your AC against that single attack, applied after the attacker rolls. Parrying Stance works until 4th level; from 5th, Deflect covers melee attacks instead.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -31,7 +31,7 @@
     "save": "",
     "text": "When struck in melee while unarmed and unarmoured, add your Wisdom modifier to AC against that attack.",
     "minLevel": 0,
-    "maxLevel": 0,
+    "maxLevel": 4,
     "cost": 0,
     "per": "round",
     "target": "self",

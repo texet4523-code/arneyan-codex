@@ -14,9 +14,9 @@ Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01073"
+SRC = "/tmp/hb/src_v01074"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.73"
+VERSION = "0.10.74"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -36,6 +36,9 @@ def to_docx(md_path, docx_path):
     subprocess.run(["pandoc", "-f", "markdown-smart", "-t", "html", md_path, "-o", html], check=True)
     # pandoc marks "↔" for text presentation (U+FE0E); the book has no such character.
     h = open(html, encoding="utf-8").read()
+    # HB v0.10.74 breaks one spell's table header after its slash ("Clairaudience/ Clairvoyance") so the cell wraps;
+    # the spell's name has no space there (class lists and Path spells name it without one).
+    h = re.sub(r"(<strong>[A-Z][A-Za-z' ]*[A-Za-z'])/ (?=[A-Z][A-Za-z' ]*</strong>)", r"\1/", h)
     open(html, "w", encoding="utf-8").write(h.replace("\ufe0e", ""))
     subprocess.run(["pandoc", "-f", "html", "-t", "docx", html, "-o", docx_path], check=True)
     os.remove(html)

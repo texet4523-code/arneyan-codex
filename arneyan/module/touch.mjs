@@ -13,7 +13,7 @@
  */
 import { ARNEYAN } from "./config.mjs";
 export const TOUCH_ATTACK = new Set([
-  "Shocking Grasp", "Chill Touch", "Inflict Light Wounds", "Vampiric Touch", "Ghoul Touch", "Bestow Curse", "Contagion",
+  "Shocking Grasp", "Chill Touch", "Cause Light Wounds", "Vampiric Touch", "Ghoul Touch", "Bestow Curse", "Contagion",
   "Harm", "Touch of Fatigue", "Death Knell", "Polymorph", "Plane Shift", "Temporal Stasis", "Imprisonment",
   // "As Bestow Curse" (Necromancer class-only spell, Handbook v0.10.11).
   "Bestow Curse (Greater)",
@@ -28,7 +28,23 @@ export const CURES = new Set(["Cure Light Wounds", "Cure Serious Wounds", "Cure 
 /** Spells whose touch attack is only for the reversed form (an ally gets the spell as normal). */
 export const REVERSED_ONLY = new Set(["Heal", "Remove Curse", "Remove Disease", "Remove Blindness or Deafness", "Enhance Attribute", "Restoration"]);
 
-export const isTouchAttack = item => item?.type === "spell" && TOUCH_ATTACK.has(String(item.name ?? "").trim());
+/** A creature hit by one of these then makes a save as well: Polymorph and Plane Shift (HB v0.10.74, Will negates, an
+ * unwilling creature), Ghoul Touch (Fortitude negates) and Contagion (the disease's own save against your spell DC). */
+export const TOUCH_THEN_SAVE = new Set(["Polymorph", "Plane Shift", "Ghoul Touch", "Contagion"]);
+
+/** The save a touch-then-save spell asks for: "its Will save", or the disease's for Contagion. */
+export function thenSaveName(item, saveTypes = {}) {
+  const s = item?.system?.save;
+  return s && saveTypes[s] ? `its ${saveTypes[s]} save` : "the save the spell names (Contagion: the disease's, against your spell DC)";
+}
+
+/** Names the books have since changed: a copy already on a character keeps working (HB v0.10.74: Cause Light Wounds). */
+export const TOUCH_OLD_NAMES = new Set(["Inflict Light Wounds"]);
+
+export const isTouchAttack = item => {
+  const n = String(item?.name ?? "").trim();
+  return item?.type === "spell" && (TOUCH_ATTACK.has(n) || TOUCH_OLD_NAMES.has(n));
+};
 
 /** What the touch attack button says. */
 export function touchLabel(item) {

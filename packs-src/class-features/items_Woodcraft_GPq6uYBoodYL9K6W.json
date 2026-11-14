@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You are Trained in Survival, Tracking, Set Snares and Climb (Book II) in the wilderness, on top of your starting skills, and Master in Tracking from 5th level. You read tracks (a trail's condition from 3rd level, the creature type from 5th), find food and shelter for yourself without a check and for <strong>2d4</strong> others on a Moderate check, and set and disarm wilderness traps (the Ranger Progression Table gives your trap search bonus and trap damage).</li><li><strong>Conceal and Move Silently (Dexterity):</strong> in the wilderness, no penalty at half speed or slower, <strong>Disadvantage</strong> above it, impossible while running.</li><li>While Concealed you count as Hidden.</li><li>From 5th level you may attempt both together, at quarter speed, with <strong>Disadvantage</strong> on both.</li><li><strong>Delay/Neutralise Poison (Wisdom):</strong> For natural poisons familiar to the ranger (those of their home region and their favoured enemy). On a successful check: delay the poison's effects for <strong>1 hour per level</strong> (no action, 1 attempt only).<ul><li>If the roll exceeds the needed total by 6 or more: neutralise the poison entirely (effects already suffered are not reversed)</li></ul></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You are Trained in Survival, Tracking, Set Snares and Climb (Book II) in the wilderness, on top of your starting skills, and Master in Tracking from 5th level. You read tracks (a trail's condition from 3rd level, the creature type from 5th), find food and shelter for yourself without a check and for <strong>2d4</strong> others on a Moderate check, and set and disarm wilderness traps (the Ranger Progression Table gives your trap damage).</li><li><strong>Conceal and Move Silently (Dexterity):</strong> in the wilderness, no penalty at half speed or slower, <strong>Disadvantage</strong> above it, impossible while running.</li><li>While Concealed you count as Hidden.</li><li>From 5th level you may attempt both together, at quarter speed, with <strong>Disadvantage</strong> on both.</li><li><strong>Delay/Neutralise Poison (Wisdom):</strong> For natural poisons familiar to the ranger (those of their home region and their favoured enemy). On a successful check: delay the poison's effects for <strong>1 hour per level</strong> (no action, 1 attempt only).<ul><li>If the roll exceeds the needed total by 6 or more: neutralise the poison entirely (effects already suffered are not reversed)</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -212,20 +212,7 @@
     "spendAny": false
    }
   ],
-  "rules": [
-   {
-    "key": "skill",
-    "value": "1:2, 13:3, 18:4, 24:6",
-    "when": "actively searching for wilderness traps",
-    "label": ""
-   },
-   {
-    "key": "adv.skill",
-    "value": "1",
-    "when": "actively searching for wilderness traps",
-    "label": ""
-   }
-  ],
+  "rules": [],
   "toggle": false,
   "active": false
  },

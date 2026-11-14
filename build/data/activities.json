@@ -1044,7 +1044,8 @@
     "cost": 0,
     "per": "round",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "maxLevel": 4
    }
   ],
   "confidence": "high",
@@ -3033,7 +3034,7 @@
    {
     "name": "Embolden",
     "kind": "note",
-    "text": "For the encounter, companions and followers within {1:30ft, 19:60ft} have Advantage on Will saves.",
+    "text": "For the encounter, allies within {1:30ft, 19:60ft} have Advantage on Will saves.",
     "minLevel": 9,
     "cost": 1,
     "per": "",
@@ -3057,7 +3058,7 @@
     "name": "Expert in Arms",
     "kind": "note",
     "text": "For the encounter, allies within {1:30ft, 19:60ft} have Advantage on manoeuvre contests and on checks to resist being Grappled, Tripped or Disarmed.",
-    "minLevel": 3,
+    "minLevel": 2,
     "cost": 1,
     "per": "",
     "target": "allies",
@@ -3627,7 +3628,7 @@
     "cost": 1,
     "target": "one",
     "effect": "Stunned",
-    "text": "The default. Declare before the attack roll; use it once the attack hits (a miss costs nothing): 1 ki, and the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). Once per round; your first stun attempt must be a primary attack."
+    "text": "The default. Declare before the attack roll; use it once the attack hits (a miss costs nothing): 1 ki, and the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). Once per round; it must be a primary attack."
    }
   ],
   "uses": {
@@ -3674,7 +3675,7 @@
     "save": "fort",
     "cost": 4,
     "target": "one",
-    "text": "Declare before the attack roll; use it once a hit deals damage: 4 ki, and the target (Level no more than half your Monk level) makes a Fortitude save against your Class Save DC or dies. From 12th you may delay the death up to rounds equal to your Monk level. No effect on undead, oozes, elementals or creatures only magic weapons can harm."
+    "text": "Declare before the attack roll; use it once a hit deals damage: 4 ki, and the target (Level no more than half your Monk level) makes a Fortitude save against your Class Save DC or dies. From 12th you may delay the death up to rounds equal to your Monk level. No effect on undead, oozes or elementals."
    }
   ],
   "uses": {

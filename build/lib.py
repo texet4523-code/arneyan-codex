@@ -231,13 +231,17 @@ def _page_ids():
 def journal(pack, name, pages, folder=None, sort=0):
     """A journal of text pages. A page keeps the id it was released with (data/page_ids.json, by title); a new page's
     id comes from its title and how many pages before it share that title, so moving pages never changes ids."""
-    _id = fid(pack, "journal", name)
+    # A journal the books renamed keeps the ids its old name gave (item_ids.json, "journal|new name": old name),
+    # and so does the page that carries its name (Keeps & Kingdoms' "Chapter 4: Warfare" became "Mass Combat").
+    seed = ITEM_IDS.get(f"journal|{name}", name)
+    _id = fid(pack, "journal", seed)
     ps = []
     seen = {}
     for i, (title, content) in enumerate(pages):
         n = seen[title] = seen.get(title, -1) + 1
-        known = _page_ids().get(f"{name}|{title}", [])
-        pid = known[n] if n < len(known) else fid(pack, "page", name, title, "t" + str(n))
+        was = seed if title == name else title
+        known = _page_ids().get(f"{seed}|{was}", [])
+        pid = known[n] if n < len(known) else fid(pack, "page", seed, was, "t" + str(n))
         ps.append({
             "_id": pid, "_key": f"!journal.pages!{_id}.{pid}", "name": title, "type": "text",
             "title": {"show": True, "level": 1}, "text": {"format": 1, "content": content},

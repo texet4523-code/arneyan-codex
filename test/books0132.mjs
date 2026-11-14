@@ -87,7 +87,8 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
   const guard = f("Liberator (Fighter)");
   assert.deepEqual(guard.applies.map(a => [a.target, String(a.rounds), a.rules.map(r => `${r.key} ${r.value}`).join()]), [["target", "1", "adv.against -1"]]);
   const tenor = f("Mechanist (Gunslinger)");
-  assert.ok(/Two-Gun Shot/.test(tenor.rules[0].value) && !/\+1 damage/.test(tenor.rules[0].value));
+  // HB v0.10.74 (K157): no Two-Gun Shot line any more; no Disadvantage on a Called Shot, and 10 Shots from 9th.
+  assert.ok(/Called Shot/.test(tenor.rules[0].value) && /10 Shots/.test(tenor.rules[0].value) && !/Two-Gun Shot|\+1 damage|Armour Piercing/.test(tenor.rules[0].value));
 }
 
 /* Spending a pool: a patron power takes its Favour from the Warlock's Patron Favour feature. */
@@ -156,7 +157,7 @@ function warlockWith(favourLeft, powers) {
     { max: 0, per: "", formula: "", pool: "Patron Favour", value: 0 });
   assert.ok(!("pool" in M.usesFrom({ value: 1, max: 1, per: "day" }, { max: 1, per: "day", formula: "" })), "no pool on either side: no field");
   assert.equal(M.usesFrom({ value: 0, max: 0, pool: "Patron Favour" }, { max: 0, per: "" }).pool, "", "a pool the books dropped goes");
-  assert.equal(M.CLASS_REWORK, "0.10.107", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
+  assert.equal(M.CLASS_REWORK, "0.10.108", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
   // The schema fills a blank pool into every stored item and kit feature: that is no edit and no change (review
   // 0.10.75: unedited kits read as edited, and every item with uses was rewritten).
   const SRC = "Compendium.arneyan.class-features.Item.x";

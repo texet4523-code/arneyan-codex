@@ -29,8 +29,8 @@ SPARK_CASTER = f"({_N} * (1 - {_D8}))d6 + ({_N} * {_D8})d8"
 _S = {n: f"min(1, floor(@cl / {n}))" for n in (5, 9, 13, 17, 21)}
 ELDRITCH_BLAST = f"(1 - {_S[5]} + 2 * {_S[9]} - 2 * {_S[13]})d6 + ({_S[5]} - {_S[9]} + 3 * {_S[13]} + {_S[17]} + {_S[21]})d8"
 
-# Wording spell_damage.py doesn't read: Slay Living's "1d6/level" (no maximum stated, so none applied).
-DAMAGE = {"Slay Living": ("(@cl)d6", "necrotic")}
+# Wording spell_damage.py doesn't read: Slay Living's "1d6 per level necrotic damage (max 15d6)" (HB v0.10.74).
+DAMAGE = {"Slay Living": ("(min(@cl, 15))d6", "necrotic")}
 
 
 def save_of(text):
@@ -178,7 +178,7 @@ def build(icon):
             "concentration": bool(re.search(r"\bconcentration\b", text, re.I)), "ritual": False, "prepared": False,
             "save": save, "saveEffect": eff, "damage": dmg, "damageType": dtype,
             "reversible": False, "costly": "‡" in comps or bool(material and re.search(r"\b[gsp]p\b", material.group(1)))
-        }, icon("spell", ICON.get(home, "")), folder=folders[home], sort=i, key=f"class-only|{name}")
+        }, icon("spell", ICON.get(home, "")), folder=folders[home], sort=i, key=f"class-only|{ITEM_IDS.get(name, name)}")   # a renamed spell keeps its id (item_ids.json)
         made.append(name)
     return made, skipped
 

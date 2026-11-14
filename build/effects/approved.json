@@ -1288,9 +1288,15 @@
     "value": "+min(4,floor((@cl+6)/6))",
     "when": "with bows",
     "weapon": "bow"
+   },
+   {
+    "key": "attack",
+    "value": "2:1, 6:2",
+    "when": "with bows",
+    "weapon": "bow"
    }
   ],
-  "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage with bows, applied automatically; nothing on other weapons. Kieran, 8 Nov 2026.",
+  "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage with bows and +1/+2 (2nd/6th) to hit with them (HB v0.10.74), applied automatically; nothing on other weapons. Kieran, 8 Nov 2026.",
   "manual": "Could be made unconditional if the archer only uses bows; Twin Nock's arrows each get it.",
   "confidence": "high"
  },
@@ -2394,19 +2400,8 @@
   "name": "Woodcraft",
   "from": "Ranger",
   "container": "passive",
-  "rules": [
-   {
-    "key": "skill",
-    "value": "1:2, 13:3, 18:4, 24:6",
-    "when": "actively searching for wilderness traps"
-   },
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "actively searching for wilderness traps"
-   }
-  ],
-  "summary": "Trap search reminders (bonus from the Ranger Progression Table); Survival, Tracking, Set Snares and Climb are trained skills. Updated for books v0.10.58.",
+  "rules": [],
+  "summary": "Survival, Tracking, Set Snares and Climb are trained skills. The trap search bonus left the book in HB v0.10.74, so its reminders are gone.",
   "manual": "Conceal and Move Silently speed limits; Delay/Neutralise Poison.",
   "confidence": "medium"
  },
@@ -2497,7 +2492,7 @@
   "rules": [
    {
     "key": "note.skill",
-    "value": "Skill Mastery: treat a d20 roll of 9 or lower as 10 on Rogue class skills and Thief Skills."
+    "value": "Skill Mastery: treat a d20 roll of 9 or lower as 10 on Thief Skills, Hide, Move Silently and Listen. A natural 1 still counts as a natural 1."
    }
   ],
   "summary": "Reminder on skill cards.",
@@ -4510,10 +4505,10 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Clockwork Precision: a repeating crossbow can be used with Two-Gun Shot (the second shot has Disadvantage, as normal) and has no Disadvantage on a Called Shot; {1:, 9:its bolts have the Armour Piercing trait.}"
+    "value": "Clockwork Precision: a repeating crossbow has no Disadvantage on a Called Shot. {1:, 9:Your repeating crossbows hold 10 Shots.}"
    }
   ],
-  "summary": "Reminder on attack cards. Updated for HB v0.10.72 (R-B94).",
+  "summary": "Reminder on attack cards. Updated for HB v0.10.74 (K157): the 9th-level magazine of 10 Shots is counted by the reload tracker.",
   "manual": "No Disadvantage on Called Shot with a repeating crossbow.",
   "confidence": "medium"
  },

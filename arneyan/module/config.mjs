@@ -51,7 +51,8 @@ ARNEYAN.bthProgressions = {
   knight: { label: "Knight (one behind the Fighter)", table: [0, 0, 0, 1, 1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 8, 9, 9, 10, 11, 11, 12, 13, 13, 14, 15] },
   divine: { label: "Divine (+1 per 3 levels)", table: [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8] },
   // Books v0.10.41 (K48 B-S1): the Rogue and the Assassin join the Knight track from 13th (+7 at 13th, +15 at 24th).
-  rogue: { label: "Rogue (about +1 per 4 levels to 12th, then the Knight track)", table: [0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 7, 8, 9, 9, 10, 11, 11, 12, 13, 13, 14, 15] },
+  // HB v0.10.74 (K150, R-F35): a ramp to the jump: +3 at 9th, +4 at 11th, +5 at 12th.
+  rogue: { label: "Rogue (+1 at 4th, +3 at 9th, +4 at 11th, +5 at 12th, then the Knight track)", table: [0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 4, 5, 7, 8, 9, 9, 10, 11, 11, 12, 13, 13, 14, 15] },
   arcane: { label: "Arcane (+1 per 6 levels)", table: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4] }
 };
 

@@ -27,7 +27,7 @@ def parse(text):
     m = re.search(r"(\d+)d(\d+)[^.;(]*?\(\+1 die at 5th, 11th and 17th level\)", t)
     if m:
         n, d = int(m.group(1)), m.group(2)
-        return f"({n} + floor((@cl + 1) / 6))d{d}", kind(m.group(0))
+        return f"({n} + min(3, floor((@cl + 1) / 6)))d{d}", kind(m.group(0))   # three more dice at most (5th, 11th, 17th)
 
     # "(1d6+1) ... per level (max 12 levels)"
     m = re.search(r"\((\d+)d(\d+)\s*\+\s*(\d+)\)[^.;]*?per level \(max (\d+) levels\)", t)

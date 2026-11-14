@@ -122,7 +122,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>Casts as a 5th-level cleric (spell <strong>DC 13</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, <em>cause light wounds</em>, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}.</p>",
+    "description": "<p>Casts as a 5th-level cleric (spell <strong>DC 13</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, @UUID[Compendium.arneyan.spells.Item.Eyaa2BdX9WMmjtjc]{cause light wounds}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -316,6 +316,64 @@
    "folder": null
   },
   {
+   "name": "Cause Light Wounds",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
+   "system": {
+    "description": "<p>Touch; <strong>1d8</strong> necrotic damage plus 1 per level (max +5) (touch attack).</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer (class-only spell, from the class entry)</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 1,
+    "className": "Necromancer",
+    "classes": [
+     "Necromancer"
+    ],
+    "school": "Necromancy",
+    "castingTime": "1 action",
+    "range": "Touch",
+    "duration": "",
+    "area": "",
+    "components": "V, S",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "",
+    "saveEffect": "",
+    "damage": "1d8 + min(@cl, 5)",
+    "damageType": "necrotic",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "",
+     "size": 0,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": false,
+     "rounds": "",
+     "sizeFormula": ""
+    }
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.Eyaa2BdX9WMmjtjc"
+   },
+   "_id": "PnSHumOiDVcguu3S",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.PnSHumOiDVcguu3S",
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Hold Person",
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
@@ -383,9 +441,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW"
    },
-   "_id": "RoV7urC8y0VuBprq",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.RoV7urC8y0VuBprq",
-   "sort": 400,
+   "_id": "S4yNJh6pr5FDdsIg",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.S4yNJh6pr5FDdsIg",
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -442,9 +500,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR"
    },
-   "_id": "O3zoXGsW2aiQxWdp",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.O3zoXGsW2aiQxWdp",
-   "sort": 500,
+   "_id": "V3g7aD3dMUsmI8qd",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.V3g7aD3dMUsmI8qd",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -477,11 +535,11 @@
     "active": false,
     "applies": []
    },
-   "_id": "PGewWKnjjYlq8Qlz",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.PGewWKnjjYlq8Qlz",
+   "_id": "4OnDg2kM10Tw5Fg5",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.4OnDg2kM10Tw5Fg5",
    "effects": [],
    "flags": {},
-   "sort": 600,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -500,11 +558,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "RxbqGJHoZY0fOymb",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.RxbqGJHoZY0fOymb",
+   "_id": "eJUiJciz0oNvz712",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.eJUiJciz0oNvz712",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -523,11 +581,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "j6SWvTw4fgapL4EW",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.j6SWvTw4fgapL4EW",
+   "_id": "c7mOyd4gOPGrKWKY",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.c7mOyd4gOPGrKWKY",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -550,10 +608,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "Y8osZoxcvBhqRlS6",
-   "_key": "!actors.items!fkfBurPQ7wzfB7En.Y8osZoxcvBhqRlS6",
+   "_id": "sPvFSDue1k8QoMei",
+   "_key": "!actors.items!fkfBurPQ7wzfB7En.sPvFSDue1k8QoMei",
    "flags": {},
-   "sort": 900,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },

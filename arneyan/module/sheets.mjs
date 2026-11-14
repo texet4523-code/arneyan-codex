@@ -17,7 +17,7 @@ import { combatSheetContext, combatSheetActions, isLight } from "./combat.mjs";
 import { combatById } from "./fight.mjs";
 import { itemFacts, bindItemWindows, itemToChat, hiddenFromPlayer } from "./expand.mjs";
 import { tidyDescription } from "./text.mjs";
-import { isTouchAttack } from "./touch.mjs";
+import { isTouchAttack, TOUCH_THEN_SAVE } from "./touch.mjs";
 import { worldSheetContext, WORLD_SHEET_ACTIONS, dropOnCompanions, timeLeftLabel } from "./world.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
@@ -244,7 +244,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const c = i.usesCount;
       return c ? `${pool} ${c.value}/${c.max}` : pool;
     };
-    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), usesLabel: i.type === "spell" ? innateLeft(i) : "", pool: poolLabel(i), expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
+    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), touchSave: TOUCH_THEN_SAVE.has(i.name), usesLabel: i.type === "spell" ? innateLeft(i) : "", pool: poolLabel(i), expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
     const rows = async list => Promise.all(list.map(row));
 
     // Weapons with their attack bonus and damage worked out.

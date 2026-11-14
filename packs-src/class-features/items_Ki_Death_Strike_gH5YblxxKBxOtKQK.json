@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Declare before the attack roll. The target's Level must be no more than half your Monk level. On a hit that deals damage, spend 4 ki: the target must make a <strong>Fortitude save</strong> against your Class Save DC or die instantly.</li><li>A 12th level monk may delay the death — the target dies at any point the monk chooses within rounds equal to monk's level, or the monk can release the sentence with a successful touch attack instead</li><li>The death strike has no effect on undead, oozes, elementals, or creatures that magic weapons cannot harm</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Declare before the attack roll. The target's Level must be no more than half your Monk level. On a hit that deals damage, spend 4 ki: the target must make a <strong>Fortitude save</strong> against your Class Save DC or die instantly.</li><li>A 12th level monk may delay the death — the target dies at any point the monk chooses within rounds equal to monk's level, or the monk can release the sentence with a successful touch attack instead</li><li>The death strike has no effect on undead, oozes or elementals.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -31,7 +31,7 @@
     "damageType": "",
     "ability": "",
     "save": "fort",
-    "text": "Declare before the attack roll; use it once a hit deals damage: 4 ki, and the target (Level no more than half your Monk level) makes a Fortitude save against your Class Save DC or dies. From 12th you may delay the death up to rounds equal to your Monk level. No effect on undead, oozes, elementals or creatures only magic weapons can harm.",
+    "text": "Declare before the attack roll; use it once a hit deals damage: 4 ki, and the target (Level no more than half your Monk level) makes a Fortitude save against your Class Save DC or dies. From 12th you may delay the death up to rounds equal to your Monk level. No effect on undead, oozes or elementals.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 4,

@@ -186,7 +186,8 @@ export function firearmOf(item) {
   const reliable = /\breliable\b/i.test(text);
   if (reliable) threshold = Math.min(threshold, 1);
   if (silent) threshold = 0;
-  const reload = (text.match(/reload\s+([^,.]+)/i)?.[1] ?? "").trim();
+  // The stat line's entry ("Reload 2 rd"), not a note such as the Wind Rifle's "no reload between shots".
+  const reload = (text.match(/\bReload\s+([^,.]+)/)?.[1] ?? "").trim();
   return { threshold, reliable, silent, reload };
 }
 

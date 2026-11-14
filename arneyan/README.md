@@ -1,6 +1,20 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.107 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.108 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.108
+
+Handbook v0.10.74 and Keeps & Kingdoms v0.5.3 (B-F67, B-F68).
+
+- **Rogue and Assassin to hit:** Base to Hit now climbs before the jump at 13th: +3 at 9th, +4 at 11th and +5 at 12th.
+- **Archer:** Bow Mastery adds to hit with bows as well as damage: +1 from 2nd level and +2 from 6th, applied on the roll.
+- **Knight:** Challenge arrives at 1st level and Command: Expert in Arms at 2nd (the Command button offers it from 2nd). Champion's Blow doubles the weapon's dice on a hit you choose; the Castellan's Guard works at the start of your turn. Existing Knights take the moved features when the world updates.
+- **Monk:** Parrying Stance lasts to 4th level (its option goes at 5th) and Deflect covers melee attacks from 5th. Stun Attack must be a primary attack, and Death Strike does nothing to undead, oozes or elementals.
+- **Ranger, Gunslinger:** the Wild Warden's Warden's Communion casts one of its four spells once a day, and the Ranger's trap search bonus is gone. A Mechanist's repeating crossbows hold 10 Shots from 9th level (the reload tracker counts them), and Brace and Fire has its new wording.
+- **Spells:** Inflict Light Wounds is now **Cause Light Wounds** (the compendium spell keeps its place; a copy already on a character keeps its old name and still works). Goodberry is no longer a ritual. Wish and Miracle raise the dead only by their ritual, which also uses up 25,000 gp of diamond dust. Healing Circle is a 5th-level Cleric spell, Glibness and Slow have new class lists, and Slay Living stops at 15d6. A creature hit by Polymorph, Plane Shift or Ghoul Touch now makes its save as well, and the card has the button; Contagion's card says the disease's save follows.
+- **Firearms:** the Gnomish Wind Rifle needs no reload between its shots, and its refill takes 10 minutes, so not in a fight.
+- **Catalogue:** the Hunting Trap is now the **Jaw Trap (bear trap)** at 12 sp. Light, Heavy, Entangling and Cleaving traits on more weapons, Sleep Gas, the Potion of Life, component rows for Reincarnate, Clone, Wish and Create Greater Undead, an Arcane Focus, and item DCs (the Staff of the Magi is DC 17).
+- **Keeps & Kingdoms:** Chapter 4 is now **Mass Combat** (it was Warfare). The journal keeps its place, so links to it still work.
 
 ## What's new in 0.10.107
 

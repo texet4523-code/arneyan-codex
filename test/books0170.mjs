@@ -84,3 +84,60 @@ console.log("books0170: ok");
   assert.deepEqual(upd, [{ statuses: ["blinded"] }], "Blinded stays");
   console.log("fear either/or: ok");
 }
+
+// HB v0.10.74 and Keeps & Kingdoms v0.5.3 (B-F67, B-F68).
+{
+  const fsx = await import("node:fs");
+  const root = new URL("../packs-src/", import.meta.url).pathname;
+  const load = (pack, pred) => fsx.readdirSync(root + pack).map(f => JSON.parse(fsx.readFileSync(root + pack + "/" + f))).find(pred);
+  const { ARNEYAN } = await import("../arneyan/module/config.mjs");
+  assert.deepEqual([4, 8, 9, 10, 11, 12, 13].map(l => ARNEYAN.bth("rogue", l)), [1, 1, 3, 3, 4, 5, 7], "Rogue and Assassin ramp");
+  for (const c of ["Rogue", "Assassin"]) assert.equal(load("classes", d => d.name === c).system.bthProgression, "rogue");
+  const bm = load("class-features", d => d.name === "Bow Mastery");
+  const hit = bm.system.rules.find(r => r.key === "attack");
+  assert.ok(hit && hit.value === "2:1, 6:2" && hit.weapon === "bow", "Bow Mastery adds to hit with bows");
+  const E = await import("../arneyan/module/effects.mjs");
+  assert.deepEqual([2, 5, 6, 12, 24].map(l => E.levelText("{" + hit.value + "}", l)), ["1", "1", "2", "2", "2"]);
+  // Renamed documents keep their ids.
+  assert.equal(load("equipment", d => d.name === "Jaw Trap (bear trap)")._id, "48E6TlsdVTUrTX73");
+  assert.ok(!load("equipment", d => d.name === "Hunting Trap (iron jaws)"));
+  assert.equal(load("spells", d => d.name === "Cause Light Wounds")._id, "Eyaa2BdX9WMmjtjc");
+  const mc = load("kk-rules", d => d.name === "Chapter 4: Mass Combat");
+  assert.equal(mc._id, "AcyYlNZhkhU798yV", "the Mass Combat journal keeps the Warfare journal's id");
+  assert.ok(!load("kk-rules", d => d.name === "Chapter 4: Warfare"));
+  assert.equal(fsx.readdirSync(root + "spells").filter(f => f.startsWith("items_Clairaudience")).length, 1, "one Clairaudience/Clairvoyance");
+  const kn = load("classes", d => d.name === "Knight").system.features;
+  assert.equal(kn.find(f => f.name === "Challenge").level, 1); assert.equal(kn.find(f => f.name === "Command: Expert in Arms").level, 2);
+  // Review fixes: the Knight's Command button, the Monk's Parrying Stance, the two capped spells.
+  const cfx = n => load("class-features", d => d.name === n);
+  assert.equal(cfx("Command (Charisma)").system.activities.find(a => a.name === "Expert in Arms").minLevel, 2);
+  assert.equal(load("class-features", d => d.name === "Parrying Stance" && d.system.activities?.length).system.activities[0].maxLevel, 4);
+  assert.equal(load("spells", d => d.name === "Slay Living").system.damage, "(min(@cl, 15))d6");
+  assert.ok(!load("class-features", d => d.name === "Woodcraft").system.rules.length);
+  // A Mechanist's repeating crossbows hold 10 Shots from 9th level; nobody else's do.
+  const R = await import("../arneyan/module/reload.mjs");
+  const rep = load("equipment", d => d.name === "Crossbow, Repeating Heavy");
+  const who = (kit, lvl) => ({ items: [{ type: "kit", name: kit }, { type: "class", name: "Gunslinger", system: { levels: lvl } }] });
+  assert.equal(R.capacityOf({ ...rep, actor: who("Mechanist (Gunslinger)", 9) }), 10);
+  assert.equal(R.capacityOf({ ...rep, actor: who("Mechanist (Gunslinger)", 8) }), 5);
+  assert.equal(R.capacityOf({ ...rep, actor: who("Duelist (Gunslinger)", 12) }), 5);
+  assert.equal(R.capacityOf({ ...load("equipment", d => d.name === "Repeating Pistol"), actor: who("Mechanist (Gunslinger)", 12) }), 5, "only crossbows");
+  // The Wind Rifle: "Reload —" is its entry, not the "no reload between shots" note; six shots, then a 10 minute refill.
+  const C = await import("../arneyan/module/combat.mjs");
+  const wind = load("equipment", d => d.name === "Gnomish Wind Rifle");
+  assert.equal(C.firearmOf(wind).reload, "—");
+  assert.deepEqual([R.capacityOf(wind), R.listedRounds(wind)], [6, 100]);
+  assert.equal(C.firearmOf(load("equipment", d => d.name === "Musket")).reload, "2 rd");
+  // The spell-name fix leaves "X / Y" headings alone.
+  const jr = fsx.readdirSync(root + "rules").map(f => fsx.readFileSync(root + "rules/" + f, "utf8")).join("\n");
+  for (const h of ["Advantage / Disadvantage", "Lasts / Ends early by", "Poisoned / Sickened"]) assert.ok(jr.includes(h), `"${h}" keeps its spaced slash`);
+  // Polymorph and Plane Shift: the touch attack, then the Will save, on the sheet and from a wand or scroll.
+  const T = await import("../arneyan/module/touch.mjs");
+  assert.ok(T.TOUCH_THEN_SAVE.has("Ghoul Touch") && T.TOUCH_THEN_SAVE.has("Contagion"));
+  assert.equal(T.thenSaveName({ system: { save: "fort" } }, ARNEYAN.saveTypes), "its Fortitude save");
+  assert.match(T.thenSaveName({ system: { save: "" } }, ARNEYAN.saveTypes), /disease/);
+  for (const n of ["Polymorph", "Plane Shift"]) { assert.ok(T.TOUCH_ATTACK.has(n) && T.TOUCH_THEN_SAVE.has(n)); assert.equal(load("spells", d => d.name === n).system.save, "will"); }
+  const gearSrc = fsx.readFileSync(new URL("../arneyan/module/gear.mjs", import.meta.url), "utf8");
+  assert.ok(gearSrc.includes("if (s.save && (!touchy || thenSave))") && gearSrc.includes("TOUCH_OLD_NAMES.has(sp.name)"));
+  console.log("OK HB v0.10.74 and K&K v0.5.3");
+}

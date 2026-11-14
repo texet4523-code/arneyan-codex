@@ -29,7 +29,7 @@
   "prepared": false,
   "save": "ref",
   "saveEffect": "Negates",
-  "damage": "(1 + floor((@cl + 1) / 6))d4",
+  "damage": "(1 + min(3, floor((@cl + 1) / 6)))d4",
   "damageType": "cold",
   "reversible": false,
   "costly": false,

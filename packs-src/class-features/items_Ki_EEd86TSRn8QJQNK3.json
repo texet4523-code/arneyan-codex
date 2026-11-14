@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You have ki points equal to your Monk level + your Wisdom modifier (minimum 1). You regain them all after a long rest.</li><li><strong>Stun Attack (the default):</strong> declare before the attack roll; on a hit, spend 1 ki and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Stunned</strong> for <strong>1 round</strong> (<strong>1d4</strong> rounds from 10th level).</li><li>A miss costs nothing.</li><li>Once per round; your first stun attempt must be a primary attack.</li><li>Deals normal unarmed damage.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You have ki points equal to your Monk level + your Wisdom modifier (minimum 1). You regain them all after a long rest.</li><li><strong>Stun Attack (the default):</strong> declare before the attack roll; on a hit, spend 1 ki and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Stunned</strong> for <strong>1 round</strong> (<strong>1d4</strong> rounds from 10th level).</li><li>A miss costs nothing.</li><li>Once per round; it must be a primary attack.</li><li>Deals normal unarmed damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "fort",
-    "text": "The default. Declare before the attack roll; use it once the attack hits (a miss costs nothing): 1 ki, and the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). Once per round; your first stun attempt must be a primary attack.",
+    "text": "The default. Declare before the attack roll; use it once the attack hits (a miss costs nothing): 1 ki, and the target makes a Fortitude save against your Class Save DC or is Stunned for 1 round (1d4 rounds from 10th level). Once per round; it must be a primary attack.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

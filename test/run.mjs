@@ -10,7 +10,7 @@ const table = { 0: -5, 1: -4, 2: -4, 3: -3, 4: -2, 5: -2, 6: -1, 8: -1, 9: 0, 12
 for (const [s, m] of Object.entries(table)) assert.equal(ARNEYAN.abilityMod(Number(s)), m, `mod ${s}`);
 
 // BtH table spot checks against the handbook's 12th and 24th values.
-const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 2, arcane: 2 };
+const bth12 = { martial: 8, knight: 7, divine: 4, rogue: 5, arcane: 2 };   // the Rogue's ramp, HB v0.10.74
 const bth24 = { martial: 16, knight: 15, divine: 8, rogue: 15, arcane: 4 };
 for (const k of Object.keys(bth12)) { assert.equal(ARNEYAN.bth(k, 12), bth12[k]); assert.equal(ARNEYAN.bth(k, 24), bth24[k]); assert.equal(ARNEYAN.bth(k, 1), 0); }
 // F18: the bonus text beside the Max HP box.
@@ -512,7 +512,7 @@ assert.ok(fillFrom({ type: "spell", system: { applies: [] } }, shieldSpell)["sys
 const mageMon = fs.readdirSync(mdir).map(f => JSON.parse(fs.readFileSync(mdir + f))).find(d => d.items?.some(i => i.name === "Shield" && i.type === "spell"));
 assert.ok(mageMon?.items.find(i => i.name === "Shield").system.applies?.length, `${mageMon?.name}'s Shield works`);
 const magi = JSON.parse(fs.readFileSync(edir + fs.readdirSync(edir).find(f => f.startsWith("items_Staff_of_the_Magi_"))));
-assert.deepEqual([magi.system.nonCasterCl, magi.system.nonCasterDc], [12, 18]);
+assert.deepEqual([magi.system.nonCasterCl, magi.system.nonCasterDc], [12, 17]);   // DC 17 since HB v0.10.74
 // A homebrew wand: its spells and caster level on its sheet.
 const { ArneyanItemSheet: ItemSheetT } = await import("../arneyan/module/sheets.mjs");
 const myWand = makeItem(IM.EquipmentData, "equipment", "Wand of Frost", { quantity: 1, slots: 1, charges: { value: 5, max: 7, recharge: "", crumble: true }, itemSpells: [{ name: "Ray of Frost", cost: 1, uuid: "Item.abc" }, { name: "Cone of Cold", cost: 3, uuid: "" }], castLevel: 5 });
