@@ -29,8 +29,8 @@
   "hd": "20d12",
   "attributes": {
    "hp": {
-    "value": 485,
-    "max": 485,
+    "value": 120,
+    "max": 120,
     "temp": 0
    },
    "ac": 22,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
+   "soloType": "Great beast",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> Wrecks fleets. A sea voyage becomes a fight for the stern.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Gargantuan monstrosity</em></p><p><strong>GM:</strong> Wrecks fleets. A sea voyage becomes a fight for the stern.</p><p><strong>Solo: Great beast.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the great beast type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -404,57 +406,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Ink and Storm",
+   "name": "Villain Action 1 (Opener): Breach",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-octopus.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Great beast"
     }
    },
    "system": {
-    "description": "<p>Ink and storm-dark fill everything within <strong>60ft</strong> until the end of its next turn. Each enemy in it makes a @Check[fort|dc:26]{Fortitude save DC 26} or is @Condition[blinded]{Blinded} while inside.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 26,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "vnApwE8lvG94yUjj",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.vnApwE8lvG94yUjj",
-   "effects": [],
-   "sort": 900,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Writhing Tentacles",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[ref|dc:29]{Reflex save DC 29}, taking @Damage[6d8 bludgeoning]{6d8 bludgeoning damage} and being grappled (escape <strong>DC 29</strong>) on a failure, or half damage on a success.</p>",
+    "description": "<p>It bursts in from the ground, the water or the sky.</p><ul><li>Each creature within <strong>30ft</strong> makes a @Check[ref|dc:29]{Reflex save DC 29} or is pushed <strong>15ft</strong> and falls @Condition[prone]{Prone}, taking @Damage[2d6 bludgeoning]{2d6 bludgeoning damage}.</li><li>Ground it burst through is difficult terrain for the rest of the fight.</li></ul><p class=\"arn-note\">A great beast solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -467,7 +429,7 @@
     },
     "save": "ref",
     "dc": 29,
-    "damage": "6d8",
+    "damage": "2d6",
     "damageType": "bludgeoning",
     "level": 0,
     "className": "",
@@ -476,8 +438,50 @@
     "active": false,
     "applies": []
    },
-   "_id": "jo6jMOeL1a16wMz7",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.jo6jMOeL1a16wMz7",
+   "_id": "xx2S5VWZskUtvBVp",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.xx2S5VWZskUtvBVp",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Thrash",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-octopus.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Great beast"
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>20ft</strong> (<strong>30ft</strong> if it is Gargantuan) makes a @Check[ref|dc:29]{Reflex save DC 29}, taking @Damage[4d6 bludgeoning]{4d6 bludgeoning damage} and being pushed <strong>10ft</strong> on a failure, or half damage on a success.</p><p class=\"arn-note\">A great beast solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 29,
+    "damage": "4d6",
+    "damageType": "bludgeoning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "F8bpcMDNoFICYSXd",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.F8bpcMDNoFICYSXd",
    "effects": [],
    "sort": 1000,
    "ownership": {
@@ -486,16 +490,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 3 (Ultimate): Drag to the Deep",
+   "name": "Villain Action 3 (Ultimate): Devour",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-octopus.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 3
+     "villainAction": 3,
+     "soloType": "Great beast"
     }
    },
    "system": {
-    "description": "<p>It bites one creature (+24, <strong>3d8+8</strong>) and swallows it at once if it is Large or smaller, then dives up to its swimming speed.</p>",
+    "description": "<p>It makes its bite (its talons, if it has no bite) against one creature. On a hit, a target smaller than it is swallowed at once if the creature can swallow; otherwise a flier carries it <strong>60ft</strong> up and drops it, and a swimmer drags it under, grappled.</p><p class=\"arn-note\">A great beast solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -517,8 +522,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "khC3ePguv1pjlI1P",
-   "_key": "!actors.items!k1WDDT7q333fqtOv.khC3ePguv1pjlI1P",
+   "_id": "6VtPQV59aIWdzqpv",
+   "_key": "!actors.items!k1WDDT7q333fqtOv.6VtPQV59aIWdzqpv",
    "effects": [],
    "sort": 1100,
    "ownership": {

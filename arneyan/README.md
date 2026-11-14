@@ -1,6 +1,20 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.108 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.109 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.109
+
+Handbook and Monsters & Treasure v0.10.75: solos reprinted (B-F69), with a Run as solo box (R-F33).
+
+- **Marked Solo:** the 75 creatures Monsters & Treasure marks Solo (and Keeps & Kingdoms' kingfissure worm) are normal creatures of their Level unless you run them as solos. Tick **Run as solo** on the monster's sheet (beside Minion), or click the chip in the Encounter Builder, before the fight. The tarrasque, Tiamat and Bahamut are always solos.
+- **Phases replace Bloodied:** a solo fights in three phases, with its block's HP in each. At 0 HP its next phase starts at full HP (damage beyond 0 is lost), every condition and hostile effect on it ends, and a card says so. Its breath weapons and other limited-use abilities recover at the first phase change only, never spells. It changes phase once a round: for the rest of that round, damage can't take it below 1 HP. At 0 HP in its third phase it dies. A marker on its token shows the phase.
+- **Villain actions by type:** each solo has its type's three (Dragon, Fiend, Undead, Eye tyrant, Mind lord, Celestial, Giant or golem, Great beast, Spellcaster), worked out for its Level: DC from its attribute, damage from the Villain Action Damage table, a dragon's element and rider. Ssendam, Ygorl, Primus and the Mythic three keep their own (the first three's openers add the table's damage). They are no longer one a round; it still skips its second turn in a round it uses one, if that turn is still to come. The phase card names the one to use.
+- **Costs:** a solo run as one costs the whole budget; the same creature as a normal creature costs as any creature of its Level. Its description says what it halves as a normal creature.
+- **Mythic:** 600 HP split into three phases of 200.
+- **Your world:** monsters from the Bestiary marked Solo take their phase HP, type, villain actions and new description in the update (edits you made to those descriptions are replaced; villain actions you marked Keep my edits stay). Any old Bloodied marker comes off. Each is a normal creature until you tick Run as solo, and a fight already running drops the second turn of one that isn't.
+- **Handbook:** Death Attack and Monk Death Strike against a solo deal damage equal to its current HP; Open Vein's bleeding ends when the solo changes phase; Harm deals only half a solo's current HP; Book IV's rules text on Wish and Miracle reworded; Wild Shape never takes a creature marked Solo. Catalogue: new place names for the Field Glass, Silent Shoes, Mandolin and the Bards' Emporium. Monsters & Treasure's iconic items now match the Catalogue (the two +1 shields, Dragon Scale Mail as heavy armour).
+- **Versatile:** two-handed, the damage die now steps up one size (d6 to d8, d8 to d10, d10 to d12, 2d4 to 2d6), as the Codex says, in place of an extra die. The damage card's button rolls it.
+- **Parrying Stance:** its Use button goes once it closes at 5th level.
 
 ## What's new in 0.10.108
 

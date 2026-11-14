@@ -12,6 +12,7 @@
  */
 import { partyMembers } from "./party.mjs";
 import { treasureForFoes } from "./treasure.mjs";
+import { isSolo as runsAsSolo } from "./solo.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -128,7 +129,7 @@ function trackerBudget(combat) {
   // A trap in a fight costs the same as a creature of its Level (Codex, Traps).
   // A solo's second turn (solo.mjs) is the same creature: counted once.
   const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY() && !c.flags?.arneyan?.soloOf)
-    .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: !!c.actor.system.details?.isSolo, count: 1 }));
+    .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: runsAsSolo(c.actor), count: 1 }));
   return encounterBudget(party.map(a => a.system.level ?? 1), foes);
 }
 
@@ -176,7 +177,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const foes = app.foes;
     const found = foes.find(f => f.uuid === actor.uuid);
     if (found) found.count += 1;
-    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", solo: !!actor.system.details?.isSolo, count: 1, na: actor.system.details?.numberAppearing ?? "" });
+    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", marked: !!actor.system.details?.isSolo, solo: runsAsSolo(actor), count: 1, na: actor.system.details?.numberAppearing ?? "" });
     await game.user.setFlag(SYS, "encounter", foes);
     return app.render({ force: true });
   }
@@ -193,6 +194,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       clear: ArneyanEncounterBuilder.#clear,
       place: ArneyanEncounterBuilder.#place,
       rollNumber: ArneyanEncounterBuilder.#rollNumber,
+      soloToggle: ArneyanEncounterBuilder.#soloToggle,
       treasure: ArneyanEncounterBuilder.#treasure,
       saveEncounter: ArneyanEncounterBuilder.#saveEncounter,
       loadEncounter: ArneyanEncounterBuilder.#loadEncounter,
@@ -204,7 +206,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   static PARTS = { main: { template: "systems/arneyan/templates/apps/encounter.hbs" } };
 
   get foes() {
-    return foundry.utils.deepClone(game.user.getFlag(SYS, "encounter") ?? []);
+    // Lists saved before 0.10.109 say solo: true for a creature marked Solo: it can be toggled like a new one.
+    return foundry.utils.deepClone(game.user.getFlag(SYS, "encounter") ?? []).map(f => ({ ...f, marked: f.marked ?? !!f.solo }));
   }
 
   async _setFoes(foes) {
@@ -224,7 +227,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
         const fr = b.rows?.[i] ?? { free: 0, paid: 0 };
         const far = !fr.paid ? "free (far below)" : !fr.free ? (f.solo ? "¼ × party (far below, past the free ones)" : "¼ (far below, past the free ones)")
           : `free × ${fr.free}, ${f.solo ? "¼ × party" : "¼"} × ${fr.paid} (far below)`;
-        return { ...f, i, levelLabel: f.levelText || f.level, cost: c === 0 ? far : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
+        return { ...f, i, mythic: f.levelText === "Mythic", levelLabel: f.levelText || f.level, cost: c === 0 ? far : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
       }),
       b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
       naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",
@@ -255,6 +258,14 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const x = f[Number(target.dataset.i)];
     x.count -= 1;
     return this._setFoes(x.count > 0 ? f : f.filter((_, i) => i !== Number(target.dataset.i)));
+  }
+  /** A creature marked Solo: run it as a solo (the whole budget, phases, two turns) or as a normal creature (R-F33). */
+  static #soloToggle(event, target) {
+    const f = this.foes;
+    const x = f[Number(target.dataset.i)];
+    if (!x?.marked || x.levelText === "Mythic") return;
+    x.solo = !x.solo;
+    return this._setFoes(f);
   }
   static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
   static #clear() { return this._setFoes([]); }
@@ -311,6 +322,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const size = scene.grid.size;
     const c = canvas.stage?.pivot ?? { x: scene.dimensions.width / 2, y: scene.dimensions.height / 2 };
     const data = [];
+    const runs = [];
     let i = 0;
     // No. appearing rolled for each group as it's placed (the counts in the list follow).
     const mode = game.user.getFlag(SYS, "encounterNa") ?? "off";
@@ -337,9 +349,16 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
         const snapped = canvas.grid?.getSnappedPoint ? canvas.grid.getSnappedPoint(pos, { mode: CONST.GRID_SNAPPING_MODES?.TOP_LEFT_CORNER ?? 256 }) : pos;
         const doc = await world.getTokenDocument({ ...snapped, disposition: CONST.TOKEN_DISPOSITIONS?.HOSTILE ?? -1 });
         data.push(doc.toObject());
+        runs.push(!!f.solo);
       }
     }
-    if (data.length) await scene.createEmbeddedDocuments("Token", data);
+    const made = data.length ? await scene.createEmbeddedDocuments("Token", data) : [];
+    // Run as a solo, as the list says: each placed token's own actor (a linked one's world actor) is ticked.
+    for (const [k, t] of made.entries()) {
+      const a = t.actor;
+      if (!a?.system?.details?.isSolo || a.system.details.levelText === "Mythic" || !!a.system.details.runSolo === runs[k]) continue;
+      await a.update({ "system.details.runSolo": runs[k] }).catch(() => null);
+    }
     ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
   }
 }

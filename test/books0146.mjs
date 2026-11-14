@@ -29,11 +29,12 @@ assert.ok(/first attack each round, and never an attack that already has/.test(p
 
 /* Bloodied recharges no spells; one of Harm and Mass Harm a fight (M&T v0.10.44). */
 assert.ok(/i\.type !== "spell" && !villainNo\(i\) && \["day", "rest", "encounter"\]/.test(src("solo.mjs")));
-assert.ok(/spells don't, including innate spells and spell slots/.test(src("solo.mjs")));
+assert.ok(/spells don't/.test(src("solo.mjs")) && /n !== 2 \? \[\]/.test(src("solo.mjs")), "at the first phase change only (K159)");
 const monsters = read("monsters", "actors_");
 const solos = monsters.filter(m => m.system.details.isSolo);
-assert.ok(solos.every(m => /other limited-use abilities recover \(not its spells\)/.test(m.system.details.description)));
-assert.ok(solos.every(m => /only one of Harm and Mass Harm can affect it in a fight/.test(m.system.details.description)));
+assert.ok(solos.every(m => /at its first phase change only, its breath weapons and other limited-use abilities recover \(never spells\)/.test(m.system.details.description)));
+// K159: the "only one of Harm and Mass Harm" line is cut.
+assert.ok(!solos.some(m => /Harm and Mass Harm/.test(m.system.details.description)));
 const sphinx = monsters.find(m => m.name === "Sphinx, Elder");
 assert.ok(!sphinx.items.some(i => i.type === "spell" && /^heal$/i.test(i.name)), "the Elder Sphinx casts no Heal");
 

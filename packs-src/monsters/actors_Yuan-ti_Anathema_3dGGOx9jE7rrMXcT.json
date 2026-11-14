@@ -29,8 +29,8 @@
   "hd": "12d12+48",
   "attributes": {
    "hp": {
-    "value": 135,
-    "max": 135,
+    "value": 80,
+    "max": 80,
     "temp": 0
    },
    "ac": 16,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 60ft",
    "isSolo": true,
+   "soloType": "Spellcaster",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge monstrosity (shapechanger)</em></p><p><strong>GM:</strong> An abomination that rose through the cult's rites into a six-headed serpent. Its temple is a city, and its worshippers are its larder.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge monstrosity (shapechanger)</em></p><p><strong>GM:</strong> An abomination that rose through the cult's rites into a six-headed serpent. Its temple is a city, and its worshippers are its larder.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -710,129 +712,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Fangs of the God",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} until the end of its next turn. Every snake and yuan-ti within <strong>60ft</strong> moves up to its speed at once.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 20,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "L9kTFFpKBfzPBfuK",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.L9kTFFpKBfzPBfuK",
-   "effects": [],
-   "sort": 1300,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Six-headed Spray",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Venom sprays across a <strong>30ft cone</strong>. Each creature there makes a @Check[fort|dc:20]{Fortitude save DC 20}, taking @Damage[4d8 poison]{4d8 poison damage} and being @Condition[poisoned]{Poisoned} until the end of its next turn on a failure, or half damage on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 20,
-    "damage": "4d8",
-    "damageType": "poison",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "1PqguF7dQ9TP19Gh",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.1PqguF7dQ9TP19Gh",
-   "effects": [],
-   "sort": 1400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): The Coils Close",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It bites one creature three times and constricts it. If the constrict hits, the target also takes <strong>2d8+6</strong> at the start of each of its turns while held.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "ajtSeDltlafvdUUf",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.ajtSeDltlafvdUUf",
-   "effects": [],
-   "sort": 1500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -845,11 +724,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "xRro4TGAdFd5l954",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.xRro4TGAdFd5l954",
+   "_id": "nAao1Yo6qQdIPyz5",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.nAao1Yo6qQdIPyz5",
    "effects": [],
    "flags": {},
-   "sort": 1600,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -868,11 +747,11 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "RYCUVMYgpRs5oYct",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.RYCUVMYgpRs5oYct",
+   "_id": "w7EwhAb5YSIqol6G",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.w7EwhAb5YSIqol6G",
    "effects": [],
    "flags": {},
-   "sort": 1700,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -891,11 +770,11 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "LdCv9jIg973BC2NL",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.LdCv9jIg973BC2NL",
+   "_id": "ceRWqqKzjbxZMCPs",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.ceRWqqKzjbxZMCPs",
    "effects": [],
    "flags": {},
-   "sort": 1800,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -914,10 +793,136 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "nzVqynmeGrixwpVU",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.nzVqynmeGrixwpVU",
+   "_id": "2Sd8ykBEidks5X1P",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.2Sd8ykBEidks5X1P",
    "effects": [],
    "flags": {},
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Binding Word",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>It speaks a word of binding (a sphinx asks a riddle).</p><ul><li>Up to three enemies within <strong>60ft</strong> that can hear it make a @Check[will|dc:20]{Will save DC 20} or are @Condition[incapacitated]{Incapacitated}, taking @Damage[2d6 psychic]{2d6 psychic damage}.</li><li>It then teleports or moves up to <strong>30ft</strong>.</li></ul><p class=\"arn-note\">A spellcaster solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "2d6",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0LIGIWkhkd6Osp17",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.0LIGIWkhkd6Osp17",
+   "effects": [],
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Spell Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>Magic fills a <strong>20ft radius</strong> within <strong>120ft</strong>. Each creature there makes a @Check[ref|dc:20]{Reflex save DC 20}, taking <strong>4d6</strong> damage of a type it chooses and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">A spellcaster solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 20,
+    "damage": "4d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "OppHzqP0KEe2bJou",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.OppHzqP0KEe2bJou",
+   "effects": [],
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Overwhelming Spell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>120ft</strong> makes a @Check[will|dc:20]{Will save DC 20}, taking @Damage[6d8 force]{6d8 force damage} and being @Condition[stunned]{Stunned} on a failure, or half damage on a success. A spellcaster that fights hand to hand (the githzerai anarch, the yuan-ti anathema) may instead make its full attack line against that creature; if two attacks hit, it makes the same save or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A spellcaster solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "6d8",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Hb8JBk9lQskv6ycu",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.Hb8JBk9lQskv6ycu",
+   "effects": [],
    "sort": 1900,
    "ownership": {
     "default": 0

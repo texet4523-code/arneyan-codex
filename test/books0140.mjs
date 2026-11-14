@@ -16,8 +16,9 @@ const solos = monsters.filter(m => m.system.details.isSolo);
 /* The Bestiary: no Legendary Resistance anywhere; each solo's description has the solo rules. */
 assert.ok(solos.length >= 53, "53 solos in v0.10.40; v0.10.41 re-levels the Archmage as a solo");
 assert.ok(!monsters.some(m => m.items.some(i => i.name === "Legendary Resistance")));
-assert.ok(solos.every(m => m.system.details.description.includes("<strong>Solo:</strong>")));
-assert.ok(!monsters.filter(m => !m.system.details.isSolo).some(m => m.system.details.description.includes("<strong>Solo:</strong>")));
+// M&T v0.10.75: "Solo: Dragon." and the rules as a solo (phases), on every creature marked Solo and no other.
+assert.ok(solos.every(m => /<strong>Solo(: [A-Z][a-z ]+)?\.<\/strong>/.test(m.system.details.description)));
+assert.ok(!monsters.filter(m => !m.system.details.isSolo).some(m => /<strong>Solo[:.]/.test(m.system.details.description)));
 const maze = read("spells", "items_").find(s => s.name === "Maze");
 assert.ok(!/Legendary Resistance/.test(maze.system.description));
 const book4 = read("rules", "journal_").find(j => j.name === "Book IV: Spellcasting");
@@ -78,7 +79,7 @@ assert.equal(M.CLASS_REWORK, "0.10.108", "worlds at 0.10.79 and 0.10.80 take the
     { id: "i", name: "Its own invisibility", statuses: new Set(["invisible"]), origin: "Actor.troll.Item.inv" }
   ] };
   const side = o => (o.startsWith("Actor.hag.") ? "ally" : "foe");
-  assert.deepEqual(S.bloodiedEnds(actor, side).map(e => e.id), ["a", "b", "d"]);
+  assert.deepEqual(S.phaseEnds(actor, side).map(e => e.id), ["a", "b", "d"]);
 }
 {
   const solo = fs.readFileSync(new URL("../arneyan/module/solo.mjs", import.meta.url), "utf8");

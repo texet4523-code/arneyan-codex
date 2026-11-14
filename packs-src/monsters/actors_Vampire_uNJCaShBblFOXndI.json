@@ -29,8 +29,8 @@
   "hd": "8d12",
   "attributes": {
    "hp": {
-    "value": 100,
-    "max": 100,
+    "value": 50,
+    "max": 50,
     "temp": 0
    },
    "ac": 20,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Undead",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A cold and patient predator. The fight begins long before the dinner invitation.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A cold and patient predator. The fight begins long before the dinner invitation.</p><p><strong>Solo: Undead.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the undead type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
   }
  },
@@ -478,129 +480,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): The Doors Close",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Every door and shutter within <strong>60ft</strong> slams shut. The vampire moves up to its speed, and each enemy within <strong>30ft</strong> of it makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[11]{11 damage} to one creature it affects, or @Damage[5]{5} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 17,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "RcdIruv2VsqwSNR5",
-   "_key": "!actors.items!uNJCaShBblFOXndI.RcdIruv2VsqwSNR5",
-   "effects": [],
-   "sort": 1100,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Children of the Night",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>A storm of bats fills a <strong>20ft radius</strong> within <strong>60ft</strong> until the end of the vampire's next turn. A creature in it takes @Damage[2d6 piercing]{2d6 piercing damage} (@Check[ref|dc:17]{Reflex DC 17} half) and can't see beyond <strong>5ft</strong> while inside.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 17,
-    "damage": "2d6",
-    "damageType": "piercing",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "HHdGADhJId8hBoB9",
-   "_key": "!actors.items!uNJCaShBblFOXndI.HHdGADhJId8hBoB9",
-   "effects": [],
-   "sort": 1200,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Crimson Feast",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It moves up to its speed as mist, re-forms beside one creature and bites it (+12, <strong>1d8+4</strong>). On a hit, Blood Drain applies as if the target were grappled.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "k2fmva3trF1lVV5m",
-   "_key": "!actors.items!uNJCaShBblFOXndI.k2fmva3trF1lVV5m",
-   "effects": [],
-   "sort": 1300,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -613,11 +492,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "gazumf8VGrzS5RyZ",
-   "_key": "!actors.items!uNJCaShBblFOXndI.gazumf8VGrzS5RyZ",
+   "_id": "A07hvsxEehDJXNhQ",
+   "_key": "!actors.items!uNJCaShBblFOXndI.A07hvsxEehDJXNhQ",
    "effects": [],
    "flags": {},
-   "sort": 1400,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
@@ -636,10 +515,136 @@
     "ability": "dex",
     "tier": "trained"
    },
-   "_id": "CKPvZ0dc1Kgn9AI1",
-   "_key": "!actors.items!uNJCaShBblFOXndI.CKPvZ0dc1Kgn9AI1",
+   "_id": "n8vcz1l5RhYwnK7R",
+   "_key": "!actors.items!uNJCaShBblFOXndI.n8vcz1l5RhYwnK7R",
    "effects": [],
    "flags": {},
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Grave Dread",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:17]{Will save DC 17} or is @Condition[frightened]{Frightened}, taking @Damage[1d10 necrotic]{1d10 necrotic damage}.</p><p class=\"arn-note\">An undead solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 17,
+    "damage": "1d10",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "gLXCO8hQireTwRNo",
+   "_key": "!actors.items!uNJCaShBblFOXndI.gLXCO8hQireTwRNo",
+   "effects": [],
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grip of the Grave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>Bony hands claw out of the ground in a <strong>20ft radius</strong> within <strong>60ft</strong>. Each creature there makes a @Check[ref|dc:17]{Reflex save DC 17}, taking @Damage[3d6 necrotic]{3d6 necrotic damage} and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">An undead solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 17,
+    "damage": "3d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "Q7SOEDlzPlk9PqK8",
+   "_key": "!actors.items!uNJCaShBblFOXndI.Q7SOEDlzPlk9PqK8",
+   "effects": [],
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Soul Rend",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-vampire-dracula.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[fort|dc:17]{Fortitude save DC 17}, taking @Damage[5d8 necrotic]{5d8 necrotic damage} and being unable to regain HP on a failure, or half damage on a success. An undead that fights with a weapon or bite may instead make its full attack line against that creature, with the same rider on a hit.</p><p class=\"arn-note\">An undead solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 17,
+    "damage": "5d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "nYPNAjxPcuggbQZJ",
+   "_key": "!actors.items!uNJCaShBblFOXndI.nYPNAjxPcuggbQZJ",
+   "effects": [],
    "sort": 1500,
    "ownership": {
     "default": 0

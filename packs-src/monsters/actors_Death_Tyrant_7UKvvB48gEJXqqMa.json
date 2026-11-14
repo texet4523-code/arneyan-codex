@@ -29,8 +29,8 @@
   "hd": "20d10",
   "attributes": {
    "hp": {
-    "value": 375,
-    "max": 375,
+    "value": 110,
+    "max": 110,
     "temp": 0
    },
    "ac": 19,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Eye tyrant",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> An eye-tyrant that refused to stop existing. Its dead lair is still guarded by the zombies of everyone who came for its hoard.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large undead</em></p><p><strong>GM:</strong> An eye-tyrant that refused to stop existing. Its dead lair is still guarded by the zombies of everyone who came for its hoard.</p><p><strong>Solo: Eye tyrant.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the eye tyrant type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -218,16 +220,40 @@
    "folder": null
   },
   {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "j5kLBOLFEsRN1AYj",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.j5kLBOLFEsRN1AYj",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Villain Action 1 (Opener): Opening Volley",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Eye tyrant"
     }
    },
    "system": {
-    "description": "<p>It fires two random eye rays at different creatures within <strong>120ft</strong>.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
+    "description": "<p>It fires two random eye rays at different creatures within <strong>120ft</strong>, each with its own numbers.</p><p class=\"arn-note\">An eye tyrant solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -249,26 +275,27 @@
     "active": false,
     "applies": []
    },
-   "_id": "6lYRDcpz2hAgL0LX",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.6lYRDcpz2hAgL0LX",
+   "_id": "ksURl1tQqs0wnWYD",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.ksURl1tQqs0wnWYD",
    "effects": [],
-   "sort": 400,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
    "folder": null
   },
   {
-   "name": "Villain Action 2 (Crowd Control): Grave Gaze",
+   "name": "Villain Action 2 (Crowd Control): Crushing Gaze",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 2
+     "villainAction": 2,
+     "soloType": "Eye tyrant"
     }
    },
    "system": {
-    "description": "<p>Each living enemy within <strong>60ft</strong> that it can see makes a @Check[fort|dc:21]{Fortitude save DC 21}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and being unable to regain HP until the end of its next turn on a failure, or half damage on a success.</p>",
+    "description": "<p>Each enemy within <strong>60ft</strong> that it can see makes a @Check[fort|dc:21]{Fortitude save DC 21}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">An eye tyrant solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -290,10 +317,10 @@
     "active": false,
     "applies": []
    },
-   "_id": "vi1NL6ty5VV9363i",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.vi1NL6ty5VV9363i",
+   "_id": "j7zKFywnYynry1Wc",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.j7zKFywnYynry1Wc",
    "effects": [],
-   "sort": 500,
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -305,11 +332,12 @@
    "img": "systems/arneyan/assets/icons/monster-ant.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 3
+     "villainAction": 3,
+     "soloType": "Eye tyrant"
     }
    },
    "system": {
-    "description": "<p>It turns every eye on one creature within <strong>120ft</strong>: three random rays, all at that creature.</p>",
+    "description": "<p>It fires three random eye rays, all at one creature within <strong>120ft</strong>.</p><p class=\"arn-note\">An eye tyrant solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -331,32 +359,9 @@
     "active": false,
     "applies": []
    },
-   "_id": "IOz12wu7jcKuLrfM",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.IOz12wu7jcKuLrfM",
+   "_id": "VY5ghGLCE7f8JFOD",
+   "_key": "!actors.items!7UKvvB48gEJXqqMa.VY5ghGLCE7f8JFOD",
    "effects": [],
-   "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Perception",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-owl.svg",
-   "system": {
-    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "ability": "wis",
-    "tier": "trained"
-   },
-   "_id": "SNquv6gmLDxfR9ww",
-   "_key": "!actors.items!7UKvvB48gEJXqqMa.SNquv6gmLDxfR9ww",
-   "effects": [],
-   "flags": {},
    "sort": 700,
    "ownership": {
     "default": 0

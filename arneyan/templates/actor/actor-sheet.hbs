@@ -20,7 +20,7 @@
         <input class="arn-hp-value" type="number" name="system.attributes.hp.value" value="{{source.attributes.hp.value}}">
         <span class="arn-hp-max">/ {{system.attributes.hp.max}}</span>
         {{#if editable}}<a class="arn-step" data-action="hpStep" data-step="1" data-tooltip="+1 HP (Shift: +5)"><i class="fa-solid fa-plus"></i></a>{{/if}}
-        {{#if isNpc}}{{#if isGM}}{{#if editable}}<label class="arn-minion" data-tooltip="Minion: 1 HP, the rest of the stat block as it is. Untick to put its HP back."><input type="checkbox" name="system.attributes.minion" {{checked source.attributes.minion}}> Minion</label>{{/if}}{{/if}}{{/if}}
+        {{#if isNpc}}{{#if isGM}}{{#if editable}}<label class="arn-minion" data-tooltip="Minion: 1 HP, the rest of the stat block as it is. Untick to put its HP back."><input type="checkbox" name="system.attributes.minion" {{checked source.attributes.minion}}> Minion</label>{{#if soloRun.can}}<label class="arn-minion" data-tooltip="Marked Solo (Monsters &amp; Treasure): ticked, it is run as a solo (three phases with this HP in each, two turns a round, villain actions, shaking it off, the whole budget). Unticked, a normal creature of its Level. Decide before the fight; ticking starts it at phase 1, full HP."><input type="checkbox" name="system.details.runSolo" {{checked source.details.runSolo}}> Run as solo</label>{{/if}}{{/if}}{{/if}}{{/if}}
       </div>
       <div class="arn-hp-sub">
         <label data-tooltip="Temporary HP: lost first, never healed back">Temp <input class="short" type="number" name="system.attributes.hp.temp" value="{{source.attributes.hp.temp}}" min="0"></label>
@@ -169,7 +169,7 @@
           {{#if system.details.type}}<span class="arn-chip">{{system.details.type}}</span>{{/if}}
           <span class="arn-chip">{{lookup config.sizes system.details.size}}</span>
           <span class="arn-chip">Speed {{system.attributes.speed}}{{#if (eq system.attributes.speedMult 0)}} (now 0){{/if}}</span>
-          {{#if system.details.isSolo}}<span class="arn-chip strong">Solo</span>{{/if}}
+          {{#if system.details.isSolo}}<span class="arn-chip strong" data-tooltip="{{#if soloRun.on}}Run as a solo: phase {{soloRun.phase}} of 3{{else}}Marked Solo: a normal creature unless the GM ticks Run as solo{{/if}}">{{#if soloRun.on}}Solo{{#if system.details.soloType}}: {{system.details.soloType}}{{/if}} · phase {{soloRun.phase}} of 3{{else}}Marked Solo{{#if system.details.soloType}} ({{system.details.soloType}}){{/if}}{{/if}}</span>{{/if}}
           {{#if system.details.numberAppearing}}<span class="arn-chip" data-tooltip="Number appearing">No. {{system.details.numberAppearing}}</span>{{/if}}
         {{/if}}
       </div>
@@ -389,7 +389,7 @@
             <img src="{{item.img}}" alt="">
             <a class="arn-item-name" data-action="itemExpand">{{item.name}}</a>
             <span class="arn-muted arn-meta">{{item.system.path}}{{#each item.system.alsoPaths}}, {{this}}{{/each}}{{#if item.system.levelTaken}} · taken at level {{item.system.levelTaken}}{{/if}}{{#if item.system.uses.max}} · {{item.system.uses.value}}/{{item.system.uses.max}} {{lookup @root.config.usesPer item.system.uses.per}}{{/if}}{{#if item.system.rules.length}} · <i class="fa-solid fa-bolt" data-tooltip="Applies automatically"></i>{{/if}}</span>
-            {{#if (or item.system.uses.max item.system.activities.length item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
+            {{#if (or item.system.uses.max acts item.system.applies.length)}}<button type="button" class="arn-btn small" data-action="itemUse">Use</button>{{/if}}
             {{> "systems/arneyan/templates/actor/item-controls.hbs" system=item.system}}
             {{#if expanded}}{{> "systems/arneyan/templates/actor/item-expand.hbs"}}{{/if}}
           </li>

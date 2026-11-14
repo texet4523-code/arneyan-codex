@@ -29,8 +29,8 @@
   "hd": "18d8",
   "attributes": {
    "hp": {
-    "value": 375,
-    "max": 375,
+    "value": 80,
+    "max": 80,
     "temp": 0
    },
    "ac": 20,
@@ -72,9 +72,11 @@
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
+   "soloType": "Undead",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p><p><strong>Solo: Undead.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the undead type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>S, lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -890,129 +892,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Dread Presence",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 22,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "NLLRMYrKo53HCzHd",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.NLLRMYrKo53HCzHd",
-   "effects": [],
-   "sort": 1500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Grip of the Grave",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Bony hands claw out of the ground in a <strong>20ft radius</strong> within <strong>60ft</strong>. Each creature there makes a @Check[ref|dc:22]{Reflex save DC 22}, taking @Damage[4d8 necrotic]{4d8 necrotic damage} and being @Condition[restrained]{Restrained} until the end of its next turn on a failure, or half damage on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 22,
-    "damage": "4d8",
-    "damageType": "necrotic",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "q5yyTrj3wU9hjl9M",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.q5yyTrj3wU9hjl9M",
-   "effects": [],
-   "sort": 1600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Soul Rend",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[fort|dc:22]{Fortitude save DC 22}. On a failure it takes @Damage[10d8 necrotic]{10d8 necrotic damage} and can't regain HP until the end of its next turn; on a success, half damage.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 22,
-    "damage": "10d8",
-    "damageType": "necrotic",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "zRiX7dbsZzVSaW4Y",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.zRiX7dbsZzVSaW4Y",
-   "effects": [],
-   "sort": 1700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -1025,11 +904,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "HpeitSv22Tn37RDE",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.HpeitSv22Tn37RDE",
+   "_id": "IJDdLcANolTYBxKU",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.IJDdLcANolTYBxKU",
    "effects": [],
    "flags": {},
-   "sort": 1800,
+   "sort": 1500,
    "ownership": {
     "default": 0
    },
@@ -1048,11 +927,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "hqmMbKboTGWELEYn",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.hqmMbKboTGWELEYn",
+   "_id": "7nTgx08vf9toBDuy",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.7nTgx08vf9toBDuy",
    "effects": [],
    "flags": {},
-   "sort": 1900,
+   "sort": 1600,
    "ownership": {
     "default": 0
    },
@@ -1075,10 +954,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "F07divVZGq27s2qS",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.F07divVZGq27s2qS",
+   "_id": "nvsFsnMvQ2CoOCTj",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.nvsFsnMvQ2CoOCTj",
    "flags": {},
-   "sort": 2000,
+   "sort": 1700,
    "ownership": {
     "default": 0
    },
@@ -1101,9 +980,135 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "U4o7mQE0XfQm4tYP",
-   "_key": "!actors.items!6TZEEr41IWNrM4jU.U4o7mQE0XfQm4tYP",
+   "_id": "o77cxWvebpVPzMeK",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.o77cxWvebpVPzMeK",
    "flags": {},
+   "sort": 1800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Grave Dread",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened}, taking @Damage[2d6 necrotic]{2d6 necrotic damage}.</p><p class=\"arn-note\">An undead solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 20,
+    "damage": "2d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "SRevHdAhBrAR09ko",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.SRevHdAhBrAR09ko",
+   "effects": [],
+   "sort": 1900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Grip of the Grave",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>Bony hands claw out of the ground in a <strong>20ft radius</strong> within <strong>60ft</strong>. Each creature there makes a @Check[ref|dc:20]{Reflex save DC 20}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">An undead solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 20,
+    "damage": "4d6",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "smVIYdrTrt7sb3wQ",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.smVIYdrTrt7sb3wQ",
+   "effects": [],
+   "sort": 2000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Soul Rend",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[fort|dc:20]{Fortitude save DC 20}, taking @Damage[6d8 necrotic]{6d8 necrotic damage} and being unable to regain HP on a failure, or half damage on a success. An undead that fights with a weapon or bite may instead make its full attack line against that creature, with the same rider on a hit.</p><p class=\"arn-note\">An undead solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 20,
+    "damage": "6d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "HqJgCGcnHaNSkUJl",
+   "_key": "!actors.items!6TZEEr41IWNrM4jU.HqJgCGcnHaNSkUJl",
+   "effects": [],
    "sort": 2100,
    "ownership": {
     "default": 0

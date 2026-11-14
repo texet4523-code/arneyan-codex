@@ -171,7 +171,9 @@ function floatHp(actor, changes, options) {
   const pops = [];
   const now = foundry.utils.getProperty(changes, "system.attributes.hp.value");
   const prev = options?.arneyanPrevHp?.[actor.id];
-  if (now !== undefined && prev !== undefined && now !== prev) pops.push({ d: now - prev, text: d => `${d > 0 ? "+" : ""}${d}`, fill: d => (d < 0 ? 0xff5c4d : 0x6be36b) });
+  // A solo's new phase (solo.mjs) shows as the phase, not as healing.
+  if (options?.arneyanPhase?.[actor.id]) pops.push({ d: 0, text: () => `Phase ${options.arneyanPhase[actor.id]}`, fill: () => 0xf0a060 });
+  else if (now !== undefined && prev !== undefined && now !== prev) pops.push({ d: now - prev, text: d => `${d > 0 ? "+" : ""}${d}`, fill: d => (d < 0 ? 0xff5c4d : 0x6be36b) });
   // Temporary HP: blue, so a hit soaked by it still shows.
   const tNow = foundry.utils.getProperty(changes, "system.attributes.hp.temp");
   const tPrev = options?.arneyanPrevTemp?.[actor.id];

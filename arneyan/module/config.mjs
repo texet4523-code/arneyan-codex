@@ -127,7 +127,7 @@ ARNEYAN.weaponMaterials = {
 };
 
 ARNEYAN.weaponTraits = {
-  "Versatile": { text: "Deals one extra damage die if wielded two-handed instead of one.", auto: "The damage card offers the extra die." },
+  "Versatile": { text: "The damage die steps up one size when wielded two-handed (d6 to d8, d8 to d10, d10 to d12, 2d4 to 2d6).", auto: "The damage card offers the two-handed roll." },
   "Heavy": { text: "Disadvantage on the attack roll unless your Strength score is 13 or higher.", auto: "Disadvantage applied (Small creatures always; Large never)." },
   "Armour Piercing": { text: "Ignores 2 points of the target's AC from armour specifically (not Dexterity or Feats).", auto: "Reminder on the attack card." },
   "Cleaving": { text: "You may use the Cleave manoeuvre with this weapon up to twice per turn instead of once." },
@@ -298,9 +298,9 @@ ARNEYAN.conditions = {
     text: "Hide 20+: Search DC 20. As Hidden, and blindsight and truesight don't find it either. Attacking, casting a spell or a loud noise ends it." },
   surprised: { name: "Surprised", icon: "surprised", counter: "none", rules: [...INCAP, R("speed.mult", 0), R("no.reactions", 1)],
     text: "Caught unaware: in the surprise round it can't move, take actions or act out of turn. Comes off when the next round begins." },
-  // A solo's phase marker (M&T v0.10.41, Solos and control: Bloodied), put on by solo.mjs. No rules of its own.
-  bloodied: { name: "Bloodied", icon: "bleeding-heart", counter: "none", rules: [],
-    text: "A solo at half its HP or lower: its conditions and hostile effects ended and its limited-use abilities came back. A marker of its new phase; it has no effect of its own." },
+  // A solo's phase marker (M&T v0.10.75, Running a Solo: Phases; replaces Bloodied), put on by solo.mjs. No rules of its own.
+  phase: { name: "New phase", icon: "cracked-shield", counter: "none", rules: [],
+    text: "A solo in its second or third phase (Running a Solo): its HP came back in full, its conditions and hostile effects ended. A marker of the phase; it has no effect of its own." },
   concentrating: { name: "Concentrating", icon: "concentration-orb", counter: "none", rules: [], system: true,
     text: "Maintaining a concentration effect. Taking damage calls for a Fortitude save, DC 10 or half the damage, whichever is higher." },
   dead: { name: "Dead", icon: "skull-crossed-bones", rules: [...HELPLESS], system: true, counter: "none", text: "Dead." }

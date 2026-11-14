@@ -29,8 +29,8 @@
   "hd": "19d10",
   "attributes": {
    "hp": {
-    "value": 375,
-    "max": 375,
+    "value": 105,
+    "max": 105,
     "temp": 0
    },
    "ac": 22,
@@ -72,9 +72,11 @@
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
+   "soloType": "Spellcaster",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large monstrosity</em></p><p><strong>GM:</strong> The lion-bodied judge of the gods, set to guard something only the worthy may reach. It tests worth, not strength, and those who fail its test are rarely given a second.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -736,129 +738,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): The Last Riddle",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>It asks a riddle. Up to three enemies that can hear it make a @Check[will|dc:24]{Will save DC 24} or are @Condition[incapacitated]{Incapacitated}, pondering, until the end of their next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 24,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "Odsy8DSaKZlvKuPM",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.Odsy8DSaKZlvKuPM",
-   "effects": [],
-   "sort": 1200,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Time Ripple",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:24]{Will save DC 24}, taking @Damage[4d8 force]{4d8 force damage} and being <strong>Slowed</strong> until the end of its next turn on a failure, or half damage on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 24,
-    "damage": "4d8",
-    "damageType": "force",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "KiZX2wrAqNXxZJ2r",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.KiZX2wrAqNXxZJ2r",
-   "effects": [],
-   "sort": 1300,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Lost to the Ages",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[will|dc:24]{Will save DC 24}. On a failure it vanishes until the end of its next turn, then returns @Condition[prone]{Prone} and takes @Damage[8d8 force]{8d8 force damage}; on a success, half damage and it stays.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 24,
-    "damage": "8d8",
-    "damageType": "force",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "Bhj9DPIplSKYSkTc",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.Bhj9DPIplSKYSkTc",
-   "effects": [],
-   "sort": 1400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -871,11 +750,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "z93tg0RO6Xr6o3XR",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.z93tg0RO6Xr6o3XR",
+   "_id": "XGnlNDaW53YaWAyK",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.XGnlNDaW53YaWAyK",
    "effects": [],
    "flags": {},
-   "sort": 1500,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -898,10 +777,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "Jhua9pMCaIYDZEHF",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.Jhua9pMCaIYDZEHF",
+   "_id": "1JsVpGQAyWZXp4Pp",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.1JsVpGQAyWZXp4Pp",
    "flags": {},
-   "sort": 1600,
+   "sort": 1300,
    "ownership": {
     "default": 0
    },
@@ -924,9 +803,135 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.mljyhJu114BvgxyQ"
    },
-   "_id": "WxLSei0AWs5ate3f",
-   "_key": "!actors.items!K0frNOuZ0lBruVw7.WxLSei0AWs5ate3f",
+   "_id": "NiXDq3VaxlgnRtyy",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.NiXDq3VaxlgnRtyy",
    "flags": {},
+   "sort": 1400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Binding Word",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>It speaks a word of binding (a sphinx asks a riddle).</p><ul><li>Up to three enemies within <strong>60ft</strong> that can hear it make a @Check[will|dc:19]{Will save DC 19} or are @Condition[incapacitated]{Incapacitated}, taking @Damage[2d6 psychic]{2d6 psychic damage}.</li><li>It then teleports or moves up to <strong>30ft</strong>.</li></ul><p class=\"arn-note\">A spellcaster solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "2d6",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "z0nQJDokWnLcrnoH",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.z0nQJDokWnLcrnoH",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Spell Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>Magic fills a <strong>20ft radius</strong> within <strong>120ft</strong>. Each creature there makes a @Check[ref|dc:19]{Reflex save DC 19}, taking <strong>4d6</strong> damage of a type it chooses and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">A spellcaster solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 19,
+    "damage": "4d6",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "4kiLFA7FbK7U1ynE",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.4kiLFA7FbK7U1ynE",
+   "effects": [],
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Overwhelming Spell",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-egyptian-sphinx.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Spellcaster"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>120ft</strong> makes a @Check[will|dc:19]{Will save DC 19}, taking @Damage[6d8 force]{6d8 force damage} and being @Condition[stunned]{Stunned} on a failure, or half damage on a success. A spellcaster that fights hand to hand (the githzerai anarch, the yuan-ti anathema) may instead make its full attack line against that creature; if two attacks hit, it makes the same save or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A spellcaster solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "6d8",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "lRoTwLvVorhlY48H",
+   "_key": "!actors.items!K0frNOuZ0lBruVw7.lRoTwLvVorhlY48H",
+   "effects": [],
    "sort": 1700,
    "ownership": {
     "default": 0

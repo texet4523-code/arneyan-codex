@@ -29,8 +29,8 @@
   "hd": "17d8",
   "attributes": {
    "hp": {
-    "value": 375,
-    "max": 375,
+    "value": 75,
+    "max": 75,
     "temp": 0
    },
    "ac": 24,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "",
    "isSolo": true,
+   "soloType": "Giant or golem",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A lonely sage whose moods set the weather. It rarely fights, and a fight with one is a disaster.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A lonely sage whose moods set the weather. It rarely fights, and a fight with one is a disaster.</p><p><strong>Solo: Giant or golem.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the giant or golem type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>S, lair F</strong> (see the Treasure tables).</p>"
   }
  },
@@ -401,129 +403,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Thunder Stomp",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-giant.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:27]{Fortitude save DC 27} or falls @Condition[prone]{Prone} and can't hear until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 27,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "3X5WEjsMoUdgr7s1",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.3X5WEjsMoUdgr7s1",
-   "effects": [],
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Chain Lightning",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-giant.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Lightning leaps between up to four creatures within <strong>120ft</strong>. Each makes a @Check[ref|dc:22]{Reflex save DC 22}, taking @Damage[5d8 lightning]{5d8 lightning damage} on a failure, or half on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 22,
-    "damage": "5d8",
-    "damageType": "lightning",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "nOkl2RlOxoh7ls1n",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.nOkl2RlOxoh7ls1n",
-   "effects": [],
-   "sort": 800,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Wrath of the Storm",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-giant.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It makes one greatsword attack (+21, <strong>8d6+7</strong>) against one creature. On a hit, lightning follows the blade: the target makes a @Check[ref|dc:22]{Reflex save DC 22} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 22,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "12W6zYldIyNDkGr1",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.12W6zYldIyNDkGr1",
-   "effects": [],
-   "sort": 900,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -536,11 +415,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "rM5XY4ic6mg9JXN7",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.rM5XY4ic6mg9JXN7",
+   "_id": "GaF9ceHWxGjcL3G8",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.GaF9ceHWxGjcL3G8",
    "effects": [],
    "flags": {},
-   "sort": 1000,
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -559,11 +438,11 @@
     "ability": "str",
     "tier": "trained"
    },
-   "_id": "ZJrCmPjS8O5iV2Av",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.ZJrCmPjS8O5iV2Av",
+   "_id": "S2A1ryPUEuJcDmxP",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.S2A1ryPUEuJcDmxP",
    "effects": [],
    "flags": {},
-   "sort": 1100,
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -586,10 +465,10 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.5ZSAvldorC3Y9X8m"
    },
-   "_id": "zDJjgy2bODWueYTU",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.zDJjgy2bODWueYTU",
+   "_id": "ANqBcg6AE7rYlZEd",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.ANqBcg6AE7rYlZEd",
    "flags": {},
-   "sort": 1200,
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -612,9 +491,135 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "2C2dMFhhUuZB3zTE",
-   "_key": "!actors.items!4UX6EutbxLcVCDB7.2C2dMFhhUuZB3zTE",
+   "_id": "LUzGQ2BQxKe7ZFjE",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.LUzGQ2BQxKe7ZFjE",
    "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Earthshaker",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Giant or golem"
+    }
+   },
+   "system": {
+    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:27]{Fortitude save DC 27} or falls @Condition[prone]{Prone}, taking @Damage[2d6 lightning]{2d6 lightning damage}.</p><p class=\"arn-note\">A giant or golem solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 27,
+    "damage": "2d6",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sUFeHu9cO31ii3HM",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.sUFeHu9cO31ii3HM",
+   "effects": [],
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Sweep",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Giant or golem"
+    }
+   },
+   "system": {
+    "description": "<p>It sweeps everything within its reach (at least <strong>15ft</strong>). Each creature there makes a @Check[ref|dc:27]{Reflex save DC 27}, taking @Damage[4d6 lightning]{4d6 lightning damage}, being pushed <strong>10ft</strong> and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">A giant or golem solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 27,
+    "damage": "4d6",
+    "damageType": "lightning",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "7Mfu4WvAr29mrUcp",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.7Mfu4WvAr29mrUcp",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Unstoppable",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-giant.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Giant or golem"
+    }
+   },
+   "system": {
+    "description": "<p>It moves up to its speed in a straight line; each creature in its path makes a @Check[ref|dc:27]{Reflex save DC 27} or falls @Condition[prone]{Prone}.</p><ul><li>It then makes its full attack line against one creature at the end.</li><li>If any attack hits, the target is pushed <strong>15ft</strong> and falls @Condition[prone]{Prone}.</li></ul><p class=\"arn-note\">A giant or golem solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 27,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ZDqDMm5d5KZGDffR",
+   "_key": "!actors.items!4UX6EutbxLcVCDB7.ZDqDMm5d5KZGDffR",
+   "effects": [],
    "sort": 1300,
    "ownership": {
     "default": 0

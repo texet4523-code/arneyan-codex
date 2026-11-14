@@ -29,8 +29,8 @@
   "hd": "9d10",
   "attributes": {
    "hp": {
-    "value": 125,
-    "max": 125,
+    "value": 50,
+    "max": 50,
     "temp": 0
    },
    "ac": 20,
@@ -72,9 +72,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Undead",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A fallen champion who broke an oath. It remembers every one of its failings and wants to share them.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A fallen champion who broke an oath. It remembers every one of its failings and wants to share them.</p><p><strong>Solo: Undead.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the undead type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>S, lair E</strong> (see the Treasure tables).</p>"
   }
  },
@@ -836,57 +838,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Rise, Fallen",
+   "name": "Villain Action 1 (Opener): Grave Dread",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Undead"
     }
    },
    "system": {
-    "description": "<p>Four skeletons claw out of the ground within <strong>30ft</strong> of it. They act on its initiative from the next round and crumble when it falls.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "Vh3yB2DprzSZ17lt",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.Vh3yB2DprzSZ17lt",
-   "effects": [],
-   "sort": 1400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Chains of the Oathbreaker",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:18]{Will save DC 18} or takes @Damage[2d6 necrotic]{2d6 necrotic damage} and is @Condition[restrained]{Restrained} by black chains until the end of its next turn.</p>",
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:18]{Will save DC 18} or is @Condition[frightened]{Frightened}, taking @Damage[2d6 necrotic]{2d6 necrotic damage}.</p><p class=\"arn-note\">An undead solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -908,26 +870,27 @@
     "active": false,
     "applies": []
    },
-   "_id": "2FTs6lpcotQEbe6l",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.2FTs6lpcotQEbe6l",
+   "_id": "wWeIM5pw2Jg3sAh4",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.wWeIM5pw2Jg3sAh4",
    "effects": [],
-   "sort": 1500,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
    "folder": null
   },
   {
-   "name": "Villain Action 3 (Ultimate): Hellfire Ruin",
+   "name": "Villain Action 2 (Crowd Control): Grip of the Grave",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 3
+     "villainAction": 2,
+     "soloType": "Undead"
     }
    },
    "system": {
-    "description": "<p>It hurls a lesser Hellfire Orb whether or not its own is ready: @Damage[3d6 fire]{3d6 fire damage} in place of <strong>6d6</strong>. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "description": "<p>Bony hands claw out of the ground in a <strong>20ft radius</strong> within <strong>60ft</strong>. Each creature there makes a @Check[ref|dc:18]{Reflex save DC 18}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">An undead solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -938,10 +901,10 @@
      "max": 1,
      "per": "encounter"
     },
-    "save": "",
-    "dc": null,
-    "damage": "3d6",
-    "damageType": "fire",
+    "save": "ref",
+    "dc": 18,
+    "damage": "4d6",
+    "damageType": "necrotic",
     "level": 0,
     "className": "",
     "rules": [],
@@ -949,8 +912,50 @@
     "active": false,
     "applies": []
    },
-   "_id": "7FyV1UUMTarec43f",
-   "_key": "!actors.items!PgOCQs6dtOUyG6W8.7FyV1UUMTarec43f",
+   "_id": "925V3zxTMoGi38X1",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.925V3zxTMoGi38X1",
+   "effects": [],
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Soul Rend",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-knight-banner.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Undead"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[fort|dc:18]{Fortitude save DC 18}, taking @Damage[6d8 necrotic]{6d8 necrotic damage} and being unable to regain HP on a failure, or half damage on a success. An undead that fights with a weapon or bite may instead make its full attack line against that creature, with the same rider on a hit.</p><p class=\"arn-note\">An undead solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 18,
+    "damage": "6d8",
+    "damageType": "necrotic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "sypPeaTuPuRJZsMf",
+   "_key": "!actors.items!PgOCQs6dtOUyG6W8.sypPeaTuPuRJZsMf",
    "effects": [],
    "sort": 1600,
    "ownership": {

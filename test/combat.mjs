@@ -336,7 +336,7 @@ console.log("OK combat");
   assert.equal(sd.formula, "1d6", "a one-handed weapon rolls as it is");
   assert.ok(!sd.notes.some(n => n.includes("Crushing Blow")), "and its card says nothing of it");
   assert.equal(heavy.weaponDice(longsword).formula, "1d8", "Versatile in one hand: no reroll");
-  assert.equal(heavy.weaponDice(longsword, { include: ["versatile"] }).formula, "1d8r<=2", "Versatile two-handed: rerolled (its extra die is not)");
+  assert.equal(heavy.weaponDice(longsword, { include: ["versatile"] }).formula, "1d10r<=2", "Versatile two-handed: the die steps up, then rerolled (HB v0.10.74)");
   assert.equal(withFeatures(3).weaponDice(great).formula, "2d6", "no Crushing Blow, no reroll");
 
   // Weapon Specialisation: with the picked weapon, +damage and first-attack Advantage for real; otherwise reminders.

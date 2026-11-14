@@ -392,8 +392,9 @@ export function collectRules(actor, baseData = {}) {
   }
   // Exhaustion track.
   const ex = actor.system?.attributes?.exhaustion ?? 0;
-  // A solo ignores Exhaustion's Max HP loss (M&T v0.10.41, Solos and control).
-  const solo = actor.type === "npc" && !!actor.system?.details?.isSolo;
+  // A solo ignores Exhaustion's Max HP loss (M&T v0.10.41, Solos and control): one run as a solo (v0.10.75, R-F33).
+  const det = actor.system?.details ?? {};
+  const solo = actor.type === "npc" && !!det.isSolo && (!!det.runSolo || det.levelText === "Mythic");
   for (let i = 1; i <= ex; i++) push(solo ? ARNEYAN.exhaustionRules[i].filter(r => r.key !== "hp.mult") : ARNEYAN.exhaustionRules[i], `Exhaustion ${i}`);
   return out;
 }

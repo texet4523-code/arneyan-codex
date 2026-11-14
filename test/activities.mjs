@@ -252,7 +252,7 @@ assert.ok(!(kitFeat("Drake's Followers (Barbarian)", "Drake's Fury").activities 
 
 /* The sheet shows Use for a feature that only has activities. */
 const tpl = fs.readFileSync(new URL("../arneyan/templates/actor/abilities-list.hbs", import.meta.url), "utf8");
-assert.ok(tpl.includes("item.system.activities.length"));
+assert.ok(tpl.includes("item.system.applies.length acts"), "Use shows only while an option is open at this level (0.10.109)");
 
 /* Every activity is a known kind; attacks have a count. */
 const KINDS = new Set(["heal", "temp", "damage", "check", "save", "note", "roll", "attacks"]);

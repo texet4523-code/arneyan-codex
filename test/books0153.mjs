@@ -15,12 +15,14 @@ const one = (dir, prefix) => { const r = read(dir, prefix); assert.equal(r.lengt
 /* Villain actions (K65, K71): three per listed solo, once a fight, numbered; Bloodied leaves them alone. */
 const troll = one("monsters", "actors_Two-headed_Troll_");
 const va = troll.items.filter(i => i.flags?.arneyan?.villainAction);
-assert.deepEqual(va.map(i => i.name), ["Villain Action 1 (Opener): Twin Bellow", "Villain Action 2 (Crowd Control): Sweep", "Villain Action 3 (Ultimate): Feeding Frenzy"]);
+// M&T v0.10.75: the Giant or golem type's three, worked out for its Level.
+assert.deepEqual(va.map(i => i.name), ["Villain Action 1 (Opener): Earthshaker", "Villain Action 2 (Crowd Control): Sweep", "Villain Action 3 (Ultimate): Unstoppable"]);
 assert.deepEqual(va.map(i => i.flags.arneyan.villainAction), [1, 2, 3]);
 for (const i of va) assert.deepEqual(i.system.uses, { value: 1, max: 1, per: "encounter" }, i.name);
 assert.ok(!/^\*/.test(va[0].system.description.replace(/<[^>]+>/g, "")), "the title leaves the text");
-assert.equal(va[0].system.save, "will"); assert.equal(va[0].system.dc, 20);
-assert.equal(va[1].system.save, "ref"); assert.equal(va[1].system.damage, "4d8+5");
+// DC 10 + half its Level (10) + its Str modifier; damage from the Villain Action Damage table (10 to 20).
+assert.equal(va[0].system.save, "fort"); assert.equal(va[0].system.dc, 19); assert.equal(va[0].system.damage, "2d6");
+assert.equal(va[1].system.save, "ref"); assert.equal(va[1].system.damage, "4d6");
 const withVa = read("monsters", "actors_").filter(m => m.items.some(i => i.flags?.arneyan?.villainAction));
 // M&T v0.10.51 (B-F44): every solo has its three.
 const solos = read("monsters", "actors_").filter(m => m.system.details.isSolo);
@@ -32,9 +34,8 @@ for (const m of withVa) assert.ok(m.system.details.isSolo, `${m.name} is a solo`
 assert.equal(S.villainBlock({ statuses: [] }), null);
 assert.deepEqual(S.villainBlock({ statuses: ["stunned", "prone"] }), { reason: "cant", cant: ["stunned"] });
 assert.equal(S.villainBlock({ statuses: ["frightened", "slowed"] }), null, "it can still act");
-assert.deepEqual(S.villainBlock({ last: { combat: "c1", round: 2 }, combatId: "c1", round: 2 }), { reason: "round" });
-assert.equal(S.villainBlock({ last: { combat: "c1", round: 2 }, combatId: "c1", round: 3 }), null, "a new round");
-assert.equal(S.villainBlock({ last: { combat: "c0", round: 2 }, combatId: "c1", round: 2 }), null, "another fight");
+// K158: no longer one a round (the ultimate comes even if it used one that round).
+assert.equal(S.villainBlock({ statuses: [], last: { combat: "c1", round: 2 }, combatId: "c1", round: 2 }), null);
 assert.equal(S.villainNo({ flags: { arneyan: { villainAction: 2 } } }), 2);
 assert.equal(S.villainNo({ flags: {} }), 0);
 
@@ -46,7 +47,8 @@ assert.ok(dk.items.some(i => i.name === "Banishment (1/day)"));
 /* R-B40: Mythic solos at 600 HP. */
 for (const n of ["Tiamat", "Bahamut", "Tarrasque"]) {
   const m = one("monsters", `actors_${n}_`);
-  assert.ok(m.system.details.isSolo && m.system.attributes.hp.max === 600, n);
+  // M&T v0.10.75: 600 HP split evenly over three phases (K159, K161): 200 a phase.
+  assert.ok(m.system.details.isSolo && m.system.attributes.hp.max === 200 && /600 HP split into three phases of 200/.test(m.system.details.description), n);
 }
 /* "1 with 2d6 warriors" reads its leader's count. */
 assert.equal(E.parseNumberAppearing("1 with 2d6 warriors").wild, "1");

@@ -11,10 +11,15 @@ import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
-import { villainNo, villainGate, villainUsed } from "./solo.mjs";
+import { villainNo, villainGate, villainUsed, phasePreUpdate, isSolo as runsSolo, phaseOf } from "./solo.mjs";
 import { unset, unsetKey } from "./compat.mjs";
 import { regenFor, stoppingType } from "./regen.mjs";
 import { attacksOf } from "./multiattack.mjs";
+
+/** Versatile's two-handed die: the leading dice one size up (d4 to d6, d6 to d8, d8 to d10, d10 to d12; 2d4 to 2d6). */
+export function versatileStep(formula) {
+  return String(formula ?? "").replace(/^(\d*)d(4|6|8|10)\b/i, (m, n, d) => `${n}d${{ 4: 6, 6: 8, 8: 10, 10: 12 }[d]}`);
+}
 import { tidyDescription } from "./text.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -449,6 +454,8 @@ export class ArneyanActor extends Actor {
         foundry.utils.setProperty(changes, "system.attributes.hp.value", Number.isFinite(back) && back > 0 ? back : this.system.attributes.hp.fullMax ?? 1);
       }
     }
+    // A solo run as one (M&T v0.10.75): at 0 HP its next phase starts at full HP, or it holds at 1 for the round.
+    phasePreUpdate(this, changes, options);
     // Current HP never goes above the maximum (Kieran, 25 Oct 2026), the maximum as this change leaves it.
     capHpChange(this, changes);
   }
@@ -606,7 +613,7 @@ export class ArneyanActor extends Actor {
   /**
    * The weapon's own damage dice for a roll, with any reroll worked in (Crushing Blow: 1s and 2s on a two-handed
    * weapon), and the damage card's notes: reminders, less those a weapon-scoped rule now applies, plus what was
-   * rerolled. Bonus dice (riders, Versatile's extra die) are never rerolled.
+   * rerolled. Bonus dice (riders) are never rerolled; Versatile two-handed steps the weapon's own die up first.
    */
   /**
    * A weapon's own damage dice: its stored dice, or for an Unarmed Strike the dice a feature gives when they're
@@ -625,7 +632,9 @@ export class ArneyanActor extends Actor {
   weaponDice(item, { include = [], dice = "" } = {}) {
     const m = this.mods;
     // `dice`: this attack's own dice (a Monk's second unarmed attack: the Secondary column).
-    const own = String(dice ?? "").trim() || this.ownDice(item);
+    let own = String(dice ?? "").trim() || this.ownDice(item);
+    // Versatile wielded two-handed: the die steps up one size (Codex, HB v0.10.74).
+    if (include.includes("versatile") && /\bversatile\b/i.test(item?.system?.traits ?? "")) own = versatileStep(own);
     if (!m) return { formula: own, notes: [] };
     const fw = m.forWeapon(item, { include });
     const all = m.reroll(), mine = fw.mods.reroll();
@@ -866,7 +875,9 @@ export class ArneyanActor extends Actor {
     // Extra damage with a condition ("against undead", Versatile two-handed) joins the roll only when asked for.
     // Extra damage tied to the weapon's mode (a Flame Tongue's fire) counts on every hit while it's on, and not at all while it's off.
     const extras = [...(sys.bonusDamage ?? []).map((b, i) => ({ ...b, key: `b${i}` })).filter(b => !b.mode || sys.active).map(b => (b.mode ? { ...b, when: "" } : b)), ...this._versatileDie(item)]
-      .map(x => (include.includes(x.key) ? { ...x, when: "", label: x.when ? `${x.formula} ${x.type || sys.damageType} (${x.when})` : "" } : x));
+      .map(x => (include.includes(x.key) ? { ...x, when: "", label: x.when ? `${x.formula} ${x.type || sys.damageType} (${x.when})` : "" } : x))
+      // Versatile's step-up is in the weapon's own dice (weaponDice), not a die of its own.
+      .filter(x => !(x.swap && include.includes(x.key)));
     let mod = sys.magic + ammoPlus;
     // An off-hand weapon adds no attribute modifier to damage (Codex, Dual Wielding).
     if (this.type === "character" && !offhand) mod += this.system.abilities[this._weaponAbility(item)].mod;
@@ -881,11 +892,15 @@ export class ArneyanActor extends Actor {
     });
   }
 
-  /** Versatile: one extra damage die two-handed, offered as a button on the damage card. */
+  /**
+   * Versatile (Codex, HB v0.10.74 and v0.10.75): two-handed, the damage die steps up one size (d6 to d8, d8 to d10, d10 to d12, 2d4 to
+   * 2d6). Offered as a button on the damage card; asked for, the weapon's own dice step up (weaponDice) and this adds none.
+   */
   _versatileDie(item) {
     if (!/\bversatile\b/i.test(item.system.traits ?? "")) return [];
-    const die = String(item.system.damage ?? "").match(/d(\d+)/i);
-    return die ? [{ formula: `1d${die[1]}`, type: item.system.damageType, when: "two-handed (Versatile)", key: "versatile" }] : [];
+    const own = String(this.ownDice(item) ?? "");
+    const up = versatileStep(own);
+    return up !== own ? [{ formula: up.match(/^\d*d\d+/i)?.[0] ?? up, type: item.system.damageType, when: `two-handed (Versatile: ${own.match(/^\d*d\d+/i)?.[0] ?? own} steps up)`, key: "versatile", swap: true }] : [];
   }
 
   _weaponAbility(item) {
@@ -980,6 +995,8 @@ export class ArneyanActor extends Actor {
     // Fire on a troll (and the like): its Regeneration skips its next turn (regen.mjs, qol.mjs).
     const regenAuto = (() => { try { return game.settings.get(SYS, "autoRegen") !== false; } catch { return false; } })();
     const stopsRegen = dmg > 0 && regenAuto && game.combat?.started ? stoppingType(regenFor(this)?.regen, taken) : "";
+    // A solo run as one (M&T v0.10.75): its phase before the hit, to word what the hit did.
+    const soloNow = runsSolo(this), phaseBefore = soloNow ? phaseOf(this) : 0;
     await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}), ...(stopsRegen ? { [`flags.${SYS}.regenStopped`]: { type: stopsRegen, combat: game.combat.id } } : {}) }, { arneyanDowned: true });
     if (stopsRegen) lines.push(`${stopsRegen} stops its regeneration next turn`);
     await this._syncDowned(before);
@@ -998,7 +1015,13 @@ export class ArneyanActor extends Actor {
     const kinds = typed.length > 1 ? `damage: ${typed.map(x => `${x.amount} ${x.type || "untyped"}`).join(", ")}` : `${typed[0]?.type ? `${typed[0].type} ` : ""}damage`;
     const what = `${this.name} takes ${rolledDmg} ${subdual ? "non-lethal " : ""}${kinds}${lines.length ? ` (${lines.join(", ")})` : ""}${after.length ? `; ${toHp} to HP after ${after.join(" and ")}` : ""}`;
     const ko = subdual && value > 0 && (Number(this.flags?.[SYS]?.subdual) || 0) >= value;
-    return { text: `${what}. HP ${value}/${maxHp}${subdual ? `, non-lethal ${Number(this.flags?.[SYS]?.subdual) || 0}` : ""}`, line: `${what}${value <= 0 && before > 0 ? " and goes down" : ko ? " and is knocked out" : ""}` };
+    // A solo's real HP after the update (a new phase at full HP, or held at 1 for the round).
+    const shown = soloNow ? Number(this.system.attributes.hp.value) : value;
+    const phaseAfter = soloNow ? phaseOf(this) : 0;
+    const down = soloNow && phaseAfter > phaseBefore ? ` and starts phase ${phaseAfter} of 3 at full HP`
+      : soloNow && value <= 0 && shown >= 1 && before > 0 ? " and is held at 1 HP (it changed phase this round)"
+      : value <= 0 && before > 0 ? " and goes down" : ko ? " and is knocked out" : "";
+    return { text: `${what}. HP ${shown}/${soloNow ? Number(this.system.attributes.hp.max) : maxHp}${subdual ? `, non-lethal ${Number(this.flags?.[SYS]?.subdual) || 0}` : ""}`, line: `${what}${down}` };
   }
 
   /**

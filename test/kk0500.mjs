@@ -28,7 +28,8 @@ assert.equal(worm.system.level, 15);
 assert.equal(worm.system.attributes.hp.max, 375);
 const va = worm.items.filter(i => i.flags?.arneyan?.villainAction);
 assert.deepEqual(va.map(i => i.flags.arneyan.villainAction), [1, 2, 3]);
-assert.ok(va[0].system.description.includes("Opener damage"));
+// M&T v0.10.75: the opener note went with the old rule; Keeps & Kingdoms' worm keeps its own three (no Solo line yet).
+assert.ok(!va[0].system.description.includes("Opener damage"));
 assert.ok(worm.items.some(i => i.type === "weapon" && i.name === "Tongue ×3"));
 // Leaders have their Command; "as the blade" abilities are copied; GM lines aren't abilities.
 for (const n of ["Goblin Warlord", "Orc Warchief", "Hobgoblin War Captain"]) {

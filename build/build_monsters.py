@@ -15,6 +15,7 @@ from senses_add import added_senses, dragon_blindsight, match_5e
 import glob, html, json, math, os, re
 from lib import actor, folder, OUT, fid
 from icons import icon
+import solo_types
 
 SRC = "/tmp/hb/mm"
 FILES = ["humanoids", "animals", "undead", "fiends_fey_elementals", "aberrations_monstrosities", "dragons_giants", "constructs_oozes_plants"]
@@ -373,17 +374,6 @@ def damage_targets():
     return out
 
 
-def opener_note(level, targets):
-    """M&T v0.10.59 (R-B69, K103): on top of its control, a solo's opener deals half the Damage target for its Level to one
-    creature it affects, or a quarter to each creature in an area, of a type that suits it, in place of any smaller
-    damage its block lists. Halves and quarters round down."""
-    t = targets[min(max(int(level), 1), 24)]
-    one, area = t // 2, t // 4
-    return (f'<p class="arn-note"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its '
-            f'control, @Damage[{one}]{{{one} damage}} to one creature it affects, or @Damage[{area}]{{{area}}} to each creature in an '
-            f'area, of a type that suits it, in place of any smaller damage listed.</p>')
-
-
 def weapon_item(seg, base_attack, img):
     """"bite +6 (1d10+3 plus 2d8 poison, 10ft) x2" -> a weapon. A rider ("plus 2d8 poison") stays its own
     typed roll, linked in the description, so resistances apply to each part correctly."""
@@ -596,6 +586,10 @@ def build(pack="monsters", entries=None):
     load_skills()
     global TARGETS
     TARGETS = damage_targets()
+    # M&T v0.10.75 (R-B92): the nine solo types' villain actions and the Villain Action Damage table.
+    front = open(os.path.join(SRC, "front.md"), encoding="utf-8").read()
+    VA_TABLE = solo_types.damage_table(front)
+    VA_SETS, ELEMENTS = solo_types.types(front)
     before = json.load(open(os.path.join(os.path.dirname(__file__), "data", "monster_saves_0102.json")))
     groups = {}
     count = 0
@@ -659,19 +653,44 @@ def build(pack="monsters", entries=None):
                 else:
                     nm = re.match(r"([^(]+)", seg).group(1).strip()
                     items.append(ability_item(nm[0].upper() + nm[1:], seg, img))
+            # The Solo line (M&T v0.10.75): its type, and whether it halves its attacks as a normal creature. Not an item.
+            solo_line = next((x for x in m["sp"] if x.startswith("Solo:")), "")
+            solo_kind = (re.match(r"Solo: ([A-Z][a-z]+(?: [a-z]+)*)\.", solo_line) or [None, ""])[1]
+            if solo_kind not in VA_SETS:
+                solo_kind = ""
+            halves = "halves its attack damage" in solo_line
+            # Keeps & Kingdoms' Kingfissure Worm (v0.5.3) still prints its own villain actions and no Solo line.
+            if solo and pack == "monsters":
+                assert solo_line, f"{m['name']}: marked Solo with no Solo line"
             # Special abilities. Senses, immunities and resistances also go on the stat line (and into the damage engine).
-            for s_ in m["sp"]:
+            for s_ in [x for x in m["sp"] if not x.startswith("Solo:")]:
                 items += sp_items(s_, img)
                 cm = re.match(r"(Spellcasting|Innate)(?:\s*\(spell DC \d+\))?:\s*(.*)", s_)
                 if cm:
                     items += spell_items(cm.group(2))
             if "sk" in f:
                 items += skill_items(f["sk"])
-            if solo:
-                for it in items:
-                    if (it.get("flags") or {}).get("arneyan", {}).get("villainAction") == 1:
-                        it["system"]["description"] += opener_note(level, TARGETS)
             dcs = [x for it in items for x in it.pop("_dcs", [])]
+            if solo and solo_kind:
+                breath = next((x for x in m["sp"] if re.match(r"[^:]*Breath[^:]*:", x)), "")
+                element = (re.search(r"\d+d\d+(?:\s*[+-]\s*\d+)? (" + TYPES + r")\b", breath) or [None, ""])[1]
+                if solo_kind == "Dragon":
+                    assert element, f"{m['name']}: a Dragon solo with no breath weapon element"
+                mods = {k: ability_mod(v) for k, v in abilities.items()}
+                items += solo_types.villain_items(m["name"], solo_kind, level, mods, max(dcs) if dcs else 0, element,
+                                                  VA_TABLE, VA_SETS, ELEMENTS, enrich, img, list(DAMAGE))
+            elif solo and level_text != "Mythic" and 9 <= int(level) <= 24:
+                # Its own villain actions (Ssendam, Ygorl, Primus): the opener still deals the table's damage on top of its
+                # control, in place of any smaller damage it lists (Running a Solo: Villain actions). The Mythic three
+                # sit past the table.
+                op = next((it for it in items if (it.get("flags") or {}).get("arneyan", {}).get("villainAction") == 1), None)
+                if op and not op["system"]["damage"]:
+                    row = VA_TABLE[int(level)]
+                    many = re.search(r"\b(each|up to)\b", op["system"]["description"], re.I)
+                    op["system"]["damage"] = row["area"] if many else row["one"]
+                    op["system"]["description"] += (f'<p class="arn-note"><strong>Opener damage</strong> (Running a Solo, Villain Action '
+                                                     f'Damage): on top of its control, @Damage[{op["system"]["damage"]}]{{{op["system"]["damage"]}}} '
+                                                     f'{"to each creature it affects" if many else "to the creature it affects"}, of a type that suits it (a save halves it).</p>')
             # "Casts as an 11th-level cleric": that class's spell slots at that level.
             spellcasting = {"className": "", "level": 0, "slots": [], "used": []}
             for s_ in m["sp"]:
@@ -701,18 +720,31 @@ def build(pack="monsters", entries=None):
                 desc += ("<p><strong>Leader</strong> (Keeps &amp; Kingdoms): a boss who fights with a crew. Its Command works once per "
                          "round, out of turn, straight after one of its allies' turns. Kill it, and its crew checks Morale at once.</p>")
             if solo:
-                # Books v0.10.40 (K47): no Legendary Resistance; the system gives the second turn, Shaking it off and
-                # Bloodied (solo.mjs). Fight-ending effects are the GM's.
-                # M&T v0.10.41 (K48): the wider Shaking it off, the window, Once a round.
-                # M&T v0.10.44 (K53): Bloodied recharges no spells; one of Harm and Mass Harm a fight.
-                desc += ("<p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second "
-                         "turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, "
-                         "attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing "
-                         "of the kind affects it until the end of the following round; the first time it drops to half HP every "
-                         "condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage "
-                         "and regeneration come once a round, at the start of its first turn (all automatic). An effect that would "
-                         "kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead "
-                         "(yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>")
+                # M&T v0.10.75 (R-B92; K141, K142, K145, K146, K158, K159): marked Solo. A normal creature unless the GM
+                # runs it as a solo (the sheet's Run as solo box, or the Encounter Builder); the Mythic three always.
+                mythic = level_text == "Mythic"
+                if mythic:
+                    hp = hp // 3
+                own = "its own villain actions (in its abilities)" if not solo_kind else f"the {solo_kind.lower()} type's three (in its abilities, worked out for its Level)"
+                desc += ("<p><strong>Solo" + (f": {html.escape(solo_kind)}" if solo_kind else "") + ".</strong> "
+                         + ("Always run as a solo; its 600 HP split into three phases of " + str(hp) + ". " if mythic else
+                            "A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). ")
+                         + "As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP "
+                         "(damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, "
+                         "its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a "
+                         "round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all "
+                         "automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, "
+                         f"never a spell or limited ability). Villain actions: {own}; the opener straight after the first enemy turn, "
+                         "the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its "
+                         "third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it "
+                         "acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, "
+                         "the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill "
+                         "effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, "
+                         "at the start of its first turn.</p>")
+                if not mythic:
+                    desc += ("<p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no "
+                             "shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half "
+                             "damage" + ("; it also halves its attack damage" if halves else "") + ".</p>")
             system = {
                 "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),
@@ -723,7 +755,7 @@ def build(pack="monsters", entries=None):
                     "type": type_only, "size": size,
                     "alignment": "", "xp": "", "numberAppearing": f.get("no", ""), "resistances": ", ".join(resist),
                     "immunities": ", ".join(immune), "vulnerabilities": ", ".join(vuln), "senses": ", ".join(senses),
-                    "isSolo": solo, "levelText": level_text, "page": 0, "description": desc,
+                    "isSolo": solo, "soloType": solo_kind, "soloHalves": halves, "levelText": level_text, "page": 0, "description": desc,
                     "treasure": f"<p>Treasure type <strong>{html.escape(f.get('tr', '-').replace('\u2014', '-'))}</strong> (see the Treasure tables).</p>"
                 }
             }

@@ -11,9 +11,13 @@
  *   spell Exhaustion are the GM's (the solo's description says so).
  * - Once a round: area, aura and ongoing damage and regeneration only at the start of its first turn (chat.mjs,
  *   auras.mjs, areas.mjs, qol.mjs check the second turn's flag). It ignores Exhaustion's Max HP loss (effects.mjs).
- * - Bloodied: the first time it drops to half its HP or lower, every condition and hostile effect on it ends and its
- *   breath weapons and other limited-use abilities recover, never spells (M&T v0.10.44, K53: innate spells and slots
- *   neither). Once, until it is back to full HP.
+ * - Phases (M&T v0.10.75, R-B92; K141, K145, K158, K159; replaces Bloodied): three, with the block's HP in each (a
+ *   Mythic creature's block already holds one phase's HP). At 0 HP the next phase starts at full HP, damage beyond 0 is
+ *   lost, and every condition and hostile effect on it ends; at the first phase change only, its breath weapons and other
+ *   limited-use abilities recover (never spells). One phase change a round: for the rest of that round damage can't take
+ *   it below 1 HP, last phase included. At 0 HP in its third phase it dies.
+ * Only a creature marked Solo can be run as one, and only when the GM ticks Run as solo (R-F33); the Mythic three always
+ * are. Unticked, it is a normal creature of its Level: one turn, its HP once, none of the above.
  */
 import { ARNEYAN } from "./config.mjs";
 import { unset } from "./compat.mjs";
@@ -34,7 +38,10 @@ export const CONTROL = ["incapacitated", "paralysed", "stunned", "unconscious", 
 export const CONTROL_EFFECTS = { feeblemind: /^Feeblemind/i, polymorph: /^Polymorph/i };
 const KEYS = [...CONTROL, ...Object.keys(CONTROL_EFFECTS)];
 
-export const isSolo = actor => actor?.type === "npc" && !!actor.system?.details?.isSolo;
+/** Marked Solo in Monsters & Treasure: it may be run as a solo. */
+export const markedSolo = actor => actor?.type === "npc" && !!actor.system?.details?.isSolo;
+/** Run as a solo now: marked, and the GM ticked Run as solo (the Mythic three always). Everything below checks this. */
+export const isSolo = actor => markedSolo(actor) && (!!actor.system?.details?.runSolo || actor.system?.details?.levelText === "Mythic");
 /** A solo's second-turn combatant (the first's id), or "". */
 export const soloOf = c => String(c?.flags?.[SYS]?.soloOf ?? "");
 
@@ -84,16 +91,17 @@ export function controlOn(actor, { combat = null, form = false } = {}) {
 }
 
 /**
- * Effects a solo's Bloodied ends: every condition put on it (Prone, a Stun, a spell's Paralysis), and every spell or
+ * Effects a solo's phase change ends: every condition put on it (Prone, a Stun, a spell's Paralysis), and every spell or
  * effect from a creature on the other side. Its own effects (its area, its aura, fighting defensively, hiding) and its
  * allies' stay, and so does concentration. `sideOf(origin)` says whose side an effect's source is on: "own", "ally",
  * "foe" or "" (unknown: counted hostile when it carries a condition, kept when it doesn't).
  */
-export function bloodiedEnds(actor, sideOf = () => "") {
+export function phaseEnds(actor, sideOf = () => "") {
   const own = `${actor.uuid}.`;
   return [...(actor.effects?.contents ?? actor.effects ?? [])].filter(e => {
     if (e.flags?.[SYS]?.concentration || e.flags?.[SYS]?.shookOff) return false;
-    const st = [...(e.statuses ?? [])].filter(s => !["dead", "concentrating", "bloodied"].includes(s));
+    if (e.flags?.[SYS]?.phase) return false;
+    const st = [...(e.statuses ?? [])].filter(s => !["dead", "concentrating", "phase"].includes(s));
     if ([...(e.statuses ?? [])].includes("dead")) return false;
     const origin = String(e.origin ?? "");
     const side = origin && (origin === actor.uuid || origin.startsWith(own)) ? "own" : origin ? sideOf(origin) : "";
@@ -167,44 +175,105 @@ async function turnEnded(actor, combat, { form = false } = {}) {
     <p>A solo throws off what stops it acting after two of its turns${before >= 1 ? " (one, the second time in a fight)" : ""}. Nothing of the kind can affect it until the end of the following round${before >= 1 ? "" : "; the next one it shakes off after one of its turns"}.</p>`);
 }
 
-/** Take the Bloodied marker off, whether the system or the GM put it on. */
-async function removeBloodied(actor) {
-  const marks = actor.effects.filter(e => e.statuses?.has?.("bloodied")).map(e => e.id);
-  if (marks.length) await actor.deleteEmbeddedDocuments("ActiveEffect", marks);
+/* -------------------------------------------- */
+/*  Phases                                      */
+/* -------------------------------------------- */
+
+/** Its phase now (1 to 3; 1 when it hasn't changed yet). */
+export const phaseOf = actor => Math.min(3, Math.max(1, Number(actor?.flags?.[SYS]?.soloPhase?.n) || 1));
+
+/** The round a phase change happens in: its started fight's id and round, or "" outside a fight (no once-a-round). */
+function roundKey(actor) {
+  const combat = combatFor(actor);
+  return combat?.started ? `${combat.id}:${combat.round}` : "";
 }
 
-/** Bloodied: the first time it drops to half its HP or lower. */
-const bleeding = new Set();
-export async function bloodied(actor) {
-  // Two HP updates before the flag is back: once.
-  if (bleeding.has(actor.uuid)) return;
-  bleeding.add(actor.uuid);
-  try {
-    await actor.setFlag(SYS, "bloodied", true);
-    await bloodiedNow(actor);
-  } finally {
-    bleeding.delete(actor.uuid);
-  }
+/**
+ * The HP a damaging change leaves a solo with (pure, for tests). `hp` the new value, `max` its phase HP, `phase` its
+ * phase now, `changedThisRound` whether it already changed phase this round. Returns { hp, next } where next is the
+ * phase it enters (0 for none).
+ */
+export function phaseStep({ hp, max, phase = 1, changedThisRound = false }) {
+  if (hp >= 1) return { hp, next: 0 };
+  if (changedThisRound) return { hp: 1, next: 0 };
+  if (phase >= 3) return { hp, next: 0 };
+  return { hp: max, next: phase + 1 };
 }
-async function bloodiedNow(actor) {
-  const ends = bloodiedEnds(actor, sideFinder(actor));
-  if (ends.length) await tryIt("bloodied", () => actor.deleteEmbeddedDocuments("ActiveEffect", ends.map(e => e.id).filter(id => actor.effects.has(id))));
-  // Breath weapons and other limited abilities; no spells, innate (3/day) or slotted (M&T v0.10.44, K53).
-  // Villain actions don't recover either (M&T v0.10.50).
-  const uses = actor.items.filter(i => i.type !== "spell" && !villainNo(i) && ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
-    .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
-  if (uses.length) await tryIt("bloodied", () => actor.updateEmbeddedDocuments("Item", uses));
-  await tryIt("bloodied", () => actor.setFlag(SYS, "soloControl", noCounts()));
-  // The Bloodied marker on its token, so the table sees the new phase.
-  if (!actor.effects.some(e => e.statuses?.has?.("bloodied"))) {
-    await tryIt("bloodied", () => actor.createEmbeddedDocuments("ActiveEffect", [{
-      name: "Bloodied", img: `systems/${SYS}/assets/conditions/bloodied.svg`, statuses: ["bloodied"], origin: actor.uuid, flags: { [SYS]: { bloodied: true } }
-    }]));
+
+/**
+ * Called from the actor's _preUpdate: a solo's HP change below 1 starts its next phase (full HP, excess lost), or holds
+ * it at 1 for the rest of a round in which it already changed phase. Ticking Run as solo starts it at phase 1, full HP.
+ * Writes the outcome into options.arneyanPhase for the update hook. Returns nothing.
+ */
+export function phasePreUpdate(actor, changes, options = {}) {
+  if (!markedSolo(actor) || options.arneyanUndo) return;
+  const run = foundry.utils.getProperty(changes, "system.details.runSolo");
+  if (run !== undefined && !!run !== !!actor.system.details.runSolo) {
+    foundry.utils.setProperty(changes, `flags.${SYS}.soloPhase`, { n: 1, key: "" });
+    if (run) foundry.utils.setProperty(changes, "system.attributes.hp.value", Number(actor.system.attributes.hp.max) || 1);
+    return;
   }
-  // Healed to full while this ran: the reset found no marker to take off, so take it off here.
-  if (!actor.getFlag(SYS, "bloodied")) await removeBloodied(actor);
-  await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-droplet"></i> <span>${esc(actor.name)} is Bloodied</span></header>
-    <p>At half its HP, every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}, and its breath weapons and other limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spells don't, including innate spells and spell slots. A good moment for a new phase.</p>`);
+  if (!isSolo(actor)) return;
+  const hp = foundry.utils.getProperty(changes, "system.attributes.hp.value");
+  if (hp === undefined || hp === null || Number(hp) >= Number(actor.system.attributes.hp.value)) return;
+  const was = actor.flags?.[SYS]?.soloPhase ?? {};
+  const key = roundKey(actor);
+  const max = Number(foundry.utils.getProperty(changes, "system.attributes.hp.max") ?? actor.system.attributes.hp.max) || 1;
+  const r = phaseStep({ hp: Number(hp), max, phase: phaseOf(actor), changedThisRound: !!key && was.key === key });
+  foundry.utils.setProperty(changes, "system.attributes.hp.value", r.hp);
+  if (!r.next) return;
+  foundry.utils.setProperty(changes, `flags.${SYS}.soloPhase`, { n: r.next, key });
+  options.arneyanPhase ??= {};
+  options.arneyanPhase[actor.id] = r.next;
+}
+
+/** Its villain action for a phase it has just entered: the crowd control for phase 2, the ultimate for phase 3. */
+const villainFor = (actor, n) => actor.items.find(i => villainNo(i) === n);
+
+/** It has just entered phase n: what ends, what recovers, the marker and a card (once, if two updates race). */
+const phasing = new Set();
+export async function phaseStarted(actor, n) {
+  const key = `${actor.uuid}:${n}`;
+  if (phasing.has(key)) return;
+  phasing.add(key);
+  try { await phaseStartedNow(actor, n); } finally { setTimeout(() => phasing.delete(key), 2000); }
+}
+async function phaseStartedNow(actor, n) {
+  const ends = phaseEnds(actor, sideFinder(actor));
+  if (ends.length) await tryIt("phase", () => actor.deleteEmbeddedDocuments("ActiveEffect", ends.map(e => e.id).filter(id => actor.effects.has(id))));
+  // Breath weapons and other limited abilities, at the first phase change only; no spells, innate or slotted (K159).
+  const uses = n !== 2 ? [] : actor.items.filter(i => i.type !== "spell" && !villainNo(i) && ["day", "rest", "encounter"].includes(i.system?.uses?.per) && Number(i.system.uses.max) > 0 && i.system.uses.value < i.system.uses.max)
+    .map(i => ({ _id: i.id, "system.uses.value": i.system.uses.max }));
+  if (uses.length) await tryIt("phase", () => actor.updateEmbeddedDocuments("Item", uses));
+  await tryIt("phase", () => actor.setFlag(SYS, "soloControl", noCounts()));
+  // The marker on its token, so the table sees the phase.
+  const old = actor.effects.filter(e => e.flags?.[SYS]?.phase).map(e => e.id);
+  if (old.length) await tryIt("phase", () => actor.deleteEmbeddedDocuments("ActiveEffect", old.filter(id => actor.effects.has(id))));
+  await tryIt("phase", () => actor.createEmbeddedDocuments("ActiveEffect", [{
+    name: `Phase ${n} of 3`, img: `systems/${SYS}/assets/conditions/phase.svg`, statuses: ["phase"], origin: actor.uuid, flags: { [SYS]: { phase: n } }
+  }]));
+  const va = villainFor(actor, n);
+  const max = Number(actor.system.attributes.hp.max) || 0;
+  await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-layer-group"></i> <span>${esc(actor.name)}: phase ${n} of 3</span></header>
+    <p>At 0 HP its next phase starts at full HP (${max}); damage beyond 0 is lost. Every condition and hostile effect on it ends${ends.length ? ` (${esc(ends.map(e => e.name).join(", "))})` : ""}${n === 2 ? `, and its breath weapons and other limited-use abilities recover${uses.length ? ` (${esc(actor.items.filter(i => uses.some(u => u._id === i.id)).map(i => i.name).join(", "))})` : ""}; spells don't` : "; nothing recovers this time"}. For the rest of this round, damage can't take it below 1 HP.${n === 3 ? " At 0 HP in this phase, it dies." : ""}</p>
+    ${va ? `<p><strong>Villain action:</strong> ${esc(va.name)}, straight after the turn that started this phase (use it from its sheet).</p>` : ""}`);
+}
+
+/** The marker as its phase now says (after an undo): "Phase N of 3", or none in phase 1. */
+export async function phaseMarker(actor) {
+  const n = phaseOf(actor);
+  const old = actor.effects.filter(e => e.flags?.[SYS]?.phase);
+  if (old.length === (n > 1 ? 1 : 0) && (n === 1 || Number(old[0].flags[SYS].phase) === n)) return;
+  if (old.length) await tryIt("phase", () => actor.deleteEmbeddedDocuments("ActiveEffect", old.map(e => e.id).filter(id => actor.effects.has(id))));
+  if (n > 1) await tryIt("phase", () => actor.createEmbeddedDocuments("ActiveEffect", [{
+    name: `Phase ${n} of 3`, img: `systems/${SYS}/assets/conditions/phase.svg`, statuses: ["phase"], origin: actor.uuid, flags: { [SYS]: { phase: n } }
+  }]));
+}
+
+/** Taken off Run as solo: the phase marker goes. */
+async function phaseCleared(actor) {
+  const old = actor.effects.filter(e => e.flags?.[SYS]?.phase).map(e => e.id);
+  if (old.length) await tryIt("phase", () => actor.deleteEmbeddedDocuments("ActiveEffect", old.filter(id => actor.effects.has(id))));
 }
 
 /* -------------------------------------------- */
@@ -212,19 +281,19 @@ async function bloodiedNow(actor) {
 /* -------------------------------------------- */
 
 /**
- * Villain actions (M&T v0.10.50, K65 and K71): a solo whose block lists them has three (opener, crowd control,
- * ultimate). It uses one straight after an enemy's turn, one a round and each once a fight (its uses: per encounter),
- * never while it can't act. It then skips its second turn that round. Bloodied doesn't recover them.
+ * Villain actions (M&T v0.10.75, K145, K158): three, its type's or its own (opener, crowd control, ultimate), each once
+ * a fight (its uses: per encounter). The opener straight after the first enemy turn, the crowd control straight after the
+ * turn that starts phase 2, the ultimate after the one that starts phase 3, even if it has used one that round; never
+ * while it can't act (it uses it as soon as it can). It skips its second turn in a round it uses one, if still to come.
  */
 export const villainNo = item => Number(item?.flags?.[SYS]?.villainAction) || 0;
 /** The conditions that stop it acting at all. */
 export const CANT_ACT = ["incapacitated", "paralysed", "stunned", "unconscious", "petrified"];
 
-/** Can it use a villain action now (pure, for tests)? `statuses` its conditions, `last` its flag, `combat`/`round` now. */
-export function villainBlock({ statuses = [], last = null, combatId = "", round = 0 } = {}) {
+/** Can it use a villain action now (pure, for tests)? `statuses` its conditions. No longer one a round (K158). */
+export function villainBlock({ statuses = [] } = {}) {
   const cant = CANT_ACT.filter(id => statuses.includes(id));
   if (cant.length) return { reason: "cant", cant };
-  if (combatId && last?.combat === combatId && Number(last.round) === Number(round)) return { reason: "round" };
   return null;
 }
 
@@ -240,11 +309,13 @@ function villainFight(actor) {
 export function villainGate(item) {
   const actor = item?.actor;
   if (!actor || !villainNo(item)) return true;
-  const { combat } = villainFight(actor);
-  const b = villainBlock({ statuses: [...statusesOf(actor)], last: actor.getFlag(SYS, "villainRound"), combatId: combat?.id ?? "", round: combat?.round });
+  if (!isSolo(actor)) {
+    ui.notifications.warn(`${actor.name} isn't being run as a solo: a normal creature has no villain actions (tick Run as solo on its sheet).`);
+    return false;
+  }
+  const b = villainBlock({ statuses: [...statusesOf(actor)] });
   if (!b) return true;
-  if (b.reason === "cant") ui.notifications.warn(`${actor.name} can't use a villain action while ${b.cant.map(id => ARNEYAN.conditions[id]?.name ?? id).join(", ")}.`);
-  else ui.notifications.warn(`${actor.name} has used a villain action this round already: one a round.`);
+  ui.notifications.warn(`${actor.name} can't use a villain action while ${b.cant.map(id => ARNEYAN.conditions[id]?.name ?? id).join(", ")}: it uses it as soon as it can.`);
   return false;
 }
 
@@ -282,22 +353,27 @@ export async function villainUsed(item) {
   const gone = twin && at >= 0 && at < now;
   const current = twin && at === now;
   await card(actor, `<header class="arn-card-title"><i class="fa-solid fa-skull"></i> <span>${esc(actor.name)}: ${esc(item.name)}</span></header>
-    <p>${gone ? "Its second turn this round has already gone; the GM decides what it gives up." : "It skips its second turn this round (the tracker passes over it)."} One villain action a round, each once a fight; Bloodied doesn't bring them back.</p>`);
+    <p>${gone ? "Its second turn this round has already gone; the GM decides what it gives up." : "It skips its second turn this round (the tracker passes over it)."} Each once a fight; a phase change doesn't bring them back.</p>`);
   // Used at the start of its own second turn: that turn ends now.
   if (current && activeGM()) await passSecondTurn(combat, twin);
+}
+
+/** A second combatant for a solo's second turn. */
+function addSecondTurn(c) {
+  const combat = c.parent;
+  if (combat.combatants.some(x => soloOf(x) === c.id)) return;
+  combat.createEmbeddedDocuments("Combatant", [{
+    tokenId: c.tokenId, sceneId: c.sceneId, actorId: c.actorId, hidden: c.hidden, name: `${c.name} (second turn)`,
+    ...(Number.isFinite(c.initiative) ? { initiative: secondInitiative(c.initiative, combat.combatants.filter(x => x.id !== c.id).map(x => x.initiative)) } : {}),
+    flags: { [SYS]: { soloOf: c.id } }
+  }], { arneyanSolo: true }).catch(err => console.warn("Arneyan | solo second turn", err));
 }
 
 export function registerSolo() {
   // Added to a fight: a second combatant for its second turn.
   Hooks.on("createCombatant", (c, options) => {
     if (!activeGM() || soloOf(c) || options?.arneyanSolo || !isSolo(c.actor)) return;
-    const combat = c.parent;
-    if (combat.combatants.some(x => soloOf(x) === c.id)) return;
-    combat.createEmbeddedDocuments("Combatant", [{
-      tokenId: c.tokenId, sceneId: c.sceneId, actorId: c.actorId, hidden: c.hidden, name: `${c.name} (second turn)`,
-      ...(Number.isFinite(c.initiative) ? { initiative: secondInitiative(c.initiative, combat.combatants.filter(x => x.id !== c.id).map(x => x.initiative)) } : {}),
-      flags: { [SYS]: { soloOf: c.id } }
-    }], { arneyanSolo: true }).catch(err => console.warn("Arneyan | solo second turn", err));
+    addSecondTurn(c);
   });
   // The second turn's initiative always follows the first's.
   Hooks.on("preUpdateCombatant", (c, changes, options) => {
@@ -362,17 +438,27 @@ export function registerSolo() {
   Hooks.on("deleteCombat", combat => {
     if (!activeGM()) return;
     for (const c of combat.combatants ?? []) if (soloOf(c) && c.actor) c.actor.update({ [`flags.${SYS}.soloControl`]: noCounts(), ...unset(`flags.${SYS}.soloShakes`) }).catch(() => null);
-  });
-  // Bloodied, once until it's back to full HP.
-  Hooks.on("updateActor", (actor, changes) => {
-    if (!activeGM() || !isSolo(actor) || !foundry.utils.hasProperty(changes, "system.attributes.hp.value")) return;
-    const hp = actor.system.attributes.hp;
-    const max = Number(hp.max) || 0;
-    if (max && hp.value >= max && actor.getFlag(SYS, "bloodied")) {
-      actor.unsetFlag(SYS, "bloodied").catch(() => null);
-      removeBloodied(actor).catch(() => null);
-      return;
+    // A new fight starts in phase 1 (the marker goes; its HP is the GM's to set).
+    for (const c of combat.combatants ?? []) {
+      const a = c.actor;
+      if (soloOf(c) || !a || !markedSolo(a) || phaseOf(a) === 1) continue;
+      a.update({ [`flags.${SYS}.soloPhase`]: { n: 1, key: "" } }).then(() => phaseCleared(a)).catch(() => null);
     }
-    if (max && hp.value > 0 && hp.value <= max / 2 && !actor.getFlag(SYS, "bloodied")) bloodied(actor).catch(err => console.warn("Arneyan | bloodied", err));
+  });
+  // A phase change (phasePreUpdate wrote it into the update's options): what ends, what recovers, the card.
+  Hooks.on("updateActor", (actor, changes, options) => {
+    if (!activeGM()) return;
+    const n = options?.arneyanPhase?.[actor.id];
+    if (n) phaseStarted(actor, n).catch(err => console.warn("Arneyan | phase", err));
+    // Run as solo ticked or unticked mid-fight: its second turn joins or leaves the tracker.
+    if (!foundry.utils.hasProperty(changes, "system.details.runSolo")) return;
+    if (!actor.system.details.runSolo) phaseCleared(actor).catch(() => null);
+    for (const combat of game.combats ?? []) {
+      for (const c of [...combat.combatants].filter(x => !soloOf(x) && isCombatantOf(x, actor))) {
+        const twin = combat.combatants.find(x => soloOf(x) === c.id);
+        if (isSolo(actor) && !twin) addSecondTurn(c);
+        else if (!isSolo(actor) && twin) combat.deleteEmbeddedDocuments("Combatant", [twin.id]).catch(() => null);
+      }
+    }
   });
 }

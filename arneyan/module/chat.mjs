@@ -9,7 +9,7 @@ import { regenerate, turnReminder } from "./qol.mjs";
 import { unset } from "./compat.mjs";
 import { tickCounters, turnDamageFor, reapply } from "./counters.mjs";
 import { effectDataFor, applyEffectTo, endConcentration, onConcentrationDeleted, expireEffects, toggleCondition, statusesOf } from "./effects.mjs";
-import { skippedFor } from "./solo.mjs";
+import { skippedFor, phaseMarker, isSolo as soloRuns } from "./solo.mjs";
 
 const SYS = "arneyan";
 const SOCKET = `system.${SYS}`;
@@ -105,7 +105,7 @@ export async function applyDamageTo(actors, amount, opts, ctx = {}) {
   for (const actor of actors) {
     if (actor.isOwner) {
       const hp = actor.system.attributes?.hp ?? {};
-      undo.push({ uuid: actor.uuid, value: hp.value ?? 0, temp: hp.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, regenStopped: actor.flags?.[SYS]?.regenStopped ?? null, name: actor.name });
+      undo.push({ uuid: actor.uuid, value: hp.value ?? 0, temp: hp.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, regenStopped: actor.flags?.[SYS]?.regenStopped ?? null, soloPhase: soloRuns(actor) ? (actor.flags?.[SYS]?.soloPhase ?? { n: 1, key: "" }) : null, name: actor.name });
       const r = await actor.applyDamage(amount, opts);
       lines.push(r.line ?? r.text);
     } else others.push(actor.uuid);
@@ -227,7 +227,7 @@ async function onSocket(msg, senderId) {
       if (!(actor instanceof Actor) || !creature(actor) || actor.pack) continue;
       try {
         const hp0 = actor.system.attributes?.hp ?? {};
-        undo.push({ uuid: actor.uuid, value: hp0.value ?? 0, temp: hp0.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, regenStopped: actor.flags?.[SYS]?.regenStopped ?? null, name: actor.name });
+        undo.push({ uuid: actor.uuid, value: hp0.value ?? 0, temp: hp0.temp ?? 0, subdual: actor.flags?.[SYS]?.subdual ?? 0, regenStopped: actor.flags?.[SYS]?.regenStopped ?? null, soloPhase: soloRuns(actor) ? (actor.flags?.[SYS]?.soloPhase ?? { n: 1, key: "" }) : null, name: actor.name });
         const r = await actor.applyDamage(amount, { type: Object.hasOwn(ARNEYAN.damageTypes, type) ? type : "", mult, temp: !!msg.opts?.temp, weapon: WEAPON_KINDS.includes(msg.opts?.weapon) ? msg.opts.weapon : "", parts, spell: String(msg.opts?.spell ?? "").slice(0, 80), disrupt: !!msg.opts?.disrupt, subdual: msg.opts?.subdual === true && mult > 0 });
         lines.push(r.line ?? r.text);
       } catch (err) { console.warn(`Arneyan | Could not apply damage to ${actor.name}`, err); }
@@ -341,7 +341,11 @@ async function undoEntries(entries) {
     const sub = Number(e.subdual);
     await a.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": Math.max(0, temp), ...(Number.isFinite(sub) && e.subdual !== undefined ? { [`flags.${SYS}.subdual`]: Math.max(0, sub) } : {}),
       // A misclicked fire hit on a troll no longer stops its regeneration.
-      ...(e.regenStopped !== undefined && !e.regenStopped && a.flags?.[SYS]?.regenStopped ? unset(`flags.${SYS}.regenStopped`) : {}) });
+      ...(e.regenStopped !== undefined && !e.regenStopped && a.flags?.[SYS]?.regenStopped ? unset(`flags.${SYS}.regenStopped`) : {}),
+      // A solo's phase as it was (a hit that started a new phase, undone); the marker follows (solo.mjs).
+      ...(e.soloPhase && Number(e.soloPhase.n) !== Number(a.flags?.[SYS]?.soloPhase?.n ?? 1) ? { [`flags.${SYS}.soloPhase`]: e.soloPhase } : {}) },
+      { arneyanUndo: true });
+    if (e.soloPhase) await phaseMarker(a).catch(() => null);
     lines.push(`${a.name} back to ${value} HP`);
   }
   if (lines.length) report({ source: "Undo" }, lines, "rotate-left");

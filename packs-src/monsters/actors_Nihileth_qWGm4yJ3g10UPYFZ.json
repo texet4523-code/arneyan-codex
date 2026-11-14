@@ -29,8 +29,8 @@
   "hd": "18d12+18",
   "attributes": {
    "hp": {
-    "value": 135,
-    "max": 135,
+    "value": 80,
+    "max": 80,
     "temp": 0
    },
    "ac": 17,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Mind lord",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge undead</em></p><p><strong>GM:</strong> An aboleth undone by the void and returned as something worse. It remembers everything, including things that never happened.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge undead</em></p><p><strong>GM:</strong> An aboleth undone by the void and returned as something worse. It remembers everything, including things that never happened.</p><p><strong>Solo: Mind lord.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the mind lord type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -276,129 +278,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Call of the Void",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>60ft</strong> makes a @Check[will|dc:19]{Will save DC 19} or is pulled <strong>20ft</strong> towards it.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 19,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "4cwV7x7CAiKb3a9t",
-   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.4cwV7x7CAiKb3a9t",
-   "effects": [],
-   "sort": 500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Necrotic Mucus",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Mucus sprays a <strong>30ft cone</strong>; each creature in it makes a @Check[fort|dc:17]{Fortitude save DC 17}, taking @Damage[4d6 necrotic]{4d6 necrotic damage} and @Condition[poisoned]{Poisoned} until the end of its next turn on a failure, or half on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 17,
-    "damage": "4d6",
-    "damageType": "necrotic",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "LO5JflVB3H4Wm9eC",
-   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.LO5JflVB3H4Wm9eC",
-   "effects": [],
-   "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Devour Memory",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>One @Condition[charmed]{Charmed} or @Condition[poisoned]{Poisoned} creature within <strong>60ft</strong> makes a @Check[will|dc:19]{Will save DC 19}: @Damage[8d6 psychic]{8d6 psychic damage} and it forgets its last hour on a failure, half on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 19,
-    "damage": "8d6",
-    "damageType": "psychic",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "1Kpy3BRyFaBk8LFu",
-   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.1Kpy3BRyFaBk8LFu",
-   "effects": [],
-   "sort": 700,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -411,11 +290,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "g9T4vBprkRSnfhAY",
-   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.g9T4vBprkRSnfhAY",
+   "_id": "hNbZJEEGFU1Ho3EV",
+   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.hNbZJEEGFU1Ho3EV",
    "effects": [],
    "flags": {},
-   "sort": 800,
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -438,9 +317,135 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.skills.Item.m06LagBmOWY8Bapt"
    },
-   "_id": "rZEzjPbBgMQCGMgS",
-   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.rZEzjPbBgMQCGMgS",
+   "_id": "IyWJRus5uZPk3brt",
+   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.IyWJRus5uZPk3brt",
    "flags": {},
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Thrall Call",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Mind lord"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>120ft</strong> makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[charmed]{Charmed}, taking @Damage[2d6 psychic]{2d6 psychic damage}; it moves each @Condition[charmed]{Charmed} creature up to <strong>20ft</strong>.</p><p class=\"arn-note\">A mind lord solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "2d6",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "PFjzRvgc9Z6Ez9OM",
+   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.PFjzRvgc9Z6Ez9OM",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Mind Storm",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Mind lord"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> makes a @Check[will|dc:19]{Will save DC 19}, taking @Damage[4d6 psychic]{4d6 psychic damage} and being <strong>Slowed</strong> on a failure, or half damage on a success.</p><p class=\"arn-note\">A mind lord solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "4d6",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "3wWaOkkAVjaGR5LC",
+   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.3wWaOkkAVjaGR5LC",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Overmind",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-skeleton.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Mind lord"
+    }
+   },
+   "system": {
+    "description": "<p>One creature within <strong>120ft</strong> makes a @Check[will|dc:19]{Will save DC 19}, taking @Damage[6d8 psychic]{6d8 psychic damage} and being @Condition[dominated]{Dominated} on a failure, or half damage on a success.</p><p class=\"arn-note\">A mind lord solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "6d8",
+    "damageType": "psychic",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "BIfGuVdYnsruvtJB",
+   "_key": "!actors.items!qWGm4yJ3g10UPYFZ.BIfGuVdYnsruvtJB",
+   "effects": [],
    "sort": 900,
    "ownership": {
     "default": 0

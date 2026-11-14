@@ -29,8 +29,8 @@
   "hd": "24d12",
   "attributes": {
    "hp": {
-    "value": 485,
-    "max": 485,
+    "value": 120,
+    "max": 120,
     "temp": 0
    },
    "ac": 25,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Blindsight 60ft, Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Dragon",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> Wise and noble; it will parley, and takes offence at a lie. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Gargantuan dragon (metallic)</em></p><p><strong>GM:</strong> Wise and noble; it will parley, and takes offence at a lie. An ancient dragon schemes across centuries and fights only on ground of its own choosing.</p><p><strong>Solo: Dragon.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the dragon type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -330,16 +332,109 @@
    "folder": null
   },
   {
+   "name": "Perception",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "master"
+   },
+   "_id": "ZNC0t01uMMxbDsUh",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.ZNC0t01uMMxbDsUh",
+   "effects": [],
+   "flags": {},
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Stealth",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
+   "system": {
+    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "dex",
+    "tier": "trained"
+   },
+   "_id": "tyRVc7gS8SF3YXwR",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.tyRVc7gS8SF3YXwR",
+   "effects": [],
+   "flags": {},
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Insight",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-owl.svg",
+   "system": {
+    "description": "<p>An Insight check: a Wisdom check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "wis",
+    "tier": "trained"
+   },
+   "_id": "yguJRGOSieRhspBP",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.yguJRGOSieRhspBP",
+   "effects": [],
+   "flags": {},
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Persuasion",
+   "type": "skill",
+   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
+   "system": {
+    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "ability": "cha",
+    "tier": "trained"
+   },
+   "_id": "Qg131CpXodij6Esa",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.Qg131CpXodij6Esa",
+   "effects": [],
+   "flags": {},
+   "sort": 1000,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
    "name": "Villain Action 1 (Opener): Dread Majesty",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Dragon"
     }
    },
    "system": {
-    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:30]{Will save DC 30} or is @Condition[frightened]{Frightened} until the end of its next turn. The dragon then flies up to half its flying speed.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[15]{15 damage} to one creature it affects, or @Damage[7]{7} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
+    "description": "<p>Each enemy within <strong>120ft</strong> that can see it makes a @Check[will|dc:30]{Will save DC 30} or is @Condition[frightened]{Frightened}, taking @Damage[2d6 fire]{2d6 fire damage}. It then flies (or swims) up to half its speed.</p><p class=\"arn-note\">A dragon solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -352,8 +447,8 @@
     },
     "save": "will",
     "dc": 30,
-    "damage": "",
-    "damageType": "",
+    "damage": "2d6",
+    "damageType": "fire",
     "level": 0,
     "className": "",
     "rules": [],
@@ -361,26 +456,27 @@
     "active": false,
     "applies": []
    },
-   "_id": "X2zejzUK5J75xzAV",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.X2zejzUK5J75xzAV",
+   "_id": "cNAMH2fG0R7rrorx",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.cNAMH2fG0R7rrorx",
    "effects": [],
-   "sort": 700,
+   "sort": 1100,
    "ownership": {
     "default": 0
    },
    "folder": null
   },
   {
-   "name": "Villain Action 2 (Crowd Control): Sunburst Wings",
+   "name": "Villain Action 2 (Crowd Control): Elemental Storm",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 2
+     "villainAction": 2,
+     "soloType": "Dragon"
     }
    },
    "system": {
-    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[fort|dc:30]{Fortitude save DC 30}, taking @Damage[6d8 radiant]{6d8 radiant damage} and being @Condition[blinded]{Blinded} until the end of its next turn on a failure, or half damage on a success.</p>",
+    "description": "<p>Its element bursts out to <strong>30ft</strong> around it. Each creature there makes a @Check[ref|dc:30]{Reflex save DC 30}, taking @Damage[4d6 fire]{4d6 fire damage} and the element's rider on a failure, or half damage on a success. (Its element: fire; rider: pushed <strong>15ft</strong> and @Condition[prone]{Prone}.)</p><p class=\"arn-note\">A dragon solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -391,10 +487,10 @@
      "max": 1,
      "per": "encounter"
     },
-    "save": "fort",
+    "save": "ref",
     "dc": 30,
-    "damage": "6d8",
-    "damageType": "radiant",
+    "damage": "4d6",
+    "damageType": "fire",
     "level": 0,
     "className": "",
     "rules": [],
@@ -402,10 +498,10 @@
     "active": false,
     "applies": []
    },
-   "_id": "WFDUkQia2THISjEg",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.WFDUkQia2THISjEg",
+   "_id": "9gT0JAXZBYfSco8X",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.9gT0JAXZBYfSco8X",
    "effects": [],
-   "sort": 800,
+   "sort": 1200,
    "ownership": {
     "default": 0
    },
@@ -417,11 +513,12 @@
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 3
+     "villainAction": 3,
+     "soloType": "Dragon"
     }
    },
    "system": {
-    "description": "<p>It moves up to half its flying speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also fall @Condition[prone]{Prone}.</p>",
+    "description": "<p>It moves up to half its speed, then uses its Breath Weapon whether or not it is ready. Creatures that fail the save also take the element's rider. (Rider for fire: pushed <strong>15ft</strong> and @Condition[prone]{Prone}.)</p><p class=\"arn-note\">A dragon solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -443,101 +540,9 @@
     "active": false,
     "applies": []
    },
-   "_id": "81c05fHo7TTmSTNq",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.81c05fHo7TTmSTNq",
+   "_id": "AK1P7gmqtGW2awWw",
+   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.AK1P7gmqtGW2awWw",
    "effects": [],
-   "sort": 900,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Perception",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-owl.svg",
-   "system": {
-    "description": "<p>A Perception check: a Wisdom check the creature is trained in.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "ability": "wis",
-    "tier": "master"
-   },
-   "_id": "rWAuoGRX56NUL7WM",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.rWAuoGRX56NUL7WM",
-   "effects": [],
-   "flags": {},
-   "sort": 1000,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Stealth",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-juggler.svg",
-   "system": {
-    "description": "<p>A Stealth check: a Dexterity check the creature is trained in.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "ability": "dex",
-    "tier": "trained"
-   },
-   "_id": "KAZNtRDl5WvBi6Dh",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.KAZNtRDl5WvBi6Dh",
-   "effects": [],
-   "flags": {},
-   "sort": 1100,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Insight",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-owl.svg",
-   "system": {
-    "description": "<p>An Insight check: a Wisdom check the creature is trained in.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "ability": "wis",
-    "tier": "trained"
-   },
-   "_id": "C6oBheaek6seUH67",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.C6oBheaek6seUH67",
-   "effects": [],
-   "flags": {},
-   "sort": 1200,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Persuasion",
-   "type": "skill",
-   "img": "systems/arneyan/assets/icons/skill-drama-masks.svg",
-   "system": {
-    "description": "<p>A Persuasion check: a Charisma check the creature is trained in.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "ability": "cha",
-    "tier": "trained"
-   },
-   "_id": "r1kXnAFaZVNU7oxK",
-   "_key": "!actors.items!Ws3SzHtx7G4ZERMC.r1kXnAFaZVNU7oxK",
-   "effects": [],
-   "flags": {},
    "sort": 1300,
    "ownership": {
     "default": 0

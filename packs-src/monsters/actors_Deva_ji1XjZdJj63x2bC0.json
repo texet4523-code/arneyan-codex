@@ -29,8 +29,8 @@
   "hd": "12d8",
   "attributes": {
    "hp": {
-    "value": 125,
-    "max": 125,
+    "value": 55,
+    "max": 55,
     "temp": 0
    },
    "ac": 18,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Celestial",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium celestial</em></p><p><strong>GM:</strong> A messenger of the gods. It intervenes with grave purpose and has very little time for mortal squabbles.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Medium celestial</em></p><p><strong>GM:</strong> A messenger of the gods. It intervenes with grave purpose and has very little time for mortal squabbles.</p><p><strong>Solo: Celestial.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the celestial type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>N</strong> (see the Treasure tables).</p>"
   }
  },
@@ -538,129 +540,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Herald's Light",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>30ft</strong> makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[blinded]{Blinded} until the end of its next turn. The deva then flies up to its speed.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 19,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "SCzrM5J9x0zYTcrT",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.SCzrM5J9x0zYTcrT",
-   "effects": [],
-   "sort": 1000,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Wings of Judgement",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>It flies up to <strong>60ft</strong> in a straight line. Each creature it passes within <strong>5ft</strong> of makes a @Check[ref|dc:19]{Reflex save DC 19}, taking @Damage[4d8 radiant]{4d8 radiant damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 19,
-    "damage": "4d8",
-    "damageType": "radiant",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "xmzEbmYZPETHqUMc",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.xmzEbmYZPETHqUMc",
-   "effects": [],
-   "sort": 1100,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Word of the Gods",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>One creature within <strong>60ft</strong> that can hear it makes a @Check[will|dc:19]{Will save DC 19}. On a failure it takes @Damage[8d8 radiant]{8d8 radiant damage} and is @Condition[stunned]{Stunned} until the end of its next turn; on a success, half damage.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 19,
-    "damage": "8d8",
-    "damageType": "radiant",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "WFbBmQEWPqW2IEBF",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.WFbBmQEWPqW2IEBF",
-   "effects": [],
-   "sort": 1200,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -673,11 +552,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "wdkC5xYEuNSTGb0z",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.wdkC5xYEuNSTGb0z",
+   "_id": "nbppQOCo7qmmyKhu",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.nbppQOCo7qmmyKhu",
    "effects": [],
    "flags": {},
-   "sort": 1300,
+   "sort": 1000,
    "ownership": {
     "default": 0
    },
@@ -696,10 +575,136 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "v5iDRX3W753ib046",
-   "_key": "!actors.items!ji1XjZdJj63x2bC0.v5iDRX3W753ib046",
+   "_id": "b51kBeX6cU3PHXOg",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.b51kBeX6cU3PHXOg",
    "effects": [],
    "flags": {},
+   "sort": 1100,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Herald's Light",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[blinded]{Blinded}, taking @Damage[2d6 radiant]{2d6 radiant damage}. It then flies up to its speed.</p><p class=\"arn-note\">A celestial solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
+    "damage": "2d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0l9Q5A2Zoi0sFX5c",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.0l9Q5A2Zoi0sFX5c",
+   "effects": [],
+   "sort": 1200,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Wings of Judgement",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>It flies up to <strong>60ft</strong> in a straight line. Each creature it passes within <strong>5ft</strong> of makes a @Check[ref|dc:19]{Reflex save DC 19}, taking @Damage[4d6 radiant]{4d6 radiant damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">A celestial solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 19,
+    "damage": "4d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "9qtt9yRGc4eKe9uc",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.9qtt9yRGc4eKe9uc",
+   "effects": [],
+   "sort": 1300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Smite of Heaven",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>It makes its full attack line against one creature. On a hit, the target makes a @Check[fort|dc:19]{Fortitude save DC 19} or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A celestial solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 19,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "f7DVwPb9NsPTxhKz",
+   "_key": "!actors.items!ji1XjZdJj63x2bC0.f7DVwPb9NsPTxhKz",
+   "effects": [],
    "sort": 1400,
    "ownership": {
     "default": 0

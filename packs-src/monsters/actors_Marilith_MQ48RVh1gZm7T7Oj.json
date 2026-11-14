@@ -29,8 +29,8 @@
   "hd": "16d8",
   "attributes": {
    "hp": {
-    "value": 375,
-    "max": 375,
+    "value": 75,
+    "max": 75,
     "temp": 0
    },
    "ac": 18,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
+   "soloType": "Fiend",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large fiend (demon)</em></p><p><strong>GM:</strong> A six-armed war-leader who treats duels as theatre. She never fights without a plan.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large fiend (demon)</em></p><p><strong>GM:</strong> A six-armed war-leader who treats duels as theatre. She never fights without a plan.</p><p><strong>Solo: Fiend.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the fiend type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -299,16 +301,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Blade Dance",
+   "name": "Villain Action 1 (Opener): Infernal Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Fiend"
     }
    },
    "system": {
-    "description": "<p>It moves up to its speed, unharmed by attacks out of turn, and makes one longsword attack against each enemy it passes.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see or hear it makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened}, taking @Damage[2d6 fire]{2d6 fire damage}. It then moves up to its speed.</p><p class=\"arn-note\">A fiend solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -319,10 +322,10 @@
      "max": 1,
      "per": "encounter"
     },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
+    "save": "will",
+    "dc": 22,
+    "damage": "2d6",
+    "damageType": "fire",
     "level": 0,
     "className": "",
     "rules": [],
@@ -330,8 +333,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "E2cvkNF1M41NMmCS",
-   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.E2cvkNF1M41NMmCS",
+   "_id": "uQFA7zvf3Tz22Psg",
+   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.uQFA7zvf3Tz22Psg",
    "effects": [],
    "sort": 600,
    "ownership": {
@@ -340,16 +343,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 2 (Crowd Control): Coils",
+   "name": "Villain Action 2 (Crowd Control): Ring of Hellfire",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 2
+     "villainAction": 2,
+     "soloType": "Fiend"
     }
    },
    "system": {
-    "description": "<p>Its tail sweeps everything within <strong>10ft</strong>. Each creature there makes a @Check[ref|dc:21]{Reflex save DC 21}, taking @Damage[2d6+4 bludgeoning]{2d6+4 bludgeoning damage}, falling @Condition[prone]{Prone} and being pulled <strong>10ft</strong> towards it on a failure, or half damage on a success.</p>",
+    "description": "<p>Hellfire bursts from the ground within <strong>20ft</strong> of it. Each creature there makes a @Check[ref|dc:22]{Reflex save DC 22}, taking @Damage[4d6 fire]{4d6 fire damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">A fiend solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -361,9 +365,9 @@
      "per": "encounter"
     },
     "save": "ref",
-    "dc": 21,
-    "damage": "2d6+4",
-    "damageType": "bludgeoning",
+    "dc": 22,
+    "damage": "4d6",
+    "damageType": "fire",
     "level": 0,
     "className": "",
     "rules": [],
@@ -371,8 +375,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "GiUrLbtqLubCvxu2",
-   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.GiUrLbtqLubCvxu2",
+   "_id": "EmNyRxN04CfAsNPw",
+   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.EmNyRxN04CfAsNPw",
    "effects": [],
    "sort": 700,
    "ownership": {
@@ -381,16 +385,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 3 (Ultimate): Whirlwind of Steel",
+   "name": "Villain Action 3 (Ultimate): Damnation",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 3
+     "villainAction": 3,
+     "soloType": "Fiend"
     }
    },
    "system": {
-    "description": "<p>It makes six longsword attacks against one creature.</p>",
+    "description": "<p>It makes its full attack line against one creature. If two or more attacks hit, the target makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A fiend solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -401,8 +406,8 @@
      "max": 1,
      "per": "encounter"
     },
-    "save": "",
-    "dc": null,
+    "save": "will",
+    "dc": 22,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -412,8 +417,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "VD3Cz2cqjlHJv21r",
-   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.VD3Cz2cqjlHJv21r",
+   "_id": "3lt0r2eFuxzTBIhA",
+   "_key": "!actors.items!MQ48RVh1gZm7T7Oj.3lt0r2eFuxzTBIhA",
    "effects": [],
    "sort": 800,
    "ownership": {

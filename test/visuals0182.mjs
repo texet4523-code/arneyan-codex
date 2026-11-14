@@ -10,18 +10,20 @@ const T = await import("../arneyan/module/treasure.mjs");
 const C = await import("../arneyan/module/config.mjs");
 const root = p => new URL(`../${p}`, import.meta.url);
 
-/* Bloodied: a condition with an icon, no counter and no rules; the marker survives the clean-up it marks. */
-const b = C.ARNEYAN.conditions.bloodied;
+/* M&T v0.10.75: Bloodied is gone; the phase marker is a condition with an icon, no counter and no rules, and survives
+   the clean-up it marks. */
+assert.equal(C.ARNEYAN.conditions.bloodied, undefined);
+const b = C.ARNEYAN.conditions.phase;
 assert.equal(b.counter, "none");
 assert.deepEqual(b.rules, []);
-assert.ok(fs.existsSync(root("arneyan/assets/conditions/bloodied.svg")), "its icon is built");
+assert.ok(fs.existsSync(root("arneyan/assets/conditions/phase.svg")), "its icon is built");
 const solo = { uuid: "Actor.s", effects: [
-  { name: "Bloodied", statuses: new Set(["bloodied"]), origin: "Actor.s", flags: { arneyan: { bloodied: true } } },
+  { name: "Phase 2 of 3", statuses: new Set(["phase"]), origin: "Actor.s", flags: { arneyan: { phase: 2 } } },
   { name: "Frightened", statuses: new Set(["frightened"]), origin: "Actor.foe" }
 ] };
-assert.deepEqual(S.bloodiedEnds(solo, () => "foe").map(e => e.name), ["Frightened"], "Bloodied stays, the foe's condition ends");
+assert.deepEqual(S.phaseEnds(solo, () => "foe").map(e => e.name), ["Frightened"], "the marker stays, the foe's condition ends");
 const solo_src = fs.readFileSync(root("arneyan/module/solo.mjs"), "utf8");
-assert.ok(/statuses: \["bloodied"\]/.test(solo_src), "put on at half HP");
+assert.ok(/statuses: \["phase"\]/.test(solo_src), "put on at a phase change");
 
 /* The Named Uniques as items. */
 const dir = root("packs-src/equipment/");
@@ -56,15 +58,15 @@ assert.equal(E.weaponMatches({ weapon: "chosen", names: ["Sword, Long"] }, wyrm)
 assert.equal(items.find(i => i.name === "Stonefather").system.slots, items.find(i => i.name === "Maul" && i.type === "weapon").system.slots + 1, "Heavy: 1 more slot");
 assert.ok(!/Saves use/.test(items.find(i => i.name === "Retort").system.description), "no save, no save line");
 assert.ok(/Saves use/.test(items.find(i => i.name === "Hillfeller").system.description));
-/* The marker comes off by its status, whoever put it on, and after a heal that beat the marker. */
-assert.ok(/statuses\?\.has\?\.\("bloodied"\)\)\.map/.test(solo_src) && /if \(!actor\.getFlag\(SYS, "bloodied"\)\) await removeBloodied/.test(solo_src));
+/* The old marker comes off a world solo in the update (migrate.mjs, phaseRework). */
+assert.ok(/includes\("bloodied"\) \|\| e\.flags\?\.\[SYS\]\?\.bloodied/.test(fs.readFileSync(root("arneyan/module/migrate.mjs"), "utf8")));
 /* Foundry v14 hides an icon without a duration unless it shows always: a status effect made by hand shows always. */
 const K = await import("../arneyan/module/counters.mjs");
 const SHOW = { NONE: 0, CONDITIONAL: 1, ALWAYS: 2 };
-assert.equal(K.showIconFor({ name: "Bloodied", statuses: ["bloodied"] }, SHOW), 2);
+assert.equal(K.showIconFor({ name: "Phase 2 of 3", statuses: ["phase"] }, SHOW), 2);
 assert.equal(K.showIconFor({ name: "Bless" }, SHOW), null, "no status: Foundry's own rule");
 assert.equal(K.showIconFor({ statuses: ["frightened"], showIcon: 1 }, SHOW), null, "its own setting stays");
-assert.equal(K.showIconFor({ statuses: ["bloodied"] }, undefined), null, "v13: no such field");
+assert.equal(K.showIconFor({ statuses: ["phase"] }, undefined), null, "v13: no such field");
 const read = p => fs.readFileSync(root(`arneyan/module/${p}`), "utf8");
 assert.ok(/Hooks\.on\("preCreateActiveEffect", \(effect, data\) => \{\s*const v = showIconFor\(data\)/.test(read("counters.mjs")), "the hook is wired");
 assert.ok(/showIcon: CONST\.ACTIVE_EFFECT_SHOW_ICON\.ALWAYS/.test(read("transform.mjs")), "a form's Paralysed, made inside the new actor");

@@ -20,7 +20,7 @@
       {{#each foes}}
       <li>
         <img src="{{img}}" alt="">
-        <span class="arn-item-name">{{name}}{{#if solo}} <span class="arn-chip strong">Solo</span>{{/if}}</span>
+        <span class="arn-item-name">{{name}}{{#if mythic}} <span class="arn-chip strong" data-tooltip="Always run as a solo">Solo</span>{{else if marked}} <a class="arn-chip {{#if solo}}strong{{/if}}" data-action="soloToggle" data-i="{{i}}" data-tooltip="Marked Solo: click to run it as a solo (three phases, two turns, villain actions; costs the whole budget) or as a normal creature of its Level">{{#if solo}}Run as solo{{else}}Normal (marked Solo){{/if}}</a>{{else}}{{#if solo}} <span class="arn-chip strong">Solo</span>{{/if}}{{/if}}</span>
         <span class="arn-muted arn-meta">Level {{levelLabel}} · cost {{cost}}{{#if na}} · No. {{na}}{{/if}}</span>
         {{#if canRoll}}<a class="arn-ctl" data-action="rollNumber" data-i="{{i}}" data-tooltip="Roll No. appearing ({{na}}) for the count. Shift: in the lair"><i class="fa-solid fa-dice"></i></a>{{/if}}
         <span class="arn-enc-count"><a data-action="less" data-i="{{i}}"><i class="fa-solid fa-minus"></i></a> {{count}} <a data-action="more" data-i="{{i}}"><i class="fa-solid fa-plus"></i></a></span>

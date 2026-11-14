@@ -29,8 +29,8 @@
   "hd": "19d12",
   "attributes": {
    "hp": {
-    "value": 485,
-    "max": 485,
+    "value": 120,
+    "max": 120,
     "temp": 0
    },
    "ac": 22,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Truesight 120ft",
    "isSolo": true,
+   "soloType": "Celestial",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge celestial (titan)</em></p><p><strong>GM:</strong> The child of a god, as moody as weather and twice as large. A kind one heals a kingdom; a sullen one drowns it.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Huge celestial (titan)</em></p><p><strong>GM:</strong> The child of a god, as moody as weather and twice as large. A kind one heals a kingdom; a sullen one drowns it.</p><p><strong>Solo: Celestial.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the celestial type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -817,129 +819,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Voice of the Titans",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>120ft</strong> that can hear it makes a @Check[will|dc:26]{Will save DC 26} or falls @Condition[prone]{Prone} in awe and is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "will",
-    "dc": 26,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "nWe4a0AYLNKhezOa",
-   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.nWe4a0AYLNKhezOa",
-   "effects": [],
-   "sort": 1400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Wrathful Storm",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>It bolts Divine Wrath at up to three creatures within <strong>600ft</strong>. Each makes a @Check[ref|dc:26]{Reflex save DC 26}, taking <strong>4d8</strong> damage of the chosen type on a failure, or half on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "ref",
-    "dc": 26,
-    "damage": "4d8",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "0mSQ3ElRITD9uvw7",
-   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.0mSQ3ElRITD9uvw7",
-   "effects": [],
-   "sort": 1500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Titan's Blow",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It makes one maul attack (+22, <strong>8d6+10</strong>) against one creature. On a hit the target makes a @Check[fort|dc:28]{Fortitude save DC 28} or is @Condition[stunned]{Stunned} until the end of its next turn.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 28,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "gAkVlYU68rBhrt21",
-   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.gAkVlYU68rBhrt21",
-   "effects": [],
-   "sort": 1600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Insight",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -952,11 +831,11 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "9pjEwIX7EBjN9e9o",
-   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.9pjEwIX7EBjN9e9o",
+   "_id": "dcufVtS8RkIB56kn",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.dcufVtS8RkIB56kn",
    "effects": [],
    "flags": {},
-   "sort": 1700,
+   "sort": 1400,
    "ownership": {
     "default": 0
    },
@@ -975,10 +854,136 @@
     "ability": "cha",
     "tier": "trained"
    },
-   "_id": "xKgfL40eoExf1rJv",
-   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.xKgfL40eoExf1rJv",
+   "_id": "9Ckmz2sviIoiuscw",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.9Ckmz2sviIoiuscw",
    "effects": [],
    "flags": {},
+   "sort": 1500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Herald's Light",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see it makes a @Check[will|dc:26]{Will save DC 26} or is @Condition[blinded]{Blinded}, taking @Damage[2d6 radiant]{2d6 radiant damage}. It then flies up to its speed.</p><p class=\"arn-note\">A celestial solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 26,
+    "damage": "2d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "50r7nidL3HiZlVF9",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.50r7nidL3HiZlVF9",
+   "effects": [],
+   "sort": 1600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Wings of Judgement",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>It flies up to <strong>60ft</strong> in a straight line. Each creature it passes within <strong>5ft</strong> of makes a @Check[ref|dc:26]{Reflex save DC 26}, taking @Damage[4d6 radiant]{4d6 radiant damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">A celestial solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 26,
+    "damage": "4d6",
+    "damageType": "radiant",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "cJHWewlcWPvGqpFO",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.cJHWewlcWPvGqpFO",
+   "effects": [],
+   "sort": 1700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Smite of Heaven",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-angel-wings.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Celestial"
+    }
+   },
+   "system": {
+    "description": "<p>It makes its full attack line against one creature. On a hit, the target makes a @Check[fort|dc:26]{Fortitude save DC 26} or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A celestial solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 26,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "ivnpQfYaiWFD4DBN",
+   "_key": "!actors.items!2SnVB0Hl2FIUGosQ.ivnpQfYaiWFD4DBN",
+   "effects": [],
    "sort": 1800,
    "ownership": {
     "default": 0

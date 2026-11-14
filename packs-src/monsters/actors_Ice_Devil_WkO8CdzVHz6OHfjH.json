@@ -29,8 +29,8 @@
   "hd": "14d8",
   "attributes": {
    "hp": {
-    "value": 135,
-    "max": 135,
+    "value": 65,
+    "max": 65,
     "temp": 0
    },
    "ac": 18,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Blindsight 60ft, Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Fiend",
+   "soloHalves": true,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large fiend (devil)</em></p><p><strong>GM:</strong> A patient military commander. It lets enemies exhaust themselves against its ranks before it steps forward.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large fiend (devil)</em></p><p><strong>GM:</strong> A patient military commander. It lets enemies exhaust themselves against its ranks before it steps forward.</p><p><strong>Solo: Fiend.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the fiend type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
    "treasure": "<p>Treasure type <strong>E</strong> (see the Treasure tables).</p>"
   }
  },
@@ -374,16 +376,17 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Frozen Ranks",
+   "name": "Villain Action 1 (Opener): Infernal Presence",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
    "flags": {
     "arneyan": {
-     "villainAction": 1
+     "villainAction": 1,
+     "soloType": "Fiend"
     }
    },
    "system": {
-    "description": "<p>It raises its Chilling Wall, whether or not it has used it today.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
+    "description": "<p>Each enemy within <strong>60ft</strong> that can see or hear it makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[frightened]{Frightened}, taking @Damage[2d6 fire]{2d6 fire damage}. It then moves up to its speed.</p><p class=\"arn-note\">A fiend solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -394,8 +397,92 @@
      "max": 1,
      "per": "encounter"
     },
-    "save": "",
-    "dc": null,
+    "save": "will",
+    "dc": 19,
+    "damage": "2d6",
+    "damageType": "fire",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "mbL1Es2H3xMuYwWS",
+   "_key": "!actors.items!WkO8CdzVHz6OHfjH.mbL1Es2H3xMuYwWS",
+   "effects": [],
+   "sort": 800,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Ring of Hellfire",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Fiend"
+    }
+   },
+   "system": {
+    "description": "<p>Hellfire bursts from the ground within <strong>20ft</strong> of it. Each creature there makes a @Check[ref|dc:19]{Reflex save DC 19}, taking @Damage[4d6 cold]{4d6 cold damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">A fiend solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref",
+    "dc": 19,
+    "damage": "4d6",
+    "damageType": "cold",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "L9IIybDMVGMOztBA",
+   "_key": "!actors.items!WkO8CdzVHz6OHfjH.L9IIybDMVGMOztBA",
+   "effects": [],
+   "sort": 900,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Damnation",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Fiend"
+    }
+   },
+   "system": {
+    "description": "<p>It makes its full attack line against one creature. If two or more attacks hit, the target makes a @Check[will|dc:19]{Will save DC 19} or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A fiend solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "will",
+    "dc": 19,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -405,90 +492,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "m3BqguYGvP90HLw9",
-   "_key": "!actors.items!WkO8CdzVHz6OHfjH.m3BqguYGvP90HLw9",
-   "effects": [],
-   "sort": 800,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Blizzard",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Each creature within <strong>30ft</strong> makes a @Check[fort|dc:19]{Fortitude save DC 19}, taking @Damage[4d8 cold]{4d8 cold damage} and having its speed halved until the end of its next turn on a failure, or half damage on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 19,
-    "damage": "4d8",
-    "damageType": "cold",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "zmCjbWxGulVA1NQY",
-   "_key": "!actors.items!WkO8CdzVHz6OHfjH.zmCjbWxGulVA1NQY",
-   "effects": [],
-   "sort": 900,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Impale",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-devil-mask.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It drives its spear through one creature (+16, @Damage[8d6+5 piercing]{8d6+5 piercing} and cold). On a hit the target is frozen in place, @Condition[restrained]{Restrained} (escape <strong>DC 19</strong>), until the end of its next turn.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "8d6+5",
-    "damageType": "piercing",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "ixtTA8qkZ6qzBDzP",
-   "_key": "!actors.items!WkO8CdzVHz6OHfjH.ixtTA8qkZ6qzBDzP",
+   "_id": "tsdSpA1Jr1p6Q9qE",
+   "_key": "!actors.items!WkO8CdzVHz6OHfjH.tsdSpA1Jr1p6Q9qE",
    "effects": [],
    "sort": 1000,
    "ownership": {

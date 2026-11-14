@@ -1,4 +1,5 @@
 import { isReloadable, ammoOf, reloadRounds, startReload } from "./reload.mjs";
+import { isSolo as runsAsSolo, phaseOf } from "./solo.mjs";
 import { hideState, rollHide, rollSearch } from "./stealth.mjs";
 import { ARNEYAN } from "./config.mjs";
 import { openPdf } from "./rolls.mjs";
@@ -244,7 +245,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       const c = i.usesCount;
       return c ? `${pool} ${c.value}/${c.max}` : pool;
     };
-    const row = async i => ({ item: i, id: i.id, touch: isTouchAttack(i), touchSave: TOUCH_THEN_SAVE.has(i.name), usesLabel: i.type === "spell" ? innateLeft(i) : "", pool: poolLabel(i), expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
+    // Options open at this level (an ability whose options have all closed, Parrying Stance from 5th, has no Use button).
+    const acts = i => (i.availableActivities ?? i.system.activities ?? []).length;
+    const row = async i => ({ item: i, id: i.id, acts: acts(i), touch: isTouchAttack(i), touchSave: TOUCH_THEN_SAVE.has(i.name), usesLabel: i.type === "spell" ? innateLeft(i) : "", pool: poolLabel(i), expanded: open(i), facts: open(i) ? itemFacts(i) : [], desc: open(i) ? await enrich(i.system.description) : "" });
     const rows = async list => Promise.all(list.map(row));
 
     // Weapons with their attack bonus and damage worked out.
@@ -324,7 +327,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     }
     const groups = [];
     for (const [name, list] of Object.entries(abilityGroups)) groups.push({ name, rows: await rows(list) });
-    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || !!i.system.uses?.pool || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length || i.system.activities?.length;
+    const actionable = i => i.system.kind === "action" || i.system.uses?.max > 0 || !!i.system.uses?.pool || i.system.save || i.system.damage || i.system.toggle || i.system.applies?.length || acts(i);
     const combatAbilities = await rows([...byType("ability"), ...byType("feat")].filter(actionable));
 
     // Spells: one section per casting class, PF2e style, with slot pips per level.
@@ -496,6 +499,8 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       situational: mods?.situational ?? [],
       traits: prettyTraits(system.traits),
       levelLabel: system.details?.levelText || system.level,
+      // A creature marked Solo (M&T v0.10.75, R-F33): the GM's Run as solo box (never for the Mythic three: always solos).
+      soloRun: actor.type === "npc" && system.details?.isSolo ? { can: system.details.levelText !== "Mythic", on: runsAsSolo(actor), phase: phaseOf(actor) } : null,
       isGM: game.user.isGM,
       alignment: alignmentContext(actor),
       fromBestiary: game.user.isGM && !!bestiarySource(actor) && !actor.isToken,

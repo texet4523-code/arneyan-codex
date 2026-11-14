@@ -448,7 +448,14 @@ export class NpcData extends foundry.abstract.TypeDataModel {
         immunities: str(),
         vulnerabilities: str(),
         senses: str(),
+        /** Marked Solo in Monsters & Treasure (v0.10.75): a normal creature that the GM may run as a solo. */
         isSolo: new BooleanField({ initial: false }),
+        /** Run as a solo this fight (R-F33): phases, two turns, villain actions, shaking it off, the whole budget. */
+        runSolo: new BooleanField({ initial: false }),
+        /** Its Solo line's type ("Dragon", "Spellcaster"; blank for its own villain actions). */
+        soloType: str(),
+        /** Its Solo line says that, as a normal creature, it also halves its attack damage. */
+        soloHalves: new BooleanField({ initial: false }),
         /** The book's Level when it isn't a whole number ("¼", "½", "Mythic"); blank otherwise. */
         levelText: str(),
         page: int(0, { min: 0 }),

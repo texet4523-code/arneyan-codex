@@ -29,8 +29,8 @@
   "hd": "16d10+48",
   "attributes": {
    "hp": {
-    "value": 270,
-    "max": 270,
+    "value": 80,
+    "max": 80,
     "temp": 0
    },
    "ac": 19,
@@ -61,9 +61,11 @@
    "vulnerabilities": "",
    "senses": "Darkvision 120ft",
    "isSolo": true,
+   "soloType": "Eye tyrant",
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large aberration</em></p><p><strong>GM:</strong> Rules a hive of lesser beholders and believes herself the only true one. The others agree, while she watches.</p><p><strong>Solo:</strong> acts twice a round, on its initiative and again 10 lower (the system adds its second turn; the second repeats its attacks, never a spell or limited ability). Anything that stops it acting, attacking, moving or casting ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round; the first time it drops to half HP every condition and hostile effect ends and its breath weapons and other limited-use abilities recover (not its spells); area, aura and ongoing damage and regeneration come once a round, at the start of its first turn (all automatic). An effect that would kill it outright, banish or imprison it, or Exhaustion from a spell, costs it its next two turns instead (yours to run); only one of Harm and Mass Harm can affect it in a fight. Damage to 0 HP still kills it.</p>",
+   "description": "<p><em>Large aberration</em></p><p><strong>GM:</strong> Rules a hive of lesser beholders and believes herself the only true one. The others agree, while she watches.</p><p><strong>Solo: Eye tyrant.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the eye tyrant type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
    "treasure": "<p>Treasure type <strong>G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -218,129 +220,6 @@
    "folder": null
   },
   {
-   "name": "Villain Action 1 (Opener): Summon the Brood",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 1
-    }
-   },
-   "system": {
-    "description": "<p><strong>1d4</strong> Spectators and 2 Gazers drift in within <strong>60ft</strong> and act on its initiative from the next round.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Villain actions, Monsters &amp; Treasure): on top of its control, @Damage[13]{13 damage} to one creature it affects, or @Damage[6]{6} to each creature in an area, of a type that suits it, in place of any smaller damage listed.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "AqsMg1UuqapONNKs",
-   "_key": "!actors.items!uD3BDNbYc9nHYpgP.AqsMg1UuqapONNKs",
-   "effects": [],
-   "sort": 400,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 2 (Crowd Control): Crushing Gaze",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 2
-    }
-   },
-   "system": {
-    "description": "<p>Each enemy within <strong>60ft</strong> it can see makes a @Check[fort|dc:21]{Fortitude save DC 21}, taking @Damage[4d8 force]{4d8 force damage} and being knocked @Condition[prone]{Prone} on a failure, or half on a success.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "fort",
-    "dc": 21,
-    "damage": "4d8",
-    "damageType": "force",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "uSGsEPwbIs5Gk90h",
-   "_key": "!actors.items!uD3BDNbYc9nHYpgP.uSGsEPwbIs5Gk90h",
-   "effects": [],
-   "sort": 500,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Villain Action 3 (Ultimate): Tyranny",
-   "type": "ability",
-   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
-   "flags": {
-    "arneyan": {
-     "villainAction": 3
-    }
-   },
-   "system": {
-    "description": "<p>It fires three random rays, all at one creature within <strong>120ft</strong>, then bites it if it is within reach.</p>",
-    "source": {
-     "book": "mt",
-     "page": 0
-    },
-    "kind": "monster",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
-    },
-    "save": "",
-    "dc": null,
-    "damage": "",
-    "damageType": "",
-    "level": 0,
-    "className": "",
-    "rules": [],
-    "toggle": false,
-    "active": false,
-    "applies": []
-   },
-   "_id": "qyUN1yWmDSdwaaQF",
-   "_key": "!actors.items!uD3BDNbYc9nHYpgP.qyUN1yWmDSdwaaQF",
-   "effects": [],
-   "sort": 600,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
    "name": "Perception",
    "type": "skill",
    "img": "systems/arneyan/assets/icons/skill-owl.svg",
@@ -353,11 +232,11 @@
     "ability": "wis",
     "tier": "master"
    },
-   "_id": "aACCCGW2uoeI32xh",
-   "_key": "!actors.items!uD3BDNbYc9nHYpgP.aACCCGW2uoeI32xh",
+   "_id": "epbz5IqTAo7oAy6G",
+   "_key": "!actors.items!uD3BDNbYc9nHYpgP.epbz5IqTAo7oAy6G",
    "effects": [],
    "flags": {},
-   "sort": 700,
+   "sort": 400,
    "ownership": {
     "default": 0
    },
@@ -376,10 +255,136 @@
     "ability": "wis",
     "tier": "trained"
    },
-   "_id": "6P1U8QiU2QHM7YYq",
-   "_key": "!actors.items!uD3BDNbYc9nHYpgP.6P1U8QiU2QHM7YYq",
+   "_id": "anavifxrfqR3GzQy",
+   "_key": "!actors.items!uD3BDNbYc9nHYpgP.anavifxrfqR3GzQy",
    "effects": [],
    "flags": {},
+   "sort": 500,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 1 (Opener): Opening Volley",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 1,
+     "soloType": "Eye tyrant"
+    }
+   },
+   "system": {
+    "description": "<p>It fires two random eye rays at different creatures within <strong>120ft</strong>, each with its own numbers.</p><p class=\"arn-note\">An eye tyrant solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "1QKUub16midtUdod",
+   "_key": "!actors.items!uD3BDNbYc9nHYpgP.1QKUub16midtUdod",
+   "effects": [],
+   "sort": 600,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 2 (Crowd Control): Crushing Gaze",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 2,
+     "soloType": "Eye tyrant"
+    }
+   },
+   "system": {
+    "description": "<p>Each enemy within <strong>60ft</strong> that it can see makes a @Check[fort|dc:20]{Fortitude save DC 20}, taking @Damage[4d6 force]{4d6 force damage} and falling @Condition[prone]{Prone} on a failure, or half damage on a success.</p><p class=\"arn-note\">An eye tyrant solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "fort",
+    "dc": 20,
+    "damage": "4d6",
+    "damageType": "force",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "aceY25Ty8fg2YqTh",
+   "_key": "!actors.items!uD3BDNbYc9nHYpgP.aceY25Ty8fg2YqTh",
+   "effects": [],
+   "sort": 700,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Villain Action 3 (Ultimate): Gaze of Ruin",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
+   "flags": {
+    "arneyan": {
+     "villainAction": 3,
+     "soloType": "Eye tyrant"
+    }
+   },
+   "system": {
+    "description": "<p>It fires three random eye rays, all at one creature within <strong>120ft</strong>.</p><p class=\"arn-note\">An eye tyrant solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "r77r53zszd7bPcaf",
+   "_key": "!actors.items!uD3BDNbYc9nHYpgP.r77r53zszd7bPcaf",
+   "effects": [],
    "sort": 800,
    "ownership": {
     "default": 0

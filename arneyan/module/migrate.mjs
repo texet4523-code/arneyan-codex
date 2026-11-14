@@ -764,6 +764,40 @@ export const CLASS_REWORK = "0.10.108";
 export const SHIFT_REWORK = "0.10.79";
 /** 0.10.81 (books v0.10.40, K47): solos lose Legendary Resistance (solo.mjs gives the new rules). */
 export const SOLO_REWORK = "0.10.81";
+/** M&T v0.10.75 (B-F69, R-F33): solos fight in phases (no Bloodied), with their type's villain actions. */
+export const PHASE_REWORK = "0.10.109";
+
+/**
+ * A world monster that the Bestiary marks Solo (pure, for tests): what to change so it matches M&T v0.10.75. `actor` the
+ * world copy, `m` the Bestiary's. Returns { update, drop, add } or null: its Solo fields, description and phase HP (current
+ * HP too if it was full or is now above the new maximum), the old villain actions out and the new ones in. A copy the GM
+ * marked Keep my edits keeps its villain actions.
+ */
+export function phaseRework(actor, m) {
+  if (!m?.system?.details?.isSolo) return null;
+  const d = m.system.details;
+  const hp = actor.system?.attributes?.hp ?? {};
+  const newMax = Number(m.system.attributes?.hp?.max) || 0;
+  const update = { "system.details.isSolo": true, "system.details.soloType": d.soloType ?? "", "system.details.soloHalves": !!d.soloHalves,
+    "system.details.description": d.description ?? actor.system?.details?.description ?? "", ...(actor.flags?.[SYS]?.bloodied !== undefined ? unset(`flags.${SYS}.bloodied`) : {}) };
+  if (newMax && Number(hp.max) !== newMax) {
+    update["system.attributes.hp.max"] = newMax;
+    if (Number(hp.value) >= Number(hp.max) || Number(hp.value) > newMax) update["system.attributes.hp.value"] = newMax;
+  } else if (newMax && Number(hp.value) > newMax) update["system.attributes.hp.value"] = newMax;
+  const isVa = i => !!(i.flags?.[SYS]?.villainAction);
+  const items = [...(actor.items ?? [])];
+  // Already the Bestiary's three (an unlinked token whose base actor was just updated): leave its items alone.
+  const same = items.filter(isVa).map(i => i.name).join("|") === [...(m.items ?? [])].filter(isVa).map(i => i.name).join("|");
+  const keep = same || items.some(i => isVa(i) && i.flags?.[SYS]?.keepCustom);
+  const drop = keep ? [] : items.filter(isVa).map(i => i.id ?? i._id);
+  const add = keep ? [] : [...(m.items ?? [])].filter(isVa).map(i => (i.toObject ? i.toObject() : foundry.utils.deepClone(i)));
+  for (const a of add) delete a._id;
+  if (same && actor.isToken) delete update["system.details.description"];
+  return { update, drop, add, marks: bloodiedMarks(actor) };
+}
+/** The old Bloodied markers on any creature (the rule and its icon are gone). */
+export const bloodiedMarks = actor => [...(actor.effects ?? [])].filter(e => [...(e.statuses ?? [])].includes("bloodied") || e.flags?.[SYS]?.bloodied).map(e => e.id ?? e._id);
+
 /** Books v0.10.49 (K57): the Thief Skills reach existing Rogues and Assassins. */
 export const THIEF_REWORK = "0.10.88";
 /** Books v0.10.55 (R-B54): the Magus is the Spellblade. */
@@ -1131,6 +1165,42 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       console.warn("Arneyan | Legendary Resistance step", err);
     }
   }
+  // M&T v0.10.75 (B-F69): world solos from the Bestiary take phase HP, their type and its villain actions; Bloodied goes.
+  if (due && newerThan(PHASE_REWORK, from) && !newerThan(PHASE_REWORK, version)) {
+    try {
+      const npcs = [...game.actors.filter(a => a.type === "npc"), ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor?.type === "npc").map(t => t.actor))];
+      for (const actor of npcs) {
+        try {
+          // Any creature: the old Bloodied marker and flag go (the rule and its icon are gone).
+          const old = bloodiedMarks(actor);
+          if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old, { arneyanMigration: true });
+          if (actor.flags?.[SYS]?.bloodied !== undefined) await actor.update(unset(`flags.${SYS}.bloodied`), { arneyanMigration: true });
+          const msrc = actor._stats?.compendiumSource ?? actor.flags?.core?.sourceId ?? "";
+          const base = actor.isToken ? actor.baseActor : null;
+          // The Bestiary, or Keeps & Kingdoms' creatures.
+          const bestiary = x => typeof x === "string" && (x.startsWith(`Compendium.${SYS}.monsters.`) || x.startsWith(`Compendium.${SYS}.kk-monsters.`));
+          const src = bestiary(msrc) ? msrc : String(base?._stats?.compendiumSource ?? "");
+          if (!bestiary(src)) continue;
+          const r = phaseRework(actor, await fetch(src));
+          if (!r) continue;
+          if (r.drop.length) await actor.deleteEmbeddedDocuments("Item", r.drop, { arneyanMigration: true });
+          if (r.add.length) await actor.createEmbeddedDocuments("Item", r.add, { arneyanMigration: true, arneyanGrant: true });
+          await actor.update(r.update, { arneyanMigration: true });
+          if (!actor.isToken) (notes.phase ??= []).push(actor.name);
+        } catch (err) {
+          console.warn(`Arneyan | solo phases: ${actor.name}`, err);
+        }
+      }
+      // Fights already running: a creature marked Solo but not run as one has no second turn.
+      const { isSolo: runs } = await import("./solo.mjs");
+      for (const combat of game.combats ?? []) {
+        const gone = [...combat.combatants].filter(c => c.flags?.[SYS]?.soloOf && c.actor && !runs(c.actor)).map(c => c.id);
+        if (gone.length) await combat.deleteEmbeddedDocuments("Combatant", gone).catch(() => null);
+      }
+    } catch (err) {
+      console.warn("Arneyan | solo phases step", err);
+    }
+  }
   // Books v0.10.49 (K57): Rogues and Assassins get their Thief Skills (Lockpicking, Traps, Pick Pocket, Climb).
   if (due && newerThan(THIEF_REWORK, from) && !newerThan(THIEF_REWORK, version)) {
     try {
@@ -1178,7 +1248,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
   const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone);
   const thief = notes.thief ?? [];
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || thief.length) {
+  const phased = [...new Set(notes.phase ?? [])];
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || thief.length || phased.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1191,6 +1262,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th; books v0.10.56 to v0.10.58: the martial and Illusionist reworks, Paths and the Seats). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (phased.length ? `<p><strong>Solos</strong> (Monsters &amp; Treasure v0.10.75): ${esc(nameList(phased.length > 30 ? [...phased.slice(0, 30), `${phased.length - 30} more`] : phased))} now fight in three phases with their phase HP, and take their type's villain actions; Bloodied is gone. Their descriptions are the Bestiary's new ones (any edits of yours there were replaced). Each is a normal creature until you tick <em>Run as solo</em> on its sheet (or in the Encounter Builder).</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone; books v0.10.56 to v0.10.58: Whirlwind Attack, Slow Kill, Point Blank, Hit and Run, Master of Illusion, Minor Figment's line and other features were cut or folded into others). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
