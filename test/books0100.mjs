@@ -23,10 +23,9 @@ assert.ok(one("kits", "Gladiator (Fighter)"));
 const twin = one("class-features", "Twin Nock");
 assert.ok(strip(twin.system.description).includes("Each arrow gets your Bow Mastery bonus."));
 assert.deepEqual([twin.system.activities[0].damageBonus, twin.system.activities[0].noStack], ["1:1, 6:2, 12:3, 18:4", "Bow Mastery"]);
-// Aura of Devotion covers the Paladin.
-const dev = one("class-features", "Aura of Devotion");
-assert.ok(strip(dev.system.description).includes("You and allies"));
-assert.equal(dev.system.auras[0].includeSelf, true);
+// HB v0.10.80: Aura of Devotion and Aura of Resolve are auras on the Paladin's Auras feature.
+const dev = one("class-features", "Auras");
+assert.deepEqual(dev.system.auras.map(a => [a.name, a.minLevel]), [["Aura of Devotion", 9], ["Aura of Resolve", 17]]);
 // Turn Undead: the Turned condition.
 assert.ok(ARNEYAN.conditions.turned && ARNEYAN.conditions.turned.text.includes("moving away"));
 for (const d of docs("class-features").filter(d => d.name === "Turn Undead")) assert.deepEqual(d.system.applies[0].statuses, ["turned"], d.system.className);
@@ -78,7 +77,7 @@ assert.equal(D.creationOverflow(movedItem), null, "already moved");
 // Old wording gone: Twin Nock's per-arrow table, Never Still's per-arrow bonus, the old Attack of Opportunity trigger.
 const allText = pack => JSON.stringify(docs(pack));
 for (const pack of ["classes", "class-features", "../test/fixtures/pregens-jw"]) assert.ok(!/per-arrow/i.test(allText(pack)), `${pack}: no per-arrow bonus left`);
-assert.ok(strip(one("class-features", "Never Still").system.description).includes("each still carrying your Bow Mastery bonus"));
+assert.ok(strip(one("class-features", "Never Still").system.description).includes("The third arrow deals only its weapon die"), "K198");
 const aoo = strip(one("actions", "Attack of Opportunity").system.description);
 assert.ok(!aoo.includes("A creature that leaves an enemy's melee reach without Disengaging provokes"));
 assert.equal(aoo.split("Being moved by someone else").length, 2, "said once");

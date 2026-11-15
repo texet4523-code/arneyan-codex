@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
  "system": {
-  "description": "<p>You lean into the assassin's half: Spellstrike is a tool for opening a fight on your terms, not sustaining one.</p><ul><li><strong>First Cut:</strong> if your target is unaware of you (surprised, or you have <strong>Advantage</strong> from Stealth) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.<ul><li>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</li></ul></li><li><strong>Quiet Blade:</strong> <strong>Advantage</strong> on Stealth checks in the round you Spellstrike.</li></ul>",
+  "description": "<p>For you, Spellstrike is a tool for opening a fight on your terms, not sustaining one.</p><ul><li><strong>First Cut:</strong> if your target is unaware of you (surprised, or you are Hidden from it) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.<ul><li>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</li></ul></li><li><strong>Quiet Blade:</strong> <strong>Advantage</strong> on Stealth checks to keep a Spellstrike unseen and unheard by anyone but its target.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "First Cut",
     "level": 1,
-    "description": "<p>If your target is unaware of you (surprised, or you have <strong>Advantage</strong> from Stealth) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.</p><p>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</p>",
+    "description": "<p>If your target is unaware of you (surprised, or you are Hidden from it) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.</p><p>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -26,7 +26,7 @@
    {
     "name": "Quiet Blade",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Stealth checks in the round you Spellstrike.</p>",
+    "description": "<p><strong>Advantage</strong> on Stealth checks to keep a Spellstrike unseen and unheard by anyone but its target.</p>",
     "uses": {
      "value": 0,
      "max": 0,

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Sword, Bastard</p><p><strong>Granted power:</strong> Divine Protection's AC bonus against evil increases to +4. Once/day: for the encounter, attacks against a touched creature have <strong>Disadvantage</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6278904\">Helm</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Sword, Bastard</p><p><strong>Granted power:</strong> +1 AC while using a shield. Once/day: for the encounter, attacks against a touched creature have <strong>Disadvantage</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6278904\">Helm</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Helm)",
     "level": 1,
-    "description": "<p>Divine Protection's AC bonus against evil increases to +4. Once/day: for the encounter, attacks against a touched creature have <strong>Disadvantage</strong>.</p><p><strong>Favoured weapon:</strong> Sword, Bastard</p>",
+    "description": "<p>+1 AC while using a shield. Once/day: for the encounter, attacks against a touched creature have <strong>Disadvantage</strong>.</p><p><strong>Favoured weapon:</strong> Sword, Bastard</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -25,8 +25,8 @@
     "rules": [
      {
       "key": "ac",
-      "value": "2",
-      "when": "vs evil creatures (Divine Protection becomes +4)",
+      "value": "1",
+      "when": "while using a shield",
       "label": ""
      }
     ],

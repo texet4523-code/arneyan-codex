@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Delivered by a Sneak Attack against your Studied target once it has had the study a Death Attack needs: on a hit that deals damage, the target makes a <strong>Fortitude save</strong> against your Class Save DC or dies instantly.</li><li>Death Attack works only on a target whose Level does not exceed your Assassin level plus 2.</li><li>Against a solo, a failed save is a kill effect: it deals damage equal to the solo's current HP instead (see Solo Creatures, Book IV).</li><li><strong>Save succeeds:</strong> attack deals the maximum on its Sneak Attack dice instead</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter against each Studied target, the first Sneak Attack that hits it and deals damage, once it has had the study a Death Attack needs, is a Death Attack: the target makes a <strong>Fortitude save</strong> against your Class Save DC or dies instantly.</li><li>Death Attack works only on a target whose Level does not exceed your Assassin level plus 2.</li><li>Against a solo, a failed save is a kill effect: it deals damage equal to the solo's current HP instead (see Solo Creatures, Book IV).</li><li>Later hits on it that encounter are normal Sneak Attacks.</li><li><strong>Save succeeds:</strong> attack deals the maximum on its Sneak Attack dice instead</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,17 +14,47 @@
   "uses": {
    "value": 0,
    "max": 0,
-   "per": ""
+   "per": "",
+   "formula": ""
   },
   "save": "fort",
   "dc": null,
   "damage": "",
   "level": 1,
-  "className": "Assassin"
+  "className": "Assassin",
+  "activities": [
+   {
+    "name": "Death Attack",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "fort",
+    "text": "Once per encounter against each Studied target: the first Sneak Attack that hits it and deals damage, once it has had the study, is a Death Attack. Fortitude save against your Class Save DC or it dies; on a success the hit deals maximum Sneak Attack dice. Only a target of Level up to your Assassin level + 2. Against a solo, a failed save deals damage equal to its current HP instead (see Solo Creatures).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
  },
  "effects": [],
  "folder": "b3fiHSAW8zySsJZt",
- "sort": 2,
+ "sort": 1,
  "ownership": {
   "default": 0
  },

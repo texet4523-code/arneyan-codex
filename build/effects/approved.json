@@ -1501,7 +1501,7 @@
   "confidence": "medium"
  },
  "class-features/hi6cvVDyEDasF9CW": {
-  "name": "Intimidate (Strength)",
+  "name": "Intimidate",
   "from": "Barbarian",
   "container": "applies",
   "applies": [
@@ -1556,15 +1556,15 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "+2*(1+floor(@cl/10))"
+    "value": "1:2, 10:3, 20:4"
    },
    {
     "key": "toggle.ends",
     "value": "encounter"
    }
   ],
-  "summary": "Toggle Rage: lasts the encounter (switches off when it ends); +2/+4/+6 melee weapon damage (1st/10th/20th).",
-  "manual": "Uses per day (1 + Con mod, minimum 2); switch it off early if a full round passes without you attacking or taking damage.",
+  "summary": "Toggle Rage: lasts the encounter (switches off when it ends); +2/+3/+4 melee weapon damage (1st/10th/20th).",
+  "manual": "Once per encounter. Switch it off early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious.",
   "confidence": "high"
  },
  "class-features/l1z0ltlq8BBhCAFg": {
@@ -1579,7 +1579,7 @@
    }
   ],
   "summary": "+2 AC (+3 from 10th) with no or light armour, as a reminder.",
-  "manual": "Engine cannot tell armour worn; does not stack with similar bonuses. GM may make it unconditional for an unarmoured barbarian.",
+  "manual": "Engine cannot tell armour worn. It does not stack with an ancestry's natural armour or Bracers of Defence: use the highest.",
   "confidence": "medium"
  },
  "class-features/xQduvZAeAsW5joJx": {
@@ -1587,7 +1587,7 @@
   "from": "Barbarian",
   "container": "passive",
   "summary": "Temporary HP equal to twice your level, from its Use (the activity grants it; no separate effect, so it isn't doubled).",
-  "manual": "Trigger: when you drop to half your HP or less, or first if a blow would drop you to 0. The temporary HP last until the encounter ends.",
+  "manual": "Trigger: damage that takes you to half your HP or less; if it would take you to 0, the temporary HP apply to it first. They last until the encounter ends.",
   "confidence": "high",
   "rules": []
  },
@@ -1613,10 +1613,10 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs spells and magical effects (while raging; at all times from 16th)"
+    "when": "vs spells and the magical powers of creatures: breath weapons, gazes and auras (while raging; at all times from 17th)"
    }
   ],
-  "summary": "Advantage reminder on saves against spells and magical effects while raging (at all times from 16th). Updated for books v0.10.58.",
+  "summary": "Advantage reminder on saves against spells and creatures' magical powers while raging (at all times from 17th). HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "",
   "confidence": "high"
  },
@@ -1697,7 +1697,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs fire, water, earth, air, cold and lightning attacks"
+    "when": "vs fire, cold, lightning and thunder damage, and the abilities of elementals"
    }
   ],
   "summary": "Advantage reminder on saves vs elemental attacks.",
@@ -2267,15 +2267,15 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Necrotic Aura: while you control undead within 30ft, creatures have Disadvantage on their saves against your death-effect spells."
+    "value": "Necrotic Aura: while you control undead within 30ft, once per encounter one creature has Disadvantage on its save against a Necromancy spell you cast."
    }
   ],
-  "summary": "Reminder on spell cards.",
-  "manual": "The Disadvantage on the target's save; controlled undead bonuses (+1 damage, +2 HP per level).",
+  "summary": "A reminder on spell cards. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "manual": "Controlled undead within 30ft: +1 damage per hit and +2 HP per Necromancer level.",
   "confidence": "medium"
  },
  "class-features/ygZKe7rX7DTQIjI1": {
-  "name": "Death's Embrace & Lich's Will",
+  "name": "Death's Embrace",
   "from": "Necromancer",
   "container": "passive",
   "rules": [
@@ -2285,11 +2285,11 @@
    },
    {
     "key": "note.save",
-    "value": "Death's Embrace: immune to death effects and exhaustion drain."
+    "value": "Death's Embrace: immune to instant-death effects (as Death Ward) and to energy drain."
    }
   ],
   "summary": "+1 Int; immunity reminder.",
-  "manual": "Negative energy heals you.",
+  "manual": "Cause Wounds spells heal you as they heal an undead; no other necrotic effect heals you. You no longer age.",
   "confidence": "high"
  },
  "class-features/UxQOelmP1D8oW5wz": {
@@ -2329,10 +2329,10 @@
    {
     "key": "damage",
     "value": "+1d6",
-    "when": "vs evil creatures (radiant)"
+    "when": "one hit of your choice each round (radiant; adds to a Smite)"
    }
   ],
-  "summary": "+1d6 radiant damage reminder vs evil.",
+  "summary": "+1d6 radiant damage reminder on one hit each round, any foe. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "Magical for resistance.",
   "confidence": "high"
  },
@@ -2390,7 +2390,7 @@
    }
   ],
   "summary": "Favoured enemy reminders: the extra weapon die on one hit each round (ignoring resistance), Advantage on tracking it. Updated for books v0.10.58.",
-  "manual": "It has Disadvantage on Hide checks against you, and its first attack against you each round has Disadvantage. A second favoured enemy at 13th.",
+  "manual": "It has Disadvantage on Hide checks against you, and its first attack against you each round has Disadvantage. One more favoured enemy at 9th, 13th, 17th and 21st.",
   "confidence": "high"
  },
  "class-features/5py4wbBwsuYInq2k": {
@@ -2436,7 +2436,7 @@
   "confidence": "high"
  },
  "class-features/ksFXEzB68ifNtFcY": {
-  "name": "Exploit (Sneak Attack)",
+  "name": "Exploit",
   "container": "passive",
   "rules": [
    {
@@ -2446,10 +2446,10 @@
    },
    {
     "key": "note.damage",
-    "value": "Exploit (Sneak Attack): add {1:1d6, 9:2d6, 17:3d6, 23:4d6} (once per round)."
+    "value": "Exploit: add {1:1d6, 5:2d6, 13:3d6, 17:4d6} (once per round)."
    }
   ],
-  "summary": "Exploit reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
+  "summary": "Exploit reminders. HB v0.10.79 (K198): dice one step earlier.",
   "manual": "Dice by level (table); once per round; not with Backstab. Snatch can take an item instead of the die.",
   "confidence": "high",
   "from": "Rogue"
@@ -2566,15 +2566,15 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Duel's Rhythm: after each of your attacks you may move 10ft without provoking, and your opponent can't Disengage from you."
+    "value": "Duel's Rhythm: while exactly one enemy is within your reach, after each attack against it you may move 10ft (on top of your speed) without provoking Attacks of Opportunity from it."
    },
    {
     "key": "adv.save",
     "value": 1,
-    "when": "while in melee with a single opponent"
+    "when": "against the spells and abilities of the one enemy within your reach (while it is the only one)"
    }
   ],
-  "summary": "Duel's Rhythm reminders: move 10ft after each attack without provoking, your opponent can't Disengage; Advantage on saves.",
+  "summary": "Duel's Rhythm reminders. HB v0.10.79/v0.10.80.",
   "manual": "",
   "confidence": "high"
  },
@@ -2586,7 +2586,7 @@
    {
     "key": "damage",
     "value": "+1d4",
-    "when": "each hit after the first on the same target this round"
+    "when": "once per round, when you hit a creature you have already hit since the start of your turn"
    }
   ],
   "summary": "+1d4 damage reminder on repeat hits.",
@@ -3001,42 +3001,26 @@
    {
     "key": "adv.check.str",
     "value": 1,
-    "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)"
+    "when": "every physical check (Primeval Instincts; no medium or heavy armour)"
    },
    {
     "key": "adv.check.dex",
     "value": 1,
-    "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)"
+    "when": "every physical check (Primeval Instincts; no medium or heavy armour)"
    },
    {
     "key": "adv.check.con",
     "value": 1,
-    "when": "in natural wilderness, every physical check (Primeval Instincts; no medium or heavy armour)"
+    "when": "every physical check (Primeval Instincts; no medium or heavy armour)"
    },
    {
-    "key": "adv.check",
-    "value": 1,
-    "when": "Trip and Grapple contests while raging"
+    "key": "note.attack",
+    "value": "Drake's Fury: once per round while raging, when you hit, you may also make a Trip or Grapple contest against that creature as part of the hit, with Advantage."
    }
   ],
-  "summary": "Advantage on Str, Dex and Con checks in natural wilderness (Primeval Instincts covers every physical check); Advantage on Trip and Grapple contests while raging. Shown as reminders. Updated for books v0.10.58.",
+  "summary": "Primeval Instincts on every physical check; a Trip or Grapple on a hit while raging. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "",
   "confidence": "high"
- },
- "kits/ioMzfnluzghImDnW#1": {
-  "name": "Siege-Bound",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "about clan etiquette and military structure"
-   }
-  ],
-  "summary": "Advantage on checks (about clan etiquette and military structure). Shown as reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "",
-  "confidence": "high",
-  "from": "Wall-Breaker (Barbarian)"
  },
  "kits/iagNVJGoktjp6JX7#1": {
   "name": "Shield-Wall Veteran",
@@ -3068,28 +3052,13 @@
   "manual": "",
   "confidence": "high"
  },
- "kits/ioMzfnluzghImDnW#0": {
-  "name": "Siege Master",
-  "from": "Wall-Breaker (Barbarian)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check.str",
-    "value": 1,
-    "when": "to break, smash or force open objects"
-   }
-  ],
-  "summary": "Advantage on Str checks (to break, smash or force open objects). Shown as reminders.",
-  "manual": "",
-  "confidence": "high"
- },
  "kits/pGxznlNS2jkU7pAN#0": {
-  "name": "Street Fighter",
+  "name": "Cheap Shot",
   "container": "passive",
   "rules": [
    {
     "key": "note.attack",
-    "value": "Street Fighter: once per round while raging, when you hit, you may make a Dirty Trick against that creature as part of the hit."
+    "value": "Cheap Shot: once per round while raging, when you hit, you may also make a Dirty Trick against that creature as part of the hit."
    }
   ],
   "summary": "A reminder on attack cards. Updated for books v0.10.58 (R-B59 to R-B64).",
@@ -3464,7 +3433,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs death effects"
+    "when": "vs instant-death effects"
    }
   ],
   "summary": "Advantage on saves (vs death effects). Shown as reminders.",
@@ -3852,7 +3821,7 @@
  },
  "kits/JaksV12FoxGLfh2j#0": {
   "name": "Granted Power (Tharizdun)",
-  "from": "Deity: Tharizdun (The Shattered God) (Cleric)",
+  "from": "Deity: Tharizdun (The Chained God) (Cleric)",
   "container": "passive",
   "rules": [
    {
@@ -3873,7 +3842,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs death"
+    "when": "vs instant-death effects"
    }
   ],
   "summary": "Advantage on saves (vs death). Shown as reminders.",
@@ -4794,7 +4763,7 @@
   "container": "passive",
   "rules": [],
   "summary": "Nothing automated. Updated for books v0.10.58.",
-  "manual": "Your bonded weapon counts as magical for overcoming resistance; rebonding after a 1-hour ritual. 9th: Cantrip Spellstrikes through it ignore resistance to force damage.",
+  "manual": "Your bonded weapon counts as magical for overcoming resistance; rebonding after a 1-hour ritual. 9th: your Cantrip Spellstrike through it rolls d6s in place of d4s.",
   "confidence": "high"
  },
  "kits/YMKl8Km3TxVRTqEl#0": {
@@ -4916,37 +4885,22 @@
   "manual": "",
   "confidence": "high"
  },
- "kits/ipGsmIrKI3zd2kwU#2": {
-  "name": "Undying Constitution",
-  "from": "Pale Master (Necromancer)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.save",
-    "value": 1,
-    "when": "vs poison, disease and paralysis"
-   }
-  ],
-  "summary": "Advantage on saves (vs poison, disease and paralysis). Shown as reminders.",
-  "manual": "No eating or sleeping; always-prepared spells.",
-  "confidence": "high"
- },
  "kits/QuBKSmSPZxKrjBOP#0": {
   "name": "Warden's Strike",
   "from": "Grave Warden (Necromancer)",
   "container": "passive",
   "rules": [
    {
-    "key": "note.attack",
-    "value": "Warden's Strike: an undead you hit that you did not create can't use its auras, drains or frightful presence until the end of its next turn; undead you destroy can't rise again."
+    "key": "note.spell",
+    "value": "Warden's Strike: a creature you damage with a Necromancy spell makes a Will save against your spell DC or can't use its drains or auras (Aura, Frightful Presence, Stench) until the end of its next turn {1:, 9:(and each enemy within 10ft of it makes the same save)}; a higher-Level creature saves with Advantage and a solo shakes it off. Undead you destroy can't rise again."
    },
    {
     "key": "note.spell",
-    "value": "Warden's Strike: undead you did not create make their saves against your death magic with Disadvantage."
+    "value": "Warden's Strike: undead you did not create make their saves against your Necromancy spells with Disadvantage (never against an effect that kills outright)."
    }
   ],
-  "summary": "Reminders on your attack and spell cards.",
-  "manual": "Healing your undead.",
+  "summary": "A reminder on spell cards. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "manual": "When you destroy an undead creature, all undead you control within 30ft regain 1d6 HP.",
   "confidence": "high"
  },
  "kits/FcAmsrgOb5DlxMCZ#1": {
@@ -5045,7 +4999,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs fear"
+    "when": "vs breath weapons"
    },
    {
     "key": "note.damage",
@@ -5108,9 +5062,9 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.check.wis",
+    "key": "adv.skill",
     "value": 1,
-    "when": "in natural environments"
+    "when": "Nature"
    }
   ],
   "summary": "Advantage on Wis checks (in natural environments). Shown as reminders. Updated for books v0.10.58.",
@@ -5144,7 +5098,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Deception). Shown as reminders. Updated for books v0.10.58.",
-  "manual": "Feint as the Feint feat describes; your Smite against a creature you Feinted this round deals +1d6 damage.",
+  "manual": "Feint as the Feint feat describes; your Smite against a creature you have Feinted this encounter deals +1d6 damage.",
   "confidence": "high"
  },
  "kits/mrjvqfwajxtCIQF4#0": {
@@ -5159,7 +5113,7 @@
    }
   ],
   "summary": "Advantage on skill checks (Performance). Shown as reminders.",
-  "manual": "Once/day Cha-to-AC buff for the encounter.",
+  "manual": "Once a day, for the encounter, while you wield a one-handed blade: the first attack against you each round has Disadvantage.",
   "confidence": "high"
  },
  "kits/nieNxcvLISjlQuhW#0": {
@@ -5170,7 +5124,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs death effects"
+    "when": "vs instant-death effects"
    }
   ],
   "summary": "Advantage on saves (vs death effects). Shown as reminders.",
@@ -5185,7 +5139,7 @@
    {
     "key": "adv.skill",
     "value": 1,
-    "when": "Perception in low light"
+    "when": "Perception"
    }
   ],
   "summary": "Advantage on skill checks (Perception in low light). Shown as reminders. Updated for books v0.10.58.",
@@ -5213,12 +5167,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "ac",
-    "value": 1,
-    "when": "while standing on natural stone or earth"
+    "key": "note.save",
+    "value": "Grumbar: while you stand on natural stone or earth, you can't be pushed or knocked Prone against your will."
    }
   ],
-  "summary": "+1 AC (while standing on natural stone or earth). Shown as reminders. Updated for books v0.10.58.",
+  "summary": "A reminder: no pushing or knocking you Prone on stone or earth. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "When your Smite hits, the ground within 20ft of you becomes difficult terrain for your enemies until your next turn.",
   "confidence": "high"
  },
@@ -5244,11 +5197,11 @@
   "rules": [
    {
     "key": "ac",
-    "value": 2,
-    "when": "vs evil creatures (Divine Protection becomes +4)"
+    "value": 1,
+    "when": "while using a shield"
    }
   ],
-  "summary": "+2 AC (vs evil creatures (Divine Protection becomes +4)). Shown as reminders. Once a day, Helm's Guard on a touched creature: attacks against it have Disadvantage for the encounter.",
+  "summary": "+1 AC reminder with a shield. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "",
   "confidence": "high",
   "applies": [
@@ -5320,15 +5273,9 @@
   "name": "Granted Power (Lliira)",
   "from": "Deity: Lliira (The Heart of Joy) (Paladin)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.save",
-    "value": 1,
-    "when": "vs charm (Aura of Courage)"
-   }
-  ],
-  "summary": "Advantage on saves (vs charm (Aura of Courage)). Shown as reminders.",
-  "manual": "Aura effect on allies; once/day end Frightened.",
+  "rules": [],
+  "summary": "Aura of Devotion from 1st level (a reminder). HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "manual": "Aura of Devotion from 1st: an ally in your aura who is Frightened or Charmed saves again at the start of each of its turns. Once a day, as an action: you and every ally within 30ft end Frightened and gain Advantage on saves against fear and charm for the encounter.",
   "confidence": "medium"
  },
  "kits/YPVOgl3M1F2dlH7t#0": {
@@ -5376,9 +5323,8 @@
     "when": "Perception underground or in stone structures"
    },
    {
-    "key": "ac",
-    "value": 1,
-    "when": "while standing on natural stone or underground"
+    "key": "note.save",
+    "value": "Moradin: while you stand on natural stone or earth, you can't be pushed or knocked Prone against your will."
    }
   ],
   "summary": "Advantage on skill checks (Perception underground or in stone structures); +1 AC (while standing on natural stone or underground). Shown as reminders. Updated for books v0.10.58.",
@@ -5397,7 +5343,7 @@
    }
   ],
   "summary": "Advantage on checks (Knowledge and Lore checks). Shown as reminders.",
-  "manual": "Once a day, Divine Intervention's reroll without spending Channel Divinity uses.",
+  "manual": "Once a day, reroll one of your own d20 rolls; from 6th this is Heaven's Answer's reroll at no cost.",
   "confidence": "high"
  },
  "kits/dV9St4evB2XsHgoO#0": {
@@ -5408,7 +5354,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs charm and fear"
+    "when": "vs charm and curses"
    }
   ],
   "summary": "Advantage on saves (vs charm and fear). Shown as reminders. Updated for books v0.10.58.",
@@ -5515,7 +5461,7 @@
    {
     "key": "adv.skill",
     "value": 1,
-    "when": "Persuasion"
+    "when": "Persuasion and Performance"
    }
   ],
   "summary": "Advantage on skill checks (Persuasion). Shown as reminders. Updated for books v0.10.58.",
@@ -5524,7 +5470,7 @@
  },
  "kits/7Vd2CCkCQlBvpgY9#0": {
   "name": "Granted Power (Tharizdun)",
-  "from": "Deity: Tharizdun (Paladin)",
+  "from": "Deity: Tharizdun (The Chained God) (Paladin)",
   "container": "passive",
   "rules": [
    {
@@ -5543,11 +5489,12 @@
   "container": "passive",
   "rules": [
    {
-    "key": "note.save",
-    "value": "The Raven Queen: immune to death effects."
+    "key": "adv.save",
+    "value": 1,
+    "when": "against instant-death effects"
    }
   ],
-  "summary": "A reminder note on the matching card.",
+  "summary": "Advantage reminder on saves against instant-death effects. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "Suspended animation.",
   "confidence": "high"
  },
@@ -5581,7 +5528,7 @@
    }
   ],
   "summary": "Immune to Frightened from 1st level (early Aura of Courage).",
-  "manual": "Aura of Courage from 1st level: fear immunity (the Paladin's own Aura of Courage benefit) and allies' +4 vs fear within 30ft; once/day all allies within 30ft can't be Frightened for the encounter and regain HP equal to your Charisma modifier.",
+  "manual": "Aura of Courage from 1st level, reaching 30ft, and 20ft further than the table from 15th; once a day all allies within 30ft can't be Frightened for the encounter and regain HP equal to your Charisma modifier.",
   "confidence": "medium"
  },
  "kits/yt7c9uA4taSn0Y6Z#0": {
@@ -5621,7 +5568,7 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "involving water or storms"
+    "when": "Swim and water-based checks"
    }
   ],
   "summary": "Advantage on checks (involving water or storms). Shown as reminders. Updated for books v0.10.58.",
@@ -6082,12 +6029,12 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1d4, 9:2d4",
-    "when": "each Relentless Assault hit (on top of its +1d4: +2d4 in total, +3d4 from 9th)"
+    "value": "1:2d4, 9:3d4",
+    "when": "Relentless Assault (from 1st level; in place of its 1d4)"
    }
   ],
-  "summary": "Extra Relentless Assault damage, as a reminder. Updated for books v0.10.58.",
-  "manual": "Assumes Relentless Assault's +1d4 stays and this adds the second d4.",
+  "summary": "Relentless Assault +2d4 (+3d4 from 9th). HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "manual": "Relentless Assault from 1st level: use this in place of its +1d4.",
   "confidence": "medium"
  },
  "kits/GH0D13EgVJMHfhaz#1": {
@@ -6138,10 +6085,10 @@
    {
     "key": "damage",
     "value": "+@abilities.cha.mod",
-    "when": "second hit in each encounter (Opening Flourish)"
+    "when": "on your second hit in each encounter; from 9th, on your first hit each round (Opening Flourish)"
    }
   ],
-  "summary": "+Cha modifier damage (second hit in each encounter (Opening Flourish)). Shown as reminders.",
+  "summary": "Opening Flourish on a second hit each encounter; from 9th, on your first hit each round.",
   "manual": "",
   "confidence": "high"
  },
@@ -6365,7 +6312,7 @@
    }
   ],
   "summary": "Immune to cold damage.",
-  "manual": "Temporary HP when damaged.",
+  "manual": "Once per round, reduce damage you take by your Charisma modifier.",
   "confidence": "high"
  },
  "kits/eOABzyjbO8mb8XYl#0": {
@@ -6438,12 +6385,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "damage",
-    "value": "+1d6",
-    "when": "one weapon hit each round while you have a Warlock slot unspent (fire)"
+    "key": "note.damage",
+    "value": "Zariel: your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire."
    }
   ],
-  "summary": "+1d6 damage (one weapon hit each round while you have a Warlock slot unspent (fire)). Shown as reminders.",
+  "summary": "A reminder on damage cards (HB v0.10.78).",
   "manual": "Martial weapon proficiency. Dark Gift damage/defence only works while Warlock level is at least half character level.",
   "confidence": "high"
  },
@@ -6659,12 +6605,12 @@
    {
     "key": "adv.skill",
     "value": 1,
-    "when": "Persuasion invoking O.M.G.A.'s name with Opal's government or military"
+    "when": "Persuasion with officials, soldiers and mages who answer to your guild or its patrons"
    },
    {
     "key": "adv.check",
     "value": 1,
-    "when": "recalling the Guild's ranks or leadership"
+    "when": "recalling your guild's ranks and leaders"
    }
   ],
   "summary": "Advantage on skill checks (Persuasion invoking O.M.G.A.'s name with Opal's government or military); Advantage on checks (recalling the Guild's ranks or leadership). Shown as reminders.",
@@ -6675,15 +6621,9 @@
   "name": "Make It Work",
   "from": "Hedge Wizard (Wizard)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "scrounging, improvising or substituting spell components"
-   }
-  ],
-  "summary": "Advantage on checks (scrounging, improvising or substituting spell components). Shown as reminders.",
-  "manual": "",
+  "rules": [],
+  "summary": "Nothing automated (HB v0.10.78).",
+  "manual": "No focus for common components; once a day, with 10 minutes' work, stand in for a costed component worth 10 gp or less (the GM says what will do).",
   "confidence": "high"
  },
  "kits/X6VhKo8j6GufXbbe#1": {
@@ -6723,7 +6663,7 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Unexpected Caster: the first harmful spell in a combat where the enemy does not expect a caster imposes Disadvantage on its save."
+    "value": "Unexpected Caster: once per encounter, with your first harmful spell of the fight, {1:one creature, 9:two creatures} that hasn't seen you cast a spell before saves against it with Disadvantage."
    }
   ],
   "summary": "A reminder note on the matching card.",
@@ -10061,8 +10001,8 @@
   "from": "Druid",
   "container": "passive",
   "rules": [],
-  "summary": "Choose the element: Resistance to its damage, immunity from 20th (fire, cold or lightning automatic; earth, water or air a reminder). One pick covers Elemental Mastery (Improved) too.",
-  "manual": "Earth, water and air: the GM says which damage counts.",
+  "summary": "Choose the element (fire, cold, lightning or thunder): Resistance to its damage, immunity from 20th.",
+  "manual": "Choose fire, cold, lightning or thunder: Resistance to it (immunity from 20th). From 20th, once per encounter, turn a spell of that type that would have damaged you on one creature within 60ft (it saves against the caster's DC).",
   "confidence": "high",
   "optionChoice": {
    "label": "Element",
@@ -10070,7 +10010,7 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to fire damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -10084,7 +10024,7 @@
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to cold damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -10098,7 +10038,7 @@
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to lightning damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -10111,32 +10051,16 @@
      ]
     },
     {
-     "name": "Earth",
-     "text": "Resistance to damage from earth (immune from 20th level; the GM says which damage that covers).",
+     "name": "Thunder",
+     "text": "Resistance to thunder damage; immune from 20th level.",
      "rules": [
       {
-       "key": "note.save",
-       "value": "Elemental Mastery (Earth): {1:resistance, 20:immunity} to earth damage (the GM's call which damage that is)."
-      }
-     ]
-    },
-    {
-     "name": "Water",
-     "text": "Resistance to damage from water (immune from 20th level; the GM says which damage that covers).",
-     "rules": [
+       "key": "resist",
+       "value": "thunder"
+      },
       {
-       "key": "note.save",
-       "value": "Elemental Mastery (Water): {1:resistance, 20:immunity} to water damage (the GM's call which damage that is)."
-      }
-     ]
-    },
-    {
-     "name": "Air",
-     "text": "Resistance to damage from air (immune from 20th level; the GM says which damage that covers).",
-     "rules": [
-      {
-       "key": "note.save",
-       "value": "Elemental Mastery (Air): {1:resistance, 20:immunity} to air damage (the GM's call which damage that is)."
+       "key": "immune",
+       "value": "{20:thunder}"
       }
      ]
     }
@@ -10150,7 +10074,7 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs poison, disease, paralysis, petrification and death effects"
+    "when": "vs poison, disease, paralysis, petrification and instant-death effects"
    }
   ],
   "summary": "Advantage reminder on saves against poison, disease, paralysis, petrification and death effects. Updated for books v0.10.58 (R-B59 to R-B64).",
@@ -10480,17 +10404,18 @@
     ]
    },
    {
-    "name": "Word of Power: Deafened",
+    "name": "Word of Power",
     "target": "target",
     "rounds": 1,
     "statuses": [
-     "deafened"
+     "shaken",
+     "slowed"
     ],
     "rules": []
    }
   ],
-  "summary": "The Performance pool. Each option offers only its own effect: Exalted (Advantage on checks and saves, not attacks, for the encounter), Discord (its next hit deals half damage, failed Will save), Exhorted (one reroll of an attack or save each round, for the encounter), Words of Power (Deafened until the end of its next turn, failed Will save).",
-  "manual": "Exhort Greatness' temporary HP (two rolls of the creature's Hit Die, each + Constitution modifier); Rally's re-saves; one Performance a round.",
+  "summary": "The Performance pool. Each option offers only its own effect: Exalted (Advantage on checks and saves, not attacks, for the encounter), Discord (its next hit deals half damage, failed Will save), Exhorted (one reroll of an attack or save each round, for the encounter), Words of Power (Shaken and Slowed until the end of its next turn, failed Will save).",
+  "manual": "Exhort Greatness' temporary HP (twice the creature's Level, once per encounter); Rally's re-saves; Words of Power's Stun from 17th; one Performance a round.",
   "confidence": "high"
  },
  "class-features/SITkRcsV0orjWqI4": {
@@ -10509,7 +10434,7 @@
     "rules": []
    }
   ],
-  "summary": "The Channel pool. Smite is spent when you hit (the first hit each encounter offers it on the attack card, books v0.10.38): extra radiant damage equal to your Paladin level, and an ally within 10ft heals your Charisma modifier (minimum 1); Turn Undead offers Turned (1 minute, comes off when you attack it); Divine Intervention's options are reminders.",
+  "summary": "The Channel pool. Smite is spent when you hit (the first hit each encounter offers it on the attack card): extra radiant damage equal to your Paladin level (+1d8 from 5th, 2d8 from 13th), and an ally within 10ft heals your Charisma modifier (minimum 1); Turn Undead offers Turned (1 minute, comes off when you attack it); Heaven's Answer's options are reminders.",
   "manual": "Turn Undead's destruction and the number turned.",
   "confidence": "high"
  },
@@ -10617,7 +10542,7 @@
    }
   ],
   "summary": "Your Lay on Hands pool is 4 HP per Paladin level instead of 2 (books v0.10.28, K20).",
-  "manual": "The once-a-day Divine Healing without spending Channel Divinity: its Use.",
+  "manual": "Once a day: Lay on Hands also ends Poisoned at no cost; from 8th, Heaven's Answer's third option at no cost.",
   "confidence": "high"
  },
  "class-features/Ja7qAxQyHV2Ut5db": {
@@ -10765,22 +10690,6 @@
   "confidence": "high",
   "approved": "Books v0.10.38 (B-F25, K44 S6)"
  },
- "class-features/6KnvsKVmfEMQyXjz": {
-  "name": "Aura of Resolve",
-  "from": "Paladin",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.save",
-    "value": 1,
-    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)"
-   }
-  ],
-  "summary": "Advantage reminder on saves against Paralysis and Stunning.",
-  "manual": "Allies in the Aura of Courage get the same: call it on their saves.",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
  "class-features/OMo4CxLfLGHqH7We": {
   "name": "Cleansing Prayer",
   "from": "Cleric",
@@ -10788,7 +10697,7 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Cleansing Prayer: when this spell restores HP to a creature, it also ends one of Poisoned, Frightened or Sickened on it."
+    "value": "Cleansing Prayer: when this spell (or your deity's granted power) restores HP to a creature, it also ends Poisoned or Frightened on it (Sickened and Terrified included)."
    }
   ],
   "summary": "A reminder on spell cards.",
@@ -10833,7 +10742,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Lingering Death: a creature that takes necrotic damage from your spell can't regain HP until the start of your next turn."
+    "value": "Lingering Death: when a creature takes necrotic damage from your spell, one undead you control may at once move up to its speed towards it."
    }
   ],
   "summary": "A reminder on damage cards.",
@@ -10868,7 +10777,7 @@
    }
   ],
   "summary": "A reminder on damage cards.",
-  "manual": "When your marked prey drops, mark another creature you can see as part of your next attack without spending a use of Marked Prey.",
+  "manual": "This is the Ranger's exception to one damage die a round.",
   "confidence": "high",
   "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
  },
@@ -10884,16 +10793,6 @@
   ],
   "summary": "A reminder on spell cards.",
   "manual": "Leave those creatures out of the template's targets.",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
- "class-features/pqi1fqyRJ1EGdnnE": {
-  "name": "Smite improves",
-  "from": "Paladin",
-  "container": "passive",
-  "rules": [],
-  "summary": "Its Use: none. Channel Divinity's Smite improves option rolls the +1d8 radiant with your Smite.",
-  "manual": "",
   "confidence": "high",
   "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
  },
@@ -10941,16 +10840,16 @@
   "from": "Archer",
   "container": "passive",
   "rules": [],
-  "summary": "Choose the special arrows (two at creation, a third at 3rd, a fourth at 15th): only those arrows show as options. Kieran, 8 Nov 2026 (Jacob's Well).",
+  "summary": "Choose the special arrows (two at creation, one more at 3rd, 9th, 13th, 15th and 17th): only those arrows show as options.",
   "manual": "The daily pool of crafted arrows is the Arrow Repertoire counter.",
   "confidence": "high",
   "optionChoice": {
    "label": "Arrow type",
-   "max": "1:2, 3:3, 15:4",
+   "max": "1:2, 3:3, 9:4, 13:5, 15:6, 17:7",
    "options": [
     {
      "name": "Fire Arrow",
-     "text": "+1d6 fire damage on a hit; can ignite flammable material.",
+     "text": "+1d6 fire damage on a hit (2d6 from 9th, 3d6 from 17th); can ignite flammable material.",
      "rules": []
     },
     {
@@ -10966,6 +10865,26 @@
     {
      "name": "Broadhead Arrow",
      "text": "Reduces the armour bonus to the target's AC by 2.",
+     "rules": []
+    },
+    {
+     "name": "Smoke Arrow",
+     "text": "9th tier (2 of the pool): where it lands, a 15ft radius is heavily obscured until the end of your next turn.",
+     "rules": []
+    },
+    {
+     "name": "Net Arrow",
+     "text": "9th tier (2 of the pool): on a hit, a Large or smaller target makes a Reflex save or is Restrained until it spends an action to break free.",
+     "rules": []
+    },
+    {
+     "name": "Exploding Arrow",
+     "text": "13th tier (3 of the pool): bursts on a hit or at a point; each creature within 10ft makes a Reflex save, 4d6 thunder, half on a success.",
+     "rules": []
+    },
+    {
+     "name": "Lightning Arrow",
+     "text": "13th tier (3 of the pool): on a hit, +6d6 lightning damage to the target.",
      "rules": []
     }
    ]
@@ -11339,11 +11258,104 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Peerless Hunter: Advantage on every attack roll against your marked prey; Apex Predator applies every time you use Marked Prey, with no daily limit."
+    "value": "Peerless Hunter: Advantage on every attack roll against your marked prey; once per encounter, one hit against it deals maximum damage, extra dice included; Apex Predator applies every time you use Marked Prey, with no daily limit."
    }
   ],
   "summary": "HB v0.10.76: a reminder on attack cards; use Apex Predator freely.",
   "manual": "Apex Predator's daily use isn't spent at 24th: restore it by hand if the button spends it.",
   "confidence": "medium"
+ },
+ "class-features/xMVHhH53Y6L66Q1t": {
+  "name": "Auras",
+  "from": "Paladin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "17:1",
+    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)"
+   }
+  ],
+  "summary": "From 17th, Aura of Resolve: Advantage reminder on saves against Paralysis and Stunning.",
+  "manual": "Allies get Aura of Resolve from the aura (Auras).",
+  "confidence": "high",
+  "approved": "HB v0.10.80 (B-F74): Aura of Resolve folded into Auras at 17th"
+ },
+ "kits/ipGsmIrKI3zd2kwU#1": {
+  "name": "Undying Constitution",
+  "from": "Pale Master (Necromancer)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": 1,
+    "when": "vs poison, disease and paralysis"
+   }
+  ],
+  "summary": "Advantage on saves (vs poison, disease and paralysis). Shown as reminders.",
+  "manual": "No eating, drinking or sleeping (4 hours of trance); Detect Undead always prepared; Speak with Dead once a day from 3rd; from 9th immune to poison and disease from a source of your Level or lower. From 9th, Resistance 5 to necrotic damage.",
+  "confidence": "high"
+ },
+ "kits/ioMzfnluzghImDnW#2": {
+  "name": "Siege-Bound",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "about clan etiquette and military structure"
+   }
+  ],
+  "summary": "Advantage on checks (about clan etiquette and military structure). Shown as reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
+  "manual": "",
+  "confidence": "high",
+  "from": "Wall-Breaker (Barbarian)"
+ },
+ "kits/ioMzfnluzghImDnW#1": {
+  "name": "Siege Master",
+  "from": "Wall-Breaker (Barbarian)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check.str",
+    "value": 1,
+    "when": "to break, smash or force open objects"
+   }
+  ],
+  "summary": "Advantage on Str checks (to break, smash or force open objects). Shown as reminders.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/NN1UT2GSobSDkt3P": {
+  "name": "Guided Hand",
+  "from": "Paladin",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "attack",
+    "value": "+@abilities.cha.mod",
+    "when": "your first attack roll each round"
+   }
+  ],
+  "summary": "Charisma modifier reminder on your first attack roll each round.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "HB v0.10.80 (B-F74, K199)"
+ },
+ "kits/Q7gNxy1ywBCdxtgL#0": {
+  "name": "Granted Power (Mask)",
+  "from": "Deity: Mask (Paladin)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.skill",
+    "value": 1,
+    "when": "Stealth and Sleight of Hand"
+   }
+  ],
+  "summary": "Advantage on Stealth and Sleight of Hand (reminders).",
+  "manual": "Once a day, in shadow: Invisible until the end of your next turn. A Smite you make while Hidden doesn't reveal you.",
+  "confidence": "high",
+  "approved": "HB v0.10.80 (B-F74)"
  }
 }

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<p>You trap and bargain with souls — the dead are a resource, their knowledge a currency. Information flows from the other side to those who know how to ask.</p><ul><li>Soul Snare</li><li>When you reduce a creature to <strong>0 HP</strong> or below, you may bind its soul briefly</li><li>Before passing on, the bound soul imposes <strong>Disadvantage</strong> on one enemy's next attack roll or save.</li><li>Whisper of the Dead</li><li><strong>Advantage</strong> on Speak with Dead checks and all checks involving souls, spirits, or planar entities</li><li>Ask a recently dead creature (dead no longer than <strong>1 day</strong> per Necromancer level) one yes/no question, no spell slot required. Each corpse can be asked only once</li></ul>",
+  "description": "<p>You trap and bargain with souls: the dead are a resource, their knowledge a currency. Information flows from the other side to those who know how to ask.</p><ul><li>Soul Snare</li><li>When you or an undead you control reduce a creature to <strong>0 HP</strong> or below (<strong>once per round</strong>), you may bind its soul briefly</li><li>Before passing on, the bound soul imposes <strong>Disadvantage</strong> on one enemy's next attack roll or save.</li><li>From 9th level, a soul you bind also gives you <strong>temporary HP</strong> equal to its Level (minimum 1)</li><li>Whisper of the Dead</li><li><strong>Advantage</strong> on all checks involving souls, spirits, or planar entities; a corpse you question with Speak with Dead answers one extra question</li><li>Ask a recently dead creature (dead no longer than <strong>1 day</strong> per Necromancer level) one yes/no question, no spell slot required. Each corpse can be asked only once</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Soul Snare",
     "level": 1,
-    "description": "<p>When you reduce a creature to <strong>0 HP</strong> or below, you may bind its soul briefly</p><p>Before passing on, the bound soul imposes <strong>Disadvantage</strong> on one enemy's next attack roll or save.</p>",
+    "description": "<p>When you or an undead you control reduce a creature to <strong>0 HP</strong> or below (<strong>once per round</strong>), you may bind its soul briefly</p><p>Before passing on, the bound soul imposes <strong>Disadvantage</strong> on one enemy's next attack roll or save.</p><p>From 9th level, a soul you bind also gives you <strong>temporary HP</strong> equal to its Level (minimum 1)</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -26,7 +26,7 @@
    {
     "name": "Whisper of the Dead",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Speak with Dead checks and all checks involving souls, spirits, or planar entities</p><p>Ask a recently dead creature (dead no longer than <strong>1 day</strong> per Necromancer level) one yes/no question, no spell slot required. Each corpse can be asked only once</p>",
+    "description": "<p><strong>Advantage</strong> on all checks involving souls, spirits, or planar entities; a corpse you question with Speak with Dead answers one extra question</p><p>Ask a recently dead creature (dead no longer than <strong>1 day</strong> per Necromancer level) one yes/no question, no spell slot required. Each corpse can be asked only once</p>",
     "uses": {
      "value": 0,
      "max": 0,

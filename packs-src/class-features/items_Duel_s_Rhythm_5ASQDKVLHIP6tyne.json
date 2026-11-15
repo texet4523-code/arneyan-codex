@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> While engaged with a single opponent in melee (no other creatures in melee reach), after each of your attacks you may move <strong>10ft</strong> without provoking, that opponent can't Disengage from you, and you have <strong>Advantage</strong> on saves.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> While exactly one enemy is within your reach, after each attack you make against it you may move <strong>10ft</strong>, on top of your speed, without provoking Attacks of Opportunity from it, and you have <strong>Advantage</strong> on saves against its spells and abilities.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,14 +24,14 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Duel's Rhythm: after each of your attacks you may move 10ft without provoking, and your opponent can't Disengage from you.",
+    "value": "Duel's Rhythm: while exactly one enemy is within your reach, after each attack against it you may move 10ft (on top of your speed) without provoking Attacks of Opportunity from it.",
     "when": "",
     "label": ""
    },
    {
     "key": "adv.save",
     "value": "1",
-    "when": "while in melee with a single opponent",
+    "when": "against the spells and abilities of the one enemy within your reach (while it is the only one)",
     "label": ""
    }
   ],

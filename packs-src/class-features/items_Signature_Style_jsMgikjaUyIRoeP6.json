@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one type of attack, poison, or tactic used throughout your career.</li><li>When executing a Death Attack using this signature style, the target makes its <strong>Fortitude save</strong> with <strong>Disadvantage</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one type of attack, poison, or tactic used throughout your career.</li><li>Once per encounter, when executing a Death Attack using this signature style, the target makes its <strong>Fortitude save</strong> with <strong>Disadvantage</strong>.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
   },
   "save": "",
   "dc": null,
@@ -24,7 +24,7 @@
  },
  "effects": [],
  "folder": "b3fiHSAW8zySsJZt",
- "sort": 20,
+ "sort": 19,
  "ownership": {
   "default": 0
  },

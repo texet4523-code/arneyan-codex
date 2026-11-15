@@ -1,11 +1,11 @@
 {
- "_id": "6KnvsKVmfEMQyXjz",
- "_key": "!items!6KnvsKVmfEMQyXjz",
- "name": "Aura of Resolve",
+ "_id": "NN1UT2GSobSDkt3P",
+ "_key": "!items!NN1UT2GSobSDkt3P",
+ "name": "Guided Hand",
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You and allies in your Aura of Courage have <strong>Advantage</strong> on saves against <strong>Paralysed</strong> and <strong>Stunned</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Add your Charisma modifier to your first attack roll each round. Always on.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,13 +19,13 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 18,
+  "level": 1,
   "className": "Paladin",
   "rules": [
    {
-    "key": "adv.save",
-    "value": "1",
-    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)",
+    "key": "attack",
+    "value": "+@abilities.cha.mod",
+    "when": "your first attack roll each round",
     "label": ""
    }
   ],
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "V8nWnw4iuFs9nBZb",
- "sort": 14,
+ "sort": 1,
  "ownership": {
   "default": 0
  },

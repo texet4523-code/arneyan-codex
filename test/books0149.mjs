@@ -68,7 +68,7 @@ assert.ok(src("module/progression.mjs").indexOf("flags: { arneyan: { knack: true
 /* HB v0.10.50 (B-F38, K58). */
 const cf = read("class-features", "items_");
 // Books v0.10.57 (R-B61): the Rogue's Exploit counts a flanked creature; the Assassin's Sneak Attack its Studied target.
-assert.ok(cf.find(i => i.name === "Exploit (Sneak Attack)").system.rules.some(r => /flanked/.test(r.when ?? "")), "flanking counts");
+assert.ok(cf.find(i => i.name === "Exploit").system.rules.some(r => /flanked/.test(r.when ?? "")), "flanking counts");
 assert.ok(cf.find(i => i.name === "Sneak Attack" && i.system.className === "Assassin").system.rules.some(r => /Studied target/.test(r.when ?? "")));
 // HB v0.10.70 (K133): Finishing Blow is one extra Sneak Attack die; Marked for Death (Improved) is Open Vein.
 assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /one extra Sneak Attack die/.test(r.value)));

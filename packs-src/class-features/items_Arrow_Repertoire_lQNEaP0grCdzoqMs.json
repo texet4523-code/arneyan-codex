@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You know two special arrow types from the list below, chosen at character creation, and learn one more at 3rd, 9th, 13th, 15th and 17th level, from the tiers your level allows.</li><li>Each day you can craft special arrows up to your daily pool, Dexterity modifier + Archer level (minimum 1), if you have the materials.</li><li>Unused arrows keep from day to day.</li><li><strong>Carry limit:</strong> You can never carry more crafted arrows than your daily pool. Once you hold that many, you can't craft more until you use some.</li><li><strong>Pool cost:</strong> a 1st-tier arrow uses 1 of your pool, a 9th-tier arrow 2 and a 13th-tier arrow 3. You can loose only one arrow from the 9th tier or higher each round (one arrow of a Twin Nock).</li><li><strong>Fire Arrow:</strong> +<strong>1d6</strong> fire damage on hit (+<strong>2d6</strong> from 9th level, +<strong>3d6</strong> from 17th); can ignite flammable material</li><li><strong>Whistling Arrow:</strong> deals no damage, but is audible up to <strong>500ft</strong> and can be used as a signal; a creature unfamiliar with the sound makes a <strong>Will save</strong> against your Class Save DC or is Shaken for <strong>1 round</strong></li><li><strong>Rope Arrow:</strong> trails a thin line up to <strong>60ft</strong>, anchors on a solid hit; can be climbed</li><li><strong>Broadhead Arrow:</strong> has the Armour Piercing trait, no other bonus</li><li><strong>From 9th level, Smoke Arrow:</strong> where it lands, a <strong>15ft radius</strong> is heavily obscured until the end of your next turn</li><li><strong>From 9th level, Net Arrow:</strong> on a hit, a Large or smaller target makes a <strong>Reflex save</strong> against your Class Save DC or is <strong>Restrained</strong> until it spends an action to break free</li><li><strong>From 13th level, Exploding Arrow:</strong> on a hit, or at a point within range, it bursts: each creature within <strong>10ft</strong> makes a <strong>Reflex save</strong> against your Class Save DC, taking <strong>4d6</strong> thunder damage, or half on a success</li><li><strong>From 13th level, Lightning Arrow:</strong> on a hit, +<strong>6d6</strong> lightning damage to the target</li><li><strong>From 15th level:</strong> your daily crafted arrow pool doubles.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You know two special arrow types from the list below, chosen at character creation, and learn one more at 3rd, 9th, 13th, 15th and 17th level, from the tiers your level allows.</li><li>Each day you can craft special arrows up to your daily pool, Dexterity modifier + Archer level (minimum 1), if you have the materials.</li><li>Unused arrows keep from day to day.</li><li><strong>Carry limit:</strong> You can never carry more crafted arrows than your daily pool. Once you hold that many, you can't craft more until you use some.</li><li><strong>Pool cost:</strong> a 1st-tier arrow uses 1 of your pool, a 9th-tier arrow 2 and a 13th-tier arrow 3. You can loose only one special arrow each round (one arrow of a Twin Nock).</li><li><strong>Fire Arrow:</strong> +<strong>1d6</strong> fire damage on hit (+<strong>2d6</strong> from 9th level, +<strong>3d6</strong> from 17th); can ignite flammable material</li><li><strong>Whistling Arrow:</strong> deals no damage, but is audible up to <strong>500ft</strong> and can be used as a signal; a creature unfamiliar with the sound makes a <strong>Will save</strong> against your Class Save DC or is Shaken for <strong>1 round</strong></li><li><strong>Rope Arrow:</strong> trails a thin line up to <strong>60ft</strong>, anchors on a solid hit; can be climbed</li><li><strong>Broadhead Arrow:</strong> has the Armour Piercing trait, no other bonus</li><li><strong>From 9th level, Smoke Arrow:</strong> where it lands, a <strong>15ft radius</strong> is heavily obscured until the end of your next turn</li><li><strong>From 9th level, Net Arrow:</strong> on a hit, a Large or smaller target makes a <strong>Reflex save</strong> against your Class Save DC or is <strong>Restrained</strong> until it spends an action to break free</li><li><strong>From 13th level, Exploding Arrow:</strong> on a hit, or at a point within range, it bursts: each creature within <strong>10ft</strong> makes a <strong>Reflex save</strong> against your Class Save DC, taking <strong>4d6</strong> thunder damage, or half on a success</li><li><strong>From 13th level, Lightning Arrow:</strong> on a hit, +<strong>6d6</strong> lightning damage to the target</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    "value": 1,
    "max": 1,
    "per": "day",
-   "formula": "max(1, @dex.mod + @cl) * (1 + min(1, floor(@cl / 15)))"
+   "formula": "max(1, @dex.mod + @cl)"
   },
   "save": "will",
   "dc": null,
@@ -30,7 +30,7 @@
     "damageType": "fire",
     "ability": "",
     "save": "",
-    "text": "The arrow deals an extra {1:1d6, 9:2d6, 17:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1; double from 15th. A 9th-tier arrow uses 2 of the pool and a 13th-tier arrow 3; only one arrow of the 9th tier or higher a round.)",
+    "text": "The arrow deals an extra {1:1d6, 9:2d6, 17:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1. A 9th-tier arrow uses 2 of the pool and a 13th-tier arrow 3; only one special arrow a round.)",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -245,11 +245,11 @@
   "active": false,
   "optionChoice": {
    "label": "Arrow type",
-   "max": "1:2, 3:3, 15:4",
+   "max": "1:2, 3:3, 9:4, 13:5, 15:6, 17:7",
    "options": [
     {
      "name": "Fire Arrow",
-     "text": "+1d6 fire damage on a hit; can ignite flammable material.",
+     "text": "+1d6 fire damage on a hit (2d6 from 9th, 3d6 from 17th); can ignite flammable material.",
      "rules": []
     },
     {
@@ -265,6 +265,26 @@
     {
      "name": "Broadhead Arrow",
      "text": "Reduces the armour bonus to the target's AC by 2.",
+     "rules": []
+    },
+    {
+     "name": "Smoke Arrow",
+     "text": "9th tier (2 of the pool): where it lands, a 15ft radius is heavily obscured until the end of your next turn.",
+     "rules": []
+    },
+    {
+     "name": "Net Arrow",
+     "text": "9th tier (2 of the pool): on a hit, a Large or smaller target makes a Reflex save or is Restrained until it spends an action to break free.",
+     "rules": []
+    },
+    {
+     "name": "Exploding Arrow",
+     "text": "13th tier (3 of the pool): bursts on a hit or at a point; each creature within 10ft makes a Reflex save, 4d6 thunder, half on a success.",
+     "rules": []
+    },
+    {
+     "name": "Lightning Arrow",
+     "text": "13th tier (3 of the pool): on a hit, +6d6 lightning damage to the target.",
      "rules": []
     }
    ],

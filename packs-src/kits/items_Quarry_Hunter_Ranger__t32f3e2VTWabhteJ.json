@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<p>Hunters who take contracts on one beast, band or brood at a time: the monster-hunters of Treaty Hold, the fiend-hunters of Ordenvael and the bounty lodges of the Jinia Isles.</p><ul><li><strong>Contract:</strong> before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to. Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and marking one of them with Marked Prey costs no use, once per encounter. The contract ends when the quarry is dead or you give it up.<ul><li>9th level: your weapon hits against your quarry ignore its resistances and count as magical.</li></ul></li><li><strong>Trophy:</strong> when you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind have <strong>Disadvantage</strong> on morale checks against you and your allies.</li></ul>",
+  "description": "<p>Hunters who take contracts on one beast, band or brood at a time: the monster-hunters of Treaty Hold, the fiend-hunters of Ordenvael and the bounty lodges of the Jinia Isles.</p><ul><li><strong>Contract:</strong> before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to. Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and if you tracked your quarry to the fight, one of them starts the encounter marked. The contract ends when the quarry is dead or you give it up.<ul><li>9th level: your quarry has <strong>Disadvantage</strong> on saves against your Hunter's Tricks and your traps.</li></ul></li><li><strong>Trophy:</strong> when you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind roll morale twice against you and your allies and take the higher.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,18 +15,18 @@
    {
     "name": "Contract",
     "level": 1,
-    "description": "<p>Before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to.</p><ul><li>Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and marking one of them with Marked Prey costs no use, once per encounter.</li><li>The contract ends when the quarry is dead or you give it up.</li></ul><p>9th level: your weapon hits against your quarry ignore its resistances and count as magical.</p>",
+    "description": "<p>Before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to.</p><ul><li>Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and if you tracked your quarry to the fight, one of them starts the encounter marked.</li><li>The contract ends when the quarry is dead or you give it up.</li></ul><p>9th level: your quarry has <strong>Disadvantage</strong> on saves against your Hunter's Tricks and your traps.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "encounter"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": ""
    },
    {
     "name": "Trophy",
     "level": 1,
-    "description": "<p>When you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind have <strong>Disadvantage</strong> on morale checks against you and your allies.</p>",
+    "description": "<p>When you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind roll morale twice against you and your allies and take the higher.</p>",
     "uses": {
      "value": 0,
      "max": 0,

@@ -297,12 +297,12 @@ for (const d of [...built, ...feats, ...actions]) {
   assert.equal(made.length, 1, "used again while it's on: no second copy");
 }
 
-/* Uses from a formula: Flèche (books v0.10.57: once per encounter, twice from 16th), and its attack spends one. */
+/* Uses from a formula: Flèche (books v0.10.57: once per encounter, twice from 17th, HB v0.10.80), and its attack spends one. */
 const fl = dataOf("Flèche", "Swashbuckler");
-assert.equal(fl.uses.formula, "1:1, 16:2");
+assert.equal(fl.uses.formula, "1:1, 17:2");
 assert.equal(fl.uses.per, "encounter");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
-const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
+const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", 
   "Wild Surge|Sorcerer": "1:1, 5:2, 13:3, 17:4",
   "Ki|Monk": "max(1, @cl + @wis.mod)", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
   // Books v0.10.25 (R-B7): the pools (books v0.10.38, K45: Performance 3 more from 4th; the Monk's Ki).
@@ -390,12 +390,12 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.every(a => !a.cost), "HB v0
   assert.ok(!low.availableActivities[0].text.includes("Rallying Cry") && !/ 0\s*$/.test(low.availableActivities[0].text), "before 4th: no Rallying Cry line, and no stray 0");
 
   const perf = dataOf("Performance (Charisma)", "Bard");
-  assert.deepEqual(perf.activities.map(a => [a.name, a.minLevel, a.cost]), [["Exalt", 0, 1], ["Discord", 0, 1], ["Rally", 3, 1], ["Exhort Greatness", 5, 2], ["Words of Power", 10, 2]]);
+  assert.deepEqual(perf.activities.map(a => [a.name, a.minLevel, a.cost]), [["Exalt", 0, 1], ["Discord", 0, 0], ["Rally", 3, 1], ["Exhort Greatness", 5, 2], ["Words of Power", 10, 2], ["Sway Crowd", 13, 2]]);
   const bard = feature({ ...perf, name: "Performance (Charisma)" }, { level: 12, cls: "Bard" }).item;
   assert.ok(bard.availableActivities[0].text.includes("3 allies"), "Exalt reaches 3 allies at 12th");
 
   const ch = dataOf("Channel Divinity (Charisma)", "Paladin");
-  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Smite", 0, 0], ["Smite improves (1d8 radiant)", 13, 0], ["Turn Undead", 3, 1], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 5, 2], ["Divine Intervention", 8, 2]]);
+  assert.deepEqual(ch.activities.map(a => [a.name.split(":")[0], a.minLevel, a.cost]), [["Smite", 0, 1], ["Smite", 0, 0], ["Smite", 5, 0], ["Turn Undead", 3, 1], ["Heaven's Answer", 6, 2], ["Heaven's Answer", 6, 2], ["Heaven's Answer", 8, 2]]);
 
   const loh = dataOf("Lay on Hands", "Paladin");
   const { item: lay } = feature({ ...loh, name: "Lay on Hands", uses: { value: 10, max: 10, per: "day", formula: "" } }, { level: 5, cls: "Paladin" });

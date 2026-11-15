@@ -141,3 +141,13 @@ console.log("books0170: ok");
   assert.ok(gearSrc.includes("if (s.save && (!touchy || thenSave))") && gearSrc.includes("TOUCH_OLD_NAMES.has(sp.name)"));
   console.log("OK HB v0.10.74 and K&K v0.5.3");
 }
+
+/* HB v0.10.80: the Paladin's Class Save DC uses Charisma and the Spellblade's Intelligence, whatever their Strength. */
+{
+  const { ARNEYAN } = await import("../arneyan/module/config.mjs");
+  assert.deepEqual([ARNEYAN.classDCKey.Paladin, ARNEYAN.classDCKey.Spellblade], ["cha", "int"]);
+  const fsm = await import("node:fs");
+  const src = fsm.readFileSync(new URL("../arneyan/module/data/actor-models.mjs", import.meta.url), "utf8");
+  assert.ok(src.includes("ARNEYAN.classDCKey?.[first.name]"), "the Class Save DC reads classDCKey");
+  console.log("OK HB v0.10.80 Class Save DC");
+}

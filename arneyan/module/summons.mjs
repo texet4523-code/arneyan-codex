@@ -81,6 +81,9 @@ export const PACT_PATHS = {
   goo: { label: "Path of the Great Old One", kits: ["Tharizdun, the Chained God", "Bolothamogg"],
     pool: [["Star Spawn Grue"], ["Intellect Devourer"], ["Chuul"], ["Star Spawn Hulk"]] }
 };
+/** Servants with double the HP and damage dice of their Bestiary blocks (HB v0.10.79 and v0.10.80, K198): every
+ * Tier 1 to 3 servant, and the Erinyes and Treant in Tier 4. */
+export const pactDoubled = (tier, name = "") => tier <= 3 || ["Erinyes", "Treant"].includes(name);
 /** Warlock level each tier unlocks at, and the slot level it spends (Tier 4 needs Pact Summons (Tier 4): a 5th-level slot). */
 export const PACT_TIERS = [{ tier: 1, level: 3, slot: 1 }, { tier: 2, level: 7, slot: 2 }, { tier: 3, level: 11, slot: 3 }, { tier: 4, level: 15, slot: 5 }];
 /** A combat summons lasts 1 minute, a ritual summons (10 minutes to call) 1 hour. */
@@ -320,7 +323,7 @@ async function pickPact(actor, item, req, mode) {
     ${pathPick}
     <fieldset class="arn-summon-opts">${tierRows}</fieldset>
     <fieldset class="arn-summon-opts">${Object.entries(PACT_MODES).map(([k, m]) => `<label><input type="radio" name="mode" value="${k}" ${k === (mode || "combat") ? "checked" : ""}> ${esc(m.label)}</label>`).join("")}</fieldset>
-    <p class="arn-muted">It acts straight after you, moving and taking one action, and obeys your spoken commands (with none, it attacks the nearest visible enemy). One at a time. Tier 1 servants have double the HP and damage dice of their stat blocks.</p></div>`;
+    <p class="arn-muted">It acts straight after you, moving and taking one action, and obeys your spoken commands (with none, it attacks the nearest visible enemy). One at a time. Tier 1 to 3 servants, and the Erinyes and Treant, have double the HP and damage dice of their stat blocks.</p></div>`;
   const names = p => Object.fromEntries(PACT_PATHS[p].pool.map((c, i) => [i + 1, c.length > 1 ? `${c[0]} pair` : c[0]]));
   const result = await foundry.applications.api.DialogV2.wait({
     window: { title: "Pact Summons", icon: "fa-solid fa-dragon" }, classes: ["arneyan", "arn-summon-app"], position: { width: 480 }, content,
@@ -408,7 +411,7 @@ export async function doSummonRequest(msg, senderId) {
     if (!slot || slot.left <= 0) throw new Error(`No ${ARNEYAN.spellLevels[t.slot]}-level slot left.`);
     used[t.slot] += 1;
     await lock.update({ "system.slotsUsed": used });
-    plan = { name: "Pact Summons", kind: "pact", tier: t.tier, picks, seconds: mode.seconds, concentration: false, double: t.tier === 1,
+    plan = { name: "Pact Summons", kind: "pact", tier: t.tier, picks, seconds: mode.seconds, concentration: false, double: pactDoubled(t.tier, names[0]),
       note: `${ARNEYAN.spellLevels[t.slot]}-level slot spent. It acts straight after you; if you fall unconscious it only defends itself.` };
   } else throw new Error("Unknown summoning.");
   return placeSummon(caster, token, plan, now);

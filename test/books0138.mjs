@@ -81,7 +81,7 @@ const fas = feat("Performance: Fascinate", "Bard");
 assert.equal(fas._id, "LsWKxgs0ZtOLLPCd");
 assert.equal(fas.system.uses.pool, "Performance (Charisma)");
 assert.equal(fas.system.activities.find(a => a.name === "Fascinate").cost, 1);
-assert.ok(fas.system.activities.find(a => a.name === "Sway Crowd").text.includes("may save again at once"), "books v0.10.57");
+assert.ok(!fas.system.activities.some(a => a.name === "Sway Crowd"), "Sway Crowd is a Performance option (HB v0.10.80)");
 
 /* Fable M5: Sorcerer's Spark gave way to Wild Surge improves. */
 assert.ok(feat("Wild Surge", "Sorcerer").system.activities[0].text.includes("second Wild Surge each day"));
@@ -154,7 +154,7 @@ assert.equal(bh.optionChoice.options.length, 3);
   const pregens = read("../test/fixtures/pregens-jw", "actors_").concat(read("../test/fixtures/pregens", "actors_"));
   const uses = (who, what) => pregens.find(p => p.name.startsWith(who)).items.find(i => i.name === what).system.uses;
   assert.deepEqual([uses("Sarrix", "Ki").value, uses("Sarrix", "Ki").max], [11, 11]);
-  assert.equal(uses("Kavra", "Rage").value, 4);
+  assert.equal(uses("Kavra", "Rage").value, 1, "once per encounter (HB v0.10.80, K199)");
   assert.equal(uses("Liriel", "Flèche").value, 1, "once per encounter (books v0.10.57)");
   assert.equal(uses("Sister Aurelle", "Turn Undead").value, 6);
 }

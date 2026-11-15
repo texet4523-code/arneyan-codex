@@ -1,0 +1,101 @@
+{
+ "_id": "xMVHhH53Y6L66Q1t",
+ "_key": "!items!xMVHhH53Y6L66Q1t",
+ "name": "Auras",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Aura of Courage: you are immune to the <strong>Frightened</strong> and Terrified conditions. Allies within your aura have <strong>Advantage</strong> on saves against fear. The aura reaches <strong>10ft</strong>, <strong>30ft</strong> from 15th and <strong>50ft</strong> from 20th (see the Paladin Progression Table).</li><li><strong>Aura of Devotion (9th):</strong> an ally in your aura who is <strong>Frightened</strong> or <strong>Charmed</strong> saves again at the start of each of its turns, ending the effect on a success.</li><li><strong>Aura of Resolve (17th):</strong> you and allies in your aura have <strong>Advantage</strong> on saves against <strong>Paralysed</strong> and <strong>Stunned</strong>.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 2,
+  "className": "Paladin",
+  "rules": [
+   {
+    "key": "adv.save",
+    "value": "17:1",
+    "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false,
+  "auras": [
+   {
+    "key": "devotion",
+    "name": "Aura of Devotion",
+    "minLevel": 9,
+    "radius": [
+     [
+      1,
+      10
+     ],
+     [
+      15,
+      30
+     ],
+     [
+      20,
+      50
+     ]
+    ],
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "note.save",
+      "value": "Aura of Devotion: if you are Frightened or Charmed, save again at the start of each of your turns, ending it on a success.",
+      "label": "Aura of Devotion"
+     }
+    ]
+   },
+   {
+    "key": "resolve",
+    "name": "Aura of Resolve",
+    "minLevel": 17,
+    "radius": [
+     [
+      1,
+      10
+     ],
+     [
+      15,
+      30
+     ],
+     [
+      20,
+      50
+     ]
+    ],
+    "who": "allies",
+    "includeSelf": false,
+    "rules": [
+     {
+      "key": "adv.save",
+      "value": "1",
+      "when": "vs Paralysed and Stunned",
+      "label": "Aura of Resolve"
+     }
+    ]
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "V8nWnw4iuFs9nBZb",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

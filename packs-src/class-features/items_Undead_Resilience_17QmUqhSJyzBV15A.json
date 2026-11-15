@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<ul><li><strong>Undead Resilience:</strong> At the start of each encounter, gain <strong>temporary HP</strong> equal to the total HD of all undead under your control, up to your Necromancer level.</li><li><strong>Example:</strong> zombie (2 HD) + skeleton (1 HD) + wight (4 HD) = 7 <strong>temporary HP</strong></li><li>Temporary HP last until the end of the encounter</li></ul>",
+  "description": "<p>At the start of each encounter, gain <strong>temporary HP</strong> equal to the undead points you control, up to your Necromancer level.</p><ul><li><strong>Example:</strong> zombie (1 point) + ghoul (2 points) + wight (3 points) = 6 <strong>temporary HP</strong></li><li>Temporary HP last until the end of the encounter</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "At the start of each encounter: temporary HP equal to the total HD of all undead you control, up to the number below (your Necromancer level). They last until the encounter ends; add them with the Temp HP button.",
+    "text": "At the start of each encounter: temporary HP equal to the undead points you control, up to the number below (your Necromancer level). They last until the encounter ends; add them with the Temp HP button.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

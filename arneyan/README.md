@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.110 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.111 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.111
+
+Handbook v0.10.79 and v0.10.80 (B-F73, B-F74; Monsters & Treasure unchanged), with the buttons promised in 0.10.110 and R-F45's god pages.
+
+- **Martial reworks:** the Barbarian rages every fight (once per encounter, +2/+3/+4 damage), with Cheap Shot, Drake's Fury and the other kit hits as reminders; the Paladin gains Guided Hand (Charisma on your first attack each round), Smite's +1d8 from 5th (2d8 from 13th), Blessed Weapon on any foe, Auras at 2nd (Aura of Devotion and Aura of Resolve as auras), Heaven's Answer in place of Divine Intervention, and Cleanse Soul once a week; the Swashbuckler has Riposte from 1st, Balestra, Relentless Assault once a round and The Last Word; the Spellblade takes the Knight's attack track, one Spellstrike a round and Everstrike once per encounter.
+- **Batch v0.10.79:** the Ranger's trap table as buttons (snare to great jaw trap), Marked Prey twice an encounter from 4th, Apex Predator halving speed; the Rogue's Exploit dice a step earlier; the Archer's arrow pool no longer doubles, one special arrow a round, and the third arrow deals only its weapon die; Warlock servants doubled through Tier 3 plus the Erinyes and Treant; the Necromancer's undead points and Necrotic Aura's once-an-encounter Disadvantage; Death Attack once per encounter against each target (no single counter).
+- **Your world:** renamed features keep their ids (Exploit, Intimidate, Death's Embrace, Great Work, Channel: Heaven's Answer, Auras, Acrobatic Escape, the Tharizdun kits). Cut features stay on sheets and the report lists them to delete. The report's notes now name this update's changes instead of the old book history.
+- **Buttons brought up to date:** the Bard's Performance (Discord costs no use, Exhort Greatness from 5th with temporary HP, Words of Power Shaken and Slowed, Sway Crowd), Fascinate, Bardic Lore and Lore Master; Zariel, Bolothamogg, Mephistopheles, Levistus and The Pact Deepens; the Cleric's Banish, Perfect Recall and Cleansing Prayer; the Druid's Elemental Mastery and Resist Elements; the Illusionist's Quickened Illusion and Misdirect; the Wizard's Arcane Analysis and kits; Spellburn's recovery; the Hollow Bride's oath-breaker chill.
+- **Gods (R-F45):** every deity and patron kit links its god's public page on the wiki; Lliira's link is fixed, and Nocticula's Allegiance is Chaotic Evil, as her page says.
 
 ## What's new in 0.10.110
 
@@ -13,7 +23,6 @@ Handbook and Monsters & Treasure v0.10.76 to v0.10.78 (B-F70, B-F71, B-F72), wit
 - **Monsters & Treasure:** the Remorhaz, Yuan-ti Anathema and Drow Matron Mother carry R-F39's trims. A creature marked Solo but run as a normal creature now caps its attacks at its Level's Damage target in a round (its description gives the number), in place of halving. Monster spell lists read the new plain spell names, so every caster keeps its spells on its sheet. The Classic Uniques and Relics sit with the Named Uniques and Artefacts.
 - **Encounter Builder:** a minion costs a quarter of its normal cost, and a solo against a party one or two Levels off it says how the fight changes (further apart: don't run it as a solo).
 - **Spells:** Programmed Illusion gets its disbelief save; Storm Spark is the Storm-born Sorcerer's new cantrip.
-- **Still to follow (0.10.111):** some buttons and reminders for the Bard's options, the Cleric's Banish and Turn Undead, the Druid's Elemental Mastery, the Illusionist's Quickened Illusion, the Warlock patrons and the Ranger's trap table still read the old numbers; their descriptions are the new ones.
 
 ## What's new in 0.10.109
 

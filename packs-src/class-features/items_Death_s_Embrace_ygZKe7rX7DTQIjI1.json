@@ -1,0 +1,48 @@
+{
+ "_id": "ygZKe7rX7DTQIjI1",
+ "_key": "!items!ygZKe7rX7DTQIjI1",
+ "name": "Death's Embrace",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<p>The line between you and death has blurred permanently.</p><ul><li>Gain a permanent +1 to Intelligence. It can take the score past 20, to 22 at most (see The Mortal Limit in Character Creation)</li><li>Immune to instant-death effects, as Death Ward, and to energy drain</li><li>Cause Wounds spells heal you as they heal an undead. No other necrotic effect heals you</li><li>You no longer age and cannot die of old age</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 15,
+  "className": "Necromancer",
+  "rules": [
+   {
+    "key": "ability.int",
+    "value": "1",
+    "when": "",
+    "label": ""
+   },
+   {
+    "key": "note.save",
+    "value": "Death's Embrace: immune to instant-death effects (as Death Ward) and to energy drain.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 8,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

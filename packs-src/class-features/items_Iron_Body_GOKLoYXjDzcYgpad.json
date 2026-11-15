@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against poison, disease, paralysis, petrification and death effects.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against poison, disease, paralysis, petrification and instant-death effects.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,7 @@
    {
     "key": "adv.save",
     "value": "1",
-    "when": "vs poison, disease, paralysis, petrification and death effects",
+    "when": "vs poison, disease, paralysis, petrification and instant-death effects",
     "label": ""
    }
   ],

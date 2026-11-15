@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<p>A creature that takes necrotic damage from your spell can't regain HP until the start of your next turn.</p>",
+  "description": "<p>When a creature takes necrotic damage from your spell, one undead you control may at once move up to its speed towards it.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Lingering Death: a creature that takes necrotic damage from your spell can't regain HP until the start of your next turn.",
+    "value": "Lingering Death: when a creature takes necrotic damage from your spell, one undead you control may at once move up to its speed towards it.",
     "when": "",
     "label": ""
    }

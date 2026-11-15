@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, when you drop to half your HP or less, you gain <strong>temporary HP</strong> equal to twice your Barbarian level until the encounter ends. If a blow would drop you to <strong>0 HP</strong>, it triggers first.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, when damage takes you to half your HP or less, you may gain <strong>temporary HP</strong> equal to twice your Barbarian level until the encounter ends. If that damage would take you to <strong>0 HP</strong> or below, the <strong>temporary HP</strong> apply to it first.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "When you drop to half your HP or less (or first, if a blow would drop you to 0), gain temporary HP equal to twice your Barbarian level until the encounter ends.",
+    "text": "Once per day, when damage takes you to half your HP or less, you may gain temporary HP equal to twice your Barbarian level until the encounter ends. If that damage would take you to 0 HP or below, the temporary HP apply to it first.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

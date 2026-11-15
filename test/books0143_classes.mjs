@@ -31,7 +31,7 @@ assert.deepEqual([1, 13, 17, 24].map(l => dice(feat("Spark Caster", "Artificer")
    Attack carries one from 7th. */
 const ss = feat("Spellstrike", "Spellblade").activities.filter(a => a.name.startsWith("Cantrip"));
 assert.deepEqual(ss.map(a => [a.formula, a.minLevel]), [["1d4", 0], ["2d4", 5], ["3d4", 11], ["4d4", 17], ["5d4", 21]]);
-assert.ok(ss.every(a => a.text.includes("From 7th level your Extra Attack")));
+assert.ok(ss.every(a => a.text.includes("one Spellstrike a round, through either attack")), "K199: one Spellstrike a round");
 
 /* Rules for the new and changed always-on features. */
 const rules = (n, c) => feat(n, c).rules.map(r => [r.key, String(r.value)]);
@@ -44,11 +44,11 @@ assert.deepEqual(rules("Iron Fists", "Monk"), [["attack", "7:1, 13:2, 19:3"], ["
 const ps = feat("Precise Strikes", "Rogue").rules[0].value;
 const at = L => { let v = 0; for (const [, l, n] of ps.matchAll(/(\d+):(\d+)/g)) if (L >= Number(l)) v = Number(n); return v; };
 assert.deepEqual([1, 3, 7, 12, 13, 18, 19, 24].map(at), [1, 1, 2, 2, 3, 3, 4, 4], "the Fighter's steps (HB v0.10.76, K165)");
-for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Aura of Resolve", "Paladin"], ["Lore Master", "Bard"]]) assert.ok(feat(n, c).rules.length, n);
+for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Auras", "Paladin"], ["Lore Master", "Bard"]]) assert.ok(feat(n, c).rules.length, n);
 
 /* Activities. */
-const cd = feat("Channel Divinity (Charisma)", "Paladin").activities.find(a => a.name.startsWith("Smite improves"));
-assert.deepEqual([cd.formula, cd.damageType, cd.minLevel, cd.cost], ["1d8", "radiant", 13, 0]);
+const cd = feat("Channel Divinity (Charisma)", "Paladin").activities.find(a => a.name.startsWith("Smite: +1d8"));
+assert.deepEqual([cd.formula, cd.damageType, cd.minLevel, cd.cost], ["5:1d8, 13:2d8", "radiant", 5, 0], "HB v0.10.80: +1d8 at 5th, 2d8 at 13th");
 const tu = feat("Turn Undead", "Cleric").activities;
 assert.deepEqual(tu.find(a => a.name === "Turning Radiance") && [tu.find(a => a.name === "Turning Radiance").formula, tu.find(a => a.name === "Turning Radiance").minLevel], ["@cl", 6]);
 assert.ok(tu[0].text.includes("{1:30ft, 10:60ft}"));

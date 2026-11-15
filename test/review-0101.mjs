@@ -325,7 +325,7 @@ const M = await import("../arneyan/module/migrate.mjs");
   batches.length = 0; batches.push([...new Map(all.map(u => [u._id, u])).values()].filter(u => changed.has(u._id)));
   assert.ok(!changed.has(homebrew.id) && !changed.has(keptWoi.id), "homebrew and Keep my edits: untouched");
   assert.ok(!changed.has(cls[0].id), "classes are left alone");
-  assert.equal(oldFleche.system.uses.formula, "1:1, 16:2", "Flèche's uses formula (books v0.10.57)");
+  assert.equal(oldFleche.system.uses.formula, "1:1, 17:2", "Flèche's uses formula (HB v0.10.80: twice from 17th)");
   assert.equal(oldFleche.system.activities[0].cost, 1, "its attack now spends a use");
   assert.equal(oldFleche.system.uses.value, 1, "uses left kept (1, within the new maximum)");
   assert.equal(oldFleche.system.description, "<p>My notes</p>", "description kept");

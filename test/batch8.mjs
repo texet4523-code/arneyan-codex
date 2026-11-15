@@ -11,7 +11,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
 /* ---------------- 8.1 Options of the player's choice ---------------- */
 {
   const em = pack("class-features").find(d => d.name === "Elemental Mastery").system;
-  assert.equal(em.optionChoice.options.length, 6);
+  assert.deepEqual(em.optionChoice.options.map(o => o.name), ["Fire", "Cold", "Lightning", "Thunder"], "HB v0.10.78");
   assert.deepEqual(E.chosenRules(em), [], "nothing until the element is picked");
   const picked = { ...em, optionChoice: { ...em.optionChoice, value: ["Cold"] } };
   assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"], ["immune", "{20:cold}"]], "Resistance from 8th, immunity from 20th (books v0.10.22)");

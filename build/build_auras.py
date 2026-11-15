@@ -23,9 +23,14 @@ BY_NAME = {
     ("class-features", "Divine Protection"): [{
         "key": "courage", "name": "Aura of Courage", "minLevel": 2, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
         "rules": [{"key": "adv.save", "value": "1", "when": "vs fear", "label": "Aura of Courage"}]}],
-    ("class-features", "Aura of Devotion"): [{
-        "key": "devotion", "name": "Aura of Devotion", "minLevel": 9, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": True,
-        "rules": [{"key": "adv.save", "value": "1", "when": "vs charm", "label": "Aura of Devotion"}]}],
+    # HB v0.10.80 (B-F74): the Paladin's auras are one feature at 2nd, Auras; Aura of Devotion (9th) gives allies a
+    # save again at the start of each turn against Frightened and Charmed, Aura of Resolve (17th) Advantage against
+    # Paralysed and Stunned (the Paladin's own is on the feature, approved.json).
+    ("class-features", "Auras"): [{
+        "key": "devotion", "name": "Aura of Devotion", "minLevel": 9, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
+        "rules": [{"key": "note.save", "value": "Aura of Devotion: if you are Frightened or Charmed, save again at the start of each of your turns, ending it on a success.", "label": "Aura of Devotion"}]}, {
+        "key": "resolve", "name": "Aura of Resolve", "minLevel": 17, "radius": COURAGE_RADIUS, "who": "allies", "includeSelf": False,
+        "rules": [{"key": "adv.save", "value": "1", "when": "vs Paralysed and Stunned", "label": "Aura of Resolve"}]}],
     ("class-features", "Steady Voice"): [{
         "key": "steady-voice", "name": "Steady Voice", "radius": 30, "who": "allies", "includeSelf": False,
         "rules": [{"key": "adv.save", "value": "1", "when": "vs fear and charm (if they can hear you)", "label": "Steady Voice"}]}],

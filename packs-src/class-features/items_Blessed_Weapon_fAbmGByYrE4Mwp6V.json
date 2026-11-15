@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your weapon counts as magical for overcoming resistance, and deals an extra <strong>1d6</strong> radiant damage against evil creatures.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> One hit of your choice each round deals an extra <strong>1d6</strong> radiant damage; it adds to a Smite. Your weapon counts as magical for overcoming resistance.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,13 +19,13 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 6,
+  "level": 5,
   "className": "Paladin",
   "rules": [
    {
     "key": "damage",
     "value": "+1d6",
-    "when": "vs evil creatures (radiant)",
+    "when": "one hit of your choice each round (radiant; adds to a Smite)",
     "label": ""
    }
   ],
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "V8nWnw4iuFs9nBZb",
- "sort": 7,
+ "sort": 8,
  "ownership": {
   "default": 0
  },

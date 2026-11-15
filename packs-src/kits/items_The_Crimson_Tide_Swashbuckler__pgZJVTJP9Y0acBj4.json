@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<p>Opal's most aggressive duelling school: attack as defence, momentum as armour.</p><ul><li><strong>Committed Blade:</strong> Relentless Assault starts from the second hit as normal, but its bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong>.<ul><li>9th level: +<strong>3d4</strong>.</li></ul></li><li><strong>Noble Rivalry:</strong> <strong>Advantage</strong> on Intimidation checks and on checks involving duelling culture and noble rivalries.</li></ul>",
+  "description": "<p>Opal's most aggressive duelling school: attack as defence, momentum as armour.</p><ul><li><strong>Committed Blade:</strong> you gain Relentless Assault at 1st level. It adds <strong>2d4</strong> (<strong>3d4</strong> from 9th level).</li><li><strong>Noble Rivalry:</strong> <strong>Advantage</strong> on Intimidation checks and on checks involving duelling culture and noble rivalries.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Committed Blade",
     "level": 1,
-    "description": "<p>Relentless Assault starts from the second hit as normal, but its bonus is +<strong>2d4</strong> instead of +<strong>1d4</strong>.</p><p>9th level: +<strong>3d4</strong>.</p>",
+    "description": "<p>You gain Relentless Assault at 1st level. It adds <strong>2d4</strong> (<strong>3d4</strong> from 9th level).</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,17 +24,17 @@
     "save": "",
     "activities": [
      {
-      "name": "Relentless Assault (2d4)",
+      "name": "Relentless Assault",
       "kind": "damage",
-      "formula": "2d4",
+      "formula": "1:2d4, 9:3d4",
       "damageType": "",
       "ability": "",
       "save": "",
-      "text": "Relentless Assault's bonus is +2d4 instead of +1d4, from the second hit against the same target as normal.",
+      "text": "Relentless Assault from 1st level: once per round, when you hit a creature you have already hit since the start of your turn, add this in place of its 1d4.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
-      "per": "",
+      "per": "round",
       "target": "",
       "removeConditions": false,
       "bonus": "",
@@ -54,8 +54,8 @@
     "rules": [
      {
       "key": "damage",
-      "value": "1:1d4, 9:2d4",
-      "when": "each Relentless Assault hit (on top of its +1d4: +2d4 in total, +3d4 from 9th)",
+      "value": "1:2d4, 9:3d4",
+      "when": "Relentless Assault (from 1st level; in place of its 1d4)",
       "label": ""
      }
     ],

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> The Swashbuckler's reactive tricks, Parry, Riposte, and later additions, all draw from the same well.</li><li>Once per round, out of turn, perform one Flourish Manoeuvre from those currently known.</li><li>Using one manoeuvre in a round means none of the others are available until the next round.</li><li>Known at 1st level — Parry: when struck in melee, make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attacker's attack roll. On success, negate the hit entirely. Cannot use while wearing medium or heavy armour or while carrying a shield</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your out-of-turn tricks, Parry, Riposte, and later additions, all draw from the same well.</li><li>Once per round, out of turn, perform one Flourish Manoeuvre from those currently known.</li><li>Using one manoeuvre in a round means none of the others are available until the next round.</li><li>You can't use them while wearing medium or heavy armour or while carrying a shield.</li><li>Known at 1st level: Parry and Riposte.</li><li><strong>Parry:</strong> when struck in melee, make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attacker's attack roll. If it meets or beats the roll, negate the hit entirely.</li><li><strong>Riposte:</strong> when an enemy misses you with a melee attack, make one melee attack against it if it is within your reach. This is your Flourish Manoeuvre; it is not an extra attack.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -57,7 +57,7 @@
     "ability": "",
     "save": "",
     "text": "When an enemy misses you with a melee attack, a free attack against it as your Flourish for the round.",
-    "minLevel": 3,
+    "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
     "per": "round",
@@ -78,12 +78,12 @@
    },
    {
     "name": "Acrobatic Escape",
-    "kind": "check",
+    "kind": "note",
     "formula": "",
     "damageType": "",
-    "ability": "dex",
+    "ability": "",
     "save": "",
-    "text": "Against the attacker's attack roll; on success halve the damage and move up to 10ft without opportunity attacks.",
+    "text": "When an attack hits you (your Flourish for the round): halve its damage and move up to 10ft without provoking Attacks of Opportunity. No check.",
     "minLevel": 9,
     "maxLevel": 0,
     "cost": 0,

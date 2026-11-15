@@ -758,7 +758,7 @@ async function askLegacy(n, actors, version) {
  * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
  * before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.110";
+export const CLASS_REWORK = "0.10.111";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
@@ -879,7 +879,7 @@ for (const [pack, id, from, to] of [
   ["class-features", "exG0emggBTiTai1N", "Divine Will", "Renown: Holy Order"],
   ["class-features", "BmWnLgQbDj3vwatI", "Combat Marauder", "Hunter's Edge"],
   ["class-features", "TeHdw0YChFdEa0Md", "Extra Attack", "Quarry Strike"],
-  ["class-features", "ksFXEzB68ifNtFcY", "Sneak Attack", "Exploit (Sneak Attack)"],
+  ["class-features", "ksFXEzB68ifNtFcY", ["Sneak Attack", "Exploit (Sneak Attack)"], "Exploit"],
   ["class-features", "wMRvnl9bZQO0tb4l", "Extra Attack", "Cut and Run"],
   ["class-features", "e8xjs8uHxKKAnpui", "Quick Reflexes", "Slippery"],
   ["class-features", "mUljAWFviDMM2z02", "Quick Reflexes (Improved)", "Perfect Timing"],
@@ -963,7 +963,17 @@ for (const [pack, id, from, to] of [
   ["kits", "k7NWOpHjUSYrcfuv", ["Jinia Isles Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "JAy2MYioJqawi03K", ["Ordenvael Demon Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "8ZeeQnQKk3CQaxNl", ["Treaty Hold Scout (Ranger)"], "Quarry Hunter (Ranger)"],
-  ["kits", "VYtbwoz2nWOT89rN", ["Eltor Cavalry Guard (Knight)"], "Path: Cavalier (Knight)"]
+  ["kits", "VYtbwoz2nWOT89rN", ["Eltor Cavalry Guard (Knight)"], "Path: Cavalier (Knight)"],
+  // HB v0.10.79 and v0.10.80 (B-F73, B-F74): renamed in place, same id.
+  ["class-features", "hi6cvVDyEDasF9CW", "Intimidate (Strength)", "Intimidate"],
+  ["class-features", "ygZKe7rX7DTQIjI1", "Death's Embrace & Lich's Will", "Death's Embrace"],
+  ["class-features", "IkYOQZnzlctncsUI", "Renown: Necropolis", "Renown"],
+  ["class-features", "cfhrMYhZ8lF6Ghhq", "Magnum Opus", "Great Work"],
+  ["class-features", "tSqTs7IEczqwLYOL", "Channel: Divine Intervention", "Channel: Heaven's Answer"],
+  ["class-features", "xMVHhH53Y6L66Q1t", "Aura of Devotion", "Auras"],
+  ["class-features", "5MT88w46XR8Db1ma", "9th-Level Features", "Acrobatic Escape"],
+  ["kits", "JaksV12FoxGLfh2j", ["Deity: Tharizdun (The Shattered God) (Cleric)"], "Deity: Tharizdun (The Chained God) (Cleric)"],
+  ["kits", "7Vd2CCkCQlBvpgY9", ["Deity: Tharizdun (Paladin)"], "Deity: Tharizdun (The Chained God) (Paladin)"]
 
 ]) RENAMED_FEATURES[`Compendium.${SYS}.${pack}.Item.${id}`] = [from, to];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
@@ -1018,6 +1028,14 @@ export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item
     // Banish and Divine Monolith (Improved); the Druid's Perfect Recall, Language of the Wilderlands, Wild Shape
     // Casting improves, Advanced Nature Lore, Dismiss Woodland Creatures, Elemental Mastery (Improved) and Awaken
     // Woodland Spirit; the Witch's Bonded Familiar, Hag's Vigour improves, Twin Hex (Improved) and Cauldron improves.
+    // HB v0.10.79 and v0.10.80 (B-F73, B-F74): the Swashbuckler's 3rd-level Riposte line (now a Flourish option at
+    // 1st), Light Feet, Hit and Run and Master Duelist (Improved); the Paladin's Aura of Resolve (now in Auras), Blessed
+    // Token, Divine Healing and Smite improves (now in Smite); the Assassin's Class Skills heading; the Ranger's
+    // Hunter's Quarry (now in Marked Prey); the Spellblade's Everstrike improves; the Archer's and Gunslinger's
+    // (Improved) features, now dated lines in Perfect Loose, Dead Aim and Perfect Shot.
+    "5Da0jFwQ4vge9uqQ", "TBdSJtKfwbdIsH2y", "hkMczVteeUDEIYSY", "0FV0BOGe6LSRuyzK", "6KnvsKVmfEMQyXjz", "rHfRR0zSDCTbxJZh",
+    "yGy859etfLShU7my", "pqi1fqyRJ1EGdnnE", "xSXEDyj1Q46ulmgP", "pvvQciAicNmRUPdF", "3QSAd9QndLfZ3KQW", "d3zV0G7bWbGYV43G",
+    "GSqrOdw248KEDAYq", "82ymENjtohdKkNfn",
     "TkjyeXYuj9r4ud4q", "1YI3nwYAqHY63Jck", "LmPa3baYEBdC5tcR", "MNYAdbLrAC9B6ENZ", "qjN9qC9wbBdGmzKV", "WpKhYgjUj5yry3Hi", "xI8qSmvEAhwkBS7n", "FUij9aQcV4itlZxV", "K94HkoZdVJgTl4hh", "PWPfDxohJxW1k6ab", "VyDNqJme3aEMq9Yk", "YFtHbgQ9trfsootu", "evoDIAWIrF8yRPxi", "QIcD2J9uMn4MYDnQ", "JauRuWRLPPADXGuw", "ebrUjtZylJkwokce", "YdQb4ZVbriq05QYc", "5pf4di3y2OSw81O5", "hkD8xcb8ShHCl8dM", "tcjlnEXGQPWKQOWG", "q5ytP3aFd70PX3Ee", "1hUKY1rVQ7gfBTeG", "tV2RgR80PQPDdNSx", "8MyaEVB3o6YlTGW5", "UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
@@ -1284,11 +1302,11 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
-      + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th; books v0.10.56 to v0.10.58: the martial and Illusionist reworks, Paths and the Seats). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classAdded.length ? `<p><strong>New class features</strong> (from the Handbook since this world last updated its classes; this update: the HB v0.10.79 and v0.10.80 reworks of the Ranger, Necromancer, Artificer, Barbarian, Paladin, Swashbuckler and Spellblade). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (phased.length ? `<p><strong>Solos</strong> (Monsters &amp; Treasure v0.10.75): ${esc(nameList(phased.length > 30 ? [...phased.slice(0, 30), `${phased.length - 30} more`] : phased))} now fight in three phases with their phase HP, and take their type's villain actions; Bloodied is gone. Their descriptions are the Bestiary's new ones (any edits of yours there were replaced). Each is a normal creature until you tick <em>Run as solo</em> on its sheet (or in the Encounter Builder).</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
-      + (classLater.length ? `<p><strong>Now at a higher level</strong> (HB v0.10.76 to v0.10.78): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone; books v0.10.56 to v0.10.58: Whirlwind Attack, Slow Kill, Point Blank, Hit and Run, Master of Illusion, Minor Figment's line and other features were cut or folded into others; HB v0.10.76 to v0.10.78: Arcane Ward improves, Hag's Vigour improves, Wild Surge improves, Overchannel improves and the Cleric's Turn Undead improves are now steps of their base features, and the Druid, Illusionist, Sorcerer and Witch lost the rest named here). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (cut or folded into another feature; this update: the Swashbuckler's 3rd-level Riposte line (Riposte is now a Flourish option from 1st), Light Feet, Hit and Run and Master Duelist (Improved), the Paladin's Aura of Resolve (now in Auras), Blessed Token, Divine Healing and Smite improves (now in Smite), the Ranger's Hunter's Quarry (now in Marked Prey), the Assassin's Class Skills heading, and the Archer's, Gunslinger's and Spellblade's improved features, now lines in the feature they improve). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

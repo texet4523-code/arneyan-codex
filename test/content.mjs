@@ -73,7 +73,7 @@ for (const k of witch) {
 for (const k of art) {
   assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 5, 7, 10, 24], k.name); // books v0.10.22 tiers
   assert.ok(k.system.features[4].name.startsWith("Lasting Work: "), k.name);
-  assert.ok(k.system.features[5].name.startsWith("Magnum Opus: "), k.name);
+  assert.equal(k.system.features[5].name, "Great Work", k.name); // HB v0.10.79: Magnum Opus is Great Work
   assert.match(k.system.description, /<h3>Known /, `${k.name}: its Workshop list`);
 }
 assert.ok(art.find(k => k.name === "Alchemist (Artificer)").system.features.some(f => f.name === "Brew Formula"));

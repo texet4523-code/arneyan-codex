@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<ul><li>You protect the dead from those who would misuse them, and oppose unlawful undead wherever they appear. The morally lightest path — you use death magic to ensure the dead rest as they should.</li><li>Warden's Strike</li><li>An undead you did not create that you hit can't use its auras, drains or frightful presence until the end of its next turn, and undead you destroy can't rise again. Undead you did not create make their saves against your death magic with <strong>Disadvantage</strong></li><li>When you destroy an undead creature, all undead you control within <strong>30ft</strong> regain <strong>1d6</strong> HP</li><li>Deathwatch</li><li><strong>Advantage</strong> on checks to identify, research, or communicate with undead</li><li>You always know whether a corpse has been subjected to necromantic magic and approximately when it was raised</li></ul>",
+  "description": "<ul><li>You protect the dead from those who would misuse them, and oppose unlawful undead wherever they appear. The morally lightest path: you use death magic to ensure the dead rest as they should.</li><li>Warden's Strike</li><li>A creature you damage with a Necromancy spell makes a <strong>Will save</strong> against your spell DC or can't use its drains or its auras (any ability named an Aura, Frightful Presence and Stench) until the end of its next turn.</li><li>A creature of higher Level than you saves with <strong>Advantage</strong>; a solo shakes this off (see Solo Creatures, Book IV).</li><li>Undead you destroy can't rise again.</li><li>Undead you did not create make their saves against your Necromancy spells with <strong>Disadvantage</strong> (never against an effect that kills outright)</li><li>When you destroy an undead creature, all undead you control within <strong>30ft</strong> regain <strong>1d6</strong> HP</li><li>From 9th level, each enemy within <strong>10ft</strong> of that creature makes the same save</li><li>Deathwatch</li><li><strong>Advantage</strong> on checks to identify, research, or communicate with undead</li><li>You always know whether a corpse has been subjected to necromantic magic and approximately when it was raised</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,13 @@
    {
     "name": "Warden's Strike",
     "level": 1,
-    "description": "<p>An undead you did not create that you hit can't use its auras, drains or frightful presence until the end of its next turn, and undead you destroy can't rise again. Undead you did not create make their saves against your death magic with <strong>Disadvantage</strong></p><p>When you destroy an undead creature, all undead you control within <strong>30ft</strong> regain <strong>1d6</strong> HP</p>",
+    "description": "<p>A creature you damage with a Necromancy spell makes a <strong>Will save</strong> against your spell DC or can't use its drains or its auras (any ability named an Aura, Frightful Presence and Stench) until the end of its next turn.</p><ul><li>A creature of higher Level than you saves with <strong>Advantage</strong>; a solo shakes this off (see Solo Creatures, Book IV).</li><li>Undead you destroy can't rise again.</li><li>Undead you did not create make their saves against your Necromancy spells with <strong>Disadvantage</strong> (never against an effect that kills outright)</li></ul><p>When you destroy an undead creature, all undead you control within <strong>30ft</strong> regain <strong>1d6</strong> HP</p><p>From 9th level, each enemy within <strong>10ft</strong> of that creature makes the same save</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "",
+    "save": "will",
     "activities": [
      {
       "name": "Undead regain HP",
@@ -53,14 +53,14 @@
     ],
     "rules": [
      {
-      "key": "note.attack",
-      "value": "Warden's Strike: an undead you hit that you did not create can't use its auras, drains or frightful presence until the end of its next turn; undead you destroy can't rise again.",
+      "key": "note.spell",
+      "value": "Warden's Strike: a creature you damage with a Necromancy spell makes a Will save against your spell DC or can't use its drains or auras (Aura, Frightful Presence, Stench) until the end of its next turn {1:, 9:(and each enemy within 10ft of it makes the same save)}; a higher-Level creature saves with Advantage and a solo shakes it off. Undead you destroy can't rise again.",
       "when": "",
       "label": ""
      },
      {
       "key": "note.spell",
-      "value": "Warden's Strike: undead you did not create make their saves against your death magic with Disadvantage.",
+      "value": "Warden's Strike: undead you did not create make their saves against your Necromancy spells with Disadvantage (never against an effect that kills outright).",
       "when": "",
       "label": ""
      }

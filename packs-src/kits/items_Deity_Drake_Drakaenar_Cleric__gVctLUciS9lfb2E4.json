@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Axe, Two-Handed</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on saves against death effects. Once/day: when reduced to <strong>0 HP</strong> or below, instead remain at <strong>1 HP</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/4627011\">Drake (Drakaenar)</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Two-Handed</p><p><strong>Granted power:</strong> Tenet: Stand between the weak and those who'd prey on them. <strong>Advantage</strong> on saves against instant-death effects. Once/day: when reduced to <strong>0 HP</strong> or below, instead remain at <strong>1 HP</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/4627011\">Drake (Drakaenar)</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Drake)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on saves against death effects. Once/day: when reduced to <strong>0 HP</strong> or below, instead remain at <strong>1 HP</strong>.</p><p><strong>Favoured weapon:</strong> Axe, Two-Handed</p>",
+    "description": "<p>Tenet: Stand between the weak and those who'd prey on them. <strong>Advantage</strong> on saves against instant-death effects. Once/day: when reduced to <strong>0 HP</strong> or below, instead remain at <strong>1 HP</strong>.</p><p><strong>Favoured weapon:</strong> Axe, Two-Handed</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -26,7 +26,7 @@
      {
       "key": "adv.save",
       "value": "1",
-      "when": "vs death effects",
+      "when": "vs instant-death effects",
       "label": ""
      }
     ],
@@ -38,7 +38,7 @@
  },
  "effects": [],
  "folder": "BvV6hkqX5gKg1kym",
- "sort": 17,
+ "sort": 16,
  "ownership": {
   "default": 0
  },

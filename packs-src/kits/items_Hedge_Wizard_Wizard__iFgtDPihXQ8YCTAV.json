@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Self-taught, with no institution behind you: closer kin to Westfront Fort's outlaw wizards than to any tower.</p><ul><li><strong>Unexpected Caster:</strong> once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.<ul><li>9th level: two such creatures.</li></ul></li><li><strong>Make It Work:</strong> you need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</li></ul>",
+  "description": "<p>Self-taught, with no institution behind you: closer kin to the hedge-mages of the back roads and the slums than to any tower.</p><ul><li><strong>Unexpected Caster:</strong> once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.<ul><li>9th level: two such creatures.</li></ul></li><li><strong>Make It Work:</strong> you need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,7 @@
     "rules": [
      {
       "key": "note.spell",
-      "value": "Unexpected Caster: the first harmful spell in a combat where the enemy does not expect a caster imposes Disadvantage on its save.",
+      "value": "Unexpected Caster: once per encounter, with your first harmful spell of the fight, {1:one creature, 9:two creatures} that hasn't seen you cast a spell before saves against it with Disadvantage.",
       "when": "",
       "label": ""
      }
@@ -43,14 +43,7 @@
      "per": "day"
     },
     "save": "",
-    "rules": [
-     {
-      "key": "adv.check",
-      "value": "1",
-      "when": "scrounging, improvising or substituting spell components",
-      "label": ""
-     }
-    ],
+    "rules": [],
     "toggle": false,
     "active": false
    }

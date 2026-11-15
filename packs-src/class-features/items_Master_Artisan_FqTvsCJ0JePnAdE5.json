@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-gears.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your Kit abilities cost 1 fewer Ingenuity Point (minimum 1).</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, one Kit ability costs no Ingenuity Points.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
   },
   "save": "",
   "dc": null,

@@ -112,6 +112,8 @@ assert.deepEqual(S.pactTiers(15, true).map(t => t.slot), [1, 2, 3, 5]);
 assert.equal(S.doubleDice("1d4"), "2d4");
 assert.equal(S.doubleDice("1d6+2 plus 2d4"), "2d6+2 plus 4d4");
 assert.equal(S.doubleDice("1"), "1");
+assert.ok(S.pactDoubled(1) && S.pactDoubled(2) && S.pactDoubled(3) && S.pactDoubled(4, "Erinyes") && S.pactDoubled(4, "Treant"), "K198 doubling");
+assert.ok(!S.pactDoubled(4, "Vrock") && !S.pactDoubled(4, "Star Spawn Hulk"), "other Tier 4 rows stay");
 const combats = new Map([["c", { started: true, round: 4, turn: 2 }]]);
 assert.equal(S.summonOver({ endsAt: 10, expires: { combat: "c", round: 4, turn: 3 } }, 999, combats), false, "the combat's clock, not the world's");
 assert.equal(S.summonOver({ endsAt: 10, expires: { combat: "c", round: 4, turn: 2 } }, 0, combats), true);

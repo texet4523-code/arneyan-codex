@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Axe, Two-Handed</p><p><strong>Granted power:</strong> Once/day when reduced to <strong>0 HP</strong> or below: make one final attack before falling. <strong>Advantage</strong> on saves against death effects.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/4627011\">Drake (Drakaenar)</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Two-Handed</p><p><strong>Granted power:</strong> Once/day when reduced to <strong>0 HP</strong> or below: make one final attack before falling. <strong>Advantage</strong> on saves against instant-death effects.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/4627011\">Drake (Drakaenar)</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Drake)",
     "level": 1,
-    "description": "<p>Once/day when reduced to <strong>0 HP</strong> or below: make one final attack before falling. <strong>Advantage</strong> on saves against death effects.</p><p><strong>Favoured weapon:</strong> Axe, Two-Handed</p>",
+    "description": "<p>Once/day when reduced to <strong>0 HP</strong> or below: make one final attack before falling. <strong>Advantage</strong> on saves against instant-death effects.</p><p><strong>Favoured weapon:</strong> Axe, Two-Handed</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -55,7 +55,7 @@
      {
       "key": "adv.save",
       "value": "1",
-      "when": "vs death effects",
+      "when": "vs instant-death effects",
       "label": ""
      }
     ],
@@ -67,7 +67,7 @@
  },
  "effects": [],
  "folder": "mIhASUBfo5Vwdimb",
- "sort": 17,
+ "sort": 16,
  "ownership": {
   "default": 0
  },

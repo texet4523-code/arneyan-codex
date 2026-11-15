@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Hammer, War</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Perception checks underground or in stone structures. +1 AC while standing on natural stone or underground. Once/day, when your Smite hits, the stone heaves: the target makes a <strong>Fortitude save</strong> or is knocked prone.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6335362\">Moradin</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Hammer, War</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Perception checks underground or in stone structures.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>Once/day, when your Smite hits, the stone heaves: the target makes a <strong>Fortitude save</strong> or is knocked <strong>Prone</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Good, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6335362\">Moradin</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Moradin)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Perception checks underground or in stone structures. +1 AC while standing on natural stone or underground. Once/day, when your Smite hits, the stone heaves: the target makes a <strong>Fortitude save</strong> or is knocked prone.</p><p><strong>Favoured weapon:</strong> Hammer, War</p>",
+    "description": "<p><strong>Advantage</strong> on Perception checks underground or in stone structures.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>Once/day, when your Smite hits, the stone heaves: the target makes a <strong>Fortitude save</strong> or is knocked <strong>Prone</strong>.</li></ul><p><strong>Favoured weapon:</strong> Hammer, War</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -30,9 +30,9 @@
       "label": ""
      },
      {
-      "key": "ac",
-      "value": "1",
-      "when": "while standing on natural stone or underground",
+      "key": "note.save",
+      "value": "Moradin: while you stand on natural stone or earth, you can't be pushed or knocked Prone against your will.",
+      "when": "",
       "label": ""
      }
     ],

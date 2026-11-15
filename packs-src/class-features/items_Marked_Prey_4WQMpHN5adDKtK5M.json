@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack, mark a creature you can see.</li><li>The mark lasts the encounter, on one creature at a time.</li><li>While it is your marked prey, you have <strong>Advantage</strong> on your first attack roll each round against it and on Track checks to follow it.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, before you roll an attack, mark a creature you can see.</li><li>The mark lasts the encounter, on one creature at a time.</li><li>While it is your marked prey, you have <strong>Advantage</strong> on your first attack roll each round against it and on Tracking checks to follow it; the <strong>Advantage</strong> to track it lasts until you next rest.</li><li><strong>4th:</strong> you may use Marked Prey twice per encounter, on different creatures.</li><li><strong>5th:</strong> if your marked prey dies or drops to <strong>0 HP</strong> (a solo counts when it drops to <strong>0 HP</strong> in a phase), you may mark a new creature you can see at once, or the same solo in its next phase, without spending a use of Marked Prey.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -14,7 +14,8 @@
   "uses": {
    "value": 1,
    "max": 1,
-   "per": "encounter"
+   "per": "encounter",
+   "formula": "1:1, 4:2"
   },
   "save": "",
   "dc": null,
@@ -29,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "As part of an attack, mark a creature you can see for the encounter (one at a time): while it is your marked prey, Advantage on your first attack roll each round against it and on Track checks to follow it.",
+    "text": "Before you roll an attack, mark a creature you can see for the encounter (one at a time): while it is your marked prey, Advantage on your first attack roll each round against it and on Tracking checks to follow it (until you next rest). {4:Twice per encounter, on different creatures. }{5:If it dies or drops to 0 HP (a solo: in a phase), mark another at once without spending a use.}",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,

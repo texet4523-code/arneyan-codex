@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Each day you have a pool of healing equal to <strong>2 HP</strong> per Paladin level. As an action, touch a creature and spend any number of points to heal it that much. Split the pool between creatures and uses as you like.</li><li>Cure Disease: spend 5 points to cure any disease by touch, no check required</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Each day you have a pool of healing equal to <strong>2 HP</strong> per Paladin level. As an action, touch a creature and spend any number of points to heal it that much. Split the pool between creatures and uses as you like.</li><li>Cure Disease: spend 5 points to cure any disease by touch, no check required</li><li>10th level: <strong>once per day</strong> you may Lay on Hands on a dying ally within your aura without touching it; from 18th this ends one condition</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -76,12 +76,39 @@
     "noDamage": false,
     "effect": "",
     "spendAny": false
+   },
+   {
+    "name": "Lay on Hands at a distance",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Once per day, Lay on Hands on a dying ally within your aura without touching it{18:; it also ends one condition on them}.",
+    "minLevel": 10,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },
  "effects": [],
  "folder": "V8nWnw4iuFs9nBZb",
- "sort": 2,
+ "sort": 3,
  "ownership": {
   "default": 0
  },

@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<ul><li><strong>Necrotic Aura:</strong> Always active while you have undead under your control within <strong>30ft</strong>.</li><li>Controlled undead gain +1 damage per hit and +<strong>2 HP</strong> per Necromancer level</li><li>Creatures have <strong>Disadvantage</strong> on their saves against your death-effect spells</li></ul>",
+  "description": "<p>Always active while you have undead under your control within <strong>30ft</strong>.</p><ul><li>Controlled undead gain +1 damage per hit and +<strong>2 HP</strong> per Necromancer level</li><li>Once per encounter, one creature has <strong>Disadvantage</strong> on its save against a Necromancy spell you cast</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
   },
   "save": "",
   "dc": null,
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "note.spell",
-    "value": "Necrotic Aura: while you control undead within 30ft, creatures have Disadvantage on their saves against your death-effect spells.",
+    "value": "Necrotic Aura: while you control undead within 30ft, once per encounter one creature has Disadvantage on its save against a Necromancy spell you cast.",
     "when": "",
     "label": ""
    }

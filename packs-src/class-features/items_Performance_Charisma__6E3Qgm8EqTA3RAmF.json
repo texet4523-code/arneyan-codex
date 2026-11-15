@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Song, oration, battle cry or demeanour.</li><li>Uses per day equal to your Charisma modifier + half your Bard level, rounded up (minimum 2).</li><li>Spend a use as part of your action, <strong>once per round</strong>, so you can still cast or attack.</li><li>Saves against your Performance use your spell save DC.</li><li>You are Trained in Singing or one Musical Instrument of your choice, on top of your starting skills; a Performance check, wherever the books name one, is a Charisma check with one of these.</li><li>Your Performance options:</li><li><strong>Exalt (the default):</strong> one ally within <strong>60ft</strong> who can see and hear you has <strong>Advantage</strong> on attribute checks and saves, including class ability checks but not attack rolls, for the encounter.</li><li>Only one Exalt is in effect at a time: a new one ends the last.</li><li>Exalt reaches 2 allies at 6th level, 3 at 12th and 4 at 18th.</li><li><strong>Discord:</strong> a sharp jeer or discordant note, costing no use. A target within <strong>30ft</strong> makes a <strong>Will save</strong> or its next hit before the end of its next turn deals half damage.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Song, oration, battle cry or demeanour.</li><li>Uses per day equal to your Charisma modifier + half your Bard level, rounded up (minimum 2).</li><li>Spend a use as part of your action, <strong>once per round</strong>, so you can still cast or attack.</li><li>Saves against your Performance use your spell save DC.</li><li>You are Trained in Singing or one Musical Instrument of your choice, on top of your starting skills; a Performance check, wherever the books name one, is a Charisma check with one of these.</li><li>Your Performance options:</li><li><strong>Exalt (the default):</strong> one ally within <strong>60ft</strong> who can see and hear you has <strong>Advantage</strong> on attribute checks and saves, including checks for class features but not attack rolls, for the encounter.</li><li>Only one Exalt is in effect at a time: a new one ends the last.</li><li>Exalt reaches 2 allies at 6th level, 3 at 12th and 4 at 18th.</li><li><strong>Discord:</strong> a sharp jeer or discordant note, costing no use. A target within <strong>30ft</strong> makes a <strong>Will save</strong> or its next hit before the end of its next turn deals half damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -57,10 +57,10 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "A sharp jeer or discordant note: a target within 30ft makes a Will save (your Class Save DC) or its next hit before the end of its next turn deals half damage.",
+    "text": "A sharp jeer or discordant note, costing no use: a target within 30ft makes a Will save (your spell DC) or its next hit before the end of its next turn deals half damage.",
     "minLevel": 0,
     "maxLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "one",
     "removeConditions": false,
@@ -84,7 +84,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "All creatures within earshot re-save against any fear or morale effect affecting them, even if they failed before; those who succeed ignore that fear source for the rest of the encounter.",
+    "text": "Allies within earshot roll again against any fear effect on them, and allied NPCs who failed a Morale Check roll it again; those who succeed ignore that fear source for the rest of the encounter.",
     "minLevel": 3,
     "maxLevel": 0,
     "cost": 1,
@@ -111,7 +111,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 13:3 creatures, 15:4 creatures, 17:5 creatures, 19:6 creatures, 21:7 creatures, 23:8 creatures} within 30ft who can hear you may reroll one attack roll or save each round for the encounter, and gain temporary HP equal to two rolls of their Hit Die, adding their Constitution modifier to each roll.",
+    "text": "Costs 2 uses. {1:One creature, 11:2 creatures, 15:3 creatures, 19:4 creatures} (you may choose yourself) who can hear you and stay within 30ft may reroll one attack roll or save each round for the encounter, keeping the new roll, and gain temporary HP equal to twice their Level once per encounter (inspiring again renews only the reroll).",
     "minLevel": 5,
     "maxLevel": 0,
     "cost": 2,
@@ -138,7 +138,7 @@
     "damageType": "",
     "ability": "",
     "save": "will",
-    "text": "Costs 2 uses. One creature makes a Will save (your Class Save DC) or is deafened until the end of its next turn. {10:, 17:From 17th Words of Power (Improved) adds more by the target's Level.}",
+    "text": "Costs 2 uses. One creature makes a Will save (your spell DC) or is Shaken and Slowed until the end of its next turn. {1:, 17:A creature of Level no more than half yours that fails is also Stunned for 1 round.}",
     "minLevel": 10,
     "maxLevel": 0,
     "cost": 2,
@@ -155,7 +155,34 @@
     "targetLevel": "",
     "reaction": false,
     "noDamage": false,
-    "effect": "Word of Power: Deafened",
+    "effect": "Word of Power",
+    "spendAny": false
+   },
+   {
+    "name": "Sway Crowd",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "Costs 2 uses, out of combat: Fascinate everyone who can hear you, whatever language they speak, up to {1:20, 16:40, 19:80, 22:160} Levels of creatures, lowest Level first. A creature that is attacked or sees an ally attacked saves again at once. {1:, 20:You may give the Fascinated crowd one Mass Suggestion that lasts a week (Will save to resist).}",
+    "minLevel": 13,
+    "maxLevel": 0,
+    "cost": 2,
+    "per": "",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
     "spendAny": false
    }
   ],
@@ -209,11 +236,12 @@
     ]
    },
    {
-    "name": "Word of Power: Deafened",
+    "name": "Word of Power",
     "target": "target",
     "rounds": "1",
     "statuses": [
-     "deafened"
+     "shaken",
+     "slowed"
     ],
     "rules": []
    }

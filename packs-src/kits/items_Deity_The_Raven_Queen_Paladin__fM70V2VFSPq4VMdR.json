@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to <strong>1 hour</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508945\">The Raven Queen</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Scythe</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on saves against instant-death effects. Once/day: touch a willing creature and place it in suspended animation for up to <strong>1 hour</strong>: it does not bleed, age, or suffer poison or disease until it ends.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7508945\">The Raven Queen</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (The Raven Queen)",
     "level": 1,
-    "description": "<p>Immune to death effects. Once/day: touch a willing creature and place them in suspended animation for up to <strong>1 hour</strong>.</p><p><strong>Favoured weapon:</strong> Scythe</p>",
+    "description": "<p><strong>Advantage</strong> on saves against instant-death effects. Once/day: touch a willing creature and place it in suspended animation for up to <strong>1 hour</strong>: it does not bleed, age, or suffer poison or disease until it ends.</p><p><strong>Favoured weapon:</strong> Scythe</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -24,9 +24,9 @@
     "save": "",
     "rules": [
      {
-      "key": "note.save",
-      "value": "The Raven Queen: immune to death effects.",
-      "when": "",
+      "key": "adv.save",
+      "value": "1",
+      "when": "against instant-death effects",
       "label": ""
      }
     ],

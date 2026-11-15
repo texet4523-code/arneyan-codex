@@ -30,7 +30,7 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to fire damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -48,7 +48,7 @@
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to cold damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -66,7 +66,7 @@
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage; immune from 20th level (Elemental Mastery (Improved)).",
+     "text": "Resistance to lightning damage; immune from 20th level.",
      "rules": [
       {
        "key": "resist",
@@ -83,36 +83,18 @@
      ]
     },
     {
-     "name": "Earth",
-     "text": "Resistance to damage from earth (immune from 20th level; the GM says which damage that covers).",
+     "name": "Thunder",
+     "text": "Resistance to thunder damage; immune from 20th level.",
      "rules": [
       {
-       "key": "note.save",
-       "value": "Elemental Mastery (Earth): {1:resistance, 20:immunity} to earth damage (the GM's call which damage that is).",
+       "key": "resist",
+       "value": "thunder",
        "when": "",
        "label": ""
-      }
-     ]
-    },
-    {
-     "name": "Water",
-     "text": "Resistance to damage from water (immune from 20th level; the GM says which damage that covers).",
-     "rules": [
+      },
       {
-       "key": "note.save",
-       "value": "Elemental Mastery (Water): {1:resistance, 20:immunity} to water damage (the GM's call which damage that is).",
-       "when": "",
-       "label": ""
-      }
-     ]
-    },
-    {
-     "name": "Air",
-     "text": "Resistance to damage from air (immune from 20th level; the GM says which damage that covers).",
-     "rules": [
-      {
-       "key": "note.save",
-       "value": "Elemental Mastery (Air): {1:resistance, 20:immunity} to air damage (the GM's call which damage that is).",
+       "key": "immune",
+       "value": "{20:thunder}",
        "when": "",
        "label": ""
       }

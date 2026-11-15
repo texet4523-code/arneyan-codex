@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> You are Trained in Survival, Tracking, Set Snares and Climb (Book II) in the wilderness, on top of your starting skills, and Master in Tracking from 5th level. You read tracks (a trail's condition and the creature type from 3rd level), find food and shelter for yourself without a check and for <strong>2d4</strong> others on a Moderate check, and set and disarm wilderness traps (see Ranger Traps).</li><li><strong>Conceal and Move Silently (Dexterity):</strong> in natural terrain your pace sets the roll, as for the Rogue's thief skills: half speed or less, <strong>Advantage</strong>; normal speed, a normal roll; running or charging, <strong>Disadvantage</strong>.</li><li>While Concealed you count as Hidden.</li><li>From 5th level you may attempt both together, at quarter speed, with <strong>Disadvantage</strong> on both.</li><li><strong>Delay/Neutralise Poison (Wisdom):</strong> For natural poisons familiar to the ranger (those of their home region and their favoured enemy). On a successful check: delay the poison's effects for <strong>1 hour per level</strong> (no action, 1 attempt only).<ul><li>If the roll exceeds the needed total by 6 or more: neutralise the poison entirely (effects already suffered are not reversed)</li></ul></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> You are Trained in Survival, Tracking, Set Snares and Climb (Book II), on top of your starting skills, and Master in Tracking from 5th level. You read tracks (a trail's condition and the creature type from 3rd level), find food and shelter for yourself without a check and for <strong>2d4</strong> others on a Moderate check, and set and disarm wilderness traps (see Ranger Traps).</li><li><strong>Hide and Move Silently (Dexterity):</strong> in natural terrain your pace sets the roll, as for the Rogue's Hide and Move Silently: half speed or less, <strong>Advantage</strong>; normal speed, a normal roll; running or charging, <strong>Disadvantage</strong>.</li><li>In natural terrain you count as Hidden even on a result of 12 to 14.</li><li>From 5th level you may attempt both together, at quarter speed, with <strong>Disadvantage</strong> on both.</li><li><strong>Delay/Neutralise Poison (Wisdom):</strong> For natural poisons familiar to you (those of your home region and your favoured enemies). On a successful check: delay the poison's effects for <strong>1 hour per level</strong> (no action, 1 attempt only).<ul><li>If the roll exceeds the needed total by 6 or more: neutralise the poison entirely (effects already suffered are not reversed)</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -23,13 +23,13 @@
   "className": "Ranger",
   "activities": [
    {
-    "name": "Conceal",
+    "name": "Hide (natural terrain)",
     "kind": "check",
     "formula": "",
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Camouflage yourself in the wilderness so passers-by cannot notice you.",
+    "text": "Half speed or less: Advantage; normal speed: a normal roll; running or charging: Disadvantage. In natural terrain you count as Hidden even on a result of 12 to 14.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -83,7 +83,7 @@
     "damageType": "",
     "ability": "dex",
     "save": "",
-    "text": "Move without sound in the wilderness; Disadvantage above half speed.",
+    "text": "In natural terrain your pace sets the roll, as for Hide: half speed or less, Advantage; normal speed, a normal roll; running or charging, Disadvantage.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -137,7 +137,7 @@
     "damageType": "",
     "ability": "wis",
     "save": "",
-    "text": "Detect, set or disable simple wilderness traps. Your traps deal {1:1d4, 13:2d4, 18:3d4, 24:4d4}.",
+    "text": "Detect, set or disable wilderness traps: the trap types are on Ranger Traps (from 2nd level).",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,

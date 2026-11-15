@@ -216,6 +216,10 @@ ARNEYAN.classKeys = {
   Warlock: ["cha"], Witch: ["wis"], Wizard: ["int"]
 };
 
+/** Classes whose Class Save DC uses one attribute whatever the other key attribute (HB v0.10.80, the Core Chassis'
+ * Class Save DC row): the Paladin's Charisma and the Spellblade's Intelligence. */
+ARNEYAN.classDCKey = { Paladin: "cha", Spellblade: "int", Magus: "int" };
+
 /** Half level, minimum 1, rounded down. */
 ARNEYAN.halfLevel = function (level) {
   return Math.max(1, Math.floor((Number(level) || 0) / 2));

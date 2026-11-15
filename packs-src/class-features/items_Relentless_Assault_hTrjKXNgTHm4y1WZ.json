@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Each successful hit after the first against the same target in a single round adds flat +<strong>1d4</strong> damage (not cumulative). Resets at the start of the next round.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per round, when you hit a creature you have already hit since the start of your turn, add <strong>1d4</strong> damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Each hit after the first against the same target this round: +1d4 (not cumulative).",
+    "text": "Once per round, when you hit a creature you have already hit since the start of your turn: +1d4.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -54,7 +54,7 @@
    {
     "key": "damage",
     "value": "+1d4",
-    "when": "each hit after the first on the same target this round",
+    "when": "once per round, when you hit a creature you have already hit since the start of your turn",
     "label": ""
    }
   ],
@@ -63,7 +63,7 @@
  },
  "effects": [],
  "folder": "izulQ2PeBRinttAY",
- "sort": 9,
+ "sort": 7,
  "ownership": {
   "default": 0
  },

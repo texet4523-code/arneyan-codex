@@ -5,17 +5,17 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> As part of an attack or your movement, enter a rage that lasts for the encounter, usable 1 + Constitution modifier times per day (minimum <strong>2/day</strong>).</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +4 (10th-19th level), +6 (20th+).</li><li>Rage ends early if a full round passes without the Barbarian attacking or taking damage.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as part of an attack or your movement, enter a rage that lasts until the encounter ends.</li><li>While raging, gain a flat bonus to melee weapon damage: +2 (1st-9th level), +3 (10th-19th level), +4 (20th+).</li><li>The rage ends early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 2,
-   "max": 2,
-   "per": "day",
-   "formula": "max(2, 1 + @con.mod)"
+   "value": 1,
+   "max": 1,
+   "per": "encounter",
+   "formula": ""
   },
   "save": "",
   "dc": null,
@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Enter a rage that lasts the encounter: +{1:2, 10:4, 20:6} melee weapon damage. It ends early if a full round passes without you attacking or taking damage. Switch on the Rage toggle.",
+    "text": "Once per encounter, as part of an attack or your movement: enter a rage until the encounter ends, +{1:2, 10:3, 20:4} melee weapon damage. It ends early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious. Switch on the Rage toggle.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -54,7 +54,7 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "+2*(1+floor(@cl/10))",
+    "value": "1:2, 10:3, 20:4",
     "when": "",
     "label": ""
    },
@@ -70,7 +70,7 @@
  },
  "effects": [],
  "folder": "RN91L6Q7BHJcBlKX",
- "sort": 1,
+ "sort": 0,
  "ownership": {
   "default": 0
  },

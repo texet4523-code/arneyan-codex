@@ -30,7 +30,7 @@
       "damageType": "fire",
       "ability": "",
       "save": "",
-      "text": "One weapon hit each round, while you have at least one Warlock spell slot unspent.",
+      "text": "Your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -53,9 +53,9 @@
     ],
     "rules": [
      {
-      "key": "damage",
-      "value": "+1d6",
-      "when": "one weapon hit each round while you have a Warlock slot unspent (fire)",
+      "key": "note.damage",
+      "value": "Zariel: your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire.",
+      "when": "",
       "label": ""
      }
     ],
@@ -89,13 +89,13 @@
     "save": "ref",
     "activities": [
      {
-      "name": "Undead and fiends (6d8)",
+      "name": "Undead and fiends",
       "kind": "damage",
-      "formula": "6d8",
+      "formula": "1:8d8, 13:12d8, 17:16d8",
       "damageType": "radiant",
       "ability": "",
       "save": "",
-      "text": "Once per day, 30ft radius: undead and fiends take this, no save.",
+      "text": "1 Patron Favour, 30ft radius centred on you (creatures you choose are unharmed): undead and fiends take this, Reflex save against your Class Save DC for half.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 1,
@@ -116,9 +116,9 @@
       "spendAny": false
      },
      {
-      "name": "Everyone else (3d8)",
+      "name": "Everyone else",
       "kind": "damage",
-      "formula": "3d8",
+      "formula": "1:4d8, 13:6d8, 17:8d8",
       "damageType": "fire",
       "ability": "",
       "save": "",

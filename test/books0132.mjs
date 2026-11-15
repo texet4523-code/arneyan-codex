@@ -61,11 +61,13 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
   const applies = (name, cls) => feat(name, cls).system.applies;
   assert.ok(applies("Challenge", "Knight").every(a => a.rounds === "encounter"), "Challenge lasts the encounter");
   assert.ok(applies("Hex (Wisdom)", "Witch").every(a => a.rounds === "encounter"), "Hex lasts the encounter");
-  assert.equal(String(applies("Intimidate (Strength)", "Barbarian")[0].rounds), "1", "Intimidate: until the end of its next turn");
-  const di = feat("Channel Divinity (Charisma)", "Paladin").system.activities.filter(a => a.name.startsWith("Divine Intervention"));
+  assert.equal(String(applies("Intimidate", "Barbarian")[0].rounds), "1", "Intimidate: until the end of its next turn");
+  // HB v0.10.80 (K199): Divine Intervention is Heaven's Answer, from 6th; its third option from 8th.
+  const di = feat("Channel Divinity (Charisma)", "Paladin").system.activities.filter(a => a.name.startsWith("Heaven's Answer"));
   assert.ok(di.find(a => a.name.endsWith("reroll")).text.includes("Right after the roll") && di.find(a => a.name.endsWith("reroll")).reaction);
-  assert.ok(di.find(a => a.name.endsWith("divine might")).text.includes("until the end of your turn"));
+  assert.ok(!di.some(a => a.name.endsWith("divine might")) && di.every(a => a.minLevel >= 6 && a.cost === 2));
   assert.ok(di.find(a => a.name.endsWith("halve damage")).text.includes("until the start of your next turn") && di.find(a => a.name.endsWith("halve damage")).reaction);
+  assert.equal(di.find(a => a.name.endsWith("cleanse")).minLevel, 8);
   assert.ok(!di.some(a => /for 1 round|this round/.test(a.text)));
   // Books v0.10.38: Sorcerer's Spark is gone (Wild Surge improves); Marked Prey still lasts the encounter.
   assert.ok(!features.some(f => f.name === "Sorcerer's Spark"));
@@ -157,7 +159,7 @@ function warlockWith(favourLeft, powers) {
     { max: 0, per: "", formula: "", pool: "Patron Favour", value: 0 });
   assert.ok(!("pool" in M.usesFrom({ value: 1, max: 1, per: "day" }, { max: 1, per: "day", formula: "" })), "no pool on either side: no field");
   assert.equal(M.usesFrom({ value: 0, max: 0, pool: "Patron Favour" }, { max: 0, per: "" }).pool, "", "a pool the books dropped goes");
-  assert.equal(M.CLASS_REWORK, "0.10.110", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
+  assert.equal(M.CLASS_REWORK, "0.10.111", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
   // The schema fills a blank pool into every stored item and kit feature: that is no edit and no change (review
   // 0.10.75: unedited kits read as edited, and every item with uses was rewritten).
   const SRC = "Compendium.arneyan.class-features.Item.x";

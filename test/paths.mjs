@@ -22,7 +22,7 @@ assert.equal(id("Path: Battle Caster (Spellblade)"), "o15Vvrk1VosCMHlq");
 assert.equal(id("Path: Castellan (Knight)"), "WtB20YgHDIiDxb5Q");
 const cf = read("class-features");
 assert.equal(cf.find(f => f.name === "Press On")._id, "Q8Rzh5IxUJGo4mc7", "the Fighter's Extra Attack, renamed in place");
-assert.equal(cf.find(f => f.name === "Exploit (Sneak Attack)")._id, "ksFXEzB68ifNtFcY");
+assert.equal(cf.find(f => f.name === "Exploit")._id, "ksFXEzB68ifNtFcY");
 assert.ok(!cf.some(f => f.name === "Extra Attack" && ["Fighter", "Barbarian", "Knight", "Rogue", "Assassin", "Ranger", "Swashbuckler", "Gunslinger"].includes(f.system.className)));
 
 // Worlds: the update renames them, from any older name.
@@ -44,7 +44,7 @@ assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Battle
   assert.ok(!("flags.arneyan.source" in renamed));
   assert.deepEqual(M.refreshGranted(g("Siege Discipline", "k1.1"), feats, { legacy: "update" })["flags.arneyan.source"], undefined, "in place: nothing to move");
 }
-assert.equal(M.CLASS_REWORK, "0.10.110");
+assert.equal(M.CLASS_REWORK, "0.10.111");
 assert.ok(M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"), "Whirlwind Attack is listed as gone");
 const src = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
 assert.ok(src.includes("[rn[0]].flat().includes(i.name)"), "one old name or several");

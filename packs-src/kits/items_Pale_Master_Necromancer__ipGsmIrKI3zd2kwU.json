@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
  "system": {
-  "description": "<ul><li>You have turned the death arts inward, transforming your own body towards undeath. You are neither fully living nor fully dead — something in between, and growing less alive with each level.</li><li>Necrotic Touch</li><li>Make an unarmed attack roll: on a hit, your touch deals <strong>1d6</strong> necrotic damage</li><li>At 10th level this increases to <strong>2d6</strong></li><li>Creatures you touch must make a <strong>Fortitude save</strong> against your Class Save DC or have their maximum HP reduced by the damage dealt until a full rest</li><li>Undying Constitution</li><li>You do not need to eat, drink, or sleep — <strong>4 hours</strong> of trance suffices for full rest benefits</li><li><strong>Advantage</strong> on saves vs poison, disease, and paralysis</li><li>Detect Undead and Speak with Dead are always prepared and cost no slots</li></ul>",
+  "description": "<ul><li>You have turned the death arts inward, transforming your own body towards undeath. You are neither fully living nor fully dead: something in between, and growing less alive with each level.</li><li>Necrotic Touch</li><li>A touch attack: <strong>1d6</strong> necrotic damage (+1 die at 5th, 11th and 17th level), and you gain <strong>temporary HP</strong> equal to half the damage</li><li>Undying Constitution</li><li>You do not need to eat, drink, or sleep: <strong>4 hours</strong> of trance suffices for long rest benefits</li><li><strong>Advantage</strong> on saves vs poison, disease, and paralysis</li><li>Detect Undead is always prepared and costs no slot; from 3rd level, cast Speak with Dead <strong>once a day</strong> without a slot</li><li>From 9th level you are immune to poison and disease from a creature or source of your Level or lower (you keep your <strong>Advantage</strong> against the rest), and have Resistance 5 to necrotic damage</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Necrotic Touch",
     "level": 1,
-    "description": "<p>Make an unarmed attack roll: on a hit, your touch deals <strong>1d6</strong> necrotic damage</p>",
+    "description": "<p>A touch attack: <strong>1d6</strong> necrotic damage (+1 die at 5th, 11th and 17th level), and you gain <strong>temporary HP</strong> equal to half the damage</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,67 +24,13 @@
     "save": "",
     "activities": [
      {
-      "name": "Necrotic Touch (1d6)",
+      "name": "Necrotic Touch",
       "kind": "damage",
-      "formula": "1d6",
+      "formula": "1:1d6, 5:2d6, 11:3d6, 17:4d6",
       "damageType": "necrotic",
       "ability": "",
       "save": "",
-      "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Necrotic Touch (2d6)",
-      "kind": "damage",
-      "formula": "2d6",
-      "damageType": "necrotic",
-      "ability": "",
-      "save": "",
-      "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this.",
-      "minLevel": 10,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Wither",
-      "kind": "save",
-      "formula": "",
-      "damageType": "",
-      "ability": "",
-      "save": "fort",
-      "text": "A creature you touch: Fortitude save against your Class Save DC or its maximum HP is reduced by the damage dealt until a full rest.",
+      "text": "Make an unarmed attack roll first (the Unarmed Strike action); on a hit, your touch deals this, and you gain temporary HP equal to half the damage.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -107,24 +53,13 @@
     ]
    },
    {
-    "name": "At 10th level this increases to 2d6",
-    "level": 1,
-    "description": "<p>Creatures you touch must make a <strong>Fortitude save</strong> against your Class Save DC or have their maximum HP reduced by the damage dealt until a full rest</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "save": "fort"
-   },
-   {
     "name": "Undying Constitution",
     "level": 1,
-    "description": "<p>You do not need to eat, drink, or sleep — <strong>4 hours</strong> of trance suffices for full rest benefits</p><p><strong>Advantage</strong> on saves vs poison, disease, and paralysis</p><p>Detect Undead and Speak with Dead are always prepared and cost no slots</p>",
+    "description": "<p>You do not need to eat, drink, or sleep: <strong>4 hours</strong> of trance suffices for long rest benefits</p><p><strong>Advantage</strong> on saves vs poison, disease, and paralysis</p><p>Detect Undead is always prepared and costs no slot; from 3rd level, cast Speak with Dead <strong>once a day</strong> without a slot</p><p>From 9th level you are immune to poison and disease from a creature or source of your Level or lower (you keep your <strong>Advantage</strong> against the rest), and have Resistance 5 to necrotic damage</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "",
     "rules": [

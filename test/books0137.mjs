@@ -41,7 +41,7 @@ assert.ok(!advFirst(inspired.rules) && inspired.rules.some(r => r.key === "adv.s
 assert.deepEqual(cmd.applies.find(a => a.name === "Demoralised (failed save)").statuses, ["frightened"], "books v0.10.57: Frightened until the end of its next turn");
 const perf = feat("Performance (Charisma)", "Bard");
 assert.ok(!advFirst(perf.applies.find(a => a.name === "Exhorted").rules) && !advFirst(perf.applies.find(a => a.name === "Discord").rules));
-assert.deepEqual(feat("Intimidate (Strength)", "Barbarian").applies[0].statuses, ["frightened"]);
+assert.deepEqual(feat("Intimidate", "Barbarian").applies[0].statuses, ["frightened"]);
 for (const [n, c] of [["Favoured Enemy", "Ranger"], ["Duel's Rhythm", "Swashbuckler"], ["Dead Eye", "Gunslinger"]]) assert.ok(!advFirst(feat(n, c).rules), `${n}: no attack Advantage`);
 
 const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };
@@ -66,7 +66,7 @@ assert.ok(a("Shifter").choice.options.every(o => o.rules.some(r => r.key === "to
 const dread = kit("Path: Castellan (Knight)").find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([dread.applies[0].statuses, dread.applies[0].rules.length], [["frightened"], 0]);
 const M = await import("../arneyan/module/migrate.mjs");
-assert.equal(M.CLASS_REWORK, "0.10.110", "the class rework runs again for Cauldron Brews");
+assert.equal(M.CLASS_REWORK, "0.10.111", "the class rework runs again for Cauldron Brews");
 assert.equal(M.SHIFT_REWORK, "0.10.79");
 assert.ok(/Celestial Wings/.test(a("Aasimar").description) && !/Lay on Hands heal/.test(a("Aasimar").description));
 

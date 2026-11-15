@@ -235,8 +235,13 @@ def build(icon_for_class):
                         cur_feat = Feature(lm.group(2).strip(), cur_level); feats.append(cur_feat)
                 elif info["bold"] and not info["list"] and len(t) < 90:
                     cur_feat = Feature(t.strip().rstrip(":"), cur_level); feats.append(cur_feat)
+                elif t.startswith("All of the following abilities are gained"):
+                    pass        # (HB v0.10.79: the Assassin's 1st-level preamble, no longer under a Class Skills heading)
                 else:
                     lab, rest = label_of(p)
+                    # HB v0.10.80: "Flourish Manoeuvres gains a new option, Acrobatic Escape:" is the option's own feature.
+                    if lab and re.search(r"gains a new option, ", lab):
+                        lab = re.sub(r"^.*gains a new option, ", "", lab)
                     inner = runs_html(p)
                     # The Fighter (books v0.10.57) writes each feature as a bulleted bold name ("- **Weapon Training:**"),
                     # several at one level: each is its own feature.
