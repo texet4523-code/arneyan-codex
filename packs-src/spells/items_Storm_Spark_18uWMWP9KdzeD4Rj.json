@@ -1,0 +1,51 @@
+{
+ "_id": "18uWMWP9KdzeD4Rj",
+ "_key": "!items!18uWMWP9KdzeD4Rj",
+ "name": "Storm Spark",
+ "type": "spell",
+ "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
+ "system": {
+  "description": "<p>Range <strong>60ft</strong>; one creature. Deals <strong>1d4</strong> lightning damage (+1 die at 5th, 11th and 17th level); <strong>Reflex negates</strong>. A creature wearing metal armour has <strong>Disadvantage</strong> on the save.</p><p class=\"arn-note\"><strong>Classes:</strong> Sorcerer</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "level": 0,
+  "className": "Sorcerer",
+  "classes": [
+   "Sorcerer"
+  ],
+  "school": "Evocation",
+  "castingTime": "1 action",
+  "range": "Range 60ft",
+  "duration": "",
+  "area": "",
+  "components": "V, S",
+  "concentration": false,
+  "ritual": false,
+  "prepared": false,
+  "save": "ref",
+  "saveEffect": "Negates",
+  "damage": "(1 + min(3, floor((@cl + 1) / 6)))d4",
+  "damageType": "lightning",
+  "reversible": false,
+  "costly": false,
+  "template": {
+   "type": "",
+   "size": 0,
+   "width": 0,
+   "attached": false,
+   "fromSelf": false,
+   "lingering": false,
+   "rounds": "",
+   "sizeFormula": ""
+  }
+ },
+ "effects": [],
+ "folder": "dTT7k26x8ayyUTNM",
+ "sort": 29,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

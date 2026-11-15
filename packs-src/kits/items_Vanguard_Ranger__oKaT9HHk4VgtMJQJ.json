@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<p>Rangers who walk at the front of the march with axe, spear and shield, trading stealth for strength.</p><ul><li><strong>Axe and Shield:</strong> on a hit with a hand axe, battle axe or spear while you carry a shield, you may shove the target <strong>5ft</strong> (Strength contest).<ul><li>9th level: you may shove it <strong>10ft</strong>, or knock it <strong>Prone</strong> instead.</li></ul></li><li><strong>Vanguard's Build:</strong> Strength replaces Dexterity as a key attribute, and your 15th-level bonus is +1 Strength instead. <strong>Advantage</strong> on Strength checks to climb, swim and force obstacles in the wild.</li></ul>",
+  "description": "<p>Rangers who walk at the front of the march with axe, spear and shield, trading stealth for strength.</p><ul><li><strong>Axe and Shield:</strong> on a hit with an axe or spear while you carry a shield, you may shove the target <strong>5ft</strong> (Strength contest).<ul><li>9th level: you may shove it <strong>10ft</strong>, or knock it <strong>Prone</strong> instead.</li></ul></li><li><strong>Shield Charge:</strong> once per encounter, when you charge with a shield, you may move through the spaces of creatures your size or smaller; each makes a <strong>Reflex save</strong> against your Class Save DC or falls <strong>Prone</strong>.</li><li><strong>Vanguard's Build:</strong> Strength replaces Dexterity as a key attribute, and your 15th-level bonus is +1 Strength instead. <strong>Advantage</strong> on Strength checks to climb, swim and force obstacles in the wild.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Axe and Shield",
     "level": 1,
-    "description": "<p>On a hit with a hand axe, battle axe or spear while you carry a shield, you may shove the target <strong>5ft</strong> (Strength contest).</p><p>9th level: you may shove it <strong>10ft</strong>, or knock it <strong>Prone</strong> instead.</p>",
+    "description": "<p>On a hit with an axe or spear while you carry a shield, you may shove the target <strong>5ft</strong> (Strength contest).</p><p>9th level: you may shove it <strong>10ft</strong>, or knock it <strong>Prone</strong> instead.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -32,6 +32,17 @@
     ],
     "toggle": false,
     "active": false
+   },
+   {
+    "name": "Shield Charge",
+    "level": 1,
+    "description": "<p>Once per encounter, when you charge with a shield, you may move through the spaces of creatures your size or smaller; each makes a <strong>Reflex save</strong> against your Class Save DC or falls <strong>Prone</strong>.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref"
    },
    {
     "name": "Vanguard's Build",
@@ -58,7 +69,7 @@
  },
  "effects": [],
  "folder": "890i0QK7JDG2RPey",
- "sort": 5,
+ "sort": 4,
  "ownership": {
   "default": 0
  },

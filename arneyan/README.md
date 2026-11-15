@@ -1,6 +1,19 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.109 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.110 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.110
+
+Handbook and Monsters & Treasure v0.10.76 to v0.10.78 (B-F70, B-F71, B-F72), with R-F41's Encounter Builder changes.
+
+- **Class reworks:** the Ranger (Ranger Traps, five favoured enemies, Relentless Hunter, Peerless Hunter at 24th, Renown: The Lodge, a new third kit; the Forest Warden kit folds into the Wild Warden path), the Sorcerer (Wild Surge from 1st with 2 a day at 5th, bloodline cantrips, a Charisma Bonus at 15th, the Wild-born kit), the Wizard (Contingency at 13th, Spell Mastery at 24th, the Battle Mage kit), the Cleric (Divine Intervention at 24th), the Druid (Wild Shape to two-thirds of your Druid level; Hierophant at 24th), the Warlock (three invocations, at 2nd, 6th and 13th; Agonising Blast built in; Eldritch Blast 2d8 at 9th) and the Witch (Hex at will, Patron's Recipe, Far Hex, Scapegoat), with the Bard's Performance pool at Charisma plus half your Bard level and the Illusionist's changes.
+- **Your world:** renamed features and kits keep their ids and take their new names. Features the books cut stay on existing sheets, and the update's report lists them for you to delete (they would count twice). Features that now come later (the Wizard's Spell Mastery) take their new level and are listed too. A Forest Warden Ranger imported from a sheet gets the Wild Warden path; a kit already on a character stays as it was.
+- **Flat damage on the Fighter's steps:** the Knight's Martial Bearing, the Assassin's Killer's Precision, the Rogue's Precise Strikes and the Ranger's Hunter's Edge give +1 damage, +2 at 7th, +3 at 13th and +4 at 19th. The Ranger's extra against marked prey is now Relentless Hunter's die.
+- **Features folded in:** Arcane Ward gives three times the spell's level from 8th; Hag's Vigour gives +2 HP a level from 8th, then +1 a level beyond 10th; Overchannel has its 18th-level once-a-day button.
+- **Monsters & Treasure:** the Remorhaz, Yuan-ti Anathema and Drow Matron Mother carry R-F39's trims. A creature marked Solo but run as a normal creature now caps its attacks at its Level's Damage target in a round (its description gives the number), in place of halving. Monster spell lists read the new plain spell names, so every caster keeps its spells on its sheet. The Classic Uniques and Relics sit with the Named Uniques and Artefacts.
+- **Encounter Builder:** a minion costs a quarter of its normal cost, and a solo against a party one or two Levels off it says how the fight changes (further apart: don't run it as a solo).
+- **Spells:** Programmed Illusion gets its disbelief save; Storm Spark is the Storm-born Sorcerer's new cantrip.
+- **Still to follow (0.10.111):** some buttons and reminders for the Bard's options, the Cleric's Banish and Turn Undead, the Druid's Elemental Mastery, the Illusionist's Quickened Illusion, the Warlock patrons and the Ranger's trap table still read the old numbers; their descriptions are the new ones.
 
 ## What's new in 0.10.109
 

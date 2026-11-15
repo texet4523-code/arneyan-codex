@@ -10,7 +10,8 @@ const features = packDocs("class-features");
 const surge = features.filter(f => f.name === "Wild Surge improves" && f.system.className === "Sorcerer");
 // Books v0.10.41 adds a third at 13th (a new id); the 5th keeps the Spark's. Books v0.10.57 (R-B63): the 20th is
 // Renown: Bloodline Seat, on the 20th's id.
-assert.deepEqual(surge.map(f => f._id).sort(), ["UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY"]);
+// HB v0.10.76 (Sorcerer rework): Wild Surge from 1st, its steps written into the one feature; no "improves" lines.
+assert.deepEqual(surge, []);
 assert.equal(features.find(f => f.name === "Renown: Bloodline Seat")._id, "oJxxsvpo4WgI1u92");
 assert.ok(!features.some(f => /^Sorcerer's Spark/.test(f.name)));
 const guard = packDocs("kits").find(k => k.name === "Liberator (Fighter)").system.features[0];

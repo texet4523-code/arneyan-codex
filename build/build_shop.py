@@ -75,6 +75,7 @@ def num(s, default=0.0):
 
 def clean_name(n):
     n = plain(n).replace("†", "")
+    n = re.sub(r"\]\s*/\s*\[", ", ", n)   # M&T v0.10.78: "[Uncommon] / [Rare] / [Very Rare]" for a three-step item
     n = re.sub(r"\s*\[(?:Uncommon|Rare|Very Rare|Legendary|Unique)(?:,\s*(?:Uncommon|Rare|Very Rare|Legendary|Unique))*\]", "", n)
     return re.sub(r"\s+", " ", n).strip()
 

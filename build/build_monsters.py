@@ -254,10 +254,21 @@ def spell_items(text):
         if fm:
             # M&T v0.10.46 (K59, the Ogre Mage): "Once per day each: ...".
             freq = re.sub(r"(?i)once per day", "1/day", re.sub(r"(?i)twice per day", "2/day", fm.group(1))).replace(" each", "")
-        for n in re.findall(r"\*([^*]+?)\*", chunk):
+        # Italic names (*fireball*), or (M&T v0.10.76 on) plain Title Case names in the list after the colon:
+        # "1/day each: Fireball (Reflex DC 20), Mass Suggestion (Will DC 20)".
+        names = re.findall(r"\*([^*]+?)\*", chunk)
+        body = chunk.split(":", 1)[1] if ":" in chunk else chunk
+        body = re.sub(r"\([^()]*\)", "", body.replace("*", ""))
+        names += [x.strip(" .;") for x in re.split(r",|;|\band\b", body)] + [x.strip(" .;") for x in re.split(r",|;", body)]
+        # "Wish granting a bargain ...", "Wish (for others only)": a known spell name at the start of a list entry.
+        names += [m.group(1) for x in re.split(r",|;", body) for m in [re.match(r"\s*([A-Z][\w'/ -]*?)\s+(?:granting|for|on|at|only)\b", x)] if m]
+        seen = set()
+        names = [re.sub(r"^(?:\w+ (?:to \w+ )?)?add\s+", "", n.strip()) for n in names]   # "Orange to blue add Colour Spray"
+        for n in names:
             d = SPELL_DOCS.get(n.lower().strip())
-            if not d:
+            if not d or d["_id"] in seen:
                 continue
+            seen.add(d["_id"])
             out.append({
                 "name": d["name"] + (f" ({freq.lower() if freq.lower() == 'at will' else freq})" if freq else ""),
                 "type": "spell", "img": d["img"], "system": json.loads(json.dumps(d["system"])),
@@ -739,12 +750,15 @@ def build(pack="monsters", entries=None):
                          "third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it "
                          "acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, "
                          "the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill "
-                         "effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, "
-                         "at the start of its first turn.</p>")
+                         "effect deals damage equal to its current HP (yours to apply). A lasting area, aura or ongoing effect damages it "
+                         "once a round, at the start of its first turn, however many of its turns or moves pass through it; a spell that "
+                         "deals its damage when cast works as normal.</p>")
                 if not mythic:
+                    # M&T v0.10.76 (K163 M11): the cap in place of halving its attacks.
+                    cap = TARGETS.get(min(max(int(level), 1), 24))
                     desc += ("<p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no "
-                             "shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half "
-                             "damage" + ("; it also halves its attack damage" if halves else "") + ".</p>")
+                             "shaking it off. Its breath weapon, and any spell or other power that hits more than one creature, deals "
+                             f"half damage, and its attacks deal no more than the Damage target for its Level in a round ({cap}).</p>")
             system = {
                 "abilities": {k: {"value": v} for k, v in abilities.items()},
                 "level": level, "hd": f.get("hd", "—"),

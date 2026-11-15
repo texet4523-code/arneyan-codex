@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>A Mournas legend — a bride who drowned in the harbour on her wedding night and never stopped waiting at the water's edge. Witches who serve her carry a little of that patience, and a little of that grief.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for <strong>1 hour</strong> — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have <strong>Disadvantage</strong>.</li><li><strong>Patron Curse</strong> (3rd): Once per day, bind a creature within <strong>30ft</strong> to a single spoken promise (<strong>Will save</strong> negates) — if they knowingly break it within <strong>24 hours</strong>, they take <strong>3d6</strong> cold damage and know exactly why.</li><li><strong>Physical Change</strong> (7th): Your skin is faintly cool to the touch and you no longer cast a reflection in still water.</li><li><strong>Advantage</strong> on Swim checks and on saves vs drowning or exhaustion in water.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — on a hit, the target takes <strong>2d6</strong> cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</li></ul>",
+  "description": "<p>A Mournas legend — a bride who drowned in the harbour on her wedding night and never stopped waiting at the water's edge. Witches who serve her carry a little of that patience, and a little of that grief.</p><ul><li><strong>Recipe</strong> (1st): Threshold Salt.</li><li><strong>Patron Curse</strong> (3rd): Once per day, bind a creature within <strong>30ft</strong> to a single spoken promise (<strong>Will save</strong> negates) — if they knowingly break it within <strong>24 hours</strong>, they take <strong>3d6</strong> cold damage and know exactly why.</li><li><strong>Physical Change</strong> (7th): Your skin is faintly cool to the touch; you cast no reflection and leave no tracks.</li><li><strong>Advantage</strong> on checks to wait, watch or go unnoticed while still.</li><li>Once per day, as your action, a creature within <strong>30ft</strong> that has broken its word to you takes <strong>2d6</strong> cold damage and makes a <strong>Fortitude save</strong> or gains one level of Exhaustion.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,13 +13,13 @@
   "className": "Witch",
   "features": [
    {
-    "name": "Patron Buff",
+    "name": "Recipe",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) immunity to being tracked or scried upon for <strong>1 hour</strong> — the Hollow Bride hides what is hers. In the first round of any fight within that hour, attacks against them have <strong>Disadvantage</strong>.</p>",
+    "description": "<p>Threshold Salt.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
     "save": ""
    },
@@ -37,13 +37,13 @@
    {
     "name": "Physical Change",
     "level": 7,
-    "description": "<p>Your skin is faintly cool to the touch and you no longer cast a reflection in still water.</p><ul><li><strong>Advantage</strong> on Swim checks and on saves vs drowning or exhaustion in water.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per day, make a melee touch attack instead — on a hit, the target takes <strong>2d6</strong> cold damage and must hold their breath or gain one level of exhaustion, as the harbour water fills their lungs for a moment too long.</li></ul>",
+    "description": "<p>Your skin is faintly cool to the touch; you cast no reflection and leave no tracks.</p><ul><li><strong>Advantage</strong> on checks to wait, watch or go unnoticed while still.</li><li>Once per day, as your action, a creature within <strong>30ft</strong> that has broken its word to you takes <strong>2d6</strong> cold damage and makes a <strong>Fortitude save</strong> or gains one level of Exhaustion.</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,
      "per": "day"
     },
-    "save": "",
+    "save": "fort",
     "activities": [
      {
       "name": "Claw (1d6)",

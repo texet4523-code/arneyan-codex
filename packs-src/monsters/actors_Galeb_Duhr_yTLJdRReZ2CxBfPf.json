@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
    "system": {
-    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:17]{Fortitude save DC 17} or is knocked prone.</p>",
+    "description": "<p>If it rolls at least <strong>20ft</strong> straight towards a target and hits, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:17]{Fortitude save DC 17} or is knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -261,7 +261,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-rock-golem.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 13</strong>. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.p3jcvjiR3rjqCCA4]{passwall}, @UUID[Compendium.arneyan.spells.Item.iasZBhcGLkWkRNbP]{move earth}, @UUID[Compendium.arneyan.spells.Item.GTNocygSoiFCD4zq]{wall of stone}.</p>",
+    "description": "<p>Spell <strong>DC 13</strong>. <strong>1/day</strong> each: Passwall, Move Earth, Wall of Stone.</p>",
     "source": {
      "book": "mt",
      "page": 0

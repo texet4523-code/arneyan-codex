@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>Druids who have walked close to the boundary between divine and arcane magic. They don't cross it, but they stand at the edge and look over.</p><ul><li><strong>Verdant Power:</strong> when you cast a damaging spell, add your Wisdom modifier as bonus damage to one target.<ul><li>9th level: to two targets.</li></ul></li><li><strong>Deep Roots:</strong> <strong>Advantage</strong> on checks to identify, counter or dispel magic in natural places, and a caster of lower level than you has <strong>Disadvantage</strong> on checks to counter or dispel your spells in natural terrain.</li></ul>",
+  "description": "<p>Druids who have walked close to the boundary between divine and arcane magic. They don't cross it, but they stand at the edge and look over.</p><ul><li><strong>Verdant Power:</strong> once each round, when a spell you cast deals damage, add your Wisdom modifier to the damage one creature takes.<ul><li>9th level: two creatures.</li></ul></li><li><strong>Deep Roots:</strong> add Dispel Magic to your Druid list, and <strong>Advantage</strong> on checks to identify magic.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Verdant Power",
     "level": 1,
-    "description": "<p>When you cast a damaging spell, add your Wisdom modifier as bonus damage to one target.</p><p>9th level: to two targets.</p>",
+    "description": "<p>Once each round, when a spell you cast deals damage, add your Wisdom modifier to the damage one creature takes.</p><p>9th level: two creatures.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -36,7 +36,7 @@
    {
     "name": "Deep Roots",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to identify, counter or dispel magic in natural places, and a caster of lower level than you has <strong>Disadvantage</strong> on checks to counter or dispel your spells in natural terrain.</p>",
+    "description": "<p>Add Dispel Magic to your Druid list, and <strong>Advantage</strong> on checks to identify magic.</p>",
     "uses": {
      "value": 0,
      "max": 0,

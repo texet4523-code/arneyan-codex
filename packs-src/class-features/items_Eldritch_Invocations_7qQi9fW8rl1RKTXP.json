@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 5th, 6th, 9th, 13th and 17th level. You cannot take the same invocation twice.</li><li><strong>Agonising Blast:</strong> add your Charisma modifier to Eldritch Blast damage.</li><li><strong>Repelling Blast:</strong> a creature of Large size or smaller hit by Eldritch Blast is pushed <strong>10ft</strong> for each blast that hits it.</li><li><strong>Armour of Shadows:</strong> +2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with other unarmoured bonuses of the same kind.</li><li><strong>Fiendish Vigour:</strong> <strong>once per day</strong>, as part of your action, gain temporary hit points equal to your Warlock level. They last until your next long rest.</li><li><strong>Mask of Many Faces:</strong> cast Change Self at will.</li><li><strong>Devil's Sight:</strong> see normally in darkness, magical or otherwise, to <strong>60ft</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 6th and 13th level. You cannot take the same invocation twice.</li><li><strong>Repelling Blast:</strong> a creature of Large size or smaller hit by a blast is pushed <strong>10ft</strong>.</li><li><strong>Armour of Shadows:</strong> +2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with Bracers of Defence or Mage Armour.</li><li><strong>Fiendish Vigour:</strong> after each full rest you gain temporary hit points equal to your Warlock level.</li><li><strong>Mask of Many Faces:</strong> cast Change Self at will.</li><li><strong>Devil's Sight:</strong> see normally in darkness, magical or otherwise, to <strong>60ft</strong>.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "day"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,
@@ -29,10 +29,10 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "As part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+    "text": "After each full rest, gain temporary HP equal to your Warlock level.",
     "minLevel": 0,
     "maxLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "self",
     "removeConditions": false,
@@ -82,27 +82,15 @@
   "active": false,
   "optionChoice": {
    "label": "Invocation",
-   "max": "1:1, 5:2, 6:3, 9:4, 13:5, 17:6",
+   "max": "2:1, 6:2, 13:3",
    "options": [
-    {
-     "name": "Agonising Blast",
-     "text": "Add your Charisma modifier to Eldritch Blast damage.",
-     "rules": [
-      {
-       "key": "note.damage",
-       "value": "Agonising Blast: add your Charisma modifier to Eldritch Blast damage.",
-       "when": "",
-       "label": ""
-      }
-     ]
-    },
     {
      "name": "Repelling Blast",
      "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
      "rules": [
       {
        "key": "note.damage",
-       "value": "Repelling Blast: a Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+       "value": "Repelling Blast: a Large or smaller creature hit by a blast is pushed 10ft.",
        "when": "",
        "label": ""
       }
@@ -126,7 +114,7 @@
      "rules": [
       {
        "key": "note.init",
-       "value": "Fiendish Vigour: once a day, temporary HP equal to your Warlock level (until your next long rest).",
+       "value": "Fiendish Vigour: after each full rest, temporary HP equal to your Warlock level.",
        "when": "",
        "label": ""
       }

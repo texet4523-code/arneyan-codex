@@ -57,7 +57,13 @@ export function encounterBudget(partyLevels, foes) {
   const order = foes.map((f, i) => i).sort((a, b) => Number(!!foes[b].solo) - Number(!!foes[a].solo));
   for (const idx of order) {
     const f = foes[idx];
-    const c = creatureCost(f.level, partyLevel, f.levelText);
+    const c0 = creatureCost(f.level, partyLevel, f.levelText);
+    // A minion costs a quarter of its normal cost (M&T v0.10.76, K163 M8).
+    const c = f.minion && !f.solo && c0 ? c0 / 4 : c0;
+    // A solo against a party off its Level (M&T v0.10.76, K163 M7).
+    const gap = Math.round(Number(f.level) || 0) - partyLevel;
+    if (f.solo && f.levelText !== "Mythic" && gap) warnings.push(Math.abs(gap) > 2 ? `${f.name} is ${Math.abs(gap)} Levels ${gap > 0 ? "above" : "below"} the party: further apart than two, don't run it as a solo.`
+      : gap > 0 ? `${f.name} is ${gap} Level${gap > 1 ? "s" : ""} above the party: as a solo, the fight is deadly.` : `${f.name} is ${-gap} Level${gap < -1 ? "s" : ""} below the party: as a solo, the fight is hard at most.`);
     for (let i = 0; i < (f.count ?? 1); i++) {
       // Far below: free up to the party's number; past that, ¼ each (R8).
       const far = c === 0 && free >= n;
@@ -129,7 +135,7 @@ function trackerBudget(combat) {
   // A trap in a fight costs the same as a creature of its Level (Codex, Traps).
   // A solo's second turn (solo.mjs) is the same creature: counted once.
   const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY() && !c.flags?.arneyan?.soloOf)
-    .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: runsAsSolo(c.actor), count: 1 }));
+    .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: runsAsSolo(c.actor), minion: !!c.actor.system.attributes?.minion, count: 1 }));
   return encounterBudget(party.map(a => a.system.level ?? 1), foes);
 }
 
@@ -177,7 +183,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const foes = app.foes;
     const found = foes.find(f => f.uuid === actor.uuid);
     if (found) found.count += 1;
-    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", marked: !!actor.system.details?.isSolo, solo: runsAsSolo(actor), count: 1, na: actor.system.details?.numberAppearing ?? "" });
+    else foes.push({ uuid: actor.uuid, name: actor.name, img: actor.img, level: actor.system.level ?? 1, levelText: actor.system.details?.levelText ?? "", marked: !!actor.system.details?.isSolo, solo: runsAsSolo(actor), minion: !!actor.system.attributes?.minion, count: 1, na: actor.system.details?.numberAppearing ?? "" });
     await game.user.setFlag(SYS, "encounter", foes);
     return app.render({ force: true });
   }

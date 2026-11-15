@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
  "system": {
-  "description": "<p>The O.M.G.A. trains illusionists to serve Opal as spies, interrogators and propagandists.</p><ul><li><strong>Perfect Impersonation:</strong> <strong>Advantage</strong> on Disguise checks to impersonate a specific person. A creature that fails a <strong>Will save</strong> against your spell has <strong>Disadvantage</strong> on its next <strong>Will save</strong> against you this encounter.<ul><li>9th level: on its next two <strong>Will saves</strong> against you.</li></ul></li><li><strong>State Authority:</strong> <strong>Advantage</strong> on Persuasion invoking O.M.G.A. authority, and on long-term social infiltration.</li></ul>",
+  "description": "<p>The O.M.G.A. trains illusionists to serve Opal as spies, interrogators and propagandists.</p><ul><li><strong>Perfect Impersonation:</strong> <strong>Advantage</strong> on Disguise checks to impersonate a specific person.</li><li><strong>Interrogator's Edge:</strong> a creature that fails a <strong>Will save</strong> against one of your Enchantment or Illusion spells has <strong>Disadvantage</strong> on its next <strong>Will save</strong> against you this encounter.<ul><li>9th level: on its next two <strong>Will saves</strong> against you.</li></ul></li><li><strong>State Authority:</strong> <strong>Advantage</strong> on Charisma checks that invoke the authority of a state or order you serve, and on long-term social infiltration.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,13 +15,13 @@
    {
     "name": "Perfect Impersonation",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Disguise checks to impersonate a specific person. A creature that fails a <strong>Will save</strong> against your spell has <strong>Disadvantage</strong> on its next <strong>Will save</strong> against you this encounter.</p><p>9th level: on its next two <strong>Will saves</strong> against you.</p>",
+    "description": "<p><strong>Advantage</strong> on Disguise checks to impersonate a specific person.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "will",
+    "save": "",
     "rules": [
      {
       "key": "adv.check",
@@ -50,9 +50,20 @@
     ]
    },
    {
+    "name": "Interrogator's Edge",
+    "level": 1,
+    "description": "<p>A creature that fails a <strong>Will save</strong> against one of your Enchantment or Illusion spells has <strong>Disadvantage</strong> on its next <strong>Will save</strong> against you this encounter.</p><p>9th level: on its next two <strong>Will saves</strong> against you.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "will"
+   },
+   {
     "name": "State Authority",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Persuasion invoking O.M.G.A. authority, and on long-term social infiltration.</p>",
+    "description": "<p><strong>Advantage</strong> on Charisma checks that invoke the authority of a state or order you serve, and on long-term social infiltration.</p>",
     "uses": {
      "value": 0,
      "max": 0,

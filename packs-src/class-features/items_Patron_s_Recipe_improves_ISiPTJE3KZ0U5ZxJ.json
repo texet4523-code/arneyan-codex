@@ -1,11 +1,11 @@
 {
- "_id": "YFtHbgQ9trfsootu",
- "_key": "!items!YFtHbgQ9trfsootu",
- "name": "Hag's Vigour improves",
+ "_id": "ISiPTJE3KZ0U5ZxJ",
+ "_key": "!items!ISiPTJE3KZ0U5ZxJ",
+ "name": "Patron's Recipe improves",
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> From 8th level, +2 maximum HP per Witch level.</li></ul>",
+  "description": "<p>you brew a second extra draught of it each full rest.</p><ul><li><strong>Wisdom Bonus:</strong> permanent +1 Wisdom. It can take the score past 20, to 22 at most (see The Mortal Limit in Character Creation).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -19,14 +19,14 @@
   "save": "",
   "dc": null,
   "damage": "",
-  "level": 8,
+  "level": 15,
   "className": "Witch",
   "rules": [
    {
-    "key": "hp.max",
-    "value": "@cl",
+    "key": "ability.wis",
+    "value": "1",
     "when": "",
-    "label": "Hag's Vigour improves"
+    "label": ""
    }
   ],
   "toggle": false,
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "1dlV9nfuiRwL22Wo",
- "sort": 10,
+ "sort": 11,
  "ownership": {
   "default": 0
  },

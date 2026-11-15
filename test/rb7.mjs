@@ -156,7 +156,7 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
 /* Arcane Ward: a passive "cast.temp" rule; the cast gives the temporary HP. */
 {
   const ward = feat("Arcane Ward", "Wizard");
-  assert.deepEqual(ward.system.rules.map(r => [r.key, r.value]), [["cast.temp", "2"]]);
+  assert.deepEqual(ward.system.rules.map(r => [r.key, r.value]), [["cast.temp", "1:2, 8:3"]]);
   const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
   assert.ok(docs.includes('actor.system.mods?.sum?.("cast.temp")') && docs.includes('"system.attributes.hp.temp": ward'));
 }
@@ -200,7 +200,7 @@ assert.equal(E.levelText("Go. {1:, 4:Also rally.}", 4), "Go. Also rally.");
 
 /* The class rework runs again for 0.10.68: the features the pools replaced leave a class's list and are listed. */
 {
-  assert.equal(M.CLASS_REWORK, "0.10.108");
+  assert.equal(M.CLASS_REWORK, "0.10.110");
   const inspire = features.find(i => i.name === "Command (Charisma)");
   assert.ok(inspire, "Command is built");
   for (const id of ["ZE561JAXiWa2pFqL", "vjHmF66KtVOxZDDU", "7aWDedO6ICkfxNO3", "v5Af6iwBOG6WQMBU", "rvBtNNIjxzyJA17V"]) assert.ok(M.DROPPED_FEATURES.has(`Compendium.arneyan.class-features.Item.${id}`), id);

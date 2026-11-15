@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<p>Rangers who hunt one kind of prey above all others: the Waste-watchers of Treaty Hold and the Wardens of the Wilds, the fiend-hunters of Ordenvael, the tide-hunters of the Jinia coasts, and bounty hunters who take monster contracts.</p><ul><li><strong>Chosen Quarry:</strong> choose Beast (beasts, magical beasts and monstrosities), Fiend (your weapons also count as magical against fiends), Tide (creatures with a swim speed), Undead, or Waste (the beasts and raiders of the Red Waste), or another the GM allows. Your Hunter's Edge applies to your quarry in full, as it does to your marked prey.<ul><li>9th level: your weapon hits against your quarry ignore its resistances.</li></ul></li><li><strong>Hunter's Eye:</strong> <strong>Advantage</strong> on checks to track, identify, or learn the habits and weaknesses of your quarry.</li></ul>",
+  "description": "<p>Hunters who take contracts on one beast, band or brood at a time: the monster-hunters of Treaty Hold, the fiend-hunters of Ordenvael and the bounty lodges of the Jinia Isles.</p><ul><li><strong>Contract:</strong> before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to. Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and marking one of them with Marked Prey costs no use, once per encounter. The contract ends when the quarry is dead or you give it up.<ul><li>9th level: your weapon hits against your quarry ignore its resistances and count as magical.</li></ul></li><li><strong>Trophy:</strong> when you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind have <strong>Disadvantage</strong> on morale checks against you and your allies.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,46 +13,26 @@
   "className": "Ranger",
   "features": [
    {
-    "name": "Chosen Quarry",
+    "name": "Contract",
     "level": 1,
-    "description": "<p>Choose Beast (beasts, magical beasts and monstrosities), Fiend (your weapons also count as magical against fiends), Tide (creatures with a swim speed), Undead, or Waste (the beasts and raiders of the Red Waste), or another the GM allows. Your Hunter's Edge applies to your quarry in full, as it does to your marked prey.</p><p>9th level: your weapon hits against your quarry ignore its resistances.</p>",
+    "description": "<p>Before a hunt, name your quarry: one creature, or one band, brood or nest the GM agrees to.</p><ul><li>Against your quarry you have <strong>Advantage</strong> on checks to track it, identify it or learn its habits and weaknesses, and marking one of them with Marked Prey costs no use, once per encounter.</li><li>The contract ends when the quarry is dead or you give it up.</li></ul><p>9th level: your weapon hits against your quarry ignore its resistances and count as magical.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
     },
-    "save": "",
-    "rules": [
-     {
-      "key": "note.damage",
-      "value": "Chosen Quarry: Hunter's Edge applies in full (+1 per two Ranger levels) against your chosen quarry.",
-      "when": "",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
+    "save": ""
    },
    {
-    "name": "Hunter's Eye",
+    "name": "Trophy",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to track, identify, or learn the habits and weaknesses of your quarry.</p>",
+    "description": "<p>When you slay your quarry, you may take a trophy from it. While you carry one (one at a time), creatures of the same kind have <strong>Disadvantage</strong> on morale checks against you and your allies.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "",
-    "rules": [
-     {
-      "key": "adv.check",
-      "value": "1",
-      "when": "to track, identify, or learn the habits and weaknesses of your quarry",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
+    "save": ""
    }
   ]
  },

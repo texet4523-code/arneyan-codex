@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> Your Eldritch Blast can deal fire damage in place of force. Once a round, a creature hit by a fire blast takes +<strong>1d6</strong> fire damage. You are trained in the longsword, battle axe and war hammer.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, issue a command to a creature of Level up to half your level: it must spend its next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, a burst of corrupted holy light in a <strong>30ft radius</strong> centred on you; creatures you choose are unharmed. Undead and fiends take <strong>8d8</strong> radiant damage, all others <strong>4d8</strong> fire; <strong>Reflex save</strong> against your Class Save DC for half in both cases.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Dark Gift",
     "level": 1,
-    "description": "<p>One weapon hit each round deals +<strong>1d6</strong> fire damage, while you have at least one Warlock spell slot unspent. Proficient with all martial weapons.</p>",
+    "description": "<p>Your Eldritch Blast can deal fire damage in place of force. Once a round, a creature hit by a fire blast takes +<strong>1d6</strong> fire damage. You are trained in the longsword, battle axe and war hammer.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -65,7 +65,7 @@
    {
     "name": "Patron's Mark",
     "level": 4,
-    "description": "<p>For 1 Patron Favour, issue a command to a creature of Level up to half your level — they must spend their next action complying with a simple non-harmful order. Works on any creature type.</p>",
+    "description": "<p>For 1 Patron Favour, issue a command to a creature of Level up to half your level: it must spend its next action complying with a simple non-harmful order. Works on any creature type.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -78,7 +78,7 @@
    {
     "name": "Patron Feature",
     "level": 8,
-    "description": "<p>For 1 Patron Favour, burst of corrupted holy light in a <strong>30ft radius</strong> — undead and fiends take <strong>6d8</strong> radiant (no save), all others take <strong>3d8</strong> fire (<strong>Reflex save</strong> against your Class Save DC, for half).</p>",
+    "description": "<p>For 1 Patron Favour, a burst of corrupted holy light in a <strong>30ft radius</strong> centred on you; creatures you choose are unharmed. Undead and fiends take <strong>8d8</strong> radiant damage, all others <strong>4d8</strong> fire; <strong>Reflex save</strong> against your Class Save DC for half in both cases.</p>",
     "uses": {
      "value": 0,
      "max": 0,

@@ -62,16 +62,16 @@
    "senses": "Darkvision 60ft",
    "isSolo": true,
    "soloType": "Spellcaster",
-   "soloHalves": true,
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge monstrosity (shapechanger)</em></p><p><strong>GM:</strong> An abomination that rose through the cult's rites into a six-headed serpent. Its temple is a city, and its worshippers are its larder.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
+   "description": "<p><em>Huge monstrosity (shapechanger)</em></p><p><strong>GM:</strong> An abomination that rose through the cult's rites into a six-headed serpent. Its temple is a city, and its worshippers are its larder.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). A lasting area, aura or ongoing effect damages it once a round, at the start of its first turn, however many of its turns or moves pass through it; a spell that deals its damage when cast works as normal.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapon, and any spell or other power that hits more than one creature, deals half damage, and its attacks deal no more than the Damage target for its Level in a round (27).</p>",
    "treasure": "<p>Treasure type <strong>lair H</strong> (see the Treasure tables).</p>"
   }
  },
  "items": [
   {
-   "name": "Bite ×3",
+   "name": "Bite ×2",
    "type": "weapon",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
@@ -91,7 +91,7 @@
     "range": "",
     "magic": 0,
     "attackBonus": 0,
-    "traits": "3 attacks",
+    "traits": "2 attacks",
     "bonusDamage": [
      {
       "formula": "1d6",
@@ -104,8 +104,8 @@
     "active": false,
     "applies": []
    },
-   "_id": "SL0t0l9gNjgJw05z",
-   "_key": "!actors.items!3dGGOx9jE7rrMXcT.SL0t0l9gNjgJw05z",
+   "_id": "FC49WJ0qyIpt2fDF",
+   "_key": "!actors.items!3dGGOx9jE7rrMXcT.FC49WJ0qyIpt2fDF",
    "effects": [],
    "flags": {},
    "sort": 0,
@@ -305,7 +305,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 20</strong>. At will: @UUID[Compendium.arneyan.spells.Item.8wydvL7jdR3G5Zfj]{animal friendship} (snakes only). <strong>3/day</strong> each: @UUID[Compendium.arneyan.spells.Item.ef6aRYPFOP3x8DjP]{darkness}, @UUID[Compendium.arneyan.spells.Item.hVxOJRgloBfCFcXc]{fear} (@Check[will|dc:20]{Will DC 20}), @UUID[Compendium.arneyan.spells.Item.oPVEvNFAtDMvupX1]{suggestion} (@Check[will|dc:20]{Will DC 20}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.3wMd0vWJejMk1VWh]{mass suggestion} (@Check[will|dc:20]{Will DC 20}).</p>",
+    "description": "<p>Spell <strong>DC 20</strong>. At will: Animal Friendship (snakes only). <strong>3/day</strong> each: Darkness, Fear (@Check[will|dc:20]{Will DC 20}), Suggestion (@Check[will|dc:20]{Will DC 20}). <strong>1/day</strong>: Mass Suggestion (@Check[will|dc:20]{Will DC 20}).</p>",
     "source": {
      "book": "mt",
      "page": 0

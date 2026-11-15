@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Trained to serve a noble house, an embassy or a merchant prince, and as useful in a council chamber as in a crisis.</p><ul><li><strong>Warded Table:</strong> as a 1-minute ritual, ward a meal, a drink or a small area against poison and scrying for <strong>8 hours</strong>; anyone partaking is alerted if either is tried. Allies within <strong>10ft</strong> of you have <strong>Advantage</strong> on checks to avoid surprise.<ul><li>9th level: the ward can cover a whole room, and you learn who tried to break it.</li></ul></li><li><strong>Practised at Court:</strong> <strong>Advantage</strong> on checks involving etiquette, protocol, or reading the political temperature of a room.</li></ul>",
+  "description": "<p>Trained to serve a noble house, an embassy or a merchant prince, and as useful in a council chamber as in a crisis.</p><ul><li><strong>Warded Table:</strong> as a 1-minute ritual, ward a meal, a drink or a small area for <strong>8 hours</strong>. Anyone partaking or inside knows at once if it is poisoned or scried on; the ward stops neither.<ul><li>9th level: the ward can cover a whole room, and you learn who tried to break it.</li></ul></li><li><strong>Watchful:</strong> allies within <strong>10ft</strong> of you have <strong>Advantage</strong> on checks to avoid surprise.</li><li><strong>Practised at Court:</strong> <strong>Advantage</strong> on checks involving etiquette, protocol, or reading the political temperature of a room.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,18 @@
    {
     "name": "Warded Table",
     "level": 1,
-    "description": "<p>As a 1-minute ritual, ward a meal, a drink or a small area against poison and scrying for <strong>8 hours</strong>; anyone partaking is alerted if either is tried. Allies within <strong>10ft</strong> of you have <strong>Advantage</strong> on checks to avoid surprise.</p><p>9th level: the ward can cover a whole room, and you learn who tried to break it.</p>",
+    "description": "<p>As a 1-minute ritual, ward a meal, a drink or a small area for <strong>8 hours</strong>. Anyone partaking or inside knows at once if it is poisoned or scried on; the ward stops neither.</p><p>9th level: the ward can cover a whole room, and you learn who tried to break it.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Watchful",
+    "level": 1,
+    "description": "<p>Allies within <strong>10ft</strong> of you have <strong>Advantage</strong> on checks to avoid surprise.</p>",
     "uses": {
      "value": 0,
      "max": 0,

@@ -758,7 +758,7 @@ async function askLegacy(n, actors, version) {
  * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
  * before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.108";
+export const CLASS_REWORK = "0.10.110";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
@@ -831,7 +831,12 @@ export function dropLegendary(items) {
 export const RENAMED_FEATURES = Object.fromEntries([
   ["EEd86TSRn8QJQNK3", "Stun Attack", "Ki"], ["waqGtTczSTgFSdmM", "Body of Iron", "Ki: Body of Iron"], ["gH5YblxxKBxOtKQK", "Death Strike", "Ki: Death Strike"],
   ["LsWKxgs0ZtOLLPCd", "Fascinate (Charisma)", "Performance: Fascinate"],
-  ["UTIrytRZu4fYc46O", "Sorcerer's Spark", "Wild Surge improves"], ["oJxxsvpo4WgI1u92", "Sorcerer's Spark (Improved)", "Wild Surge improves"]
+  ["UTIrytRZu4fYc46O", "Sorcerer's Spark", "Wild Surge improves"], ["oJxxsvpo4WgI1u92", "Sorcerer's Spark (Improved)", "Wild Surge improves"],
+  // HB v0.10.76 to v0.10.78: renamed, same id.
+  ["G0I66J8JwKVyGyGR", "Arcane Analysis", "Arcane Analysis (Intelligence)"], ["x4BNaAofsl6URL2V", "Legend Lore (Charisma)", "Bardic Lore (Charisma)"],
+  ["wZQ5eWYv2qvnVPGB", "Renown: Lodge of the March", "Renown: The Lodge"], ["lLoBEobcT6Ny5jhw", "3rd-Level Features", "Patron Boon (Curse)"],
+  ["86ZftZ9zHtUjJ2lv", "7th-Level Features", "Patron Boon (Physical Change)"], ["Hg7eZciRYQeAHuNg", "Evil Eye", "Far Hex"],
+  ["ISiPTJE3KZ0U5ZxJ", "Patron Boon (Buff) improves", "Patron's Recipe improves"]
 ].map(([id, from, to]) => [`Compendium.${SYS}.class-features.Item.${id}`, [from, to]]));
 // Books v0.10.41 (K49): the Warlock's Hex spell is Malediction (the Witch's Hex feature keeps its name).
 RENAMED_FEATURES[`Compendium.${SYS}.spells.Item.0zqPnCOdDm0Tb4IW`] = ["Hex", "Malediction"];
@@ -895,7 +900,6 @@ for (const [pack, id, from, to] of [
   ["kits", "Ehk2rOsrPogqG06P", ["Followers of Drake (Barbarian)"], "Drake's Followers (Barbarian)"],
   ["kits", "gCvz9fRgu84Qy71E", ["Swordmaster, The Eltor Duelist (Fighter)", "Swordmaster — The Eltor Duelist (Fighter)"], "Duellist (Fighter)"],
   ["kits", "rhTGYTzdz1190RhY", ["Myllnoris Cabal (Druid)"], "Fey Warden (Druid)"],
-  ["kits", "4JgUpVLSKmAflyjU", ["Nalwood Warden (Ranger)"], "Forest Warden (Ranger)"],
   ["kits", "ekcWjuVk2liVW10x", ["Mournas Freelance (Gunslinger)"], "Freelance (Gunslinger)"],
   ["kits", "AVBy314CbBUdzNTB", ["Gladiator, The Pit-Forged (Fighter)", "Gladiator — The Pit-Forged (Fighter)"], "Gladiator (Fighter)"],
   ["kits", "kulEToLobrTmUlBy", ["Silver Tower Illusionist (Illusionist)"], "Glamour Scholar (Illusionist)"],
@@ -950,7 +954,12 @@ for (const [pack, id, from, to] of [
   ["kits", "by2i0r0U9tTKFIV9", ["The Wandering Blades (Assassin)"], "Wandering Blade (Assassin)"],
   ["kits", "j7eZxpvFKIZmwacA", ["Holfast City Watch (Gunslinger)"], "Watchman (Gunslinger)"],
   ["kits", "IRmJxYnSYm9v1vl0", ["Saevren Pathfinder (Archer)"], "Woodland Stalker (Archer)"],
+  // HB v0.10.76 (R-B110, R-B111): renamed kits, same ids.
+  ["kits", "t2bu2fvJjsIad1Gb", ["War-Caster (Wizard)"], "Battle Mage (Wizard)"],
+  ["kits", "pKqgl0RgApjf1WsV", ["Awakened (Sorcerer)"], "Wild-born (Sorcerer)"],
   // Kits merged into another (their own entries are gone; a world copy keeps its old features): the importer's names.
+  // HB v0.10.76 (K162): the Forest Warden folds into the Wild Warden path.
+  ["kits", "4JgUpVLSKmAflyjU", ["Nalwood Warden (Ranger)", "Forest Warden (Ranger)"], "Path: Wild Warden (Ranger)"],
   ["kits", "k7NWOpHjUSYrcfuv", ["Jinia Isles Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "JAy2MYioJqawi03K", ["Ordenvael Demon Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "8ZeeQnQKk3CQaxNl", ["Treaty Hold Scout (Ranger)"], "Quarry Hunter (Ranger)"],
@@ -1002,7 +1011,14 @@ export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item
     "sM4aMdsdJwwJlNMt", "YwLVnNE5GblkmG5N", "C4AlftJdL4MAUPN8", "oOW5jdY7w7TBOs9C", "sHuLRpT2IuAR085F", "2HlL0aqGs7bGEZof", "wMiux84hUnuI9iMG", "XiWikB5r2tsfKW4W", "Hy6Zo1cU4VQR0YW8", "dczkcDK2eHgF7KYJ", "Ox5tFKTnK5svhp1q", "lg2m2jTRaAPPs8ii", "33wdcJJ6CFZeZpQZ", "Q6ihjzt6YWOU1sh7", "tnBzwCIrNXCjuycO", "ImomMrYnSQza53HJ", "kDmg3jkWHvNlCDiq", "u7eycEucV2EbX0yM", "AbFHSxyH6yNJ4SQ5", "Zm8c8FOKZGsdneoK", "eToytwdcMNSj9fUd", "Y0XHP7OheJg1ODcK", "wqjbPzcUykb6Su6v", "WwPHXqZfeZsFpA0l", "FUe978IIp3OzShvH", "fnmz4UWH2Y51Z1Ox", "KIjoOntxPHcgFBFp",
     // HB v0.10.72 (K146): the Rogue's 3rd-level Hide-and-Move-Silently line (now 1st) and Slippery; the Knight's Battle
     // Lord improves (Battle Lord's troop rules moved to Keeps & Kingdoms).
-    "zwfxpS7JHuXSOVmN", "e8xjs8uHxKKAnpui", "VFZfr75GIfknqbqK"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+    "zwfxpS7JHuXSOVmN", "e8xjs8uHxKKAnpui", "VFZfr75GIfknqbqK",
+    // HB v0.10.76 to v0.10.78 (B-F70, B-F71): the Ranger's Light Step; the Wizard's Arcane Ward improves and Second
+    // School; the Illusionist's See Invisible, Arcane Analysis and Displacement; the Sorcerer's Wild Surge improves,
+    // Blood Burn and Overchannel improves; the Cleric's one Turn Undead entry (Turn Undead improves, Turning Radiance),
+    // Banish and Divine Monolith (Improved); the Druid's Perfect Recall, Language of the Wilderlands, Wild Shape
+    // Casting improves, Advanced Nature Lore, Dismiss Woodland Creatures, Elemental Mastery (Improved) and Awaken
+    // Woodland Spirit; the Witch's Bonded Familiar, Hag's Vigour improves, Twin Hex (Improved) and Cauldron improves.
+    "TkjyeXYuj9r4ud4q", "1YI3nwYAqHY63Jck", "LmPa3baYEBdC5tcR", "MNYAdbLrAC9B6ENZ", "qjN9qC9wbBdGmzKV", "WpKhYgjUj5yry3Hi", "xI8qSmvEAhwkBS7n", "FUij9aQcV4itlZxV", "K94HkoZdVJgTl4hh", "PWPfDxohJxW1k6ab", "VyDNqJme3aEMq9Yk", "YFtHbgQ9trfsootu", "evoDIAWIrF8yRPxi", "QIcD2J9uMn4MYDnQ", "JauRuWRLPPADXGuw", "ebrUjtZylJkwokce", "YdQb4ZVbriq05QYc", "5pf4di3y2OSw81O5", "hkD8xcb8ShHCl8dM", "tcjlnEXGQPWKQOWG", "q5ytP3aFd70PX3Ee", "1hUKY1rVQ7gfBTeG", "tV2RgR80PQPDdNSx", "8MyaEVB3o6YlTGW5", "UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {
@@ -1068,6 +1084,13 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         const lower = actor.items.filter(i => flag(i, "grantedBy") === cls.id && at.has(flag(i, "source")) && at.get(flag(i, "source")) < (Number(i.system?.level) || 1))
           .map(i => ({ _id: i.id, "system.level": at.get(flag(i, "source")) }));
         if (lower.length) await actor.updateEmbeddedDocuments("Item", lower, { arneyanMigration: true });
+        // Features that now come later than the character's level (HB v0.10.76: the Wizard's Spell Mastery, 13th to 24th):
+        // their level rises, and the GM is told (they stay on the sheet until he removes them).
+        const later = actor.items.filter(i => flag(i, "grantedBy") === cls.id && at.has(flag(i, "source")) && at.get(flag(i, "source")) > level && (Number(i.system?.level) || 1) <= level);
+        if (later.length) {
+          await actor.updateEmbeddedDocuments("Item", later.map(i => ({ _id: i.id, "system.level": at.get(flag(i, "source")) })), { arneyanMigration: true });
+          (notes.classLater[actor.name] ??= []).push(...later.map(i => `${i.name} (now level ${at.get(flag(i, "source"))})`));
+        }
         const gone = actor.items.filter(i => flag(i, "grantedBy") === cls.id && DROPPED_FEATURES.has(flag(i, "source"))).map(i => i.name);
         if (gone.length) (notes.classGone[actor.name] ??= []).push(...gone);
         await cls.update({ [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
@@ -1125,7 +1148,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     if (!cache.has(uuid)) cache.set(uuid, await fromUuid(uuid).catch(() => null));
     return cache.get(uuid);
   };
-  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [], classAdded: {}, classGone: {} };
+  const notes = { kept: [], unstamped: 0, unstampedActors: new Set(), changed: [], automatic: {}, failed: [], scored: [], classAdded: {}, classGone: {}, classLater: {} };
   const actorIds = new Set();
   const from = game.settings.get(SYS, "migratedTo") || "0";
   // 0.10.65: class features at the books' new levels (once, coming from an earlier version, or for a retried actor).
@@ -1246,10 +1269,10 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const left = legacyDone ? 0 : (legacy === "update" ? 0 : notes.unstamped);
   const auto = Object.entries(notes.automatic);
   const scored = [...new Map(notes.scored.map(x => [x.id, x.name])).values()];
-  const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone);
+  const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone), classLater = Object.entries(notes.classLater ?? {});
   const thief = notes.thief ?? [];
   const phased = [...new Set(notes.phase ?? [])];
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || thief.length || phased.length) {
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1264,7 +1287,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (classAdded.length ? `<p><strong>New class features</strong> (books v0.10.23: every class has its core features by 5th; books v0.10.27: the Knight's Command, the Bard's Performance and the Paladin's Channel Divinity pools, and other new features; books v0.10.32: the Warlock's Patron Favour, the Monk's Iron Mind, Sorcerer Metamagic at 1st; books v0.10.36: the Witch's Cauldron Brews; books v0.10.38: the Assassin's First Blood; books v0.10.41 to v0.10.43: about 30 features from 2nd to 18th; books v0.10.56 to v0.10.58: the martial and Illusionist reworks, Paths and the Seats). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (phased.length ? `<p><strong>Solos</strong> (Monsters &amp; Treasure v0.10.75): ${esc(nameList(phased.length > 30 ? [...phased.slice(0, 30), `${phased.length - 30} more`] : phased))} now fight in three phases with their phase HP, and take their type's villain actions; Bloodied is gone. Their descriptions are the Bestiary's new ones (any edits of yours there were replaced). Each is a normal creature until you tick <em>Run as solo</em> on its sheet (or in the Encounter Builder).</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone; books v0.10.56 to v0.10.58: Whirlwind Attack, Slow Kill, Point Blank, Hit and Run, Master of Illusion, Minor Figment's line and other features were cut or folded into others). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classLater.length ? `<p><strong>Now at a higher level</strong> (HB v0.10.76 to v0.10.78): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (Battle Space (Improved) is now part of Battle Space; the Artificer's 11th-level Kit Feature is now the 5th-level one; books v0.10.27: Inspire, Embolden, Demoralise and Expert in Arms are Command options, Exalt, Discord, Rally, Exhort Greatness and Words of Power Performance options, Smite Evil, Turn Undead and Divine Intervention Channel Divinity options, Quick Reaction is Quick Reflexes, and the Wizard's Scribe's Insight, Perfect Recall, Counterspell and Signature Spells are gone; books v0.10.56 to v0.10.58: Whirlwind Attack, Slow Kill, Point Blank, Hit and Run, Master of Illusion, Minor Figment's line and other features were cut or folded into others; HB v0.10.76 to v0.10.78: Arcane Ward improves, Hag's Vigour improves, Wild Surge improves, Overchannel improves and the Cleric's Turn Undead improves are now steps of their base features, and the Druid, Illusionist, Sorcerer and Witch lost the rest named here). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

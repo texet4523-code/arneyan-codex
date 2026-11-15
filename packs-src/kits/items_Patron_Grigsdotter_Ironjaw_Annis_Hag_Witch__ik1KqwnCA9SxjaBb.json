@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>A hill-den brute with a grip that's cracked stone and a temper to match. Grigsdotter doesn't bargain in riddles like the others — she bargains in favours owed and debts collected, and she always collects.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) <strong>Advantage</strong> on Strength checks and +<strong>1d6</strong> damage on their next successful melee hit within <strong>1 minute</strong>.</li><li><strong>Patron Curse</strong> (3rd): Once per day, mark a creature within <strong>30ft</strong> — your next successful Hex against them deals an additional <strong>2d6</strong> damage (<strong>Fortitude save</strong> halves).</li><li><strong>Physical Change</strong> (7th): Your nails thicken into short, blackened claws.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage, and gain <strong>Advantage</strong> on Strength checks to break or force objects.</li><li>If you strike the same target with both a claw attack and a successful Hex in the same round, the claw deals an additional <strong>1d6</strong> damage.</li></ul>",
+  "description": "<p>A hill-den brute with a grip that's cracked stone and a temper to match. Grigsdotter doesn't bargain in riddles like the others — she bargains in favours owed and debts collected, and she always collects.</p><ul><li><strong>Recipe</strong> (1st): Hex Oil.</li><li><strong>Patron Curse</strong> (3rd): Once per day, when a creature fails its save against your Hex, the Hex deals an extra <strong>2d6</strong> damage the first time it harms that creature (<strong>4d6</strong> from 13th). This needs no action.</li><li><strong>Physical Change</strong> (7th): Your nails thicken into short, blackened claws, and you have <strong>Advantage</strong> on Strength checks to break or force objects. Your claw deals an extra <strong>1d6</strong> damage to a creature under your Hex.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,82 +13,26 @@
   "className": "Witch",
   "features": [
    {
-    "name": "Patron Buff",
+    "name": "Recipe",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) <strong>Advantage</strong> on Strength checks and +<strong>1d6</strong> damage on their next successful melee hit within <strong>1 minute</strong>.</p>",
+    "description": "<p>Hex Oil.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Patron Curse",
+    "level": 3,
+    "description": "<p>Once per day, when a creature fails its save against your Hex, the Hex deals an extra <strong>2d6</strong> damage the first time it harms that creature (<strong>4d6</strong> from 13th). This needs no action.</p>",
     "uses": {
      "value": 1,
      "max": 1,
      "per": "day"
     },
     "save": "",
-    "activities": [
-     {
-      "name": "Iron strength",
-      "kind": "note",
-      "formula": "",
-      "damageType": "",
-      "ability": "",
-      "save": "",
-      "text": "Once per day: a touched creature (or you) has Advantage on Strength checks for 1 minute.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 1,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Next hit (1d6)",
-      "kind": "damage",
-      "formula": "1d6",
-      "damageType": "",
-      "ability": "",
-      "save": "",
-      "text": "Their next successful melee hit within the minute deals this extra.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ]
-   },
-   {
-    "name": "Patron Curse",
-    "level": 3,
-    "description": "<p>Once per day, mark a creature within <strong>30ft</strong> — your next successful Hex against them deals an additional <strong>2d6</strong> damage (<strong>Fortitude save</strong> halves).</p>",
-    "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
-    },
-    "save": "fort",
     "activities": [
      {
       "name": "Marked Hex (2d6)",
@@ -122,7 +66,7 @@
    {
     "name": "Physical Change",
     "level": 7,
-    "description": "<p>Your nails thicken into short, blackened claws.</p><ul><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage, and gain <strong>Advantage</strong> on Strength checks to break or force objects.</li><li>If you strike the same target with both a claw attack and a successful Hex in the same round, the claw deals an additional <strong>1d6</strong> damage.</li></ul>",
+    "description": "<p>Your nails thicken into short, blackened claws, and you have <strong>Advantage</strong> on Strength checks to break or force objects. Your claw deals an extra <strong>1d6</strong> damage to a creature under your Hex.</p>",
     "uses": {
      "value": 0,
      "max": 0,

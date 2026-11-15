@@ -62,10 +62,10 @@
    "senses": "Truesight 120ft",
    "isSolo": true,
    "soloType": "",
-   "soloHalves": true,
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Large aberration (shapechanger)</em></p><p><strong>GM:</strong> A lord of the slaadi whose mind is a madness others fall into. It wants nothing anyone sane could name.</p><p><strong>Solo.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: its own villain actions (in its abilities); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
+   "description": "<p><em>Large aberration (shapechanger)</em></p><p><strong>GM:</strong> A lord of the slaadi whose mind is a madness others fall into. It wants nothing anyone sane could name.</p><p><strong>Solo.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: its own villain actions (in its abilities); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). A lasting area, aura or ongoing effect damages it once a round, at the start of its first turn, however many of its turns or moves pass through it; a spell that deals its damage when cast works as normal.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapon, and any spell or other power that hits more than one creature, deals half damage, and its attacks deal no more than the Damage target for its Level in a round (27).</p>",
    "treasure": "<p>Treasure type <strong>H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -202,7 +202,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-all-seeing-eye.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 22</strong>. At will: @UUID[Compendium.arneyan.spells.Item.d8VhQbI4Ah3bdXZ3]{confusion}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{detect thoughts}. <strong>1/day</strong> each: @UUID[Compendium.arneyan.spells.Item.teHIr9w7eqL9Po3G]{feeblemind}, @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift}.</p>",
+    "description": "<p>Spell <strong>DC 22</strong>. At will: Confusion, Detect Thoughts. <strong>1/day</strong> each: Feeblemind, Plane Shift.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -589,7 +589,7 @@
     }
    },
    "system": {
-    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[will|dc:22]{Will save DC 22}: @Damage[6d8 psychic]{6d8 psychic damage} and Feebleminded until @UUID[Compendium.arneyan.spells.Item.DBMmlO0kdlEPOc4T]{remove curse} on a failure, half on a success.</p>",
+    "description": "<p>One creature within <strong>60ft</strong> makes a @Check[will|dc:22]{Will save DC 22}: @Damage[6d8 psychic]{6d8 psychic damage} and Feebleminded until the end of its next turn on a failure, half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0

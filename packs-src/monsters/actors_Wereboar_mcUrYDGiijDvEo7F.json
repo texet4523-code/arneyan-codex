@@ -225,7 +225,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-boar.svg",
    "system": {
-    "description": "<p>If it moves at least <strong>15ft</strong> straight towards a target before hitting with its tusks, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:15]{Fortitude save DC 15} or is knocked prone.</p>",
+    "description": "<p>If it moves at least <strong>15ft</strong> straight towards a target before hitting with its tusks, the target takes +<strong>2d6</strong> damage and makes a @Check[fort|dc:15]{Fortitude save DC 15} or is knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -19,10 +19,10 @@ WEAPON_BASE = {"greatsword": "Greatsword", "long sword": "Sword, Long", "maul": 
                "war hammer": "Hammer, War", "scimitar": "Sword, Scimitar", "long bow": "Bow, Long", "heavy flail": "Flail, Heavy",
                "rapier": "Sword, Rapier", "glaive": "Glaive", "heavy mace": "Mace, Heavy", "battle axe": "Axe, Battle",
                "dagger": "Dagger", "wolf spear": "Spear, Wolf", "short sword": "Sword, Short", "heavy crossbow": "Crossbow, Heavy",
-               "morningstar": "Morningstar", "spear": "Spear", "quarterstaff": "Staff", "war pick": "Pick, Heavy",
-               "greataxe": "Axe, Two-Handed", "whip": "Whip"}
+               "morningstar": "Morningstar", "spear": "Spear", "quarterstaff": "Staff", "war pick": "Pick, Heavy", "heavy pick": "Pick, Heavy",
+               "greataxe": "Axe, Two-Handed", "two-handed axe": "Axe, Two-Handed", "staff": "Staff", "whip": "Whip"}
 # ... and the Catalogue's armour or shield.
-ARMOUR_BASE = {"breastplate": "Breastplate, Steel", "plate": "Full Plate", "chain mail": "Chain Mail Hauberk",
+ARMOUR_BASE = {"breastplate": "Breastplate, Steel", "plate": "Full Plate", "plate mail": "Full Plate", "chain mail": "Chain Mail Hauberk",
                "studded leather": "Studded Leather", "large shield": "Shield, Large Steel", "shield": "Shield, Medium Steel"}
 
 UNIQUE_GLYPH = {"Soulthief": "bloody-sword", "Wyrmsbane": "dragon-head", "Wallguard": "stone-wall", "Stonefather": "warhammer",
@@ -89,7 +89,7 @@ def section(t, head):
 def base_of(paren):
     """(kind, Catalogue name, +N) from "greatsword +3", "a shield +1, crawling ...", "a skull-headed rod, also a heavy mace +3"."""
     for part in [p.strip() for p in re.split(r"[,;]", paren)]:
-        m = re.match(r"^(?:also )?(?:an? )?([a-z ]+?)(?: \+(\d))?$", part)
+        m = re.match(r"^(?:also )?(?:an? )?([a-z -]+?)(?: \+(\d))?$", part)
         if not m:
             continue
         word, plus = m.group(1).strip(), int(m.group(2) or 0)
@@ -198,7 +198,8 @@ def build(by_name, pack):
         return kind in ("weapon", "armour") and base in by_name
 
     # Named Uniques: the GM places them; saves use DC 10 + half level + the attribute named.
-    for name, paren, text in section(t, "### Named Uniques"):
+    # M&T v0.10.78 prints the classic ones under their own heading (Classic Uniques); same folder, same rules.
+    for name, paren, text in section(t, "### Named Uniques") + section(t, "### Classic Uniques"):
         kind, base, plus = base_of(paren)
         if kind and not known(kind, base):
             print(f"gear: Named Unique {name}: no {base} in the Catalogue, made a plain item")
@@ -230,7 +231,8 @@ def build(by_name, pack):
         made += 1
 
     # Artefacts: never for sale, never from a hoard roll.
-    for name, paren, text in section(t, "### Artefacts"):
+    # M&T v0.10.78: the Relics (great items that are not artefacts) sit beside them; same folder, never sold.
+    for name, paren, text in section(t, "### Artefacts") + section(t, "### Relics"):
         kind, base, plus = base_of(paren)
         if kind and not known(kind, base):
             kind = None

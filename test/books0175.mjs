@@ -21,9 +21,9 @@ assert.deepEqual(types, { Dragon: 32, Fiend: 9, Undead: 6, "Eye tyrant": 4, "Min
 for (const s of solos) assert.deepEqual(va(s).map(i => i.flags.arneyan.villainAction), [1, 2, 3], s.name);
 assert.ok(!monsters.filter(x => !x.system.details.isSolo).some(x => va(x).length), "only solos have villain actions");
 assert.ok(!monsters.some(x => x.items.some(i => /^Solo:/.test(i.name))), "the Solo line is not an ability");
-assert.equal(monsters.filter(x => x.system.details.soloHalves).length, 45, "45 halve their attacks as normal creatures");
-assert.ok(/it also halves its attack damage/.test(m("Vampire").system.details.description));
-assert.ok(!/it also halves its attack damage/.test(m("Lich").system.details.description));
+// M&T v0.10.76 (K163 M11): the cap in place of halving; the 45 "also halves" notes are gone.
+assert.equal(monsters.filter(x => x.system.details.soloHalves).length, 0);
+assert.ok(/its attacks deal no more than the Damage target for its Level in a round \(\d+\)/.test(m("Vampire").system.details.description));
 
 /* Phase HP: the Vampire 50 (was 100); the Mythic three 600 over three phases of 200. */
 assert.equal(m("Vampire").system.attributes.hp.max, 50);

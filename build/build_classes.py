@@ -50,14 +50,15 @@ def save_of(text):
     Disadvantage")."""
     for m in re.finditer(r"\b(Fortitude|Reflex|Will) save(?!s)", text):
         before = text[max(0, m.start() - 24):m.start()]
-        if (re.search(r"(succeed on|advantage on|first) (an? |the )?$", before, re.I) or text[m.end():m.end() + 7] == " DC is "
+        # (HB v0.10.76: "your Will save and your spell DC", the Druid's form keeping its own numbers.)
+        if (re.search(r"(succeed on|advantage on|first|your) (an? |the )?$", before, re.I) or text[m.end():m.end() + 7] == " DC is "
                 or re.match(r"\s+with Disadvantage", text[m.end():], re.I)):
             continue
         return {"Fortitude": "fort", "Reflex": "ref", "Will": "will"}[m.group(1)]
     return ""
 
 
-# Damage the feature text states, as a formula (Kieran, 20 Oct 2026). Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at
+# Damage the feature text states, as a formula (Kieran, 20 Oct 2026). Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d8 at
 # 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (books v0.10.41; the same progression as the class-only spell,
 # build_class_spells.py).
 def feature_damage(cls, name):

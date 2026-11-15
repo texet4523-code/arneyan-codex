@@ -76,7 +76,7 @@
    "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p><p><strong>Solo: Undead.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the undead type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage.</p>",
+   "description": "<p><em>Medium undead</em></p><p><strong>GM:</strong> A wizard who traded his life for forever. Defeating a lich means finding its phylactery.</p><p><strong>Solo: Undead.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the undead type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). A lasting area, aura or ongoing effect damages it once a round, at the start of its first turn, however many of its turns or moves pass through it; a spell that deals its damage when cast works as normal.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapon, and any spell or other power that hits more than one creature, deals half damage, and its attacks deal no more than the Damage target for its Level in a round (27).</p>",
    "treasure": "<p>Treasure type <strong>S, lair G</strong> (see the Treasure tables).</p>"
   }
  },
@@ -161,7 +161,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>Casts as a 14th-level wizard (spell <strong>DC 21</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.AQrHYMRn6oDA17KZ]{magic missile}, @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.QrlDx0PCOE7axE63]{counterspell}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.BqttIfSs6bJ0skQv]{fireball} (@Check[ref|dc:21]{Reflex DC 21}), @UUID[Compendium.arneyan.spells.Item.4uGsRzlWXslNDAqj]{cone of cold} (@Check[ref|dc:21]{Reflex DC 21}), @UUID[Compendium.arneyan.spells.Item.V56OhpBBbGjSrXym]{hold monster} (@Check[will|dc:21]{Will DC 21}), @UUID[Compendium.arneyan.spells.Item.5hER9G7OSUDbnEfc]{wall of force}, @UUID[Compendium.arneyan.spells.Item.plviZS0VEOdMNLkC]{disintegrate}.</p>",
+    "description": "<p>Casts as a 14th-level wizard (spell <strong>DC 21</strong>). Typical spells: Magic Missile, Shield, Counterspell, Dispel Magic, Fireball (@Check[ref|dc:21]{Reflex DC 21}), Cone of Cold (@Check[ref|dc:21]{Reflex DC 21}), Hold Monster (@Check[will|dc:21]{Will DC 21}), Wall of Force, Disintegrate.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -785,7 +785,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>A creature hit makes a @Check[fort|dc:20]{Fortitude save DC 20} or is paralysed for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</p>",
+    "description": "<p>A creature hit makes a @Check[fort|dc:20]{Fortitude save DC 20} or is @Condition[paralysed]{Paralysed} for <strong>1 minute</strong>, repeating the save at the end of each of its turns.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -822,7 +822,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p>One creature within <strong>30ft</strong> that can see the lich makes a @Check[will|dc:20]{Will save DC 20} or is frightened for <strong>1 minute</strong>.</p>",
+    "description": "<p>One creature within <strong>30ft</strong> that can see the lich makes a @Check[will|dc:20]{Will save DC 20} or is @Condition[frightened]{Frightened} for <strong>1 minute</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0

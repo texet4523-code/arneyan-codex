@@ -15,19 +15,19 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.deepEqual(E.chosenRules(em), [], "nothing until the element is picked");
   const picked = { ...em, optionChoice: { ...em.optionChoice, value: ["Cold"] } };
   assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"], ["immune", "{20:cold}"]], "Resistance from 8th, immunity from 20th (books v0.10.22)");
-  // 0.10.66: one pick covers Elemental Mastery (Improved), which asks nothing of its own.
-  const emi = pack("class-features").find(d => d.name === "Elemental Mastery (Improved)").system;
-  assert.ok(!emi.optionChoice?.options?.length, "Improved asks no question");
+  // HB v0.10.76: Elemental Mastery (Improved) is gone (the Druid rework).
+  assert.ok(!pack("class-features").some(d => d.name === "Elemental Mastery (Improved)"));
   const druid = lvl => E.collectRules({ items: Object.assign([{ type: "class", name: "Druid", system: { levels: lvl } }, { type: "ability", name: "Elemental Mastery", system: { ...picked, className: "Druid" } }], { find: Array.prototype.find }), effects: [], system: { level: lvl } }, { level: lvl })
     .filter(r => ["resist", "immune"].includes(r.key)).map(r => `${r.key} ${r.value}`);
   assert.deepEqual(druid(8), ["resist cold"]);
   assert.deepEqual(druid(20), ["resist cold", "immune cold"]);
   const inv = pack("class-features").find(d => d.name === "Eldritch Invocations").system;
-  const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Agonising Blast", "Armour of Shadows"] } };
-  // Books v0.10.42 (K51): one more at 6th.
-  assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 6), 3); assert.equal(E.optionPickMax(inv, 9), 4); assert.equal(E.optionPickMax(inv, 17), 6);
+  const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Repelling Blast", "Armour of Shadows"] } };
+  // HB v0.10.76 (K176): three invocations, at 2nd, 6th and 13th; Agonising Blast is built in.
+  assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 6), 2); assert.equal(E.optionPickMax(inv, 9), 2); assert.equal(E.optionPickMax(inv, 17), 3);
+  assert.ok(!inv.optionChoice.options.some(o => o.name === "Agonising Blast"));
   assert.deepEqual(E.optionPicks(three, 4), ["Devil's Sight"], "only one counts at 4th");
-  assert.equal(E.optionPicks(three, 9).length, 3);
+  assert.equal(E.optionPicks(three, 13).length, 3);
   assert.ok(E.chosenRules(three, 9).some(r => r.key === "sense" && /Devil's Sight 60ft/.test(r.value)));
   // A pick the compendium no longer has doesn't count.
   assert.deepEqual(E.optionPicks({ ...inv, optionChoice: { ...inv.optionChoice, value: ["Gone"] } }), []);

@@ -56,7 +56,7 @@ assert.equal(s("Disrupt Undead").damage, "(1 + min(3, floor((@cl + 1) / 6)))d6")
 const eb = s("Eldritch Blast");
 assert.equal(eb.save, "ref"); assert.equal(eb.damageType, "force"); assert.equal(eb.level, 0);
 const tidy = f => f.replace(/\s*\+?\s*0d\d+/g, "").replace(/^\s*\+\s*/, "").replace(/\s+/g, "").trim();
-const want = { 1: "1d6", 4: "1d6", 5: "1d8", 8: "1d8", 9: "2d6", 12: "2d6", 13: "3d8", 16: "3d8", 17: "4d8", 20: "4d8", 21: "5d8", 23: "5d8", 24: "5d8" };
+const want = { 1: "1d6", 4: "1d6", 5: "1d8", 8: "1d8", 9: "2d8", 12: "2d8", 13: "3d8", 16: "3d8", 17: "4d8", 20: "4d8", 21: "5d8", 23: "5d8", 24: "5d8" };
 for (const [cl, w] of Object.entries(want)) assert.equal(tidy(resolveFormula(eb.damage, { cl: Number(cl) })), w, `Eldritch Blast at ${cl}`);
 
 // ---- 2. Witch Patrons and Artificer Kits.
@@ -67,8 +67,8 @@ assert.equal(witch.length, 8, "eight Witch Patrons");
 assert.equal(art.length, 4, "four Artificer Kits");
 for (const k of witch) {
   assert.match(k.name, /^Patron: .+ \(Witch\)$/);
-  assert.deepEqual(k.system.features.map(f => [f.name, f.level]), [["Patron Buff", 1], ["Patron Curse", 3], ["Physical Change", 7]], k.name);
-  for (const f of k.system.features) assert.ok(f.description.length > 20, `${k.name}: ${f.name} has no text`);
+  assert.deepEqual(k.system.features.map(f => [f.name, f.level]), [["Recipe", 1], ["Patron Curse", 3], ["Physical Change", 7]], k.name);
+  for (const f of k.system.features) assert.ok(f.description.length > (f.name === "Recipe" ? 8 : 20), `${k.name}: ${f.name} has no text`);
 }
 for (const k of art) {
   assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 5, 7, 10, 24], k.name); // books v0.10.22 tiers

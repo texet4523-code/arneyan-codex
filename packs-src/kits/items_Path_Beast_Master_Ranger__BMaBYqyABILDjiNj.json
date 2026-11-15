@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<p>Not every ranger works alone. Some build a partnership with the wild, starting with whatever creature will have them, and in time earning the trust of things that shouldn't trust anyone.</p><ul><li><strong>Bonded Companion (1st):</strong> tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling, with HD equal to half your Ranger level (rounded up).</li><li>It acts on its own initiative and defends itself and you whenever either of you is threatened, at no cost to you.</li><li>Directing it to attack a particular target or do a particular thing costs your action.</li><li><strong>Beastspeaker (1st):</strong> <strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and beast-type monsters, even ones far beyond what you could safely fight. It grants no control over an unbonded creature.</li><li><strong>Wild Bond (5th):</strong> you may try to tame a beast-type monster of low power (giant spider, dire wolf or similar, GM-approved). Taming takes days of exposure and a Wisdom check the GM sets by the creature's HD and temper, and can fail or provoke an attack.</li><li><strong>Apex Bond (10th):</strong> you may try the same with a dangerous beast-type monster (a young wyvern, a manticore or a similar apex predator, GM-approved); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after a season of searching.</li></ul>",
+  "description": "<p>Not every ranger works alone. Some build a partnership with the wild, starting with whatever creature will have them, and in time earning the trust of things that shouldn't trust anyone.</p><ul><li><strong>Bonded Companion (1st):</strong> tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling.</li><li>Its Level is half your Ranger level (rounded up): use the block of an animal of that Level, or the HP, AC, attack and damage targets for that Level in Monsters &amp; Treasure.</li><li>It acts straight after your turn, and you control it fully (where it moves, what it attacks and what it does), at no cost to your own action.</li><li><strong>Beastspeaker (1st):</strong> <strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and bestial or animal-like monsters, even ones far beyond what you could safely fight. You can calm a creature this way, but you can't control or tame it unless it is bonded to you.</li><li><strong>Wild Bond (5th):</strong> you may try to tame a bestial or animal-like monster of low power, at the GM's discretion, in place of your animal: it uses its own block, and its Level can be no higher than half your Ranger level (rounded up), such as a dire wolf at 5th or a giant spider from 7th. Taming takes days of exposure and a Wisdom check the GM sets by the creature's Level and temper, and can fail or provoke an attack.</li><li><strong>Apex Bond (10th):</strong> you may try the same with a dangerous bestial or animal-like monster, at the GM's discretion, under the same Level limit (a winter wolf at 10th, a manticore or griffon from 13th, a wyvern from 17th); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after one Downtime Phase of searching.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Bonded Companion",
     "level": 1,
-    "description": "<p>Tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling, with HD equal to half your Ranger level (rounded up).</p><ul><li>It acts on its own initiative and defends itself and you whenever either of you is threatened, at no cost to you.</li><li>Directing it to attack a particular target or do a particular thing costs your action.</li></ul>",
+    "description": "<p>Tame and bond with a beast companion that fights and travels with you: at 1st level a mundane animal suited to the terrain (wolf, hawk, boar), bonded over a few days of feeding and handling.</p><ul><li>Its Level is half your Ranger level (rounded up): use the block of an animal of that Level, or the HP, AC, attack and damage targets for that Level in Monsters &amp; Treasure.</li><li>It acts straight after your turn, and you control it fully (where it moves, what it attacks and what it does), at no cost to your own action.</li></ul>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -26,7 +26,7 @@
    {
     "name": "Beastspeaker",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and beast-type monsters, even ones far beyond what you could safely fight. It grants no control over an unbonded creature.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to calm, speak with or avoid provoking wild animals and bestial or animal-like monsters, even ones far beyond what you could safely fight. You can calm a creature this way, but you can't control or tame it unless it is bonded to you.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -47,7 +47,7 @@
    {
     "name": "Wild Bond",
     "level": 5,
-    "description": "<p>You may try to tame a beast-type monster of low power (giant spider, dire wolf or similar, GM-approved). Taming takes days of exposure and a Wisdom check the GM sets by the creature's HD and temper, and can fail or provoke an attack.</p>",
+    "description": "<p>You may try to tame a bestial or animal-like monster of low power, at the GM's discretion, in place of your animal: it uses its own block, and its Level can be no higher than half your Ranger level (rounded up), such as a dire wolf at 5th or a giant spider from 7th. Taming takes days of exposure and a Wisdom check the GM sets by the creature's Level and temper, and can fail or provoke an attack.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -58,7 +58,7 @@
    {
     "name": "Apex Bond",
     "level": 10,
-    "description": "<p>You may try the same with a dangerous beast-type monster (a young wyvern, a manticore or a similar apex predator, GM-approved); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after a season of searching.</p>",
+    "description": "<p>You may try the same with a dangerous bestial or animal-like monster, at the GM's discretion, under the same Level limit (a winter wolf at 10th, a manticore or griffon from 13th, a wyvern from 17th); failure is likely to mean a fight. If a bonded companion is slain, a replacement of the right tier can be found after one Downtime Phase of searching.</p>",
     "uses": {
      "value": 0,
      "max": 0,

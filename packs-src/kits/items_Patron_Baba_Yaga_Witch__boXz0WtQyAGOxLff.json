@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>The Grandmother of Witches, older than any coven that claims her, older than most of the borders on any map of Arneyan. Her hut walks on chicken legs somewhere out past the edge of settled land, and it finds the Witches it wants to find — not the other way around.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) <strong>Advantage</strong> on all Wisdom and Intelligence-based checks for <strong>one hour</strong> — Baba Yaga's wisdom lends itself, briefly, to those she favours. They also have <strong>Advantage</strong> on their next <strong>Will save</strong> within the hour.</li><li><strong>Patron Curse</strong> (3rd): Once per day, set a creature within <strong>30ft</strong> an impossible task as a curse (<strong>Will save</strong> negates) — on a failed save they immediately suffer <strong>Disadvantage</strong> on all Charisma checks until they attempt the task in good faith (for up to <strong>1 day</strong> per Witch level), as if the world itself is waiting on them to finish.</li><li><strong>Physical Change</strong> (7th): Your teeth sharpen slightly and one lock of your hair turns iron-grey no matter your true age.</li><li><strong>Advantage</strong> on Survival checks in deep wilderness, and you always know which direction leads to the nearest dwelling, however far.</li><li>You may make an unarmed bite attack dealing <strong>1d6</strong> damage.</li><li>Once per day, out of turn, when struck in melee, the ancient magic in your blood answers unbidden — the attacker takes <strong>2d6</strong> piercing damage (<strong>Will save</strong> halves).</li></ul>",
+  "description": "<p>The Grandmother of Witches, older than any coven that claims her, older than most of the borders on any map of Arneyan. Her hut walks on chicken legs somewhere out past the edge of settled land, and it finds the Witches it wants to find — not the other way around.</p><ul><li><strong>Recipe</strong> (1st): Seer's Draught.</li><li><strong>Patron Curse</strong> (3rd): Once per day, set a creature within <strong>30ft</strong> an impossible task as a curse (<strong>Will save</strong> negates) — on a failed save they immediately suffer <strong>Disadvantage</strong> on all Charisma checks until they attempt the task in good faith (for up to <strong>1 day</strong> per Witch level), as if the world itself is waiting on them to finish.</li><li><strong>Physical Change</strong> (7th): Your teeth sharpen slightly and one lock of your hair turns iron-grey no matter your true age.</li><li><strong>Advantage</strong> on Survival checks outside a settlement, and you always know which direction leads to the nearest dwelling, however far.</li><li>Your natural weapon is a bite.</li><li>Once per day, out of turn, when struck in melee, the ancient magic in your blood answers unbidden: the attacker takes <strong>2d6</strong> piercing damage (<strong>Will save</strong> halves).</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,15 +13,15 @@
   "className": "Witch",
   "features": [
    {
-    "name": "Patron Buff",
+    "name": "Recipe",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) <strong>Advantage</strong> on all Wisdom and Intelligence-based checks for <strong>one hour</strong> — Baba Yaga's wisdom lends itself, briefly, to those she favours. They also have <strong>Advantage</strong> on their next <strong>Will save</strong> within the hour.</p>",
+    "description": "<p>Seer's Draught.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": "will"
+    "save": ""
    },
    {
     "name": "Patron Curse",
@@ -37,7 +37,7 @@
    {
     "name": "Physical Change",
     "level": 7,
-    "description": "<p>Your teeth sharpen slightly and one lock of your hair turns iron-grey no matter your true age.</p><ul><li><strong>Advantage</strong> on Survival checks in deep wilderness, and you always know which direction leads to the nearest dwelling, however far.</li><li>You may make an unarmed bite attack dealing <strong>1d6</strong> damage.</li><li>Once per day, out of turn, when struck in melee, the ancient magic in your blood answers unbidden — the attacker takes <strong>2d6</strong> piercing damage (<strong>Will save</strong> halves).</li></ul>",
+    "description": "<p>Your teeth sharpen slightly and one lock of your hair turns iron-grey no matter your true age.</p><ul><li><strong>Advantage</strong> on Survival checks outside a settlement, and you always know which direction leads to the nearest dwelling, however far.</li><li>Your natural weapon is a bite.</li><li>Once per day, out of turn, when struck in melee, the ancient magic in your blood answers unbidden: the attacker takes <strong>2d6</strong> piercing damage (<strong>Will save</strong> halves).</li></ul>",
     "uses": {
      "value": 1,
      "max": 1,

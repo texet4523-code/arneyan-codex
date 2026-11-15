@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Every hit against your marked prey deals the Favoured Enemy extra weapon damage die and ignores its resistance.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Every hit against your marked prey deals an extra weapon damage die and ignores its resistance. It combines with Hunter's Tricks.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Relentless Hunter: every hit on your marked prey deals the Favoured Enemy extra weapon die and ignores its resistance.",
+    "value": "Relentless Hunter: every hit on your marked prey deals an extra weapon damage die and ignores its resistance (on top of Favoured Enemy's die, K195).",
     "when": "",
     "label": ""
    }

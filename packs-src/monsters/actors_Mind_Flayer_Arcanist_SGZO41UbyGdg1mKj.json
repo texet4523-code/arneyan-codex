@@ -235,7 +235,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Casts as a 10th-level wizard (spell <strong>DC 19</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX]{shield}, @UUID[Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3]{blur}, @UUID[Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31]{invisibility}, @UUID[Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO]{lightning bolt} (@Check[ref|dc:19]{Reflex DC 19}), @UUID[Compendium.arneyan.spells.Item.5PHZ4Ah3iU56FDCy]{sending}, @UUID[Compendium.arneyan.spells.Item.jBN5DNYwXSLhwB1w]{Evard's black tentacles}, @UUID[Compendium.arneyan.spells.Item.Fo0Yg6UPKXSfVbOc]{phantasmal killer} (@Check[will|dc:19]{Will DC 19}), @UUID[Compendium.arneyan.spells.Item.VcPy65vH9unvRCjq]{charm monster}, @UUID[Compendium.arneyan.spells.Item.5hER9G7OSUDbnEfc]{wall of force}.</p>",
+    "description": "<p>Casts as a 10th-level wizard (spell <strong>DC 19</strong>). Typical spells: Shield, Blur, Invisibility, Lightning Bolt (@Check[ref|dc:19]{Reflex DC 19}), Sending, @UUID[Compendium.arneyan.spells.Item.jBN5DNYwXSLhwB1w]{Evard's black tentacles}, Phantasmal Killer (@Check[will|dc:19]{Will DC 19}), Charm Monster, Wall of Force.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -262,6 +262,75 @@
    "effects": [],
    "flags": {},
    "sort": 400,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Evard's Black Tentacles",
+   "type": "spell",
+   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
+   "system": {
+    "description": "<p>Range <strong>90ft</strong>; <strong>20ft</strong>-square.</p><ul><li>Tentacles fill the area for <strong>1 round per level</strong>.</li><li>Each creature that enters or starts its turn inside takes <strong>2d6</strong> bludgeoning damage and is <strong>Restrained</strong>; <strong>Reflex negates</strong> the <strong>Restrained</strong> condition (damage still applies).</li><li>A <strong>Restrained</strong> creature escapes with a Strength check vs spell DC.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "source": {
+     "book": "phb",
+     "page": 0
+    },
+    "level": 4,
+    "className": "Wizard",
+    "classes": [
+     "Wizard"
+    ],
+    "school": "Conjuration",
+    "castingTime": "1 action",
+    "range": "Range 90ft",
+    "duration": "",
+    "area": "20ft cube",
+    "components": "V, S, M",
+    "concentration": false,
+    "ritual": false,
+    "prepared": false,
+    "save": "ref",
+    "saveEffect": "Full damage, but not Restrained",
+    "damage": "2d6",
+    "damageType": "bludgeoning",
+    "reversible": false,
+    "costly": false,
+    "template": {
+     "type": "rect",
+     "size": 20,
+     "width": 0,
+     "attached": false,
+     "fromSelf": false,
+     "lingering": true,
+     "rounds": "1*@cl",
+     "sizeFormula": ""
+    },
+    "applies": [
+     {
+      "name": "Grasped",
+      "target": "target",
+      "rounds": "@cl",
+      "statuses": [
+       "restrained"
+      ],
+      "rules": []
+     }
+    ]
+   },
+   "effects": [],
+   "flags": {
+    "arneyan": {
+     "frequency": ""
+    }
+   },
+   "_stats": {
+    "compendiumSource": "Compendium.arneyan.spells.Item.jBN5DNYwXSLhwB1w"
+   },
+   "_id": "qJquzMkPwt6Xdoum",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.qJquzMkPwt6Xdoum",
+   "sort": 500,
    "ownership": {
     "default": 0
    },
@@ -347,9 +416,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.hKa4zuGE3Wqlu9jX"
    },
-   "_id": "JHxJSAaXyqRVeMQB",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.JHxJSAaXyqRVeMQB",
-   "sort": 500,
+   "_id": "DhcA3znkYcRSkssT",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.DhcA3znkYcRSkssT",
+   "sort": 600,
    "ownership": {
     "default": 0
    },
@@ -422,9 +491,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.c5ubQLfT5KvXM2u3"
    },
-   "_id": "FZwqdFAsZK0vZ7NI",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.FZwqdFAsZK0vZ7NI",
-   "sort": 600,
+   "_id": "BQNFGY8goW7eGkr0",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.BQNFGY8goW7eGkr0",
+   "sort": 700,
    "ownership": {
     "default": 0
    },
@@ -498,9 +567,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.46zEhtoX4b0YgM31"
    },
-   "_id": "Ac6ND5s3MoYywOf6",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.Ac6ND5s3MoYywOf6",
-   "sort": 700,
+   "_id": "3NXrrT6nmgSKr6V2",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.3NXrrT6nmgSKr6V2",
+   "sort": 800,
    "ownership": {
     "default": 0
    },
@@ -558,9 +627,9 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.yYUNzeina2wZOAwO"
    },
-   "_id": "PGIZqStC6NeOnl2m",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.PGIZqStC6NeOnl2m",
-   "sort": 800,
+   "_id": "u7VientZUmH1PyVa",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.u7VientZUmH1PyVa",
+   "sort": 900,
    "ownership": {
     "default": 0
    },
@@ -617,77 +686,8 @@
    "_stats": {
     "compendiumSource": "Compendium.arneyan.spells.Item.5PHZ4Ah3iU56FDCy"
    },
-   "_id": "bj5E6sc4CqgEuqGB",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.bj5E6sc4CqgEuqGB",
-   "sort": 900,
-   "ownership": {
-    "default": 0
-   },
-   "folder": null
-  },
-  {
-   "name": "Evard's Black Tentacles",
-   "type": "spell",
-   "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
-   "system": {
-    "description": "<p>Range <strong>90ft</strong>; <strong>20ft</strong>-square.</p><ul><li>Tentacles fill the area for <strong>1 round per level</strong>.</li><li>Each creature that enters or starts its turn inside takes <strong>2d6</strong> bludgeoning damage and is <strong>Restrained</strong>; <strong>Reflex negates</strong> the <strong>Restrained</strong> condition (damage still applies).</li><li>A <strong>Restrained</strong> creature escapes with a Strength check vs spell DC.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
-    "source": {
-     "book": "phb",
-     "page": 0
-    },
-    "level": 4,
-    "className": "Wizard",
-    "classes": [
-     "Wizard"
-    ],
-    "school": "Conjuration",
-    "castingTime": "1 action",
-    "range": "Range 90ft",
-    "duration": "",
-    "area": "20ft cube",
-    "components": "V, S, M",
-    "concentration": false,
-    "ritual": false,
-    "prepared": false,
-    "save": "ref",
-    "saveEffect": "Full damage, but not Restrained",
-    "damage": "2d6",
-    "damageType": "bludgeoning",
-    "reversible": false,
-    "costly": false,
-    "template": {
-     "type": "rect",
-     "size": 20,
-     "width": 0,
-     "attached": false,
-     "fromSelf": false,
-     "lingering": true,
-     "rounds": "1*@cl",
-     "sizeFormula": ""
-    },
-    "applies": [
-     {
-      "name": "Grasped",
-      "target": "target",
-      "rounds": "@cl",
-      "statuses": [
-       "restrained"
-      ],
-      "rules": []
-     }
-    ]
-   },
-   "effects": [],
-   "flags": {
-    "arneyan": {
-     "frequency": ""
-    }
-   },
-   "_stats": {
-    "compendiumSource": "Compendium.arneyan.spells.Item.jBN5DNYwXSLhwB1w"
-   },
-   "_id": "4MPgyFrbPR0cM6pe",
-   "_key": "!actors.items!SGZO41UbyGdg1mKj.4MPgyFrbPR0cM6pe",
+   "_id": "Md2t1CshM8a7pbcb",
+   "_key": "!actors.items!SGZO41UbyGdg1mKj.Md2t1CshM8a7pbcb",
    "sort": 1000,
    "ownership": {
     "default": 0
@@ -890,7 +890,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 18</strong>. <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{plane shift} (self only).</p>",
+    "description": "<p>Spell <strong>DC 18</strong>. <strong>1/day</strong>: Plane Shift (self only).</p>",
     "source": {
      "book": "mt",
      "page": 0

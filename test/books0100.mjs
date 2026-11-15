@@ -32,7 +32,7 @@ assert.ok(ARNEYAN.conditions.turned && ARNEYAN.conditions.turned.text.includes("
 for (const d of docs("class-features").filter(d => d.name === "Turn Undead")) assert.deepEqual(d.system.applies[0].statuses, ["turned"], d.system.className);
 // Holy Campaign, Combat Dominance, Umberlee, Delay Poison: the new wording.
 // Holy Campaign folded into Renown: Temple (books v0.10.57).
-assert.ok(strip(one("class-features", "Renown: Temple").system.description).includes("once a year you may call its faithful to a Holy Campaign"));
+assert.ok(strip(one("class-features", "Renown: Temple").system.description).includes("once a year you may muster the Sworn Crusaders"), "HB v0.10.77: the Holy Campaign is the Sworn Crusaders");
 assert.ok(strip(one("class-features", "Combat Dominance").system.description).includes("whose Level is no more than half yours"));
 const umb = one("kits", "Deity: Umberlee (Cleric)").system.features.find(f => /Granted Power/.test(f.name));
 assert.ok(strip(umb.description).includes("make a Fortitude save"));

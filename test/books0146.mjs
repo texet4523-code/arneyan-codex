@@ -41,7 +41,7 @@ assert.ok(!sphinx.items.some(i => i.type === "spell" && /^heal$/i.test(i.name)),
 /* Warlock: two blasts from 17th. */
 const eb = read("class-features", "items_Eldritch_Blast_")[0];
 assert.ok(/From 17th level, Eldritch Blast fires two blasts/.test(eb.system.description));
-assert.ok(/pushed <strong>10ft<\/strong> for each blast|pushed 10ft for each blast/.test(read("class-features", "items_Eldritch_Invocations_")[0].system.description));
+assert.ok(/hit by a blast is pushed <strong>10ft<\/strong>|hit by a blast is pushed 10ft/.test(read("class-features", "items_Eldritch_Invocations_")[0].system.description), "HB v0.10.76: one push per blast hit");
 
 /* Ophidian (W4): the lineage renamed, same rules; existing characters renamed in place. */
 const shifter = read("ancestries", "items_Shifter_")[0];

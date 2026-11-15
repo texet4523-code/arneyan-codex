@@ -151,7 +151,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-lion.svg",
    "system": {
-    "description": "<p>If it moves <strong>20ft</strong> straight at a creature and hits with a claw attack, the target makes a @Check[fort|dc:12]{Fortitude save DC 12} or is knocked prone, and the panther may bite as part of the same action.</p>",
+    "description": "<p>If it moves <strong>20ft</strong> straight at a creature and hits with a claw attack, the target makes a @Check[fort|dc:12]{Fortitude save DC 12} or is knocked @Condition[prone]{Prone}, and the panther may bite as part of the same action.</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -22,7 +22,7 @@ const dice = (formula, cl) => {
 
 /* Eldritch Blast: 1d6, 1d8 at 5th, 2d6 at 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (feature and class-only spell). */
 for (const f of [feat("Eldritch Blast", "Warlock").damage, spell("Eldritch Blast").damage]) {
-  assert.deepEqual([1, 5, 9, 13, 17, 21, 24].map(l => dice(f, l)), ["1d6", "1d8", "2d6", "3d8", "4d8", "5d8", "5d8"]);
+  assert.deepEqual([1, 5, 9, 13, 17, 21, 24].map(l => dice(f, l)), ["1d6", "1d8", "2d8", "3d8", "4d8", "5d8", "5d8"]);
 }
 /* The Spark Caster keeps the old dice: 2d8 at 13th, 3d6 at 17th, 3d8 at 24th. */
 assert.deepEqual([1, 13, 17, 24].map(l => dice(feat("Spark Caster", "Artificer").damage, l)), ["1d6", "2d8", "3d6", "3d8"]);
@@ -35,14 +35,15 @@ assert.ok(ss.every(a => a.text.includes("From 7th level your Extra Attack")));
 
 /* Rules for the new and changed always-on features. */
 const rules = (n, c) => feat(n, c).rules.map(r => [r.key, String(r.value)]);
-assert.deepEqual(rules("Arcane Ward improves", "Wizard"), [["cast.temp", "1"]]);
-assert.deepEqual(rules("Hag's Vigour improves", "Witch"), [["hp.max", "@cl"]]);
-assert.deepEqual(rules("Displacement", "Illusionist"), [["adv.against.first", "-1"]]);
+// HB v0.10.76 and v0.10.77: the "improves" lines are steps of the base features; Displacement is gone.
+assert.deepEqual(rules("Arcane Ward", "Wizard"), [["cast.temp", "1:2, 8:3"]]);
+assert.deepEqual(rules("Hag's Vigour", "Witch"), [["hp.max", "{1:@cl, 8:@cl * 2, 11:@cl + 10}"]]);
+assert.ok(!features.some(f => ["Arcane Ward improves", "Hag's Vigour improves", "Displacement", "Overchannel improves"].includes(f.name)));
 assert.deepEqual(rules("Iron Fists", "Monk"), [["attack", "7:1, 13:2, 19:3"], ["damage", "7:1, 13:2, 19:3"]]);
 // HB v0.10.71: the book's steps as a level table.
 const ps = feat("Precise Strikes", "Rogue").rules[0].value;
 const at = L => { let v = 0; for (const [, l, n] of ps.matchAll(/(\d+):(\d+)/g)) if (L >= Number(l)) v = Number(n); return v; };
-assert.deepEqual([1, 3, 9, 12, 13, 18, 24].map(at), [1, 1, 3, 4, 6, 9, 12], "the book's steps");
+assert.deepEqual([1, 3, 7, 12, 13, 18, 19, 24].map(at), [1, 1, 2, 2, 3, 3, 4, 4], "the Fighter's steps (HB v0.10.76, K165)");
 for (const [n, c] of [["Steadfast Faith", "Cleric"], ["Aura of Resolve", "Paladin"], ["Lore Master", "Bard"]]) assert.ok(feat(n, c).rules.length, n);
 
 /* Activities. */
@@ -51,14 +52,14 @@ assert.deepEqual([cd.formula, cd.damageType, cd.minLevel, cd.cost], ["1d8", "rad
 const tu = feat("Turn Undead", "Cleric").activities;
 assert.deepEqual(tu.find(a => a.name === "Turning Radiance") && [tu.find(a => a.name === "Turning Radiance").formula, tu.find(a => a.name === "Turning Radiance").minLevel], ["@cl", 6]);
 assert.ok(tu[0].text.includes("{1:30ft, 10:60ft}"));
-assert.deepEqual([feat("Apex Predator", "Ranger").uses.formula], ["1:1, 24:2"]);
-assert.deepEqual([feat("Overchannel improves", "Sorcerer").uses.per, feat("Overchannel improves", "Sorcerer").activities[0].cost], ["day", 1]);
+assert.deepEqual([feat("Apex Predator", "Ranger").uses.formula], ["1:1"], "HB v0.10.76: Peerless Hunter lifts the limit at 24th (a reminder)");
+assert.deepEqual(feat("Overchannel", "Sorcerer").activities.map(x => [x.name, x.minLevel ?? 0, x.cost]), [["Overchannel", 0, 0], ["Overchannel (no damage)", 18, 1]], "its 18th-level step spends the daily use");
 assert.ok(feat("Wild Surge", "Sorcerer").activities[0].text.includes("from 13th your third"));
 assert.ok(feat("Animate Dead", "Necromancer").activities.some(a => a.name === "Command Undead (no save)" && a.minLevel === 18));
 
 /* Warlock: an invocation at 6th too. Hex is Malediction (the Witch keeps her Hex). */
 const inv = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.json", import.meta.url), "utf8"))["class-features/7qQi9fW8rl1RKTXP"];
-assert.equal(inv.optionChoice.max, "1:1, 5:2, 6:3, 9:4, 13:5, 17:6");
+assert.equal(inv.optionChoice.max, "2:1, 6:2, 13:3", "HB v0.10.76 (K176)");
 const mal = spells.find(s => s._id === "0zqPnCOdDm0Tb4IW");
 assert.equal(mal.name, "Malediction", "Hex's compendium id");
 assert.equal(mal.system.applies[0].name, "Maledicted");

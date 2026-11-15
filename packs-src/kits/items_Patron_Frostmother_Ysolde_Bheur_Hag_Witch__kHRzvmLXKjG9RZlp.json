@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<p>She comes down from the high passes when the first real cold sets in, and the old villages of the Boldock Wall still leave out food so she passes them by. Some winters she doesn't take the offering. Those are the bad years.</p><ul><li><strong>Patron Buff</strong> (1st): Once per day, grant a touched creature (or yourself) immunity to natural cold and exhaustion from harsh weather for <strong>24 hours</strong>. For the first minute, any creature that hits them in melee takes <strong>1d6</strong> cold damage.</li><li><strong>Patron Curse</strong> (3rd): Once per day, force a creature within <strong>30ft</strong> to make a <strong>Fortitude save</strong> or their speed is halved by bone-deep cold for <strong>1 minute</strong>, taking <strong>1d6</strong> cold damage at the start of each of their turns while affected.</li><li><strong>Physical Change</strong> (7th): Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air.</li><li>Resistance 5 to cold damage.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per round when you hit with a Hex, a damaging spell, or this claw attack, you may add <strong>1d6</strong> cold damage to the effect, no additional cost.</li></ul>",
+  "description": "<p>She comes down from the high passes when the first real cold sets in, and the old villages of the Boldock Wall still leave out food so she passes them by. Some winters she doesn't take the offering. Those are the bad years.</p><ul><li><strong>Recipe</strong> (1st): Hearthfire Broth.</li><li><strong>Patron Curse</strong> (3rd): Once per day, force a creature within <strong>30ft</strong> to make a <strong>Fortitude save</strong> or its speed is halved by bone-deep cold for the encounter, and it takes <strong>1d6</strong> cold damage (<strong>2d6</strong> from 13th) at the start of each of its turns; it repeats the save at the end of each of its turns, ending the curse on a success.</li><li><strong>Physical Change</strong> (7th): Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air.</li><li>Resistance 5 to cold damage.</li><li>Once per round, when a creature takes damage from your Hex, a spell you cast or your claw, you may add <strong>1d6</strong> cold damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,76 +13,20 @@
   "className": "Witch",
   "features": [
    {
-    "name": "Patron Buff",
+    "name": "Recipe",
     "level": 1,
-    "description": "<p>Once per day, grant a touched creature (or yourself) immunity to natural cold and exhaustion from harsh weather for <strong>24 hours</strong>. For the first minute, any creature that hits them in melee takes <strong>1d6</strong> cold damage.</p>",
+    "description": "<p>Hearthfire Broth.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": "",
-    "activities": [
-     {
-      "name": "Frost ward",
-      "kind": "note",
-      "formula": "",
-      "damageType": "",
-      "ability": "",
-      "save": "",
-      "text": "Once per day: a touched creature (or you) is immune to natural cold and harsh-weather exhaustion for 24 hours.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 1,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Frost bite (1d6)",
-      "kind": "damage",
-      "formula": "1d6",
-      "damageType": "cold",
-      "ability": "",
-      "save": "",
-      "text": "For the first minute, a creature that hits the warded one in melee takes this.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ]
+    "save": ""
    },
    {
     "name": "Patron Curse",
     "level": 3,
-    "description": "<p>Once per day, force a creature within <strong>30ft</strong> to make a <strong>Fortitude save</strong> or their speed is halved by bone-deep cold for <strong>1 minute</strong>, taking <strong>1d6</strong> cold damage at the start of each of their turns while affected.</p>",
+    "description": "<p>Once per day, force a creature within <strong>30ft</strong> to make a <strong>Fortitude save</strong> or its speed is halved by bone-deep cold for the encounter, and it takes <strong>1d6</strong> cold damage (<strong>2d6</strong> from 13th) at the start of each of its turns; it repeats the save at the end of each of its turns, ending the curse on a success.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -149,7 +93,7 @@
    {
     "name": "Physical Change",
     "level": 7,
-    "description": "<p>Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air.</p><ul><li>Resistance 5 to cold damage.</li><li>You may make an unarmed claw attack dealing <strong>1d6</strong> damage.</li><li>Once per round when you hit with a Hex, a damaging spell, or this claw attack, you may add <strong>1d6</strong> cold damage to the effect, no additional cost.</li></ul>",
+    "description": "<p>Frost rimes your hair permanently white regardless of true age, and your breath mists even in warm air. Resistance 5 to cold damage. Once per round, when a creature takes damage from your Hex, a spell you cast or your claw, you may add <strong>1d6</strong> cold damage.</p>",
     "uses": {
      "value": 0,
      "max": 0,

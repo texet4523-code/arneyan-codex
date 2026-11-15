@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> When you cast a spell of 1st level or higher, you gain <strong>temporary HP</strong> equal to twice its level until the encounter ends. Keep the higher amount; it doesn't stack. Always on.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> When you spend a spell slot to cast a spell, you gain <strong>temporary HP</strong> equal to twice the spell's level until the encounter ends (<strong>1 minute</strong> outside one). Keep the higher amount; it doesn't stack. Always on.</li><li>8th level: three times the spell's level.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "cast.temp",
-    "value": "2",
+    "value": "1:2, 8:3",
     "when": "",
     "label": ""
    }

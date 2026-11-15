@@ -72,8 +72,8 @@ assert.deepEqual([1, 10, 20].map(l => usesAt("Grit", "Gunslinger", l)), [1, 1, 1
 // Books v0.10.25 (R-B7): the pools. Performance: Bard level + Charisma (minimum 2); Command: 1 + Charisma (minimum 2),
 // +1 at 6th and 12th; Channel Divinity: Charisma + 2 (minimum 3), +1 at 5th and 15th; Lay on Hands: 2 HP a level.
 const poolAt = (name, cls, lvl, cha) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl, cha: { mod: cha } }, 1);
-// Books v0.10.38 (K45): 3 more from 4th level.
-assert.deepEqual([[1, 0], [1, 3], [3, 2], [4, 2], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 5, 9, 12]);
+// HB v0.10.77: Charisma modifier + half the Bard level, rounded up (minimum 2).
+assert.deepEqual([[1, 0], [1, 3], [3, 2], [4, 2], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 4, 4, 6]);
 assert.deepEqual([[1, 0], [1, 3], [6, 3], [12, 3]].map(([l, c]) => poolAt("Command (Charisma)", "Knight", l, c)), [2, 4, 5, 6]);
 assert.deepEqual([[1, 0], [1, 2], [5, 2], [15, 2]].map(([l, c]) => poolAt("Channel Divinity (Charisma)", "Paladin", l, c)), [3, 4, 5, 6]);
 assert.equal(poolAt("Lay on Hands", "Paladin", 7, 0), 14);

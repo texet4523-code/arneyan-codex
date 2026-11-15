@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
  "system": {
-  "description": "<p>The High Elven school of Myllnoris, where illusion is the purest art: creation through perception.</p><ul><li><strong>Sharpened Perception:</strong> when Eye for the False lets you see through an illusion, allies within <strong>30ft</strong> of you see through it too.<ul><li>9th level: allies within <strong>10ft</strong> of you also have <strong>Advantage</strong> on saves against illusions.</li></ul></li><li><strong>Art of Illusion:</strong> <strong>Advantage</strong> on Performance checks that use illusion as the medium.</li></ul>",
+  "description": "<p>The High Elven school of Myllnoris, where illusion is the purest art: creation through perception.</p><ul><li><strong>Wrought Phantasm:</strong> your Phantasm can speak in any voice you have heard and carry objects of up to 5 lb.<ul><li>9th level: you may keep two Phantasms; both act on your turn.</li></ul></li><li><strong>Art of Illusion:</strong> <strong>Advantage</strong> on Performance checks that use illusion as the medium.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,18 +13,15 @@
   "className": "Illusionist",
   "features": [
    {
-    "name": "Sharpened Perception",
+    "name": "Wrought Phantasm",
     "level": 1,
-    "description": "<p>When Eye for the False lets you see through an illusion, allies within <strong>30ft</strong> of you see through it too.</p><p>9th level: allies within <strong>10ft</strong> of you also have <strong>Advantage</strong> on saves against illusions.</p>",
+    "description": "<p>Your Phantasm can speak in any voice you have heard and carry objects of up to 5 lb.</p><p>9th level: you may keep two Phantasms; both act on your turn.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "",
-    "rules": [],
-    "toggle": false,
-    "active": false
+    "save": ""
    },
    {
     "name": "Art of Illusion",

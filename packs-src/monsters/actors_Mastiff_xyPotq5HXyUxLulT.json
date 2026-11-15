@@ -150,7 +150,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-paw.svg",
    "system": {
-    "description": "<p>A creature hit by the bite must make a @Check[fort|dc:12]{Fortitude save DC 12} or be knocked prone.</p>",
+    "description": "<p>A creature hit by the bite must make a @Check[fort|dc:12]{Fortitude save DC 12} or be knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0

@@ -177,7 +177,7 @@ assert.ok(prim.rules.some(r => r.key === "adv.check.str" && Number(r.value) > 0)
 const cauldron = dataOf("Cauldron of the Ninth Moon", "Witch");
 assert.deepEqual(feature({ ...cauldron }, { level: 20, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual"]);
 assert.deepEqual(feature({ ...cauldron }, { level: 24, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual (monthly)"]);
-assert.equal(dataOf("Cauldron of the Ninth Moon improves", "Witch").uses.max, 0);
+assert.ok(!byName(built, "Cauldron of the Ninth Moon improves", "Witch"), "HB v0.10.77: its 24th-level line is printed under Scapegoat; the monthly ritual stays the Cauldron's 24th-level option");
 
 /* Data slips: Eldritch Blast deals its damage; Embolden calls for no save. */
 const eb = dataOf("Eldritch Blast", "Warlock");
@@ -186,7 +186,7 @@ assert.equal(eb.damageType, "force");
 const { resolveFormula } = await import("../arneyan/module/rolls.mjs");
 const ebAt = cl => resolveFormula(eb.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "");
 // Books v0.10.41 (K48, B-S3): 3d8 at 13th, 4d8 at 17th, 5d8 at 21st.
-assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d6", "3d8", "4d8", "4d8", "5d8"]);
+assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d8", "3d8", "4d8", "4d8", "5d8"]);
 {
   const { item } = feature({ ...eb, name: "Eldritch Blast" }, { level: 9, cls: "Warlock" });
   assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
@@ -303,17 +303,19 @@ assert.equal(fl.uses.formula, "1:1, 16:2");
 assert.equal(fl.uses.per, "encounter");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
 const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", "Rage|Barbarian": "max(2, 1 + @con.mod)",
-  "Hex (Wisdom)|Witch": "max(1, @wis.mod)", "Wild Surge|Sorcerer": "2:1, 9:2, 13:3, 17:4",
+  "Wild Surge|Sorcerer": "1:1, 5:2, 13:3, 17:4",
   "Ki|Monk": "max(1, @cl + @wis.mod)", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
   // Books v0.10.25 (R-B7): the pools (books v0.10.38, K45: Performance 3 more from 4th; the Monk's Ki).
-  "Performance (Charisma)|Bard": "max(2, @cl + @cha.mod) + 3 * min(1, floor(@cl / 4))", "Lay on Hands|Paladin": "2 * @cl",
+  "Performance (Charisma)|Bard": "max(2, @cha.mod + ceil(@cl / 2))", "Lay on Hands|Paladin": "2 * @cl",
   "Command (Charisma)|Knight": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))",
   "Channel Divinity (Charisma)|Paladin": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
+// HB v0.10.77: the Witch can Hex at will (no daily count, no cost).
+assert.ok(!dataOf("Hex (Wisdom)", "Witch").uses?.max && dataOf("Hex (Wisdom)", "Witch").activities.filter(x => x.name.startsWith("Hex: ")).every(x => !x.cost));
 assert.equal(feat("Blood Magic").uses.max, 0, "Blood Magic: the HP cost is the only limit (books v0.10.25)");
 // (Turning Radiance, books v0.10.42, is Turn Undead's damage roll: no use of its own.)
 for (const k of ["Turn Undead|Cleric", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.filter(a => a.kind !== "damage").every(a => a.cost === 1), `${k}: each use spends one`); }
-assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "save").every(a => a.cost === 1) && dataOf("Hex (Wisdom)", "Witch").activities.filter(a => a.kind === "damage").every(a => a.cost === 0), "a Hex spends one; its damage each turn doesn't");
+assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.every(a => !a.cost), "HB v0.10.77: Hex at will, nothing spent; its damage each turn doesn't");
 
 /* Several attacks: a blocked target (Full Cover) is skipped and the rest still roll; the use is spent once, after an
    attack rolled; nothing is spent when nothing rolls. */

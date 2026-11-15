@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<p>Ancient draconic blood runs through your line — distant, potent, and hungry for power.</p><ul><li><strong>Bloodline Ability</strong> (1st): Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison).</li><li>Gain Resistance 5 to that type.</li><li>Your AC increases by 1 permanently as scales occasionally emerge under your skin.</li><li>You speak and understand Draconic and have <strong>Advantage</strong> on Charisma checks against dragons and dragon-blooded creatures.</li><li><strong>Bloodline Awakening (10th)</strong>: Once per day, unleash your ancestor's aura for <strong>1 minute</strong> — creatures within <strong>30ft</strong> make a <strong>Will save</strong> or are frightened. Your chosen damage type ignores resistance while active.</li></ul>",
+  "description": "<p>Ancient draconic blood runs through your line: distant, potent, and hungry for power.</p><ul><li><strong>Bloodline Cantrips:</strong> Endure Elements and Resistance.</li><li><strong>Bloodline Ability (1st):</strong> Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison).</li><li>Gain Resistance 5 to that type.</li><li>Your AC increases by 1 permanently as scales occasionally emerge under your skin.</li><li>You speak and understand Draconic and have <strong>Advantage</strong> on Charisma checks to awe or intimidate a creature of lower Level than you.</li><li><strong>Bloodline Awakening (10th):</strong> Once per day, unleash your ancestor's aura for <strong>1 minute</strong>: each enemy that starts its turn within <strong>30ft</strong> of you makes a <strong>Will save</strong> or is <strong>Frightened</strong> of you until the aura ends; a creature that saves is immune to the aura for the rest of the minute. Your chosen damage type ignores resistance while it lasts.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Sorcerer",
   "features": [
    {
+    "name": "Bloodline Cantrips",
+    "level": 1,
+    "description": "<p>Endure Elements and Resistance.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Bloodline Ability",
     "level": 1,
-    "description": "<p>Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison).</p><ul><li>Gain Resistance 5 to that type.</li><li>Your AC increases by 1 permanently as scales occasionally emerge under your skin.</li><li>You speak and understand Draconic and have <strong>Advantage</strong> on Charisma checks against dragons and dragon-blooded creatures.</li></ul>",
+    "description": "<p>Choose one damage type tied to a dragon colour (fire, cold, lightning, acid, or poison).</p><ul><li>Gain Resistance 5 to that type.</li><li>Your AC increases by 1 permanently as scales occasionally emerge under your skin.</li><li>You speak and understand Draconic and have <strong>Advantage</strong> on Charisma checks to awe or intimidate a creature of lower Level than you.</li></ul>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -42,7 +53,7 @@
    {
     "name": "Bloodline Awakening",
     "level": 10,
-    "description": "<p>Once per day, unleash your ancestor's aura for <strong>1 minute</strong> — creatures within <strong>30ft</strong> make a <strong>Will save</strong> or are frightened. Your chosen damage type ignores resistance while active.</p>",
+    "description": "<p>Once per day, unleash your ancestor's aura for <strong>1 minute</strong>: each enemy that starts its turn within <strong>30ft</strong> of you makes a <strong>Will save</strong> or is <strong>Frightened</strong> of you until the aura ends; a creature that saves is immune to the aura for the rest of the minute. Your chosen damage type ignores resistance while it lasts.</p>",
     "uses": {
      "value": 1,
      "max": 1,

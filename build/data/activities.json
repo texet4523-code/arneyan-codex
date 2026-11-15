@@ -459,23 +459,6 @@
   "confidence": "high",
   "why": "Named Intelligence skill check."
  },
- "Legend Lore (Charisma)|Bard": {
-  "activities": [
-   {
-    "name": "Legend Lore",
-    "kind": "check",
-    "ability": "cha",
-    "text": "Recall information about local notables, legendary items, noteworthy places or obscure history.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Charisma skill check."
- },
  "Turn Undead|Cleric": {
   "activities": [
    {
@@ -584,19 +567,8 @@
    {
     "name": "Wild Shape",
     "kind": "note",
-    "text": "Shapeshift into a beast of Level up to half your Druid level for up to 1 hour, taking its whole stat block.",
+    "text": "Shapeshift into a beast or beast-like monster of Level up to two-thirds of your Druid level (rounded down, at least 1) for up to 1 hour, taking its whole stat block.",
     "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   },
-   {
-    "name": "Wild Shape (Deepened)",
-    "kind": "temp",
-    "formula": "2*@cl",
-    "text": "Shapeshift into a beast of Level up to your Druid level and gain temporary HP equal to twice your Druid level.",
-    "minLevel": 12,
     "cost": 1,
     "per": "",
     "target": "self",
@@ -610,39 +582,6 @@
    "per": "day",
    "formula": "1:1, 3:2, 6:3, 9:4, 15:5, 24:6"
   }
- },
- "Dismiss Woodland Creatures (Wisdom)|Druid": {
-  "activities": [
-   {
-    "name": "Dismiss Woodland Creatures",
-    "kind": "check",
-    "ability": "wis",
-    "text": "Make a Wisdom check against DC 10 + the total Levels of native creatures to make them flee until you leave.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Wisdom check."
- },
- "Perfect Recall|Druid": {
-  "activities": [
-   {
-    "name": "Perfect Recall",
-    "kind": "note",
-    "text": "Cast a 1st-level spell you have already cast today without expending a slot (a 2nd-level spell from 24th).",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Books v0.10.57 (R-B63, Fable 2.11): once per day, no roll."
  },
  "Combat Dominance|Fighter": {
   "activities": [
@@ -825,23 +764,6 @@
   ],
   "confidence": "high",
   "why": "Once per day (books v0.10.25: was once per long rest)."
- },
- "See Invisible (Intelligence)|Illusionist": {
-  "activities": [
-   {
-    "name": "See Invisible",
-    "kind": "check",
-    "ability": "int",
-    "text": "Perceive the general location and movement of an invisible creature or object within 30ft.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "round",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Intelligence check, once per round."
  },
  "Magnum Opus|Illusionist": {
   "activities": [
@@ -1324,7 +1246,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "When you use Marked Prey: for the encounter your marked prey has Disadvantage on Hide checks against you, can't Disengage from you, and you know where it is within 60ft; turning invisible doesn't end the mark. From 24th level you may use it twice per day, with Advantage on checks to track, corner or finish your marked prey.",
+    "text": "When you use Marked Prey: for the encounter your marked prey has Disadvantage on Hide checks against you, can't Disengage from you, and you know where it is within 60ft; turning invisible doesn't end the mark. From 24th level (Peerless Hunter) it has no daily limit.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1337,7 +1259,7 @@
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "1:1, 24:2"
+   "formula": "1:1"
   }
  },
  "Hide and Move Silently|Rogue": {
@@ -1522,14 +1444,18 @@
    }
   ],
   "confidence": "high",
-  "why": "Nine options chosen each time via Wild Surge or Spellburn."
+  "why": "Nine options chosen each time via Wild Surge or Spellburn.",
+  "uses": {
+   "max": 0,
+   "per": ""
+  }
  },
  "Wild Surge|Sorcerer": {
   "activities": [
    {
     "name": "Wild Surge",
     "kind": "note",
-    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, from 13th your third too, and from 20th your first two (Wild Surge improves).",
+    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, from 13th your third too. Uses: 1 a day, 2 from 5th, 3 from 13th, 4 from 17th; from 20th, with a Bloodline Seat, your first is also free of Corruption risk.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1542,7 +1468,7 @@
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "2:1, 9:2, 13:3, 17:4"
+   "formula": "1:1, 5:2, 13:3, 17:4"
   }
  },
  "Overchannel|Sorcerer": {
@@ -1556,10 +1482,25 @@
     "per": "",
     "target": "self",
     "removeConditions": false
+   },
+   {
+    "name": "Overchannel (no damage)",
+    "kind": "note",
+    "text": "Once per day from 18th: Overchannel without taking its damage (you still burn the attribute points).",
+    "minLevel": 18,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
    }
   ],
   "confidence": "high",
-  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27."
+  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27.",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "18:1"
+  }
  },
  "Chaos Incarnate|Sorcerer": {
   "activities": [
@@ -1646,9 +1587,9 @@
     "name": "Fiendish Vigour",
     "kind": "temp",
     "formula": "@cl",
-    "text": "As part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+    "text": "After each full rest, gain temporary HP equal to your Warlock level.",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "self",
     "removeConditions": false
@@ -1749,9 +1690,9 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -1760,9 +1701,9 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -1771,9 +1712,9 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. Free Hexes are this feature's uses; a further Hex costs a 1st-level slot. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
     "minLevel": 0,
-    "cost": 1,
+    "cost": 0,
     "per": "",
     "target": "one",
     "removeConditions": false
@@ -1840,12 +1781,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.42 (K51): Passing Hex (2nd) and Evil Eye (10th: 60ft, or through the familiar).",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "max(1, @wis.mod)"
-  }
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.42 (K51): Passing Hex (2nd) and Evil Eye (10th: 60ft, or through the familiar)."
  },
  "Cauldron of the Ninth Moon|Witch": {
   "activities": [
@@ -1884,14 +1820,6 @@
   ],
   "confidence": "high",
   "why": "Once per day."
- },
- "Cauldron of the Ninth Moon improves|Witch": {
-  "activities": [],
-  "confidence": "high",
-  "why": "The monthly frequency belongs to the Cauldron itself (its 24th-level option); this item spends nothing.",
-  "uses": {
-   "max": 0
-  }
  },
  "Extra Attack|Bard": {
   "activities": [
@@ -2634,14 +2562,6 @@
   "damage": "2d6",
   "save": "ref"
  },
- "Bloodline Awakening|Awakened (Sorcerer)": {
-  "activities": [],
-  "confidence": "high",
-  "why": "Once/day 30ft burst: Will save or stunned, 5d8 psychic (half on a success).",
-  "damage": "5d8",
-  "damageType": "psychic",
-  "save": "will"
- },
  "Patron Feature|Belial & Fierna (Warlock)": {
   "activities": [],
   "confidence": "high",
@@ -2772,60 +2692,6 @@
   "confidence": "high",
   "why": "Once/day Fortitude save; 1d6 cold each turn while it lasts."
  },
- "Patron Buff|Patron: Frostmother Ysolde (Bheur Hag) (Witch)": {
-  "activities": [
-   {
-    "name": "Frost ward",
-    "kind": "note",
-    "text": "Once per day: a touched creature (or you) is immune to natural cold and harsh-weather exhaustion for 24 hours."
-   },
-   {
-    "name": "Frost bite (1d6)",
-    "kind": "damage",
-    "formula": "1d6",
-    "damageType": "cold",
-    "cost": 0,
-    "text": "For the first minute, a creature that hits the warded one in melee takes this."
-   }
-  ],
-  "confidence": "high",
-  "why": "Once/day ward; 1d6 cold to melee attackers for a minute."
- },
- "Patron Buff|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
-  "activities": [
-   {
-    "name": "Iron strength",
-    "kind": "note",
-    "text": "Once per day: a touched creature (or you) has Advantage on Strength checks for 1 minute."
-   },
-   {
-    "name": "Next hit (1d6)",
-    "kind": "damage",
-    "formula": "1d6",
-    "cost": 0,
-    "text": "Their next successful melee hit within the minute deals this extra."
-   }
-  ],
-  "confidence": "high",
-  "why": "Once/day; +1d6 on the next melee hit."
- },
- "Patron Buff|Patron: Mother Loretta (Witch)": {
-  "activities": [
-   {
-    "name": "Tend in combat",
-    "kind": "heal",
-    "formula": "1d8 + floor(@cl / 2)",
-    "text": "As part of your action: a touched creature (or you) regains 1d8 HP plus 1 per two Witch levels."
-   },
-   {
-    "name": "Tend for 10 minutes",
-    "kind": "note",
-    "text": "The touched creature regains HP as for one night of rest in a safe haven. No slot recovery."
-   }
-  ],
-  "confidence": "high",
-  "why": "Once/day, either way: 1d8 + 1 per two Witch levels in combat, or a safe-haven night's healing."
- },
  "Ancestor's Fury|Shaman (Druid)": {
   "activities": [
    {
@@ -2935,24 +2801,6 @@
     "removeConditions": false
    }
   ]
- },
- "Elemental Mastery (Improved)|Druid": {
-  "activities": [
-   {
-    "name": "Reflect Spell",
-    "kind": "check",
-    "text": "Out of turn, when struck by a spell of your chosen element: beat its save DC to reflect it at a target of your choice for its original damage.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "ability": "wis",
-    "reaction": true
-   }
-  ],
-  "confidence": "high",
-  "why": "Out-of-turn Wisdom check vs the spell's save DC. Checked against Handbook v0.10.27."
  },
  "Perfect Shot (Improved)|Gunslinger": {
   "activities": [],
@@ -3136,7 +2984,7 @@
   "uses": {
    "max": 2,
    "per": "day",
-   "formula": "max(2, @cl + @cha.mod) + 3 * min(1, floor(@cl / 4))"
+   "formula": "max(2, @cha.mod + ceil(@cl / 2))"
   },
   "confidence": "high",
   "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26). Books v0.10.38 (K45): 3 more from 4th level."
@@ -3754,24 +3602,6 @@
   "confidence": "high",
   "why": "Books v0.10.38 (Fable M6): one extra Sneak Attack die against a creature that has not acted yet this encounter."
  },
- "Overchannel improves|Sorcerer": {
-  "activities": [
-   {
-    "name": "Overchannel without damage",
-    "kind": "note",
-    "cost": 1,
-    "target": "self",
-    "text": "Once per day, Overchannel without taking its damage (you still burn the attribute points)."
-   }
-  ],
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": ""
-  },
-  "confidence": "high",
-  "why": "Books v0.10.41 (K48 B-M1): once per day from 18th."
- },
  "Press On|Fighter": {
   "activities": [
    {
@@ -4047,40 +3877,6 @@
   "confidence": "high",
   "why": "Books v0.10.57 (R-B61): Deflect Missiles, Deflect Blow and Catch Weapon are one Deflect; attempts per round from the table."
  },
- "Arcane Analysis (Intelligence)|Illusionist": {
-  "activities": [
-   {
-    "name": "Arcane Analysis",
-    "kind": "check",
-    "ability": "int",
-    "text": "After 5 rounds of study, reveal whether an item is magical and the origin of its magic, if you have met that kind before{18:; also its power and history}.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Intelligence check."
- },
- "Arcane Analysis|Wizard": {
-  "activities": [
-   {
-    "name": "Arcane Analysis",
-    "kind": "check",
-    "ability": "int",
-    "text": "After 5 rounds of study, reveal whether an item is magical and the origin of its magic, if you have met that kind before{18:; also its power and history}.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Intelligence check stated."
- },
  "Glamour|Illusionist": {
   "activities": [],
   "uses": {
@@ -4319,5 +4115,47 @@
   ],
   "confidence": "high",
   "why": "Once per round; multiplier from the Rogue Progression Table. Checked against Handbook v0.10.10, 25 Oct."
+ },
+ "Arcane Analysis (Intelligence)|Wizard": {
+  "activities": [
+   {
+    "name": "Arcane Analysis",
+    "kind": "check",
+    "ability": "int",
+    "text": "After 5 rounds of study, reveal whether an item is magical and the origin of its magic, if you have met that kind before{18:; also its power and history}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Intelligence check stated."
+ },
+ "Bardic Lore (Charisma)|Bard": {
+  "activities": [
+   {
+    "name": "Legend Lore",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Recall information about local notables, legendary items, noteworthy places or obscure history.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "Named Charisma skill check."
+ },
+ "Bloodline Awakening|Wild-born (Sorcerer)": {
+  "activities": [],
+  "confidence": "high",
+  "why": "Once/day 30ft burst: Will save or stunned, 5d8 psychic (half on a success).",
+  "damage": "5d8",
+  "damageType": "psychic",
+  "save": "will"
  }
 }

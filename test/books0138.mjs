@@ -85,7 +85,7 @@ assert.ok(fas.system.activities.find(a => a.name === "Sway Crowd").text.includes
 
 /* Fable M5: Sorcerer's Spark gave way to Wild Surge improves. */
 assert.ok(feat("Wild Surge", "Sorcerer").system.activities[0].text.includes("second Wild Surge each day"));
-assert.equal(features.filter(f => f.name === "Wild Surge improves").length, 2, "5th and 13th (books v0.10.41); the 20th is the Seat (v0.10.57)");
+assert.equal(features.filter(f => f.name === "Wild Surge improves").length, 0, "HB v0.10.76: the steps are in Wild Surge itself");
 
 /* Fable M6 and M13: First Blood, Change Self at will. */
 assert.equal(feat("First Blood", "Assassin").system.level, 1);

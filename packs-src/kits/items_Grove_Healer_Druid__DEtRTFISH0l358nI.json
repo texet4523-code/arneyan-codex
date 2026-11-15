@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>The healers of the Cabal's oldest seat, the Nalwood under Arikh Evergreen, and the circles that learned from it.</p><ul><li><strong>Forest Vigour:</strong> reroll 1s on the healing dice of spells you cast.<ul><li>9th level: your healing spells also restore +<strong>1 HP</strong> per die.</li></ul></li><li><strong>Ancient Lore:</strong> <strong>Advantage</strong> on Nature Lore checks in old-growth forest, without designating it as a trained region.</li></ul>",
+  "description": "<p>The healers of the Cabal's oldest seat, the Nalwood under Arikh Evergreen, and the circles that learned from it.</p><ul><li><strong>Forest Vigour:</strong> reroll 1s on the healing dice of spells you cast.<ul><li>9th level: <strong>once per day</strong>, cast Cure Serious Wounds without expending a slot.</li></ul></li><li><strong>Ancient Lore:</strong> <strong>Advantage</strong> on checks to find, identify and prepare healing herbs, and to treat poison and disease.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Forest Vigour",
     "level": 1,
-    "description": "<p>Reroll 1s on the healing dice of spells you cast.</p><p>9th level: your healing spells also restore +<strong>1 HP</strong> per die.</p>",
+    "description": "<p>Reroll 1s on the healing dice of spells you cast.</p><p>9th level: <strong>once per day</strong>, cast Cure Serious Wounds without expending a slot.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "",
     "rules": [
@@ -36,7 +36,7 @@
    {
     "name": "Ancient Lore",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Nature Lore checks in old-growth forest, without designating it as a trained region.</p>",
+    "description": "<p><strong>Advantage</strong> on checks to find, identify and prepare healing herbs, and to treat poison and disease.</p>",
     "uses": {
      "value": 0,
      "max": 0,

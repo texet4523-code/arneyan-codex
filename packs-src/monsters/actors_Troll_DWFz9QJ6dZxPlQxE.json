@@ -188,7 +188,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-troll.svg",
    "system": {
-    "description": "<p>Regains <strong>8 HP</strong> at the start of its turn.</p><ul><li>If reduced to <strong>0 HP</strong> by anything other than fire or acid damage, it falls prone and rises again at the start of its next turn instead of dying; fire or acid damage stops the regeneration until the end of its next turn.</li><li>A creature can drop a lit torch or flask of oil on a fallen troll as its object use; that counts as fire, and a troll burned this way stays dead.</li></ul>",
+    "description": "<p>Regains <strong>8 HP</strong> at the start of its turn.</p><ul><li>If reduced to <strong>0 HP</strong> by anything other than fire or acid damage, it falls @Condition[prone]{Prone} and rises again at the start of its next turn instead of dying; fire or acid damage stops the regeneration until the end of its next turn.</li><li>A creature can drop a lit torch or flask of oil on a fallen troll as its object use; that counts as fire, and a troll burned this way stays dead.</li></ul>",
     "source": {
      "book": "mt",
      "page": 0

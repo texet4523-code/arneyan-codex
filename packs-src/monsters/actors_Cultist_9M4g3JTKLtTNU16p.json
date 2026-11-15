@@ -25,7 +25,7 @@
     "value": 10
    }
   },
-  "level": 2,
+  "level": 0,
   "hd": "1d8",
   "attributes": {
    "hp": {
@@ -63,7 +63,7 @@
    "isSolo": false,
    "soloType": "",
    "soloHalves": false,
-   "levelText": "",
+   "levelText": "¼",
    "page": 0,
    "description": "<p><em>Medium humanoid</em></p><p><strong>GM:</strong> Fanatics who fight on past good sense. Their leader's death often breaks their will.</p>",
    "treasure": "<p>Treasure type <strong>P</strong> (see the Treasure tables).</p>"
@@ -151,7 +151,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-hooded-figure.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against being charmed or frightened.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0

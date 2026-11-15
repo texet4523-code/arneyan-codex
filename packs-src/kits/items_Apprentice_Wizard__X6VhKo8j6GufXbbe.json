@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Tutored by a single master rather than any institution: no lecture hall, no cohort, just a master's attention and very high expectations.</p><ul><li><strong>Steady Hand:</strong> <strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. When you fail to keep a spell after being damaged while casting, you keep its slot.<ul><li>9th level: <strong>once per day</strong>, you keep the spell as well.</li></ul></li><li><strong>Master's Name:</strong> <strong>Advantage</strong> on checks with your master's peers, and on identifying magic made by your master's school.</li></ul>",
+  "description": "<p>Tutored by a single master rather than any institution: no lecture hall, no cohort, just a master's attention and very high expectations.</p><ul><li><strong>Rote Learning:</strong> choose one 1st-level spell in your spellbook, drilled until you could cast it asleep. It is always prepared and does not count against your prepared total. When damage makes you lose a spell you are casting, you keep its slot.<ul><li>9th level: also one 2nd-level and one 3rd-level spell.</li></ul></li><li><strong>Master's Name:</strong> <strong>Advantage</strong> on checks with your master's peers, and on identifying magic made by your master's school.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,25 +13,15 @@
   "className": "Wizard",
   "features": [
    {
-    "name": "Steady Hand",
+    "name": "Rote Learning",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on saves against your own spells' backlash or unintended effects. When you fail to keep a spell after being damaged while casting, you keep its slot.</p><p>9th level: <strong>once per day</strong>, you keep the spell as well.</p>",
+    "description": "<p>Choose one 1st-level spell in your spellbook, drilled until you could cast it asleep. It is always prepared and does not count against your prepared total. When damage makes you lose a spell you are casting, you keep its slot.</p><p>9th level: also one 2nd-level and one 3rd-level spell.</p>",
     "uses": {
-     "value": 1,
-     "max": 1,
-     "per": "day"
+     "value": 0,
+     "max": 0,
+     "per": ""
     },
-    "save": "",
-    "rules": [
-     {
-      "key": "adv.save",
-      "value": "1",
-      "when": "vs your own spells' backlash or unintended effects",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
+    "save": ""
    },
    {
     "name": "Master's Name",

@@ -35,7 +35,7 @@
    },
    "ac": 20,
    "speed": "40ft",
-   "attack": 8,
+   "attack": 10,
    "spellDC": 0,
    "morale": 9
   },
@@ -151,7 +151,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>If it moves at least <strong>20ft</strong> in a straight line and hits with a gore attack, the target makes a @Check[fort|dc:19]{Fortitude save DC 19} or is knocked prone, and the gorgon makes a free hooves attack.</p>",
+    "description": "<p>If it moves at least <strong>20ft</strong> in a straight line and hits with a gore attack, the target makes a @Check[fort|dc:19]{Fortitude save DC 19} or is knocked @Condition[prone]{Prone}, and the gorgon makes a free hooves attack.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -188,7 +188,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>30ft cone</strong>. Creatures make a @Check[fort|dc:18]{Fortitude save DC 18} or begin to turn to stone and are @Condition[restrained]{Restrained}, then repeat the save at the end of their next turn or are petrified.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>30ft cone</strong>. Creatures make a @Check[fort|dc:18]{Fortitude save DC 18} or begin to turn to stone and are @Condition[restrained]{Restrained}, then repeat the save at the end of their next turn or are @Condition[petrified]{Petrified}.</p>",
     "source": {
      "book": "mt",
      "page": 0

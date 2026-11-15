@@ -9,11 +9,11 @@ const T = await import("../arneyan/module/transform.mjs");
 const mdir = new URL("../packs-src/monsters/", import.meta.url).pathname;
 const monsters = fs.readdirSync(mdir).map(f => JSON.parse(fs.readFileSync(mdir + f))).filter(d => d.type === "npc");
 
-// The cap: half the Druid level (at least 1); the full level from Deepened Shape (12th).
-assert.deepEqual([1, 2, 3, 5, 11].map(l => T.wildShapeCap(l)), [1, 1, 1, 2, 5]);
-assert.equal(T.wildShapeCap(12, true), 12);
-// When a form of each Level opens: an Owlbear (Level 7) at Druid 12; a Level 3 beast at 6.
-assert.deepEqual([0, 1, 2, 3, 5, 6, 7, 13].map(T.druidLevelFor), [1, 1, 4, 6, 10, 12, 12, 13]);
+// The cap (HB v0.10.76): two-thirds of the Druid level, rounded down, at least 1; Deepened Shape no longer raises it.
+assert.deepEqual([1, 2, 3, 5, 11, 12, 24].map(l => T.wildShapeCap(l)), [1, 1, 2, 3, 7, 8, 16]);
+assert.equal(T.wildShapeCap(12, true), 8);
+// When a form of each Level opens: an Owlbear (Level 7) at Druid 11; a Level 3 beast at 5.
+assert.deepEqual([0, 1, 2, 3, 5, 6, 7, 13].map(T.druidLevelFor), [1, 1, 3, 5, 8, 9, 11, 20]);
 for (let d = 1; d <= 25; d++) for (let lvl = 0; lvl <= 25; lvl++) {
   const can = lvl <= T.wildShapeCap(d, d >= 12);
   assert.equal(can, d >= T.druidLevelFor(lvl), `Druid ${d}, Level ${lvl}`);
@@ -60,8 +60,8 @@ assert.ok(T.builtWildForms()[0].uuid.startsWith("Compendium.arneyan.monsters.Act
 // The GM's client works out the druid's cap itself from the sheet.
 const featureOf = lvl => ({ name: "Wild Shape", featureLevel: lvl });
 const druidAt = (lvl, extra = []) => ({ system: { level: lvl }, items: Object.assign([featureOf(lvl), ...extra], {}) });
-assert.deepEqual((({ cap, tempHp }) => ({ cap, tempHp }))(T.wildShapeFor(druidAt(6))), { cap: 3, tempHp: 0 });
-assert.deepEqual((({ cap, tempHp }) => ({ cap, tempHp }))(T.wildShapeFor(druidAt(12))), { cap: 12, tempHp: 24 });
+assert.deepEqual((({ cap, tempHp }) => ({ cap, tempHp }))(T.wildShapeFor(druidAt(6))), { cap: 4, tempHp: 0 });
+assert.deepEqual((({ cap, tempHp }) => ({ cap, tempHp }))(T.wildShapeFor(druidAt(12))), { cap: 8, tempHp: 0 });
 assert.equal(T.wildShapeFor({ system: { level: 5 }, items: [] }), null);
 assert.ok(tr.includes("wild = wildShapeFor(original)") && tr.includes("levelOf(form) > wild.cap"));
 console.log("OK wild shape list and GM check");

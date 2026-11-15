@@ -5,16 +5,17 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Cast a spell even with no slots of that level remaining by paying with Spellburn: burn attribute points equal to twice the spell's level (a flat cost that doesn't double).</li><li>The magic tears through you regardless: you also take <strong>1d6</strong> unavoidable damage per spell level, and the casting always succeeds.</li><li>This is the Sorcerer's answer to having fewer slots than a Wizard: you're never truly out of options, just paying more for the privilege.</li><li>No roll required. The damage cannot be reduced by any means</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Cast a spell even with no slots of that level remaining by paying with Spellburn: burn attribute points equal to twice the spell's level, a flat cost that doesn't double and doesn't count towards the day's doubling.</li><li>The magic tears through you: you also take <strong>1d6</strong> damage per spell level, which cannot be reduced by any means.</li><li>You may add a Metamagic option, paid for as usual.</li><li>This is the Sorcerer's answer to having fewer slots than a Wizard: you're never truly out of options, just paying more for the privilege.</li><li>18th level: <strong>once per day</strong>, you Overchannel without taking its damage.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 0,
-   "max": 0,
-   "per": ""
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "18:1"
   },
   "save": "",
   "dc": null,
@@ -48,12 +49,39 @@
     "noDamage": false,
     "effect": "",
     "spendAny": false
+   },
+   {
+    "name": "Overchannel (no damage)",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Once per day from 18th: Overchannel without taking its damage (you still burn the attribute points).",
+    "minLevel": 18,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
    }
   ]
  },
  "effects": [],
  "folder": "MF2Pc4Xye7PGm0jJ",
- "sort": 11,
+ "sort": 7,
  "ownership": {
   "default": 0
  },

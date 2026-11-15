@@ -113,7 +113,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-boar.svg",
    "system": {
-    "description": "<p>If it moves <strong>20ft</strong> straight at a target before hitting, the tusk deals +<strong>1d8</strong> damage and the target makes a @Check[fort|dc:12]{Fortitude save DC 12} or is knocked prone.</p>",
+    "description": "<p>If it moves <strong>20ft</strong> straight at a target before hitting, the tusk deals +<strong>1d8</strong> damage and the target makes a @Check[fort|dc:12]{Fortitude save DC 12} or is knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0

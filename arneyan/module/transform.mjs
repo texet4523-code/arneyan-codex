@@ -513,21 +513,24 @@ const WILD_CASTING_LEVEL = 6;
  * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call). Never a
  * solo (0.10.49, M3: the Roc and the Purple Worm are off the list; 0.10.50, B1/R-F1: the Remorhaz, a solo from books v0.10.8).
  */
-export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Carrion Crawler", "Grick", "Grick Alpha",
-  "Hook Horror", "Young Remorhaz", "Hydra", "Piercer", "Rust Monster"];
+// HB v0.10.76: the Carrion Crawler and the Hydra left the book's list.
+export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Grick", "Grick Alpha",
+  "Hook Horror", "Young Remorhaz", "Piercer", "Rust Monster"];
 
 const typeOf = e => String(foundry.utils.getProperty(e, "system.details.type") ?? "").toLowerCase();
 const levelOf = e => Number(foundry.utils.getProperty(e, "system.level")) || 0;
 const levelLabel = e => foundry.utils.getProperty(e, "system.details.levelText") || String(levelOf(e));
 
 /** A beast, or a beast-like monster on the list; never a solo monster (M3). */
-export const isWildForm = e => !foundry.utils.getProperty(e ?? {}, "system.details.isSolo") && (typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name));
+// HB v0.10.76: never a swarm or a creature marked Solo.
+export const isWildForm = e => !foundry.utils.getProperty(e ?? {}, "system.details.isSolo") && !/swarm/.test(typeOf(e)) && (typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name));
 
-/** The highest Level a druid can take (half the Druid level, at least 1; the full level from Deepened Shape). */
-export const wildShapeCap = (druidLevel, deepened = false) => deepened ? Math.max(1, druidLevel) : Math.max(1, Math.floor(druidLevel / 2));
+/** The highest Level a druid can take: two-thirds of the Druid level, rounded down, at least 1 (HB v0.10.76). Deepened
+ * Shape no longer raises it (it lets the druid change form within Wild Shape). The second argument is kept for callers. */
+export const wildShapeCap = (druidLevel, deepened = false) => Math.max(1, Math.floor(2 * druidLevel / 3));
 
-/** The Druid level a form of this Level first opens at: twice its Level, or its own Level from 12th (Deepened Shape). */
-export const druidLevelFor = lvl => lvl <= 1 ? 1 : Math.min(2 * lvl, Math.max(12, lvl));
+/** The Druid level a form of this Level first opens at: the lowest level whose two-thirds reaches it. */
+export const druidLevelFor = lvl => lvl <= 1 ? 1 : Math.ceil(3 * lvl / 2);
 
 /** A creature's Wild Shape: its Druid level, cap and Deepened Shape's temporary HP (null without the feature). */
 export function wildShapeFor(actor) {
@@ -535,7 +538,7 @@ export function wildShapeFor(actor) {
   if (!item) return null;
   const level = Number(item.featureLevel ?? actor.system?.level) || 1;
   const deepened = level >= 12 || actor.items.some(i => i.name === "Deepened Shape");
-  return { item, level, deepened, cap: wildShapeCap(level, deepened), tempHp: deepened ? 2 * level : 0 };
+  return { item, level, deepened, cap: wildShapeCap(level, deepened), tempHp: 0 };
 }
 
 /** The Wild Shape forms built into the system (players see these even when the Bestiary is hidden from them). */
@@ -647,7 +650,7 @@ export async function wildShape(item) {
     defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= WILD_CASTING_LEVEL },
     // Casting in a form comes with Wild Shape Casting (6th level), and then only spells with no somatic component.
     spellsLocked: level >= WILD_CASTING_LEVEL || game.user.isGM ? "" : `from ${WILD_CASTING_LEVEL}th level: Wild Shape Casting`,
-    note: `A beast or beast-like monster of Level ${cap} or lower (${deepened ? "your Druid level: Deepened Shape" : "half your Druid level, at least 1"}). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? ` You gain ${2 * level} temporary HP.` : ""}`
+    note: `A beast or beast-like monster of Level ${cap} or lower (two-thirds of your Druid level, at least 1). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? " Deepened Shape: change form as your action without another use." : ""}`
   });
   if (!choice) return;
   const picked = entries.find(e => e.uuid === choice.uuid);
@@ -656,7 +659,7 @@ export async function wildShape(item) {
   // A use is spent only once the change has happened (the GM's client spends it for a player).
   const now = item.system.uses ?? {};
   if (now.max > 0 && now.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
-  const opts = { ...choice.opts, wildShape: true, tempHp: deepened ? 2 * level : 0 };
+  const opts = { ...choice.opts, wildShape: true, tempHp: 0 };
   if (game.user.isGM) {
     const form = await fromUuid(choice.uuid);
     if (!form) return ui.notifications.warn(`${picked.name} isn't in the Bestiary any more.`);

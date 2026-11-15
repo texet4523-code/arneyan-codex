@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your Wild Shape Level cap rises to your full Druid level instead of half (so a 12th-level Druid can become any beast or monster of Level 12 or lower).</li><li>Shifting also now grants <strong>temporary HP</strong> equal to twice your Druid level, lasting until the shift ends or the temp HP is depleted.</li><li>The form's HP cannot exceed your own Max HP.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> While in Wild Shape you may change from one form to another as your action without spending another use. The new form starts with the HP the old form had left, never more than its own maximum.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,27 +20,11 @@
   "dc": null,
   "damage": "",
   "level": 12,
-  "className": "Druid",
-  "applies": [
-   {
-    "name": "Deepened Shape",
-    "target": "self",
-    "rounds": "0",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "hp.temp",
-      "value": "2*@cl",
-      "when": "",
-      "label": ""
-     }
-    ]
-   }
-  ]
+  "className": "Druid"
  },
  "effects": [],
  "folder": "ZG8DQdeeseEzUuh9",
- "sort": 13,
+ "sort": 10,
  "ownership": {
   "default": 0
  },

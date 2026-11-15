@@ -150,7 +150,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-tentacles-skull.svg",
    "system": {
-    "description": "<p>If it jumps at least <strong>15ft</strong>, it can land on creatures; each in the landing space makes a @Check[ref|dc:17]{Reflex save DC 17} or takes @Damage[3d6+4 bludgeoning]{3d6+4 bludgeoning damage} and is knocked prone, or half and not prone on a success.</p>",
+    "description": "<p>If it jumps at least <strong>15ft</strong>, it can land on creatures; each in the landing space makes a @Check[ref|dc:17]{Reflex save DC 17} or takes @Damage[3d6+4 bludgeoning]{3d6+4 bludgeoning damage} and is knocked @Condition[prone]{Prone}, or half and not @Condition[prone]{Prone} on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0

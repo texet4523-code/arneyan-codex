@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
  "system": {
-  "description": "<p>Self; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong>. Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage (you choose when casting); <strong>Will halves</strong>. Damage is dealt <strong>once per round</strong> to each creature.</p><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+  "description": "<p>Self; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong> (concentration).</p><ul><li>Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage per three levels (max <strong>4d6</strong>) (you choose when casting); <strong>Will halves</strong>.</li><li>Damage is dealt <strong>once per round</strong> to each creature.</li></ul><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -21,7 +21,7 @@
   "duration": "",
   "area": "15ft radius",
   "components": "V, S, M",
-  "concentration": false,
+  "concentration": true,
   "ritual": false,
   "prepared": false,
   "save": "will",
@@ -84,7 +84,7 @@
  },
  "effects": [],
  "folder": "TosiXyO7gR9by0QD",
- "sort": 183,
+ "sort": 184,
  "ownership": {
   "default": 0
  },

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> At-will ranged cantrip (<strong>60ft</strong> range). The target makes a <strong>Reflex save</strong> (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li><strong>Damage scales:</strong> <strong>1d6</strong> at 1st, <strong>1d8</strong> at 5th, <strong>2d6</strong> at 9th, <strong>3d8</strong> at 13th, <strong>4d8</strong> at 17th, <strong>5d8</strong> at 21st. From 17th level, Eldritch Blast fires two blasts, at the same creature or different ones within range, each with its own save; Agonising Blast adds to only one of them each round.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> At-will ranged cantrip (<strong>60ft</strong> range; V, S).</li><li>The target makes a <strong>Reflex save</strong> (DC = 10 + half your Warlock level (minimum 1) + Cha modifier), taking force damage on a failure or half on a success. No slot required.</li><li>A blast hits a creature that fails its save against it.</li><li>Damage scales: <strong>1d6</strong> at 1st, <strong>1d8</strong> at 5th, <strong>2d8</strong> at 9th, <strong>3d8</strong> at 13th, <strong>4d8</strong> at 17th, <strong>5d8</strong> at 21st. From 17th level, Eldritch Blast fires two blasts, at the same creature or different ones within range, each with its own save.</li><li><strong>Agonising Blast:</strong> from 2nd level, add your Charisma modifier to one blast's damage each round.</li><li><strong>Riders:</strong> a feature of yours that adds dice or an effect to Eldritch Blast adds it to one blast each round, and a blast carries only one such rider (see <strong>Advantage</strong> &amp; <strong>Disadvantage</strong> in Book I); Repelling Blast's push is the exception and applies to every blast that hits.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -18,10 +18,20 @@
   },
   "save": "ref",
   "dc": null,
-  "damage": "(1 - min(1, floor(@cl / 5)) + 2 * min(1, floor(@cl / 9)) - 2 * min(1, floor(@cl / 13)))d6 + (min(1, floor(@cl / 5)) - min(1, floor(@cl / 9)) + 3 * min(1, floor(@cl / 13)) + min(1, floor(@cl / 17)) + min(1, floor(@cl / 21)))d8",
+  "damage": "(1 - min(1, floor(@cl / 5)))d6 + (min(1, floor(@cl / 5)) + min(1, floor(@cl / 9)) + min(1, floor(@cl / 13)) + min(1, floor(@cl / 17)) + min(1, floor(@cl / 21)))d8",
   "damageType": "force",
   "level": 1,
-  "className": "Warlock"
+  "className": "Warlock",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "{1:, 2:Agonising Blast: add your Charisma modifier to one blast's damage each round.}",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
  },
  "effects": [],
  "folder": "T3ndcZaUyzMXclDX",

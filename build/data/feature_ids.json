@@ -1,5 +1,5 @@
 {
- "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document. Books v0.10.58 (R-B59 to R-B64): renamed features keep the old feature's id (Extra Attack became each class's named version, Sneak Attack became Exploit, Detect Magic Arcane Analysis, and so on).",
+ "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document. Books v0.10.58 (R-B59 to R-B64): renamed features keep the old feature's id (Extra Attack became each class's named version, Sneak Attack became Exploit, Detect Magic Arcane Analysis, and so on). HB v0.10.76 to v0.10.78 (B-F70 to B-F72): Arcane Analysis (Wizard) took the Illusionist's '(Intelligence)' name, Legend Lore became Bardic Lore, Lodge of the March The Lodge, the Witch's 3rd- and 7th-Level Features her Patron Boon (Curse) and (Physical Change), Evil Eye Far Hex and Patron Boon (Buff) improves Patron's Recipe improves; each keeps its id.",
  "features": {
   "Archer|Running Shot": [
    "vcBhJLUgua28MVqR"
@@ -207,9 +207,6 @@
   ],
   "Bard|Discord (Charisma)": [
    "UuTSGIvWzg5QslOT"
-  ],
-  "Bard|Legend Lore (Charisma)": [
-   "x4BNaAofsl6URL2V"
   ],
   "Bard|Spell Use": [
    "YEKPzCLaqsjPvLkc"
@@ -814,9 +811,6 @@
   "Witch|Twin Hex": [
    "6XQnUwFrvWPmB9rZ"
   ],
-  "Witch|Patron Boon (Buff) improves": [
-   "ISiPTJE3KZ0U5ZxJ"
-  ],
   "Witch|Twin Hex (Improved)": [
    "tV2RgR80PQPDdNSx"
   ],
@@ -855,12 +849,6 @@
   ],
   "Wizard|Perfect Recall": [
    "TuG1EEi0FYQBtn7p"
-  ],
-  "Witch|3rd-Level Features": [
-   "lLoBEobcT6Ny5jhw"
-  ],
-  "Witch|7th-Level Features": [
-   "86ZftZ9zHtUjJ2lv"
   ],
   "Monk|Quick Reflexes (Improved)": [
    "Zm8c8FOKZGsdneoK"
@@ -970,9 +958,6 @@
   ],
   "Bard|Renown: College": [
    "4qqHboQmU4JcT7qH"
-  ],
-  "Wizard|Arcane Analysis": [
-   "G0I66J8JwKVyGyGR"
   ],
   "Cleric|Renown: Temple": [
    "dTpQQ9CCam9IXNPr"
@@ -1096,9 +1081,6 @@
   ],
   "Paladin|Channel Divinity (Charisma)": [
    "SITkRcsV0orjWqI4"
-  ],
-  "Witch|Evil Eye": [
-   "Hg7eZciRYQeAHuNg"
   ],
   "Bard|Performance (Charisma)": [
    "6E3Qgm8EqTA3RAmF"
@@ -1259,9 +1241,6 @@
   "Necromancer|Undead Mastery improves": [
    "DYH79OxQ1JZbmqXt"
   ],
-  "Ranger|Renown: Lodge of the March": [
-   "wZQ5eWYv2qvnVPGB"
-  ],
   "Paladin|Channel: Divine Intervention": [
    "tSqTs7IEczqwLYOL"
   ],
@@ -1303,6 +1282,27 @@
   ],
   "Rogue|Unseen Stride": [
    "F1NLweBWzm8qXgeP"
+  ],
+  "Wizard|Arcane Analysis (Intelligence)": [
+   "G0I66J8JwKVyGyGR"
+  ],
+  "Bard|Bardic Lore (Charisma)": [
+   "x4BNaAofsl6URL2V"
+  ],
+  "Ranger|Renown: The Lodge": [
+   "wZQ5eWYv2qvnVPGB"
+  ],
+  "Witch|Patron Boon (Curse)": [
+   "lLoBEobcT6Ny5jhw"
+  ],
+  "Witch|Patron Boon (Physical Change)": [
+   "86ZftZ9zHtUjJ2lv"
+  ],
+  "Witch|Far Hex": [
+   "Hg7eZciRYQeAHuNg"
+  ],
+  "Witch|Patron's Recipe improves": [
+   "ISiPTJE3KZ0U5ZxJ"
   ]
  }
 }

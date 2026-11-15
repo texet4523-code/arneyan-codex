@@ -15,6 +15,8 @@ import re
 SAVE_ADD = {"Forcecage": "ref", "Mislead": "will", "Dispel Magic": "will", "Polymorph": "will", "Plane Shift": "will"}
 
 EFFECT = {
+    # HB v0.10.77: Book IV's Illusions and disbelief rule (a Will save on touching, being harmed by or studying it).
+    "Programmed Illusion": "Disbelieves (sees through it for as long as it lasts)",
     "Polymorph": "Negates (an unwilling creature, after the touch attack hits)",
     "Plane Shift": "Negates (an unwilling creature, after the touch attack hits)",
     # Illusions: a save sees through them.

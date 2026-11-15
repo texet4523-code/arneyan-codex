@@ -113,7 +113,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-elephant-head.svg",
    "system": {
-    "description": "<p>If it moves at least <strong>20ft</strong> straight towards a target and hits, the target makes a @Check[fort|dc:20]{Fortitude save DC 20} or is knocked prone, and the mammoth may stomp it as part of the same action (<strong>4d10+7</strong>).</p>",
+    "description": "<p>If it moves at least <strong>20ft</strong> straight towards a target and hits, the target makes a @Check[fort|dc:20]{Fortitude save DC 20} or is knocked @Condition[prone]{Prone}, and the mammoth may stomp it as part of the same action (<strong>4d10+7</strong>).</p>",
     "source": {
      "book": "mt",
      "page": 0

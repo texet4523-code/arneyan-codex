@@ -19,8 +19,8 @@ def build():
         t = str(d["system"]["details"].get("type", "")).lower()
         if not (t.startswith("beast") or d["name"] in beast_like):
             continue
-        # Never a solo (M3, 0.10.49).
-        if d["system"]["details"].get("isSolo"):
+        # Never a solo (M3, 0.10.49), never a swarm (HB v0.10.76).
+        if d["system"]["details"].get("isSolo") or "swarm" in t:
             continue
         out.append({"id": d["_id"], "name": d["name"], "img": d.get("img", ""), "level": d["system"].get("level") or 0,
                     "levelText": d["system"]["details"].get("levelText") or str(d["system"].get("level") or 0), "type": t})

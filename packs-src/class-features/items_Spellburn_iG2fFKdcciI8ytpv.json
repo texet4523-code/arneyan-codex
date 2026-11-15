@@ -5,16 +5,16 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Pay for Metamagic (see below) by sacrificing temporary points from Strength, Dexterity, or Constitution.</li><li>Spellburn never changes your HP or your death threshold, and burned points return at 1 per attribute each day.</li><li>Guaranteed, no roll, no Corruption risk.</li><li>The cost doubles with each Spellburn you make in a day, as the table below shows.</li><li>Unlike Wild Surge it has no daily limit, only what your body can afford.</li><li>Spellburn cannot reduce an attribute below 1. One Metamagic option per spell (two, <strong>once per day</strong>, from 20th level)</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Pay for Metamagic (see Metamagic Options) by burning points from Strength, Dexterity or Constitution, split as you like.</li><li>A burned score uses its lower modifier for everything except your HP and your death threshold.</li><li>Spellburn carries no Corruption risk.</li><li>The cost doubles with each Spellburn you make in a day, as the table below shows.</li><li>Unlike Wild Surge it has no daily limit, only what your body can afford.</li><li>Spellburn cannot reduce an attribute below 1.</li><li><strong>Recovery:</strong> after a long rest you regain 3 burned points, placed as you like, and by no other means.</li><li>6th level (Blood Burn): you regain 6 burned points after a long rest.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "kind": "class",
   "uses": {
-   "value": 1,
-   "max": 1,
-   "per": "day"
+   "value": 0,
+   "max": 0,
+   "per": ""
   },
   "save": "",
   "dc": null,

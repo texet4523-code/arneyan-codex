@@ -1387,10 +1387,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8"
+    "value": "1:1, 7:2, 13:3, 19:4"
    }
   ],
-  "summary": "+1 to +8 weapon damage (1st, 6th, 9th, 12th, 15th, 18th, 21st, 24th), applied automatically. Updated for HB v0.10.71.",
+  "summary": "+1 to +8 weapon damage (1st, 6th, 9th, 12th, 15th, 18th, 21st, 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
   "manual": "",
   "confidence": "high"
  },
@@ -1678,18 +1678,14 @@
    },
    {
     "key": "adv.save",
-    "value": "22:1"
-   },
-   {
-    "key": "adv.check",
-    "value": "22:1"
+    "value": "17:1"
    },
    {
     "key": "note.save",
-    "value": "Divine Monolith: {22:creatures in the aura are immune to death attacks}."
+    "value": "{17:Divine Monolith: creatures in the aura are immune to instant-death effects.}"
    }
   ],
-  "summary": "Your own: Advantage on Will saves from 9th; Advantage on all saves and attribute checks, and death-attack immunity, from 22nd (Divine Monolith (Improved)).",
+  "summary": "Your own: Advantage on Will saves; from 17th, Advantage on all saves and the aura gives immunity to instant-death effects (HB v0.10.76).",
   "manual": "Undead have Disadvantage on their saves against your Turn Undead (call it on the save); the aura's effect on allies comes from the aura.",
   "confidence": "medium"
  },
@@ -1707,28 +1703,6 @@
   "summary": "Advantage reminder on saves vs elemental attacks.",
   "manual": "",
   "confidence": "high"
- },
- "class-features/lks3nolNNh8o534F": {
-  "name": "Deepened Shape",
-  "from": "Druid",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Deepened Shape",
-    "target": "self",
-    "rounds": 0,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "hp.temp",
-      "value": "2*@cl"
-     }
-    ]
-   }
-  ],
-  "summary": "On shifting, gain temporary HP equal to twice Druid level.",
-  "manual": "Use when Wild Shape is applied; ends with the shift; higher Level cap.",
-  "confidence": "medium"
  },
  "class-features/KI9JbZTbTzlq6SXN": {
   "name": "Wisdom Bonus",
@@ -2382,16 +2356,11 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8",
-    "when": "weapon hits (any creature)"
-   },
-   {
-    "key": "damage",
-    "value": "1:1, 4:2, 6:3, 8:4, 10:5, 12:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12",
-    "when": "weapon hits vs your marked prey, favoured enemy or Chosen Quarry quarry (instead)"
+    "value": "1:1, 7:2, 13:3, 19:4",
+    "when": "weapon hits"
    }
   ],
-  "summary": "+1 to +8 weapon damage by the book's steps; against your marked prey, favoured enemy or Chosen Quarry quarry, +1 then +1 every even level from 4th (to +12), instead. Updated for HB v0.10.71.",
+  "summary": "HB v0.10.76 (K165): +1 damage on weapon hits, +2 at 7th, +3 at 13th, +4 at 19th; the extra against marked prey is Relentless Hunter's die.",
   "manual": "",
   "confidence": "high",
   "from": "Ranger"
@@ -2459,10 +2428,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 6:2, 9:3, 12:4, 13:6, 14:7, 16:8, 18:9, 20:10, 22:11, 24:12"
+    "value": "1:1, 7:2, 13:3, 19:4"
    }
   ],
-  "summary": "+1 to +12 weapon damage by the book's steps, applied automatically. Updated for HB v0.10.71.",
+  "summary": "+1 to +12 weapon damage by the book's steps, applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
   "manual": "",
   "confidence": "high"
  },
@@ -2645,10 +2614,10 @@
   "rules": [
    {
     "key": "hp.max",
-    "value": "@cl"
+    "value": "{1:@cl, 8:@cl * 2, 11:@cl + 10}"
    }
   ],
-  "summary": "+1 Max HP per Witch level.",
+  "summary": "+1 Max HP per Witch level; +2 from 8th; beyond 10th, +1 a level again (HB v0.10.77: Hag's Vigour improves is now this feature's 8th-level line).",
   "manual": "",
   "confidence": "high"
  },
@@ -4699,15 +4668,6 @@
   "manual": "Could be adv.concentration if illusion upkeep uses the concentration save.",
   "confidence": "high"
  },
- "kits/8jOVJRRQs0XGFMr4#0": {
-  "name": "Sharpened Perception",
-  "from": "Phantomsmith (Illusionist)",
-  "container": "passive",
-  "rules": [],
-  "summary": "Nothing automated. Updated for books v0.10.58.",
-  "manual": "When Eye for the False lets you see through an illusion, allies within 30ft see through it too. 9th: allies within 10ft have Advantage on saves against illusions.",
-  "confidence": "high"
- },
  "kits/5aNain0gSDVHlnRe#0": {
   "name": "Showmanship",
   "from": "Mountebank (Illusionist)",
@@ -4728,7 +4688,7 @@
   "manual": "The first attack against you is not given Disadvantage for you.",
   "confidence": "high"
  },
- "kits/7SipgwkVCMcbQFBC#1": {
+ "kits/7SipgwkVCMcbQFBC#2": {
   "name": "State Authority",
   "from": "Veilweaver (Illusionist)",
   "container": "passive",
@@ -5668,7 +5628,7 @@
   "manual": "Once a day, when your Smite hits, a wave breaks over the target and a 15ft line behind it: each creature there makes a Fortitude save or is pushed 15ft and knocked Prone.",
   "confidence": "high"
  },
- "kits/oKaT9HHk4VgtMJQJ#1": {
+ "kits/oKaT9HHk4VgtMJQJ#2": {
   "name": "Vanguard's Build",
   "from": "Vanguard (Ranger)",
   "container": "passive",
@@ -5682,20 +5642,6 @@
   "summary": "Advantage on Str checks (to climb, swim or force obstacles in the wild). Shown as reminders.",
   "manual": "Key attribute swap; 15th-level +1 Str instead of Dex (the class Dexterity Bonus rule would need changing).",
   "confidence": "medium"
- },
- "kits/t32f3e2VTWabhteJ#0": {
-  "name": "Chosen Quarry",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.damage",
-    "value": "Chosen Quarry: Hunter's Edge applies in full (+1 per two Ranger levels) against your chosen quarry."
-   }
-  ],
-  "summary": "A reminder on damage cards. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "The bonus itself is on Hunter's Edge. Fiend quarry: your weapons count as magical against fiends.",
-  "confidence": "high",
-  "from": "Quarry Hunter (Ranger)"
  },
  "kits/BMaBYqyABILDjiNj#1": {
   "name": "Beastspeaker",
@@ -5711,55 +5657,6 @@
   "summary": "Advantage on checks (to calm, communicate with or avoid provoking wild animals and beast-type monsters). Shown as reminders.",
   "manual": "",
   "confidence": "high"
- },
- "kits/4JgUpVLSKmAflyjU#1": {
-  "name": "Warden's Kinship",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "to identify forest creatures, find paths through old forest, and deal with the druids of the Cabal"
-   }
-  ],
-  "summary": "Advantage on checks (to identify forest creatures, find paths through old forest, and deal with the druids of the Cabal). Shown as reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "",
-  "confidence": "high",
-  "from": "Forest Warden (Ranger)"
- },
- "kits/t32f3e2VTWabhteJ#1": {
-  "name": "Hunter's Eye",
-  "from": "Quarry Hunter (Ranger)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "to track, identify, or learn the habits and weaknesses of your quarry"
-   }
-  ],
-  "summary": "Advantage on checks to track, identify or study your quarry. Shown as reminders. Updated for books v0.10.58.",
-  "manual": "",
-  "confidence": "high"
- },
- "kits/4JgUpVLSKmAflyjU#0": {
-  "name": "Old-Growth Instinct",
-  "from": "Forest Warden (Ranger)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Conceal in dense woodland or old-growth forest"
-   },
-   {
-    "key": "note.damage",
-    "value": "Old-Growth Instinct: your first attack from Conceal each encounter in woodland adds your full Hunter's Edge, whatever the target."
-   }
-  ],
-  "summary": "Advantage on skill checks (Conceal in dense woodland or old-growth forest); a reminder note on the matching card. Shown as reminders.",
-  "manual": "",
-  "confidence": "medium"
  },
  "kits/oKaT9HHk4VgtMJQJ#0": {
   "name": "Axe and Shield",
@@ -5941,7 +5838,7 @@
   "confidence": "high",
   "from": "Skulker (Rogue)"
  },
- "kits/pKqgl0RgApjf1WsV#0": {
+ "kits/pKqgl0RgApjf1WsV#1": {
   "name": "Bloodline Ability",
   "from": "Awakened (Sorcerer)",
   "container": "passive",
@@ -5956,7 +5853,7 @@
   "manual": "Corruption reroll.",
   "confidence": "high"
  },
- "kits/RlxVN6xdQPQi4YRT#0": {
+ "kits/RlxVN6xdQPQi4YRT#1": {
   "name": "Bloodline Ability",
   "from": "Blessed (Sorcerer)",
   "container": "passive",
@@ -5976,7 +5873,7 @@
   "manual": "Radiant channelling; cure disease or poison.",
   "confidence": "high"
  },
- "kits/R09IYIsqfJ613bmw#0": {
+ "kits/R09IYIsqfJ613bmw#1": {
   "name": "Bloodline Ability",
   "from": "Draconic (Sorcerer)",
   "container": "passive",
@@ -5995,7 +5892,7 @@
   "manual": "Resistance 5 to the chosen dragon type: add a resist rule in the \"fire 5\" form once chosen.",
   "confidence": "medium"
  },
- "kits/B99NPKhtWz5QenfQ#0": {
+ "kits/B99NPKhtWz5QenfQ#1": {
   "name": "Bloodline Ability",
   "from": "Fey-touched (Sorcerer)",
   "container": "passive",
@@ -6010,7 +5907,7 @@
   "manual": "Teleport; compulsion protection.",
   "confidence": "high"
  },
- "kits/n17K6r1Xujw7G8LG#0": {
+ "kits/n17K6r1Xujw7G8LG#1": {
   "name": "Bloodline Ability",
   "from": "Infernal (Sorcerer)",
   "container": "passive",
@@ -6029,7 +5926,7 @@
   "manual": "Retaliation damage; hidden clauses. Text gives no amount, so plain resist (halving) is used.",
   "confidence": "medium"
  },
- "kits/Xh3Wf6VozPpW3Esd#0": {
+ "kits/Xh3Wf6VozPpW3Esd#1": {
   "name": "Bloodline Ability",
   "from": "Void-blooded (Sorcerer)",
   "container": "passive",
@@ -6048,7 +5945,7 @@
   "manual": "Thought reading (once a day, Will save to resist); sensing the emotional state of a creature you can see.",
   "confidence": "high"
  },
- "kits/aJDUT0wMuZ6zmmxQ#0": {
+ "kits/aJDUT0wMuZ6zmmxQ#1": {
   "name": "Bloodline Ability",
   "from": "Storm-born (Sorcerer)",
   "container": "passive",
@@ -6075,7 +5972,7 @@
   "manual": "The +1d6 is a reminder because it hits one target only; weather immunity.",
   "confidence": "high"
  },
- "kits/pKqgl0RgApjf1WsV#1": {
+ "kits/pKqgl0RgApjf1WsV#2": {
   "name": "Bloodline Awakening",
   "from": "Awakened (Sorcerer)",
   "container": "passive",
@@ -6101,7 +5998,7 @@
    }
   ]
  },
- "kits/R09IYIsqfJ613bmw#1": {
+ "kits/R09IYIsqfJ613bmw#2": {
   "name": "Bloodline Awakening",
   "from": "Draconic (Sorcerer)",
   "container": "applies",
@@ -6120,7 +6017,7 @@
   "manual": "Duration of the fear is not stated beyond the 1-minute aura; resistance bypass.",
   "confidence": "medium"
  },
- "kits/B99NPKhtWz5QenfQ#1": {
+ "kits/B99NPKhtWz5QenfQ#2": {
   "name": "Bloodline Awakening",
   "from": "Fey-touched (Sorcerer)",
   "container": "toggle",
@@ -6134,7 +6031,7 @@
   "manual": "Bonus spell on a failed save; the Disadvantage itself is on the targets' rolls.",
   "confidence": "medium"
  },
- "kits/Xh3Wf6VozPpW3Esd#1": {
+ "kits/Xh3Wf6VozPpW3Esd#2": {
   "name": "Bloodline Awakening",
   "from": "Void-blooded (Sorcerer)",
   "container": "applies",
@@ -6156,7 +6053,7 @@
   "manual": "No HP regain for 1 hour; damage; object destruction. The 1d4 is rolled when applied.",
   "confidence": "medium"
  },
- "kits/aJDUT0wMuZ6zmmxQ#1": {
+ "kits/aJDUT0wMuZ6zmmxQ#2": {
   "name": "Bloodline Awakening",
   "from": "Storm-born (Sorcerer)",
   "container": "applies",
@@ -6803,21 +6700,6 @@
   "manual": "",
   "confidence": "high",
   "from": "Apprentice (Wizard)"
- },
- "kits/X6VhKo8j6GufXbbe#0": {
-  "name": "Steady Hand",
-  "from": "Apprentice (Wizard)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.save",
-    "value": 1,
-    "when": "vs your own spells' backlash or unintended effects"
-   }
-  ],
-  "summary": "Advantage on saves (vs your own spells' backlash or unintended effects). Shown as reminders.",
-  "manual": "Keeping the slot when you fail to keep a spell after being damaged while casting.",
-  "confidence": "high"
  },
  "kits/t2bu2fvJjsIad1Gb#1": {
   "name": "Tactical Eye",
@@ -10281,30 +10163,20 @@
   "from": "Warlock",
   "container": "passive",
   "rules": [],
-  "summary": "Choose invocations (one at 1st, another at 5th, 6th, 9th, 13th and 17th): Devil's Sight gives the sense; the others are reminders on the right cards.",
-  "manual": "Agonising Blast's and Armour of Shadows' numbers are reminders; Fiendish Vigour's temporary HP by hand.",
+  "summary": "Choose invocations (one at 2nd, another at 6th and 13th; HB v0.10.76, K176): Devil's Sight gives the sense; the others are reminders on the right cards. Agonising Blast is built into Eldritch Blast.",
+  "manual": "Armour of Shadows' number is a reminder; Fiendish Vigour's temporary HP by hand.",
   "confidence": "high",
   "optionChoice": {
    "label": "Invocation",
-   "max": "1:1, 5:2, 6:3, 9:4, 13:5, 17:6",
+   "max": "2:1, 6:2, 13:3",
    "options": [
-    {
-     "name": "Agonising Blast",
-     "text": "Add your Charisma modifier to Eldritch Blast damage.",
-     "rules": [
-      {
-       "key": "note.damage",
-       "value": "Agonising Blast: add your Charisma modifier to Eldritch Blast damage."
-      }
-     ]
-    },
     {
      "name": "Repelling Blast",
      "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
      "rules": [
       {
        "key": "note.damage",
-       "value": "Repelling Blast: a Large or smaller creature hit by Eldritch Blast is pushed 10ft."
+       "value": "Repelling Blast: a Large or smaller creature hit by a blast is pushed 10ft."
       }
      ]
     },
@@ -10325,7 +10197,7 @@
      "rules": [
       {
        "key": "note.init",
-       "value": "Fiendish Vigour: once a day, temporary HP equal to your Warlock level (until your next long rest)."
+       "value": "Fiendish Vigour: after each full rest, temporary HP equal to your Warlock level."
       }
      ]
     },
@@ -10424,15 +10296,6 @@
   ],
   "summary": "+1 Int.",
   "manual": "Lasting Work once a week (the kit's own text).",
-  "confidence": "high"
- },
- "class-features/VyDNqJme3aEMq9Yk": {
-  "name": "Elemental Mastery (Improved)",
-  "from": "Druid",
-  "container": "passive",
-  "rules": [],
-  "summary": "Immunity to the element picked on Elemental Mastery (that pick carries it from 20th). Spell reflection: its Use.",
-  "manual": "Reflecting a spell of that element (a Wisdom check against its DC) stays with the table.",
   "confidence": "high"
  },
  "class-features/wKVfbVXtGrIcRcCi": {
@@ -10545,10 +10408,10 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "1:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7, 24:8"
+    "value": "1:1, 7:2, 13:3, 19:4"
    }
   ],
-  "summary": "+1 to +8 melee weapon damage (1st, 6th, 9th ... 24th), applied automatically. Updated for HB v0.10.71.",
+  "summary": "+1 to +8 melee weapon damage (1st, 6th, 9th ... 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
   "manual": "",
   "confidence": "high"
  },
@@ -10657,10 +10520,10 @@
   "rules": [
    {
     "key": "cast.temp",
-    "value": "2"
+    "value": "1:2, 8:3"
    }
   ],
-  "summary": "Casting a spell of 1st level or higher gives temporary HP equal to twice its level (the higher amount stays; no stacking).",
+  "summary": "Casting a spell of 1st level or higher gives temporary HP equal to twice its level, three times from 8th (HB v0.10.76: Arcane Ward improves is now this feature's 8th-level line; the higher amount stays, no stacking).",
   "manual": "It lasts until the encounter ends: clear the temporary HP then if any is left.",
   "confidence": "high"
  },
@@ -10853,21 +10716,6 @@
   "confidence": "high",
   "approved": "Books v0.10.38 (B-F25, Fable M5)"
  },
- "class-features/UTIrytRZu4fYc46O": {
-  "name": "Wild Surge improves",
-  "from": "Sorcerer",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.spell",
-    "value": "Wild Surge improves: your second Wild Surge each day carries no Corruption risk."
-   }
-  ],
-  "summary": "A reminder on spell cards: the second Wild Surge each day has no Corruption roll.",
-  "manual": "Skip the GM's Corruption roll for it.",
-  "confidence": "high",
-  "approved": "Books v0.10.38 (B-F25, Fable M5)"
- },
  "class-features/oJxxsvpo4WgI1u92": {
   "name": "Renown: Bloodline Seat",
   "container": "passive",
@@ -10917,22 +10765,6 @@
   "confidence": "high",
   "approved": "Books v0.10.38 (B-F25, K44 S6)"
  },
- "class-features/LmPa3baYEBdC5tcR": {
-  "name": "Arcane Ward improves",
-  "from": "Wizard",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "cast.temp",
-    "value": "1",
-    "label": "Arcane Ward improves"
-   }
-  ],
-  "summary": "Adds one more spell level to Arcane Ward's temporary HP: three times the spell's level from 8th (the cast.temp rules add up).",
-  "manual": "",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
  "class-features/6KnvsKVmfEMQyXjz": {
   "name": "Aura of Resolve",
   "from": "Paladin",
@@ -10961,38 +10793,6 @@
   ],
   "summary": "A reminder on spell cards.",
   "manual": "End the condition on the healed creature.",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
- "class-features/K94HkoZdVJgTl4hh": {
-  "name": "Displacement",
-  "from": "Illusionist",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.against.first",
-    "value": -1,
-    "label": "Displacement"
-   }
-  ],
-  "summary": "The first attack against you each round has Disadvantage (rolled in).",
-  "manual": "A creature that sees through illusions (True Seeing, blindsight) ignores it: shift-click its attack.",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
- "class-features/YFtHbgQ9trfsootu": {
-  "name": "Hag's Vigour improves",
-  "from": "Witch",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "hp.max",
-    "value": "@cl",
-    "label": "Hag's Vigour improves"
-   }
-  ],
-  "summary": "+1 more Max HP per Witch level from 8th (+2 per level with Hag's Vigour).",
-  "manual": "",
   "confidence": "high",
   "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
  },
@@ -11064,7 +10864,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Relentless Hunter: every hit on your marked prey deals the Favoured Enemy extra weapon die and ignores its resistance."
+    "value": "Relentless Hunter: every hit on your marked prey deals an extra weapon damage die and ignores its resistance (on top of Favoured Enemy's die, K195)."
    }
   ],
   "summary": "A reminder on damage cards.",
@@ -11110,21 +10910,6 @@
   ],
   "summary": "Advantage reminder on saves against undead abilities.",
   "manual": "",
-  "confidence": "high",
-  "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
- },
- "class-features/htfHPooYPhlXxkWY": {
-  "name": "Wild Surge improves",
-  "from": "Sorcerer",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.spell",
-    "value": "Wild Surge improves (13th): your third Wild Surge each day also carries no Corruption risk."
-   }
-  ],
-  "summary": "A reminder on spell cards: the third Wild Surge each day has no Corruption roll.",
-  "manual": "Skip the GM's Corruption roll for it.",
   "confidence": "high",
   "approved": "Books v0.10.41 to v0.10.43 (B-F28, B-F29, B-F31)"
  },
@@ -11336,7 +11121,7 @@
   "confidence": "high",
   "from": "Monk"
  },
- "kits/6I1hdJYStjf9OLbD#1": {
+ "kits/6I1hdJYStjf9OLbD#2": {
   "name": "Practised at Court",
   "from": "Court Mage (Wizard)",
   "container": "passive",
@@ -11518,5 +11303,47 @@
   "summary": "Advantage on those checks. HB v0.10.72.",
   "manual": "",
   "confidence": "high"
+ },
+ "class-features/PNZY7WcPNHdwXhV1": {
+  "name": "Eldritch Blast",
+  "from": "Warlock",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.damage",
+    "value": "{1:, 2:Agonising Blast: add your Charisma modifier to one blast's damage each round.}"
+   }
+  ],
+  "summary": "HB v0.10.76 (K176 WL4): Agonising Blast is built in from 2nd level, as a reminder on damage cards.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/uwelNXwkfdEaf5Ug": {
+  "name": "Charisma Bonus",
+  "from": "Sorcerer",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.cha",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Cha (HB v0.10.76).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/lyBguBnlHDRTDirC": {
+  "name": "Peerless Hunter",
+  "from": "Ranger",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.attack",
+    "value": "Peerless Hunter: Advantage on every attack roll against your marked prey; Apex Predator applies every time you use Marked Prey, with no daily limit."
+   }
+  ],
+  "summary": "HB v0.10.76: a reminder on attack cards; use Apex Predator freely.",
+  "manual": "Apex Predator's daily use isn't spent at 24th: restore it by hand if the button spends it.",
+  "confidence": "medium"
  }
 }

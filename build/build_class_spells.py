@@ -27,7 +27,8 @@ SPARK_CASTER = f"({_N} * (1 - {_D8}))d6 + ({_N} * {_D8})d8"
 # 21st (Warlock, Class Abilities). Steps A to E are 1 from 5th, 9th, 13th, 17th and 21st: d6s 1 - A + 2B - 2C, d8s
 # A - B + 3C + D + E (one term is always 0 dice).
 _S = {n: f"min(1, floor(@cl / {n}))" for n in (5, 9, 13, 17, 21)}
-ELDRITCH_BLAST = f"(1 - {_S[5]} + 2 * {_S[9]} - 2 * {_S[13]})d6 + ({_S[5]} - {_S[9]} + 3 * {_S[13]} + {_S[17]} + {_S[21]})d8"
+# HB v0.10.76 (K176): 2d8 at 9th (was 2d6), so 1d6 at 1st, then one d8 more at each step.
+ELDRITCH_BLAST = f"(1 - {_S[5]})d6 + ({_S[5]} + {_S[9]} + {_S[13]} + {_S[17]} + {_S[21]})d8"
 
 # Wording spell_damage.py doesn't read: Slay Living's "1d6 per level necrotic damage (max 15d6)" (HB v0.10.74).
 DAMAGE = {"Slay Living": ("(min(@cl, 15))d6", "necrotic")}
@@ -106,7 +107,8 @@ def warlock_path_spells():
         rows = obj
         if rows and rows[0][:3] == ["Unlocks", "Slot Level", "Spell"]:
             for r in rows[1:]:
-                m = re.match(r"^(.+?)\s+[—–]\s+(.+)$", r[2])
+                # "Name (school; components) — text", or (HB v0.10.76 on) "Name (...): text".
+                m = re.match(r"^(.+?)(?:\s+[—–]\s+|(?<=\)):\s+)(.+)$", r[2])
                 lv = re.match(r"(\d)", r[1])
                 if m and lv:
                     out.append((m.group(1).strip(), int(lv.group(1)), m.group(2).strip(), path))
@@ -134,8 +136,8 @@ def build(icon):
     spells["Eldritch Blast"] = {
         "level": 0, "home": "Warlock", "classes": ["Warlock"], "notes": [],
         "text": "Range 60ft; one creature. At-will ranged cantrip. The target makes a Reflex save, taking force damage on a "
-                "failure or half on a success. No slot required. Damage scales: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 2d8 at "
-                "13th, 3d6 at 17th, 3d8 at 24th.",
+                "failure or half on a success. No slot required. Damage scales: 1d6 at 1st, 1d8 at 5th, 2d8 at 9th, 3d8 at "
+                "13th, 4d8 at 17th, 5d8 at 21st. From 17th level it fires two blasts, each with its own save (HB v0.10.76).",
         "damage": ELDRITCH_BLAST, "damageType": "force", "save": ("ref", "Half")}
     for name, lvl, text, path in warlock_path_spells():
         bare = re.sub(r"\s*\(.*?\)", "", name).strip()  # "Cause Fear (the reverse of Remove Fear)"

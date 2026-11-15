@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Self-taught, with no institution behind you: closer kin to Westfront Fort's outlaw wizards than to any tower.</p><ul><li><strong>Unexpected Caster:</strong> the first harmful spell you cast in a combat where the enemy doesn't expect a caster imposes <strong>Disadvantage</strong> on their save against it.<ul><li>9th level: once per encounter, a creature that hasn't seen you cast before has <strong>Disadvantage</strong> on its save against your first harmful spell.</li></ul></li><li><strong>Make It Work:</strong> <strong>Advantage</strong> on checks to scrounge, improvise or substitute spell components on the fly.</li></ul>",
+  "description": "<p>Self-taught, with no institution behind you: closer kin to Westfront Fort's outlaw wizards than to any tower.</p><ul><li><strong>Unexpected Caster:</strong> once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.<ul><li>9th level: two such creatures.</li></ul></li><li><strong>Make It Work:</strong> you need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Unexpected Caster",
     "level": 1,
-    "description": "<p>The first harmful spell you cast in a combat where the enemy doesn't expect a caster imposes <strong>Disadvantage</strong> on their save against it.</p><p>9th level: once per encounter, a creature that hasn't seen you cast before has <strong>Disadvantage</strong> on its save against your first harmful spell.</p>",
+    "description": "<p>Once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.</p><p>9th level: two such creatures.</p>",
     "uses": {
      "value": 1,
      "max": 1,
@@ -36,11 +36,11 @@
    {
     "name": "Make It Work",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on checks to scrounge, improvise or substitute spell components on the fly.</p>",
+    "description": "<p>You need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "",
     "rules": [

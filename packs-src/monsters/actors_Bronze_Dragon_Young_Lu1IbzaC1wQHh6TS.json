@@ -299,7 +299,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-dragon-head.svg",
    "system": {
-    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:20]{Reflex save DC 20} or are pushed <strong>15ft</strong> and knocked prone.</p>",
+    "description": "<p>Once per day, as an action, calls a surge of water on a <strong>20ft</strong>-radius area within <strong>60ft</strong>; creatures there make a @Check[ref|dc:20]{Reflex save DC 20} or are pushed <strong>15ft</strong> and knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0

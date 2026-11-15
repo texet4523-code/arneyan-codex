@@ -36,7 +36,7 @@
    "ac": 20,
    "speed": "30ft",
    "attack": 17,
-   "spellDC": 22,
+   "spellDC": 20,
    "morale": 12
   },
   "saves": {
@@ -46,17 +46,17 @@
   },
   "spellcasting": {
    "className": "Cleric",
-   "level": 15,
+   "level": 12,
    "slots": [
     6,
-    5,
-    5,
     5,
     4,
     4,
     3,
+    3,
     2,
-    1,
+    0,
+    0,
     0
    ],
    "used": []
@@ -73,10 +73,10 @@
    "senses": "Darkvision 120ft",
    "isSolo": true,
    "soloType": "Spellcaster",
-   "soloHalves": true,
+   "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Medium humanoid (elf)</em></p><p><strong>GM:</strong> Mistress of a noble drow house, high priestess of the spider-goddess, and a monster to her daughters.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). Area, aura and ongoing damage come once a round, at the start of its first turn.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapons, spells and other powers that hit more than one creature deal half damage; it also halves its attack damage.</p>",
+   "description": "<p><em>Medium humanoid (elf)</em></p><p><strong>GM:</strong> Mistress of a noble drow house, high priestess of the spider-goddess, and a monster to her daughters.</p><p><strong>Solo: Spellcaster.</strong> A normal creature of its Level unless the GM runs it as a solo (tick <em>Run as solo</em> before the fight). As a solo: it fights in three phases with this HP in each; at 0 HP its next phase starts at full HP (damage beyond 0 is lost) and every condition and hostile effect on it ends; at its first phase change only, its breath weapons and other limited-use abilities recover (never spells); once a round, so for the rest of a round in which it changed phase damage can't take it below 1 HP; at 0 HP in its third phase it dies (all automatic). It acts twice a round, on its initiative and again 10 lower (the second turn repeats its attacks, never a spell or limited ability). Villain actions: the spellcaster type's three (in its abilities, worked out for its Level); the opener straight after the first enemy turn, the crowd control after the turn that starts its second phase, the ultimate after the turn that starts its third; it skips its second turn in a round it uses one, if that turn is still to come. Anything that stops it acting, attacking, moving or casting, or banishes, imprisons or petrifies it, ends after two of its turns (one, the second time in a fight), then nothing of the kind affects it until the end of the following round. A kill effect deals damage equal to its current HP (yours to apply). A lasting area, aura or ongoing effect damages it once a round, at the start of its first turn, however many of its turns or moves pass through it; a spell that deals its damage when cast works as normal.</p><p><strong>As a normal creature:</strong> its HP once, one turn a round, no villain actions and no shaking it off. Its breath weapon, and any spell or other power that hits more than one creature, deals half damage, and its attacks deal no more than the Damage target for its Level in a round (27).</p>",
    "treasure": "<p>Treasure type <strong>H</strong> (see the Treasure tables).</p>"
   }
  },
@@ -172,7 +172,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>Casts as a 15th-level cleric (spell <strong>DC 22</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:22]{Will DC 22}), @UUID[Compendium.arneyan.spells.Item.o5jhxf3olkbjT4xA]{spirit guardians}, @UUID[Compendium.arneyan.spells.Item.1Cb6U9s3sOq0u5Mp]{dispel magic}, @UUID[Compendium.arneyan.spells.Item.YxI3J8Wuol9yozTk]{insect plague}, @UUID[Compendium.arneyan.spells.Item.o3XymXUvCxgElG1r]{blade barrier}, @UUID[Compendium.arneyan.spells.Item.GXaNBvfQ5bVaxK14]{harm}.</p>",
+    "description": "<p>Casts as a 12th-level cleric (spell <strong>DC 20</strong>). Typical spells: Command, Hold Person (@Check[will|dc:20]{Will DC 20}), Spirit Guardians, Dispel Magic, Insect Plague, Blade Barrier, Harm.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -344,7 +344,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Self; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong>. Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage (you choose when casting); <strong>Will halves</strong>. Damage is dealt <strong>once per round</strong> to each creature.</p><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p>Self; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong> (concentration).</p><ul><li>Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage per three levels (max <strong>4d6</strong>) (you choose when casting); <strong>Will halves</strong>.</li><li>Damage is dealt <strong>once per round</strong> to each creature.</li></ul><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -360,7 +360,7 @@
     "duration": "",
     "area": "15ft radius",
     "components": "V, S, M",
-    "concentration": false,
+    "concentration": true,
     "ritual": false,
     "prepared": false,
     "save": "will",
@@ -809,7 +809,7 @@
     }
    },
    "system": {
-    "description": "<p>It speaks a word of binding (a sphinx asks a riddle).</p><ul><li>Up to three enemies within <strong>60ft</strong> that can hear it make a @Check[will|dc:22]{Will save DC 22} or are @Condition[incapacitated]{Incapacitated}, taking @Damage[2d6 psychic]{2d6 psychic damage}.</li><li>It then teleports or moves up to <strong>30ft</strong>.</li></ul><p class=\"arn-note\">A spellcaster solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "description": "<p>It speaks a word of binding (a sphinx asks a riddle).</p><ul><li>Up to three enemies within <strong>60ft</strong> that can hear it make a @Check[will|dc:20]{Will save DC 20} or are @Condition[incapacitated]{Incapacitated}, taking @Damage[2d6 psychic]{2d6 psychic damage}.</li><li>It then teleports or moves up to <strong>30ft</strong>.</li></ul><p class=\"arn-note\">A spellcaster solo's opener (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -821,7 +821,7 @@
      "per": "encounter"
     },
     "save": "will",
-    "dc": 22,
+    "dc": 20,
     "damage": "2d6",
     "damageType": "psychic",
     "level": 0,
@@ -851,7 +851,7 @@
     }
    },
    "system": {
-    "description": "<p>Magic fills a <strong>20ft radius</strong> within <strong>120ft</strong>. Each creature there makes a @Check[ref|dc:22]{Reflex save DC 22}, taking <strong>4d6</strong> damage of a type it chooses and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">A spellcaster solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "description": "<p>Magic fills a <strong>20ft radius</strong> within <strong>120ft</strong>. Each creature there makes a @Check[ref|dc:20]{Reflex save DC 20}, taking <strong>4d6</strong> damage of a type it chooses and being @Condition[restrained]{Restrained} on a failure, or half damage on a success.</p><p class=\"arn-note\">A spellcaster solo's crowd control (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -863,7 +863,7 @@
      "per": "encounter"
     },
     "save": "ref",
-    "dc": 22,
+    "dc": 20,
     "damage": "4d6",
     "damageType": "",
     "level": 0,
@@ -893,7 +893,7 @@
     }
    },
    "system": {
-    "description": "<p>One creature within <strong>120ft</strong> makes a @Check[will|dc:22]{Will save DC 22}, taking @Damage[6d8 force]{6d8 force damage} and being @Condition[stunned]{Stunned} on a failure, or half damage on a success. A spellcaster that fights hand to hand (the githzerai anarch, the yuan-ti anathema) may instead make its full attack line against that creature; if two attacks hit, it makes the same save or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A spellcaster solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
+    "description": "<p>One creature within <strong>120ft</strong> makes a @Check[will|dc:20]{Will save DC 20}, taking @Damage[6d8 force]{6d8 force damage} and being @Condition[stunned]{Stunned} on a failure, or half damage on a success. A spellcaster that fights hand to hand (the githzerai anarch, the yuan-ti anathema) may instead make its full attack line against that creature; if two attacks hit, it makes the same save or is @Condition[stunned]{Stunned}.</p><p class=\"arn-note\">A spellcaster solo's ultimate (Running a Solo, Monsters &amp; Treasure). Every rider lasts until the end of the target's next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -905,7 +905,7 @@
      "per": "encounter"
     },
     "save": "will",
-    "dc": 22,
+    "dc": 20,
     "damage": "6d8",
     "damageType": "force",
     "level": 0,

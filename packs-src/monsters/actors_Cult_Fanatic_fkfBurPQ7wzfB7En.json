@@ -124,7 +124,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>Casts as a 5th-level cleric (spell <strong>DC 13</strong>). Typical spells: @UUID[Compendium.arneyan.spells.Item.w5AjT9rFAiqF6vUy]{bless}, @UUID[Compendium.arneyan.spells.Item.cxeScr3dI1q3mVCs]{command}, @UUID[Compendium.arneyan.spells.Item.Eyaa2BdX9WMmjtjc]{cause light wounds}, @UUID[Compendium.arneyan.spells.Item.4nLaFkHRDF7RjfUW]{hold person} (@Check[will|dc:13]{Will DC 13}), @UUID[Compendium.arneyan.spells.Item.WdoFJagUQ8RO1QsR]{spiritual weapon}.</p>",
+    "description": "<p>Casts as a 5th-level cleric (spell <strong>DC 13</strong>). Typical spells: Bless, Command, Cause Light Wounds, Hold Person (@Check[will|dc:13]{Will DC 13}), Spiritual Weapon.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -515,7 +515,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p><strong>Advantage</strong> on saves against being charmed or frightened.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against being @Condition[charmed]{Charmed} or @Condition[frightened]{Frightened}.</p>",
     "source": {
      "book": "mt",
      "page": 0

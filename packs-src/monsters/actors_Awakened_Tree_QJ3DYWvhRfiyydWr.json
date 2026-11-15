@@ -224,7 +224,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-vine-whip.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, as part of its action, it slams the ground. Each creature within <strong>10ft</strong> makes a @Check[ref|dc:17]{Reflex save DC 17} or is knocked prone.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, as part of its action, it slams the ground. Each creature within <strong>10ft</strong> makes a @Check[ref|dc:17]{Reflex save DC 17} or is knocked @Condition[prone]{Prone}.</p>",
     "source": {
      "book": "mt",
      "page": 0
