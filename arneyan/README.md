@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.111 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.112 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.112
+
+Two fixes from the 0.10.111 test on TAC and the board.
+
+- **Paladin:** immune to Frightened (and so Terrified) from 2nd level, through Auras. Before, the immunity sat on Divine Protection behind a "from 2nd level" note and never switched on by itself. If you cleared that note by hand, the update keeps your Divine Protection: you can delete its fear immunity now.
+- **Nocticula:** her Cleric and Paladin kits are Chaotic Neutral again, as the books have her for Campaign 3 (K203). The kits still link her wiki page for her tenets. A Nocticula kit put on a character while 0.10.111 was out keeps Chaotic Evil: change it on the kit.
 
 ## What's new in 0.10.111
 

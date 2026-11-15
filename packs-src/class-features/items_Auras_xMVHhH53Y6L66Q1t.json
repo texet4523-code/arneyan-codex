@@ -23,6 +23,12 @@
   "className": "Paladin",
   "rules": [
    {
+    "key": "immune",
+    "value": "condition:frightened",
+    "when": "",
+    "label": ""
+   },
+   {
     "key": "adv.save",
     "value": "17:1",
     "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)",

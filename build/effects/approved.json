@@ -2310,15 +2310,10 @@
    {
     "key": "note.save",
     "value": "Divine Protection: immune to all diseases."
-   },
-   {
-    "key": "immune",
-    "value": "condition:frightened",
-    "when": "from 2nd level (Aura of Courage)"
    }
   ],
-  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder; fear immunity from 2nd. Allies' Advantage vs fear is the Aura of Courage aura.",
-  "manual": "Evil summons cannot touch you. Drop the \"when\" on the fear immunity once the Paladin is 2nd level.",
+  "summary": "+2 AC and saves vs evil (reminders); disease immunity reminder. Allies' Advantage vs fear is the Aura of Courage aura.",
+  "manual": "Evil summons cannot touch you.",
   "confidence": "medium"
  },
  "class-features/fAbmGByYrE4Mwp6V": {
@@ -11271,15 +11266,19 @@
   "container": "passive",
   "rules": [
    {
+    "key": "immune",
+    "value": "condition:frightened"
+   },
+   {
     "key": "adv.save",
     "value": "17:1",
     "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)"
    }
   ],
-  "summary": "From 17th, Aura of Resolve: Advantage reminder on saves against Paralysis and Stunning.",
+  "summary": "Aura of Courage: immune to Frightened (and so Terrified). From 17th, Aura of Resolve: Advantage reminder on saves against Paralysis and Stunning.",
   "manual": "Allies get Aura of Resolve from the aura (Auras).",
   "confidence": "high",
-  "approved": "HB v0.10.80 (B-F74): Aura of Resolve folded into Auras at 17th"
+  "approved": "HB v0.10.80 (B-F74): Aura of Resolve folded into Auras at 17th; 0.10.112 (T153): the Frightened immunity moved here from Divine Protection, with no condition"
  },
  "kits/ipGsmIrKI3zd2kwU#1": {
   "name": "Undying Constitution",
