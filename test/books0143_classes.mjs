@@ -70,3 +70,11 @@ assert.ok(features.some(f => f.name === "Hex (Wisdom)" && f.system.className ===
 assert.match(spell("Mass Heal").saveEffect, /quarter/);
 assert.match(spell("Death Ward").applies[0].rules[0].value, /set its HP to 0 or a fixed number/);
 console.log("OK books v0.10.43 classes");
+
+/* HB v0.10.81 (K204, B-F75): Spellburn and Overchannel burn Constitution only. */
+for (const n of ["Spellburn", "Overchannel"]) {
+  const f = feat(n, "Sorcerer");
+  const text = [f.description, ...(f.activities ?? []).map(a => a.text ?? "")].join(" ");
+  assert.match(text, /Constitution/, n);
+  assert.doesNotMatch(text, /Strength|Dexterity|attribute points/, n);
+}

@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.112 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.113 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.113
+
+Handbook and Monsters & Treasure v0.10.81 (B-F75).
+
+- **Sorcerer:** Spellburn and Overchannel burn Constitution only, and a long rest restores 3 burned Constitution points, 6 from 6th level (K204). The buttons' notes say so.
+- **Treasure:** the treasure dialog's hoard options carry the new guide line: a quest that ends in a lair or a leader's den yields about one hoard of the party's Level.
 
 ## What's new in 0.10.112
 

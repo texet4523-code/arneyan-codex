@@ -1351,7 +1351,7 @@
    {
     "name": "Spellburn",
     "kind": "note",
-    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned points, placed as you like, and by no other means.",
+    "text": "Pay for Metamagic by burning Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned Constitution points, and by no other means.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1360,7 +1360,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27."
+  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only."
  },
  "Metamagic Options|Sorcerer": {
   "activities": [
@@ -1488,7 +1488,7 @@
    {
     "name": "Overchannel",
     "kind": "note",
-    "text": "Cast a spell with no slots of its level left by paying with Spellburn: burn attribute points equal to twice the spell's level (a flat cost that doesn't double). You also take 1d6 unavoidable damage per spell level.",
+    "text": "Cast a spell with no slots of its level left by paying with Spellburn: burn Constitution points equal to twice the spell's level (a flat cost that doesn't double). You also take 1d6 unavoidable damage per spell level.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1498,7 +1498,7 @@
    {
     "name": "Overchannel (no damage)",
     "kind": "note",
-    "text": "Once per day from 18th: Overchannel without taking its damage (you still burn the attribute points).",
+    "text": "Once per day from 18th: Overchannel without taking its damage (you still burn the Constitution points).",
     "minLevel": 18,
     "cost": 1,
     "per": "",
@@ -1507,7 +1507,7 @@
    }
   ],
   "confidence": "high",
-  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27.",
+  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only.",
   "uses": {
    "max": 1,
    "per": "day",

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Pay for Metamagic (see Metamagic Options) by burning points from Strength, Dexterity or Constitution, split as you like.</li><li>A burned score uses its lower modifier for everything except your HP and your death threshold.</li><li>Spellburn carries no Corruption risk.</li><li>The cost doubles with each Spellburn you make in a day, as the table below shows.</li><li>Unlike Wild Surge it has no daily limit, only what your body can afford.</li><li>Spellburn cannot reduce an attribute below 1.</li><li><strong>Recovery:</strong> after a long rest you regain 3 burned points, placed as you like, and by no other means.</li><li>6th level (Blood Burn): you regain 6 burned points after a long rest.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Pay for Metamagic (see Metamagic Options) by burning Constitution points.</li><li>Burned Constitution uses its lower modifier for everything except your HP and your death threshold.</li><li>Spellburn carries no Corruption risk.</li><li>The cost doubles with each Spellburn you make in a day, as the table below shows.</li><li>Unlike Wild Surge it has no daily limit, only what your body can afford.</li><li>Spellburn cannot reduce your Constitution below 1.</li><li><strong>Recovery:</strong> after a long rest you regain 3 burned Constitution points, and by no other means.</li><li>6th level (Blood Burn): you regain 6 burned points after a long rest.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Pay for Metamagic by burning Strength, Dexterity or Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned points, placed as you like, and by no other means.",
+    "text": "Pay for Metamagic by burning Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned Constitution points, and by no other means.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
