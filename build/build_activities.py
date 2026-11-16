@@ -28,7 +28,7 @@ FIELDS = {"name": "", "kind": "note", "formula": "", "damageType": "", "ability"
           "minLevel": 0, "maxLevel": 0, "cost": 1, "per": "", "target": "", "removeConditions": False,
           "bonus": "", "count": "", "weapons": "", "disadvantage": "", "disUntil": 0, "damageBonus": "",
           "noStack": "", "targetLevel": "", "reaction": False, "noDamage": False, "effect": "", "spendAny": False, "tables": ""}
-KINDS = {"heal", "temp", "damage", "check", "save", "note", "roll", "attacks"}
+KINDS = {"heal", "temp", "damage", "check", "save", "note", "roll", "attacks", "burn"}
 INTS = ("minLevel", "maxLevel", "disUntil")
 STRS = ("formula", "damageType", "ability", "save", "per", "target", "name", "bonus", "count", "weapons",
         "disadvantage", "damageBonus", "noStack", "targetLevel", "effect", "tables")

@@ -461,7 +461,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       abilities: Object.entries(system.abilities).map(([k, v]) => ({
         key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: v.total ?? v.value,
         changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: signed(v.mod),
-        tip: v.parts ? breakdown(v.parts) : ""
+        tip: v.parts ? breakdown(v.parts) : "", drain: actor._source.system.abilities?.[k]?.drain ?? 0, burn: actor._source.system.abilities?.[k]?.burn ?? 0,
+        // Constitution's burned points (Spellburn): shown for a character who has Spellburn, or any burned already.
+        burnable: k === "con" && (!!(actor._source.system.abilities?.con?.burn) || actor.items.some(i => i.name === "Spellburn"))
       })),
       classes: byType("class"),
       ancestry: await Promise.all(byType("ancestry").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
@@ -891,7 +893,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const actor = this.document;
     const cls = actor.items.get(target.dataset.classId);
     if (!cls) return;
-    const con = actor.system.abilities.con.mod;
+    const con = actor.system.abilities.con.modUnburned ?? actor.system.abilities.con.mod;   // HP ignores burned Constitution
     // 1st level is the full Hit Die + Con: no roll.
     const levels = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0);
     if (levels <= 1) return ui.notifications.info(`${actor.name}: 1st level is the full ${cls.system.hitDie} + Con (${Math.max(1, Number(cls.system.hitDie.slice(1)) + con)} HP), no roll. From 2nd level, levelling up rolls or takes the average.`);

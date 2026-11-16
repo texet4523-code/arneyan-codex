@@ -186,6 +186,8 @@
         <a class="arn-ability-name" data-action="rollAbility" data-ability="{{key}}">{{abbr}}</a>
         <a class="arn-ability-mod" data-action="rollAbility" data-ability="{{key}}">{{modLabel}}</a>
         {{#if @root.editMode}}<input class="arn-ability-score" type="number" name="system.abilities.{{key}}.value" value="{{value}}" min="0" max="30">
+        <label class="arn-ability-lost" data-tooltip="Points drained (a disease, a drain) until restored: off the score. A drained Constitution lowers Max HP.">drained <input type="number" name="system.abilities.{{key}}.drain" value="{{drain}}" min="0" max="30"></label>
+        {{#if burnable}}<label class="arn-ability-lost" data-tooltip="Constitution burned by Spellburn: off the score for everything but HP and the death threshold. A long rest gives back 3 (6 from 6th level).">burned <input type="number" name="system.abilities.{{key}}.burn" value="{{burn}}" min="0" max="30"></label>{{/if}}
         {{else}}<span class="arn-ability-score">{{total}}</span>{{/if}}
       </div>
       {{/each}}

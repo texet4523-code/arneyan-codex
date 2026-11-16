@@ -1350,17 +1350,18 @@
   "activities": [
    {
     "name": "Spellburn",
-    "kind": "note",
+    "kind": "burn",
     "text": "Pay for Metamagic by burning Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned Constitution points, and by no other means.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "double"
    }
   ],
   "confidence": "high",
-  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only."
+  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only. 0.10.115: the button burns the points on the sheet."
  },
  "Metamagic Options|Sorcerer": {
   "activities": [
@@ -1487,13 +1488,14 @@
   "activities": [
    {
     "name": "Overchannel",
-    "kind": "note",
+    "kind": "burn",
     "text": "Cast a spell with no slots of its level left by paying with Spellburn: burn Constitution points equal to twice the spell's level (a flat cost that doesn't double). You also take 1d6 unavoidable damage per spell level.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
     "target": "self",
-    "removeConditions": false
+    "removeConditions": false,
+    "formula": "level"
    },
    {
     "name": "Overchannel (no damage)",
@@ -1507,7 +1509,7 @@
    }
   ],
   "confidence": "high",
-  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only.",
+  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only. 0.10.115: the button burns the points on the sheet.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -4354,5 +4356,15 @@
   ],
   "confidence": "high",
   "why": "HB v0.10.81 audit (0.10.114): the Blessing's healing gets its own roll."
+ },
+ "Champion's Blow|Path: Champion (Knight)": {
+  "uses": {
+   "max": 1,
+   "per": "encounter",
+   "formula": "1:1, 17:2"
+  },
+  "activities": [],
+  "confidence": "high",
+  "why": "0.10.115: twice per encounter from 17th (the kit's own text)."
  }
 }

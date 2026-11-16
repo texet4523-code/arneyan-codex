@@ -27,6 +27,26 @@ const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 /** The user's current targets as actors with names. */
+/**
+ * Casting Under Threat (the Codex) may apply: a creature with spells of 1st level or higher, hurt on its own turn in a
+ * running fight (a readied attack, an Attack of Opportunity or another response to its casting). For the reminder card.
+ */
+export function castingThreat(actor, combat = globalThis.game?.combat) {
+  try {
+    const c = combat?.started ? combat.combatant : null;
+    if (!c?.actor || !actor || (c.actor !== actor && c.actor.uuid !== actor.uuid)) return false;
+    return [...(actor.items ?? [])].some(i => i.type === "spell" && Number(i.system?.level) > 0);
+  } catch { return false; }
+}
+
+/**
+ * Spellburn's cost in Constitution points (HB v0.10.81): 1 for the day's first burn, then 2, 4, 8...; the enhanced
+ * effect costs double. `burns` is how many Spellburns the character has made today.
+ */
+export function spellburnCost(burns = 0, enhanced = false) {
+  return 2 ** Math.max(0, Math.floor(Number(burns) || 0)) * (enhanced ? 2 : 1);
+}
+
 export function targetActors() {
   return Array.from(game.user.targets ?? []).map(t => t.actor ? { token: t, actor: t.actor, name: t.name ?? t.actor.name } : null).filter(Boolean);
 }
@@ -1000,6 +1020,18 @@ export class ArneyanActor extends Actor {
     await this.update({ "system.attributes.hp.value": value, "system.attributes.hp.temp": tempLeft, ...(subdual && toHp > 0 ? subdualUpdate(this, toHp) : {}), ...(stopsRegen ? { [`flags.${SYS}.regenStopped`]: { type: stopsRegen, combat: game.combat.id } } : {}) }, { arneyanDowned: true });
     if (stopsRegen) lines.push(`${stopsRegen} stops its regeneration next turn`);
     await this._syncDowned(before);
+    // Casting Under Threat (the Codex): damage on a caster's own turn may be a response to their casting. A reminder
+    // for the table; nothing is rolled or lost unless someone clicks.
+    if (dmg > 0 && castingThreat(this)) {
+      const dc = Math.max(10, Math.floor(dmg / 2));
+      const down = value <= 0;
+      ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: `<div class="arn-card"><header class="arn-card-title">${esc(this.name)}: casting under threat?</header>
+          <p>Took ${dmg} damage on their own turn. If it came while they were casting a spell (not a cantrip): ${down ? "they are down, so the spell is lost with its slot, with no save." : `Fortitude save, DC ${dc} (10 or half the damage), or the spell is lost with its slot.`}</p>
+          ${down ? "" : `<button type="button" class="arn-save-btn" data-save="fort" data-dc="${dc}" data-source="Casting Under Threat" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-shield-halved"></i> Roll Fortitude save</button>`}</div>`
+      });
+    }
     // Concentration check.
     if (dmg > 0 && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
       const dc = Math.max(10, Math.floor(dmg / 2));
@@ -1205,16 +1237,25 @@ export class ArneyanActor extends Actor {
       const row = items.find(r => r._id === a.id) ?? (items.push({ _id: a.id }), items.at(-1));
       for (const k of Object.keys(a.flags[SYS].actUsed)) if (daily.has(k)) row[`flags.${SYS}.actUsed.${k}`] = 0;
     }
+    // Burned Constitution (Spellburn, HB v0.10.81): 3 points back, 6 from 6th level (Blood Burn); the day's count starts again.
+    const burned = Number(this._source.system.abilities?.con?.burn) || 0;
+    const spellburn = this.items.find(i => i.type === "ability" && i.name === "Spellburn");
+    const unburned = Math.min(burned, (spellburn?.featureLevel ?? 0) >= 6 ? 6 : 3);
+    if (unburned) await this.update({ "system.abilities.con.burn": burned - unburned });
+    for (const b of this.items.filter(i => i.flags?.[SYS]?.burnsToday)) {
+      const row = items.find(r => r._id === b.id) ?? (items.push({ _id: b.id }), items.at(-1));
+      row[`flags.${SYS}.burnsToday`] = 0;
+    }
     if (items.length) await this.updateEmbeddedDocuments("Item", items);
     // Dawn: staffs regain charges (Catalogue, magic item rules).
     const recharged = await rechargeAtDawn(this);
     const label = { haven: "in a safe haven", shelter: "in camp with shelter", open: "in the open" }[where];
-    const line = `${this.name}: +${heal} HP${hadSubdual ? ", non-lethal damage gone" : ""}${hadExhaustion ? ", one Exhaustion level off" : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
+    const line = `${this.name}: +${heal} HP${hadSubdual ? ", non-lethal damage gone" : ""}${hadExhaustion ? ", one Exhaustion level off" : ""}${unburned ? `, ${unburned} burned Constitution back` : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
     if (quiet) return line;
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }), rolls,
       content: `<div class="arn-card"><header class="arn-card-title">${this.name} rests ${label}</header>
-        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadSubdual ? ", all non-lethal damage healed" : ""}${hadExhaustion ? ", one level of Exhaustion removed" : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
+        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadSubdual ? ", all non-lethal damage healed" : ""}${hadExhaustion ? ", one level of Exhaustion removed" : ""}${unburned ? `, ${unburned} burned Constitution back` : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
     });
   }
 
@@ -1843,6 +1884,39 @@ export class ArneyanItem extends Item {
   }
 
   /**
+   * Burn Constitution (the Sorcerer's Spellburn and Overchannel, HB v0.10.81): asks how much, takes it off the score
+   * (never below 1) as burned points, and posts the card. `formula` "double": Spellburn's doubling cost for the day;
+   * "level": twice a spell's level, flat (Overchannel), which doesn't count towards the day's doubling.
+   */
+  async _useBurn(act) {
+    const actor = this.actor;
+    const con = actor?.system?.abilities?.con;
+    if (!con || !actor.isOwner) return null;
+    const flat = act.formula === "level";
+    const burns = Number(this.getFlag(SYS, "burnsToday")) || 0;
+    const room = Math.max(0, con.total - 1);
+    const content = flat
+      ? `<p>${esc(act.text)}</p><div class="form-group"><label>Spell level</label><input type="number" name="level" value="1" min="1" max="9" autofocus></div>`
+      : `<p>${esc(act.text)}</p><p>Spellburns today: <strong>${burns}</strong>. This one costs <strong>${spellburnCost(burns)}</strong> (the enhanced effect <strong>${spellburnCost(burns, true)}</strong>).</p>
+         <div class="form-group"><label><input type="checkbox" name="enhanced"> The enhanced effect (double)</label></div>`;
+    const res = await DialogV2.prompt({ window: { title: `${this.name}: ${act.name}`, icon: "fa-solid fa-fire" }, classes: ["arneyan"], position: { width: 380 },
+      content: `${content}<p class="arn-help">Constitution ${con.total}${con.burn ? ` (${con.burn} burned)` : ""}: you can burn up to ${room}. HP and your death threshold don't change.</p>`,
+      ok: { label: "Burn", icon: "fa-solid fa-fire", callback: (ev, button) => { const f = button.form.elements; return flat ? { level: Math.clamp(Math.floor(Number(f.level.value) || 1), 1, 9) } : { enhanced: f.enhanced.checked }; } },
+      rejectClose: false }).catch(() => null);
+    if (!res) return null;
+    const n = flat ? res.level * 2 : spellburnCost(burns, res.enhanced);
+    if (n > room) { ui.notifications.warn(`${actor.name} can't burn ${n} Constitution: only ${room} above 1.`); return null; }
+    await actor.update({ "system.abilities.con.burn": (Number(actor._source.system.abilities.con.burn) || 0) + n });
+    if (!flat) await this.setFlag(SYS, "burnsToday", burns + 1);
+    const now = actor.system.abilities.con;
+    const sign = v => (v >= 0 ? `+${v}` : `${v}`);
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
+      content: `<div class="arn-card"><header class="arn-card-title">${esc(this.name)}: ${esc(act.name)}</header>
+        <p>Burns <strong>${n}</strong> Constitution${flat ? ` (a spell of level ${res.level})` : res.enhanced ? " (the enhanced effect)" : ""}: now ${now.total} (${sign(now.mod)}), ${now.burn} burned in all. HP and the death threshold are unchanged.</p>
+        ${flat ? `<p>The magic tears through you: [[/r ${res.level}d6]] damage that nothing reduces.</p>` : `<p class="arn-card-meta">Next Spellburn today: ${spellburnCost(burns + 1)}. A long rest gives back ${this.featureLevel >= 6 ? 6 : 3}.</p>`}</div>` });
+  }
+
+  /**
    * An option's own count, when it has one: no cost to the item's uses, a period of a day, week or month, and a count
    * that isn't dice (its formula: a number, a level table or @cl; none means once). { key, max, used, left } or null.
    */
@@ -1871,6 +1945,7 @@ export class ArneyanItem extends Item {
     const actor = this.actor;
     if (this._forsakenBlocked()) return null;
     if (act.kind === "attacks") return this._useAttacks(act, event);
+    if (act.kind === "burn") return this._useBurn(act);
     // Any number of uses (Lay on Hands' points): asked, then spent as the activity's cost; @spent in its formula.
     let spent = null;
     if (act.spendAny && sys.uses?.max > 0) {

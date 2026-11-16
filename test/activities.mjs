@@ -255,7 +255,7 @@ const tpl = fs.readFileSync(new URL("../arneyan/templates/actor/abilities-list.h
 assert.ok(tpl.includes("item.system.applies.length acts"), "Use shows only while an option is open at this level (0.10.109)");
 
 /* Every activity is a known kind; attacks have a count. */
-const KINDS = new Set(["heal", "temp", "damage", "check", "save", "note", "roll", "attacks"]);
+const KINDS = new Set(["heal", "temp", "damage", "check", "save", "note", "roll", "attacks", "burn"]);
 const all = [...built, ...feats, ...actions].flatMap(i => i.system.activities ?? []).concat(kits.flatMap(k => k.system.features.flatMap(f => f.activities ?? [])));
 assert.ok(all.length > 250, `${all.length} activities`);
 for (const a of all) {

@@ -11,9 +11,23 @@ const str = (initial = "") => new StringField({ required: true, blank: true, ini
 function abilitiesSchema() {
   const out = {};
   for (const k of Object.keys(ARNEYAN.abilities)) {
-    out[k] = new SchemaField({ value: int(10, { min: 0, max: 30 }) });
+    // drain: points lost to a disease, a drain or the like, until restored. burn: Constitution burned by Spellburn
+    // (HB v0.10.81): off the score for everything but HP and the death threshold, back with long rests.
+    out[k] = new SchemaField({ value: int(10, { min: 0, max: 30 }), drain: int(0, { min: 0, max: 30 }), burn: int(0, { min: 0, max: 30 }) });
   }
   return new SchemaField(out);
+}
+
+/**
+ * An attribute's score and modifier after rules, drain and burn. `modUnburned` leaves the burn out: the modifier for HP
+ * and the death threshold (Spellburn). `drainMod` is what the drain alone changes the modifier by (Max HP follows it).
+ */
+export function abilityAfter(a, bonus = 0) {
+  const drain = Math.max(0, Number(a.drain) || 0), burn = Math.max(0, Number(a.burn) || 0);
+  const whole = Math.clamp(a.value + bonus, 0, 30), drained = Math.clamp(a.value + bonus - drain, 0, 30);
+  const total = Math.clamp(a.value + bonus - drain - burn, 0, 30);
+  return { total, mod: ARNEYAN.abilityMod(total), modUnburned: ARNEYAN.abilityMod(drained), drainMod: ARNEYAN.abilityMod(drained) - ARNEYAN.abilityMod(whole),
+    lost: [...(drain ? [{ label: "Drained", value: -drain }] : []), ...(burn ? [{ label: "Burned (Spellburn)", value: -burn }] : [])] };
 }
 
 /** Prepare ability modifiers on any actor. */
@@ -169,9 +183,12 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // Attribute scores after rules (the stored score stays as typed).
     for (const [k, a] of Object.entries(s.abilities)) {
       a.base = a.value;
-      a.total = Math.clamp(a.value + mods.sum(`ability.${k}`), 0, 30);
-      a.mod = ARNEYAN.abilityMod(a.total);
-      a.parts = [{ label: "Score", value: a.base }, ...mods.parts(`ability.${k}`)];
+      const after = abilityAfter(a, mods.sum(`ability.${k}`));
+      a.total = after.total;
+      a.mod = after.mod;
+      a.modUnburned = after.modUnburned;
+      a.drainMod = after.drainMod;
+      a.parts = [{ label: "Score", value: a.base }, ...mods.parts(`ability.${k}`), ...after.lost];
     }
 
     // BtH and XP rate.
@@ -248,7 +265,9 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     // Hit points: the stored maximum plus bonuses, then any halving (Debilitated).
     const hp = s.attributes.hp;
     hp.base = this.parent?._source?.system?.attributes?.hp?.max ?? hp.max;
-    hp.parts = [{ label: "Levels", value: hp.base }, ...mods.parts("hp.max"), ...mods.parts("hp.level").map(p => ({ label: `${p.label} (x${s.level})`, value: p.value * s.level }))];
+    hp.parts = [{ label: "Levels", value: hp.base }, ...mods.parts("hp.max"), ...mods.parts("hp.level").map(p => ({ label: `${p.label} (x${s.level})`, value: p.value * s.level })),
+      // Drained Constitution (the Codex, Drain Effects): Max HP follows the modifier for every level. Burned Constitution doesn't.
+      ...(s.abilities.con.drainMod ? [{ label: `Constitution drained (x${s.level})`, value: s.abilities.con.drainMod * s.level }] : [])];
     const hpMult = mods.mult("hp.mult");
     hp.raw = hp.parts.reduce((t, p) => t + p.value, 0);
     hp.mult = hpMult;
@@ -266,7 +285,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       s.servant = null; s.favour = ""; s.allegiance = { value: "Unaligned", from: "" };
     }
     // Codex, Death & Dying: −10 HP minus the Constitution modifier (−20 from 11th level); a negative modifier counts as 0.
-    s.attributes.deathAt = -(s.level >= 11 ? 20 : 10) - Math.max(0, s.abilities.con.mod);
+    s.attributes.deathAt = -(s.level >= 11 ? 20 : 10) - Math.max(0, s.abilities.con.modUnburned ?? s.abilities.con.mod);
     s.attributes.state = hp.value <= s.attributes.deathAt ? "dead" : hp.value < 0 ? (s.attributes.stable ? "stable" : "dying") : hp.value === 0 ? "stable" : "";
 
     // Spellcasting: each casting class keeps its own slots, DC and caster level.
@@ -481,8 +500,10 @@ export class NpcData extends foundry.abstract.TypeDataModel {
     Object.defineProperty(s, "mods", { value: mods, configurable: true, enumerable: false, writable: true });
     for (const [k, a] of Object.entries(s.abilities)) {
       a.base = a.value;
-      a.total = Math.clamp(a.value + mods.sum(`ability.${k}`), 0, 30);
-      a.mod = ARNEYAN.abilityMod(a.total);
+      const after = abilityAfter(a, mods.sum(`ability.${k}`));
+      a.total = after.total;
+      a.mod = after.mod;
+      a.modUnburned = after.modUnburned;
     }
     s.attributes.initParts = [{ label: "Dex", value: s.abilities.dex.mod }, ...mods.parts("init")];
     s.attributes.init = s.attributes.initParts.reduce((t, p) => t + p.value, 0);

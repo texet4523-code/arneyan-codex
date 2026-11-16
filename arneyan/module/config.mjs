@@ -330,8 +330,9 @@ ARNEYAN.ruleKeys = {
     "ac.base", "crit.range", "dr", "heal.perdie", "speed.fly",
     // The Monk's: AC with no Dexterity while unarmoured, and a base speed lost over the inventory limit.
     "ac.unarmoured", "speed.base",
-    // One more use a day of the named feature (Voice of the Grove: uses.extra.wild-shape).
-    "uses.extra.wild-shape",
+    // One more use of the named feature (Voice of the Grove: uses.extra.wild-shape; the Champion's Twice Challenged:
+    // uses.extra.challenge; the Witch's Curse at 18th: uses.extra.patron-curse).
+    "uses.extra.wild-shape", "uses.extra.challenge", "uses.extra.patron-curse",
     // Passive awareness (books v0.10.10, K2): a flat bonus; surprise: added to it only to notice an ambush;
     // surprise.against: taken off the targets' passive awareness when this creature is among the ambushers;
     // surprise.tier: its Hide counts that many tiers higher against creatures it ambushes (the Assassin's Surprise).

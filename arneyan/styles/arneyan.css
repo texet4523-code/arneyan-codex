@@ -185,6 +185,8 @@
 .arneyan .arn-ability-mod:hover, .arneyan .arn-ability-name:hover { color: var(--arn-accent); }
 .arneyan .arn-ability-score { font-size: 12px; color: var(--arn-muted); background: var(--arn-surface-2); border-radius: 999px; padding: 0 8px; min-width: 2.6em; text-align: center; }
 .arneyan input.arn-ability-score { width: 3.2em; height: 22px; border: 1px solid var(--arn-border); }
+.arneyan .arn-ability-lost { display: flex; align-items: center; gap: 3px; font-size: 10px; color: var(--arn-muted); }
+.arneyan .arn-ability-lost input { width: 2.6em; height: 18px; font-size: 11px; text-align: center; border: 1px solid var(--arn-border); }
 .arneyan .arn-ability.luck { border-color: var(--arn-gold); background: color-mix(in srgb, var(--arn-gold) 10%, var(--arn-surface)); }
 .arneyan .arn-ability.luck .arn-ability-name { color: var(--arn-gold); }
 .arneyan input.arn-luck-value { width: 2.4em; font-size: 22px; font-weight: 700; text-align: center; height: 30px; border: none; background: transparent; padding: 0; }

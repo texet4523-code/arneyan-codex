@@ -11367,5 +11367,35 @@
   "manual": "Use Apply by saves, then set the damage by hand: none on a success, half on a failure.",
   "confidence": "high",
   "approved": "HB v0.10.81 audit (0.10.114)"
+ },
+ "kits/dyinyq8LEyIkfGqO#2": {
+  "name": "Twice Challenged",
+  "from": "Path: Champion (Knight)",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "uses.extra.challenge",
+    "value": 1
+   }
+  ],
+  "summary": "Challenge has two uses an encounter (on different foes).",
+  "manual": "The second Challenge names a different foe.",
+  "confidence": "high",
+  "approved": "0.10.115 (F-R7 B3, Kieran 16 Nov)"
+ },
+ "class-features/3Fc8REh2QoxMQIjX": {
+  "name": "Patron Boon (Curse) improves",
+  "from": "Witch",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "uses.extra.patron-curse",
+    "value": 1
+   }
+  ],
+  "summary": "Your Patron Curse has two uses a day.",
+  "manual": "The target saves against the Curse with Disadvantage. You may use your Physical Change's daily power as well as the Curse.",
+  "confidence": "high",
+  "approved": "0.10.115 (F-R7 B3, Kieran 16 Nov)"
  }
 }
