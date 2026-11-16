@@ -1,6 +1,16 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.114 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.115 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.115
+
+Five things Kieran agreed on 16 Nov (board row F-R7), each from a rule in the books or a Foundry feature made easier.
+
+- **Floors and stairs:** in the Region tools (and on a scene's right-click menu in the Scenes sidebar) are **Add a floor** and **Stairs**. Add a floor puts another map on the scene as the floor above or below; the Map Browser has the same button on every map. Stairs joins an area you've drawn over a staircase to the same spot on another floor, to another area on the map, or to another map: a token that walks into either end comes out at the other. See Floors and stairs below.
+- **Weeks and months:** a feature used once a week or once a month (Cleanse Soul, Sanctuary of Song, Divine Intervention, Divine Will) comes back by itself 7 or 30 game days after you used it. The GM gets a private note when one does.
+- **Casting Under Threat:** when a spellcaster is hurt on their own turn in a fight, a card reminds the table of the rule and offers the Fortitude save (DC 10 or half the damage). Nothing is rolled or lost unless someone clicks.
+- **Burned and drained attributes:** in edit mode each attribute has a **drained** box (a disease, a drain) that comes off the score, and a drained Constitution lowers Max HP. A Sorcerer's Constitution also has **burned**: the Spellburn and Overchannel buttons now ask what you're paying, burn the points (never below 1), and leave HP and the death threshold alone; a long rest gives back 3, or 6 from 6th level.
+- **Second uses:** a Champion's Challenge has two uses an encounter (Twice Challenged) and Champion's Blow two from 17th; a Witch's patron Curse has two a day from 18th.
 
 ## What's new in 0.10.114
 
@@ -1109,7 +1119,8 @@ The Equipment tab has the Catalogue's groups as tabs to flick through (All, Weap
 ## Resting and Exhaustion
 - The Rest button (sidebar) asks where you rest: Safe Haven (largest Hit Die + Con, once per stay), Camp with shelter (Con, minimum 1) or Camp in the open (1 HP). Armour isn't checked: it's assumed to come off for the night, and the GM rules otherwise. A rest removes one level of Exhaustion and refreshes per-day, per-rest and per-encounter abilities and spell slots. Luck never comes back.
 - **Per-encounter uses** also come back when the GM ends the combat (deletes it from the tracker).
-- **Per-week, per-session and per-month uses** are yours to reset: set the uses back on the feature's sheet when the week (or session, or month) has passed.
+- **Per-week and per-month uses** come back with the game clock: 7 or 30 game days after the first use since the feature was full, its uses are full again, and the GM gets a private note. Putting them back by hand works too.
+- **Per-session uses** are yours to reset: set the uses back on the feature's sheet when the session ends.
 - Exhaustion 1-6 (the pips in the sidebar) applies automatically: Disadvantage on Initiative, halved speed, Disadvantage on checks and attacks, halved Max HP, no spellcasting, and death.
 
 ## Chat cards
@@ -1294,6 +1305,9 @@ Click Morale on a monster's sheet, or right-click it in the combat tracker, to r
 ### Acting out of turn
 There are no reactions (books v0.10.25): a feature that says so can be used out of turn, once per round, regained at the start of your turn; Surprised and Incapacitated creatures can't. It isn't tracked. Using a class feature, kit feature or feat used out of turn (a Swashbuckler's Flourish Manoeuvres such as Riposte, Combat Reflexes) posts a short note in chat saying so, once the attack or check has rolled. General manoeuvres such as Attack of Opportunity and Parry, and monster abilities, post no note.
 
+### Casting Under Threat
+When a creature that has spells of 1st level or higher takes damage on its own turn in a running fight, a card asks whether it was casting. If it was (a readied attack, an Attack of Opportunity or another response to the casting), the button rolls the Fortitude save, DC 10 or half the damage: on a failure the spell is lost with its slot. A creature that drops loses the spell with no save. Damage never costs a cantrip, and nothing happens unless someone clicks.
+
 ### Effects that last the encounter
 Commands, Exalt and other effects the books say last "for the encounter" end when the encounter does (the combat is deleted), on every creature in it; one applied out of combat ends with the next encounter to end. A rage switches off then too. The first attack against a creature each round with Disadvantage (a shield used defensively, Evasive Manoeuvre, Arcane Cascade) is counted from that round's attack cards.
 
@@ -1316,6 +1330,10 @@ Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jam
 **Hazards and traps.** Create an Actor of type "Hazard or trap". Its sheet holds how to spot it (a Wisdom check and DC), how to disarm it (an attribute check or a skill, and DC), what triggers it, what it does (an attack, a save with damage and a condition), its reset or routine, and its AC, Hardness and HP if someone smashes it. "Ask the party" posts a group roll to spot or disarm it. "Trigger it" posts a card with the attack, save and damage buttons; the damage card has the usual Apply and Apply by saves buttons. A complex hazard rolls initiative and shows its routine on its turn.
 
 **Environmental hazards.** The thermometer in the Token tools opens the clocks for holding your breath (and drowning), extreme heat and extreme cold, for the selected tokens or the whole party. The breath clock moves on with each combat round (or Next round): it counts down each creature's breath (1 + Constitution modifier minutes, at least 30 seconds), then the rounds until it falls unconscious at 0 HP, then dying. Rough water adds a Strength check each round. Heat and cold post each hour's Fortitude save (DC 10, +2 an hour) as a group roll, with Disadvantage for medium or heavy armour in the heat and Advantage for warm clothing, a fire or shelter in the cold; a button gives those who failed a level of Exhaustion. Quick cards cover flames, smoke, acid and lava, a fall (it asks how far and whether the faller could react: 1d6 per 10ft to 20d6, a Reflex save of DC 10, +1 for each 10ft beyond the first, for half, and Prone), and the Codex's common diseases and venoms with their saves.
+
+**Floors and stairs.** Foundry keeps several floors (Levels) on one scene and can send a token from one area to another; these two buttons set that up. They are in the Region tools on the left and on a scene's right-click menu in the Scenes sidebar.
+- **Add a floor:** give the floor a name and its map (the folder button browses your Data), above or below the others. The Map Browser's layers button on any map does the same for the scene you're looking at. Use maps of the same size so the walls line up. Switch between floors from the scene's level controls.
+- **Stairs:** first draw a box over the staircase with Foundry's Region tools. Then press Stairs, pick that area, and pick where it leads: the same spot on another floor (the other end is made for you), another area on this map, or another map (a new arrival area is put in its middle for you to drag into place, or pick an area already there). Tick the box to ask the player before the token moves. Making stairs again from the same area replaces the old link at both ends.
 
 **Reaction Check.** The handshake in the Token tools rolls 2d6 plus the Charisma modifier of whoever takes the lead (a party member, or a selected character) and any modifier you add, and reads the result: Hostile, Unfriendly, Neutral, Friendly or Helpful. Only the GM sees it unless you untick the box.
 
