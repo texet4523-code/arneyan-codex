@@ -346,7 +346,7 @@ ARNEYAN.ruleKeys = {
   "Multipliers and limits": ["speed.mult", "hp.mult", "no.cast", "no.act", "no.reactions"],
   // Value n: the weapon's own damage dice showing n or less are rolled again once (2: Crushing Blow's 1s and 2s).
   // unarmed.dice: dice ("1d8") an Unarmed Strike uses instead of its own when bigger (Monk's Hand-to-Hand Combat).
-  "Weapon dice": ["damage.reroll", "unarmed.dice"],
+  "Weapon dice": ["damage.reroll", "unarmed.dice", "heal.reroll"],
   "Advantage (+1) or Disadvantage (-1)": ["adv.attack", "adv.attack.melee", "adv.attack.ranged", "adv.attack.first", "adv.attack.first.melee", "adv.save", "adv.save.fort", "adv.save.ref", "adv.save.will",
     "adv.check", "adv.check.str", "adv.check.dex", "adv.check.con", "adv.check.int", "adv.check.wis", "adv.check.cha", "adv.skill", "adv.init", "adv.luck", "adv.concentration",
     "adv.awareness", "adv.surprise"],

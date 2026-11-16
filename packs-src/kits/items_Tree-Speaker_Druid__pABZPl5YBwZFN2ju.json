@@ -22,11 +22,40 @@
      "per": "day"
     },
     "save": "",
+    "activities": [
+     {
+      "name": "Entangle (no slot)",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per day, cast Entangle without expending a slot: cast it from your Spells tab and don't mark the slot.",
+      "minLevel": 9,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "day",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ],
     "rules": [
      {
       "key": "adv.check",
       "value": "1",
-      "when": "Language of the Wilderlands with trees and plant life",
+      "when": "to speak with, calm or bargain with trees and plants",
       "label": ""
      },
      {
@@ -53,7 +82,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "communing with, identifying or negotiating with ancient or sentient plant life",
+      "when": "to commune with, identify or bargain with ancient or sentient plants",
       "label": ""
      }
     ],

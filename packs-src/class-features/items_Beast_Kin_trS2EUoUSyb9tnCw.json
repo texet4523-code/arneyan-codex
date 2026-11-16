@@ -20,7 +20,36 @@
   "dc": null,
   "damage": "",
   "level": 4,
-  "className": "Druid"
+  "className": "Druid",
+  "activities": [
+   {
+    "name": "Send beasts and plants away",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "As your action: natural beasts and plant creatures within 60ft whose Level is no more than half yours make a Will save against your Class Save DC or leave, and do not return while you remain.",
+    "minLevel": 9,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "encounter",
+    "target": "area",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
  },
  "effects": [],
  "folder": "ZG8DQdeeseEzUuh9",

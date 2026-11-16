@@ -1,6 +1,18 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.113 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.114 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.114
+
+An audit of the automation against Handbook v0.10.81, and four additions to the GM's tools.
+
+- **Encounter Builder:** **Fit to the party** (Easy, Hard or Deadly) keeps your mix of foes and sets how many of each the party's budget takes. **Place and start the fight** places them, adds them and the party's tokens on the scene to the tracker, and begins the fight.
+- **Reaction Check:** a new button in the Token tools (the handshake) rolls 2d6 plus the lead character's Charisma modifier and reads the result off the Codex's table, for the GM's eyes only unless you untick it.
+- **Falls, diseases and venoms:** the Environmental hazards window has a card for a fall (it asks how far: 1d6 per 10ft, the Reflex save for half, Prone) and for the Codex's common diseases and venoms (Cave Rot, Wound Fever, Red Waste Fever, and weak, paralytic, sleep and necrotic venom), each with its save.
+- **Monster spells:** every spell named on a monster's Spellcasting or Innate line is a link to the spell again (Monsters & Treasure now prints them without italics). Monsters already in your world keep their text; drag a fresh one from the Bestiary for the links.
+- **Druid:** Beast Kin's 9th-level power has its Will save button; the Grove Healer's Forest Vigour rerolls 1s on healing spells' dice by itself and offers its free Cure Serious Wounds at 9th; Voice of the Grove offers its free Entangle; Urban Swarm, Fey Warding, Verdant Power, Ancestor's Fury (1d8 from 9th) and the other circle reminders read as the book does now.
+- **Witch:** Scapegoat has its Will save button; the Cauldron of the Ninth Moon reads as the book does (about once a season, once a month from 24th); the Hex buttons name Twin Hex and the 24th-level Disadvantage; the Frostmother's, Grigsdotter's, Mother Loretta's and the Drowned Widow's powers match the book (the encounter, 2d6 and 4d6 from 13th).
+- **Also:** the Rogue's Evasion is a reminder on saves; Tiandra's Summer's Blessing rolls its healing; the world update report no longer carries a list of one update's changes, and names what changed on each character as before.
 
 ## What's new in 0.10.113
 
@@ -1154,6 +1166,8 @@ Following Carrying in the Codex and the Catalogue's magic item rules.
 ## Encounters
 - The combat tracker shows the encounter's budget for the GM: points spent against the party's budget and whether it is easy, hard or deadly, using the Monsters & Treasure rules (Level ladder, crowds, solos, too-strong warnings).
 - The **Encounter Builder** (scales button in the tracker, or Encounter on the party sheet): drag monsters in (or use its Bestiary button), set how many, watch the cost, then place them on the current scene, hostile.
+- **Fit to the party** (Easy, Hard or Deadly) keeps the mix of foes in the list and sets how many of each the party's budget takes: half the budget, the budget, or twice it. Solos keep their count, and every foe keeps at least one.
+- **Place and start the fight** places the foes, adds them and the party's tokens on the scene to the combat tracker and begins the fight. If a fight is already running on the scene, the newcomers join it.
 
 ## Storage places
 
@@ -1301,7 +1315,9 @@ Attack cards check the gun's Misfire Threshold from the Catalogue. A misfire jam
 
 **Hazards and traps.** Create an Actor of type "Hazard or trap". Its sheet holds how to spot it (a Wisdom check and DC), how to disarm it (an attribute check or a skill, and DC), what triggers it, what it does (an attack, a save with damage and a condition), its reset or routine, and its AC, Hardness and HP if someone smashes it. "Ask the party" posts a group roll to spot or disarm it. "Trigger it" posts a card with the attack, save and damage buttons; the damage card has the usual Apply and Apply by saves buttons. A complex hazard rolls initiative and shows its routine on its turn.
 
-**Environmental hazards.** The thermometer in the Token tools opens the clocks for holding your breath (and drowning), extreme heat and extreme cold, for the selected tokens or the whole party. The breath clock moves on with each combat round (or Next round): it counts down each creature's breath (1 + Constitution modifier minutes, at least 30 seconds), then the rounds until it falls unconscious at 0 HP, then dying. Rough water adds a Strength check each round. Heat and cold post each hour's Fortitude save (DC 10, +2 an hour) as a group roll, with Disadvantage for medium or heavy armour in the heat and Advantage for warm clothing, a fire or shelter in the cold; a button gives those who failed a level of Exhaustion. Quick cards cover flames, smoke, acid and lava.
+**Environmental hazards.** The thermometer in the Token tools opens the clocks for holding your breath (and drowning), extreme heat and extreme cold, for the selected tokens or the whole party. The breath clock moves on with each combat round (or Next round): it counts down each creature's breath (1 + Constitution modifier minutes, at least 30 seconds), then the rounds until it falls unconscious at 0 HP, then dying. Rough water adds a Strength check each round. Heat and cold post each hour's Fortitude save (DC 10, +2 an hour) as a group roll, with Disadvantage for medium or heavy armour in the heat and Advantage for warm clothing, a fire or shelter in the cold; a button gives those who failed a level of Exhaustion. Quick cards cover flames, smoke, acid and lava, a fall (it asks how far and whether the faller could react: 1d6 per 10ft to 20d6, a Reflex save of DC 10, +1 for each 10ft beyond the first, for half, and Prone), and the Codex's common diseases and venoms with their saves.
+
+**Reaction Check.** The handshake in the Token tools rolls 2d6 plus the Charisma modifier of whoever takes the lead (a party member, or a selected character) and any modifier you add, and reads the result: Hostile, Unfriendly, Neutral, Friendly or Helpful. Only the GM sees it unless you untick the box.
 
 ## Time, companions and travel
 

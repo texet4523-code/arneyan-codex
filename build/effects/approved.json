@@ -2659,7 +2659,7 @@
    }
   ],
   "summary": "Pick one: Disadvantage on attacks, saves or checks for the encounter on a failed Will save.",
-  "manual": "Start-of-turn necrotic damage, repeat saves, no Disadvantage on saves vs the Hex itself, 10 minutes at 24th level.",
+  "manual": "Start-of-turn necrotic damage, the repeat saves, and no Disadvantage on saves against the Hex itself. From 24th (Scapegoat) a creature's first save against your Hex has Disadvantage.",
   "confidence": "medium"
  },
  "class-features/ISiPTJE3KZ0U5ZxJ": {
@@ -3942,7 +3942,7 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "to perceive, communicate with or identify spirits, ancestors and natural extraplanar entities"
+    "when": "to perceive, speak with or identify spirits, ancestors and natural extraplanar beings"
    }
   ],
   "summary": "Advantage on checks (to perceive, communicate with or identify spirits, ancestors and natural extraplanar entities). Shown as reminders.",
@@ -3957,7 +3957,7 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "communing with, identifying or negotiating with ancient or sentient plant life"
+    "when": "to commune with, identify or bargain with ancient or sentient plants"
    }
   ],
   "summary": "Advantage on checks (communing with, identifying or negotiating with ancient or sentient plant life). Shown as reminders.",
@@ -3972,10 +3972,10 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "Nature Lore in old-growth forest"
+    "when": "to find, identify and prepare healing herbs, and to treat poison and disease"
    }
   ],
-  "summary": "Advantage on checks (Nature Lore in old-growth forest). Shown as reminders.",
+  "summary": "Advantage on checks with healing herbs and to treat poison and disease. Shown as reminders.",
   "manual": "",
   "confidence": "high"
  },
@@ -4002,11 +4002,11 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "to identify, counter or dispel magical effects in natural environments"
+    "when": "to identify magic"
    }
   ],
-  "summary": "Advantage on checks (to identify, counter or dispel magical effects in natural environments). Shown as reminders.",
-  "manual": "A caster of lower level than you has Disadvantage on checks to counter or dispel your spells in natural terrain.",
+  "summary": "Advantage on checks to identify magic (a reminder). Dispel Magic is on your Druid list.",
+  "manual": "Add Dispel Magic to your spells.",
   "confidence": "high"
  },
  "kits/rhTGYTzdz1190RhY#0": {
@@ -4017,11 +4017,11 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs charm, enchantment or fey magic in natural terrain"
+    "when": "vs charm, enchantment and fey magic"
    }
   ],
-  "summary": "Advantage on saves (vs charm, enchantment or fey magic in natural terrain). Shown as reminders.",
-  "manual": "",
+  "summary": "Advantage on saves against charm, enchantment and fey magic (a reminder). From 9th, allies within 10ft share it.",
+  "manual": "From 9th level, allies within 10ft of you share it.",
   "confidence": "high"
  },
  "kits/DEtRTFISH0l358nI#0": {
@@ -4030,13 +4030,14 @@
   "container": "passive",
   "rules": [
    {
-    "key": "heal.perdie",
-    "value": "9:1"
+    "key": "heal.reroll",
+    "value": 1
    }
   ],
-  "summary": "+1 HP per healing die on healing spells you cast, from 9th level. Updated for books v0.10.58.",
-  "manual": "Reroll 1s on the healing dice of spells you cast.",
-  "confidence": "high"
+  "summary": "1s on the healing dice of spells you cast are rerolled once.",
+  "manual": "",
+  "confidence": "high",
+  "approved": "HB v0.10.81 audit (0.10.114): reroll 1s replaces the old +1 per die"
  },
  "kits/UGjKmpWCrGYm4ojI#1": {
   "name": "Horizon Reader",
@@ -4046,7 +4047,7 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "Nature Lore in a region after a full day there"
+    "when": "Nature Lore in any kind of country after a full day in it"
    }
   ],
   "summary": "Advantage on checks (Nature Lore in a region after a full day there). Shown as reminders.",
@@ -4072,19 +4073,13 @@
   "name": "Urban Swarm",
   "from": "City Druid (Druid)",
   "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "Dismiss Woodland Creatures vs creatures in or beneath a city"
-   }
-  ],
-  "summary": "Advantage on Dismiss Woodland Creatures checks in or under a city, as a reminder. In a town or city, Rats and Pigeons on one creature of your choice you hit with a spell each round: Disadvantage on its next attack roll. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "Rats and Pigeons should end after its next attack roll (remove it then); only in a town or city.",
+  "rules": [],
+  "summary": "Once each round, a creature your spell damages or that fails a save against it has Disadvantage on its next attack roll (apply Urban Swarm to it); from 9th its speed is halved too.",
+  "manual": "Remove Urban Swarm after the creature's next attack roll. Not in the open sea, bare ice or a sealed vault.",
   "confidence": "medium",
   "applies": [
    {
-    "name": "Rats and Pigeons",
+    "name": "Urban Swarm",
     "target": "target",
     "rounds": 1,
     "statuses": [],
@@ -4105,11 +4100,11 @@
    {
     "key": "spell.damage",
     "value": "+@abilities.wis.mod",
-    "when": "to one target of a damage-dealing spell"
+    "when": "once each round, to one creature a spell of yours damages (two creatures from 9th)"
    }
   ],
   "summary": "Reminder: +Wis modifier bonus damage to one target of a damage-dealing spell.",
-  "manual": "Text says one target only: drop the extra from other targets of area spells.",
+  "manual": "One creature only (two from 9th): drop the extra from an area spell's other targets.",
   "confidence": "medium"
  },
  "kits/pABZPl5YBwZFN2ju#0": {
@@ -4120,15 +4115,15 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "Language of the Wilderlands with trees and plant life"
+    "when": "to speak with, calm or bargain with trees and plants"
    },
    {
     "key": "uses.extra.wild-shape",
     "value": 1
    }
   ],
-  "summary": "Advantage on checks (Language of the Wilderlands with trees and plant life). Shown as reminders.",
-  "manual": "Extra Wild Shape use.",
+  "summary": "One extra Wild Shape a day; Advantage on checks with trees and plants (a reminder).",
+  "manual": "",
   "confidence": "high"
  },
  "kits/rhTGYTzdz1190RhY#1": {
@@ -4139,7 +4134,7 @@
    {
     "key": "adv.check",
     "value": 1,
-    "when": "communicating with or identifying deep forest creatures"
+    "when": "to speak with or identify creatures of the deep forest"
    }
   ],
   "summary": "Advantage on checks (communicating with or identifying deep forest creatures). Shown as reminders.",
@@ -11356,5 +11351,20 @@
   "manual": "Once a day, in shadow: Invisible until the end of your next turn. A Smite you make while Hidden doesn't reveal you.",
   "confidence": "high",
   "approved": "HB v0.10.80 (B-F74)"
+ },
+ "class-features/nOp0AU9bIH8n7Zb8": {
+  "name": "Evasion",
+  "from": "Rogue",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "note.save",
+    "value": "Evasion: on a Reflex save against an effect that deals half damage on a success, you take none on a success and half on a failure."
+   }
+  ],
+  "summary": "A reminder on your saves: no damage on a successful Reflex save for half, half on a failure.",
+  "manual": "Use Apply by saves, then set the damage by hand: none on a success, half on a failure.",
+  "confidence": "high",
+  "approved": "HB v0.10.81 audit (0.10.114)"
  }
 }

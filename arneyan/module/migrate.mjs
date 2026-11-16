@@ -1052,6 +1052,22 @@ export function kitLevelsOf(actors) {
 }
 
 /**
+ * A class's granted features whose level the Handbook moved, for a character of this class level. `lower`: features
+ * that now come earlier take the new level. `later`: features the character already has (their old level reached)
+ * that now come later than the character's level; their level rises and the GM is told. Pure, for tests.
+ * @param {Iterable<object>} items the actor's items  @param {{uuid:string, level:number}[]} list the class's features now
+ * @returns {{lower: {id:string, name:string, level:number}[], later: {id:string, name:string, level:number}[]}}
+ */
+export function featureLevelMoves(items, list, level, classId) {
+  const flag = (i, k) => i?.flags?.[SYS]?.[k];
+  const at = new Map((list ?? []).map(f => [f.uuid, Number(f.level) || 1]));
+  const mine = [...(items ?? [])].filter(i => flag(i, "grantedBy") === classId && at.has(flag(i, "source")));
+  const now = i => at.get(flag(i, "source")), was = i => Number(i.system?.level) || 1;
+  const row = i => ({ id: i.id ?? i._id, name: i.name, level: now(i) });
+  return { lower: mine.filter(i => now(i) < was(i)).map(row), later: mine.filter(i => now(i) > level && was(i) <= level).map(row) };
+}
+
+/**
  * 0.10.65: classes and kits on sheets take the books' new feature levels (B7: every core feature by 5th), once.
  * - A class's feature list becomes the compendium's (homebrew entries kept, the two features the books dropped
  *   removed); the list it had is kept in flags.arneyan.featuresBefore, marked with the rework's version
@@ -1098,16 +1114,15 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         const added = only.size ? await grant.cls(actor, cls, only) : [];
         if (added?.length) (notes.classAdded[actor.name] ??= []).push(...added);
         // Features already here that now come earlier take their new level.
-        const at = new Map(list.map(f => [f.uuid, Number(f.level) || 1]));
-        const lower = actor.items.filter(i => flag(i, "grantedBy") === cls.id && at.has(flag(i, "source")) && at.get(flag(i, "source")) < (Number(i.system?.level) || 1))
-          .map(i => ({ _id: i.id, "system.level": at.get(flag(i, "source")) }));
+        const moves = featureLevelMoves(actor.items, list, level, cls.id);
+        const lower = moves.lower.map(m => ({ _id: m.id, "system.level": m.level }));
         if (lower.length) await actor.updateEmbeddedDocuments("Item", lower, { arneyanMigration: true });
         // Features that now come later than the character's level (HB v0.10.76: the Wizard's Spell Mastery, 13th to 24th):
         // their level rises, and the GM is told (they stay on the sheet until he removes them).
-        const later = actor.items.filter(i => flag(i, "grantedBy") === cls.id && at.has(flag(i, "source")) && at.get(flag(i, "source")) > level && (Number(i.system?.level) || 1) <= level);
+        const later = moves.later;
         if (later.length) {
-          await actor.updateEmbeddedDocuments("Item", later.map(i => ({ _id: i.id, "system.level": at.get(flag(i, "source")) })), { arneyanMigration: true });
-          (notes.classLater[actor.name] ??= []).push(...later.map(i => `${i.name} (now level ${at.get(flag(i, "source"))})`));
+          await actor.updateEmbeddedDocuments("Item", later.map(m => ({ _id: m.id, "system.level": m.level })), { arneyanMigration: true });
+          (notes.classLater[actor.name] ??= []).push(...later.map(m => `${m.name} (now level ${m.level})`));
         }
         const gone = actor.items.filter(i => flag(i, "grantedBy") === cls.id && DROPPED_FEATURES.has(flag(i, "source"))).map(i => i.name);
         if (gone.length) (notes.classGone[actor.name] ??= []).push(...gone);
@@ -1302,11 +1317,11 @@ export async function runMigration({ force = false, legacy = null } = {}) {
     const content = `<div class="arn-card"><p><strong>Arneyan ${esc(version)}:</strong> ${head}</p>`
       + (any ? `<p class="arn-card-meta">Rules, effects, uses, activities, saves, damage and areas now match the compendium, and descriptions take the new layout where their words are unchanged. Names, reworded descriptions and uses left stay. Tick "Keep my edits" on an item to stop updates changing it.</p>` : "")
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
-      + (classAdded.length ? `<p><strong>New class features</strong> (from the Handbook since this world last updated its classes; this update: the HB v0.10.79 and v0.10.80 reworks of the Ranger, Necromancer, Artificer, Barbarian, Paladin, Swashbuckler and Spellblade). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
+      + (classAdded.length ? `<p><strong>New class features</strong> (from the Handbook since this world last updated its classes). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (phased.length ? `<p><strong>Solos</strong> (Monsters &amp; Treasure v0.10.75): ${esc(nameList(phased.length > 30 ? [...phased.slice(0, 30), `${phased.length - 30} more`] : phased))} now fight in three phases with their phase HP, and take their type's villain actions; Bloodied is gone. Their descriptions are the Bestiary's new ones (any edits of yours there were replaced). Each is a normal creature until you tick <em>Run as solo</em> on its sheet (or in the Encounter Builder).</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
-      + (classGone.length ? `<p><strong>No longer in the books</strong> (cut or folded into another feature; this update: the Swashbuckler's 3rd-level Riposte line (Riposte is now a Flourish option from 1st), Light Feet, Hit and Run and Master Duelist (Improved), the Paladin's Aura of Resolve (now in Auras), Blessed Token, Divine Healing and Smite improves (now in Smite), the Ranger's Hunter's Quarry (now in Marked Prey), the Assassin's Class Skills heading, and the Archer's, Gunslinger's and Spellblade's improved features, now lines in the feature they improve). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (classGone.length ? `<p><strong>No longer in the books</strong> (cut, or folded into another feature, by a Handbook change since this world last updated its classes). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")
       + (left ? `<p>${left} older item${left === 1 ? "" : "s"} left as ${left === 1 ? "it was" : "they were"}; you'll be asked again after the next update.</p>` : "")

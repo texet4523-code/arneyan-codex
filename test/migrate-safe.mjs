@@ -497,3 +497,18 @@ console.log("OK safe world update");
   assert.deepEqual(M.groupsOfWeapons(["Homebrew Thing"], new Set(grp.options.map(o => o.name))), [], "a weapon on no table: the player picks");
   console.log("OK old weapon pick becomes its group");
 }
+
+/* The class rework's level moves (featureLevelMoves): earlier features take their new level; a feature the character
+   has that now comes later than their level rises and is reported; others are left alone. */
+{
+  const it = (id, name, source, level, grantedBy = "cls1") => ({ id, name, system: { level }, flags: { arneyan: { grantedBy, source } } });
+  const list = [{ uuid: "u.a", level: 3 }, { uuid: "u.b", level: 24 }, { uuid: "u.c", level: 5 }, { uuid: "u.d", level: 9 }];
+  const items = [it("a", "Earlier Now", "u.a", 5), it("b", "Spell Mastery", "u.b", 13), it("c", "Unmoved", "u.c", 5),
+    it("d", "Not Reached Before", "u.d", 15), it("e", "Other Class", "u.b", 13, "cls2"), it("f", "Not In The List", "u.z", 2)];
+  const mv = M.featureLevelMoves(items, list, 14, "cls1");
+  assert.deepEqual(mv.lower, [{ id: "a", name: "Earlier Now", level: 3 }, { id: "d", name: "Not Reached Before", level: 9 }]);
+  assert.deepEqual(mv.later, [{ id: "b", name: "Spell Mastery", level: 24 }], "only a feature already reached that now comes later");
+  assert.deepEqual(M.featureLevelMoves(items, list, 24, "cls1").later, [], "nothing is later for a character who has reached it");
+  assert.deepEqual(M.featureLevelMoves([], list, 5, "cls1"), { lower: [], later: [] });
+  console.log("OK feature level moves");
+}

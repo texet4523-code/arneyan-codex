@@ -232,8 +232,23 @@ const QUICK = {
   acidSplash: { label: "Acid splash", damage: "1d6", type: "acid", text: "1d6 acid damage." },
   acidBath: { label: "Acid immersion", damage: "2d6", type: "acid", text: "2d6 acid damage per round. Nonmagical metal gear exposed for a full round is ruined (the GM decides how badly)." },
   lavaTouch: { label: "Touching lava", damage: "4d6", type: "fire", text: "4d6 fire damage per round." },
-  lavaBath: { label: "Immersed in lava", damage: "10d6", type: "fire", text: "10d6 fire damage per round, and you catch fire.", cond: "burning" }
+  lavaBath: { label: "Immersed in lava", damage: "10d6", type: "fire", text: "10d6 fire damage per round, and you catch fire.", cond: "burning" },
+  fall: { label: "A fall", fall: true, text: "1d6 per 10ft fallen (20d6 at most), and the faller lands Prone. With a chance to react, a Reflex save (DC 10, +1 for each 10ft beyond the first) halves it." },
+  // Disease & Poison: Common Examples (The Arneyan Codex).
+  caveRot: { label: "Disease: Cave Rot", save: "fort", dc: 12, text: "Fortitude save (DC 12) or lose 1d4 points of Constitution; lost points return at 1 per full rest, but a second failed save within a week means the loss lasts until the disease is cured." },
+  woundFever: { label: "Disease: Wound Fever", save: "fort", dc: 13, text: "Fortitude save (DC 13) 24 hours after taking damage from a dirty wound, or gain one level of Exhaustion per day until treated." },
+  redWaste: { label: "Disease: Red Waste Fever", save: "fort", dc: 14, text: "Fortitude save (DC 14) or Disadvantage on all checks and half movement speed for 1 week." },
+  weakVenom: { label: "Venom: weak", save: "fort", dc: 10, text: "Common vermin, minor traps. Fortitude save (DC 10) or Poisoned (1d6 a turn until the save) and one level of Exhaustion.", cond: "poisoned", condValue: 1 },
+  paralytic: { label: "Venom: paralytic", save: "fort", dc: 13, text: "Larger spiders, certain snakes. Fortitude save (DC 13) or Paralysed for 1 minute; repeat the save each round to end it early.", cond: "paralysed" },
+  sleepVenom: { label: "Venom: sleep", save: "fort", dc: 12, text: "Fortitude save (DC 12) or unconscious for 1d4 hours, waking early if damaged.", cond: "unconscious" },
+  necroticVenom: { label: "Venom: necrotic", save: "fort", dc: 15, text: "Undead-adjacent creatures. Fortitude save (DC 15) or Poisoned (1d6 a turn until the save), and the wound will not naturally heal until magically treated.", cond: "poisoned", condValue: 1 }
 };
+
+/** A fall's numbers (the Codex): 1d6 per 10ft, 20d6 at most; the Reflex DC is 10, +1 for each 10ft beyond the first. */
+export function fallNumbers(feet) {
+  const tens = Math.floor((Number(feet) || 0) / 10);
+  return { dice: Math.min(20, Math.max(0, tens)), dc: 10 + Math.max(0, tens - 1) };
+}
 
 const heavyArmour = a => a.items?.some(i => i.type === "armour" && i.system.equipped && ["medium", "heavy"].includes(i.system.category));
 const resists = (a, type) => [...(a.system.traits?.resist ?? []), ...(a.system.traits?.immune ?? [])].some(x => String(x).split(/\s+/)[0] === type);
@@ -352,12 +367,27 @@ export class EnvironmentTimers extends HandlebarsApplicationMixin(ApplicationV2)
   }
 
   static async #quick(event, target) {
-    const q = QUICK[target.dataset.id];
+    let q = QUICK[target.dataset.id];
     if (!q) return;
+    if (q.fall) {
+      // How far, and whether the faller could react (a save for half).
+      const res = await foundry.applications.api.DialogV2.prompt({
+        window: { title: "A fall", icon: "fa-solid fa-person-falling" }, classes: ["arneyan", "arn-gm-dialog"], position: { width: 340 },
+        content: `<div class="form-group"><label>Feet fallen</label><input type="number" name="feet" value="20" min="10" step="10" autofocus></div>
+          <div class="form-group"><label><input type="checkbox" name="react" checked> Had a chance to react (Reflex save for half)</label></div>`,
+        ok: { label: "Post", icon: "fa-solid fa-person-falling", callback: (ev, button) => ({ feet: Number(button.form.elements.feet.value) || 0, react: button.form.elements.react.checked }) },
+        rejectClose: false
+      }).catch(() => null);
+      if (!res) return;
+      const f = fallNumbers(res.feet);
+      if (!f.dice) return ui.notifications.info("A fall of less than 10ft deals no damage.");
+      q = { label: `A ${res.feet}ft fall`, damage: `${f.dice}d6`, type: "bludgeoning", cond: "prone", ...(res.react ? { save: "ref", dc: f.dc } : {}),
+        text: `${f.dice}d6 bludgeoning damage, and the faller lands Prone.${res.react ? ` A Reflex save (DC ${f.dc}) halves it: use Apply by saves on the damage card.` : " Caught off guard: no save."}` };
+    }
     const btns = [];
     if (q.save) btns.push(`<button type="button" class="arn-save-btn" data-save="${q.save}" data-dc="${q.dc}" data-source="${esc(q.label)}"><i class="fa-solid fa-shield-halved"></i> ${ARNEYAN.saves[q.save].label} save, DC ${q.dc}</button>`);
     if (q.damage) btns.push(`<button type="button" class="arn-env-damage" data-formula="${q.damage}" data-type="${q.type}" data-label="${esc(q.label)}"><i class="fa-solid fa-fire"></i> ${q.damage} ${q.type} damage</button>`);
-    const cond = q.cond && ARNEYAN.conditions?.[q.cond] ? ` @Condition[${q.cond}]{${ARNEYAN.conditions[q.cond].name}}` : "";
+    const cond = q.cond && ARNEYAN.conditions?.[q.cond] ? ` @Condition[${q.cond}${q.condValue ? `|${q.condValue}` : ""}]{${ARNEYAN.conditions[q.cond].name}}` : "";
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ alias: q.label }),
       content: `<div class="arn-card arn-env-card"><header class="arn-card-title"><img src="${ENV_IMG}" alt=""> <span>${esc(q.label)}</span></header><p>${esc(q.text)}${cond}</p><div class="arn-card-buttons">${btns.join("")}</div></div>`

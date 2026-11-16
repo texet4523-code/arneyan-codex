@@ -204,7 +204,7 @@ const vp = kits.find(k => k.name === "Arcane Grove (Druid)").system.features.fin
 assert.ok(vp.rules.length && vp.rules.every(r => r.when), "Verdant Power is a reminder, not every spell damage roll");
 const druid = makeActor(CharacterData, "character", { abilities: { wis: { value: 16 } } }, [makeItem(IM.AbilityData, "ability", "Verdant Power", { rules: vp.rules })]);
 assert.equal(druid.system.mods.damage("spell.damage").length, 0, "no bonus on the roll");
-assert.ok(druid.system.mods.notesFor("damage").some(n => n.includes("Verdant Power") && n.includes("one target")), "a note on the damage card");
+assert.ok(druid.system.mods.notesFor("damage").some(n => n.includes("Verdant Power") && n.includes("one creature")), "a note on the damage card");
 
 /* ---------------- 9. Stun Attack: 1 round, 1d4 from 10th (the Ki pool's default from books v0.10.38) ---------------- */
 const stun = byName(packItems("class-features"), "Ki", "Monk").system;

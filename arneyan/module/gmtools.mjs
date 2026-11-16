@@ -401,6 +401,53 @@ function registerXpSpend() {
 /*  Registration                                */
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+/*  Reaction Check (The Arneyan Codex)          */
+/* -------------------------------------------- */
+
+/** What a Reaction Check's total means: 2 or less Hostile, 3-5 Unfriendly, 6-8 Neutral, 9-11 Friendly, 12+ Helpful. */
+export function reactionBand(total) {
+  const t = Number(total) || 0;
+  if (t <= 2) return { id: "hostile", label: "Hostile", text: "Attacks immediately or calls for help." };
+  if (t <= 5) return { id: "unfriendly", label: "Unfriendly", text: "Suspicious, uncooperative, looking for a reason to refuse." };
+  if (t <= 8) return { id: "neutral", label: "Neutral", text: "Willing to listen, no particular inclination either way." };
+  if (t <= 11) return { id: "friendly", label: "Friendly", text: "Favourably disposed, willing to help within reason." };
+  return { id: "helpful", label: "Helpful", text: "Actively goes out of their way to assist." };
+}
+
+/** Roll a Reaction Check: 2d6 + the lead character's Charisma modifier (and anything the GM adds). GM only. */
+export async function reactionCheckDialog() {
+  if (!game.user.isGM) return ui.notifications.warn("Reaction Checks are the GM's to roll.");
+  const party = partyMembers();
+  const picked = (canvas.tokens?.controlled ?? []).map(t => t.actor).filter(a => a?.type === "character" && !party.includes(a));
+  const leads = [...party, ...picked];
+  const mod = a => Number(a.system?.abilities?.cha?.mod) || 0;
+  const sign = n => (n >= 0 ? `+${n}` : `${n}`);
+  const content = `<div class="form-group"><label>Who takes the lead</label><select name="lead">${leads.map(a => `<option value="${a.uuid}">${esc(a.name)} (Charisma ${sign(mod(a))})</option>`).join("")}<option value="">No one (no modifier)</option></select></div>
+    <div class="form-group"><label>Other modifier</label><input type="number" name="extra" value="0" step="1"></div>
+    <div class="form-group"><label><input type="checkbox" name="secret" checked> Only the GM sees the result</label></div>
+    <p class="arn-help">2d6 + the lead's Charisma modifier, the first time the party meets someone whose response isn't decided yet. A Background Story Bonus is yours to rule on.</p>`;
+  const res = await foundry.applications.api.DialogV2.prompt({
+    window: { title: "Reaction Check", icon: "fa-solid fa-handshake" }, classes: ["arneyan", "arn-gm-dialog"], position: { width: 380 }, content,
+    ok: { label: "Roll", icon: "fa-solid fa-dice", callback: (ev, button) => { const f = button.form.elements; return { lead: f.lead.value, extra: Number(f.extra.value) || 0, secret: f.secret.checked }; } },
+    rejectClose: false
+  }).catch(() => null);
+  if (!res) return null;
+  const lead = res.lead ? leads.find(a => a.uuid === res.lead) : null;
+  const bonus = (lead ? mod(lead) : 0) + res.extra;
+  const roll = await new Roll(`2d6 + ${bonus}`).evaluate();
+  const band = reactionBand(roll.total);
+  const parts = [`2d6 (${roll.dice[0].results.map(r => r.result).join(" + ")})`, ...(lead ? [`${esc(lead.name)}'s Charisma ${sign(mod(lead))}`] : []), ...(res.extra ? [`modifier ${sign(res.extra)}`] : [])];
+  await ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ alias: "Reaction Check" }), rolls: [roll], sound: CONFIG.sounds.dice,
+    ...(res.secret ? { whisper: game.users.filter(u => u.isGM).map(u => u.id) } : {}),
+    content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-handshake"></i> <span>Reaction Check</span></header>
+      <div class="arn-card-result"><span class="arn-total">${roll.total}</span><span class="arn-target"><strong>${band.label}</strong></span></div>
+      <p>${band.text}</p><p class="arn-card-meta">${parts.join(", ")}</p></div>`
+  });
+  return { total: roll.total, band };
+}
+
 function sceneControls(controls) {
   if (!game.user?.isGM) return;
   const tokens = controls.tokens ?? controls.token ?? Object.values(controls).find(c => c?.name === "tokens");
@@ -408,12 +455,13 @@ function sceneControls(controls) {
   const n = Object.keys(tokens.tools).length;
   const add = (name, title, icon, fn, i) => { tokens.tools[name] = { name, title, icon, order: n + i, button: true, visible: true, onChange: () => fn() }; };
   add("arnAskRoll", "Ask for a roll (party or selected tokens)", "fa-solid fa-dice-d20", () => askRollDialog(), 1);
-  add("arnEnvironment", "Environmental hazards: breath, drowning, heat and cold", "fa-solid fa-temperature-half", () => EnvironmentTimers.open(), 2);
+  add("arnEnvironment", "Environmental hazards: breath, drowning, heat and cold, falls, diseases and venoms", "fa-solid fa-temperature-half", () => EnvironmentTimers.open(), 2);
+  add("arnReaction", "Reaction Check (2d6 + the lead's Charisma)", "fa-solid fa-handshake", () => reactionCheckDialog(), 3);
 }
 
 export function registerGmTools() {
   Object.assign(game.arneyan, {
-    askRoll: askRollDialog, askForRoll, awardXp: awardXpDialog,
+    askRoll: askRollDialog, askForRoll, awardXp: awardXpDialog, reactionCheck: reactionCheckDialog,
     treasure: { roll: postTreasure, forActor: treasureForActor, forFoes: treasureForFoes, parse: parseTreasureCode },
     environment: () => EnvironmentTimers.open()
   });

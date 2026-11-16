@@ -496,7 +496,7 @@ export class ModSet {
       return;
     }
     // Weapon damage dice rerolled at or below the value (Crushing Blow): a flag, not a damage term.
-    if (key === "damage.reroll") return this.#push(this.flags, key, { label: r.label, value: evalNumber(r.value, r.data) });
+    if (key === "damage.reroll" || key === "heal.reroll") return this.#push(this.flags, key, { label: r.label, value: evalNumber(r.value, r.data) });
     if (Object.hasOwn(this.traits, key)) {
       for (const v of String(r.value ?? "").split(",").map(x => x.trim().toLowerCase()).filter(Boolean)) {
         this.traits[key].push({ value: v, label: r.label });
@@ -606,8 +606,8 @@ export class ModSet {
   }
 
   /** Damage dice rerolled at or below this (the highest `damage.reroll`), and who gives it. */
-  reroll() {
-    const list = (this.flags.get("damage.reroll") ?? []).filter(e => e.value >= 1);
+  reroll(key = "damage.reroll") {
+    const list = (this.flags.get(key) ?? []).filter(e => e.value >= 1);
     return { value: list.length ? Math.max(...list.map(e => Math.floor(e.value))) : 0, labels: [...new Set(list.map(e => e.label))] };
   }
 }

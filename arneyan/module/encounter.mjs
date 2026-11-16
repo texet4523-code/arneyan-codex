@@ -103,6 +103,27 @@ export function encounterBudget(partyLevels, foes) {
 }
 
 /**
+ * The list's counts fitted to the party: the same mix of foes (in the proportions the list has now), as many as the
+ * budget takes without passing `ratio` × the party's budget (0.5 easy, 1 hard, 2 deadly). Solos keep their count; every
+ * other foe keeps at least one. Pure, for tests.
+ */
+export function fitCounts(partyLevels, foes, ratio = 1, max = 50) {
+  const out = foes.map(f => ({ ...f }));
+  const open = new Set(out.map((f, i) => i).filter(i => !out[i].solo));
+  if (!partyLevels.length || !open.size) return out;
+  const target = partyLevels.length * ratio;
+  const weight = i => Math.max(1, Number(foes[i].count) || 1);
+  for (const i of open) out[i].count = 1;
+  for (let step = 0; step < 600 && open.size; step++) {
+    // The foe furthest behind its share of the mix goes up by one, if the budget takes it.
+    const i = [...open].sort((a, b) => out[a].count / weight(a) - out[b].count / weight(b) || a - b)[0];
+    out[i].count += 1;
+    if (out[i].count > max || encounterBudget(partyLevels, out).total > target) { out[i].count -= 1; open.delete(i); }
+  }
+  return out;
+}
+
+/**
  * A stat block's No. appearing as dice: "2d6 (lair 20-200)" gives { wild: "2d6", lair: "1d181 + 19" }.
  * A range "4-36" becomes a flat roll across it. Returns null parts it can't read.
  */
@@ -199,6 +220,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       remove: ArneyanEncounterBuilder.#remove,
       clear: ArneyanEncounterBuilder.#clear,
       place: ArneyanEncounterBuilder.#place,
+      placeStart: ArneyanEncounterBuilder.#placeStart,
+      fit: ArneyanEncounterBuilder.#fit,
       rollNumber: ArneyanEncounterBuilder.#rollNumber,
       soloToggle: ArneyanEncounterBuilder.#soloToggle,
       treasure: ArneyanEncounterBuilder.#treasure,
@@ -274,6 +297,16 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     return this._setFoes(f);
   }
   static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
+  /** Fit the counts to the party: easy (half the budget), hard (the budget) or deadly (twice it). */
+  static async #fit(event, target) {
+    const levels = partyMembers().map(a => a.system.level ?? 1);
+    if (!levels.length) return ui.notifications.warn("No party members: put the player characters in the party first.");
+    const ratio = Number(target.dataset.ratio) || 1;
+    const fitted = fitCounts(levels, this.foes, ratio, MAX_PLACE);
+    await this._setFoes(fitted);
+    const b = encounterBudget(levels, fitted);
+    if (b.total > levels.length * ratio) ui.notifications.info(`One of each already costs ${b.total} of ${b.budget} points: ${b.label}.`);
+  }
   static #clear() { return this._setFoes([]); }
 
   /** Roll a group's No. appearing (in the wild, or in its lair with Shift held) and use it as the count. */
@@ -366,6 +399,28 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       await a.update({ "system.details.runSolo": runs[k] }).catch(() => null);
     }
     ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
+    return made;
+  }
+
+  /**
+   * Place the foes, then put them and the party's tokens on this scene into the tracker and begin the fight
+   * (initiative follows the usual rules for a new combat). A fight already running on the scene takes the newcomers.
+   */
+  static async #placeStart() {
+    const made = await ArneyanEncounterBuilder.#place.call(this);
+    const scene = canvas.scene;
+    if (!scene || !made?.length) return;
+    const mine = c => (c.scene?.id ?? c.sceneId ?? scene.id) === scene.id;
+    let combat = game.combats.find(c => mine(c) && c.started) ?? game.combats.find(c => mine(c));
+    combat ??= await getDocumentClass("Combat").create({ scene: scene.id, active: true });
+    const have = new Set(combat.combatants.map(c => c.tokenId));
+    const ids = new Set(partyMembers().map(a => a.id));
+    const heroes = scene.tokens.filter(t => t.actorId && ids.has(t.actorId));
+    const add = [...made, ...heroes].filter(t => !have.has(t.id)).map(t => ({ tokenId: t.id, sceneId: scene.id, actorId: t.actorId, hidden: !!t.hidden }));
+    if (add.length) await combat.createEmbeddedDocuments("Combatant", add);
+    if (!heroes.length) ui.notifications.warn("None of the party's tokens are on this scene: add them to the tracker yourself.");
+    if (!combat.active) await combat.activate?.();
+    if (!combat.started) await combat.startCombat();
   }
 }
 

@@ -22,19 +22,41 @@
      "per": ""
     },
     "save": "",
-    "rules": [
+    "activities": [
      {
-      "key": "adv.check",
-      "value": "1",
-      "when": "Dismiss Woodland Creatures vs creatures in or beneath a city",
-      "label": ""
+      "name": "Urban Swarm",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "One creature that took damage from your spell or failed a save against it has Disadvantage on its next attack roll. {1:, 9:Its speed is also halved until the end of its next turn.} Not in the open sea or on bare ice or in a sealed vault.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "round",
+      "target": "one",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
      }
     ],
+    "rules": [],
     "toggle": false,
     "active": false,
     "applies": [
      {
-      "name": "Rats and Pigeons",
+      "name": "Urban Swarm",
       "target": "target",
       "rounds": "1",
       "statuses": [],

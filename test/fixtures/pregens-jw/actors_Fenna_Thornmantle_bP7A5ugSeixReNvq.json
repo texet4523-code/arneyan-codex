@@ -1036,10 +1036,39 @@
        "per": "day"
       },
       "save": "",
+      "activities": [
+       {
+        "name": "Cure Serious Wounds (no slot)",
+        "kind": "note",
+        "formula": "",
+        "damageType": "",
+        "ability": "",
+        "save": "",
+        "text": "Once per day, cast Cure Serious Wounds without expending a slot: cast it from your Spells tab and don't mark the slot.",
+        "minLevel": 9,
+        "maxLevel": 0,
+        "cost": 0,
+        "per": "day",
+        "target": "",
+        "removeConditions": false,
+        "bonus": "",
+        "count": "",
+        "weapons": "",
+        "disadvantage": "",
+        "disUntil": 0,
+        "damageBonus": "",
+        "noStack": "",
+        "targetLevel": "",
+        "reaction": false,
+        "noDamage": false,
+        "effect": "",
+        "spendAny": false
+       }
+      ],
       "rules": [
        {
-        "key": "heal.perdie",
-        "value": "9:1",
+        "key": "heal.reroll",
+        "value": "1",
         "when": "",
         "label": ""
        }
@@ -1061,7 +1090,7 @@
        {
         "key": "adv.check",
         "value": "1",
-        "when": "Nature Lore in old-growth forest",
+        "when": "to find, identify and prepare healing herbs, and to treat poison and disease",
         "label": ""
        }
       ],
@@ -1093,8 +1122,8 @@
     "className": "Grove Healer (Druid)",
     "rules": [
      {
-      "key": "heal.perdie",
-      "value": "9:1",
+      "key": "heal.reroll",
+      "value": "1",
       "when": "",
       "label": ""
      }
@@ -1106,7 +1135,36 @@
      "value": 1,
      "max": 1,
      "per": "day"
-    }
+    },
+    "activities": [
+     {
+      "name": "Cure Serious Wounds (no slot)",
+      "kind": "note",
+      "formula": "",
+      "damageType": "",
+      "ability": "",
+      "save": "",
+      "text": "Once per day, cast Cure Serious Wounds without expending a slot: cast it from your Spells tab and don't mark the slot.",
+      "minLevel": 9,
+      "maxLevel": 0,
+      "cost": 0,
+      "per": "day",
+      "target": "",
+      "removeConditions": false,
+      "bonus": "",
+      "count": "",
+      "weapons": "",
+      "disadvantage": "",
+      "disUntil": 0,
+      "damageBonus": "",
+      "noStack": "",
+      "targetLevel": "",
+      "reaction": false,
+      "noDamage": false,
+      "effect": "",
+      "spendAny": false
+     }
+    ]
    },
    "flags": {
     "arneyan": {
@@ -1131,7 +1189,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "Nature Lore in old-growth forest",
+      "when": "to find, identify and prepare healing herbs, and to treat poison and disease",
       "label": ""
      }
     ],

@@ -1705,10 +1705,14 @@ export class ArneyanItem extends Item {
       const dice = [...resolved.matchAll(/(\d*)d\d+/gi)].reduce((t, m) => t + (Number(m[1]) || 1), 0);
       if (dice) terms.push({ label: "Per healing die", value: `+${dice * perDie}` });
     }
+    // Forest Vigour and the like (heal.reroll): a healing spell's dice at or below N are rerolled once.
+    const healReroll = heal && this.type === "spell" ? (actor?.mods?.reroll("heal.reroll") ?? { value: 0, labels: [] }) : { value: 0, labels: [] };
+    const base = wounded?.formula ?? this.system.damage;
     return damageRoll({
       actor, item: this, title: `${this.name}: ${heal ? "Healing" : as === "reversed" ? "Damage (reversed)" : as === "undead" ? "Damage to the undead" : "Damage"}`,
-      formula: wounded?.formula ?? this.system.damage, damageType, terms, rollData: this.damageRollData(), hits, misses, crit,
-      notes: heal ? [] : [...(wounded?.note ? [wounded.note] : []), ...(actor?.mods?.notesFor("damage") ?? [])]
+      formula: healReroll.value ? rerollDice(base, healReroll.value) : base, damageType, terms, rollData: this.damageRollData(), hits, misses, crit,
+      notes: heal ? (healReroll.value ? [rerollNote(healReroll.labels, healReroll.value).replace("the weapon's damage dice", "the healing dice")] : [])
+        : [...(wounded?.note ? [wounded.note] : []), ...(actor?.mods?.notesFor("damage") ?? [])]
     });
   }
 

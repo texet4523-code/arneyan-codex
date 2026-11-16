@@ -32,9 +32,16 @@
     </ul>
   </div>
   {{#if foes.length}}
+  <div class="arn-enc-place arn-enc-fit" data-tooltip="Keeps this mix of foes and sets how many of each the party's budget takes. Solos keep their count.">
+    <span class="arn-muted">Fit to the party:</span>
+    <a class="arn-btn small ghost" data-action="fit" data-ratio="0.5">Easy</a>
+    <a class="arn-btn small ghost" data-action="fit" data-ratio="1">Hard</a>
+    <a class="arn-btn small ghost" data-action="fit" data-ratio="2">Deadly</a>
+  </div>
   <div class="arn-enc-place">
     <select class="arn-enc-na" data-tooltip="When placing: use the counts in the list, or roll each group's No. appearing">{{#each naModes}}<option value="{{id}}" {{#if (eq id ../naMode)}}selected{{/if}}>{{label}}</option>{{/each}}</select>
     <button type="button" class="arn-btn" data-action="place"><i class="fa-solid fa-map-location-dot"></i> Place on the current scene</button>
+    <button type="button" class="arn-btn" data-action="placeStart" data-tooltip="Places them, adds them and the party's tokens on this scene to the tracker, and begins the fight"><i class="fa-solid fa-play"></i> Place and start the fight</button>
   </div>
   <div class="arn-enc-place">
     <button type="button" class="arn-btn ghost" data-action="treasure" data-tooltip="Individual treasure for every creature, each kind's hoard once"><i class="fa-solid fa-gem"></i> Roll their treasure</button>

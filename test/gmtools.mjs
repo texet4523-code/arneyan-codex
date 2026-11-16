@@ -513,3 +513,32 @@ for (const f of ["module/gmtools.mjs", "module/treasure.mjs", "module/hazards.mj
 }
 
 console.log("OK gmtools");
+
+/* ---------------- 0.10.114: Reaction Check bands, falls, the Encounter Builder's fit ---------------- */
+{
+  assert.deepEqual([1, 2, 3, 5, 6, 8, 9, 11, 12, 15].map(t => G.reactionBand(t).label),
+    ["Hostile", "Hostile", "Unfriendly", "Unfriendly", "Neutral", "Neutral", "Friendly", "Friendly", "Helpful", "Helpful"], "the Codex's Reaction Check table");
+  // A fall: 1d6 per 10ft to 20d6; Reflex DC 10, +1 for each 10ft beyond the first.
+  assert.deepEqual([5, 10, 25, 60, 200, 500].map(f => H.fallNumbers(f)), [{ dice: 0, dc: 10 }, { dice: 1, dc: 10 }, { dice: 2, dc: 11 }, { dice: 6, dc: 15 }, { dice: 20, dc: 29 }, { dice: 20, dc: 59 }]);
+  const E = await import("../arneyan/module/encounter.mjs");
+  const party = [5, 5, 5, 5];
+  const foes = [{ name: "Orc", level: 5, count: 1 }, { name: "Wolf", level: 3, count: 2 }];
+  for (const ratio of [0.5, 1, 2]) {
+    const fit = E.fitCounts(party, foes, ratio);
+    const b = E.encounterBudget(party, fit);
+    assert.ok(b.total <= party.length * ratio, `fit ${ratio}: within the budget (${b.total})`);
+    assert.ok(fit.every(f => f.count >= 1), "every foe stays in");
+    // One more of anything would pass it.
+    for (let i = 0; i < fit.length; i++) {
+      const more = fit.map((f, k) => (k === i ? { ...f, count: f.count + 1 } : f));
+      assert.ok(E.encounterBudget(party, more).total > party.length * ratio, `fit ${ratio}: nothing more fits (${fit.map(f => f.count)})`);
+    }
+  }
+  assert.ok(E.fitCounts(party, foes, 2)[1].count >= E.fitCounts(party, foes, 2)[0].count, "the mix leans the way the list did");
+  // Solos keep their count; the list isn't changed in place.
+  const solo = [{ name: "Dragon", level: 5, solo: true, count: 1 }, { name: "Kobold", level: 1, count: 3 }];
+  assert.equal(E.fitCounts(party, solo, 2)[0].count, 1);
+  assert.equal(solo[1].count, 3, "pure");
+  assert.deepEqual(E.fitCounts([], foes, 1), foes, "no party: unchanged");
+  console.log("OK reaction bands, falls, fit to the party");
+}

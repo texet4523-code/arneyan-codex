@@ -20,7 +20,36 @@
   "dc": null,
   "damage": "",
   "level": 24,
-  "className": "Witch"
+  "className": "Witch",
+  "activities": [
+   {
+    "name": "Scapegoat",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "When you or an ally you can see within 60ft would take damage, pass it to a creature under your Hex: it makes a Will save. On a failure it takes the damage instead; on a success the damage falls where it was aimed. No action.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "encounter",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
  },
  "effects": [],
  "folder": "1dlV9nfuiRwL22Wo",

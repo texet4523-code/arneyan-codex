@@ -1701,7 +1701,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1712,7 +1712,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1723,7 +1723,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on ability checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1801,8 +1801,8 @@
     "kind": "note",
     "maxLevel": 23,
     "cost": 0,
-    "per": "several months (the GM's conditions)",
-    "text": "A full night uninterrupted, a lunar or seasonal condition the GM sets and rare, costly ingredients. Success gives an effect equal to the Wish spell, with Wish's risk of twisted or partial results, and always leaves a permanent minor mark the GM chooses."
+    "per": "season (a night the GM names)",
+    "text": "On a night the GM names (a moon or a turning of the season, about once a season), brew the Ninth Moon: one effect of Wish cast as a Ritual, with no Exhaustion and for half the cost of its components. Anything beyond Wish's list needs the GM's leave, and the Cauldron then leaves a mark on you."
    },
    {
     "name": "Cauldron Ritual (monthly)",
@@ -1810,11 +1810,11 @@
     "minLevel": 24,
     "cost": 0,
     "per": "month",
-    "text": "From 24th level, once per month of in-game time without the GM's rare conditions; the ingredients still cost steeply. An effect equal to the Wish spell, with its risks, and always a permanent minor mark."
+    "text": "From 24th level, once a month, on any night: one effect of Wish cast as a Ritual, with no Exhaustion and for half the cost of its components. Anything beyond Wish's list needs the GM's leave, and the Cauldron then leaves a mark on you."
    }
   ],
   "confidence": "high",
-  "why": "Handbook: a story-level event, not a daily resource; once every several months on the GM's conditions, monthly from 24th."
+  "why": "HB v0.10.81 audit (0.10.114): about once a season on a night the GM names; once a month on any night from 24th (Scapegoat)."
  },
  "Arcane Recovery|Wizard": {
   "activities": [
@@ -2382,7 +2382,7 @@
     "damageType": "cold",
     "cost": 0,
     "per": "round",
-    "text": "Once per round, when you hit with a Hex, a damaging spell or the claw: +1d6 cold."
+    "text": "Once per round, when a creature takes damage from your Hex, a spell you cast or your claw: +1d6 cold."
    }
   ],
   "confidence": "high",
@@ -2398,11 +2398,11 @@
     "text": "An unarmed claw attack (the Unarmed Strike action) dealing this on a hit."
    },
    {
-    "name": "Claw and Hex (1d6)",
+    "name": "Claw and Hex",
     "kind": "damage",
     "formula": "1d6",
     "cost": 0,
-    "text": "When you strike the same target with a claw attack and a successful Hex in the same round: the claw deals an additional 1d6."
+    "text": "Your claw deals this extra to a creature under your Hex."
    }
   ],
   "confidence": "high",
@@ -2455,7 +2455,7 @@
     "name": "Hex-laced tonic",
     "kind": "save",
     "save": "fort",
-    "text": "Once per day, as an action instead: a creature within 15ft makes a Fortitude save or is Poisoned (Disadvantage on attack rolls and ability checks) for 1 minute."
+    "text": "Once per day, as your action: a creature within 15ft makes a Fortitude save or is Poisoned for the encounter."
    }
   ],
   "confidence": "high",
@@ -2474,7 +2474,7 @@
     "name": "Phantom water",
     "kind": "save",
     "save": "fort",
-    "text": "Once per day, a melee touch attack instead: the target makes a Fortitude save or falls Prone and loses its next action."
+    "text": "Once per day, as your action: a creature within 30ft makes a Fortitude save or falls Prone and loses its next action."
    }
   ],
   "confidence": "high",
@@ -2679,14 +2679,16 @@
  "Patron Curse|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
   "activities": [
    {
-    "name": "Marked Hex (2d6)",
+    "name": "Marked Hex",
     "kind": "damage",
-    "formula": "2d6",
-    "text": "Once per day, mark a creature within 30ft: your next successful Hex against it deals this extra (Fortitude save halves)."
+    "formula": "1:2d6, 13:4d6",
+    "damageType": "necrotic",
+    "per": "day",
+    "text": "Once per day, when a creature fails its save against your Hex: the Hex deals this extra the first time it harms that creature. No action."
    }
   ],
   "confidence": "high",
-  "why": "Once/day: +2d6 on the next Hex, Fortitude halves."
+  "why": "HB v0.10.81 audit (0.10.114): on a failed Hex save, 4d6 from 13th, no save."
  },
  "Patron Curse|Patron: Frostmother Ysolde (Bheur Hag) (Witch)": {
   "activities": [
@@ -2694,33 +2696,33 @@
     "name": "Bone-deep cold",
     "kind": "save",
     "save": "fort",
-    "text": "Once per day, a creature within 30ft: Fortitude save or its speed is halved for 1 minute, taking 1d6 cold at the start of each of its turns."
+    "text": "Once per day, a creature within 30ft: Fortitude save or its speed is halved for the encounter and it takes cold damage at the start of each of its turns. It repeats the save at the end of each of its turns, ending the curse on a success."
    },
    {
-    "name": "Cold each turn (1d6)",
+    "name": "Cold each turn",
     "kind": "damage",
-    "formula": "1d6",
+    "formula": "1:1d6, 13:2d6",
     "damageType": "cold",
     "cost": 0,
     "text": "At the start of each of the cursed creature's turns."
    }
   ],
   "confidence": "high",
-  "why": "Once/day Fortitude save; 1d6 cold each turn while it lasts."
+  "why": "HB v0.10.81 audit (0.10.114): for the encounter, repeat saves, 2d6 from 13th."
  },
  "Ancestor's Fury|Shaman (Druid)": {
   "activities": [
    {
-    "name": "Ancestor's Fury (1d4)",
+    "name": "Ancestor's Fury",
     "kind": "damage",
-    "formula": "1d4",
+    "formula": "1:1d4, 9:1d8",
     "cost": 0,
     "per": "round",
-    "text": "While you are in Wild Shape, your first hit each round deals this extra, of a type you choose."
+    "text": "While you are in Wild Shape, one hit of your choice each round deals this extra, of a type you choose. It is your rider for that hit."
    }
   ],
   "confidence": "high",
-  "why": "Always on in Wild Shape: +1d4 of a chosen type on the first hit each round."
+  "why": "HB v0.10.81 audit (0.10.114): 1d4, 1d8 from 9th, one hit of your choice each round."
  },
  "Undead Resilience|Necromancer": {
   "activities": [
@@ -4265,5 +4267,100 @@
   "uses": {
    "max": 0
   }
+ },
+ "Beast Kin|Druid": {
+  "activities": [
+   {
+    "name": "Send beasts and plants away",
+    "kind": "save",
+    "save": "will",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "encounter",
+    "target": "area",
+    "text": "As your action: natural beasts and plant creatures within 60ft whose Level is no more than half yours make a Will save against your Class Save DC or leave, and do not return while you remain."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): Beast Kin's 9th-level power, once per encounter."
+ },
+ "Forest Vigour|Grove Healer (Druid)": {
+  "activities": [
+   {
+    "name": "Cure Serious Wounds (no slot)",
+    "kind": "note",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "day",
+    "text": "Once per day, cast Cure Serious Wounds without expending a slot: cast it from your Spells tab and don't mark the slot."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): the 9th-level free casting."
+ },
+ "Urban Swarm|City Druid (Druid)": {
+  "activities": [
+   {
+    "name": "Urban Swarm",
+    "kind": "note",
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "text": "One creature that took damage from your spell or failed a save against it has Disadvantage on its next attack roll. {1:, 9:Its speed is also halved until the end of its next turn.} Not in the open sea or on bare ice or in a sealed vault."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): once a round, no save; replaces the old Dismiss Woodland Creatures reminder."
+ },
+ "Voice of the Grove|Tree-Speaker (Druid)": {
+  "activities": [
+   {
+    "name": "Entangle (no slot)",
+    "kind": "note",
+    "minLevel": 9,
+    "cost": 0,
+    "per": "day",
+    "text": "Once per day, cast Entangle without expending a slot: cast it from your Spells tab and don't mark the slot."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): the 9th-level free casting."
+ },
+ "Scapegoat|Witch": {
+  "activities": [
+   {
+    "name": "Scapegoat",
+    "kind": "save",
+    "save": "will",
+    "cost": 0,
+    "per": "encounter",
+    "target": "one",
+    "text": "When you or an ally you can see within 60ft would take damage, pass it to a creature under your Hex: it makes a Will save. On a failure it takes the damage instead; on a success the damage falls where it was aimed. No action."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): once per encounter, Will save."
+ },
+ "Patron Feature|Tiandra (Warlock)": {
+  "activities": [
+   {
+    "name": "Summer's Blessing",
+    "kind": "heal",
+    "formula": "2d8 + @cl",
+    "cost": 1,
+    "target": "one",
+    "text": "1 Patron Favour: one creature within 60ft regains this many HP (no save)."
+   },
+   {
+    "name": "Summer's Wrath",
+    "kind": "save",
+    "save": "fort",
+    "cost": 1,
+    "target": "one",
+    "text": "1 Patron Favour: one creature within 60ft makes a Fortitude save against your Class Save DC or is Weakened and Slowed for the encounter."
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.81 audit (0.10.114): the Blessing's healing gets its own roll."
  }
 }

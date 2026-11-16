@@ -159,3 +159,25 @@ assert.ok(/steps up one size/.test(C.ARNEYAN.weaponTraits?.Versatile?.text ?? sr
 /* Parrying Stance: no Use button once its option has closed. */
 assert.ok(/acts: acts\(i\)/.test(src("module/sheets.mjs")) && /availableActivities \?\? i\.system\.activities\)\?\.length/.test(src("module/tah.mjs")));
 console.log("OK HB and M&T v0.10.75");
+
+/* 0.10.114: a monster's Spellcasting and Innate lines link every spell they name (plain names since M&T v0.10.76). */
+{
+  let casters = 0;
+  for (const sub of ["monsters", "kk-monsters"]) for (const f of fs.readdirSync(dir(sub)).filter(x => x.startsWith("actors_"))) {
+    const d = JSON.parse(fs.readFileSync(new URL(f, dir(sub)), "utf8"));
+    const lines = d.items.filter(i => ["Innate Spellcasting", "Spellcasting"].includes(i.name));
+    if (!lines.length) continue;
+    casters += 1;
+    const text = lines.map(i => i.system.description).join(" ");
+    assert.ok(!text.includes("\u0000"), `${d.name}: no placeholder left`);
+    const links = new Set([...text.matchAll(/@UUID\[Compendium\.arneyan\.spells\.Item\.(\w+)\]/g)].map(m => m[1]));
+    for (const s of d.items.filter(i => i.type === "spell")) {
+      const id = String(s._stats?.compendiumSource ?? "").split(".").pop();
+      assert.ok(links.has(id), `${d.name}: ${s.name} is linked in its spell line`);
+    }
+  }
+  assert.ok(casters > 100, `casters checked (${casters})`);
+  const ef = JSON.parse(fs.readFileSync(new URL(fs.readdirSync(dir("monsters")).find(x => x.startsWith("actors_Efreeti_")), dir("monsters")), "utf8"));
+  assert.ok(!/@Condition\[burning\]\{Burning\} Hands/.test(ef.items.find(i => i.name === "Innate Spellcasting").system.description), "Burning Hands is the spell, not the condition");
+  console.log("OK monster spell links");
+}

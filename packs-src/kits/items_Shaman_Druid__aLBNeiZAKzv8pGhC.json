@@ -24,13 +24,13 @@
     "save": "",
     "activities": [
      {
-      "name": "Ancestor's Fury (1d4)",
+      "name": "Ancestor's Fury",
       "kind": "damage",
-      "formula": "1d4",
+      "formula": "1:1d4, 9:1d8",
       "damageType": "",
       "ability": "",
       "save": "",
-      "text": "While you are in Wild Shape, your first hit each round deals this extra, of a type you choose.",
+      "text": "While you are in Wild Shape, one hit of your choice each round deals this extra, of a type you choose. It is your rider for that hit.",
       "minLevel": 0,
       "maxLevel": 0,
       "cost": 0,
@@ -76,7 +76,7 @@
      {
       "key": "adv.check",
       "value": "1",
-      "when": "to perceive, communicate with or identify spirits, ancestors and natural extraplanar entities",
+      "when": "to perceive, speak with or identify spirits, ancestors and natural extraplanar beings",
       "label": ""
      }
     ],
