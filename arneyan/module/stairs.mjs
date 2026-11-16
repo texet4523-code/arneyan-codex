@@ -83,11 +83,17 @@ export async function addFloor(scene, { name = "", src = "", where = "above" } =
   return level;
 }
 
-/** Link two Regions as a staircase: each sends tokens to the other. Earlier stairs behaviours of ours on them go. */
+/** Link two Regions as a staircase: each sends tokens to the other. Stairs either had before are unlinked at both ends. */
 export async function linkStairs(a, b, { ask = false } = {}) {
   for (const [r, other] of [[a, b], [b, a]]) {
-    const old = r.behaviors.filter(x => x.flags?.[SYS]?.stairs).map(x => x.id);
-    if (old.length) await r.deleteEmbeddedDocuments("RegionBehavior", old);
+    const old = r.behaviors.filter(x => x.flags?.[SYS]?.stairs);
+    // The ends these stairs led to before stop leading back here (the areas themselves stay, for the GM to remove).
+    for (const uuid of new Set(old.flatMap(x => [...(x.system?.destinations ?? [])]))) {
+      const was = uuid === other.uuid ? null : await fromUuid(uuid).catch(() => null);
+      const back = was?.behaviors?.filter(x => x.flags?.[SYS]?.stairs && [...(x.system?.destinations ?? [])].includes(r.uuid)).map(x => x.id) ?? [];
+      if (back.length) await was.deleteEmbeddedDocuments("RegionBehavior", back);
+    }
+    if (old.length) await r.deleteEmbeddedDocuments("RegionBehavior", old.map(x => x.id));
     await r.createEmbeddedDocuments("RegionBehavior", [stairBehaviour(other.uuid, { ask })]);
   }
   return [a, b];
