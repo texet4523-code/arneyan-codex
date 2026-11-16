@@ -798,6 +798,25 @@ export function phaseRework(actor, m) {
 /** The old Bloodied markers on any creature (the rule and its icon are gone). */
 export const bloodiedMarks = actor => [...(actor.effects ?? [])].filter(e => [...(e.statuses ?? [])].includes("bloodied") || e.flags?.[SYS]?.bloodied).map(e => e.id ?? e._id);
 
+/** 0.10.117 (Keeps & Kingdoms v0.5.4, B-F76): the Kingfissure Worm is on Running a Solo: 110 HP a phase, not 375. */
+export const KK_SOLO = "0.10.117";
+/**
+ * A world copy of a Keeps & Kingdoms creature whose HP the book changed when it went onto Running a Solo (pure, for tests).
+ * `actor` the world copy, `m` the compendium's, `was` the HP the book gave before. Returns the update, or null: only a
+ * copy still on the old HP changes (one the GM gave its own HP keeps it); current HP follows if it was full or is now
+ * above the new maximum; the description is the compendium's (not on an unlinked token, whose base actor carries it).
+ */
+export function kkSoloHp(actor, m, was = 375) {
+  if (!m?.system?.details?.isSolo) return null;
+  const hp = actor.system?.attributes?.hp ?? {};
+  const newMax = Number(m.system?.attributes?.hp?.max) || 0;
+  if (!newMax || newMax === was || Number(hp.max) !== was) return null;
+  const update = { "system.attributes.hp.max": newMax };
+  if (Number(hp.value) >= was || Number(hp.value) > newMax) update["system.attributes.hp.value"] = newMax;
+  if (!actor.isToken && m.system.details.description) update["system.details.description"] = m.system.details.description;
+  return update;
+}
+
 /** Books v0.10.49 (K57): the Thief Skills reach existing Rogues and Assassins. */
 export const THIEF_REWORK = "0.10.88";
 /** Books v0.10.55 (R-B54): the Magus is the Spellblade. */
@@ -1257,6 +1276,28 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       console.warn("Arneyan | solo phases step", err);
     }
   }
+  // Keeps & Kingdoms v0.5.4 (B-F76): a world Kingfissure Worm still on 375 HP takes its phase HP (110) and new description.
+  if (due && newerThan(KK_SOLO, from) && !newerThan(KK_SOLO, version)) {
+    try {
+      const npcs = [...game.actors.filter(a => a.type === "npc"), ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor?.type === "npc").map(t => t.actor))];
+      for (const actor of npcs) {
+        try {
+          const kk = x => typeof x === "string" && x.startsWith(`Compendium.${SYS}.kk-monsters.`);
+          const own = actor._stats?.compendiumSource ?? actor.flags?.core?.sourceId ?? "";
+          const src = kk(own) ? own : String((actor.isToken ? actor.baseActor : null)?._stats?.compendiumSource ?? "");
+          if (!kk(src)) continue;
+          const upd = kkSoloHp(actor, await fetch(src));
+          if (!upd) continue;
+          await actor.update(upd, { arneyanMigration: true });
+          if (!actor.isToken) (notes.kkSolo ??= []).push(actor.name);
+        } catch (err) {
+          console.warn(`Arneyan | Keeps & Kingdoms solo: ${actor.name}`, err);
+        }
+      }
+    } catch (err) {
+      console.warn("Arneyan | Keeps & Kingdoms solo step", err);
+    }
+  }
   // Books v0.10.49 (K57): Rogues and Assassins get their Thief Skills (Lockpicking, Traps, Pick Pocket, Climb).
   if (due && newerThan(THIEF_REWORK, from) && !newerThan(THIEF_REWORK, version)) {
     try {
@@ -1305,7 +1346,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const classAdded = Object.entries(notes.classAdded), classGone = Object.entries(notes.classGone), classLater = Object.entries(notes.classLater ?? {});
   const thief = notes.thief ?? [];
   const phased = [...new Set(notes.phase ?? [])];
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length) {
+  const kkSolo = [...new Set(notes.kkSolo ?? [])];
+  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1319,6 +1361,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (scored.length ? `<p><strong>Monsters given their scores</strong> (Monsters &amp; Treasure v0.10.5: attribute scores, saves worked out from them where yours were the book's old ones, and skills): ${esc(nameList(scored.length > 30 ? [...scored.slice(0, 30), `${scored.length - 30} more`] : scored))}.</p>` : "")
       + (classAdded.length ? `<p><strong>New class features</strong> (from the Handbook since this world last updated its classes). Added:</p><ul>${classAdded.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}${classAdded.length > 40 ? `<li>and ${classAdded.length - 40} more</li>` : ""}</ul>` : "")
       + (phased.length ? `<p><strong>Solos</strong> (Monsters &amp; Treasure v0.10.75): ${esc(nameList(phased.length > 30 ? [...phased.slice(0, 30), `${phased.length - 30} more`] : phased))} now fight in three phases with their phase HP, and take their type's villain actions; Bloodied is gone. Their descriptions are the Bestiary's new ones (any edits of yours there were replaced). Each is a normal creature until you tick <em>Run as solo</em> on its sheet (or in the Encounter Builder).</p>` : "")
+      + (kkSolo.length ? `<p><strong>Keeps &amp; Kingdoms v0.5.4:</strong> ${esc(nameList(kkSolo))} now has 110 HP a phase (it had 375 in all) and its new description; it is a normal creature until you tick <em>Run as solo</em>.</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (cut, or folded into another feature, by a Handbook change since this world last updated its classes). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")

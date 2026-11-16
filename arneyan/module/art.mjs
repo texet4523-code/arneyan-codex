@@ -49,7 +49,7 @@ export const ALIASES = {
   "Giant Fire Beetle": ["Flash Beetle"], "Young Remorhaz": ["Remorhaz"], "Ankheg": ["Ankhrav"], "Bullywug": ["Boggard Warrior"],
   "Kenku": ["Tengu Sneak"], "Yuan-ti Pureblood": ["Zyss Serpentfolk"], "Yuan-ti Malison": ["Aapoph Serpentfolk"],
   "Yuan-ti Abomination": ["Aapoph Serpentfolk"], "Snapjaw Plant": ["Snapping Flytrap"], "Mud Mephit": ["Ooze Mephit"],
-  "Magma Mephit": ["Fire Mephit"], "Orc War Chief": ["Orc Warchief"], "Hobgoblin Warlord": ["Hobgoblin General"],
+  "Magma Mephit": ["Fire Mephit"], "Orc War Chief": ["Orc Warchief"], "Orc Bloodchief": ["Orc Warchief"], "Hobgoblin Warlord": ["Hobgoblin General"],
   "Gnoll Pack Lord": ["Gnoll Sergeant"], "Lizardfolk Shaman": ["Lizardfolk Stargazer"], "Drow Elite Warrior": ["Drow Fighter"],
   "Bone Legionary": ["Skeleton Warrior", "Skeleton Guard"], "Black Dragon, Wyrmling": ["Black Dragon, Young"],
   "Blue Dragon, Wyrmling": ["Blue Dragon, Young"], "Brass Dragon, Wyrmling": ["Brass Dragon, Young"],

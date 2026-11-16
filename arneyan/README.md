@@ -1,6 +1,17 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.116 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.117 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.117
+
+Handbook and Monsters & Treasure v0.10.82 (B-F77) and Keeps & Kingdoms v0.5.4 (B-F76). Nothing changes on a character sheet beyond the text.
+
+- **Kits:** nine kit introductions say who trains in them: Bladebound and Shadow Edge (Spellblade); the Crimson Tide, Silver Serpent, Opal Way, Eltor Court and Black Street (Swashbuckler); War Barbarian and Drake's Followers (Barbarian). Their features are the same.
+- **Cleric and Paladin:** the demon-lord lines read as the books do now: the lords without an order have cults and Warlocks, unless the GM decides a cult has grown strong enough (K206).
+- **Keeps & Kingdoms:** all six chapter journals are v0.5.4 (petitions and servitors, spell refinement as Research a Spell, Seats, retainers, Mass Combat and the rest of the review's changes).
+- **Kingfissure Worm:** marked Solo as Monsters & Treasure's creatures are, with 110 HP a phase (it had 375 in all), its own villain actions, and no Bloodied. A worm already in your world still on 375 HP takes the new HP and description in the update; one you gave your own HP keeps it.
+- **Orc Bloodchief:** the Orc Warchief's new name. It is the same compendium entry, so links to it still work; one already in your world keeps the old name until you rename it.
+- **Saves:** the Angulotl Tadpole and Blade, Dragonet, Goblin Runner, Kobold Shieldbearer, Grave Shambler and Corpse Herder have the book's new saves (half Level, minimum 1). Creatures already in your world keep theirs: drag a fresh one from the compendium.
 
 ## What's new in 0.10.116
 

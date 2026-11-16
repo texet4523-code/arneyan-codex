@@ -64,7 +64,7 @@ def save_level(lv):
 # Made from the spell before Monsters & Treasure had them (0.10.43): the same ids, so copies already in a world match.
 KEEP_IDS = {"Animated Object": "AnimObjMedium001", "Animated Object, Large": "AnimObjLarge0001"}
 # Renamed monsters keep the ids (and earlier saves) of their old name. M&T v0.10.46 (K59): Skeleton Warrior.
-OLD_NAMES = {"Bone Legionary": "Skeleton Warrior"}
+OLD_NAMES = {"Bone Legionary": "Skeleton Warrior", "Orc Bloodchief": "Orc Warchief"}   # the second is Keeps & Kingdoms' (v0.5.4)
 SKILL_DOCS = {}
 
 

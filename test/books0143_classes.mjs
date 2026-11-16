@@ -78,3 +78,20 @@ for (const n of ["Spellburn", "Overchannel"]) {
   assert.match(text, /Constitution/, n);
   assert.doesNotMatch(text, /Strength|Dexterity|attribute points/, n);
 }
+
+/* HB v0.10.82 (B-F77): nine kit intros gain an example of who trains in them; the Cleric and Paladin demon-lord lines (K206). */
+const kits = read("kits"), classes = read("classes");
+const kit = (n, c) => { const k = kits.find(x => x.name === `${n} (${c})` && x.system.className === c); assert.ok(k, `${n} (${c})`); return k.system.description; };
+for (const [n, c, words] of [["Bladebound", "Spellblade", "bladesingers of Aldorethi"], ["Shadow Edge", "Spellblade", "Ashes of the Phoenix"],
+  ["The Crimson Tide", "Swashbuckler", "fleet's captains"], ["The Silver Serpent", "Swashbuckler", "patient blades of Iiria"],
+  ["The Opal Way", "Swashbuckler", "Moon's Free Company"], ["The Eltor Court", "Swashbuckler", "Holfast's halls"],
+  ["The Black Street", "Swashbuckler", "Cheap Street"], ["War Barbarian", "Barbarian", "goliath war-bands of Jotunas"],
+  ["Drake's Followers", "Barbarian", "Treaty Hold"]])
+  assert.ok(kit(n, c).includes(words), `${n}: ${words}`);
+const cls = n => classes.find(x => x.name === n).system.description;
+assert.match(cls("Paladin"), /have cults and Warlocks but no Paladin orders, unless the GM decides a cult has grown strong enough/);
+assert.match(cls("Cleric"), /only those in these tables keep Cleric orders/);
+assert.doesNotMatch(cls("Cleric") + cls("Paladin"), /serve only as Warlock patrons|are Warlock patrons, not Paladin gods/);
+const codex = fs.readFileSync(new URL(`../packs-src/rules/${fs.readdirSync(new URL("../packs-src/rules/", import.meta.url)).find(f => f.startsWith("journal_Book_I_"))}`, import.meta.url), "utf8");
+assert.ok(codex.includes("Knight's Battle Lord, in Keeps &amp; Kingdoms") || codex.includes("Knight's Battle Lord, in Keeps & Kingdoms"));
+console.log("OK books v0.10.82");

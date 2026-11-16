@@ -74,10 +74,11 @@ def blocks(md):
         if not re.search(r"^\*\*.+ · Level", body, re.M):
             continue
         for b in re.split(r"\n(?=\*\*[^*\n]+ · Level)", body):
-            head = re.match(r"\*\*(.+?) · Level (\S+)(?: (solo|minion|leader|support))?(?: [a-z]+)? · (.+?)\*\*", b.strip())
+            # v0.5.4: "Kingfissure Worm · Level 15 · Solo · Gargantuan monstrosity" (M&T's Solo mark, its own field).
+            head = re.match(r"\*\*(.+?) · Level (\S+)(?: (solo|minion|leader|support))?(?: [a-z]+)?( · Solo)? · (.+?)\*\*", b.strip())
             if not head:
                 continue
-            name, lvl, role, typ = head.group(1), head.group(2), head.group(3) or "", head.group(4)
+            name, lvl, role, typ = head.group(1), head.group(2), head.group(3) or ("solo" if head.group(4) else ""), head.group(5)
             m = {"name": name, "type": typ, "cl": f"{lvl} {role}".strip(), "f": {}, "sp": [], "gm": "", "group": group, "refs": []}
             for ln in b.strip().split("\n")[1:]:
                 ln = ln.strip()
