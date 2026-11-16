@@ -381,3 +381,16 @@ assert.ok(!readme.includes("—"), "no em dashes in the README");
 }
 
 console.log("OK review 0.10.1");
+
+/* ---------------- 0.10.114: heal.reroll (the Grove Healer's Forest Vigour) ---------------- */
+{
+  const fv = kits.find(k => k.name === "Grove Healer (Druid)").system.features.find(f => f.name === "Forest Vigour");
+  assert.deepEqual(fv.rules.map(r => [r.key, String(r.value), r.when]), [["heal.reroll", "1", ""]], "Forest Vigour rerolls 1s; the old +1 per die is gone");
+  const healer = makeActor(CharacterData, "character", {}, [makeItem(IM.AbilityData, "ability", "Forest Vigour", { rules: fv.rules })]);
+  assert.equal(healer.system.mods.reroll("heal.reroll").value, 1);
+  assert.equal(healer.system.mods.reroll().value, 0, "weapon dice are untouched");
+  assert.equal(healer.system.mods.sum("heal.perdie"), 0);
+  assert.equal(E.rerollDice("2d8 + 3", 1), "2d8r<=1 + 3");
+  assert.equal(makeActor(CharacterData, "character", {}, []).system.mods.reroll("heal.reroll").value, 0);
+  console.log("OK heal.reroll");
+}

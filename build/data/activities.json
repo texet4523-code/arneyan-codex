@@ -1701,7 +1701,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1712,7 +1712,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws of one kind (Fortitude or Reflex or Will: your choice) for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1723,7 +1723,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once Hex another you can see within 30ft (no action, Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -4275,8 +4275,6 @@
     "kind": "save",
     "save": "will",
     "minLevel": 9,
-    "cost": 0,
-    "per": "encounter",
     "target": "area",
     "text": "As your action: natural beasts and plant creatures within 60ft whose Level is no more than half yours make a Will save against your Class Save DC or leave, and do not return while you remain."
    }
@@ -4290,8 +4288,6 @@
     "name": "Cure Serious Wounds (no slot)",
     "kind": "note",
     "minLevel": 9,
-    "cost": 0,
-    "per": "day",
     "text": "Once per day, cast Cure Serious Wounds without expending a slot: cast it from your Spells tab and don't mark the slot."
    }
   ],
@@ -4318,8 +4314,6 @@
     "name": "Entangle (no slot)",
     "kind": "note",
     "minLevel": 9,
-    "cost": 0,
-    "per": "day",
     "text": "Once per day, cast Entangle without expending a slot: cast it from your Spells tab and don't mark the slot."
    }
   ],
@@ -4332,8 +4326,6 @@
     "name": "Scapegoat",
     "kind": "save",
     "save": "will",
-    "cost": 0,
-    "per": "encounter",
     "target": "one",
     "text": "When you or an ally you can see within 60ft would take damage, pass it to a creature under your Hex: it makes a Will save. On a failure it takes the damage instead; on a success the damage falls where it was aimed. No action."
    }

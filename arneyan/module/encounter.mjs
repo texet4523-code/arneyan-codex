@@ -13,6 +13,7 @@
 import { partyMembers } from "./party.mjs";
 import { treasureForFoes } from "./treasure.mjs";
 import { isSolo as runsAsSolo } from "./solo.mjs";
+import { rollMonsterInitiative } from "./qol.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
@@ -418,6 +419,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const heroes = scene.tokens.filter(t => t.actorId && ids.has(t.actorId));
     const add = [...made, ...heroes].filter(t => !have.has(t.id)).map(t => ({ tokenId: t.id, sceneId: scene.id, actorId: t.actorId, hidden: !!t.hidden }));
     if (add.length) await combat.createEmbeddedDocuments("Combatant", add);
+    // A fight already running: the newcomers roll initiative now (a new fight rolls it as it starts).
+    if (add.length && combat.started) await rollMonsterInitiative(combat).catch(err => console.warn("Arneyan | initiative for the newcomers", err));
     if (!heroes.length) ui.notifications.warn("None of the party's tokens are on this scene: add them to the tracker yourself.");
     if (!combat.active) await combat.activate?.();
     if (!combat.started) await combat.startCombat();

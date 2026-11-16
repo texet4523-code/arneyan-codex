@@ -304,19 +304,22 @@ def enrich(text):
 
 def link_spells(text):
     """A Spellcasting or Innate line, enriched, with its plain spell names (M&T v0.10.76 on prints them without
-    italics) as links to the Spells compendium: the names spell_items finds in the line, longest first, each linked
-    once. They are held out of the text before the other links are made ("Burning Hands" is not the condition)."""
-    names = sorted({re.sub(r"\s*\([^()]*\)$", "", it["name"]) for it in spell_items(text)}, key=len, reverse=True)
+    italics) as links to the Spells compendium: the spells spell_items finds in the line, longest name first, each
+    linked once. They are held out of the text before the other links are made ("Burning Hands" is not the condition).
+    The name as the compendium spells it is tried first, so a word of the prose before the list ("It can command
+    undead. Typical spells: Command") is not taken for the spell; any other case is tried only if that finds nothing."""
+    ids = {it["_stats"]["compendiumSource"].rsplit(".", 1)[-1] for it in spell_items(text)}
+    spells = sorted(((d["name"], d["_id"]) for d in SPELL_DOCS.values() if d["_id"] in ids), key=lambda x: -len(x[0]))
     held = []
-    for n in names:
-        sid = SPELLS.get(n.lower())
-        if not sid:
-            continue
+    for n, sid in spells:
         def hold(m, sid=sid):
             held.append(f"@UUID[Compendium.arneyan.spells.Item.{sid}]{{{html.escape(m.group(0), quote=False)}}}")
             return f"\x00{len(held) - 1}\x00"
         # Not an italic name (the italics pass links those), nor part of a longer word.
-        text = re.sub(r"(?<![\w*'])" + re.escape(n) + r"(?![\w*'])", hold, text, count=1, flags=re.I)
+        pat = r"(?<![\w*'])" + re.escape(n) + r"(?![\w*'])"
+        text, k = re.subn(pat, hold, text, count=1)
+        if not k:
+            text = re.sub(pat, hold, text, count=1, flags=re.I)
     return re.sub(r"\x00(\d+)\x00", lambda m: held[int(m.group(1))], enrich(text))
 
 

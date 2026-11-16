@@ -2641,7 +2641,8 @@
     "rules": [
      {
       "key": "adv.save",
-      "value": -1
+      "value": -1,
+      "when": "on saves of the one kind the Witch chose (never against the Hex itself)"
      }
     ]
    },
@@ -2658,7 +2659,7 @@
     ]
    }
   ],
-  "summary": "Pick one: Disadvantage on attacks, saves or checks for the encounter on a failed Will save.",
+  "summary": "Pick one: Disadvantage on attacks, on saves of one kind (a reminder on the hexed creature's saves) or on checks, for the encounter, on a failed Will save.",
   "manual": "Start-of-turn necrotic damage, the repeat saves, and no Disadvantage on saves against the Hex itself. From 24th (Scapegoat) a creature's first save against your Hex has Disadvantage.",
   "confidence": "medium"
  },
